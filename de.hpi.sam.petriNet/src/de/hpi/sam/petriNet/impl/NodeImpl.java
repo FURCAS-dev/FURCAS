@@ -10,6 +10,7 @@ import de.hpi.sam.petriNet.Arc;
 import de.hpi.sam.petriNet.Node;
 import de.hpi.sam.petriNet.PetriNetPackage;
 
+import org.eclipse.emf.common.notify.Notification;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -38,24 +40,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class NodeImpl extends ElementImpl implements Node {
 	/**
-	 * The cached value of the '{@link #getOutgoingArcs() <em>Outgoing Arcs</em>}' reference list.
+	 * The cached value of the '{@link #getOutgoingArcs() <em>Outgoing Arcs</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOutgoingArcs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Arc> outgoingArcs;
+	protected Arc outgoingArcs;
 
 	/**
-	 * The cached value of the '{@link #getIncomingArcs() <em>Incoming Arcs</em>}' reference list.
+	 * The cached value of the '{@link #getIncomingArcs() <em>Incoming Arcs</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getIncomingArcs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Arc> incomingArcs;
+	protected Arc incomingArcs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,9 +83,14 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Arc> getOutgoingArcs() {
-		if (outgoingArcs == null) {
-			outgoingArcs = new EObjectWithInverseResolvingEList<Arc>(Arc.class, this, PetriNetPackage.NODE__OUTGOING_ARCS, PetriNetPackage.ARC__SOURCE);
+	public Arc getOutgoingArcs() {
+		if (outgoingArcs != null && outgoingArcs.eIsProxy()) {
+			InternalEObject oldOutgoingArcs = (InternalEObject)outgoingArcs;
+			outgoingArcs = (Arc)eResolveProxy(oldOutgoingArcs);
+			if (outgoingArcs != oldOutgoingArcs) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.NODE__OUTGOING_ARCS, oldOutgoingArcs, outgoingArcs));
+			}
 		}
 		return outgoingArcs;
 	}
@@ -93,11 +100,102 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Arc> getIncomingArcs() {
-		if (incomingArcs == null) {
-			incomingArcs = new EObjectWithInverseResolvingEList<Arc>(Arc.class, this, PetriNetPackage.NODE__INCOMING_ARCS, PetriNetPackage.ARC__TARGET);
+	public Arc basicGetOutgoingArcs() {
+		return outgoingArcs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOutgoingArcs(Arc newOutgoingArcs, NotificationChain msgs) {
+		Arc oldOutgoingArcs = outgoingArcs;
+		outgoingArcs = newOutgoingArcs;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PetriNetPackage.NODE__OUTGOING_ARCS, oldOutgoingArcs, newOutgoingArcs);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOutgoingArcs(Arc newOutgoingArcs) {
+		if (newOutgoingArcs != outgoingArcs) {
+			NotificationChain msgs = null;
+			if (outgoingArcs != null)
+				msgs = ((InternalEObject)outgoingArcs).eInverseRemove(this, PetriNetPackage.ARC__SOURCE, Arc.class, msgs);
+			if (newOutgoingArcs != null)
+				msgs = ((InternalEObject)newOutgoingArcs).eInverseAdd(this, PetriNetPackage.ARC__SOURCE, Arc.class, msgs);
+			msgs = basicSetOutgoingArcs(newOutgoingArcs, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.NODE__OUTGOING_ARCS, newOutgoingArcs, newOutgoingArcs));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Arc getIncomingArcs() {
+		if (incomingArcs != null && incomingArcs.eIsProxy()) {
+			InternalEObject oldIncomingArcs = (InternalEObject)incomingArcs;
+			incomingArcs = (Arc)eResolveProxy(oldIncomingArcs);
+			if (incomingArcs != oldIncomingArcs) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.NODE__INCOMING_ARCS, oldIncomingArcs, incomingArcs));
+			}
 		}
 		return incomingArcs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Arc basicGetIncomingArcs() {
+		return incomingArcs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIncomingArcs(Arc newIncomingArcs, NotificationChain msgs) {
+		Arc oldIncomingArcs = incomingArcs;
+		incomingArcs = newIncomingArcs;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PetriNetPackage.NODE__INCOMING_ARCS, oldIncomingArcs, newIncomingArcs);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncomingArcs(Arc newIncomingArcs) {
+		if (newIncomingArcs != incomingArcs) {
+			NotificationChain msgs = null;
+			if (incomingArcs != null)
+				msgs = ((InternalEObject)incomingArcs).eInverseRemove(this, PetriNetPackage.ARC__TARGET, Arc.class, msgs);
+			if (newIncomingArcs != null)
+				msgs = ((InternalEObject)newIncomingArcs).eInverseAdd(this, PetriNetPackage.ARC__TARGET, Arc.class, msgs);
+			msgs = basicSetIncomingArcs(newIncomingArcs, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.NODE__INCOMING_ARCS, newIncomingArcs, newIncomingArcs));
 	}
 
 	/**
@@ -110,9 +208,13 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PetriNetPackage.NODE__OUTGOING_ARCS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingArcs()).basicAdd(otherEnd, msgs);
+				if (outgoingArcs != null)
+					msgs = ((InternalEObject)outgoingArcs).eInverseRemove(this, PetriNetPackage.ARC__SOURCE, Arc.class, msgs);
+				return basicSetOutgoingArcs((Arc)otherEnd, msgs);
 			case PetriNetPackage.NODE__INCOMING_ARCS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingArcs()).basicAdd(otherEnd, msgs);
+				if (incomingArcs != null)
+					msgs = ((InternalEObject)incomingArcs).eInverseRemove(this, PetriNetPackage.ARC__TARGET, Arc.class, msgs);
+				return basicSetIncomingArcs((Arc)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -126,9 +228,9 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PetriNetPackage.NODE__OUTGOING_ARCS:
-				return ((InternalEList<?>)getOutgoingArcs()).basicRemove(otherEnd, msgs);
+				return basicSetOutgoingArcs(null, msgs);
 			case PetriNetPackage.NODE__INCOMING_ARCS:
-				return ((InternalEList<?>)getIncomingArcs()).basicRemove(otherEnd, msgs);
+				return basicSetIncomingArcs(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -142,9 +244,11 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PetriNetPackage.NODE__OUTGOING_ARCS:
-				return getOutgoingArcs();
+				if (resolve) return getOutgoingArcs();
+				return basicGetOutgoingArcs();
 			case PetriNetPackage.NODE__INCOMING_ARCS:
-				return getIncomingArcs();
+				if (resolve) return getIncomingArcs();
+				return basicGetIncomingArcs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,12 +263,10 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case PetriNetPackage.NODE__OUTGOING_ARCS:
-				getOutgoingArcs().clear();
-				getOutgoingArcs().addAll((Collection<? extends Arc>)newValue);
+				setOutgoingArcs((Arc)newValue);
 				return;
 			case PetriNetPackage.NODE__INCOMING_ARCS:
-				getIncomingArcs().clear();
-				getIncomingArcs().addAll((Collection<? extends Arc>)newValue);
+				setIncomingArcs((Arc)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,10 +281,10 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case PetriNetPackage.NODE__OUTGOING_ARCS:
-				getOutgoingArcs().clear();
+				setOutgoingArcs((Arc)null);
 				return;
 			case PetriNetPackage.NODE__INCOMING_ARCS:
-				getIncomingArcs().clear();
+				setIncomingArcs((Arc)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -197,9 +299,9 @@ public abstract class NodeImpl extends ElementImpl implements Node {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case PetriNetPackage.NODE__OUTGOING_ARCS:
-				return outgoingArcs != null && !outgoingArcs.isEmpty();
+				return outgoingArcs != null;
 			case PetriNetPackage.NODE__INCOMING_ARCS:
-				return incomingArcs != null && !incomingArcs.isEmpty();
+				return incomingArcs != null;
 		}
 		return super.eIsSet(featureID);
 	}

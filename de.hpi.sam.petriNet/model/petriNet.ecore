@@ -4,12 +4,12 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="petriNet"
     nsURI="http://petriNet/1.0" nsPrefix="petriNet">
   <eClassifiers xsi:type="ecore:EClass" name="PetriNet">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="10"
+        upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//PetriNet"
-        eOpposite="#//PetriNet/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" lowerBound="1"
+        eType="#//PetriNet" eOpposite="#//PetriNet/elements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Place" eSuperTypes="#//Node">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="noTokens" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -22,9 +22,9 @@
         eType="#//Node" eOpposite="#//Node/incomingArcs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingArcs" upperBound="-1"
-        eType="#//Arc" eOpposite="#//Arc/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingArcs" upperBound="-1"
-        eType="#//Arc" eOpposite="#//Arc/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingArcs" eType="#//Arc"
+        eOpposite="#//Arc/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingArcs" eType="#//Arc"
+        eOpposite="#//Arc/target"/>
   </eClassifiers>
 </ecore:EPackage>

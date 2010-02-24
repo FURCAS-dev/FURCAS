@@ -11,6 +11,9 @@ import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -138,7 +141,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	protected EClass eStaticClass() {
 		return RandomGeneratorPackage.Literals.RANDOM_GENERATOR;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,7 +335,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		EPackage metaModel = options.getMetaModel();
 		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
 		metaClasses = new ArrayList<EClass>();
-		
+
 		//get all classes in the meta model
 		for(EClassifier cls:metaModel.getEClassifiers()){
 			if (cls instanceof EClass ){
@@ -350,7 +353,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		getResult().setStatus(Status.SUCCESSFUL);
 		getResult().setMessage("Generated "+result.toString());
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -359,10 +362,10 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				if (testRun != null)
-					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
-				return basicSetTestRun((TestRun)otherEnd, msgs);
+		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+			if (testRun != null)
+				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+			return basicSetTestRun((TestRun)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -375,8 +378,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				return basicSetTestRun(null, msgs);
+		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+			return basicSetTestRun(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -389,19 +392,19 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-				if (resolve) return getOption();
-				return basicGetOption();
-			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
-			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				if (resolve) return getTestRun();
-				return basicGetTestRun();
-			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-				return getName();
-			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-				return getDescription();
+		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+			if (resolve) return getOption();
+			return basicGetOption();
+		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+			if (resolve) return getResult();
+			return basicGetResult();
+		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+			if (resolve) return getTestRun();
+			return basicGetTestRun();
+		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+			return getName();
+		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+			return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -414,21 +417,21 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-				setOption((OptionObject)newValue);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-				setResult((ResultObject)newValue);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				setTestRun((TestRun)newValue);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-				setName((String)newValue);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+			setOption((OptionObject)newValue);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+			setResult((ResultObject)newValue);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+			setTestRun((TestRun)newValue);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+			setName((String)newValue);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+			setDescription((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -441,21 +444,21 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-				setOption((OptionObject)null);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-				setResult((ResultObject)null);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				setTestRun((TestRun)null);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+			setOption((OptionObject)null);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+			setResult((ResultObject)null);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+			setTestRun((TestRun)null);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+			setDescription(DESCRIPTION_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -468,16 +471,16 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-				return option != null;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-				return result != null;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				return testRun != null;
-			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+			return option != null;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+			return result != null;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+			return testRun != null;
+		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -500,56 +503,152 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		return result.toString();
 	}
 
-	/**Create an instance of the given meta class and add it to the resource
-	 * @param cls the meta class to instantiate
-	 * @param res the resource to instantiate the meta class in
-	 * @return the instance of the meta class
+	/**
+	 * Create an instance of the given meta class and add it to the resource
+	 * @param metaCls The meta class to instantiate
+	 * @param res The resource to instantiate the meta class in
+	 * @return The instance of the meta class
 	 */
-	private EObject instantiate(EClass cls, Resource res){
-		if(cls.isAbstract())
-			return instantiate(getImplementationForAbstractClass(cls), res);
-		EObject current = cls.getEPackage().getEFactoryInstance().create(cls);
-		res.getContents().add(current);
-
-		//get all references of the meta class and link the instance accordingly
-		for (EReference ref:cls.getEAllReferences()){
-			if( ExtendedMetaData.INSTANCE.getAffiliation(cls, ref)==null)
-				//this position should never been reached
-				continue;			
-			//link to already existing classes
-			int lowerBound = ref.getLowerBound();
-			for (EObject resContent:res.getContents()){
-				if (resContent instanceof EClass && (EClass)resContent.eClass() == ref.getEReferenceType()){
-					if (lowerBound == 0){
-						break;
-					}
-					cls.eSet(ref, resContent);
-					lowerBound--;
-				}
-			}
-
-			//create remaining needed classes and link them
-			for (int i = 0; i < lowerBound; i++){
-				EObject nextCls = instantiate(ref.getEReferenceType(), res);
-				//the value of a reference can only be an instance of EReference
-				if (!(nextCls instanceof EReference)) break;				
-				cls.eSet(ref, nextCls);
-			}
+	private EObject instantiate(EClass metaCls, Resource res){
+		//don't try to instantiate abstract classes, find all non abstract subclasses and instantiate one of them instead
+		if(metaCls.isAbstract()) {	
+			ArrayList<? extends EClass> clsList = getImplementationForAbstractClass(metaCls, metaClasses);
+			int i = new Random().nextInt(clsList.size());
+			return instantiate(clsList.get(i), res);
 		}
-		return current;
+
+		//create an instance of the metaClass, add it to the resource and set needed references
+		EObject newInstance = metaCls.getEPackage().getEFactoryInstance().create(metaCls);
+		res.getContents().add(newInstance);
+		linkInstance(res, newInstance);
+		return newInstance;
 	}
 
-	private EClass getImplementationForAbstractClass(EClass abstractCls) {
-		if(!abstractCls.isAbstract())
-			return abstractCls;
-		
-		for(EClass cls:metaClasses){
-			if(cls.getESuperTypes().contains(abstractCls)){
-				return getImplementationForAbstractClass(cls);
-			}
-				
+	/**
+	 * Link all references of the given instance to the minimum required number of targets
+	 * @param res The resource of the instance to link
+	 * @param newInstance The instance to link
+	 */
+	private void linkInstance(Resource res, EObject newInstance) {
+		EClass metaCls = newInstance.eClass();
+		//get all references of the meta class and link the instance accordingly
+		for (EReference ref:metaCls.getEAllReferences()){
+			if( ExtendedMetaData.INSTANCE.getAffiliation(metaCls, ref)==null)
+				//this position should never been reached
+				continue;
+
+			//link to already existing classes
+			linkToExistingInstances(res, ref, newInstance);
+			//create remaining needed classes and link them
+			linkToNewInstances(res, newInstance, ref);
 		}
-		return null;
+	}
+
+	/**
+	 * Link the given instance to existing classes that match the reference type
+	 * @param res The resource of the instance to link
+	 * @param ref The reference of newInstance to set
+	 * @param newInstance The instance to link
+	 */
+	private void linkToExistingInstances(Resource res, EReference ref, EObject newInstance) {
+		int lowerBound = getLowerBoundDelta(ref, newInstance);
+		//since setting a containment reference will change the resContent, we need to copy it to an extra list
+		EList<EObject> resContents = new BasicEList<EObject>();
+		TreeIterator<EObject> it = res.getAllContents();
+		while (it.hasNext())
+			resContents.add(it.next());
+
+		//iterate over all contents of the resource and try to set the reference to each class with the correct type
+		//if setting reference is not possible, just try next one	
+		for (EObject resContent:resContents){
+			if (lowerBound > 0 && ref.getEReferenceType().isSuperTypeOf(resContent.eClass())){				
+				if (!tryToSetReference(ref, newInstance, resContent))
+					break;
+				lowerBound = getLowerBoundDelta(ref, newInstance);
+			}
+		}
+	}
+
+	/**Link the given instance to newly created classes
+	 * @param res The resource of the instance to link
+	 * @param newInstance The instance to link
+	 * @param ref The reference of newInstance to set
+	 */
+	private void linkToNewInstances(Resource res, EObject newInstance, EReference ref) {
+		int lowerBound = getLowerBoundDelta(ref, newInstance);
+		while (lowerBound > 0){
+			EObject newCls = instantiate(ref.getEReferenceType(), res);			
+			if (!tryToSetReference(ref, newInstance, newCls))
+				break;
+			lowerBound = getLowerBoundDelta(ref, newInstance);
+		}
+	}
+
+	/**
+	 * Calculates how many classes are missing to reach the lower bound of a given reference of a given class
+	 * @param ref The reference to check
+	 * @param newInstance The instance to check
+	 * @return The number of classes that are missing to reach the lower bound
+	 */
+	@SuppressWarnings("unchecked")
+	private int getLowerBoundDelta(EReference ref, EObject newInstance) {
+		int lowerBound = ref.getLowerBound();
+		if (ref.isMany())
+			lowerBound -= ((BasicEList<EObject>)newInstance.eGet(ref)).size();
+		else if (newInstance.eGet(ref) != null)
+			lowerBound -= 1;
+		return lowerBound;
+	}
+
+	/**
+	 * Try to set the the given reference of the given instance to the given target. Returns true if successful, false if not.
+	 * The method is unsuccessful if the given reference is already set or would exceed its upper bound(in case of to-many references)
+	 * @param ref The reference of newInstance to set 
+	 * @param newInstance The instance to link
+	 * @param target The target to link
+	 * @return true if setting the reference was successful, false if it was not
+	 */
+	@SuppressWarnings("unchecked")
+	private boolean tryToSetReference(EReference ref, EObject newInstance, EObject target){
+		EReference oppRef = ref.getEOpposite();
+
+		//(reference is "to-one") ^ (reference is unset)
+		boolean toOneAndSettable = !ref.isMany() && (newInstance.eGet(ref) == null || newInstance.eGet(ref) == target);
+		//(reference is "to-many") ^ ((reference upper bound is *) v (adding target would not exceed upper bound))
+		boolean toManyAndSpaceLeft = ref.isMany() && (ref.getUpperBound() == -1 ||
+				ref.getUpperBound() > ((BasicEList<EObject>)newInstance.eGet(ref)).size());
+		//(reference has opposite) -> ((opposite is "to-many") ^ ((opposite upper bound is *) v (adding target would not exceed upper bound)))
+		//A -> B = !A v B 
+		boolean oppositeToManyAndSpaceLeft = oppRef == null || (oppRef.isMany() && (oppRef.getUpperBound() == -1 ||
+				oppRef.getUpperBound() > ((BasicEList<EObject>)target.eGet(oppRef)).size()));
+		//(reference has opposite) -> ((opposite is "to one") ^ (opposite is unset))
+		//A -> B = !A v B 
+		boolean oppositeToOneAndSettable = oppRef == null || (!oppRef.isMany() && (target.eGet(oppRef) == null || target.eGet(oppRef) == newInstance));
+
+		if (toManyAndSpaceLeft && (oppositeToManyAndSpaceLeft || oppositeToOneAndSettable)) {
+			((BasicEList<EObject>)newInstance.eGet(ref)).add(target);
+		} else if (toOneAndSettable && (oppositeToManyAndSpaceLeft || oppositeToOneAndSettable)) {
+			newInstance.eSet(ref, target);
+		} else 
+			return false;
+		return true;
+	}
+
+	/**
+	 * Return all non abstract subclasses of a given class from a given set of classes. 
+	 * If the given class is non abstract, it will be returned.
+	 * @param abstractCls The class of which to return the non abstract subclasses 
+	 * @param metaclassPool The pool of classes to search for non abstract subclasses
+	 * @return a Collection of non abstract subclasses of the given class
+	 */
+	private ArrayList<? extends EClass> getImplementationForAbstractClass(EClass abstractCls, ArrayList<EClass> metaclassPool) {
+		ArrayList<EClass> implementations = new ArrayList<EClass>();
+		for(EClass cls:metaclassPool){
+			if(cls.getEAllSuperTypes().contains(abstractCls)){
+				implementations.add(cls);
+			}
+		}
+		return implementations;
 	}
 
 } //RandomGeneratorImpl

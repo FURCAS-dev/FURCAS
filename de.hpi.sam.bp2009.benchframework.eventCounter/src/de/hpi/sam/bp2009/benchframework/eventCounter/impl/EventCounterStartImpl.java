@@ -628,7 +628,7 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 	public void execute() {
 		//register an adapter at the Modified Event Manager
 		final EventManager em = testRun.getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
-		em.eAdapters().add(new Adapter() {		
+		setAdapter(new Adapter() {		
 			@Override
 			public void notifyChanged(Notification notification) {
 				Map<String, Integer> counters = ((EventCounterResultObject)getResult()).getEventCounts();
@@ -642,10 +642,11 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 			@Override
 			public boolean isAdapterForType(Object type) { return false; }
 			@Override
-			public Notifier getTarget() { return null; }
+			public Notifier getTarget() { return em; }
 			@Override
 			public void setTarget(Notifier newTarget) {}
 		});
+		em.eAdapters().add(getAdapter());
 	}
 
 

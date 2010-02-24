@@ -162,8 +162,11 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		for (Resource r: getTestRun().getModel().getResources()){
 			classList.addAll(r.getContents());
 		}
-		
 		for (int i = 0; i < times; i++){
+			if (classList.isEmpty()){
+				getResult().setMessage(getResult().getMessage() + "Executed " + i + " times.");
+				break;
+			}
 			switch (task){
 			case CLASS_CREATE:
 				getResult().setStatus(createRandomClass(classList) ? Status.SUCCESSFUL : Status.FAILED);
@@ -184,8 +187,8 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		}
 		if (getResult().getStatus() == Status.SUCCESSFUL){
 			getResult().setMessage(SUCCESS_MESSAGE);
-		} else {
-			getResult().setMessage(FAILED_MESSAGE);
+		} else if (getResult().getStatus() == Status.FAILED) {
+			//getResult().setMessage(FAILED_MESSAGE);
 		}
 		
 		

@@ -38,7 +38,7 @@ public interface Element extends EObject {
 	 * @see #setDiagram(PetriNet)
 	 * @see de.hpi.sam.petriNet.PetriNetPackage#getElement_Diagram()
 	 * @see de.hpi.sam.petriNet.PetriNet#getElements
-	 * @model opposite="elements" transient="false"
+	 * @model opposite="elements" required="true" transient="false"
 	 * @generated
 	 */
 	PetriNet getDiagram();

@@ -122,7 +122,7 @@ public class EventCounterEndImpl extends EObjectImpl implements EventCounterEnd 
 	 */
 	public EventCounterEndImpl() {
 		super();
-		setName("Internal Event Counter End");
+		setName("Event Counter End");
 		setDescription("Ends a event measurement.");
 	}
 

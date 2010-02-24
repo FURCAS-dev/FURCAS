@@ -135,7 +135,7 @@ public interface PetriNetPackage extends EPackage {
 	int NODE__DIAGRAM = ELEMENT__DIAGRAM;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing Arcs</b></em>' reference list.
+	 * The feature id for the '<em><b>Outgoing Arcs</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -144,7 +144,7 @@ public interface PetriNetPackage extends EPackage {
 	int NODE__OUTGOING_ARCS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Arcs</b></em>' reference list.
+	 * The feature id for the '<em><b>Incoming Arcs</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -181,7 +181,7 @@ public interface PetriNetPackage extends EPackage {
 	int PLACE__DIAGRAM = NODE__DIAGRAM;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing Arcs</b></em>' reference list.
+	 * The feature id for the '<em><b>Outgoing Arcs</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -190,7 +190,7 @@ public interface PetriNetPackage extends EPackage {
 	int PLACE__OUTGOING_ARCS = NODE__OUTGOING_ARCS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Arcs</b></em>' reference list.
+	 * The feature id for the '<em><b>Incoming Arcs</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -236,7 +236,7 @@ public interface PetriNetPackage extends EPackage {
 	int TRANSITION__DIAGRAM = NODE__DIAGRAM;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing Arcs</b></em>' reference list.
+	 * The feature id for the '<em><b>Outgoing Arcs</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -245,7 +245,7 @@ public interface PetriNetPackage extends EPackage {
 	int TRANSITION__OUTGOING_ARCS = NODE__OUTGOING_ARCS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Arcs</b></em>' reference list.
+	 * The feature id for the '<em><b>Incoming Arcs</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -425,10 +425,10 @@ public interface PetriNetPackage extends EPackage {
 	EClass getNode();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.petriNet.Node#getOutgoingArcs <em>Outgoing Arcs</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.petriNet.Node#getOutgoingArcs <em>Outgoing Arcs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Outgoing Arcs</em>'.
+	 * @return the meta object for the reference '<em>Outgoing Arcs</em>'.
 	 * @see de.hpi.sam.petriNet.Node#getOutgoingArcs()
 	 * @see #getNode()
 	 * @generated
@@ -436,10 +436,10 @@ public interface PetriNetPackage extends EPackage {
 	EReference getNode_OutgoingArcs();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.petriNet.Node#getIncomingArcs <em>Incoming Arcs</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.petriNet.Node#getIncomingArcs <em>Incoming Arcs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Incoming Arcs</em>'.
+	 * @return the meta object for the reference '<em>Incoming Arcs</em>'.
 	 * @see de.hpi.sam.petriNet.Node#getIncomingArcs()
 	 * @see #getNode()
 	 * @generated
@@ -569,7 +569,7 @@ public interface PetriNetPackage extends EPackage {
 		EClass NODE = eINSTANCE.getNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Outgoing Arcs</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Outgoing Arcs</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -577,7 +577,7 @@ public interface PetriNetPackage extends EPackage {
 		EReference NODE__OUTGOING_ARCS = eINSTANCE.getNode_OutgoingArcs();
 
 		/**
-		 * The meta object literal for the '<em><b>Incoming Arcs</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Incoming Arcs</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

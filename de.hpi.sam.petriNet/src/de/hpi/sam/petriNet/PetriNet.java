@@ -40,7 +40,7 @@ public interface PetriNet extends EObject {
 	 * @return the value of the '<em>Elements</em>' containment reference list.
 	 * @see de.hpi.sam.petriNet.PetriNetPackage#getPetriNet_Elements()
 	 * @see de.hpi.sam.petriNet.Element#getDiagram
-	 * @model opposite="diagram" containment="true"
+	 * @model opposite="diagram" containment="true" lower="10"
 	 * @generated
 	 */
 	EList<Element> getElements();

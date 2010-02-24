@@ -79,7 +79,7 @@ public class RunningPage extends WizardPage {
 			 * @param engine
 			 */
 			private void fillErrorWindow(Engine engine) {
-				if(engine.getExeptionsDuringLastRun()!=null){
+				if(engine.getExeptionsDuringLastRun()!=null && !engine.getExeptionsDuringLastRun().isEmpty()){
 					StringBuilder sb= new StringBuilder();
 					if(engine.getExeptionsDuringLastRun().size()>0)
 						for(Exception ex: engine.getExeptionsDuringLastRun())
@@ -108,7 +108,7 @@ public class RunningPage extends WizardPage {
 					engine.benchmark();
 					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				}catch(java.lang.Throwable e1){
-					error.setText(e1.getMessage()+"\n");
+					error.setText(getCustomStackTrace(e1)+"\n");
 					composite.layout();
 					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 					return false;

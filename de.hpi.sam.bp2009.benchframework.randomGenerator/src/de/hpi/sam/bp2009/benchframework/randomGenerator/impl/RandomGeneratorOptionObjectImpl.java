@@ -254,7 +254,7 @@ public class RandomGeneratorOptionObjectImpl extends EObjectImpl implements Rand
 		return result.toString();
 	}
 
-	private EPackage defaultModel(){
+	public static EPackage defaultModel(){
 		
 		//get the instance of EcoreFactory
 		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
@@ -294,7 +294,7 @@ public class RandomGeneratorOptionObjectImpl extends EObjectImpl implements Rand
 		
 		//attributes
 		EAttribute placeTokens = ecoreFactory.createEAttribute();
-		placeTokens.setName("nrTokens");
+		placeTokens.setName("noTokens");
 		placeTokens.setEType(ecorePackage.getEInt());
 
 		//references
@@ -303,13 +303,13 @@ public class RandomGeneratorOptionObjectImpl extends EObjectImpl implements Rand
 		elementsRef.setContainment(true);
 		elementsRef.setEType(elementClass);
 		elementsRef.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
-		elementsRef.setLowerBound(0);
+		elementsRef.setLowerBound(1);
 		
 		EReference diagramRef = ecoreFactory.createEReference();
 		diagramRef.setName("diagram");
 		diagramRef.setEType(petriNetClass);
 		diagramRef.setUpperBound(1);
-		diagramRef.setLowerBound(0);
+		diagramRef.setLowerBound(1);
 		diagramRef.setEOpposite(elementsRef);
 		elementsRef.setEOpposite(diagramRef);
 		
@@ -328,7 +328,7 @@ public class RandomGeneratorOptionObjectImpl extends EObjectImpl implements Rand
 		incomingArcsRef.setEOpposite(sourceRef);
 		
 		EReference outgoingArcsRef = ecoreFactory.createEReference();
-		outgoingArcsRef.setName("incomingArcs");
+		outgoingArcsRef.setName("outgoingArcs");
 		outgoingArcsRef.setEType(nodeClass);
 		outgoingArcsRef.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
 		outgoingArcsRef.setLowerBound(0);

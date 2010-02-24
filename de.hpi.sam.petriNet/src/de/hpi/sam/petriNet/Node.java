@@ -27,8 +27,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Node extends Element {
 	/**
-	 * Returns the value of the '<em><b>Outgoing Arcs</b></em>' reference list.
-	 * The list contents are of type {@link de.hpi.sam.petriNet.Arc}.
+	 * Returns the value of the '<em><b>Outgoing Arcs</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link de.hpi.sam.petriNet.Arc#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -36,17 +35,27 @@ public interface Node extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Outgoing Arcs</em>' reference list.
+	 * @return the value of the '<em>Outgoing Arcs</em>' reference.
+	 * @see #setOutgoingArcs(Arc)
 	 * @see de.hpi.sam.petriNet.PetriNetPackage#getNode_OutgoingArcs()
 	 * @see de.hpi.sam.petriNet.Arc#getSource
 	 * @model opposite="source"
 	 * @generated
 	 */
-	EList<Arc> getOutgoingArcs();
+	Arc getOutgoingArcs();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Arcs</b></em>' reference list.
-	 * The list contents are of type {@link de.hpi.sam.petriNet.Arc}.
+	 * Sets the value of the '{@link de.hpi.sam.petriNet.Node#getOutgoingArcs <em>Outgoing Arcs</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Outgoing Arcs</em>' reference.
+	 * @see #getOutgoingArcs()
+	 * @generated
+	 */
+	void setOutgoingArcs(Arc value);
+
+	/**
+	 * Returns the value of the '<em><b>Incoming Arcs</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link de.hpi.sam.petriNet.Arc#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -54,12 +63,23 @@ public interface Node extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Incoming Arcs</em>' reference list.
+	 * @return the value of the '<em>Incoming Arcs</em>' reference.
+	 * @see #setIncomingArcs(Arc)
 	 * @see de.hpi.sam.petriNet.PetriNetPackage#getNode_IncomingArcs()
 	 * @see de.hpi.sam.petriNet.Arc#getTarget
 	 * @model opposite="target"
 	 * @generated
 	 */
-	EList<Arc> getIncomingArcs();
+	Arc getIncomingArcs();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.petriNet.Node#getIncomingArcs <em>Incoming Arcs</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Incoming Arcs</em>' reference.
+	 * @see #getIncomingArcs()
+	 * @generated
+	 */
+	void setIncomingArcs(Arc value);
 
 } // Node
