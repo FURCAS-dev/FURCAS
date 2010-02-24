@@ -6,7 +6,9 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -71,7 +73,15 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * @generated NOT
 	 */
 	public EList<EObject> getContextObjects(EventNotification event, OclQuery query) {
-		return event.getEvent().getSourceObject().eContainer().eContents();
+		EList<EObject> result= new BasicEList<EObject>();
+		
+		TreeIterator<EObject> it = event.getEvent().getSourceObject().eResource().getAllContents();
+		
+		while(it.hasNext()){
+			result.add(it.next());
+		}
+		
+		return result;
 	}
 
 } //ImpactAnalyzerImpl
