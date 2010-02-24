@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -206,6 +207,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 		ExecutionTimeBenchmarkerEnd end = ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerEnd();
 		setEndPoint(end); //setStartPoint is the EOpposite of this reference, we don't need to set it explicitly
 		end.setOption(options);
+		setStringToPoint(new HashMap<String, EtmPoint>());
 	}
 
 	/**
@@ -726,6 +728,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 */
 	@Override
 	public void execute() {
+		//reset results of the endpoint
+		getEndPoint().setResult(null);
 		BasicEtmConfigurator.configure();
 		setMonitor(EtmManager.getEtmMonitor());
 		getMonitor().start();
@@ -733,22 +737,22 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 		final ExecutionTimeBenchmarkerOptionObject opt=(ExecutionTimeBenchmarkerOptionObject)option;
 		if (opt.getEndLiteral()!=null && opt.getStartLiteral()!=null && opt.getClassLiteral()!=null){
 			Notifier noti=null;
-			if(opt.getClassLiteral().compareTo(MeasurableClassLiterals.EVENT_MANAGER_VALUE)==0)
+			if(opt.getClassLiteral().compareTo(MeasurableClassLiterals.EVENT_MANAGER_VALUE)==0 && getTestRun().getInstanceForClass(EventManager.class) != null)
 				noti=(Notifier) getTestRun().getInstanceForClass(EventManager.class);
-			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.IMPACT_ANALYZER_VALUE)==0) {
+			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.IMPACT_ANALYZER_VALUE)==0 && getTestRun().getInstanceForClass(ImpactAnalyzer.class) != null) {
 				noti=(Notifier) getTestRun().getInstanceForClass(ImpactAnalyzer.class);
 			}
-			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.OCL_EVALUATOR_VALUE)==0) {
+			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.OCL_EVALUATOR_VALUE)==0 && getTestRun().getInstanceForClass(OCLEvaluator.class) != null) {
 				noti=(Notifier) getTestRun().getInstanceForClass(OCLEvaluator.class);
 			}
 			else {
 				ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
-				rslt.setStatus(Status.FAILED);
-				rslt.setMessage("Unknown Class Literal");
+				rslt.setStatus(Status.SUCCESSFUL);
+				rslt.setMessage("Unknown Class Literal, just measure time to end point");
 				setResult(rslt);
 				return;
 			}
-			
+
 			noti.eAdapters().add(new Adapter() {
 				
 				@Override
@@ -766,7 +770,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 				}
 
 				/**
-				 * Collect a point, create from this point a new Result object, and add the Result to the Result of the endpoint
+				 * Collect a point, create from this point a new Result object, and add the Result to the Result of the end point
 				 * @param notification
 				 */
 				private void collectPoint(Notification notification) {
@@ -780,7 +784,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 					r.setTicks(p.getTicks());
 					r.setTransactionTime(p.getTransactionTime());
 					r.setStatus(Status.SUCCESSFUL);
-					r.setMessage("Point collected");
+					r.setMessage("Point collected: " +notification.getNewStringValue() +"\nid:"+ notification.getOldStringValue());
 					if(!(getEndPoint().getResult()!=null && getEndPoint().getResult() instanceof JETMMultiResultObject)){
 						getEndPoint().setResult(ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMMultiResultObject());
 					}
@@ -797,7 +801,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 					if(notification.getOldValue()!=null){
 						uuid= notification.getOldStringValue();
 					}
-					EtmPoint startPoint = getMonitor().createPoint(uuid);
+					EtmPoint startPoint = getMonitor().createPoint(notification.getNewStringValue() + "#####" + uuid);
 					getStringToPoint().put(uuid, startPoint);
 				}
 				

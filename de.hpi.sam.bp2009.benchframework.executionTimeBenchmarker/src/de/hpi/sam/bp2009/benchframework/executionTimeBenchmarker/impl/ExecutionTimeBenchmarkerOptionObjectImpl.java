@@ -114,7 +114,7 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	 */
 	protected ExecutionTimeBenchmarkerOptionObjectImpl() {
 		super();
-		setWizardPage(new ExecutionTimeWizardPage());
+		setWizardPage(new ExecutionTimeWizardPage(this));
 	}
 
 	/**

@@ -55,18 +55,18 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl implements Mo
 	public EList<EObject> getContextObjects(EventNotification event,
 			OclQuery query) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION.getName()));
 		EList<EObject> result = super.getContextObjects(event, query);
-		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION.getName()));
 		return result;
 	}
 	
 	@Override
 	public EventFilter createFilterForQuery(OclQuery query) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION.getName()));
 		EventFilter result = super.createFilterForQuery(query);
-		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.END_FILTER_CREATION_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.END_FILTER_CREATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.END_FILTER_CREATION.getName()));
 		return result;
 	}
 	

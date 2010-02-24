@@ -357,10 +357,48 @@ public class JETMResultObjectImpl extends ResultObjectImpl implements JETMResult
 	public Composite getComposite(Composite parent) {
 		
 		Composite composite=super.getComposite(parent);
+		
 		Label label1 = new Label(composite, SWT.CENTER);
-		label1.setText("Duration: "+getDuration());
+		//show time splitted in ns, ms, sec, min, hours
+		label1.setText(changeTimeFormat(getDuration()));
+		
 		Label label2 = new Label(composite, SWT.CENTER);
-		label2.setText("Ticks: "+getTicks());
+		label2.setText("Duration: "+getTransactionTime() + "ms");
 		return composite;
+	}
+
+	/**
+	 * split time given time in nanoseconds into hours, minutes, ...
+	 * hours are implicit included in duration variable
+	 * @param a time in nanoseconds
+	 * @return time in ns, ms, ...
+	 */
+	private String changeTimeFormat(long duration) {
+		
+		StringBuilder bld=new StringBuilder();
+		long ns = duration % 1000000;
+		duration -= ns;
+		duration /= 1000000;
+		bld.append(ns + "ns");
+		long ms = duration % 1000;
+		if (ms != 0){
+			duration -= ms;
+			duration /= 1000;
+			bld.insert(0, ms + "ms ");
+			long sec = duration % 60;
+			if (sec != 0){
+				duration -= sec;
+				duration /= 60;
+				bld.insert(0,sec + "sec ");
+				long min = duration % 60;
+				if (min != 0){
+					duration -= min;
+					duration /= 60;
+					bld.insert(0,duration + "h " + min + "m");
+				}				
+			}	
+		}
+		bld.insert(0,"Duration: ");
+		return bld.toString();
 	}
 } //JETMResultObjectImpl

@@ -328,27 +328,6 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 */
-	
-	public void execute() {
-		setResult(OclOperatorFactory.eINSTANCE.createOclResult());
-		if (option instanceof OclOptionObject){
-			if(((OclOptionObject) option).isUseImpactAnalyzer())
-				registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
-			else
-				executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
-			getResult().setStatus(Status.SUCCESSFUL);
-		}else
-			getResult().setStatus(Status.FAILED);
-			getResult().setMessage("Invalid OptionObject");
-		
-
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -495,6 +474,28 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		return result.toString();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 */
+	
+	public void execute() {
+		setResult(OclOperatorFactory.eINSTANCE.createOclResult());
+		if (option instanceof OclOptionObject){
+			if(((OclOptionObject) option).isUseImpactAnalyzer())
+				registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
+			else
+				executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
+			getResult().setStatus(Status.SUCCESSFUL);
+		}else{
+			getResult().setStatus(Status.FAILED);
+			getResult().setMessage("Invalid OptionObject");
+		}
+		
+	
+	}
+
 	public void executeQueries(ResourceSet resource, OclOptionObject option) {
 		OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
 		for(String con: option.getConstraints()){
@@ -512,6 +513,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 */
 	@SuppressWarnings("unchecked")
 	public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
+		assert(resource!=null);
 		OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
 		EList<OclQuery> list= new BasicEList<OclQuery>();
 		for(String con: option.getConstraints()){

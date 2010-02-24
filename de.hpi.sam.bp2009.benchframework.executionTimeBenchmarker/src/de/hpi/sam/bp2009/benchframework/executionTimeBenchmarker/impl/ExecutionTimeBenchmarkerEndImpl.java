@@ -561,14 +561,14 @@ public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements Exec
 		/*
 		 * Collect the start point (of the start operator, which symbolize the start of the measurement at all)
 		 */
-		multiResult.getResults().add(collectPoint(getStartPoint().getPoint()));
+		multiResult.getResults().add(collectPoint(getStartPoint().getPoint(),false));
 		/*
 		 * all points, which not collect yet, so no matching End notification was fired
 		 */
 		Collection<EtmPoint> uncollectedPoints = getStartPoint().getStringToPoint().values();
 		
 		for(EtmPoint p:uncollectedPoints){
-			multiResult.getResults().add(collectPoint(p));
+			multiResult.getResults().add(collectPoint(p,true));
 		}
 		/*
 		 * stop monitor and add successful status to the result
@@ -583,14 +583,23 @@ public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements Exec
 	 * @param point the point to collect
 	 * @return the new ResultObject
 	 */
-	private JETMResultObject collectPoint(EtmPoint point) {
+	private JETMResultObject collectPoint(EtmPoint point, boolean aborted) {
 		point.collect();
 		JETMResultObject rslt = ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMResultObject();
 		rslt.setStartTime(point.getStartTime());
 		rslt.setEndTime(point.getEndTime());
 		rslt.setTicks(point.getTicks());
 		rslt.setTransactionTime(point.getTransactionTime());
-		rslt.setStatus(Status.SUCCESSFUL);
+		if(aborted){
+			rslt.setStatus(Status.FAILED);
+			rslt.setMessage("Point collection aborted: "+point.getName().replaceAll("#####", "\nid:"));
+		}
+		else{
+			rslt.setStatus(Status.SUCCESSFUL);
+			//if you like to show the uuid of the point just comment out the next line
+			//rslt.setMessage("Point collected: "+point.getName().replaceAll("#####", "\n  id:"));
+		}
+
 		return rslt;
 	}
 

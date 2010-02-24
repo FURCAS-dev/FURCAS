@@ -53,9 +53,9 @@ public class ModifiedEventManagerImpl extends EventManagerImpl implements Modifi
 	@Override
 	public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.START_SUBSCRIPTION_VALUE, Notification.NO_FEATURE_ID, id, caller));
+		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.START_SUBSCRIPTION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedEventManagerNotifyLiterals.START_SUBSCRIPTION.getName()));
 		super.subscribe(root, filter, caller);
-		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.END_SUBSCRIPTION_VALUE, Notification.NO_FEATURE_ID, id, caller));
+		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.END_SUBSCRIPTION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedEventManagerNotifyLiterals.END_SUBSCRIPTION.getName()));
 
 	}
 	
@@ -63,18 +63,18 @@ public class ModifiedEventManagerImpl extends EventManagerImpl implements Modifi
 	public void handleEMFEvent(Adapter caller, Notification notification,
 			EventFilter filter) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.START_EMF_EVENT_HANDLING_VALUE, Notification.NO_FEATURE_ID, id, caller));
+		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.START_EMF_EVENT_HANDLING_VALUE, Notification.NO_FEATURE_ID, id, ModifiedEventManagerNotifyLiterals.START_EMF_EVENT_HANDLING.getName()));
 		super.handleEMFEvent(caller, notification, filter);
-		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.END_EMF_EVENT_HANDLING_VALUE, Notification.NO_FEATURE_ID, id, caller));
+		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.END_EMF_EVENT_HANDLING_VALUE, Notification.NO_FEATURE_ID, id, ModifiedEventManagerNotifyLiterals.END_EMF_EVENT_HANDLING.getName()));
 
 	}
 	
 	@Override
 	public void notifyApplication(Adapter application, EventNotification msg) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.START_APPLICATION_NOTIFICATION_VALUE, Notification.NO_FEATURE_ID, id, application));
+		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.START_APPLICATION_NOTIFICATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedEventManagerNotifyLiterals.START_APPLICATION_NOTIFICATION.getName()));
 		super.notifyApplication(application, msg);
-		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.END_APPLICATION_NOTIFICATION_VALUE, Notification.NO_FEATURE_ID, id, application));
+		eNotify(new ENotificationImpl(this,ModifiedEventManagerNotifyLiterals.END_APPLICATION_NOTIFICATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedEventManagerNotifyLiterals.END_APPLICATION_NOTIFICATION.getName()));
 
 	}
 	

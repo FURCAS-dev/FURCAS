@@ -21,6 +21,8 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
 public class ListPage extends WizardPage {
+	private static final String RESULT_COMBO_BOX_LABEL = "choose a resultview:";
+	private static final String OPERATOR__COMBO_BOX_LABEL = "choose operators:";
 	private static final String PAGETITEL="Testrun Configuration";
 	private static final String PAGEDESC="Choose the steps you want to perform during the test run.";
 	private static final String ADDBUTTONTEXT="Add";
@@ -65,6 +67,7 @@ public class ListPage extends WizardPage {
 	private void generateEClassMappingAndSelectionBoxForResultProcessors(
 			Composite composite) {
 		processorBox=new Combo(composite, SWT.RIGHT);
+		processorBox.setText(RESULT_COMBO_BOX_LABEL);
 		nameToProc=new HashMap<String,ResultProcessor>();
 		for(ResultProcessor p:((TestframeworkWizard)getWizard()).getIntImpl().getEngine().getRegisteredResultProcessors()){
 			nameToProc.put(p.getName(), p);
@@ -92,6 +95,7 @@ public class ListPage extends WizardPage {
 	private void generateEClassMappingAndSelectionBoxForOperators(
 			Composite composite) {
 		operatorBox= new Combo(composite, SWT.UP);
+		operatorBox.setText(OPERATOR__COMBO_BOX_LABEL);
 		nameToEclass=new HashMap<String,EClass>();
 		nameToCount=new HashMap<String,Integer>();
 		for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){

@@ -51,18 +51,18 @@ public class ModifiedOclOptimizerImpl extends OCLEvaluatorImpl implements Modifi
 	public Object passToInterpreter(Interpreter interpreter,
 			OclQuery queryobject) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.SEND_QUERY_TO_INTERPRETER_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.SEND_QUERY_TO_INTERPRETER_VALUE, Notification.NO_FEATURE_ID, id, ModifiedOclOptimizerNotifyLiterals.SEND_QUERY_TO_INTERPRETER.getName()));
 		Object result = super.passToInterpreter(interpreter, queryobject);
-		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.GET_RESULT_FROM_INTERPRETER_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.GET_RESULT_FROM_INTERPRETER_VALUE, Notification.NO_FEATURE_ID, id, ModifiedOclOptimizerNotifyLiterals.GET_RESULT_FROM_INTERPRETER.getName()));
 		return result;
 	}
 	
 	@Override
 	public Object evaluate(OclQuery queryobject) {
 		UUID id = UUID.randomUUID();
-		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.START_EVALUATION_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.START_EVALUATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedOclOptimizerNotifyLiterals.START_EVALUATION.getName()));
 		Object result = super.evaluate(queryobject);
-		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.END_EVALUATION_VALUE, Notification.NO_FEATURE_ID, id, null));
+		eNotify(new ENotificationImpl(this,ModifiedOclOptimizerNotifyLiterals.END_EVALUATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedOclOptimizerNotifyLiterals.END_EVALUATION.getName()));
 		return result;
 	}
 

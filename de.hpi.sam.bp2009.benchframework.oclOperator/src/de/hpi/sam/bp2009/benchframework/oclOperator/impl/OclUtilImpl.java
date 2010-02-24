@@ -153,6 +153,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 
 	private EClassifier getEClassifierForName(ResourceSet resource,
 			String queryContext) {
+		assert(resource!=null);
 		Registry registry = resource.getPackageRegistry();
 		EClassifier cls=null;
 		for(String key: registry.keySet()){

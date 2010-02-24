@@ -29,7 +29,7 @@ public class OclOperatorWizardPage extends WizardPage {
 	ArrayList<Text> textareas= new ArrayList<Text>();
 	private Composite composite;
 	private Composite textareacomposite;
-	private Text textarea;
+//	private Text textarea;
 	private ScrolledComposite scrolledComposite;
 
 	protected OclOperatorWizardPage(String pageName) {
@@ -73,9 +73,9 @@ public class OclOperatorWizardPage extends WizardPage {
 
 		Label label = new Label(composite, SWT.CENTER);
 		label.setText(LABELTEXT);
-
-		textarea = new Text(composite, SWT.NONE);
-		textarea.setSize(400, 10);
+//
+//		textarea = new Text(composite, SWT.NONE);
+//		textarea.setSize(400, 10);
 
 		Button addButton = new Button(composite, SWT.PUSH);
 		addButton.setText("+");
@@ -84,15 +84,15 @@ public class OclOperatorWizardPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// add another textarea to the page
-				if (textarea.getText() != "") {
+//				if (textarea.getText() != "") {
 					Text txt = new Text(textareacomposite, SWT.UP);
-					txt.setText(textarea.getText());
-					textarea.setText("");		
+//					txt.setText(textarea.getText());
+//					textarea.setText("");		
 					textareas.add(txt);
 					textareacomposite.layout();
 					composite.layout();
 					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-				}
+//				}
 			}
 		});
 

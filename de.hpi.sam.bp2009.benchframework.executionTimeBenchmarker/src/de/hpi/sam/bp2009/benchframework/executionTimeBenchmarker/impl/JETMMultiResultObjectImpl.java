@@ -7,10 +7,13 @@
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
@@ -45,10 +48,11 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected JETMMultiResultObjectImpl() {
 		super();
+		setResults(new BasicEList<JETMResultObject>());
 	}
 
 	/**
@@ -158,7 +162,11 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	}
 	@Override
 	public Composite getComposite(Composite parent) {
-		Composite comp = new Composite(parent, SWT.NONE);
+		Composite comp = new Composite(parent, SWT.LEFT);
+		GridLayout layout = new GridLayout(GridData.FILL_BOTH, false);
+		layout.numColumns = 3;
+		comp.setLayout(layout);
+		
 		for(JETMResultObject obj: getResults()){
 			obj.getComposite(comp);
 		}

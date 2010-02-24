@@ -146,17 +146,17 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	 */
 	public Composite getComposite(Composite parent) {
 		//create own composite
-		Composite composite = new Composite(parent, SWT.NONE);
+		Composite composite = new Composite(parent, SWT.LEFT);
 		GridLayout layout = new GridLayout(1, false);
 		composite.setLayout(layout);
 		
-		Label label1 = new Label(composite, SWT.CENTER);
+		Label label1 = new Label(composite, SWT.LEFT);
 		label1.setText(getStatus().name());
 		label1.pack();
 		
 		// if no message, there is nothing to show
 		if(getMessage()!=null){
-			Label label2 = new Label(composite, SWT.CENTER);
+			Label label2 = new Label(composite, SWT.LEFT);
 			label2.setText(getMessage() + "");
 			label2.pack();
 		}	
