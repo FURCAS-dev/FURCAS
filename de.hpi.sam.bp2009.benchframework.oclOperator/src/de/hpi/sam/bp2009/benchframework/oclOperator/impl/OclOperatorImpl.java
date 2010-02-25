@@ -58,7 +58,7 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
  */
 public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	
-	private static final String NAME = "OCLOperator";
+	private static final String NAME = "Ocl Operator";
 	private static final String DESCRIPTION = "Evaluates a specific ocl expression";
 
 	/**

@@ -1,6 +1,9 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
@@ -98,10 +101,16 @@ public class ListPage extends WizardPage {
 		operatorBox.setText(OPERATOR__COMBO_BOX_LABEL);
 		nameToEclass=new HashMap<String,EClass>();
 		nameToCount=new HashMap<String,Integer>();
+		List<String> comboBoxItems = new ArrayList<String>(); 
 		for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){
-			operatorBox.add(op.getName());
+			comboBoxItems.add(op.getName());
 			nameToEclass.put(op.getName(), op.eClass());
 			nameToCount.put(op.getName(),0);
+		}
+		//just sort the items in the operatorBox
+		Collections.sort(comboBoxItems);
+		for (String item: comboBoxItems){
+			operatorBox.add(item);
 		}
 	}
 

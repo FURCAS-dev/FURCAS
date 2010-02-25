@@ -56,6 +56,8 @@ import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
  * @generated
  */
 public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator {
+	private static final String RANDOM_GENERATOR_DESCRIPTION = "Instantiates a random instance of the model and adds all needed references to it.";
+	private static final String RANDOM_GENERATOR_NAME = "Random Model Instanciator";
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -128,8 +130,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	public RandomGeneratorImpl() {
 		super();
 		this.setOption(RandomGeneratorFactory.eINSTANCE.createRandomGeneratorOptionObject());
-		this.setName("Random Generator");
-		this.setDescription("Instantiates a random instance of the model and adds all needed references to it.");
+		this.setName(RANDOM_GENERATOR_NAME);
+		this.setDescription(RANDOM_GENERATOR_DESCRIPTION);
 	}
 
 	/**
