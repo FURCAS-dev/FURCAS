@@ -303,7 +303,7 @@ public class RandomGeneratorOptionObjectImpl extends EObjectImpl implements Rand
 		elementsRef.setContainment(true);
 		elementsRef.setEType(elementClass);
 		elementsRef.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
-		elementsRef.setLowerBound(1);
+		elementsRef.setLowerBound(10);
 		
 		EReference diagramRef = ecoreFactory.createEReference();
 		diagramRef.setName("diagram");
