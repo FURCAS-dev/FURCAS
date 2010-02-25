@@ -6,34 +6,34 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier.impl;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
-
-import java.util.Random;
-
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifier;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierFactory;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import de.hpi.sam.bp2009.randomModelModifier.Task;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,6 +128,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	protected static final Random RANDOM_NUMBER_GENERATOR_EDEFAULT = null;
 	private static final String SUCCESS_MESSAGE = "Successfully changed Model.";
+	@SuppressWarnings("unused")
 	private static final String FAILED_MESSAGE = "Failed to change Model!";
 	/**
 	 * The cached value of the '{@link #getRandomNumberGenerator() <em>Random Number Generator</em>}' attribute.
@@ -413,7 +414,11 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		int refCount = cls.eClass().getEAllReferences().size();
 		if (refCount > 0){
 			//a reference was found, remove one referenced class
-			EList<EReference> refList = cls.eClass().getEAllReferences();
+			EList<EReference> unmodifieableRefList = cls.eClass().getEAllReferences();
+			ArrayList<EReference> refList = new ArrayList<EReference>();		
+			for (EReference ref: unmodifieableRefList){
+				refList.add(ref);
+			}
 			EReference ref = null;
 			Object obj = null;
 			while  (!(refList.isEmpty())){
@@ -515,7 +520,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		//no need to check if class can be created because we take one that has already been created and make another instance
 		EObject cls = classList.get(getRandomNumberGenerator().nextInt(classList.size()));
 		EObject newCls = cls.eClass().getEPackage().getEFactoryInstance().create(cls.eClass());
-		EcoreUtil.getRootContainer(cls).eContents().add(newCls);
+		cls.eResource().getContents().add(newCls);
 		return classList.add(newCls);
 	}
 	
