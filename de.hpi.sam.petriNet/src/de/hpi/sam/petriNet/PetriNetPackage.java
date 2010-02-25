@@ -79,13 +79,22 @@ public interface PetriNetPackage extends EPackage {
 	int PETRI_NET__ELEMENTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Diagram Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PETRI_NET__DIAGRAM_NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Petri Net</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PETRI_NET_FEATURE_COUNT = 1;
+	int PETRI_NET_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.petriNet.impl.ElementImpl <em>Element</em>}' class.
@@ -331,6 +340,17 @@ public interface PetriNetPackage extends EPackage {
 	EReference getPetriNet_Elements();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.petriNet.PetriNet#getDiagramName <em>Diagram Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Diagram Name</em>'.
+	 * @see de.hpi.sam.petriNet.PetriNet#getDiagramName()
+	 * @see #getPetriNet()
+	 * @generated
+	 */
+	EAttribute getPetriNet_DiagramName();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.petriNet.Element <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -485,6 +505,14 @@ public interface PetriNetPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PETRI_NET__ELEMENTS = eINSTANCE.getPetriNet_Elements();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PETRI_NET__DIAGRAM_NAME = eINSTANCE.getPetriNet_DiagramName();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.petriNet.impl.ElementImpl <em>Element</em>}' class.

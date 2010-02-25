@@ -6,6 +6,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="PetriNet">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="10"
         upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Petri Net 1.0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" lowerBound="1"

@@ -155,6 +155,15 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPetriNet_DiagramName() {
+		return (EAttribute)petriNetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -279,6 +288,7 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
 		// Create classes and their features
 		petriNetEClass = createEClass(PETRI_NET);
 		createEReference(petriNetEClass, PETRI_NET__ELEMENTS);
+		createEAttribute(petriNetEClass, PETRI_NET__DIAGRAM_NAME);
 
 		elementEClass = createEClass(ELEMENT);
 		createEReference(elementEClass, ELEMENT__DIAGRAM);
@@ -333,6 +343,7 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
 		// Initialize classes and features; add operations and parameters
 		initEClass(petriNetEClass, PetriNet.class, "PetriNet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPetriNet_Elements(), this.getElement(), this.getElement_Diagram(), "elements", null, 10, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPetriNet_DiagramName(), ecorePackage.getEString(), "diagramName", "Petri Net 1.0", 0, 1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getElement_Diagram(), this.getPetriNet(), this.getPetriNet_Elements(), "diagram", null, 1, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.petriNet.PetriNet#getElements <em>Elements</em>}</li>
+ *   <li>{@link de.hpi.sam.petriNet.PetriNet#getDiagramName <em>Diagram Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,5 +45,32 @@ public interface PetriNet extends EObject {
 	 * @generated
 	 */
 	EList<Element> getElements();
+
+	/**
+	 * Returns the value of the '<em><b>Diagram Name</b></em>' attribute.
+	 * The default value is <code>"Petri Net 1.0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Diagram Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Diagram Name</em>' attribute.
+	 * @see #setDiagramName(String)
+	 * @see de.hpi.sam.petriNet.PetriNetPackage#getPetriNet_DiagramName()
+	 * @model default="Petri Net 1.0"
+	 * @generated
+	 */
+	String getDiagramName();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.petriNet.PetriNet#getDiagramName <em>Diagram Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Diagram Name</em>' attribute.
+	 * @see #getDiagramName()
+	 * @generated
+	 */
+	void setDiagramName(String value);
 
 } // PetriNet

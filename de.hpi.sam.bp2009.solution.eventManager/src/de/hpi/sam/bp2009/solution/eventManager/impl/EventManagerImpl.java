@@ -68,6 +68,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		}
 		@Override
 		public void notifyChanged(Notification notification) {
+			super.notifyChanged(notification);
 			handleEMFEvent(caller, notification, filter);	
 		}
 	}
