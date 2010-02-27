@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,16 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   C.Damus - 291365
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.9 2009/09/01 20:11:57 ewillink Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.10 2010/02/27 13:27:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
@@ -38,6 +42,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -84,6 +89,20 @@ public class EcoreEvaluationEnvironment
             Object source, Object[] args)
         throws IllegalArgumentException {
 
+    	// FIXME: Pull up so that UML environment can benefit.
+        if (InvocationBehavior.INSTANCE.appliesTo(operation)) {
+			EList<Object> arguments = (args.length == 0)
+				? ECollections.emptyEList()
+				: new BasicEList.UnmodifiableEList<Object>(args.length, args);
+
+			try {
+				Object result = ((EObject) source).eInvoke(operation, arguments);
+				return coerceValue(operation, result, true);
+			} catch (InvocationTargetException e) {
+				throw new IllegalArgumentException(e);
+			}
+    	}
+    	
         // TODO: WBN to pull up createValue to the superclass as a pass-thru
         // so that subclasses don't have to override callOperation
         return coerceValue(operation, super.callOperation(operation, opcode,

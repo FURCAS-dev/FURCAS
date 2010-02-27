@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 
 <!--
- Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
  All rights reserved.   This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
  which accompanies this distribution, and is available at
@@ -11,8 +11,9 @@
  Contributors:
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 256040
+   Kenn Hussey - 191689, 291361, 291365
 
- $Id: plugin.xml,v 1.4 2008/11/24 00:40:32 cdamus Exp $
+ $Id: plugin.xml,v 1.5 2010/02/27 13:27:32 ewillink Exp $
 -->
 
 <plugin>
@@ -73,5 +74,20 @@
            type="text">
      </fileTypes>
   </extension>
-  
+
+  <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.setting_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
+       class = "org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory$Global" />
+  </extension>
+ 
 </plugin>
