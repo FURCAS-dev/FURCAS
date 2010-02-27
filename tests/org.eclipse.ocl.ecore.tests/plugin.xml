@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.3 2010/02/27 13:27:41 ewillink Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/ocl/test/2010/Company.ecore"
+            class="company.CompanyPackage"
+            genModel="model/Company.genmodel"/>
+   </extension>
+
+</plugin>
