@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
+ *   E.D.Willink - Bugs 176110, 191689 
  *   Zeligsoft - Bug 253512
  *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.12 2009/11/09 21:57:32 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.13 2010/02/27 13:27:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -250,6 +250,14 @@ public class OCLMessages {
     public static String InvalidEscapeSequence_ERROR;
     
     public static String XorOrAndPrecedence_WARNING;
+	
+	public static String EvaluationResultIsInvalid_ERROR_;	
+	public static String MissingBodyForInvocationDelegate_ERROR_;	
+	public static String MissingDerivationForSettingDelegate_ERROR_;	
+	public static String ValidationConstraintIsNotBoolean_ERROR_;	
+	public static String ValidationResultIsInvalid_ERROR_;	
+	public static String ValidationResultIsNull_ERROR_;	
+	public static String ValidationResultIsNotBoolean_ERROR_;
 	
 	private static IMessages messagesImpl;
 	
