@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2009 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
- *   E.D.Willink - Bug 254919, 296409, 298634
+ *   E.D.Willink - Bug 191689, 254919, 296409, 298634
  *   Obeo - Bug 291310
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.5 2010/01/05 07:47:27 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.6 2010/02/27 13:27:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -139,6 +139,16 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		if (!noDebug) {
 			System.out.println(string);
 		}		
+	}
+
+	public static boolean eclipseIsRunning() {
+		try {
+			Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform");
+			Method isRunningMethod = platformClass.getDeclaredMethod("isRunning");
+			return Boolean.TRUE.equals(isRunningMethod.invoke(null));
+		} catch (Exception e) {
+		}
+		return false;
 	}
 
 	public static void initializeStandalone() {
@@ -959,14 +969,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
         }
 		if (!initialized) {
 			noDebug = System.getProperty(staticReflection.getTestPlugInId() + ".nodebug") != null;
-			boolean isRunning = false;
-			try {
-				Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform");
-				Method isRunningMethod = platformClass.getDeclaredMethod("isRunning");
-				isRunning = Boolean.TRUE.equals(isRunningMethod.invoke(null));
-			} catch (Exception e) {
-			}
-			if (!isRunning) {
+			if (!eclipseIsRunning()) {
 				initializeStandalone();
 			}
 		}		
