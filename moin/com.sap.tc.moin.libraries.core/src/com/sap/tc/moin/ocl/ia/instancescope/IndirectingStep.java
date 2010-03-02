@@ -60,7 +60,7 @@ public class IndirectingStep extends AbstractNavigationStep {
 	int result;
 	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
 	    equalsOrHashCodeCalledBeforeActualStepSet = true;
-	    result = this.hashCode();
+	    result = super.hashCode();
 	} else {
 	    result = actualStep.hashCode();
 	}

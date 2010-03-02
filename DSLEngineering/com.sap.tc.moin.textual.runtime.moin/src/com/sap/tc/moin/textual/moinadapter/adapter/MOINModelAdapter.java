@@ -40,7 +40,6 @@ public class MOINModelAdapter implements IBareModelAdapter {
     protected MoinModelAdapterDelegate delegate;
 
     private static Set<String> javaLangPrimitiveClassnames = new HashSet<String>();
-    private final Collection<PRI> referenceScope;
     static {
 	javaLangPrimitiveClassnames.add("Boolean");
 	javaLangPrimitiveClassnames.add("Integer");
@@ -63,7 +62,6 @@ public class MOINModelAdapter implements IBareModelAdapter {
 	public MOINModelAdapter(RefPackage root, final Connection connection,
 		/*PRI creationScopePri,*/ Collection<PRI> referenceScope, Collection<CRI> additionalCRIScope) {
 		
-		this.referenceScope = referenceScope;
 		if (root == null || connection == null ) {
 			throw new IllegalArgumentException("One of the following was null: " + root + ", " + connection );
 		}
@@ -425,7 +423,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
      */
     @Override
     public Object setOclReference(Object sourceModelElement, String referencePropertyName, Object keyValue, 
-            String oclQuery, Object contextObject) throws ModelAdapterException, ReferenceSettingException {
+            String oclQuery, Object contextObject, Object currentForeachElement) throws ModelAdapterException, ReferenceSettingException {
         if (sourceModelElement == null || referencePropertyName == null || oclQuery == null) {
             throw new IllegalArgumentException("One of the following was null: " + sourceModelElement + "," + referencePropertyName + "," + oclQuery );
         }
@@ -442,7 +440,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
 
 
     @Override
-	public Collection getPredicateOclReference(Object modelElement,
+	public Collection<?> getPredicateOclReference(Object modelElement,
 			String propertyName, Object keyValue, String oclQuery,
 			Object contextElement) throws ModelAdapterException {
 		return delegate.getOclEvaluation((RefObject)modelElement,propertyName,keyValue,oclQuery,contextElement);

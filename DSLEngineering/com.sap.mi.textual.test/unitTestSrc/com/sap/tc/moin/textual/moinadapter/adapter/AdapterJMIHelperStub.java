@@ -8,7 +8,6 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.DeferredModelElementCreationException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.JmiHelper;
@@ -40,8 +39,7 @@ public class AdapterJMIHelperStub extends AdapterJMIHelper {
      * @see com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper#actualCreateFromMock(com.sap.tc.moin.textual.moinadapter.adapter.StructureTypeMockObject)
      */
     @Override
-    public Object actualCreateFromMock(StructureTypeMockObject mock)
-            throws DeferredModelElementCreationException {
+    public Object actualCreateFromMock(StructureTypeMockObject mock) {
         fail("not implemented yet");
         return super.actualCreateFromMock(mock);
     }
@@ -60,7 +58,7 @@ public class AdapterJMIHelperStub extends AdapterJMIHelper {
      * @see com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper#createObject(java.lang.String)
      */
     @Override
-    Object createObject(List<String> type) throws ModelAdapterException {
+    Object createObject(List<String> type) {
         return createdObject;
     }
 
@@ -97,8 +95,7 @@ public class AdapterJMIHelperStub extends AdapterJMIHelper {
      * @see com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper#getEnumLiteral(java.lang.String, java.lang.String)
      */
     @Override
-    RefEnum getEnumLiteral(List<String> enumName, String name)
-            throws ModelAdapterException {
+    RefEnum getEnumLiteral(List<String> enumName, String name) {
         return createdEnumObject;
     }
 

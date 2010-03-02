@@ -177,7 +177,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
      */
     @Override
     public Object setOclReference(Object modelElement, String propertyName,
-            Object keyValue, String mqlQuery, Object contextObject) {
+            Object keyValue, String mqlQuery, Object contextObject, Object currentForeachElement) {
         this.mqlQuery = mqlQuery;
         ((StubModelElement)modelElement).set(propertyName, queryResult);
         return queryResult;

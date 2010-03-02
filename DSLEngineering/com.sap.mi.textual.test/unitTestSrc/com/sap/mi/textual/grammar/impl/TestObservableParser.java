@@ -264,6 +264,11 @@ public class TestObservableParser {
 	    result = "22";
 	}
 
+	@Override
+	public void reset() {
+	    result = "23";
+	}
+
 		
 
 	}

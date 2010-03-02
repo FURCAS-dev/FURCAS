@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-02-03 18:15:17 +0100 (Mi, 03 Feb 2010) $
- * Revision: $Revision: 9353 $
+ * Date: $Date: 2010-02-26 15:24:24 +0100 (Fr, 26 Feb 2010) $
+ * Revision: $Revision: 9496 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
@@ -25,6 +25,7 @@ import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -91,7 +92,7 @@ public class DelayedReferencesHelper {
 	if (reference.getType() == DelayedReference.SEMANTIC_PREDICATE) {
 	    return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
 	}
-	if (reference.getOclQuery() != null) {
+	if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
 	    return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
 	} else {
 	    return setDelayedReferenceWithLookup(reference, modelAdapter, contextManager, contextElement);
@@ -186,20 +187,36 @@ public class DelayedReferencesHelper {
 	    InvocationTargetException, ModelElementCreationException {
 	// invoke the parser to execute the template
 	Method methodToCall = parser.getClass().getMethod(ruleName);
-	parser.reset();
+	//parser.reset();
 	if (!Modifier.isFinal(methodToCall.getModifiers())) {
 	    throw new UnknownProductionRuleException(ruleName
 		    + " is not a production rule in generated Parser.");
 	}
 	boolean originalResolveProxiesValue = parser.isResolveProxies();
 	parser.setResolveProxies(false);
-
+	
+	IModelElementProxy proxyForContextElement = null;
 	if (reference.getContextElement() instanceof IModelElementProxy) {
-	    parser.getCurrentContextStack().push((IModelElementProxy) reference.getContextElement());
+	    proxyForContextElement = (IModelElementProxy) reference.getContextElement();
 	} else {
-	    parser.getCurrentContextStack().push(
-		    new ResolvedModelElementProxy(reference.getContextElement()));
+	    proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
 	}
+	
+	parser.setCurrentForeachElement(next);
+	if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
+            parser.addContext(proxyForContextElement);
+            if(proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof RefObject) {
+                parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement,  reference.getContextElement(),   /*
+                         * no creation context element needs to be provided here because the proxy has just been created and has
+                         * not been added to any other context
+                         */null);
+            }
+            
+        } else {
+            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
+        }
+	
+	
 	if (reference.hasContext() && next instanceof RefObject) {
 	    ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(next);
 	    if (parser.getContextManager().getContextForElement(next) == null) {
@@ -361,7 +378,7 @@ public class DelayedReferencesHelper {
 		}
 	    }
 	    Object result = modelAdapter.setOclReference(reference.getModelElement(), reference.getPropertyName(),
-		    reference.getKeyValue(), reference.getOclQuery(), contextElement);
+		    reference.getKeyValue(), reference.getOclQuery(), contextElement, reference.getCurrentForeachElement());
 	    if (result == null) {
 		String message = "Referenced ModelElement for query '" + reference.getOclQuery()
 			+ "' was not found for property '" + reference.getPropertyName() + "' of "
@@ -390,7 +407,7 @@ public class DelayedReferencesHelper {
 	    IModelAdapter modelAdapter, ContextManager contextManager, Object contextElement)
 	    throws ModelAdapterException, LookupPathNavigationException {
 	// check if something like "#context(..)" is contained in the query
-	Matcher match = ContextManager.contextPattern.matcher(reference.getOclQuery());
+	Matcher match = ContextAndForeachHelper.contextPattern.matcher(reference.getOclQuery());
 	if (match.find()) {
 	    String occurence = match.group();
 	    if (match.groupCount() >= 2) {
@@ -639,11 +656,18 @@ public class DelayedReferencesHelper {
 	List<String> valueTypeName = reference.getValueTypeName();
 	Object keyValue = reference.getKeyValue();
 	String keyName = reference.getKeyName();
+	
+	
 
 	Object candidate = null;
 
+	if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+	    candidate = modelAdapter.setOclReference(reference.getTextBlock(), reference.getPropertyName(),
+                    reference.getKeyValue(), reference.getOclQuery(), contextElement, reference.getCurrentForeachElement());
+	} else {
 	candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
 		keyValue);
+	}
 
 	if (candidate != null) {
 	    reference.setRealValue(candidate);

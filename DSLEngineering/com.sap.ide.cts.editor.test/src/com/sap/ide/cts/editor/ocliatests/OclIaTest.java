@@ -51,6 +51,30 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	assertNotNull(tcsSyntax);
     }
     
+    @Test
+    public void testLongRunningNavigationPathConstruction() throws OclManagerException {
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testLongRunningNavigationPathConstruction",
+		"'.'.concat(self.oclAsType(data::classes::AssociationEnd).name)", AssociationEnd.CLASS_DESCRIPTOR);
+	final AssociationEnd ae = connection.createElement(AssociationEnd.CLASS_DESCRIPTOR);
+	EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */ false);
+	final boolean[] ok = new boolean[1];
+	ChangeListener listener = new ChangeListener() {
+	    @Override
+	    public void notify(ChangeEvent event) {
+		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		ok[0] = affectedElements.size() == 1 && affectedElements.contains(ae.get___Mri());
+	    }
+	};
+	connection.getEventRegistry().registerListener(listener, eventFilter);
+	ae.setName("newAeName");
+	try {
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
+    }
+    
     /**
      * self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity
      */

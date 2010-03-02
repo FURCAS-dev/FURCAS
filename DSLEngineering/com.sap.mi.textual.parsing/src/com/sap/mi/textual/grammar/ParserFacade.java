@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-02-05 15:00:44 +0100 (Fr, 05 Feb 2010) $
- * Revision: $Revision: 9371 $
- * Author: $Author: c5106462 $
+ * Date: $Date: 2010-02-25 16:21:08 +0100 (Do, 25 Feb 2010) $
+ * Revision: $Revision: 9473 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar;
 
@@ -18,7 +18,6 @@ import org.antlr.runtime.Parser;
 
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.grammar.impl.ParsingError;

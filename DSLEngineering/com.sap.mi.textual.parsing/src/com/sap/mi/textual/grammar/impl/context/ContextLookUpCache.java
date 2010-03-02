@@ -129,18 +129,6 @@ class ContextLookUpCache {
         private Object keyValue;
         private String keyName;
 
-        /**
-         * @param valueTypeName
-         * @param keyValue
-         * @param keyName
-         */
-        public KeySignature(List<String> valueTypeName, Object keyValue,
-                String keyName) {
-            this.valueTypeName = valueTypeName;
-            this.keyValue = keyValue;
-            this.keyName = keyName;
-        }
-        
         /* (non-Javadoc)
          * @see java.lang.Object#toString()
          */

@@ -189,7 +189,7 @@ public interface IParsingObserver {
 
     void reset();
 
-
+    void reset();
 
 
 

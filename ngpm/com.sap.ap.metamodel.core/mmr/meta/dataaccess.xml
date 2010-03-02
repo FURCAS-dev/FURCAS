@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Jan 29 17:41:50 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Thu Feb 25 00:25:55 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -146,7 +146,7 @@ The exact type of a literal may not always be possible to decide completely, par
                   scope = 'instance_level' visibility = 'public_vis' 
                   isQuery = 'false' >
                   <Model:Namespace.contents>
-                    <Model:Parameter xmi.id = 'XX.85' 
+                    <Model:Parameter xmi.id = 'XX.97' 
                       name = '*return' annotation = '' 
                       direction = 'return_dir' >
                       <Model:Parameter.multiplicity>
@@ -156,7 +156,7 @@ The exact type of a literal may not always be possible to decide completely, par
                         <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                       </Model:TypedElement.type>
                     </Model:Parameter>
-                    <Model:Parameter xmi.id = 'XX.86' 
+                    <Model:Parameter xmi.id = 'XX.98' 
                       name = 'o' annotation = '' 
                       direction = 'in_dir' >
                       <Model:Parameter.multiplicity>
@@ -211,7 +211,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.literals.org.omg.sap2mof.OperationCodeOcl=context ObjectLiteral::isEqualTo(o:ObjectLiteral):Boolean...    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.832' 
+            <Model:Tag xmi.id = 'G.842' 
               name = 'org.omg.sap2mof.OperationCodeOcl=context ObjectLiteral::isEqualTo(o:ObjectLiteral):Boolean...' annotation = '' 
               tagId = 'org.omg.sap2mof.OperationCodeOcl' >
               <Model:Tag.values>
@@ -514,7 +514,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.collectionExpressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.834' 
+            <Model:Tag xmi.id = 'G.844' 
               name = 'org.omg.sap2mof.store=no' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -573,7 +573,7 @@ If the argument is a multi-object (cardinality &gt; 1), it needs to be ordered, 
                 <Model:Constraint xmi.idref = 'a493E4C61031C'/>  <!-- dataaccess.expressions.collectionExpressions.WithPosition.SourceMustBeOrdered -->
               </Model:ModelElement.constraints>
               <Model:GeneralizableElement.supertypes>
-                <Model:GeneralizableElement xmi.idref = 'a4577E587019C'/>  <!-- dataaccess.expressions.WithArgument -->
+                <Model:GeneralizableElement xmi.idref = 'a4B8504AE03C8'/>  <!-- dataaccess.expressions.ExpressionWithArgument -->
               </Model:GeneralizableElement.supertypes>
               <Model:Namespace.contents>
                 <!-- ==================== dataaccess.expressions.collectionExpressions.WithPosition.at    [Attribute] ==================== -->
@@ -613,7 +613,7 @@ inv:
                 <Model:Constraint xmi.idref = 'a4ADF362100EA'/>  <!-- dataaccess.expressions.collectionExpressions.CollectionExpressionWithArgument.ArgumentTypeMustConformToCollectionExpressionType -->
               </Model:ModelElement.constraints>
               <Model:GeneralizableElement.supertypes>
-                <Model:GeneralizableElement xmi.idref = 'a4577E587019C'/>  <!-- dataaccess.expressions.WithArgument -->
+                <Model:GeneralizableElement xmi.idref = 'a4B8504AE03C8'/>  <!-- dataaccess.expressions.ExpressionWithArgument -->
                 <Model:GeneralizableElement xmi.idref = 'a47595F60033C'/>  <!-- dataaccess.expressions.collectionExpressions.CollectionExpression -->
               </Model:GeneralizableElement.supertypes>
               <Model:Namespace.contents>
@@ -789,7 +789,7 @@ Note that there can be other expressions that evaluate to a function, such as an
                   scope = 'instance_level' visibility = 'public_vis' 
                   isQuery = 'true' >
                   <Model:Namespace.contents>
-                    <Model:Parameter xmi.id = 'XX.87' 
+                    <Model:Parameter xmi.id = 'XX.99' 
                       name = '*return' annotation = '' 
                       direction = 'return_dir' >
                       <Model:Parameter.multiplicity>
@@ -844,7 +844,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.fp.org.omg.sap2mof.OperationCodeOcl=context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation...    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.836' 
+            <Model:Tag xmi.id = 'G.846' 
               name = 'org.omg.sap2mof.OperationCodeOcl=context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation...' annotation = '' 
               tagId = 'org.omg.sap2mof.OperationCodeOcl' >
               <Model:Tag.values>
@@ -951,6 +951,7 @@ inv:
           isSingleton = 'false' >
           <Model:GeneralizableElement.supertypes>
             <Model:GeneralizableElement xml:link = 'simple' href = 'data.xml|a4717B7BC031A'/>
+            <Model:GeneralizableElement xml:link = 'simple' href = 'data.xml|a4B85514B0119'/>
           </Model:GeneralizableElement.supertypes>
           <Model:Namespace.contents>
             <!-- ==================== dataaccess.expressions.Expression.isSideEffectFree    [Operation] ==================== -->
@@ -959,7 +960,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.88' 
+                <Model:Parameter xmi.id = 'XX.100' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -977,7 +978,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.89' 
+                <Model:Parameter xmi.id = 'XX.101' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -987,7 +988,7 @@ inv:
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.90' 
+                <Model:Parameter xmi.id = 'XX.102' 
                   name = 'e' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -1005,7 +1006,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.91' 
+                <Model:Parameter xmi.id = 'XX.103' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1017,10 +1018,67 @@ inv:
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
+            <!-- ==================== dataaccess.expressions.Expression.getNamedValuesInScope    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B83E38F033C' 
+              name = 'getNamedValuesInScope' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.104' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'data.xml|a4522A56F0149'/>
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== dataaccess.expressions.Expression.getOwningExpression    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B83F58702BF' 
+              name = 'getOwningExpression' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:ModelElement.annotation>If this expression is composed by another expression, determines the composing expression. Otherwise, an empty result is returned.
+
+The issue with this operation is that each time a new inbound composite relatioship is added to Expression, this operation needs to be extended accordingly.</Model:ModelElement.annotation>
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.105' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== dataaccess.expressions.Expression.getOwningClass    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B84EE28030D' 
+              name = 'getOwningClass' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.106' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'data.xml|a4432171B031E'/>
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.837' 
+        <Model:Tag xmi.id = 'G.847' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1085,7 +1143,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::evaluatesToEqualAs(e:Expression):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.838' 
+        <Model:Tag xmi.id = 'G.848' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::evaluatesToEqualAs(e:Expression):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1118,7 +1176,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Iterator)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.839' 
+        <Model:Tag xmi.id = 'G.849' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Iterator)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1186,6 +1244,141 @@ body:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a4B277D73000F'/>  <!-- dataaccess.expressions.Expression.getUsedAliases -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.850' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getNamedValuesInScope():Set(NamedValue)
+body:
+  self.addNamedValuesWithNewNames(
+
+  -- First, collect those NamedValues defined immediately for this expression:
+  -- an iterate's body expression sees the iterators and the accumulator
+  let accumulator:Set(NamedValue)=self.inIterator.accumulator-&gt;asSet() in
+  let iterators:Set(NamedValue)=self.inIterator.iterators-&gt;asSet() in
+  -- an OQL "from" clause sees all aliases left of it
+  let oqlAliases:Set(NamedValue)=(if self.fromClause-&gt;notEmpty() then
+    let fromClauses = self.fromClause.fromClauseOfOqlQuery.fromClauses in
+    let fcIndex = fromClauses-&gt;indexOf(self.fromClause) in
+      Sequence{1..-1+fcIndex}-&gt;collect(i | fromClauses-&gt;at(i).alias)-&gt;asSet()
+  else
+    Set{}
+  endif)-&gt;union(
+  -- an OQL "where" clause sees all aliases defined by any of the OQL expression's "from" entries
+  self.conditionOfOqlQuery.fromClauses.alias-&gt;asSet()) in
+  -- a Selection defines an implicit iterator for its filter expression
+  let selectionIterator:Set(NamedValue)=self.selection.iterator-&gt;asSet() in
+  accumulator-&gt;union(iterators)-&gt;union(oqlAliases)-&gt;union(selectionIterator),
+
+  -- Then, add those defined by owning structures such as owning statements or owning expressions
+  -- an expression that is used by an ExpressionStatement or as condition in a Conditional sees all named values that the statement sees
+  if self.actualObjectParameter.owningClassTypeDefinition-&gt;notEmpty() then
+    self.actualObjectParameter.owningClassTypeDefinition.getNamedValuesInScope()
+  else
+    if self.initExpressionFor.namedValueDeclaration-&gt;notEmpty() then
+      self.initExpressionFor.namedValueDeclaration.getNamedValuesInScope()
+    else
+      if self.expressionStatement-&gt;notEmpty() then
+        self.expressionStatement.getNamedValuesInScope()
+      else
+        if self.conditional-&gt;notEmpty() then
+          if self.conditional.oclIsKindOf(ConditionalStatement) then
+            self.conditional.oclAsType(ConditionalStatement).getNamedValuesInScope()
+          else
+            self.conditional.oclAsType(ConditionalExpression).getNamedValuesInScope()
+          endif
+        else
+          if self.argumentOf-&gt;notEmpty() and self.argumentOf.oclIsKindOf(StatementWithArgument) then
+            self.argumentOf.oclAsType(StatementWithArgument).getNamedValuesInScope()
+          else
+            -- add all variables in scope for owning expressions
+            let oe = self.getOwningExpression() in
+              if oe-&gt;isEmpty() then
+                Set{}
+              else
+                oe.getNamedValuesInScope()
+              endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  )</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B83E38F033C'/>  <!-- dataaccess.expressions.Expression.getNamedValuesInScope -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningExpression():Expression...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.851' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningExpression():Expression...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getOwningExpression():Expression
+body:
+  let objectBasedExpressions:Set(Expression)=self.objectBasedExpression-&gt;asSet() in
+  let argumentsOf:Set(Expression)=self.argumentOf-&gt;select(ao | ao.oclIsKindOf(Expression)).oclAsType(ExpressionWithArgument)-&gt;asSet() in
+  let equals:Set(Expression)=Set{}-&gt;union(self.leftOfEquals-&gt;asSet())-&gt;union(self.rightOfEquals-&gt;asSet()) in
+  let blocksOfFunctionCallExpression:Set(Expression)=self.blockOfFunctionCallExpression-&gt;asSet() in
+  let signatureCalls:Set(Expression)=self.usedAsArgumentInSignatureCall-&gt;asSet() in
+  let creationExpression:Set(Expression)=if self.oclIsKindOf(MethodCallExpression) then
+    self.oclAsType(MethodCallExpression).creationExpression-&gt;asSet()
+  else
+    Set{}
+  endif in
+  let ternary:Set(Expression)=self.trueOfTernary-&gt;asSet()-&gt;union(self.falseOfTernary-&gt;asSet()) in
+  let conditional:Set(Expression)=if self.conditional-&gt;notEmpty() and self.conditional.oclIsKindOf(ConditionalExpression) then
+    self.conditional.oclAsType(ConditionalExpression)-&gt;asSet()
+  else
+    Set{}
+  endif in
+  let replace:Set(Expression)=self.withOfReplace-&gt;asSet()-&gt;union(self.navigationStep.replace-&gt;asSet()) in
+  let oqlQuery:Set(Expression)=self.conditionOfOqlQuery-&gt;asSet()-&gt;union(self.fromClause.fromClauseOfOqlQuery-&gt;asSet()) in
+  let selection:Set(Expression)=self.selection-&gt;asSet() in
+  let objectLiteral:Set(Expression)=self.valueInit.objectLiteral-&gt;asSet() in
+  let iterator:Set(Expression)=self.inIterator-&gt;asSet() in
+  let collectionExpression:Set(Expression)=self.collectionExpression-&gt;asSet() in
+  let all:Set(Expression)=self.all-&gt;asSet() in
+  let valueInitInObjectLiteral:Set(Expression)=self.valueInit.objectLiteral-&gt;asSet() in
+  let dimensionExpression:Set(Expression)=self.cellSetOfDimensionExpression-&gt;asSet()-&gt;union(
+                                                                   self.factsOfDimensionExpression-&gt;asSet()) in
+
+  objectBasedExpressions-&gt;union(argumentsOf)-&gt;union(equals)-&gt;union(blocksOfFunctionCallExpression)-&gt;union(
+  signatureCalls)-&gt;union(creationExpression)-&gt;union(ternary)-&gt;union(conditional)-&gt;union(replace)-&gt;union(
+  oqlQuery)-&gt;union(selection)-&gt;union(objectLiteral)-&gt;union(iterator)-&gt;union(collectionExpression)-&gt;union(
+  all)-&gt;union(valueInitInObjectLiteral)-&gt;union(dimensionExpression)-&gt;any(true)</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B83F58702BF'/>  <!-- dataaccess.expressions.Expression.getOwningExpression -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningClass():SapClass...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.852' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningClass():SapClass...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getOwningClass():SapClass
+body:
+  let oe = self.getOwningExpression() in
+  if oe-&gt;notEmpty() then
+    oe.getOwningClass()
+  else
+    if self.expressionStatement-&gt;notEmpty() then
+      self.expressionStatement.getOwningClass()
+    else
+      if self.conditional-&gt;notEmpty() and self.conditional.oclIsKindOf(Statement) then
+        self.conditional.oclAsType(ConditionalStatement).getOwningClass()
+      else
+        null
+      endif
+    endif
+  endif</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B84EE28030D'/>  <!-- dataaccess.expressions.Expression.getOwningClass -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.VariableExpression    [Class] ==================== -->
@@ -1324,7 +1517,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.840' 
+        <Model:Tag xmi.id = 'G.853' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1480,7 +1673,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.841' 
+        <Model:Tag xmi.id = 'G.854' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1767,7 +1960,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.92' 
+                <Model:Parameter xmi.id = 'XX.107' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1785,7 +1978,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.93' 
+                <Model:Parameter xmi.id = 'XX.108' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1855,7 +2048,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getSignature():Signature...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.842' 
+        <Model:Tag xmi.id = 'G.855' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getSignature():Signature...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1873,7 +2066,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getMultiplicityOfCallTarget():Multiplicity...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.843' 
+        <Model:Tag xmi.id = 'G.856' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getMultiplicityOfCallTarget():Multiplicity...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2224,7 +2417,7 @@ inv:
           </Model:ModelElement.constraints>
           <Model:GeneralizableElement.supertypes>
             <Model:GeneralizableElement xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
-            <Model:GeneralizableElement xmi.idref = 'a45471B4401F7'/>  <!-- dataaccess.expressions.Conditional -->
+            <Model:GeneralizableElement xmi.idref = 'a4B8523C90167'/>  <!-- dataaccess.expressions.ConditionalExpression -->
           </Model:GeneralizableElement.supertypes>
           <Model:Namespace.contents>
             <!-- ==================== dataaccess.expressions.Ternary.falseExpr    [Reference] ==================== -->
@@ -2302,6 +2495,26 @@ inv:
               </Model:Constraint.constrainedElements>
             </Model:Constraint>
           </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== dataaccess.expressions.ExpressionWithArgument    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B8504AE03C8' 
+          name = 'ExpressionWithArgument' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'true' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a4577E587019C'/>  <!-- dataaccess.expressions.WithArgument -->
+            <Model:GeneralizableElement xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+          </Model:GeneralizableElement.supertypes>
+        </Model:Class>
+        <!-- ==================== dataaccess.expressions.ConditionalExpression    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B8523C90167' 
+          name = 'ConditionalExpression' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'true' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a45471B4401F7'/>  <!-- dataaccess.expressions.Conditional -->
+            <Model:GeneralizableElement xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+          </Model:GeneralizableElement.supertypes>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.A_variable_variableExpression    [Association] ==================== -->
         <Model:Association xmi.id = 'a4522AE0D02E6' 
@@ -2387,14 +2600,14 @@ inv:
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_withArgument_argument    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_argumentOf_argument    [Association] ==================== -->
         <Model:Association xmi.id = 'a4577E58D0258' 
-          name = 'A_withArgument_argument' annotation = '' 
+          name = 'A_argumentOf_argument' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
             <Model:AssociationEnd xmi.id = 'a4577E58D0259' 
-              name = 'withArgument' annotation = '' 
+              name = 'argumentOf' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2415,9 +2628,9 @@ inv:
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_calledBlock_functionCallExpression    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_calledBlock_blockOfFunctionCallExpression    [Association] ==================== -->
         <Model:Association xmi.id = 'a45473F690329' 
-          name = 'A_calledBlock_functionCallExpression' annotation = '' 
+          name = 'A_calledBlock_blockOfFunctionCallExpression' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -2432,7 +2645,7 @@ inv:
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a45473F6A0316' 
-              name = 'functionCallExpression' annotation = '' 
+              name = 'blockOfFunctionCallExpression' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2443,9 +2656,9 @@ inv:
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_left_equals    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_left_leftOfEquals    [Association] ==================== -->
         <Model:Association xmi.id = 'a4759584301D4' 
-          name = 'A_left_equals' annotation = '' 
+          name = 'A_left_leftOfEquals' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -2460,7 +2673,7 @@ inv:
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4759584402FD' 
-              name = 'equals' annotation = '' 
+              name = 'leftOfEquals' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2555,9 +2768,9 @@ inv:
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_right_equals    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_right_rightOfEquals    [Association] ==================== -->
         <Model:Association xmi.id = 'a497656FD0205' 
-          name = 'A_right_equals' annotation = '' 
+          name = 'A_right_rightOfEquals' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -2572,7 +2785,7 @@ inv:
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a49765700009D' 
-              name = 'equals' annotation = '' 
+              name = 'rightOfEquals' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2670,9 +2883,9 @@ For example, if an Address value class has a property of type Province, and ther
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_with_replace    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_with_withOfReplace    [Association] ==================== -->
         <Model:Association xmi.id = 'a499D69C401C5' 
-          name = 'A_with_replace' annotation = '' 
+          name = 'A_with_withOfReplace' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -2687,7 +2900,7 @@ For example, if an Address value class has a property of type Province, and ther
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a499D69C702DE' 
-              name = 'replace' annotation = '' 
+              name = 'withOfReplace' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2698,9 +2911,9 @@ For example, if an Address value class has a property of type Province, and ther
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_falseExpr_ternary    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_falseExpr_falseOfTernary    [Association] ==================== -->
         <Model:Association xmi.id = 'a4A3897E603B9' 
-          name = 'A_falseExpr_ternary' annotation = '' 
+          name = 'A_falseExpr_falseOfTernary' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -2715,7 +2928,7 @@ For example, if an Address value class has a property of type Province, and ther
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4A3897E7035B' 
-              name = 'ternary' annotation = '' 
+              name = 'falseOfTernary' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2726,9 +2939,9 @@ For example, if an Address value class has a property of type Province, and ther
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.expressions.A_trueExpr_ternary    [Association] ==================== -->
+        <!-- ==================== dataaccess.expressions.A_trueExpr_trueOfTernary    [Association] ==================== -->
         <Model:Association xmi.id = 'a4A3897E80280' 
-          name = 'A_trueExpr_ternary' annotation = '' 
+          name = 'A_trueExpr_trueOfTernary' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -2743,7 +2956,7 @@ For example, if an Address value class has a property of type Province, and ther
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4A3897EA034B' 
-              name = 'ternary' annotation = '' 
+              name = 'trueOfTernary' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -2812,21 +3025,21 @@ For example, if an Address value class has a property of type Province, and ther
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.831' 
+    <Model:Import xmi.id = 'G.841' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.833' 
+    <Model:Import xmi.id = 'G.843' 
       name = 'data' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.835' 
+    <Model:Import xmi.id = 'G.845' 
       name = 'behavioral' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -2935,7 +3148,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.query.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.844' 
+        <Model:Tag xmi.id = 'G.857' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3140,7 +3353,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.query.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.845' 
+        <Model:Tag xmi.id = 'G.858' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3520,7 +3733,7 @@ It subclasses FunctionSignatureImplementation. The function signature that a Cel
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.94' 
+                <Model:Parameter xmi.id = 'XX.109' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3538,7 +3751,7 @@ It subclasses FunctionSignatureImplementation. The function signature that a Cel
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.95' 
+                <Model:Parameter xmi.id = 'XX.110' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3556,7 +3769,7 @@ It subclasses FunctionSignatureImplementation. The function signature that a Cel
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.96' 
+                <Model:Parameter xmi.id = 'XX.111' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3629,7 +3842,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.846' 
+        <Model:Tag xmi.id = 'G.859' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3641,7 +3854,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::keyFigureType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.847' 
+        <Model:Tag xmi.id = 'G.860' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::keyFigureType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3658,7 +3871,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::cellType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.848' 
+        <Model:Tag xmi.id = 'G.861' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::cellType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3671,7 +3884,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::localIsSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.849' 
+        <Model:Tag xmi.id = 'G.862' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::localIsSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3903,9 +4116,9 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.analytics.A_cellSet_dimensionExpression    [Association] ==================== -->
+        <!-- ==================== dataaccess.analytics.A_cellSet_cellSetOfDimensionExpression    [Association] ==================== -->
         <Model:Association xmi.id = 'a4718AAC90290' 
-          name = 'A_cellSet_dimensionExpression' annotation = '' 
+          name = 'A_cellSet_cellSetOfDimensionExpression' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -3920,7 +4133,7 @@ The block specified to determined this value has to have a signature whose input
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4718AACC0169' 
-              name = 'dimensionExpression' annotation = '' 
+              name = 'cellSetOfDimensionExpression' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -3987,9 +4200,9 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.analytics.A_facts_dimensionExpression    [Association] ==================== -->
+        <!-- ==================== dataaccess.analytics.A_facts_factsOfDimensionExpression    [Association] ==================== -->
         <Model:Association xmi.id = 'a4A3A5263001F' 
-          name = 'A_facts_dimensionExpression' annotation = '' 
+          name = 'A_facts_factsOfDimensionExpression' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -4004,7 +4217,7 @@ The block specified to determined this value has to have a signature whose input
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4A3A5263032C' 
-              name = 'dimensionExpression' annotation = '' 
+              name = 'factsOfDimensionExpression' annotation = '' 
               isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -4017,7 +4230,7 @@ The block specified to determined this value has to have a signature whose input
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.850' 
+    <Model:Import xmi.id = 'G.863' 
       name = 'modelmanagement' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

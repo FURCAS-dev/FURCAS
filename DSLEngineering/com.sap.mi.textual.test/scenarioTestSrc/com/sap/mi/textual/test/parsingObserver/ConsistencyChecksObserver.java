@@ -228,6 +228,23 @@ public class ConsistencyChecksObserver implements IParsingObserver {
 	operatorSequenceEnteredNotleft--;
     }
 
-	
-    
+    @Override
+    public void reset() {
+        ruleContextStack = new Stack<List<String>>();
+        sequenceContextStack = new Stack<Integer>();
+        errorsInRule = new ArrayList<RecognitionException>();
+        elementsResolved = new ArrayList<Object>();
+        tokensConsumed = new ArrayList<Token>();
+        errorTokensConsumed = new ArrayList<Token>();
+        outOfContextResolved = new ArrayList<Object>();
+        nextSequenceElementEvents = 0;
+        sequenceElementsEnteredNotLeft = 0;
+        unresolvedElements = 0;
+        separatorSequenceEnteredNotLeft = 0;
+        operatoredSequenceEnteredNotLeft = 0;
+        operatorSequenceEnteredNotleft = 0;
+        elementsAddedToContext = new ArrayList<Object>();
+        referencesCreated = new ArrayList<DelayedReference>();
+        injectorActionsEnteredNotleft = 0;
+    }
 }

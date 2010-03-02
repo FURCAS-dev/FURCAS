@@ -35,9 +35,10 @@ public class NavigationStepSequence extends CompositeNavigationStep {
      * on <tt>null</tt> as source/target type. Instead, this class redefined
      * {@link #getSourceType()} and {@link #getTargetType()} and dynamically fetches them
      * from the underlying step sequence.
+     * @param pathCache TODO
      */
-    public NavigationStepSequence(final CoreConnection connection, OclExpressionInternal debugInfo, NavigationStep... steps) {
-	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(connection, steps, debugInfo));
+    public NavigationStepSequence(final CoreConnection connection, OclExpressionInternal debugInfo, final PathCache pathCache, NavigationStep... steps) {
+	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(connection, steps, debugInfo, pathCache));
 	setSourceType(getSteps()[0].getSourceType());
 	getSteps()[0].addASourceTypeChangeListener(new SourceTypeChangeListener() {
 	    @Override
@@ -73,7 +74,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 		    @Override
 		    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 			assert stepForWhichSourceTypeChanged == step;
-			if (!AbstractNavigationStep.haveIntersectingSubclassTree(connection,
+			if (!pathCache.haveIntersectingSubclassTree(connection,
 				getSteps()[pos-1].getTargetType(), step.getSourceType())) {
 			    setAlwaysEmpty();
 			}
@@ -86,7 +87,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 		    @Override
 		    public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
 			assert stepForWhichTargetTypeChanged == step;
-			if (!AbstractNavigationStep.haveIntersectingSubclassTree(connection,
+			if (!pathCache.haveIntersectingSubclassTree(connection,
 				getSteps()[pos-1].getTargetType(), step.getTargetType())) {
 			    setAlwaysEmpty();
 			}
@@ -115,11 +116,11 @@ public class NavigationStepSequence extends CompositeNavigationStep {
      * set already before the <tt>allInstances</tt> step is reached. However, if the last step is
      * {@link NavigationStep#isAlwaysEmpty() always empty}, this can be made the one single step of this sequence, and
      * the entire sequence can then be considered to always return the empty set.
-     * 
      * @param debugInfo
      *            used in case a simplifying {@link EmptyResultNavigationStep} is created for the sequence
+     * @param pathCache TODO
      */
-    private static NavigationStep[] compactSteps(CoreConnection connection, NavigationStep[] steps, OclExpressionInternal debugInfo) {
+    private static NavigationStep[] compactSteps(CoreConnection connection, NavigationStep[] steps, OclExpressionInternal debugInfo, PathCache pathCache) {
 	if (steps.length==0) {
 	    throw new RuntimeException("NavigationStepSequence must at least have one element");
 	}
@@ -133,7 +134,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    boolean alwaysEmptyBecauseOfTypeMismatch = false;
 	    NavigationStep firstRedundantIdentityNavigationStep = null;
 	    for (int i=0; i<steps.length && !alwaysEmptyBecauseOfTypeMismatch; i++) {
-		if (i>0 && !AbstractNavigationStep.haveIntersectingSubclassTree(connection, steps[i-1].getTargetType(), steps[i].getSourceType())) {
+		if (i>0 && !pathCache.haveIntersectingSubclassTree(connection, steps[i-1].getTargetType(), steps[i].getSourceType())) {
 		    alwaysEmptyBecauseOfTypeMismatch = true;
 		} else {
 		    // eliminiate unnecessary IdentityNavigationSteps where the type constraints don't further constrain

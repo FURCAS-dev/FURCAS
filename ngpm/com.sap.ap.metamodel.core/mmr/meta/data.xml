@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Jan 29 17:41:50 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Thu Feb 25 00:25:55 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -134,7 +134,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.760' 
+        <Model:Tag xmi.id = 'G.764' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -188,7 +188,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.761' 
+        <Model:Tag xmi.id = 'G.765' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -237,7 +237,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Uniqueness on both ends must be the same'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.762' 
+        <Model:Tag xmi.id = 'G.766' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Uniqueness on both ends must be the same&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -248,7 +248,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.763' 
+        <Model:Tag xmi.id = 'G.767' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -354,7 +354,7 @@ Note that activities that do not modify the link structure may still have side e
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.10' 
+                <Model:Parameter xmi.id = 'XX.14' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -364,7 +364,7 @@ Note that activities that do not modify the link structure may still have side e
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.11' 
+                <Model:Parameter xmi.id = 'XX.15' 
                   name = 's' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -382,7 +382,7 @@ Note that activities that do not modify the link structure may still have side e
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.12' 
+                <Model:Parameter xmi.id = 'XX.16' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -392,7 +392,7 @@ Note that activities that do not modify the link structure may still have side e
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.13' 
+                <Model:Parameter xmi.id = 'XX.17' 
                   name = 's' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -402,7 +402,7 @@ Note that activities that do not modify the link structure may still have side e
                     <Model:Classifier xmi.idref = 'a4432198602CB'/>  <!-- data.classes.Signature -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.14' 
+                <Model:Parameter xmi.id = 'XX.18' 
                   name = 'excludingConforming' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -412,11 +412,47 @@ Note that activities that do not modify the link structure may still have side e
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.15' 
+                <Model:Parameter xmi.id = 'XX.19' 
                   name = 'excludingTo' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
                     <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'true' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== data.classes.Signature.getNamedValuesInScope    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B84F8BF030D' 
+              name = 'getNamedValuesInScope' annotation = 'For a signature, only the owning class&apos;s formal object parameters are in scope.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.20' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4522A56F0149'/>  <!-- data.classes.NamedValue -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== data.classes.Signature.getOwningClass    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B84F8F50186' 
+              name = 'getOwningClass' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.21' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
                   </Model:Parameter.multiplicity>
                   <Model:TypedElement.type>
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
@@ -441,7 +477,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::conformsTo(s:Signature):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.765' 
+        <Model:Tag xmi.id = 'G.769' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::conformsTo(s:Signature):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -458,7 +494,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::conformsToExcluding(s:Signature, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.766' 
+        <Model:Tag xmi.id = 'G.770' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::conformsToExcluding(s:Signature, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -481,6 +517,41 @@ body:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a45DD4F8E0018'/>  <!-- data.classes.Signature.conformsToExcluding -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.771' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Signature::getNamedValuesInScope():Set(NamedValue)
+body:
+  self.getOwningClass().formalObjectParameters-&gt;asSet()</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B84F8BF030D'/>  <!-- data.classes.Signature.getNamedValuesInScope -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::getOwningClass():SapClass...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.772' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::getOwningClass():SapClass...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Signature::getOwningClass():SapClass
+body:
+  if self.oclIsKindOf(MethodSignature) then
+    let owner = self.oclAsType(MethodSignature).owner in
+    if owner.oclIsKindOf(SapClass) then
+      owner.oclAsType(SapClass)
+    else
+      null    -- e.g., TypeAdapter
+    endif
+  else
+    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()
+  endif</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B84F8F50186'/>  <!-- data.classes.Signature.getOwningClass -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.AssociationEnd    [Class] ==================== -->
@@ -609,7 +680,7 @@ It is a questionable construct to have both ends contribute to equality if both 
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.16' 
+                <Model:Parameter xmi.id = 'XX.22' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -679,7 +750,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context AssociationEnd::otherEnd():AssociationEnd...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.767' 
+        <Model:Tag xmi.id = 'G.773' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context AssociationEnd::otherEnd():AssociationEnd...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -692,7 +763,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Exposing classes equal opposite ends type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.768' 
+        <Model:Tag xmi.id = 'G.774' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Exposing classes equal opposite ends type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -703,7 +774,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='If the association is equality relevant for the value and it is not the only attribute of the value, there may be an unlimited number of values connected to the other end. The multiplicity of the end must be *.'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.769' 
+        <Model:Tag xmi.id = 'G.775' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;If the association is equality relevant for the value and it is not the only attribute of the value, there may be an unlimited number of values connected to the other end. The multiplicity of the end must be *.&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -856,7 +927,7 @@ As opposed to value types, instances of entity types have identity and mutable s
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.17' 
+                <Model:Parameter xmi.id = 'XX.23' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -874,7 +945,7 @@ As opposed to value types, instances of entity types have identity and mutable s
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.18' 
+                <Model:Parameter xmi.id = 'XX.24' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -892,7 +963,7 @@ As opposed to value types, instances of entity types have identity and mutable s
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.19' 
+                <Model:Parameter xmi.id = 'XX.25' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -902,7 +973,7 @@ As opposed to value types, instances of entity types have identity and mutable s
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.20' 
+                <Model:Parameter xmi.id = 'XX.26' 
                   name = 'type' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -920,7 +991,7 @@ As opposed to value types, instances of entity types have identity and mutable s
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.21' 
+                <Model:Parameter xmi.id = 'XX.27' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -941,7 +1012,7 @@ As opposed to value types, instances of entity types have identity and mutable s
 
 Note, that TypeAdapter objects cannot delegate because they cannot have association ends attached to them. They can only expose association ends whose other end is attached to a class to which the TypeAdapter conforms.</Model:ModelElement.annotation>
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.22' 
+                <Model:Parameter xmi.id = 'XX.28' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -959,7 +1030,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.23' 
+                <Model:Parameter xmi.id = 'XX.29' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -969,7 +1040,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.24' 
+                <Model:Parameter xmi.id = 'XX.30' 
                   name = 'type' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -979,7 +1050,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.25' 
+                <Model:Parameter xmi.id = 'XX.31' 
                   name = 'excludingConforming' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -989,7 +1060,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.26' 
+                <Model:Parameter xmi.id = 'XX.32' 
                   name = 'excludingTo' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -1007,7 +1078,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.27' 
+                <Model:Parameter xmi.id = 'XX.33' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1025,7 +1096,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.28' 
+                <Model:Parameter xmi.id = 'XX.34' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1043,7 +1114,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.29' 
+                <Model:Parameter xmi.id = 'XX.35' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1058,90 +1129,6 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
             <!-- ==================== data.classes.SapClass.adaptedSignaturesExcluding    [Operation] ==================== -->
             <Model:Operation xmi.id = 'a47E4B8DB01D6' 
               name = 'adaptedSignaturesExcluding' annotation = 'Computes signatures offered by any type adapter adapting this class to another class, minus those signatures redefined in the local class' 
-              scope = 'instance_level' visibility = 'public_vis' 
-              isQuery = 'true' >
-              <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.30' 
-                  name = '*return' annotation = '' 
-                  direction = 'return_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.31' 
-                  name = 'excluding' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-              </Model:Namespace.contents>
-            </Model:Operation>
-            <!-- ==================== data.classes.SapClass.allSignaturesExcluding    [Operation] ==================== -->
-            <Model:Operation xmi.id = 'a47E4BEFB0049' 
-              name = 'allSignaturesExcluding' annotation = 'Computes all locally-defined signatures plus those signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter, plus allSignatures() recursively of all classes to which this class delegates.' 
-              scope = 'instance_level' visibility = 'public_vis' 
-              isQuery = 'true' >
-              <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.32' 
-                  name = '*return' annotation = '' 
-                  direction = 'return_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.33' 
-                  name = 'excluding' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-              </Model:Namespace.contents>
-            </Model:Operation>
-            <!-- ==================== data.classes.SapClass.signaturesWithDelegationExcluding    [Operation] ==================== -->
-            <Model:Operation xmi.id = 'a47EAB2A10094' 
-              name = 'signaturesWithDelegationExcluding' annotation = 'Signature declared directly by this class and those signatures obtained by delegation, recursively.' 
-              scope = 'instance_level' visibility = 'public_vis' 
-              isQuery = 'true' >
-              <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.34' 
-                  name = '*return' annotation = '' 
-                  direction = 'return_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.35' 
-                  name = 'excluding' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-              </Model:Namespace.contents>
-            </Model:Operation>
-            <!-- ==================== data.classes.SapClass.delegatedSignaturesExcluding    [Operation] ==================== -->
-            <Model:Operation xmi.id = 'a47EAB40A028F' 
-              name = 'delegatedSignaturesExcluding' annotation = 'Signatures obtained by delegation recursively.' 
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
@@ -1167,13 +1154,97 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
+            <!-- ==================== data.classes.SapClass.allSignaturesExcluding    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a47E4BEFB0049' 
+              name = 'allSignaturesExcluding' annotation = 'Computes all locally-defined signatures plus those signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter, plus allSignatures() recursively of all classes to which this class delegates.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.38' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.39' 
+                  name = 'excluding' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== data.classes.SapClass.signaturesWithDelegationExcluding    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a47EAB2A10094' 
+              name = 'signaturesWithDelegationExcluding' annotation = 'Signature declared directly by this class and those signatures obtained by delegation, recursively.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.40' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.41' 
+                  name = 'excluding' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== data.classes.SapClass.delegatedSignaturesExcluding    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a47EAB40A028F' 
+              name = 'delegatedSignaturesExcluding' annotation = 'Signatures obtained by delegation recursively.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.42' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.43' 
+                  name = 'excluding' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
             <!-- ==================== data.classes.SapClass.getConformingClasses    [Operation] ==================== -->
             <Model:Operation xmi.id = 'a488083D701C5' 
               name = 'getConformingClasses' annotation = '' 
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.38' 
+                <Model:Parameter xmi.id = 'XX.44' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1191,7 +1262,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.39' 
+                <Model:Parameter xmi.id = 'XX.45' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1209,7 +1280,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.40' 
+                <Model:Parameter xmi.id = 'XX.46' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1227,7 +1298,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.41' 
+                <Model:Parameter xmi.id = 'XX.47' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1245,7 +1316,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.42' 
+                <Model:Parameter xmi.id = 'XX.48' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1263,7 +1334,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.43' 
+                <Model:Parameter xmi.id = 'XX.49' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1281,7 +1352,7 @@ Note, that TypeAdapter objects cannot delegate because they cannot have associat
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.44' 
+                <Model:Parameter xmi.id = 'XX.50' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1349,7 +1420,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.requiresPartition=True    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.770' 
+        <Model:Tag xmi.id = 'G.776' 
           name = 'org.omg.sap2mof.requiresPartition=True' annotation = '' 
           tagId = 'org.omg.sap2mof.requiresPartition' >
           <Model:Tag.values>
@@ -1361,7 +1432,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::isAbstract():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.771' 
+        <Model:Tag xmi.id = 'G.777' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::isAbstract():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1374,7 +1445,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::isParameterizedClassDefinition():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.772' 
+        <Model:Tag xmi.id = 'G.778' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::isParameterizedClassDefinition():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1387,7 +1458,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsTo(type:SapClass):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.773' 
+        <Model:Tag xmi.id = 'G.779' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsTo(type:SapClass):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1404,7 +1475,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.774' 
+        <Model:Tag xmi.id = 'G.780' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1417,7 +1488,7 @@ self.allSignaturesExcluding(Set{})</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatesTo():Set(SapClass)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.775' 
+        <Model:Tag xmi.id = 'G.781' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatesTo():Set(SapClass)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1438,7 +1509,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.776' 
+        <Model:Tag xmi.id = 'G.782' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1473,7 +1544,7 @@ endif</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegation():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.777' 
+        <Model:Tag xmi.id = 'G.783' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegation():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1486,7 +1557,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.778' 
+        <Model:Tag xmi.id = 'G.784' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1499,7 +1570,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.779' 
+        <Model:Tag xmi.id = 'G.785' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1513,7 +1584,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.780' 
+        <Model:Tag xmi.id = 'G.786' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1541,7 +1612,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.781' 
+        <Model:Tag xmi.id = 'G.787' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1566,7 +1637,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegationExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.782' 
+        <Model:Tag xmi.id = 'G.788' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegationExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1591,7 +1662,7 @@ endif</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.783' 
+        <Model:Tag xmi.id = 'G.789' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1608,7 +1679,7 @@ endif</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformingClasses():Set(SapClass)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.784' 
+        <Model:Tag xmi.id = 'G.790' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformingClasses():Set(SapClass)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1623,7 +1694,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.785' 
+        <Model:Tag xmi.id = 'G.791' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1636,7 +1707,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getEqualityRelevantAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.786' 
+        <Model:Tag xmi.id = 'G.792' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getEqualityRelevantAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1649,7 +1720,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToClasses():Set(SapClass)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.787' 
+        <Model:Tag xmi.id = 'G.793' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToClasses():Set(SapClass)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1662,7 +1733,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.788' 
+        <Model:Tag xmi.id = 'G.794' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1675,7 +1746,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeParentAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.789' 
+        <Model:Tag xmi.id = 'G.795' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeParentAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1688,7 +1759,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeChildAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.790' 
+        <Model:Tag xmi.id = 'G.796' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeChildAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1757,7 +1828,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='TO end must have multiplicity of One'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.791' 
+        <Model:Tag xmi.id = 'G.797' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;TO end must have multiplicity of One&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -1797,7 +1868,7 @@ inv:
 
 TODO: decide if and how non-equal multiplicites may still conform; for example, a single element may implicitly conform to a collection of elements of conforming type; however, additions to the single element would not be possible.</Model:ModelElement.annotation>
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.45' 
+                <Model:Parameter xmi.id = 'XX.51' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1807,7 +1878,7 @@ TODO: decide if and how non-equal multiplicites may still conform; for example, 
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.46' 
+                <Model:Parameter xmi.id = 'XX.52' 
                   name = 'typedElement' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -1828,7 +1899,7 @@ TODO: decide if and how non-equal multiplicites may still conform; for example, 
 
 TODO the inference for Iterator elements used in an Iterate expression needs to resolve NestedTypeDefinitions; for non-NestedTypeDefinition type definitions it needs to reduce the multiplicity to exactly 1.</Model:ModelElement.annotation>
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.47' 
+                <Model:Parameter xmi.id = 'XX.53' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1843,7 +1914,7 @@ TODO the inference for Iterator elements used in an Iterate expression needs to 
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypedElement::conformsTo(typedElement:TypedElement):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.792' 
+        <Model:Tag xmi.id = 'G.798' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypedElement::conformsTo(typedElement:TypedElement):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1857,7 +1928,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypedElement::getType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.793' 
+        <Model:Tag xmi.id = 'G.799' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypedElement::getType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2088,7 +2159,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Condition must be boolean'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.794' 
+        <Model:Tag xmi.id = 'G.800' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Condition must be boolean&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2162,7 +2233,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'false' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.48' 
+                <Model:Parameter xmi.id = 'XX.54' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2177,7 +2248,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Multiplicity::isMany():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.795' 
+        <Model:Tag xmi.id = 'G.801' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Multiplicity::isMany():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2216,7 +2287,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.49' 
+                <Model:Parameter xmi.id = 'XX.55' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2231,7 +2302,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::getImplementedSignature():Signature...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.796' 
+        <Model:Tag xmi.id = 'G.802' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::getImplementedSignature():Signature...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2295,7 +2366,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signature has input or output does not match association end type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.797' 
+        <Model:Tag xmi.id = 'G.803' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signature has input or output does not match association end type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2336,7 +2407,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signature has output or input does not match association end type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.798' 
+        <Model:Tag xmi.id = 'G.804' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signature has output or input does not match association end type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2424,7 +2495,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Implementation must be owned in other end class'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.799' 
+        <Model:Tag xmi.id = 'G.805' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Implementation must be owned in other end class&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2512,7 +2583,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.50' 
+                <Model:Parameter xmi.id = 'XX.56' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2522,7 +2593,7 @@ inv:
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.51' 
+                <Model:Parameter xmi.id = 'XX.57' 
                   name = 'ctd' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -2540,7 +2611,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.52' 
+                <Model:Parameter xmi.id = 'XX.58' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2575,7 +2646,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::objectParametersConformTo(ctd:ClassTypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.800' 
+        <Model:Tag xmi.id = 'G.806' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::objectParametersConformTo(ctd:ClassTypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2594,7 +2665,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::effectiveObjectParameters():Sequence(Expression)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.801' 
+        <Model:Tag xmi.id = 'G.807' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::effectiveObjectParameters():Sequence(Expression)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2668,7 +2739,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.53' 
+                <Model:Parameter xmi.id = 'XX.59' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2678,7 +2749,7 @@ body:
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.54' 
+                <Model:Parameter xmi.id = 'XX.60' 
                   name = 'typeDef' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -2693,87 +2764,6 @@ body:
             <!-- ==================== data.classes.TypeDefinition.conformsToExcluding    [Operation] ==================== -->
             <Model:Operation xmi.id = 'a478672C20310' 
               name = 'conformsToExcluding' annotation = 'Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don&apos;t need further exploration. This can be used to avoid endless recursions in conformance testing.' 
-              scope = 'instance_level' visibility = 'public_vis' 
-              isQuery = 'true' >
-              <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.55' 
-                  name = '*return' annotation = '' 
-                  direction = 'return_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.56' 
-                  name = 'td' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a47B9A97A00CB'/>  <!-- data.classes.TypeDefinition -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.57' 
-                  name = 'excludingConforming' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'true' is_unique = 'false' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.58' 
-                  name = 'excludingTo' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'true' is_unique = 'false' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-              </Model:Namespace.contents>
-            </Model:Operation>
-            <!-- ==================== data.classes.TypeDefinition.multiplicityConformsTo    [Operation] ==================== -->
-            <Model:Operation xmi.id = 'a48EA7C2E0372' 
-              name = 'multiplicityConformsTo' 
-              scope = 'instance_level' visibility = 'public_vis' 
-              isQuery = 'true' >
-              <Model:ModelElement.annotation>Checks if this type definition's multiplicity conforms to td's multiplicity definitions. This is the case if all instances that conform to this type definition will also conform to td.
-
-Multiplicity conforms if td includes self's multiplicity, thus td's lower multiplicity is equal or smaller, and td's upper multiplicity is equal or larger than self's.
-
-Ordereness and uniquness conform if td has more relaxed requirements. Thus, they conform if they are equal, if td is neither ordered nor unique, or if self is ordered and unique</Model:ModelElement.annotation>
-              <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.59' 
-                  name = '*return' annotation = '' 
-                  direction = 'return_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.60' 
-                  name = 'td' annotation = '' 
-                  direction = 'in_dir' >
-                  <Model:Parameter.multiplicity>
-                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
-                  </Model:Parameter.multiplicity>
-                  <Model:TypedElement.type>
-                    <Model:Classifier xmi.idref = 'a47B9A97A00CB'/>  <!-- data.classes.TypeDefinition -->
-                  </Model:TypedElement.type>
-                </Model:Parameter>
-              </Model:Namespace.contents>
-            </Model:Operation>
-            <!-- ==================== data.classes.TypeDefinition.conformsToIgnoringMultiplicityExcluding    [Operation] ==================== -->
-            <Model:Operation xmi.id = 'a48EA7D5903DF' 
-              name = 'conformsToIgnoringMultiplicityExcluding' annotation = 'Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don&apos;t need further exploration. This can be used to avoid endless recursions in conformance testing.' 
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
@@ -2819,11 +2809,16 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
-            <!-- ==================== data.classes.TypeDefinition.conformsToIgnoringMultiplicity    [Operation] ==================== -->
-            <Model:Operation xmi.id = 'a48EA7E0A0304' 
-              name = 'conformsToIgnoringMultiplicity' annotation = '' 
+            <!-- ==================== data.classes.TypeDefinition.multiplicityConformsTo    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a48EA7C2E0372' 
+              name = 'multiplicityConformsTo' 
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
+              <Model:ModelElement.annotation>Checks if this type definition's multiplicity conforms to td's multiplicity definitions. This is the case if all instances that conform to this type definition will also conform to td.
+
+Multiplicity conforms if td includes self's multiplicity, thus td's lower multiplicity is equal or smaller, and td's upper multiplicity is equal or larger than self's.
+
+Ordereness and uniquness conform if td has more relaxed requirements. Thus, they conform if they are equal, if td is neither ordered nor unique, or if self is ordered and unique</Model:ModelElement.annotation>
               <Model:Namespace.contents>
                 <Model:Parameter xmi.id = 'XX.65' 
                   name = '*return' annotation = '' 
@@ -2836,6 +2831,82 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
                   </Model:TypedElement.type>
                 </Model:Parameter>
                 <Model:Parameter xmi.id = 'XX.66' 
+                  name = 'td' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a47B9A97A00CB'/>  <!-- data.classes.TypeDefinition -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== data.classes.TypeDefinition.conformsToIgnoringMultiplicityExcluding    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a48EA7D5903DF' 
+              name = 'conformsToIgnoringMultiplicityExcluding' annotation = 'Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don&apos;t need further exploration. This can be used to avoid endless recursions in conformance testing.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.67' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.68' 
+                  name = 'td' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a47B9A97A00CB'/>  <!-- data.classes.TypeDefinition -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.69' 
+                  name = 'excludingConforming' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'true' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.70' 
+                  name = 'excludingTo' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'true' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== data.classes.TypeDefinition.conformsToIgnoringMultiplicity    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a48EA7E0A0304' 
+              name = 'conformsToIgnoringMultiplicity' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.71' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.72' 
                   name = 'typeDef' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -2853,7 +2924,7 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.67' 
+                <Model:Parameter xmi.id = 'XX.73' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2871,7 +2942,7 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.68' 
+                <Model:Parameter xmi.id = 'XX.74' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2889,7 +2960,7 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.69' 
+                <Model:Parameter xmi.id = 'XX.75' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2901,10 +2972,28 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
+            <!-- ==================== data.classes.TypeDefinition.getNamedValuesInScope    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B84096A02BF' 
+              name = 'getNamedValuesInScope' annotation = 'Needs to find the owner of the type definition, then check if it&apos;s a statement such as a variable declaration, or a method signature (meaning the owner may contribute formal object parameters) or a function signature (meaning the function expression knows the NamedValues in scope), etc.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.76' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4522A56F0149'/>  <!-- data.classes.NamedValue -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsTo(typeDef:TypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.802' 
+        <Model:Tag xmi.id = 'G.808' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsTo(typeDef:TypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2924,7 +3013,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.803' 
+        <Model:Tag xmi.id = 'G.809' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2946,7 +3035,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::multiplicityConformsTo(td:TypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.804' 
+        <Model:Tag xmi.id = 'G.810' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::multiplicityConformsTo(td:TypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2980,7 +3069,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicityExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.805' 
+        <Model:Tag xmi.id = 'G.811' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicityExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3012,7 +3101,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicity(typeDef:TypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.806' 
+        <Model:Tag xmi.id = 'G.812' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicity(typeDef:TypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3029,7 +3118,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getTypeUsage():Set(TypedElement)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.807' 
+        <Model:Tag xmi.id = 'G.813' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getTypeUsage():Set(TypedElement)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3042,7 +3131,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getInnermost():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.808' 
+        <Model:Tag xmi.id = 'G.814' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getInnermost():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3059,7 +3148,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNestingLevel():Integer...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.809' 
+        <Model:Tag xmi.id = 'G.815' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNestingLevel():Integer...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3073,6 +3162,39 @@ body:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a4ADF29CE02AF'/>  <!-- data.classes.TypeDefinition.getNestingLevel -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.816' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context TypeDefinition::getNamedValuesInScope():Set(NamedValue)
+body:
+  -- find owner of type definition and collect the named values in scope for the owner
+  (let ownerSig = self.ownerSignature in
+  if ownerSig-&gt;notEmpty() and ownerSig.oclIsKindOf(Signature) then
+    ownerSig.oclAsType(Signature).getNamedValuesInScope()
+  else
+    Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported
+  endif)-&gt;union(
+
+  if self.ownerTypedElement-&gt;notEmpty() then
+    if self.ownerTypedElement.oclIsKindOf(Expression) then
+      self.ownerTypedElement.oclAsType(Expression).getNamedValuesInScope()
+    else
+      if self.ownerTypedElement.oclIsKindOf(NamedValue) then
+        self.ownerTypedElement.oclAsType(NamedValue).getNamedValuesInScope()
+      else
+        Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported
+      endif
+    endif
+  else
+    Set{}
+  endif)</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B84096A02BF'/>  <!-- data.classes.TypeDefinition.getNamedValuesInScope -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.NestedTypeDefinition    [Class] ==================== -->
@@ -3247,7 +3369,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.70' 
+                <Model:Parameter xmi.id = 'XX.77' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3262,7 +3384,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context MethodSignature::isAbstract():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.810' 
+        <Model:Tag xmi.id = 'G.817' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context MethodSignature::isAbstract():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3304,7 +3426,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.71' 
+                <Model:Parameter xmi.id = 'XX.78' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3316,10 +3438,28 @@ body:
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
+            <!-- ==================== data.classes.FunctionSignature.getImplementedAnonymousFunctionExpression    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B84EBDF0167' 
+              name = 'getImplementedAnonymousFunctionExpression' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.79' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'dataaccess.xml|a47A0757E02EC'/>
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::isAbstract():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.811' 
+        <Model:Tag xmi.id = 'G.818' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::isAbstract():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3329,6 +3469,24 @@ body:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a48EA1ACF00EA'/>  <!-- data.classes.FunctionSignature.isAbstract -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.819' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr
+body:
+  let candidates = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)-&gt;asSequence() in
+  if candidates-&gt;isEmpty() then
+    null
+  else
+    candidates-&gt;at(1)
+  endif</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B84EBDF0167'/>  <!-- data.classes.FunctionSignature.getImplementedAnonymousFunctionExpression -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.LinkSetting    [Class] ==================== -->
@@ -3362,7 +3520,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signature\'s output or input does not match association end type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.812' 
+        <Model:Tag xmi.id = 'G.820' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signature\&apos;s output or input does not match association end type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -3423,7 +3581,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.72' 
+                <Model:Parameter xmi.id = 'XX.80' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3433,7 +3591,7 @@ inv:
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.73' 
+                <Model:Parameter xmi.id = 'XX.81' 
                   name = 'type' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -3451,7 +3609,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.74' 
+                <Model:Parameter xmi.id = 'XX.82' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3461,7 +3619,7 @@ inv:
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.75' 
+                <Model:Parameter xmi.id = 'XX.83' 
                   name = 'type' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -3471,7 +3629,7 @@ inv:
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.76' 
+                <Model:Parameter xmi.id = 'XX.84' 
                   name = 'excludingConforming' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -3481,7 +3639,7 @@ inv:
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.77' 
+                <Model:Parameter xmi.id = 'XX.85' 
                   name = 'excludingTo' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -3499,7 +3657,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.78' 
+                <Model:Parameter xmi.id = 'XX.86' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3517,7 +3675,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.79' 
+                <Model:Parameter xmi.id = 'XX.87' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3527,7 +3685,7 @@ inv:
                     <Model:Classifier xmi.idref = 'a47D67D15030D'/>  <!-- data.classes.MethodSignature -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.80' 
+                <Model:Parameter xmi.id = 'XX.88' 
                   name = 'excluding' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -3600,7 +3758,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsTo(type:SapClass):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.813' 
+        <Model:Tag xmi.id = 'G.821' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsTo(type:SapClass):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3615,7 +3773,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.814' 
+        <Model:Tag xmi.id = 'G.822' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3634,7 +3792,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.815' 
+        <Model:Tag xmi.id = 'G.823' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3648,7 +3806,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.816' 
+        <Model:Tag xmi.id = 'G.824' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3663,7 +3821,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='All signatures must conform to TO class signatures'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.817' 
+        <Model:Tag xmi.id = 'G.825' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;All signatures must conform to TO class signatures&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -3674,7 +3832,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signatures can not be abstract'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.818' 
+        <Model:Tag xmi.id = 'G.826' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signatures can not be abstract&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -3750,7 +3908,56 @@ inv:
             <Model:GeneralizableElement xml:link = 'simple' href = 'modelmanagement.xml|a45013C240030'/>
             <Model:GeneralizableElement xmi.idref = 'a4717B7BC031A'/>  <!-- data.classes.TypedElement -->
           </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== data.classes.NamedValue.getNamedValuesInScope    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B84F6FD002E' 
+              name = 'getNamedValuesInScope' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.89' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4522A56F0149'/>  <!-- data.classes.NamedValue -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+          </Model:Namespace.contents>
         </Model:Class>
+        <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context NamedValue::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.827' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context NamedValue::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context NamedValue::getNamedValuesInScope():Set(NamedValue)
+body:
+    self.owner.getNamedValuesInScope()-&gt;union(
+    if self.oclIsKindOf(Parameter) then
+      self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()
+    else
+      if self.oclIsKindOf(Iterator) then
+        self.oclAsType(Iterator).boundToFor.getNamedValuesInScope()-&gt;asSet()-&gt;union(
+        self.oclAsType(Iterator)."iterate".getNamedValuesInScope()-&gt;asSet())
+      else
+        if self.oclIsKindOf(Constant) then
+          self.oclAsType(Constant)."iterate".getNamedValuesInScope()
+        else
+          Set{}    -- TODO further cases?
+        endif
+      endif
+    endif
+    )
+</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B84F6FD002E'/>  <!-- data.classes.NamedValue.getNamedValuesInScope -->
+          </Model:Tag.elements>
+        </Model:Tag>
         <!-- ==================== data.classes.PlatformSpecificImplementation    [Class] ==================== -->
         <Model:Class xmi.id = 'a489C71AE029F' 
           name = 'PlatformSpecificImplementation' annotation = '' 
@@ -3909,7 +4116,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.81' 
+                <Model:Parameter xmi.id = 'XX.90' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3924,7 +4131,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context FunctionSignatureImplementation::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.819' 
+        <Model:Tag xmi.id = 'G.828' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context FunctionSignatureImplementation::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -4106,6 +4313,65 @@ inv:
             </Model:Attribute>
           </Model:Namespace.contents>
         </Model:Class>
+        <!-- ==================== data.classes.InScope    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B85514B0119' 
+          name = 'InScope' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'true' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== data.classes.InScope.addNamedValuesWithNewNames    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B83E9E9035B' 
+              name = 'addNamedValuesWithNewNames' annotation = 'Used to build up a scope of named values, proceeding "inside-out." The first argument is the already computed set of NamedValues, all of which end up in the resulting set of NamedValues. NamedValues from the second argument are added to the result set if the first NamedValue set does not contain any NamedValue with an equal name.' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.91' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4522A56F0149'/>  <!-- data.classes.NamedValue -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.92' 
+                  name = 'inner' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4522A56F0149'/>  <!-- data.classes.NamedValue -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+                <Model:Parameter xmi.id = 'XX.93' 
+                  name = 'outer' annotation = '' 
+                  direction = 'in_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4522A56F0149'/>  <!-- data.classes.NamedValue -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context InScope::addNamedValuesWithNewNames(inner:Set(NamedValue), outer:Set(NamedValue)):Set(NamedValue)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.829' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context InScope::addNamedValuesWithNewNames(inner:Set(NamedValue), outer:Set(NamedValue)):Set(NamedValue)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context InScope::addNamedValuesWithNewNames(inner:Set(NamedValue), outer:Set(NamedValue)):Set(NamedValue)
+body:
+  inner-&gt;union(outer-&gt;select(o | not inner-&gt;exists(i | i.name = o.name))-&gt;asSet())</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B83E9E9035B'/>  <!-- data.classes.InScope.addNamedValuesWithNewNames -->
+          </Model:Tag.elements>
+        </Model:Tag>
         <!-- ==================== data.classes.FaultsOfSignature    [Association] ==================== -->
         <Model:Association xmi.id = 'a443B531C0296' 
           name = 'FaultsOfSignature' annotation = 'Exception handling to be discussed, e.g., should multiple exceptions be supported for signatures?' 
@@ -4697,9 +4963,9 @@ Note that the input argument itself is not tagged with a name. It is not intende
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== data.classes.A_signature_functionSignatureTypeDefinition    [Association] ==================== -->
+        <!-- ==================== data.classes.A_signature_typeDefinition    [Association] ==================== -->
         <Model:Association xmi.id = 'a48A02BD6000F' 
-          name = 'A_signature_functionSignatureTypeDefinition' annotation = 'If FunctionSignatureTypeDefinition is also to be used for functions derived from (methods + this), then the signature may as well be a MethodSignature.' 
+          name = 'A_signature_typeDefinition' annotation = 'If FunctionSignatureTypeDefinition is also to be used for functions derived from (methods + this), then the signature may as well be a MethodSignature.' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
@@ -4714,7 +4980,7 @@ Note that the input argument itself is not tagged with a name. It is not intende
               </Model:TypedElement.type>
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a48A02BD6007D' 
-              name = 'functionSignatureTypeDefinition' annotation = '' 
+              name = 'typeDefinition' annotation = '' 
               isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
@@ -5035,21 +5301,21 @@ Note that the input argument itself is not tagged with a name. It is not intende
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.764' 
+    <Model:Import xmi.id = 'G.768' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.820' 
+    <Model:Import xmi.id = 'G.830' 
       name = 'dataaccess' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'dataaccess.xml|a453E0CD8006C'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.821' 
+    <Model:Import xmi.id = 'G.831' 
       name = 'modelmanagement' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -5154,7 +5420,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.constraints.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.822' 
+        <Model:Tag xmi.id = 'G.832' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -5168,7 +5434,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.constraints.org.omg.sap2mof.violationMessageExpression='Expression type must be Boolean'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.823' 
+        <Model:Tag xmi.id = 'G.833' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Expression type must be Boolean&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -5179,7 +5445,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.constraints.org.omg.sap2mof.violationMessageExpression='Constraint must be owned by Class or Context'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.824' 
+        <Model:Tag xmi.id = 'G.834' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Constraint must be owned by Class or Context&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -5310,7 +5576,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Association>
         <!-- ==================== data.constraints.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.825' 
+        <Model:Tag xmi.id = 'G.835' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -5754,7 +6020,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.82' 
+                <Model:Parameter xmi.id = 'XX.94' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -5764,7 +6030,7 @@ inv:
                     <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.83' 
+                <Model:Parameter xmi.id = 'XX.95' 
                   name = 'ftp' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -5782,7 +6048,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.84' 
+                <Model:Parameter xmi.id = 'XX.96' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -5826,7 +6092,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.generics.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.826' 
+        <Model:Tag xmi.id = 'G.836' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -5843,7 +6109,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.generics.org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::resolveFormalTypeParameter(ftp:FormalTypeParameter):SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.827' 
+        <Model:Tag xmi.id = 'G.837' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::resolveFormalTypeParameter(ftp:FormalTypeParameter):SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -5857,7 +6123,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.generics.org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::getClassParameterization():ClassParameterization...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.828' 
+        <Model:Tag xmi.id = 'G.838' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::getClassParameterization():ClassParameterization...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -5940,7 +6206,7 @@ self.formalTypeParameters-&gt;forAll(i,j|i&lt;&gt;j implies i.name&lt;&gt;j.name
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.generics.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.829' 
+        <Model:Tag xmi.id = 'G.839' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -6319,7 +6585,7 @@ inv:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.830' 
+    <Model:Import xmi.id = 'G.840' 
       name = 'behavioral' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

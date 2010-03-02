@@ -5,12 +5,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
-import java.util.regex.Matcher;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -43,12 +41,13 @@ import textblocks.TextBlockAdditionalTemplates;
 import textblocks.TextBlockType;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IRuleName;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.grammar.impl.context.ContextManager;
 import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
@@ -77,8 +76,6 @@ import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
 import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
 import com.sap.tc.moin.repository.mmi.model.Aliases;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
 import com.sap.tc.moin.repository.mmi.model.Import;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
@@ -86,7 +83,6 @@ import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
@@ -119,24 +115,29 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			 if(reference.getQueryElement() instanceof InjectorAction) {
 			    if (!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events
 				    .getEvents(), /* replacement for __TEMP__ */null)) {
-			     filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
+			        filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
+			    }
 			 } else if(reference.getQueryElement() instanceof Property) {
-			     filterEventsAndQueueDelayedReferencesForPropertyQuery(events, conn);
+			     if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+			         filterEventsAndQueueDelayedReferencesForContextLookup(events, conn);
+			     } else {
+			         filterEventsAndQueueDelayedReferencesForPropertyQuery(events, conn);
+			     }
 			 }
 		     }
                      backgroundResolver.scheduleIfNeeded();
                      
 		 } else {
-		    // TODO (for Thomas) this code can probably be removed
-		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
-			    .get___Mri());
-		    if (element == null) {
-			// Element doesnt exist anymore, so reference can be removed
-			GlobalDelayedReferenceResolver.this.removeRegistration(reference);
-			return;
-		    }
-		    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(conn, element);
-		    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(conn, outermostPackage, this.reference);
+//		    // TODO (for Thomas) this code can probably be removed
+//		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
+//			    .get___Mri());
+//		    if (element == null) {
+//			// Element doesnt exist anymore, so reference can be removed
+//			GlobalDelayedReferenceResolver.this.removeRegistration(reference);
+//			return;
+//		    }
+//		    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(conn, element);
+//		    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(conn, outermostPackage, this.reference);
 		}
 	    }
 	}
@@ -146,147 +147,223 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
          InjectorAction injectorAction = (InjectorAction) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
          InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock)injectorAction.refImmediateComposite();
          Template template = injectorActionsBlock.getParentTemplate();
+         
          //now find all TextBlocks referencing this template;
-         TextblockDefinitionReferencesProduction tbDefAssoc = conn.getAssociation(TextblockDefinitionReferencesProduction.ASSOCIATION_DESCRIPTOR);
+         Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn,
+                template);
+         
+         Set<MRI> affectedElements = null;
+         for (TextBlock textBlock : tbs) {
+            //first check if the alternative in which the injector action resides was
+            //chosen during the parsing process
+            //TODO this is a workaround. to properly decide this we need to keep track
+            //of the alternative chosen at runtime of the parser
+            boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(
+                    injectorActionsBlock, textBlock);
+            
+            if (wasInChosenAlternative) {
+                if (affectedElements == null) {
+            	affectedElements = getAffectedElements(events, conn);
+                }
+                // TODO if affectedElements.size()==0, don't compute filterCorrespondingOrContextElement...
+                Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
+            	    conn, affectedElements, textBlock);
+                for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
+            	DelayedReference clonedRef = reference.clone();
+            	clonedRef.setModelElement(ro);
+            	clonedRef.setRealValue(null);
+            	clonedRef.setTextBlock(textBlock);
+            	clonedRef.setConnection(conn);
+            	GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+            	// reference.setModelElement(null);
+                }
+            }
+        }
+    }
+
+    private boolean isInjectorActionInChosenAlternative(
+            InjectorActionsBlock injectorActionsBlock, TextBlock textBlock) {
+        boolean wasInChosenAlternative = false;
+        if (textBlock.getTokens().isEmpty()) {
+            for (TextBlock tb : textBlock.getSubBlocks()) {
+        	if (tb.getSequenceElement() != null
+			&& (tb.getSequenceElement().getElementSequence().equals(
+				injectorActionsBlock.getElementSequence()) || injectorActionsBlock
+				.getElementSequence().refImmediateComposite() instanceof ContextTemplate)) {
+		    wasInChosenAlternative = true;
+		    break;
+		}
+            }
+	} else {
+		for (AbstractToken tok : textBlock.getTokens()) {
+		    if (tok instanceof LexedToken) {
+			LexedToken lt = (LexedToken) tok;
+			// check if injectoraction was in chosen alternative or directly in in the template
+			if (lt.getSequenceElement() != null
+				&& (lt.getSequenceElement().getElementSequence().equals(
+					injectorActionsBlock.getElementSequence()) || injectorActionsBlock
+					.getElementSequence().refImmediateComposite() instanceof ContextTemplate)) {
+			    wasInChosenAlternative = true;
+			    break;
+			}
+		    }
+		}
+	    }
+        return wasInChosenAlternative;
+    }
+
+    private Collection<TextBlock> getTextBlocksUsingQueryElement(
+            Connection conn, Template template) {
+        TextblockDefinitionReferencesProduction tbDefAssoc = conn.getAssociation(TextblockDefinitionReferencesProduction.ASSOCIATION_DESCRIPTOR);
          TextBlockDefinition def = tbDefAssoc.getTextBlockDefinition(template).iterator().next();
          TextBlockType tbTypeAssoc = conn.getAssociation(TextBlockType.ASSOCIATION_DESCRIPTOR);
-         //TODO use affectedModelElements instead but first find out which elements are actually contained in there
          Collection<TextBlock> tbs = new ArrayList<TextBlock>(tbTypeAssoc.getTextBlock(def));
          //now find all TextBlocks that reference the template in their "additionalTemplate"
          TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
          Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
          tbs.addAll(additionalTbs);
          tbs = TbUtil.filterVersionedTextBlockForNewest(tbs);
-         
-         Set<MRI> affectedElements = null;
-         for (TextBlock textBlock : tbs) {
-        //first check if the alternative in which the injector action resides was
-        //chosen during the parsing process
-        //TODO this is a workaround. to properly decide this we need to keep track
-        //of the alternative chosen at runtime of the parser
-        boolean wasInChosenAlternative = false;
-        for (AbstractToken tok : textBlock.getTokens()) {
-        	if(tok instanceof LexedToken) {
-        		LexedToken lt = (LexedToken)tok;
-        		//check if injectoraction was in chosen alternative or directly in in the template
-        		if(lt.getSequenceElement() != null &&
-        			(lt.getSequenceElement().getElementSequence().equals(
-        				injectorActionsBlock.getElementSequence())
-        				|| injectorActionsBlock.getElementSequence().refImmediateComposite() instanceof ContextTemplate)) {
-        			wasInChosenAlternative = true;
-        			break;
-        		}
-        	}
-        }
-        
-        if (wasInChosenAlternative) {
-            if (affectedElements == null) {
-        	affectedElements = getAffectedElements(events, conn);
-            }
-            Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-        	    conn, affectedElements, textBlock);
-            for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-        	DelayedReference clonedRef = (DelayedReference) reference.clone();
-        	clonedRef.setModelElement(ro);
-        	clonedRef.setRealValue(null);
-        	clonedRef.setTextBlock(textBlock);
-        	clonedRef.setConnection(conn);
-        	GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-        	// reference.setModelElement(null);
-            }
-        }
-        }
+        return tbs;
     }
 
     private void filterEventsAndQueueDelayedReferencesForPropertyQuery(
             EventChain events, Connection conn) {
+        Collection<LexedToken> toks = getTokensUsingQueryElement(conn);
+         Set<MRI> affectedElements = getAffectedElements(events, conn);
+         if(affectedElements.size() > 0) {
+             for (LexedToken lt : toks) {
+                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
+                                 conn, affectedElements, lt.getParentBlock());
+                    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+                            enqueueReferencesToReEvaluate(conn, lt);
+                    }
+                 }
+            }
+         }
+    }
+    
+    
+    private void filterEventsAndQueueDelayedReferencesForContextLookup(
+            EventChain events, Connection conn) {
+         Collection<LexedToken> toks = getTokensUsingQueryElement(conn);
+         Set<MRI> affectedElements = getAffectedElements(events, conn);
+         if(affectedElements.size() > 0) {
+             for (LexedToken lt : toks) {
+                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn, 
+                             affectedElements, Collections.singletonList(lt.getParentBlock()));
+                    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+                            enqueueReferencesToReEvaluate(conn, lt);
+                    }
+                 }
+            }
+         }
+    }
+
+    private void enqueueReferencesToReEvaluate(Connection conn, LexedToken lt) {
+        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+                    conn, lt.getParentBlock());
+            for (RefObject ro : result) {
+                DelayedReference clonedRef = reference.clone();
+                clonedRef.setModelElement(ro);
+                clonedRef.setRealValue(null);
+                clonedRef.setConnection(conn);
+                
+                clonedRef.setToken(new LexedTokenWrapper(lt));
+                clonedRef.setTextBlock(lt.getParentBlock());
+                clonedRef.setKeyValue(lt.getValue());
+                String oclQuery = clonedRef.getOclQuery();
+                clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+                GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+            }
+    }
+
+    private Collection<LexedToken> getTokensUsingQueryElement(Connection conn) {
         Property property = (Property) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
          //now find all TextBlocks referencing this property;
          LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
          Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
-         Set<MRI> affectedElements = null;
-         for (LexedToken lt : toks) {
-         if (affectedElements == null) {
-             affectedElements = getAffectedElements(events, conn);
-         }
-        Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-        	conn, affectedElements, lt.getParentBlock());
-         //TODO Actually we would have to analyse the OCL reference and check 
-         //for an intersection of the affectedElements with the token's value
-         //as this is the only hint we have at this place
-        if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-                Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-                            conn, lt.getParentBlock());
-        		for (RefObject ro : result) {
-        		    DelayedReference clonedRef = (DelayedReference) reference.clone();
-                                    clonedRef.setModelElement(ro);
-                                    clonedRef.setRealValue(null);
-                                    clonedRef.setConnection(conn);
-                                    
-                                    clonedRef.setToken(new LexedTokenWrapper(lt));
-                                    clonedRef.setKeyValue(lt.getValue());
-        		    String oclQuery = clonedRef.getOclQuery();
-        		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-        		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-        		}
-        }
-        }
+        return toks;
     }
 
 	
 
-    /**
-	 * Filters the given elements with the corresponding elements of the given {@link TextBlock}.
+        /**
+	 * Filters the given elements with the corresponding elements or, if the query
+	 * uses a #context reference with the context element of the given {@link TextBlock}.<p>
+	 * 
+	 * TODO handle #foreach here too
 	 * 
 	 * @param conn the connection used to resolve the MRIs within affecedElements
 	 * @param affectedElements Elements that were affected by 
 	 * @param node The {@link TextBlock} which's corresponding elements should be filtered.
 	 * @return the intersection between affected elements and the corresponding elements of the given {@link TextBlock}. 
 	 */
-	private Set<RefObject> filterWithAffectedElements(Connection conn,
+	private Set<RefObject> filterCorrespondingOrContextElementWithAffectedElements(Connection conn,
 		Set<MRI> affectedElements, DocumentNode node) {
-	    	Matcher matcher = ContextManager.contextPattern.matcher(reference.getOclQuery());
-	    	Collection<RefObject> correspondingModelElements = null;
-	        boolean isContext = matcher.find();
-		if (isContext) {
-	            LocalContextBuilder localContextBuilder = new LocalContextBuilder();
-	            TbUtil.constructContext(node,	localContextBuilder);
-			if(!localContextBuilder.getContextStack().isEmpty()) {
-			    correspondingModelElements = new ArrayList<RefObject>(); 
-			    correspondingModelElements.add((RefObject) localContextBuilder.getContextStack().peek().getRealObject());
+	    Collection<RefObject> correspondingModelElements = null;
+	    boolean isContext = ContextAndForeachHelper.usesContext(reference.getOclQuery());
+	    if (isContext) {
+		LocalContextBuilder localContextBuilder = new LocalContextBuilder();
+		TbUtil.constructContext(node, localContextBuilder);
+		correspondingModelElements = new ArrayList<RefObject>();
+		if (!localContextBuilder.getContextStack().isEmpty()) {
+		    IModelElementProxy innermostContext = localContextBuilder.getContextStack().peek();
+		    Object taggedContext = localContextBuilder.getContextManager().getTaggedContext(
+			    innermostContext, ContextAndForeachHelper.getContextTag(reference.getOclQuery()));
+		    if (taggedContext != null) {
+			// null may occur in case the node leads to a context stack that doesn't fit the
+			// context stack expected by the OCL expression; in this case, e.g., if a tag exists
+			// on the OCL expression's #context, no context object will be found. In this case,
+			// don't add anything to the correspondingModelElements.
+			RefObject unwrappedContext = null;
+			if (taggedContext instanceof IModelElementProxy) {
+			    unwrappedContext = (RefObject) ((IModelElementProxy) taggedContext).getRealObject();
+			} else {
+			    unwrappedContext = (RefObject) taggedContext;
 			}
-	        } else {
-	            correspondingModelElements = new ArrayList<RefObject>(node.getCorrespondingModelElements());
-	            correspondingModelElements.addAll(node.getReferencedElements());
-	            
-	        }
-		
-		Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
+			correspondingModelElements.add(unwrappedContext);
+		    }
+		}
+	    } else {
+		correspondingModelElements = new ArrayList<RefObject>(node.getCorrespondingModelElements());
+		correspondingModelElements.addAll(node.getReferencedElements());
+	    }
+
+	    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn,
+		    affectedElements, correspondingModelElements);
+	    if (isContext) {
 		if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-		    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
-		    for (RefObject cme : correspondingModelElements) {
-			correspondingModelElementsMris.add(cme.get___Mri());
-		    }
-		    
-		    Set<MRI> intersectionOfCorrespondingAndAffectedElementsMris = new HashSet<MRI>(affectedElements);
-		    intersectionOfCorrespondingAndAffectedElementsMris.retainAll(correspondingModelElementsMris);
-		    intersectionOfCorrespondingAndAffectedElements.clear();
-		    for (MRI mri : intersectionOfCorrespondingAndAffectedElementsMris) {
-			intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
-		    }
-		}
-		if(isContext) {
-		    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-		        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-		                conn, node);
-                        return result;			
-		    } else {
-			return new HashSet<RefObject>(0);
-		    }
+		    Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(conn, node);
+		    return result;
 		} else {
-		    return intersectionOfCorrespondingAndAffectedElements;   
+		    return new HashSet<RefObject>(0);
 		}
+	    } else {
+		return intersectionOfCorrespondingAndAffectedElements;
+	    }
 	}
+
+        private Set<RefObject> filterAffectedElements(Connection conn,
+                Set<MRI> affectedElements,
+                Collection<? extends RefObject> correspondingModelElements) {
+            Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
+    		if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+    		    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
+    		    for (RefObject cme : correspondingModelElements) {
+    			correspondingModelElementsMris.add(cme.get___Mri());
+    		    }
+    		    
+    		    Set<MRI> intersectionOfCorrespondingAndAffectedElementsMris = new HashSet<MRI>(affectedElements);
+    		    intersectionOfCorrespondingAndAffectedElementsMris.retainAll(correspondingModelElementsMris);
+    		    intersectionOfCorrespondingAndAffectedElements.clear();
+    		    for (MRI mri : intersectionOfCorrespondingAndAffectedElementsMris) {
+    			intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
+    		    }
+    		}
+            return intersectionOfCorrespondingAndAffectedElements;
+        }
 
 	/**
 	 * Filtes the elements in {@link DocumentNode#getCorrespondingModelElements()} by comparing them
@@ -600,7 +677,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			.singleton(unresolvedRef));
 		return;
 	    }
-
+        	//TODO set currentForeachElement on reference
 	    try {
 		// ensure that the model element uses the current connection
 		RefObject elementInCurrentConnection = (RefObject) conn
@@ -613,6 +690,14 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			    localContextBuilder.getContextManager(), 
 			    getParser(cs));
 		    if (resolved) {
+			if (unresolvedRef.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+			    // to be able to incrementally re evaluate the reference later
+			    // we need to setup a link between the textblock and the
+			    // template used in the ref
+			    unresolvedRef.getTextBlock().getAdditionalTemplates().add(
+				    ((ParserTextBlocksHandler) getParser(cs).getObserver()).getCurrentTbProxy()
+					    .getTemplate());
+			}
 			if(unresolvedRef.getRealValue() instanceof RefObject) {
 			    referringDocumentNode.getReferencedElements().add(
 					(RefObject) unresolvedRef.getRealValue());
@@ -786,7 +871,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         	    monitor.worked(1);
                     Property property = (Property) result;
                     registerPropertyQueryForIA(connection, packagesForLookup,
-                            elementClass, property);
+                            elementClass, property, cs);
                 }
 	    } finally{
                 //monitor.done();
@@ -797,11 +882,13 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
     private void registerPropertyQueryForIA(Connection connection,
             Collection<RefPackage> packagesForLookup, MofClass elementClass,
-            Property property) {
+            Property property, ConcreteSyntax cs) {
         Template template = property.getParentTemplate();
         if (template != null && template.getMetaReference() instanceof MofClass) {
             // TODO what about StructureTypes?
             QueryParg qarg = TcsUtil.getQueryParg(property);
+            // TODO still needed? if not, delete
+            // RefersToParg refersToArg = TcsUtil.getRefersToParg(property);
             FilterParg filter = TcsUtil.getFilterParg(property);
             if (qarg != null) {
                 try {
@@ -809,19 +896,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                     if (filter != null) {
                         query += filter.getFilter();
                     }
-                    RefObject parsingContext = null;
-                    if (!MoinHelper.usesContext(query)) {
-                        parsingContext = template.getMetaReference();
-                    } else {
-                        parsingContext = elementClass;
-                        // TODO currently this works only if a "#context" is postfixed
-                        // by a .oclAsType(...) expression.
-                    }
+                    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup, elementClass);
                     DelayedReference ref = new DelayedReference(
                             null,
                             null,
-                            property.getPropertyReference().getStrucfeature().getName(),
-                            null, null, query, false, null);
+                            null,
+                            property.getPropertyReference().getStrucfeature().getName(), null, null, query, false, null);
                     query = MoinHelper.prepareOclQuery(query, null,
                         TEMPORARY_QUERY_PARAM_REPLACEMENT);
                     if (query != null) {
@@ -862,6 +942,62 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                     ex.printStackTrace();
                 }
             }
+//            else if(refersToArg != null) {
+//                String query = refersToArg.getPropertyName();
+//                try {                   
+//                    RefObject parsingContext = null;
+//                    if (!MoinHelper.usesContext(query)) {
+//                        query = "self.lookInContext(null)";
+//                    } else {
+//                        parsingContext = elementClass;
+//                        // TODO add context tag instead of "null"
+//                        query = "self.lookInContext(null)";
+//                    }
+//                    String qualifiedName = TcsUtil.joinNameList(property.getPropertyReference().getStrucfeature().getType().getQualifiedName());
+//                    query += "->select(e | e.oclIsKindOf(" +
+//                            qualifiedName + "))->select(e | e.oclAsType(" + qualifiedName + ")."
+//                            + refersToArg.getPropertyName() + " = '" + TEMPORARY_QUERY_PARAM_REPLACEMENT + "')";;
+//                    
+//                    DelayedReference ref = new DelayedReference(
+//                            null,
+//                            null,
+//                            property.getPropertyReference().getStrucfeature().getName(),
+//                            null, null, query, false, null);
+//                    ref.setType(DelayedReference.CONTEXT_LOOKUP);
+//                    parsingContext = connection.getClass(TextBlock.CLASS_DESCRIPTOR).refMetaObject();
+//                    ref.setQueryElement(property);
+//                    ref.setGenericReference(true);
+//                    String name = "<genericReference>" + property.refMofId();
+//                    OclExpressionRegistration registration = (OclExpressionRegistration) connection
+//                        .getOclRegistryService().getFreestyleRegistry()
+//                        .getRegistration(name);
+//                    if (registration != null) {
+//                        connection.getOclRegistryService().getFreestyleRegistry()
+//                            .deleteRegistration(name);
+//                    }
+//                    registration = connection.getOclRegistryService()
+//                        .getFreestyleRegistry().createExpressionRegistration(name,
+//                            query, OclRegistrationSeverity.Info,
+//                            new String[] { "TCS Property Context Lookup" }, parsingContext,
+//                            packagesForLookup.toArray(new RefPackage[] {}));
+//                    Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
+//                        registration, ref);
+//                    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+//                        .getService(globalEventListenerRegistryRef);
+//                    registry.addFilters(reEvaluationListener);
+//                    registration2DelayedReference.put(registration.getName(), ref);
+//                    delayedReference2Registration.put(ref, registration.getName());
+//                    delayedReference2ReEvaluationListener.put(ref,
+//                        reEvaluationListener);
+//
+//                } catch (OclManagerException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                } catch(MoinLocalizedBaseRuntimeException ex) {
+//                    System.err.println("Failed to register at IA: " + query + "\n" + ex.getMessage());
+//                    ex.printStackTrace();
+//                }
+//            }
         }
     }
 
@@ -870,43 +1006,18 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
             MofClass elementClass, InjectorAction injectorActionBase, IRuleName ruleNameFinder) {
         ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit) injectorActionBase;
         InjectorActionsBlock block = foreachPredicatePropertyInit.getInjectorActionsBlockReference();
-        Template template = block
-            .getParentTemplate();
-        RefObject parsingContext = null;
-        if (!MoinHelper.usesContext(foreachPredicatePropertyInit.getValue())) {
-            parsingContext = template.getMetaReference();
-        } else if (MoinHelper.usesContextWithSubsequentCast(foreachPredicatePropertyInit
-            .getValue())) {
-            parsingContext = MoinHelper.getContextMetaObject(connection,
-                packagesForLookup, foreachPredicatePropertyInit.getValue());
-            if (parsingContext == null) {
-                throw new RuntimeException(
-                    "Didn't find type use in context casts in expression "
-                        + foreachPredicatePropertyInit.getValue());
-            }
-        } else {
-            Matcher matcher = ContextManager.contextPattern.matcher(foreachPredicatePropertyInit
-                .getValue());
-            matcher.find();
-            parsingContext = getCommonBaseClassForContextTag(cs, matcher.group(2),
-                elementClass);
-            if (parsingContext == null) {
-                throw new RuntimeException("Expected to find use of context "
-                    + matcher.group(2) + " but didn't");
-            }
-        }
+        Template template = block.getParentTemplate();
+        String query = foreachPredicatePropertyInit.getValue();
         try {
-            String query = foreachPredicatePropertyInit.getValue();
             List<com.sap.mi.textual.grammar.impl.PredicateSemantic> list = new ArrayList<com.sap.mi.textual.grammar.impl.PredicateSemantic>();
-            Iterator<PredicateSemantic> semIt = foreachPredicatePropertyInit.getPredicatesemantic().iterator();
             String mode = template instanceof ClassTemplate ? ((ClassTemplate) template).getMode() : null;
-            while (semIt.hasNext()) {
-                PredicateSemantic next = semIt.next();
+            for (PredicateSemantic next : foreachPredicatePropertyInit.getPredicatesemantic()) {
                 String localMode = mode;
                 if (next.getMode() != null) {
                     localMode = next.getMode();
                 }
                 if (next.getWhen() != null) {
+                    // FIXME this will probably not work; the generated javaQueryWhen has Java syntax but is submitted to the OCL parser
                     String javaQueryWhen = next.getWhen().replaceAll("\\\"", "\\\\\"");
                     javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\"");
                     javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\"");
@@ -923,43 +1034,27 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                 hasContext = ((ClassTemplate) block.getParentTemplate()).isContext();
             }
             DelayedReference ref = new DelayedReference(null,
-                        DelayedReference.SEMANTIC_PREDICATE, null, 
-                        foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(),
-                        query, null, list, ruleNameFinder, null, hasContext, 
-                        /*isOptional: ForEach is always considered optional as 
+                        null, DelayedReference.SEMANTIC_PREDICATE, 
+                        null,
+                        foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(), query, null, list, ruleNameFinder, null, 
+                        hasContext, /*isOptional: ForEach is always considered optional as 
                          * error reporting will be done based on metamodel constraints.*/
                         true);
+	    ref.setQueryElement(foreachPredicatePropertyInit);
+	    ref.setGenericReference(true);
                 
             //now replace any #context parts within the query with self
             //and use the context element type for registration if it is
             //used here, 
-            query = MoinHelper.prepareOclQuery(query, null, null);
-            if (query != null) {
-                ref.setQueryElement(foreachPredicatePropertyInit);
-                ref.setGenericReference(true);
-                String name = "<genericReference>" + foreachPredicatePropertyInit.refMofId();
-                OclExpressionRegistration registration = (OclExpressionRegistration) connection
-                    .getOclRegistryService().getFreestyleRegistry()
-                    .getRegistration(name);
-                if (registration != null) {
-                    connection.getOclRegistryService().getFreestyleRegistry()
-                        .deleteRegistration(name);
-                }
-                registration = connection.getOclRegistryService()
-                    .getFreestyleRegistry().createExpressionRegistration(name,
-                        query, OclRegistrationSeverity.Info,
-                        new String[] { "TCS Property Init" }, parsingContext,
-                        packagesForLookup.toArray(new RefPackage[] {}));
-                Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-                    registration, ref);
-                GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
-                    .getService(globalEventListenerRegistryRef);
-                registry.addFilters(reEvaluationListener);
-                registration2DelayedReference.put(registration.getName(), ref);
-                delayedReference2Registration.put(ref, registration.getName());
-                delayedReference2ReEvaluationListener
-                    .put(ref, reEvaluationListener);
-
+	    String foreachRegistrationName = "<genericReference>" + foreachPredicatePropertyInit.refMofId();
+            registerOclExpressionOfForeachConstruct(connection, packagesForLookup, elementClass,
+		    foreachPredicatePropertyInit, template, query, ref, foreachRegistrationName);
+            for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicatesemantic()) {
+		if (whenClause.getWhen() != null) {
+		    String whenRegistrationName = "<genericReference>" + whenClause.refMofId();
+		    registerOclExpressionOfForeachConstruct(connection, packagesForLookup, elementClass,
+			    foreachPredicatePropertyInit, template, whenClause.getWhen(), ref.clone(), whenRegistrationName);
+		}
             }
         } catch (OclManagerException e) {
             // TODO Auto-generated catch block
@@ -973,40 +1068,48 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         }
     }
 
+    private void registerOclExpressionOfForeachConstruct(Connection connection,
+	    Collection<RefPackage> packagesForLookup, MofClass elementClass,
+	    ForeachPredicatePropertyInit foreachPredicatePropertyInit, Template template, String query,
+	    DelayedReference ref, String oclRegistrationName) throws ModelAdapterException, OclManagerException {
+	if (query != null) {
+	    OclExpressionRegistration registration = (OclExpressionRegistration) connection
+	        .getOclRegistryService().getFreestyleRegistry()
+	        .getRegistration(oclRegistrationName);
+	    if (registration != null) {
+	        connection.getOclRegistryService().getFreestyleRegistry()
+	            .deleteRegistration(oclRegistrationName);
+	    }
+	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup, elementClass);
+	    String preparedQuery = MoinHelper.prepareOclQuery(query, null, null);
+	    registration = connection.getOclRegistryService()
+	        .getFreestyleRegistry().createExpressionRegistration(oclRegistrationName,
+	            preparedQuery, OclRegistrationSeverity.Info,
+	            new String[] { "TCS Property Init" }, parsingContext,
+	            packagesForLookup.toArray(new RefPackage[] {}));
+	    Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
+	        registration, ref);
+	    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+	        .getService(globalEventListenerRegistryRef);
+	    registry.addFilters(reEvaluationListener);
+	    registration2DelayedReference.put(registration.getName(), ref);
+	    delayedReference2Registration.put(ref, registration.getName());
+	    delayedReference2ReEvaluationListener.put(ref, reEvaluationListener);
+	}
+    }
+
     private void registerLookupPropertyInitForIA(ConcreteSyntax cs,
             Connection connection, Collection<RefPackage> packagesForLookup,
             MofClass elementClass, InjectorAction injectorActionBase) {
         LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
         Template template = ((InjectorActionsBlock) injectorAction
             .refImmediateComposite()).getParentTemplate();
-        RefObject parsingContext = null;
-        if (!MoinHelper.usesContext(injectorAction.getValue())) {
-            parsingContext = template.getMetaReference();
-        } else if (MoinHelper.usesContextWithSubsequentCast(injectorAction
-            .getValue())) {
-            parsingContext = MoinHelper.getContextMetaObject(connection,
-                packagesForLookup, injectorAction.getValue());
-            if (parsingContext == null) {
-                throw new RuntimeException(
-                    "Didn't find type use in context casts in expression "
-                        + injectorAction.getValue());
-            }
-        } else {
-            Matcher matcher = ContextManager.contextPattern.matcher(injectorAction
-                .getValue());
-            matcher.find();
-            parsingContext = getCommonBaseClassForContextTag(cs, matcher.group(2),
-                elementClass);
-            if (parsingContext == null) {
-                throw new RuntimeException("Expected to find use of context "
-                    + matcher.group(2) + " but didn't");
-            }
-        }
+        String query = injectorAction.getValue();
+        RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup, elementClass);
         try {
-            String query = injectorAction.getValue();
             DelayedReference ref = new DelayedReference(null, null,
-                    injectorAction.getPropertyReference().getStrucfeature()
-                        .getName(), null, null, query, false, null);
+                    null, injectorAction.getPropertyReference().getStrucfeature()
+			    .getName(), null, null, query, false, null);
             //now replace any #context parts within the query with self
             //and use the context element type for registration if it is
             //used here, 
@@ -1048,108 +1151,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
             System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
             ex.printStackTrace();
         }
-    }
-
-    /**
-     * For a given context tag and a concrete syntax determines the meta-classes for which templates exist that use this tag for
-     * declaring a context. The common generalization of all such classes will be returned. This may be <tt>Reflect::Element</tt>
-     * if no other common generalization exists.
-     * <p>
-     * 
-     * This implementation currently uses MQL to find the classes for which templates (class or operator) exist that declare a
-     * context with the <tt>contextTag</tt> among the tags.
-     * 
-     * @param cs
-     *            the concrete syntax in which to search for the use of the <tt>contextTag</tt>
-     * @param contextTag
-     *            may be <tt>null</tt> or an empty string which means the untagged context
-     * @param elementClass
-     *            the <tt>Reflect::Element</tt> class to use as common generalization if no other common generalization can be
-     *            found
-     * @return the common generalization of all classes for which a template is defined as context using <tt>contextTag</tt> as
-     *         the tag for the context declaration; <tt>null</tt> if no such template exists; <tt>Reflect::Element</tt> if no
-     *         other common generalization exists
-     */
-    private RefObject getCommonBaseClassForContextTag(ConcreteSyntax cs, String contextTag, Classifier elementClass) {
-	MQLProcessor mql = cs.get___Connection().getMQLProcessor();
-	MQLResultSet classTemplatesClasses;
-	if (contextTag==null || contextTag.length()==0) {
-	    classTemplatesClasses = mql.execute("select me from Model::Classifier as me,"+
-		    	"TCS::ContextTemplate as ct,"+
-		    	"\"" + ((Partitionable) cs).get___Mri() + "\" as cs "+
-		    	"where ct.concreteSyntax=cs "+
-		    	"where ct.metaReference=me "+
-		    	"where ct.contextTags=null "+
-			"where ct.isContext=true");
-	} else {
-	    classTemplatesClasses = mql.execute("select me from Model::Classifier as me,"+
-			"TCS::ContextTemplate as ct,"+
-			"TCS::ContextTags as tags,"+
-			"\"" + ((Partitionable) cs).get___Mri() + "\" as cs "+
-			"where ct.concreteSyntax=cs "+
-			"where ct.metaReference=me "+
-			"where ct.contextTags=tags "+
-			"where ct.isContext=true "+
-			"where tags.tags='"+contextTag+"'");
-	}
-	Set<Classifier> metaReferences = new HashSet<Classifier>();
-	for (RefObject ro : classTemplatesClasses.getRefObjects("me")) {
-	    metaReferences.add((Classifier) ro);
-	}
-	MQLResultSet operatorTemplatesClasses;
-	if (contextTag==null || contextTag.length()==0) {
-	    operatorTemplatesClasses = mql.execute("select me from Model::Classifier as me,"+
-		    	"TCS::ContextTemplate as ct,"+
-		    	"TCS::ContextTags as tags,"+
-		    	"\"" + ((Partitionable) cs).get___Mri() + "\" as cs "+
-		    	"where ct.concreteSyntax=cs "+
-		    	"where ct.metaReference=me "+
-		    	"where ct.contextTags=null "+
-			"where ct.isContext=true");
-	} else {
-		operatorTemplatesClasses = mql.execute("select me from Model::Classifier as me,"+
-			"TCS::ContextTemplate as ct,"+
-			"TCS::ContextTags as tags,"+
-			"\"" + ((Partitionable) cs).get___Mri() + "\" as cs "+
-			"where ct.concreteSyntax=cs "+
-			"where ct.metaReference=me "+
-			"where ct.contextTags=tags "+
-			"where ct.isContext=true "+
-			"where tags.tags='"+contextTag+"'");
-	}
-	for (RefObject ro : operatorTemplatesClasses.getRefObjects("me")) {
-	    metaReferences.add((Classifier) ro);
-	}
-	boolean needReflectElement = false;
-	Classifier commonGeneralization = null;
-	while (!needReflectElement && metaReferences.size() > 0) {
-	    Classifier candidate = metaReferences.iterator().next();
-	    if (commonGeneralization == null) {
-		commonGeneralization = candidate;
-		metaReferences.remove(candidate); // first candidate
-	    } else if (candidate.allSupertypes().contains(commonGeneralization)) {
-		metaReferences.remove(candidate); // commonGeneralization already covers candidate
-	    } else {
-		List<GeneralizableElement> allCommonGeneralizationSupertypes = commonGeneralization.allSupertypes();
-		boolean foundCommonSupertype = false;
-		for (GeneralizableElement candidateSuperclass : candidate.allSupertypes()) {
-		    if (allCommonGeneralizationSupertypes.contains(candidateSuperclass)) {
-			commonGeneralization = (Classifier) candidateSuperclass;
-			metaReferences.remove(candidate); // now commongeneralization also covers candidate
-			foundCommonSupertype = true;
-			break;
-		    }
-		}
-		if (!foundCommonSupertype) {
-		    needReflectElement = true;
-		    break;
-		}
-	    }
-	}
-	if (needReflectElement) {
-	    commonGeneralization = elementClass;
-	}
-	return commonGeneralization;
     }
 
     private Map<EventFilter, Map<ListenerType, EventListener>> createReEvaluationListener(

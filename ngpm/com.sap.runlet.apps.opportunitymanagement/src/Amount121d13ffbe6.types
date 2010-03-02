@@ -44,12 +44,12 @@
 <M c='2' q='dataaccess.expressions.NavigationStep' i='E075D95551F518A23E4B11DEB2730018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallParameters' i='E075D95551F518BE3E4B11DEA11F0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_steps_replace' i='E075D95551F518C73E4B11DE81860018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='dataaccess.expressions.A_to_navigationStep' i='E075D95551F518CA3E4B11DE9B3C0018DE1146FF' se='1' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_with_replace' i='E075D95551F518D03E4B11DEBF410018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_with_withOfReplace' i='E075D95551F518D03E4B11DEBF410018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
 <M c='2' q='behavioral.actions.Return' i='E0BC871351C30C2D3E4B11DE89360018DE1146FF'/>
@@ -751,11 +751,11 @@
 <L f='E000054C6A74BCF96C8111DE8BBE00155883529C' s='E000054C6A7706E36C8111DE997100155883529C'/>
 <L f='E000054C6A74BCF16C8111DEA79400155883529C' s='E000054C6A7706E46C8111DE895F00155883529C'/>
 </dataaccess.expressions.A_object_objectBasedExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E000054C6A68D61B6C8111DEB8EC00155883529C' s='E000054C6A68D61A6C8111DE88C900155883529C'/>
 <L f='E000054C6A6D91006C8111DEAAB900155883529C' s='E000054C6A6B20026C8111DEC9F300155883529C'/>
 <L f='E000054C6A7706E56C8111DEBCE800155883529C' s='E000054C6A7706E46C8111DE895F00155883529C'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <dataaccess.expressions.SignatureCallParameters c='2'>
 <L f='E000054C6A6B20006C8111DE853100155883529C' s='E000054C6A6B20016C8111DECF8100155883529C'/>
 <L f='E000054C6A7706E26C8111DECE8300155883529C' s='E000054C6A7706E36C8111DE997100155883529C'/>
@@ -775,10 +775,10 @@
 <L f='E0E14F866C0448E356D011DE842F0019D29902CC' s='E000054C6A6665136C8111DEBF7E00155883529C'/>
 <L f='E0E14F866C0448E356D011DE842F0019D29902CC' s='E000054C6A74BCF46C8111DEB69800155883529C'/>
 </dataaccess.expressions.A_to_navigationStep>
-<dataaccess.expressions.A_with_replace c='2'>
+<dataaccess.expressions.A_with_withOfReplace c='2'>
 <L f='E000054C6A6B20016C8111DECF8100155883529C' s='E000054C6A6B20026C8111DEC9F300155883529C'/>
 <L f='E000054C6A7706E36C8111DE997100155883529C' s='E000054C6A7706E46C8111DE895F00155883529C'/>
-</dataaccess.expressions.A_with_replace>
+</dataaccess.expressions.A_with_withOfReplace>
 <textblocks.TextBlock_ElementsInContext c='1'>
 <L f='E000054CC2D4AE456C8211DE805D00155883529C' s='E000054C6A724BF66C8111DEBDDD00155883529C'/>
 <L f='E000054CC2D990676C8211DEC28B00155883529C' s='E000054C6A63F4156C8111DE864500155883529C'/>

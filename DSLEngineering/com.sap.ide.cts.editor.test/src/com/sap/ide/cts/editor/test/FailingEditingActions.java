@@ -18,53 +18,165 @@ import org.eclipse.ui.PartInitException;
 import org.junit.Test;
 
 import behavioral.actions.Block;
+import behavioral.actions.ExpressionStatement;
 import behavioral.actions.NamedValueDeclaration;
-import behavioral.actions.Return;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
+import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
+import data.classes.ClassTypeDefinition;
 import data.classes.MethodSignature;
 import data.classes.NamedValue;
+import data.classes.NestedTypeDefinition;
 import data.classes.SapClass;
 import dataaccess.expressions.MethodCallExpression;
+import dataaccess.expressions.VariableExpression;
 
 public class FailingEditingActions extends RunletEditorTest {
-    
-
     /**
-     * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
-     * multiplicity of calling a method with 1..1 output multiplicity should change to 1..1.
+     * Under certain circumstances, this provokes a NullPointerException. Signature at the time was Number 1..*
+     * m(ThisToparameterChange 1..* t).<p>
+     * 
+     * To see the failing effects of this test, set a breakpoint with condition
+     * 
+     *   <tt>((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo() == null</tt>
+     *   
+     * at {@link IncrementalParsingUtil}, line 317.
+     * 
      */
     @Test
-    public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
+    public void testThisMToTM() throws PartInitException, BadLocationException, CoreException {
+        // Source / Copy of: PF.IDE:E0A411598C604540124F11DFA0B6EFF00A0001C5
+        final SapClass refObject = findClass("ThisToParameterChange");
         assertNotNull(refObject); 
         assertTrue(refObject.is___Alive()); 
         AbstractGrammarBasedEditor editor = openEditor(refObject);
         CtsDocument document = getDocument(editor);
-        document.replace(52, 0, "1");
-        document.replace(53, 0, ".");
-        document.replace(54, 0, ".");
-        document.replace(55, 0, "1");
-        document.replace(56, 0, " ");
+        document.replace(35, 4, "N");
+        document.replace(36, 0, "u");
+        document.replace(37, 0, "m");
+        document.replace(38, 0, "b");
+        document.replace(39, 0, "e");
+        document.replace(40, 0, "r");
+        document.replace(41, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        document.replace(41, 0, " ");
+        document.replace(42, 0, "1");
+        document.replace(43, 0, ".");
+        document.replace(44, 0, ".");
+        document.replace(70, 0, " ");
+        document.replace(71, 0, "1");
+        document.replace(72, 0, ".");
+        document.replace(73, 0, ".");
+        document.replace(74, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        document.replace(88, 6, "t");
+        document.replace(89, 0, ".");
+        document.replace(90, 0, "m");
+        saveAll(editor);
+        //failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        // Your assertions on refObject here 
+
+        close(editor);
+    };
+
+    /**
+     * Nothing broken so far, but trying to stress-test OCL IA
+     */
+    @Test
+    public void testThisToParameterAndThenParamMultChangeToOneToOne() throws PartInitException, BadLocationException, CoreException {
+        final SapClass refObject = findClass("ThisToParameterChange");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(76, 4, "t");
+        document.replace(35, 4, "N");
+        document.replace(36, 0, "u");
+        document.replace(37, 0, "m");
+        document.replace(38, 0, "b");
+        document.replace(39, 0, "e");
+        document.replace(40, 0, "r");
+        document.replace(41, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        document.replace(41, 0, " ");
+        document.replace(42, 0, "1");
+        document.replace(43, 0, ".");
+        document.replace(44, 0, ".");
         document.replace(70, 0, " ");
         document.replace(71, 0, "1");
         document.replace(72, 0, ".");
         document.replace(73, 0, ".");
         document.replace(74, 0, "1");
         saveAll(editor);
+        failOnError(editor);
         assertTrue(refObject.is___Alive());
-	MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
-		.iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
-	assertEquals(1, mce.getType().getLowerMultiplicity());
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+	assertNotNull(mce.getObject());
+	assertTrue(mce.getObject() instanceof VariableExpression);
+	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+	assertTrue(mce.getOwnedTypeDefinition() instanceof ClassTypeDefinition);
+	assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
+	assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
+        close(editor);
+    };
+
+    /**
+     * Nothing broken so far, but trying to stress-test OCL IA
+     */
+    @Test
+    public void testThisToParameterAndThenParamMultChangeToOneToMany() throws PartInitException, BadLocationException, CoreException {
+        final SapClass refObject = findClass("ThisToParameterChange");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(76, 4, "t");
+        document.replace(35, 4, "N");
+        document.replace(36, 0, "u");
+        document.replace(37, 0, "m");
+        document.replace(38, 0, "b");
+        document.replace(39, 0, "e");
+        document.replace(40, 0, "r");
+        document.replace(41, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        document.replace(41, 0, " ");
+        document.replace(42, 0, "1");
+        document.replace(43, 0, ".");
+        document.replace(44, 0, ".");
+        document.replace(70, 0, " ");
+        document.replace(71, 0, "1");
+        document.replace(72, 0, ".");
+        document.replace(73, 0, ".");
+        document.replace(74, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+	assertNotNull(mce.getObject());
+	assertTrue(mce.getObject() instanceof VariableExpression);
+	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+	assertTrue(mce.getOwnedTypeDefinition() instanceof NestedTypeDefinition);
+	assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
+	assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
         close(editor);
     };
 
@@ -94,7 +206,7 @@ public class FailingEditingActions extends RunletEditorTest {
         Collection<JmiException> verificationResults = variableDeclaration.getNamedValue().getInitExpression().
         							refVerifyConstraints(/* deepVerity */ true);
         assertEquals("Expected to find one semantic error in variable declaration before fix", 1, verificationResults.size());
-        pos = document.get().indexOf(";");
+        pos = document.get().indexOf(");");
         document.replace(pos, 0, "->iterate(p|p)"); // this will make it semantically correct again
         saveAll(editor);
         Collection<JmiException> verificationResults2 = variableDeclaration.getNamedValue().getInitExpression().

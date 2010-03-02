@@ -1,7 +1,9 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.ocl.expressions.AssociationEndCallExp;
 import org.omg.ocl.expressions.AttributeCallExp;
@@ -9,9 +11,13 @@ import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
+import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.core.CoreConnection;
+import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each
@@ -37,6 +43,13 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
  */
 public class PathCache {
     private Map<OclExpression, NavigationStep> subexpressionToPath = new HashMap<OclExpression, NavigationStep>();
+
+    /**
+     * Stores symmetric pairs of MRIs of {@link MofClass}ses as keys for which the check has been performed whether
+     * their subclass trees intersect. For each <tt>Pair(a,b)</tt> the symmetric <tt>Pair(b,a)</tt> is also part of this
+     * map's key set.
+     */
+    private Map<Pair<MRI, MRI>, Boolean> classesWithIntersectingSubclassTrees = new HashMap<Pair<MRI, MRI>, Boolean>();
     
     public NavigationStep getPathForNode(OclExpression subexpression) {
 	return subexpressionToPath.get(subexpression);
@@ -56,6 +69,47 @@ public class PathCache {
     }
 
     /**
+     * For <tt>a</tt> or <tt>b</tt> being <tt>null</tt> (a yet unresolved {@link IndirectingStep}, probably), we
+     * unfortunately don't know yet if there will be a non-empty subtype tree intersection. Therefore, this method
+     * returns <tt>true</tt> if either of <tt>a</tt> or <tt>b</tt> is <tt>null</tt>.
+     * <p>
+     * 
+     * Otherwise, the {@link #classesWithIntersectingSubclassTrees} cache is used, and if no entry for the pair
+     * <tt>a/b</tt> is found, the check is performed and the result is cached.
+     */
+    protected boolean haveIntersectingSubclassTree(CoreConnection connection, MofClass a, MofClass b) {
+	Boolean result = a == null || b == null || a.equals(b);
+	if (!result) {
+	    Pair<MRI, MRI> pair1 = new Pair<MRI, MRI>(a.get___Mri(), b.get___Mri());
+	    Pair<MRI, MRI> pair2 = new Pair<MRI, MRI>(b.get___Mri(), a.get___Mri());
+	    result = classesWithIntersectingSubclassTrees.get(pair1);
+	    if (result == null) {
+		result = classesWithIntersectingSubclassTrees.get(pair2);
+	    }
+	    if (result == null) {
+		Statistics.getInstance().haveIntersectingSubclassTreeCalled(a, b);
+		Set<GeneralizableElement> targetSubtypesIncludingTargetType = new HashSet<GeneralizableElement>(
+			connection.getCoreJmiHelper().getAllSubtypes(connection, a));
+		targetSubtypesIncludingTargetType.add(a);
+		if (targetSubtypesIncludingTargetType.contains(b)) {
+		    result = true;
+		} else {
+		    result = false;
+		    for (GeneralizableElement sourceSubType : connection.getCoreJmiHelper().getAllSubtypes(connection, b)) {
+			if (targetSubtypesIncludingTargetType.contains(sourceSubType)) {
+			    result = true;
+			    break;
+			}
+		    }
+		}
+		classesWithIntersectingSubclassTrees.put(pair1, result);
+		classesWithIntersectingSubclassTrees.put(pair2, result);
+	    }
+	}
+	return result;
+    }
+    
+    /**
      * A factory method for {@link NavigationStep}s that combines a sequence of navigation steps into a single new one.
      * In doing so, shortcuts may be taken. For example, if the last step is an absolute step, it is returned as the
      * result because all prior navigations are irrelevant.
@@ -68,7 +122,7 @@ public class PathCache {
 	if (steps[steps.length-1].isAbsolute()) {
 	    result = steps[steps.length-1];
 	} else {
-	    result = new NavigationStepSequence(connection, debugInfo, steps);
+	    result = new NavigationStepSequence(connection, debugInfo, this, steps);
 	}
 	return result;
     }
