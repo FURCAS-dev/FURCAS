@@ -125,9 +125,9 @@ public class TestObservableParser {
 		public String result = "";
 
 		@Override
-		public void notifyEnterRule(List<String> createdElement, String mode) {
-			result = 1 + createdElement.toString() + mode;
-		}
+                public void notifyEnterRule(List<String> createdElement, String mode) {
+                        result = 1 + createdElement.toString() + mode;
+                }
 
 		@Override
 		public void notifyEnterSequenceAlternative(int choice) {

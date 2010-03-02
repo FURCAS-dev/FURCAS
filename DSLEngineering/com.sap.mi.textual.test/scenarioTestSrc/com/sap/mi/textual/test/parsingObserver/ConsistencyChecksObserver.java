@@ -247,4 +247,5 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         referencesCreated = new ArrayList<DelayedReference>();
         injectorActionsEnteredNotleft = 0;
     }
+
 }

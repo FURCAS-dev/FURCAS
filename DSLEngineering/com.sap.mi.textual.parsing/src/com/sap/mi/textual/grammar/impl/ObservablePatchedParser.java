@@ -61,14 +61,6 @@ extends Parser
         this.observer = newObserver;
     }
     
-    @Override
-    public void reset() {
-        if (observer == null) {
-            return;
-        }
-        //observer.reset();
-    }
-    
     protected void onEnterTemplateRule(List<String> createdElement) {
         setExceptionThrown(false);
         if (observer == null || getBacktrackingLevel() > 0) {

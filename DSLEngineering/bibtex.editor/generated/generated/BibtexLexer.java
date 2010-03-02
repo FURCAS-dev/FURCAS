@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g 2010-02-04 16:59:32
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g 2010-02-09 17:32:56
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
