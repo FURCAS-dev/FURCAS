@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGenerator;
@@ -88,17 +87,13 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 
 		// Initialize simple dependencies
 		BenchframeworkPackage.eINSTANCE.eClass();
-
-		// Obtain or create and register interdependencies
-		EcorePackageImpl theEcorePackage = (EcorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI) instanceof EcorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI) : EcorePackage.eINSTANCE);
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theRandomGeneratorPackage.createPackageContents();
-		theEcorePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRandomGeneratorPackage.initializePackageContents();
-		theEcorePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRandomGeneratorPackage.freeze();
@@ -203,7 +198,7 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 
 		// Add supertypes to classes
 		randomGeneratorEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
-		randomGeneratorOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getOptionObject());
+		randomGeneratorOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getRandomNumberOptionObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(randomGeneratorEClass, RandomGenerator.class, "RandomGenerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

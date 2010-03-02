@@ -10,6 +10,7 @@ import de.hpi.sam.bp2009.benchframework.*;
 
 import java.io.OutputStream;
 
+import java.util.Random;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -70,6 +71,7 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 			case BenchframeworkPackage.ENGINE: return createEngine();
 			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
 			case BenchframeworkPackage.TEST_RUN: return createTestRun();
+			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT: return createRandomNumberOptionObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,6 +93,8 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return createWizardPageFromString(eDataType, initialValue);
 			case BenchframeworkPackage.UI_COMPONENT:
 				return createUIComponentFromString(eDataType, initialValue);
+			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
+				return createRandomNumberGeneratorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -112,6 +116,8 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return convertWizardPageToString(eDataType, instanceValue);
 			case BenchframeworkPackage.UI_COMPONENT:
 				return convertUIComponentToString(eDataType, instanceValue);
+			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
+				return convertRandomNumberGeneratorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -145,6 +151,16 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public TestRun createTestRun() {
 		TestRunImpl testRun = new TestRunImpl();
 		return testRun;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RandomNumberOptionObject createRandomNumberOptionObject() {
+		RandomNumberOptionObjectImpl randomNumberOptionObject = new RandomNumberOptionObjectImpl();
+		return randomNumberOptionObject;
 	}
 
 	/**
@@ -218,6 +234,24 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	 * @generated
 	 */
 	public String convertUIComponentToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Random createRandomNumberGeneratorFromString(EDataType eDataType, String initialValue) {
+		return (Random)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRandomNumberGeneratorToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

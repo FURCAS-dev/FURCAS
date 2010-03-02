@@ -151,4 +151,21 @@
     <eLiterals name="SUCCESSFUL" value="2" literal=""/>
     <eLiterals name="UNKNOWN"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RandomNumberOptionObject" eSuperTypes="#//OptionObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This option object enables operators that use the random function to reexecuted with the same results for the &quot;random&quot; numbers.&#xD;&#xA;When calling getNextInt() the object will return a random integer on the first iteration, and the same cached number will be returned on every following iteration. That means if you get 10 random numbers on first iteration, you'll get the same numbers on every following iteration."/>
+    </eAnnotations>
+    <eOperations name="getNextInt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject">
+      <eParameters name="upperLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eOperations>
+    <eOperations name="getNextInt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberListIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberList" transient="true">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberGenerator" eType="#//RandomNumberGenerator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="RandomNumberGenerator" instanceClassName="java.util.Random"/>
 </ecore:EPackage>

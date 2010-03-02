@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.randomGenerator.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -90,6 +91,10 @@ public class RandomGeneratorAdapterFactory extends AdapterFactoryImpl {
 				return createOptionObjectAdapter();
 			}
 			@Override
+			public Adapter caseRandomNumberOptionObject(RandomNumberOptionObject object) {
+				return createRandomNumberOptionObjectAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -162,6 +167,20 @@ public class RandomGeneratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOptionObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject <em>Random Number Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject
+	 * @generated
+	 */
+	public Adapter createRandomNumberOptionObjectAdapter() {
 		return null;
 	}
 

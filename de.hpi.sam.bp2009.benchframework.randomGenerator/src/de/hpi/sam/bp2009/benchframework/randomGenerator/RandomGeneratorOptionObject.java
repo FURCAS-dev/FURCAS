@@ -8,7 +8,7 @@ package de.hpi.sam.bp2009.benchframework.randomGenerator;
 
 import org.eclipse.emf.ecore.EPackage;
 
-import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import de.hpi.sam.bp2009.benchframework.OptionObject;
  * @model
  * @generated
  */
-public interface RandomGeneratorOptionObject extends OptionObject {
+public interface RandomGeneratorOptionObject extends RandomNumberOptionObject {
 	/**
 	 * Returns the value of the '<em><b>Meta Model</b></em>' reference.
 	 * <!-- begin-user-doc -->

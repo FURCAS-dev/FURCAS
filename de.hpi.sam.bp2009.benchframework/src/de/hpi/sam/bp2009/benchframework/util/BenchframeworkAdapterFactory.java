@@ -100,6 +100,10 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 				return createTestRunAdapter();
 			}
 			@Override
+			public Adapter caseRandomNumberOptionObject(RandomNumberOptionObject object) {
+				return createRandomNumberOptionObjectAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -214,6 +218,20 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestRunAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject <em>Random Number Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject
+	 * @generated
+	 */
+	public Adapter createRandomNumberOptionObjectAdapter() {
 		return null;
 	}
 

@@ -6,13 +6,12 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,22 +117,13 @@ public interface RandomModelModifierPackage extends EPackage {
 	int RANDOM_MODEL_MODIFIER__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Random Number Generator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Random Model Modifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_MODIFIER_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+	int RANDOM_MODEL_MODIFIER_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierOptionObjectImpl <em>Option Object</em>}' class.
@@ -152,7 +142,34 @@ public interface RandomModelModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE;
+
+	/**
+	 * The feature id for the '<em><b>Number List Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__NUMBER_LIST_INDEX = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Number List</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__NUMBER_LIST = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST;
+
+	/**
+	 * The feature id for the '<em><b>Number Generator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__NUMBER_GENERATOR = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Times</b></em>' attribute.
@@ -161,7 +178,7 @@ public interface RandomModelModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TIMES = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TIMES = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' attribute.
@@ -170,7 +187,7 @@ public interface RandomModelModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TASK = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TASK = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Option Object</em>' class.
@@ -179,7 +196,7 @@ public interface RandomModelModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 2;
+	int RANDOM_MODEL_MODIFIER_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT + 2;
 
 
 	/**
@@ -193,17 +210,6 @@ public interface RandomModelModifierPackage extends EPackage {
 	int TASK = 2;
 
 	/**
-	 * The meta object id for the '<em>Random</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.util.Random
-	 * @see de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierPackageImpl#getRandom()
-	 * @generated
-	 */
-	int RANDOM = 3;
-
-
-	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.randomModelModifier.RandomModelModifier <em>Random Model Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -212,17 +218,6 @@ public interface RandomModelModifierPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRandomModelModifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.randomModelModifier.RandomModelModifier#getRandomNumberGenerator <em>Random Number Generator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Random Number Generator</em>'.
-	 * @see de.hpi.sam.bp2009.randomModelModifier.RandomModelModifier#getRandomNumberGenerator()
-	 * @see #getRandomModelModifier()
-	 * @generated
-	 */
-	EAttribute getRandomModelModifier_RandomNumberGenerator();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject <em>Option Object</em>}'.
@@ -267,17 +262,6 @@ public interface RandomModelModifierPackage extends EPackage {
 	EEnum getTask();
 
 	/**
-	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Random</em>'.
-	 * @see java.util.Random
-	 * @model instanceClass="java.util.Random"
-	 * @generated
-	 */
-	EDataType getRandom();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,14 +292,6 @@ public interface RandomModelModifierPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RANDOM_MODEL_MODIFIER = eINSTANCE.getRandomModelModifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Random Number Generator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR = eINSTANCE.getRandomModelModifier_RandomNumberGenerator();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierOptionObjectImpl <em>Option Object</em>}' class.
@@ -352,16 +328,6 @@ public interface RandomModelModifierPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum TASK = eINSTANCE.getTask();
-
-		/**
-		 * The meta object literal for the '<em>Random</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see java.util.Random
-		 * @see de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierPackageImpl#getRandom()
-		 * @generated
-		 */
-		EDataType RANDOM = eINSTANCE.getRandom();
 
 	}
 

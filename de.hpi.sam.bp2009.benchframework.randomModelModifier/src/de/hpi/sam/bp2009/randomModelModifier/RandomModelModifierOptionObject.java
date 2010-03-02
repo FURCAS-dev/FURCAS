@@ -6,7 +6,7 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier;
 
-import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ import de.hpi.sam.bp2009.benchframework.OptionObject;
  * @model
  * @generated
  */
-public interface RandomModelModifierOptionObject extends OptionObject {
+public interface RandomModelModifierOptionObject extends RandomNumberOptionObject {
 	/**
 	 * Returns the value of the '<em><b>Times</b></em>' attribute.
 	 * <!-- begin-user-doc -->

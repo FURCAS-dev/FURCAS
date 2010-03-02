@@ -6,22 +6,18 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifier;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierFactory;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage;
-
 import de.hpi.sam.bp2009.randomModelModifier.Task;
-import java.util.Random;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,13 +46,6 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 	 * @generated
 	 */
 	private EEnum taskEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType randomEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -136,15 +125,6 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRandomModelModifier_RandomNumberGenerator() {
-		return (EAttribute)randomModelModifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getRandomModelModifierOptionObject() {
 		return randomModelModifierOptionObjectEClass;
 	}
@@ -181,15 +161,6 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getRandom() {
-		return randomEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RandomModelModifierFactory getRandomModelModifierFactory() {
 		return (RandomModelModifierFactory)getEFactoryInstance();
 	}
@@ -214,7 +185,6 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 
 		// Create classes and their features
 		randomModelModifierEClass = createEClass(RANDOM_MODEL_MODIFIER);
-		createEAttribute(randomModelModifierEClass, RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR);
 
 		randomModelModifierOptionObjectEClass = createEClass(RANDOM_MODEL_MODIFIER_OPTION_OBJECT);
 		createEAttribute(randomModelModifierOptionObjectEClass, RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TIMES);
@@ -222,9 +192,6 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 
 		// Create enums
 		taskEEnum = createEEnum(TASK);
-
-		// Create data types
-		randomEDataType = createEDataType(RANDOM);
 	}
 
 	/**
@@ -259,11 +226,10 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 
 		// Add supertypes to classes
 		randomModelModifierEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
-		randomModelModifierOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getOptionObject());
+		randomModelModifierOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getRandomNumberOptionObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(randomModelModifierEClass, RandomModelModifier.class, "RandomModelModifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRandomModelModifier_RandomNumberGenerator(), this.getRandom(), "RandomNumberGenerator", null, 0, 1, RandomModelModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(randomModelModifierOptionObjectEClass, RandomModelModifierOptionObject.class, "RandomModelModifierOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomModelModifierOptionObject_Times(), ecorePackage.getEIntegerObject(), "times", null, 0, 1, RandomModelModifierOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -276,9 +242,6 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 		addEEnumLiteral(taskEEnum, Task.REFERENCE_DELETE);
 		addEEnumLiteral(taskEEnum, Task.REFERENCE_CREATE);
 		addEEnumLiteral(taskEEnum, Task.MODIFY_ATTRIBUTE);
-
-		// Initialize data types
-		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

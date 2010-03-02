@@ -35,7 +35,7 @@ public class TestframeworkWizard extends AdvancedWizard {
 	}
 
 	public void couldBeFinished() {
-		couldBeFinished=true;
+		couldBeFinished=false;
 	}
 
 	public WizardUserInterfaceImpl getIntImpl() {

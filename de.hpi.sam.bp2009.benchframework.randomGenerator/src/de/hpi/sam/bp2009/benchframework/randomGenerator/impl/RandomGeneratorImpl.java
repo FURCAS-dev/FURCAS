@@ -7,7 +7,6 @@
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -331,9 +330,11 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 */
 	@Override
 	public void execute() {
+		RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
+		//make sure to start at index 0 even if executed multiple times
+		options.setNumberListIndex(0);
 		ResourceSetImpl resultRS = new ResourceSetImpl();
 		Resource result = resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
-		RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
 		EPackage metaModel = options.getMetaModel();
 		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
 		metaClasses = new ArrayList<EClass>();
@@ -349,11 +350,13 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		}
 
 		//instantiate the meta model
-		instantiate(metaClasses.get(new Random().nextInt(metaClasses.size())), result);
+		instantiate(metaClasses.get(options.getNextInt(metaClasses.size())), result);
 		this.getTestRun().setModel(resultRS);
 		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 		getResult().setStatus(Status.SUCCESSFUL);
 		getResult().setMessage("Generated "+result.toString());
+		//reset the numberListIndex in case the generator is executed multiple times
+		
 	}
 
 	/**
@@ -364,10 +367,10 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
-			return basicSetTestRun((TestRun)otherEnd, msgs);
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				if (testRun != null)
+					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+				return basicSetTestRun((TestRun)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -380,8 +383,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-			return basicSetTestRun(null, msgs);
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				return basicSetTestRun(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -394,19 +397,19 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-			if (resolve) return getOption();
-			return basicGetOption();
-		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-			if (resolve) return getResult();
-			return basicGetResult();
-		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-			if (resolve) return getTestRun();
-			return basicGetTestRun();
-		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-			return getName();
-		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-			return getDescription();
+			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+				if (resolve) return getOption();
+				return basicGetOption();
+			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+				if (resolve) return getResult();
+				return basicGetResult();
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				if (resolve) return getTestRun();
+				return basicGetTestRun();
+			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+				return getName();
+			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -419,21 +422,21 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-			setOption((OptionObject)newValue);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-			setResult((ResultObject)newValue);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-			setTestRun((TestRun)newValue);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-			setName((String)newValue);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-			setDescription((String)newValue);
-			return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+				setOption((OptionObject)newValue);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+				setResult((ResultObject)newValue);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				setTestRun((TestRun)newValue);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+				setName((String)newValue);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -446,21 +449,21 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-			setOption((OptionObject)null);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-			setResult((ResultObject)null);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-			setTestRun((TestRun)null);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+				setOption((OptionObject)null);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+				setResult((ResultObject)null);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				setTestRun((TestRun)null);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -473,16 +476,16 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-			return option != null;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-			return result != null;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-			return testRun != null;
-		case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+				return option != null;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+				return result != null;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				return testRun != null;
+			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -515,7 +518,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		//don't try to instantiate abstract classes, find all non abstract subclasses and instantiate one of them instead
 		if(metaCls.isAbstract()) {	
 			ArrayList<? extends EClass> clsList = getImplementationForAbstractClass(metaCls, metaClasses);
-			int i = new Random().nextInt(clsList.size());
+			int i = ((RandomGeneratorOptionObject)getOption()).getNextInt(clsList.size());
 			return instantiate(clsList.get(i), res);
 		}
 

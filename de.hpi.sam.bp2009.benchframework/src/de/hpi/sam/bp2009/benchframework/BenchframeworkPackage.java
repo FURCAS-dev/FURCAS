@@ -357,6 +357,61 @@ public interface BenchframeworkPackage extends EPackage {
 	int TEST_RUN_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl <em>Random Number Option Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberOptionObject()
+	 * @generated
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE = OPTION_OBJECT__WIZARD_PAGE;
+
+	/**
+	 * The feature id for the '<em><b>Number List Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX = OPTION_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Number List</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST = OPTION_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Number Generator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR = OPTION_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Random Number Option Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT = OPTION_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,7 +419,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStatus()
 	 * @generated
 	 */
-	int STATUS = 7;
+	int STATUS = 8;
 
 	/**
 	 * The meta object id for the '<em>Output Stream</em>' data type.
@@ -374,7 +429,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOutputStream()
 	 * @generated
 	 */
-	int OUTPUT_STREAM = 8;
+	int OUTPUT_STREAM = 9;
 
 	/**
 	 * The meta object id for the '<em>Wizard Page</em>' data type.
@@ -384,7 +439,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getWizardPage()
 	 * @generated
 	 */
-	int WIZARD_PAGE = 9;
+	int WIZARD_PAGE = 10;
 
 	/**
 	 * The meta object id for the '<em>UI Component</em>' data type.
@@ -394,7 +449,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUIComponent()
 	 * @generated
 	 */
-	int UI_COMPONENT = 10;
+	int UI_COMPONENT = 11;
 
 
 	/**
@@ -405,7 +460,18 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 11;
+	int EXCEPTION = 12;
+
+
+	/**
+	 * The meta object id for the '<em>Random Number Generator</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.util.Random
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberGenerator()
+	 * @generated
+	 */
+	int RANDOM_NUMBER_GENERATOR = 13;
 
 
 	/**
@@ -677,6 +743,49 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getTestRun_Operators();
 
 	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject <em>Random Number Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Random Number Option Object</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject
+	 * @generated
+	 */
+	EClass getRandomNumberOptionObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberListIndex <em>Number List Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number List Index</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberListIndex()
+	 * @see #getRandomNumberOptionObject()
+	 * @generated
+	 */
+	EAttribute getRandomNumberOptionObject_NumberListIndex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberList <em>Number List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number List</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberList()
+	 * @see #getRandomNumberOptionObject()
+	 * @generated
+	 */
+	EAttribute getRandomNumberOptionObject_NumberList();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberGenerator <em>Number Generator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Number Generator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberGenerator()
+	 * @see #getRandomNumberOptionObject()
+	 * @generated
+	 */
+	EAttribute getRandomNumberOptionObject_NumberGenerator();
+
+	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -729,6 +838,17 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getException();
+
+	/**
+	 * Returns the meta object for data type '{@link java.util.Random <em>Random Number Generator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Random Number Generator</em>'.
+	 * @see java.util.Random
+	 * @model instanceClass="java.util.Random"
+	 * @generated
+	 */
+	EDataType getRandomNumberGenerator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -967,6 +1087,40 @@ public interface BenchframeworkPackage extends EPackage {
 		EReference TEST_RUN__OPERATORS = eINSTANCE.getTestRun_Operators();
 
 		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl <em>Random Number Option Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberOptionObject()
+		 * @generated
+		 */
+		EClass RANDOM_NUMBER_OPTION_OBJECT = eINSTANCE.getRandomNumberOptionObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Number List Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX = eINSTANCE.getRandomNumberOptionObject_NumberListIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Number List</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST = eINSTANCE.getRandomNumberOptionObject_NumberList();
+
+		/**
+		 * The meta object literal for the '<em><b>Number Generator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR = eINSTANCE.getRandomNumberOptionObject_NumberGenerator();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1015,6 +1169,16 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType EXCEPTION = eINSTANCE.getException();
+
+		/**
+		 * The meta object literal for the '<em>Random Number Generator</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.Random
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberGenerator()
+		 * @generated
+		 */
+		EDataType RANDOM_NUMBER_GENERATOR = eINSTANCE.getRandomNumberGenerator();
 
 	}
 

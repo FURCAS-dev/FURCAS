@@ -142,7 +142,34 @@ public interface RandomGeneratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
+	int RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE;
+
+	/**
+	 * The feature id for the '<em><b>Number List Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_GENERATOR_OPTION_OBJECT__NUMBER_LIST_INDEX = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Number List</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_GENERATOR_OPTION_OBJECT__NUMBER_LIST = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST;
+
+	/**
+	 * The feature id for the '<em><b>Number Generator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_GENERATOR_OPTION_OBJECT__NUMBER_GENERATOR = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Meta Model</b></em>' reference.
@@ -151,7 +178,7 @@ public interface RandomGeneratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+	int RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Option Object</em>' class.
@@ -160,7 +187,7 @@ public interface RandomGeneratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_GENERATOR_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
+	int RANDOM_GENERATOR_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT + 1;
 
 
 	/**

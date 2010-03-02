@@ -8,7 +8,7 @@
       <details key="documentation" value="This random generator generates a random instance of a given meta model. The meta model to instantiate has to be given in the respective RandomGeneratorOptionObject alon with some parameters the model instance has to match."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RandomGeneratorOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject">
+  <eClassifiers xsi:type="ecore:EClass" name="RandomGeneratorOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//RandomNumberOptionObject">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This is the option object of a RandomGenerator. It holds the metaModel to instantiate along with a map of parameters the generated instance has to match."/>
     </eAnnotations>

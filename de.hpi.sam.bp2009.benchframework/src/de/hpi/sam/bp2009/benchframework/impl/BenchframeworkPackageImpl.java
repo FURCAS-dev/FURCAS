@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.Engine;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 import de.hpi.sam.bp2009.benchframework.Status;
@@ -19,6 +20,7 @@ import de.hpi.sam.bp2009.benchframework.UserInterface;
 
 import java.io.OutputStream;
 
+import java.util.Random;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -96,6 +98,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass randomNumberOptionObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum statusEEnum = null;
 
 	/**
@@ -125,6 +134,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	private EDataType exceptionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType randomNumberGeneratorEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -417,6 +433,42 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRandomNumberOptionObject() {
+		return randomNumberOptionObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRandomNumberOptionObject_NumberListIndex() {
+		return (EAttribute)randomNumberOptionObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRandomNumberOptionObject_NumberList() {
+		return (EAttribute)randomNumberOptionObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRandomNumberOptionObject_NumberGenerator() {
+		return (EAttribute)randomNumberOptionObjectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getStatus() {
 		return statusEEnum;
 	}
@@ -455,6 +507,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 */
 	public EDataType getException() {
 		return exceptionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getRandomNumberGenerator() {
+		return randomNumberGeneratorEDataType;
 	}
 
 	/**
@@ -517,6 +578,11 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEAttribute(testRunEClass, TEST_RUN__MODEL);
 		createEReference(testRunEClass, TEST_RUN__OPERATORS);
 
+		randomNumberOptionObjectEClass = createEClass(RANDOM_NUMBER_OPTION_OBJECT);
+		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX);
+		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST);
+		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR);
+
 		// Create enums
 		statusEEnum = createEEnum(STATUS);
 
@@ -525,6 +591,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		wizardPageEDataType = createEDataType(WIZARD_PAGE);
 		uiComponentEDataType = createEDataType(UI_COMPONENT);
 		exceptionEDataType = createEDataType(EXCEPTION);
+		randomNumberGeneratorEDataType = createEDataType(RANDOM_NUMBER_GENERATOR);
 	}
 
 	/**
@@ -555,6 +622,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		randomNumberOptionObjectEClass.getESuperTypes().add(this.getOptionObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(engineEClass, Engine.class, "Engine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -643,6 +711,19 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		addEParameter(op, g1, "aClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaObject(), "anObject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(randomNumberOptionObjectEClass, RandomNumberOptionObject.class, "RandomNumberOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRandomNumberOptionObject_NumberListIndex(), ecorePackage.getEInt(), "numberListIndex", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getRandomNumberOptionObject_NumberList(), g1, "numberList", null, 0, 1, RandomNumberOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRandomNumberOptionObject_NumberGenerator(), this.getRandomNumberGenerator(), "numberGenerator", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEIntegerObject(), "upperLimit", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(statusEEnum, Status.class, "Status");
 		addEEnumLiteral(statusEEnum, Status.FAILED);
@@ -654,6 +735,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEDataType(wizardPageEDataType, WizardPage.class, "WizardPage", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(uiComponentEDataType, Composite.class, "UIComponent", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(randomNumberGeneratorEDataType, Random.class, "RandomNumberGenerator", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -676,7 +758,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		   source, 
 		   new String[] {
 			 "documentation", "This is a test"
-		   });			
+		   });				
 	}
 
 } //BenchframeworkPackageImpl

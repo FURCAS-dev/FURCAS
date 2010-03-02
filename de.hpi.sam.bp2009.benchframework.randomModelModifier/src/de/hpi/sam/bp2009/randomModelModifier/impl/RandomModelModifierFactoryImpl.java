@@ -6,17 +6,18 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier.impl;
 
-import de.hpi.sam.bp2009.randomModelModifier.*;
-
-import java.util.Random;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifier;
+import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierFactory;
+import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
+import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage;
+import de.hpi.sam.bp2009.randomModelModifier.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,8 +80,6 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 		switch (eDataType.getClassifierID()) {
 			case RandomModelModifierPackage.TASK:
 				return createTaskFromString(eDataType, initialValue);
-			case RandomModelModifierPackage.RANDOM:
-				return createRandomFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,8 +95,6 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 		switch (eDataType.getClassifierID()) {
 			case RandomModelModifierPackage.TASK:
 				return convertTaskToString(eDataType, instanceValue);
-			case RandomModelModifierPackage.RANDOM:
-				return convertRandomToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -141,24 +138,6 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 	 */
 	public String convertTaskToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Random createRandomFromString(EDataType eDataType, String initialValue) {
-		return (Random)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertRandomToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

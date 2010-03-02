@@ -129,6 +129,13 @@ public class BenchframeworkSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT: {
+				RandomNumberOptionObject randomNumberOptionObject = (RandomNumberOptionObject)theEObject;
+				T result = caseRandomNumberOptionObject(randomNumberOptionObject);
+				if (result == null) result = caseOptionObject(randomNumberOptionObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -235,6 +242,21 @@ public class BenchframeworkSwitch<T> {
 	 * @generated
 	 */
 	public T caseTestRun(TestRun object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Random Number Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Random Number Option Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRandomNumberOptionObject(RandomNumberOptionObject object) {
 		return null;
 	}
 

@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.randomGenerator.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.*;
 
 import java.util.List;
@@ -99,6 +100,7 @@ public class RandomGeneratorSwitch<T> {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT: {
 				RandomGeneratorOptionObject randomGeneratorOptionObject = (RandomGeneratorOptionObject)theEObject;
 				T result = caseRandomGeneratorOptionObject(randomGeneratorOptionObject);
+				if (result == null) result = caseRandomNumberOptionObject(randomGeneratorOptionObject);
 				if (result == null) result = caseOptionObject(randomGeneratorOptionObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -164,6 +166,21 @@ public class RandomGeneratorSwitch<T> {
 	 * @generated
 	 */
 	public T caseOptionObject(OptionObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Random Number Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Random Number Option Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRandomNumberOptionObject(RandomNumberOptionObject object) {
 		return null;
 	}
 

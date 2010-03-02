@@ -53,6 +53,15 @@ public interface BenchframeworkFactory extends EFactory {
 	TestRun createTestRun();
 
 	/**
+	 * Returns a new object of class '<em>Random Number Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Random Number Option Object</em>'.
+	 * @generated
+	 */
+	RandomNumberOptionObject createRandomNumberOptionObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

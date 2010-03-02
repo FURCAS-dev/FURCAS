@@ -6,8 +6,6 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier.impl;
 
-import java.util.Random;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -47,7 +45,6 @@ import de.hpi.sam.bp2009.randomModelModifier.Task;
  *   <li>{@link de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierImpl#getTestRun <em>Test Run</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierImpl#getRandomNumberGenerator <em>Random Number Generator</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,28 +115,9 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getRandomNumberGenerator() <em>Random Number Generator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRandomNumberGenerator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Random RANDOM_NUMBER_GENERATOR_EDEFAULT = null;
 	private static final String SUCCESS_MESSAGE = "Successfully changed Model.";
 	@SuppressWarnings("unused")
 	private static final String FAILED_MESSAGE = "Failed to change Model!";
-	/**
-	 * The cached value of the '{@link #getRandomNumberGenerator() <em>Random Number Generator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRandomNumberGenerator()
-	 * @generated
-	 * @ordered
-	 */
-	protected Random randomNumberGenerator = RANDOM_NUMBER_GENERATOR_EDEFAULT;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,14 +128,16 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		setOption(RandomModelModifierFactory.eINSTANCE.createRandomModelModifierOptionObject());
 		setName("Random Model Modifier");
 		setDescription("randomly add/remove classes, references or modify attributes in the model");
-		setRandomNumberGenerator(new Random());
 		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 	}
 
 	@Override
 	public void execute() {
-		Task task = ((RandomModelModifierOptionObject)getOption()).getTask();
-		Integer times = ((RandomModelModifierOptionObject)getOption()).getTimes();
+		RandomModelModifierOptionObject options = (RandomModelModifierOptionObject)getOption();
+		//make sure to start at index 0 even if executed multiple times
+		options.setNumberListIndex(0);
+		Task task = options.getTask();
+		Integer times = options.getTimes();
 		//collect all instance objects from all resources
 		BasicEList<EObject> classList = new BasicEList<EObject>();
 		for (Resource r: getTestRun().getModel().getResources()){
@@ -204,10 +184,10 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
-			return basicSetTestRun((TestRun)otherEnd, msgs);
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				if (testRun != null)
+					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+				return basicSetTestRun((TestRun)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -220,8 +200,8 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-			return basicSetTestRun(null, msgs);
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				return basicSetTestRun(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -234,21 +214,19 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
-			if (resolve) return getOption();
-			return basicGetOption();
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
-			if (resolve) return getResult();
-			return basicGetResult();
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-			if (resolve) return getTestRun();
-			return basicGetTestRun();
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
-			return getName();
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
-			return getDescription();
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR:
-			return getRandomNumberGenerator();
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
+				if (resolve) return getOption();
+				return basicGetOption();
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
+				if (resolve) return getResult();
+				return basicGetResult();
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				if (resolve) return getTestRun();
+				return basicGetTestRun();
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
+				return getName();
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -261,24 +239,21 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
-			setOption((OptionObject)newValue);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
-			setResult((ResultObject)newValue);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-			setTestRun((TestRun)newValue);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
-			setName((String)newValue);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
-			setDescription((String)newValue);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR:
-			setRandomNumberGenerator((Random)newValue);
-			return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
+				setOption((OptionObject)newValue);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
+				setResult((ResultObject)newValue);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				setTestRun((TestRun)newValue);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
+				setName((String)newValue);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -291,24 +266,21 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
-			setOption((OptionObject)null);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
-			setResult((ResultObject)null);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-			setTestRun((TestRun)null);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR:
-			setRandomNumberGenerator(RANDOM_NUMBER_GENERATOR_EDEFAULT);
-			return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
+				setOption((OptionObject)null);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
+				setResult((ResultObject)null);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				setTestRun((TestRun)null);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -321,18 +293,16 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
-			return option != null;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
-			return result != null;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-			return testRun != null;
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-		case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR:
-			return RANDOM_NUMBER_GENERATOR_EDEFAULT == null ? randomNumberGenerator != null : !RANDOM_NUMBER_GENERATOR_EDEFAULT.equals(randomNumberGenerator);
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
+				return option != null;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
+				return result != null;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				return testRun != null;
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -351,8 +321,6 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", RandomNumberGenerator: ");
-		result.append(randomNumberGenerator);
 		result.append(')');
 		return result.toString();
 	}
@@ -365,7 +333,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @param classList a List of classes to choose a random class from
 	 */
 	private boolean modifyRandomAttribute(BasicEList<EObject> classList) {
-		int index = getRandomNumberGenerator().nextInt(classList.size());
+		int index = ((RandomModelModifierOptionObject)getOption()).getNextInt(classList.size());
 		EObject cls = classList.get(index);
 		EList<EAttribute> frozenAttrList = cls.eClass().getEAllAttributes();
 
@@ -376,7 +344,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 				attrList.add(attr);
 			//try to find a attribute to change
 			while (!(attrList.isEmpty())){
-				int attrIndex = getRandomNumberGenerator().nextInt(attrList.size());
+				int attrIndex = ((RandomModelModifierOptionObject)getOption()).getNextInt(attrList.size());
 				EAttribute attr = attrList.get(attrIndex);
 				//if the attribute is not changeable, remove it from attribute list and try an other one
 				if (!attr.isChangeable()){
@@ -391,9 +359,9 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 					String attrType = EcoreUtil.toJavaInstanceTypeName(attr.getEGenericType());
 					//TODO: add more special cases for known types like float, etc.
 					if (attrType.equals("int") || attrType.equals("Integer")){
-						cls.eSet(attr, getRandomNumberGenerator().nextInt(Integer.MAX_VALUE));
+						cls.eSet(attr, ((RandomModelModifierOptionObject)getOption()).getNextInt(Integer.MAX_VALUE));
 					} else if (attrType.equals("java.lang.String")){
-						cls.eSet(attr, Integer.toString(getRandomNumberGenerator().nextInt()));
+						cls.eSet(attr, Integer.toString(((RandomModelModifierOptionObject)getOption()).getNextInt()));
 					}
 				}else
 					cls.eUnset(attr);
@@ -415,7 +383,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean deleteRandomReference(BasicEList<EObject> classList) {
-		int index = getRandomNumberGenerator().nextInt(classList.size());
+		int index = ((RandomModelModifierOptionObject)getOption()).getNextInt(classList.size());
 		EObject cls = classList.get(index);
 		EList<EReference> frozenRefList = cls.eClass().getEAllReferences();
 		if (!frozenRefList.isEmpty()){
@@ -425,7 +393,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 				refList.add(ref);
 			//a reference was found, remove one referenced class
 			while  (!(refList.isEmpty())){
-				int refIndex = getRandomNumberGenerator().nextInt(refList.size());
+				int refIndex = ((RandomModelModifierOptionObject)getOption()).getNextInt(refList.size());
 				EReference ref = refList.get(refIndex);
 				Object obj = cls.eGet(ref);
 				//the chosen reference can't be removed, try an other one
@@ -437,7 +405,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 						//remove one referenced class
 						//casting to EList should be safe because we have a to-many reference at this point
 						EList<EObject> list = (EList<EObject>)obj;
-						list.remove(getRandomNumberGenerator().nextInt(list.size()));
+						list.remove(((RandomModelModifierOptionObject)getOption()).getNextInt(list.size()));
 					}else
 						//unset the whole reference
 						cls.eUnset(ref);
@@ -459,7 +427,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean createRandomReference(BasicEList<EObject> classList) {
-		int index = getRandomNumberGenerator().nextInt(classList.size());
+		int index = ((RandomModelModifierOptionObject)getOption()).getNextInt(classList.size());
 		EObject cls = classList.get(index);
 		EList<EReference> frozenRefList = cls.eClass().getEAllReferences();
 		if (!frozenRefList.isEmpty()){
@@ -469,7 +437,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 				refList.add(ref);
 			//a reference was found, set it to a valid class
 			while (!(refList.isEmpty())){
-				int refIndex = getRandomNumberGenerator().nextInt(refList.size());
+				int refIndex = ((RandomModelModifierOptionObject)getOption()).getNextInt(refList.size());
 				EReference ref = refList.get(refIndex);
 				//if the reference is not changeable, try an other one of the refList
 				if (!ref.isChangeable()){
@@ -505,7 +473,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @param classList the list to remove a class from
 	 */
 	private boolean deleteRandomClass(BasicEList<EObject> classList) {
-		EObject cls = classList.get(getRandomNumberGenerator().nextInt(classList.size()));
+		EObject cls = classList.get(((RandomModelModifierOptionObject)getOption()).getNextInt(classList.size()));
 		EcoreUtil.delete(cls);
 		return classList.remove(cls);
 	}
@@ -516,7 +484,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	private boolean createRandomClass(BasicEList<EObject> classList) {
 		//no need to check if class can be created because we take one that has already been created and make another instance
-		EObject cls = classList.get(getRandomNumberGenerator().nextInt(classList.size()));
+		EObject cls = classList.get(((RandomModelModifierOptionObject)getOption()).getNextInt(classList.size()));
 		EObject newCls = cls.eClass().getEPackage().getEFactoryInstance().create(cls.eClass());
 		cls.eResource().getContents().add(newCls);
 		return classList.add(newCls);
@@ -536,7 +504,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 				validClasses.add(cls);
 		}
 		if (validClasses.size() > 0)
-			return validClasses.get(getRandomNumberGenerator().nextInt(validClasses.size()));
+			return validClasses.get(((RandomModelModifierOptionObject)getOption()).getNextInt(validClasses.size()));
 		return null;
 	}
 
@@ -726,27 +694,6 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		description = newDescription;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION, oldDescription, description));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Random getRandomNumberGenerator() {
-		return randomNumberGenerator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRandomNumberGenerator(Random newRandomNumberGenerator) {
-		Random oldRandomNumberGenerator = randomNumberGenerator;
-		randomNumberGenerator = newRandomNumberGenerator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RANDOM_NUMBER_GENERATOR, oldRandomNumberGenerator, randomNumberGenerator));
 	}
 
 } //RandomModelModifierImpl
