@@ -102,10 +102,10 @@ public class ShortPrettyPrinter {
         		    }
         		    Object value = investigator.get(referencedObject,
         			    refersToArg.getPropertyName());
-        		    if (value instanceof Collection && ((Collection<?>)value).size() > 0) {
+        		    if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
         			value = ((Collection<?>) value).iterator().next();
         		    }
-        		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection)) {
+        		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
         			newvalue = value.toString();
         		    }
         		    
@@ -132,10 +132,10 @@ public class ShortPrettyPrinter {
 				    .getStrucfeature().getName());
 		    // TODO handle pretty printing and escaping according to
 		    // syntax
-		    if (value instanceof Collection && ((Collection<?>)value).size() > 0) {
+		    if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
 			value = ((Collection<?>) value).iterator().next();
 		    }
-		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection)) {
+		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
 			newvalue = value.toString();
 		    }
 		    break;

@@ -379,6 +379,12 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 
 				}
 			}
+		} else {
+		    //maybe we are directly in a metamodel project, so search for the moin folder 
+		    IFolder moin = project.getFolder(MMBuilderConstants.MOIN_FOLDER);
+		    if(moin.exists()) {
+		        return project.getLocation().toOSString();
+		    }
 		}
 
 		throw new IllegalStateException(

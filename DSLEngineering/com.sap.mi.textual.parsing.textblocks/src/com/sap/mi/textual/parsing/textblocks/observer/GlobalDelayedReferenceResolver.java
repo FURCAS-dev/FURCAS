@@ -123,22 +123,26 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			        filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
 			    }
 			 } else if(reference.getQueryElement() instanceof Property) {
-			     filterEventsAndQueueDelayedReferencesForPropertyQuery(events, conn);
+			     if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+			         filterEventsAndQueueDelayedReferencesForContextLookup(events, conn);
+			     } else {
+			         filterEventsAndQueueDelayedReferencesForPropertyQuery(events, conn);
+			     }
 			 }
 		     }
                      backgroundResolver.scheduleIfNeeded();
                      
 		 } else {
-		    // TODO (for Thomas) this code can probably be removed
-		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
-			    .get___Mri());
-		    if (element == null) {
-			// Element doesnt exist anymore, so reference can be removed
-			GlobalDelayedReferenceResolver.this.removeRegistration(reference);
-			return;
-		    }
-		    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(conn, element);
-		    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(conn, outermostPackage, this.reference);
+//		    // TODO (for Thomas) this code can probably be removed
+//		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
+//			    .get___Mri());
+//		    if (element == null) {
+//			// Element doesnt exist anymore, so reference can be removed
+//			GlobalDelayedReferenceResolver.this.removeRegistration(reference);
+//			return;
+//		    }
+//		    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(conn, element);
+//		    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(conn, outermostPackage, this.reference);
 		}
 	    }
 	}
@@ -148,24 +152,41 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
          InjectorAction injectorAction = (InjectorAction) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
          InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock)injectorAction.refImmediateComposite();
          Template template = injectorActionsBlock.getParentTemplate();
+         
          //now find all TextBlocks referencing this template;
-         TextblockDefinitionReferencesProduction tbDefAssoc = conn.getAssociation(TextblockDefinitionReferencesProduction.ASSOCIATION_DESCRIPTOR);
-         TextBlockDefinition def = tbDefAssoc.getTextBlockDefinition(template).iterator().next();
-         TextBlockType tbTypeAssoc = conn.getAssociation(TextBlockType.ASSOCIATION_DESCRIPTOR);
-         //TODO use affectedModelElements instead but first find out which elements are actually contained in there
-         Collection<TextBlock> tbs = new ArrayList<TextBlock>(tbTypeAssoc.getTextBlock(def));
-         //now find all TextBlocks that reference the template in their "additionalTemplate"
-         TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
-         Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
-         tbs.addAll(additionalTbs);
-         tbs = TbUtil.filterVersionedTextBlockForNewest(tbs);
+         Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn,
+                template);
          
          Set<MRI> affectedElements = null;
          for (TextBlock textBlock : tbs) {
-        //first check if the alternative in which the injector action resides was
-        //chosen during the parsing process
-        //TODO this is a workaround. to properly decide this we need to keep track
-        //of the alternative chosen at runtime of the parser
+            //first check if the alternative in which the injector action resides was
+            //chosen during the parsing process
+            //TODO this is a workaround. to properly decide this we need to keep track
+            //of the alternative chosen at runtime of the parser
+            boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(
+                    injectorActionsBlock, textBlock);
+            
+            if (wasInChosenAlternative) {
+                if (affectedElements == null) {
+            	affectedElements = getAffectedElements(events, conn);
+                }
+                Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
+            	    conn, affectedElements, textBlock);
+                for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
+            	DelayedReference clonedRef = (DelayedReference) reference.clone();
+            	clonedRef.setModelElement(ro);
+            	clonedRef.setRealValue(null);
+            	clonedRef.setTextBlock(textBlock);
+            	clonedRef.setConnection(conn);
+            	GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+            	// reference.setModelElement(null);
+                }
+            }
+        }
+    }
+
+    private boolean isInjectorActionInChosenAlternative(
+            InjectorActionsBlock injectorActionsBlock, TextBlock textBlock) {
         boolean wasInChosenAlternative = false;
         for (AbstractToken tok : textBlock.getTokens()) {
         	if(tok instanceof LexedToken) {
@@ -180,79 +201,97 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         		}
         	}
         }
-        
-        if (wasInChosenAlternative) {
-            if (affectedElements == null) {
-        	affectedElements = getAffectedElements(events, conn);
-            }
-            Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-        	    conn, affectedElements, textBlock);
-            for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-        	DelayedReference clonedRef = (DelayedReference) reference.clone();
-        	clonedRef.setModelElement(ro);
-        	clonedRef.setRealValue(null);
-        	clonedRef.setTextBlock(textBlock);
-        	clonedRef.setConnection(conn);
-        	GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-        	// reference.setModelElement(null);
-            }
-        }
-        }
+        return wasInChosenAlternative;
+    }
+
+    private Collection<TextBlock> getTextBlocksUsingQueryElement(
+            Connection conn, Template template) {
+        TextblockDefinitionReferencesProduction tbDefAssoc = conn.getAssociation(TextblockDefinitionReferencesProduction.ASSOCIATION_DESCRIPTOR);
+         TextBlockDefinition def = tbDefAssoc.getTextBlockDefinition(template).iterator().next();
+         TextBlockType tbTypeAssoc = conn.getAssociation(TextBlockType.ASSOCIATION_DESCRIPTOR);
+         //TODO use affectedModelElements instead but first find out which elements are actually contained in there
+         Collection<TextBlock> tbs = new ArrayList<TextBlock>(tbTypeAssoc.getTextBlock(def));
+         //now find all TextBlocks that reference the template in their "additionalTemplate"
+         TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
+         Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
+         tbs.addAll(additionalTbs);
+         tbs = TbUtil.filterVersionedTextBlockForNewest(tbs);
+        return tbs;
     }
 
     private void filterEventsAndQueueDelayedReferencesForPropertyQuery(
             EventChain events, Connection conn) {
-        Property property = (Property) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
-         //now find all TextBlocks referencing this property;
-         LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
-         Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
+        Collection<LexedToken> toks = getTokensUsingQueryElement(conn);
          Set<MRI> affectedElements = getAffectedElements(events, conn);
          if(affectedElements.size() > 0) {
              for (LexedToken lt : toks) {
                  if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
-                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = null;
-                     if(reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
-                         intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
                                  conn, affectedElements, lt.getParentBlock());
-                     } else {
-                         intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(lt.getParentBlock().getCorrespondingModelElements());
-                     }
-                     //TODO Actually we would have to analyse the OCL reference and check 
-                     //for an intersection of the affectedElements with the token's value
-                     //as this is the only hint we have at this place
                     if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-                            Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-                                        conn, lt.getParentBlock());
-                    		for (RefObject ro : result) {
-                    		    DelayedReference clonedRef = (DelayedReference) reference.clone();
-                                                clonedRef.setModelElement(ro);
-                                                clonedRef.setRealValue(null);
-                                                clonedRef.setConnection(conn);
-                                                
-                                                clonedRef.setToken(new LexedTokenWrapper(lt));
-                                                clonedRef.setTextBlock(lt.getParentBlock());
-                                                clonedRef.setKeyValue(lt.getValue());
-                    		    String oclQuery = clonedRef.getOclQuery();
-                    		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-                    		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-                    		}
+                            enqueueReferencesToReEvaluate(conn, lt);
+                    }
+                 }
+            }
+         }
+    }
+    
+    
+    private void filterEventsAndQueueDelayedReferencesForContextLookup(
+            EventChain events, Connection conn) {
+         Collection<LexedToken> toks = getTokensUsingQueryElement(conn);
+         Set<MRI> affectedElements = getAffectedElements(events, conn);
+         if(affectedElements.size() > 0) {
+             for (LexedToken lt : toks) {
+                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn, 
+                             affectedElements, Collections.singletonList(lt.getParentBlock()));
+                    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+                            enqueueReferencesToReEvaluate(conn, lt);
                     }
                  }
             }
          }
     }
 
+    private void enqueueReferencesToReEvaluate(Connection conn, LexedToken lt) {
+        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+                    conn, lt.getParentBlock());
+            for (RefObject ro : result) {
+                DelayedReference clonedRef = (DelayedReference) reference.clone();
+                clonedRef.setModelElement(ro);
+                clonedRef.setRealValue(null);
+                clonedRef.setConnection(conn);
+                
+                clonedRef.setToken(new LexedTokenWrapper(lt));
+                clonedRef.setTextBlock(lt.getParentBlock());
+                clonedRef.setKeyValue(lt.getValue());
+                String oclQuery = clonedRef.getOclQuery();
+                clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+                GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+            }
+    }
+
+    private Collection<LexedToken> getTokensUsingQueryElement(Connection conn) {
+        Property property = (Property) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
+         //now find all TextBlocks referencing this property;
+         LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
+         Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
+        return toks;
+    }
+
 	
 
-    /**
-	 * Filters the given elements with the corresponding elements of the given {@link TextBlock}.
+        /**
+	 * Filters the given elements with the corresponding elements or, if the query
+	 * uses a #context reference with the context element of the given {@link TextBlock}.
 	 * 
 	 * @param conn the connection used to resolve the MRIs within affecedElements
 	 * @param affectedElements Elements that were affected by 
 	 * @param node The {@link TextBlock} which's corresponding elements should be filtered.
 	 * @return the intersection between affected elements and the corresponding elements of the given {@link TextBlock}. 
 	 */
-	private Set<RefObject> filterWithAffectedElements(Connection conn,
+	private Set<RefObject> filterCorrespondingOrContextElementWithAffectedElements(Connection conn,
 		Set<MRI> affectedElements, DocumentNode node) {
 	    	Matcher matcher = ContextManager.contextPattern.matcher(reference.getOclQuery());
 	    	Collection<RefObject> correspondingModelElements = null;
@@ -267,23 +306,10 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	        } else {
 	            correspondingModelElements = new ArrayList<RefObject>(node.getCorrespondingModelElements());
 	            correspondingModelElements.addAll(node.getReferencedElements());
-	            
 	        }
 		
-		Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
-		if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-		    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
-		    for (RefObject cme : correspondingModelElements) {
-			correspondingModelElementsMris.add(cme.get___Mri());
-		    }
-		    
-		    Set<MRI> intersectionOfCorrespondingAndAffectedElementsMris = new HashSet<MRI>(affectedElements);
-		    intersectionOfCorrespondingAndAffectedElementsMris.retainAll(correspondingModelElementsMris);
-		    intersectionOfCorrespondingAndAffectedElements.clear();
-		    for (MRI mri : intersectionOfCorrespondingAndAffectedElementsMris) {
-			intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
-		    }
-		}
+		Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(
+                    conn, affectedElements, correspondingModelElements);
 		if(isContext) {
 		    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 		        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
@@ -296,6 +322,26 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 		    return intersectionOfCorrespondingAndAffectedElements;   
 		}
 	}
+
+        private Set<RefObject> filterAffectedElements(Connection conn,
+                Set<MRI> affectedElements,
+                Collection<? extends RefObject> correspondingModelElements) {
+            Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
+    		if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+    		    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
+    		    for (RefObject cme : correspondingModelElements) {
+    			correspondingModelElementsMris.add(cme.get___Mri());
+    		    }
+    		    
+    		    Set<MRI> intersectionOfCorrespondingAndAffectedElementsMris = new HashSet<MRI>(affectedElements);
+    		    intersectionOfCorrespondingAndAffectedElementsMris.retainAll(correspondingModelElementsMris);
+    		    intersectionOfCorrespondingAndAffectedElements.clear();
+    		    for (MRI mri : intersectionOfCorrespondingAndAffectedElementsMris) {
+    			intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
+    		    }
+    		}
+            return intersectionOfCorrespondingAndAffectedElements;
+        }
 
 	/**
 	 * Filtes the elements in {@link DocumentNode#getCorrespondingModelElements()} by comparing them

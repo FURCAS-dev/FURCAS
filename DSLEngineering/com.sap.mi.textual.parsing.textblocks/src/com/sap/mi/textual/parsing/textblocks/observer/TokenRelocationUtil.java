@@ -490,10 +490,10 @@ public class TokenRelocationUtil {
         textBlock.setLength(newlength);
 
         
-        textBlock.setStartRow(firstSubNode.getStartRow());
-        textBlock.setStartColumn(firstSubNode.getStartColumn());
-        textBlock.setEndRow(lastSubNode.getEndRow());
-        textBlock.setEndColumn(lastSubNode.getEndColumn());        
+//        textBlock.setStartRow(firstSubNode.getStartRow());
+//        textBlock.setStartColumn(firstSubNode.getStartColumn());
+//        textBlock.setEndRow(lastSubNode.getEndRow());
+//        textBlock.setEndColumn(lastSubNode.getEndColumn());        
     }
 
 	public static void makeOffsetAbsolute(DocumentNode node) {
@@ -552,11 +552,13 @@ public class TokenRelocationUtil {
     public static void makeSubNodesRelative(TextBlock textBlock) {
         List<? extends DocumentNode> subNodes = getSubNodes(textBlock);
         // finally update all offsets by making them relative to the new block
+        int lastOffset = 0;
+        int lastLength = 0;
         for (Iterator<? extends DocumentNode> iterator = subNodes.iterator(); iterator.hasNext();) {
-            DocumentNode documentNode  = iterator.next();            
-        
+            DocumentNode documentNode  = iterator.next(); 
             if (! documentNode.isOffsetRelative() ) {
-                int newOffSet = documentNode.getOffset() - getAbsoluteOffset(textBlock);
+                //int newOffSet = documentNode.getOffset() - getAbsoluteOffset(textBlock);
+                int newOffSet = lastOffset + lastLength;
                 if (newOffSet < 0) {
                     if (! ( documentNode instanceof Eostoken) ) {
                         throw new IllegalArgumentException("BUG: Attempt to set negative Offset: " + newOffSet);
@@ -567,6 +569,8 @@ public class TokenRelocationUtil {
                 documentNode.setOffset(newOffSet);
                 documentNode.setOffsetRelative(true);
             }
+            lastOffset = documentNode.getOffset();
+            lastLength = documentNode.getLength();
         }
     }
 

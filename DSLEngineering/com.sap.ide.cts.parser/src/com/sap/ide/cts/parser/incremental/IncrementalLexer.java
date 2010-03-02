@@ -94,6 +94,9 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	}
 	
 	public Eostoken getEOS() {
+	        if(!eosRef.is___Alive()) {
+	            eosRef = createEOSToken(textblocksPackage, VersionEnum.CURRENT, getEOSTokenType());
+	        }
 		return eosRef;
 	}
 	
@@ -474,6 +477,12 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		if(currentRoot == null) {
 		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
 				VersionEnum.CURRENT, true, shortPrettyPrinter);
+		} else {
+		   //TODO fix possibly incomplete textblocks to be able to reuse or recreate them for 
+		    //current version
+		    TbChangeUtil.revertToVersion(root, VersionEnum.PREVIOUS);
+		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
+                            VersionEnum.CURRENT, true, shortPrettyPrinter);
 		}
 	    	if (moinLoggingWasEnabled) {
 	    	    ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());
@@ -482,6 +491,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 				//as we are now at the right edge of the last section we need to go to the next token
 				//of the current version and then back to the previous version to find the next changed region
 				tok = isEOS(tok) ? tok : findNextRegion(getOtherVersion(nextToken(tok, VersionEnum.CURRENT), VersionEnum.PREVIOUS))) {
+		    System.out.println("prev: " + tok.getValue());
 			TextBlock previousParentBlock = tok.getParentBlock();
 			TextBlock currentTextBlock = getCurrentVersion(previousParentBlock);
 			changedBlocks.add(currentTextBlock);
@@ -497,6 +507,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 
 			// fetch newly lexed token
 			tok = firstNewToken(tok);
+			System.out.println("cur: " + tok.getValue());
 
 			// System.out.println(tok.getValue());
 			while (!canStopLexing()) {
@@ -507,6 +518,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 				
 				//move to next new token
 				tok = nextNewToken();
+				System.out.println("cur: " + tok.getValue());
 //				boolean referenceVersionsFromOldTokenInCurrentBlockToPreviousNewToken = false;
 				if (!oldTokenInCurrentBlock.equals(getOtherVersion(
 						getConstructionLoc().getTok(), VersionEnum.CURRENT))) {

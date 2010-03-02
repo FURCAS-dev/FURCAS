@@ -19,11 +19,13 @@ public class ParseCommand extends Command {
 	private TextBlock newBlock;
 	private SemanticParserException parseException;
 	private final AbstractGrammarBasedEditor editor;
+        private final boolean errorMode;
 
-	public ParseCommand(TextBlock previousBlock, Connection connection, AbstractGrammarBasedEditor editor) {
-		super(connection, "Incremental Parse and Model Update");
-		this.previousBlock = previousBlock;
-		this.editor = editor;
+	public ParseCommand(TextBlock previousBlock, Connection connection, AbstractGrammarBasedEditor editor, boolean errorMode) {
+	    super(connection, "Incremental Parse and Model Update");
+	    this.previousBlock = previousBlock;
+	    this.editor = editor;
+	    this.errorMode = errorMode;
 	}
 
 	@Override
@@ -37,7 +39,7 @@ public class ParseCommand extends Command {
 		try {
 //		    	getWorkingConnection().getSession().getLockManager().obtainTransientLock(
 //		    		pri, getWorkingConnection());
-			newBlock = editor.parse(previousBlock);
+			newBlock = editor.parse(previousBlock, errorMode);
 		} catch (SemanticParserException e) {
 			parseException = e;
 		}

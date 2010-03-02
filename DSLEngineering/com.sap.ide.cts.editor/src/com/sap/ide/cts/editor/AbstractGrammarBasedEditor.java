@@ -74,6 +74,7 @@ import com.sap.ide.cts.dialogs.PrettyPrintPreviewDialog;
 import com.sap.ide.cts.editor.action.GotoDeclarationAction;
 import com.sap.ide.cts.editor.action.HighlightTextBlockAction;
 import com.sap.ide.cts.editor.action.PrettyPrintAction;
+import com.sap.ide.cts.editor.commands.CleanUpTextBlocksCommand;
 import com.sap.ide.cts.editor.commands.ParseCommand;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.matching.CtsStaticMatcher;
@@ -379,6 +380,9 @@ public abstract class AbstractGrammarBasedEditor extends
 
 			public void textChanged(TextEvent event) {
 				if (event.getDocumentEvent() != null) {
+				    if(parseRunnable.getState() == Job.WAITING) {
+				        parseRunnable.cancel();
+				    }
                 		    parseRunnable.schedule(650);
 				}
 			}
@@ -704,37 +708,54 @@ public abstract class AbstractGrammarBasedEditor extends
 		getPartitionHighlighter().removeAll();
 		boolean hasErrors = false, hasWarnings = false;
 		try {
-			TextBlock rootBlock = ((CtsDocument) getSourceViewerPublic()
-					.getDocument()).getRootBlock();
+			CtsDocument ctsDocument = (CtsDocument) getSourceViewerPublic()
+					.getDocument();
+			TextBlock rootBlock = ctsDocument.getRootBlock();
 			TextBlock previousBlock = (TextBlock) TbUtil
 					.getNewestVersion(rootBlock);
-			if (!dry) {
-				//getWorkingConnection().getCommandStack().openGroup("Parsing Command Group");
-				ParseCommand parseCommand = new ParseCommand(previousBlock, getWorkingConnection(), this);
-				try {
-				    	ParsingTextblocksActivator.getDefault().enableMoinLogging(getWorkingConnection());
-					getWorkingConnection().getCommandStack().execute(parseCommand);
-				    	ParsingTextblocksActivator.getDefault().disableMoinLogging(getWorkingConnection());
-				} catch (ExecutionRollbackFailedException e) {
-					unlockPartitions();
-					throw e.getOriginalTransactionException();
-				} catch (Exception e) {
-					//unlock all partitions
-					unlockPartitions();
-					throw e;
-				}
-				if(parseCommand.getParseException() != null) {
-					throw parseCommand.getParseException();
-				}
-				TextBlock newBlock = parseCommand.getNewBlock();
-				// move to new current version
-				if (!((Partitionable) newBlock).is___Alive()) {
-					throw new RuntimeException(
-							"Textblock returned by parsing has been deleted!");
-				}
-				setModel(newBlock);
+			ParseCommand parseCommand = null;
+			if (dry) {
+			    dryParse(previousBlock);
+			    //parseCommand = new ParseCommand(previousBlock, getWorkingConnection(), this, /*errorMode*/ true);
+				
 			} else {
-				dryParse(previousBlock);
+			    parseCommand = new ParseCommand(previousBlock, getWorkingConnection(), this, /*errorMode*/ false);
+			
+    			    try {
+                                ParsingTextblocksActivator.getDefault().enableMoinLogging(getWorkingConnection());
+                                getWorkingConnection().getCommandStack().execute(parseCommand);
+                                ParsingTextblocksActivator.getDefault().disableMoinLogging(getWorkingConnection());
+                            } catch (ExecutionRollbackFailedException e) {
+                                    unlockPartitions();
+                                    throw e.getOriginalTransactionException();
+                            } catch (Exception e) {
+                                    //unlock all partitions
+                                    unlockPartitions();
+                                    throw e;
+                            }
+                            if(parseCommand.getParseException() != null) {
+                                    throw parseCommand.getParseException();
+                            }
+                            TextBlock newBlock = parseCommand.getNewBlock();
+                            // move to new current version
+                            if (!((Partitionable) newBlock).is___Alive()) {
+                                    throw new RuntimeException(
+                                                    "Textblock returned by parsing has been deleted!");
+                            }
+                            
+                            if(dry) {
+                                if(TbVersionUtil.getOtherVersion(newBlock, VersionEnum.CURRENT) != null) {
+                                    //only clean up if a current version exists, as this is only the case if
+                                    //the rootBlock was at least lexable
+                                    //monitor.beginTask("Cleaning up textblocks.", 100);
+                                    CleanUpTextBlocksCommand cleanUpCommand = new CleanUpTextBlocksCommand(ctsDocument.getRootBlock());
+                                    getWorkingConnection().getCommandStack().execute(cleanUpCommand);
+                                    newBlock = cleanUpCommand.getNewRootBlock();
+                                    ctsDocument.setRootBlock(newBlock);
+                                    ctsDocument.reduceToMinimalState();
+                                }
+                            }
+                            setModel(newBlock);
 			}
 		} catch (SemanticParserException e) {
 			for (ParsingError ex : e.getIssuesList()) {
@@ -914,10 +935,20 @@ public abstract class AbstractGrammarBasedEditor extends
 	// .getMessage()), new Position(0, textViewer.getDocument()
 	// .getLength()));
 	// }
-
+	
 	public TextBlock parse(TextBlock previousBlock)
+        throws SemanticParserException {
+	    return parse(previousBlock, false);
+	}
+
+	public TextBlock parse(TextBlock root, boolean errorMode)
 			throws SemanticParserException {
 		boolean syntacticallyCorrect = true;
+		//ensure to work on previous version
+		TextBlock previousBlock = TbVersionUtil.getOtherVersion(root, VersionEnum.PREVIOUS);
+		if(previousBlock == null) {
+		    previousBlock = root;
+		}
 		TextBlock newBlock = previousBlock;
 
 		try {
@@ -928,6 +959,9 @@ public abstract class AbstractGrammarBasedEditor extends
 		}
 
 		if (syntacticallyCorrect) {
+		    System.out.println("parse start");
+		        //reset errors in modelinjector
+		        parser.getInjector().getErrorList().clear();
 			getLexer().setSource(previousBlock.getTokens().get(0));
 			syntacticallyCorrect = getLexer().lex(previousBlock);
 
@@ -941,8 +975,8 @@ public abstract class AbstractGrammarBasedEditor extends
 
 				if (syntacticallyCorrect) {
 					
-					newBlock = incrementalParser.incrementalParse(newlyLexedTextBlock);
-					
+					newBlock = incrementalParser.incrementalParse(newlyLexedTextBlock, errorMode);
+					System.out.println("parse end");
 					removeOutdatedParseErrorMarkers(incrementalParser.getChangedBlocks());
 
 					// TODO this is only for debugging
