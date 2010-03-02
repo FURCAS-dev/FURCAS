@@ -63,6 +63,7 @@ extends Parser
     
     @Override
     public void reset() {
+        super.reset();
         if (observer == null) {
             return;
         }

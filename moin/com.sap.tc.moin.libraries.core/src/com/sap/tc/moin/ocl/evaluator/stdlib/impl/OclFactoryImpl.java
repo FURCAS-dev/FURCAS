@@ -47,7 +47,8 @@ public class OclFactoryImpl extends OclFactory {
     public OclAny create( Object underlyingObject ) {
 
         if ( underlyingObject == null ) {
-            throw new MoinLocalizedBaseRuntimeException( MoinOclEvaluatorMessages.UNDERLYINGVALUENOTNULL );
+            //throw new MoinLocalizedBaseRuntimeException( MoinOclEvaluatorMessages.UNDERLYINGVALUENOTNULL );
+            return OclVoidImpl.OCL_UNDEFINED;
         }
 
         /*

@@ -660,8 +660,8 @@ public class DelayedReferencesHelper {
 	Object candidate = null;
 
 	if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
-	    candidate = modelAdapter.setOclReference(reference.getTextBlock(), reference.getPropertyName(),
-                    reference.getKeyValue(), reference.getOclQuery(), contextElement);
+	    candidate = modelAdapter.setOclReference( contextElement, reference.getPropertyName(),
+                    reference.getKeyValue(), reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock());
 	} else {
 	    candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
 		keyValue);

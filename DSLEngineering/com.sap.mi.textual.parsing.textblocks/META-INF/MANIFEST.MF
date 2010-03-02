@@ -18,3 +18,4 @@ Export-Package:
  com.sap.mi.textual.parsing.textblocks.observer,
  com.sap.mi.textual.textblocks.model
 Bundle-Activator: com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

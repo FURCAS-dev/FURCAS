@@ -1,21 +1,14 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
-import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.events.ChangeListener;
 import com.sap.tc.moin.repository.events.filter.SessionFilter;
@@ -28,10 +21,6 @@ public class ParsingTextblocksActivator extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.sap.mi.textual.parsing.textblocks";
-
-
-	private static final String UNRESOLVED_REFERENCES_STORE_FILENAME = "unresolvedreferences.ser";
-
 
     // The shared instance
     /** The plugin. */
@@ -85,46 +74,6 @@ public class ParsingTextblocksActivator extends Plugin {
 	public void start(BundleContext context) throws Exception {
         super.start(context);
         plugin = this;
-        loadUnresolvedReferences();
-    }
-
-    private Set<DelayedReference> loadUnresolvedReferences() {
-	IPath path = getStateLocation();
-	if (path == null) {
-	    return null;
-	}
-	path = path.append(UNRESOLVED_REFERENCES_STORE_FILENAME);
-	File file = path.toFile();
-	FileReader in = null;
-	FileWriter out = null;
-	try {
-	    in = new FileReader(file);
-	    // don't append data, overwrite what was there
-	    char buffer[] = new char[4096];
-	    int count;
-	    while ((count = in.read(buffer, 0, buffer.length)) > 0) {
-		if (true /* out != null */) {
-		    // FIXME out is always null; to what should it be set?
-		    out.write(buffer, 0, count);
-		}
-	    }
-	} catch (FileNotFoundException e) {
-	    return null;
-	} catch (IOException e) {
-	    return null;
-	} finally {
-	    try {
-		if (in != null) {
-		    in.close();
-		}
-		if (false /* out != null */) {
-		    out.close();
-		}
-	    } catch (IOException e) {
-		return null;
-	    }
-	}
-	return null;
     }
 
     /*

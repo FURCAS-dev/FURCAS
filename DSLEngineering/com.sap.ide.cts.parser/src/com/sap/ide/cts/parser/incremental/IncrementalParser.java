@@ -90,6 +90,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 	private ModelElementFromTextBlocksFactory modelElementFactory;
 
 	private PartitionAssignmentHandler partitionHandler;
+
+        private boolean errorMode = false;
 	
 	public IncrementalParser(Connection connection,
 		ParserFactory<?, ?> parserFactory,
@@ -97,25 +99,29 @@ public class IncrementalParser extends IncrementalRecognizer {
 		ObservableInjectingParser batchParser,
 		TextBlockReuseStrategy reuseStrategy,
 		Collection<CRI> additionalCRIScope) {
-	super(connection);
-	this.parserFactory = parserFactory;
-	this.additionalCRIScope = additionalCRIScope;
-	if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
-		throw new IllegalArgumentException(
-				"token stream of parser needs to be "
-						+ "ITextBlocksTokenStream in order to be used with incremental parser");
+        	super(connection);
+        	this.parserFactory = parserFactory;
+        	this.additionalCRIScope = additionalCRIScope;
+        	if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
+        		throw new IllegalArgumentException(
+        				"token stream of parser needs to be "
+        						+ "ITextBlocksTokenStream in order to be used with incremental parser");
+        	}
+        	this.tbtokenStream = (ITextBlocksTokenStream) batchParser.getTokenStream();
+        	this.batchParser = batchParser;
+        	this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+        	this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
+        	this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
+        			batchParser, getReferenceHandler(), partitionHandler);
+        	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksPackage, reuseStrategy, modelElementFactory);
+        	this.reuseStrategy = reuseStrategy;
+        	this.reuseStrategy.setReferenceHandler(getReferenceHandler());
+        	this.reuseStrategy.setTextBlockFactory(tbFactory);
 	}
-	this.tbtokenStream = (ITextBlocksTokenStream) batchParser.getTokenStream();
-	this.batchParser = batchParser;
-	this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-	this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
-	this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
-			batchParser, referenceHandler, partitionHandler);
-	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksPackage, reuseStrategy, modelElementFactory);
-	this.reuseStrategy = reuseStrategy;
-	this.reuseStrategy.setReferenceHandler(referenceHandler);
-	this.reuseStrategy.setTextBlockFactory(tbFactory);
-}
+	
+	public TextBlock incrementalParse(TextBlock root) {
+	    return incrementalParse(root, false);
+	}
 	
 	/**
 	 * Incrementally parses the given root block. The algorithm assumes that all
@@ -127,11 +133,14 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 * merged with the existing text block tree and model.
 	 * 
 	 * @param root
+	 * @param errorMode If <code>true</code> ignores syntactical errors and instanciates elements as
+	 *     far as possible.
 	 * @return returns the (possibly newly created) root block as a result of
 	 *         the parsing.
 	 */
-	public TextBlock incrementalParse(TextBlock root) {
+	public TextBlock incrementalParse(TextBlock root, boolean errorMode) {
 		reset();
+		this.errorMode = errorMode;
 		setDefaultPartitionFromRoot(root);
 		TextBlock newRoot = root;
 		// if there is a change
@@ -195,7 +204,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 						parserTextBlocksHandler);
 				try {
 					callBatchParser(commonAncestor);
-					while ((batchParser.getInjector().getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))
+					while (!errorMode && (batchParser.getInjector().getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))
 							&& commonAncestor.getParentBlock() != null) {
 						// parsing failed, so try to parse with the parent block
 						// and see if it works
@@ -205,12 +214,17 @@ public class IncrementalParser extends IncrementalRecognizer {
 						callBatchParser(commonAncestor);
 					}
 					
+					boolean errornous = false;
 					if(batchParser.getInjector().getErrorList().size() > 0) {
 					    StringBuilder errors = new StringBuilder();
 					    for (ParsingError err : batchParser.getInjector().getErrorList()) {
                                                 errors.append(err + "\n");
                                             }
-                                            throw new IncrementalParsingException("Cannot parse, errors in TB Model:" + errors);
+					    if(!errorMode) {
+                                                throw new IncrementalParsingException("Cannot parse, errors in TB Model:" + errors);
+					    } else {
+					        errornous = true;
+					    }
 					}
 
 					TextBlockProxy tbProxy = parserTextBlocksHandler
@@ -220,30 +234,35 @@ public class IncrementalParser extends IncrementalRecognizer {
 					// copy it
 					tbProxy.setSequenceElement(commonAncestor
 							.getSequenceElement());
-					TextBlock newModel = mergeTbModelFromProxies(
-							commonAncestor, tbProxy);
-
-					if (TbNavigationUtil.isUltraRoot(newModel)) {
-						newRoot = newModel;
-					}
-					// move to the last token of the updated textblock
-					// As the whole block is going to be re-parsed set tok to
-					// the token after the right
-					// boundary of the common ancestor block. So even if
-					// there are several regions that were isolatedly changed
-					// they will
-					// all be handled by reparsing this ancestor block.
-					if (!isEOS(tok)) {
-						AbstractToken tokOfNewModel = TbNavigationUtil
-								.lastToken(newModel);
-						if (TbUtil.getAbsoluteOffset(tokOfNewModel) > TbUtil
-								.getAbsoluteOffset(rightBoundary)) {
-							tok = tokOfNewModel;
-						}
-						if (!isEOS(tok)) {
-							tok = nextToken(tok);
-						}
-					}
+					
+                                        if (!errornous) {
+                                            TextBlock newModel = mergeTbModelFromProxies(
+                                                    commonAncestor, tbProxy);
+                                            if (TbNavigationUtil.isUltraRoot(newModel)) {
+                                                newRoot = newModel;
+                                            }
+                    
+                                            // move to the last token of the updated textblock
+                                            // As the whole block is going to be re-parsed set tok
+                                            // to
+                                            // the token after the right
+                                            // boundary of the common ancestor block. So even if
+                                            // there are several regions that were isolatedly
+                                            // changed
+                                            // they will
+                                            // all be handled by reparsing this ancestor block.
+                                            if (!isEOS(tok)) {
+                                                AbstractToken tokOfNewModel = TbNavigationUtil
+                                                        .lastToken(newModel);
+                                                if (TbUtil.getAbsoluteOffset(tokOfNewModel) > TbUtil
+                                                        .getAbsoluteOffset(rightBoundary)) {
+                                                    tok = tokOfNewModel;
+                                                }
+                                                if (!isEOS(tok)) {
+                                                    tok = nextToken(tok);
+                                                }
+                                            }
+                                        }
 
 				} catch (SyntaxElementException e) {
 					throw new RuntimeException(e);
@@ -266,7 +285,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 			}
 			// batchParser.setObserver(originalObserver);
 			batchParser.setResolveProxies(originalResolveProxiesValue);
-			referenceHandler.resolveRemainingReferences();
+			getReferenceHandler().resolveRemainingReferences();
 		}
 		return newRoot;
 	}
@@ -346,7 +365,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 	}
 
 	private void reset() {
-		referenceHandler.reset();
+		getReferenceHandler().reset();
 		reuseStrategy.clearChangedBlocksList();
 	}
 
@@ -456,7 +475,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 						.iterator().next(), ((Property) oldVersion
 						.getSequenceElement()).getPropertyReference()
 						.getStrucfeature().getName(), value.getRealObject(), 0);
-				referenceHandler.setNewFeature(bean, false);
+				getReferenceHandler().setNewFeature(bean, false);
 			} else {
 				replaceCorrespondingModelElements(oldVersion, result);
 			}
@@ -472,7 +491,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 			SetNewFeatureBean newFeatureBean = IncrementalParsingUtil
 					.insertFeatureValue(resultBean.textBlock, oldVersion,
 							insertBefore);
-			referenceHandler.setNewFeature(newFeatureBean, true);
+			getReferenceHandler().setNewFeature(newFeatureBean, true);
 		} else if (resultBean.reuseType
 				.equals(TextBlockReuseStrategy.ReuseType.COMPLETE)) {
 			// no further actions have to be done, the tb was completely re-used
@@ -778,6 +797,10 @@ public class IncrementalParser extends IncrementalRecognizer {
 	public Collection<TextBlock> getChangedBlocks() {
 		return reuseStrategy.getChangedBlocks();
 	}
+
+    public ReferenceHandler getReferenceHandler() {
+        return referenceHandler;
+    }
 	
 
 }

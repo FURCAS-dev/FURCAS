@@ -15,6 +15,7 @@ import com.sap.ide.treeprovider.internal.Activator;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
 import com.sap.mi.fwk.ui.tree.nodes.TreeNodeDomainRoot;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mql.MQLFormatException;
 
 /**
  * Root tree node for simple component sample
@@ -51,7 +52,9 @@ public final class RootNodeComponent extends TreeNodeDomainRoot implements INode
 		    children.addAll(provider.getChildren(this, getValue(), getConnection()));
 		} catch (CoreException e) {
 		    Activator.logError(e, true);
-		}
+		} catch (MQLFormatException e) {
+                    Activator.logError(e, true);
+                }
 	    }
 	}
 	return children.toArray();

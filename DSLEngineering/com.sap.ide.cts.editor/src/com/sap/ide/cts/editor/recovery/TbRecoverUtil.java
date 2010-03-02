@@ -1,6 +1,7 @@
 package com.sap.ide.cts.editor.recovery;
 
 import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -63,9 +64,10 @@ public class TbRecoverUtil {
 	// BOS token does not have to be checked. It also is not necessary to
 	// check if the tb model is in its empty initial state
 	// this is indicated by the only token having an id of -1
+	Lexer antlrLexer = ((ANTLRLexerAdapter) lexer.getBatchLexer()).getANTLRLexer();
+	CharStream originalStream = antlrLexer.getCharStream();
 	while (!TbMarkingUtil.isEOS(tok = TbNavigationUtil.nextToken(tok)) && tok != null && tok.getType() != 0) {
 	    lexer.getBatchLexer().setState(tok.getState());
-	    Lexer antlrLexer = ((ANTLRLexerAdapter) lexer.getBatchLexer()).getANTLRLexer();
 	    String value = shortPrettyPrinter.resynchronizeToEditableState(tok);
 	    AbstractToken nextToken = TbNavigationUtil.nextToken(tok);
 	    if (!TbMarkingUtil.isEOS(tok)) {
@@ -105,5 +107,6 @@ public class TbRecoverUtil {
 				+ "Lexer/Parser. Save the Editor in order to update the textual model.");
 	    }
 	}
+	antlrLexer.setCharStream(originalStream);
     }
 }
