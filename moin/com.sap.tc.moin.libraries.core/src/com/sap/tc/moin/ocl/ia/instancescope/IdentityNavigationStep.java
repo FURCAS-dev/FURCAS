@@ -25,9 +25,9 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  */
 public class IdentityNavigationStep extends AbstractNavigationStep {
-    public IdentityNavigationStep(CoreConnection connection, MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo) {
+    public IdentityNavigationStep(CoreConnection connection, MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo, PathCache pathCache) {
 	super(sourceType, targetType, debugInfo);
-	if (!AbstractNavigationStep.haveIntersectingSubclassTree(connection, sourceType, targetType)) {
+	if (!pathCache.haveIntersectingSubclassTree(connection, sourceType, targetType)) {
 	    setAlwaysEmpty();
 	}
     }

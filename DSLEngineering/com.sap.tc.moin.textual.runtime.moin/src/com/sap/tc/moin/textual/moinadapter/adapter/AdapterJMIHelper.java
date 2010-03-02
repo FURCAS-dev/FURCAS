@@ -22,7 +22,7 @@ import org.omg.ocl.expressions.OclExpression;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.exceptions.DeferredModelElementCreationException;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;
@@ -248,11 +248,9 @@ public class AdapterJMIHelper {
 	 * set.
 	 * 
 	 * @param mock
-	 * @throws DeferredModelElementCreationException
 	 * @throws ModelAdapterException
 	 */
-	public Object actualCreateFromMock(StructureTypeMockObject mock)
-			throws DeferredModelElementCreationException {
+	public Object actualCreateFromMock(StructureTypeMockObject mock) {
 		StructureType type = mock.getStructureType();
 		List<Object> params = new ArrayList<Object>();
 		List<ModelElement> fields = type.getContents();
@@ -563,25 +561,25 @@ public class AdapterJMIHelper {
 		Boolean useContextInsteadOfSelf = false;
 		RefObject contextRefObject = unwrapProxy(contextObject);
 
-		useContextInsteadOfSelf = MoinHelper.usesContext(queryToExecute);
+		useContextInsteadOfSelf = ContextAndForeachHelper.usesContext(queryToExecute);
+		// TODO check use of #foreach
 		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, contextObject, keyValue);
 		try {
-
+	            RefClass registerForBaseClass = useContextInsteadOfSelf ? contextRefObject
+                            .refClass() : sourceModelElement
+                            .refClass();
+		    	String registrationName = getOclRegistrationName(queryToExecute, registerForBaseClass);
 			OclExpressionRegistration reg = (OclExpressionRegistration) connection
 					.getOclRegistryService().getFreestyleRegistry()
-					.getRegistration(queryToExecute);
+					.getRegistration(registrationName);
 			if (reg == null) {
-
-				// TODO usage of query string as reg name ok?
 				reg = connection.getOclRegistryService().getFreestyleRegistry()
 						.createExpressionRegistration(
-								queryToExecute,
+							        registrationName,
 								queryToExecute,
 								OclRegistrationSeverity.Warning,
 								new String[] { "TCSPropertyQuery" },
-								useContextInsteadOfSelf ? contextRefObject
-										.refClass() : sourceModelElement
-										.refClass(),
+								registerForBaseClass,
 								packagesForLookup.toArray(new RefPackage[] {}));
 				// new RefPackage[0]);
 
@@ -614,6 +612,13 @@ public class AdapterJMIHelper {
 					+ queryToExecute, e);
 		}
 	}
+
+
+
+	public static String getOclRegistrationName(String queryToExecute, RefClass registerForBaseClass) {
+	    return ""+registerForBaseClass.refMetaObject().getQualifiedName()+" "+
+	    	queryToExecute;
+	}
 	
 	public Object findElementWithOCLQuery(RefObject sourceModelElement,
                 String referencePropertyName, Object keyValue, String oclQuery,
@@ -633,23 +638,23 @@ public class AdapterJMIHelper {
 		Boolean useContextInsteadOfSelf = false;
 		RefObject contextRefObject = unwrapProxy(contextObject);
 
-		useContextInsteadOfSelf = MoinHelper.usesContext(queryToExecute);
+		useContextInsteadOfSelf = ContextAndForeachHelper.usesContext(queryToExecute);
+		// TODO check use of #foreach
 		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, contextObject, keyValue);
 		try {
-
+		        if(registerForBaseClass == null) {
+		            registerForBaseClass = useContextInsteadOfSelf ? contextRefObject
+                                    .refClass() : sourceModelElement
+                                    .refClass();
+		        }
+		    	String registrationName = getOclRegistrationName(queryToExecute, registerForBaseClass);
 			OclExpressionRegistration reg = (OclExpressionRegistration) connection
 					.getOclRegistryService().getFreestyleRegistry()
-					.getRegistration(queryToExecute);
+					.getRegistration(registrationName);
 			if (reg == null) {
-			        if(registerForBaseClass == null) {
-			            registerForBaseClass = useContextInsteadOfSelf ? contextRefObject
-                                            .refClass() : sourceModelElement
-                                            .refClass();
-			        }
-				// TODO usage of query string as reg name ok?
 				reg = connection.getOclRegistryService().getFreestyleRegistry()
 						.createExpressionRegistration(
-								queryToExecute,
+								registrationName,
 								queryToExecute,
 								OclRegistrationSeverity.Warning,
 								new String[] { "TCSPropertyQuery" },

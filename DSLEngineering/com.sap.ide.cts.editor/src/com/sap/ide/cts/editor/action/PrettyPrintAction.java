@@ -9,6 +9,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import tcs.ConcreteSyntax;
+import tcs.Template;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
@@ -22,6 +23,9 @@ import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
+import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -59,27 +63,52 @@ public class PrettyPrintAction extends Action
 		 {
 			 Connection connection = modelElement.get___Connection();
 			 MQLProcessor mql = connection.getMQLProcessor();
-			 String mqlSyntaxes = "select cs \n" +
-			 		"from \"demo.sap.com/tcsmeta\"#TCS::ConcreteSyntax as cs, \n" +
-			 		"\"demo.sap.com/tcsmeta\"#TCS::ClassTemplate as template, \n" +
+			 
+			 String mqlTemplates = "select template \n" +
+			 		"from \"demo.sap.com/tcsmeta\"#TCS::ClassTemplate as template, \n" +
 			 		"\"" + ( (Partitionable) clazz ).get___Mri( ) + "\" as class \n" +
-			 		"where template.metaReference = class \n" + 
-			        "where template.concreteSyntax = cs \n" +
-			        "where template.isMain=true";
+			 		"where template.metaReference = class";
 			 String mqlTextBlocks = "select tb \n" +
 			 		"from \"demo.sap.com/tcsmeta\"#textblocks::TextBlock as tb, \n" + 
 			 		"\"" + ( (Partitionable) modelElement ).get___Mri( ) + "\" as me \n" + 
-			 		"where tb.correspondingModelElements = me " + 
-			 		"where tb.parentBlock = null";
-			 MQLResultSet resultSet = mql.execute(mqlSyntaxes);
-			 RefObject[] syntaxes = resultSet.getRefObjects("cs");
+			 		"where tb.correspondingModelElements = me";
+			 
+			 MQLResultSet resultSet = mql.execute(mqlTemplates);
+			 RefObject[] templates = resultSet.getRefObjects("template");
 			 resultSet = mql.execute(mqlTextBlocks);
 			 RefObject[] rootTbs = resultSet.getRefObjects("tb");
 			 
-			 if(syntaxes.length > 0)
+			 if(templates.length > 0)
 			 {
+				 TextBlock parent = null;
+				 int oldTbLength = 0;
+				 int oldTbIndex = 0;
+				 int oldOffset = 0;
+				 int oldAbsoluteOffset = 0;
+				 String cachedString = null;
+				 String toDelete = null;
 				 for(RefObject o : rootTbs)
 				 {
+					 if(o instanceof TextBlock)
+					 {
+						 TextBlock t = (TextBlock) o;
+						 oldTbLength = t.getLength();
+						 if (t != null && t.getParentBlock() != null)
+						 {
+							 parent = t.getParentBlock();
+							 oldAbsoluteOffset = t.getAbsoluteOffset();
+							 oldOffset = t.getOffset();
+							 oldTbIndex = parent.getSubBlocks().indexOf(o);
+							 parent.getSubBlocks().remove(o);
+							 cachedString = TbNavigationUtil.getUltraRoot(parent).getCachedString();
+							 if(cachedString!=null)
+							 {
+								 toDelete = cachedString.substring(oldAbsoluteOffset, oldAbsoluteOffset+oldTbLength);
+							 }
+							 cachedString = cachedString.replace(toDelete, "");
+							 parent.setCachedString(cachedString);
+						 }
+					 }
 					 o.refDelete();
 				 }
 				 
@@ -87,15 +116,21 @@ public class PrettyPrintAction extends Action
 				 {
 					 ConcreteSyntax s = null;
 					 TCSExtractorStream stream = null;
-					 if(syntaxes.length > 1)
+					 if(templates.length > 1)
 					 {
-						 ChooseConcreteSyntaxDialog dialog = new ChooseConcreteSyntaxDialog(syntaxes);
-						 s = (ConcreteSyntax) dialog.execute(null);
+						 ChooseConcreteSyntaxDialog dialog = new ChooseConcreteSyntaxDialog(templates);
+						 Object o = dialog.execute(null);
+						 if(o instanceof Template)
+						 {
+							 s = ((Template) o).getConcretesyntax();
+						 }
 					 }
 					 else
 					 {
-						 s = (ConcreteSyntax) syntaxes[0];
-						 
+						 if(templates[0] instanceof Template)
+						 {
+							 s = ((Template) templates[0]).getConcretesyntax();
+						 }
 					 }
 					 IConfigurationElement[] config = Platform.getExtensionRegistry().
 					 		getConfigurationElementsFor("com.sap.ide.cts.parser.parserFactory");
@@ -122,6 +157,17 @@ public class PrettyPrintAction extends Action
 					 if(stream instanceof CtsTextBlockTCSExtractorStream)
 					 {
 						 this.rootBlock = ((CtsTextBlockTCSExtractorStream) stream).getRootBlock();
+						 if(parent != null)
+						 {
+							 this.rootBlock.setOffset(oldOffset);
+							 parent.getSubBlocks().add(oldTbIndex, this.rootBlock);
+							 int lengthToAdd = this.rootBlock.getLength()-oldTbLength;
+							 TbChangeUtil.updateOffsetsWithinTextBlock(this.rootBlock, lengthToAdd);
+							 TbChangeUtil.updateLengthAscending(parent, lengthToAdd);
+							 StringBuffer newCachedString = new StringBuffer(cachedString);
+							 newCachedString.insert(oldAbsoluteOffset, this.rootBlock.getCachedString());
+							 TbNavigationUtil.getUltraRoot(this.rootBlock).setCachedString(newCachedString.toString());
+						 }
 					 }
 					 connection.save();
 					 PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog("Pretty Printer", "Pretty Printer finished successfully!");

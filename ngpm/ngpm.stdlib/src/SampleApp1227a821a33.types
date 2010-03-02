@@ -17,7 +17,7 @@
 <M c='2' q='data.classes.OutputOfSignature' i='E0234C8C51EB7BD33E4B11DE85C00018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='data.classes.A_ownedTypeDefinition_ownerTypedElement' i='E0234C8C51EB7BD63E4B11DEB7290018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.A_ownedTypeDefinitions_ownerSignature' i='E0234C8C51EB7BD93E4B11DEBD740018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='data.classes.A_signature_functionSignatureTypeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.A_signature_typeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='data.classes.A_ownedSignature_functionSignatureTypeDefinition' i='E0234C8C51EB7BF43E4B11DE9C2C0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.A_implementation_functionSignature' i='E0234C8C51EB7BF73E4B11DECFA20018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
@@ -27,7 +27,7 @@
 <M c='2' q='dataaccess.expressions.ObjectCreationExpression' i='E075D95551F2A7D83E4B11DECAAE0018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_classToInstantiate_objectCreationExpression' i='E075D95551F518AF3E4B11DEABE20018DE1146FF' se='1' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='integration.binding.HttpGetBinding' i='E0AD8E325200FF953E4B11DEB0980018DE1146FF' ova='description'/>
 <M c='2' q='integration.binding.SimpleUrlPattern' i='E0AD8E325200FF993E4B11DEB6EF0018DE1146FF'/>
@@ -180,9 +180,9 @@
 <data.classes.A_ownedTypeDefinitions_ownerSignature c='2'>
 <L f='E0600CBB1E12CE7270A411DEB72200155883529C' s='E0600CBB1E153F7270A411DE8DFF00155883529C'/>
 </data.classes.A_ownedTypeDefinitions_ownerSignature>
-<data.classes.A_signature_functionSignatureTypeDefinition c='2'>
+<data.classes.A_signature_typeDefinition c='2'>
 <L f='E0600CBB1E153F7270A411DE8DFF00155883529C' s='E0A1FE6CF361D9F870A311DEACD200155883529C'/>
-</data.classes.A_signature_functionSignatureTypeDefinition>
+</data.classes.A_signature_typeDefinition>
 <data.classes.A_ownedSignature_functionSignatureTypeDefinition c='2'>
 <L f='E0600CBB1E153F7270A411DE8DFF00155883529C' s='E0A1FE6CF361D9F870A311DEACD200155883529C'/>
 </data.classes.A_ownedSignature_functionSignatureTypeDefinition>
@@ -198,9 +198,9 @@
 <dataaccess.expressions.A_classToInstantiate_objectCreationExpression c='2'>
 <L f='local:E0E7AECED71B8A2870A311DE8CD600155883529C' s='E0600CBB1E12CE7770A411DE80FF00155883529C'/>
 </dataaccess.expressions.A_classToInstantiate_objectCreationExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E0600CBB1E153F7070A411DE80FC00155883529C' s='E0600CBB1E12CE7970A411DEB84400155883529C'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <dataaccess.expressions.SignatureCallToSignature c='2'>
 <L f='E0600CBB1E12CE7970A411DEB84400155883529C' s='local:E0E7AECED70FA34E70A311DEC45300155883529C'/>
 </dataaccess.expressions.SignatureCallToSignature>

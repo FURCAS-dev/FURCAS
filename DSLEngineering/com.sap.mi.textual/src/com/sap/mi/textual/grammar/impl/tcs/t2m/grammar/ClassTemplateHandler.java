@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-10-13 17:07:30 +0200 (Di, 13 Okt 2009) $
- * @version $Revision: 8308 $
- * @author: $Author: c5106462 $
+ * Date: $Date: 2010-02-26 09:30:11 +0100 (Fr, 26 Feb 2010) $
+ * @version $Revision: 9485 $
+ * @author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
@@ -32,7 +32,6 @@ import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.mi.textual.moinlookup.util.MetamodelNameResolvingException;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.MessageHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -248,9 +247,8 @@ public class ClassTemplateHandler<Type extends Object> {
      * @param overRideAddtoContext
      * @return
      * @throws JmiException 
-     * @throws MetaModelLookupException 
      */
-    private String getInitString(ClassTemplate template, boolean forceAddToContextFalse, boolean addObjectCreation, boolean withEnterNotification) throws MetaModelLookupException {
+    private String getInitString(ClassTemplate template, boolean forceAddToContextFalse, boolean addObjectCreation, boolean withEnterNotification) {
 
         StringBuilder initString = new StringBuilder(128);
         try {
@@ -286,8 +284,6 @@ public class ClassTemplateHandler<Type extends Object> {
             }
         } catch (SyntaxElementException e) {
             errorBucket.addException(e);
-        } catch (MetamodelNameResolvingException e) {
-            errorBucket.addError("Could not resolve referenced MetamodelElement." + MessageHelper.getTemplateName(template), template);
         }
         return initString.toString();
     }

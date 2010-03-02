@@ -44,7 +44,7 @@ extends Parser
         super(input, (RecognizerSharedState)null);
     }
     
-    private IParsingObserver observer;
+    protected IParsingObserver observer;
     private boolean exceptionThrown = false;
     
     /**
@@ -111,7 +111,7 @@ extends Parser
      * notifies observer that after parsing, an element has been created for a reference in the text. 
      * @param modelElement
      */
-    protected void onRuleElementResolvedOutOfContext(Object modelElement, Object contextModelElement, ANTLR3LocationToken referenceLocation) {
+    public void onRuleElementResolvedOutOfContext(Object modelElement, Object contextModelElement, ANTLR3LocationToken referenceLocation) {
         if (observer == null || getBacktrackingLevel() > 0) {
 		return;
 	}
@@ -320,5 +320,11 @@ public Object match(IntStream input, int ttype, BitSet follow)
         this.exceptionThrown = exceptionThrown;
     }
 
-    
+    @Override
+    public void reset() {
+	super.reset();
+	if (this.observer != null) {
+	    this.observer.reset();
+	}
+    }
 }

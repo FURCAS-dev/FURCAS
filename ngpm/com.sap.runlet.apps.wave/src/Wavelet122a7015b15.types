@@ -38,7 +38,7 @@
 <M c='2' q='dataaccess.expressions.This' i='E075D95551F2A7DD3E4B11DECB680018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallParameters' i='E075D95551F518BE3E4B11DEA11F0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
@@ -544,9 +544,9 @@
 <L f='E0A5ADB54D56767D777311DEB49300155883529C' s='E0A5ADB54D58E773777311DEC22C00155883529C'/>
 <L f='E0A5ADB54D567677777311DEB8B800155883529C' s='E0A5ADB54D58E774777311DE876900155883529C'/>
 </dataaccess.expressions.A_object_objectBasedExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E0A5ADB54D58E775777311DEA63B00155883529C' s='E0A5ADB54D58E774777311DE876900155883529C'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <dataaccess.expressions.SignatureCallParameters c='2'>
 <L f='E0A5ADB54D58E772777311DEA4A300155883529C' s='E0A5ADB54D58E773777311DEC22C00155883529C'/>
 <L f='E0A5ADB54D58E773777311DEC22C00155883529C' s='E0A5ADB54D58E774777311DE876900155883529C'/>

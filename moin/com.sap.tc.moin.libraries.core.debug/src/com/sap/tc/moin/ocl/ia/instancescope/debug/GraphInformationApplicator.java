@@ -141,7 +141,7 @@ public class GraphInformationApplicator {
     public void applyNavigationCountColoring(NavigationStep firstLevelNavigationStep) {
 	Node[] nodeArray = context.getGraph().getNodeArray();
 
-	GraphExtractor extractor = NavigationStepDebugHelper.createGraphExtractorForNavigationStep(firstLevelNavigationStep);
+	GraphExtractor extractor = NavigationStepDebugHelperImpl.createGraphExtractorForNavigationStep(firstLevelNavigationStep);
 	int navigationCountAll = extractor.getSumOfNavigateCounter();
 
 	for (Node node : nodeArray) {

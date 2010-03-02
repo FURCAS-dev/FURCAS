@@ -2,21 +2,20 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-02-05 15:00:44 +0100 (Fr, 05 Feb 2010) $
- * Revision: $Revision: 9371 $
- * Author: $Author: c5106462 $
+ * Date: $Date: 2010-02-26 23:08:40 +0100 (Fr, 26 Feb 2010) $
+ * Revision: $Revision: 9502 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
 
 import java.util.List;
-import java.util.regex.Matcher;
 
 import textblocks.TextBlock;
 
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IRuleName;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.impl.context.ContextManager;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
@@ -41,8 +40,17 @@ public class DelayedReference implements Cloneable {
     /** Constant for reference type semantic predicate */
     public static final int SEMANTIC_PREDICATE = 1;
 
+    public static final int CONTEXT_LOOKUP = 2;
+
     /** The current context. */
     private Object referenceContextObject;
+    
+    /**
+     * If the reference occurs in a template that is invoked by a "foreach" predicate in
+     * another template, this attribute is set to the value of the foreach's OCL expression
+     * that was current when this reference was created.
+     */
+    private Object currentForeachElement;
 
     /** The object. */
     private Object modelElement;
@@ -115,6 +123,7 @@ public class DelayedReference implements Cloneable {
      * @param currentContextElement
      *            Node in the context tree created during parsing (elements are
      *            added to such nodes)
+     * @param currentForeachElement TODO
      * @param object
      *            Object for which to set a reference
      * @param propertyName
@@ -143,12 +152,13 @@ public class DelayedReference implements Cloneable {
      * @param token
      *            used to determine location, which is used for error messages
      */
-    DelayedReference(IModelElementProxy currentContextElement, Object object,
-            String propertyName, List<String> valueTypeName, String keyName,
-            Object keyValue, String lookIn, String autoCreate,
-            List<String> createAs, boolean importContext, String createIn,
-            boolean isOptional, ANTLR3LocationToken token) {
+    DelayedReference(IModelElementProxy currentContextElement, Object currentForeachElement,
+            Object object, String propertyName, List<String> valueTypeName,
+            String keyName, Object keyValue, String lookIn,
+            String autoCreate, List<String> createAs, boolean importContext,
+            String createIn, boolean isOptional, ANTLR3LocationToken token) {
         this.referenceContextObject = currentContextElement;
+        this.currentForeachElement = currentForeachElement;
         this.modelElement = object;
         this.propertyName = propertyName;
         this.valueTypeName = valueTypeName;
@@ -172,25 +182,21 @@ public class DelayedReference implements Cloneable {
      *            the model element (proxy) that is the innermost context to be
      *            used for default lookups, such as <tt>refersTo = name</tt>
      *            without any further specifications or queries.
-     * 
+     * @param currentForeachElement TODO
      * @param object
      *            the element on which the property identified by
      *            <tt>propertyName</tt> is to be set
-     * 
      * @param propertyName
      *            identifies the property to be set on <tt>object</tt>
-     * 
      * @param keyName
      *            feature name given with <tt>refersTo</tt>, e.g., "name" in
      *            case <tt>refersTo=name</tt> was used.
-     * 
      * @param keyValue
      *            the parameter to be used for the lookup; typically the text
      *            parsed as the referencing identifier; for the OCL query, this
      *            will be substituted for a <tt>?</tt> occurring in the OCL
      *            expression; for a simple <tt>refersTo=someFeature</tt> this
      *            value will be compared to the value of <tt>someFeature</tt>.
-     * 
      * @param oclQuery
      *            If provided, a string currently prefixed with "OCL:" whose
      *            suffix is parsed using the OCL parser of MOIN. It can use "?"
@@ -198,20 +204,19 @@ public class DelayedReference implements Cloneable {
      *            substituted by <tt>keyValue</tt>; if <tt>#context</tt> or
      *            <tt>#context(name)</tt> is used in the query, it will be
      *            substituted by the respective context element.
-     * 
+     * @param isOptional
+     *            If a reference is defined as being optional, if it is optional
+     *            a not resolving of the reference won't result in an error.
      * @param token
      *            partly redundant to <tt>keyValue</tt>, kept because in some
      *            specific cases an unescaping from the token is necessary to
      *            obtain the <tt>keyValue</tt>.
-     * 
-     * @param isOptional
-     *            If a reference is defined as being optional, if it is optional
-     *            a not resolving of the reference won't result in an error.
      */
-    public DelayedReference(IModelElementProxy currentContext, Object object,
-            String propertyName, String keyName, Object keyValue,
-            String oclQuery, boolean isOptional, ANTLR3LocationToken token) {
+    public DelayedReference(IModelElementProxy currentContext, Object currentForeachElement,
+            Object object, String propertyName, String keyName,
+            Object keyValue, String oclQuery, boolean isOptional, ANTLR3LocationToken token) {
         this.referenceContextObject = currentContext;
+        this.currentForeachElement = currentForeachElement;
         this.modelElement = object;
         this.propertyName = propertyName;
         this.keyName = keyName;
@@ -225,19 +230,13 @@ public class DelayedReference implements Cloneable {
     /**
      * Used by
      * {@link ObservableInjectingParser#setModeRef(Object, String, String, String)}
-     * 
-     * @param referenceContextObject
-     * @param modelElement
-     * @param propertyName
-     * @param oclQuery
-     * @param mode
      */
 
-    public DelayedReference(Object referenceContextObject, int type,
-            Object modelElement, String propertyName, String oclQuery,
-            String mode, List<PredicateSemantic> list,
-            IRuleName ruleNameFinder, ANTLR3LocationToken token,
-            boolean hasContext, boolean isOptional) {
+    public DelayedReference(Object referenceContextObject, Object currentForeachElement,
+            int type, Object modelElement, String propertyName,
+            String oclQuery, String mode,
+            List<PredicateSemantic> list, IRuleName ruleNameFinder,
+            ANTLR3LocationToken token, boolean hasContext, boolean isOptional) {
         super();
         this.referenceContextObject = referenceContextObject;
         this.modelElement = modelElement;
@@ -260,6 +259,10 @@ public class DelayedReference implements Cloneable {
     public Object getContextElement() {
         return referenceContextObject;
     }
+    
+    public Object getCurrentForeachElement() {
+	return currentForeachElement;
+    }
 
     /**
      * Gets the model element of from which to set a reference to another
@@ -279,9 +282,10 @@ public class DelayedReference implements Cloneable {
      * {@link #getModelElement()} call is used.
      */
     public Object getElementForSelf() {
-        Matcher matcher = ContextManager.contextPattern.matcher(getOclQuery());
-        if (matcher.find()) {
+        if (ContextAndForeachHelper.usesContext(getOclQuery())) {
             return getContextElement();
+        } else if (ContextAndForeachHelper.usesForeach(getOclQuery())) {
+            return getCurrentForeachElement();
         } else {
             return getModelElement();
         }
@@ -557,9 +561,9 @@ public class DelayedReference implements Cloneable {
     }
 
     @Override
-    public Object clone() {
+    public DelayedReference clone() {
         try {
-            return super.clone();
+            return (DelayedReference) super.clone();
         } catch (CloneNotSupportedException e) {
             // this should never happen.
             return null;

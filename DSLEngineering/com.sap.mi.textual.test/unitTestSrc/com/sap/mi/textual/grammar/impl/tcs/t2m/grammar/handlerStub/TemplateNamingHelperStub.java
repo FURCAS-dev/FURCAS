@@ -8,9 +8,7 @@ import java.util.List;
 import tcs.QualifiedNamedElement;
 import tcs.Template;
 
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.mi.textual.moinlookup.util.MetamodelNameResolvingException;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.util.StringConcatUtil;
@@ -30,29 +28,26 @@ public class TemplateNamingHelperStub<Type extends Object> extends TemplateNamin
 
     
     @Override
-    public String getConcreteRuleNameForTemplate(Template template, SyntaxLookup lookup)
-	    throws SyntaxElementException {
+    public String getConcreteRuleNameForTemplate(Template template, SyntaxLookup lookup) {
 	return getRuleName(template) + "__impl";
     }
 
 
     @Override
     public String getMetaTypeListParameter(
-            ResolvedNameAndReferenceBean<Type> reference)
-            throws SyntaxElementException {
+            ResolvedNameAndReferenceBean<Type> reference) {
         return StringConcatUtil.concat("\"",reference.getNames(),"\"");
     }
 
     @Override
-    public String getMetaTypeListParameter(Template template)
-            throws SyntaxElementException {
+    public String getMetaTypeListParameter(Template template) {
         return StringConcatUtil.concat(template.getNames().toArray());
     }
 
 
     @Override
     public String getRuleNameForMode(QualifiedNamedElement namedElement,
-            String mode) throws SyntaxElementException {
+            String mode) {
         if (mode != null) {
             return getRuleName(namedElement)+ "_" + mode;
         } else {
@@ -68,14 +63,12 @@ public class TemplateNamingHelperStub<Type extends Object> extends TemplateNamin
     }
 
     @Override
-    public String getRuleName(QualifiedNamedElement element)
-            throws SyntaxElementException {
+    public String getRuleName(QualifiedNamedElement element) {
         return StringConcatUtil.concat(element.getNames().toArray());
     }
 
     @Override
-    public String getMetaTypeListParameter(List<String> names)
-            throws MetamodelNameResolvingException {
+    public String getMetaTypeListParameter(List<String> names) {
         return StringConcatUtil.concat(names.toArray());
     }
 

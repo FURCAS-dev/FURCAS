@@ -1,4 +1,6 @@
-This directory should contain an up to date build of the TCS metamodel DC.
-That can be most conveniently done by editing the .rar file here in this folder. 
-Just copy the changed .moinmm files from the tcsmetamodel project into the .rar
-file and override the existing ones. Do not forget to refresh this project afterwards.
+This directory should contain a bunch of .zip files that contain metamodels.
+The .zip files are automatically updated when standalone tests are executed.
+However, a manual refresh is necessary after the first test execution after
+a metamodel change so that the Eclipse workspace learns about the update.
+This may mean that your standalone tests will fail upon the first execution
+because the Eclipse refresh hasn't happened yet. 

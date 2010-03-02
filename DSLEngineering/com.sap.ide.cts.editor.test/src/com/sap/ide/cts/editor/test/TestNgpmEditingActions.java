@@ -53,6 +53,29 @@ import dataaccess.expressions.VariableExpression;
 public class TestNgpmEditingActions extends RunletEditorTest {
     
     /**
+     * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
+     * multiplicity of calling a method with 1..1 output multiplicity should change to 1..1.
+     */
+    @Test
+    public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
+        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(53, 0, " 1..1");
+        
+        document.replace(72, 0, " 1..1");
+        
+        saveAll(editor);
+        assertTrue(refObject.is___Alive());
+	MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
+		.iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
+	assertEquals(1, mce.getType().getLowerMultiplicity());
+        close(editor);
+    };
+
+    /**
      * When renaming an association end, the method signatures that expose the
      * association end in the class are duplicated.
      */

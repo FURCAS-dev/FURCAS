@@ -38,6 +38,7 @@ import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
 import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
 import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper.AssociationBean;
 
 /**
@@ -216,11 +217,16 @@ public class MoinModelAdapterDelegate {
             Reference reference = jmiHelper.getReferenceByName(mofClass, propertyName, true);
             if (reference != null && value instanceof RefObject) {
                 RefObject refObjectValue = (RefObject) value;
-                jmiHelperDelegate.createAssociationLink(reference, refAObject, refObjectValue);
+                try {
+                    jmiHelperDelegate.createAssociationLink(reference, refAObject, refObjectValue);
+                } catch (TypeMismatchException tme) {
+                    throw new ModelAdapterException("Cannot add value, property " + propertyName +
+                	    " has wrong type", tme);
+                }
             } else if (reference != null && value instanceof Collection) {
                 if(reference.getMultiplicity().getUpper() < ((Collection)value).size()) {
                     throw new ModelAdapterException("Cannot add value, property " + propertyName + " has an upper multiplicity of " + 
-                            reference.getMultiplicity().getUpper()  + " but wanted to to set " + ((Collection)value).size() + " elements (" + ((Collection)value) + "");
+                            reference.getMultiplicity().getUpper()  + " but wanted to to set " + ((Collection<?>)value).size() + " elements (" + value + "");
                 }
             	for (Iterator iterator = ((Collection)value).iterator(); iterator
 						.hasNext();) {
@@ -326,6 +332,7 @@ public class MoinModelAdapterDelegate {
 
     }
     
+    @SuppressWarnings("unchecked")
     public void unset(RefObject refAObject, String propertyName, Object value)  throws ModelAdapterException {        
 	        MofClass mofClass = (MofClass) refAObject.refMetaObject();
 
@@ -361,7 +368,7 @@ public class MoinModelAdapterDelegate {
 	                RefObject refObjectValue = (RefObject) value;
 	                jmiHelperDelegate.removeAssociationLink(reference, refAObject, refObjectValue);
 	            } else if (reference != null && value instanceof Collection) {
-	            	for (Iterator iterator = ((Collection)value).iterator(); iterator
+	            	for (Iterator<?> iterator = ((Collection<?>)value).iterator(); iterator
 							.hasNext();) {
 						RefObject refObjectValue = (RefObject) iterator.next();
 						jmiHelperDelegate.removeAssociationLink(reference, refAObject, refObjectValue);					
@@ -376,7 +383,7 @@ public class MoinModelAdapterDelegate {
 	                } else {
 	                    if(associationFound.isFirst) {
 	                        if(value instanceof Collection) {
-	                            for (Object obj : (Collection) value) {
+	                            for (Object obj : (Collection<?>) value) {
 	                                associationFound.refAss.refRemoveLink(refAObject, (RefObject) obj);
                                     }
 	                        } else {
@@ -385,7 +392,7 @@ public class MoinModelAdapterDelegate {
 	                	
 	                    } else {
 	                        if(value instanceof Collection) {
-    	                            for (Object obj : (Collection) value) {
+    	                            for (Object obj : (Collection<?>) value) {
                                         associationFound.refAss.refRemoveLink((RefObject) obj, refAObject);
                                     }
 	                        } else {
@@ -549,14 +556,10 @@ public class MoinModelAdapterDelegate {
             StructureTypeMockObject mock = iterator.next();
             if (mock2ModelElementMap.containsKey(mock)) {
                 continue; // mock already resolved earlier, e.g. in set()
-            }
-            try {
-                Object realModelElement = jmiHelperDelegate.actualCreateFromMock(mock);
-                mock2ModelElementMap.put(mock, realModelElement);
-            } catch (DeferredModelElementCreationException e) {
-                exceptions.add(e);
-            }
-            if (exceptions.size() > 0) {
+	    }
+	    Object realModelElement = jmiHelperDelegate.actualCreateFromMock(mock);
+	    mock2ModelElementMap.put(mock, realModelElement);
+	    if (exceptions.size() > 0) {
                 DeferredActionResolvingException exception = new DeferredActionResolvingException(exceptions.size() + " deferred actions failed", exceptions);
                 throw exception;
             }
@@ -607,7 +610,7 @@ public class MoinModelAdapterDelegate {
         return refObject;
     }
     
-    public Collection getOclEvaluation(RefObject sourceModelElement,
+    public Collection<?> getOclEvaluation(RefObject sourceModelElement,
             String referencePropertyName, Object keyValue, String oclQuery, Object contextObject) throws ModelAdapterException, ReferenceSettingException {
         
         if (keyValue instanceof RefObject || keyValue instanceof StructureTypeMockObject) {
@@ -615,7 +618,7 @@ public class MoinModelAdapterDelegate {
             throw new ReferenceSettingException("Queries by non-primitive References not possible: " + oclQuery);
         }
         
-        Collection refObject = null;
+        Collection<?> refObject = null;
     	if(oclQuery.startsWith(OCL_QUERY_PREFIX)) {
     		refObject = jmiHelperDelegate.findElementsWithOCLQuery(sourceModelElement, 
     				referencePropertyName, keyValue, oclQuery.substring(OCL_QUERY_PREFIX.length()), contextObject);
