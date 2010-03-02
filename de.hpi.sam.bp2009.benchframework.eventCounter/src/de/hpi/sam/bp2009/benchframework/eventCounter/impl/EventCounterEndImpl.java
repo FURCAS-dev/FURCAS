@@ -552,6 +552,7 @@ public class EventCounterEndImpl extends EObjectImpl implements EventCounterEnd 
 			msg += key + " " + rslt.getEventCounts().get(key).toString() + "; ";
 		}
 		rslt.setMessage(msg);
+		setResult(rslt);
 	}
 
 } //ExecutionTimeBenchmarkerEndImpl
