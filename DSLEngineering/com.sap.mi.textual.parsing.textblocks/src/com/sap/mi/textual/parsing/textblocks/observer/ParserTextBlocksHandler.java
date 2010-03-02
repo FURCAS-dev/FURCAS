@@ -23,6 +23,7 @@ import textblocks.DocumentNodeReferencesCorrespondingModelElement;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
@@ -246,7 +247,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                                 + "\" as class "
                                 + " where template.metaReference = class";
     
-                        result = connection.getMQLProcessor().execute(query);
+                        result = connection.getMQLProcessor().execute(query, mappingQueryScope);
                         refObjects = result.getRefObjects("template");
     
                         if (refObjects.length > 1) {
@@ -534,6 +535,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	@Override
 	public void notifyModelElementResolvedOutOfContext(Object modelElement,
 			Object contextModelElement, Token referenceLocation) {
+	    if (contextModelElement instanceof ResolvedModelElementProxy) {
+		contextModelElement = ((ResolvedModelElementProxy) contextModelElement).getRealObject();
+	    }
 		TextBlock contextBlock = getTextBlockForElementAt((RefObject) contextModelElement, (ANTLR3LocationToken) referenceLocation);
 		if(contextBlock != null && modelElement instanceof RefObject) {
 		    boolean isModelElementInCurrentTbProxy = false;
@@ -595,6 +599,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	private AbstractToken navigateToToken(TextBlock contextBlock,
 			Token referenceLocation) {
+	    if (referenceLocation != null) {
 		int absoluteLocation = ((ANTLR3LocationToken)referenceLocation).getStartIndex();
 		int relativeLocation = absoluteLocation - TbUtil.getAbsoluteOffset(contextBlock);
 		for (AbstractToken tok : contextBlock.getTokens()) {
@@ -602,6 +607,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 				return tok;
 			}
 		}
+	    }
 		return null;
 	}
 
@@ -642,7 +648,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		    DocumentNode node = iterator.next();
 		    int candidateOffset = TbUtil.getAbsoluteOffset(node);
 
-		    if ( (candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()) ) {
+		    if (referenceToken != null && ((candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()))) {
 		        continue;
 		    }
 

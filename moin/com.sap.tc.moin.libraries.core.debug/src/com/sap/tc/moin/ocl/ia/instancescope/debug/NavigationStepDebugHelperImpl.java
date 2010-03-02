@@ -35,7 +35,7 @@ import com.sap.tc.moin.repository.core.CoreConnection;
  * 
  * @author Manuel Holzleitner (d049667)
  */
-public class NavigationStepDebugHelper {
+public class NavigationStepDebugHelperImpl {
     
     public static void printGraphFile(NavigationStep step, CoreConnection conn, String path){
 	GraphContext graphContext = new GraphContext();
@@ -139,6 +139,7 @@ public class NavigationStepDebugHelper {
 	try {
 	    File f = new File(path);
 	    try {
+		f.getParentFile().mkdirs();
 		f.createNewFile();
 	    } catch (IOException e) {
 		e.printStackTrace();

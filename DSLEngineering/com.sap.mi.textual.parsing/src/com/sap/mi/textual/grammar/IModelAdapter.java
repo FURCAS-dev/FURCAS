@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-11-10 14:52:04 +0100 (Di, 10 Nov 2009) $
- * Revision: $Revision: 8522 $
+ * Date: $Date: 2010-02-26 15:24:24 +0100 (Fr, 26 Feb 2010) $
+ * Revision: $Revision: 9496 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar;
@@ -139,19 +139,10 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
 	/**
 	 * Unsets the poperty <tt> prop</tt> of the given <tt>modelElement</tt> which had the given
 	 * <tt>value</tt> before.
-	 * @param modelElement
-	 * @param prop
-	 * @param value
-	 * 
-	 * @throws ModelAdapterException
 	 */
 	void unset(Object modelElement, String prop, Object value) throws ModelAdapterException;
     /**
      * Creates or simply returns an enum literal.
-     * 
-     * @param enumName
-     * @param name
-     * @return
      */
     Object createEnumLiteral(List<String> enumName, String name) throws ModelAdapterException;
 
@@ -159,23 +150,12 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      * Attempts to set the feature of the given name of the given modelElement to another 
      * modelelement to be retrieved using the query, in which the key Value can be used 
      * (which can also be a model Element!).
-     * @param modelElement
-     * @param propertyName
-     * @param keyValue 
-     * @param mqlQuery
-     * @param contextElement 
      */
     Object setOclReference(Object modelElement, String propertyName,
-            Object keyValue, String mqlQuery, Object contextElement) throws ModelAdapterException, ReferenceSettingException;
+            Object keyValue, String mqlQuery, Object contextElement, Object currentForeachElement) throws ModelAdapterException, ReferenceSettingException;
     
     /**
      * Uses the oclQuery to create a new model element which is returned
-     * @param modelElement
-     * @param propertyName
-     * @param keyValue
-     * @param oclQuery
-     * @param contextElement
-     * @throws ModelAdapterException
      */
     Collection<?> getPredicateOclReference(Object modelElement, String propertyName,
             Object keyValue, String oclQuery, Object contextElement) throws ModelAdapterException;

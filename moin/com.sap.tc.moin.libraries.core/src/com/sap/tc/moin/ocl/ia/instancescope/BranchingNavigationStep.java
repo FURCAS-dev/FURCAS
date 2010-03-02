@@ -26,7 +26,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
      */
     private Set<NavigationStep> stepsAlwaysEmptyInThisStepsContext;
     
-    public BranchingNavigationStep(final CoreConnection conn, MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo, NavigationStep... parallelSteps) {
+    public BranchingNavigationStep(final CoreConnection conn, MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo, final PathCache pathCache, NavigationStep... parallelSteps) {
 	// TODO be smart about allInstances steps that subsume other steps with same or specialized targetType
 	// TODO be smart and recognize alwaysEmpty in case of a single GOTO that goes immediately to this
 	// TODO be smart and combine steps where one is just an indirection for another
@@ -37,11 +37,14 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 	    setAlwaysEmpty();
 	} else {
 	    for (NavigationStep step : getSteps()) {
-		if (!step.isAlwaysEmpty()) {
+		if (step.isAlwaysEmpty()) {
+		    stepsAlwaysEmptyInThisStepsContext.add(step);
+		} else {
 		    step.addAlwaysEmptyChangeListener(new AlwaysEmptyChangeListener() {
 			@Override
 			public void alwaysEmptyChanged(NavigationStep stepForWhichAlwaysEmptyChanged) {
-			    if (areAllStepsAlwaysEmpty()) {
+			    stepsAlwaysEmptyInThisStepsContext.add(stepForWhichAlwaysEmptyChanged);
+			    if (stepsAlwaysEmptyInThisStepsContext.size() == getSteps().length) {
 				setAlwaysEmpty();
 			    }
 			}
@@ -52,7 +55,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 			    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 				// if source type is set where it was previously not set, check if that step
 				// can be removed
-				if (!haveIntersectingSubclassTree(conn, stepForWhichSourceTypeChanged.getSourceType(), getSourceType())) {
+				if (!pathCache.haveIntersectingSubclassTree(conn, stepForWhichSourceTypeChanged.getSourceType(), getSourceType())) {
 				    stepsAlwaysEmptyInThisStepsContext.add(stepForWhichSourceTypeChanged);
 				    if (stepsAlwaysEmptyInThisStepsContext.size() == getSteps().length) {
 					setAlwaysEmpty();
@@ -61,7 +64,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 			    }
 			});
 		    } else {
-			if (!haveIntersectingSubclassTree(conn, step.getSourceType(), getSourceType())) {
+			if (!pathCache.haveIntersectingSubclassTree(conn, step.getSourceType(), getSourceType())) {
 			    stepsAlwaysEmptyInThisStepsContext.add(step);
 			}
 		    }
@@ -71,7 +74,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 			    public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
 				// if source type is set where it was previously not set, check if that step
 				// can be removed
-				if (!haveIntersectingSubclassTree(conn, stepForWhichTargetTypeChanged.getTargetType(), getTargetType())) {
+				if (!pathCache.haveIntersectingSubclassTree(conn, stepForWhichTargetTypeChanged.getTargetType(), getTargetType())) {
 				    stepsAlwaysEmptyInThisStepsContext.add(stepForWhichTargetTypeChanged);
 				    if (stepsAlwaysEmptyInThisStepsContext.size() == getSteps().length) {
 					setAlwaysEmpty();
@@ -80,7 +83,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 			    }
 			});
 		    } else {
-			if (!haveIntersectingSubclassTree(conn, step.getSourceType(), getTargetType())) {
+			if (!pathCache.haveIntersectingSubclassTree(conn, step.getSourceType(), getTargetType())) {
 			    stepsAlwaysEmptyInThisStepsContext.add(step);
 			}
 		    }

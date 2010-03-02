@@ -36,98 +36,112 @@ import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
+public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
+{
 
-	private static boolean debug = false;
+	private static boolean	debug					= false;
 	/**
 	 * this is used to track unmatched opened and closed textblocks
 	 */
-	private int textBlocksHandleCounter = 0;
+	private int				textBlocksHandleCounter	= 0;
 
-	private Stack<Integer> openTextBlocksHandles = new Stack<Integer>();
+	private Stack<Integer>	openTextBlocksHandles	= new Stack<Integer>();
 
-	interface TextBlockCommand {
+	interface TextBlockCommand
+	{
 		void execute();
 	}
 
-	class AddNextTextBlockCommand implements TextBlockCommand {
+	class AddNextTextBlockCommand implements TextBlockCommand
+	{
 
-		private RefObject object;
-		private Template t;
-		private SequenceElement se;
-		private int handle;
+		private RefObject		object;
+		private Template		t;
+		private SequenceElement	se;
+		private int				handle;
 
 		public AddNextTextBlockCommand(RefObject object, Template t,
-				SequenceElement se, int handle) {
+				SequenceElement se, int handle)
+		{
 			this.object = object;
 			this.t = t;
 			this.se = se;
 			this.handle = handle;
 		}
 
-		public void execute() {
+		public void execute()
+		{
 			addNextTextBlock(object, t, se, handle);
 		}
 	}
 
-	class FinishTextBlockCommand implements TextBlockCommand {
+	class FinishTextBlockCommand implements TextBlockCommand
+	{
 
-		private int handle;
+		private int	handle;
 
-		public FinishTextBlockCommand(int handle) {
+		public FinishTextBlockCommand(int handle)
+		{
 			this.handle = handle;
 		}
 
-		public void execute() {
+		public void execute()
+		{
 			finishTextBlock(handle);
 		}
 	}
 
-	class AddNextTokenCommand implements TextBlockCommand {
+	class AddNextTokenCommand implements TextBlockCommand
+	{
 
-		private String s;
-		private SequenceElement se;
+		private String			s;
+		private SequenceElement	se;
 
-		public AddNextTokenCommand(String s, SequenceElement se) {
+		public AddNextTokenCommand(String s, SequenceElement se)
+		{
 			this.s = s;
 			this.se = se;
 		}
 
-		public void execute() {
+		public void execute()
+		{
 			addNextToken(s, se);
 		}
 	}
 
-	private List<TextBlockCommand> current = new ArrayList<TextBlockCommand>();
-	private Map<Integer, List<TextBlockCommand>> backup = new HashMap<Integer, List<TextBlockCommand>>();
-	private int curBackupHandle = 0;
-	private Stack<SequenceElement> currentSE = new Stack<SequenceElement>();
-	private Map<TextBlock, Template> blockToTemplate = new HashMap<TextBlock, Template>();
+	private List<TextBlockCommand>					current					= new ArrayList<TextBlockCommand>();
+	private Map<Integer, List<TextBlockCommand>>	backup					= new HashMap<Integer, List<TextBlockCommand>>();
+	private int										curBackupHandle			= 0;
+	private Stack<SequenceElement>					currentSE				= new Stack<SequenceElement>();
+	private Map<TextBlock, Template>				blockToTemplate			= new HashMap<TextBlock, Template>();
 
-	TextblocksPackage pack = null;
-	ModelPartition part = null;
-	TextBlock rootBlock = null;
-	TextBlock curBlock = null;
-	int curOffset = 0;
-	int curBlockLength = 0;
+	TextblocksPackage								pack					= null;
+	ModelPartition									part					= null;
+	TextBlock										rootBlock				= null;
+	TextBlock										curBlock				= null;
+	int												curOffset				= 0;
+	int												curBlockLength			= 0;
 
-	StringBuffer rootBlockCachedString = new StringBuffer();
-	private final Lexer lexer;
+	StringBuffer									rootBlockCachedString	= new StringBuffer();
+	private final Lexer								lexer;
 
 	public CtsTextBlockTCSExtractorStream(
 			TextblocksPackage pack,
 			ModelPartition partitionForTextBlocks,
-			ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+			ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory)
+	{
 		this.pack = pack;
 		part = partitionForTextBlocks;
 		this.lexer = parserFactory.createLexer(null);
 	}
 
-	public TextBlock getRootBlock() {
+	public TextBlock getRootBlock()
+	{
 		return rootBlock;
 	}
 
-	TextBlock createTextBlock() {
+	TextBlock createTextBlock()
+	{
 		TextBlock b = (TextBlock) pack.getTextBlock()
 				.refCreateInstanceInPartition(part);
 		b.setChildrenChanged(false);
@@ -145,7 +159,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		return b;
 	}
 
-	LexedToken createLexedToken(SequenceElement se) {
+	LexedToken createLexedToken(SequenceElement se)
+	{
 		// TODO compute lookahead and lookback using lexer!
 		LexedToken t = (LexedToken) pack.getLexedToken()
 				.refCreateInstanceInPartition(part);
@@ -168,7 +183,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		return t;
 	}
 
-	OmittedToken createOmittedToken() {
+	OmittedToken createOmittedToken()
+	{
 		// TODO compute lookahead and lookback using lexer!
 		OmittedToken t = (OmittedToken) pack.getOmittedToken()
 				.refCreateInstanceInPartition(part);
@@ -191,8 +207,10 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	void addNextTextBlock(RefObject correspondingModelElement,
-			Template template, SequenceElement se, int handle) {
-		if (debug) {
+			Template template, SequenceElement se, int handle)
+	{
+		if (debug)
+		{
 			System.out.println("adding TextBlock for template "
 					+ TcsDebugUtil.prettyPrint(template) + " with handle: "
 					+ handle);
@@ -200,17 +218,22 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 
 		openTextBlocksHandles.add(handle);
 
-		if (rootBlock == null) {
+		if (rootBlock == null)
+		{
 			// first textBlock, special rootBlock handling
 			rootBlock = createTextBlock();
 			setType(rootBlock, template);
 			rootBlock.setOffsetRelative(false);
-			if (correspondingModelElement != null) {
-				if (TcsUtil.isPropertyInit(se)) {
+			if (correspondingModelElement != null)
+			{
+				if (TcsUtil.isPropertyInit(se))
+				{
 					// Add to referenced element if its a Property Init
 					rootBlock.getReferencedElements().add(
 							correspondingModelElement);
-				} else {
+				}
+				else
+				{
 					rootBlock.getCorrespondingModelElements().add(
 							correspondingModelElement);
 				}
@@ -218,11 +241,27 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			rootBlock.setSequenceElement(se);
 			curBlock = rootBlock;
 
-			if (debug) {
+			if (debug)
+			{
 				System.out.println("adding BosToken");
 			}
-			addBosToken();
-		} else {
+			if (template instanceof ClassTemplate)
+			{
+				if (((ClassTemplate) template).isMain())
+				{
+					addBosToken();
+				}
+			}
+			else if(template == null)
+			{
+				if (curBlock.getParentBlock() == null)
+				{
+					addBosToken();
+				}
+			}
+		}
+		else
+		{
 			// not the rootBlock
 
 			// backup curBlockLenght in curBlock.length
@@ -231,11 +270,15 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			TextBlock b = createTextBlock();
 			b.setOffset(curOffset);
 
-			if (correspondingModelElement != null) {
-				if (TcsUtil.isPropertyInit(se)) {
+			if (correspondingModelElement != null)
+			{
+				if (TcsUtil.isPropertyInit(se))
+				{
 					// Add to referenced element if its a Property Init
 					b.getReferencedElements().add(correspondingModelElement);
-				} else {
+				}
+				else
+				{
 					b.getCorrespondingModelElements().add(
 							correspondingModelElement);
 				}
@@ -249,8 +292,10 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		blockToTemplate.put(curBlock, template);
 	}
 
-	private void setType(TextBlock block, Template template) {
-		if (template != null) {
+	private void setType(TextBlock block, Template template)
+	{
+		if (template != null)
+		{
 			TextBlockDefinition tbDef = pack.getTextblockdefinition()
 					.getTextblockDefinitionReferencesProduction()
 					.getTextBlockDefinition(template).iterator().next();
@@ -258,7 +303,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		}
 	}
 
-	void addTextBlock(TextBlock b) {
+	void addTextBlock(TextBlock b)
+	{
 		curBlock.getSubBlocks().add(b);
 
 		curOffset = 0;
@@ -267,52 +313,64 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		curBlock = b;
 	}
 
-	void finishTextBlock(int handle) {
-		if (debug) {
+	void finishTextBlock(int handle)
+	{
+		if (debug)
+		{
 			System.out.println("finishing TextBlock with handle: " + handle);
 		}
 
 		while (openTextBlocksHandles.size() > 0
-				&& openTextBlocksHandles.peek() != handle) {
+				&& openTextBlocksHandles.peek() != handle)
+		{
 			// calls to addTextBlock and finishTextBlock do not match
 			// last textblock was falsely left open
 
 			// gracefully close it
-			if (debug) {
+			if (debug)
+			{
 				System.out.println("closing left-open TextBlock with handle: "
 						+ openTextBlocksHandles.peek());
 			}
 			finishTextBlock(openTextBlocksHandles.peek());
 		}
-		if (openTextBlocksHandles.size() > 0) {
+		if (openTextBlocksHandles.size() > 0)
+		{
 			openTextBlocksHandles.pop();
 		}
 
 		curBlock.setLength(curBlockLength);
 
 		TextBlock parent = curBlock.getParentBlock();
-		if (parent != null) {
+		if (parent != null)
+		{
 
-			if (curBlockLength == 0) {
+			if (curBlockLength == 0)
+			{
 				// this textblock is empty, remove it
-				if (debug) {
+				if (debug)
+				{
 					System.out.println("removing empty TextBlock");
 				}
-				
+
 				// handle this textblock's addToContext flag
 				// addToContext only present on ClassTemplate
 				// context can be present on ClassTemplate and OperatorTemplate
 				Template t = getType(curBlock);
-				if (t instanceof ClassTemplate) {
+				if (t instanceof ClassTemplate)
+				{
 					ClassTemplate ct = (ClassTemplate) t;
-					if (ct.isAddToContext()) {
+					if (ct.isAddToContext())
+					{
 						addToParentContext(curBlock);
 					}
 				}
 
 				parent.getSubBlocks().remove(curBlock);
-				parent.getCorrespondingModelElements().addAll(curBlock.getCorrespondingModelElements());
-				parent.getReferencedElements().addAll(curBlock.getReferencedElements());
+				parent.getCorrespondingModelElements().addAll(
+						curBlock.getCorrespondingModelElements());
+				parent.getReferencedElements().addAll(
+						curBlock.getReferencedElements());
 				curBlock.refDelete();
 			}
 
@@ -321,9 +379,12 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			// restore curOffset from curBlockLength
 			curOffset = curBlockLength;
 			curBlock = parent;
-		} else {
+		}
+		else
+		{
 			// this is for the rootblock only
-			if (curBlock.getTokens().get(0) instanceof Bostoken) {
+			if (curBlock.getTokens().get(0) instanceof Bostoken)
+			{
 				// Ensure that no lookback is set for the first token.
 				// TODO: Currently
 				// the lookback for tokens created by the Extractor is hard
@@ -333,29 +394,35 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 				// in an error.
 				AbstractToken firstTok = TbNavigationUtil
 						.firstTokenWithoutBOS(curBlock);
-				if (firstTok != null) {
+				if (firstTok != null)
+				{
 					firstTok.setLookback(0);
 				}
 			}
 		}
 	}
 
-	private Template getType(TextBlock block) {
+	private Template getType(TextBlock block)
+	{
 		return blockToTemplate.get(block);
 	}
 
-	private void addToParentContext(TextBlock startBlock) {
+	private void addToParentContext(TextBlock startBlock)
+	{
 
 		List<RefObject> modelElements = startBlock
 				.getCorrespondingModelElements();
 
 		TextBlock parentBlock = startBlock.getParentBlock();
-		while (parentBlock != null) {
+		while (parentBlock != null)
+		{
 			Template t = getType(parentBlock);
 
-			if (t instanceof ContextTemplate) {
+			if (t instanceof ContextTemplate)
+			{
 				ContextTemplate ct = (ContextTemplate) t;
-				if (ct.isContext()) {
+				if (ct.isContext())
+				{
 					parentBlock.getElementsInContext().addAll(modelElements);
 					return;
 				}
@@ -366,21 +433,28 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 
 	}
 
-	void addNextToken(String value, SequenceElement se) {
-		if (value != null && !value.equals("")) {
+	void addNextToken(String value, SequenceElement se)
+	{
+		if (value != null && !value.equals(""))
+		{
 			AbstractToken t = null;
 			// TODO this is currentl needed as token types are stored in
 			// textblocks model
 			lexer.setCharStream(new ANTLRStringStream(value));
 			Token lexerToken = lexer.nextToken();
 
-			if (lexerToken.getChannel() == Token.HIDDEN_CHANNEL) {
-				if (debug) {
+			if (lexerToken.getChannel() == Token.HIDDEN_CHANNEL)
+			{
+				if (debug)
+				{
 					System.out.println("adding OmittedToken: '" + value + "'");
 				}
 				t = createOmittedToken();
-			} else {
-				if (debug) {
+			}
+			else
+			{
+				if (debug)
+				{
 					System.out.println("adding LexedToken: '" + value + "'");
 				}
 				t = createLexedToken(se);
@@ -400,14 +474,16 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		}
 	}
 
-	void addBosToken() {
+	void addBosToken()
+	{
 		Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(pack,
 				VersionEnum.REFERENCE,
 				ANTLRIncrementalLexerAdapter.bosTokenType);
 		addToken(bos);
 	}
 
-	void addEosToken() {
+	void addEosToken()
+	{
 		Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(pack,
 				VersionEnum.REFERENCE,
 				ANTLRIncrementalLexerAdapter.eosTokenType);
@@ -415,7 +491,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		addToken(eos);
 	}
 
-	void addToken(AbstractToken t) {
+	void addToken(AbstractToken t)
+	{
 		curOffset += t.getLength();
 		curBlockLength += t.getLength();
 
@@ -423,30 +500,50 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void close() {
+	public void close()
+	{
 		// no more backtracking after this point
 		// execute all textblock commands
 
-		for (TextBlockCommand command : current) {
+		for (TextBlockCommand command : current)
+		{
 			command.execute();
 		}
 
 		// finish rootBlock
 
 		// check first if any output was printed
-		if (rootBlock != null) {
-			if (debug) {
+		if (rootBlock != null)
+		{
+			if (debug)
+			{
 				System.out.println("adding EosToken");
 			}
-			addEosToken();
+			Template template = this.blockToTemplate.get(rootBlock);
+			if (template instanceof ClassTemplate)
+			{
+				if (((ClassTemplate) template).isMain())
+				{
+					addEosToken();
+				}
+			}
+			else if(template == null)
+			{
+				if(rootBlock.getParentBlock() == null)
+				{
+					addEosToken();
+				}
+			}
 
 			TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
 			rootBlock.setCachedString(rootBlockCachedString.toString());
 		}
 	}
 
-	private SequenceElement getCurrentSE() {
-		if (!currentSE.isEmpty()) {
+	private SequenceElement getCurrentSE()
+	{
+		if (!currentSE.isEmpty())
+		{
 			return currentSE.peek();
 		}
 
@@ -454,7 +551,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public int startClassTemplateForObject(RefObject object, Template t) {
+	public int startClassTemplateForObject(RefObject object, Template t)
+	{
 		int handle = textBlocksHandleCounter++;
 		current.add(new AddNextTextBlockCommand(object, t, getCurrentSE(),
 				handle));
@@ -462,74 +560,88 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void endClassTemplate(int handle) {
+	public void endClassTemplate(int handle)
+	{
 		current.add(new FinishTextBlockCommand(handle));
 	}
 
 	@Override
-	public void debug(String string) {
+	public void debug(String string)
+	{
 		current.add(new AddNextTokenCommand(string, getCurrentSE()));
 	}
 
 	@Override
-	public void printBoolean(boolean v) {
+	public void printBoolean(boolean v)
+	{
 		current.add(new AddNextTokenCommand("" + v, getCurrentSE()));
 	}
 
 	@Override
-	public void printComment(String c) {
+	public void printComment(String c)
+	{
 		current.add(new AddNextTokenCommand(c, getCurrentSE()));
 	}
 
 	@Override
 	public void printEscapedIdentifier(String identEscStart, String ident,
-			String identEscEnd) {
+			String identEscEnd)
+	{
 		current.add(new AddNextTokenCommand(
 				identEscStart + ident + identEscEnd, getCurrentSE()));
 	}
 
 	@Override
-	public void printIdentifier(String ident) {
+	public void printIdentifier(String ident)
+	{
 		current.add(new AddNextTokenCommand(ident, getCurrentSE()));
 	}
 
 	@Override
-	public void printInteger(int v) {
+	public void printInteger(int v)
+	{
 		current.add(new AddNextTokenCommand("" + v, getCurrentSE()));
 	}
 
 	@Override
-	public void printKeyword(String keyword) {
+	public void printKeyword(String keyword)
+	{
 		current.add(new AddNextTokenCommand(keyword, getCurrentSE()));
 	}
 
 	@Override
-	public void printReal(String string) {
+	public void printReal(String string)
+	{
 		current.add(new AddNextTokenCommand(string, getCurrentSE()));
 	}
 
 	@Override
-	public void printString(String stringDelim, String v) {
+	public void printString(String stringDelim, String v)
+	{
 		current.add(new AddNextTokenCommand(stringDelim + v + stringDelim,
 				getCurrentSE()));
 	}
 
 	@Override
-	public void printSymbol(String symbol) {
+	public void printSymbol(String symbol)
+	{
 		current.add(new AddNextTokenCommand(symbol, getCurrentSE()));
 	}
 
 	@Override
-	public void printWhiteSpace(String ws) {
+	public void printWhiteSpace(String ws)
+	{
 		current.add(new AddNextTokenCommand(ws, getCurrentSE()));
 	}
 
 	@Override
-	public int createSafePoint() {
+	public int createSafePoint()
+	{
 		List<TextBlockCommand> store = new ArrayList<TextBlockCommand>(current);
 		curBackupHandle++;
 
-		if (debug) {
+		if (debug)
+		{
 			System.out.println("creating savepoint " + curBackupHandle
 					+ " with " + store.size() + " commands saved");
 		}
@@ -539,10 +651,12 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void resetToSafePoint(int handle) {
+	public void resetToSafePoint(int handle)
+	{
 		current = backup.get(handle);
 
-		if (debug) {
+		if (debug)
+		{
 			System.out.println("resetting to savepoint " + handle + " with "
 					+ current.size() + " commands restored");
 		}
@@ -550,13 +664,15 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void enterSequenceElement(SequenceElement e) {
+	public void enterSequenceElement(SequenceElement e)
+	{
 		currentSE.push(e);
 
 	}
 
 	@Override
-	public void exitSequenceElement() {
+	public void exitSequenceElement()
+	{
 		currentSE.pop();
 
 	}

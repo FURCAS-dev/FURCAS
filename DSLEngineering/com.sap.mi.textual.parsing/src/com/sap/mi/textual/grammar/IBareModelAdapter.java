@@ -190,9 +190,10 @@ public interface IBareModelAdapter extends IModelElementInvestigator { // extend
 	 * @param keyValue
 	 * @param mqlQuery
 	 * @param contextElement
+	 * @param currentForeachElement TODO
 	 */
 	Object setOclReference(Object modelElement, String propertyName,
-			Object keyValue, String mqlQuery, Object contextElement)
+			Object keyValue, String mqlQuery, Object contextElement, Object currentForeachElement)
 			throws ModelAdapterException, ReferenceSettingException;
 	/**
 	 * Creates a new Reference by using the model element of the ocl query as base

@@ -12,7 +12,8 @@ import com.sap.tc.moin.ocl.ia.instancescope.BranchingNavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.IndirectingStep;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStepSequence;
-import com.sap.tc.moin.ocl.ia.instancescope.debug.NavigationStepDebugHelper;
+import com.sap.tc.moin.ocl.ia.instancescope.PathCache;
+import com.sap.tc.moin.ocl.ia.instancescope.debug.NavigationStepDebugHelperImpl;
 import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndImpl;
 
 public class GraphTest {
@@ -20,6 +21,7 @@ public class GraphTest {
     
     @Test
     public void testNavigationSequenceStepGraph(){
+	PathCache pathCache = new PathCache();
 	AssociationEndImpl end = new AssociationEndImpl();
 	AssociationNavigationStep associationNavigationStep1 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep2 = new AssociationNavigationStep(null, null, end, null);
@@ -28,16 +30,17 @@ public class GraphTest {
 	AssociationNavigationStep associationNavigationStep5 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep6 = new AssociationNavigationStep(null, null, end, null);
 	
-	NavigationStepSequence nestedSequence = new NavigationStepSequence(null, null, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4);
-	NavigationStepSequence sequence = new NavigationStepSequence(null, null, associationNavigationStep1, nestedSequence, associationNavigationStep5, associationNavigationStep6);
+	NavigationStepSequence nestedSequence = new NavigationStepSequence(null, null, pathCache, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4);
+	NavigationStepSequence sequence = new NavigationStepSequence(null, null, pathCache, associationNavigationStep1, nestedSequence, associationNavigationStep5, associationNavigationStep6);
 	
-	NavigationStepDebugHelper.printGraphFile(sequence, BASE_PRINT_PATH + "testNavigationSequenceStepGraph.graphml");
+	NavigationStepDebugHelperImpl.printGraphFile(sequence, BASE_PRINT_PATH + "testNavigationSequenceStepGraph.graphml");
 	
 	printToString(sequence, BASE_PRINT_PATH + "testNavigationSequenceStepGraph.step");
     }
     
     @Test
     public void testBranchingNavigationStepGraph(){
+	PathCache pathCache = new PathCache();
 	AssociationEndImpl end = new AssociationEndImpl();
 	AssociationNavigationStep associationNavigationStep1 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep2 = new AssociationNavigationStep(null, null, end, null);
@@ -46,14 +49,15 @@ public class GraphTest {
 	AssociationNavigationStep associationNavigationStep5 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep6 = new AssociationNavigationStep(null, null, end, null);
 	
-	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4);
-	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6);
+	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4);
+	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6);
 
-	NavigationStepDebugHelper.printGraphFile(branch, BASE_PRINT_PATH + "testBranchingNavigationStepGraph.graphml");
+	NavigationStepDebugHelperImpl.printGraphFile(branch, BASE_PRINT_PATH + "testBranchingNavigationStepGraph.graphml");
     }
     
     @Test
     public void testIndirectionStepGraph(){
+	PathCache pathCache = new PathCache();
 	AssociationEndImpl end = new AssociationEndImpl();
 	AssociationNavigationStep associationNavigationStep1 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep2 = new AssociationNavigationStep(null, null, end, null);
@@ -68,17 +72,18 @@ public class GraphTest {
 	
 	IndirectingStep indirectSelf = new IndirectingStep(null);
 	
-	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4, indirectAnother);
-	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6, indirectSelf, indirectAnother);
+	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4, indirectAnother);
+	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6, indirectSelf, indirectAnother);
 	
 	indirectSelf.setActualStep(branch);
 
-	NavigationStepDebugHelper.printGraphFile(branch, BASE_PRINT_PATH + "testIndirectionStepGraph.graphml");
+	NavigationStepDebugHelperImpl.printGraphFile(branch, BASE_PRINT_PATH + "testIndirectionStepGraph.graphml");
 	printToString(branch, BASE_PRINT_PATH + "testIndirectionStepGraph.step");
     }
     
     @Test
     public void testAllGraph(){
+	PathCache pathCache = new PathCache();
 	AssociationEndImpl end = new AssociationEndImpl();
 	AssociationNavigationStep associationNavigationStep1 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep2 = new AssociationNavigationStep(null, null, end, null);
@@ -91,19 +96,19 @@ public class GraphTest {
 	AssociationNavigationStep associationNavigationStep8 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep9 = new AssociationNavigationStep(null, null, end, null);
 	
-	NavigationStepSequence sequence = new NavigationStepSequence(null, null, associationNavigationStep7, associationNavigationStep8, associationNavigationStep9);
+	NavigationStepSequence sequence = new NavigationStepSequence(null, null, pathCache, associationNavigationStep7, associationNavigationStep8, associationNavigationStep9);
 	
 	IndirectingStep indirectAnother = new IndirectingStep(null);
 	indirectAnother.setActualStep(associationNavigationStep6);
 	
 	IndirectingStep indirectSelf = new IndirectingStep(null);
 	
-	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4, indirectAnother, sequence);
-	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6, indirectSelf, indirectAnother);
+	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4, indirectAnother, sequence);
+	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6, indirectSelf, indirectAnother);
 	
 	indirectSelf.setActualStep(branch);
 	
-	NavigationStepDebugHelper.printGraphFile(branch, BASE_PRINT_PATH + "testAllGraph.graphml");
+	NavigationStepDebugHelperImpl.printGraphFile(branch, BASE_PRINT_PATH + "testAllGraph.graphml");
 	printToString(branch, BASE_PRINT_PATH + "testAllGraph.step");
 	
 	
@@ -111,6 +116,7 @@ public class GraphTest {
     
     @Test
     public void testEdgeLabeling(){
+	PathCache pathCache = new PathCache();
 	AssociationEndImpl end = new AssociationEndImpl();
 	
 	AssociationNavigationStep associationNavigationStep1 = new AssociationNavigationStep(null, null, end, null);
@@ -124,19 +130,19 @@ public class GraphTest {
 	AssociationNavigationStep associationNavigationStep8 = new AssociationNavigationStep(null, null, end, null);
 	AssociationNavigationStep associationNavigationStep9 = new AssociationNavigationStep(null, null, end, null);
 	
-	NavigationStepSequence sequence = new NavigationStepSequence(null, null, associationNavigationStep7, associationNavigationStep8, associationNavigationStep9);
+	NavigationStepSequence sequence = new NavigationStepSequence(null, null, pathCache, associationNavigationStep7, associationNavigationStep8, associationNavigationStep9);
 	
 	IndirectingStep indirectAnother = new IndirectingStep(null);
 	indirectAnother.setActualStep(associationNavigationStep6);
 	
 	IndirectingStep indirectSelf = new IndirectingStep(null);
 	
-	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4, indirectAnother, sequence);
-	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6, indirectSelf, indirectAnother);
+	BranchingNavigationStep nestedBranch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep2, associationNavigationStep3, associationNavigationStep4, indirectAnother, sequence);
+	BranchingNavigationStep branch = new BranchingNavigationStep(null, null, null, null, pathCache, associationNavigationStep1, nestedBranch, associationNavigationStep5, associationNavigationStep6, indirectSelf, indirectAnother);
 	
 	indirectSelf.setActualStep(branch);
 
-	NavigationStepDebugHelper.printGraphFile(branch, BASE_PRINT_PATH + "testAllGraph.graphml");
+	NavigationStepDebugHelperImpl.printGraphFile(branch, BASE_PRINT_PATH + "testAllGraph.graphml");
 	printToString(branch, BASE_PRINT_PATH + "testAllGraph.step");	
     }
     

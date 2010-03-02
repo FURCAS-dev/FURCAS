@@ -117,4 +117,8 @@ public class OclInvalidImpl extends BaseOclAny implements OclInvalid {
         return "invalid".hashCode( ); //$NON-NLS-1$
     }
 
+    @Override
+    public String toString( ) {
+        return "(" + getClass( ).getName( ) + ") " + "invalid"; //$NON-NLS-1$//$NON-NLS-2$
+    }
 }
