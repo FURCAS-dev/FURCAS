@@ -81,26 +81,30 @@ import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
  * @author Fr�d�ric Jouault
  * @author Mika�l Barbero
  * 
- *         modified by Philipp Meier in 2009
+ *         modified by Philipp Meier, Andreas Landerer in 2009, 2010
  * 
  */
-public class PrettyPrinter {
+public class PrettyPrinter
+{
 
-	abstract class SyntaxMismatchException extends Exception {
+	abstract class SyntaxMismatchException extends Exception
+	{
 
-		private PrettyPrintContext context;
+		private PrettyPrintContext	context;
 
 		/**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
+		private static final long	serialVersionUID	= 1L;
 
-		public SyntaxMismatchException(PrettyPrintContext context) {
+		public SyntaxMismatchException(PrettyPrintContext context)
+		{
 			this.context = context.duplicate();
 		}
 
 		@Override
-		public String getMessage() {
+		public String getMessage()
+		{
 			ClassTemplate ct = context.getClassTemplates().peek();
 			String error = "Mismatch in PropertyInit of ClassTemplate ";
 			error += TcsUtil.joinNameList(ct.getMetaReference()
@@ -117,50 +121,57 @@ public class PrettyPrinter {
 
 		protected abstract String getMismatchError();
 
-		protected PrettyPrintContext getContext() {
+		protected PrettyPrintContext getContext()
+		{
 			return context;
 		}
 
 	}
 
-	class ForcedBoundsException extends SyntaxMismatchException {
+	class ForcedBoundsException extends SyntaxMismatchException
+	{
 
-		Object element;
-		Property p;
-		String propertyName;
-		ForcedLowerParg lowerArg;
-		ForcedUpperParg upperArg;
+		Object			element;
+		Property		p;
+		String			propertyName;
+		ForcedLowerParg	lowerArg;
+		ForcedUpperParg	upperArg;
 
 		public ForcedBoundsException(Object element, Property p,
 				ForcedLowerParg lowerArg, ForcedUpperParg upperArg,
-				PrettyPrintContext context) {
+				PrettyPrintContext context)
+		{
 			super(context);
 			this.element = element;
 			this.p = p;
-			this.propertyName = TcsUtil.getPropertyName(p
-					.getPropertyReference());
+			this.propertyName = TcsUtil.getPropertyName(p.getPropertyReference());
 			this.lowerArg = lowerArg;
 			this.upperArg = upperArg;
 		}
 
 		@Override
-		protected String getMismatchError() {
-
-		        Object propValue = null;
-		        if(element instanceof RefObject) {
-		            propValue = TcsUtil.getPropertyValue((RefObject) element, p
-					.getPropertyReference());
-		        } else if(element instanceof RefStruct) {
-		            propValue = TcsUtil.getPropertyValue((RefStruct) element, p
-                                    .getPropertyReference());
-		        }
+		protected String getMismatchError()
+		{
+			Object propValue = null;
+			if (element instanceof RefObject)
+			{
+				propValue = TcsUtil.getPropertyValue((RefObject) element, p
+						.getPropertyReference());
+			}
+			else if (element instanceof RefStruct)
+			{
+				propValue = TcsUtil.getPropertyValue((RefStruct) element, p
+						.getPropertyReference());
+			}
 
 			Integer propValueSize = 0;
-			if (!(propValue == null)) {
+			if (!(propValue == null))
+			{
 				propValueSize = 1;
 			}
 
-			if (propValue instanceof Collection) {
+			if (propValue instanceof Collection)
+			{
 				Collection<?> c = (Collection<?>) propValue;
 
 				propValueSize = c.size();
@@ -171,11 +182,13 @@ public class PrettyPrinter {
 			error += "property " + propertyName;
 			error += " has " + propValueSize + " elements with";
 
-			if (lowerArg != null) {
+			if (lowerArg != null)
+			{
 				error += " forced lower " + lowerArg.getValue();
 			}
 
-			if (upperArg != null) {
+			if (upperArg != null)
+			{
 				error += " forced upper " + upperArg.getValue();
 			}
 
@@ -185,20 +198,22 @@ public class PrettyPrinter {
 		/**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
+		private static final long	serialVersionUID	= 1L;
 
 	}
 
-	class PropertyInitException extends SyntaxMismatchException {
+	class PropertyInitException extends SyntaxMismatchException
+	{
 
-		Object element;
-		PropertyInit propertyInit;
-		String propertyName;
+		Object						element;
+		PropertyInit				propertyInit;
+		String						propertyName;
 
-		private static final long serialVersionUID = 1L;
+		private static final long	serialVersionUID	= 1L;
 
-		public PropertyInitException(Object element,
-				PropertyInit propertyInit, PrettyPrintContext context) {
+		public PropertyInitException(Object element, PropertyInit propertyInit,
+				PrettyPrintContext context)
+		{
 			super(context);
 			this.element = element;
 			this.propertyInit = propertyInit;
@@ -207,48 +222,60 @@ public class PrettyPrinter {
 		}
 
 		@Override
-		protected String getMismatchError() {
-			if (propertyInit instanceof PrimitivePropertyInit) {
+		protected String getMismatchError()
+		{
+			if (propertyInit instanceof PrimitivePropertyInit)
+			{
 				return getPrimitivePropertyInitError((PrimitivePropertyInit) propertyInit);
 			}
 
-			if (propertyInit instanceof LookupPropertyInit) {
+			if (propertyInit instanceof LookupPropertyInit)
+			{
 				return getLookupPropertyInitError((LookupPropertyInit) propertyInit);
 			}
 
 			return "unknown property init type";
 		}
 
-		private String getPrimitivePropertyInitError(PrimitivePropertyInit p) {
+		private String getPrimitivePropertyInitError(PrimitivePropertyInit p)
+		{
 			String error = "PrimitivePropertyInit: ";
 			error += "property " + propertyName;
-			if(element instanceof RefStruct) {
-			    error += " is " + ((RefStruct) element).refGetValue(propertyName);
-			} else if(element instanceof RefObject) {
-			    error += " is " + ((RefObject) element).refGetValue(propertyName);
+			if (element instanceof RefStruct)
+			{
+				error += " is "
+						+ ((RefStruct) element).refGetValue(propertyName);
+			}
+			else if (element instanceof RefObject)
+			{
+				error += " is "
+						+ ((RefObject) element).refGetValue(propertyName);
 			}
 			error += " instead of the expected " + p.getValue();
 
 			return error;
 		}
 
-		private String getLookupPropertyInitError(LookupPropertyInit p) {
+		private String getLookupPropertyInitError(LookupPropertyInit p)
+		{
 			return "LookupPropertyInit: property " + propertyName
 					+ " does not match OCL query " + p.getValue();
 		}
 
 	}
-	
-	class NoTemplateMatchFoundException extends SyntaxMismatchException {
 
-		Object element;
-		String mode;
-		String typeName;
+	class NoTemplateMatchFoundException extends SyntaxMismatchException
+	{
 
-		private static final long serialVersionUID = 1L;
+		Object						element;
+		String						mode;
+		String						typeName;
 
-		public NoTemplateMatchFoundException(PrettyPrintContext context, RefObject element,
-				String typeName, String mode) {
+		private static final long	serialVersionUID	= 1L;
+
+		public NoTemplateMatchFoundException(PrettyPrintContext context,
+				RefObject element, String typeName, String mode)
+		{
 			super(context);
 			this.element = element;
 			this.typeName = typeName;
@@ -256,62 +283,67 @@ public class PrettyPrinter {
 		}
 
 		public NoTemplateMatchFoundException(PrettyPrintContext context,
-                        RefStruct s, String typeName, String mode) {
-                    super(context);
-                    this.element = s;
-                    this.typeName = typeName;
-                    this.mode = mode;
-                }
+				RefStruct s, String typeName, String mode)
+		{
+			super(context);
+			this.element = s;
+			this.typeName = typeName;
+			this.mode = mode;
+		}
 
-        @Override
-		protected String getMismatchError() {
-			return "Did not find templat for type: " + typeName + " with mode: " + mode;
+		@Override
+		protected String getMismatchError()
+		{
+			return "Did not find templat for type: " + typeName
+					+ " with mode: " + mode;
 		}
 
 	}
 
-
-	private Map<Integer, PrettyPrintContext> backup = new HashMap<Integer, PrettyPrintContext>();
+	private Map<Integer, PrettyPrintContext>		backup						= new HashMap<Integer, PrettyPrintContext>();
 
 	/**
 	 * contains a mapping of qualifiedName + Mode to ClassTemplate of all
 	 * ClassTemplates contained in the ConcreteSyntax passed to the constructor
 	 */
-	Map<List<String>, Map<String, ClassTemplate>> classTemplateMap;
+	Map<List<String>, Map<String, ClassTemplate>>	classTemplateMap;
 
-	private Map<String, Object> templates = new HashMap<String, Object>();
-	private Map<String, PrimitiveTemplate> primitiveTemplates = new HashMap<String, PrimitiveTemplate>();
-	private Map<String, Token> tokens = new HashMap<String, Token>();
-	private Set<String> keywords = new HashSet<String>();
-	private boolean kwCheckIgnoreCase = false;
-	private String identEscStart = "\"";
-	private String identEscEnd = "\"";
-	private String stringDelim = "\"";
-	private boolean serializeComments = false;
-	private static DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-	private DecimalFormat df = new DecimalFormat("0.##############", dfs);
+	private Map<String, Object>						templates					= new HashMap<String, Object>();
+	private Map<String, PrimitiveTemplate>			primitiveTemplates			= new HashMap<String, PrimitiveTemplate>();
+	private Map<String, Token>						tokens						= new HashMap<String, Token>();
+	private Set<String>								keywords					= new HashSet<String>();
+	private boolean									kwCheckIgnoreCase			= false;
+	private String									identEscStart				= "\"";
+	private String									identEscEnd					= "\"";
+	private String									stringDelim					= "\"";
+	private boolean									serializeComments			= false;
+	private static DecimalFormatSymbols				dfs							= new DecimalFormatSymbols();
+	private DecimalFormat							df							= new DecimalFormat(
+																						"0.##############",
+																						dfs);
 
-	private String standardSeparator = " ";
-	private String indentString = "  ";
-	private String lineFeed = "\n";
+	private String									standardSeparator			= " ";
+	private String									indentString				= "  ";
+	private String									lineFeed					= "\n";
 
-	private AdapterJMIHelper oclHelper = null;
+	private AdapterJMIHelper						oclHelper					= null;
 
-	private TCSExtractorStream out;
-	private PrettyPrintContext context = new PrettyPrintContext();
+	private TCSExtractorStream						out;
+	private PrettyPrintContext						context						= new PrettyPrintContext();
 
 	// debug structure
-	private boolean debug = false;
+	private boolean									debug						= false;
 	// debug whitespace
-	private boolean debugws = false;
+	private boolean									debugws						= false;
 	// print output stream to console
-	private static boolean debugPrintOutput = false;
+	private static boolean							debugPrintOutput			= false;
 	// print caught property init exceptions
-	private static boolean printPropertyInitExceptions = false;
+	private static boolean							printPropertyInitExceptions	= false;
 
 	@SuppressWarnings("unchecked")
 	public void prettyPrint(RefObject source, ConcreteSyntax syntax,
-			TCSExtractorStream target) throws SyntaxAndModelMismatchException {
+			TCSExtractorStream target) throws SyntaxAndModelMismatchException
+	{
 		assert (source != null);
 		assert (syntax != null);
 		assert (target != null);
@@ -320,57 +352,73 @@ public class PrettyPrinter {
 		oclHelper = new AdapterJMIHelper(source.refOutermostPackage(), con, con
 				.getJmiHelper(), null, null);
 
-		if (debugPrintOutput) {
+		if (debugPrintOutput)
+		{
 			out = new DebugPrintTCSExtractorStream(target);
-		} else {
+		}
+		else
+		{
 			out = target;
 		}
 
 		classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
 
-		for (Template t : syntax.getTemplates()) {
+		for (Template t : syntax.getTemplates())
+		{
 			List<String> name = TcsUtil.getQualifiedName(t);
-			if (t instanceof EnumerationTemplate) {
+			if (t instanceof EnumerationTemplate)
+			{
 				EnumerationTemplate et = (EnumerationTemplate) t;
 				Map<String, SequenceElement> mappings = new HashMap<String, SequenceElement>();
-				for (EnumLiteralMapping mapping : et.getMappings()) {
+				for (EnumLiteralMapping mapping : et.getMappings())
+				{
 					mappings.put(mapping.getLiteral().getName(), mapping
 							.getElement());
 				}
 				templates.put(TcsUtil.joinNameList(name), mappings);
-			} else if (t instanceof PrimitiveTemplate) {
+			}
+			else if (t instanceof PrimitiveTemplate)
+			{
 				PrimitiveTemplate pt = (PrimitiveTemplate) t;
 				primitiveTemplates.put(pt.getTemplateName(), pt);
 				Collection c = (Collection) templates.get(TcsUtil
 						.joinNameList(name));
-				if (c == null) {
+				if (c == null)
+				{
 					c = new ArrayList<Object>();
 					templates.put(TcsUtil.joinNameList(name), c);
 				}
 				c.add(pt);
-			} else {
+			}
+			else
+			{
 				// ClassTemplate handled by classTemplateMap instead
-				if (!(t instanceof ClassTemplate)) {
+				if (!(t instanceof ClassTemplate))
+				{
 					templates.put(TcsUtil.joinNameList(name), t);
 				}
 			}
 		}
-		for (Keyword k : syntax.getKeywords()) {
+		for (Keyword k : syntax.getKeywords())
+		{
 			String value = k.getValue();
 			if (kwCheckIgnoreCase)
 				value = value.toUpperCase();
 			keywords.add(value);
 		}
-		for (Token tok : syntax.getTokens()) {
+		for (Token tok : syntax.getTokens())
+		{
 			String value = tok.getName();
 			tokens.put(value, tok);
 		}
 
-		for (Symbol s : syntax.getSymbols()) {
+		for (Symbol s : syntax.getSymbols())
+		{
 			String value = s.getValue();
 			debug("Symbol: " + value);
 			int type = TYPE_SYMBOL;
-			for (SpaceKind spaceKind : s.getSpaces()) {
+			for (SpaceKind spaceKind : s.getSpaces())
+			{
 				// TODO debug and check if toString is right here
 				String l = spaceKind.toString();
 				debug("\tLiteral: " + l);
@@ -388,59 +436,73 @@ public class PrettyPrinter {
 
 		context.getPriorities().push(new Integer(Integer.MAX_VALUE));
 		int handle = createSafePoint();
-		try {
+		try
+		{
 			String mainTemplateMode = TcsUtil.getMainClassTemplate(syntax)
 					.getMode();
 			serialize(source, mainTemplateMode);
-		} catch (SyntaxMismatchException e) {
+		}
+		catch (SyntaxMismatchException e)
+		{
 			resetToSafePoint(handle);
 			throw new SyntaxAndModelMismatchException(e);
 		}
 		out.close();
 	}
 
-	private void pushSep(String sep) {
+	private void pushSep(String sep)
+	{
 		context.getCurrentSeparator().push(sep);
 		debug("PUSHING SEPARATOR: \"" + sep + "\"");
 	}
 
-	private void popSep() {
+	private void popSep()
+	{
 		String old = context.getCurrentSeparator().pop();
 		debug("POPING SEPARATOR: \"" + old + "\"");
 	}
 
 	private static ClassTemplate findSupertypeTemplate(RefObject r,
 			String mode,
-			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
+			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap)
+	{
 		return findSupertypeTemplate((MofClass) r.refMetaObject(), mode,
 				classTemplateMap);
 	}
-	
-        private static ClassTemplate findSupertypeTemplate(RefStruct r,
-                String mode,
-                Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Connection conn) {
-            return findSupertypeTemplate((MofClass) conn.getElement(r.refMetaObjectMri()), mode,
-                    classTemplateMap);
-        }
+
+	private static ClassTemplate findSupertypeTemplate(RefStruct r,
+			String mode,
+			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
+			Connection conn)
+	{
+		return findSupertypeTemplate((MofClass) conn.getElement(r
+				.refMetaObjectMri()), mode, classTemplateMap);
+	}
 
 	private static ClassTemplate findSupertypeTemplate(GeneralizableElement g,
 			String mode,
-			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
+			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap)
+	{
 		ClassTemplate template = null;
-		for (GeneralizableElement supertype : g.getSupertypes()) {
-			if (supertype instanceof Classifier) {
+		for (GeneralizableElement supertype : g.getSupertypes())
+		{
+			if (supertype instanceof Classifier)
+			{
 				Classifier c = (Classifier) supertype;
 				template = TcsUtil.resolveClassTemplate(c.getQualifiedName(),
 						mode, classTemplateMap);
-				if (template != null && !template.isAbstract()) {
+				if (template != null && !template.isAbstract())
+				{
 					return template;
 				}
 			}
 		}
 
-		for (GeneralizableElement supertype : g.getSupertypes()) {
+		for (GeneralizableElement supertype : g.getSupertypes())
+		{
 			template = findSupertypeTemplate(supertype, mode, classTemplateMap);
-			if (template != null && !template.isAbstract()) {
+			if (template != null && !template.isAbstract())
+			{
 				return template;
 			}
 		}
@@ -448,7 +510,8 @@ public class PrettyPrinter {
 		return null;
 	}
 
-	private static boolean isInstanceOf(RefObject element, List<String> type) {
+	private static boolean isInstanceOf(RefObject element, List<String> type)
+	{
 		MofClass m = (MofClass) element.refMetaObject();
 
 		List<GeneralizableElement> typesToCheck = new ArrayList<GeneralizableElement>(
@@ -461,7 +524,8 @@ public class PrettyPrinter {
 		{
 			List<String> qName = g.getQualifiedName();
 			// maybe type is not fully qualified, compare each part
-			if (isTypeMatch(qName, type)) {
+			if (isTypeMatch(qName, type))
+			{
 				return true;
 			}
 		}
@@ -481,14 +545,18 @@ public class PrettyPrinter {
 	 * @return
 	 */
 	private static boolean isTypeMatch(List<String> fullyQualifiedTypeName,
-			List<String> partiallyQualifiedTypeName) {
+			List<String> partiallyQualifiedTypeName)
+	{
 		boolean allPartsMatch = true;
-		if (fullyQualifiedTypeName.size() >= partiallyQualifiedTypeName.size()) {
-			for (int i = 1; i <= partiallyQualifiedTypeName.size(); i++) {
+		if (fullyQualifiedTypeName.size() >= partiallyQualifiedTypeName.size())
+		{
+			for (int i = 1; i <= partiallyQualifiedTypeName.size(); i++)
+			{
 				if (!fullyQualifiedTypeName.get(
 						fullyQualifiedTypeName.size() - i).equals(
 						partiallyQualifiedTypeName
-								.get(partiallyQualifiedTypeName.size() - i))) {
+								.get(partiallyQualifiedTypeName.size() - i)))
+				{
 					allPartsMatch = false;
 				}
 			}
@@ -497,17 +565,22 @@ public class PrettyPrinter {
 		return allPartsMatch;
 	}
 
-	private void serialize(RefObject ame) throws SyntaxMismatchException {
+	private void serialize(RefObject ame) throws SyntaxMismatchException
+	{
 		serialize(ame, null);
 	}
 
 	private void serialize(RefObject ame, String mode)
-			throws SyntaxMismatchException {
+			throws SyntaxMismatchException
+	{
 
-		if (context.getVisitedModelElements().contains(ame)) {
+		if (context.getVisitedModelElements().contains(ame))
+		{
 			// don't visit model elements recursively
 			return;
-		} else {
+		}
+		else
+		{
 			// add the model element to the visited list.
 			// it is removed again at the end of this method
 			context.getVisitedModelElements().add(ame);
@@ -523,82 +596,106 @@ public class PrettyPrinter {
 		ClassTemplate ct = TcsUtil.resolveClassTemplate(
 				MOINImportedModelAdapter.getQualifiedName(ame), mode,
 				classTemplateMap);
-		if (ct != null && !ct.isAbstract()) {
+		if (ct != null && !ct.isAbstract())
+		{
 			template = ct;
 		}
 
-		if (template == null) {
+		if (template == null)
+		{
 
 			// look for non-abstract template for supertype
 			template = findSupertypeTemplate(ame, mode, classTemplateMap);
 		}
 
-		if (template == null) {
+		if (template == null)
+		{
 
 			// look for non-class templates
 			template = templates.get(typeName);
 		}
 
-		if (template == null) {
-			if (mode != null) {
+		if (template == null)
+		{
+			if (mode != null)
+			{
 				error("unknown template for " + typeName + " #" + mode);
-			} else {
+			}
+			else
+			{
 				error("unknown template for " + typeName);
 			}
-			throw new NoTemplateMatchFoundException(context, ame, typeName, mode);
-			//return;
+			throw new NoTemplateMatchFoundException(context, ame, typeName,
+					mode);
+			// return;
 		}
 
 		String templateTypeName = MOINImportedModelAdapter
 				.getTypeName((RefObject) template);
 		debug("Applying template type " + templateTypeName);
 
-		if (template instanceof ClassTemplate) {
+		if (template instanceof ClassTemplate)
+		{
 			debug("with mode: " + ((ClassTemplate) template).getMode());
 		}
 
-		if (serializeComments) {
-			try {
+		if (serializeComments)
+		{
+			try
+			{
 				boolean first = true;
 				boolean nl = false;
 				for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame,
-						"commentsBefore"); i.hasNext();) {
+						"commentsBefore"); i.hasNext();)
+				{
 					String c = MOINImportedModelAdapter.nextString(i);
-					if (c.equals("\n")) {
+					if (c.equals("\n"))
+					{
 						nl = true;
-					} else {
+					}
+					else
+					{
 						debug("printing comment: \"" + c + "\"");
-						if (first && !nl) {
+						if (first && !nl)
+						{
 							printComment(c);
 							// out.print("SHOULD-BE-NONL");
-						} else {
+						}
+						else
+						{
 							printComment(c);
 						}
 						printWS(lineFeed + context.getCurIndent());
 						first = false;
 					}
 				}
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				System.out.println("Warning: could not get comments of " + ame
 						+ ", disabling further comments serialization");
 				serializeComments = false;
 			}
 		}
-		if (templateTypeName.equals("TCS::ClassTemplate")) {
+		if (templateTypeName.equals("TCS::ClassTemplate"))
+		{
 
 			context.getPriorities().push(new Integer(Integer.MAX_VALUE));
 			context.getClassTemplates().push((ClassTemplate) template);
 			context.getParentRefObjects().push(ame);
 			int handle = out.startClassTemplateForObject(ame,
 					(Template) template);
-			
-			serializeSeq(ame, MOINImportedModelAdapter.getME((RefObject) template, "templateSequence"));
+
+			serializeSeq(ame, MOINImportedModelAdapter.getME(
+					(RefObject) template, "templateSequence"));
 
 			out.endClassTemplate(handle);
 			context.getParentRefObjects().pop();
 			context.getClassTemplates().pop();
 			context.getPriorities().pop();
-		} else if (templateTypeName.equals("TCS::OperatorTemplate")) {
+		}
+		else if (templateTypeName.equals("TCS::OperatorTemplate"))
+		{
 			int handle = out.startClassTemplateForObject(ame,
 					(Template) template);
 			OperatorTemplate ot = (OperatorTemplate) template;
@@ -615,30 +712,39 @@ public class PrettyPrinter {
 			Object r = null;
 			boolean isPostfix = false; // only valid for unary operators
 			boolean isUnary = false;
-			if (rightPropName != null) {
+			if (rightPropName != null)
+			{
 				r = MOINImportedModelAdapter.get(ame, rightPropName);
-				if (r instanceof Collection) {
+				if (r instanceof Collection)
+				{
 					isUnary = (((Collection<?>) r).size() == 0);
-				} else {
+				}
+				else
+				{
 					isUnary = r == null;
 				}
-			} else {
+			}
+			else
+			{
 				isUnary = true;
 			}
 			debug("rightPropName = " + rightPropName + " ; isUnary = "
 					+ isUnary);
 
 			Object operator = null;
-			if (opPropName != null) {
+			if (opPropName != null)
+			{
 				String op = MOINImportedModelAdapter.getString(ame, opPropName);
-				if (op == null) {
+				if (op == null)
+				{
 					throw new RuntimeException("Property " + opPropName
 							+ " has not been set in " + ame + " ("
 							+ MOINImportedModelAdapter.getMetaobject(ame) + ")");
 				}
 				for (Iterator<?> i = MOINImportedModelAdapter.getCol(
 						(RefObject) template, "operators"); i.hasNext()
-						&& (operator == null);) {
+						&& (operator == null);)
+				{
 					Object opme = i.next();
 					Object literal = MOINImportedModelAdapter.getME(
 							(RefObject) opme, "literal");
@@ -650,29 +756,38 @@ public class PrettyPrinter {
 								(RefObject) literal, "value");
 					int arity = MOINImportedModelAdapter.getInt(
 							(RefObject) opme, "arity");
-					if (op.equals(opmes)) {
-						if (rightPropName != null) {
+					if (op.equals(opmes))
+					{
+						if (rightPropName != null)
+						{
 							if ((isUnary && (arity == 1))
-									|| ((!isUnary) && (arity == 2))) {
+									|| ((!isUnary) && (arity == 2)))
+							{
 								operator = opme;
 							}
-						} else {
+						}
+						else
+						{
 							operator = opme;
 							isPostfix = MOINImportedModelAdapter.getBool(
 									(RefObject) opme, "isPostfix");
 						}
 					}
 				}
-				if (operator == null) {
+				if (operator == null)
+				{
 					System.err.println("Error: could not find operator \"" + op
 							+ "\"");
 				}
-			} else {
+			}
+			else
+			{
 				operator = MOINImportedModelAdapter.getCol(
 						(RefObject) template, "operators").next();
 				isUnary = MOINImportedModelAdapter.getInt((RefObject) operator,
 						"arity") == 1;
-				if (isUnary) {
+				if (isUnary)
+				{
 					isPostfix = MOINImportedModelAdapter.getBool(
 							(RefObject) operator, "isPostfix");
 				}
@@ -697,19 +812,25 @@ public class PrettyPrinter {
 
 			RefObject source = MOINImportedModelAdapter.getME(ame,
 					sourcePropName);
-			if (isUnary) {
-				if (isPostfix) {
+			if (isUnary)
+			{
+				if (isPostfix)
+				{
 					serialize(source);
 
 					if (literal != null)
 						printLiteral(literal);
-				} else {
+				}
+				else
+				{
 					if (literal != null)
 						printLiteral(literal);
 
 					serialize(source);
 				}
-			} else {
+			}
+			else
+			{
 				serialize(source);
 
 				if (literal != null)
@@ -718,19 +839,26 @@ public class PrettyPrinter {
 
 			RefObject seq = MOINImportedModelAdapter.getME(
 					(RefObject) template, "otSequence");
-			if (rightPropName == null) {
+			if (rightPropName == null)
+			{
 				context.getPriorities().push(new Integer(Integer.MAX_VALUE));
 				serializeSeq(ame, seq);
 				context.getPriorities().pop();
-			} else {
+			}
+			else
+			{
 				if (seq != null)
 					serializeSeq(ame, seq);
-				if (r instanceof Collection) {
+				if (r instanceof Collection)
+				{
 					for (Iterator<?> i = ((Collection<?>) r).iterator(); i
-							.hasNext();) {
+							.hasNext();)
+					{
 						serialize((RefObject) i.next());
 					}
-				} else {
+				}
+				else
+				{
 					if (!isUnary)
 						serialize((RefObject) r);
 				}
@@ -740,22 +868,32 @@ public class PrettyPrinter {
 				printSymbol(")");
 
 			out.endClassTemplate(handle);
-		} else {
+		}
+		else
+		{
 			error("unsupported template type: " + templateTypeName);
 		}
-		if (serializeComments) {
-			try {
+		if (serializeComments)
+		{
+			try
+			{
 				for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame,
-						"commentsAfter"); i.hasNext();) {
+						"commentsAfter"); i.hasNext();)
+				{
 					String c = MOINImportedModelAdapter.nextString(i);
-					if (c.equals("\n")) {
+					if (c.equals("\n"))
+					{
 
-					} else {
+					}
+					else
+					{
 						printComment(c);
 						printWS(lineFeed + context.getCurIndent());
 					}
 				}
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				System.out.println("Warning: could not get comments of " + ame
 						+ ", disabling further comments serialization");
 				serializeComments = false;
@@ -768,20 +906,25 @@ public class PrettyPrinter {
 	}
 
 	private void serializeSeq(Object ame, RefObject seq)
-			throws SyntaxMismatchException {
-		if (seq != null) {
+			throws SyntaxMismatchException
+	{
+		if (seq != null)
+		{
 			for (Iterator<?> i = MOINImportedModelAdapter.getCol(seq,
-					"elements"); i.hasNext();) {
+					"elements"); i.hasNext();)
+			{
 				Object e = i.next();
 				serializeSeqElem(ame, (SequenceElement) e);
 			}
 		}
 	}
 
-	private String getLineFeeds(int n) {
+	private String getLineFeeds(int n)
+	{
 		String ret = "";
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++)
+		{
 			ret += lineFeed;
 		}
 
@@ -797,41 +940,59 @@ public class PrettyPrinter {
 	 *            SequenceElement specifying a part of element to serialize.
 	 */
 	private void serializeSeqElem(Object element, SequenceElement seqElem)
-			throws SyntaxMismatchException {
+			throws SyntaxMismatchException
+	{
 
 		out.enterSequenceElement(seqElem);
 
 		String tn = MOINImportedModelAdapter.getTypeName(seqElem);
 		debug("serializing seq elem " + tn);
-		if (tn.equals("TCS::LiteralRef")) {
+		if (tn.equals("TCS::LiteralRef"))
+		{
 			LiteralRef litRef = (LiteralRef) seqElem;
 			printLiteral(litRef.getReferredLiteral());
-		} else if (tn.equals("TCS::CustomSeparator")) {
+		}
+		else if (tn.equals("TCS::CustomSeparator"))
+		{
 			String name = MOINImportedModelAdapter.getString(seqElem, "name");
-			if (name.equals("no_space")) {
+			if (name.equals("no_space"))
+			{
 				context.setTypeLast(TYPE_SYMBOL + SYMBOL_RN);
-			} else if (name.equals("space")) {
+			}
+			else if (name.equals("space"))
+			{
 				printWS(" ");
-			} else if (name.equals("newline")) {
+			}
+			else if (name.equals("newline"))
+			{
 				printWS(lineFeed);
-			} else if (name.equals("tab")) {
+			}
+			else if (name.equals("tab"))
+			{
 				printWS("\t");
 			}
-		} else if (tn.equals("TCS::Property")) {
+		}
+		else if (tn.equals("TCS::Property"))
+		{
 			Property prop = (Property) seqElem;
 			Object v = null;
-			if(element instanceof RefStruct) {
-			    v = TcsUtil.getPropertyValue((RefStruct) element, prop
-                                    .getPropertyReference());
-   
-			} else if (element instanceof RefObject) {
-			    v = TcsUtil.getPropertyValue((RefObject) element, prop
-                                    .getPropertyReference());
+			if (element instanceof RefStruct)
+			{
+				v = TcsUtil.getPropertyValue((RefStruct) element, prop
+						.getPropertyReference());
+
+			}
+			else if (element instanceof RefObject)
+			{
+				v = TcsUtil.getPropertyValue((RefObject) element, prop
+						.getPropertyReference());
 			}
 			// also check for partial property arg
 			serializePropertyCheckingPartial(element, v, prop, true);
 
-		} else if (tn.equals("TCS::Block")) {
+		}
+		else if (tn.equals("TCS::Block"))
+		{
 			if (debugws)
 				out.debug("<block>");
 			Object nbNLBArg = getBArg(seqElem, "NbNL");
@@ -844,31 +1005,37 @@ public class PrettyPrinter {
 			boolean startNL = true;
 			boolean endNL = true;
 
-			if (nbNLBArg != null) {
+			if (nbNLBArg != null)
+			{
 				nbNL = MOINImportedModelAdapter.getInt((RefObject) nbNLBArg,
 						"value");
 			}
 			int startNbNL = nbNL; // by default, startNbNL = nbNL
-			if (startNbNLBArg != null) {
+			if (startNbNLBArg != null)
+			{
 				startNbNL = MOINImportedModelAdapter.getInt(
 						(RefObject) startNbNLBArg, "value");
 			}
-			if (indentIncrBArg != null) {
+			if (indentIncrBArg != null)
+			{
 				indentIncr = MOINImportedModelAdapter.getInt(
 						(RefObject) indentIncrBArg, "value");
 			}
-			if (startNLBArg != null) {
+			if (startNLBArg != null)
+			{
 				startNL = MOINImportedModelAdapter.getBool(
 						(RefObject) startNLBArg, "value");
 			}
-			if (endNLBArg != null) {
+			if (endNLBArg != null)
+			{
 				endNL = MOINImportedModelAdapter.getBool((RefObject) endNLBArg,
 						"value");
 			}
 			debug("nbNL = " + nbNL + " ; indentIncr = " + indentIncr);
 			context.incIndentLevel(indentIncr);
 
-			for (int i = 0; i < indentIncr; i++) {
+			for (int i = 0; i < indentIncr; i++)
+			{
 				context.addToCurIndent(indentString);
 			}
 			String nls = getLineFeeds(nbNL);
@@ -877,15 +1044,23 @@ public class PrettyPrinter {
 					+ ((nbNL == 0) ? standardSeparator : context.getCurIndent()));
 			if (debugws)
 				out.debug("<BeforeFirstWS/>");
-			if (startNL) {
-				if (startNbNL == 0) {
+			if (startNL)
+			{
+				if (startNbNL == 0)
+				{
 					printWS("");
-				} else if (nbNL == startNbNL) {
+				}
+				else if (nbNL == startNbNL)
+				{
 					printWS();
-				} else {
+				}
+				else
+				{
 					printWS(getLineFeeds(startNbNL) + context.getCurIndent());
 				}
-			} else {
+			}
+			else
+			{
 				if (debugws)
 					out.debug("<BeforeNonStartNLWS/>");
 				printWS(""); // to make sure the last item was a
@@ -902,26 +1077,34 @@ public class PrettyPrinter {
 
 			context.decIndentLevel(indentIncr);
 			context.removeFromCurIndent(indentString.length() * indentIncr);
-			if (endNL) {
+			if (endNL)
+			{
 				printWS(lineFeed + context.getCurIndent());
 			}
 			popSep();
 			if (debugws)
 				out.debug("</block>");
-		} else if (tn.equals("TCS::FunctionCall")) {
+		}
+		else if (tn.equals("TCS::FunctionCall"))
+		{
 			serializeSeq(element, MOINImportedModelAdapter.getME(
 					MOINImportedModelAdapter.getME(seqElem, "calledFunction"),
 					"functionSequence"));
-		} else if (tn.equals("TCS::ConditionalElement")) {
+		}
+		else if (tn.equals("TCS::ConditionalElement"))
+		{
 			RefObject condition = MOINImportedModelAdapter.getME(seqElem,
 					"condition");
-			if (eval(element, condition)) {
+			if (eval(element, condition))
+			{
 				RefObject tseq = MOINImportedModelAdapter.getME(seqElem,
 						"thenSequence");
 				if (tseq != null)
 					printWSBlockNoDup();
 				serializeSeq(element, tseq);
-			} else {
+			}
+			else
+			{
 				RefObject eseq = MOINImportedModelAdapter.getME(seqElem,
 						"elseSequence");
 				debug("ELSE SEQ = " + eseq);
@@ -929,7 +1112,9 @@ public class PrettyPrinter {
 					printWSBlockNoDup();
 				serializeSeq(element, eseq);
 			}
-		} else if (tn.equals("TCS::Alternative")) {
+		}
+		else if (tn.equals("TCS::Alternative"))
+		{
 			Alternative alt = (Alternative) seqElem;
 
 			printWSBlockNoDup();
@@ -943,15 +1128,20 @@ public class PrettyPrinter {
 
 			// try each sequence and backtrack on InjectorActionError
 
-			for (int i = 0; i < sequences.size(); i++) {
+			for (int i = 0; i < sequences.size(); i++)
+			{
 				int handle = 0;
-				try {
+				try
+				{
 					handle = createSafePoint();
 					serializeSeq(element, sequences.get(i));
 					// successful print, don't print other alternatives
 					break;
-				} catch (SyntaxMismatchException e) {
-					if (printPropertyInitExceptions) {
+				}
+				catch (SyntaxMismatchException e)
+				{
+					if (printPropertyInitExceptions)
+					{
 						System.out.println(e.getMessage());
 					}
 
@@ -961,28 +1151,36 @@ public class PrettyPrinter {
 					// if this is the last possible alternative and the
 					// alternative is not multi (with *), re-throw
 					// exception
-					if (i == sequences.size() - 1 && !alt.isMulti()) {
+					if (i == sequences.size() - 1 && !alt.isMulti())
+					{
 						throw (e);
 					}
 				}
 			}
-		} else if (tn.equals("TCS::InjectorActionsBlock")) {
+		}
+		else if (tn.equals("TCS::InjectorActionsBlock"))
+		{
 			InjectorActionsBlock iab = (InjectorActionsBlock) seqElem;
 
 			// check all contained property inits
-			for (InjectorAction action : iab.getInjectorActions()) {
-				if (action instanceof PrimitivePropertyInit) {
+			for (InjectorAction action : iab.getInjectorActions())
+			{
+				if (action instanceof PrimitivePropertyInit)
+				{
 					validatePrimitivePropertyInit(element,
 							(PrimitivePropertyInit) action);
 				}
 
-				if (action instanceof LookupPropertyInit) {
+				if (action instanceof LookupPropertyInit)
+				{
 					validateLookupPropertyInit(element,
 							(LookupPropertyInit) action);
 				}
 			}
 
-		} else {
+		}
+		else
+		{
 			error("unsupported: " + tn);
 		}
 
@@ -995,14 +1193,17 @@ public class PrettyPrinter {
 	 * @return
 	 */
 	private List<Sequence> sortedByNumberOfSequenceElements(
-			Collection<SequenceInAlternative> collection) {
+			Collection<SequenceInAlternative> collection)
+	{
 
 		List<Sequence> result = new ArrayList<Sequence>(collection);
 
-		Collections.sort(result, new Comparator<Sequence>() {
+		Collections.sort(result, new Comparator<Sequence>()
+		{
 
 			@Override
-			public int compare(Sequence a, Sequence b) {
+			public int compare(Sequence a, Sequence b)
+			{
 
 				// swap a and b to have largest sequence first
 				return new Integer(b.getElements().size()).compareTo(a
@@ -1015,31 +1216,41 @@ public class PrettyPrinter {
 	}
 
 	private void validatePrimitivePropertyInit(Object element,
-			PrimitivePropertyInit p) throws PropertyInitException {
+			PrimitivePropertyInit p) throws PropertyInitException
+	{
 
-		if (element != null && p != null) {
+		if (element != null && p != null)
+		{
 
 			// only validate PropertyInit, if it is mandatory and not just a
 			// default for the parser
-			if (p.isDefault()) {
+			if (p.isDefault())
+			{
 				return;
 			}
 
 			Object prop = null;
-			if(element instanceof RefStruct) {
-			    prop = TcsUtil.getPropertyValue((RefStruct) element, p
-                                    .getPropertyReference());
-			} else if(element instanceof RefObject) {
-			    prop = TcsUtil.getPropertyValue((RefObject) element, p
-                                    .getPropertyReference());
+			if (element instanceof RefStruct)
+			{
+				prop = TcsUtil.getPropertyValue((RefStruct) element, p
+						.getPropertyReference());
+			}
+			else if (element instanceof RefObject)
+			{
+				prop = TcsUtil.getPropertyValue((RefObject) element, p
+						.getPropertyReference());
 			}
 
 			String propValue = "";
-			if (prop != null) {
-				if (prop instanceof RefEnum) {
+			if (prop != null)
+			{
+				if (prop instanceof RefEnum)
+				{
 					propValue = prop.getClass().getName() + "."
 							+ prop.toString().toUpperCase();
-				} else {
+				}
+				else
+				{
 					propValue = prop.toString();
 				}
 			}
@@ -1049,64 +1260,79 @@ public class PrettyPrinter {
 			// TODO this is a HACK until no more java code allowed in
 			// primitive
 			// property inits
-			if (expectedValue != null) {
-				if (expectedValue.startsWith("\"")) {
+			if (expectedValue != null)
+			{
+				if (expectedValue.startsWith("\""))
+				{
 					expectedValue = expectedValue.substring(1, expectedValue
 							.length() - 1);
 				}
 			}
 
-			if (!propValue.equals(expectedValue)) {
+			if (!propValue.equals(expectedValue))
+			{
 				throw new PropertyInitException(element, p, context);
 			}
 		}
 	}
 
-	private RefObject computeContextObject(String oclQuery) {
+	private RefObject computeContextObject(String oclQuery)
+	{
 
 		String tag = TcsUtil.getContextTag(oclQuery);
 
 		return PrettyPrintContext.getContextElement(context, tag);
 	}
 
-	private void validateLookupPropertyInit(Object element,
-			LookupPropertyInit p) throws PropertyInitException {
+	private void validateLookupPropertyInit(Object element, LookupPropertyInit p)
+			throws PropertyInitException
+	{
 
-		if (element != null && p != null) {
+		if (element != null && p != null)
+		{
 
 			// only validate PropertyInit, if it is mandatory and not just a
 			// default for the parser
-			if (p.isDefault()) {
+			if (p.isDefault())
+			{
 				return;
 			}
 
 			Object prop = null;
-			if(element instanceof RefStruct) {
-			    prop = TcsUtil.getPropertyValue((RefStruct) element, p
-                                    .getPropertyReference());
-			} else if(element instanceof RefObject) {
-                            prop = TcsUtil.getPropertyValue((RefObject) element, p
-                                    .getPropertyReference());
-                        }
+			if (element instanceof RefStruct)
+			{
+				prop = TcsUtil.getPropertyValue((RefStruct) element, p
+						.getPropertyReference());
+			}
+			else if (element instanceof RefObject)
+			{
+				prop = TcsUtil.getPropertyValue((RefObject) element, p
+						.getPropertyReference());
+			}
 
 			String oclQuery = p.getValue();
 			RefObject contextObject = computeContextObject(oclQuery);
 
 			Object expectedValue = null;
-			try {
-			    if(element instanceof RefObject) {
-				// keyValue is always null for LookUpPropertyInits
-				// in QueryPArg it denotes the RefersToParg propertyValue
-				expectedValue = TcsUtil.executeOclQuery((RefObject) element, oclQuery,
-						contextObject, null);
-			    }
-			} catch (ModelAdapterException e) {
+			try
+			{
+				if (element instanceof RefObject)
+				{
+					// keyValue is always null for LookUpPropertyInits
+					// in QueryPArg it denotes the RefersToParg propertyValue
+					expectedValue = TcsUtil.executeOclQuery(
+							(RefObject) element, oclQuery, contextObject, null);
+				}
+			}
+			catch (ModelAdapterException e)
+			{
 				throw new PropertyInitException((RefObject) element, p, context);
 			}
 
 			// oclHelper.findElementWithOCLQuery returns null for empty
 			// collections
-			if (!TcsUtil.isPropValueAndOclResultEqual(prop, expectedValue)) {
+			if (!TcsUtil.isPropValueAndOclResultEqual(prop, expectedValue))
+			{
 				throw new PropertyInitException(element, p, context);
 			}
 
@@ -1114,133 +1340,211 @@ public class PrettyPrinter {
 	}
 
 	@SuppressWarnings("unchecked")
-	private boolean eval(Object context, RefObject condition) {
+	private boolean eval(Object context, RefObject condition)
+	{
 		boolean ret = true;
 
 		String ctn = MOINImportedModelAdapter.getTypeName(condition);
-		if (ctn.equals("TCS::AndExp")) {
+		if (ctn.equals("TCS::AndExp"))
+		{
 			ret = true;
 			for (Iterator<?> i = MOINImportedModelAdapter.getCol(condition,
-					"expressions"); i.hasNext();) {
+					"expressions"); i.hasNext();)
+			{
 				ret &= eval(context, (RefObject) i.next());
 			}
-		} else if (ctn.equals("TCS::BooleanPropertyExp")) {
+		}
+		else if (ctn.equals("TCS::BooleanPropertyExp"))
+		{
 			BooleanPropertyExp booleanPropertyExp = (BooleanPropertyExp) condition;
 			String propName = TcsUtil.getPropertyName(booleanPropertyExp
 					.getPropertyReference());
-			if(context instanceof RefStruct) {
-			    ret = MOINImportedModelAdapter.getBool((RefStruct)context, propName);
-			} else if(context instanceof RefObject) {
-			    ret = MOINImportedModelAdapter.getBool((RefObject)context, propName);
+			if (context instanceof RefStruct)
+			{
+				ret = MOINImportedModelAdapter.getBool((RefStruct) context,
+						propName);
 			}
-		} else if (ctn.equals("TCS::IsDefinedExp")) {
+			else if (context instanceof RefObject)
+			{
+				ret = MOINImportedModelAdapter.getBool((RefObject) context,
+						propName);
+			}
+		}
+		else if (ctn.equals("TCS::IsDefinedExp"))
+		{
 			IsDefinedExp isDefinedExp = (IsDefinedExp) condition;
 			String propName = TcsUtil.getPropertyName(isDefinedExp
 					.getPropertyReference());
 			Object val = null;
-			if(context instanceof RefStruct) {
-			    val = MOINImportedModelAdapter.get((RefStruct) context, propName);
-			} else if(context instanceof RefObject) {
-                            val = MOINImportedModelAdapter.get((RefObject) context, propName);
-                        }
-			if (val == null) {
+			if (context instanceof RefStruct)
+			{
+				val = MOINImportedModelAdapter.get((RefStruct) context,
+						propName);
+			}
+			else if (context instanceof RefObject)
+			{
+				val = MOINImportedModelAdapter.get((RefObject) context,
+						propName);
+			}
+			if (val == null)
+			{
 				ret = false;
-			} else if (val instanceof Collection) {
+			}
+			else if (val instanceof Collection)
+			{
 				ret = (((Collection<?>) val).size() > 0);
-			} else {
+			}
+			else
+			{
 				ret = true;
 			}
 
-		} else if (ctn.equals("TCS::OneExp")) {
+		}
+		else if (ctn.equals("TCS::OneExp"))
+		{
 			OneExp oneExp = (OneExp) condition;
 			String propName = TcsUtil.getPropertyName(oneExp
 					.getPropertyReference());
-			
+
 			Object val = null;
-			if(context instanceof RefStruct) {
-                            val = MOINImportedModelAdapter.get((RefStruct) context, propName);
-                        } else if(context instanceof RefObject) {
-                            val = MOINImportedModelAdapter.get((RefObject) context, propName);
-                        }
-			if (val == null) {
+			if (context instanceof RefStruct)
+			{
+				val = MOINImportedModelAdapter.get((RefStruct) context,
+						propName);
+			}
+			else if (context instanceof RefObject)
+			{
+				val = MOINImportedModelAdapter.get((RefObject) context,
+						propName);
+			}
+			if (val == null)
+			{
 				ret = false;
-			} else if (val instanceof Collection) {
+			}
+			else if (val instanceof Collection)
+			{
 				ret = (((Collection<?>) val).size() == 1);
-			} else {
+			}
+			else
+			{
 				ret = true;
 			}
-		} else if (ctn.equals("TCS::InstanceOfExp")) {
+		}
+		else if (ctn.equals("TCS::InstanceOfExp"))
+		{
 			InstanceOfExp ioExp = (InstanceOfExp) condition;
 
 			Object referredObject = null;
-			if(context instanceof RefStruct) {
-			    referredObject = TcsUtil.getPropertyValue((RefStruct) context, ioExp
-                                    .getPropertyReference());
-			} else if(context instanceof RefObject) {
-			    referredObject = TcsUtil.getPropertyValue((RefObject) context, ioExp
-                                    .getPropertyReference());
+			if (context instanceof RefStruct)
+			{
+				referredObject = TcsUtil.getPropertyValue((RefStruct) context,
+						ioExp.getPropertyReference());
+			}
+			else if (context instanceof RefObject)
+			{
+				referredObject = TcsUtil.getPropertyValue((RefObject) context,
+						ioExp.getPropertyReference());
 			}
 
-			if (referredObject instanceof RefObject) {
+			if (referredObject instanceof RefObject)
+			{
 
 				if (isInstanceOf((RefObject) referredObject, ioExp
-						.getSupertype())) {
+						.getSupertype()))
+				{
 					ret = true;
-				} else {
+				}
+				else
+				{
 					ret = false;
 				}
-			} else {
+			}
+			else
+			{
 				// TODO handle primitive types as well?
 				System.out.println("TODO NEED HANDLING IN PP");
 			}
-		} else if (ctn.equals("TCS::EqualsExp")) {
+		}
+		else if (ctn.equals("TCS::EqualsExp"))
+		{
 			EqualsExp equalsExp = (EqualsExp) condition;
 			String propName = TcsUtil.getPropertyName(equalsExp
 					.getPropertyReference());
 			RefObject value = MOINImportedModelAdapter
 					.getME(condition, "value");
 			String vtn = MOINImportedModelAdapter.getTypeName(value);
-			if (vtn.equals("TCS::IntegerVal")) {
+			if (vtn.equals("TCS::IntegerVal"))
+			{
 				int lv = MOINImportedModelAdapter.getInt(value, "symbol");
 				int pv = 0;
-				if(context instanceof RefStruct) {
-				    pv = MOINImportedModelAdapter.getInt((RefStruct) context, propName);
-				} else if(context instanceof RefObject) {
-                                    pv = MOINImportedModelAdapter.getInt((RefObject) context, propName);
-                                }
+				if (context instanceof RefStruct)
+				{
+					pv = MOINImportedModelAdapter.getInt((RefStruct) context,
+							propName);
+				}
+				else if (context instanceof RefObject)
+				{
+					pv = MOINImportedModelAdapter.getInt((RefObject) context,
+							propName);
+				}
 				ret = (lv == pv);
-			} else if (vtn.equals("TCS::NegativeIntegerVal")) {
+			}
+			else if (vtn.equals("TCS::NegativeIntegerVal"))
+			{
 				int lv = -MOINImportedModelAdapter.getInt(value, "symbol");
 				int pv = 0;
-                                if(context instanceof RefStruct) {
-                                    pv = MOINImportedModelAdapter.getInt((RefStruct) context, propName);
-                                } else if(context instanceof RefObject) {
-                                    pv = MOINImportedModelAdapter.getInt((RefObject) context, propName);
-                                }
+				if (context instanceof RefStruct)
+				{
+					pv = MOINImportedModelAdapter.getInt((RefStruct) context,
+							propName);
+				}
+				else if (context instanceof RefObject)
+				{
+					pv = MOINImportedModelAdapter.getInt((RefObject) context,
+							propName);
+				}
 				ret = (lv == pv);
-			} else if (vtn.equals("TCS::StringVal")) {
+			}
+			else if (vtn.equals("TCS::StringVal"))
+			{
 				String lv = MOINImportedModelAdapter.getString(value, "symbol");
 				List<String> pv = null;
-                                if(context instanceof RefStruct) {
-                                    pv = (List<String>)MOINImportedModelAdapter.get((RefStruct) context, propName);
-                                } else if(context instanceof RefObject) {
-                                    pv = (List<String>)MOINImportedModelAdapter.get((RefObject) context, propName);
-                                }
+				if (context instanceof RefStruct)
+				{
+					pv = (List<String>) MOINImportedModelAdapter.get(
+							(RefStruct) context, propName);
+				}
+				else if (context instanceof RefObject)
+				{
+					pv = (List<String>) MOINImportedModelAdapter.get(
+							(RefObject) context, propName);
+				}
 				ret = (lv.equals(TcsUtil.joinNameList(pv)));
-			} else if (vtn.equals("TCS::EnumLiteralVal")) {
+			}
+			else if (vtn.equals("TCS::EnumLiteralVal"))
+			{
 				String lv = MOINImportedModelAdapter.getString(value, "name");
-				
+
 				RefEnum pv = null;
-				if(context instanceof RefStruct) {
-                                    pv = (RefEnum)MOINImportedModelAdapter.get((RefStruct) context, propName);
-                                } else if(context instanceof RefObject) {
-                                    pv = (RefEnum)MOINImportedModelAdapter.get((RefObject) context, propName);
-                                }
+				if (context instanceof RefStruct)
+				{
+					pv = (RefEnum) MOINImportedModelAdapter.get(
+							(RefStruct) context, propName);
+				}
+				else if (context instanceof RefObject)
+				{
+					pv = (RefEnum) MOINImportedModelAdapter.get(
+							(RefObject) context, propName);
+				}
 				ret = (lv.equals(pv.toString()));
-			} else {
+			}
+			else
+			{
 				error(vtn + " unsupported.");
 			}
-		} else {
+		}
+		else
+		{
 			error(ctn + " unsupported.");
 		}
 		return ret;
@@ -1248,19 +1552,24 @@ public class PrettyPrinter {
 
 	@SuppressWarnings("unchecked")
 	private void serializeProperty(Object element, Object value,
-			Property property, boolean checkBounds) throws SyntaxMismatchException {
-	        if(checkBounds) {
-	            validateBounds(element, property, value);
-	        }
+			Property property, boolean checkBounds)
+			throws SyntaxMismatchException
+	{
+		if (checkBounds)
+		{
+			validateBounds(element, property, value);
+		}
 
 		RefersToParg refersToParg = (RefersToParg) getPArg(property, "RefersTo");
 		AsParg asParg = (AsParg) getPArg(property, "As");
 		RefObject query = getPArg(property, "Query");
 		String primitiveTemplateName = null;
 
-		if (asParg != null) {
+		if (asParg != null)
+		{
 			Template asTemplate = asParg.getTemplate();
-			if (asTemplate instanceof PrimitiveTemplate) {
+			if (asTemplate instanceof PrimitiveTemplate)
+			{
 				PrimitiveTemplate prim = (PrimitiveTemplate) asTemplate;
 				primitiveTemplateName = prim.getTemplateName();
 			}
@@ -1268,17 +1577,22 @@ public class PrettyPrinter {
 
 		if (value == null)
 			return;
-		if (value instanceof Collection) {
+		if (value instanceof Collection)
+		{
 			RefObject sep = getPArg(property, "Separator");
 			if (sep != null)
 				sep = MOINImportedModelAdapter.getME(sep, "separatorSequence");
 			boolean first = true;
 			for (Iterator<?> i = ((Collection<?>) value).iterator(); i
-					.hasNext();) {
-				if (first) {
+					.hasNext();)
+			{
+				if (first)
+				{
 					printWSBlockNoDup();
 					first = false;
-				} else {
+				}
+				else
+				{
 					if (context.getTypeLast() != TYPE_SPACE)
 						printWS();
 				}
@@ -1289,25 +1603,31 @@ public class PrettyPrinter {
 				// collection
 				// if partial is set
 				serializePropertyCheckingPartial(element, currentPropValue,
-						property, false /*bounds already checked*/);
+						property, false /* bounds already checked */);
 
-				if (i.hasNext()) {
-					if (sep != null) {
+				if (i.hasNext())
+				{
+					if (sep != null)
+					{
 						serializeSeq(null, sep);
 					}
 				}
 			}
-		} else if (value instanceof RefStruct) {
-		    RefStruct s = (RefStruct) value;
-                    ModeParg modeArg = (ModeParg) getPArg(property, "Mode");
-                    String mode = null;
-                    if (modeArg != null) {
-                            mode = modeArg.getMode();
-                    }
+		}
+		else if (value instanceof RefStruct)
+		{
+			RefStruct s = (RefStruct) value;
+			ModeParg modeArg = (ModeParg) getPArg(property, "Mode");
+			String mode = null;
+			if (modeArg != null)
+			{
+				mode = modeArg.getMode();
+			}
 
-                    serialize(s, mode, property.get___Connection());
-                } 
-		else if (value instanceof RefEnum) {
+			serialize(s, mode, property.get___Connection());
+		}
+		else if (value instanceof RefEnum)
+		{
 			RefEnum e = (RefEnum) value;
 			String enumName = TcsUtil.joinNameList(e.refTypeName());
 			Map<String, SequenceElement> mappings = (Map<String, SequenceElement>) templates
@@ -1315,14 +1635,18 @@ public class PrettyPrinter {
 			SequenceElement seqElem = mappings.get(MOINImportedModelAdapter
 					.getEnumLiteralName(e));
 			serializeSeqElem(element, seqElem);
-		} else if (value instanceof RefObject) {
+		}
+		else if (value instanceof RefObject)
+		{
 			RefObject valueME = (RefObject) value;
 			printWSBlockNoDup();
 
-			if (asParg != null && query != null) {
+			if (asParg != null && query != null)
+			{
 				FilterParg filter = (FilterParg) getPArg(property, "Filter");
 				String invertQuery = filter.getInvert();
-				try {
+				try
+				{
 					String refValue = (String) oclHelper
 							.findElementWithOCLQuery(
 									valueME,
@@ -1340,23 +1664,31 @@ public class PrettyPrinter {
 															.getType()));
 
 					this.serializePrimitive(refValue, primitiveTemplateName);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					String defaultName = (String) valueME.refGetValue("name");
 					this.serializePrimitive(defaultName, primitiveTemplateName);
 				}
-			} else if (refersToParg == null) {
+			}
+			else if (refersToParg == null)
+			{
 				ModeParg modeArg = (ModeParg) getPArg(property, "Mode");
 				String mode = null;
-				if (modeArg != null) {
+				if (modeArg != null)
+				{
 					mode = modeArg.getMode();
 				}
 
 				serialize(valueME, mode);
-			} else {
+			}
+			else
+			{
 				// TODO hack to add autocreated instances of TCS::Keyword to
 				// the
 				// keywords list
-				if (valueME instanceof Keyword) {
+				if (valueME instanceof Keyword)
+				{
 					keywords.add(((Keyword) value).getValue());
 				}
 
@@ -1366,248 +1698,272 @@ public class PrettyPrinter {
 
 				serializePrimitive(v, primitiveTemplateName);
 			}
-		} else if (MOINImportedModelAdapter.isPrimitive(value)) {
+		}
+		else if (MOINImportedModelAdapter.isPrimitive(value))
+		{
 			printWSBlockNoDup();
 			serializePrimitive(value, primitiveTemplateName);
-		} else {
+		}
+		else
+		{
 			error("unsupported " + value.getClass());
 		}
 
 	}
 
-	private void serialize(RefStruct s, String mode, Connection connection) throws SyntaxMismatchException {
-	    String typeName = TcsUtil.joinNameList(s.refTypeName());
-	    
-            pushSep(standardSeparator);
+	private void serialize(RefStruct s, String mode, Connection connection)
+			throws SyntaxMismatchException
+	{
+		String typeName = TcsUtil.joinNameList(s.refTypeName());
 
-            debug("processing " + typeName);
+		pushSep(standardSeparator);
 
-            Object template = null;
+		debug("processing " + typeName);
 
-            ClassTemplate ct = TcsUtil.resolveClassTemplate(s.refTypeName(), mode,
-                        classTemplateMap);
-            if (ct != null && !ct.isAbstract()) {
-                    template = ct;
-            }
+		Object template = null;
 
-            if (template == null) {
-                    // look for non-abstract template for supertype
-                    
-                    template = findSupertypeTemplate(s, mode, classTemplateMap, connection);
-            }
+		ClassTemplate ct = TcsUtil.resolveClassTemplate(s.refTypeName(), mode,
+				classTemplateMap);
+		if (ct != null && !ct.isAbstract())
+		{
+			template = ct;
+		}
 
-        if (template == null) {
+		if (template == null)
+		{
+			// look for non-abstract template for supertype
 
-                // look for non-class templates
-                template = templates.get(typeName);
-        }
+			template = findSupertypeTemplate(s, mode, classTemplateMap,
+					connection);
+		}
 
-        if (template == null) {
-                if (mode != null) {
-                        error("unknown template for " + typeName + " #" + mode);
-                } else {
-                        error("unknown template for " + typeName);
-                }
-                throw new NoTemplateMatchFoundException(context, s, typeName, mode);
-                //return;
-        }
+		if (template == null)
+		{
 
-        String templateTypeName = MOINImportedModelAdapter
-                        .getTypeName((RefObject) template);
-        debug("Applying template type " + templateTypeName);
+			// look for non-class templates
+			template = templates.get(typeName);
+		}
 
-        if (template instanceof ClassTemplate) {
-                debug("with mode: " + ((ClassTemplate) template).getMode());
-        }
+		if (template == null)
+		{
+			if (mode != null)
+			{
+				error("unknown template for " + typeName + " #" + mode);
+			}
+			else
+			{
+				error("unknown template for " + typeName);
+			}
+			throw new NoTemplateMatchFoundException(context, s, typeName, mode);
+			// return;
+		}
 
-        if (templateTypeName.equals("TCS::ClassTemplate")) {
+		String templateTypeName = MOINImportedModelAdapter
+				.getTypeName((RefObject) template);
+		debug("Applying template type " + templateTypeName);
 
-                context.getPriorities().push(new Integer(Integer.MAX_VALUE));
-                context.getClassTemplates().push((ClassTemplate) template);
-//                context.getParentRefObjects().push(ame);
-//                int handle = out.startClassTemplateForObject(ame,
-//                                (Template) template);
-//                
-                serializeSeq(s, MOINImportedModelAdapter.getME((RefObject) template, "templateSequence"));
+		if (template instanceof ClassTemplate)
+		{
+			debug("with mode: " + ((ClassTemplate) template).getMode());
+		}
 
-                //out.endClassTemplate(handle);
-                //context.getParentRefObjects().pop();
-                context.getClassTemplates().pop();
-                context.getPriorities().pop();
-        } else if (templateTypeName.equals("TCS::OperatorTemplate")) {
-                throw new RuntimeException("OperatorTemplates are not yet supported for StructureTypes");
-//                int handle = out.startClassTemplateForObject(ame,
-//                                (Template) template);
-//                OperatorTemplate ot = (OperatorTemplate) template;
-//                String sourcePropName = TcsUtil.getPropertyName(ot
-//                                .getStoreLeftSideTo());
-//                String opPropName = TcsUtil
-//                                .getPropertyName(ot.getStoreOperatorTo());
-//                String rightPropName = TcsUtil.getPropertyName(ot
-//                                .getStoreRightSideTo());
-//                debug("OperatorTemplate: left = " + sourcePropName
-//                                + " ; operator = " + opPropName + " ; right = "
-//                                + rightPropName);
-//
-//                Object r = null;
-//                boolean isPostfix = false; // only valid for unary operators
-//                boolean isUnary = false;
-//                if (rightPropName != null) {
-//                        r = MOINImportedModelAdapter.get(s, rightPropName);    
-//                        
-//                        if (r instanceof Collection) {
-//                                isUnary = (((Collection<?>) r).size() == 0);
-//                        } else {
-//                                isUnary = r == null;
-//                        }
-//                } else {
-//                        isUnary = true;
-//                }
-//                debug("rightPropName = " + rightPropName + " ; isUnary = "
-//                                + isUnary);
-//
-//                Object operator = null;
-//                if (opPropName != null) {
-//                        String op = MOINImportedModelAdapter.getString(s, opPropName);
-//                        if (op == null) {
-//                                throw new RuntimeException("Property " + opPropName
-//                                                + " has not been set in " + s + " ("
-//                                                + s.refTypeName() + ")");
-//                        }
-//                        for (Iterator<?> i = MOINImportedModelAdapter.getCol(
-//                                        (RefObject) template, "operators"); i.hasNext()
-//                                        && (operator == null);) {
-//                                Object opme = i.next();
-//                                Object literal = MOINImportedModelAdapter.getME(
-//                                                (RefObject) opme, "literal");
-//                                String opmes = null;
-//                                if (literal == null)
-//                                        opmes = "";
-//                                else
-//                                        opmes = MOINImportedModelAdapter.getString(
-//                                                        (RefObject) literal, "value");
-//                                int arity = MOINImportedModelAdapter.getInt(
-//                                                (RefObject) opme, "arity");
-//                                if (op.equals(opmes)) {
-//                                        if (rightPropName != null) {
-//                                                if ((isUnary && (arity == 1))
-//                                                                || ((!isUnary) && (arity == 2))) {
-//                                                        operator = opme;
-//                                                }
-//                                        } else {
-//                                                operator = opme;
-//                                                isPostfix = MOINImportedModelAdapter.getBool(
-//                                                                (RefObject) opme, "isPostfix");
-//                                        }
-//                                }
-//                        }
-//                        if (operator == null) {
-//                                System.err.println("Error: could not find operator \"" + op
-//                                                + "\"");
-//                        }
-//                } else {
-//                        operator = MOINImportedModelAdapter.getCol(
-//                                        (RefObject) template, "operators").next();
-//                        isUnary = MOINImportedModelAdapter.getInt((RefObject) operator,
-//                                        "arity") == 1;
-//                        if (isUnary) {
-//                                isPostfix = MOINImportedModelAdapter.getBool(
-//                                                (RefObject) operator, "isPostfix");
-//                        }
-//                }
-//                int curPrio = context.getPriorities().peek().intValue();
-//                Operator op = (Operator) operator;
-//                int priority = ((Priority) op.refImmediateComposite()).getValue();
-//                boolean paren = priority > curPrio;
-//                context.getPriorities().push(new Integer(priority));
-//                RefObject literal = MOINImportedModelAdapter.getME(
-//                                (RefObject) operator, "literal");
-//                debug("PRIORITY = "
-//                                + priority
-//                                + " ; CURPRIO = "
-//                                + curPrio
-//                                + " ; OPERATOR = "
-//                                + ((literal != null) ? MOINImportedModelAdapter.getString(
-//                                                literal, "value") : "") + " ; paren = " + paren);
-//
-//                if (paren)
-//                        printSymbol("(");
-//
-//                RefObject source = MOINImportedModelAdapter.getME(s,
-//                                sourcePropName);
-//                if (isUnary) {
-//                        if (isPostfix) {
-//                                serialize(source);
-//
-//                                if (literal != null)
-//                                        printLiteral(literal);
-//                        } else {
-//                                if (literal != null)
-//                                        printLiteral(literal);
-//
-//                                serialize(source);
-//                        }
-//                } else {
-//                        serialize(source);
-//
-//                        if (literal != null)
-//                                printLiteral(literal);
-//                }
-//
-//                RefObject seq = MOINImportedModelAdapter.getME(
-//                                (RefObject) template, "otSequence");
-//                if (rightPropName == null) {
-//                        context.getPriorities().push(new Integer(Integer.MAX_VALUE));
-//                        serializeSeq(ame, seq);
-//                        context.getPriorities().pop();
-//                } else {
-//                        if (seq != null)
-//                                serializeSeq(ame, seq);
-//                        if (r instanceof Collection) {
-//                                for (Iterator<?> i = ((Collection<?>) r).iterator(); i
-//                                                .hasNext();) {
-//                                        serialize((RefObject) i.next());
-//                                }
-//                        } else {
-//                                if (!isUnary)
-//                                        serialize((RefObject) r);
-//                        }
-//                }
-//                context.getPriorities().pop();
-//                if (paren)
-//                        printSymbol(")");
-//
-//                out.endClassTemplate(handle);
-        } else {
-                error("unsupported template type: " + templateTypeName);
-        }
-//        if (serializeComments) {
-//                try {
-//                        for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame,
-//                                        "commentsAfter"); i.hasNext();) {
-//                                String c = MOINImportedModelAdapter.nextString(i);
-//                                if (c.equals("\n")) {
-//
-//                                } else {
-//                                        printComment(c);
-//                                        printWS(lineFeed + context.getCurIndent());
-//                                }
-//                        }
-//                } catch (Exception e) {
-//                        System.out.println("Warning: could not get comments of " + ame
-//                                        + ", disabling further comments serialization");
-//                        serializeComments = false;
-//                }
-//        }
-        popSep();
+		if (templateTypeName.equals("TCS::ClassTemplate"))
+		{
 
-        // remove element so it can be prettyprinted in other places
-//        context.getVisitedModelElements().remove(ame);
-        }
+			context.getPriorities().push(new Integer(Integer.MAX_VALUE));
+			context.getClassTemplates().push((ClassTemplate) template);
+			// context.getParentRefObjects().push(ame);
+			// int handle = out.startClassTemplateForObject(ame,
+			// (Template) template);
+			//                
+			serializeSeq(s, MOINImportedModelAdapter.getME(
+					(RefObject) template, "templateSequence"));
 
-    private void serializePropertyCheckingPartial(Object element,
+			// out.endClassTemplate(handle);
+			// context.getParentRefObjects().pop();
+			context.getClassTemplates().pop();
+			context.getPriorities().pop();
+		}
+		else if (templateTypeName.equals("TCS::OperatorTemplate"))
+		{
+			throw new RuntimeException(
+					"OperatorTemplates are not yet supported for StructureTypes");
+			// int handle = out.startClassTemplateForObject(ame,
+			// (Template) template);
+			// OperatorTemplate ot = (OperatorTemplate) template;
+			// String sourcePropName = TcsUtil.getPropertyName(ot
+			// .getStoreLeftSideTo());
+			// String opPropName = TcsUtil
+			// .getPropertyName(ot.getStoreOperatorTo());
+			// String rightPropName = TcsUtil.getPropertyName(ot
+			// .getStoreRightSideTo());
+			// debug("OperatorTemplate: left = " + sourcePropName
+			// + " ; operator = " + opPropName + " ; right = "
+			// + rightPropName);
+			//
+			// Object r = null;
+			// boolean isPostfix = false; // only valid for unary operators
+			// boolean isUnary = false;
+			// if (rightPropName != null) {
+			// r = MOINImportedModelAdapter.get(s, rightPropName);
+			//                        
+			// if (r instanceof Collection) {
+			// isUnary = (((Collection<?>) r).size() == 0);
+			// } else {
+			// isUnary = r == null;
+			// }
+			// } else {
+			// isUnary = true;
+			// }
+			// debug("rightPropName = " + rightPropName + " ; isUnary = "
+			// + isUnary);
+			//
+			// Object operator = null;
+			// if (opPropName != null) {
+			// String op = MOINImportedModelAdapter.getString(s, opPropName);
+			// if (op == null) {
+			// throw new RuntimeException("Property " + opPropName
+			// + " has not been set in " + s + " ("
+			// + s.refTypeName() + ")");
+			// }
+			// for (Iterator<?> i = MOINImportedModelAdapter.getCol(
+			// (RefObject) template, "operators"); i.hasNext()
+			// && (operator == null);) {
+			// Object opme = i.next();
+			// Object literal = MOINImportedModelAdapter.getME(
+			// (RefObject) opme, "literal");
+			// String opmes = null;
+			// if (literal == null)
+			// opmes = "";
+			// else
+			// opmes = MOINImportedModelAdapter.getString(
+			// (RefObject) literal, "value");
+			// int arity = MOINImportedModelAdapter.getInt(
+			// (RefObject) opme, "arity");
+			// if (op.equals(opmes)) {
+			// if (rightPropName != null) {
+			// if ((isUnary && (arity == 1))
+			// || ((!isUnary) && (arity == 2))) {
+			// operator = opme;
+			// }
+			// } else {
+			// operator = opme;
+			// isPostfix = MOINImportedModelAdapter.getBool(
+			// (RefObject) opme, "isPostfix");
+			// }
+			// }
+			// }
+			// if (operator == null) {
+			// System.err.println("Error: could not find operator \"" + op
+			// + "\"");
+			// }
+			// } else {
+			// operator = MOINImportedModelAdapter.getCol(
+			// (RefObject) template, "operators").next();
+			// isUnary = MOINImportedModelAdapter.getInt((RefObject) operator,
+			// "arity") == 1;
+			// if (isUnary) {
+			// isPostfix = MOINImportedModelAdapter.getBool(
+			// (RefObject) operator, "isPostfix");
+			// }
+			// }
+			// int curPrio = context.getPriorities().peek().intValue();
+			// Operator op = (Operator) operator;
+			// int priority = ((Priority)
+			// op.refImmediateComposite()).getValue();
+			// boolean paren = priority > curPrio;
+			// context.getPriorities().push(new Integer(priority));
+			// RefObject literal = MOINImportedModelAdapter.getME(
+			// (RefObject) operator, "literal");
+			// debug("PRIORITY = "
+			// + priority
+			// + " ; CURPRIO = "
+			// + curPrio
+			// + " ; OPERATOR = "
+			// + ((literal != null) ? MOINImportedModelAdapter.getString(
+			// literal, "value") : "") + " ; paren = " + paren);
+			//
+			// if (paren)
+			// printSymbol("(");
+			//
+			// RefObject source = MOINImportedModelAdapter.getME(s,
+			// sourcePropName);
+			// if (isUnary) {
+			// if (isPostfix) {
+			// serialize(source);
+			//
+			// if (literal != null)
+			// printLiteral(literal);
+			// } else {
+			// if (literal != null)
+			// printLiteral(literal);
+			//
+			// serialize(source);
+			// }
+			// } else {
+			// serialize(source);
+			//
+			// if (literal != null)
+			// printLiteral(literal);
+			// }
+			//
+			// RefObject seq = MOINImportedModelAdapter.getME(
+			// (RefObject) template, "otSequence");
+			// if (rightPropName == null) {
+			// context.getPriorities().push(new Integer(Integer.MAX_VALUE));
+			// serializeSeq(ame, seq);
+			// context.getPriorities().pop();
+			// } else {
+			// if (seq != null)
+			// serializeSeq(ame, seq);
+			// if (r instanceof Collection) {
+			// for (Iterator<?> i = ((Collection<?>) r).iterator(); i
+			// .hasNext();) {
+			// serialize((RefObject) i.next());
+			// }
+			// } else {
+			// if (!isUnary)
+			// serialize((RefObject) r);
+			// }
+			// }
+			// context.getPriorities().pop();
+			// if (paren)
+			// printSymbol(")");
+			//
+			// out.endClassTemplate(handle);
+		}
+		else
+		{
+			error("unsupported template type: " + templateTypeName);
+		}
+		// if (serializeComments) {
+		// try {
+		// for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame,
+		// "commentsAfter"); i.hasNext();) {
+		// String c = MOINImportedModelAdapter.nextString(i);
+		// if (c.equals("\n")) {
+		//
+		// } else {
+		// printComment(c);
+		// printWS(lineFeed + context.getCurIndent());
+		// }
+		// }
+		// } catch (Exception e) {
+		// System.out.println("Warning: could not get comments of " + ame
+		// + ", disabling further comments serialization");
+		// serializeComments = false;
+		// }
+		// }
+		popSep();
+
+		// remove element so it can be prettyprinted in other places
+		// context.getVisitedModelElements().remove(ame);
+	}
+
+	private void serializePropertyCheckingPartial(Object element,
 			Object currentPropValue, Property property, boolean checkBounds)
-			throws SyntaxMismatchException {
+			throws SyntaxMismatchException
+	{
 		// partial properties emit nothing on model validation errors
 		// instead of
 		// throwing an exception
@@ -1615,26 +1971,35 @@ public class PrettyPrinter {
 		int handle = 0;
 
 		PartialParg partialArg = (PartialParg) getPArg(property, "Partial");
-		if (partialArg != null) {
+		if (partialArg != null)
+		{
 			handle = createSafePoint();
 		}
 
-		try {
+		try
+		{
 			serializeProperty(element, currentPropValue, property, checkBounds);
-		} catch (SyntaxMismatchException e) {
+		}
+		catch (SyntaxMismatchException e)
+		{
 
-			if (printPropertyInitExceptions) {
+			if (printPropertyInitExceptions)
+			{
 				System.out.println(e.getMessage());
 			}
 
-			if (partialArg != null) {
-				if (printPropertyInitExceptions) {
+			if (partialArg != null)
+			{
+				if (printPropertyInitExceptions)
+				{
 					System.out.println("is ignored due to partial property");
 				}
 				// remove partial output of this property and remove the
 				// exception
 				resetToSafePoint(handle);
-			} else {
+			}
+			else
+			{
 				// re-throw exception, this property has to be printed
 				// without
 				// errors
@@ -1644,42 +2009,55 @@ public class PrettyPrinter {
 	}
 
 	private void validateBounds(Object element, Property p, Object propValue)
-			throws ForcedBoundsException {
+			throws ForcedBoundsException
+	{
 
 		// check for forced upper and forced lower validity of model element
 		ForcedLowerParg lowerArg = (ForcedLowerParg) getPArg(p, "ForcedLower");
 		ForcedUpperParg upperArg = (ForcedUpperParg) getPArg(p, "ForcedUpper");
 
-		try {
+		try
+		{
 
-			if (lowerArg != null) {
+			if (lowerArg != null)
+			{
 
 				int lowerBound = lowerArg.getValue();
 
-				if (propValue == null) {
-					if (lowerBound != 0) {
+				if (propValue == null)
+				{
+					if (lowerBound != 0)
+					{
 						throw new Exception();
 					}
 				}
 
-				if (propValue instanceof Collection) {
+				if (propValue instanceof Collection)
+				{
 					Collection<?> c = (Collection<?>) propValue;
-					if (lowerBound > c.size()) {
+					if (lowerBound > c.size())
+					{
 						throw new Exception();
 					}
-				} else {
-					if (lowerBound > 1) {
+				}
+				else
+				{
+					if (lowerBound > 1)
+					{
 						throw new Exception();
 					}
 				}
 			}
 
-			if (upperArg != null) {
+			if (upperArg != null)
+			{
 				int upperBound = upperArg.getValue();
 
-				if (propValue instanceof Collection) {
+				if (propValue instanceof Collection)
+				{
 					Collection<?> c = (Collection<?>) propValue;
-					if (upperBound < c.size()) {
+					if (upperBound < c.size())
+					{
 						// TODO find out what should happen. not possible to
 						// identify element or should throw exception?
 						// throw new Exception();
@@ -1687,101 +2065,150 @@ public class PrettyPrinter {
 				}
 			}
 
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw new ForcedBoundsException(element, p, lowerArg, upperArg,
 					context);
 		}
 	}
 
-	private void serializePrimitive(Object value, String as) {
-		if (value instanceof String) {
+	private void serializePrimitive(Object value, String as)
+	{
+		if (value instanceof String)
+		{
 
 			// TODO what about serializer attribute?
-		        RefObject template = primitiveTemplates.get(as);
-		        if(template != null && template instanceof PrimitiveTemplate &&
-		                ((PrimitiveTemplate)template).getSerializer() != null &&
-		                !((PrimitiveTemplate)template).getSerializer().equals("")) {
-		            PrimitiveTemplate primTemplate = (PrimitiveTemplate)template;
-                            if (primTemplate.getSerializer().contains("%value%")) {
-                                printCustomStringLiteral(primTemplate.getSerializer().replaceAll(
-                                        "%value%", java.util.regex.Matcher.quoteReplacement(((String) value).replaceAll("\"", "\\\\\\\""))), "");
-                            }
-		        }
+			RefObject template = primitiveTemplates.get(as);
+			if (template != null
+					&& template instanceof PrimitiveTemplate
+					&& ((PrimitiveTemplate) template).getSerializer() != null
+					&& !((PrimitiveTemplate) template).getSerializer().equals(
+							""))
+			{
+				PrimitiveTemplate primTemplate = (PrimitiveTemplate) template;
+				if (primTemplate.getSerializer().contains("%value%"))
+				{
+					printCustomStringLiteral(primTemplate.getSerializer()
+							.replaceAll(
+									"%value%",
+									java.util.regex.Matcher
+											.quoteReplacement(((String) value)
+													.replaceAll("\"",
+															"\\\\\\\""))), "");
+				}
+			}
 			// TODO what about tokens and token attribute?
-		        else if ("stringSymbol".equals(as)) {
+			else if ("stringSymbol".equals(as))
+			{
 				printStringLiteral((String) value);
-			} else {
+			}
+			else
+			{
 				boolean orKeyword = false;
 				if (template != null)
 					orKeyword = MOINImportedModelAdapter
 							.getBoolUndefinedIsFalse(template, "orKeyword");
 				printIdentifier((String) value, orKeyword);
 			}
-		} else if (value instanceof Integer) {
+		}
+		else if (value instanceof Integer)
+		{
 			printIntegerLiteral(((Integer) value).intValue());
-		} else if (value instanceof Double) {
+		}
+		else if (value instanceof Double)
+		{
 			printRealLiteral(((Double) value).doubleValue());
-		} else if (value instanceof Boolean) {
+		}
+		else if (value instanceof Boolean)
+		{
 			printBooleanLiteral(((Boolean) value).booleanValue());
 		}
 	}
 
 	// Low-level serialization
 
-	private final static int TYPE_KEYWORD = 1;
-	private final static int TYPE_SYMBOL = 2;
-	private final static int TYPE_IDENT = 3;
-	private final static int TYPE_BOOL = 4;
-	private final static int TYPE_INT = 5;
-	private final static int TYPE_REAL = 6;
-	private final static int TYPE_STRING = 7;
-	private final static int TYPE_SPACE = 8;
-	private final static int TYPE_COMMENT = 9;
+	private final static int	TYPE_KEYWORD	= 1;
+	private final static int	TYPE_SYMBOL		= 2;
+	private final static int	TYPE_IDENT		= 3;
+	private final static int	TYPE_BOOL		= 4;
+	private final static int	TYPE_INT		= 5;
+	private final static int	TYPE_REAL		= 6;
+	private final static int	TYPE_STRING		= 7;
+	private final static int	TYPE_SPACE		= 8;
+	private final static int	TYPE_COMMENT	= 9;
 
-	private final static int SYMBOL_LS = 16; // symbol with a space before
+	private final static int	SYMBOL_LS		= 16;						// symbol
+																			// with
+																			// a
+																			// space
+																			// before
 	// (on the Left)
-	private final static int SYMBOL_RS = 32; // symbol with a space after (on
+	private final static int	SYMBOL_RS		= 32;						// symbol
+																			// with
+																			// a
+																			// space
+																			// after
+																			// (on
 	// the Right)
-	private final static int SYMBOL_BS = SYMBOL_LS + SYMBOL_RS; // symbol with
+	private final static int	SYMBOL_BS		= SYMBOL_LS + SYMBOL_RS;	// symbol
+																			// with
 	// spaces Both
 	// before and
 	// after
-	private final static int SYMBOL_LN = 64; // symbol with no space before
+	private final static int	SYMBOL_LN		= 64;						// symbol
+																			// with
+																			// no
+																			// space
+																			// before
 	// (even if preceding symbol is
 	// RS or BS)
-	private final static int SYMBOL_RN = 128; // symbol with no space after
+	private final static int	SYMBOL_RN		= 128;						// symbol
+																			// with
+																			// no
+																			// space
+																			// after
 
 	// (even if following symbol is
 	// LS or BS)
 
-	private void printLiteral(RefObject literal) {
+	private void printLiteral(RefObject literal)
+	{
 		String s = MOINImportedModelAdapter.getString(literal, "value");
 		String ltn = MOINImportedModelAdapter.getTypeName(literal);
-		if (ltn != null) {
-			if (ltn.equals("TCS::Keyword")) {
+		if (ltn != null)
+		{
+			if (ltn.equals("TCS::Keyword"))
+			{
 				printKeyword(s);
-			} else {
+			}
+			else
+			{
 				printSymbol(s);
 			}
 		}
 	}
 
-	private void printWS(String ws) {
+	private void printWS(String ws)
+	{
 		debug("printing WS = \"" + ws + "\"");
 		out.printWhiteSpace(ws);
 		context.setTypeLast(TYPE_SPACE);
 	}
 
-	private void printWS() {
+	private void printWS()
+	{
 		printWS(context.getCurrentSeparator().peek());
 	}
 
-	private boolean isSymbol(int type, int test) {
+	private boolean isSymbol(int type, int test)
+	{
 		test += TYPE_SYMBOL;
 		return (type & test) == test;
 	}
 
-	private void printDisambiguationWS() {
+	private void printDisambiguationWS()
+	{
 		if ((context.getTypeLast() == TYPE_KEYWORD)
 				|| (context.getTypeLast() == TYPE_IDENT)
 				|| (context.getTypeLast() == TYPE_INT)
@@ -1789,43 +2216,52 @@ public class PrettyPrinter {
 				|| (context.getTypeLast() == TYPE_STRING)
 				|| (context.getTypeLast() == TYPE_BOOL)
 				|| (isSymbol(context.getTypeLast(), SYMBOL_BS))
-				|| (isSymbol(context.getTypeLast(), SYMBOL_RS))) {
+				|| (isSymbol(context.getTypeLast(), SYMBOL_RS)))
+		{
 			printWS();
 		}
 	}
 
-	private void printWSBlockNoDup() {
+	private void printWSBlockNoDup()
+	{
 		if (context.getTypeLast() != TYPE_SPACE)
 			if (!context.getCurrentSeparator().peek().equals(" "))
 				printWS();
 	}
 
-	private void printWSNoDup() {
+	private void printWSNoDup()
+	{
 		if (context.getTypeLast() != TYPE_SPACE)
 			printWS();
 	}
 
-	private void printKeyword(String keyword) {
+	private void printKeyword(String keyword)
+	{
 		printDisambiguationWS();
 		out.printKeyword(keyword);
 		context.setTypeLast(TYPE_KEYWORD);
 	}
 
-	private Map<String, Integer> symbols = new HashMap<String, Integer>();
+	private Map<String, Integer>	symbols	= new HashMap<String, Integer>();
 
-	private void printSymbol(String symbol) {
+	private void printSymbol(String symbol)
+	{
 		Integer type = symbols.get(symbol);
 		int typeCurrent = -1;
-		if (type == null) {
+		if (type == null)
+		{
 			typeCurrent = TYPE_SYMBOL;
-		} else {
+		}
+		else
+		{
 			typeCurrent = type.intValue();
 		}
 		if (((isSymbol(typeCurrent, SYMBOL_LS) || isSymbol(typeCurrent,
 				SYMBOL_BS)) && !isSymbol(context.getTypeLast(), SYMBOL_RN))
 				|| ((isSymbol(context.getTypeLast(), SYMBOL_RS) || isSymbol(
 						context.getTypeLast(), SYMBOL_BS)) && !isSymbol(
-						typeCurrent, SYMBOL_LN))) {
+						typeCurrent, SYMBOL_LN)))
+		{
 
 			printWSNoDup();
 		}
@@ -1833,59 +2269,71 @@ public class PrettyPrinter {
 		context.setTypeLast(typeCurrent);
 	}
 
-	private void printIdentifier(String ident, boolean orKeyword) {
+	private void printIdentifier(String ident, boolean orKeyword)
+	{
 		printDisambiguationWS();
 		boolean simpleIdent = ident.matches("[_a-zA-Z][_a-zA-Z0-9]*");
 		if (simpleIdent && !orKeyword)
 			simpleIdent = !keywords.contains(ident);
 		if ((!orKeyword) && kwCheckIgnoreCase
-				&& keywords.contains(ident.toUpperCase())) {
+				&& keywords.contains(ident.toUpperCase()))
+		{
 			simpleIdent = false;
 		}
-		if (simpleIdent) {
+		if (simpleIdent)
+		{
 			out.printIdentifier(ident);
-		} else {
+		}
+		else
+		{
 			out.printEscapedIdentifier(identEscStart, ident, identEscEnd);
 		}
 		context.setTypeLast(TYPE_IDENT);
 	}
 
-	private void printBooleanLiteral(boolean v) {
+	private void printBooleanLiteral(boolean v)
+	{
 		printDisambiguationWS();
 		out.printBoolean(v);
 		context.setTypeLast(TYPE_BOOL);
 	}
 
-	private void printIntegerLiteral(int v) {
+	private void printIntegerLiteral(int v)
+	{
 		printDisambiguationWS();
 		out.printInteger(v);
 		context.setTypeLast(TYPE_INT);
 	}
 
-	static {
+	static
+	{
 		dfs.setDecimalSeparator('.');
 	}
 
-	private void printRealLiteral(double v) {
+	private void printRealLiteral(double v)
+	{
 		printDisambiguationWS();
 		out.printReal(df.format(v)); // TODO: format properly
 		context.setTypeLast(TYPE_REAL);
 	}
 
-	private void printStringLiteral(String v) {
+	private void printStringLiteral(String v)
+	{
 		printDisambiguationWS();
 		out.printString(stringDelim, v.replaceAll("\\\\", "\\\\\\\\")
 				.replaceAll("\"", "\\\\\""));
 		context.setTypeLast(TYPE_STRING);
 	}
-	
-	private void printCustomStringLiteral(String v, String surroundings) {
-            printDisambiguationWS();
-            out.printString(surroundings, v);
-            context.setTypeLast(TYPE_STRING);
-        }
 
-	private void printComment(String c) {
+	private void printCustomStringLiteral(String v, String surroundings)
+	{
+		printDisambiguationWS();
+		out.printString(surroundings, v);
+		context.setTypeLast(TYPE_STRING);
+	}
+
+	private void printComment(String c)
+	{
 		printDisambiguationWS();
 		out.printComment(c);
 		context.setTypeLast(TYPE_COMMENT);
@@ -1893,11 +2341,13 @@ public class PrettyPrinter {
 
 	// Source model navigation helpers.
 
-	private static RefObject getPArg(RefObject ame, String name) {
+	private static RefObject getPArg(RefObject ame, String name)
+	{
 		RefObject ret = null;
 
 		for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame,
-				"propertyArgs"); i.hasNext() && (ret == null);) {
+				"propertyArgs"); i.hasNext() && (ret == null);)
+		{
 			Object arg = i.next();
 			if (MOINImportedModelAdapter.getTypeName((RefObject) arg).equals(
 					"TCS::" + name + "PArg"))
@@ -1907,12 +2357,14 @@ public class PrettyPrinter {
 		return ret;
 	}
 
-	private static RefObject getBArg(RefObject ame, String name) {
+	private static RefObject getBArg(RefObject ame, String name)
+	{
 		RefObject ret = null;
 
 		for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame, "blockArgs"); i
 				.hasNext()
-				&& (ret == null);) {
+				&& (ret == null);)
+		{
 			Object arg = i.next();
 			if (MOINImportedModelAdapter.getTypeName((RefObject) arg).equals(
 					"TCS::" + name + "BArg"))
@@ -1922,24 +2374,28 @@ public class PrettyPrinter {
 		return ret;
 	}
 
-	private void debug(String msg) {
+	private void debug(String msg)
+	{
 		if (debug)
 			System.out.println(msg);
 	}
 
-	private void error(String msg) {
+	private void error(String msg)
+	{
 		System.out.println("ERROR: " + msg + " at "
 				+ Arrays.toString(new RuntimeException().getStackTrace()));
 	}
 
-	private int createSafePoint() {
+	private int createSafePoint()
+	{
 
 		int handle = out.createSafePoint();
 		backup.put(handle, context.duplicate());
 		return handle;
 	}
 
-	private void resetToSafePoint(int handle) {
+	private void resetToSafePoint(int handle)
+	{
 		context = backup.get(new Integer(handle));
 		out.resetToSafePoint(handle);
 	}

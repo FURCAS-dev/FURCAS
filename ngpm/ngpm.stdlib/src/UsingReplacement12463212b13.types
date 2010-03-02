@@ -40,7 +40,7 @@
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_steps_replace' i='E075D95551F518C73E4B11DE81860018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='dataaccess.expressions.A_to_navigationStep' i='E075D95551F518CA3E4B11DE9B3C0018DE1146FF' se='1' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_with_replace' i='E075D95551F518D03E4B11DEBF410018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_with_withOfReplace' i='E075D95551F518D03E4B11DEBF410018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
 <M c='2' q='behavioral.actions.ExpressionStatement' i='E0BC871351C30C343E4B11DE95EB0018DE1146FF'/>
@@ -51,7 +51,7 @@
 <M c='2' q='behavioral.actions.A_statements_block' i='E0BC871351C57D323E4B11DE94BD0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='behavioral.actions.A_variables_owner' i='E0BC871351C57D383E4B11DE82350018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='behavioral.actions.A_expression_expressionStatement' i='E0BC871351C7C7183E4B11DEAC100018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='behavioral.actions.A_initExpression_namedValueWithOptionalInitExpression' i='E0BC871351C7C71E3E4B11DECFDA0018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='behavioral.actions.A_initExpression_initExpressionFor' i='E0BC871351C7C71E3E4B11DECFDA0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='behavioral.actions.A_namedValue_namedValueDeclaration' i='E0BC871351C7C7243E4B11DECEA40018DE1146FF' se='1' ce='-1' oe='-1'/>
 <textblocks.TextBlock m:c='1' m:i='E012BF1EB7A0B240E68E11DE963BE5437F000002' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='201' offsetRelative='false' isComplete='true' cachedString='class UsingReplacement {&#10;&#9;void m() {&#10;&#9;&#9;var p=all Person-&gt;iterate(p|p);&#10;    var c2=new City();&#10;    c2.name=&quot;Heidelberg&quot;;&#10;    p.addresses = p.addresses-&gt;replace(city=c2);&#10;    p.addresses.city.name;&#10;  }&#10;}'/>
 <textblocks.OmittedToken m:c='1' m:i='E012BF1EB7A0D951E68E11DEC88BE5437F000002' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='199' length='1' offsetRelative='true' value='&#10;' lookahead='1' lookback='1' state='0' type='42'/>
@@ -546,9 +546,9 @@
 <dataaccess.expressions.A_to_navigationStep c='2'>
 <L f='local:E01A5454E0AC257970A011DE9D1D00155883529C' s='E0AC3689B2DE2520E66211DEAA02D0337F000002'/>
 </dataaccess.expressions.A_to_navigationStep>
-<dataaccess.expressions.A_with_replace c='2'>
+<dataaccess.expressions.A_with_withOfReplace c='2'>
 <L f='E0AC3689B2DE7340E66211DEBDA6D0337F000002' s='E0AC3689B2DE9A50E66211DEB2C8D0337F000002'/>
-</dataaccess.expressions.A_with_replace>
+</dataaccess.expressions.A_with_withOfReplace>
 <textblocks.TextBlock_ElementsInContext c='1'>
 <L f='E012BF1EB7A12770E68E11DE998BE5437F000002' s='E0AC3689B2D80AA0E66211DEA8F5D0337F000002'/>
 <L f='E012BF1EB7A12770E68E11DE998BE5437F000002' s='E0AC3689B2D9DF60E66211DECA67D0337F000002'/>
@@ -571,10 +571,10 @@
 <L f='E0AC3689B2DF3690E66211DEC71BD0337F000002' s='E0AC3689B2DF84B0E66211DEB124D0337F000002'/>
 <L f='E0AC3689B2E15970E66211DEBD4CD0337F000002' s='E0AC3689B2E18080E66211DEB6F3D0337F000002'/>
 </behavioral.actions.A_expression_expressionStatement>
-<behavioral.actions.A_initExpression_namedValueWithOptionalInitExpression c='2'>
+<behavioral.actions.A_initExpression_initExpressionFor c='2'>
 <L f='E0AC3689B2D72041E66211DEC24FD0337F000002' s='E0AC3689B2D80AA0E66211DEA8F5D0337F000002'/>
 <L f='E0AC3689B2D9B851E66211DECFE7D0337F000002' s='E0AC3689B2D9DF60E66211DECA67D0337F000002'/>
-</behavioral.actions.A_initExpression_namedValueWithOptionalInitExpression>
+</behavioral.actions.A_initExpression_initExpressionFor>
 <behavioral.actions.A_namedValue_namedValueDeclaration c='2'>
 <L f='E0AC3689B2D80AA0E66211DEA8F5D0337F000002' s='E0AC3689B2D831B0E66211DEC8F3D0337F000002'/>
 <L f='E0AC3689B2D9DF60E66211DECA67D0337F000002' s='E0AC3689B2DA0670E66211DE9F20D0337F000002'/>

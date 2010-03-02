@@ -47,14 +47,14 @@
 <M c='2' q='dataaccess.expressions.ObjectCount' i='E075D95551F2A7E83E4B11DE8D2F0018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_left_equals' i='E075D95551F518B83E4B11DE87BD0018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_left_leftOfEquals' i='E075D95551F518B83E4B11DE87BD0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallParameters' i='E075D95551F518BE3E4B11DEA11F0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_right_equals' i='E075D95551F518C43E4B11DEB0B90018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_right_rightOfEquals' i='E075D95551F518C43E4B11DEB0B90018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.Ternary' i='E075D955E4CCEB235B1111DEA8D500155883529C'/>
-<M c='2' q='dataaccess.expressions.A_falseExpr_ternary' i='E075D955E4CF5C215B1111DEBB4E00155883529C' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_trueExpr_ternary' i='E075D955E4CF5C245B1111DEC42D00155883529C' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_falseExpr_falseOfTernary' i='E075D955E4CF5C215B1111DEBB4E00155883529C' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_trueExpr_trueOfTernary' i='E075D955E4CF5C245B1111DEC42D00155883529C' se='1' ce='1' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
 <M c='2' q='behavioral.actions.Return' i='E0BC871351C30C2D3E4B11DE89360018DE1146FF'/>
@@ -572,12 +572,12 @@
 <L f='E0116CBDDAC86430E9B211DECCF6C974C0A868C8' s='E0116CBDDAC86432E9B211DE875AC974C0A868C8'/>
 <L f='E0116CBDDAC61A40E9B211DE9C66C974C0A868C8' s='E0116CBDDACAD530E9B211DEAE35C974C0A868C8'/>
 </dataaccess.expressions.A_object_objectBasedExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E0116CBDDAD47220E9B211DE8BD0C974C0A868C8' s='E0116CBDDAD20122E9B211DE8635C974C0A868C8'/>
-</dataaccess.expressions.A_withArgument_argument>
-<dataaccess.expressions.A_left_equals c='2'>
+</dataaccess.expressions.A_argumentOf_argument>
+<dataaccess.expressions.A_left_leftOfEquals c='2'>
 <L f='E0116CBDDABC7D52E9B211DE9242C974C0A868C8' s='E0116CBDDAD20120E9B211DEABFCC974C0A868C8'/>
-</dataaccess.expressions.A_left_equals>
+</dataaccess.expressions.A_left_leftOfEquals>
 <dataaccess.expressions.SignatureCallParameters c='2'>
 <L f='E0116CBDDAC86432E9B211DE875AC974C0A868C8' s='E0116CBDDACAD530E9B211DEAE35C974C0A868C8'/>
 </dataaccess.expressions.SignatureCallParameters>
@@ -586,17 +586,17 @@
 <L f='E0116CBDDAC86432E9B211DE875AC974C0A868C8' s='local:E0BF539CCEF49701E9B211DEB843C974C0A868C8'/>
 <L f='E0116CBDDACAD530E9B211DEAE35C974C0A868C8' s='local:E0559EB247C07C11E9AB11DE9B81E7810A140E7A'/>
 </dataaccess.expressions.SignatureCallToSignature>
-<dataaccess.expressions.A_right_equals c='2'>
+<dataaccess.expressions.A_right_rightOfEquals c='2'>
 <L f='E0116CBDDABEEE52E9B211DEB85FC974C0A868C8' s='E0116CBDDAD20120E9B211DEABFCC974C0A868C8'/>
-</dataaccess.expressions.A_right_equals>
-<dataaccess.expressions.A_falseExpr_ternary c='2'>
+</dataaccess.expressions.A_right_rightOfEquals>
+<dataaccess.expressions.A_falseExpr_falseOfTernary c='2'>
 <L f='E0116CBDDACF9020E9B211DE8DA1C974C0A868C8' s='E0116CBDDACF9021E9B211DE9C76C974C0A868C8'/>
 <L f='E0116CBDDACF9021E9B211DE9C76C974C0A868C8' s='E0116CBDDAD20121E9B211DE8D56C974C0A868C8'/>
-</dataaccess.expressions.A_falseExpr_ternary>
-<dataaccess.expressions.A_trueExpr_ternary c='2'>
+</dataaccess.expressions.A_falseExpr_falseOfTernary>
+<dataaccess.expressions.A_trueExpr_trueOfTernary c='2'>
 <L f='E0116CBDDACD4630E9B211DEA8EEC974C0A868C8' s='E0116CBDDACF9021E9B211DE9C76C974C0A868C8'/>
 <L f='E0116CBDDAC3A940E9B211DEB244C974C0A868C8' s='E0116CBDDAD20121E9B211DE8D56C974C0A868C8'/>
-</dataaccess.expressions.A_trueExpr_ternary>
+</dataaccess.expressions.A_trueExpr_trueOfTernary>
 <textblocks.TextBlock_ElementsInContext c='1'>
 <L f='E0116CBDDA9FF4A0E9B211DEA984C974C0A868C8' s='E0116CBDDAA72091E9B211DE98FAC974C0A868C8'/>
 <L f='E0116CBDDAB09670E9B211DEC036C974C0A868C8' s='E0116CBDDAB30771E9B211DE8297C974C0A868C8'/>

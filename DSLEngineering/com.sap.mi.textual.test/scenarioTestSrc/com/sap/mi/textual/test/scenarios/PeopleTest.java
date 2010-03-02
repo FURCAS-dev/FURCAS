@@ -222,7 +222,7 @@ public class PeopleTest extends ExtendedGeneratedParserBasedTest {
 			@Override
 			public Object setOclReference(Object modelElement,
 					String propertyName, Object keyValue, String mqlQuery,
-					Object contextObject) {
+					Object contextObject, Object currentForeachElement) {
 				Object result = null;
 				if(propertyName.equals("representative")) {
 					StubModelElement capital = ((StubModelElement)((StubModelElement)contextObject).get("capital"));

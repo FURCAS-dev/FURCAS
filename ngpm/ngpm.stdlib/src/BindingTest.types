@@ -19,7 +19,7 @@
 <M c='2' q='data.classes.A_ownedTypeDefinition_ownerTypedElement' i='E0234C8C51EB7BD63E4B11DEB7290018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.A_ownedTypeDefinitions_ownerSignature' i='E0234C8C51EB7BD93E4B11DEBD740018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.InputOfSignature' i='E0234C8C51EB7BE83E4B11DEC7270018DE1146FF' se='1' ce='1' oe='0'/>
-<M c='2' q='data.classes.A_signature_functionSignatureTypeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.A_signature_typeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='data.classes.A_ownedSignature_functionSignatureTypeDefinition' i='E0234C8C51EB7BF43E4B11DE9C2C0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.A_implementation_functionSignature' i='E0234C8C51EB7BF73E4B11DECFA20018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
@@ -27,7 +27,7 @@
 <M c='2' q='dataaccess.expressions.fp.AnonymousFunctionExpr' i='E075D95551F2A7C03E4B11DE874C0018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.VariableExpression' i='E075D95551F2A7D13E4B11DEC9820018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='integration.binding.HttpGetBinding' i='E0AD8E325200FF953E4B11DEB0980018DE1146FF' ova='description'/>
 <M c='2' q='integration.binding.SimpleUrlPattern' i='E0AD8E325200FF993E4B11DEB6EF0018DE1146FF'/>
@@ -187,9 +187,9 @@
 <data.classes.InputOfSignature c='2'>
 <L f='E03E87942D1A08A770A111DEAECF00155883529C' s='E03E87942D1C79A670A111DECD2E00155883529C'/>
 </data.classes.InputOfSignature>
-<data.classes.A_signature_functionSignatureTypeDefinition c='2'>
+<data.classes.A_signature_typeDefinition c='2'>
 <L f='E03E87942D1C79A670A111DECD2E00155883529C' s='E03E87942D1C79A770A111DEA0C900155883529C'/>
-</data.classes.A_signature_functionSignatureTypeDefinition>
+</data.classes.A_signature_typeDefinition>
 <data.classes.A_ownedSignature_functionSignatureTypeDefinition c='2'>
 <L f='E03E87942D1C79A670A111DECD2E00155883529C' s='E03E87942D1C79A770A111DEA0C900155883529C'/>
 </data.classes.A_ownedSignature_functionSignatureTypeDefinition>
@@ -202,9 +202,9 @@
 <dataaccess.expressions.A_variable_variableExpression c='2'>
 <L f='E03E87942D1A08A770A111DEAECF00155883529C' s='E03E87942D1C79A370A111DEC71F00155883529C'/>
 </dataaccess.expressions.A_variable_variableExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E03E87942D1C79A470A111DEBB0B00155883529C' s='E03E87942D1C79A370A111DEC71F00155883529C'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <textblocks.TextBlock_ElementsInContext c='1'>
 <L f='E0A41159BC44AB0370B211DEA4230019D29902CC' s='E03E87942D1A08A770A111DEAECF00155883529C'/>
 </textblocks.TextBlock_ElementsInContext>

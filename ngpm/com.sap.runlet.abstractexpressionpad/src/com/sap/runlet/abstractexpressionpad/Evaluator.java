@@ -332,6 +332,11 @@ public abstract class Evaluator<MetaClass extends RefObject,
 		// not matched up to EOF
 		errors.add("Not parsed up to EOF. Unparsed text:\n" + parser.input.toString(parser.input.index(), parser.input.size() - 1));
 	    }
+	    if (statement != null) {
+		// adding to block needs to happen before checking for unresolved references
+		// because, e.g., variables are found via the block's declarations
+		addToBlock(statement, contextBlock);
+	    }
 	    // append unresolved references to result (for display on console)
 	    if (!parser.setDelayedReferencesAfterParsing()) {
 		for (DelayedReference ref : parser.getUnresolvedReferences()) {
@@ -346,7 +351,6 @@ public abstract class Evaluator<MetaClass extends RefObject,
 	    }
 
 	    if (statement != null) {
-		addToBlock(statement, contextBlock);
 		constraintViolations = contextBlock.refVerifyConstraints(/* deepVerify */true);
 		saveParserState(parser);
 		interpreter.push(stackFrame);

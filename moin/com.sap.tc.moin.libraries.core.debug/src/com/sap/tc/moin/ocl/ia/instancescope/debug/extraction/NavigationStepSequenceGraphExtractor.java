@@ -10,7 +10,7 @@ import com.sap.tc.moin.ocl.ia.instancescope.AbstractNavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStepSequence;
 import com.sap.tc.moin.ocl.ia.instancescope.debug.GraphContext;
-import com.sap.tc.moin.ocl.ia.instancescope.debug.NavigationStepDebugHelper;
+import com.sap.tc.moin.ocl.ia.instancescope.debug.NavigationStepDebugHelperImpl;
 
 
 public class NavigationStepSequenceGraphExtractor extends AbstractGraphExtractor {
@@ -50,7 +50,7 @@ public class NavigationStepSequenceGraphExtractor extends AbstractGraphExtractor
 	for (NavigationStep step : this.getNavigationStep().getSteps()) {
 	    if (step instanceof AbstractNavigationStep) {
 
-		GraphExtractor extractor = NavigationStepDebugHelper.createGraphExtractorForNavigationStep(step);
+		GraphExtractor extractor = NavigationStepDebugHelperImpl.createGraphExtractorForNavigationStep(step);
 		if (resultingNodes.size() > 0) {
 		    resultingNodes.add(extractor.buildGraph(graphContext, newParentNode, resultingNodes.get(resultingNodes.size() - 1)));
 		} else {
@@ -87,7 +87,7 @@ public class NavigationStepSequenceGraphExtractor extends AbstractGraphExtractor
 	if (!visited.contains(getNavigationStep())){
 	    visited.add(getNavigationStep());
 	    for(NavigationStep step : getNavigationStep().getSteps()){
-		GraphExtractor extractor = NavigationStepDebugHelper.createGraphExtractorForNavigationStep(step);
+		GraphExtractor extractor = NavigationStepDebugHelperImpl.createGraphExtractorForNavigationStep(step);
 		
 		result += extractor.getSumOfNavigateCounter(visited);
 	    }

@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-02-03 18:15:17 +0100 (Mi, 03 Feb 2010) $
- * Revision: $Revision: 9353 $
+ * Date: $Date: 2010-02-26 15:24:24 +0100 (Fr, 26 Feb 2010) $
+ * Revision: $Revision: 9496 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
@@ -25,6 +25,7 @@ import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -186,7 +187,7 @@ public class DelayedReferencesHelper {
 	    InvocationTargetException, ModelElementCreationException {
 	// invoke the parser to execute the template
 	Method methodToCall = parser.getClass().getMethod(ruleName);
-	parser.reset();
+	//parser.reset();
 	if (!Modifier.isFinal(methodToCall.getModifiers())) {
 	    throw new UnknownProductionRuleException(ruleName
 		    + " is not a production rule in generated Parser.");
@@ -201,6 +202,7 @@ public class DelayedReferencesHelper {
 	    proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
 	}
 	
+	parser.setCurrentForeachElement(next);
 	if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
             parser.addContext(proxyForContextElement);
             if(proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof RefObject) {
@@ -369,14 +371,15 @@ public class DelayedReferencesHelper {
 		    Object result;
 		    result = modelAdapter.createOrResolveElement(proxy.getType(), proxy.getAttributeMap(), null, null,
 			    false, true);
-		    if (result instanceof RefObject)
-			reference.setModelElement(result);
+		    if (result instanceof RefObject) {
+                reference.setModelElement(result);
+            }
 		} else {
 		    reference.setModelElement(proxy.getRealObject());
 		}
 	    }
 	    Object result = modelAdapter.setOclReference(reference.getModelElement(), reference.getPropertyName(),
-		    reference.getKeyValue(), reference.getOclQuery(), contextElement);
+		    reference.getKeyValue(), reference.getOclQuery(), contextElement, reference.getCurrentForeachElement());
 	    if (result == null) {
 		String message = "Referenced ModelElement for query '" + reference.getOclQuery()
 			+ "' was not found for property '" + reference.getPropertyName() + "' of "
@@ -405,7 +408,7 @@ public class DelayedReferencesHelper {
 	    IModelAdapter modelAdapter, ContextManager contextManager, Object contextElement)
 	    throws ModelAdapterException, LookupPathNavigationException {
 	// check if something like "#context(..)" is contained in the query
-	Matcher match = ContextManager.contextPattern.matcher(reference.getOclQuery());
+	Matcher match = ContextAndForeachHelper.contextPattern.matcher(reference.getOclQuery());
 	if (match.find()) {
 	    String occurence = match.group();
 	    if (match.groupCount() >= 2) {
@@ -661,10 +664,10 @@ public class DelayedReferencesHelper {
 
 	if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
 	    candidate = modelAdapter.setOclReference( contextElement, reference.getPropertyName(),
-                    reference.getKeyValue(), reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock());
+                    reference.getKeyValue(), reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock(),  reference.getCurrentForeachElement());
 	} else {
 	    candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
-		keyValue);
+	            keyValue);
 	}
 
 	if (candidate != null) {

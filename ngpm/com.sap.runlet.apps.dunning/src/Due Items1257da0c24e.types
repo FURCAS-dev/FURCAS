@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partition xmlns:m='http://xml.sap.com/moin'>
 <C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='data.classes.A_associations_package_' i='E0234C8C51EB7BC73E4B11DEC78E0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='1' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
 <M c='1' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
 <modelmanagement.Package m:c='1' m:i='E012BF1E6B254B10E64D11DEBB69D75D7F000002' name='Financial Document'/>
+<data.classes.A_associations_package_ c='1'>
+<L f='local:E05CE2FC13178C611FBB11DF9439E2F40A140F13' s='E012BF1E6B254B10E64D11DEBB69D75D7F000002'/>
+<L f='local:E05CE2FC13426CF01FBB11DFCD13E2F40A140F13' s='E012BF1E6B254B10E64D11DEBB69D75D7F000002'/>
+<L f='local:E05CE2FC136B03901FBB11DF856BE2F40A140F13' s='E012BF1E6B254B10E64D11DEBB69D75D7F000002'/>
+<L f='local:E0B9184106957DD11FBB11DFA70CE2F40A140F13' s='E012BF1E6B254B10E64D11DEBB69D75D7F000002'/>
+<L f='local:E0B918410718B7911FBB11DFA369E2F40A140F13' s='E012BF1E6B254B10E64D11DEBB69D75D7F000002'/>
+</data.classes.A_associations_package_>
 <modelmanagement.A_ownedPackages_owner c='1'>
 <L f='E012BF1E6B254B10E64D11DEBB69D75D7F000002' s='local:E0E14F8699013240E5B411DE9453C3597F000002'/>
 </modelmanagement.A_ownedPackages_owner>

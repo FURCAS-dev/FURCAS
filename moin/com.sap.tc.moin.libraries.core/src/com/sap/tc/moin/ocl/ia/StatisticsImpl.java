@@ -1,7 +1,9 @@
 package com.sap.tc.moin.ocl.ia;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -9,7 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.omg.ocl.expressions.OclExpression;
+
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
+import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
+import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
@@ -18,6 +24,7 @@ import com.sap.tc.moin.repository.core.ocl.service.impl.OclExpressionRegistratio
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.repository.shared.util.Tuple.Triple;
 
 public class StatisticsImpl extends Statistics {
     private List<Record> records = new LinkedList<Record>();
@@ -31,6 +38,9 @@ public class StatisticsImpl extends Statistics {
     private OclExpressionRegistration currentlyHandlingEventFor;
     private ModelChangeEvent currentlyHandlingEvent;
     private Object currentObjectForSelf;
+    private Map<NavigationStep, Integer> stepBag = new HashMap<NavigationStep, Integer>();
+    private Map<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long> timeToComputeNavigationStepInNanoseconds = new HashMap<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long>();
+    private Map<Set<MofClass>, Integer> haveintersectingSubclassCalls = new HashMap<Set<MofClass>, Integer>();
     
     private static class Record {
 	public Record(OclExpressionRegistration registration, ModelChangeEvent event, List<String> allInstancesQName, Object elementForSelf) {
@@ -167,6 +177,8 @@ public class StatisticsImpl extends Statistics {
 	result.append("ns\n  ");
 	result.append(getNumberOfEvents(registration));
 	result.append(" events handled by instance scope analysis\n  ");
+	result.append(getInstanceScopePathConstructionTimeInNanoseconds(registration));
+	result.append("ns instance scope path construction time\n");
 	result.append(getAverageInstanceScopeAnalysisTimeInNanoseconds(registration));
 	result.append("ns average instance scope analysis time\n  ");
 	result.append("allInstances() calls:\n");
@@ -213,6 +225,8 @@ public class StatisticsImpl extends Statistics {
 	result.append(classScopeAnalysisDurationInNanosecondsForRegistrationWithName.get(registration.getName()));
 	result.append('\t');
 	result.append(getNumberOfEvents(registration));
+	result.append('\t');
+	result.append(getInstanceScopePathConstructionTimeInNanoseconds(registration));
 	result.append('\t');
 	result.append(getAverageInstanceScopeAnalysisTimeInNanoseconds(registration));
 	result.append('\t');
@@ -272,6 +286,23 @@ public class StatisticsImpl extends Statistics {
 	    result = sum / count;
 	}
 	return result;
+    }
+
+    private long getInstanceScopePathConstructionTimeInNanoseconds(OclExpressionRegistration registration) {
+	try {
+	    Field impactAnalyzer = OclExpressionRegistrationImpl.class.getDeclaredField("analyzer");
+	    impactAnalyzer.setAccessible(true);
+	    InstanceScopeAnalysis ia = (InstanceScopeAnalysis) impactAnalyzer.get(registration);
+	    long result = 0;
+	    for (Triple<InstanceScopeAnalysis, OclExpression, NavigationStep> key : timeToComputeNavigationStepInNanoseconds.keySet()) {
+		if (key.getA() == ia) {
+		    result += timeToComputeNavigationStepInNanoseconds.get(key);
+		}
+	    }
+	    return result;
+	} catch (Exception e) {
+	    throw new RuntimeException(e);
+	}
     }
 
     private double getAverageNumberOfAffectedElements(OclExpressionRegistration registration) {
@@ -343,9 +374,14 @@ public class StatisticsImpl extends Statistics {
 	List<Long> list = evaluationTimes.get(registration.getName());
 	if (list == null) {
 	    // try OCL expression string as key; evaluation in AdapterJMIHelper uses this approach
-	    list = evaluationTimes.get(registration.getOclExpression());
+	    list = evaluationTimes.get(getAlternativeRegistrationName(registration));
 	}
 	return (list == null) ? 0 : list.size();
+    }
+
+    private String getAlternativeRegistrationName(OclExpressionRegistration registration) {
+	return ""+((MofClass) registration.getContext()).getQualifiedName()+" "+
+	    	registration.getOclExpression();
     }
     
     private long getAverageEvaluationTime(OclExpressionRegistration registration) {
@@ -355,7 +391,7 @@ public class StatisticsImpl extends Statistics {
 	List<Long> list = evaluationTimes.get(registration.getName());
 	if (list == null) {
 	    // try OCL expression string as key; evaluation in AdapterJMIHelper uses this approach
-	    list = evaluationTimes.get(registration.getOclExpression());
+	    list = evaluationTimes.get(getAlternativeRegistrationName(registration));
 	}
 	if (list != null) {
 	    for (long l : list) {
@@ -379,7 +415,42 @@ public class StatisticsImpl extends Statistics {
 
     @Override
     public String getCsvHeader() {
-	return "Expression\tClass scope analysis (ns)\tevents\tavg instance scope (ns)\tavg affected elements\t#evals\tavg eval time (ns)\tallInstances()\tcontext elements\n";
+	return "Expression\tClass scope analysis (ns)\tevents\tinstance scope path construction (ns)\tavg instance scope (ns)\tavg affected elements\t#evals\tavg eval time (ns)\tallInstances()\tcontext elements\n";
+    }
+
+    @Override
+    public void stepPerformed(NavigationStep step) {
+	Integer count = stepBag.get(step);
+	if (count == null) {
+	    count = 1;
+	} else {
+	    count++;
+	}
+	stepBag.put(step, count);
+    }
+
+    @Override
+    public Map<NavigationStep, Integer> getStepsInfo() {
+	return Collections.unmodifiableMap(stepBag);
+    }
+
+    @Override
+    public void instanceScopeNavigationStepComputed(InstanceScopeAnalysis instanceScopeAnalyzer, OclExpression exp,
+	    NavigationStep step, long timeInNanoseconds) {
+	timeToComputeNavigationStepInNanoseconds.put(new Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>(
+		instanceScopeAnalyzer, exp, step), timeInNanoseconds);
+    }
+
+    @Override
+    public void haveIntersectingSubclassTreeCalled(MofClass a, MofClass b) {
+	Set<MofClass> mcs = new HashSet<MofClass>();
+	mcs.add(a);
+	mcs.add(b);
+	Integer count = haveintersectingSubclassCalls.get(mcs);
+	if (count == null) {
+	    count = 0;
+	}
+	haveintersectingSubclassCalls.put(mcs, count+1);
     }
 
 }

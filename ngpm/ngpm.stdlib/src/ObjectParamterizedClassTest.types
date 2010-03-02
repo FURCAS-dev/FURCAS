@@ -45,7 +45,7 @@
 <M c='2' q='dataaccess.expressions.This' i='E075D95551F2A7DD3E4B11DECB680018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Assignment' i='E0BC871351BE513C3E4B11DEB6420018DE1146FF'/>
@@ -58,7 +58,7 @@
 <M c='2' q='behavioral.actions.A_statements_block' i='E0BC871351C57D323E4B11DE94BD0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='behavioral.actions.A_variables_owner' i='E0BC871351C57D383E4B11DE82350018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='behavioral.actions.A_expression_expressionStatement' i='E0BC871351C7C7183E4B11DEAC100018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='behavioral.actions.A_initExpression_namedValueWithOptionalInitExpression' i='E0BC871351C7C71E3E4B11DECFDA0018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='behavioral.actions.A_initExpression_initExpressionFor' i='E0BC871351C7C71E3E4B11DECFDA0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='behavioral.actions.A_namedValue_namedValueDeclaration' i='E0BC871351C7C7243E4B11DECEA40018DE1146FF' se='1' ce='-1' oe='-1'/>
 <data.classes.ClassTypeDefinition m:c='2' m:i='E007956A9E47B7096C7F11DEA91F00155883529C' lowerMultiplicity='1' upperMultiplicity='1' ordered='true' unique='true'/>
 <dataaccess.expressions.literals.NumberLiteral m:c='2' m:i='E007956A9E47B70A6C7F11DE9BC000155883529C' literal='1'/>
@@ -4590,7 +4590,7 @@
 <L f='E0DD251E6A9B7310BA8611DEB5AE0019D29902CC' s='E0DD251E6A9B7312BA8611DEC5230019D29902CC'/>
 <L f='E0DD251E6AA51001BA8611DEA1A70019D29902CC' s='E0DD251E6AA759F0BA8611DEC5380019D29902CC'/>
 </dataaccess.expressions.A_object_objectBasedExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E0559EB2252CE714BA8511DE9BA10019D29902CC' s='E0559EB2252CE713BA8511DEC59A0019D29902CC'/>
 <L f='E0559EB2255A38A0BA8511DEBED70019D29902CC' s='E0559EB22557EEB4BA8511DEC7B60019D29902CC'/>
 <L f='E0559EB225854040BA8511DE92DE0019D29902CC' s='E0559EB225795962BA8511DECC2E0019D29902CC'/>
@@ -4606,7 +4606,7 @@
 <L f='E0559EB225D69490BA8511DEB1070019D29902CC' s='E0559EB225D1D9A1BA8511DE8AC00019D29902CC'/>
 <L f='E0DD251E6AA29F02BA8611DEA5EC0019D29902CC' s='E0DD251E6AA29F01BA8611DE9EEE0019D29902CC'/>
 <L f='E0DD251E6AA759F1BA8611DEC8D70019D29902CC' s='E0DD251E6AA759F0BA8611DEC5380019D29902CC'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <dataaccess.expressions.SignatureCallToSignature c='2'>
 <L f='E0559EB22557EEB4BA8511DEC7B60019D29902CC' s='E0559EB2254725D0BA8511DEAA530019D29902CC'/>
 <L f='E0559EB2258A2243BA8511DEA0360019D29902CC' s='E0559EB2255F1AA0BA8511DEB1190019D29902CC'/>
@@ -4664,9 +4664,9 @@
 <L f='E0DD251E6A96B822BA8611DE8FEC0019D29902CC' s='E0DD251E6A990210BA8611DE9A6D0019D29902CC'/>
 <L f='E0DD251E6A9B7312BA8611DEC5230019D29902CC' s='E0DD251E6A9B7313BA8611DE829B0019D29902CC'/>
 </behavioral.actions.A_expression_expressionStatement>
-<behavioral.actions.A_initExpression_namedValueWithOptionalInitExpression c='2'>
+<behavioral.actions.A_initExpression_initExpressionFor c='2'>
 <L f='E0DD251E6A5AE7A2BA8611DE86EA0019D29902CC' s='E0DD251E6A944720BA8611DEAAEC0019D29902CC'/>
-</behavioral.actions.A_initExpression_namedValueWithOptionalInitExpression>
+</behavioral.actions.A_initExpression_initExpressionFor>
 <behavioral.actions.A_namedValue_namedValueDeclaration c='2'>
 <L f='E0559EB2256B0182BA8511DE955C0019D29902CC' s='E0559EB2256B0183BA8511DE8CC00019D29902CC'/>
 <L f='E0559EB2256FBC72BA8511DEC5F10019D29902CC' s='E0559EB2256FBC73BA8511DEA3370019D29902CC'/>

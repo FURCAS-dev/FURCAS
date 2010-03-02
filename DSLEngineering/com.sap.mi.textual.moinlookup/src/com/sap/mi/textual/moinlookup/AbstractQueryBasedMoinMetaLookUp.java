@@ -18,6 +18,7 @@ import tcs.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
@@ -283,18 +284,8 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
 	if (context instanceof RefObject && template1 instanceof Template) {
 	    Template template = (Template)template1;
 	    Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
-	    
 	    MofClass elementClass = MoinHelper.getReflectElement(connection);
-
-	    RefObject parsingContext = null;
-	    if (!MoinHelper.usesContext(query)) {
-		parsingContext = template.getMetaReference();
-	    } else {
-		parsingContext = elementClass;
-		// TODO currently this works only if a "#context" is
-		// postfixed
-		// by a .oclAsType(...) expression.
-	    }
+	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup, elementClass);
 	    try {
 		query = MoinHelper.prepareOclQuery(
 				query, null, "__TEMP__");

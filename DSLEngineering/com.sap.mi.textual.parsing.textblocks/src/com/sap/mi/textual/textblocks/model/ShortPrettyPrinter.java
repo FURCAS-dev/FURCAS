@@ -13,6 +13,7 @@ import textblocks.LexedToken;
 import textblocks.TextBlock;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
@@ -164,7 +165,7 @@ public class ShortPrettyPrinter {
 	    TbUtil.constructContext(token, lcb);
 
 	    if (!lcb.getContextStack().isEmpty()
-		    && MoinHelper.usesContext(query)) {
+		    && ContextAndForeachHelper.usesContext(query)) {
 		self = (RefObject) lcb.getContextStack().peek().getRealObject();
 	    }
 	    query = MoinHelper.prepareOclQuery(query, self, token.getValue());

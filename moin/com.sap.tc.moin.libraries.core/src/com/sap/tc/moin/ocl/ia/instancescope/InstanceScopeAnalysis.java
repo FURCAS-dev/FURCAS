@@ -31,6 +31,7 @@ import org.omg.ocl.expressions.__impl.PrimitiveLiteralExpInternal;
 
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
 import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.repository.Connection;
@@ -75,7 +76,7 @@ public class InstanceScopeAnalysis {
     private final Map<OclExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
     private final ClassScopeAnalyzer classScopeAnalyzer;
-
+    
     /**
      * @param expression
      * 		  the OCL expression for which to perform instance scope impact analysis
@@ -109,7 +110,9 @@ public class InstanceScopeAnalysis {
 	    MofClass context) {
 	NavigationStep result = expressionToStep.get(exp);
 	if (result == null) {
+	    long start = System.nanoTime();
 	    result = getTracer(conn, exp).traceback(context, pathCache, classScopeAnalyzer);
+	    Statistics.getInstance().instanceScopeNavigationStepComputed(this, exp, result, System.nanoTime()-start);
 	    expressionToStep.put(exp, result);
 	}
 	return result;
@@ -329,7 +332,6 @@ public class InstanceScopeAnalysis {
      * there are no other {@link RefObject} elements that are not part of the result and for which the source expression
      * evaluates to <tt>sourceElement</tt>. This means, all contexts for which the source expression evaluates to
      * <tt>sourceElement</tt> are guaranteed to be found.
-     * @param cache TODO
      */
     private Set<RefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement,
 	    MofClass context, CoreConnection connection, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
@@ -337,6 +339,7 @@ public class InstanceScopeAnalysis {
 		.getSource(), context);
 	Set<RefObjectImpl> sourceElementAsSet = Collections.singleton(sourceElement);
 	Set<RefObjectImpl> result = step.navigate(connection, sourceElementAsSet, cache);
+	Statistics.getInstance().stepPerformed(step);
 	return result;
     }
     

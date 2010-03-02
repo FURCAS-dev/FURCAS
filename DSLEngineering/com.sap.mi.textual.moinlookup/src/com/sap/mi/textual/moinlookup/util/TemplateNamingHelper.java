@@ -83,10 +83,6 @@ public class TemplateNamingHelper<Type extends Object> {
         try {
             ResolvedNameAndReferenceBean<Type> resolvedName = resolutionHelper.resolve(qNamedElement);
             return buildRuleName(resolvedName);
-        } catch (MetamodelNameResolvingException e) {
-            throw new SyntaxElementException(e.getMessage(), qNamedElement);
-        } catch (MetaModelLookupException e) {
-            throw new SyntaxElementException(e.getMessage(), qNamedElement);
         } catch (NameResolutionFailedException e) {
             throw new SyntaxElementException(e.getMessage(), qNamedElement);
         }
@@ -103,10 +99,8 @@ public class TemplateNamingHelper<Type extends Object> {
      * resolves name against metamodel (non-qualified to qualified), then builds String by concatenating name parts.
      * @param qualifiedName
      * @return
-     * @throws MetamodelNameResolvingException
-     * @throws MetaModelLookupException
      */
-    public String buildRuleName(ResolvedNameAndReferenceBean<Type> refBean) throws MetamodelNameResolvingException, MetaModelLookupException {
+    public String buildRuleName(ResolvedNameAndReferenceBean<Type> refBean) {
         
         List<String> nameList = refBean.getNames();
         if (nameList.size() == 1) { 
@@ -180,7 +174,7 @@ public class TemplateNamingHelper<Type extends Object> {
      * @return
      * @throws SyntaxParsingException 
      */
-    public String getMetaTypeListParameter(ResolvedNameAndReferenceBean<Type> reference) throws SyntaxElementException {
+    public String getMetaTypeListParameter(ResolvedNameAndReferenceBean<Type> reference) {
         String returnName = createListParameter(reference);
         return returnName;
     }
@@ -189,11 +183,9 @@ public class TemplateNamingHelper<Type extends Object> {
      * qualifies template name if unqualified, and returns a String by which other code may identify a ModelElement.
      * @param reference
      * @return
-     * @throws MetamodelNameResolvingException 
-     * @throws MetaModelLookupException 
      * @throws SyntaxParsingException 
      */
-    public String getMetaTypeListParameter(Template template) throws SyntaxElementException, MetaModelLookupException, MetamodelNameResolvingException {
+    public String getMetaTypeListParameter(Template template) throws SyntaxElementException {
         ResolvedNameAndReferenceBean<Type> refBean;
         try {
             refBean = resolutionHelper.resolve(template);

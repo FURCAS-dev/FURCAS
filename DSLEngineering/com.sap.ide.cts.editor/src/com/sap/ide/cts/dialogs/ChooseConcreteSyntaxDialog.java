@@ -7,25 +7,37 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 public class ChooseConcreteSyntaxDialog extends AbstractHandler
 {
-	private Object[] elements;
+	private RefObject[] templateEntries;
 	
-	public ChooseConcreteSyntaxDialog(Object[] elements)
+	public ChooseConcreteSyntaxDialog(RefObject[] templates)
 	{
-		this.elements = elements;
+		this.templateEntries = templates;
 	}
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(), new LabelProvider());
-		dialog.setTitle("Concrete Syntax Selection");
-		dialog.setMessage("Select a concrete Syntax:");
-		dialog.setElements(this.elements);
-		int selected = dialog.open();
-		return this.elements[selected];
+		dialog.setTitle("Concrete Template Selection");
+		dialog.setMessage("Select a concrete Template:");
+		dialog.setElements(this.prepareTemplates());
+		dialog.open();
+		return ((ChooseConcreteSyntaxDialogElement) dialog.getFirstResult()).getWrappedObject();
 	}
 	
-	
+	private Object[] prepareTemplates()
+	{
+		Object[] preparedTemplates = new Object[this.templateEntries.length];
+		for(int i = 0; i < this.templateEntries.length; i++)
+		{
+			RefObject o = this.templateEntries[i];
+			ChooseConcreteSyntaxDialogElement entry = new ChooseConcreteSyntaxDialogElement(o);
+			preparedTemplates[i] = entry;
+		}
+		return preparedTemplates;
+	}
 }

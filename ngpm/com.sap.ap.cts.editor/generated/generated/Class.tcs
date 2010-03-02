@@ -229,7 +229,8 @@ syntax Class(k=0 ) {
 		;
 	
 	template Assignment(disambiguateV3 = "NAME EQUALS")
-		:	assignTo{refersTo = name} "=" argument{forcedLower=1}
+		:	assignTo{as=identifier, query="OCL:self.getNamedValuesInScope()",
+					 filter="->select(nv | nv.name=?)", invert="name"} "=" argument{forcedLower=1}
 		;
 
         template NamedValueWithOptionalInitExpression abstract;
@@ -528,7 +529,8 @@ syntax Class(k=0 ) {
 -- @end OBJECT BASED EXPRESSIONS 			
 		
 	template VariableExpression
-		:	variable{refersTo = name}
+		:	variable{as=identifier, query="OCL:self.getNamedValuesInScope()",
+					 filter="->select(nv | nv.name=?)", invert="name"}
 		;
 		
 	operatorTemplate Equals(operators = equalsOp, source='left', storeRightTo='right')
@@ -646,6 +648,7 @@ syntax Class(k=0 ) {
 		
 	template TypeDefinition #thisInObjectCreationExpression abstract;
 	
+	-- TODO wouldn't "context" be required here to put foreach result in context for #localAssociationEnd-mode template for ActualObjectParameter?
 	template ClassTypeDefinition #thisInObjectCreationExpression
 		: {{  lowerMultiplicity = '1', 
 		      upperMultiplicity = '1', 

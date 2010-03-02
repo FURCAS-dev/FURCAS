@@ -88,6 +88,23 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 
 	/** stack context proxies */
 	private java.util.Stack<IModelElementProxy> currentContextStack;
+	
+	/**
+	 * When a "foreach" predicate is used, the values computed by its OCL expression
+	 * are assigned to this attribute before invoking the parse rule for the subtemplate
+	 * identified by the foreach construct. The parser can then use it when creating
+	 * {@link DelayedReference}s such that when the reference uses "#foreach" in its
+	 * OCL expression, it can replace the "#foreach" occurrences by "self" and use the
+	 * element denoted by this attribute as context for the OCL expression instead.<p>
+	 * 
+	 * A single element is sufficient, no stack is required, because when a "foreach"
+	 * predicate reference is evaluated, while the parser rule is executed, should new
+	 * "foreach" references be created, they won't be resolved before the parser has
+	 * finished. Therefore, no nesting can occur at runtime.
+	 * 
+	 * The value may be of type {@link RefObject}, {@link String}, {@link Boolean} or {@link Number}. 
+	 */
+	private Object currentForeachElement;
 
 	/**
 	 * Specifies if proxies should be resolved dureing parsing or if the
@@ -122,6 +139,14 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 
 	public Stack<IModelElementProxy> getCurrentContextStack() {
 		return currentContextStack;
+	}
+
+	protected Object getCurrentForeachElement() {
+	    return currentForeachElement;
+	}
+
+	protected void setCurrentForeachElement(Object currentForeachElement) {
+	    this.currentForeachElement = currentForeachElement;
 	}
 
 	public void initParser(ContextManager manager,
@@ -742,7 +767,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 	 * {@link #createOrResolve(Object, ANTLR3LocationToken, ANTLR3LocationToken)}
 	 * will ever be called. Therefore, this method needs to be called at the
 	 * beginning of {@link #setDelayedReferencesAfterParsing()} in order to
-	 * replace the remaining proxies by their real objects they represent.
+	 * replace the remaining proxies by the real objects they represent.
 	 */
 	private void replaceResolvedProxies() {
 		List<DelayedReference> tempResolvedDelayedReferenceList = new ArrayList<DelayedReference>();
@@ -822,7 +847,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
         
         DelayedReference ref = new DelayedReference(
                 getCurrentContextElement(), 
-                modelElement, 
+                getCurrentForeachElement(), 
+                modelElement,
                 propertyName,
                 valueTypeName,
                 keyName,
@@ -832,8 +858,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
                 createAs,
                 importContext,
                 createIn,
-                false,
-                lastToken);
+                false, lastToken);
         
         onDelayedReferenceCreated(ref);
         
@@ -871,7 +896,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
         
         DelayedReference ref = new DelayedReference(
                 getCurrentContextElement(), 
-                modelElement, 
+                getCurrentForeachElement(), 
+                modelElement,
                 propertyName,
                 valueTypeName,
                 keyName,
@@ -881,8 +907,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
                 createAs,
                 importContext,
                 createIn,
-                isOptional,
-                lastToken);
+                isOptional, lastToken);
         
         onDelayedReferenceCreated(ref);
         
@@ -898,7 +923,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 
 	 * @param proxy
@@ -923,8 +948,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
         
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
         
-        DelayedReference ref = new DelayedReference( getCurrentContextElement(), object, propertyName,
-                keyName, keyValue, query, false, lastToken);
+        DelayedReference ref = new DelayedReference( getCurrentContextElement(), getCurrentForeachElement(), object,
+                propertyName, keyName, keyValue, query, false, lastToken);
         
         onDelayedReferenceCreated(ref);
         
@@ -948,8 +973,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
         
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
         
-        DelayedReference ref = new DelayedReference( getCurrentContextElement(), object, propertyName,
-                keyName, keyValue, query, optional, lastToken);
+        DelayedReference ref = new DelayedReference( getCurrentContextElement(), getCurrentForeachElement(), object,
+                propertyName, keyName, keyValue, query, optional, lastToken);
         
         onDelayedReferenceCreated(ref);
         
@@ -967,9 +992,9 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 			String mode, String query, List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext) {
 		ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
 		DelayedReference ref = new DelayedReference(getCurrentContextElement(),
-				DelayedReference.SEMANTIC_PREDICATE, object, propertyName,
-				query, mode, preds, ruleNameFinder, lastToken, hasContext, 
-				/*isOptional: ForEach is always considered optional as 
+				getCurrentForeachElement(), DelayedReference.SEMANTIC_PREDICATE, object,
+				propertyName, query, mode, preds, ruleNameFinder, lastToken, 
+				hasContext, /*isOptional: ForEach is always considered optional as 
 				 * error reporting will be done based on metamodel constraints.*/
 				true);
 		unResolvedDelayedReferenceList.add(ref);
@@ -1073,5 +1098,9 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 
 	public String getLanguageId() {
 		return languageId;
+	}
+
+	public IParsingObserver getObserver() {
+	    return observer;
 	}
 }

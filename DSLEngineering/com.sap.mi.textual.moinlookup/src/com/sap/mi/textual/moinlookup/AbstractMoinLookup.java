@@ -59,9 +59,7 @@ public abstract class AbstractMoinLookup  implements IMetaModelLookup<RefObject>
         } catch (NameNotFoundException e) {
             // may still be associationend
         }
-        if (classifier != null && returnElement == null 
-        		&& classifier instanceof Partitionable 
-        		&& ((Partitionable)classifier).get___Connection() != null) {
+        if (classifier != null && returnElement == null && ((Partitionable)classifier).get___Connection() != null) {
 			// may be an AssociationEnd that is not exposed
 			// first get all supertypes of the classifier
 			Set<AssociationEnd> end = ((Partitionable) classifier)
@@ -277,7 +275,7 @@ public abstract class AbstractMoinLookup  implements IMetaModelLookup<RefObject>
         List<ResolvedNameAndReferenceBean<RefObject>> names = new ArrayList<ResolvedNameAndReferenceBean<RefObject>>();
         List<Classifier> classifiers = getClassifiers(typeName);
         for (Iterator<Classifier> iterator = classifiers.iterator(); iterator.hasNext();) {
-            Classifier classifier = (Classifier) iterator.next();
+            Classifier classifier = iterator.next();
             names.add(getBean(classifier));
         }
         return names;
@@ -322,7 +320,7 @@ public abstract class AbstractMoinLookup  implements IMetaModelLookup<RefObject>
             StringBuilder nameStringBuilder = new StringBuilder(name.size() * 10);
         
             for (Iterator<String> iterator = name.iterator(); iterator.hasNext();) {
-                String namePart = (String) iterator.next();
+                String namePart = iterator.next();
                 nameStringBuilder.append(namePart);
                 if (iterator.hasNext()) {
                     nameStringBuilder.append("::");
@@ -349,7 +347,7 @@ public abstract class AbstractMoinLookup  implements IMetaModelLookup<RefObject>
         
         List<GeneralizableElement> superList = subtypeClass.allSupertypes();
         for (Iterator<GeneralizableElement> iterator = superList.iterator(); iterator.hasNext();) {
-            GeneralizableElement generalizableElement = (GeneralizableElement) iterator
+            GeneralizableElement generalizableElement = iterator
                     .next();
             if (generalizableElement.equals(supertypeClass)) {
                 return true;

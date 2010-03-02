@@ -11,7 +11,6 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
@@ -203,32 +202,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	return "";
     }
 
-    /**
-     * For <tt>a</tt> or <tt>b</tt> being <tt>null</tt> (a yet unresolved {@link IndirectingStep}, probablu),
-     * we unfortunately don't know yet if there will be a non-empty subtype tree intersection. Therefore,
-     * this method returns <tt>true</tt> if either of <tt>a</tt> or <tt>b</tt> is <tt>null</tt><p>
-     */
-    protected static boolean haveIntersectingSubclassTree(CoreConnection connection, MofClass a, MofClass b) {
-        boolean result = a==null || b==null || a.equals(b);
-	if (!result) {
-	    Set<GeneralizableElement> targetSubtypesIncludingTargetType = new HashSet<GeneralizableElement>(
-		    connection.getCoreJmiHelper().getAllSubtypes(connection, a));
-	    targetSubtypesIncludingTargetType.add(a);
-	    if (targetSubtypesIncludingTargetType.contains(b)) {
-		result = true;
-	    } else {
-		for (GeneralizableElement sourceSubType : connection.getCoreJmiHelper().getAllSubtypes(
-			connection, b)) {
-		    if (targetSubtypesIncludingTargetType.contains(sourceSubType)) {
-			result = true;
-			break;
-		    }
-		}
-	    }
-	}
-        return result;
-    }
-    
     /**
      * The default size in particular for atomic navigation steps is <tt>1</tt>.
      */
