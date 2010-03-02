@@ -653,7 +653,10 @@ public class OclServiceImpl implements OclService {
         JmiList<ModelElement> ops = (JmiList<ModelElement>) ( (TagImpl) bodyExpressionTag ).getElements( connection );
         Set<Operation> operations = new HashSet<Operation>( );
         for ( Iterator<ModelElement> it = ops.iterator( connection ); it.hasNext( ); ) {
-            operations.add( (Operation) it.next( ) );
+            ModelElement next = it.next( );
+            if(next instanceof Operation) {
+                operations.add( (Operation) next );
+            }
         }
         ModelPartition targetPartition = null;
         RefFeatured parent = ( (TagImpl) bodyExpressionTag ).refImmediateComposite( connection.getSession( ) );

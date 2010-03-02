@@ -371,8 +371,9 @@ public class DelayedReferencesHelper {
 		    Object result;
 		    result = modelAdapter.createOrResolveElement(proxy.getType(), proxy.getAttributeMap(), null, null,
 			    false, true);
-		    if (result instanceof RefObject)
-			reference.setModelElement(result);
+		    if (result instanceof RefObject) {
+                reference.setModelElement(result);
+            }
 		} else {
 		    reference.setModelElement(proxy.getRealObject());
 		}
@@ -665,8 +666,8 @@ public class DelayedReferencesHelper {
 	    candidate = modelAdapter.setOclReference(reference.getTextBlock(), reference.getPropertyName(),
                     reference.getKeyValue(), reference.getOclQuery(), contextElement, reference.getCurrentForeachElement());
 	} else {
-	candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
-		keyValue);
+	    candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
+	            keyValue);
 	}
 
 	if (candidate != null) {
