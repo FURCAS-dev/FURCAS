@@ -48,5 +48,29 @@
             languageID="TCS">
       </configuration>
    </extension>
-
+    <extension
+           point="org.eclipse.ui.navigator.navigatorContent">
+        <actionProvider
+              class="com.sap.mi.tcs.editor.tree.TcsActionProviderContainmentTree"
+              id="com.sap.mi.tcs.editor.tree.TcsActionProviderContainmentTree">
+           <enablement>
+              <or>
+                 <instanceof
+                       value="com.sap.ide.treeprovider.INodeExplorer">
+                 </instanceof>
+              </or>
+           </enablement>
+        </actionProvider>
+     </extension>
+     <extension
+           point="org.eclipse.ui.navigator.viewer">
+        <viewerActionBinding
+              viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+           <includes>
+              <actionExtension
+                    pattern="com.sap.mi.tcs.editor.tree.TcsActionProviderContainmentTree">
+              </actionExtension>
+           </includes>
+        </viewerActionBinding>
+     </extension>
 </plugin>

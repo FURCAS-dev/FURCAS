@@ -96,6 +96,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 		public void doExecute() {
 			try {
 				callBatchParser(existingRoot);
+				getReferenceHandler().resolveRemainingReferences();
 				TextBlockProxy proxy = parserTextBlocksHandler.getCurrentTbProxy();
 				recoverMappingLink(existingRoot, proxy);
 			} catch (Exception ex) {

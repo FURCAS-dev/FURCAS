@@ -12,6 +12,7 @@ import java.util.Map;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
+import tcs.ForeachPredicatePropertyInit;
 import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
 import tcs.OperatorTemplate;
@@ -20,6 +21,7 @@ import tcs.Template;
 import textblocks.AbstractToken;
 import textblocks.DocumentNode;
 import textblocks.DocumentNodeReferencesCorrespondingModelElement;
+import textblocks.ForeachContext;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
@@ -530,28 +532,32 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 * The given <code>modelElement</code> is added to the
 	 * {@link DocumentNode#getReferencedElements()} of the
 	 * corresponding {@link AbstractToken} of the <code>referenceLocation</code>
-	 * {@link Token}.
+	 * {@link Token}. The <code>referenceType</code> indicates what the type of the
+	 * {@link DelayedReference} was that was resolved. That can be e.g., {@link DelayedReference#SEMANTIC_PREDICATE}
+	 * meaning that the delayed reference was created for a things like a {@link ForeachPredicatePropertyInit}.
+	 * 
 	 */
 	@Override
 	public void notifyModelElementResolvedOutOfContext(Object modelElement,
-			Object contextModelElement, Token referenceLocation) {
+			Object contextModelElement, Token referenceLocation, int referenceType) {
 	    if (contextModelElement instanceof ResolvedModelElementProxy) {
 		contextModelElement = ((ResolvedModelElementProxy) contextModelElement).getRealObject();
 	    }
 		TextBlock contextBlock = getTextBlockForElementAt((RefObject) contextModelElement, (ANTLR3LocationToken) referenceLocation);
 		if(contextBlock != null && modelElement instanceof RefObject) {
-		    boolean isModelElementInCurrentTbProxy = false;
-		    for (IModelElementProxy proxy : getCurrentTbProxy().getCorrespondingModelElements()) {
-                        if(modelElement.equals(proxy.getRealObject())) {
-                            isModelElementInCurrentTbProxy =true;
-                        }
-                    }
-		    if(isModelElementInCurrentTbProxy) {
+//		    boolean isModelElementInCurrentTbProxy = false;
+//		    for (IModelElementProxy proxy : getCurrentTbProxy().getCorrespondingModelElements()) {
+//                        if(modelElement.equals(proxy.getRealObject())) {
+//                            isModelElementInCurrentTbProxy =true;
+//                        }
+//                    }
+		    if(referenceType == DelayedReference.SEMANTIC_PREDICATE) {
 		        //this means we are in the resolving of a foreachproperty init
 		        //thus we have to add the curently set template to the additionalTemplates of
 		        //of the contextBlock. This will make all injectoractions associated with the template
 		        //available for the GDR for the given model element
 		        contextBlock.getAdditionalTemplates().add(getCurrentTbProxy().getTemplate());
+		        addForEachContext(contextBlock, (RefObject) modelElement, (RefObject) contextModelElement, getCurrentTbProxy().getSequenceElement());
 		    }
 		    
 			AbstractToken referenceToken = navigateToToken(contextBlock, referenceLocation);
@@ -565,7 +571,28 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		}
 	}
 	
-	/**
+	private void addForEachContext(TextBlock contextBlock, RefObject modelElement,
+            RefObject contextModelElement, SequenceElement sequenceElement) {
+	    boolean forEachContextExists = false;
+            for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
+                if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
+                    if(forEachContext.getSourceModelelement().equals(modelElement)) {
+                        forEachContext.getContextElement().add(contextModelElement);
+                        forEachContextExists = true;
+                    }
+                }
+            }
+            if(!forEachContextExists) {
+                ForeachContext newContext = (ForeachContext) connection.getClass(ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
+                newContext.setForeachPredicatePropertyInit((ForeachPredicatePropertyInit) sequenceElement);
+                newContext.setSourceModelelement(modelElement);
+                newContext.getContextElement().add(contextModelElement);
+                contextBlock.getForeachContext().add(newContext);
+            }
+        
+        }
+
+    /**
 	 * Attaches the current {@link SequenceElement} or {@link InjectorAction} to the given
 	 * {@link DelayedReference}.
 	 */
