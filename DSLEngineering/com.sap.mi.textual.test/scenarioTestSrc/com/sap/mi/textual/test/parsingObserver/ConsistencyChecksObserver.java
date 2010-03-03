@@ -120,7 +120,7 @@ public class ConsistencyChecksObserver implements IParsingObserver {
      */
     @Override
     public void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation) {
+            Object contextModelElement, Token referenceLocation, int referenceType) {
         outOfContextResolved.add(modelElement);
         
     }

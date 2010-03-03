@@ -103,11 +103,12 @@ extends Parser
      * notifies observer that after parsing, an element has been created for a reference in the text. 
      * @param modelElement
      */
-    public void onRuleElementResolvedOutOfContext(Object modelElement, Object contextModelElement, ANTLR3LocationToken referenceLocation) {
+    public void onRuleElementResolvedOutOfContext(Object modelElement, Object contextModelElement, 
+            ANTLR3LocationToken referenceLocation, int referenceType) {
         if (observer == null || getBacktrackingLevel() > 0) {
 		return;
 	}
-        observer.notifyModelElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation);
+        observer.notifyModelElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation, referenceType);
     }
     
     /**

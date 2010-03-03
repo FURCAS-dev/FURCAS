@@ -1,7 +1,8 @@
-package com.sap.ide.cts.editor;
+package com.sap.mi.tcs.editor.tree;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -15,9 +16,10 @@ import org.eclipse.ui.navigator.CommonActionProvider;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonMenuConstants;
 
-import com.sap.ide.cts.editor.action.PrettyPrintAction;
+import tcs.ConcreteSyntax;
+
 import com.sap.ide.treeprovider.GenericRefObjectNode;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.mi.tcs.editor.action.GenerateGrammarAction;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
@@ -27,14 +29,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @author D046040
  * 
  */
-public class ActionProviderContainmentTree extends CommonActionProvider
+public class TcsActionProviderContainmentTree extends CommonActionProvider
 {
 	
 	/**
 	 * @generated
 	 */
 	private List<Object> mMenuItems;
-	public static final String NEW_SUBMENU_ID = ActionProviderContainmentTree.class
+	public static final String NEW_SUBMENU_ID = TcsActionProviderContainmentTree.class
 			.getName()
 			+ ".new.submenu.id";
 	
@@ -128,11 +130,10 @@ public class ActionProviderContainmentTree extends CommonActionProvider
 				{
 					GenericRefObjectNode node = (GenericRefObjectNode) firstElement;
 					RefObject modelElement = node.getValue();
-					MofClass clazz = (MofClass) modelElement.refMetaObject();
-					
-					PrettyPrintAction action = new PrettyPrintAction(clazz,
-							modelElement, true);
-					subMenuManager.add(action);
+					if(modelElement instanceof ConcreteSyntax) {
+        					GenerateGrammarAction action = new GenerateGrammarAction((ConcreteSyntax) modelElement, true);
+        					subMenuManager.add(action);
+					}
 				}
 				menu.insertAfter(ICommonMenuConstants.GROUP_NEW, subMenuManager);
 			}

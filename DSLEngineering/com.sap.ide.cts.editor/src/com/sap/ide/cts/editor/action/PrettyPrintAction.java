@@ -48,12 +48,9 @@ public class PrettyPrintAction extends Action
 		this.setDisabledImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
 			ISharedImages.IMG_ETOOL_PRINT_EDIT_DISABLED));
 		this.setId("prettyPrint");
-		//super(clazz.getName());
-		//setImageDescriptor(Activator.getImageDescriptor(clazz));
 		this.clazz = clazz;
 		this.modelElement = modelElement;
 		this.openEditorAfterPrettyPrint = openEditorAfterPrettyPrint;
-		// TODO Auto-generated constructor stub
 	}
 	
 	 @Override

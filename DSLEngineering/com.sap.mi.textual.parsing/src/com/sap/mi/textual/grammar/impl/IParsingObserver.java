@@ -8,6 +8,8 @@ import java.util.List;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
+import tcs.ForeachPredicatePropertyInit;
+
 /**
  * observes ParsingEvents with respect to a given Syntax definition used by a parser.
  * This is a stateful interface, such that call sequence has meaning.
@@ -99,15 +101,24 @@ public interface IParsingObserver {
      * @param contextElement
      */
     void notifyElementAddedToContext(Object element);
-    
+
     /**
-     * notifies that out of the enter/exit context, a modelElement has been resolved for the given token.
-     * @param modelElement
-     * @param contextModelElement
-     * @param referenceLocation
+     * notifies that out of the enter/exit context, a modelElement has been
+     * resolved for the given token.
+     * 
+     * @param modelElement the model element that was resolved
+     * @param contextModelElement if given the context element from which the element was resolved.
+     * @param referenceLocation the last token at which's position the element was resolved from.
+     * @param referenceType
+     *            The <code>referenceType</code> indicates what the type of the
+     *            {@link DelayedReference} was that was resolved. That can be
+     *            e.g., {@link DelayedReference#SEMANTIC_PREDICATE} meaning that
+     *            the delayed reference was created for a things like a
+     *            {@link ForeachPredicatePropertyInit}.
      */
     void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation);
+            Object contextModelElement, Token referenceLocation,
+            int referenceType);
 
     /**
      * called after a sequenceElement is entered
