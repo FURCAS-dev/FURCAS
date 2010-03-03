@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
@@ -52,55 +51,6 @@ import dataaccess.expressions.VariableExpression;
 
 public class TestNgpmEditingActions extends RunletEditorTest {
     
-    /**
-     * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
-     * multiplicity of calling a method with 1..1 output multiplicity should change to 1..1.
-     */
-    @Test
-    public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
-        assertNotNull(refObject); 
-        assertTrue(refObject.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(refObject);
-        CtsDocument document = getDocument(editor);
-        document.replace(53, 0, " 1..1");
-        
-        document.replace(72, 0, " 1..1");
-        
-        saveAll(editor);
-        assertTrue(refObject.is___Alive());
-	MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
-		.iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
-	assertEquals(1, mce.getType().getLowerMultiplicity());
-        close(editor);
-    };
-
-    /**
-     * When renaming an association end, the method signatures that expose the
-     * association end in the class are duplicated.
-     */
-    @Test
-    public void testRenameOfAssociationEnd() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("OrderedAssocTestCase");
-        assertNotNull(refObject);
-        assertTrue(refObject.is___Alive());
-        AbstractGrammarBasedEditor editor = openEditor(refObject);
-        CtsDocument document = getDocument(editor);
-        String content = document.get();
-        document.replace(content.indexOf("Numbers"), "Numbers".length(), "String");
-        saveAll(editor);
-        // failOnError(editor);
-        assertTrue(refObject.is___Alive());
-        SapClass c = (SapClass) refObject;
-        for (MethodSignature ms : c.getOwnedSignatures()) {
-            if (ms.getName().equals(".orderedNumbers") || ms.getName().equals("orderedNumbers+=")
-                    || ms.getName().equals("orderedNumbers-=") || ms.getName().equals("orderedNumbers=")) {
-                fail("found method " + ms.getName() + " which should have been deleted");
-            }
-        }
-        close(editor);
-    };
-
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.
      */

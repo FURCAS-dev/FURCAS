@@ -282,11 +282,17 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
     @Override
     public List<String> validateOclQuery(Object template1, String query, Object context) {
 	if (context instanceof RefObject && template1 instanceof Template) {
+	    MofClass contextClass = (MofClass) context;
 	    Template template = (Template)template1;
-	    Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
 	    MofClass elementClass = MoinHelper.getReflectElement(connection);
-	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup, elementClass);
 	    try {
+		RefPackage outermost = MoinHelper.getOutermostPackageThroughClusteredImportsFromMofClass(((RefObject) context)
+			.get___Connection(), contextClass);
+		Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
+		packagesForLookup.addAll(MoinHelper.getImportedRefPackages(outermost));
+		packagesForLookup.add(outermost);
+		RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
+			packagesForLookup, elementClass);
 		query = MoinHelper.prepareOclQuery(
 				query, null, "__TEMP__");
 		if (query != null) {
@@ -347,6 +353,8 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
 		}
 		return Collections.singletonList(message);
 	    } catch (ModelAdapterException e) {
+		return Collections.singletonList(e.getMessage());
+	    } catch (RuntimeException e) {
 		return Collections.singletonList(e.getMessage());
 	    }
 	} else {

@@ -29,6 +29,28 @@ import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
 
 public class GeneralTests extends RunletTestCase {
+    
+    public void testSimpleMap() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "var f=const function(String s):Number { return s.length(); }",
+            "\"abc\"->map(f)",
+            "\"abc\"->including(\"defg\")->map(f)",
+            "\"abc\"->including(\"defg\")->map(f)->map(const function(Number n):Number { return n.times(2); })");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(4, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(3) },
+        	result[1]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(3), new Fraction(4) },
+        	result[2]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(6), new Fraction(8) },
+        	result[3]);
+    }
+
     public void testMultiFunctionCall() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
             "new FunctionTest().test()");
