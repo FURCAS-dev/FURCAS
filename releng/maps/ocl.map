@@ -40,9 +40,9 @@ feature@org.eclipse.ocl.all.sdk=v201001271420,:pserver:anonymous@dev.eclipse.org
 feature@org.eclipse.ocl.core.sdk=v201001280030,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.core.sdk-feature
 
 !*** EMF Examples plugins
-plugin@org.eclipse.emf.examples.library=R2_3_1RC,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library
-plugin@org.eclipse.emf.examples.library.edit=R2_3_1RC,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.edit
-plugin@org.eclipse.emf.examples.library.editor=R2_3_1RC,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor
+plugin@org.eclipse.emf.examples.library=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library
+plugin@org.eclipse.emf.examples.library.edit=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.edit
+plugin@org.eclipse.emf.examples.library.editor=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor
 
 !*** LPG Distribution
 plugin@lpg.runtime.java,2.0.17=v200912221855,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/lpg.runtime.java
