@@ -7,10 +7,12 @@ import java.util.List;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.model.Aliases;
 import com.sap.tc.moin.repository.mmi.model.Import;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 
@@ -118,4 +120,47 @@ public class MoinHelper {
 		return (MofClass) resultSet.getRefObjects("instance")[0];
 	}
 
+	    public static RefPackage getOutermostPackageThroughClusteredImports(
+		    Connection conn, RefBaseObject refObject) {
+		RefPackage result = refObject.refOutermostPackage();
+		RefPackage candidate = result;
+		while (candidate != null) {
+		    // ascend the clustered imports in the metamodel
+		    MofPackage p = candidate.refMetaObject();
+		    candidate = null;
+		    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
+		    for (Import i : a.getImporter(p)) {
+			if (i.isClustered()) {
+			    MofPackage importer = (MofPackage) i.getContainer();
+			    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
+				    importer);
+			    result = candidate;
+			    break;
+			}
+		    }
+		}
+		return result;
+	    }
+
+	    public static RefPackage getOutermostPackageThroughClusteredImportsFromMofClass(
+		    Connection conn, MofClass mofClass) {
+		RefPackage result = conn.getJmiHelper().getRefClassForMofClass(mofClass).refOutermostPackage();
+		RefPackage candidate = result;
+		while (candidate != null) {
+		    // ascend the clustered imports in the metamodel
+		    MofPackage p = candidate.refMetaObject();
+		    candidate = null;
+		    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
+		    for (Import i : a.getImporter(p)) {
+			if (i.isClustered()) {
+			    MofPackage importer = (MofPackage) i.getContainer();
+			    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
+				    importer);
+			    result = candidate;
+			    break;
+			}
+		    }
+		}
+		return result;
+	    }
 }

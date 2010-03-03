@@ -50,6 +50,7 @@ import com.sap.runlet.interpreter.expressions.HeadInterpreter;
 import com.sap.runlet.interpreter.expressions.IncludingAtInterpreter;
 import com.sap.runlet.interpreter.expressions.IncludingInterpreter;
 import com.sap.runlet.interpreter.expressions.IterateInterpreter;
+import com.sap.runlet.interpreter.expressions.MapInterpreter;
 import com.sap.runlet.interpreter.expressions.MethodCallInterpreter;
 import com.sap.runlet.interpreter.expressions.NumberLiteralInterpreter;
 import com.sap.runlet.interpreter.expressions.ObjectCountInterpreter;
@@ -302,6 +303,8 @@ public class RunletInterpreter extends
 		conn.getClass(dataaccess.query.Selection.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(OqlQueryInterpreter.class,
 		conn.getClass(dataaccess.query.OqlQuery.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(MapInterpreter.class,
+		conn.getClass(dataaccess.expressions.Map.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override
