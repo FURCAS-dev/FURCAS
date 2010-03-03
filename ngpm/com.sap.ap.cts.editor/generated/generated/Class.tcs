@@ -202,7 +202,7 @@ syntax Class(k=0 ) {
 		  }}
 		;
 		
-	template NestedTypeDefinition #functionCallExpressionNoFurtherNesting (disambiguateV3="'4000'")
+	template NestedTypeDefinition #functionCallExpressionNoFurtherNesting (disambiguateV3="'___4000___'")
 		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.oclAsType(NestedTypeDefinition).type"),
 		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.lowerMultiplicity * self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().lowerMultiplicity"),
 		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().upperMultiplicity"),
@@ -512,7 +512,7 @@ syntax Class(k=0 ) {
 		  }}
 		;
 		
-	template NestedTypeDefinition #methodCallExpressionNoFurtherNesting (disambiguateV3="'4000'")
+	template NestedTypeDefinition #methodCallExpressionNoFurtherNesting (disambiguateV3="'___4000___'")
 		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.oclAsType(NestedTypeDefinition).type"),
 		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity"),
 		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().upperMultiplicity"),
@@ -1158,7 +1158,57 @@ syntax Class(k=0 ) {
 				 filter="->select(ae|ae.name=?)", invert="name"}
 		  ( isDefined(filterFunction) ? "[" filterFunction "]" )
 		;
+	
+	operatorTemplate Map (operators = arrowOp, source = 'object')
+                : "map" "(" argument{forcedLower=1} ")"
+       {{
+			ownedTypeDefinition = foreach("OCL:self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output",  
+			    -- TODO handle the case where argument represents multiple functions, meaning self.argument.getType().isMany()?
+				when="OCL:self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.isMany() and self.object.getType().isMany()", mode="map", as=NestedTypeDefinition,
+				when="OCL:self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclIsKindOf(ClassTypeDefinition)", mode="map", as=ClassTypeDefinition, 
+				when="OCL:self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="map", as=FunctionSignatureTypeDefinition,
+				when="OCL:self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclIsKindOf(NestedTypeDefinition)", mode="mapNoFurtherNesting", as=NestedTypeDefinition)
+		}}
+		;
+	
+	template TypeDefinition #map abstract;
 
+	template ClassTypeDefinition #map (disambiguateV3="'___1000___'")
+		: {{ clazz=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclAsType(ClassTypeDefinition).clazz"),
+	         objectParameters=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclAsType(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(Map).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.isMany() or self.ownerTypedElement.oclAsType(Map).object.getType().isMany() then -1 else self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.upperMultiplicity * self.ownerTypedElement.oclAsType(Map).object.getType().upperMultiplicity endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.ordered or self.ownerTypedElement.oclAsType(Map).object.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.unique and not self.ownerTypedElement.oclAsType(Map).object.getType().isMany()") }}
+		;
+	
+	template FunctionSignatureTypeDefinition #map (disambiguateV3="'___2000___'")
+		: {{ signature=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclAsType(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(Map).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.isMany() or self.ownerTypedElement.oclAsType(Map).object.getType().isMany() then -1 else self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.upperMultiplicity * self.ownerTypedElement.oclAsType(Map).object.getType().upperMultiplicity endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.ordered or self.ownerTypedElement.oclAsType(Map).object.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.unique and not self.ownerTypedElement.oclAsType(Map).object.getType().isMany()") }}
+		;
+		
+	template NestedTypeDefinition #map (disambiguateV3="'___3000___'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).object.getType().upperMultiplicity"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).object.getType().ordered"),
+		     unique='false'
+		  }}
+		;
+		
+	template NestedTypeDefinition #mapNoFurtherNesting (disambiguateV3="'___4000___'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.oclAsType(NestedTypeDefinition).type"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(Map).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).object.getType().upperMultiplicity"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.ordered or self.ownerTypedElement.oclAsType(Map).object.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(Map).argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.output.unique and not self.ownerTypedElement.oclAsType(Map).object.getType().isMany()")
+		  }}
+		;
+		
+                
 -- @begin ANALYTICS EXPRESSIONS
 	template CellSet #cellSet
 		: "aggregate" factsType "by" dimensions{separator=","} ":"
