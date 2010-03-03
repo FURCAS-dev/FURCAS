@@ -76,10 +76,7 @@ import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
 import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
-import com.sap.tc.moin.repository.mmi.model.Aliases;
-import com.sap.tc.moin.repository.mmi.model.Import;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -617,28 +614,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 //	listenerForDeleteEvent.put(ListenerType.UPDATE, this);
 //	result.put(deleteFilter, listenerForDeleteEvent);
 //    }
-
-    public RefPackage getOutermostPackageThroughClusteredImports(
-	    Connection conn, RefBaseObject refObject) {
-	RefPackage result = refObject.refOutermostPackage();
-	RefPackage candidate = result;
-	while (candidate != null) {
-	    // ascend the clustered imports in the metamodel
-	    MofPackage p = candidate.refMetaObject();
-	    candidate = null;
-	    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
-	    for (Import i : a.getImporter(p)) {
-		if (i.isClustered()) {
-		    MofPackage importer = (MofPackage) i.getContainer();
-		    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
-			    importer);
-		    result = candidate;
-		    break;
-		}
-	    }
-	}
-	return result;
-    }
 
     public void reEvaluateUnresolvedRef(Connection conn,
 	    RefPackage outermostPackage, DelayedReference unresolvedRef) {
@@ -1231,7 +1206,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	    	: "Element must be resolved in given connection.";
 
 	    try {
-		final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(ref.getConnection(),
+		final RefPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(ref.getConnection(),
 			(RefBaseObject) ref.getModelElement());
 
 		ref.getConnection().getCommandStack().execute(
