@@ -1031,7 +1031,7 @@
 <pictograms.Text m:c='1' m:i='E07476B8A44F54D0261711DFC102DD158D02908A' width='15' height='10' x='-172' y='0' value='ForeachContext_ForeachPredicatePropertyInit'/>
 <pictograms.Text m:c='1' m:i='E07476B8A4506640261711DF9F11DD158D02908A' width='15' height='10' x='-112' y='5' value='foreachContext'/>
 <pictograms.Text m:c='1' m:i='E07476B8A45177B0261711DFCBA8DD158D02908A' width='15' height='10' x='5' y='-16' value='foreachPredicatePropertyInit'/>
-<pictograms.Text m:c='1' m:i='E07476B8A4528920261711DF8722DD158D02908A' width='15' height='10' x='-32' y='20' value='1..1'/>
+<pictograms.Text m:c='1' m:i='E07476B8A4528920261711DF8722DD158D02908A' width='15' height='10' x='-32' y='20' value='1..*'/>
 <pictograms.Text m:c='1' m:i='E07476B8A4539A90261711DF83C2DD158D02908A' width='15' height='10' x='5' y='-32' value='1..1'/>
 <pictograms.Polygon m:c='1' m:i='E07476B8A454AC00261711DFBE06DD158D02908A' width='0' height='0' x='0' y='0'>
 <points x='0' y='-3' before='0' after='0'/>
