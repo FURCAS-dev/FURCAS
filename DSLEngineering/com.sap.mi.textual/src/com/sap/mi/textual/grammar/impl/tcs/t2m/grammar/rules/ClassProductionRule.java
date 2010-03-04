@@ -28,13 +28,13 @@ public class ClassProductionRule extends SimpleProductionRule  {
     private int additionalLength;
     
     public static ClassProductionRule getClassTemplateProductionRule(String ruleHead, 
-            String returnDeclaration, String initString, String rulebody, boolean addExitNotificationAndCatchString) {
+            String returnDeclaration, String initString, String rulebody, boolean addExitNotification, boolean catchString) {
         String exitNotification = null;
-        if (!addExitNotificationAndCatchString) {
+        if (addExitNotification) {
             exitNotification = ObservationDirectivesHelper.getExitTemplateNotification();
         }
         ClassProductionRule rule = new ClassProductionRule(ruleHead, returnDeclaration, initString, rulebody, exitNotification);
-        if ( ! addExitNotificationAndCatchString ) { 
+        if (catchString ) { 
             rule.catchString = CATCHSTRING;
             rule.additionalLength += CATCHSTRING.length();
         }
