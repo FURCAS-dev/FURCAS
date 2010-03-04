@@ -80,19 +80,17 @@ public class MoinHelper {
 					throw new ModelAdapterException(
 							"Ocl Query cannot contain #context and self at the same time.");
 				} else {
-					// if (contextObject instanceof RefObject ||
-					// (contextObject instanceof IModelElementProxy &&
-					// ((IModelElementProxy)contextObject).getRealObject() !=
-					// null)) {
 					result = result.replaceAll(ContextAndForeachHelper.contextPattern
 							.pattern(), OCL_SELF);
-					// } else if(contextObject instanceof IModelElementProxy) {
-					// }else {
-					// throw new ModelAdapterException(
-					// "#context has to be a model element but was:"
-					// + contextObject.getClass());
-					// }
 				}
+			} else if(ContextAndForeachHelper.usesForeach(result)) {
+			    if (result.indexOf(OCL_SELF) > -1) {
+                                throw new ModelAdapterException(
+                                                "Ocl Query cannot contain #foreach and self at the same time.");
+                            } else {
+                                result = result.replaceAll(ContextAndForeachHelper.foreachPattern
+                                                .pattern(), OCL_SELF);
+                            }
 			}
 
 			if (keyValue != null) {
