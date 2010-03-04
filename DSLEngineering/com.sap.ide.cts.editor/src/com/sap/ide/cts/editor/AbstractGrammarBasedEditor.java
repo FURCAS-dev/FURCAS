@@ -959,7 +959,6 @@ public abstract class AbstractGrammarBasedEditor extends
 		}
 
 		if (syntacticallyCorrect) {
-		    System.out.println("parse start");
 		        //reset errors in modelinjector
 		        parser.getInjector().getErrorList().clear();
 			getLexer().setSource(previousBlock.getTokens().get(0));
@@ -976,7 +975,6 @@ public abstract class AbstractGrammarBasedEditor extends
 				if (syntacticallyCorrect) {
 					
 					newBlock = incrementalParser.incrementalParse(newlyLexedTextBlock, errorMode);
-					System.out.println("parse end");
 					removeOutdatedParseErrorMarkers(incrementalParser.getChangedBlocks());
 
 					// TODO this is only for debugging
