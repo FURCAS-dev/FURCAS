@@ -738,7 +738,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 									: reference.getModelElement();
 							onRuleElementResolvedOutOfContext(reference
 									.getRealValue(), me, reference.getToken(),
-									reference.getType());
+									reference);
 						}
 					} catch (ModelElementCreationException e) {
 						getInjector().addError(

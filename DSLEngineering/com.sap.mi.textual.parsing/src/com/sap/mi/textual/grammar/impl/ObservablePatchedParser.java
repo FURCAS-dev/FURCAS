@@ -104,11 +104,11 @@ extends Parser
      * @param modelElement
      */
     public void onRuleElementResolvedOutOfContext(Object modelElement, Object contextModelElement, 
-            ANTLR3LocationToken referenceLocation, int referenceType) {
+            ANTLR3LocationToken referenceLocation, DelayedReference reference) {
         if (observer == null || getBacktrackingLevel() > 0) {
 		return;
 	}
-        observer.notifyModelElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation, referenceType);
+        observer.notifyModelElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation, reference);
     }
     
     /**

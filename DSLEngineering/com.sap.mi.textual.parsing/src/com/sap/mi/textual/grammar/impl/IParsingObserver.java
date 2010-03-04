@@ -8,7 +8,6 @@ import java.util.List;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
-import tcs.ForeachPredicatePropertyInit;
 
 /**
  * observes ParsingEvents with respect to a given Syntax definition used by a parser.
@@ -109,16 +108,12 @@ public interface IParsingObserver {
      * @param modelElement the model element that was resolved
      * @param contextModelElement if given the context element from which the element was resolved.
      * @param referenceLocation the last token at which's position the element was resolved from.
-     * @param referenceType
-     *            The <code>referenceType</code> indicates what the type of the
-     *            {@link DelayedReference} was that was resolved. That can be
-     *            e.g., {@link DelayedReference#SEMANTIC_PREDICATE} meaning that
-     *            the delayed reference was created for a things like a
-     *            {@link ForeachPredicatePropertyInit}.
+     * @param reference
+     *            The {@link DelayedReference} that was just resolved
      */
     void notifyModelElementResolvedOutOfContext(Object modelElement,
             Object contextModelElement, Token referenceLocation,
-            int referenceType);
+            DelayedReference reference);
 
     /**
      * called after a sequenceElement is entered
