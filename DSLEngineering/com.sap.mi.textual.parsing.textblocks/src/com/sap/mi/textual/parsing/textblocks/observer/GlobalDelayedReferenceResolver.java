@@ -123,7 +123,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			         newRefs = filterEventsAndQueueDelayedReferencesForPropertyQuery(events, conn);
 			     }
 			 }
-			 if(newRefs.size() > 0) {
+			 if(newRefs != null && newRefs.size() > 0) {
 			     GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.addAll(newRefs);
 	                     backgroundResolver.scheduleIfNeeded();
 			 }
