@@ -439,9 +439,9 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
 	@Override
 	public void notifyModelElementResolvedOutOfContext(Object modelElement,
-			Object contextModelElement, Token referenceLocation, int referenceType) {
+			Object contextModelElement, Token referenceLocation, DelayedReference reference) {
 		logInfo("notifyModelElementResolvedOutOfContext " + modelElement + " "
-				+ contextModelElement + " " + referenceLocation + " type: " + referenceType);
+				+ contextModelElement + " " + referenceLocation + " type: " + reference);
 
 		// TODO check if action is needed
 
