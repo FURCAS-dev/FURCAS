@@ -63,7 +63,7 @@ public class TestframeworkWizard extends AdvancedWizard {
 
 	}
 
-	TestRun getRun() {
+	public TestRun getRun() {
 		return run;
 	}
 

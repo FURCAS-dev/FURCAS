@@ -72,6 +72,9 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
 			case BenchframeworkPackage.TEST_RUN: return createTestRun();
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT: return createRandomNumberOptionObject();
+			case BenchframeworkPackage.START_OPERATOR: return createStartOperator();
+			case BenchframeworkPackage.END_OPERATOR: return createEndOperator();
+			case BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT: return createStartAndEndOperatorOptionObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -95,6 +98,8 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return createUIComponentFromString(eDataType, initialValue);
 			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
 				return createRandomNumberGeneratorFromString(eDataType, initialValue);
+			case BenchframeworkPackage.CLONE_NOT_SUPPORTED_EXCEPTION:
+				return createCloneNotSupportedExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -118,6 +123,8 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return convertUIComponentToString(eDataType, instanceValue);
 			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
 				return convertRandomNumberGeneratorToString(eDataType, instanceValue);
+			case BenchframeworkPackage.CLONE_NOT_SUPPORTED_EXCEPTION:
+				return convertCloneNotSupportedExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -161,6 +168,36 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public RandomNumberOptionObject createRandomNumberOptionObject() {
 		RandomNumberOptionObjectImpl randomNumberOptionObject = new RandomNumberOptionObjectImpl();
 		return randomNumberOptionObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StartOperator createStartOperator() {
+		StartOperatorImpl startOperator = new StartOperatorImpl();
+		return startOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EndOperator createEndOperator() {
+		EndOperatorImpl endOperator = new EndOperatorImpl();
+		return endOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StartAndEndOperatorOptionObject createStartAndEndOperatorOptionObject() {
+		StartAndEndOperatorOptionObjectImpl startAndEndOperatorOptionObject = new StartAndEndOperatorOptionObjectImpl();
+		return startAndEndOperatorOptionObject;
 	}
 
 	/**
@@ -252,6 +289,24 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	 * @generated
 	 */
 	public String convertRandomNumberGeneratorToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CloneNotSupportedException createCloneNotSupportedExceptionFromString(EDataType eDataType, String initialValue) {
+		return (CloneNotSupportedException)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCloneNotSupportedExceptionToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

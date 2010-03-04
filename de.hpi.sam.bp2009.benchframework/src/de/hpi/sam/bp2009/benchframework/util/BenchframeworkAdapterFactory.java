@@ -104,6 +104,18 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 				return createRandomNumberOptionObjectAdapter();
 			}
 			@Override
+			public Adapter caseStartOperator(StartOperator object) {
+				return createStartOperatorAdapter();
+			}
+			@Override
+			public Adapter caseEndOperator(EndOperator object) {
+				return createEndOperatorAdapter();
+			}
+			@Override
+			public Adapter caseStartAndEndOperatorOptionObject(StartAndEndOperatorOptionObject object) {
+				return createStartAndEndOperatorOptionObjectAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -232,6 +244,48 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRandomNumberOptionObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.StartOperator <em>Start Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.StartOperator
+	 * @generated
+	 */
+	public Adapter createStartOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.EndOperator <em>End Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.EndOperator
+	 * @generated
+	 */
+	public Adapter createEndOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject <em>Start And End Operator Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject
+	 * @generated
+	 */
+	public Adapter createStartAndEndOperatorOptionObjectAdapter() {
 		return null;
 	}
 

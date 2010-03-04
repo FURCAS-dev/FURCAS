@@ -9,7 +9,6 @@ package de.hpi.sam.bp2009.benchframework;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.jface.wizard.WizardPage;
 
 /**
@@ -85,5 +84,13 @@ public interface OptionObject extends EObject {
 	 * @generated
 	 */
 	void setOptionsAsMap(Map<String, Object> map);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="de.hpi.sam.bp2009.benchframework.CloneNotSupportedException"
+	 * @generated
+	 */
+	OptionObject clone() throws CloneNotSupportedException;
 
 } // OptionObject

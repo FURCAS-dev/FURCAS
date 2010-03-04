@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.WizardPage;
 
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -294,4 +295,8 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 		return result.toString();
 	}
 
+	@Override
+	public OclOptionObject clone() throws CloneNotSupportedException {
+		return (OclOptionObject) EcoreUtil.copy(this);
+	}
 } //OclOptionObjectImpl

@@ -412,6 +412,171 @@ public interface BenchframeworkPackage extends EPackage {
 	int RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT = OPTION_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl <em>Start Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartOperator()
+	 * @generated
+	 */
+	int START_OPERATOR = 8;
+
+	/**
+	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR__OPTION = OPERATOR__OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR__RESULT = OPERATOR__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR__TEST_RUN = OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR__NAME = OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR__DESCRIPTION = OPERATOR__DESCRIPTION;
+
+	/**
+	 * The number of structural features of the '<em>Start Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl <em>End Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getEndOperator()
+	 * @generated
+	 */
+	int END_OPERATOR = 9;
+
+	/**
+	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__OPTION = OPERATOR__OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__RESULT = OPERATOR__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__TEST_RUN = OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__NAME = OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__DESCRIPTION = OPERATOR__DESCRIPTION;
+
+	/**
+	 * The number of structural features of the '<em>End Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl <em>Start And End Operator Option Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartAndEndOperatorOptionObject()
+	 * @generated
+	 */
+	int START_AND_END_OPERATOR_OPTION_OBJECT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_AND_END_OPERATOR_OPTION_OBJECT__WIZARD_PAGE = OPTION_OBJECT__WIZARD_PAGE;
+
+	/**
+	 * The feature id for the '<em><b>Other End</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END = OPTION_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Start And End Operator Option Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_AND_END_OPERATOR_OPTION_OBJECT_FEATURE_COUNT = OPTION_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,7 +584,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStatus()
 	 * @generated
 	 */
-	int STATUS = 8;
+	int STATUS = 11;
 
 	/**
 	 * The meta object id for the '<em>Output Stream</em>' data type.
@@ -429,7 +594,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOutputStream()
 	 * @generated
 	 */
-	int OUTPUT_STREAM = 9;
+	int OUTPUT_STREAM = 12;
 
 	/**
 	 * The meta object id for the '<em>Wizard Page</em>' data type.
@@ -439,7 +604,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getWizardPage()
 	 * @generated
 	 */
-	int WIZARD_PAGE = 10;
+	int WIZARD_PAGE = 13;
 
 	/**
 	 * The meta object id for the '<em>UI Component</em>' data type.
@@ -449,7 +614,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUIComponent()
 	 * @generated
 	 */
-	int UI_COMPONENT = 11;
+	int UI_COMPONENT = 14;
 
 
 	/**
@@ -460,7 +625,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 12;
+	int EXCEPTION = 15;
 
 
 	/**
@@ -471,7 +636,18 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberGenerator()
 	 * @generated
 	 */
-	int RANDOM_NUMBER_GENERATOR = 13;
+	int RANDOM_NUMBER_GENERATOR = 16;
+
+
+	/**
+	 * The meta object id for the '<em>Clone Not Supported Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.CloneNotSupportedException
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getCloneNotSupportedException()
+	 * @generated
+	 */
+	int CLONE_NOT_SUPPORTED_EXCEPTION = 17;
 
 
 	/**
@@ -786,6 +962,47 @@ public interface BenchframeworkPackage extends EPackage {
 	EAttribute getRandomNumberOptionObject_NumberGenerator();
 
 	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.StartOperator <em>Start Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Start Operator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.StartOperator
+	 * @generated
+	 */
+	EClass getStartOperator();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.EndOperator <em>End Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>End Operator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.EndOperator
+	 * @generated
+	 */
+	EClass getEndOperator();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject <em>Start And End Operator Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Start And End Operator Option Object</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject
+	 * @generated
+	 */
+	EClass getStartAndEndOperatorOptionObject();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject#getOtherEnd <em>Other End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Other End</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject#getOtherEnd()
+	 * @see #getStartAndEndOperatorOptionObject()
+	 * @generated
+	 */
+	EReference getStartAndEndOperatorOptionObject_OtherEnd();
+
+	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -849,6 +1066,17 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getRandomNumberGenerator();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.CloneNotSupportedException <em>Clone Not Supported Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Clone Not Supported Exception</em>'.
+	 * @see java.lang.CloneNotSupportedException
+	 * @model instanceClass="java.lang.CloneNotSupportedException"
+	 * @generated
+	 */
+	EDataType getCloneNotSupportedException();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1121,6 +1349,44 @@ public interface BenchframeworkPackage extends EPackage {
 		EAttribute RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR = eINSTANCE.getRandomNumberOptionObject_NumberGenerator();
 
 		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl <em>Start Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartOperator()
+		 * @generated
+		 */
+		EClass START_OPERATOR = eINSTANCE.getStartOperator();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl <em>End Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getEndOperator()
+		 * @generated
+		 */
+		EClass END_OPERATOR = eINSTANCE.getEndOperator();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl <em>Start And End Operator Option Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartAndEndOperatorOptionObject()
+		 * @generated
+		 */
+		EClass START_AND_END_OPERATOR_OPTION_OBJECT = eINSTANCE.getStartAndEndOperatorOptionObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Other End</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END = eINSTANCE.getStartAndEndOperatorOptionObject_OtherEnd();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1179,6 +1445,16 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType RANDOM_NUMBER_GENERATOR = eINSTANCE.getRandomNumberGenerator();
+
+		/**
+		 * The meta object literal for the '<em>Clone Not Supported Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.CloneNotSupportedException
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getCloneNotSupportedException()
+		 * @generated
+		 */
+		EDataType CLONE_NOT_SUPPORTED_EXCEPTION = eINSTANCE.getCloneNotSupportedException();
 
 	}
 

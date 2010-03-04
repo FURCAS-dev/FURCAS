@@ -8,12 +8,15 @@ package de.hpi.sam.bp2009.benchframework.impl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Engine;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.UserInterface;
@@ -105,6 +108,27 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass startOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass endOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass startAndEndOperatorOptionObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum statusEEnum = null;
 
 	/**
@@ -141,6 +165,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	private EDataType randomNumberGeneratorEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType cloneNotSupportedExceptionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -469,6 +500,42 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getStartOperator() {
+		return startOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEndOperator() {
+		return endOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStartAndEndOperatorOptionObject() {
+		return startAndEndOperatorOptionObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStartAndEndOperatorOptionObject_OtherEnd() {
+		return (EReference)startAndEndOperatorOptionObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getStatus() {
 		return statusEEnum;
 	}
@@ -516,6 +583,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 */
 	public EDataType getRandomNumberGenerator() {
 		return randomNumberGeneratorEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getCloneNotSupportedException() {
+		return cloneNotSupportedExceptionEDataType;
 	}
 
 	/**
@@ -583,6 +659,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST);
 		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR);
 
+		startOperatorEClass = createEClass(START_OPERATOR);
+
+		endOperatorEClass = createEClass(END_OPERATOR);
+
+		startAndEndOperatorOptionObjectEClass = createEClass(START_AND_END_OPERATOR_OPTION_OBJECT);
+		createEReference(startAndEndOperatorOptionObjectEClass, START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END);
+
 		// Create enums
 		statusEEnum = createEEnum(STATUS);
 
@@ -592,6 +675,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		uiComponentEDataType = createEDataType(UI_COMPONENT);
 		exceptionEDataType = createEDataType(EXCEPTION);
 		randomNumberGeneratorEDataType = createEDataType(RANDOM_NUMBER_GENERATOR);
+		cloneNotSupportedExceptionEDataType = createEDataType(CLONE_NOT_SUPPORTED_EXCEPTION);
 	}
 
 	/**
@@ -623,6 +707,9 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		// Add supertypes to classes
 		randomNumberOptionObjectEClass.getESuperTypes().add(this.getOptionObject());
+		startOperatorEClass.getESuperTypes().add(this.getOperator());
+		endOperatorEClass.getESuperTypes().add(this.getOperator());
+		startAndEndOperatorOptionObjectEClass.getESuperTypes().add(this.getOptionObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(engineEClass, Engine.class, "Engine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -679,6 +766,9 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "map", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(optionObjectEClass, this.getOptionObject(), "clone", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getCloneNotSupportedException());
+
 		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultObject_Status(), this.getStatus(), "status", "", 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResultObject_Message(), ecorePackage.getEString(), "message", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -711,6 +801,18 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		addEParameter(op, g1, "aClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaObject(), "anObject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(testRunEClass, null, "getStartOperators", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(this.getStartOperator());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
+		op = addEOperation(testRunEClass, null, "getEndOperators", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(this.getEndOperator());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(randomNumberOptionObjectEClass, RandomNumberOptionObject.class, "RandomNumberOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomNumberOptionObject_NumberListIndex(), ecorePackage.getEInt(), "numberListIndex", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEEList());
@@ -724,6 +826,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(startOperatorEClass, StartOperator.class, "StartOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(endOperatorEClass, EndOperator.class, "EndOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(startAndEndOperatorOptionObjectEClass, StartAndEndOperatorOptionObject.class, "StartAndEndOperatorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStartAndEndOperatorOptionObject_OtherEnd(), this.getOperator(), null, "otherEnd", null, 0, 1, StartAndEndOperatorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(statusEEnum, Status.class, "Status");
 		addEEnumLiteral(statusEEnum, Status.FAILED);
@@ -736,6 +845,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEDataType(uiComponentEDataType, Composite.class, "UIComponent", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(randomNumberGeneratorEDataType, Random.class, "RandomNumberGenerator", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(cloneNotSupportedExceptionEDataType, CloneNotSupportedException.class, "CloneNotSupportedException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

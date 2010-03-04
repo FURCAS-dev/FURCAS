@@ -548,7 +548,7 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eUnset(int featureID) {
@@ -561,6 +561,7 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 				return;
 			case EventCounterPackage.EVENT_COUNTER_START__TEST_RUN:
 				setTestRun((TestRun)null);
+				getEndPoint().setTestRun((TestRun)null);
 				return;
 			case EventCounterPackage.EVENT_COUNTER_START__NAME:
 				setName(NAME_EDEFAULT);

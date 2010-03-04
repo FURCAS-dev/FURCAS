@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,7 +23,9 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 
 /**
@@ -152,6 +155,36 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 		boolean rtr=this.mapClassToObject.containsKey(aClass);
 		this.mapClassToObject.put(aClass, anObject);
 		return rtr;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<StartOperator> getStartOperators() {
+		BasicEList<StartOperator> resultList = new BasicEList<StartOperator>();
+		for (Operator op : getOperators()){
+			if (op instanceof StartOperator){
+				resultList.add((StartOperator) op);
+			}
+		}
+		return resultList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<EndOperator> getEndOperators() {
+		BasicEList<EndOperator> resultList = new BasicEList<EndOperator>();
+		for (Operator op : getOperators()){
+			if (op instanceof EndOperator){
+				resultList.add((EndOperator) op);
+			}
+		}
+		return resultList;
 	}
 
 	/**

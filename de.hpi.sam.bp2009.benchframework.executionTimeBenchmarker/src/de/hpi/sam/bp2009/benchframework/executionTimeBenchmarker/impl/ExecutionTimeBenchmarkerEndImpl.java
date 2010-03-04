@@ -47,6 +47,8 @@ import etm.core.monitor.EtmPoint;
  * @generated
  */
 public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements ExecutionTimeBenchmarkerEnd {
+	private static final String ENDS_A_TIME_MEASUREMENT = "Ends a time measurement.";
+	private static final String EXECUTION_TIME_BENCHMARK_END = "Execution Time Benchmark End";
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -127,8 +129,8 @@ public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements Exec
 	 */
 	public ExecutionTimeBenchmarkerEndImpl() {
 		super();
-		setName("Execution Time Benchmark End");
-		setDescription("Ends a time measurement.");
+		setName(EXECUTION_TIME_BENCHMARK_END);
+		setDescription(ENDS_A_TIME_MEASUREMENT);
 	}
 
 	/**

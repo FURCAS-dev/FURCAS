@@ -110,4 +110,20 @@ public interface TestRun extends EObject {
 	 */
 	boolean setInstanceForClass(Class<?> aClass, Object anObject);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" many="false"
+	 * @generated
+	 */
+	EList<StartOperator> getStartOperators();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" many="false"
+	 * @generated
+	 */
+	EList<EndOperator> getEndOperators();
+
 } // TestRun

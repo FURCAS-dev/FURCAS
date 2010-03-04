@@ -125,8 +125,10 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	 */
 	public void benchmark() {
 		setExeptionsDuringLastRun(new BasicEList<Exception>());
-		for(TestRun run:getTestRuns()){
-			for(Operator op:run.getOperators()){
+		for(int i=0;i<getTestRuns().size();i++){
+			TestRun run=getTestRuns().get(i);
+			for(int c=0;c<run.getOperators().size();c++){
+				Operator op=run.getOperators().get(c);
 				try {
 					op.execute();
 				} catch (Exception e) {

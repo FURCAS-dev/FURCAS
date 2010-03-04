@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.WizardPage;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
@@ -343,4 +344,8 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 		return result.toString();
 	}
 
+	@Override
+	public ExecutionTimeBenchmarkerOptionObject clone() throws CloneNotSupportedException {
+		return (ExecutionTimeBenchmarkerOptionObject) EcoreUtil.copy(this);
+	}
 } //ExecutionTimeBenchmarkerOptionObjectImpl

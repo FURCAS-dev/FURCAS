@@ -6,23 +6,20 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
-
 import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.WizardPage;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -277,6 +274,15 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RandomNumberOptionObject clone() throws CloneNotSupportedException {
+		return (RandomNumberOptionObject) EcoreUtil.copy(this);
 	}
 
 	/**
