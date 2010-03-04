@@ -108,11 +108,11 @@ public class DelegationParsingObserver implements IParsingObserver {
 
     @Override
     public void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation, int referenceType) {
+            Object contextModelElement, Token referenceLocation, DelayedReference reference) {
 
         for (IParsingObserver observer : observers) {
             observer.notifyModelElementResolvedOutOfContext(modelElement,
-                    contextModelElement, referenceLocation, referenceType);
+                    contextModelElement, referenceLocation, reference);
         }
     }
 
