@@ -32,7 +32,7 @@ public class TestObservableParser {
 		parser.onErrorInTemplateRule(null);
 		parser.onExitTemplateRule(null);
 		parser.onRuleElementCreationCommited(null);
-		parser.onRuleElementResolvedOutOfContext(null, null, null, 0);
+		parser.onRuleElementResolvedOutOfContext(null, null, null, null);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class TestObservableParser {
 		assertEquals("8test", mock.result);
 
 		parser.onRuleElementResolvedOutOfContext("test", "1234",
-				new ANTLR3LocationTokenImpl(3, "hello"), 0);
+				new ANTLR3LocationTokenImpl(3, "hello"), null);
 		assertEquals("9test1234hello", mock.result);
 
 	}
@@ -171,9 +171,9 @@ public class TestObservableParser {
 
 		@Override
 		public void notifyModelElementResolvedOutOfContext(Object modelElement,
-				Object contextModelElement, Token referenceLocation, int referenceType) {
+				Object contextModelElement, Token referenceLocation, DelayedReference reference) {
 			result = 9 + modelElement.toString() + contextModelElement
-					+ referenceLocation.getText() + referenceType;
+					+ referenceLocation.getText() + reference;
 		}
 
 		@Override
