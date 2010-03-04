@@ -18,6 +18,7 @@ import textblocks.AbstractToken;
 import textblocks.Bostoken;
 import textblocks.DocumentNode;
 import textblocks.Eostoken;
+import textblocks.ForeachContext;
 import textblocks.LexedToken;
 import textblocks.OmittedToken;
 import textblocks.TextBlock;
@@ -127,38 +128,44 @@ public class TbUtil {
 		new TextBlockDeepCopyPolicyHandler(node.getVersion()), false);
 	// iterate and set and connect versions to each other
 	for (RefObject copy : result.getCopiedElements()) {
-	    DocumentNode original = (DocumentNode) conn.getElement(result
-		    .getInverseMriMappingTable().get(((Partitionable) copy).get___Mri()));
-	    DocumentNode copiedNode = ((DocumentNode) copy);
-	    copiedNode.setVersion(newVersion);
-	    if(manifestValues) {
-		if(copiedNode instanceof LexedToken) {
-		    ((LexedToken) copiedNode).setValue(
-			    shortPrettyPrinter.resynchronizeToEditableState((AbstractToken) copiedNode));
-		}
-	    }
-	    // as the original already had a reference to its other
-	    // versions these would be duplicated, therefore clear this
-	    // association before referencing again
-	    // TODO this could be improved if deepCopy would allow separate
-	    // handling of specific references
-	    // Collection<DocumentNode> referencingNodes = ((TextblocksPackage)
-	    // copiedNode
-	    // .refImmediatePackage())
-	    // .getDocumentNodeHasDocumentNodeVersions().getDocumentNode(
-	    // copiedNode);
-	    // TODO: this is only need because obviously deepCopy also
-	    // duplicates references from "outside"
-	    // to elements that are being copied, this leads to duplicated
-	    // version references if
-	    // // referenceVersions is called
-	    // for (DocumentNode referencingNode : new ArrayList<DocumentNode>(
-	    // referencingNodes)) {
-	    // referencingNode.getOtherVersions().remove(copiedNode);
-	    // }
-	    // copiedNode.getOtherVersions().clear();
-	    referenceVersions(original, copiedNode);
-	    // per default assign to the same partition
+	    if(copy instanceof DocumentNode) {
+                DocumentNode original = (DocumentNode) conn.getElement(result
+                        .getInverseMriMappingTable().get(
+                                ((Partitionable) copy).get___Mri()));
+                DocumentNode copiedNode = ((DocumentNode) copy);
+                copiedNode.setVersion(newVersion);
+                if (manifestValues) {
+                    if (copiedNode instanceof LexedToken) {
+                        ((LexedToken) copiedNode)
+                                .setValue(shortPrettyPrinter
+                                        .resynchronizeToEditableState((AbstractToken) copiedNode));
+                    }
+                }
+                // as the original already had a reference to its other
+                // versions these would be duplicated, therefore clear this
+                // association before referencing again
+                // TODO this could be improved if deepCopy would allow separate
+                // handling of specific references
+                // Collection<DocumentNode> referencingNodes =
+                // ((TextblocksPackage)
+                // copiedNode
+                // .refImmediatePackage())
+                // .getDocumentNodeHasDocumentNodeVersions().getDocumentNode(
+                // copiedNode);
+                // TODO: this is only need because obviously deepCopy also
+                // duplicates references from "outside"
+                // to elements that are being copied, this leads to duplicated
+                // version references if
+                // // referenceVersions is called
+                // for (DocumentNode referencingNode : new
+                // ArrayList<DocumentNode>(
+                // referencingNodes)) {
+                // referencingNode.getOtherVersions().remove(copiedNode);
+                // }
+                // copiedNode.getOtherVersions().clear();
+                referenceVersions(original, copiedNode);
+                // per default assign to the same partition
+            }
 	}
 	DocumentNode newCopy = (DocumentNode) result.getMappingTable().get(node).getMappingTarget();
 	((Partitionable) node).get___Partition().assignElementIncludingChildren(newCopy);
@@ -239,6 +246,8 @@ public class TbUtil {
 						&& node.getVersion().equals(versionToBeCopied)) {
 					return fullPolicy;
 				}
+			} else if(sourceElement instanceof ForeachContext) {
+			    return fullPolicy;
 			}
 
 			return refPolicy;

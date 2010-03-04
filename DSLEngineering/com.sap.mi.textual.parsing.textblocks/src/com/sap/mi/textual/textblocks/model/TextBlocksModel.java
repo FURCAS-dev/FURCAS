@@ -370,7 +370,6 @@ public class TextBlocksModel {
 	 */
 	public void replace(final int replacedRegionOffset, final int replacedRegionLength,
 			final String newText) {
-	    System.out.println("Replace:" + newText);
 	        final Connection conn = rootBlock.get___Connection();
 	        conn.getCommandStack().execute(new Command(conn, "Replace Region"){
 
