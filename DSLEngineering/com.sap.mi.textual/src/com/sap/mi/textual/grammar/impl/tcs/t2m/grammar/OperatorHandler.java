@@ -154,7 +154,7 @@ public class OperatorHandler {
             String initString = "java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);";
 
 
-            ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), false);
+            ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), false, true);
             writer.addRule(rule);
         }
     }

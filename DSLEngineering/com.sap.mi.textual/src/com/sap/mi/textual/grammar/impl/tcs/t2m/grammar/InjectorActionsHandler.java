@@ -140,6 +140,8 @@ public class InjectorActionsHandler<Type> {
 			errorBucket.addError("Empty property name.", propInit);
 			return;
 		}
+		buffer.append(ObservationDirectivesHelper
+                        .getEnterInjectorActionNotification());
 		String value = propInit.getValue();
 		if (propInit instanceof PrimitivePropertyInit) {
 			// TODO refer to and use Primitive template transformer to create

@@ -178,7 +178,7 @@ public class ClassTemplateHandler<Type extends Object> {
                 	String implRuleInitString = getInitString(template, false, true, true);
                 	addTemplateSequenceToRuleBody(template, ruleBodyBufferFactory, implRuleBody);
                 	addPostActions(template, implRuleBody);
-                	writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulenameImpl, "Object ret2", implRuleInitString, implRuleBody.toString(), false));
+                	writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulenameImpl, "Object ret2", implRuleInitString, implRuleBody.toString(), false, true));
                 	
                 	//Now create an abstract rule that has alternatives for the 
                 	//implementation rule as well as all subtypes.
@@ -200,7 +200,7 @@ public class ClassTemplateHandler<Type extends Object> {
             	}
             }
             // templateRulename is not null
-            writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulename, "Object ret2", initString, rulebody.toString(), isAbstractRule));
+            writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulename, "Object ret2", initString, rulebody.toString(), !isAbstractRule, !isAbstractRule));
         }
 
     }
@@ -433,7 +433,7 @@ public class ClassTemplateHandler<Type extends Object> {
                             "Object ret2", 
                             initString, 
                             rulebody.toString(), 
-                            false  // ! is not abstract, this is the case where the abstract template refers to a non-abstract model element
+                            true, true  // ! is not abstract, this is the case where the abstract template refers to a non-abstract model element
             ));
         }
     }
