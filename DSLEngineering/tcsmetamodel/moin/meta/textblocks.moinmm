@@ -418,7 +418,7 @@
 </Model.Reference>
 <Model.Association m:c='1' m:i='E0EB1907A44590D0261711DF82BBDD158D02908A' name='ForeachContext_ForeachPredicatePropertyInit' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
 <Model.AssociationEnd m:c='1' m:i='E0EB1907A4491340261711DFBAF6DD158D02908A' name='foreachContext' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<multiplicity lower='1' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.AssociationEnd>
 <Model.AssociationEnd m:c='1' m:i='E0EB1907A4493A50261711DFAE9BDD158D02908A' name='foreachPredicatePropertyInit' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
