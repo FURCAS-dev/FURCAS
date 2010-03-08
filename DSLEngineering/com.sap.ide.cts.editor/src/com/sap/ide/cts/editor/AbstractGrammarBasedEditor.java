@@ -580,7 +580,7 @@ public abstract class AbstractGrammarBasedEditor extends
 //												TextblocksPackage.PACKAGE_DESCRIPTOR), null, getParserFactory());
 								ByteArrayOutputStream stream = new ByteArrayOutputStream();
 								TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
-								pp.prettyPrint(rootObject, rootTemplate.getConcretesyntax(), target);
+								pp.prettyPrint(rootObject, rootTemplate.getConcretesyntax(), target, null, null);
 								newClass = stream.toString();
 								//newClass = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(rootObject, rootTemplate.getConcretesyntax(), getParserFactory()).getCachedString();
 							}

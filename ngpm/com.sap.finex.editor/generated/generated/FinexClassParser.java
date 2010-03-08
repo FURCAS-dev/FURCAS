@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g 2009-12-09 20:19:37
+// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g 2010-03-04 20:24:58
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -112,7 +112,7 @@ public class FinexClassParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g"; }
 
 
-       private static final String syntaxUUID = "E0E14F86C008F0CBE4F711DECD92C2E4C0A868C8";
+       private static final String syntaxUUID = "E09976247EB7927027C311DFB806C1D70A140F13";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -697,7 +697,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:322:4: classdeclaration[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE7D20A3E4F711DE90DBC2E4C0A868C8");
+              _beforeSeqEl("E09976247947AA5127C311DFBB55C1D70A140F13");
             }
             pushFollow(FOLLOW_classdeclaration_in_structure_finexclass404);
             classdeclaration(ret);
@@ -796,7 +796,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:345:4: classdeclaration[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE8202A0E4F711DEBD1FC2E4C0A868C8");
+              _beforeSeqEl("E0997624794ED64027C311DF8A93C1D70A140F13");
             }
             pushFollow(FOLLOW_classdeclaration_in_structure_finexclass_field472);
             classdeclaration(ret);
@@ -808,10 +808,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE8202A3E4F711DE8D74C2E4C0A868C8");
+              _beforeSeqEl("E09976247951474127C311DFB793C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "owner", null, null, "OCL:#context(field).oclAsType(structure::Field).association.clazz", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "owner", null, null, "OCL:#context(field).oclAsType(structure::Field).association.clazz", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -854,7 +854,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:355:4: ( ( 'value' ) | ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) COLON ( ( ( ( structure_association )=> ( (temp= structure_association ) SEMICOLON ) | ( behavior_functions_function )=> ( (temp= behavior_functions_function ) SEMICOLON ) | ( LBRACKET (temp= behavior_expressions_expression ) RBRACKET SEMICOLON ) )* ) ) COLON ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE8202ACE4F711DEB247C2E4C0A868C8");
+              _beforeSeqEl("E099762479776CE227C311DFBAA1C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:355:64: ( ( 'value' ) | )
             int alt1=2;
@@ -884,7 +884,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:355:82: 'value'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE8202AAE4F711DE85A7C2E4C0A868C8");
+                      _beforeSeqEl("E099762479776CE027C311DFB81AC1D70A140F13");
                     }
                     match(input,40,FOLLOW_40_in_classdeclaration516); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -924,7 +924,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE844C91E4F711DE8413C2E4C0A868C8");
+              _beforeSeqEl("E0997624799D928127C311DFBE0CC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:356:76: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt2=2;
@@ -954,7 +954,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:356:94: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE8202AFE4F711DE80B9C2E4C0A868C8");
+                      _beforeSeqEl("E09976247998D79227C311DFA0C6C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:356:153: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:356:155: temp= firstLowercaseIdentifier
@@ -993,7 +993,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE8202B3E4F711DEC5CAC2E4C0A868C8");
+                      _beforeSeqEl("E0997624799B489327C311DF8ED8C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:82: temp= firstUppercaseIdentifier
@@ -1029,14 +1029,14 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE844C92E4F711DE8E2FC2E4C0A868C8");
+              _beforeSeqEl("E0997624799D928227C311DFC0B2C1D70A140F13");
             }
             match(input,COLON,FOLLOW_COLON_in_classdeclaration575); if (state.failed) return ;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE844CA6E4F711DEC487C2E4C0A868C8");
+              _beforeSeqEl("E099762479AE5B6127C311DFB990C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:335: ( ( ( ( structure_association )=> ( (temp= structure_association ) SEMICOLON ) | ( behavior_functions_function )=> ( (temp= behavior_functions_function ) SEMICOLON ) | ( LBRACKET (temp= behavior_expressions_expression ) RBRACKET SEMICOLON ) )* ) )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:336: ( ( ( structure_association )=> ( (temp= structure_association ) SEMICOLON ) | ( behavior_functions_function )=> ( (temp= behavior_functions_function ) SEMICOLON ) | ( LBRACKET (temp= behavior_expressions_expression ) RBRACKET SEMICOLON ) )* )
@@ -1045,7 +1045,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:337: ( ( structure_association )=> ( (temp= structure_association ) SEMICOLON ) | ( behavior_functions_function )=> ( (temp= behavior_functions_function ) SEMICOLON ) | ( LBRACKET (temp= behavior_expressions_expression ) RBRACKET SEMICOLON ) )*
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE844CA4E4F711DEA86FC2E4C0A868C8");
+              _beforeSeqEl("E099762479ABEA6027C311DFCB88C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:396: ( ( structure_association )=> ( (temp= structure_association ) SEMICOLON ) | ( behavior_functions_function )=> ( (temp= behavior_functions_function ) SEMICOLON ) | ( LBRACKET (temp= behavior_expressions_expression ) RBRACKET SEMICOLON ) )*
             loop3:
@@ -1081,7 +1081,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:441: (temp= structure_association ) SEMICOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844C95E4F711DEA769C2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A0038227C311DFC512C1D70A140F13");
             	    }
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:500: (temp= structure_association )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:357:502: temp= structure_association
@@ -1102,7 +1102,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	      _afterSeqEl();
             	    }
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844C96E4F711DE9646C2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A0038327C311DFBA16C1D70A140F13");
             	    }
             	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_classdeclaration604); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1127,7 +1127,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:358:54: (temp= behavior_functions_function ) SEMICOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844C9AE4F711DE89C4C2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A2748227C311DFBA3FC1D70A140F13");
             	    }
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:358:113: (temp= behavior_functions_function )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:358:115: temp= behavior_functions_function
@@ -1148,7 +1148,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	      _afterSeqEl();
             	    }
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844C9BE4F711DEB0E4C2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A4BE7027C311DFAD63C1D70A140F13");
             	    }
             	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_classdeclaration635); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1173,14 +1173,14 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:21: LBRACKET (temp= behavior_expressions_expression ) RBRACKET SEMICOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844C9DE4F711DEB689C2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A4BE7227C311DF80D4C1D70A140F13");
             	    }
             	    match(input,LBRACKET,FOLLOW_LBRACKET_in_classdeclaration650); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844CA0E4F711DEB817C2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A72F7027C311DFC220C1D70A140F13");
             	    }
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:165: (temp= behavior_expressions_expression )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:167: temp= behavior_expressions_expression
@@ -1201,14 +1201,14 @@ public class FinexClassParser extends ObservableInjectingParser {
             	      _afterSeqEl();
             	    }
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844CA1E4F711DECDAFC2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A72F7127C311DF937EC1D70A140F13");
             	    }
             	    match(input,RBRACKET,FOLLOW_RBRACKET_in_classdeclaration665); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BE844CA2E4F711DE981EC2E4C0A868C8");
+            	      _beforeSeqEl("E099762479A72F7227C311DFA02BC1D70A140F13");
             	    }
             	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_classdeclaration670); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1242,14 +1242,14 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE844CA7E4F711DECD6AC2E4C0A868C8");
+              _beforeSeqEl("E099762479BA424027C311DF9D7FC1D70A140F13");
             }
             match(input,COLON,FOLLOW_COLON_in_classdeclaration684); if (state.failed) return ;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE844CB0E4F711DEB182C2E4C0A868C8");
+              _beforeSeqEl("E099762479BEFD3427C311DFA47AC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:623: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt4=2;
@@ -1279,7 +1279,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:641: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE844CAAE4F711DE8996C2E4C0A868C8");
+                      _beforeSeqEl("E099762479BCB34227C311DFCF6AC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:700: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:359:702: temp= firstLowercaseIdentifier
@@ -1318,7 +1318,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:360:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE844CAEE4F711DE851BC2E4C0A868C8");
+                      _beforeSeqEl("E099762479BEFD3227C311DFB65FC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:360:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:360:82: temp= firstUppercaseIdentifier
@@ -1442,7 +1442,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:4: (temp= structure_field ) ( ( 'opposite' (temp= structure_field_opposite ) ) | ( (temp= structure_field_nondeclaredOpposite ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE892E93E4F711DE9191C2E4C0A868C8");
+              _beforeSeqEl("E099762479DBACF227C311DFAB69C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:63: (temp= structure_field )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:65: temp= structure_field
@@ -1463,7 +1463,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE8B7886E4F711DE85B3C2E4C0A868C8");
+              _beforeSeqEl("E099762479E549E127C311DFA863C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:195: ( ( 'opposite' (temp= structure_field_opposite ) ) | ( (temp= structure_field_nondeclaredOpposite ) ) )
             int alt5=2;
@@ -1493,14 +1493,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:213: 'opposite' (temp= structure_field_opposite )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE892E94E4F711DE91B9C2E4C0A868C8");
+                      _beforeSeqEl("E099762479DE1DF027C311DFA96FC1D70A140F13");
                     }
                     match(input,41,FOLLOW_41_in_structure_association797); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE892E99E4F711DEB5CFC2E4C0A868C8");
+                      _beforeSeqEl("E099762479E067E027C311DFC2B7C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:357: (temp= structure_field_opposite )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:382:359: temp= structure_field_opposite
@@ -1539,7 +1539,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:383:21: (temp= structure_field_nondeclaredOpposite )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE8B7884E4F711DE9E66C2E4C0A868C8");
+                      _beforeSeqEl("E099762479E2D8E427C311DF9837C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:383:80: (temp= structure_field_nondeclaredOpposite )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:383:82: temp= structure_field_nondeclaredOpposite
@@ -1575,10 +1575,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE8B7889E4F711DEB80BC2E4C0A868C8");
+              _beforeSeqEl("E099762479E793D227C311DF8074C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "name", null, null, "OCL:if self.ends->last().name.size() > 0 then"+"		                        self.ends->first().name.concat(' opposite ').concat(self.ends->last().name)"+"		                      else"+"		                        self.ends->first().name"+"		                      endif", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:if self.ends->last().name.size() > 0 then"+"		                        self.ends->first().name.concat(' opposite ').concat(self.ends->last().name)"+"		                      else"+"		                        self.ends->first().name"+"		                      endif", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -1629,7 +1629,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:397:4: ( ( DOT ) | ( DDOT ) ) ( ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) ) | ( structure_type_field )=> ( (temp= structure_type_field ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | ( ASSIGN (temp= behavior_expressions_expression ) ) | () ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE92A47BE4F711DEC0E7C2E4C0A868C8");
+              _beforeSeqEl("E099762479F3A1C127C311DFB9ADC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:397:63: ( ( DOT ) | ( DDOT ) )
             int alt6=2;
@@ -1659,17 +1659,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:397:81: DOT
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE92A471E4F711DEC401C2E4C0A868C8");
+                      _beforeSeqEl("E099762479EC75D127C311DFC7E7C1D70A140F13");
                     }
                     match(input,DOT,FOLLOW_DOT_in_structure_field881); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE92A474E4F711DE966CC2E4C0A868C8");
+                      _beforeSeqEl("E099762479EEBFC227C311DFBA92C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -1693,17 +1693,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:21: DDOT
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE92A476E4F711DE9B68C2E4C0A868C8");
+                      _beforeSeqEl("E099762479F130C027C311DF81C0C1D70A140F13");
                     }
                     match(input,DDOT,FOLLOW_DDOT_in_structure_field899); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE92A479E4F711DEC9CAC2E4C0A868C8");
+                      _beforeSeqEl("E099762479F130C327C311DFA443C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "singleMultiplicity", false);_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "singleMultiplicity", false);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -1724,9 +1724,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE99D068E4F711DEB970C2E4C0A868C8");
+              _beforeSeqEl("E09976247A1C386027C311DFA751C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:338: ( ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) ) | ( structure_type_field )=> ( (temp= structure_type_field ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | ( ASSIGN (temp= behavior_expressions_expression ) ) | () ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:361: ( ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) ) | ( structure_type_field )=> ( (temp= structure_type_field ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | ( ASSIGN (temp= behavior_expressions_expression ) ) | () ) ) )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1776,18 +1776,18 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:339: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:362: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:355: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:356: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:378: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:379: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE95157EE4F711DEADFBC2E4C0A868C8");
+                      _beforeSeqEl("E099762479FD17A127C311DFA897C1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:415: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:438: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -1806,19 +1806,19 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     switch (alt7) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:416: ( (temp= firstLowercaseIdentifier ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:439: ( (temp= firstLowercaseIdentifier ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:432: ( (temp= firstLowercaseIdentifier ) )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:433: (temp= firstLowercaseIdentifier )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:455: ( (temp= firstLowercaseIdentifier ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:456: (temp= firstLowercaseIdentifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE951572E4F711DEB50DC2E4C0A868C8");
+                              _beforeSeqEl("E099762479F5EBB227C311DFC20FC1D70A140F13");
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:492: (temp= firstLowercaseIdentifier )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:494: temp= firstLowercaseIdentifier
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:515: (temp= firstLowercaseIdentifier )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:398:517: temp= firstLowercaseIdentifier
                             {
                             pushFollow(FOLLOW_firstLowercaseIdentifier_in_structure_field925);
                             temp=firstLowercaseIdentifier();
@@ -1836,10 +1836,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE951575E4F711DE930DC2E4C0A868C8");
+                              _beforeSeqEl("E099762479F85CB027C311DFB6E2C1D70A140F13");
                             }
                             if ( state.backtracking==0 ) {
-                              setProperty(ret, "mandatory", false);_exitInjectorAction();
+                              _enterInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
@@ -1863,7 +1863,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:21: (temp= firstUppercaseIdentifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE951579E4F711DEBB0BC2E4C0A868C8");
+                              _beforeSeqEl("E099762479FAA6A127C311DFC43FC1D70A140F13");
                             }
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:80: (temp= firstUppercaseIdentifier )
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:82: temp= firstUppercaseIdentifier
@@ -1884,10 +1884,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE95157CE4F711DEA338C2E4C0A868C8");
+                              _beforeSeqEl("E099762479FAA6A427C311DFAAC2C1D70A140F13");
                             }
                             if ( state.backtracking==0 ) {
-                              setProperty(ret, "mandatory", true);_exitInjectorAction();
+                              _enterInjectorAction();setProperty(ret, "mandatory", true);_exitInjectorAction();
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
@@ -1908,9 +1908,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE975F61E4F711DEA81AC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A06B49127C311DF9C1EC1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:388: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:411: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1929,19 +1929,19 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     switch (alt8) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:389: ( (temp= firstLowercaseIdentifier ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:412: ( (temp= firstLowercaseIdentifier ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:405: ( (temp= firstLowercaseIdentifier ) )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:406: (temp= firstLowercaseIdentifier )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:428: ( (temp= firstLowercaseIdentifier ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:429: (temp= firstLowercaseIdentifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE951583E4F711DEBB82C2E4C0A868C8");
+                              _beforeSeqEl("E099762479FF88A427C311DF91BDC1D70A140F13");
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:465: (temp= firstLowercaseIdentifier )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:467: temp= firstLowercaseIdentifier
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:488: (temp= firstLowercaseIdentifier )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:399:490: temp= firstLowercaseIdentifier
                             {
                             pushFollow(FOLLOW_firstLowercaseIdentifier_in_structure_field971);
                             temp=firstLowercaseIdentifier();
@@ -1977,7 +1977,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:400:21: (temp= firstUppercaseIdentifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE951589E4F711DEB8BBC2E4C0A868C8");
+                              _beforeSeqEl("E09976247A04439127C311DFA2FDC1D70A140F13");
                             }
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:400:80: (temp= firstUppercaseIdentifier )
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:400:82: temp= firstUppercaseIdentifier
@@ -2013,7 +2013,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE975F62E4F711DE9E62C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A06B49227C311DFAD1FC1D70A140F13");
                     }
                     pushFollow(FOLLOW_askey_in_structure_field1002);
                     askey(ret);
@@ -2025,7 +2025,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE975F6CE4F711DEC61BC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A0B6F8227C311DF8C45C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:400:410: ( ( 'DEFAULT' (temp= behavior_expressions_expression )? ) | ( ASSIGN (temp= behavior_expressions_expression )? ) | () )
                     int alt11=3;
@@ -2069,14 +2069,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:400:428: 'DEFAULT' (temp= behavior_expressions_expression )?
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE975F63E4F711DE8B84C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A06B49327C311DFAE60C1D70A140F13");
                             }
                             match(input,42,FOLLOW_42_in_structure_field1011); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE975F65E4F711DEA453C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A06B49527C311DFC34AC1D70A140F13");
                             }
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:400:571: (temp= behavior_expressions_expression )?
                             int alt9=2;
@@ -2126,14 +2126,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:401:21: ASSIGN (temp= behavior_expressions_expression )?
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE975F67E4F711DE9F85C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A08FE8127C311DFBED5C1D70A140F13");
                             }
                             match(input,ASSIGN,FOLLOW_ASSIGN_in_structure_field1037); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE975F69E4F711DEA19FC2E4C0A868C8");
+                              _beforeSeqEl("E09976247A08FE8327C311DFA4DCC1D70A140F13");
                             }
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:401:163: (temp= behavior_expressions_expression )?
                             int alt10=2;
@@ -2215,7 +2215,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:47: (temp= structure_type_field ) askey[ret] ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | ( ASSIGN (temp= behavior_expressions_expression ) ) | () )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE975F70E4F711DE939DC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A102A7127C311DFA7B9C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:106: (temp= structure_type_field )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:108: temp= structure_type_field
@@ -2236,16 +2236,16 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE975F73E4F711DEA3A1C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A129B7027C311DF8903C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "name", null, null, "OCL:self.type.name", true);_exitInjectorAction();
+                      _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:self.type.name", true);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE975F74E4F711DEB21EC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A129B7127C311DFB7ECC1D70A140F13");
                     }
                     pushFollow(FOLLOW_askey_in_structure_field1097);
                     askey(ret);
@@ -2257,9 +2257,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BE99D066E4F711DEA64DC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A19C76127C311DFB208C1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:490: ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | ( ASSIGN (temp= behavior_expressions_expression ) ) | () )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:513: ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | ( ASSIGN (temp= behavior_expressions_expression ) ) | () )
                     int alt12=3;
                     switch ( input.LA(1) ) {
                     case 42:
@@ -2292,26 +2292,26 @@ public class FinexClassParser extends ObservableInjectingParser {
 
                     switch (alt12) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:491: ( 'DEFAULT' (temp= behavior_expressions_expression ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:514: ( 'DEFAULT' (temp= behavior_expressions_expression ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:507: ( 'DEFAULT' (temp= behavior_expressions_expression ) )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:508: 'DEFAULT' (temp= behavior_expressions_expression )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:530: ( 'DEFAULT' (temp= behavior_expressions_expression ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:531: 'DEFAULT' (temp= behavior_expressions_expression )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE975F75E4F711DEA4FBC2E4C0A868C8");
+                              _beforeSeqEl("E09976247A129B7227C311DFA7A4C1D70A140F13");
                             }
                             match(input,42,FOLLOW_42_in_structure_field1106); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE975F78E4F711DE97BCC2E4C0A868C8");
+                              _beforeSeqEl("E09976247A150C7027C311DF9ED4C1D70A140F13");
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:651: (temp= behavior_expressions_expression )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:653: temp= behavior_expressions_expression
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:674: (temp= behavior_expressions_expression )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:403:676: temp= behavior_expressions_expression
                             {
                             pushFollow(FOLLOW_behavior_expressions_expression_in_structure_field1113);
                             temp=behavior_expressions_expression();
@@ -2347,14 +2347,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:404:21: ASSIGN (temp= behavior_expressions_expression )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE99D060E4F711DECD34C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A150C7227C311DFBBEAC1D70A140F13");
                             }
                             match(input,ASSIGN,FOLLOW_ASSIGN_in_structure_field1130); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BE99D063E4F711DEA5A5C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A17566127C311DFB4C3C1D70A140F13");
                             }
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:404:163: (temp= behavior_expressions_expression )
                             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:404:165: temp= behavior_expressions_expression
@@ -2422,10 +2422,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE99D06BE4F711DEC478C2E4C0A868C8");
+              _beforeSeqEl("E09976247A1E825227C311DFA16EC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setProperty(ret, "navigable", true);_exitInjectorAction();
+              _enterInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -2476,7 +2476,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:419:4: (temp= firstLowercaseIdentifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE9C4162E4F711DEAD9CC2E4C0A868C8");
+              _beforeSeqEl("E09976247A25AE4227C311DFB5D8C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:419:63: (temp= firstLowercaseIdentifier )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:419:65: temp= firstLowercaseIdentifier
@@ -2497,10 +2497,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BE9E8B56E4F711DE8086C2E4C0A868C8");
+              _beforeSeqEl("E09976247A2CDA3027C311DFB567C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setProperty(ret, "navigable", true);_exitInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.association.clazz", true);_exitInjectorAction();
+              _enterInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.association.clazz", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -2548,10 +2548,10 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:433:4: 
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEA0FC5AE4F711DEADE4C2E4C0A868C8");
+              _beforeSeqEl("E09976247A36772327C311DF9D5BC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setProperty(ret, "name", "");_exitInjectorAction();setProperty(ret, "navigable", false);_exitInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.association.clazz", true);_exitInjectorAction();
+              _enterInjectorAction();setProperty(ret, "name", "");_exitInjectorAction();_enterInjectorAction();setProperty(ret, "navigable", false);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.association.clazz", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -2591,7 +2591,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:443:4: ( ( 'AS' 'KEY' ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEA34646E4F711DEC30CC2E4C0A868C8");
+              _beforeSeqEl("E09976247A3FED0227C311DFBBB0C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:443:64: ( ( 'AS' 'KEY' ) | )
             int alt14=2;
@@ -2621,14 +2621,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:443:82: 'AS' 'KEY'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEA34643E4F711DE8BB7C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A3DA31327C311DF8D65C1D70A140F13");
                     }
                     match(input,43,FOLLOW_43_in_askey1294); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEA34644E4F711DE91A0C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A3FED0027C311DFCCC0C1D70A140F13");
                     }
                     match(input,44,FOLLOW_44_in_askey1297); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2711,7 +2711,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:457:4: ( ( 'function' functionheader[ret] (temp= behavior_functions_signatureimplementation ) ) | ( 'manipulator' functionheader[ret] (temp= behavior_functions_signatureimplementation_manipulator ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEAA723BE4F711DEA8D8C2E4C0A868C8");
+              _beforeSeqEl("E09976247A4E44E027C311DF93F5C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:457:63: ( ( 'function' functionheader[ret] (temp= behavior_functions_signatureimplementation ) ) | ( 'manipulator' functionheader[ret] (temp= behavior_functions_signatureimplementation_manipulator ) ) )
             int alt15=2;
@@ -2741,14 +2741,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:457:81: 'function' functionheader[ret] (temp= behavior_functions_signatureimplementation )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAA7230E4F711DEC2F4C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A4718F027C311DFC7B4C1D70A140F13");
                     }
                     match(input,45,FOLLOW_45_in_behavior_functions_function1347); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAA7231E4F711DEBFD4C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A4718F127C311DF9D77C1D70A140F13");
                     }
                     pushFollow(FOLLOW_functionheader_in_behavior_functions_function1350);
                     functionheader(ret);
@@ -2760,7 +2760,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAA7233E4F711DE8A73C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A4989F027C311DF98B8C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:457:319: (temp= behavior_functions_signatureimplementation )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:457:321: temp= behavior_functions_signatureimplementation
@@ -2799,14 +2799,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:458:21: 'manipulator' functionheader[ret] (temp= behavior_functions_signatureimplementation_manipulator )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAA7235E4F711DE9A51C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A4989F227C311DF9377C1D70A140F13");
                     }
                     match(input,46,FOLLOW_46_in_behavior_functions_function1374); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAA7236E4F711DEB1DDC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A4989F327C311DF88D9C1D70A140F13");
                     }
                     pushFollow(FOLLOW_functionheader_in_behavior_functions_function1377);
                     functionheader(ret);
@@ -2818,7 +2818,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAA7239E4F711DECD7EC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A4BD3E227C311DFBEAAC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:458:262: (temp= behavior_functions_signatureimplementation_manipulator )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:458:264: temp= behavior_functions_signatureimplementation_manipulator
@@ -2891,7 +2891,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:468:4: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) | () ) LPAREN ( ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) ) | ( 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) ) RPAREN COLON
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEACE33CE4F711DECEDFC2E4C0A868C8");
+              _beforeSeqEl("E09976247A57E1D227C311DFAC46C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:468:63: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) | () )
             int alt16=3;
@@ -2930,7 +2930,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:468:81: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEACE332E4F711DEBB59C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A52FFD227C311DFB5EAC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:468:140: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:468:142: temp= firstLowercaseIdentifier
@@ -2969,7 +2969,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:469:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEACE336E4F711DEC579C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A5570D227C311DF9A4BC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:469:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:469:82: temp= firstUppercaseIdentifier
@@ -3008,10 +3008,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:21: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEACE33AE4F711DE998CC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A57E1D027C311DF9DE2C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "name", "");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "name", "");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -3032,16 +3032,16 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEACE33DE4F711DE8A52C2E4C0A868C8");
+              _beforeSeqEl("E09976247A5A2BC027C311DF8854C1D70A140F13");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_functionheader1481); if (state.failed) return ;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEB19E24E4F711DE82D7C2E4C0A868C8");
+              _beforeSeqEl("E09976247A87A46027C311DF9C0FC1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:323: ( ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) ) | ( 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:346: ( ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) ) | ( 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -3060,26 +3060,26 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
             switch (alt21) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:324: ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:347: ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:340: ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:341: 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:363: ( 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:364: 'IN' (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* ) ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEACE33EE4F711DEA446C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A5A2BC127C311DF805AC1D70A140F13");
                     }
                     match(input,47,FOLLOW_47_in_functionheader1490); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAF5432E4F711DEC1CAC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A6FAF9127C311DFA44AC1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:479: (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:481: temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )*
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:502: (temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )* )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:504: temp= behavior_functions_parameter_IN ( ( ',' ) temp= behavior_functions_parameter_IN )*
                     {
                     pushFollow(FOLLOW_behavior_functions_parameter_IN_in_functionheader1497);
                     temp=behavior_functions_parameter_IN();
@@ -3090,7 +3090,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "parameters", temp);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:558: ( ( ',' ) temp= behavior_functions_parameter_IN )*
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:581: ( ( ',' ) temp= behavior_functions_parameter_IN )*
                     loop17:
                     do {
                         int alt17=2;
@@ -3109,16 +3109,16 @@ public class FinexClassParser extends ObservableInjectingParser {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:559: ( ',' ) temp= behavior_functions_parameter_IN
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:582: ( ',' ) temp= behavior_functions_parameter_IN
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	      _enterSepSeq();
                     	    }
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:576: ( ',' )
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:577: ','
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:599: ( ',' )
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:600: ','
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0E14F86BEACE341E4F711DEC93DC2E4C0A868C8");
+                    	      _beforeSeqEl("E09976247A5A2BC427C311DFB85DC1D70A140F13");
                     	    }
                     	    match(input,48,FOLLOW_48_in_functionheader1505); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -3155,9 +3155,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAF543EE4F711DE87B8C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A7B967127C311DF9B3EC1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:828: ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:851: ( ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) ) | () )
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -3176,33 +3176,33 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:829: ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:852: ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:845: ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:846: ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:868: ( ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* ) )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:869: ',' 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BEAF5433E4F711DE9987C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A72209027C311DFBBC2C1D70A140F13");
                             }
                             match(input,48,FOLLOW_48_in_functionheader1526); if (state.failed) return ;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BEAF5434E4F711DE9C8EC2E4C0A868C8");
+                              _beforeSeqEl("E09976247A72209127C311DFC477C1D70A140F13");
                             }
                             match(input,49,FOLLOW_49_in_functionheader1529); if (state.failed) return ;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0E14F86BEAF543BE4F711DE9A06C2E4C0A868C8");
+                              _beforeSeqEl("E09976247A76DB8127C311DFA76BC1D70A140F13");
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1063: (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1065: temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )*
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1086: (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1088: temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )*
                             {
                             pushFollow(FOLLOW_behavior_functions_parameter_OUT_in_functionheader1536);
                             temp=behavior_functions_parameter_OUT();
@@ -3213,7 +3213,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "parameters", temp);
                             }
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1143: ( ( ',' ) temp= behavior_functions_parameter_OUT )*
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1166: ( ( ',' ) temp= behavior_functions_parameter_OUT )*
                             loop18:
                             do {
                                 int alt18=2;
@@ -3226,16 +3226,16 @@ public class FinexClassParser extends ObservableInjectingParser {
 
                                 switch (alt18) {
                             	case 1 :
-                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1144: ( ',' ) temp= behavior_functions_parameter_OUT
+                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1167: ( ',' ) temp= behavior_functions_parameter_OUT
                             	    {
                             	    if ( state.backtracking==0 ) {
                             	      _enterSepSeq();
                             	    }
-                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1161: ( ',' )
-                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1162: ','
+                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1184: ( ',' )
+                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:470:1185: ','
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0E14F86BEAF5437E4F711DEBBC9C2E4C0A868C8");
+                            	      _beforeSeqEl("E09976247A746A8227C311DFA971C1D70A140F13");
                             	    }
                             	    match(input,48,FOLLOW_48_in_functionheader1544); if (state.failed) return ;
                             	    if ( state.backtracking==0 ) {
@@ -3322,14 +3322,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:472:21: 'OUT' (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEAF5440E4F711DEABBCC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A7E077027C311DFB062C1D70A140F13");
                     }
                     match(input,49,FOLLOW_49_in_functionheader1585); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB19E22E4F711DEA587C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A82C26127C311DF91EBC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:472:160: (temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )* )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:472:162: temp= behavior_functions_parameter_OUT ( ( ',' ) temp= behavior_functions_parameter_OUT )*
@@ -3365,7 +3365,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:472:259: ','
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0E14F86BEAF5443E4F711DECAA4C2E4C0A868C8");
+                    	      _beforeSeqEl("E09976247A80787127C311DFA896C1D70A140F13");
                     	    }
                     	    match(input,48,FOLLOW_48_in_functionheader1600); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -3417,14 +3417,14 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEB19E25E4F711DEC4B5C2E4C0A868C8");
+              _beforeSeqEl("E09976247A87A46127C311DFA04DC1D70A140F13");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_functionheader1622); if (state.failed) return ;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEB19E26E4F711DE8A4AC2E4C0A868C8");
+              _beforeSeqEl("E09976247A87A46227C311DF9092C1D70A140F13");
             }
             match(input,COLON,FOLLOW_COLON_in_functionheader1627); if (state.failed) return ;
             if ( state.backtracking==0 ) {
@@ -3466,7 +3466,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:481:4: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEB65918E4F711DEBCE7C2E4C0A868C8");
+              _beforeSeqEl("E09976247A938B4127C311DFCD5EC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:481:63: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt22=2;
@@ -3496,7 +3496,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:481:81: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB65912E4F711DE8679C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A911A4027C311DFA3CEC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:481:140: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:481:142: temp= firstLowercaseIdentifier
@@ -3535,7 +3535,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB65916E4F711DE91D2C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A911A4427C311DF8163C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:82: temp= firstUppercaseIdentifier
@@ -3571,7 +3571,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEB8CA1CE4F711DEBA5FC2E4C0A868C8");
+              _beforeSeqEl("E09976247A9D283027C311DF9CD8C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:253: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt23=2;
@@ -3601,7 +3601,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:271: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB8CA14E4F711DECF42C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A95FC4327C311DFAEEEC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:330: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:482:332: temp= firstLowercaseIdentifier
@@ -3640,7 +3640,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB8CA1AE4F711DEB33EC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A9AB73127C311DFB940C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:82: temp= firstUppercaseIdentifier
@@ -3676,7 +3676,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEB8CA24E4F711DE85D1C2E4C0A868C8");
+              _beforeSeqEl("E09976247AA1E32027C311DF8D51C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:326: ( ( 'DEFAULT' (temp= behavior_expressions_expression ) ) | )
             int alt24=2;
@@ -3706,14 +3706,14 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:344: 'DEFAULT' (temp= behavior_expressions_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB8CA20E4F711DECC96C2E4C0A868C8");
+                      _beforeSeqEl("E09976247A9F722127C311DF8DC1C1D70A140F13");
                     }
                     match(input,42,FOLLOW_42_in_parameter1738); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEB8CA22E4F711DE80CDC2E4C0A868C8");
+                      _beforeSeqEl("E09976247A9F722327C311DF9DB0C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:487: (temp= behavior_expressions_expression )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:483:489: temp= behavior_expressions_expression
@@ -3801,7 +3801,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:497:4: parameter[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEC26700E4F711DEC349C2E4C0A868C8");
+              _beforeSeqEl("E09976247AA69E1027C311DF9FD8C1D70A140F13");
             }
             pushFollow(FOLLOW_parameter_in_behavior_functions_parameter_IN1791);
             parameter(ret);
@@ -3813,10 +3813,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEC26703E4F711DE9D7CC2E4C0A868C8");
+              _beforeSeqEl("E09976247AA90F1127C311DFA483C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setProperty(ret, "direction", behavior.functions.DirectionEnum.IN);_exitInjectorAction();
+              _enterInjectorAction();setProperty(ret, "direction", behavior.functions.DirectionEnum.IN);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -3864,7 +3864,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:511:4: parameter[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEC721F0E4F711DEAF28C2E4C0A868C8");
+              _beforeSeqEl("E09976247AB03B0027C311DFB3EAC1D70A140F13");
             }
             pushFollow(FOLLOW_parameter_in_behavior_functions_parameter_OUT1835);
             parameter(ret);
@@ -3876,10 +3876,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEC96BE2E4F711DE99CAC2E4C0A868C8");
+              _beforeSeqEl("E09976247AB03B0327C311DF8BF7C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setProperty(ret, "direction", behavior.functions.DirectionEnum.OUT);_exitInjectorAction();
+              _enterInjectorAction();setProperty(ret, "direction", behavior.functions.DirectionEnum.OUT);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -3975,14 +3975,14 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:534:4: LCURL ( ( (temp= behavior_actions_statement (temp= behavior_actions_statement )* )? ) ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BECE4DE0E4F711DEC779C2E4C0A868C8");
+              _beforeSeqEl("E09976247AB9B0E027C311DFC603C1D70A140F13");
             }
             match(input,LCURL,FOLLOW_LCURL_in_behavior_actions_block1907); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BED097D1E4F711DEC3E6C2E4C0A868C8");
+              _beforeSeqEl("E09976247ABC21E227C311DFA347C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:534:145: ( ( (temp= behavior_actions_statement (temp= behavior_actions_statement )* )? ) )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:534:146: ( (temp= behavior_actions_statement (temp= behavior_actions_statement )* )? )
@@ -3991,7 +3991,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:534:147: (temp= behavior_actions_statement (temp= behavior_actions_statement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BECE4DE2E4F711DEA720C2E4C0A868C8");
+              _beforeSeqEl("E09976247ABC21E027C311DFB305C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:534:206: (temp= behavior_actions_statement (temp= behavior_actions_statement )* )?
             int alt26=2;
@@ -4065,7 +4065,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BED097D2E4F711DEB852C2E4C0A868C8");
+              _beforeSeqEl("E09976247ABC21E327C311DF92CAC1D70A140F13");
             }
             match(input,RCURL,FOLLOW_RCURL_in_behavior_actions_block1941); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -4162,14 +4162,14 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:4: LCURL ( ( (temp= behavior_actions_assignment_manipulator ( ( PIPE ) temp= behavior_actions_assignment_manipulator )* ) ) ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BED308D0E4F711DEA38CC2E4C0A868C8");
+              _beforeSeqEl("E09976247AC34DD027C311DFBE48C1D70A140F13");
             }
             match(input,LCURL,FOLLOW_LCURL_in_behavior_actions_manipulator_manipulator2010); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BED308D8E4F711DE91C0C2E4C0A868C8");
+              _beforeSeqEl("E09976247AC808C227C311DFCDAEC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:145: ( ( (temp= behavior_actions_assignment_manipulator ( ( PIPE ) temp= behavior_actions_assignment_manipulator )* ) ) )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:146: ( (temp= behavior_actions_assignment_manipulator ( ( PIPE ) temp= behavior_actions_assignment_manipulator )* ) )
@@ -4178,7 +4178,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:147: (temp= behavior_actions_assignment_manipulator ( ( PIPE ) temp= behavior_actions_assignment_manipulator )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BED308D6E4F711DEAA73C2E4C0A868C8");
+              _beforeSeqEl("E09976247AC808C027C311DFC17FC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:206: (temp= behavior_actions_assignment_manipulator ( ( PIPE ) temp= behavior_actions_assignment_manipulator )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:208: temp= behavior_actions_assignment_manipulator ( ( PIPE ) temp= behavior_actions_assignment_manipulator )*
@@ -4214,7 +4214,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:557:313: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BED308D3E4F711DECD5BC2E4C0A868C8");
+            	      _beforeSeqEl("E09976247AC5BED227C311DF9497C1D70A140F13");
             	    }
             	    match(input,PIPE,FOLLOW_PIPE_in_behavior_actions_manipulator_manipulator2030); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
@@ -4260,7 +4260,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BED308D9E4F711DEB955C2E4C0A868C8");
+              _beforeSeqEl("E09976247ACA79C027C311DF9813C1D70A140F13");
             }
             match(input,RCURL,FOLLOW_RCURL_in_behavior_actions_manipulator_manipulator2051); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -4480,7 +4480,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:590:4: assignment[ret] SEMICOLON
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEE61BA0E4F711DE9125C2E4C0A868C8");
+              _beforeSeqEl("E09976247AD8D1A027C311DF8441C1D70A140F13");
             }
             pushFollow(FOLLOW_assignment_in_behavior_actions_assignment2170);
             assignment(ret);
@@ -4492,7 +4492,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEE61BA1E4F711DEC71AC2E4C0A868C8");
+              _beforeSeqEl("E09976247AD8D1A127C311DFA647C1D70A140F13");
             }
             match(input,SEMICOLON,FOLLOW_SEMICOLON_in_behavior_actions_assignment2175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -4541,7 +4541,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:604:4: assignment[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEE88CA2E4F711DEC96EC2E4C0A868C8");
+              _beforeSeqEl("E09976247ADD8C9027C311DF9A47C1D70A140F13");
             }
             pushFollow(FOLLOW_assignment_in_behavior_actions_assignment_manipulator2216);
             assignment(ret);
@@ -4590,14 +4590,14 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:614:4: DOT ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) EQUALS (temp= behavior_expressions_expression )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEEAD690E4F711DEBDEFC2E4C0A868C8");
+              _beforeSeqEl("E09976247AE2478027C311DFB16EC1D70A140F13");
             }
             match(input,DOT,FOLLOW_DOT_in_assignment2252); if (state.failed) return ;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEED4792E4F711DEBEABC2E4C0A868C8");
+              _beforeSeqEl("E09976247AE9737127C311DFB450C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:614:143: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt29=2;
@@ -4627,7 +4627,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:614:161: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEEAD695E4F711DEA2C4C2E4C0A868C8");
+                      _beforeSeqEl("E09976247AE2478527C311DF98AEC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:614:220: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:614:222: temp= firstLowercaseIdentifier
@@ -4666,7 +4666,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:615:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEED4790E4F711DE8DADC2E4C0A868C8");
+                      _beforeSeqEl("E09976247AE7298227C311DFB2FCC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:615:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:615:82: temp= firstUppercaseIdentifier
@@ -4702,14 +4702,14 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEED4793E4F711DEA8B6C2E4C0A868C8");
+              _beforeSeqEl("E09976247AE9737227C311DF8E6EC1D70A140F13");
             }
             match(input,EQUALS,FOLLOW_EQUALS_in_assignment2297); if (state.failed) return ;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEED4795E4F711DEBAF9C2E4C0A868C8");
+              _beforeSeqEl("E09976247AEBE47027C311DFC7A0C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:615:418: (temp= behavior_expressions_expression )?
             int alt30=2;
@@ -4784,7 +4784,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:628:4: (temp= behavior_expressions_expression ) SEMICOLON
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEF20281E4F711DEBCD6C2E4C0A868C8");
+              _beforeSeqEl("E09976247AF3106027C311DF86E3C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:628:63: (temp= behavior_expressions_expression )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:628:65: temp= behavior_expressions_expression
@@ -4805,7 +4805,7 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEF47380E4F711DEBFE2C2E4C0A868C8");
+              _beforeSeqEl("E09976247AF3106127C311DFBB4BC1D70A140F13");
             }
             match(input,SEMICOLON,FOLLOW_SEMICOLON_in_behavior_actions_expressionstatement2351); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -5547,9 +5547,8 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
 
         }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+        catch (Exception e) {
+            handleExceptionInTemplateRule(e, firstToken, ret);
         }
         finally {
         }
@@ -5580,7 +5579,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:678:6: (ret= expressions_priority_0 ( ( '*' )=> ( '*' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0 ) ) ) | ( '/' )=> ( '/' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0 ) ) ) | ( 'AND' )=> ( 'AND' ( (ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_0 ) ) ) )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:678:8: ret= expressions_priority_0 ( ( '*' )=> ( '*' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0 ) ) ) | ( '/' )=> ( '/' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0 ) ) ) | ( 'AND' )=> ( 'AND' ( (ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_0 ) ) ) )*
             {
-            pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12687);
+            pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12692);
             ret=expressions_priority_0();
 
             checkFollows();
@@ -5640,7 +5639,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,52,FOLLOW_52_in_expressions_priority_12696); if (state.failed) return ret2;
+            	    match(input,52,FOLLOW_52_in_expressions_priority_12701); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "*";
             	    }
@@ -5653,13 +5652,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:678:124: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:678:125: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12703);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12708);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12707);
+            	    pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12712);
             	    right=expressions_priority_0();
 
             	    checkFollows();
@@ -5697,7 +5696,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,53,FOLLOW_53_in_expressions_priority_12724); if (state.failed) return ret2;
+            	    match(input,53,FOLLOW_53_in_expressions_priority_12729); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "/";
             	    }
@@ -5710,13 +5709,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:681:92: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:681:93: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_0
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12731);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12736);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12735);
+            	    pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12740);
             	    right=expressions_priority_0();
 
             	    checkFollows();
@@ -5754,7 +5753,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,54,FOLLOW_54_in_expressions_priority_12752); if (state.failed) return ret2;
+            	    match(input,54,FOLLOW_54_in_expressions_priority_12757); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "AND";
             	    }
@@ -5767,13 +5766,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:684:100: (ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_0 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:684:101: ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_0
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_12759);
+            	    pushFollow(FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_12764);
             	    ret=behavior_expressions_binarybooleanoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12763);
+            	    pushFollow(FOLLOW_expressions_priority_0_in_expressions_priority_12768);
             	    right=expressions_priority_0();
 
             	    checkFollows();
@@ -5821,9 +5820,8 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
 
         }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+        catch (Exception e) {
+            handleExceptionInTemplateRule(e, firstToken, ret);
         }
         finally {
         }
@@ -5854,7 +5852,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:696:6: (ret= expressions_priority_1 ( ( 'OR' )=> ( 'OR' ( (ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_1 ) ) ) | ( '+' )=> ( '+' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1 ) ) ) | ( '-' )=> ( '-' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1 ) ) ) )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:696:8: ret= expressions_priority_1 ( ( 'OR' )=> ( 'OR' ( (ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_1 ) ) ) | ( '+' )=> ( '+' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1 ) ) ) | ( '-' )=> ( '-' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1 ) ) ) )*
             {
-            pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22805);
+            pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22815);
             ret=expressions_priority_1();
 
             checkFollows();
@@ -5914,7 +5912,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,55,FOLLOW_55_in_expressions_priority_22814); if (state.failed) return ret2;
+            	    match(input,55,FOLLOW_55_in_expressions_priority_22824); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "OR";
             	    }
@@ -5927,13 +5925,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:696:128: (ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_1 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:696:129: ret= behavior_expressions_binarybooleanoperator[opName, ret, firstToken] right= expressions_priority_1
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_22821);
+            	    pushFollow(FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_22831);
             	    ret=behavior_expressions_binarybooleanoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22825);
+            	    pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22835);
             	    right=expressions_priority_1();
 
             	    checkFollows();
@@ -5971,7 +5969,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,56,FOLLOW_56_in_expressions_priority_22842); if (state.failed) return ret2;
+            	    match(input,56,FOLLOW_56_in_expressions_priority_22852); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "+";
             	    }
@@ -5984,13 +5982,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:699:92: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:699:93: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22849);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22859);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22853);
+            	    pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22863);
             	    right=expressions_priority_1();
 
             	    checkFollows();
@@ -6028,7 +6026,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,50,FOLLOW_50_in_expressions_priority_22870); if (state.failed) return ret2;
+            	    match(input,50,FOLLOW_50_in_expressions_priority_22880); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "-";
             	    }
@@ -6041,13 +6039,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:702:92: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:702:93: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_1
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22877);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22887);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22881);
+            	    pushFollow(FOLLOW_expressions_priority_1_in_expressions_priority_22891);
             	    right=expressions_priority_1();
 
             	    checkFollows();
@@ -6095,9 +6093,8 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
 
         }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+        catch (Exception e) {
+            handleExceptionInTemplateRule(e, firstToken, ret);
         }
         finally {
         }
@@ -6128,7 +6125,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:714:6: (ret= expressions_priority_2 ( ( RANGLE )=> ( RANGLE ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( LANGLE )=> ( LANGLE ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( '>=' )=> ( '>=' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( '<=' )=> ( '<=' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( EQUALSEQUALS )=> ( EQUALSEQUALS ( (ret= behavior_expressions_equals[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( '!=' )=> ( '!=' ( (ret= behavior_expressions_unequals[opName, ret, firstToken] right= expressions_priority_2 ) ) ) )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:714:8: ret= expressions_priority_2 ( ( RANGLE )=> ( RANGLE ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( LANGLE )=> ( LANGLE ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( '>=' )=> ( '>=' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( '<=' )=> ( '<=' ( (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( EQUALSEQUALS )=> ( EQUALSEQUALS ( (ret= behavior_expressions_equals[opName, ret, firstToken] right= expressions_priority_2 ) ) ) | ( '!=' )=> ( '!=' ( (ret= behavior_expressions_unequals[opName, ret, firstToken] right= expressions_priority_2 ) ) ) )*
             {
-            pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_32923);
+            pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_32938);
             ret=expressions_priority_2();
 
             checkFollows();
@@ -6152,7 +6149,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,RANGLE,FOLLOW_RANGLE_in_expressions_priority_32932); if (state.failed) return ret2;
+            	    match(input,RANGLE,FOLLOW_RANGLE_in_expressions_priority_32947); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = ">";
             	    }
@@ -6165,13 +6162,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:714:131: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:714:132: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32940);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32955);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_32944);
+            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_32959);
             	    right=expressions_priority_2();
 
             	    checkFollows();
@@ -6209,7 +6206,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,LANGLE,FOLLOW_LANGLE_in_expressions_priority_32961); if (state.failed) return ret2;
+            	    match(input,LANGLE,FOLLOW_LANGLE_in_expressions_priority_32976); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "<";
             	    }
@@ -6222,13 +6219,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:717:99: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:717:100: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32969);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32984);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_32973);
+            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_32988);
             	    right=expressions_priority_2();
 
             	    checkFollows();
@@ -6266,7 +6263,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,57,FOLLOW_57_in_expressions_priority_32990); if (state.failed) return ret2;
+            	    match(input,57,FOLLOW_57_in_expressions_priority_33005); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = ">=";
             	    }
@@ -6279,13 +6276,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:720:96: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:720:97: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32997);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_33012);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33001);
+            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33016);
             	    right=expressions_priority_2();
 
             	    checkFollows();
@@ -6323,7 +6320,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,58,FOLLOW_58_in_expressions_priority_33018); if (state.failed) return ret2;
+            	    match(input,58,FOLLOW_58_in_expressions_priority_33033); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "<=";
             	    }
@@ -6336,13 +6333,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:723:96: (ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:723:97: ret= behavior_expressions_binarynumericoperator[opName, ret, firstToken] right= expressions_priority_2
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_33025);
+            	    pushFollow(FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_33040);
             	    ret=behavior_expressions_binarynumericoperator(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33029);
+            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33044);
             	    right=expressions_priority_2();
 
             	    checkFollows();
@@ -6380,7 +6377,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,EQUALSEQUALS,FOLLOW_EQUALSEQUALS_in_expressions_priority_33046); if (state.failed) return ret2;
+            	    match(input,EQUALSEQUALS,FOLLOW_EQUALSEQUALS_in_expressions_priority_33061); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "==";
             	    }
@@ -6393,13 +6390,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:726:113: (ret= behavior_expressions_equals[opName, ret, firstToken] right= expressions_priority_2 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:726:114: ret= behavior_expressions_equals[opName, ret, firstToken] right= expressions_priority_2
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_equals_in_expressions_priority_33054);
+            	    pushFollow(FOLLOW_behavior_expressions_equals_in_expressions_priority_33069);
             	    ret=behavior_expressions_equals(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33058);
+            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33073);
             	    right=expressions_priority_2();
 
             	    checkFollows();
@@ -6437,7 +6434,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,59,FOLLOW_59_in_expressions_priority_33075); if (state.failed) return ret2;
+            	    match(input,59,FOLLOW_59_in_expressions_priority_33090); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "!=";
             	    }
@@ -6450,13 +6447,13 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:729:96: (ret= behavior_expressions_unequals[opName, ret, firstToken] right= expressions_priority_2 )
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:729:97: ret= behavior_expressions_unequals[opName, ret, firstToken] right= expressions_priority_2
             	    {
-            	    pushFollow(FOLLOW_behavior_expressions_unequals_in_expressions_priority_33082);
+            	    pushFollow(FOLLOW_behavior_expressions_unequals_in_expressions_priority_33097);
             	    ret=behavior_expressions_unequals(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
             	    if (state.failed) return ret2;
-            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33086);
+            	    pushFollow(FOLLOW_expressions_priority_2_in_expressions_priority_33101);
             	    right=expressions_priority_2();
 
             	    checkFollows();
@@ -6504,9 +6501,8 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
 
         }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+        catch (Exception e) {
+            handleExceptionInTemplateRule(e, firstToken, ret);
         }
         finally {
         }
@@ -6528,7 +6524,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:740:3: (ret= expressions_priority_3 )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:741:3: ret= expressions_priority_3
             {
-            pushFollow(FOLLOW_expressions_priority_3_in_behavior_expressions_expression3119);
+            pushFollow(FOLLOW_expressions_priority_3_in_behavior_expressions_expression3139);
             ret=expressions_priority_3();
 
             checkFollows();
@@ -6568,7 +6564,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:750:4: ( ( 'AS' (temp= behavior_expressions_alias ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BEFDE967E4F711DEB1B6C2E4C0A868C8");
+              _beforeSeqEl("E09976247B01684227C311DFA5FCC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:750:64: ( ( 'AS' (temp= behavior_expressions_alias ) ) | )
             int alt39=2;
@@ -6598,19 +6594,19 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:750:82: 'AS' (temp= behavior_expressions_alias )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEFDE963E4F711DEAED7C2E4C0A868C8");
+                      _beforeSeqEl("E09976247AFEF74327C311DFB3E1C1D70A140F13");
                     }
-                    match(input,43,FOLLOW_43_in_alias3148); if (state.failed) return ;
+                    match(input,43,FOLLOW_43_in_alias3168); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BEFDE965E4F711DEAA43C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B01684027C311DF9188C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:750:220: (temp= behavior_expressions_alias )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:750:222: temp= behavior_expressions_alias
                     {
-                    pushFollow(FOLLOW_behavior_expressions_alias_in_alias3155);
+                    pushFollow(FOLLOW_behavior_expressions_alias_in_alias3175);
                     temp=behavior_expressions_alias();
 
                     checkFollows();
@@ -6696,7 +6692,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:764:4: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF005A68E4F711DE8DEBC2E4C0A868C8");
+              _beforeSeqEl("E09976247B08943327C311DF8B39C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:764:63: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) )
             int alt40=2;
@@ -6726,12 +6722,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:764:81: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF005A62E4F711DE9FD0C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B06233227C311DF9182C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:764:140: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:764:142: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias3210);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias3230);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -6765,12 +6761,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:765:21: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF005A66E4F711DE9D13C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B08943127C311DFB25EC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:765:80: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:765:82: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias3230);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias3250);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -6801,10 +6797,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF005A6BE4F711DEC1D4C2E4C0A868C8");
+              _beforeSeqEl("E09976247B0ADE2227C311DFBB4FC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:aliasFor.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:aliasFor.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -6855,19 +6851,19 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:779:4: 'all' (temp= firstUppercaseIdentifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF02A453E4F711DE9FC8C2E4C0A868C8");
+              _beforeSeqEl("E09976247B0FC02027C311DF91F9C1D70A140F13");
             }
-            match(input,60,FOLLOW_60_in_behavior_expressions_all3281); if (state.failed) return ret2;
+            match(input,60,FOLLOW_60_in_behavior_expressions_all3301); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF02A458E4F711DEBCB1C2E4C0A868C8");
+              _beforeSeqEl("E09976247B120A1027C311DFBDDEC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:779:143: (temp= firstUppercaseIdentifier )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:779:145: temp= firstUppercaseIdentifier
             {
-            pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_all3288);
+            pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_all3308);
             temp=firstUppercaseIdentifier();
 
             checkFollows();
@@ -6883,10 +6879,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF02A45BE4F711DE9CD6C2E4C0A868C8");
+              _beforeSeqEl("E09976247B147B1027C311DFBEF3C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.clazz", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.clazz", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -6934,9 +6930,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:793:4: alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF09D043E4F711DE9A7FC2E4C0A868C8");
+              _beforeSeqEl("E09976247B22D2F027C311DF9CE0C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_binarybooleanoperator3335);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_binarybooleanoperator3355);
             alias(ret);
 
             checkFollows();
@@ -6946,10 +6942,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF09D046E4F711DEB06FC2E4C0A868C8");
+              _beforeSeqEl("E09976247B22D2F327C311DFAF11C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7001,9 +6997,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:809:4: alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF10FC31E4F711DE9647C2E4C0A868C8");
+              _beforeSeqEl("E09976247B48F89127C311DFB9F2C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_not3372);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_not3392);
             alias(ret);
 
             checkFollows();
@@ -7013,10 +7009,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF10FC34E4F711DE8642C2E4C0A868C8");
+              _beforeSeqEl("E09976247B4B699227C311DFCE65C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7068,7 +7064,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:825:4: ( ( 'and' ) | ( 'or' ) | ( 'xor' ) ) LPAREN RPAREN alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF1A9930E4F711DEABBDC2E4C0A868C8");
+              _beforeSeqEl("E09976247B5C0B6227C311DF810AC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:825:63: ( ( 'and' ) | ( 'or' ) | ( 'xor' ) )
             int alt41=3;
@@ -7107,17 +7103,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:825:81: 'and'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF1A9921E4F711DEA012C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B52958127C311DFCE70C1D70A140F13");
                     }
-                    match(input,61,FOLLOW_61_in_behavior_expressions_booleanaggregate3414); if (state.failed) return ret2;
+                    match(input,61,FOLLOW_61_in_behavior_expressions_booleanaggregate3434); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF1A9924E4F711DEBCDEC2E4C0A868C8");
+                      _beforeSeqEl("E09976247B54DF7027C311DFC1ECC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "and");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "and");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -7141,17 +7137,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:826:21: 'or'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF1A9926E4F711DE8A27C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B54DF7227C311DFB18FC1D70A140F13");
                     }
-                    match(input,62,FOLLOW_62_in_behavior_expressions_booleanaggregate3430); if (state.failed) return ret2;
+                    match(input,62,FOLLOW_62_in_behavior_expressions_booleanaggregate3450); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF1A9929E4F711DEB025C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B57507027C311DF8733C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "or");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "or");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -7175,17 +7171,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:827:21: 'xor'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF1A992BE4F711DEB0CAC2E4C0A868C8");
+                      _beforeSeqEl("E09976247B59C17127C311DFC8A2C1D70A140F13");
                     }
-                    match(input,63,FOLLOW_63_in_behavior_expressions_booleanaggregate3446); if (state.failed) return ret2;
+                    match(input,63,FOLLOW_63_in_behavior_expressions_booleanaggregate3466); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF1A992EE4F711DE8863C2E4C0A868C8");
+                      _beforeSeqEl("E09976247B5C0B6027C311DF96F3C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "xor");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "xor");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -7206,23 +7202,23 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF1A9931E4F711DE8349C2E4C0A868C8");
+              _beforeSeqEl("E09976247B5E7C6027C311DFBA40C1D70A140F13");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_booleanaggregate3458); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_booleanaggregate3478); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF1A9932E4F711DE9A18C2E4C0A868C8");
+              _beforeSeqEl("E09976247B5E7C6127C311DFC817C1D70A140F13");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_booleanaggregate3463); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_booleanaggregate3483); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF1A9933E4F711DE9BA7C2E4C0A868C8");
+              _beforeSeqEl("E09976247B5E7C6227C311DFAAC7C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_booleanaggregate3467);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_booleanaggregate3487);
             alias(ret);
 
             checkFollows();
@@ -7232,10 +7228,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF1A9936E4F711DEA8FCC2E4C0A868C8");
+              _beforeSeqEl("E09976247B5E7C6527C311DF9CE3C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:operand.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:operand.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7287,9 +7283,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:843:4: alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF21C512E4F711DEBD31C2E4C0A868C8");
+              _beforeSeqEl("E09976247B68195227C311DF9E27C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_equals3504);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_equals3524);
             alias(ret);
 
             checkFollows();
@@ -7299,10 +7295,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF21C515E4F711DEAEDBC2E4C0A868C8");
+              _beforeSeqEl("E09976247B6A634027C311DFA9C7C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7354,9 +7350,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:859:4: alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF28C9F2E4F711DE8BD8C2E4C0A868C8");
+              _beforeSeqEl("E09976247B718F3127C311DFB1D5C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_unequals3541);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_unequals3561);
             alias(ret);
 
             checkFollows();
@@ -7366,10 +7362,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF28C9F5E4F711DE9020C2E4C0A868C8");
+              _beforeSeqEl("E09976247B718F3427C311DFBE95C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7421,9 +7417,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:875:4: alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF2FF5E3E4F711DE974CC2E4C0A868C8");
+              _beforeSeqEl("E09976247B7B2C2227C311DF8E9DC1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_binarynumericoperator3578);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_binarynumericoperator3598);
             alias(ret);
 
             checkFollows();
@@ -7433,10 +7429,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF2FF5E6E4F711DEBC60C2E4C0A868C8");
+              _beforeSeqEl("E09976247B7B2C2527C311DFA306C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:if self.operator = '+' or"+"		                         self.operator = '-' or"+"		                         self.operator = '*' or"+"		                         self.operator = '/' then"+"		                            self.numericPostType(self.operator, self.left.type, self.right.type)"+"		                      else"+"		                        structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')->asSequence()->first()"+"		                      endif", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:if self.operator = '+' or"+"		                         self.operator = '-' or"+"		                         self.operator = '*' or"+"		                         self.operator = '/' then"+"		                            self.numericPostType(self.operator, self.left.type, self.right.type)"+"		                      else"+"		                        structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')->asSequence()->first()"+"		                      endif", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7488,9 +7484,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:891:4: alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF34D7E2E4F711DEB0AAC2E4C0A868C8");
+              _beforeSeqEl("E09976247B87130027C311DF8544C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_unaryminus3615);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_unaryminus3635);
             alias(ret);
 
             checkFollows();
@@ -7500,10 +7496,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF34D7E5E4F711DE91A7C2E4C0A868C8");
+              _beforeSeqEl("E09976247B8BCDF027C311DF853AC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:operand.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:operand.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7555,39 +7551,39 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:907:4: 'count' LPAREN RPAREN alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF3992D1E4F711DEB065C2E4C0A868C8");
+              _beforeSeqEl("E09976247B92F9E127C311DF91ECC1D70A140F13");
             }
-            match(input,64,FOLLOW_64_in_behavior_expressions_count3652); if (state.failed) return ret2;
+            match(input,64,FOLLOW_64_in_behavior_expressions_count3672); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF3992D4E4F711DEA05FC2E4C0A868C8");
+              _beforeSeqEl("E09976247B956AE027C311DF9A36C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')", true);_exitInjectorAction();
             }
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF3992D5E4F711DE9009C2E4C0A868C8");
-            }
-            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_count3659); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF3992D6E4F711DE8162C2E4C0A868C8");
+              _beforeSeqEl("E09976247B956AE127C311DF8947C1D70A140F13");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_count3664); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_count3679); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF3992D7E4F711DEB308C2E4C0A868C8");
+              _beforeSeqEl("E09976247B956AE227C311DFC3D1C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_count3668);
+            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_count3684); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E09976247B956AE327C311DFAAE0C1D70A140F13");
+            }
+            pushFollow(FOLLOW_alias_in_behavior_expressions_count3688);
             alias(ret);
 
             checkFollows();
@@ -7643,39 +7639,39 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:923:4: 'single' LPAREN RPAREN alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF40BEC1E4F711DEB323C2E4C0A868C8");
+              _beforeSeqEl("E09976247B9C96D127C311DF8762C1D70A140F13");
             }
-            match(input,65,FOLLOW_65_in_behavior_expressions_single3702); if (state.failed) return ret2;
+            match(input,65,FOLLOW_65_in_behavior_expressions_single3722); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF40BEC4E4F711DEA1AAC2E4C0A868C8");
+              _beforeSeqEl("E09976247B9EE0C127C311DF9FB6C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.operand.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.operand.type", true);_exitInjectorAction();
             }
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF40BEC5E4F711DEC3D2C2E4C0A868C8");
-            }
-            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_single3709); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF40BEC6E4F711DEA9E3C2E4C0A868C8");
+              _beforeSeqEl("E09976247B9EE0C227C311DF9672C1D70A140F13");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_single3714); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_single3729); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF40BEC7E4F711DE90C5C2E4C0A868C8");
+              _beforeSeqEl("E09976247B9EE0C327C311DFCFBEC1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_single3718);
+            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_single3734); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E09976247B9EE0C427C311DFCA3AC1D70A140F13");
+            }
+            pushFollow(FOLLOW_alias_in_behavior_expressions_single3738);
             alias(ret);
 
             checkFollows();
@@ -7734,19 +7730,19 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:939:4: LPAREN (temp= structure_type_tuple ) RPAREN alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4579B1E4F711DEBD77C2E4C0A868C8");
+              _beforeSeqEl("E09976247BA87DB127C311DFC266C1D70A140F13");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_tuple3753); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_tuple3773); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4579B4E4F711DE9D51C2E4C0A868C8");
+              _beforeSeqEl("E09976247BAAEEB027C311DFC3E7C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:939:146: (temp= structure_type_tuple )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:939:148: temp= structure_type_tuple
             {
-            pushFollow(FOLLOW_structure_type_tuple_in_behavior_expressions_tuple3761);
+            pushFollow(FOLLOW_structure_type_tuple_in_behavior_expressions_tuple3781);
             temp=structure_type_tuple();
 
             checkFollows();
@@ -7762,16 +7758,16 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4579B5E4F711DEBAE5C2E4C0A868C8");
+              _beforeSeqEl("E09976247BAAEEB127C311DFB938C1D70A140F13");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_tuple3768); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_tuple3788); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4579B6E4F711DEA73EC2E4C0A868C8");
+              _beforeSeqEl("E09976247BAAEEB227C311DFAA69C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_tuple3772);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_tuple3792);
             alias(ret);
 
             checkFollows();
@@ -7824,7 +7820,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:951:3: (ret= structure_finexclass_tuple )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:951:4: ret= structure_finexclass_tuple
             {
-            pushFollow(FOLLOW_structure_finexclass_tuple_in_structure_type_tuple3802);
+            pushFollow(FOLLOW_structure_finexclass_tuple_in_structure_type_tuple3822);
             ret=structure_finexclass_tuple();
 
             checkFollows();
@@ -7875,12 +7871,12 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:964:4: (temp= structure_association_tuple ( ( ',' ) temp= structure_association_tuple )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4A34A3E4F711DECB7AC2E4C0A868C8");
+              _beforeSeqEl("E09976247BB4649227C311DFAA01C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:964:63: (temp= structure_association_tuple ( ( ',' ) temp= structure_association_tuple )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:964:65: temp= structure_association_tuple ( ( ',' ) temp= structure_association_tuple )*
             {
-            pushFollow(FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3836);
+            pushFollow(FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3856);
             temp=structure_association_tuple();
 
             checkFollows();
@@ -7911,9 +7907,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:964:159: ','
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BF47EAB4E4F711DECE12C2E4C0A868C8");
+            	      _beforeSeqEl("E09976247BB21AA227C311DFCDB4C1D70A140F13");
             	    }
-            	    match(input,48,FOLLOW_48_in_structure_finexclass_tuple3844); if (state.failed) return ret2;
+            	    match(input,48,FOLLOW_48_in_structure_finexclass_tuple3864); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -7923,7 +7919,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3851);
+            	    pushFollow(FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3871);
             	    temp=structure_association_tuple();
 
             	    checkFollows();
@@ -7948,10 +7944,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4A34AAE4F711DEA216C2E4C0A868C8");
+              _beforeSeqEl("E09976247BBB908127C311DFB5D4C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "name", null, null, "OCL:self.typedElement->select(te|te.oclIsKindOf(\"Tuple\")).oclAsType(\"Tuple\").operand.getAllVisibleAliases()->iterate("+"			 			a; acc='TupleType_for' | acc.concat('_').concat(a.name))", true);_exitInjectorAction();setProperty(ret, "valueType", true);_exitInjectorAction();setOclRef(ret, "owner", null, null, "OCL:self.typedElement->select(te | te.oclIsKindOf(Expression))."+"			                   oclAsType(Expression).getEnclosingType()", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:self.typedElement->select(te|te.oclIsKindOf(\"Tuple\")).oclAsType(\"Tuple\").operand.getAllVisibleAliases()->iterate("+"			 			a; acc='TupleType_for' | acc.concat('_').concat(a.name))", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "valueType", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "owner", null, null, "OCL:self.typedElement->select(te | te.oclIsKindOf(Expression))."+"			                   oclAsType(Expression).getEnclosingType()", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8002,12 +7998,12 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:978:4: (temp= structure_field_tuple ) (temp= structure_field_nondeclaredOpposite )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4CA5A4E4F711DEAA28C2E4C0A868C8");
+              _beforeSeqEl("E09976247BC2BC7327C311DFBFB6C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:978:63: (temp= structure_field_tuple )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:978:65: temp= structure_field_tuple
             {
-            pushFollow(FOLLOW_structure_field_tuple_in_structure_association_tuple3904);
+            pushFollow(FOLLOW_structure_field_tuple_in_structure_association_tuple3924);
             temp=structure_field_tuple();
 
             checkFollows();
@@ -8023,12 +8019,12 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4CA5A9E4F711DE82CAC2E4C0A868C8");
+              _beforeSeqEl("E09976247BC7776027C311DFCE5FC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:978:201: (temp= structure_field_nondeclaredOpposite )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:978:203: temp= structure_field_nondeclaredOpposite
             {
-            pushFollow(FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_tuple3914);
+            pushFollow(FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_tuple3934);
             temp=structure_field_nondeclaredOpposite();
 
             checkFollows();
@@ -8044,10 +8040,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF4CA5ACE4F711DEBB1DC2E4C0A868C8");
+              _beforeSeqEl("E09976247BC9E86027C311DFCCEDC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "name", null, null, "OCL:'Tuple_to_'.concat(self.ends->first().name)", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:'Tuple_to_'.concat(self.ends->first().name)", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8098,7 +8094,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:992:4: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) ) COLON (temp= behavior_expressions_expression )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF51609BE4F711DEBB2EC2E4C0A868C8");
+              _beforeSeqEl("E09976247BD5CF4227C311DFCF51C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:992:63: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) )
             int alt43=2;
@@ -8128,12 +8124,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:992:81: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF4EEF94E4F711DEAD22C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BCEA35227C311DF86C8C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:992:140: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:992:142: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_structure_field_tuple3969);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_structure_field_tuple3989);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -8149,10 +8145,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF516092E4F711DEC474C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BD1145027C311DFC46AC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "mandatory", true);_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "mandatory", true);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -8176,12 +8172,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:21: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF516096E4F711DEB106C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BD3855127C311DF894DC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:80: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:82: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_structure_field_tuple3992);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_structure_field_tuple4012);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -8197,10 +8193,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF516099E4F711DEB5C9C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BD5CF4027C311DF968EC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "mandatory", false);_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -8221,19 +8217,19 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF51609CE4F711DEBB16C2E4C0A868C8");
+              _beforeSeqEl("E09976247BD8404027C311DFAD84C1D70A140F13");
             }
-            match(input,COLON,FOLLOW_COLON_in_structure_field_tuple4007); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_structure_field_tuple4027); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF51609FE4F711DE9697C2E4C0A868C8");
+              _beforeSeqEl("E09976247BD8404327C311DFA776C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:471: (temp= behavior_expressions_expression )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:473: temp= behavior_expressions_expression
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:494: (temp= behavior_expressions_expression )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:993:496: temp= behavior_expressions_expression
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_in_structure_field_tuple4015);
+            pushFollow(FOLLOW_behavior_expressions_expression_in_structure_field_tuple4035);
             temp=behavior_expressions_expression();
 
             checkFollows();
@@ -8249,10 +8245,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF5160A6E4F711DE93C6C2E4C0A868C8");
+              _beforeSeqEl("E09976247BDCFB3027C311DFABBCC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.defaultValue.type", true);_exitInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.defaultValue.type", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8300,7 +8296,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1007:4: ( ( 'sum' ) | ( 'avg' ) | ( 'min' ) | ( 'max' ) ) LPAREN RPAREN alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF5AFD87E4F711DEB21FC2E4C0A868C8");
+              _beforeSeqEl("E09976247BF00E0127C311DF8A98C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1007:63: ( ( 'sum' ) | ( 'avg' ) | ( 'min' ) | ( 'max' ) )
             int alt44=4;
@@ -8344,17 +8340,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1007:81: 'sum'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF588C81E4F711DEC2B2C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BE4272127C311DFCD03C1D70A140F13");
                     }
-                    match(input,66,FOLLOW_66_in_behavior_expressions_numericaggregate4067); if (state.failed) return ret2;
+                    match(input,66,FOLLOW_66_in_behavior_expressions_numericaggregate4087); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF588C84E4F711DE89B1C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BE4272427C311DFB80DC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "sum");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "sum");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -8378,17 +8374,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1008:21: 'avg'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF588C86E4F711DEAFB2C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BE6982127C311DFB974C1D70A140F13");
                     }
-                    match(input,67,FOLLOW_67_in_behavior_expressions_numericaggregate4083); if (state.failed) return ret2;
+                    match(input,67,FOLLOW_67_in_behavior_expressions_numericaggregate4103); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF588C89E4F711DEC3B0C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BE8E21027C311DFAA68C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "avg");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "avg");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -8412,17 +8408,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1009:21: 'min'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF588C8BE4F711DE86FEC2E4C0A868C8");
+                      _beforeSeqEl("E09976247BE8E21227C311DFA47AC1D70A140F13");
                     }
-                    match(input,68,FOLLOW_68_in_behavior_expressions_numericaggregate4099); if (state.failed) return ret2;
+                    match(input,68,FOLLOW_68_in_behavior_expressions_numericaggregate4119); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF5AFD80E4F711DEA443C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BEB531127C311DFAA6AC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "min");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "min");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -8446,17 +8442,17 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1010:21: 'max'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF5AFD82E4F711DECDFFC2E4C0A868C8");
+                      _beforeSeqEl("E09976247BEDC41027C311DF87F2C1D70A140F13");
                     }
-                    match(input,69,FOLLOW_69_in_behavior_expressions_numericaggregate4115); if (state.failed) return ret2;
+                    match(input,69,FOLLOW_69_in_behavior_expressions_numericaggregate4135); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF5AFD85E4F711DE83C5C2E4C0A868C8");
+                      _beforeSeqEl("E09976247BEDC41327C311DFABBEC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "operator", "max");_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "operator", "max");_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -8477,23 +8473,23 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF5AFD88E4F711DEB978C2E4C0A868C8");
+              _beforeSeqEl("E09976247BF27F0027C311DFA457C1D70A140F13");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_numericaggregate4127); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_numericaggregate4147); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF5AFD89E4F711DEB827C2E4C0A868C8");
+              _beforeSeqEl("E09976247BF27F0127C311DFC0B9C1D70A140F13");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_numericaggregate4132); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_numericaggregate4152); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF5AFD8AE4F711DEB24DC2E4C0A868C8");
+              _beforeSeqEl("E09976247BF27F0227C311DF9BE5C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_numericaggregate4136);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_numericaggregate4156);
             alias(ret);
 
             checkFollows();
@@ -8503,10 +8499,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF5AFD8DE4F711DE8421C2E4C0A868C8");
+              _beforeSeqEl("E09976247BF27F0527C311DF937FC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:operand.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:operand.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8561,19 +8557,19 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:4: 'create' (temp= firstUppercaseIdentifier ) LPAREN (temp= behavior_expressions_fieldinitializer ( ( ',' ) temp= behavior_expressions_fieldinitializer )* )? RPAREN alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF620260E4F711DEA13AC2E4C0A868C8");
+              _beforeSeqEl("E09976247BF9AAF027C311DFC1DDC1D70A140F13");
             }
-            match(input,70,FOLLOW_70_in_behavior_expressions_objectcreationexpression4172); if (state.failed) return ret2;
+            match(input,70,FOLLOW_70_in_behavior_expressions_objectcreationexpression4192); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF620265E4F711DEA48CC2E4C0A868C8");
+              _beforeSeqEl("E09976247BFC1BF427C311DFB241C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:146: (temp= firstUppercaseIdentifier )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:148: temp= firstUppercaseIdentifier
             {
-            pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_objectcreationexpression4179);
+            pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_objectcreationexpression4199);
             temp=firstUppercaseIdentifier();
 
             checkFollows();
@@ -8589,25 +8585,25 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF620268E4F711DE8344C2E4C0A868C8");
+              _beforeSeqEl("E09976247BFE65E227C311DF8C35C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:classToInstantiate", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:classToInstantiate", true);_exitInjectorAction();
             }
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF620269E4F711DEAC03C2E4C0A868C8");
-            }
-            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_objectcreationexpression4189); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF62026EE4F711DEA1CDC2E4C0A868C8");
+              _beforeSeqEl("E09976247C00D6E027C311DFC76BC1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:622: (temp= behavior_expressions_fieldinitializer ( ( ',' ) temp= behavior_expressions_fieldinitializer )* )?
+            match(input,LPAREN,FOLLOW_LPAREN_in_behavior_expressions_objectcreationexpression4209); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E09976247C00D6E527C311DF9975C1D70A140F13");
+            }
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:645: (temp= behavior_expressions_fieldinitializer ( ( ',' ) temp= behavior_expressions_fieldinitializer )* )?
             int alt46=2;
             int LA46_0 = input.LA(1);
 
@@ -8616,9 +8612,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
             switch (alt46) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:624: temp= behavior_expressions_fieldinitializer ( ( ',' ) temp= behavior_expressions_fieldinitializer )*
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:647: temp= behavior_expressions_fieldinitializer ( ( ',' ) temp= behavior_expressions_fieldinitializer )*
                     {
-                    pushFollow(FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4197);
+                    pushFollow(FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4217);
                     temp=behavior_expressions_fieldinitializer();
 
                     checkFollows();
@@ -8627,7 +8623,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "fieldInitializers", temp);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:714: ( ( ',' ) temp= behavior_expressions_fieldinitializer )*
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:737: ( ( ',' ) temp= behavior_expressions_fieldinitializer )*
                     loop45:
                     do {
                         int alt45=2;
@@ -8640,18 +8636,18 @@ public class FinexClassParser extends ObservableInjectingParser {
 
                         switch (alt45) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:715: ( ',' ) temp= behavior_expressions_fieldinitializer
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:738: ( ',' ) temp= behavior_expressions_fieldinitializer
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	      _enterSepSeq();
                     	    }
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:732: ( ',' )
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:733: ','
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:755: ( ',' )
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1026:756: ','
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0E14F86BF62026BE4F711DEB5C0C2E4C0A868C8");
+                    	      _beforeSeqEl("E09976247C00D6E227C311DFA3E2C1D70A140F13");
                     	    }
-                    	    match(input,48,FOLLOW_48_in_behavior_expressions_objectcreationexpression4205); if (state.failed) return ret2;
+                    	    match(input,48,FOLLOW_48_in_behavior_expressions_objectcreationexpression4225); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -8661,7 +8657,7 @@ public class FinexClassParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4212);
+                    	    pushFollow(FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4232);
                     	    temp=behavior_expressions_fieldinitializer();
 
                     	    checkFollows();
@@ -8689,16 +8685,16 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF62026FE4F711DEA75DC2E4C0A868C8");
+              _beforeSeqEl("E09976247C0347E027C311DF9841C1D70A140F13");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_objectcreationexpression4224); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_behavior_expressions_objectcreationexpression4244); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF620270E4F711DE8B2CC2E4C0A868C8");
+              _beforeSeqEl("E09976247C0347E127C311DFB8C8C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_objectcreationexpression4228);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_objectcreationexpression4248);
             alias(ret);
 
             checkFollows();
@@ -8753,14 +8749,14 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1040:4: DOT ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) COLON (temp= behavior_expressions_expression )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF66E460E4F711DE8712C2E4C0A868C8");
+              _beforeSeqEl("E09976247C0F2EC027C311DF896FC1D70A140F13");
             }
-            match(input,DOT,FOLLOW_DOT_in_behavior_expressions_fieldinitializer4270); if (state.failed) return ret2;
+            match(input,DOT,FOLLOW_DOT_in_behavior_expressions_fieldinitializer4290); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF692E57E4F711DE9365C2E4C0A868C8");
+              _beforeSeqEl("E09976247C165AB127C311DFB0EAC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1040:143: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt47=2;
@@ -8790,12 +8786,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1040:161: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF66E465E4F711DEBB5FC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C1178B027C311DF8C28C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1040:220: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1040:222: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_fieldinitializer4283);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_fieldinitializer4303);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -8829,12 +8825,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1041:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF692E55E4F711DE842AC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C13E9B427C311DFA772C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1041:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1041:82: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_fieldinitializer4303);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_fieldinitializer4323);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -8865,19 +8861,19 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF692E58E4F711DE8692C2E4C0A868C8");
+              _beforeSeqEl("E09976247C18A4A027C311DF8EA4C1D70A140F13");
             }
-            match(input,COLON,FOLLOW_COLON_in_behavior_expressions_fieldinitializer4315); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_behavior_expressions_fieldinitializer4335); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF692E5AE4F711DEA573C2E4C0A868C8");
+              _beforeSeqEl("E09976247C18A4A227C311DFCB8FC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1041:447: (temp= behavior_expressions_expression )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1041:449: temp= behavior_expressions_expression
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_fieldinitializer4323);
+            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_fieldinitializer4343);
             temp=behavior_expressions_expression();
 
             checkFollows();
@@ -8935,16 +8931,16 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1055:4: 'this' alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF6B9F50E4F711DE8A1BC2E4C0A868C8");
+              _beforeSeqEl("E09976247C1D86A027C311DF92DAC1D70A140F13");
             }
-            match(input,71,FOLLOW_71_in_behavior_expressions_this4366); if (state.failed) return ret2;
+            match(input,71,FOLLOW_71_in_behavior_expressions_this4386); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF6B9F51E4F711DEC203C2E4C0A868C8");
+              _beforeSeqEl("E09976247C1D86A127C311DFB9D5C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_this4369);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_this4389);
             alias(ret);
 
             checkFollows();
@@ -8954,10 +8950,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF6B9F54E4F711DECC75C2E4C0A868C8");
+              _beforeSeqEl("E09976247C1D86A427C311DF9997C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.getEnclosingType()", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.getEnclosingType()", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9008,7 +9004,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1069:4: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF6E1057E4F711DECB17C2E4C0A868C8");
+              _beforeSeqEl("E09976247C2BDE8027C311DF859AC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1069:63: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt48=2;
@@ -9038,12 +9034,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1069:81: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF6B9F5CE4F711DEA8ADC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C24B29027C311DF8267C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1069:140: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1069:142: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_namedvalueexpression4422);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_namedvalueexpression4442);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -9077,12 +9073,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1070:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF6E1055E4F711DE9268C2E4C0A868C8");
+                      _beforeSeqEl("E09976247C296D8027C311DFCB69C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1070:80: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1070:82: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_namedvalueexpression4442);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_namedvalueexpression4462);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -9113,10 +9109,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF6E105AE4F711DEA11FC2E4C0A868C8");
+              _beforeSeqEl("E09976247C2BDE8327C311DF820BC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:namedValue.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:namedValue.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9161,7 +9157,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1080:3: (ret= behavior_expressions_implicitcontext_pathExpression )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1080:4: ret= behavior_expressions_implicitcontext_pathExpression
             {
-            pushFollow(FOLLOW_behavior_expressions_implicitcontext_pathExpression_in_behavior_expressions_expression_pathExpression4490);
+            pushFollow(FOLLOW_behavior_expressions_implicitcontext_pathExpression_in_behavior_expressions_expression_pathExpression4510);
             ret=behavior_expressions_implicitcontext_pathExpression();
 
             checkFollows();
@@ -9209,10 +9205,10 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1093:4: 
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF79F732E4F711DEC78BC2E4C0A868C8");
+              _beforeSeqEl("E09976247C37C56227C311DF9411C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.getImplicitContextType()", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.getImplicitContextType()", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9263,7 +9259,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1107:4: ( ( 'select' (temp= structure_type_oqlQuery ) ) | ( (temp= structure_type_oqlQueryWithImplicitSelect ) ) ) 'from' (temp= behavior_expressions_oql_fromclause ( ( ',' ) temp= behavior_expressions_oql_fromclause )* ) 'where' (temp= behavior_expressions_expression )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7C4129E4F711DE9D8FC2E4C0A868C8");
+              _beforeSeqEl("E09976247C413B4127C311DFCB20C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1107:63: ( ( 'select' (temp= structure_type_oqlQuery ) ) | ( (temp= structure_type_oqlQueryWithImplicitSelect ) ) )
             int alt49=2;
@@ -9293,19 +9289,19 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1107:81: 'select' (temp= structure_type_oqlQuery )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF7C4120E4F711DEB74EC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C3C805027C311DF80B2C1D70A140F13");
                     }
-                    match(input,72,FOLLOW_72_in_behavior_expressions_oql_oqlquery4565); if (state.failed) return ret2;
+                    match(input,72,FOLLOW_72_in_behavior_expressions_oql_oqlquery4585); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF7C4123E4F711DEB928C2E4C0A868C8");
+                      _beforeSeqEl("E09976247C3C805327C311DFA454C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1107:223: (temp= structure_type_oqlQuery )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1107:225: temp= structure_type_oqlQuery
                     {
-                    pushFollow(FOLLOW_structure_type_oqlQuery_in_behavior_expressions_oql_oqlquery4572);
+                    pushFollow(FOLLOW_structure_type_oqlQuery_in_behavior_expressions_oql_oqlquery4592);
                     temp=structure_type_oqlQuery();
 
                     checkFollows();
@@ -9339,12 +9335,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:21: (temp= structure_type_oqlQueryWithImplicitSelect )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF7C4127E4F711DECD5FC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C3EF15227C311DF9331C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:80: (temp= structure_type_oqlQueryWithImplicitSelect )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:82: temp= structure_type_oqlQueryWithImplicitSelect
                     {
-                    pushFollow(FOLLOW_structure_type_oqlQueryWithImplicitSelect_in_behavior_expressions_oql_oqlquery4592);
+                    pushFollow(FOLLOW_structure_type_oqlQueryWithImplicitSelect_in_behavior_expressions_oql_oqlquery4612);
                     temp=structure_type_oqlQueryWithImplicitSelect();
 
                     checkFollows();
@@ -9375,19 +9371,19 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7C412AE4F711DEB421C2E4C0A868C8");
+              _beforeSeqEl("E09976247C413B4227C311DFB51CC1D70A140F13");
             }
-            match(input,73,FOLLOW_73_in_behavior_expressions_oql_oqlquery4603); if (state.failed) return ret2;
+            match(input,73,FOLLOW_73_in_behavior_expressions_oql_oqlquery4623); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7EB221E4F711DEC78DC2E4C0A868C8");
+              _beforeSeqEl("E09976247C43AC4227C311DFAD5EC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:351: (temp= behavior_expressions_oql_fromclause ( ( ',' ) temp= behavior_expressions_oql_fromclause )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:353: temp= behavior_expressions_oql_fromclause ( ( ',' ) temp= behavior_expressions_oql_fromclause )*
             {
-            pushFollow(FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4610);
+            pushFollow(FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4630);
             temp=behavior_expressions_oql_fromclause();
 
             checkFollows();
@@ -9418,9 +9414,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:454: ','
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BF7C412CE4F711DEAE66C2E4C0A868C8");
+            	      _beforeSeqEl("E09976247C413B4427C311DFBD34C1D70A140F13");
             	    }
-            	    match(input,48,FOLLOW_48_in_behavior_expressions_oql_oqlquery4618); if (state.failed) return ret2;
+            	    match(input,48,FOLLOW_48_in_behavior_expressions_oql_oqlquery4638); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -9430,7 +9426,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4625);
+            	    pushFollow(FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4645);
             	    temp=behavior_expressions_oql_fromclause();
 
             	    checkFollows();
@@ -9455,19 +9451,19 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7EB222E4F711DE98F0C2E4C0A868C8");
+              _beforeSeqEl("E09976247C43AC4327C311DFB337C1D70A140F13");
             }
-            match(input,74,FOLLOW_74_in_behavior_expressions_oql_oqlquery4634); if (state.failed) return ret2;
+            match(input,74,FOLLOW_74_in_behavior_expressions_oql_oqlquery4654); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7EB225E4F711DE80E7C2E4C0A868C8");
+              _beforeSeqEl("E09976247C461D4227C311DFA9EDC1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:792: (temp= behavior_expressions_expression )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1108:794: temp= behavior_expressions_expression
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_oqlquery4641);
+            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_oqlquery4661);
             temp=behavior_expressions_expression();
 
             checkFollows();
@@ -9528,12 +9524,12 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1122:4: (temp= behavior_expressions_expression ) 'as' (temp= behavior_expressions_alias_fromClause )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7EB22AE4F711DE9604C2E4C0A868C8");
+              _beforeSeqEl("E09976247C4AD83127C311DFA665C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1122:63: (temp= behavior_expressions_expression )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1122:65: temp= behavior_expressions_expression
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_fromclause4688);
+            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_fromclause4708);
             temp=behavior_expressions_expression();
 
             checkFollows();
@@ -9549,19 +9545,19 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF7EB22BE4F711DEBD56C2E4C0A868C8");
+              _beforeSeqEl("E09976247C4D493027C311DFC9FFC1D70A140F13");
             }
-            match(input,75,FOLLOW_75_in_behavior_expressions_oql_fromclause4694); if (state.failed) return ret2;
+            match(input,75,FOLLOW_75_in_behavior_expressions_oql_fromclause4714); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF812322E4F711DEB104C2E4C0A868C8");
+              _beforeSeqEl("E09976247C4D493327C311DFAF08C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1122:300: (temp= behavior_expressions_alias_fromClause )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1122:302: temp= behavior_expressions_alias_fromClause
             {
-            pushFollow(FOLLOW_behavior_expressions_alias_fromClause_in_behavior_expressions_oql_fromclause4701);
+            pushFollow(FOLLOW_behavior_expressions_alias_fromClause_in_behavior_expressions_oql_fromclause4721);
             temp=behavior_expressions_alias_fromClause();
 
             checkFollows();
@@ -9622,7 +9618,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1136:4: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF836D10E4F711DEC3C2C2E4C0A868C8");
+              _beforeSeqEl("E09976247C56BF1127C311DF9091C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1136:63: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) )
             int alt51=2;
@@ -9652,12 +9648,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1136:81: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF812328E4F711DE9CA2C2E4C0A868C8");
+                      _beforeSeqEl("E09976247C52042227C311DF9EBCC1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1136:140: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1136:142: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias_fromClause4753);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias_fromClause4773);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -9691,12 +9687,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1137:21: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF81232CE4F711DECD70C2E4C0A868C8");
+                      _beforeSeqEl("E09976247C54752327C311DF97F7C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1137:80: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1137:82: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias_fromClause4773);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias_fromClause4793);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -9727,10 +9723,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF836D13E4F711DEB566C2E4C0A868C8");
+              _beforeSeqEl("E09976247C59301027C311DF9698C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.fromClause.fromExpression.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.fromClause.fromExpression.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9775,7 +9771,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1147:3: (ret= structure_finexclass_oqlQuery )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1147:4: ret= structure_finexclass_oqlQuery
             {
-            pushFollow(FOLLOW_structure_finexclass_oqlQuery_in_structure_type_oqlQuery4821);
+            pushFollow(FOLLOW_structure_finexclass_oqlQuery_in_structure_type_oqlQuery4841);
             ret=structure_finexclass_oqlQuery();
 
             checkFollows();
@@ -9826,12 +9822,12 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1160:4: (temp= structure_association_oqlQuery ( ( ',' ) temp= structure_association_oqlQuery )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF85DE16E4F711DEB4AEC2E4C0A868C8");
+              _beforeSeqEl("E09976247C62A5F027C311DF98E0C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1160:63: (temp= structure_association_oqlQuery ( ( ',' ) temp= structure_association_oqlQuery )* )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1160:65: temp= structure_association_oqlQuery ( ( ',' ) temp= structure_association_oqlQuery )*
             {
-            pushFollow(FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4855);
+            pushFollow(FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4875);
             temp=structure_association_oqlQuery();
 
             checkFollows();
@@ -9862,9 +9858,9 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1160:162: ','
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86BF85DE12E4F711DE8010C2E4C0A868C8");
+            	      _beforeSeqEl("E09976247C605C0127C311DFB006C1D70A140F13");
             	    }
-            	    match(input,48,FOLLOW_48_in_structure_finexclass_oqlQuery4863); if (state.failed) return ret2;
+            	    match(input,48,FOLLOW_48_in_structure_finexclass_oqlQuery4883); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -9874,7 +9870,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4870);
+            	    pushFollow(FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4890);
             	    temp=structure_association_oqlQuery();
 
             	    checkFollows();
@@ -9899,10 +9895,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF85DE1DE4F711DEBDA3C2E4C0A868C8");
+              _beforeSeqEl("E09976247C6787F027C311DF9294C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "name", null, null, "OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses.alias->iterate("+"			 			a; acc='QueryType_for' | acc.concat('_').concat(a.name))", true);_exitInjectorAction();setProperty(ret, "valueType", true);_exitInjectorAction();setOclRef(ret, "owner", null, null, "OCL:self.typedElement->select(te | te.oclIsKindOf(Expression))."+"			                   oclAsType(Expression).getEnclosingType()", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses.alias->iterate("+"			 			a; acc='QueryType_for' | acc.concat('_').concat(a.name))", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "valueType", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "owner", null, null, "OCL:self.typedElement->select(te | te.oclIsKindOf(Expression))."+"			                   oclAsType(Expression).getEnclosingType()", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9953,12 +9949,12 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1174:4: (temp= structure_field_oqlQuery ) (temp= structure_field_nondeclaredOpposite )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF882804E4F711DE8974C2E4C0A868C8");
+              _beforeSeqEl("E09976247C6EB3E027C311DF82A2C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1174:63: (temp= structure_field_oqlQuery )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1174:65: temp= structure_field_oqlQuery
             {
-            pushFollow(FOLLOW_structure_field_oqlQuery_in_structure_association_oqlQuery4923);
+            pushFollow(FOLLOW_structure_field_oqlQuery_in_structure_association_oqlQuery4943);
             temp=structure_field_oqlQuery();
 
             checkFollows();
@@ -9974,12 +9970,12 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF8A9901E4F711DEBCB8C2E4C0A868C8");
+              _beforeSeqEl("E09976247C70FDD227C311DF9BE6C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1174:204: (temp= structure_field_nondeclaredOpposite )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1174:206: temp= structure_field_nondeclaredOpposite
             {
-            pushFollow(FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQuery4933);
+            pushFollow(FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQuery4953);
             temp=structure_field_nondeclaredOpposite();
 
             checkFollows();
@@ -9995,10 +9991,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF8A9904E4F711DE9B89C2E4C0A868C8");
+              _beforeSeqEl("E09976247C736ED227C311DFB75FC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "name", null, null, "OCL:'Query_to_'.concat(self.ends->first().name)", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:'Query_to_'.concat(self.ends->first().name)", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10049,7 +10045,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1188:4: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) ) (temp= behavior_expressions_expression_oqlQuery )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF8D0A0EE4F711DE92B7C2E4C0A868C8");
+              _beforeSeqEl("E09976247C8437B027C311DFBCD1C1D70A140F13");
             }
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1188:63: ( ( (temp= firstUppercaseIdentifier ) ) | ( (temp= firstLowercaseIdentifier ) ) )
             int alt53=2;
@@ -10079,12 +10075,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1188:81: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF8D0A02E4F711DEC4F2C2E4C0A868C8");
+                      _beforeSeqEl("E09976247C7A9AC227C311DFB466C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1188:140: (temp= firstUppercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1188:142: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_structure_field_oqlQuery4988);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_structure_field_oqlQuery5008);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -10100,10 +10096,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF8D0A05E4F711DEBFDCC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C7D0BC227C311DFBC9EC1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "mandatory", true);_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "mandatory", true);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -10127,12 +10123,12 @@ public class FinexClassParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:21: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF8D0A09E4F711DE91C4C2E4C0A868C8");
+                      _beforeSeqEl("E09976247C7F55B327C311DFC3E9C1D70A140F13");
                     }
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:80: (temp= firstLowercaseIdentifier )
                     // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:82: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_structure_field_oqlQuery5011);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_structure_field_oqlQuery5031);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -10148,10 +10144,10 @@ public class FinexClassParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BF8D0A0CE4F711DE8D8AC2E4C0A868C8");
+                      _beforeSeqEl("E09976247C81C6B227C311DFB283C1D70A140F13");
                     }
                     if ( state.backtracking==0 ) {
-                      setProperty(ret, "mandatory", false);_exitInjectorAction();
+                      _enterInjectorAction();setProperty(ret, "mandatory", false);_exitInjectorAction();
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -10172,12 +10168,12 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF8D0A12E4F711DEA515C2E4C0A868C8");
+              _beforeSeqEl("E09976247C8681A127C311DFA214C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:389: (temp= behavior_expressions_expression_oqlQuery )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:391: temp= behavior_expressions_expression_oqlQuery
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:412: (temp= behavior_expressions_expression_oqlQuery )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1189:414: temp= behavior_expressions_expression_oqlQuery
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_oqlQuery_in_structure_field_oqlQuery5029);
+            pushFollow(FOLLOW_behavior_expressions_expression_oqlQuery_in_structure_field_oqlQuery5049);
             temp=behavior_expressions_expression_oqlQuery();
 
             checkFollows();
@@ -10193,10 +10189,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF8F53F6E4F711DE8923C2E4C0A868C8");
+              _beforeSeqEl("E09976247C8B3C9027C311DFB138C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.defaultValue.type", true);_exitInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.defaultValue.type", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10241,7 +10237,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1199:3: (ret= behavior_expressions_namedvalueexpression_oqlQuery )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1199:4: ret= behavior_expressions_namedvalueexpression_oqlQuery
             {
-            pushFollow(FOLLOW_behavior_expressions_namedvalueexpression_oqlQuery_in_behavior_expressions_expression_oqlQuery5072);
+            pushFollow(FOLLOW_behavior_expressions_namedvalueexpression_oqlQuery_in_behavior_expressions_expression_oqlQuery5092);
             ret=behavior_expressions_namedvalueexpression_oqlQuery();
 
             checkFollows();
@@ -10289,10 +10285,10 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1212:4: 
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF967FE0E4F711DE946BC2E4C0A868C8");
+              _beforeSeqEl("E09976247C974A8027C311DF9926C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "namedValue", null, null, "OCL:self.defaultOf.oclAsType(Field).association.clazz.typedElement."+"						          oclAsType(OqlQuery).fromClauses.alias->select(a|"+"								                                a.name=self.defaultOf.oclAsType(Field).name)", true);_exitInjectorAction();setOclRef(ret, "type", null, null, "OCL:namedValue.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "namedValue", null, null, "OCL:self.defaultOf.oclAsType(Field).association.clazz.typedElement."+"						          oclAsType(OqlQuery).fromClauses.alias->select(a|"+"								                                a.name=self.defaultOf.oclAsType(Field).name)", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:namedValue.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10337,7 +10333,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1222:3: (ret= structure_finexclass_oqlQueryWithImplicitSelect )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1222:4: ret= structure_finexclass_oqlQueryWithImplicitSelect
             {
-            pushFollow(FOLLOW_structure_finexclass_oqlQueryWithImplicitSelect_in_structure_type_oqlQueryWithImplicitSelect5139);
+            pushFollow(FOLLOW_structure_finexclass_oqlQueryWithImplicitSelect_in_structure_type_oqlQueryWithImplicitSelect5159);
             ret=structure_finexclass_oqlQueryWithImplicitSelect();
 
             checkFollows();
@@ -10385,13 +10381,17 @@ public class FinexClassParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1235:4: 
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF98F0E9E4F711DEC837C2E4C0A868C8");
+              _beforeSeqEl("E09976247CA0C06227C311DF9C6FC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
+              _enterInjectorAction();
+              {
               List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();
               RuleNameFinder finder = new RuleNameFinder();
               list.add(new PredicateSemantic(null, "structure_association_oqlQueryWithImplicitSelect"));
-              setPredicateRef(ret,"associations","oqlQueryWithImplicitSelect","OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses",list,finder,true);_exitInjectorAction();setOclRef(ret, "name", null, null, "OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses.alias->iterate("+"			 			a; acc='QueryType_for' | acc.concat('_').concat(a.name))", true);_exitInjectorAction();setProperty(ret, "valueType", true);_exitInjectorAction();setOclRef(ret, "owner", null, null, "OCL:self.typedElement->select(te | te.oclIsKindOf(Expression))."+"			                   oclAsType(Expression).getEnclosingType()", true);_exitInjectorAction();
+              setPredicateRef(ret,"associations","oqlQueryWithImplicitSelect","OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses",list,finder,true);
+              }
+              _exitInjectorAction();_enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses.alias->iterate("+"			 			a; acc='QueryType_for' | acc.concat('_').concat(a.name))", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "valueType", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "owner", null, null, "OCL:self.typedElement->select(te | te.oclIsKindOf(Expression))."+"			                   oclAsType(Expression).getEnclosingType()", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10421,7 +10421,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "structure_association_oqlQueryWithImplicitSelect"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1246:1: structure_association_oqlQueryWithImplicitSelect returns [Object ret2] : ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1250:1: structure_association_oqlQueryWithImplicitSelect returns [Object ret2] : ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) ) ;
     public final Object structure_association_oqlQueryWithImplicitSelect() throws RecognitionException {
 
         Object ret2 = null;
@@ -10435,19 +10435,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1251:3: ( ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:3: ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1255:3: ( ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:3: ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:3: ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:4: (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:3: ( (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:4: (temp= structure_field_oqlQueryWithImplicitSelect ) (temp= structure_field_nondeclaredOpposite )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF9B3AD4E4F711DE80E3C2E4C0A868C8");
+              _beforeSeqEl("E09976247CA7EC5327C311DF8E47C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:63: (temp= structure_field_oqlQueryWithImplicitSelect )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:65: temp= structure_field_oqlQueryWithImplicitSelect
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:63: (temp= structure_field_oqlQueryWithImplicitSelect )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:65: temp= structure_field_oqlQueryWithImplicitSelect
             {
-            pushFollow(FOLLOW_structure_field_oqlQueryWithImplicitSelect_in_structure_association_oqlQueryWithImplicitSelect5213);
+            pushFollow(FOLLOW_structure_field_oqlQueryWithImplicitSelect_in_structure_association_oqlQueryWithImplicitSelect5233);
             temp=structure_field_oqlQueryWithImplicitSelect();
 
             checkFollows();
@@ -10463,12 +10463,12 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF9B3AD9E4F711DEB5E0C2E4C0A868C8");
+              _beforeSeqEl("E09976247CACCE5027C311DFAA09C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:222: (temp= structure_field_nondeclaredOpposite )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1252:224: temp= structure_field_nondeclaredOpposite
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:222: (temp= structure_field_nondeclaredOpposite )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1256:224: temp= structure_field_nondeclaredOpposite
             {
-            pushFollow(FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQueryWithImplicitSelect5223);
+            pushFollow(FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQueryWithImplicitSelect5243);
             temp=structure_field_nondeclaredOpposite();
 
             checkFollows();
@@ -10484,10 +10484,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BF9B3ADCE4F711DEB628C2E4C0A868C8");
+              _beforeSeqEl("E09976247CAF184027C311DFB244C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "name", null, null, "OCL:'Query_to_'.concat(self.ends->first().name)", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:'Query_to_'.concat(self.ends->first().name)", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10517,7 +10517,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "structure_field_oqlQueryWithImplicitSelect"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1260:1: structure_field_oqlQueryWithImplicitSelect returns [Object ret2] : ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1264:1: structure_field_oqlQueryWithImplicitSelect returns [Object ret2] : ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) ) ;
     public final Object structure_field_oqlQueryWithImplicitSelect() throws RecognitionException {
 
         Object ret2 = null;
@@ -10531,19 +10531,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1265:3: ( ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1266:3: ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1269:3: ( ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1270:3: ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1266:3: ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1266:4: (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1270:3: ( (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1270:4: (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFA01CD1E4F711DEBA89C2E4C0A868C8");
+              _beforeSeqEl("E09976247CB3D33327C311DFCB07C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1266:63: (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1266:65: temp= behavior_expressions_expression_oqlQueryWithImplicitSelect
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1270:63: (temp= behavior_expressions_expression_oqlQueryWithImplicitSelect )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1270:65: temp= behavior_expressions_expression_oqlQueryWithImplicitSelect
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_oqlQueryWithImplicitSelect_in_structure_field_oqlQueryWithImplicitSelect5273);
+            pushFollow(FOLLOW_behavior_expressions_expression_oqlQueryWithImplicitSelect_in_structure_field_oqlQueryWithImplicitSelect5293);
             temp=behavior_expressions_expression_oqlQueryWithImplicitSelect();
 
             checkFollows();
@@ -10559,10 +10559,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFA01CDAE4F711DE866BC2E4C0A868C8");
+              _beforeSeqEl("E09976247CBAFF2027C311DFC478C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.defaultValue.type", true);_exitInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();setOclRef(ret, "name", null, null, "OCL:#context.oclAsType(FromClause).alias.name", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.defaultValue.type", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "navigable", true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "singleMultiplicity", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "name", null, null, "OCL:#context.oclAsType(FromClause).alias.name", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10592,7 +10592,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_expression_oqlQueryWithImplicitSelect"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1274:1: behavior_expressions_expression_oqlQueryWithImplicitSelect returns [Object ret2] : (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1278:1: behavior_expressions_expression_oqlQueryWithImplicitSelect returns [Object ret2] : (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect ) ;
     public final Object behavior_expressions_expression_oqlQueryWithImplicitSelect() throws RecognitionException {
 
         Object ret2 = null;
@@ -10601,13 +10601,13 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1275:3: ( (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:3: (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1279:3: ( (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1280:3: (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:3: (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:4: ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1280:3: (ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1280:4: ret= behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect
             {
-            pushFollow(FOLLOW_behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect_in_behavior_expressions_expression_oqlQueryWithImplicitSelect5316);
+            pushFollow(FOLLOW_behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect_in_behavior_expressions_expression_oqlQueryWithImplicitSelect5336);
             ret=behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect();
 
             checkFollows();
@@ -10637,7 +10637,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1283:1: behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect returns [Object ret2] : () ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1287:1: behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect returns [Object ret2] : () ;
     public final Object behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect() throws RecognitionException {
 
         Object ret2 = null;
@@ -10648,17 +10648,17 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1288:3: ( () )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1289:3: ()
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1292:3: ( () )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1293:3: ()
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1289:3: ()
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1289:4: 
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1293:3: ()
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1293:4: 
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFAC03B4E4F711DEA77FC2E4C0A868C8");
+              _beforeSeqEl("E09976247CC70D1227C311DF949FC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "namedValue", null, null, "OCL:#context.oclAsType(FromClause).alias", true);_exitInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.namedValue.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "namedValue", null, null, "OCL:#context.oclAsType(FromClause).alias", true);_exitInjectorAction();_enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.namedValue.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10688,7 +10688,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_firstpathexpression"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1297:1: behavior_expressions_firstpathexpression returns [Object ret2] : ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1301:1: behavior_expressions_firstpathexpression returns [Object ret2] : ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) ;
     public final Object behavior_expressions_firstpathexpression() throws RecognitionException {
 
         Object ret2 = null;
@@ -10702,26 +10702,26 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1302:3: ( ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:3: ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1306:3: ( ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:3: ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:3: ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:4: DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:3: ( DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:4: DOT (temp= behavior_expressions_expression_pathExpression ) ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFAE4DA0E4F711DEA1D4C2E4C0A868C8");
+              _beforeSeqEl("E09976247CCBC80027C311DF9BBCC1D70A140F13");
             }
-            match(input,DOT,FOLLOW_DOT_in_behavior_expressions_firstpathexpression5387); if (state.failed) return ret2;
+            match(input,DOT,FOLLOW_DOT_in_behavior_expressions_firstpathexpression5407); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFAE4DA3E4F711DEC787C2E4C0A868C8");
+              _beforeSeqEl("E09976247CCBC80327C311DFA7FEC1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:143: (temp= behavior_expressions_expression_pathExpression )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:145: temp= behavior_expressions_expression_pathExpression
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:143: (temp= behavior_expressions_expression_pathExpression )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:145: temp= behavior_expressions_expression_pathExpression
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_pathExpression_in_behavior_expressions_firstpathexpression5395);
+            pushFollow(FOLLOW_behavior_expressions_expression_pathExpression_in_behavior_expressions_firstpathexpression5415);
             temp=behavior_expressions_expression_pathExpression();
 
             checkFollows();
@@ -10737,9 +10737,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFAE4DB0E4F711DEB2C3C2E4C0A868C8");
+              _beforeSeqEl("E09976247CD564F127C311DF8EE6C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:309: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:309: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt54=2;
             int LA54_0 = input.LA(1);
 
@@ -10758,21 +10758,21 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
             switch (alt54) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:310: ( (temp= firstLowercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:310: ( (temp= firstLowercaseIdentifier ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:326: ( (temp= firstLowercaseIdentifier ) )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:327: (temp= firstLowercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:326: ( (temp= firstLowercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:327: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BFAE4DA8E4F711DEAB19C2E4C0A868C8");
+                      _beforeSeqEl("E09976247CCE390427C311DFC990C1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:386: (temp= firstLowercaseIdentifier )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1303:388: temp= firstLowercaseIdentifier
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:386: (temp= firstLowercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1307:388: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_firstpathexpression5410);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_firstpathexpression5430);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -10797,21 +10797,21 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1304:4: ( (temp= firstUppercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1308:4: ( (temp= firstUppercaseIdentifier ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1304:20: ( (temp= firstUppercaseIdentifier ) )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1304:21: (temp= firstUppercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1308:20: ( (temp= firstUppercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1308:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BFAE4DAEE4F711DE9618C2E4C0A868C8");
+                      _beforeSeqEl("E09976247CD2F3F127C311DFCB31C1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1304:80: (temp= firstUppercaseIdentifier )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1304:82: temp= firstUppercaseIdentifier
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1308:80: (temp= firstUppercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1308:82: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_firstpathexpression5430);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_firstpathexpression5450);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -10842,9 +10842,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFAE4DB1E4F711DE9D3CC2E4C0A868C8");
+              _beforeSeqEl("E09976247CD564F227C311DFB676C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_firstpathexpression5441);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_firstpathexpression5461);
             alias(ret);
 
             checkFollows();
@@ -10854,10 +10854,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFAE4DB4E4F711DEBCFCC2E4C0A868C8");
+              _beforeSeqEl("E09976247CD7AEE027C311DFA8AFC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.field.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.field.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10887,7 +10887,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_pathexpression"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1312:1: behavior_expressions_pathexpression[java.lang.String opName, Object left, org.antlr.runtime.Token firstToken] returns [Object ret2] : ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1316:1: behavior_expressions_pathexpression[java.lang.String opName, Object left, org.antlr.runtime.Token firstToken] returns [Object ret2] : ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) ;
     public final Object behavior_expressions_pathexpression(java.lang.String opName, Object left, org.antlr.runtime.Token firstToken) throws RecognitionException {
 
         Object ret2 = null;
@@ -10901,16 +10901,16 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1317:3: ( ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:3: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1321:3: ( ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:3: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:3: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:4: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:3: ( ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:4: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFB5799AE4F711DECC6BC2E4C0A868C8");
+              _beforeSeqEl("E09976247CE606C127C311DF8BF3C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:63: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:63: ( ( (temp= firstLowercaseIdentifier ) ) | ( (temp= firstUppercaseIdentifier ) ) )
             int alt55=2;
             int LA55_0 = input.LA(1);
 
@@ -10929,21 +10929,21 @@ public class FinexClassParser extends ObservableInjectingParser {
             }
             switch (alt55) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:64: ( (temp= firstLowercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:64: ( (temp= firstLowercaseIdentifier ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:80: ( (temp= firstLowercaseIdentifier ) )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:81: (temp= firstLowercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:80: ( (temp= firstLowercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:81: (temp= firstLowercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BFB57992E4F711DEAC36C2E4C0A868C8");
+                      _beforeSeqEl("E09976247CDEDAD427C311DFBF98C1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:140: (temp= firstLowercaseIdentifier )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:142: temp= firstLowercaseIdentifier
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:140: (temp= firstLowercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1322:142: temp= firstLowercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_pathexpression5495);
+                    pushFollow(FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_pathexpression5515);
                     temp=firstLowercaseIdentifier();
 
                     checkFollows();
@@ -10968,21 +10968,21 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1319:4: ( (temp= firstUppercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1323:4: ( (temp= firstUppercaseIdentifier ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1319:20: ( (temp= firstUppercaseIdentifier ) )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1319:21: (temp= firstUppercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1323:20: ( (temp= firstUppercaseIdentifier ) )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1323:21: (temp= firstUppercaseIdentifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0E14F86BFB57998E4F711DEBBC3C2E4C0A868C8");
+                      _beforeSeqEl("E09976247CE395C127C311DFB42CC1D70A140F13");
                     }
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1319:80: (temp= firstUppercaseIdentifier )
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1319:82: temp= firstUppercaseIdentifier
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1323:80: (temp= firstUppercaseIdentifier )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1323:82: temp= firstUppercaseIdentifier
                     {
-                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_pathexpression5515);
+                    pushFollow(FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_pathexpression5535);
                     temp=firstUppercaseIdentifier();
 
                     checkFollows();
@@ -11013,9 +11013,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFB5799BE4F711DEB4B2C2E4C0A868C8");
+              _beforeSeqEl("E09976247CE606C227C311DFC3A3C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_pathexpression5526);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_pathexpression5546);
             alias(ret);
 
             checkFollows();
@@ -11025,10 +11025,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFB7EA92E4F711DE8B60C2E4C0A868C8");
+              _beforeSeqEl("E09976247CE877C027C311DFC8F6C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.field.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.field.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11062,7 +11062,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_filterexpression"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1329:1: behavior_expressions_filterexpression[java.lang.String opName, Object left, org.antlr.runtime.Token firstToken] returns [Object ret2] : ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1333:1: behavior_expressions_filterexpression[java.lang.String opName, Object left, org.antlr.runtime.Token firstToken] returns [Object ret2] : ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] ) ;
     public final Object behavior_expressions_filterexpression(java.lang.String opName, Object left, org.antlr.runtime.Token firstToken) throws RecognitionException {
 
         Object ret2 = null;
@@ -11076,19 +11076,19 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1334:3: ( ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1335:3: ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1338:3: ( ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1339:3: ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1335:3: ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1335:4: (temp= behavior_expressions_expression ) RBRACKET alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1339:3: ( (temp= behavior_expressions_expression ) RBRACKET alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1339:4: (temp= behavior_expressions_expression ) RBRACKET alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFBF1682E4F711DE9BFBC2E4C0A868C8");
+              _beforeSeqEl("E09976247CEFA3B127C311DFAF75C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1335:63: (temp= behavior_expressions_expression )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1335:65: temp= behavior_expressions_expression
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1339:63: (temp= behavior_expressions_expression )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1339:65: temp= behavior_expressions_expression
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_filterexpression5567);
+            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_filterexpression5587);
             temp=behavior_expressions_expression();
 
             checkFollows();
@@ -11104,16 +11104,16 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFBF1683E4F711DE9901C2E4C0A868C8");
+              _beforeSeqEl("E09976247CEFA3B227C311DF900AC1D70A140F13");
             }
-            match(input,RBRACKET,FOLLOW_RBRACKET_in_behavior_expressions_filterexpression5574); if (state.failed) return ret2;
+            match(input,RBRACKET,FOLLOW_RBRACKET_in_behavior_expressions_filterexpression5594); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFBF1684E4F711DEA4FDC2E4C0A868C8");
+              _beforeSeqEl("E09976247CEFA3B327C311DFA349C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_filterexpression5578);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_filterexpression5598);
             alias(ret);
 
             checkFollows();
@@ -11123,10 +11123,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFBF1687E4F711DEC137C2E4C0A868C8");
+              _beforeSeqEl("E09976247CF1EDA027C311DFC004C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.operand.type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.operand.type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11160,7 +11160,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_literal"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1345:1: behavior_expressions_literals_literal returns [Object ret2] : (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1349:1: behavior_expressions_literals_literal returns [Object ret2] : (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral ) ;
     public final Object behavior_expressions_literals_literal() throws RecognitionException {
 
         Object ret2 = null;
@@ -11169,10 +11169,10 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1346:3: ( (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1347:3: (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1350:3: ( (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1351:3: (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1347:3: (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1351:3: (ret= behavior_expressions_literals_booleanliteral | ret= behavior_expressions_literals_stringliteral | ret= behavior_expressions_literals_decimalliteral | ret= behavior_expressions_literals_integerliteral | ret= behavior_expressions_literals_dateliteral | ret= behavior_expressions_literals_binaryliteral )
             int alt56=6;
             switch ( input.LA(1) ) {
             case BOOL:
@@ -11215,9 +11215,9 @@ public class FinexClassParser extends ObservableInjectingParser {
 
             switch (alt56) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1347:4: ret= behavior_expressions_literals_booleanliteral
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1351:4: ret= behavior_expressions_literals_booleanliteral
                     {
-                    pushFollow(FOLLOW_behavior_expressions_literals_booleanliteral_in_behavior_expressions_literals_literal5611);
+                    pushFollow(FOLLOW_behavior_expressions_literals_booleanliteral_in_behavior_expressions_literals_literal5631);
                     ret=behavior_expressions_literals_booleanliteral();
 
                     checkFollows();
@@ -11227,9 +11227,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1348:5: ret= behavior_expressions_literals_stringliteral
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1352:5: ret= behavior_expressions_literals_stringliteral
                     {
-                    pushFollow(FOLLOW_behavior_expressions_literals_stringliteral_in_behavior_expressions_literals_literal5619);
+                    pushFollow(FOLLOW_behavior_expressions_literals_stringliteral_in_behavior_expressions_literals_literal5639);
                     ret=behavior_expressions_literals_stringliteral();
 
                     checkFollows();
@@ -11239,9 +11239,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1349:5: ret= behavior_expressions_literals_decimalliteral
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1353:5: ret= behavior_expressions_literals_decimalliteral
                     {
-                    pushFollow(FOLLOW_behavior_expressions_literals_decimalliteral_in_behavior_expressions_literals_literal5627);
+                    pushFollow(FOLLOW_behavior_expressions_literals_decimalliteral_in_behavior_expressions_literals_literal5647);
                     ret=behavior_expressions_literals_decimalliteral();
 
                     checkFollows();
@@ -11251,9 +11251,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1350:5: ret= behavior_expressions_literals_integerliteral
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1354:5: ret= behavior_expressions_literals_integerliteral
                     {
-                    pushFollow(FOLLOW_behavior_expressions_literals_integerliteral_in_behavior_expressions_literals_literal5635);
+                    pushFollow(FOLLOW_behavior_expressions_literals_integerliteral_in_behavior_expressions_literals_literal5655);
                     ret=behavior_expressions_literals_integerliteral();
 
                     checkFollows();
@@ -11263,9 +11263,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1351:5: ret= behavior_expressions_literals_dateliteral
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1355:5: ret= behavior_expressions_literals_dateliteral
                     {
-                    pushFollow(FOLLOW_behavior_expressions_literals_dateliteral_in_behavior_expressions_literals_literal5643);
+                    pushFollow(FOLLOW_behavior_expressions_literals_dateliteral_in_behavior_expressions_literals_literal5663);
                     ret=behavior_expressions_literals_dateliteral();
 
                     checkFollows();
@@ -11275,9 +11275,9 @@ public class FinexClassParser extends ObservableInjectingParser {
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1352:5: ret= behavior_expressions_literals_binaryliteral
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1356:5: ret= behavior_expressions_literals_binaryliteral
                     {
-                    pushFollow(FOLLOW_behavior_expressions_literals_binaryliteral_in_behavior_expressions_literals_literal5651);
+                    pushFollow(FOLLOW_behavior_expressions_literals_binaryliteral_in_behavior_expressions_literals_literal5671);
                     ret=behavior_expressions_literals_binaryliteral();
 
                     checkFollows();
@@ -11310,7 +11310,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_booleanliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1359:1: behavior_expressions_literals_booleanliteral returns [Object ret2] : ( (temp= booleanSymbol ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1363:1: behavior_expressions_literals_booleanliteral returns [Object ret2] : ( (temp= booleanSymbol ) alias[ret] ) ;
     public final Object behavior_expressions_literals_booleanliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11324,19 +11324,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1364:3: ( ( (temp= booleanSymbol ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1365:3: ( (temp= booleanSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1368:3: ( ( (temp= booleanSymbol ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1369:3: ( (temp= booleanSymbol ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1365:3: ( (temp= booleanSymbol ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1365:4: (temp= booleanSymbol ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1369:3: ( (temp= booleanSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1369:4: (temp= booleanSymbol ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFCFB852E4F711DEA783C2E4C0A868C8");
+              _beforeSeqEl("E09976247D00458027C311DFB82BC1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1365:63: (temp= booleanSymbol )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1365:65: temp= booleanSymbol
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1369:63: (temp= booleanSymbol )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1369:65: temp= booleanSymbol
             {
-            pushFollow(FOLLOW_booleanSymbol_in_behavior_expressions_literals_booleanliteral5685);
+            pushFollow(FOLLOW_booleanSymbol_in_behavior_expressions_literals_booleanliteral5705);
             temp=booleanSymbol();
 
             checkFollows();
@@ -11352,9 +11352,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFCFB853E4F711DEB0F9C2E4C0A868C8");
+              _beforeSeqEl("E09976247D00458127C311DFA6FEC1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_booleanliteral5691);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_booleanliteral5711);
             alias(ret);
 
             checkFollows();
@@ -11364,10 +11364,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFCFB856E4F711DE9E78C2E4C0A868C8");
+              _beforeSeqEl("E09976247D00458427C311DFB086C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11397,7 +11397,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_stringliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1373:1: behavior_expressions_literals_stringliteral returns [Object ret2] : ( (temp= stringSymbol ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1377:1: behavior_expressions_literals_stringliteral returns [Object ret2] : ( (temp= stringSymbol ) alias[ret] ) ;
     public final Object behavior_expressions_literals_stringliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11411,19 +11411,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1378:3: ( ( (temp= stringSymbol ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1379:3: ( (temp= stringSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1382:3: ( ( (temp= stringSymbol ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1383:3: ( (temp= stringSymbol ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1379:3: ( (temp= stringSymbol ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1379:4: (temp= stringSymbol ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1383:3: ( (temp= stringSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1383:4: (temp= stringSymbol ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFD6E442E4F711DE96C8C2E4C0A868C8");
+              _beforeSeqEl("E09976247D09E27127C311DFA7FEC1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1379:63: (temp= stringSymbol )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1379:65: temp= stringSymbol
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1383:63: (temp= stringSymbol )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1383:65: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_behavior_expressions_literals_stringliteral5739);
+            pushFollow(FOLLOW_stringSymbol_in_behavior_expressions_literals_stringliteral5759);
             temp=stringSymbol();
 
             checkFollows();
@@ -11439,9 +11439,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFD6E443E4F711DE8919C2E4C0A868C8");
+              _beforeSeqEl("E09976247D09E27227C311DFA3BCC1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_stringliteral5745);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_stringliteral5765);
             alias(ret);
 
             checkFollows();
@@ -11451,10 +11451,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFD6E446E4F711DE8738C2E4C0A868C8");
+              _beforeSeqEl("E09976247D0C2C6027C311DFCD29C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'String')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'String')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11484,7 +11484,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_decimalliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1387:1: behavior_expressions_literals_decimalliteral returns [Object ret2] : ( (temp= floatAsStringSymbol ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1391:1: behavior_expressions_literals_decimalliteral returns [Object ret2] : ( (temp= floatAsStringSymbol ) alias[ret] ) ;
     public final Object behavior_expressions_literals_decimalliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11498,19 +11498,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1392:3: ( ( (temp= floatAsStringSymbol ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1393:3: ( (temp= floatAsStringSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1396:3: ( ( (temp= floatAsStringSymbol ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1397:3: ( (temp= floatAsStringSymbol ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1393:3: ( (temp= floatAsStringSymbol ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1393:4: (temp= floatAsStringSymbol ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1397:3: ( (temp= floatAsStringSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1397:4: (temp= floatAsStringSymbol ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFDE1032E4F711DEB6DFC2E4C0A868C8");
+              _beforeSeqEl("E09976247D15C95227C311DFAD40C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1393:63: (temp= floatAsStringSymbol )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1393:65: temp= floatAsStringSymbol
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1397:63: (temp= floatAsStringSymbol )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1397:65: temp= floatAsStringSymbol
             {
-            pushFollow(FOLLOW_floatAsStringSymbol_in_behavior_expressions_literals_decimalliteral5793);
+            pushFollow(FOLLOW_floatAsStringSymbol_in_behavior_expressions_literals_decimalliteral5813);
             temp=floatAsStringSymbol();
 
             checkFollows();
@@ -11526,9 +11526,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFDE1033E4F711DEB129C2E4C0A868C8");
+              _beforeSeqEl("E09976247D183A5027C311DFC98FC1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_decimalliteral5799);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_decimalliteral5819);
             alias(ret);
 
             checkFollows();
@@ -11538,10 +11538,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFDE1036E4F711DEAE0EC2E4C0A868C8");
+              _beforeSeqEl("E09976247D183A5327C311DFAF47C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Decimal')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Decimal')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11571,7 +11571,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_integerliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1401:1: behavior_expressions_literals_integerliteral returns [Object ret2] : ( (temp= integerAsStringSymbol ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1405:1: behavior_expressions_literals_integerliteral returns [Object ret2] : ( (temp= integerAsStringSymbol ) alias[ret] ) ;
     public final Object behavior_expressions_literals_integerliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11585,19 +11585,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1406:3: ( ( (temp= integerAsStringSymbol ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1407:3: ( (temp= integerAsStringSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1410:3: ( ( (temp= integerAsStringSymbol ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1411:3: ( (temp= integerAsStringSymbol ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1407:3: ( (temp= integerAsStringSymbol ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1407:4: (temp= integerAsStringSymbol ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1411:3: ( (temp= integerAsStringSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1411:4: (temp= integerAsStringSymbol ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFE78612E4F711DEADBFC2E4C0A868C8");
+              _beforeSeqEl("E09976247D21B03127C311DFA1E6C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1407:63: (temp= integerAsStringSymbol )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1407:65: temp= integerAsStringSymbol
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1411:63: (temp= integerAsStringSymbol )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1411:65: temp= integerAsStringSymbol
             {
-            pushFollow(FOLLOW_integerAsStringSymbol_in_behavior_expressions_literals_integerliteral5847);
+            pushFollow(FOLLOW_integerAsStringSymbol_in_behavior_expressions_literals_integerliteral5867);
             temp=integerAsStringSymbol();
 
             checkFollows();
@@ -11613,9 +11613,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFE78613E4F711DEAA22C2E4C0A868C8");
+              _beforeSeqEl("E09976247D21B03227C311DFA561C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_integerliteral5853);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_integerliteral5873);
             alias(ret);
 
             checkFollows();
@@ -11625,10 +11625,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFE78616E4F711DE85BFC2E4C0A868C8");
+              _beforeSeqEl("E09976247D24213027C311DFCE8AC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11658,7 +11658,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_dateliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1415:1: behavior_expressions_literals_dateliteral returns [Object ret2] : ( (temp= dateSymbol ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1419:1: behavior_expressions_literals_dateliteral returns [Object ret2] : ( (temp= dateSymbol ) alias[ret] ) ;
     public final Object behavior_expressions_literals_dateliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11672,19 +11672,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1420:3: ( ( (temp= dateSymbol ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1421:3: ( (temp= dateSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1424:3: ( ( (temp= dateSymbol ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1425:3: ( (temp= dateSymbol ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1421:3: ( (temp= dateSymbol ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1421:4: (temp= dateSymbol ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1425:3: ( (temp= dateSymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1425:4: (temp= dateSymbol ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFEEB202E4F711DEBE50C2E4C0A868C8");
+              _beforeSeqEl("E09976247D2B4D2227C311DF87E3C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1421:63: (temp= dateSymbol )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1421:65: temp= dateSymbol
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1425:63: (temp= dateSymbol )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1425:65: temp= dateSymbol
             {
-            pushFollow(FOLLOW_dateSymbol_in_behavior_expressions_literals_dateliteral5901);
+            pushFollow(FOLLOW_dateSymbol_in_behavior_expressions_literals_dateliteral5921);
             temp=dateSymbol();
 
             checkFollows();
@@ -11700,9 +11700,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFEEB203E4F711DECA01C2E4C0A868C8");
+              _beforeSeqEl("E09976247D2B4D2327C311DF8C41C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_dateliteral5907);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_dateliteral5927);
             alias(ret);
 
             checkFollows();
@@ -11712,10 +11712,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFEEB206E4F711DEC2C1C2E4C0A868C8");
+              _beforeSeqEl("E09976247D2DBE2127C311DF9A01C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Date')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Date')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11745,7 +11745,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_binaryliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1429:1: behavior_expressions_literals_binaryliteral returns [Object ret2] : ( (temp= binarySymbol ) alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1433:1: behavior_expressions_literals_binaryliteral returns [Object ret2] : ( (temp= binarySymbol ) alias[ret] ) ;
     public final Object behavior_expressions_literals_binaryliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11759,19 +11759,19 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1434:3: ( ( (temp= binarySymbol ) alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:3: ( (temp= binarySymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1438:3: ( ( (temp= binarySymbol ) alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1439:3: ( (temp= binarySymbol ) alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:3: ( (temp= binarySymbol ) alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:4: (temp= binarySymbol ) alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1439:3: ( (temp= binarySymbol ) alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1439:4: (temp= binarySymbol ) alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFF84EF2E4F711DEC6E3C2E4C0A868C8");
+              _beforeSeqEl("E09976247D34C30227C311DF9504C1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:63: (temp= binarySymbol )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:65: temp= binarySymbol
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1439:63: (temp= binarySymbol )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1439:65: temp= binarySymbol
             {
-            pushFollow(FOLLOW_binarySymbol_in_behavior_expressions_literals_binaryliteral5955);
+            pushFollow(FOLLOW_binarySymbol_in_behavior_expressions_literals_binaryliteral5975);
             temp=binarySymbol();
 
             checkFollows();
@@ -11787,9 +11787,9 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFF84EF3E4F711DE8931C2E4C0A868C8");
+              _beforeSeqEl("E09976247D37340027C311DFB9F3C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_binaryliteral5961);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_binaryliteral5981);
             alias(ret);
 
             checkFollows();
@@ -11799,10 +11799,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86BFF84EF6E4F711DE9417C2E4C0A868C8");
+              _beforeSeqEl("E09976247D37340327C311DFA777C1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Binary')", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Binary')", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11832,7 +11832,7 @@ public class FinexClassParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "behavior_expressions_literals_multiobjectliteral"
-    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1443:1: behavior_expressions_literals_multiobjectliteral returns [Object ret2] : ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] ) ;
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1447:1: behavior_expressions_literals_multiobjectliteral returns [Object ret2] : ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] ) ;
     public final Object behavior_expressions_literals_multiobjectliteral() throws RecognitionException {
 
         Object ret2 = null;
@@ -11846,26 +11846,26 @@ public class FinexClassParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1448:3: ( ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:3: ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1452:3: ( ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:3: ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:3: ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:4: LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret]
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:3: ( LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret] )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:4: LBRACKET (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* ) RBRACKET alias[ret]
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86C00435D0E4F711DEC6A8C2E4C0A868C8");
+              _beforeSeqEl("E09976247D3E5FF027C311DF927AC1D70A140F13");
             }
-            match(input,LBRACKET,FOLLOW_LBRACKET_in_behavior_expressions_literals_multiobjectliteral6006); if (state.failed) return ret2;
+            match(input,LBRACKET,FOLLOW_LBRACKET_in_behavior_expressions_literals_multiobjectliteral6026); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86C00435D5E4F711DECB6FC2E4C0A868C8");
+              _beforeSeqEl("E09976247D40D0F227C311DFAABCC1D70A140F13");
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:148: (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:150: temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:148: (temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:150: temp= behavior_expressions_expression ( ( ',' ) temp= behavior_expressions_expression )*
             {
-            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6014);
+            pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6034);
             temp=behavior_expressions_expression();
 
             checkFollows();
@@ -11874,7 +11874,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             if ( state.backtracking==0 ) {
               setProperty(ret, "elements", temp);
             }
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:225: ( ( ',' ) temp= behavior_expressions_expression )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:225: ( ( ',' ) temp= behavior_expressions_expression )*
             loop57:
             do {
                 int alt57=2;
@@ -11887,18 +11887,18 @@ public class FinexClassParser extends ObservableInjectingParser {
 
                 switch (alt57) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:226: ( ',' ) temp= behavior_expressions_expression
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:226: ( ',' ) temp= behavior_expressions_expression
             	    {
             	    if ( state.backtracking==0 ) {
             	      _enterSepSeq();
             	    }
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:243: ( ',' )
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1449:244: ','
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:243: ( ',' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1453:244: ','
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0E14F86C00435D2E4F711DE8CDEC2E4C0A868C8");
+            	      _beforeSeqEl("E09976247D3E5FF227C311DF9A5AC1D70A140F13");
             	    }
-            	    match(input,48,FOLLOW_48_in_behavior_expressions_literals_multiobjectliteral6022); if (state.failed) return ret2;
+            	    match(input,48,FOLLOW_48_in_behavior_expressions_literals_multiobjectliteral6042); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -11908,7 +11908,7 @@ public class FinexClassParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6029);
+            	    pushFollow(FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6049);
             	    temp=behavior_expressions_expression();
 
             	    checkFollows();
@@ -11933,16 +11933,16 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86C00435D6E4F711DE9210C2E4C0A868C8");
+              _beforeSeqEl("E09976247D431AE027C311DF8003C1D70A140F13");
             }
-            match(input,RBRACKET,FOLLOW_RBRACKET_in_behavior_expressions_literals_multiobjectliteral6039); if (state.failed) return ret2;
+            match(input,RBRACKET,FOLLOW_RBRACKET_in_behavior_expressions_literals_multiobjectliteral6059); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86C00435D7E4F711DE89ABC2E4C0A868C8");
+              _beforeSeqEl("E09976247D431AE127C311DFCAA1C1D70A140F13");
             }
-            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_multiobjectliteral6043);
+            pushFollow(FOLLOW_alias_in_behavior_expressions_literals_multiobjectliteral6063);
             alias(ret);
 
             checkFollows();
@@ -11952,10 +11952,10 @@ public class FinexClassParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E14F86C00435DAE4F711DEAB03C2E4C0A868C8");
+              _beforeSeqEl("E09976247D431AE427C311DFCD6AC1D70A140F13");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "type", null, null, "OCL:self.elements->asSequence()->first().type", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "type", null, null, "OCL:self.elements->asSequence()->first().type", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -12080,7 +12080,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:678:35: ( '*' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:678:36: '*'
         {
-        match(input,52,FOLLOW_52_in_synpred9_FinexClass2690); if (state.failed) return ;
+        match(input,52,FOLLOW_52_in_synpred9_FinexClass2695); if (state.failed) return ;
 
         }
     }
@@ -12091,7 +12091,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:681:3: ( '/' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:681:4: '/'
         {
-        match(input,53,FOLLOW_53_in_synpred10_FinexClass2718); if (state.failed) return ;
+        match(input,53,FOLLOW_53_in_synpred10_FinexClass2723); if (state.failed) return ;
 
         }
     }
@@ -12102,7 +12102,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:684:3: ( 'AND' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:684:4: 'AND'
         {
-        match(input,54,FOLLOW_54_in_synpred11_FinexClass2746); if (state.failed) return ;
+        match(input,54,FOLLOW_54_in_synpred11_FinexClass2751); if (state.failed) return ;
 
         }
     }
@@ -12113,7 +12113,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:696:35: ( 'OR' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:696:36: 'OR'
         {
-        match(input,55,FOLLOW_55_in_synpred12_FinexClass2808); if (state.failed) return ;
+        match(input,55,FOLLOW_55_in_synpred12_FinexClass2818); if (state.failed) return ;
 
         }
     }
@@ -12124,7 +12124,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:699:3: ( '+' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:699:4: '+'
         {
-        match(input,56,FOLLOW_56_in_synpred13_FinexClass2836); if (state.failed) return ;
+        match(input,56,FOLLOW_56_in_synpred13_FinexClass2846); if (state.failed) return ;
 
         }
     }
@@ -12135,7 +12135,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:702:3: ( '-' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:702:4: '-'
         {
-        match(input,50,FOLLOW_50_in_synpred14_FinexClass2864); if (state.failed) return ;
+        match(input,50,FOLLOW_50_in_synpred14_FinexClass2874); if (state.failed) return ;
 
         }
     }
@@ -12146,7 +12146,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:714:35: ( RANGLE )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:714:36: RANGLE
         {
-        match(input,RANGLE,FOLLOW_RANGLE_in_synpred15_FinexClass2926); if (state.failed) return ;
+        match(input,RANGLE,FOLLOW_RANGLE_in_synpred15_FinexClass2941); if (state.failed) return ;
 
         }
     }
@@ -12157,7 +12157,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:717:3: ( LANGLE )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:717:4: LANGLE
         {
-        match(input,LANGLE,FOLLOW_LANGLE_in_synpred16_FinexClass2955); if (state.failed) return ;
+        match(input,LANGLE,FOLLOW_LANGLE_in_synpred16_FinexClass2970); if (state.failed) return ;
 
         }
     }
@@ -12168,7 +12168,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:720:3: ( '>=' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:720:4: '>='
         {
-        match(input,57,FOLLOW_57_in_synpred17_FinexClass2984); if (state.failed) return ;
+        match(input,57,FOLLOW_57_in_synpred17_FinexClass2999); if (state.failed) return ;
 
         }
     }
@@ -12179,7 +12179,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:723:3: ( '<=' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:723:4: '<='
         {
-        match(input,58,FOLLOW_58_in_synpred18_FinexClass3012); if (state.failed) return ;
+        match(input,58,FOLLOW_58_in_synpred18_FinexClass3027); if (state.failed) return ;
 
         }
     }
@@ -12190,7 +12190,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:726:3: ( EQUALSEQUALS )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:726:4: EQUALSEQUALS
         {
-        match(input,EQUALSEQUALS,FOLLOW_EQUALSEQUALS_in_synpred19_FinexClass3040); if (state.failed) return ;
+        match(input,EQUALSEQUALS,FOLLOW_EQUALSEQUALS_in_synpred19_FinexClass3055); if (state.failed) return ;
 
         }
     }
@@ -12201,7 +12201,7 @@ public class FinexClassParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:729:3: ( '!=' )
         // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:729:4: '!='
         {
-        match(input,59,FOLLOW_59_in_synpred20_FinexClass3069); if (state.failed) return ;
+        match(input,59,FOLLOW_59_in_synpred20_FinexClass3084); if (state.failed) return ;
 
         }
     }
@@ -12789,175 +12789,175 @@ public class FinexClassParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_behavior_expressions_pathexpression_in_expressions_priority_02622 = new BitSet(new long[]{0x0000000000014002L});
     public static final BitSet FOLLOW_LBRACKET_in_expressions_priority_02638 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
     public static final BitSet FOLLOW_behavior_expressions_filterexpression_in_expressions_priority_02646 = new BitSet(new long[]{0x0000000000014002L});
-    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12687 = new BitSet(new long[]{0x0070000000000002L});
-    public static final BitSet FOLLOW_52_in_expressions_priority_12696 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12703 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12707 = new BitSet(new long[]{0x0070000000000002L});
-    public static final BitSet FOLLOW_53_in_expressions_priority_12724 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12731 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12735 = new BitSet(new long[]{0x0070000000000002L});
-    public static final BitSet FOLLOW_54_in_expressions_priority_12752 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_12759 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12763 = new BitSet(new long[]{0x0070000000000002L});
-    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22805 = new BitSet(new long[]{0x0184000000000002L});
-    public static final BitSet FOLLOW_55_in_expressions_priority_22814 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_22821 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22825 = new BitSet(new long[]{0x0184000000000002L});
-    public static final BitSet FOLLOW_56_in_expressions_priority_22842 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22849 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22853 = new BitSet(new long[]{0x0184000000000002L});
-    public static final BitSet FOLLOW_50_in_expressions_priority_22870 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22877 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22881 = new BitSet(new long[]{0x0184000000000002L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_32923 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_RANGLE_in_expressions_priority_32932 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32940 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_32944 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_LANGLE_in_expressions_priority_32961 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32969 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_32973 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_57_in_expressions_priority_32990 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32997 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33001 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_58_in_expressions_priority_33018 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_33025 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33029 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_EQUALSEQUALS_in_expressions_priority_33046 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_equals_in_expressions_priority_33054 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33058 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_59_in_expressions_priority_33075 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_unequals_in_expressions_priority_33082 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33086 = new BitSet(new long[]{0x0E0000000E000002L});
-    public static final BitSet FOLLOW_expressions_priority_3_in_behavior_expressions_expression3119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_alias3148 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_behavior_expressions_alias_in_alias3155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias3210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias3230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_behavior_expressions_all3281 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_all3288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_binarybooleanoperator3335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_not3372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_behavior_expressions_booleanaggregate3414 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_62_in_behavior_expressions_booleanaggregate3430 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_63_in_behavior_expressions_booleanaggregate3446 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_booleanaggregate3458 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_booleanaggregate3463 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_booleanaggregate3467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_equals3504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_unequals3541 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_binarynumericoperator3578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_unaryminus3615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_behavior_expressions_count3652 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_count3659 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_count3664 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_count3668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_behavior_expressions_single3702 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_single3709 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_single3714 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_single3718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_tuple3753 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_structure_type_tuple_in_behavior_expressions_tuple3761 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_tuple3768 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_tuple3772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_structure_finexclass_tuple_in_structure_type_tuple3802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3836 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_48_in_structure_finexclass_tuple3844 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3851 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_structure_field_tuple_in_structure_association_tuple3904 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_tuple3914 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_structure_field_tuple3969 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_structure_field_tuple3992 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_COLON_in_structure_field_tuple4007 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_structure_field_tuple4015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_behavior_expressions_numericaggregate4067 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_67_in_behavior_expressions_numericaggregate4083 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_68_in_behavior_expressions_numericaggregate4099 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_69_in_behavior_expressions_numericaggregate4115 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_numericaggregate4127 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_numericaggregate4132 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_numericaggregate4136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_behavior_expressions_objectcreationexpression4172 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_objectcreationexpression4179 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_objectcreationexpression4189 = new BitSet(new long[]{0x0000000000110000L});
-    public static final BitSet FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4197 = new BitSet(new long[]{0x0001000000100000L});
-    public static final BitSet FOLLOW_48_in_behavior_expressions_objectcreationexpression4205 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4212 = new BitSet(new long[]{0x0001000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_objectcreationexpression4224 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_objectcreationexpression4228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOT_in_behavior_expressions_fieldinitializer4270 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_fieldinitializer4283 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_fieldinitializer4303 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_COLON_in_behavior_expressions_fieldinitializer4315 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_fieldinitializer4323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_behavior_expressions_this4366 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_this4369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_namedvalueexpression4422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_namedvalueexpression4442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_implicitcontext_pathExpression_in_behavior_expressions_expression_pathExpression4490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_behavior_expressions_oql_oqlquery4565 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_structure_type_oqlQuery_in_behavior_expressions_oql_oqlquery4572 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_structure_type_oqlQueryWithImplicitSelect_in_behavior_expressions_oql_oqlquery4592 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_behavior_expressions_oql_oqlquery4603 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4610 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_48_in_behavior_expressions_oql_oqlquery4618 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4625 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_behavior_expressions_oql_oqlquery4634 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_oqlquery4641 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_fromclause4688 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_behavior_expressions_oql_fromclause4694 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_behavior_expressions_alias_fromClause_in_behavior_expressions_oql_fromclause4701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias_fromClause4753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias_fromClause4773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_structure_finexclass_oqlQuery_in_structure_type_oqlQuery4821 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4855 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_48_in_structure_finexclass_oqlQuery4863 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4870 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_structure_field_oqlQuery_in_structure_association_oqlQuery4923 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQuery4933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_structure_field_oqlQuery4988 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_structure_field_oqlQuery5011 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_oqlQuery_in_structure_field_oqlQuery5029 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_namedvalueexpression_oqlQuery_in_behavior_expressions_expression_oqlQuery5072 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_structure_finexclass_oqlQueryWithImplicitSelect_in_structure_type_oqlQueryWithImplicitSelect5139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_structure_field_oqlQueryWithImplicitSelect_in_structure_association_oqlQueryWithImplicitSelect5213 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQueryWithImplicitSelect5223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_oqlQueryWithImplicitSelect_in_structure_field_oqlQueryWithImplicitSelect5273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect_in_behavior_expressions_expression_oqlQueryWithImplicitSelect5316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOT_in_behavior_expressions_firstpathexpression5387 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_pathExpression_in_behavior_expressions_firstpathexpression5395 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_firstpathexpression5410 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_firstpathexpression5430 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_firstpathexpression5441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_pathexpression5495 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_pathexpression5515 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_pathexpression5526 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_filterexpression5567 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_behavior_expressions_filterexpression5574 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_filterexpression5578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_literals_booleanliteral_in_behavior_expressions_literals_literal5611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_literals_stringliteral_in_behavior_expressions_literals_literal5619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_literals_decimalliteral_in_behavior_expressions_literals_literal5627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_literals_integerliteral_in_behavior_expressions_literals_literal5635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_literals_dateliteral_in_behavior_expressions_literals_literal5643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_behavior_expressions_literals_binaryliteral_in_behavior_expressions_literals_literal5651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_booleanSymbol_in_behavior_expressions_literals_booleanliteral5685 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_booleanliteral5691 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_behavior_expressions_literals_stringliteral5739 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_stringliteral5745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_floatAsStringSymbol_in_behavior_expressions_literals_decimalliteral5793 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_decimalliteral5799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerAsStringSymbol_in_behavior_expressions_literals_integerliteral5847 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_integerliteral5853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dateSymbol_in_behavior_expressions_literals_dateliteral5901 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_dateliteral5907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_binarySymbol_in_behavior_expressions_literals_binaryliteral5955 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_binaryliteral5961 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_behavior_expressions_literals_multiobjectliteral6006 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6014 = new BitSet(new long[]{0x0001000000008000L});
-    public static final BitSet FOLLOW_48_in_behavior_expressions_literals_multiobjectliteral6022 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6029 = new BitSet(new long[]{0x0001000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_behavior_expressions_literals_multiobjectliteral6039 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_multiobjectliteral6043 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12692 = new BitSet(new long[]{0x0070000000000002L});
+    public static final BitSet FOLLOW_52_in_expressions_priority_12701 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12708 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12712 = new BitSet(new long[]{0x0070000000000002L});
+    public static final BitSet FOLLOW_53_in_expressions_priority_12729 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_12736 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12740 = new BitSet(new long[]{0x0070000000000002L});
+    public static final BitSet FOLLOW_54_in_expressions_priority_12757 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_12764 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_0_in_expressions_priority_12768 = new BitSet(new long[]{0x0070000000000002L});
+    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22815 = new BitSet(new long[]{0x0184000000000002L});
+    public static final BitSet FOLLOW_55_in_expressions_priority_22824 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarybooleanoperator_in_expressions_priority_22831 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22835 = new BitSet(new long[]{0x0184000000000002L});
+    public static final BitSet FOLLOW_56_in_expressions_priority_22852 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22859 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22863 = new BitSet(new long[]{0x0184000000000002L});
+    public static final BitSet FOLLOW_50_in_expressions_priority_22880 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_22887 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_1_in_expressions_priority_22891 = new BitSet(new long[]{0x0184000000000002L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_32938 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_RANGLE_in_expressions_priority_32947 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32955 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_32959 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_LANGLE_in_expressions_priority_32976 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_32984 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_32988 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_57_in_expressions_priority_33005 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_33012 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33016 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_58_in_expressions_priority_33033 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_binarynumericoperator_in_expressions_priority_33040 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33044 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_EQUALSEQUALS_in_expressions_priority_33061 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_equals_in_expressions_priority_33069 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33073 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_59_in_expressions_priority_33090 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_unequals_in_expressions_priority_33097 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_expressions_priority_2_in_expressions_priority_33101 = new BitSet(new long[]{0x0E0000000E000002L});
+    public static final BitSet FOLLOW_expressions_priority_3_in_behavior_expressions_expression3139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_alias3168 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_behavior_expressions_alias_in_alias3175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias3230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias3250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_behavior_expressions_all3301 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_all3308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_binarybooleanoperator3355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_not3392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_behavior_expressions_booleanaggregate3434 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_62_in_behavior_expressions_booleanaggregate3450 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_63_in_behavior_expressions_booleanaggregate3466 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_booleanaggregate3478 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_booleanaggregate3483 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_booleanaggregate3487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_equals3524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_unequals3561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_binarynumericoperator3598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_unaryminus3635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_behavior_expressions_count3672 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_count3679 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_count3684 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_count3688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_behavior_expressions_single3722 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_single3729 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_single3734 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_single3738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_tuple3773 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_structure_type_tuple_in_behavior_expressions_tuple3781 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_tuple3788 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_tuple3792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_structure_finexclass_tuple_in_structure_type_tuple3822 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3856 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_48_in_structure_finexclass_tuple3864 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_structure_association_tuple_in_structure_finexclass_tuple3871 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_structure_field_tuple_in_structure_association_tuple3924 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_tuple3934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_structure_field_tuple3989 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_structure_field_tuple4012 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_COLON_in_structure_field_tuple4027 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_structure_field_tuple4035 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_behavior_expressions_numericaggregate4087 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_67_in_behavior_expressions_numericaggregate4103 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_68_in_behavior_expressions_numericaggregate4119 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_69_in_behavior_expressions_numericaggregate4135 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_numericaggregate4147 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_numericaggregate4152 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_numericaggregate4156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_behavior_expressions_objectcreationexpression4192 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_objectcreationexpression4199 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_behavior_expressions_objectcreationexpression4209 = new BitSet(new long[]{0x0000000000110000L});
+    public static final BitSet FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4217 = new BitSet(new long[]{0x0001000000100000L});
+    public static final BitSet FOLLOW_48_in_behavior_expressions_objectcreationexpression4225 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_behavior_expressions_fieldinitializer_in_behavior_expressions_objectcreationexpression4232 = new BitSet(new long[]{0x0001000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_behavior_expressions_objectcreationexpression4244 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_objectcreationexpression4248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOT_in_behavior_expressions_fieldinitializer4290 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_fieldinitializer4303 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_fieldinitializer4323 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_COLON_in_behavior_expressions_fieldinitializer4335 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_fieldinitializer4343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_behavior_expressions_this4386 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_this4389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_namedvalueexpression4442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_namedvalueexpression4462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_implicitcontext_pathExpression_in_behavior_expressions_expression_pathExpression4510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_behavior_expressions_oql_oqlquery4585 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_structure_type_oqlQuery_in_behavior_expressions_oql_oqlquery4592 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_structure_type_oqlQueryWithImplicitSelect_in_behavior_expressions_oql_oqlquery4612 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_behavior_expressions_oql_oqlquery4623 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4630 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_48_in_behavior_expressions_oql_oqlquery4638 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_oql_fromclause_in_behavior_expressions_oql_oqlquery4645 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_behavior_expressions_oql_oqlquery4654 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_oqlquery4661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_oql_fromclause4708 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_behavior_expressions_oql_fromclause4714 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_behavior_expressions_alias_fromClause_in_behavior_expressions_oql_fromclause4721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_alias_fromClause4773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_alias_fromClause4793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_structure_finexclass_oqlQuery_in_structure_type_oqlQuery4841 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4875 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_48_in_structure_finexclass_oqlQuery4883 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_structure_association_oqlQuery_in_structure_finexclass_oqlQuery4890 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_structure_field_oqlQuery_in_structure_association_oqlQuery4943 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQuery4953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_structure_field_oqlQuery5008 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_structure_field_oqlQuery5031 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_oqlQuery_in_structure_field_oqlQuery5049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_namedvalueexpression_oqlQuery_in_behavior_expressions_expression_oqlQuery5092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_structure_finexclass_oqlQueryWithImplicitSelect_in_structure_type_oqlQueryWithImplicitSelect5159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_structure_field_oqlQueryWithImplicitSelect_in_structure_association_oqlQueryWithImplicitSelect5233 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_structure_field_nondeclaredOpposite_in_structure_association_oqlQueryWithImplicitSelect5243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_oqlQueryWithImplicitSelect_in_structure_field_oqlQueryWithImplicitSelect5293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_namedvalueexpression_oqlQueryWithImplicitSelect_in_behavior_expressions_expression_oqlQueryWithImplicitSelect5336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOT_in_behavior_expressions_firstpathexpression5407 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_pathExpression_in_behavior_expressions_firstpathexpression5415 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_firstpathexpression5430 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_firstpathexpression5450 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_firstpathexpression5461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_firstLowercaseIdentifier_in_behavior_expressions_pathexpression5515 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_firstUppercaseIdentifier_in_behavior_expressions_pathexpression5535 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_pathexpression5546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_filterexpression5587 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_behavior_expressions_filterexpression5594 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_filterexpression5598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_literals_booleanliteral_in_behavior_expressions_literals_literal5631 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_literals_stringliteral_in_behavior_expressions_literals_literal5639 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_literals_decimalliteral_in_behavior_expressions_literals_literal5647 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_literals_integerliteral_in_behavior_expressions_literals_literal5655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_literals_dateliteral_in_behavior_expressions_literals_literal5663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_behavior_expressions_literals_binaryliteral_in_behavior_expressions_literals_literal5671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_booleanSymbol_in_behavior_expressions_literals_booleanliteral5705 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_booleanliteral5711 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_behavior_expressions_literals_stringliteral5759 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_stringliteral5765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_floatAsStringSymbol_in_behavior_expressions_literals_decimalliteral5813 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_decimalliteral5819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerAsStringSymbol_in_behavior_expressions_literals_integerliteral5867 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_integerliteral5873 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dateSymbol_in_behavior_expressions_literals_dateliteral5921 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_dateliteral5927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_binarySymbol_in_behavior_expressions_literals_binaryliteral5975 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_binaryliteral5981 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_behavior_expressions_literals_multiobjectliteral6026 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6034 = new BitSet(new long[]{0x0001000000008000L});
+    public static final BitSet FOLLOW_48_in_behavior_expressions_literals_multiobjectliteral6042 = new BitSet(new long[]{0x100C000000094FF0L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_behavior_expressions_expression_in_behavior_expressions_literals_multiobjectliteral6049 = new BitSet(new long[]{0x0001000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_behavior_expressions_literals_multiobjectliteral6059 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_alias_in_behavior_expressions_literals_multiobjectliteral6063 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_structure_association_in_synpred1_FinexClass584 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_behavior_functions_function_in_synpred2_FinexClass615 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_structure_type_field_in_synpred3_FinexClass1075 = new BitSet(new long[]{0x0000000000000002L});
@@ -12965,17 +12965,17 @@ public class FinexClassParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_51_in_synpred6_FinexClass2527 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_DOT_in_synpred7_FinexClass2563 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LBRACKET_in_synpred8_FinexClass2632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_synpred9_FinexClass2690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_synpred10_FinexClass2718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_synpred11_FinexClass2746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_synpred12_FinexClass2808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_synpred13_FinexClass2836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_synpred14_FinexClass2864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RANGLE_in_synpred15_FinexClass2926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LANGLE_in_synpred16_FinexClass2955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_synpred17_FinexClass2984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_synpred18_FinexClass3012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQUALSEQUALS_in_synpred19_FinexClass3040 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_synpred20_FinexClass3069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_synpred9_FinexClass2695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_synpred10_FinexClass2723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_synpred11_FinexClass2751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_synpred12_FinexClass2818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_synpred13_FinexClass2846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_synpred14_FinexClass2874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RANGLE_in_synpred15_FinexClass2941 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LANGLE_in_synpred16_FinexClass2970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_synpred17_FinexClass2999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_synpred18_FinexClass3027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQUALSEQUALS_in_synpred19_FinexClass3055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_synpred20_FinexClass3084 = new BitSet(new long[]{0x0000000000000002L});
 
 }

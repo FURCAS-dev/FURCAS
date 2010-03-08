@@ -21,7 +21,7 @@ public class TcsPrettyPrinterTestHelper {
 	    throws SyntaxAndModelMismatchException {
 	ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-	CtsPrettyPrinter.prettyPrint(source, syntax, new TCSExtractorPrintStream(output));
+	CtsPrettyPrinter.prettyPrint(source, syntax, new TCSExtractorPrintStream(output), null, null);
 
 	return output.toString();
     }
@@ -33,13 +33,13 @@ public class TcsPrettyPrinterTestHelper {
 	Connection con = TcsUtil.getConnectionFromRefObject(source);
 	TextblocksPackage tbPackage = con.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 	CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(tbPackage, null, parserFactory);
-	CtsPrettyPrinter.prettyPrint(source, syntax, target);
+	CtsPrettyPrinter.prettyPrint(source, syntax, target, null, null);
 	return target.getRootBlock();
     }
 
     public static void prettyPrintConsole(RefObject source, ConcreteSyntax syntax)
 	    throws SyntaxAndModelMismatchException {
-	CtsPrettyPrinter.prettyPrint(source, syntax, new TCSExtractorPrintStream(System.out));
+	CtsPrettyPrinter.prettyPrint(source, syntax, new TCSExtractorPrintStream(System.out), null, null);
     }
 
 }

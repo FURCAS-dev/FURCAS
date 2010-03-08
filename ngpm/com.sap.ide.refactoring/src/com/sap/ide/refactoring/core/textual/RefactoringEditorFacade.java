@@ -91,7 +91,8 @@ public class RefactoringEditorFacade {
 	ModelPartition partition = model.getRoot().get___Partition();
 	CtsTextBlockTCSExtractorStream stream = new CtsTextBlockTCSExtractorStream(pkg, partition, getParserFactory());
 
-	CtsPrettyPrinter.prettyPrint(getDecoratedDomainRootObject(), syntax, stream);
+	CtsPrettyPrinter.prettyPrint(getDecoratedDomainRootObject(), syntax, stream, /* ClassTemplate template */ null,
+		/* PrettyPrintContext context */ null);
 	model.setRootTextBlock(stream.getRootBlock());
     }
 
