@@ -235,7 +235,7 @@ syntax Class(k=0 ) {
 
         template NamedValueWithOptionalInitExpression abstract;
 		
-	template Variable addToContext
+	template Variable
 		:	[[
 				"var" name
 					(isDefined(initExpression) ? "=" initExpression)
@@ -248,7 +248,7 @@ syntax Class(k=0 ) {
 			{{ owner=lookIn("#context(block)") }}
 		;
 		
-	template behavioral::actions::Constant addToContext
+	template behavioral::actions::Constant
 		:	"const" [[
 			    disambiguate("identifier EQUALS")
 				name "=" initExpression
@@ -833,78 +833,39 @@ syntax Class(k=0 ) {
 			--]]
 		;
 	
-	template behavioral::actions::Constant #emptyAccumulator addToContext
+	template behavioral::actions::Constant #emptyAccumulator
 		: {{ name='"acc"' }}
 		;
 		
-	template behavioral::actions::Constant #nonEmptyAccumulator addToContext
+	template behavioral::actions::Constant #nonEmptyAccumulator
 		: ownedTypeDefinition name
 		  (isDefined(initExpression) ? "=" initExpression)
 		;
 		
-	template Iterator context(iterator) addToContext
+	template Iterator context(iterator)
 		: [[
 		     disambiguate("data_classes_typedefinition NAME")
 			 ownedTypeDefinition{forcedLower=1} name
 		  |
 		    name
-		    -- if the source type definition has an upper multiplicity > 1,
-		    -- the iterator type's upper multiplicity will be set to 1.
-		    -- If the source's type definition is a nested type definition, this
-		    -- nested type definition is a to-many, and the single type is
-		    -- obtained by taking the nested type definition's referenced type
-		    -- definition.
-		    {{ ownedTypeDefinition=foreach("OCL:if self.\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-		    										self.\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type
-		    									else
-		    										self.\"iterate\".source.getType()
-		    									endif",
-		    							   mode="iteratorType") }}
+		    {{
+		     -- If the object from which to select has a NestedTypeDefinition as its type, use the
+		     -- contained type for the "self" iterator, leaving the ownedTypeDefinition empty.
+		     -- Otherwise, if the object has an upper multiplicity
+		     -- greater than 1, create a new (owned) type definition for the "self" iterator with
+		     -- multiplicity 1..1
+		     ownedTypeDefinition=foreach("OCL:self.\"iterate\".source.getType()->select(td |
+		                                          td.isMany() and not td.oclIsKindOf(NestedTypeDefinition))", 
+		                                 mode="singleFromMany")
+		    }}
 		  ]]
-		;
-	
-	template TypeDefinition #iteratorType abstract;
-	-- TODO: implement missing TypeDefinition templates for #iteratorType
-	template ClassTypeDefinition #iteratorType
-		: {{
-			clazz=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).clazz
-							  else
-							      #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(ClassTypeDefinition).clazz
-							  endif"),
-			objectParameters=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).objectParameters
-							  else
-							      #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(ClassTypeDefinition).objectParameters
-							  endif"),
-			lowerMultiplicity=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
-							  else
-							      1
-							  endif"),
-			upperMultiplicity=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).upperMultiplicity
-							  else
-							      1
-							  endif"),
-			ordered=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.ordered
-							  else
-							      true
-							  endif"),
-			unique=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.unique
-							  else
-							      true
-							  endif")
-		  }}
 		;
 	
 	operatorTemplate Selection(operators=lbracketOp, source='object') context
 		: iterator{mode=selection} selectionExpr "]" 
 		;
 	
-	template Iterator #selection context addToContext
+	template Iterator #selection context
 		: {{ name='"self"',
 		     -- If the object from which to select has a NestedTypeDefinition as its type, use the
 		     -- contained type for the "self" iterator, leaving the ownedTypeDefinition empty.
@@ -934,6 +895,31 @@ syntax Class(k=0 ) {
 		     unique='false' }}
 		;
 
+	template ClassTypeDefinition #manyFromSingle
+		: {{ clazz=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).clazz"),
+	         objectParameters=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).lowerMultiplicity"),
+		     upperMultiplicity='-1',
+		     ordered=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).ordered"),
+		     unique='false' }}
+		;
+	
+	template FunctionSignatureTypeDefinition #manyFromSingle
+		: {{ signature=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).lowerMultiplicity"),
+		     upperMultiplicity='-1',
+		     ordered=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).ordered"),
+		     unique='false' }}
+		;
+	
+	template NestedTypeDefinition #manyFromSingle
+		: {{ type=lookIn("OCL:#context.oclAsType(NestedTypeDefinition).type"),
+	         lowerMultiplicity='0',
+		     upperMultiplicity='-1',
+		     ordered='false',
+		     unique='false' }}
+		;
+	
 	-- ------------------------------ OQL ------------------------------
 	template OqlQuery context(oqlQuery)
 		: [[ -- explicit select
@@ -953,7 +939,7 @@ syntax Class(k=0 ) {
 		: fromExpression "as" alias{mode=fromClause}
 		;
 	
-	template Iterator #fromClause context(iteratorFromClause) addToContext
+	template Iterator #fromClause context(iteratorFromClause)
 		: name
 		  {{ ownedTypeDefinition=foreach("OCL:if self.fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
 		    										self.fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type
@@ -1098,10 +1084,6 @@ syntax Class(k=0 ) {
 	template AssociationEndSignatureImplementation #oqlQueryResultPropertiesGetter abstract;
 	template LinkTraversal #oqlQueryResultPropertiesGetter
 		: implements_{mode=oqlQueryResultProperties, forcedLower=1}
-		  {{ end=lookIn("OCL:#context.oclAsType(Iterator).fromClause.fromClauseOfOqlQuery.getType().
-		                     oclAsType(ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()->select(
-		                     ae | ae.name=#context.oclAsType(Iterator).name)")
-		  }}
 		;
 		
 	-- "getters" for each property
@@ -1210,13 +1192,141 @@ syntax Class(k=0 ) {
 		
                 
 -- @begin ANALYTICS EXPRESSIONS
+    --------------------------------------- BEGIN OF GROUP BY ---------------------------------
+    template GroupBy context(groupBy)
+        : "group" object "by" dimensions
+          fact{mode=groupByFactIterator}
+          (isDefined(mapExpression) ? "map" mapExpression{forcedLower=1, mode=groupBy}
+                                      groupedFacts{forcedLower=1, mode=groupByGroupedFactsIterator}
+                                      {{ ownedTypeDefinition=foreach("OCL:self.mapExpression.getType()",
+                                            when="OCL:not self.mapExpression.getType().isMany() and self.mapExpression.getType().oclIsKindOf(ClassTypeDefinition)",
+                                               mode="manyFromSingle", as=ClassTypeDefinition,
+                                            when="OCL:not self.mapExpression.getType().isMany() and self.mapExpression.getType().oclIsKindOf(FunctionSignatureTypeDefinition)",
+                                               mode="manyFromSingle", as=FunctionSignatureTypeDefinition,
+                                            mode="manyFromSingle", as=NestedTypeDefinition
+                                          )
+									  }}
+                                    : {{ ownedTypeDefinition=foreach("OCL:self.object.getType()",
+                                            when="OCL:not self.object.getType().isMany() and self.object.getType().oclIsKindOf(ClassTypeDefinition)",
+                                               mode="manyFromSingle", as=ClassTypeDefinition,
+                                            when="OCL:not self.object.getType().isMany() and self.object.getType().oclIsKindOf(FunctionSignatureTypeDefinition)",
+                                               mode="manyFromSingle", as=FunctionSignatureTypeDefinition,
+                                            mode="manyFromSingle", as=NestedTypeDefinition
+                                          )
+									  }}
+          ) 
+        ;
+       
+    template DimensionDefinition
+        : iterator{mode=dimensionDefinitionIterator} ":" expression
+        ;
+    
+    template Iterator #dimensionDefinitionIterator
+        : name
+          -- Type is inferred by TypedElement.getType() to be the type of the owning DimensionDefinition's expression
+        ;
+    
+    template Iterator #groupByFactIterator context
+        : {{ name='"fact"',
+		     -- If the object from which to group has a NestedTypeDefinition as its type, use the
+		     -- contained type for the "self" iterator, leaving the ownedTypeDefinition empty.
+		     -- Otherwise, if the object has an upper multiplicity
+		     -- greater than 1, create a new (owned) type definition for the "self" iterator with
+		     -- multiplicity 1..1
+		     ownedTypeDefinition=foreach("OCL:self.factOfGroupBy.object.getType()->select(td |
+		                                          td.isMany() and not td.oclIsKindOf(NestedTypeDefinition))", 
+		                                 mode="singleFromMany")
+          }}
+		;
+		    
+    template Iterator #groupByGroupedFactsIterator
+        : {{ name='"group"' }}
+          -- TODO type should be inferrable as facts type because each group would be likely to have same general multiplicity as facts object; reduction of lower multiplicity to 0 is not required because empty groups are not passed along
+		;
+	
+	template dataaccess::expressions::Expression #groupBy abstract;
+	template ObjectLiteral #groupBy
+		: propertyValues{forcedLower=1, mode=groupByMapResult, separator=","}
+		  valueClass{mode=groupByMapResult}
+		;
+	
+	template ValueInit #groupByMapResult
+		: forEnd{mode=groupByMapResultPropertiesOtherEnd} ":" value
+		;
+		
+	template data::classes::AssociationEnd #groupByMapResultPropertiesOtherEnd
+		: name
+		  association{mode=groupByMapResultProperties}
+		  signatureImplementations{mode=groupByMapResultPropertiesGetter, forcedLower=1, forcedUpper=1}
+		  {{ type=foreach("OCL:self.valueInit->any(true).value.getType()", mode="oqlQueryResultAssociationEndType"),
+		     navigable='true'
+		  }}
+		;
+	
+	template data::classes::Association #groupByMapResultProperties
+		: -- force creation of non-declared opposite end
+		  ends{forcedLower=1, forcedUpper=1, mode=groupByMapResultPropertiesLocalEnd} 
+		  {{ name=lookIn("OCL:'Query_to_'.concat(self.ends->first().name)"),
+		     package_=lookIn("OCL:self.ends->select(e | e.type.oclAsType(ClassTypeDefinition).clazz.objectLiteral->notEmpty()).
+		                          type.oclAsType(ClassTypeDefinition).clazz.package_")
+		  }}
+		;
+	
+	template data::classes::AssociationEnd #groupByMapResultPropertiesLocalEnd
+		: {{ navigable='false',
+		     contributesToEquality='true',
+		     name=lookIn("OCL:'opposite_of_'.concat(self.otherEnd().name)"),
+		     type=lookIn("OCL:self.otherEnd().valueInit->any(true).objectLiteral.valueClass")
+		  }}
+		;
+
+	template AssociationEndSignatureImplementation #groupByMapResultPropertiesGetter abstract;
+	template LinkTraversal #groupByMapResultPropertiesGetter
+		: implements_{mode=groupByMapResultProperties, forcedLower=1}
+		;
+		
+	-- "getters" for each property
+	template MethodSignature #groupByMapResultProperties
+		: {{ name=lookIn("OCL:'.'.concat(self.implementation.oclAsType(AssociationEndSignatureImplementation).end.name)"),
+		     owner=lookIn("OCL:self.implementation.oclAsType(AssociationEndSignatureImplementation).
+		                       end.otherEnd().type.clazz"),
+		     output=lookIn("OCL:self.implementation.oclAsType(LinkTraversal).end.type")
+		  }}
+		;
+	
+	template TypeDefinition #groupByMapResultAssociationEndType abstract;
+	-- Can only be class type definition because association ends don't support other type definitions.
+	-- It is furthermore constrained in the metamodel by constraint SelectedIteratorsMustHaveClassTypeDefinitionAsType.
+	template ClassTypeDefinition #groupByMapResultAssociationEndType
+		: {{
+		     clazz=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).clazz"),
+		     objectParameters=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).objectParameters"),
+		     lowerMultiplicity=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).upperMultiplicity"),
+		     ordered=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).ordered"),
+		     unique=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).unique")
+		  }}
+		;
+
+	-- creates the GroupBy's map result type as a value class
+	template SapClass #groupByMapResult
+		: {{ name=lookIn("OCL:self.objectLiteral.valueInit.forEnd->iterate(
+		  		i; acc='GroupByMapResult' | acc.concat('_').concat(i.name))"),
+		     valueType='true',
+		     package_=lookIn("OCL:self.objectLiteral.getOwningClass().package_")
+		  }}
+		;
+
+    --------------------------------------- END OF GROUP BY ---------------------------------
+	
+		    
 	template CellSet #cellSet
 		: "aggregate" factsType "by" dimensions{separator=","} ":"
 		  (isDefined(valueFunction) ? "key" valueFunction{mode=dimension})
 		  aggregationFunction{mode=aggregationFunction}
 		;
 	
-	template Dimension addToContext
+	template Dimension
 		: name ":" characteristicFunction{mode=dimension}
 		;
 	
@@ -1226,7 +1336,7 @@ syntax Class(k=0 ) {
 		  {{ sideEffectFree = lookIn("OCL:self.implementation.isSideEffectFree()") }}
 		;
 	
-	template data::classes::Parameter #dimension addToContext
+	template data::classes::Parameter #dimension
 		: {{ 
 			name='"fact"',
 			ownedTypeDefinition=foreach("OCL:let f=#context.oclAsType(data::classes::FunctionSignature) in
@@ -1323,7 +1433,7 @@ syntax Class(k=0 ) {
 		  {{ sideEffectFree = lookIn("OCL:self.implementation.isSideEffectFree()") }}
 		;
 	
-	template data::classes::Parameter #aggregationFunction addToContext
+	template data::classes::Parameter #aggregationFunction
 		: {{ name='"values"' }}
 		;
 	
@@ -1494,7 +1604,7 @@ syntax Class(k=0 ) {
 			implementation
 		;
 		
-	template classes::Parameter addToContext
+	template classes::Parameter
 		: ownedTypeDefinition{forcedLower=1} name
 		  (isDefined(defaultValue) ? "=" defaultValue)
 		;

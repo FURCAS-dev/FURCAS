@@ -8,24 +8,19 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
+import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
-import tcs.Template;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
 import com.sap.ide.cts.dialogs.ChooseConcreteSyntaxDialog;
-import com.sap.ide.cts.dialogs.PrettyPrintPreviewDialog;
 import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
-import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
-import com.sap.ide.cts.editor.prettyprint.CtsPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
+import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -33,14 +28,19 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 
-
+/**
+ * 
+ * @author Andreas Landerer
+ * @version 1.0
+ *
+ */
 public class PrettyPrintAction extends Action
 {
 
 	private final RefObject modelElement;
 	private final MofClass clazz;
-	private TextBlock rootBlock;
 	private final boolean openEditorAfterPrettyPrint;
+	private IncrementalPrettyPrinter pp;
 
 	public PrettyPrintAction(MofClass clazz, RefObject modelElement, boolean openEditorAfterPrettyPrint)
 	{
@@ -51,8 +51,11 @@ public class PrettyPrintAction extends Action
 		this.clazz = clazz;
 		this.modelElement = modelElement;
 		this.openEditorAfterPrettyPrint = openEditorAfterPrettyPrint;
+		this.pp = new IncrementalPrettyPrinter();
+		// TODO Auto-generated constructor stub
 	}
 	
+	 @SuppressWarnings("unchecked")
 	 @Override
 	 public void runWithEvent(Event event) 
 	 {
@@ -61,10 +64,13 @@ public class PrettyPrintAction extends Action
 			 Connection connection = modelElement.get___Connection();
 			 MQLProcessor mql = connection.getMQLProcessor();
 			 
+			 // select corresponding templates
 			 String mqlTemplates = "select template \n" +
 			 		"from \"demo.sap.com/tcsmeta\"#TCS::ClassTemplate as template, \n" +
 			 		"\"" + ( (Partitionable) clazz ).get___Mri( ) + "\" as class \n" +
 			 		"where template.metaReference = class";
+			 
+			 // select corresponding text blocks to model element
 			 String mqlTextBlocks = "select tb \n" +
 			 		"from \"demo.sap.com/tcsmeta\"#textblocks::TextBlock as tb, \n" + 
 			 		"\"" + ( (Partitionable) modelElement ).get___Mri( ) + "\" as me \n" + 
@@ -75,60 +81,48 @@ public class PrettyPrintAction extends Action
 			 resultSet = mql.execute(mqlTextBlocks);
 			 RefObject[] rootTbs = resultSet.getRefObjects("tb");
 			 
-			 if(templates.length > 0)
+			 try
 			 {
-				 TextBlock parent = null;
-				 int oldTbLength = 0;
-				 int oldTbIndex = 0;
-				 int oldOffset = 0;
-				 int oldAbsoluteOffset = 0;
-				 String cachedString = null;
-				 String toDelete = null;
-				 for(RefObject o : rootTbs)
+				 // Choose concrete syntax to print textblock
+				 ConcreteSyntax syntax = null;
+				 TCSExtractorStream stream = null;
+				 ClassTemplate template = null;
+				 if(templates.length > 1)
 				 {
-					 if(o instanceof TextBlock)
+					 // search and choose main template
+					 for(Object o : templates)
 					 {
-						 TextBlock t = (TextBlock) o;
-						 oldTbLength = t.getLength();
-						 if (t != null && t.getParentBlock() != null)
+						 if(o instanceof ClassTemplate && ((ClassTemplate) o).isMain())
 						 {
-							 parent = t.getParentBlock();
-							 oldAbsoluteOffset = t.getAbsoluteOffset();
-							 oldOffset = t.getOffset();
-							 oldTbIndex = parent.getSubBlocks().indexOf(o);
-							 parent.getSubBlocks().remove(o);
-							 cachedString = TbNavigationUtil.getUltraRoot(parent).getCachedString();
-							 if(cachedString!=null)
-							 {
-								 toDelete = cachedString.substring(oldAbsoluteOffset, oldAbsoluteOffset+oldTbLength);
+							 template = (ClassTemplate) o;
+							 syntax = template.getConcretesyntax();
 							 }
-							 cachedString = cachedString.replace(toDelete, "");
-							 parent.setCachedString(cachedString);
 						 }
-					 }
-					 o.refDelete();
-				 }
-				 
-				 try
+					 if(syntax == null)
 				 {
-					 ConcreteSyntax s = null;
-					 TCSExtractorStream stream = null;
-					 if(templates.length > 1)
-					 {
 						 ChooseConcreteSyntaxDialog dialog = new ChooseConcreteSyntaxDialog(templates);
 						 Object o = dialog.execute(null);
-						 if(o instanceof Template)
+						 if(o instanceof ClassTemplate)
 						 {
-							 s = ((Template) o).getConcretesyntax();
+							 template = (ClassTemplate) o;
+							 syntax = template.getConcretesyntax();
 						 }
 					 }
-					 else
+				 }
+				 else if(templates.length == 1)
 					 {
-						 if(templates[0] instanceof Template)
+					 if(templates[0] instanceof ClassTemplate)
 						 {
-							 s = ((Template) templates[0]).getConcretesyntax();
+						 template = (ClassTemplate) templates[0];
+						 syntax = template.getConcretesyntax();
 						 }
 					 }
+				 else
+				 {
+					 throw new Exception("No template found to print model element!");
+				 }
+				 
+				 // Choose corresponding parser factory
 					 IConfigurationElement[] config = Platform.getExtensionRegistry().
 					 		getConfigurationElementsFor("com.sap.ide.cts.parser.parserFactory");
 					 if(config != null && config.length > 0)
@@ -137,7 +131,7 @@ public class PrettyPrintAction extends Action
 						 {
 	
 							 String languageID = configElement.getAttribute("languageID");
-							 if(languageID != null && languageID.equals(s.getName()))
+						 if(languageID != null && languageID.equals(syntax.getName()))
 							 {
 								 ParserFactory<ObservableInjectingParser, Lexer> parserFactory = (ParserFactory<ObservableInjectingParser, Lexer>) configElement.createExecutableExtension("dynamicParserFactoryClass");
 								 stream = new CtsTextBlockTCSExtractorStream(connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR),
@@ -150,22 +144,11 @@ public class PrettyPrintAction extends Action
 					 {
 						 throw new Exception("No Parser Factory registered!");
 					 }
-					 CtsPrettyPrinter.prettyPrint(modelElement, s, stream);
-					 if(stream instanceof CtsTextBlockTCSExtractorStream)
+				 
+				 // pretty print textblock
+				 this.pp.prettyPrint(rootTbs, modelElement, syntax, stream, template);
+				 if(this.pp.getRootBlock() != null)
 					 {
-						 this.rootBlock = ((CtsTextBlockTCSExtractorStream) stream).getRootBlock();
-						 if(parent != null)
-						 {
-							 this.rootBlock.setOffset(oldOffset);
-							 parent.getSubBlocks().add(oldTbIndex, this.rootBlock);
-							 int lengthToAdd = this.rootBlock.getLength()-oldTbLength;
-							 TbChangeUtil.updateOffsetsWithinTextBlock(this.rootBlock, lengthToAdd);
-							 TbChangeUtil.updateLengthAscending(parent, lengthToAdd);
-							 StringBuffer newCachedString = new StringBuffer(cachedString);
-							 newCachedString.insert(oldAbsoluteOffset, this.rootBlock.getCachedString());
-							 TbNavigationUtil.getUltraRoot(this.rootBlock).setCachedString(newCachedString.toString());
-						 }
-					 }
 					 connection.save();
 					 PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog("Pretty Printer", "Pretty Printer finished successfully!");
 					 dialog.execute(null);
@@ -174,6 +157,12 @@ public class PrettyPrintAction extends Action
 						 ModelManagerUI.getEditorManager().openEditor(modelElement, null, null);
 					 }
 				 }
+				 else
+				 {
+					 PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog("Pretty Printer", "Model Element was not pretty printed, please try superior model element!");
+					 dialog.execute(null);
+				 }
+			 }
 				 catch(Exception e)
 				 {
 					 connection.revert();
@@ -182,12 +171,6 @@ public class PrettyPrintAction extends Action
 					 dialog.execute(null);
 				 }
 			 }
-			 else
-			 {
-				 PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog("Pretty Printer", "Please select root element to start Pretty Printer!");
-				 dialog.execute(null);
-			 }
-		 }
 		 catch(Exception e)
 		 {
 			 e.printStackTrace();
@@ -196,103 +179,6 @@ public class PrettyPrintAction extends Action
 
 	public TextBlock getRootBlock()
 	{
-		return rootBlock;
+		return this.pp.getRootBlock();
 	}
 }
-
-/**
- * ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> myParserFactory =
-					new ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>(){
-	
-						@Override
-						public ITextBlocksTokenStream createIncrementalTokenStream(
-								IncrementalLexer incrementalLexer)
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override 
-						public Lexer createLexer(CharStream input){// TODO Auto-generated method stub
-						try
-						{
-							return (Lexer) getClass().forName("ClassLexer").newInstance();
-						}
-						catch(InstantiationException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						catch(IllegalAccessException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						catch(ClassNotFoundException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						return null;
-						}
-	
-						@Override public Lexer createLexer(CharStream input,ITokenFactory<? extends ANTLR3LocationToken> factory){// TODO Auto-generated method stub
-						return null;}
-	
-						@Override public ObservableInjectingParser createParser(TokenStream input,Connection connection,Collection<PRI> additionalScope,Collection<CRI> collection){// TODO Auto-generated method stub
-						return null;}
-	
-						@Override public ObservableInjectingParser createParser(TokenStream input,Connection connection){// TODO Auto-generated method stub
-						return null;}
-	
-						@Override
-						public String getLanguageId()
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override
-						public Class<? extends Lexer> getLexerClass()
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override
-						public CRI getMetamodelCri(Connection connection)
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override
-						public RefPackage getMetamodelPackage(Connection connection)
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override
-						public Class<? extends ObservableInjectingParser> getParserClass()
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override
-						public Collection<PRI> getParserLookupScope(
-								Connection connection)
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}
-	
-						@Override
-						public String getSyntaxUUID()
-						{
-							// TODO Auto-generated method stub
-							return null;
-						}}
-			 ;
-			 **/
