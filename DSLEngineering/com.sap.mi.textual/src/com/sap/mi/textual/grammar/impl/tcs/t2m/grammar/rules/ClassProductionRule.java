@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-04-23 14:54:43 +0200 (Do, 23 Apr 2009) $
- * @version $Revision: 6272 $
+ * Date: $Date: 2010-03-04 17:03:31 +0100 (Do, 04 Mrz 2010) $
+ * @version $Revision: 9523 $
  * @author: $Author: c5106462 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules;

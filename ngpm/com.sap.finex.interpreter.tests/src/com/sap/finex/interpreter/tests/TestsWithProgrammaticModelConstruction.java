@@ -26,6 +26,7 @@ import behavior.expressions.literals.IntegerLiteral;
 import com.sap.finex.interpreter.Activator;
 import com.sap.finex.interpreter.FinexInMemoryRepository;
 import com.sap.finex.interpreter.FinexInterpreter;
+import com.sap.finex.interpreter.FinexStackFrame;
 import com.sap.finex.interpreter.objects.FinexNativeObject;
 import com.sap.finex.metamodel.utils.MetamodelUtils;
 import com.sap.mi.fwk.ConnectionManager;
@@ -40,7 +41,7 @@ public class TestsWithProgrammaticModelConstruction extends TestCase {
     public void setUp() {
 	Connection conn = getConnection("finex.stdlib");
 	interpreter = new FinexInterpreter(conn, new FinexInMemoryRepository(Activator.getDefault().getModelAdapter()));
-
+	interpreter.push(new FinexStackFrame());
     }
 
     public void testBinaryIntegerOperationsSingle() throws SecurityException, IllegalArgumentException, NoSuchMethodException,

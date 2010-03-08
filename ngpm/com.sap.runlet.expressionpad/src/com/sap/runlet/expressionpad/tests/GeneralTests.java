@@ -30,6 +30,40 @@ import data.classes.TypeDefinition;
 
 public class GeneralTests extends RunletTestCase {
     
+    public void testSimpleGroupByWithoutMapping() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "group 1->including(2) by dim1:fact.div(fact)",
+            "group 1->including(2) by dim1:fact");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(2, result.length);
+        assertEquals(0, errors.length);
+        assertEquals(1, result[0].size());
+        boolean found1 = false;
+        boolean found2 = false;
+        for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> r : result[0].flatten()) {
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(1))) {
+        	found1 = true;
+            }
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(2))) {
+        	found2 = true;
+            }
+        }
+        assertTrue(found1 && found2);
+        assertEquals(2, result[1].size());
+        found1 = false;
+        found2 = false;
+        for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> r : result[1].flatten()) {
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(1))) {
+        	found1 = true;
+            }
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(2))) {
+        	found2 = true;
+            }
+        }
+        assertTrue(found1 && found2);
+    }
+
     public void testSimpleMap() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
             "var f=const function(String s):Number { return s.length(); }",

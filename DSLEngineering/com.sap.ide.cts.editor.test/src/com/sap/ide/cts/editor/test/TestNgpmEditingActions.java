@@ -9,7 +9,6 @@ import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
-import modelmanagement.Package;
 import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.CoreException;
@@ -71,9 +70,9 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         
         saveAll(editor);
         assertTrue(refObject.is___Alive());
-        MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
-                .iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
-        assertEquals(1, mce.getType().getLowerMultiplicity());
+	MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
+		.iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
+	assertEquals(1, mce.getType().getLowerMultiplicity());
         close(editor);
     };
 
@@ -187,14 +186,14 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         saveAll(editor);
         failOnError(editor);
         assertTrue(refObject.is___Alive());
-        MethodSignature m = refObject.getOwnedSignatures().iterator().next();
-        MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
-        assertNotNull(mce.getObject());
-        assertTrue(mce.getObject() instanceof VariableExpression);
-        assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
-        assertTrue(mce.getOwnedTypeDefinition() instanceof ClassTypeDefinition);
-        assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
-        assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+	assertNotNull(mce.getObject());
+	assertTrue(mce.getObject() instanceof VariableExpression);
+	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+	assertTrue(mce.getOwnedTypeDefinition() instanceof ClassTypeDefinition);
+	assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
+	assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
         close(editor);
     };
 
@@ -231,17 +230,17 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         saveAll(editor);
         failOnError(editor);
         assertTrue(refObject.is___Alive());
-        MethodSignature m = refObject.getOwnedSignatures().iterator().next();
-        MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
-        assertNotNull(mce.getObject());
-        assertTrue(mce.getObject() instanceof VariableExpression);
-        assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
-        assertTrue(mce.getOwnedTypeDefinition() instanceof NestedTypeDefinition);
-        assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
-        assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+	assertNotNull(mce.getObject());
+	assertTrue(mce.getObject() instanceof VariableExpression);
+	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+	assertTrue(mce.getOwnedTypeDefinition() instanceof NestedTypeDefinition);
+	assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
+	assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
         close(editor);
     };
-    
+
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.
      */
@@ -1621,69 +1620,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		close(editor);
 	}
 
-	@Test
-	public void testDeleteStatementFromMethod() throws NullPartitionNotEmptyException,
-			ReferencedTransientElementsException, PartitionsNotSavedException,
-			BadLocationException, CoreException {
-
-		NgpmPackage rootPkg = connection
-				.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
-		final SapClass clazz = (SapClass) rootPkg.getData().getClasses()
-				.getSapClass().refCreateInstanceInPartition(
-						ModelManager.getPartitionService().getPartition(
-								connection, getProject(),
-								new Path("src/Package1235568260162.types")));
-		final Package pack = (Package) rootPkg.getModelmanagement()
-				.getPackage().refCreateInstanceInPartition(
-						ModelManager.getPartitionService().getPartition(
-								connection, getProject(),
-								new Path("src/Package1235568260162.types")));
-		clazz.setPackage(pack);
-		clazz.setName("Humba");
-		connection.save();
-
-		AbstractGrammarBasedEditor editor = openEditor(clazz);
-
-		CtsDocument document = getDocument(editor);
-		String contents = document.get();
-		int bodyStart = contents.indexOf('{');
-		String newBody = "Boolean playWithPersistence() {"
-				+ "store this;"
-				+ "commit;"
-				+ "var repositoryContainsThis = all Organization->iterate(contains=false; i|contains.or(i==this));"
-				+ "return repositoryContainsThis;" + "}"
-				+ "owns Person* persons {.,+=,-=}";
-		document.replace(bodyStart + 1, 0, newBody);
-		assertEquals("class Humba {" + newBody + "\n  \n}", document.get());
-
-		saveAll(editor);
-
-		assertEquals(4, clazz.getOwnedSignatures().size());
-		Block body = (Block) clazz.getOwnedSignatures().iterator().next()
-				.getImplementation();
-		assertEquals(4, body.getStatements().size());
-
-		contents = document.get();
-		String commitString = "commit;";
-		int commitStatmentIndex = contents.indexOf(commitString);
-		document.replace(commitStatmentIndex, commitString.length(), "");
-		assertEquals(
-				"class Humba {Boolean playWithPersistence() {"
-						+ "store this;"
-						+ "var repositoryContainsThis = all Organization->iterate(contains=false; i|contains.or(i==this));"
-						+ "return repositoryContainsThis;" + "}"
-						+ "owns Person* persons {.,+=,-=}\n  \n}", document.get());
-
-		saveAll(editor);
-
-		assertEquals(4, clazz.getOwnedSignatures().size());
-		body = (Block) clazz.getOwnedSignatures().iterator().next()
-				.getImplementation();
-		assertEquals(3, body.getStatements().size());
-
-		close(editor);
-	}
-	
     @Test
     public void testIncrementalPropertyInitEvaluation() throws NullPartitionNotEmptyException,
 	    ReferencedTransientElementsException, BadLocationException,
