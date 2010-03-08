@@ -34,7 +34,7 @@ public class GenerateGrammarAction extends Action {
     private Connection connection;
 
     public GenerateGrammarAction(ConcreteSyntax modelElement, boolean b) {
-        super("Pretty Print", PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ETOOL_PRINT_EDIT));
+        super("Generate Grammar", PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ETOOL_PRINT_EDIT));
         this.setDisabledImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
                 ISharedImages.IMG_ETOOL_PRINT_EDIT_DISABLED));
         this.setId("generateGrammar");

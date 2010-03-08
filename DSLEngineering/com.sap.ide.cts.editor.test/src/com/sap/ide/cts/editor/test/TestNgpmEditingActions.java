@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
@@ -27,6 +28,7 @@ import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
+import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -41,6 +43,7 @@ import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.MethodSignature;
 import data.classes.NamedValue;
+import data.classes.NestedTypeDefinition;
 import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.TypeDefinition;
@@ -50,6 +53,194 @@ import dataaccess.expressions.This;
 import dataaccess.expressions.VariableExpression;
 
 public class TestNgpmEditingActions extends RunletEditorTest {
+    
+    /**
+     * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
+     * multiplicity of calling a method with 1..1 output multiplicity should change to 1..1.
+     */
+    @Test
+    public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
+        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(53, 0, " 1..1");
+        
+        document.replace(72, 0, " 1..1");
+        
+        saveAll(editor);
+        assertTrue(refObject.is___Alive());
+        MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
+                .iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
+        assertEquals(1, mce.getType().getLowerMultiplicity());
+        close(editor);
+    };
+
+    /**
+     * When renaming an association end, the method signatures that expose the
+     * association end in the class are duplicated.
+     */
+    @Test
+    public void testRenameOfAssociationEnd() throws PartInitException, BadLocationException, CoreException {
+        final RefObject refObject = findClass("OrderedAssocTestCase");
+        assertNotNull(refObject);
+        assertTrue(refObject.is___Alive());
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        String content = document.get();
+        document.replace(content.indexOf("Numbers"), "Numbers".length(), "String");
+        saveAll(editor);
+        // failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        SapClass c = (SapClass) refObject;
+        for (MethodSignature ms : c.getOwnedSignatures()) {
+            if (ms.getName().equals(".orderedNumbers") || ms.getName().equals("orderedNumbers+=")
+                    || ms.getName().equals("orderedNumbers-=") || ms.getName().equals("orderedNumbers=")) {
+                fail("found method " + ms.getName() + " which should have been deleted");
+            }
+        }
+        close(editor);
+    };
+
+    /**
+     * Under certain circumstances, this provokes a NullPointerException. Signature at the time was Number 1..*
+     * m(ThisToparameterChange 1..* t).<p>
+     * 
+     * To see the failing effects of this test, set a breakpoint with condition
+     * 
+     *   <tt>((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo() == null</tt>
+     *   
+     * at {@link IncrementalParsingUtil}, line 317.
+     * 
+     */
+    @Test
+    public void testThisMToTM() throws PartInitException, BadLocationException, CoreException {
+        // Source / Copy of: PF.IDE:E0A411598C604540124F11DFA0B6EFF00A0001C5
+        final SapClass refObject = findClass("ThisToParameterChange");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(35, 4, "N");
+        document.replace(36, 0, "u");
+        document.replace(37, 0, "m");
+        document.replace(38, 0, "b");
+        document.replace(39, 0, "e");
+        document.replace(40, 0, "r");
+        document.replace(41, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        document.replace(41, 0, " ");
+        document.replace(42, 0, "1");
+        document.replace(43, 0, ".");
+        document.replace(44, 0, ".");
+        document.replace(70, 0, " ");
+        document.replace(71, 0, "1");
+        document.replace(72, 0, ".");
+        document.replace(73, 0, ".");
+        document.replace(74, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        document.replace(88, 6, "t");
+        document.replace(89, 0, ".");
+        document.replace(90, 0, "m");
+        saveAll(editor);
+        //failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        // Your assertions on refObject here 
+
+        close(editor);
+    };
+
+    /**
+     * Nothing broken so far, but trying to stress-test OCL IA
+     */
+    @Test
+    public void testThisToParameterAndThenParamMultChangeToOneToOne() throws PartInitException, BadLocationException, CoreException {
+        final SapClass refObject = findClass("ThisToParameterChange");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(76, 4, "t");
+        document.replace(35, 4, "N");
+        document.replace(36, 0, "u");
+        document.replace(37, 0, "m");
+        document.replace(38, 0, "b");
+        document.replace(39, 0, "e");
+        document.replace(40, 0, "r");
+        document.replace(41, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        document.replace(41, 0, " ");
+        document.replace(42, 0, "1");
+        document.replace(43, 0, ".");
+        document.replace(44, 0, ".");
+        document.replace(70, 0, " ");
+        document.replace(71, 0, "1");
+        document.replace(72, 0, ".");
+        document.replace(73, 0, ".");
+        document.replace(74, 0, "1");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+        MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+        assertNotNull(mce.getObject());
+        assertTrue(mce.getObject() instanceof VariableExpression);
+        assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+        assertTrue(mce.getOwnedTypeDefinition() instanceof ClassTypeDefinition);
+        assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
+        assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
+        close(editor);
+    };
+
+    /**
+     * Nothing broken so far, but trying to stress-test OCL IA
+     */
+    @Test
+    public void testThisToParameterAndThenParamMultChangeToOneToMany() throws PartInitException, BadLocationException, CoreException {
+        final SapClass refObject = findClass("ThisToParameterChange");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(76, 4, "t");
+        document.replace(35, 4, "N");
+        document.replace(36, 0, "u");
+        document.replace(37, 0, "m");
+        document.replace(38, 0, "b");
+        document.replace(39, 0, "e");
+        document.replace(40, 0, "r");
+        document.replace(41, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        document.replace(41, 0, " ");
+        document.replace(42, 0, "1");
+        document.replace(43, 0, ".");
+        document.replace(44, 0, ".");
+        document.replace(70, 0, " ");
+        document.replace(71, 0, "1");
+        document.replace(72, 0, ".");
+        document.replace(73, 0, ".");
+        document.replace(74, 0, "*");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+        MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+        assertNotNull(mce.getObject());
+        assertTrue(mce.getObject() instanceof VariableExpression);
+        assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+        assertTrue(mce.getOwnedTypeDefinition() instanceof NestedTypeDefinition);
+        assertEquals(1, mce.getOwnedTypeDefinition().getLowerMultiplicity());
+        assertEquals(-1, mce.getOwnedTypeDefinition().getUpperMultiplicity());
+        close(editor);
+    };
     
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.

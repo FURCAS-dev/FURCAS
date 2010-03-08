@@ -184,7 +184,9 @@ public class OclFactoryImpl extends OclFactory {
 
         for ( Iterator<? extends RefObject> it = refObjects.iterator( ); it.hasNext( ); ) {
             RefObject refObject = it.next( );
-            set.add( createModelObject( refObject ) );
+            if(refObject != null) {
+                set.add( createModelObject( refObject ) );
+            }
         }
     }
 
