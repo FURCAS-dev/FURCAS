@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Wed Mar 03 00:33:33 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Thu Mar 04 23:33:24 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -211,7 +211,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.literals.org.omg.sap2mof.OperationCodeOcl=context ObjectLiteral::isEqualTo(o:ObjectLiteral):Boolean...    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.842' 
+            <Model:Tag xmi.id = 'G.860' 
               name = 'org.omg.sap2mof.OperationCodeOcl=context ObjectLiteral::isEqualTo(o:ObjectLiteral):Boolean...' annotation = '' 
               tagId = 'org.omg.sap2mof.OperationCodeOcl' >
               <Model:Tag.values>
@@ -514,7 +514,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.collectionExpressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.844' 
+            <Model:Tag xmi.id = 'G.862' 
               name = 'org.omg.sap2mof.store=no' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -844,7 +844,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.fp.org.omg.sap2mof.OperationCodeOcl=context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation...    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.846' 
+            <Model:Tag xmi.id = 'G.864' 
               name = 'org.omg.sap2mof.OperationCodeOcl=context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation...' annotation = '' 
               tagId = 'org.omg.sap2mof.OperationCodeOcl' >
               <Model:Tag.values>
@@ -1078,7 +1078,7 @@ The issue with this operation is that each time a new inbound composite relatios
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.847' 
+        <Model:Tag xmi.id = 'G.865' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1150,7 +1150,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::evaluatesToEqualAs(e:Expression):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.848' 
+        <Model:Tag xmi.id = 'G.866' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::evaluatesToEqualAs(e:Expression):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1183,7 +1183,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Iterator)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.849' 
+        <Model:Tag xmi.id = 'G.867' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Iterator)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1254,7 +1254,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.850' 
+        <Model:Tag xmi.id = 'G.868' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1278,7 +1278,14 @@ body:
   self.conditionOfOqlQuery.fromClauses.alias-&gt;asSet()) in
   -- a Selection defines an implicit iterator for its filter expression
   let selectionIterator:Set(NamedValue)=self.selection.iterator-&gt;asSet() in
-  accumulator-&gt;union(iterators)-&gt;union(oqlAliases)-&gt;union(selectionIterator),
+  -- a GroupBy's mapExpression sees all dimension iterators and the groupedFacts iterator
+  let groupByMapExpressionIterators:Set(NamedValue)=self.mapExpressionOfGroupBy.groupedFacts-&gt;asSet()-&gt;union(
+                                                    self.mapExpressionOfGroupBy.dimensions.iterator-&gt;asSet()) in
+  -- a GroupBy's dimension expression sees the facts iterator
+  let groupByDimensionFactIterator:Set(NamedValue)=self.dimension.groupBy.fact-&gt;asSet() in
+
+  accumulator-&gt;union(iterators)-&gt;union(oqlAliases)-&gt;union(selectionIterator)-&gt;union(groupByMapExpressionIterators)-&gt;
+  union(groupByDimensionFactIterator),
 
   -- Then, add those defined by owning structures such as owning statements or owning expressions
   -- an expression that is used by an ExpressionStatement or as condition in a Conditional sees all named values that the statement sees
@@ -1320,7 +1327,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningExpression():Expression...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.851' 
+        <Model:Tag xmi.id = 'G.869' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningExpression():Expression...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1352,18 +1359,19 @@ body:
   let valueInitInObjectLiteral:Set(Expression)=self.valueInit.objectLiteral-&gt;asSet() in
   let dimensionExpression:Set(Expression)=self.cellSetOfDimensionExpression-&gt;asSet()-&gt;union(
                                                                    self.factsOfDimensionExpression-&gt;asSet()) in
+  let groupByExpression:Set(Expression)=self.dimension.groupBy-&gt;asSet() in
 
   objectBasedExpressions-&gt;union(argumentsOf)-&gt;union(equals)-&gt;union(blocksOfFunctionCallExpression)-&gt;union(
   signatureCalls)-&gt;union(creationExpression)-&gt;union(ternary)-&gt;union(conditional)-&gt;union(replace)-&gt;union(
   oqlQuery)-&gt;union(selection)-&gt;union(objectLiteral)-&gt;union(iterator)-&gt;union(collectionExpression)-&gt;union(
-  all)-&gt;union(valueInitInObjectLiteral)-&gt;union(dimensionExpression)-&gt;any(true)</XMI.any>
+  all)-&gt;union(valueInitInObjectLiteral)-&gt;union(dimensionExpression)-&gt;union(groupByExpression)-&gt;any(true)</XMI.any>
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a4B83F58702BF'/>  <!-- dataaccess.expressions.Expression.getOwningExpression -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningClass():SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.852' 
+        <Model:Tag xmi.id = 'G.870' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningClass():SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1524,7 +1532,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.853' 
+        <Model:Tag xmi.id = 'G.871' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1680,7 +1688,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.854' 
+        <Model:Tag xmi.id = 'G.872' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2055,7 +2063,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getSignature():Signature...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.855' 
+        <Model:Tag xmi.id = 'G.873' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getSignature():Signature...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2073,7 +2081,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getMultiplicityOfCallTarget():Multiplicity...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.856' 
+        <Model:Tag xmi.id = 'G.874' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getMultiplicityOfCallTarget():Multiplicity...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3100,21 +3108,21 @@ For example, if an Address value class has a property of type Province, and ther
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.841' 
+    <Model:Import xmi.id = 'G.859' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.843' 
+    <Model:Import xmi.id = 'G.861' 
       name = 'data' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.845' 
+    <Model:Import xmi.id = 'G.863' 
       name = 'behavioral' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -3223,7 +3231,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.query.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.857' 
+        <Model:Tag xmi.id = 'G.875' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3428,7 +3436,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.query.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.858' 
+        <Model:Tag xmi.id = 'G.876' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3917,7 +3925,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.859' 
+        <Model:Tag xmi.id = 'G.877' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3929,7 +3937,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::keyFigureType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.860' 
+        <Model:Tag xmi.id = 'G.878' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::keyFigureType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3946,7 +3954,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::cellType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.861' 
+        <Model:Tag xmi.id = 'G.879' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::cellType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3959,7 +3967,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::localIsSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.862' 
+        <Model:Tag xmi.id = 'G.880' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::localIsSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -4076,6 +4084,213 @@ inv:
             </Model:Constraint>
           </Model:Namespace.contents>
         </Model:Class>
+        <!-- ==================== dataaccess.analytics.GroupBy    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B8E7AA300CB' 
+          name = 'GroupBy' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:ModelElement.annotation>Groups the "object" expression's evaluation result by assigning each of its objects to the "fact" iterator, then evaluating all dimensions' expressions. Those objects having equal dimension results for all dimensions are put into one group. If no mapExpression is provided, the collection of those groups is the result of the GroupBy expression.
+
+If a mapExpression is provided, each group is assigned to the groupedFacts iterator, all dimension values for the respective group are assigned to their iterator and the mapExpression is evaluated with all these iterators in scope. The map expression's output type is raised in multiplicity by one "level". However, the GroupBy's type always has non-unique multiplicity.</Model:ModelElement.annotation>
+          <Model:ModelElement.constraints>
+            <Model:Constraint xmi.idref = 'a4B8E82EC0242'/>  <!-- dataaccess.analytics.GroupBy.GroupedFactsIteratorMustExistIfMapExpressionExists -->
+            <Model:Constraint xmi.idref = 'a4B8E8AC4030D'/>  <!-- dataaccess.analytics.GroupBy.MapExpressionMustBeSideEffectFree -->
+            <Model:Constraint xmi.idref = 'a4B8E8B480261'/>  <!-- dataaccess.analytics.GroupBy.GroupByIteratorsMustHaveDistinctNames -->
+          </Model:ModelElement.constraints>
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a453E0FC80335'/>  <!-- dataaccess.expressions.ObjectBasedExpression -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== dataaccess.analytics.GroupBy.dimensions    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E7B60004E' 
+              name = 'dimensions' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7B4F007D'/>  <!-- dataaccess.analytics.DimensionDefinition -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E7B60004E'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.analytics.GroupBy.fact    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E7BFA01A5' 
+              name = 'fact' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'behavioral.xml|a47A719D200EA'/>
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E7BFA01A5'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.analytics.GroupBy.mapExpression    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E809B01A5' 
+              name = 'mapExpression' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E809B01A5'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.analytics.GroupBy.groupedFacts    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E81160138' 
+              name = 'groupedFacts' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'behavioral.xml|a47A719D200EA'/>
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E81160138'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.analytics.GroupBy.GroupedFactsIteratorMustExistIfMapExpressionExists    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B8E82EC0242' 
+              name = 'GroupedFactsIteratorMustExistIfMapExpressionExists' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context GroupBy
+inv:
+  self.mapExpression-&gt;notEmpty() implies self.groupedFacts-&gt;notEmpty()</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+            <!-- ==================== dataaccess.analytics.GroupBy.MapExpressionMustBeSideEffectFree    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B8E8AC4030D' 
+              name = 'MapExpressionMustBeSideEffectFree' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context GroupBy
+inv:
+  if self.mapExpression-&gt;notEmpty() then
+    self.mapExpression.isSideEffectFree()
+  else
+    true
+  endif</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+            <!-- ==================== dataaccess.analytics.GroupBy.GroupByIteratorsMustHaveDistinctNames    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B8E8B480261' 
+              name = 'GroupByIteratorsMustHaveDistinctNames' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context GroupBy
+inv:
+  self.dimensions.iterator-&gt;asSet()-&gt;union(self.groupedFacts-&gt;asSet())-&gt;union(self.fact-&gt;asSet())-&gt;forAll(i, j | i&lt;&gt;j implies i.name&lt;&gt;j.name)</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== dataaccess.analytics.DimensionDefinition    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B8E7B4F007D' 
+          name = 'DimensionDefinition' annotation = 'A dimension definition is not named. It owns a named iterator that can be used by the mapExpression.' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:ModelElement.constraints>
+            <Model:Constraint xmi.idref = 'a4B8E8B0803A9'/>  <!-- dataaccess.analytics.DimensionDefinition.DimensionExpressionMustBeSideEffectFree -->
+          </Model:ModelElement.constraints>
+          <Model:Namespace.contents>
+            <!-- ==================== dataaccess.analytics.DimensionDefinition.expression    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E7B8F02FD' 
+              name = 'expression' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E7B8F02FD'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.analytics.DimensionDefinition.iterator    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E7C2D004E' 
+              name = 'iterator' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'behavioral.xml|a47A719D200EA'/>
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E7C2D004E'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.analytics.DimensionDefinition.getName    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B8E83A102CE' 
+              name = 'getName' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.112' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== dataaccess.analytics.DimensionDefinition.DimensionExpressionMustBeSideEffectFree    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B8E8B0803A9' 
+              name = 'DimensionExpressionMustBeSideEffectFree' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context DimensionDefinition
+inv:
+  self.expression.isSideEffectFree()</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a4B8E7B4F007D'/>  <!-- dataaccess.analytics.DimensionDefinition -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context DimensionDefinition::getName():String...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.881' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context DimensionDefinition::getName():String...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context DimensionDefinition::getName():String
+body:
+  self.iterator.name</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B8E83A102CE'/>  <!-- dataaccess.analytics.DimensionDefinition.getName -->
+          </Model:Tag.elements>
+        </Model:Tag>
         <!-- ==================== dataaccess.analytics.A_dimensions_cellSet    [Association] ==================== -->
         <Model:Association xmi.id = 'a4717D8CD01F1' 
           name = 'A_dimensions_cellSet' annotation = '' 
@@ -4303,9 +4518,177 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
+        <!-- ==================== dataaccess.analytics.A_dimensions_groupBy    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B8E7B5F0251' 
+          name = 'A_dimensions_groupBy' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B8E7B60004E' 
+              name = 'dimensions' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7B4F007D'/>  <!-- dataaccess.analytics.DimensionDefinition -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B8E7B600050' 
+              name = 'groupBy' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== dataaccess.analytics.A_expression_dimension    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B8E7B8C01C5' 
+          name = 'A_expression_dimension' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B8E7B8F02FD' 
+              name = 'expression' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B8E7B8F034B' 
+              name = 'dimension' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7B4F007D'/>  <!-- dataaccess.analytics.DimensionDefinition -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== dataaccess.analytics.A_fact_factOfGroupBy    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B8E7BF9034B' 
+          name = 'A_fact_factOfGroupBy' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B8E7BFA01A5' 
+              name = 'fact' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'behavioral.xml|a47A719D200EA'/>
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B8E7BFA01B5' 
+              name = 'factOfGroupBy' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== dataaccess.analytics.A_iterator_dimension    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B8E7C2C0251' 
+          name = 'A_iterator_dimension' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B8E7C2D004E' 
+              name = 'iterator' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'behavioral.xml|a47A719D200EA'/>
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B8E7C2D005D' 
+              name = 'dimension' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7B4F007D'/>  <!-- dataaccess.analytics.DimensionDefinition -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== dataaccess.analytics.A_mapExpression_mapExpressionOfGroupBy    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B8E80990000' 
+          name = 'A_mapExpression_mapExpressionOfGroupBy' annotation = 'The mapExpression is optional. If provided, it has the groupedFacts iterator in scope, as well as all dimensions&apos; iterators.' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B8E809B01A5' 
+              name = 'mapExpression' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a450E63AB03A2'/>  <!-- dataaccess.expressions.Expression -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B8E809B01E4' 
+              name = 'mapExpressionOfGroupBy' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== dataaccess.analytics.A_groupedFacts_groupedFactsOfGroupBy    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B8E8115033C' 
+          name = 'A_groupedFacts_groupedFactsOfGroupBy' annotation = 'The groupedFacts iterator exists if a mapExpression is provided and is in scope for the mapExpression. It represents the group of facts that all have the same values for all dimension expressions.' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B8E81160138' 
+              name = 'groupedFacts' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'behavioral.xml|a47A719D200EA'/>
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B8E81160148' 
+              name = 'groupedFactsOfGroupBy' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.863' 
+    <Model:Import xmi.id = 'G.882' 
       name = 'modelmanagement' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

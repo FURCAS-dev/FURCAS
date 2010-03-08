@@ -369,16 +369,14 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	}
 
 	private CtsContentAssistContext getPreviousContext(
-			CtsContentAssistContext context, ITextViewer viewer)
-			throws BadLocationException {
+			CtsContentAssistContext context, ITextViewer viewer) {
 		// get the context one offset before this context
 		return getContext(
 				CtsContentAssistUtil.getLine(context.getToken()),
 				CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
 	}
 
-	private CtsContentAssistContext getContext(int line, int charPositionInLine)
-			throws BadLocationException {
+	private CtsContentAssistContext getContext(int line, int charPositionInLine) {
 
 		return parsingHandler.getFloorContext(line, charPositionInLine);
 	}

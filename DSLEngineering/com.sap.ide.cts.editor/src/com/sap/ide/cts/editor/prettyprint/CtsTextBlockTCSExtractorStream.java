@@ -35,7 +35,11 @@ import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
+/**
+ * 
+ * @author Philipp Meier, Andreas Landerer
+ *
+ */
 public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 {
 
@@ -383,7 +387,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		else
 		{
 			// this is for the rootblock only
-			if (curBlock.getTokens().get(0) instanceof Bostoken)
+			if (curBlock.getTokens().size() > 0 && curBlock.getTokens().get(0) instanceof Bostoken)
 			{
 				// Ensure that no lookback is set for the first token.
 				// TODO: Currently

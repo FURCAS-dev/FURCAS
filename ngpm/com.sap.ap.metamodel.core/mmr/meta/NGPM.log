@@ -95,6 +95,12 @@
 *Warning: Association found with no name between 'Parameter' and 'DimensionExpression'.  The name 'A_dimension_dimensionExpression' has been created for it.
 *Warning: Association found with no name between 'TypeDefinition' and 'CellSet'.  The name 'A_factsType_cellSet' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'DimensionExpression'.  The name 'A_facts_factsOfDimensionExpression' has been created for it.
+*Warning: Association found with no name between 'DimensionDefinition' and 'GroupBy'.  The name 'A_dimensions_groupBy' has been created for it.
+*Warning: Association found with no name between 'Expression' and 'DimensionDefinition'.  The name 'A_expression_dimension' has been created for it.
+*Warning: Association found with no name between 'Iterator' and 'GroupBy'.  The name 'A_fact_factOfGroupBy' has been created for it.
+*Warning: Association found with no name between 'Iterator' and 'DimensionDefinition'.  The name 'A_iterator_dimension' has been created for it.
+*Warning: Association found with no name between 'Expression' and 'GroupBy'.  The name 'A_mapExpression_mapExpressionOfGroupBy' has been created for it.
+*Warning: Association found with no name between 'Iterator' and 'GroupBy'.  The name 'A_groupedFacts_groupedFactsOfGroupBy' has been created for it.
 *Warning: Association found with no name between 'SapClass' and 'ProcessComponent'.  The name 'A_providedInterfaces_processComponent' has been created for it.
 *Warning: Association found with no name between 'EventProducer' and 'ProcessComponent'.  The name 'A_eventProducers_processComponent' has been created for it.
 *Warning: Association found with no name between 'ProcessComponent' and 'DeploymentUnit'.  The name 'A_pcsInsideCompany_deploymentUnit' has been created for it.
