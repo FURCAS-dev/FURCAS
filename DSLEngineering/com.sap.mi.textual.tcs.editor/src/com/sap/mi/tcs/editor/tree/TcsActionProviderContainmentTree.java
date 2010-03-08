@@ -122,7 +122,7 @@ public class TcsActionProviderContainmentTree extends CommonActionProvider
 			TreeSelection selection = (TreeSelection) context.getSelection();
 			if(selection.size() == 1)
 			{
-				MenuManager subMenuManager = new MenuManager("Pretty Print",
+				MenuManager subMenuManager = new MenuManager("TCS",
 						NEW_SUBMENU_ID);
 				Object firstElement = selection.getFirstElement();
 				

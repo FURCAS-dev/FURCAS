@@ -39,7 +39,10 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
 		((AssociationEndInternal) toEnd).otherEnd(conn), fromObject);
 	result = new LinkedHashSet<RefObjectImpl>(objectOrCollection.size(conn.getSession()));
 	for (Iterator<RefObject> i = objectOrCollection.iterator(conn); i.hasNext();) {
-	    result.add((RefObjectImpl) i.next());
+	    RefObjectImpl next = (RefObjectImpl) i.next();
+	    if(next != null) {
+	        result.add(next);
+	    }
 	}
 	return result;
     }
