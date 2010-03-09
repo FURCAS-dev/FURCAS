@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
@@ -20,6 +21,7 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 
 public class AssociationNavigationStep extends AbstractNavigationStep {
+    private static Logger logger = Logger.getLogger(AssociationNavigationStep.class.getName());
     private final AssociationEnd toEnd;
 
     public AssociationNavigationStep(MofClass sourceType, MofClass targetType, AssociationEnd toEnd, OclExpressionInternal debugInfo) {
@@ -39,7 +41,12 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
 		((AssociationEndInternal) toEnd).otherEnd(conn), fromObject);
 	result = new LinkedHashSet<RefObjectImpl>(objectOrCollection.size(conn.getSession()));
 	for (Iterator<RefObject> i = objectOrCollection.iterator(conn); i.hasNext();) {
-	    result.add((RefObjectImpl) i.next());
+	    RefObjectImpl next = (RefObjectImpl) i.next();
+	    if (next == null) {
+		logger.warning("Got null from a JmiList; probably dangling reference after refDelete()? Skipping element in OCL Instance Scope Impact Analysis");
+	    } else {
+		result.add(next);
+	    }
 	}
 	return result;
     }

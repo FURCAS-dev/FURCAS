@@ -141,8 +141,12 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	result = cache.get(cacheKey);
 	if (result == null) {
 	    cacheMisses++;
-	    result = navigate(conn, fromObject, cache); 
-	    cache.put(cacheKey, result);
+	    result = navigate(conn, fromObject, cache);
+	    if (result.contains(null)) {
+		throw new RuntimeException("OCL Instance Scope Analysis hit a null value where it shouldn't have");
+	    } else {
+		cache.put(cacheKey, result);
+	    }
 	}
 	return result;
     }

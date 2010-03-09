@@ -904,14 +904,20 @@ public class GeneralTests extends RunletTestCase {
         assertNOEquals(false, result[7]);
     }
     
-    public void testCreateEntityWithInitializers() throws Exception {
-	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-	            "var c = new City(name: \"Karl-Marx-Stadt\")",
-	            "c.name == \"Karl-Marx-Stadt\"");
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+    /**
+     * This test case was created because temporarily we have/had the problem of being
+     * unable to create a proper respective model in the evaluator because of issues with
+     * unresolved reference handling. This test case, however, relies on a readily parsed
+     * (with hacks and manual interventions) test model that uses entity creation with
+     * property initializers.
+     */
+    public void testEntityCreationWithInitializersInClass() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "new City().m().name");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
-        assertEquals(2, result.length);
+        assertEquals(1, result.length);
         assertEquals(0, errors.length);
-        assertNOEquals(true, result[1]);
+        assertNOEquals("Karl-Marx-Stadt", result[0]);
     }
 }
