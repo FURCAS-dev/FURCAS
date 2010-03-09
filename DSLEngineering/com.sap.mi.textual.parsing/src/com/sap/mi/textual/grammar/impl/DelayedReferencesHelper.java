@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-03-04 17:02:47 +0100 (Do, 04 Mrz 2010) $
- * Revision: $Revision: 9522 $
- * Author: $Author: c5106462 $
+ * Date: $Date: 2010-03-08 12:31:07 +0100 (Mo, 08 Mrz 2010) $
+ * Revision: $Revision: 9544 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
 
@@ -232,6 +232,10 @@ public class DelayedReferencesHelper {
 	}
 	try {
 	    Object parseReturn = methodToCall.invoke(parser);
+	    if (parseReturn == null) {
+		throw new ModelElementCreationException("Unable to create model element using parse rule "+ruleName+
+			". Parse errors: "+parser.getInjector().getErrorList());
+	    }
 	    // add the parsed part to the object
 	    parser.setResolveProxies(originalResolveProxiesValue);
 	    reference.setRealValue(injector.createOrResolve(parseReturn, null, null));

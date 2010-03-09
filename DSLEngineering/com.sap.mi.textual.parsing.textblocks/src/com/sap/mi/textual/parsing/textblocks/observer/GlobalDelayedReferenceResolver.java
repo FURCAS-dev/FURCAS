@@ -73,6 +73,7 @@ import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.EventListener;
 import com.sap.tc.moin.repository.events.UpdateListener;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
+import com.sap.tc.moin.repository.events.filter.OrFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
 import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
@@ -94,12 +95,17 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
     public class IAExpressionInvalidationChangeListener implements
 	    UpdateListener {
 
-	private final OclExpressionRegistration registration;
+	/**
+	 * The OCL expressions used by the {@link #reference} for (re-)evaluation. This
+	 * listener will be notified about changes that may affect any of those OCL expressions
+	 * in order for the reference to be re-evaluated.
+	 */
+	private final OclExpressionRegistration[] registrations;
 	private final DelayedReference reference;
 
 	public IAExpressionInvalidationChangeListener(
-		OclExpressionRegistration registration, DelayedReference ref) {
-	    this.registration = registration;
+		DelayedReference ref, OclExpressionRegistration... registration) {
+	    this.registrations = registration;
 	    this.reference = ref;
 	}
 
@@ -112,10 +118,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 		     if(reference.getQueryElement() != null) {
 		         List<DelayedReference> newRefs = null;
 			 if(reference.getQueryElement() instanceof InjectorAction) {
-			    if (!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events
-				    .getEvents(), /* replacement for __TEMP__ */null)) {
-			        newRefs = filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
-			    }
+			     newRefs = filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
 			 } else if(reference.getQueryElement() instanceof Property) {
 			     if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
 			         newRefs = filterEventsAndQueueDelayedReferencesForContextLookup(events, conn);
@@ -128,62 +131,69 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	                     backgroundResolver.scheduleIfNeeded();
 			 }
 		     }
-		 } else {
-//		    // TODO (for Thomas) this code can probably be removed
-//		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
-//			    .get___Mri());
-//		    if (element == null) {
-//			// Element doesnt exist anymore, so reference can be removed
-//			GlobalDelayedReferenceResolver.this.removeRegistration(reference);
-//			return;
-//		    }
-//		    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(conn, element);
-//		    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(conn, outermostPackage, this.reference);
 		}
 	    }
 	}
 
-    private List<DelayedReference> filterEventsAndRegisterDelayedReferencesForInjectorAction(
-            EventChain events, Connection conn) {
-         InjectorAction injectorAction = (InjectorAction) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
-         InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock)injectorAction.refImmediateComposite();
-         Template template = injectorActionsBlock.getParentTemplate();
-         
-         //now find all TextBlocks referencing this template;
-         Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn,
-                template);
-         
-         List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
-         
-         Set<MRI> affectedElements = null;
-         for (TextBlock textBlock : tbs) {
-            //first check if the alternative in which the injector action resides was
-            //chosen during the parsing process
-            //TODO this is a workaround. to properly decide this we need to keep track
-            //of the alternative chosen at runtime of the parser
-            boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(
-                    injectorActionsBlock, textBlock);
-            
-            if (wasInChosenAlternative) {
-                if (affectedElements == null) {
-                    affectedElements = getAffectedElements(events, conn);
-                }
-                // TODO if affectedElements.size()==0, don't compute filterCorrespondingOrContextElement...
-                Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
-            	    conn, affectedElements, textBlock);
-                for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-                	DelayedReference clonedRef = reference.clone();
-                	clonedRef.setModelElement(ro);
-                	clonedRef.setRealValue(null);
-                	clonedRef.setTextBlock(textBlock);
-                	clonedRef.setConnection(conn);
-                	newReferences.add(clonedRef);
-                	// reference.setModelElement(null);
-                }
-            }
-         }
-            return newReferences;
-    }
+	private List<DelayedReference> filterEventsAndRegisterDelayedReferencesForInjectorAction(EventChain events,
+		Connection conn) {
+	    List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
+	    boolean allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly =
+		areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events,
+			/* replacement for __TEMP__ */ null);
+	    if (!allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly) {
+		InjectorAction injectorAction = (InjectorAction) conn.getElement(((Partitionable) reference
+			.getQueryElement()).get___Mri());
+		InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock) injectorAction
+			.refImmediateComposite();
+		Template template = injectorActionsBlock.getParentTemplate();
+
+		// now find all TextBlocks referencing this template;
+		Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn, template);
+
+		Set<MRI> affectedElements = null;
+		for (TextBlock textBlock : tbs) {
+		    // first check if the alternative in which the injector action resides was
+		    // chosen during the parsing process
+		    // TODO this is a workaround. to properly decide this we need to keep track
+		    // of the alternative chosen at runtime of the parser
+		    boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(injectorActionsBlock,
+			    textBlock);
+
+		    if (wasInChosenAlternative) {
+			if (affectedElements == null) {
+			    affectedElements = getAffectedElements(events, conn);
+			}
+			// TODO if affectedElements.size()==0, don't compute filterCorrespondingOrContextElement...
+			Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
+				conn, affectedElements, textBlock);
+			for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
+			    DelayedReference clonedRef = reference.clone();
+			    clonedRef.setModelElement(ro);
+			    clonedRef.setRealValue(null);
+			    clonedRef.setTextBlock(textBlock);
+			    clonedRef.setConnection(conn);
+			    newReferences.add(clonedRef);
+			    // reference.setModelElement(null);
+			}
+		    }
+		}
+	    }
+	    return newReferences;
+	}
+
+	private boolean areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(
+		EventChain events, String replacementFor__TEMP__) {
+	    boolean allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly = true;
+	    for (OclExpressionRegistration registration : registrations) {
+		if (!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(),
+			replacementFor__TEMP__)) {
+		    allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly = false;
+		    break;
+		}
+	    }
+	    return allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly;
+	}
 
     private boolean isInjectorActionInChosenAlternative(
             InjectorActionsBlock injectorActionsBlock, TextBlock textBlock) {
@@ -237,7 +247,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
          List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
          if(affectedElements.size() > 0) {
              for (LexedToken lt : toks) {
-                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+        	 boolean allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly =
+        	     areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events, lt.getValue());
+                 if(!allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly) {
                      Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
                                  conn, affectedElements, lt.getParentBlock());
                     if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
@@ -257,7 +269,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
          List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
          if(affectedElements.size() > 0) {
              for (LexedToken lt : toks) {
-                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+        	 boolean allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly =
+        	     areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events, lt.getValue());
+                 if(!allRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly) {
                      Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn, 
                              affectedElements, Collections.singletonList(lt.getParentBlock()));
                     if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
@@ -397,7 +411,10 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
 	private Set<MRI> getAffectedElements(EventChain events, Connection conn) {
 	    Statistics.getInstance().setCurrentObjectForSelf(reference.getElementForSelf());
-	    Set<MRI> affectedElements = registration.getAffectedModelElements(events, conn);
+	    Set<MRI> affectedElements = new HashSet<MRI>();
+	    for (OclExpressionRegistration registration : registrations) {
+		affectedElements.addAll(registration.getAffectedModelElements(events, conn));
+	    }
 	    return affectedElements;
 	}
     }
@@ -468,7 +485,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
     private ServiceReference globalEventListenerRegistryRef;
     private final Map<String, DelayedReference> registration2DelayedReference = new HashMap<String, DelayedReference>();
-    private final Map<DelayedReference, String> delayedReference2Registration = new HashMap<DelayedReference, String>();
+    private final Map<DelayedReference, String[]> delayedReference2RegistrationNames = new HashMap<DelayedReference, String[]>();
 
     private final Map<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>> delayedReference2ReEvaluationListener = new HashMap<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>>();
     private final Set<ConcreteSyntax> registeredSytaxes = new HashSet<ConcreteSyntax>();
@@ -529,10 +546,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	Statistics oclIaStatistics = Statistics.getInstance();
 	StringBuilder result = new StringBuilder();
 	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
-	    OclExpressionRegistration registration = listener.registration;
-	    if (registration != null) {
-		result.append(oclIaStatistics.toString(registration, conn));
-		result.append('\n');
+	    for (OclExpressionRegistration registration : listener.registrations) {
+		if (registration != null) {
+		    result.append(oclIaStatistics.toString(registration, conn));
+		    result.append('\n');
+		}
 	    }
 	}
 	return result.toString();
@@ -543,10 +561,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	StringBuilder result = new StringBuilder();
 	result.append(oclIaStatistics.getCsvHeader());
 	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
-	    OclExpressionRegistration registration = listener.registration;
-	    if (registration != null) {
-		result.append(oclIaStatistics.toCsv(registration, conn));
-		result.append('\n');
+	    for (OclExpressionRegistration registration : listener.registrations) {
+		if (registration != null) {
+		    result.append(oclIaStatistics.toCsv(registration, conn));
+		    result.append('\n');
+		}
 	    }
 	}
 	return result.toString();
@@ -588,8 +607,10 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	if (removeListener != null) {
 	    registry.removeFilters(removeListener);
 	}
-	String reg = delayedReference2Registration.remove(unresolvedRef);
-	registration2DelayedReference.remove(reg);
+	String[] regs = delayedReference2RegistrationNames.remove(unresolvedRef);
+	for (String reg : regs) {
+	    registration2DelayedReference.remove(reg);
+	}
 	Map<EventFilter, Map<ListenerType, EventListener>> filter = delayedReference2ReEvaluationListener
 		.remove(unresolvedRef);
 	if (filter != null) {
@@ -696,6 +717,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                             //if we are here no exception occurred which means element was successfully unset
                             //as foreachpredicates always create new values we have to delete the old one
                             value.refDelete();
+                            // FIXME remove DelayedReferences from queue that try to set a property on value
                         }
                     } catch (Exception e) {
                         // TODO: handle exception
@@ -956,12 +978,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                                 new String[] { "TCS Property Query" }, parsingContext,
                                 packagesForLookup.toArray(new RefPackage[] {}));
                         Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-                            registration, ref);
+                            ref, registration);
                         GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
                             .getService(globalEventListenerRegistryRef);
                         registry.addFilters(reEvaluationListener);
                         registration2DelayedReference.put(registration.getName(), ref);
-                        delayedReference2Registration.put(ref, registration.getName());
+                        delayedReference2RegistrationNames.put(ref, new String[] { registration.getName() });
                         delayedReference2ReEvaluationListener.put(ref,
                             reEvaluationListener);
 
@@ -1052,10 +1074,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                     localMode = next.getMode();
                 }
                 if (next.getWhen() != null) {
-                    // FIXME this will probably not work; the generated javaQueryWhen has Java syntax but is submitted to the OCL parser
-//                    String javaQueryWhen = next.getWhen().replaceAll("\\\"", "\\\\\"");
-//                    javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\"");
-//                    javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\"");
                     list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(
                             next.getWhen(),
                             ruleNameFinder.getRuleName(next.getAs(), localMode)));
@@ -1071,7 +1089,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
             DelayedReference ref = new DelayedReference(null,
                         null, DelayedReference.SEMANTIC_PREDICATE, 
                         null,
-                        foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(), query, null, list, ruleNameFinder, null, 
+                        foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(), query, foreachPredicatePropertyInit.getMode(), list, ruleNameFinder, null, 
                         hasContext, /*isOptional: ForEach is always considered optional as 
                          * error reporting will be done based on metamodel constraints.*/
                         true);
@@ -1081,16 +1099,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
             //now replace any #context parts within the query with self
             //and use the context element type for registration if it is
             //used here, 
-	    String foreachRegistrationName = "<genericReference>" + foreachPredicatePropertyInit.refMofId();
-            registerOclExpressionOfForeachConstruct(connection, packagesForLookup, elementClass,
-		    foreachPredicatePropertyInit, template, query, ref, foreachRegistrationName);
-            for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicatesemantic()) {
-		if (whenClause.getWhen() != null) {
-		    String whenRegistrationName = "<genericReference>" + whenClause.refMofId();
-		    registerOclExpressionOfForeachConstruct(connection, packagesForLookup, elementClass,
-			    foreachPredicatePropertyInit, template, whenClause.getWhen(), ref.clone(), whenRegistrationName);
-		}
-            }
+            registerOclExpressionsOfForeachConstruct(connection, packagesForLookup, elementClass,
+		    foreachPredicatePropertyInit, template, ref);
         } catch (OclManagerException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -1103,11 +1113,29 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         }
     }
 
-    private void registerOclExpressionOfForeachConstruct(Connection connection,
+    /**
+     * Combine the <tt>foreach</tt> and all <tt>when</tt> expressions into one event listener. For each expression a
+     * separate {@link OclExpressionRegistration} is created. Their event filters are combined into one filter by using
+     * an {@link OrFilter}. Therefore, events that affect any of the <tt>foreach</tt> or the <tt>when</tt> expressions
+     * are delivered to the <tt>ref</tt> reference only once. The same listener instance is registered for the combined
+     * event filter.
+     */
+    private void registerOclExpressionsOfForeachConstruct(Connection connection,
 	    Collection<RefPackage> packagesForLookup, MofClass elementClass,
-	    ForeachPredicatePropertyInit foreachPredicatePropertyInit, Template template, String query,
-	    DelayedReference ref, String oclRegistrationName) throws ModelAdapterException, OclManagerException {
-	if (query != null) {
+	    ForeachPredicatePropertyInit foreachPredicatePropertyInit, Template template, DelayedReference ref) throws ModelAdapterException, OclManagerException {
+	Set<OclExpressionRegistration> registrations = new HashSet<OclExpressionRegistration>();
+	Map<String, String> mofIdToOclQueryPairs = new HashMap<String, String>();
+	if (foreachPredicatePropertyInit.getValue() != null) {
+	    mofIdToOclQueryPairs.put(foreachPredicatePropertyInit.refMofId(), foreachPredicatePropertyInit.getValue());
+	}
+	for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicatesemantic()) {
+	    if (whenClause.getWhen() != null) {
+		mofIdToOclQueryPairs.put(whenClause.refMofId(), whenClause.getWhen());
+	    }
+	}
+	List<String> registrationNames = new ArrayList<String>();
+	for (String mofId : mofIdToOclQueryPairs.keySet()) {
+	    String oclRegistrationName = "<genericReference>" + mofId;
 	    OclExpressionRegistration registration = (OclExpressionRegistration) connection
 	        .getOclRegistryService().getFreestyleRegistry()
 	        .getRegistration(oclRegistrationName);
@@ -1115,22 +1143,24 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	        connection.getOclRegistryService().getFreestyleRegistry()
 	            .deleteRegistration(oclRegistrationName);
 	    }
-	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup, elementClass);
-	    String preparedQuery = MoinHelper.prepareOclQuery(query, null, null);
+	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, mofIdToOclQueryPairs.get(mofId), template, packagesForLookup, elementClass);
+	    String preparedQuery = MoinHelper.prepareOclQuery(mofIdToOclQueryPairs.get(mofId), null, null);
 	    registration = connection.getOclRegistryService()
 	        .getFreestyleRegistry().createExpressionRegistration(oclRegistrationName,
 	            preparedQuery, OclRegistrationSeverity.Info,
 	            new String[] { "TCS Property Init" }, parsingContext,
 	            packagesForLookup.toArray(new RefPackage[] {}));
-	    Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-	        registration, ref);
-	    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
-	        .getService(globalEventListenerRegistryRef);
-	    registry.addFilters(reEvaluationListener);
-	    registration2DelayedReference.put(registration.getName(), ref);
-	    delayedReference2Registration.put(ref, registration.getName());
-	    delayedReference2ReEvaluationListener.put(ref, reEvaluationListener);
+	    registrations.add(registration);
+	    registration2DelayedReference.put(oclRegistrationName, ref);
+	    registrationNames.add(oclRegistrationName);
 	}
+	delayedReference2RegistrationNames.put(ref, registrationNames.toArray(new String[0]));
+	Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(ref,
+		registrations.toArray(new OclExpressionRegistration[0]));
+	GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+		.getService(globalEventListenerRegistryRef);
+	registry.addFilters(reEvaluationListener);
+	delayedReference2ReEvaluationListener.put(ref, reEvaluationListener);
     }
 
     private void registerLookupPropertyInitForIA(ConcreteSyntax cs,
@@ -1166,12 +1196,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                         new String[] { "TCS Property Init" }, parsingContext,
                         packagesForLookup.toArray(new RefPackage[] {}));
                 Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-                    registration, ref);
+                    ref, registration);
                 GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
                     .getService(globalEventListenerRegistryRef);
                 registry.addFilters(reEvaluationListener);
                 registration2DelayedReference.put(registration.getName(), ref);
-                delayedReference2Registration.put(ref, registration.getName());
+                delayedReference2RegistrationNames.put(ref, new String[] { registration.getName() });
                 delayedReference2ReEvaluationListener
                     .put(ref, reEvaluationListener);
 
@@ -1188,21 +1218,25 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         }
     }
 
+    /**
+     * Fetches the event filters for <tt>registrations</tt> (see
+     * {@link OclExpressionRegistration#getEventFilter(boolean)}) and combines them into one {@link OrFilter}. An event
+     * filter map suitable for use with {@link GlobalEventListenerRegistry#addFilters(Map)} is created with a new
+     * {@link IAExpressionInvalidationChangeListener} listener object for the <tt>ref</tt> reference.
+     */
     private Map<EventFilter, Map<ListenerType, EventListener>> createReEvaluationListener(
-	    OclExpressionRegistration registration, DelayedReference ref) {
-	// notifyNewContextElement can be set to false because element creation is handled by the
-	// parser itself, evaluating all properties initially that cna be evaluated at that point.
-	EventFilter filter = registration.getEventFilter(/* notifyNewContextElement */ false);
-	// if(ref.getToken() != null) {
-	// //for refersTo References add filter that only re-evaluates the Query
-	// if
-	// //the originally referenced element was deleted
-	// filter = appendTextBlockRefBroken(ref);
-	// }
-	Map<ListenerType, EventListener> listenerForType = new HashMap<ListenerType, EventListener>();
-	listenerForType.put(ListenerType.UPDATE,
-		new IAExpressionInvalidationChangeListener(registration, ref));
+	    DelayedReference ref, OclExpressionRegistration... registrations) {
+	IAExpressionInvalidationChangeListener listener = new IAExpressionInvalidationChangeListener(ref, registrations);
 	Map<EventFilter, Map<ListenerType, EventListener>> map = new HashMap<EventFilter, Map<ListenerType, EventListener>>();
+	Set<EventFilter> filters = new HashSet<EventFilter>();
+	for (OclExpressionRegistration registration : registrations) {
+	    // notifyNewContextElement can be set to false because element creation is handled by the
+	    // parser itself, evaluating all properties initially that cna be evaluated at that point.
+	    filters.add(registration.getEventFilter(/* notifyNewContextElement */false));
+	}
+	OrFilter filter = new OrFilter(filters.toArray(new EventFilter[0]));
+	Map<ListenerType, EventListener> listenerForType = new HashMap<ListenerType, EventListener>();
+	listenerForType.put(ListenerType.UPDATE, listener);
 	map.put(filter, listenerForType);
 	return map;
     }
