@@ -648,8 +648,7 @@ syntax Class(k=0 ) {
 		
 	template TypeDefinition #thisInObjectCreationExpression abstract;
 	
-	-- TODO wouldn't "context" be required here to put foreach result in context for #localAssociationEnd-mode template for ActualObjectParameter?
-	template ClassTypeDefinition #thisInObjectCreationExpression
+	template ClassTypeDefinition #thisInObjectCreationExpression context
 		: {{  lowerMultiplicity = '1', 
 		      upperMultiplicity = '1', 
 		      ordered = 'true',  
@@ -1240,14 +1239,24 @@ syntax Class(k=0 ) {
 		;
 		    
     template Iterator #groupByGroupedFactsIterator
-        : {{ name='"group"' }}
-          -- TODO type should be inferrable as facts type because each group would be likely to have same general multiplicity as facts object; reduction of lower multiplicity to 0 is not required because empty groups are not passed along
+        : {{ name='"values"' }}
 		;
 	
 	template dataaccess::expressions::Expression #groupBy abstract;
 	template ObjectLiteral #groupBy
-		: propertyValues{forcedLower=1, mode=groupByMapResult, separator=","}
-		  valueClass{mode=groupByMapResult}
+		: valueClass{mode=groupByMapResult}
+		  propertyValues{forcedLower=1, mode=groupByMapResult, separator=","}
+		  ownedTypeDefinition{forcedLower=1, mode=groupByMapResult}
+		;
+	
+	template TypeDefinition #groupByMapResult abstract;
+	template ClassTypeDefinition #groupByMapResult
+		: {{ lowerMultiplicity='1',
+		     upperMultiplicity='1',
+		     ordered='false',
+		     unique='false',
+		     clazz=lookIn("OCL:self.ownerTypedElement.oclAsType(ObjectLiteral).valueClass")
+		  }}
 		;
 	
 	template ValueInit #groupByMapResult
@@ -1258,7 +1267,7 @@ syntax Class(k=0 ) {
 		: name
 		  association{mode=groupByMapResultProperties}
 		  signatureImplementations{mode=groupByMapResultPropertiesGetter, forcedLower=1, forcedUpper=1}
-		  {{ type=foreach("OCL:self.valueInit->any(true).value.getType()", mode="oqlQueryResultAssociationEndType"),
+		  {{ type=foreach("OCL:self.valueInit->any(true).value.getType()", mode="groupByMapResultAssociationEndType"),
 		     navigable='true'
 		  }}
 		;
@@ -1273,10 +1282,29 @@ syntax Class(k=0 ) {
 		;
 	
 	template data::classes::AssociationEnd #groupByMapResultPropertiesLocalEnd
-		: {{ navigable='false',
+		: type{mode=groupByMapResultPropertiesLocalEnd}
+		  {{ navigable='false',
 		     contributesToEquality='true',
-		     name=lookIn("OCL:'opposite_of_'.concat(self.otherEnd().name)"),
-		     type=lookIn("OCL:self.otherEnd().valueInit->any(true).objectLiteral.valueClass")
+		     -- TODO this is a workaround to avoid ping-pong between the two association ends
+		     -- because they are associated with the same textblock and the OCL impact analysis
+		     -- can't determine which one was populated by which rule
+		     name=lookIn("OCL:if self.name.subString(1,12) = 'opposite_of_' then
+		                        self.name
+		                      else
+		                        'opposite_of_'.concat(self.otherEnd().name)
+		                      endif")
+		  }}
+		;
+	
+	template ClassTypeDefinition #groupByMapResultPropertiesLocalEnd context
+		: {{
+			lowerMultiplicity = '1', 
+			upperMultiplicity = '1', 
+			ordered = 'true',  
+			unique = 'true',  
+			clazz = lookIn("OCL:self.associationEnd.otherEnd().valueInit->any(true).objectLiteral.valueClass"),
+		    	ownedObjectParameters=foreach("OCL:self.clazz.formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
+		    	objectParameters=lookIn("OCL:self.ownedObjectParameters")
 		  }}
 		;
 
@@ -1310,7 +1338,7 @@ syntax Class(k=0 ) {
 
 	-- creates the GroupBy's map result type as a value class
 	template SapClass #groupByMapResult
-		: {{ name=lookIn("OCL:self.objectLiteral.valueInit.forEnd->iterate(
+		: {{ name=lookIn("OCL:self.objectLiteral.propertyValues.forEnd->iterate(
 		  		i; acc='GroupByMapResult' | acc.concat('_').concat(i.name))"),
 		     valueType='true',
 		     package_=lookIn("OCL:self.objectLiteral.getOwningClass().package_")
