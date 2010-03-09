@@ -47,7 +47,6 @@ public class CtsEditorTest extends FixtureBasedTest {
 	public void init() {
 	    Workbench wb = Workbench.getInstance();
 	    wb.getIntroManager().closeIntro(wb.getIntroManager().getIntro());
-	    GlobalDelayedReferenceResolver.getInstance().runInAsynchronousMode(false);
 	}
 	
 	@After
