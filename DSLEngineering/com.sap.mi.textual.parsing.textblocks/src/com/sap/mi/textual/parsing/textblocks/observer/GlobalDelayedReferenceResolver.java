@@ -11,10 +11,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
@@ -422,46 +419,15 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
     public class BackgroundResolver  {
 	
 	private final GlobalDelayedReferenceResolver resolver;
-	private final Job job;
-	private boolean runInAsynchronousMode = true;
 	
         public BackgroundResolver(final GlobalDelayedReferenceResolver resolver) {
 	    this.resolver = resolver;
-	    
-	    this.job = new Job("Reevaluating OCL References") {
-		
-		@Override
-	        public IStatus run(final IProgressMonitor monitor) {
-		    try {
-		        resolver.resolveReferences(monitor);   
-                    } catch (Exception e) {
-                        return Status.OK_STATUS;
-                    }
-		    if (resolver.hasEmptyQueue()) {
-			return Status.OK_STATUS;
-		    } else {
-			return new Status(Status.WARNING, Activator.PLUGIN_ID, "Could not resolve all delayed references.");
-		    }
-	        }
-	    };
 	}
 
 	public void scheduleIfNeeded() {
 	    if (!resolver.hasEmptyQueue()) {
-		if (runInAsynchronousMode) {
-		    job.schedule(500);
-		} else {
-		    resolver.resolveReferences(new NullProgressMonitor());
-		}
+		resolver.resolveReferences(new NullProgressMonitor());
 	    }
-	}
-	
-	public void runInAsynchronousMode(boolean isAsync) {
-	    this.runInAsynchronousMode = isAsync;
-	}
-	
-	public boolean isBackgroundJobRunningOrScheduled() {
-	    return this.job.getState() != Job.NONE; 
 	}
     }
 
@@ -577,18 +543,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
      * This should ONLY be used in tests.
      */
     public void clearUnresolvedIAReferences() {
-	assert !backgroundResolver.isBackgroundJobRunningOrScheduled();
 	iaUnresolvedReferences.clear();
     }
     
-    /**
-     * Set to false to run synchronously. This is useful for testcases.
-     * @param isAsync
-     */
-    public void runInAsynchronousMode(boolean isAsync) {
-	backgroundResolver.runInAsynchronousMode(isAsync);
-    }
-
     public void removeRegistration(DelayedReference unresolvedRef) {
 	unresolvedReferences.remove(unresolvedRef);
 	if(unresolvedRef.getToken() != null) {
