@@ -13,6 +13,7 @@ import java.util.Stack;
 import tcs.ClassTemplate;
 import tcs.ContextTags;
 import tcs.ContextTemplate;
+import tcs.ForeachPredicatePropertyInit;
 import tcs.QualifiedNamedElement;
 import textblocks.AbstractToken;
 import textblocks.Bostoken;
@@ -518,6 +519,27 @@ public class TbUtil {
                 }
             }
             return tbs;
+        }
+
+        public static void addForEachContext(TextBlock contextBlock, RefObject sourceModelElement,
+            RefObject contextModelElement, ForeachPredicatePropertyInit sequenceElement, RefObject resultElement, Connection connection) {
+            boolean forEachContextExists = false;
+            for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
+                if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
+                    if(forEachContext.getSourceModelelement().equals(sourceModelElement)) {
+                        forEachContext.getContextElement().add(contextModelElement);
+                        forEachContextExists = true;
+                    }
+                }
+            }
+            if(!forEachContextExists) {
+                ForeachContext newContext = (ForeachContext) connection.getClass(ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
+                newContext.setForeachPredicatePropertyInit(sequenceElement);
+                newContext.setSourceModelelement(sourceModelElement);
+                newContext.getContextElement().add(contextModelElement);
+                contextBlock.getForeachContext().add(newContext);
+            }
+        
         }
 
 }

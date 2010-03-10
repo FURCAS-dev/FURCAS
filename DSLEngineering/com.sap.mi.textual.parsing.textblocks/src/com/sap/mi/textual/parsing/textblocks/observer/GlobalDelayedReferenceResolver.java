@@ -709,6 +709,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 					    .getTemplate());
                             referringDocumentNode.getCorrespondingModelElements().add(
                                         (RefObject) unresolvedRef.getRealValue());
+                            TbUtil.addForEachContext(unresolvedRef
+                                    .getTextBlock(), (RefObject) unresolvedRef
+                                    .getModelElement(), (RefObject) unresolvedRef
+                                    .getCurrentForeachElement(),(ForeachPredicatePropertyInit) unresolvedRef
+                                    .getQueryElement(), (RefObject) unresolvedRef.getRealValue(), conn);
                             parser.setDelayedReferencesAfterParsing();
 			} else {
 			    if (unresolvedRef.getRealValue() instanceof RefObject) {

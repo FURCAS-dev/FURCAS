@@ -2,6 +2,7 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 
 import static com.sap.mi.textual.parsing.textblocks.TbUtil.getNewestVersion;
 
+import java.security.UnrecoverableEntryException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -550,6 +551,13 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 contextModelElement = ((ResolvedModelElementProxy) contextModelElement)
                         .getRealObject();
             }
+            RefObject sourceModelElement = null;
+            if (reference.getModelElement() instanceof ResolvedModelElementProxy) {
+                contextModelElement = ((ResolvedModelElementProxy) reference.getModelElement())
+                        .getRealObject();
+            } else {
+                sourceModelElement = (RefObject) reference.getModelElement();
+            }
             TextBlock contextBlock = getTextBlockForElementAt(
                     (RefObject) contextModelElement,
                     (ANTLR3LocationToken) referenceLocation);
@@ -571,8 +579,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     contextBlock.getAdditionalTemplates().add(
                             getCurrentTbProxy().getTemplate());
                     contextBlock.getCorrespondingModelElements().add((RefObject) modelElement);
-                    addForEachContext(contextBlock, (RefObject) modelElement,
-                            (RefObject) contextModelElement, (ForeachPredicatePropertyInit) reference.getQueryElement());
+                    TbUtil.addForEachContext(contextBlock, sourceModelElement,
+                            (RefObject) contextModelElement, (ForeachPredicatePropertyInit) reference.getQueryElement(), (RefObject) modelElement, connection);
                 } else {
                     AbstractToken referenceToken = navigateToToken(contextBlock,
                             referenceLocation);
@@ -589,26 +597,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
             }
         }
 	
-	private void addForEachContext(TextBlock contextBlock, RefObject modelElement,
-            RefObject contextModelElement, ForeachPredicatePropertyInit sequenceElement) {
-	    boolean forEachContextExists = false;
-            for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
-                if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
-                    if(forEachContext.getSourceModelelement().equals(modelElement)) {
-                        forEachContext.getContextElement().add(contextModelElement);
-                        forEachContextExists = true;
-                    }
-                }
-            }
-            if(!forEachContextExists) {
-                ForeachContext newContext = (ForeachContext) connection.getClass(ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
-                newContext.setForeachPredicatePropertyInit(sequenceElement);
-                newContext.setSourceModelelement(modelElement);
-                newContext.getContextElement().add(contextModelElement);
-                contextBlock.getForeachContext().add(newContext);
-            }
-        
-        }
+	
 
     /**
 	 * Attaches the current {@link SequenceElement} or {@link InjectorAction} to the given
