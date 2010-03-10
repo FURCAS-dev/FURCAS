@@ -84,6 +84,7 @@ import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.editor.recovery.TbRecoverUtil;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
@@ -246,6 +247,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	private ModelPartition tbPartition;
 	private final List<Annotation> tbHighlightAnnotations = new ArrayList<Annotation>();
 	private MappingLinkRecoveringIncrementalParser incrementalParser;
+	private DefaultPartitionAssignmentHandlerImpl partitionHandler;
 	private PartitionHighlighter partitionHighlighter;
 	private final Set<Annotation> markerAnnotations = new HashSet<Annotation>();
 	private final Set<IMarker> parseErrorMarkers = new HashSet<IMarker>();
@@ -951,7 +953,7 @@ public abstract class AbstractGrammarBasedEditor extends
 					}
 
 					// assign newly created block to partition
-					tbPartition.assignElementIncludingChildren(newBlock);
+					//tbPartition.assignElementIncludingChildren(newBlock);
 
 					RefObject result = null;
 					if(newBlock.getCorrespondingModelElements()
@@ -1183,6 +1185,9 @@ public abstract class AbstractGrammarBasedEditor extends
 		incrementalParser = new MappingLinkRecoveringIncrementalParser(
 				getWorkingConnection(), getParserFactory(), getLexer(),
 				getParser(), reuseStrategy, getAdditionalLookupCRIS());
+		partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+		partitionHandler.setInteractivePartitionHandler(new InteractivePartitionHandlerImpl());
+		
 		shortPrettyPrinter = new ShortPrettyPrinter(new MOINModelAdapter(
         		parserFactory.getMetamodelPackage(getWorkingConnection()),
         		getWorkingConnection(), null, getAdditionalLookupCRIS()));

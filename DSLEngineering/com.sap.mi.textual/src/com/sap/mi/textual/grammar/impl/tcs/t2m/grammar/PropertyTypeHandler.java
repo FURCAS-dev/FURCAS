@@ -29,6 +29,7 @@ import tcs.ImportContextParg;
 import tcs.LookInParg;
 import tcs.ModeParg;
 import tcs.PartialParg;
+import tcs.PartitionHandlingParg;
 import tcs.PrimitiveTemplate;
 import tcs.Property;
 import tcs.PropertyArg;
@@ -876,6 +877,8 @@ public class PropertyTypeHandler<Type extends Object> {
 
 		private DisambiguateParg disambiguatePArg;
 
+		private PartitionHandlingParg partitionHandlingPArg;
+
 		/**
 		 * Instantiates a new property args.
 		 * 
@@ -995,6 +998,12 @@ public class PropertyTypeHandler<Type extends Object> {
 								"Double definition of partialPArg", partialPArg);
 					}
 					partialPArg = (PartialParg) propertyArg;
+				}else if (propertyArg instanceof PartitionHandlingParg) {
+					if (partitionHandlingPArg != null) {
+						throw new SyntaxElementException(
+								"Double definition of partitionHandlingPArg", partitionHandlingPArg);
+					}
+					partitionHandlingPArg = (PartitionHandlingParg) propertyArg;
 				} else {
 					throw new RuntimeException(
 							"PropertyArg type not supported yet:"

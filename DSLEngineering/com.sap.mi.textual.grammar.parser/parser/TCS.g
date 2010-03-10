@@ -130,7 +130,7 @@ import org.antlr.runtime.Token;
 
 
 @members {
-   private static final String syntaxUUID = "E0DCF6CD35B822E00F2911DF80C7EEEE93CCC8E1";
+   private static final String syntaxUUID = "E0DCF6CD76DF71431AFC11DFBDD1E3828D1504C0";
    public String getSyntaxUUID() {
         return syntaxUUID;
    }
@@ -218,92 +218,98 @@ identifierOrKeyword returns[Object ret2] @init{java.lang.Object ret=null;}
   :
   (ast=NAME {ret = unescapeString( ast.getText());
 }
-  | 'part' {ret = "part";}
-  | 'instanceOf' {ret = "instanceOf";}
-  | 'refersTo' {ret = "refersTo";}
-  | 'omitted' {ret = "omitted";}
-  | 'importContext' {ret = "importContext";}
-  | 'template' {ret = "template";}
-  | 'drop' {ret = "drop";}
-  | 'autoCreate' {ret = "autoCreate";}
-  | 'lexer' {ret = "lexer";}
-  | 'leftSpace' {ret = "leftSpace";}
+  | 'and' {ret = "and";}
   | 'ifmissing' {ret = "ifmissing";}
-  | 'when' {ret = "when";}
-  | 'query' {ret = "query";}
-  | 'foreach' {ret = "foreach";}
-  | 'partial' {ret = "partial";}
-  | 'leftNone' {ret = "leftNone";}
-  | 'start' {ret = "start";}
-  | 'isDefined' {ret = "isDefined";}
-  | 'lookIn' {ret = "lookIn";}
-  | 'esc' {ret = "esc";}
-  | 'invert' {ret = "invert";}
-  | 'default' {ret = "default";}
-  | 'separator' {ret = "separator";}
-  | 'multiLine' {ret = "multiLine";}
-  | 'operatorTemplate' {ret = "operatorTemplate";}
-  | 'filter' {ret = "filter";}
-  | 'deep' {ret = "deep";}
-  | 'disambiguateV3' {ret = "disambiguateV3";}
   | 'all' {ret = "all";}
-  | 'startNbNL' {ret = "startNbNL";}
+  | 'disambiguateV3' {ret = "disambiguateV3";}
+  | 'leftSpace' {ret = "leftSpace";}
+  | 'foreach' {ret = "foreach";}
+  | 'leftNone' {ret = "leftNone";}
+  | 'multi' {ret = "multi";}
   | 'function' {ret = "function";}
-  | 'rightNone' {ret = "rightNone";}
-  | 'keywords' {ret = "keywords";}
-  | 'priority' {ret = "priority";}
-  | 'false' {ret = "false";}
-  | 'enumerationTemplate' {ret = "enumerationTemplate";}
-  | 'storeRightTo' {ret = "storeRightTo";}
-  | 'octal' {ret = "octal";}
-  | 'mode' {ret = "mode";}
-  | 'true' {ret = "true";}
-  | 'storeOpTo' {ret = "storeOpTo";}
-  | 'abstract' {ret = "abstract";}
-  | 'context' {ret = "context";}
-  | 'symbols' {ret = "symbols";}
-  | 'auto' {ret = "auto";}
-  | 'word' {ret = "word";}
+  | 'forcedLower' {ret = "forcedLower";}
+  | 'importContext' {ret = "importContext";}
+  | 'partial' {ret = "partial";}
   | 'disambiguate' {ret = "disambiguate";}
+  | 'autoCreate' {ret = "autoCreate";}
+  | 'primitiveTemplate' {ret = "primitiveTemplate";}
+  | 'keywords' {ret = "keywords";}
+  | 'part' {ret = "part";}
+  | 'isDefined' {ret = "isDefined";}
+  | 'octal' {ret = "octal";}
+  | 'serializer' {ret = "serializer";}
+  | 'end' {ret = "end";}
+  | 'addToContext' {ret = "addToContext";}
+  | 'default' {ret = "default";}
+  | 'storeRightTo' {ret = "storeRightTo";}
+  | 'startNL' {ret = "startNL";}
+  | 'template' {ret = "template";}
+  | 'indentIncr' {ret = "indentIncr";}
+  | 'k' {ret = "k";}
+  | 'one' {ret = "one";}
+  | 'nonPrimary' {ret = "nonPrimary";}
+  | 'instanceOf' {ret = "instanceOf";}
+  | 'context' {ret = "context";}
+  | 'true' {ret = "true";}
+  | 'startNbNL' {ret = "startNbNL";}
+  | 'drop' {ret = "drop";}
+  | 'endNL' {ret = "endNL";}
+  | 'createAs' {ret = "createAs";}
+  | 'refersTo' {ret = "refersTo";}
   | 'orKeyword' {ret = "orKeyword";}
+  | 'left' {ret = "left";}
+  | 'operatorTemplate' {ret = "operatorTemplate";}
+  | 'start' {ret = "start";}
+  | 'right' {ret = "right";}
+  | 'nbNL' {ret = "nbNL";}
+  | 'symbols' {ret = "symbols";}
+  | 'hex' {ret = "hex";}
+  | 'using' {ret = "using";}
   | 'always' {ret = "always";}
   | 'forcedUpper' {ret = "forcedUpper";}
-  | 'multi' {ret = "multi";}
-  | 'main' {ret = "main";}
-  | 'addToContext' {ret = "addToContext";}
-  | 'semDisambiguate' {ret = "semDisambiguate";}
-  | 'primitiveTemplate' {ret = "primitiveTemplate";}
-  | 'referenceOnly' {ret = "referenceOnly";}
-  | 'prefix' {ret = "prefix";}
-  | 'for' {ret = "for";}
-  | 'one' {ret = "one";}
-  | 'left' {ret = "left";}
-  | 'postfix' {ret = "postfix";}
-  | 'syntax' {ret = "syntax";}
-  | 'operatored' {ret = "operatored";}
-  | 'hex' {ret = "hex";}
-  | 'nonPrimary' {ret = "nonPrimary";}
-  | 'forcedLower' {ret = "forcedLower";}
-  | 'endNL' {ret = "endNL";}
-  | 'and' {ret = "and";}
-  | 'end' {ret = "end";}
-  | 'right' {ret = "right";}
-  | 'token' {ret = "token";}
-  | 'indentIncr' {ret = "indentIncr";}
-  | 'createIn' {ret = "createIn";}
-  | 'k' {ret = "k";}
-  | 'value' {ret = "value";}
-  | 'endOfLine' {ret = "endOfLine";}
+  | 'PartitionHandling' {ret = "PartitionHandling";}
   | 'rightSpace' {ret = "rightSpace";}
+  | 'main' {ret = "main";}
+  | 'multiLine' {ret = "multiLine";}
+  | 'word' {ret = "word";}
+  | 'esc' {ret = "esc";}
+  | 'rightNone' {ret = "rightNone";}
   | 'source' {ret = "source";}
-  | 'as' {ret = "as";}
+  | 'filter' {ret = "filter";}
+  | 'storeOpTo' {ret = "storeOpTo";}
+  | 'name' {ret = "name";}
+  | 'deep' {ret = "deep";}
+  | 'token' {ret = "token";}
+  | 'invert' {ret = "invert";}
+  | 'createIn' {ret = "createIn";}
   | 'never' {ret = "never";}
-  | 'using' {ret = "using";}
-  | 'startNL' {ret = "startNL";}
-  | 'nbNL' {ret = "nbNL";}
+  | 'referenceOnly' {ret = "referenceOnly";}
+  | 'semDisambiguate' {ret = "semDisambiguate";}
+  | 'content' {ret = "content";}
+  | 'false' {ret = "false";}
+  | 'as' {ret = "as";}
+  | 'mode' {ret = "mode";}
+  | 'for' {ret = "for";}
+  | 'textblocks' {ret = "textblocks";}
+  | 'lexer' {ret = "lexer";}
+  | 'endOfLine' {ret = "endOfLine";}
+  | 'abstract' {ret = "abstract";}
+  | 'value' {ret = "value";}
   | 'operators' {ret = "operators";}
-  | 'createAs' {ret = "createAs";}
-  | 'serializer' {ret = "serializer";})
+  | 'operatored' {ret = "operatored";}
+  | 'auto' {ret = "auto";}
+  | 'separator' {ret = "separator";}
+  | 'query' {ret = "query";}
+  | 'enumerationTemplate' {ret = "enumerationTemplate";}
+  | 'prefix' {ret = "prefix";}
+  | 'container' {ret = "container";}
+  | 'syntax' {ret = "syntax";}
+  | 'lookIn' {ret = "lookIn";}
+  | 'model' {ret = "model";}
+  | 'postfix' {ret = "postfix";}
+  | 'priority' {ret = "priority";}
+  | 'when' {ret = "when";}
+  | 'omitted' {ret = "omitted";})
 {
 ret2=ret;
 }
@@ -346,7 +352,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaTy
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD32F532500F2911DFAA12EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD32D17DB00F2911DFB3BBEEEE93CCC8E1");}( temp=model_namespace {setProperty(ret, "container", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD32DAF3900F2911DFAE80EEEE93CCC8E1");} DLCOLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD32DD64910F2911DFBA4EEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD32F2C1510F2911DFB83BEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD75FD4EA31AFC11DFA9FBE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD75F3D8C21AFC11DF909EE3828D1504C0");}( temp=model_namespace {setProperty(ret, "container", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD75F893B01AFC11DFA904E3828D1504C0");} DLCOLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD75F893B21AFC11DF9ABAE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD75FD4EA11AFC11DF866CE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){_exitAlt();} )
 {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
@@ -390,7 +396,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaTy
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD332012E10F2911DFCC1FEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7606C4831AFC11DF89C0E3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -404,7 +410,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ?  createReferenceProxy(metaT
 
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3324CDD20F2911DF9809EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){
+  ({_beforeSeqEl("E0DCF6CD760935821AFC11DFA0FCE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){
 // discarding operator name instead of storing it here
 setProperty(ret,"container" , left);
 ret2 = createOrResolve(ret, firstToken);
@@ -443,11 +449,12 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3343C7800F2911DF8D9CEEEE93CCC8E1");}'syntax'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD334611710F2911DFAAEBEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3346117C0F2911DF96C6EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD334611750F2911DF8EE2EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD334611760F2911DFB96FEEEE93CCC8E1");}'k'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD334611770F2911DFC2CCEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD334611790F2911DF88C2EEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "k", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3346117A0F2911DF8EA5EEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3346117D0F2911DFB195EEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD337363000F2911DFC06DEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD3346117F0F2911DF82CEEEEE93CCC8E1");}( temp=tcs_template {setProperty(ret, "templates", temp);} ( temp=tcs_template {setProperty(ret, "templates", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335924420F2911DF81E4EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD334882710F2911DFB34AEEEE93CCC8E1");}'keywords'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD334882720F2911DF9C57EEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD334D3D600F2911DFB9FCEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD334882740F2911DFB449EEEE93CCC8E1");}( temp=tcs_keyword {setProperty(ret, "keywords", temp);} ( temp=tcs_keyword {setProperty(ret, "keywords", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335924400F2911DF9678EEEE93CCC8E1");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335B954B0F2911DF85E9EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD335B95430F2911DFCFB6EEEE93CCC8E1");}'symbols'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335B95440F2911DF96EDEEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335B95480F2911DF8D33EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD335B95460F2911DFB8DCEEEE93CCC8E1");}( temp=tcs_symbol {setProperty(ret, "symbols", temp);} ( temp=tcs_symbol {setProperty(ret, "symbols", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335B95490F2911DFBD3EEEEE93CCC8E1");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335B954D0F2911DFA6B1EEEE93CCC8E1");}( temp=tcs_operatorlist {setProperty(ret, "operatorLists", temp);} ( temp=tcs_operatorlist {setProperty(ret, "operatorLists", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335B954F0F2911DFAB08EEEE93CCC8E1");}( temp=tcs_token {setProperty(ret, "tokens", temp);} ( temp=tcs_token {setProperty(ret, "tokens", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3369C6120F2911DF88C7EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD335DDF330F2911DF9A47EEEE93CCC8E1");}'lexer'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD335DDF340F2911DFA233EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33629A200F2911DFBA61EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "lexer", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3369C6100F2911DF96FAEEEE93CCC8E1");} SEMI {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3375ACF00F2911DFCEDFEEEE93CCC8E1");} RCURLY {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD760DF0701AFC11DFBEFEE3828D1504C0");}'syntax'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD760DF0721AFC11DFA3ECE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061761AFC11DFC700E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD760DF0761AFC11DFA3EDE3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061701AFC11DF9B72E3828D1504C0");}'k'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061711AFC11DF9BE9E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061731AFC11DFCD06E3828D1504C0");}( temp=integerSymbol {setProperty(ret, "k", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061741AFC11DFBF09E3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7610617D1AFC11DFB3F8E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7610617B1AFC11DFAA09E3828D1504C0");}( temp=tcs_partitionhandling {setProperty(ret, "partitionHandling", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7610617E1AFC11DF95D3E3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76178D621AFC11DFB78AE3828D1504C0");}(({_beforeSeqEl("E0DCF6CD761061801AFC11DF8194E3828D1504C0");}( temp=tcs_template {setProperty(ret, "templates", temp);} ( temp=tcs_template {setProperty(ret, "templates", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB621AFC11DFA859E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD761061841AFC11DF9EC4E3828D1504C0");}'keywords'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061851AFC11DFB7C4E3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761061891AFC11DFA087E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD761061871AFC11DFAB4BE3828D1504C0");}( temp=tcs_keyword {setProperty(ret, "keywords", temp);} ( temp=tcs_keyword {setProperty(ret, "keywords", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB601AFC11DF8864E3828D1504C0");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB6E1AFC11DFBE16E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7612AB661AFC11DFA8D5E3828D1504C0");}'symbols'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB671AFC11DFB19CE3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB6B1AFC11DF9726E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD7612AB691AFC11DFA873E3828D1504C0");}( temp=tcs_symbol {setProperty(ret, "symbols", temp);} ( temp=tcs_symbol {setProperty(ret, "symbols", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB6C1AFC11DF8BD5E3828D1504C0");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7612AB701AFC11DFB2E5E3828D1504C0");}( temp=tcs_operatorlist {setProperty(ret, "operatorLists", temp);} ( temp=tcs_operatorlist {setProperty(ret, "operatorLists", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76151C611AFC11DF812BE3828D1504C0");}( temp=tcs_token {setProperty(ret, "tokens", temp);} ( temp=tcs_token {setProperty(ret, "tokens", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76151C6C1AFC11DFC93DE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76151C651AFC11DF9747E3828D1504C0");}'lexer'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76151C661AFC11DFA4BBE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76151C691AFC11DF9DF1E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "lexer", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76151C6A1AFC11DFB12BE3828D1504C0");} SEMI {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76178D631AFC11DFAAA4E3828D1504C0");} RCURLY {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -457,7 +464,7 @@ catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally
 
 reference[Object ret]
   :
-  ({_beforeSeqEl("E0DCF6CD33864EC20F2911DFA4FBEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33781DF40F2911DF802CEEEE93CCC8E1");}( temp=model_classifier {setProperty(ret, "metaReference", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD33781DF60F2911DF94EEEEEE93CCC8E1");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33864EC00F2911DFB152EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "names", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD33781DF80F2911DFC93EEEEE93CCC8E1");} DLCOLON {_afterSeqEl();}){_exitSepSeq();} temp=identifier {setProperty(ret, "names", temp);})* )? {_afterSeqEl();}){_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD761C48531AFC11DFBB93E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7619D7541AFC11DF9D68E3828D1504C0");}( temp=model_classifier {setProperty(ret, "metaReference", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD7619D7561AFC11DFC22BE3828D1504C0");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD761C48511AFC11DFAFBCE3828D1504C0");}( temp=identifier {setProperty(ret, "names", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD7619D7581AFC11DFC816E3828D1504C0");} DLCOLON {_afterSeqEl();}){_exitSepSeq();} temp=identifier {setProperty(ret, "names", temp);})* )? {_afterSeqEl();}){_exitAlt();} )
 {_afterSeqEl();})
 {
   }
@@ -493,10 +500,10 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD339717A00F2911DFC96FEEEE93CCC8E1");}'primitiveTemplate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD339717A20F2911DFC2FDEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "templateName", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD339717A30F2911DF9015EEEE93CCC8E1");}'for'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD339717A40F2911DFCD53EEEE93CCC8E1");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A08D830F2911DFCE64EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33A08D810F2911DF9976EEEE93CCC8E1");}'default'{_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE800F2911DFAA2AEEEE93CCC8E1");}'using'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE820F2911DF83AAEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "tokenName", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE880F2911DFC59BEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33A2FE860F2911DFAE62EEEE93CCC8E1");}'orKeyword'{_afterSeqEl();}){setProperty(ret, "orKeyword", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "orKeyword", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE890F2911DFC7A7EEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE8A0F2911DFB5F7EEEE93CCC8E1");}'value'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE8B0F2911DF8834EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE8E0F2911DF991EEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE990F2911DF9055EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33A2FE920F2911DFB14DEEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE930F2911DFAC08EEEE93CCC8E1");}'serializer'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE940F2911DF8103EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE970F2911DF91EDEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "serializer", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33A2FE9A0F2911DFC6EFEEEE93CCC8E1");} SEMI {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33AA03600F2911DFA173EEEE93CCC8E1");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD762374401AFC11DF85A0E3828D1504C0");}'primitiveTemplate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762374421AFC11DFCFCAE3828D1504C0");}( temp=identifier {setProperty(ret, "templateName", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762374431AFC11DFC198E3828D1504C0");}'for'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762374441AFC11DFA641E3828D1504C0");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE331AFC11DF9BF5E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7625BE311AFC11DFB7B5E3828D1504C0");}'default'{_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE341AFC11DFC583E3828D1504C0");}'using'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE361AFC11DFB8F7E3828D1504C0");}( temp=identifier {setProperty(ret, "tokenName", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE3C1AFC11DFC585E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7625BE3A1AFC11DFAB68E3828D1504C0");}'orKeyword'{_afterSeqEl();}){setProperty(ret, "orKeyword", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "orKeyword", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE3D1AFC11DF8068E3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE3E1AFC11DFCB96E3828D1504C0");}'value'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE3F1AFC11DFBEE1E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE421AFC11DFAA35E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE4D1AFC11DF923AE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7625BE461AFC11DF86C8E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE471AFC11DF805BE3828D1504C0");}'serializer'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE481AFC11DFBBF0E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE4B1AFC11DFA467E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "serializer", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7625BE4E1AFC11DFBC3AE3828D1504C0");} SEMI {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76282F301AFC11DFC274E3828D1504C0");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -510,9 +517,9 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD33BD16300F2911DF8DE4EEEE93CCC8E1");}'enumerationTemplate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33BD16310F2911DFCF3AEEEE93CCC8E1");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33BD16370F2911DFA4E9EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33BD16350F2911DFAFE9EEEE93CCC8E1");}'auto'{_afterSeqEl();}){setProperty(ret, "automatic", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "automatic", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33CB6E170F2911DFB73FEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33CB6E130F2911DF9E12EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33BD163B0F2911DFA2D0EEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33CB6E100F2911DFAE52EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33BF87300F2911DF9449EEEE93CCC8E1");}( temp=tcs_enumliteralmapping {setProperty(ret, "mappings", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD33BD163D0F2911DFAE3DEEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_enumliteralmapping {setProperty(ret, "mappings", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33CB6E110F2911DFCFF8EEEE93CCC8E1");} SEMI {_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD33CB6E150F2911DFC287EEEE93CCC8E1");} SEMI {_afterSeqEl();}){_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33CB6E1A0F2911DFBFA5EEEE93CCC8E1");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD762A79201AFC11DFBAA9E3828D1504C0");}'enumerationTemplate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762A79211AFC11DFCA66E3828D1504C0");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762A79271AFC11DF9BDAE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD762A79251AFC11DF949BE3828D1504C0");}'auto'{_afterSeqEl();}){setProperty(ret, "automatic", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "automatic", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762CEA201AFC11DFAF48E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD762A79361AFC11DFC154E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD762A792B1AFC11DF8ABBE3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762A79331AFC11DFB4C6E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD762A79301AFC11DF96EFE3828D1504C0");}( temp=tcs_enumliteralmapping {setProperty(ret, "mappings", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD762A792D1AFC11DF9EAFE3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_enumliteralmapping {setProperty(ret, "mappings", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762A79341AFC11DFAB6FE3828D1504C0");} SEMI {_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD762A79381AFC11DFBDAEE3828D1504C0");} SEMI {_afterSeqEl();}){_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762CEA231AFC11DFB4D5E3828D1504C0");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -526,7 +533,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD33CDB8010F2911DFA7BCEEEE93CCC8E1");}( temp=tcs_enumliteralval {setProperty(ret, "literal", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33CDB8020F2911DFB808EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33CDB8040F2911DF800CEEEE93CCC8E1");}( temp=tcs_literalref {setProperty(ret, "element", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD762CEA281AFC11DFA9A6E3828D1504C0");}( temp=tcs_enumliteralval {setProperty(ret, "literal", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762CEA291AFC11DFB18EE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762CEA2B1AFC11DF937EE3828D1504C0");}( temp=tcs_literalref {setProperty(ret, "element", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -540,24 +547,25 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD33D029000F2911DF9930EEEE93CCC8E1");}'template'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D029010F2911DFBEB9EEEE93CCC8E1");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E33BD10F2911DFC8D1EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D029050F2911DFC1B6EEEE93CCC8E1");}'referenceOnly'{_afterSeqEl();}){setProperty(ret, "isReferenceOnly", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD33D29A070F2911DFA3C1EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D29A030F2911DF9D64EEEE93CCC8E1");} SHARP {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D29A050F2911DFAE31EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "mode", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D29A130F2911DF94D1EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D29A0B0F2911DF8021EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D29A0C0F2911DFA6B5EEEE93CCC8E1");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D29A0D0F2911DFC081EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D29A100F2911DFC15FEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "disambiguate", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D29A110F2911DF851FEEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3F80F2911DFAE26EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D4E3F00F2911DFCBD3EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3F10F2911DF929EEEEE93CCC8E1");}'disambiguateV3'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3F20F2911DFBB18EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3F50F2911DF8468EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "disambiguateV3", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3F60F2911DFAD35EEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E4040F2911DFB5D7EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D4E3FC0F2911DFAADBEEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3FD0F2911DFA712EEEE93CCC8E1");}'semDisambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E3FE0F2911DF88BDEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E4010F2911DFBE80EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "semDisambiguate", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E4020F2911DF8CC3EEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D4E40A0F2911DFB2AFEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D4E4080F2911DF8F9EEEEE93CCC8E1");}'multi'{_afterSeqEl();}){setProperty(ret, "isMulti", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isMulti", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D754F50F2911DF8BA8EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D754F30F2911DFC6E8EEEE93CCC8E1");}'main'{_afterSeqEl();}){setProperty(ret, "isMain", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isMain", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D755010F2911DFBF0EEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D754FE0F2911DFC92DEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D754FC0F2911DF8375EEEE93CCC8E1");}'deep'{_afterSeqEl();}){setProperty(ret, "isDeep", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isDeep", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33D754FF0F2911DFA4AEEEEE93CCC8E1");}'abstract'{_afterSeqEl();}){setProperty(ret, "isAbstract", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isAbstract", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33DE80E50F2911DFAAEFEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D755050F2911DFCF19EEEE93CCC8E1");}'operatored'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33DE80E30F2911DFCA31EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33D755090F2911DF89E9EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33DE80E00F2911DFAE51EEEE93CCC8E1");}( temp=identifier {setRef(ret, "operatorList", list("TCS","OperatorList"), "name", temp, null, "never", null, false, null);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33DE80E10F2911DFA42CEEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD762F5B201AFC11DF9AADE3828D1504C0");}'template'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD762F5B211AFC11DFB7F7E3828D1504C0");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1071AFC11DF9448E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD762F5B251AFC11DFC5CEE3828D1504C0");}'referenceOnly'{_afterSeqEl();}){setProperty(ret, "isReferenceOnly", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD7631A5171AFC11DF9037E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7631A5131AFC11DFCCA0E3828D1504C0");} SHARP {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5151AFC11DF892AE3828D1504C0");}( temp=identifier {setProperty(ret, "mode", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5231AFC11DF89BEE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7631A51B1AFC11DF9EE9E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A51C1AFC11DFB3F0E3828D1504C0");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A51D1AFC11DF95C4E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5201AFC11DF8CE3E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "disambiguate", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5211AFC11DF85A8E3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A52F1AFC11DF8E51E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7631A5271AFC11DFA74EE3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5281AFC11DFB1F0E3828D1504C0");}'disambiguateV3'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5291AFC11DFA7E8E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A52C1AFC11DF9E4EE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "disambiguateV3", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A52D1AFC11DFA9D4E3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A53B1AFC11DFA53FE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7631A5331AFC11DFBC88E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5341AFC11DF9C73E3828D1504C0");}'semDisambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5351AFC11DF9B6DE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5381AFC11DFC8D2E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "semDisambiguate", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7631A5391AFC11DFC129E3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763416151AFC11DF8E0DE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763416131AFC11DFCF4DE3828D1504C0");}'multi'{_afterSeqEl();}){setProperty(ret, "isMulti", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isMulti", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7634161B1AFC11DF9115E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763416191AFC11DF9569E3828D1504C0");}'main'{_afterSeqEl();}){setProperty(ret, "isMain", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isMain", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763416271AFC11DFAF7DE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763416241AFC11DFCE4CE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763416221AFC11DFCD8CE3828D1504C0");}'deep'{_afterSeqEl();}){setProperty(ret, "isDeep", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isDeep", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763416251AFC11DF8B88E3828D1504C0");}'abstract'{_afterSeqEl();}){setProperty(ret, "isAbstract", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isAbstract", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660051AFC11DF950CE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7634162B1AFC11DFCC4BE3828D1504C0");}'operatored'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660031AFC11DFB8FCE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7634162F1AFC11DFBB70E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660001AFC11DFB4CFE3828D1504C0");}( temp=identifier {setRef(ret, "operatorList", list("TCS","OperatorList"), "name", temp, null, "never", null, false, null);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660011AFC11DF982EE3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
 {_afterSeqEl();}){setProperty(ret, "isOperatored", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isOperatored", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CAD30F2911DFB7A7EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33DE80E90F2911DF8288EEEE93CCC8E1");}'context'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CAD10F2911DFAEA5EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33DE80EE0F2911DFB0C5EEEE93CCC8E1");}( temp=tcs_contexttags {setProperty(ret, "contextTags", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660121AFC11DFB06CE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763660091AFC11DFCA93E3828D1504C0");}'context'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660101AFC11DF9256E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7636600E1AFC11DFB62FE3828D1504C0");}( temp=tcs_contexttags {setProperty(ret, "contextTags", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
 {_afterSeqEl();}){setProperty(ret, "isContext", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isContext", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CAD90F2911DFB1F8EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33E0CAD70F2911DF944AEEEE93CCC8E1");}'addToContext'{_afterSeqEl();}){setProperty(ret, "isAddToContext", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isAddToContext", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CADF0F2911DFABB6EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33E0CADD0F2911DFBE70EEEE93CCC8E1");}'nonPrimary'{_afterSeqEl();}){setProperty(ret, "isNonPrimary", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isNonPrimary", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CAED0F2911DF860FEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33E0CAE30F2911DF8CB4EEEE93CCC8E1");}'prefix'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CAEB0F2911DFA13EEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33E0CAE40F2911DF8335EEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E0CAE90F2911DFA2FEEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33E0CAE60F2911DFB992EEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "prefixSequence", temp);}){_afterSeqEl();})){_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763660181AFC11DF8EE4E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763660161AFC11DF896EE3828D1504C0");}'addToContext'{_afterSeqEl();}){setProperty(ret, "isAddToContext", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isAddToContext", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7636601E1AFC11DFAA58E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7636601C1AFC11DFBE3CE3828D1504C0");}'nonPrimary'{_afterSeqEl();}){setProperty(ret, "isNonPrimary", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isNonPrimary", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1051AFC11DFBBC4E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763660221AFC11DF8862E3828D1504C0");}'prefix'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1031AFC11DFB59FE3828D1504C0");}(({_beforeSeqEl("E0DCF6CD763660231AFC11DF8139E3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1011AFC11DFB408E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD763660251AFC11DFC01CE3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "prefixSequence", temp);}){_afterSeqEl();})){_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
 {_afterSeqEl();}){setProperty(ret, "isReferenceOnly", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E585C40F2911DFC23CEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33E585C00F2911DF9937EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33E33BD50F2911DF9570EEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E33BDA0F2911DFCA94EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33E33BD70F2911DFCCC0EEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "templateSequence", temp);}){_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E33BDB0F2911DFCF1EEEEE93CCC8E1");} SEMI {_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD33E585C20F2911DFA3A7EEEE93CCC8E1");} SEMI {_afterSeqEl();}){_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33E585C70F2911DFC4A3EEEE93CCC8E1");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D10E1AFC11DF9CE9E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7638D10C1AFC11DF94E2E3828D1504C0");}( temp=tcs_partitionhandling {setProperty(ret, "partitionHandling", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D11E1AFC11DFC076E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7638D11A1AFC11DFAD31E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD7638D1121AFC11DFCC0FE3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1171AFC11DFBB89E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD7638D1141AFC11DFC67DE3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "templateSequence", temp);}){_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1181AFC11DF9C49E3828D1504C0");} SEMI {_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD7638D11C1AFC11DFC234E3828D1504C0");} SEMI {_afterSeqEl();}){_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7638D1211AFC11DF8E42E3828D1504C0");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -565,21 +573,50 @@ ret2 = commitCreation(ret, firstToken, true);
   ;
 catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}
 
+tcs_partitionhandling returns[Object ret2] @init{List<String> metaType=list("TCS","PartitionHandling");
+onEnterTemplateRule(metaType);
+IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
+org.antlr.runtime.Token firstToken=input.LT(1);
+}
+  :
+  ({_beforeSeqEl("E0DCF6CD763D8BF01AFC11DF8CCAE3828D1504C0");}'PartitionHandling'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8BF11AFC11DF8628E3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763FFCF01AFC11DFB68FE3828D1504C0");}(({_beforeSeqEl("E0DCF6CD763D8BFB1AFC11DF8F3AE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763D8BF51AFC11DFB1F9E3828D1504C0");}'name'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8BF61AFC11DFCD92E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8BF81AFC11DF907CE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8BF91AFC11DF8906E3828D1504C0");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C021AFC11DF942DE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763D8BFF1AFC11DF9283E3828D1504C0");}'auto'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C001AFC11DFC726E3828D1504C0");} COMA {_afterSeqEl();}){setProperty(ret, "isAutomaticPartition", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isAutomaticPartition", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C0C1AFC11DF919EE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763D8C061AFC11DF9345E3828D1504C0");}'container'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C071AFC11DFAC3EE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C091AFC11DF8416E3828D1504C0");}( temp=identifier {setProperty(ret, "container", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C0A1AFC11DFA4FFE3828D1504C0");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C161AFC11DFB363E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD763D8C101AFC11DFA683E3828D1504C0");}'content'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C111AFC11DFA697E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C131AFC11DFBCF5E3828D1504C0");}( temp=tcs_partitioncontentenum {setProperty(ret, "content", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763D8C141AFC11DF8D61E3828D1504C0");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD763FFCF11AFC11DFB612E3828D1504C0");} RCURLY {_afterSeqEl();})
+  {
+ret2 = commitCreation(ret, firstToken, false);
+
+ }
+  ;
+catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}
+
+tcs_partitioncontentenum returns[Object ret2] @init{java.lang.Object ret=null;}
+  :
+  (({_beforeSeqEl("E0DCF6CD764246E11AFC11DF8412E3828D1504C0");}'all'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","PartitionContentEnum"), "all");}
+ | ({_beforeSeqEl("E0DCF6CD7644B7E11AFC11DF86C9E3828D1504C0");}'model'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","PartitionContentEnum"), "model");}
+ | ({_beforeSeqEl("E0DCF6CD7644B7E41AFC11DF9E8AE3828D1504C0");}'textblocks'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","PartitionContentEnum"), "textblocks");})
+{
+  ret2=ret;
+}
+  ;
+
+
 tcs_operatortemplate returns[Object ret2] @init{List<String> metaType=list("TCS","OperatorTemplate");
 onEnterTemplateRule(metaType);
 IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD33F64EA00F2911DF99F5EEEE93CCC8E1");}'operatorTemplate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA10F2911DF8810EEEE93CCC8E1");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA20F2911DF8CF5EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA30F2911DFCABBEEEE93CCC8E1");}'operators'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA40F2911DFB8FAEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA70F2911DF95A2EEEE93CCC8E1");}( temp=identifier {setRef(ret, "operators", list("TCS","Operator"), "name", temp, null, "never", null, false, null);} ( temp=identifier {setRef(ret, "operators", list("TCS","Operator"), "name", temp, null, "never", null, false, null);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA80F2911DF891FEEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EA90F2911DFCA38EEEE93CCC8E1");}'source'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EAA0F2911DFCAF0EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EAC0F2911DF8250EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "storeLeftSideTo", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EB60F2911DF8A6DEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33F64EB00F2911DFB023EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EB10F2911DFAC36EEEE93CCC8E1");}'storeOpTo'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EB20F2911DF806AEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EB40F2911DFC610EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "storeOperatorTo", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898930F2911DFA217EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33F64EBA0F2911DF8324EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EBB0F2911DFADE6EEEE93CCC8E1");}'storeRightTo'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F64EBC0F2911DF95EEEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898910F2911DFC6DFEEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "storeRightSideTo", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F8989E0F2911DF80CAEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33F898970F2911DFB0D3EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898980F2911DFA757EEEE93CCC8E1");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898990F2911DFAAA5EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F8989C0F2911DF9540EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "disambiguate", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898A90F2911DF88D9EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33F898A20F2911DF8431EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898A30F2911DFB2FEEEEE93CCC8E1");}'disambiguateV3'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898A40F2911DFA9C8EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898A70F2911DF8376EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "disambiguateV3", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33F898AA0F2911DFAC12EEEE93CCC8E1");} RPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FB099E0F2911DFB671EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33F898AE0F2911DF9C46EEEE93CCC8E1");}'referenceOnly'{_afterSeqEl();}){setProperty(ret, "isReferenceOnly", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD33FB099C0F2911DFAC2EEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33FB09930F2911DF86CFEEEE93CCC8E1");}'context'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FB099A0F2911DF8B0AEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33FB09980F2911DF9F8BEEEE93CCC8E1");}( temp=tcs_contexttags {setProperty(ret, "contextTags", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD764728E01AFC11DFB339E3828D1504C0");}'operatorTemplate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764728E11AFC11DFCD6AE3828D1504C0");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764728E21AFC11DFA141E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764728E31AFC11DF99B3E3828D1504C0");}'operators'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764728E41AFC11DF9612E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972D01AFC11DF91BAE3828D1504C0");}( temp=identifier {setRef(ret, "operators", list("TCS","Operator"), "name", temp, null, "never", null, false, null);} ( temp=identifier {setRef(ret, "operators", list("TCS","Operator"), "name", temp, null, "never", null, false, null);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972D11AFC11DFC21FE3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972D21AFC11DFA515E3828D1504C0");}'source'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972D31AFC11DF89B7E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972D51AFC11DF8048E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "storeLeftSideTo", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972DF1AFC11DFB4A4E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764972D91AFC11DFA665E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972DA1AFC11DF9AABE3828D1504C0");}'storeOpTo'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972DB1AFC11DFA85DE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972DD1AFC11DF8CEBE3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "storeOperatorTo", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972E91AFC11DFA4E2E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764972E31AFC11DFB234E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972E41AFC11DFABC6E3828D1504C0");}'storeRightTo'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972E51AFC11DFC966E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972E71AFC11DFCDCAE3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "storeRightSideTo", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972F41AFC11DFBAD6E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764972ED1AFC11DF972AE3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972EE1AFC11DFAE3DE3828D1504C0");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972EF1AFC11DFACB9E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972F21AFC11DFB94DE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "disambiguate", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972FF1AFC11DF9CF2E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764972F81AFC11DFBAF1E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972F91AFC11DF9FDAE3828D1504C0");}'disambiguateV3'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972FA1AFC11DFA611E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764972FD1AFC11DF8C53E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "disambiguateV3", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764973001AFC11DF8315E3828D1504C0");} RPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764BE3E01AFC11DF9C35E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764BE3D01AFC11DFC14CE3828D1504C0");}'referenceOnly'{_afterSeqEl();}){setProperty(ret, "isReferenceOnly", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD764BE3DE1AFC11DFA95BE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764BE3D51AFC11DFCFC4E3828D1504C0");}'context'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764BE3DC1AFC11DFA6E3E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764BE3DA1AFC11DF8ADDE3828D1504C0");}( temp=tcs_contexttags {setProperty(ret, "contextTags", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
 {_afterSeqEl();}){setProperty(ret, "isContext", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isContext", java.lang.Boolean.FALSE);}{_exitAlt();} )
 {_afterSeqEl();}){setProperty(ret, "isReferenceOnly", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FB09AE0F2911DFA969EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD33FB09AA0F2911DF8E0BEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33FB09A20F2911DFC2FAEEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FB09A70F2911DFCAFAEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33FB09A40F2911DF9406EEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "otSequence", temp);}){_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FB09A80F2911DFAF9CEEEE93CCC8E1");} SEMI {_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD33FB09AC0F2911DFA72DEEEE93CCC8E1");} SEMI {_afterSeqEl();}){_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FB09B10F2911DF86BDEEEE93CCC8E1");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764BE3F01AFC11DF92E4E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD764BE3EC1AFC11DF869FE3828D1504C0");}(({_beforeSeqEl("E0DCF6CD764BE3E41AFC11DFCB59E3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764BE3E91AFC11DF8FA1E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD764BE3E61AFC11DF8D00E3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "otSequence", temp);}){_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764BE3EA1AFC11DFBA36E3828D1504C0");} SEMI {_afterSeqEl();})){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD764BE3EE1AFC11DFC53AE3828D1504C0");} SEMI {_afterSeqEl();}){_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD764BE3F31AFC11DF8B5BE3828D1504C0");}( temp=textblockdefinition_textblockdefinition {setProperty(ret, "textBlockDefinition", temp);})? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -593,7 +630,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD33FD53820F2911DF80D7EEEE93CCC8E1");}'function'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FD53840F2911DFA92BEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "functionName", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FD53850F2911DF9BB1EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FD53860F2911DF9A6FEEEE93CCC8E1");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FD53870F2911DF8B88EEEE93CCC8E1");} RPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FFC4840F2911DF98F5EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33FD53880F2911DFCCFAEEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FFC4810F2911DFC303EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD33FD538A0F2911DF9811EEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "functionSequence", temp);}){_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD33FFC4820F2911DFC8DEEEEE93CCC8E1");} SEMI {_afterSeqEl();})){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD765EF6A01AFC11DF9FA7E3828D1504C0");}'function'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6A21AFC11DF99A1E3828D1504C0");}( temp=identifier {setProperty(ret, "functionName", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6A31AFC11DF92BDE3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6A41AFC11DF9B8EE3828D1504C0");}reference[ret]{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6A51AFC11DF8A5FE3828D1504C0");} RPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6AE1AFC11DFCAEFE3828D1504C0");}(({_beforeSeqEl("E0DCF6CD765EF6A61AFC11DF9678E3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6AB1AFC11DFC89AE3828D1504C0");}(({_beforeSeqEl("E0DCF6CD765EF6A81AFC11DF8259E3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "functionSequence", temp);}){_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD765EF6AC1AFC11DF8E82E3828D1504C0");} SEMI {_afterSeqEl();})){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -607,7 +644,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD33FFC4880F2911DF9D7EEEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD340235810F2911DFCFDFEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "tags", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD33FFC48A0F2911DF829EEEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=identifier {setProperty(ret, "tags", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD340235820F2911DFBD31EEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD766140901AFC11DFC406E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD766140951AFC11DF87FAE3828D1504C0");}( temp=identifier {setProperty(ret, "tags", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD766140921AFC11DF96B0E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=identifier {setProperty(ret, "tags", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD766140961AFC11DF825DE3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -621,7 +658,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD340235870F2911DF9D91EEEE93CCC8E1");}( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);} ( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);})* )? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7661409B1AFC11DFBCD4E3828D1504C0");}( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);} ( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);})* )? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -660,7 +697,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD343B46E00F2911DFA498EEEE93CCC8E1");}( temp=stringSymbol {setRef(ret, "referredLiteral", list("TCS","Literal"), "value", temp, "#all", "ifmissing", list("TCS","Keyword"), false, null);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3450CAB00F2911DFB413EEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76686C811AFC11DF9AF2E3828D1504C0");}( temp=stringSymbol {setRef(ret, "referredLiteral", list("TCS","Literal"), "value", temp, "#all", "ifmissing", list("TCS","Keyword"), false, null);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD766ADD801AFC11DF9159E3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -674,7 +711,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD346627760F2911DFA774EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD3463B6720F2911DFA2EEEEEE93CCC8E1");}( temp=identifierOrKeyword {setOclRef(ret, "strucfeature", "name", temp, "OCL:let c = #context.oclAsType(TCS::Template).metaReference in"+"                                                let result = c.lookupElementExtended(?) in"+"                                                if not (result.oclIsInvalid()) then"+"                                                        if(result.oclIsTypeOf(Model::Attribute) or"+"                                                                        result.oclIsTypeOf(Model::Reference)"+"                                                                        or result.oclIsTypeOf(Model::StructureField)) then"+"                                                                Bag{result}     "+"                                                        else            "+"                                                                c.allSupertypes()->prepend(c)->collect("+"                                                                        st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                                te | "+"                                                                                        if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                                te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                        else            "+"                                                                                                false "+"                                                                                        endif"+"                                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())"+"                                                                )"+"                                                        endif "+"                                                else    "+"                                                        c.allSupertypes()->prepend(c)->collect("+"                                                                st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                        te | "+"                                                                                if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                        te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                else"+"                                                                                        false "+"                                                                                endif"+"                                                                        )"+"                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()"+"                                                        ) "+"                                                endif"+"                                                        ");}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD346627710F2911DFC74BEEEE93CCC8E1");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346627740F2911DFC661EEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "name", temp);})? {_afterSeqEl();}){_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD766F98791AFC11DFB86AE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD766F98721AFC11DFA2C1E3828D1504C0");}( temp=identifierOrKeyword {setOclRef(ret, "strucfeature", "name", temp, "OCL:let c = #context.oclAsType(TCS::Template).metaReference in"+"                                                let result = c.lookupElementExtended(?) in"+"                                                if not (result.oclIsInvalid()) then"+"                                                        if(result.oclIsTypeOf(Model::Attribute) or"+"                                                                        result.oclIsTypeOf(Model::Reference)"+"                                                                        or result.oclIsTypeOf(Model::StructureField)) then"+"                                                                Bag{result}     "+"                                                        else            "+"                                                                c.allSupertypes()->prepend(c)->collect("+"                                                                        st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                                te | "+"                                                                                        if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                                te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                        else            "+"                                                                                                false "+"                                                                                        endif"+"                                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())"+"                                                                )"+"                                                        endif "+"                                                else    "+"                                                        c.allSupertypes()->prepend(c)->collect("+"                                                                st | st.oclAsType(Model::Classifier).typedElements->select("+"                                                                        te | "+"                                                                                if te.oclIsTypeOf(Model::AssociationEnd) then"+"                                                                                        te.oclAsType(Model::AssociationEnd).otherEnd().name = ? "+"                                                                                else"+"                                                                                        false "+"                                                                                endif"+"                                                                        )"+"                                                                )->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()"+"                                                        ) "+"                                                endif"+"                                                        ");}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD766F98741AFC11DF97D4E3828D1504C0");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD766F98771AFC11DF9960E3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "name", temp);})? {_afterSeqEl();}){_exitAlt();} )
 {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
@@ -689,8 +726,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3466277B0F2911DFA78AEEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3468987B0F2911DF8DF1EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD346898730F2911DFCF8CEEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346898780F2911DFAE2DEEEE93CCC8E1");}( temp=tcs_propertyarg {setProperty(ret, "propertyArgs", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD346898750F2911DF9A6EEEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_propertyarg {setProperty(ret, "propertyArgs", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346898790F2911DFA37CEEEE93CCC8E1");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3468987E0F2911DF9D75EEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7671E2611AFC11DFC32EE3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7671E26D1AFC11DFC80FE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7671E2651AFC11DFC3F1E3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7671E26A1AFC11DF9400E3828D1504C0");}( temp=tcs_propertyarg {setProperty(ret, "propertyArgs", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD7671E2671AFC11DFB337E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_propertyarg {setProperty(ret, "propertyArgs", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7671E26B1AFC11DFCFE5E3828D1504C0");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7671E2701AFC11DFB340E3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -704,7 +741,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD346898820F2911DFB874EEEE93CCC8E1");} LT {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346898840F2911DFA7C9EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346898850F2911DF9CEFEEEE93CCC8E1");} GT {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346AE2620F2911DFB79EEEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD767453601AFC11DFC284E3828D1504C0");} LT {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767453621AFC11DFB39BE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767453631AFC11DF8C57E3828D1504C0");} GT {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767453661AFC11DF9F82E3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -718,8 +755,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD346AE2660F2911DF872CEEEE93CCC8E1");} LSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346AE2680F2911DFB3CEEEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "blockSequence", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346AE2690F2911DFA61AEEEE93CCC8E1");} RSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D53620F2911DFBCD8EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD346AE26D0F2911DF87EBEEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346AE2720F2911DF98C3EEEE93CCC8E1");}( temp=tcs_blockarg {setProperty(ret, "blockArgs", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD346AE26F0F2911DFA3B9EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_blockarg {setProperty(ret, "blockArgs", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D53600F2911DFBFA4EEEE93CCC8E1");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D53650F2911DFCB76EEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7674536A1AFC11DFBA3AE3828D1504C0");} LSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7674536C1AFC11DF8CB8E3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "blockSequence", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7674536D1AFC11DF8371E3828D1504C0");} RSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767453791AFC11DFB9D8E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD767453711AFC11DFA23EE3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767453761AFC11DF8BAFE3828D1504C0");}( temp=tcs_blockarg {setProperty(ret, "blockArgs", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD767453731AFC11DF9329E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_blockarg {setProperty(ret, "blockArgs", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767453771AFC11DFC1C7E3828D1504C0");} RCURLY {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7674537C1AFC11DFB09EE3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -733,8 +770,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD346D53690F2911DF9CECEEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D536B0F2911DFAFCEEEEE93CCC8E1");}( temp=tcs_expression {setProperty(ret, "condition", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D536C0F2911DFC815EEEE93CCC8E1");} QMARK {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D536E0F2911DFB7F4EEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "thenSequence", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D53760F2911DF8C38EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD346D53720F2911DFAA81EEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346D53740F2911DFBF69EEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "elseSequence", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346F9D500F2911DF80B3EEEE93CCC8E1");} RPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346F9D530F2911DFAB0FEEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7676C4621AFC11DFC138E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C4641AFC11DFB75BE3828D1504C0");}( temp=tcs_expression {setProperty(ret, "condition", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C4651AFC11DFCB65E3828D1504C0");} QMARK {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C4671AFC11DFA2B2E3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "thenSequence", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C46F1AFC11DFCD5DE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7676C46B1AFC11DFACC6E3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C46D1AFC11DFB788E3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "elseSequence", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C4701AFC11DFAAD8E3828D1504C0");} RPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7676C4731AFC11DFBA43E3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -748,8 +785,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD346F9D570F2911DFCC71EEEE93CCC8E1");} DLSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346F9D5C0F2911DF908FEEEE93CCC8E1");}( temp=tcs_sequenceinalternative {setProperty(ret, "sequences", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD346F9D590F2911DF9371EEEE93CCC8E1");} PIPE {_afterSeqEl();}){_exitSepSeq();} temp=tcs_sequenceinalternative {setProperty(ret, "sequences", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346F9D5D0F2911DF8E68EEEE93CCC8E1");} DRSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346F9D630F2911DFB18DEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD346F9D610F2911DF8554EEEE93CCC8E1");} STAR {_afterSeqEl();}){setProperty(ret, "isMulti", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isMulti", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD346F9D660F2911DF85F4EEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76790E501AFC11DF96A3E3828D1504C0");} DLSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E551AFC11DFCA22E3828D1504C0");}( temp=tcs_sequenceinalternative {setProperty(ret, "sequences", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD76790E521AFC11DFC6F5E3828D1504C0");} PIPE {_afterSeqEl();}){_exitSepSeq();} temp=tcs_sequenceinalternative {setProperty(ret, "sequences", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E561AFC11DFC76FE3828D1504C0");} DRSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E5C1AFC11DF8CA4E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76790E5A1AFC11DF83A2E3828D1504C0");} STAR {_afterSeqEl();}){setProperty(ret, "isMulti", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isMulti", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E5F1AFC11DF8F3DE3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -763,8 +800,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34720E5C0F2911DF8CCDEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34720E550F2911DFC514EEEE93CCC8E1");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34720E560F2911DF9781EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34720E590F2911DF9078EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "disambiguate", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34720E5A0F2911DFB7B6EEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34747F510F2911DFC68DEEEE93CCC8E1");}( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);} ( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);})* )? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76790E6D1AFC11DF94BDE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76790E661AFC11DF8D75E3828D1504C0");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E671AFC11DFBF92E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E6A1AFC11DF8605E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "disambiguate", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76790E6B1AFC11DFA2F1E3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767B7F511AFC11DF94B8E3828D1504C0");}( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);} ( temp=tcs_sequenceelement {setProperty(ret, "elements", temp);})* )? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -778,7 +815,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34747F550F2911DF94DAEEEE93CCC8E1");} DOLLAR {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34747F580F2911DF95D9EEEE93CCC8E1");}( temp=identifier {setRef(ret, "calledFunction", list("TCS","FunctionTemplate"), "functionName", temp, null, "never", null, false, null);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34747F5B0F2911DFB91FEEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD767B7F551AFC11DFA4B0E3828D1504C0");} DOLLAR {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767B7F581AFC11DFAB0AE3828D1504C0");}( temp=identifier {setRef(ret, "calledFunction", list("TCS","FunctionTemplate"), "functionName", temp, null, "never", null, false, null);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767B7F5B1AFC11DFBB22E3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -792,7 +829,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3476C9400F2911DFB8D0EEEE93CCC8E1");} DLCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3476C9450F2911DFAB24EEEE93CCC8E1");}( temp=tcs_injectoraction {setProperty(ret, "injectorActions", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD3476C9420F2911DFACF8EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_injectoraction {setProperty(ret, "injectorActions", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3476C9460F2911DFBA4CEEEE93CCC8E1");} DRCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3476C9490F2911DFA0C6EEEE93CCC8E1");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD767B7F5F1AFC11DF8E19E3828D1504C0");} DLCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767B7F641AFC11DFB241E3828D1504C0");}( temp=tcs_injectoraction {setProperty(ret, "injectorActions", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD767B7F611AFC11DF8CC7E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_injectoraction {setProperty(ret, "injectorActions", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767B7F651AFC11DFC427E3828D1504C0");} DRCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD767B7F681AFC11DFBED7E3828D1504C0");}{setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -826,8 +863,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34793A440F2911DFAFD4EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347B84350F2911DF94DCEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD347B84310F2911DF8A32EEEE93CCC8E1");} LARROW {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD347B84330F2911DFB652EEEE93CCC8E1");} EQ {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347B84370F2911DFA745EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76803A431AFC11DF94B1E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76803A4B1AFC11DFAA17E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76803A471AFC11DF87E3E3828D1504C0");} LARROW {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD76803A491AFC11DFB8B2E3828D1504C0");} EQ {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76803A4D1AFC11DFAC80E3828D1504C0");}( temp=identifier {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -841,8 +878,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD347B843C0F2911DFAEB5EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347B84440F2911DFB029EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD347B84400F2911DFC208EEEE93CCC8E1");} LARROW {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD347B84420F2911DF89ABEEEE93CCC8E1");} EQ {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5300F2911DF990DEEEE93CCC8E1");}'lookIn'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5310F2911DFBF18EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5340F2911DFA11AEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5350F2911DFC7A8EEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76803A521AFC11DF9351E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB451AFC11DFA6F3E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7682AB411AFC11DFB684E3828D1504C0");} LARROW {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD7682AB431AFC11DF8B07E3828D1504C0");} EQ {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB461AFC11DF93D8E3828D1504C0");}'lookIn'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB471AFC11DFA235E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB4A1AFC11DFC835E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB4B1AFC11DFB744E3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -856,10 +893,10 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD347DF53A0F2911DFB723EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5420F2911DFB21DEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD347DF53E0F2911DF928EEEEE93CCC8E1");} LARROW {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD347DF5400F2911DFC5A9EEEE93CCC8E1");} EQ {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5430F2911DFAD3CEEEE93CCC8E1");}'foreach'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5440F2911DFB988EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD347DF5470F2911DFC102EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3480663A0F2911DFA82BEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD348066330F2911DF89DDEEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348066340F2911DFB2B7EEEE93CCC8E1");}'mode'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348066350F2911DF90B8EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348066380F2911DF9C7EEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "mode", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348066450F2911DF9C18EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD3480663E0F2911DFC6D0EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348066430F2911DFC250EEEE93CCC8E1");}( temp=tcs_predicatesemantic {setProperty(ret, "predicatesemantic", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD348066400F2911DF9EA6EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_predicatesemantic {setProperty(ret, "predicatesemantic", temp);})* )? {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348066460F2911DF9994EEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7682AB501AFC11DFCEA1E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB581AFC11DF99A0E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7682AB541AFC11DF8244E3828D1504C0");} LARROW {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD7682AB561AFC11DF8389E3828D1504C0");} EQ {_afterSeqEl();}){setProperty(ret, "isDefault", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB591AFC11DFCDB4E3828D1504C0");}'foreach'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB5A1AFC11DF883CE3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB5D1AFC11DFCAECE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB681AFC11DF9B30E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7682AB611AFC11DFA19EE3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB621AFC11DF8CB5E3828D1504C0");}'mode'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB631AFC11DF8D4BE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7682AB661AFC11DFCC19E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "mode", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5351AFC11DFA9A9E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7682AB6C1AFC11DFA1F3E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5331AFC11DF8DC4E3828D1504C0");}( temp=tcs_predicatesemantic {setProperty(ret, "predicatesemantic", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD7684F5301AFC11DF89D4E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_predicatesemantic {setProperty(ret, "predicatesemantic", temp);})* )? {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5361AFC11DFB04FE3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -873,9 +910,9 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3482B02A0F2911DF9A9CEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD3482B0230F2911DFC41CEEEE93CCC8E1");}'when'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0240F2911DFB709EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0270F2911DFA196EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "when", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0280F2911DFAD01EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0350F2911DF9110EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD3482B02E0F2911DFAC76EEEE93CCC8E1");}'mode'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B02F0F2911DFB702EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0320F2911DF9206EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "mode", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0330F2911DFAD59EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0360F2911DF903CEEEE93CCC8E1");}'as'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B0370F2911DFA20FEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3482B03C0F2911DF829CEEEE93CCC8E1");}( temp=identifierOrKeyword {setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()"+"                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");})? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7684F5441AFC11DFAEDEE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7684F53D1AFC11DFAFDBE3828D1504C0");}'when'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F53E1AFC11DFB914E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5411AFC11DF812EE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "when", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5421AFC11DF941BE3828D1504C0");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F54F1AFC11DFA069E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD7684F5481AFC11DFA964E3828D1504C0");}'mode'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5491AFC11DF8570E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F54C1AFC11DF8F0FE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "mode", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F54D1AFC11DF8D82E3828D1504C0");} COMA {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7684F5501AFC11DF969DE3828D1504C0");}'as'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768766301AFC11DFC406E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768766351AFC11DF8879E3828D1504C0");}( temp=identifierOrKeyword {setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()"+"                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");})? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -899,7 +936,8 @@ tcs_propertyarg returns[Object ret2]
   | ret=tcs_createasparg
   | ret=tcs_queryparg
   | ret=tcs_filterparg
-  | ret=tcs_modeparg)
+  | ret=tcs_modeparg
+  | ret=tcs_partitionhandlingparg)
   {
 ret2=ret;
  }
@@ -912,7 +950,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD348521220F2911DFB298EEEE93CCC8E1");}'refersTo'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348521230F2911DFC52FEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD348521260F2911DF8C71EEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7687663B1AFC11DF93F8E3828D1504C0");}'refersTo'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7687663C1AFC11DFC856E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7687663F1AFC11DF91EAE3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -926,7 +964,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34876B100F2911DFC9EEEEEE93CCC8E1");}'lookIn'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34876B110F2911DFC7DAEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A1A9DB0F2911DFB735EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34A1A9D10F2911DFA88AEEEE93CCC8E1");} SHARP {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A1A9D20F2911DF87EAEEEE93CCC8E1");}'all'{_afterSeqEl();}){setProperty(ret, "propertyName", new String("#all"));}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD34A1A9D90F2911DFBABEEEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD34A1A9D60F2911DF87D7EEEE93CCC8E1");} POINT {_afterSeqEl();}){_exitSepSeq();} temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);})* ){_afterSeqEl();}){}{_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD7689B0201AFC11DFA0CAE3828D1504C0");}'lookIn'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7689B0211AFC11DF80DFE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768C212C1AFC11DFC951E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD768C21221AFC11DFC621E3828D1504C0");} SHARP {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768C21231AFC11DF83F6E3828D1504C0");}'all'{_afterSeqEl();}){setProperty(ret, "propertyName", new String("#all"));}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD768C212A1AFC11DF97BBE3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD768C21271AFC11DFB150E3828D1504C0");} POINT {_afterSeqEl();}){_exitSepSeq();} temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);})* ){_afterSeqEl();}){}{_exitAlt();} )
 {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
@@ -941,7 +979,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34A41AD20F2911DFB1D1EEEE93CCC8E1");}'createIn'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A41AD30F2911DF861FEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A41AD90F2911DFADDBEEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD34A41AD60F2911DFCFB3EEEE93CCC8E1");} POINT {_afterSeqEl();}){_exitSepSeq();} temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);})* ){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD768E92201AFC11DF8959E3828D1504C0");}'createIn'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768E92211AFC11DF9F72E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768E92271AFC11DFC04EE3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD768E92241AFC11DFC126E3828D1504C0");} POINT {_afterSeqEl();}){_exitSepSeq();} temp=identifierOrKeyword {setProperty(ret, "propertyName", temp);})* ){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -955,7 +993,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34A664C20F2911DF9972EEEE93CCC8E1");}'as'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A664C30F2911DF932BEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A664C80F2911DF89ADEEEE93CCC8E1");}( temp=identifierOrKeyword {setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ? "+"                                                                                and(self.property.propertyReference.strucfeature.type.allSupertypes()"+"                                                                                        ->prepend(self.property.propertyReference.strucfeature.type)"+"                                                                                        ->includes(t.oclAsType(TCS::ClassTemplate).metaReference))"+"                                                                                and ("+"                                                                                        if (not self.property.propertyArgs->select("+"                                                                                                        arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()"+"                                                                                                ) "+"                                                                                        then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = "+"                                                                                                        self.property.propertyArgs->select("+"                                                                                                                arg | arg.oclIsTypeOf(TCS::ModePArg))"+"                                                                                                                        .oclAsType(TCS::ModePArg)->asSequence()->at(1)"+"                                                                                                        .mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()"+"                                                                                        endif"+"                                                                                )"+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ? "+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD768E922B1AFC11DF9E98E3828D1504C0");}'as'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768E922C1AFC11DF931EE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD768E92311AFC11DFCA1EE3828D1504C0");}( temp=identifierOrKeyword {setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ? "+"                                                                                and(self.property.propertyReference.strucfeature.type.allSupertypes()"+"                                                                                        ->prepend(self.property.propertyReference.strucfeature.type)"+"                                                                                        ->includes(t.oclAsType(TCS::ClassTemplate).metaReference))"+"                                                                                and ("+"                                                                                        if (not self.property.propertyArgs->select("+"                                                                                                        arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()"+"                                                                                                ) "+"                                                                                        then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = "+"                                                                                                        self.property.propertyArgs->select("+"                                                                                                                arg | arg.oclIsTypeOf(TCS::ModePArg))"+"                                                                                                                        .oclAsType(TCS::ModePArg)->asSequence()->at(1)"+"                                                                                                        .mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()"+"                                                                                        endif"+"                                                                                )"+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ? "+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -969,7 +1007,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34A8D5C00F2911DFA9A9EEEE93CCC8E1");}'separator'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A8D5C10F2911DF9C21EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A8D5C30F2911DF9D3AEEEE93CCC8E1");}( temp=tcs_sequence {setProperty(ret, "separatorSequence", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7690DC101AFC11DF86FCE3828D1504C0");}'separator'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7690DC111AFC11DF9FB9E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7690DC131AFC11DF874BE3828D1504C0");}( temp=tcs_sequence {setProperty(ret, "separatorSequence", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -983,7 +1021,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34A8D5C70F2911DFCBB4EEEE93CCC8E1");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A8D5C80F2911DF9A9AEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34A8D5CB0F2911DFA6C1EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "disambiguation", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7690DC171AFC11DFC179E3828D1504C0");}'disambiguate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7690DC181AFC11DF9C8CE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7690DC1B1AFC11DFA2F7E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "disambiguation", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -997,7 +1035,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34AB1FB00F2911DF8415EEEE93CCC8E1");}'autoCreate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34AB1FB10F2911DF9B70EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34AB1FB30F2911DF996BEEEE93CCC8E1");}( temp=tcs_autocreatekind {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD7690DC1F1AFC11DF8F52E3828D1504C0");}'autoCreate'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7690DC201AFC11DFA25DE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7690DC221AFC11DFBBB5E3828D1504C0");}( temp=tcs_autocreatekind {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1007,9 +1045,9 @@ catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally
 
 tcs_autocreatekind returns[Object ret2] @init{java.lang.Object ret=null;}
   :
-  (({_beforeSeqEl("E0DCF6CD34B24BA00F2911DFA1D5EEEE93CCC8E1");}'always'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","AutoCreateKind"), "always");}
- | ({_beforeSeqEl("E0DCF6CD34C55E710F2911DF9917EEEE93CCC8E1");}'ifmissing'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","AutoCreateKind"), "ifmissing");}
- | ({_beforeSeqEl("E0DCF6CD34C7CF710F2911DFCD80EEEE93CCC8E1");}'never'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","AutoCreateKind"), "never");})
+  (({_beforeSeqEl("E0DCF6CD76934D111AFC11DF99CCE3828D1504C0");}'always'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","AutoCreateKind"), "always");}
+ | ({_beforeSeqEl("E0DCF6CD76934D141AFC11DF87A3E3828D1504C0");}'ifmissing'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","AutoCreateKind"), "ifmissing");}
+ | ({_beforeSeqEl("E0DCF6CD76934D171AFC11DF9052E3828D1504C0");}'never'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","AutoCreateKind"), "never");})
 {
   ret2=ret;
 }
@@ -1022,7 +1060,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34D600400F2911DFA67FEEEE93CCC8E1");}'importContext'{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76934D1B1AFC11DF9A5FE3828D1504C0");}'importContext'{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1036,7 +1074,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34D600440F2911DFB96AEEEE93CCC8E1");}'partial'{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76934D1F1AFC11DFCD82E3828D1504C0");}'partial'{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1050,7 +1088,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34D871400F2911DFA81BEEEE93CCC8E1");}'forcedLower'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34D871410F2911DF8534EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34D871430F2911DFB0FFEEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769597021AFC11DFC2C8E3828D1504C0");}'forcedLower'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769597031AFC11DFB309E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769597051AFC11DF81DFE3828D1504C0");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1064,7 +1102,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34D871470F2911DFC85DEEEE93CCC8E1");}'forcedUpper'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34D871480F2911DF8B9AEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34D8714A0F2911DFB123EEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769808001AFC11DFB1BEE3828D1504C0");}'forcedUpper'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769808011AFC11DFA7D5E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769808031AFC11DFBD50E3828D1504C0");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1078,7 +1116,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34DABB300F2911DF957EEEEE93CCC8E1");}'createAs'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DABB310F2911DFC0A3EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DABB370F2911DF8999EEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "name", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD34DABB340F2911DFB00BEEEE93CCC8E1");} DLCOLON {_afterSeqEl();}){_exitSepSeq();} temp=identifierOrKeyword {setProperty(ret, "name", temp);})* ){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769808071AFC11DF8629E3828D1504C0");}'createAs'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769808081AFC11DFBCEEE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD7698080E1AFC11DFA0A0E3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "name", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD7698080B1AFC11DF81EAE3828D1504C0");} DLCOLON {_afterSeqEl();}){_exitSepSeq();} temp=identifierOrKeyword {setProperty(ret, "name", temp);})* ){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1092,7 +1130,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34DABB3B0F2911DF9709EEEE93CCC8E1");}'query'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DABB3C0F2911DF9B78EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DABB3F0F2911DFB2ACEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "query", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769A79001AFC11DF93B8E3828D1504C0");}'query'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79011AFC11DFBD83E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79041AFC11DFC041E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "query", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1106,7 +1144,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34DD2C300F2911DF87E8EEEE93CCC8E1");}'filter'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DD2C310F2911DFC2A1EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DD2C340F2911DFC2CCEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "filter", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DD2C3F0F2911DFA982EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34DD2C380F2911DFB875EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DD2C390F2911DF90AFEEEE93CCC8E1");}'invert'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DD2C3A0F2911DFA053EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DD2C3D0F2911DF9CE9EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "invert", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD769A79081AFC11DFC2FAE3828D1504C0");}'filter'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79091AFC11DFC8AFE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A790C1AFC11DF88BCE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "filter", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79171AFC11DF9637E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD769A79101AFC11DF8A2DE3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79111AFC11DFC387E3828D1504C0");}'invert'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79121AFC11DFA004E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A79151AFC11DF8FD0E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "invert", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
 {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
@@ -1121,7 +1159,21 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34DF9D300F2911DF9302EEEE93CCC8E1");}'mode'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DF9D310F2911DFB364EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34DF9D340F2911DFA611EEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "mode", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769A791B1AFC11DFC449E3828D1504C0");}'mode'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A791C1AFC11DFAC65E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769A791F1AFC11DF95DBE3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "mode", temp);}){_afterSeqEl();})
+  {
+ret2 = commitCreation(ret, firstToken, false);
+
+ }
+  ;
+catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}
+
+tcs_partitionhandlingparg returns[Object ret2] @init{List<String> metaType=list("TCS","PartitionHandlingPArg");
+onEnterTemplateRule(metaType);
+IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
+org.antlr.runtime.Token firstToken=input.LT(1);
+}
+  :
+  ({_beforeSeqEl("E0DCF6CD769CC2F41AFC11DFA374E3828D1504C0");}( temp=tcs_partitionhandling {setProperty(ret, "partitionHandling", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1148,7 +1200,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34E1E7220F2911DFA3F2EEEE93CCC8E1");}'nbNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E1E7230F2911DF90DCEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E1E7250F2911DFC943EEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769CC2FA1AFC11DF8162E3828D1504C0");}'nbNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769CC2FB1AFC11DFA8A8E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769CC2FD1AFC11DFC82AE3828D1504C0");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1162,7 +1214,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34E458200F2911DF888BEEEE93CCC8E1");}'indentIncr'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E458210F2911DFA25DEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E458230F2911DF9BC1EEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD769F33F31AFC11DFA9ACE3828D1504C0");}'indentIncr'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769F33F41AFC11DFA7B0E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769F33F61AFC11DFAABDE3828D1504C0");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1176,7 +1228,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34E458270F2911DFA80EEEEE93CCC8E1");}'startNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E458280F2911DFB110EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E458300F2911DFCB22EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34E4582C0F2911DF9E7AEEEE93CCC8E1");}'true'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD34E4582E0F2911DF8781EEEE93CCC8E1");}'false'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.FALSE);}{_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD769F33FA1AFC11DF99B2E3828D1504C0");}'startNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769F33FB1AFC11DFBB81E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD769F34031AFC11DFBC9FE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD769F33FF1AFC11DFBDFAE3828D1504C0");}'true'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD769F34011AFC11DF86B4E3828D1504C0");}'false'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.FALSE);}{_exitAlt();} )
 {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
@@ -1191,7 +1243,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34E6A2100F2911DFCB97EEEE93CCC8E1");}'startNbNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E6A2110F2911DF8A43EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E6A2130F2911DF8EBCEEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76A17DE01AFC11DF9A26E3828D1504C0");}'startNbNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A17DE11AFC11DF88CCE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A17DE31AFC11DF9760E3828D1504C0");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1205,7 +1257,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34E6A2170F2911DFC6EDEEEE93CCC8E1");}'endNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E6A2180F2911DFC006EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E913120F2911DF9B0AEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34E6A21C0F2911DFAEF9EEEE93CCC8E1");}'true'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD34E913100F2911DFCCB4EEEE93CCC8E1");}'false'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.FALSE);}{_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD76A3EEE01AFC11DFC340E3828D1504C0");}'endNL'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEE11AFC11DFB3D4E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEE91AFC11DFB4B2E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76A3EEE51AFC11DF8CE1E3828D1504C0");}'true'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD76A3EEE71AFC11DFC385E3828D1504C0");}'false'{_afterSeqEl();}){setProperty(ret, "value", java.lang.Boolean.FALSE);}{_exitAlt();} )
 {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
@@ -1220,8 +1272,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34E913170F2911DFB4FEEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E913180F2911DF8896EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E9131B0F2911DFBC8EEEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34EB84100F2911DF9546EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34E9131F0F2911DFAFACEEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34E913240F2911DFB127EEEE93CCC8E1");}( temp=tcs_spacekind {setProperty(ret, "spaces", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD34E913210F2911DF81B7EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_spacekind {setProperty(ret, "spaces", temp);})* )? {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34EB84110F2911DF91CEEEEE93CCC8E1");} SEMI {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76A3EEEE1AFC11DF9352E3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEEF1AFC11DF8311E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEF21AFC11DFBB99E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEFD1AFC11DF8EA7E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76A3EEF61AFC11DFBB61E3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEFB1AFC11DFC4CCE3828D1504C0");}( temp=tcs_spacekind {setProperty(ret, "spaces", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD76A3EEF81AFC11DFC4E4E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_spacekind {setProperty(ret, "spaces", temp);})* )? {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A3EEFE1AFC11DF85E1E3828D1504C0");} SEMI {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1231,10 +1283,10 @@ catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally
 
 tcs_spacekind returns[Object ret2] @init{java.lang.Object ret=null;}
   :
-  (({_beforeSeqEl("E0DCF6CD34EB84160F2911DF8D15EEEE93CCC8E1");}'leftSpace'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "leftSpace");}
- | ({_beforeSeqEl("E0DCF6CD34EB84190F2911DFC308EEEE93CCC8E1");}'leftNone'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "leftNone");}
- | ({_beforeSeqEl("E0DCF6CD34EB841C0F2911DF88EFEEEE93CCC8E1");}'rightSpace'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "rightSpace");}
- | ({_beforeSeqEl("E0DCF6CD34EB841F0F2911DF8F4AEEEE93CCC8E1");}'rightNone'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "rightNone");})
+  (({_beforeSeqEl("E0DCF6CD76A65FE31AFC11DFB61BE3828D1504C0");}'leftSpace'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "leftSpace");}
+ | ({_beforeSeqEl("E0DCF6CD76A65FE61AFC11DFCCAAE3828D1504C0");}'leftNone'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "leftNone");}
+ | ({_beforeSeqEl("E0DCF6CD76A65FE91AFC11DFC44DE3828D1504C0");}'rightSpace'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "rightSpace");}
+ | ({_beforeSeqEl("E0DCF6CD76A65FEC1AFC11DFBF80E3828D1504C0");}'rightNone'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","SpaceKind"), "rightNone");})
 {
   ret2=ret;
 }
@@ -1247,7 +1299,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34EDCE010F2911DFC4E8EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34EDCE020F2911DFBF20EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34EDCE050F2911DFBDB2EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34EDCE060F2911DF89FAEEEE93CCC8E1");} SEMI {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76A65FF11AFC11DF987EE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A65FF21AFC11DFB241E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A65FF51AFC11DF94DBE3828D1504C0");}( temp=stringSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A65FF61AFC11DF8202E3828D1504C0");} SEMI {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1261,8 +1313,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34EDCE0A0F2911DF85D8EEEE93CCC8E1");}'operators'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F010F2911DF9C83EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34EDCE0F0F2911DFBEFDEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F020F2911DF88B9EEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F060F2911DFB326EEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD34F03F040F2911DFA0E6EEEE93CCC8E1");}( temp=tcs_priority {setProperty(ret, "priorities", temp);} ( temp=tcs_priority {setProperty(ret, "priorities", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F070F2911DF9A4BEEEE93CCC8E1");} RCURLY {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76A8A9D01AFC11DF88F1E3828D1504C0");}'operators'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9D71AFC11DFBB19E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76A8A9D51AFC11DFBEE5E3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9D81AFC11DF8DF9E3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9DC1AFC11DFCDA9E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD76A8A9DA1AFC11DF9344E3828D1504C0");}( temp=tcs_priority {setProperty(ret, "priorities", temp);} ( temp=tcs_priority {setProperty(ret, "priorities", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9DD1AFC11DF89F7E3828D1504C0");} RCURLY {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1276,8 +1328,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34F03F0B0F2911DF8A08EEEE93CCC8E1");}'priority'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F0D0F2911DFC695EEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F170F2911DFB426EEEE93CCC8E1");} ({_enterAlt(0);} (){setProperty(ret, "associativity", createEnumLiteral(list("TCS","Associativity"),"left"));}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD34F03F130F2911DFA47FEEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F150F2911DF880DEEEE93CCC8E1");}( temp=tcs_associativity {setProperty(ret, "associativity", temp);}){_afterSeqEl();}){setProperty(ret, "associativity", createEnumLiteral(list("TCS","Associativity"),"right"));}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F03F180F2911DFB6B7EEEE93CCC8E1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F288F00F2911DFCBCAEEEE93CCC8E1");}(({_beforeSeqEl("E0DCF6CD34F03F1A0F2911DFA263EEEE93CCC8E1");}( temp=tcs_operator {setProperty(ret, "operators", temp);} ( temp=tcs_operator {setProperty(ret, "operators", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F288F10F2911DFCF8FEEEE93CCC8E1");} RCURLY {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76A8A9E11AFC11DF8E51E3828D1504C0");}'priority'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9E31AFC11DF9A02E3828D1504C0");}( temp=integerSymbol {setProperty(ret, "value", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9ED1AFC11DF82C6E3828D1504C0");} ({_enterAlt(0);} (){setProperty(ret, "associativity", createEnumLiteral(list("TCS","Associativity"),"left"));}{_exitAlt();}  | {_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD76A8A9E91AFC11DFB9D1E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9EB1AFC11DFA42AE3828D1504C0");}( temp=tcs_associativity {setProperty(ret, "associativity", temp);}){_afterSeqEl();}){setProperty(ret, "associativity", createEnumLiteral(list("TCS","Associativity"),"right"));}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9EE1AFC11DF95F7E3828D1504C0");} LCURLY {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76A8A9F21AFC11DFAD22E3828D1504C0");}(({_beforeSeqEl("E0DCF6CD76A8A9F01AFC11DFCD7AE3828D1504C0");}( temp=tcs_operator {setProperty(ret, "operators", temp);} ( temp=tcs_operator {setProperty(ret, "operators", temp);})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AB1AD01AFC11DF8111E3828D1504C0");} RCURLY {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1291,10 +1343,10 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD34F288FA0F2911DF806DEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34F288F80F2911DFB3CBEEEE93CCC8E1");}'postfix'{_afterSeqEl();}){setProperty(ret, "isPostfix", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isPostfix", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F288FC0F2911DFB433EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD34F288FD0F2911DFBD3CEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD350CC7B10F2911DFCB79EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD35059BC00F2911DF9520EEEE93CCC8E1");}({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD34F289030F2911DF9389EEEE93CCC8E1");}( temp=identifier {setRef(ret, "literal", list("TCS","Literal"), "name", temp, null, "never", null, false, null);}){_afterSeqEl();}){_exitAlt();} 
-  |{_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD350351D60F2911DFC9B2EEEE93CCC8E1");}( temp=stringSymbol {setRef(ret, "literal", list("TCS","Literal"), "value", temp, "#all", "ifmissing", list("TCS","Keyword"), false, null);}){_afterSeqEl();}){_exitAlt();} ){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD350CC7B20F2911DFA825EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD350CC7B40F2911DFB80BEEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "arity", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD350F38B00F2911DF98D1EEEE93CCC8E1");} SEMI {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76AB1AD91AFC11DFBA02E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76AB1AD71AFC11DFBD85E3828D1504C0");}'postfix'{_afterSeqEl();}){setProperty(ret, "isPostfix", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isPostfix", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AB1ADB1AFC11DFC2BEE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AB1ADC1AFC11DFA859E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AD8BDA1AFC11DFB914E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76AD8BD81AFC11DF9A2DE3828D1504C0");}({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76AB1AE21AFC11DFA0C0E3828D1504C0");}( temp=identifier {setRef(ret, "literal", list("TCS","Literal"), "name", temp, null, "never", null, false, null);}){_afterSeqEl();}){_exitAlt();} 
+  |{_enterAlt(1);} ({_beforeSeqEl("E0DCF6CD76AD8BD61AFC11DF8191E3828D1504C0");}( temp=stringSymbol {setRef(ret, "literal", list("TCS","Literal"), "value", temp, "#all", "ifmissing", list("TCS","Keyword"), false, null);}){_afterSeqEl();}){_exitAlt();} ){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AD8BDB1AFC11DF9653E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AD8BDD1AFC11DF942FE3828D1504C0");}( temp=integerSymbol {setProperty(ret, "arity", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76AD8BDE1AFC11DF95CBE3828D1504C0");} SEMI {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1304,8 +1356,8 @@ catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally
 
 tcs_associativity returns[Object ret2] @init{java.lang.Object ret=null;}
   :
-  (({_beforeSeqEl("E0DCF6CD350F38B50F2911DFBD16EEEE93CCC8E1");}'left'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","Associativity"), "left");}
- | ({_beforeSeqEl("E0DCF6CD350F38B80F2911DFB842EEEE93CCC8E1");}'right'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","Associativity"), "right");})
+  (({_beforeSeqEl("E0DCF6CD76B246C21AFC11DFCE7FE3828D1504C0");}'left'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","Associativity"), "left");}
+ | ({_beforeSeqEl("E0DCF6CD76B246C51AFC11DFA07CE3828D1504C0");}'right'{_afterSeqEl();}){ret = createEnumLiteral(list("TCS","Associativity"), "right");})
 {
   ret2=ret;
 }
@@ -1327,7 +1379,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351182A60F2911DFA00EEEEE93CCC8E1");}( temp=tcs_atomexp {setProperty(ret, "expressions", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD351182A30F2911DF89C9EEEE93CCC8E1");}'and'{_afterSeqEl();}){_exitSepSeq();} temp=tcs_atomexp {setProperty(ret, "expressions", temp);})* )? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76B490B61AFC11DFA3BFE3828D1504C0");}( temp=tcs_atomexp {setProperty(ret, "expressions", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD76B490B31AFC11DFB6FDE3828D1504C0");}'and'{_afterSeqEl();}){_exitSepSeq();} temp=tcs_atomexp {setProperty(ret, "expressions", temp);})* )? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1354,7 +1406,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3513F3A10F2911DFC2FDEEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3513F3A20F2911DFBF66EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3513F3A40F2911DFBD04EEEE93CCC8E1");}( temp=tcs_value {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76B701B11AFC11DFAA88E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B701B21AFC11DFA66CE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B701B41AFC11DFA1EDE3828D1504C0");}( temp=tcs_value {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1368,7 +1420,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3513F3A90F2911DFAC69EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76B701B91AFC11DFB973E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1382,7 +1434,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD35163D900F2911DFCE9FEEEE93CCC8E1");}'isDefined'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD35163D910F2911DF8060EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD35163D930F2911DFC12FEEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD35163D940F2911DF9BE2EEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76B701BD1AFC11DF8890E3828D1504C0");}'isDefined'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B701BE1AFC11DF9129E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B701C01AFC11DFA2A9E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B701C11AFC11DFB190E3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1396,7 +1448,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD35163D980F2911DFB674EEEE93CCC8E1");}'one'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD35163D990F2911DF8038EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD35163D9B0F2911DF8570EEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD35163D9C0F2911DFB1AAEEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76B972B01AFC11DFB494E3828D1504C0");}'one'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B972B11AFC11DFBCE6E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B972B31AFC11DF99F8E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B972B41AFC11DF9012E3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1410,7 +1462,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3518AE910F2911DFA7BAEEEE93CCC8E1");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3518AE920F2911DFBDC6EEEE93CCC8E1");}'instanceOf'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3518AE970F2911DFB95EEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "supertype", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD3518AE940F2911DFAC67EEEE93CCC8E1");} DLCOLON {_afterSeqEl();}){_exitSepSeq();} temp=identifier {setProperty(ret, "supertype", temp);})* ){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76B972B91AFC11DF8D94E3828D1504C0");}( temp=tcs_propertyreference {setProperty(ret, "propertyReference", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B972BA1AFC11DF9B9DE3828D1504C0");}'instanceOf'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76B972BF1AFC11DFAF55E3828D1504C0");}( temp=identifier {setProperty(ret, "supertype", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD76B972BC1AFC11DF829CE3828D1504C0");} DLCOLON {_afterSeqEl();}){_exitSepSeq();} temp=identifier {setProperty(ret, "supertype", temp);})* ){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1436,7 +1488,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351B1F920F2911DF8228EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "symbol", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76BBBCA41AFC11DFB3A8E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "symbol", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1450,7 +1502,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351B1F970F2911DF902EEEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "symbol", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76BE2DA11AFC11DFCBFBE3828D1504C0");}( temp=integerSymbol {setProperty(ret, "symbol", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1464,7 +1516,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351D69800F2911DF85ECEEEE93CCC8E1");} MINUS {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351D69820F2911DFC4E2EEEE93CCC8E1");}( temp=integerSymbol {setProperty(ret, "symbol", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76BE2DA51AFC11DFB1E7E3828D1504C0");} MINUS {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76BE2DA71AFC11DFAABCE3828D1504C0");}( temp=integerSymbol {setProperty(ret, "symbol", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1478,7 +1530,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351D69860F2911DFCCB5EEEE93CCC8E1");} SHARP {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351D69890F2911DFCD06EEEE93CCC8E1");}( temp=identifierOrKeyword {setProperty(ret, "name", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76BE2DAB1AFC11DFA075E3828D1504C0");} SHARP {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76BE2DAE1AFC11DFC972E3828D1504C0");}( temp=identifierOrKeyword {setProperty(ret, "name", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1492,8 +1544,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351FDA850F2911DF8B3BEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD351FDA830F2911DFABE7EEEE93CCC8E1");}'omitted'{_afterSeqEl();}){setProperty(ret, "isOmitted", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isOmitted", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351FDA860F2911DF8321EEEE93CCC8E1");}'token'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351FDA880F2911DFB6F2EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351FDA890F2911DFBEEEEEEE93CCC8E1");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351FDA8B0F2911DF8097EEEE93CCC8E1");}( temp=tcs_orpattern {setProperty(ret, "pattern", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD351FDA8C0F2911DFBE50EEEE93CCC8E1");} SEMI {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76C077951AFC11DF8DDEE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C077931AFC11DF8C11E3828D1504C0");}'omitted'{_afterSeqEl();}){setProperty(ret, "isOmitted", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "isOmitted", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C077961AFC11DFCDCFE3828D1504C0");}'token'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C077981AFC11DFC8ADE3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C077991AFC11DF9DBFE3828D1504C0");} COLON {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C0779B1AFC11DFA2E7E3828D1504C0");}( temp=tcs_orpattern {setProperty(ret, "pattern", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C0779C1AFC11DFA47DE3828D1504C0");} SEMI {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1507,7 +1559,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD351FDA940F2911DFA267EEEE93CCC8E1");}( temp=tcs_simplepattern {setProperty(ret, "simplePatterns", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD351FDA910F2911DF8AC5EEEE93CCC8E1");} PIPE {_afterSeqEl();}){_exitSepSeq();} temp=tcs_simplepattern {setProperty(ret, "simplePatterns", temp);})* )? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76C077A41AFC11DF828AE3828D1504C0");}( temp=tcs_simplepattern {setProperty(ret, "simplePatterns", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD76C077A11AFC11DFBECBE3828D1504C0");} PIPE {_afterSeqEl();}){_exitSepSeq();} temp=tcs_simplepattern {setProperty(ret, "simplePatterns", temp);})* )? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1532,7 +1584,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352224750F2911DFA24DEEEE93CCC8E1");}( temp=tcs_rule {setProperty(ret, "rule", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76C2E8931AFC11DF962EE3828D1504C0");}( temp=tcs_rule {setProperty(ret, "rule", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1557,8 +1609,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352495720F2911DF9C95EEEE93CCC8E1");}'word'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495730F2911DFB4F6EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495740F2911DF8E1CEEEE93CCC8E1");}'start'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495750F2911DF87CBEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495770F2911DFAB90EEEE93CCC8E1");}( temp=tcs_orpattern {setProperty(ret, "start", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495780F2911DF94F0EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495790F2911DFAF14EEEE93CCC8E1");}'part'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3524957A0F2911DFC85BEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3524957C0F2911DFC65BEEEE93CCC8E1");}( temp=tcs_orpattern {setProperty(ret, "part", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495860F2911DF8546EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD352495800F2911DFB057EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495810F2911DF8803EEEE93CCC8E1");}'end'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495820F2911DFA67EEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495840F2911DFB181EEEE93CCC8E1");}( temp=tcs_orpattern {setProperty(ret, "end", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352495870F2911DFC7A3EEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76C2E8991AFC11DFBD44E3828D1504C0");}'word'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E89A1AFC11DFB108E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E89B1AFC11DFC50FE3828D1504C0");}'start'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E89C1AFC11DFA067E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E89E1AFC11DFB99FE3828D1504C0");}( temp=tcs_orpattern {setProperty(ret, "start", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E89F1AFC11DF8522E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E8A01AFC11DFCB27E3828D1504C0");}'part'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E8A11AFC11DFA70AE3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C2E8A31AFC11DFB535E3828D1504C0");}( temp=tcs_orpattern {setProperty(ret, "part", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559971AFC11DFB877E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C559911AFC11DF9AEEE3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559921AFC11DF903BE3828D1504C0");}'end'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559931AFC11DFCCD5E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559951AFC11DFA0EFE3828D1504C0");}( temp=tcs_orpattern {setProperty(ret, "end", temp);}){_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559981AFC11DFCEC0E3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1572,8 +1624,8 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352706700F2911DFC5F2EEEE93CCC8E1");}'endOfLine'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352706710F2911DFA650EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352706720F2911DFB6D8EEEE93CCC8E1");}'start'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352706730F2911DFA3DFEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352706790F2911DFC485EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD352706770F2911DFA51AEEEE93CCC8E1");}'drop'{_afterSeqEl();}){setProperty(ret, "dropStart", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "dropStart", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3527067B0F2911DF8B59EEEE93CCC8E1");}( temp=tcs_stringpattern {setProperty(ret, "start", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3527067C0F2911DFC625EEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76C5599C1AFC11DF9F4DE3828D1504C0");}'endOfLine'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C5599D1AFC11DFC8EEE3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C5599E1AFC11DFA3E0E3828D1504C0");}'start'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C5599F1AFC11DFB311E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559A51AFC11DF8528E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C559A31AFC11DFB30DE3828D1504C0");}'drop'{_afterSeqEl();}){setProperty(ret, "dropStart", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "dropStart", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559A71AFC11DF9CA4E3828D1504C0");}( temp=tcs_stringpattern {setProperty(ret, "start", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C559A81AFC11DF95E0E3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1587,11 +1639,11 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352950600F2911DFBBA3EEEE93CCC8E1");}'multiLine'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950610F2911DFC8FEEEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950620F2911DF960EEEEE93CCC8E1");}'start'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950630F2911DFCE3CEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950690F2911DFB8E6EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD352950670F2911DFB446EEEE93CCC8E1");}'drop'{_afterSeqEl();}){setProperty(ret, "dropStart", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "dropStart", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529506B0F2911DFA315EEEE93CCC8E1");}( temp=tcs_stringpattern {setProperty(ret, "start", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529506C0F2911DFB192EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529506D0F2911DF8798EEEE93CCC8E1");}'end'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529506E0F2911DFC28BEEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950740F2911DF904EEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD352950720F2911DFA6DCEEEE93CCC8E1");}'drop'{_afterSeqEl();}){setProperty(ret, "dropEnd", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "dropEnd", java.lang.Boolean.FALSE);}{_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950760F2911DFBC0EEEEE93CCC8E1");}( temp=tcs_stringpattern {setProperty(ret, "end", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529508D0F2911DFB371EEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD3529507A0F2911DFBBE2EEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529507B0F2911DF98F4EEEE93CCC8E1");}'esc'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529507C0F2911DF8AE2EEEE93CCC8E1");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529507E0F2911DF9E0BEEEE93CCC8E1");}( temp=tcs_stringpattern {setProperty(ret, "esc", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529508B0F2911DFC23BEEEE93CCC8E1");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD352950820F2911DF984AEEEE93CCC8E1");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950830F2911DFCF60EEEE93CCC8E1");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950880F2911DF8326EEEE93CCC8E1");}( temp=tcs_mapping {setProperty(ret, "escMappings", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD352950850F2911DFA023EEEE93CCC8E1");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_mapping {setProperty(ret, "escMappings", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352950890F2911DFA70DEEEE93CCC8E1");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
+  ({_beforeSeqEl("E0DCF6CD76C7A3801AFC11DFB6EDE3828D1504C0");}'multiLine'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3811AFC11DFB923E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3821AFC11DF9210E3828D1504C0");}'start'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3831AFC11DFC541E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3891AFC11DFB9A4E3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C7A3871AFC11DFB3F5E3828D1504C0");}'drop'{_afterSeqEl();}){setProperty(ret, "dropStart", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "dropStart", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A38B1AFC11DF8051E3828D1504C0");}( temp=tcs_stringpattern {setProperty(ret, "start", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A38C1AFC11DFB7A6E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A38D1AFC11DFCCDEE3828D1504C0");}'end'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A38E1AFC11DFCEE2E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3941AFC11DFCFFCE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C7A3921AFC11DF9011E3828D1504C0");}'drop'{_afterSeqEl();}){setProperty(ret, "dropEnd", java.lang.Boolean.TRUE);}{_exitAlt();}  | {_enterAlt(1);} {setProperty(ret, "dropEnd", java.lang.Boolean.FALSE);}{_exitAlt();} )
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3961AFC11DFBC50E3828D1504C0");}( temp=tcs_stringpattern {setProperty(ret, "end", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA14851AFC11DF84BCE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C7A39A1AFC11DFBC68E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A39B1AFC11DFC7A8E3828D1504C0");}'esc'{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A39C1AFC11DF8DB0E3828D1504C0");} EQ {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A39E1AFC11DFB236E3828D1504C0");}( temp=tcs_stringpattern {setProperty(ret, "esc", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA14831AFC11DFA3BDE3828D1504C0");} ({_enterAlt(0);} ({_beforeSeqEl("E0DCF6CD76C7A3A21AFC11DF8017E3828D1504C0");} COMA {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76C7A3A31AFC11DF8400E3828D1504C0");} LPAREN {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA14801AFC11DFB932E3828D1504C0");}( temp=tcs_mapping {setProperty(ret, "escMappings", temp);} ({_enterSepSeq();}({_beforeSeqEl("E0DCF6CD76C7A3A51AFC11DF90D0E3828D1504C0");} COMA {_afterSeqEl();}){_exitSepSeq();} temp=tcs_mapping {setProperty(ret, "escMappings", temp);})* )? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA14811AFC11DFCC0BE3828D1504C0");} RPAREN {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
 {_afterSeqEl();}){_exitAlt();}  | {_enterAlt(1);} {_exitAlt();} )
-{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3529508E0F2911DFBCEEEEEE93CCC8E1");} RPAREN {_afterSeqEl();})
+{_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA14861AFC11DFC68FE3828D1504C0");} RPAREN {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1617,7 +1669,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352BC1630F2911DF9923EEEE93CCC8E1");}( temp=identifier {setProperty(ret, "key", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352BC1640F2911DF8979EEEE93CCC8E1");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352BC1660F2911DFA6DAEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "value", temp);}){_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76CA148D1AFC11DFA182E3828D1504C0");}( temp=identifier {setProperty(ret, "key", temp);}){_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA148E1AFC11DF9B5BE3828D1504C0");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CA14901AFC11DF8F7EE3828D1504C0");}( temp=identifier {setProperty(ret, "value", temp);}){_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1631,7 +1683,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352E0B500F2911DFB435EEEE93CCC8E1");} POINT {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352E0B510F2911DF8C0EEEEE93CCC8E1");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD352E0B520F2911DF8790EEEE93CCC8E1");} POINT {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76CC5E721AFC11DFC5B2E3828D1504C0");} POINT {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CC5E731AFC11DF85D0E3828D1504C0");} RARROW {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CC5E741AFC11DF97A3E3828D1504C0");} POINT {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1645,7 +1697,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD352E0B560F2911DFB7D6EEEE93CCC8E1");}'octal'{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76CC5E781AFC11DFCAE3E3828D1504C0");}'octal'{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1659,7 +1711,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD35307C500F2911DFC4F1EEEE93CCC8E1");}'hex'{_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76CECF701AFC11DFA751E3828D1504C0");}'hex'{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1673,7 +1725,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD35307C560F2911DFC4E0EEEE93CCC8E1");}( temp=stringSymbol {setProperty(ret, "name", temp);})? {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76CECF761AFC11DF8096E3828D1504C0");}( temp=stringSymbol {setProperty(ret, "name", temp);})? {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -1687,7 +1739,7 @@ IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(met
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("E0DCF6CD3532ED500F2911DF8913EEEE93CCC8E1");} LSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3532ED520F2911DF820BEEEE93CCC8E1");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD3532ED530F2911DF93C5EEEE93CCC8E1");} RSQUARE {_afterSeqEl();})
+  ({_beforeSeqEl("E0DCF6CD76CECF7A1AFC11DF90BEE3828D1504C0");} LSQUARE {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CECF7C1AFC11DF91E9E3828D1504C0");}( temp=identifier {setProperty(ret, "name", temp);})? {_afterSeqEl();}{_beforeSeqEl("E0DCF6CD76CECF7D1AFC11DF8E2EE3828D1504C0");} RSQUARE {_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 

@@ -30,7 +30,7 @@ public abstract class IncrementalRecognizer {
 	protected Bostoken bosRef;
 	protected Eostoken eosRef;
 	protected TextblocksPackage textblocksPackage;
-	protected Connection connection;
+	protected  Connection connection;
 	
 	public IncrementalRecognizer(Connection connection) {
 		this.connection = connection;

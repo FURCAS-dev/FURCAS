@@ -7,6 +7,7 @@ import textblocks.TextBlock;
 
 import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.tc.moin.repository.ModelPartition;
 
 /**
  * This interface defines method that need to be implemented for an incremental
@@ -51,9 +52,10 @@ public interface TextBlockReuseStrategy {
 	 * 
 	 * @param oldVersion
 	 * @param newVersion
+	 * @param defaultPartition 
 	 * @return
 	 */
-	TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion);
+	TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion, ModelPartition defaultPartition);
 
 	void setTextBlockFactory(TextBlockFactory factory);
 	

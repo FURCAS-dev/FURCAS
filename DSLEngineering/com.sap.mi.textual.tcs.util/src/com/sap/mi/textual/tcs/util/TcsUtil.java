@@ -40,6 +40,7 @@ import tcs.ModeParg;
 import tcs.Operator;
 import tcs.OperatorList;
 import tcs.OperatorTemplate;
+import tcs.PartitionHandlingParg;
 import tcs.Priority;
 import tcs.Property;
 import tcs.PropertyArg;
@@ -130,6 +131,7 @@ public class TcsUtil {
 	 * elements for each operator literal
 	 */
 	private static Map<Operator, LiteralRef> operatorToLiteralRefMap = new HashMap<Operator, LiteralRef>();
+	private static Property p;
 
 	/**
 	 * Returns a list of all possible atomic SequenceElements, that directly
@@ -1907,4 +1909,13 @@ public class TcsUtil {
             return null;
         }
     }
+
+	public static PartitionHandlingParg getPartitionHandlingParg(Property tcsProperty) {
+		for (PropertyArg arg : tcsProperty.getPropertyArgs()) {
+			if (arg instanceof PartitionHandlingParg) {
+				return (PartitionHandlingParg) arg;
+			}
+		}
+		return null;
+	}
 }

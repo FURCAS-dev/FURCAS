@@ -205,41 +205,42 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         Property property = (Property) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
          //now find all TextBlocks referencing this property;
          LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
-         Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
-         Set<MRI> affectedElements = getAffectedElements(events, conn);
-         if(affectedElements.size() > 0) {
-             for (LexedToken lt : toks) {
-                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
-                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = null;
-                     if(reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
-                         intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-                                 conn, affectedElements, lt.getParentBlock());
-                     } else {
-                         intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(lt.getParentBlock().getCorrespondingModelElements());
-                     }
-                     //TODO Actually we would have to analyse the OCL reference and check 
-                     //for an intersection of the affectedElements with the token's value
-                     //as this is the only hint we have at this place
-                    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-                            Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-                                        conn, lt.getParentBlock());
-                    		for (RefObject ro : result) {
-                    		    DelayedReference clonedRef = (DelayedReference) reference.clone();
-                                                clonedRef.setModelElement(ro);
-                                                clonedRef.setRealValue(null);
-                                                clonedRef.setConnection(conn);
-                                                
-                                                clonedRef.setToken(new LexedTokenWrapper(lt));
-                                                clonedRef.setTextBlock(lt.getParentBlock());
-                                                clonedRef.setKeyValue(lt.getValue());
-                    		    String oclQuery = clonedRef.getOclQuery();
-                    		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-                    		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-                    		}
-                    }
-                 }
-            }
-         }
+         	return;
+//         Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
+//         Set<MRI> affectedElements = getAffectedElements(events, conn);
+//         if(affectedElements.size() > 0) {
+//             for (LexedToken lt : toks) {
+//                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+//                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = null;
+//                     if(reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
+//                         intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+//                                 conn, affectedElements, lt.getParentBlock());
+//                     } else {
+//                         intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(lt.getParentBlock().getCorrespondingModelElements());
+//                     }
+//                     //TODO Actually we would have to analyse the OCL reference and check 
+//                     //for an intersection of the affectedElements with the token's value
+//                     //as this is the only hint we have at this place
+//                    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+//                            Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+//                                        conn, lt.getParentBlock());
+//                    		for (RefObject ro : result) {
+//                    		    DelayedReference clonedRef = (DelayedReference) reference.clone();
+//                                                clonedRef.setModelElement(ro);
+//                                                clonedRef.setRealValue(null);
+//                                                clonedRef.setConnection(conn);
+//                                                
+//                                                clonedRef.setToken(new LexedTokenWrapper(lt));
+//                                                clonedRef.setTextBlock(lt.getParentBlock());
+//                                                clonedRef.setKeyValue(lt.getValue());
+//                    		    String oclQuery = clonedRef.getOclQuery();
+//                    		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+//                    		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+//                    		}
+//                    }
+//                 }
+//            }
+//         }
     }
 
 	

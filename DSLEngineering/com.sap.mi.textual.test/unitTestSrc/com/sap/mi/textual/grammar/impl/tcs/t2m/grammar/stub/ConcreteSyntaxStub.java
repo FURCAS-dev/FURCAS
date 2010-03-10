@@ -12,6 +12,7 @@ import java.util.List;
 import tcs.ConcreteSyntax;
 import tcs.Keyword;
 import tcs.OperatorList;
+import tcs.PartitionHandling;
 import tcs.Symbol;
 import tcs.Template;
 import tcs.Token;
@@ -31,6 +32,9 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
     public String lexer;
     public int syntaxK = 1;
     public List<Token> tokens = new ArrayList<Token>();
+	private Collection<ConcreteSyntax> concreteSyntaxCollection;
+	private PartitionHandling partitionhandling;
+	private PartitionHandling partHandling;
 
     /* (non-Javadoc)
      * @see TCS.ConcreteSyntax#getK()
@@ -120,6 +124,23 @@ public class ConcreteSyntaxStub extends LocatedElementStub implements ConcreteSy
         fail("not implemented yet");
         return null;
     }
+
+	@Override
+	public Collection<ConcreteSyntax> getConcretesyntax1() throws JmiException {
+		return concreteSyntaxCollection;
+	}
+
+	@Override
+	public PartitionHandling getPartitionHandling() throws JmiException {
+		return partitionhandling;
+	}
+
+	@Override
+	public void setPartitionHandling(PartitionHandling partHandling)
+			throws JmiException {
+		this.partHandling = partHandling;
+		
+	}
 
 
 }

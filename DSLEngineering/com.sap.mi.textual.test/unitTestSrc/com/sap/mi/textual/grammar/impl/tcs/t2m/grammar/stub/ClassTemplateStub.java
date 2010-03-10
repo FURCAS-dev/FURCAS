@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 import tcs.ClassTemplate;
 import tcs.ContextTags;
 import tcs.OperatorList;
+import tcs.PartitionHandling;
 import tcs.Sequence;
 
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
@@ -25,6 +26,7 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
     public boolean isNonPrimary;
     public boolean referenceOnly;
     public ContextTagsStub contextTags = new ContextTagsStub() {};
+	private PartitionHandling partitionHandling;
 
     public boolean isContext() {
         return isContext;
@@ -204,6 +206,20 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
         fail("not implemented yet");
         
     }
+
+	@Override
+	public PartitionHandling getPartitionHandling() throws JmiException {
+		// TODO Auto-generated method stub
+		return partitionHandling;
+	}
+
+	@Override
+	public void setPartitionHandling(PartitionHandling partitionHandling)
+			throws JmiException {
+		this.partitionHandling =  partitionHandling;
+		// TODO Auto-generated method stub
+		
+	}
 
     
 

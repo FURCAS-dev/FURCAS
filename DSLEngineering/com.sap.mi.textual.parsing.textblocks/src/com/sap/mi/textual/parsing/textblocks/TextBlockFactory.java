@@ -5,6 +5,7 @@ import textblockdefinition.TextBlockDefinition;
 import textblocks.TextBlock;
 
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.tc.moin.repository.ModelPartition;
 
 /**
  * Util interface to decouple instantiation of Textblocks.
@@ -25,8 +26,10 @@ public interface TextBlockFactory {
 	 * @param parent The parent to which to add the new proxy.
 	 * @return A newly instantiated {@link TextBlock}
 	 */
-	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent);
-
+//	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent);
+	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent,
+			ModelPartition defaultPartition);
+	
 	/**
 	 * Retrieves the corresponding {@link TextBlockDefinition} for a given {@link Template}.
 	 * A new {@link TextBlockDefinition} should be created if none exists. This should furthermore be 
@@ -36,4 +39,6 @@ public interface TextBlockFactory {
 	 * @return the found {@link TextBlockDefinition} or a new one if none exists.
 	 */
 	TextBlockDefinition getTbDef(Template template);
+
+	
 }

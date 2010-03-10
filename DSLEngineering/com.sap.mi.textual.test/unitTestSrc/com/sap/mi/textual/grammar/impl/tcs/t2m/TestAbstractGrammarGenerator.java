@@ -16,6 +16,7 @@ import org.junit.Test;
 import tcs.ConcreteSyntax;
 import tcs.Keyword;
 import tcs.OperatorList;
+import tcs.PartitionHandling;
 import tcs.Symbol;
 import tcs.Template;
 import tcs.Token;
@@ -250,6 +251,26 @@ public class TestAbstractGrammarGenerator {
 	    public boolean is___Alive() {
 		return false;
 	    }
+
+		@Override
+		public Collection<ConcreteSyntax> getConcretesyntax1()
+				throws JmiException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public PartitionHandling getPartitionHandling() throws JmiException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void setPartitionHandling(PartitionHandling newValue)
+				throws JmiException {
+			// TODO Auto-generated method stub
+			
+		}
 	};
 
 	bean.setSyntax(syntax);

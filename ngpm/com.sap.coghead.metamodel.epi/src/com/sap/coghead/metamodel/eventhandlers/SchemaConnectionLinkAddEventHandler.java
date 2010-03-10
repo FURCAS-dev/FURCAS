@@ -47,7 +47,7 @@ public class SchemaConnectionLinkAddEventHandler implements GlobalEventListener,
 		Connection conn = ece.getEventTriggerConnection();
 		Schema schema = (Schema) ece.getFirstLinkEnd(conn);
 		Collection collection = (Collection) ece.getSecondLinkEnd(conn);
-		if (collection.getVariables() != null) {
+		if (collection != null && collection.getVariables() != null) {
 		    for (Variable v : collection.getVariables()) {
 			if (v.getName().equals("FORM")) {
 			    v.setSchemaType(schema);

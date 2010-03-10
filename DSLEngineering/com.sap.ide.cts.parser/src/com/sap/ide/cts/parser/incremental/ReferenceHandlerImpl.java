@@ -12,6 +12,7 @@ import tcs.ConditionalElement;
 import tcs.FunctionTemplate;
 import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
+import tcs.PartitionHandling;
 import tcs.PrimitivePropertyInit;
 import tcs.SequenceElement;
 import textblocks.AbstractToken;
@@ -30,6 +31,7 @@ import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
@@ -44,12 +46,14 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 	private ITextBlocksTokenStream tbtokenStream;
 	private Collection<AbstractToken> tokensForReferenceResolving = new ArrayList<AbstractToken>();
 	private Collection<DelayedReference> newlyResolvableReferences = new ArrayList<DelayedReference>();
+	private final PartitionAssignmentHandler partitionHandler;
 
 	public ReferenceHandlerImpl(ObservableInjectingParser batchParser,
-		ITextBlocksTokenStream tbtokenStream) {
+		ITextBlocksTokenStream tbtokenStream, PartitionAssignmentHandler partitionHandler) {
 		super();
 		this.batchParser = batchParser;
 		this.tbtokenStream = tbtokenStream;
+		this.partitionHandler = partitionHandler;
 	}
 
 	@Override
@@ -87,8 +91,84 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 	@Override
 	public void setNewFeature(SetNewFeatureBean newFeatureBean,
 			boolean assignToPartition) {
-		IncrementalParsingUtil.setNewFeature(newFeatureBean, batchParser
-				.getInjector(), assignToPartition);
+//		IncrementalParsingUtil.setNewFeature(newFeatureBean, batchParser
+//				.getInjector(), assignToPartition);
+		batchParser.getInjector().set(newFeatureBean.parentRefObject,
+				newFeatureBean.property, newFeatureBean.value,
+				newFeatureBean.valueIndex);
+
+		if (newFeatureBean.value instanceof Partitionable && assignToPartition) {
+
+			if (newFeatureBean.tcs_Property == null) { // it will be stored in
+				// the main
+				// partition
+
+				if (((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
+						.equalsIgnoreCase("model")))) {
+
+					if (partitionHandler.getMainPartition() != null) { // it will be stored in the
+						// main partition
+						partitionHandler.getMainPartition()
+								.assignElementIncludingChildren((RefObject) newFeatureBean.value);
+
+					} else {// or it will be stored in the parent partition
+						newFeatureBean.parentRefObject.get___Partition()
+								.assignElementIncludingChildren(
+										(RefObject) newFeatureBean.value);
+					}
+
+				}
+
+			} else {
+				if (newFeatureBean.tcs_Property.getPropertyArgs() == null) {
+					// assign to the default partition that is also the main
+					// partition
+
+					PartitionHandling partitionHandling = TcsUtil
+							.getPartitionHandlingParg(
+									newFeatureBean.tcs_Property)
+							.getPartitionhandling();
+
+					if ((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all"))
+							|| (partitionHandler.getMainPartitionContent().equalsIgnoreCase("model"))
+							|| (partitionHandling.getContent().toString()
+									.equalsIgnoreCase("model"))
+							|| (partitionHandling.getContent().toString()
+									.equalsIgnoreCase("all"))) {
+						if (partitionHandler.getMainPartition() != null) {
+							partitionHandler.getMainPartition()
+									.assignElementIncludingChildren((RefObject) newFeatureBean.value);
+
+						} else {
+							newFeatureBean.parentRefObject.get___Partition()
+									.assignElementIncludingChildren(
+											(RefObject) newFeatureBean.value);
+						}
+					}
+
+				} else if (newFeatureBean.tcs_Property.getPropertyArgs().size() > 0) {
+					PartitionHandling partitionHandling = TcsUtil
+							.getPartitionHandlingParg(
+									newFeatureBean.tcs_Property)
+							.getPartitionhandling();
+					if ((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all"))
+							|| (partitionHandler.getMainPartitionContent().equalsIgnoreCase("model"))
+							|| (partitionHandling.getContent().toString()
+									.equalsIgnoreCase("model"))
+							|| (partitionHandling.getContent().toString()
+									.equalsIgnoreCase("all"))) {
+						partitionHandler.assignToPartition(
+								newFeatureBean.parentRefObject
+										.get___Partition(),
+								(RefObject) newFeatureBean.value,
+								partitionHandling);
+					}
+
+				}
+			}
+
+		}
+	
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-syntax Collection(k=0 ) {
+syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyntax_\').concat(\'CS\').concat(\'.xmi\')', auto , content = all , }  {
 -- k = 0 means manually defined syntactic predicates
 
 	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
@@ -8,15 +8,15 @@ syntax Collection(k=0 ) {
 		value = "unescapeString(%token%)";
 
 	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING: 
-		value = "unescapeString(%token%)",
+		value = "unescapeString(%token%)", 
 		serializer="'\\\"' + %value%.toCString() + '\\\"'";
-
+ 
 	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
 		value = "Integer.valueOf(%token%)";
-		
+		  
 	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
 		value = "Long.valueOf(%token%)";
-		
+		 
 	primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
 		value = "%token%";
 
@@ -38,10 +38,10 @@ syntax Collection(k=0 ) {
 	enumerationTemplate ElementaryTypeEnum auto;
 	enumerationTemplate Axis auto;
 	
-	template Collection main context(env)
+	template Collection main context(env) PartitionHandling{name = '(\'src/\').concat(\'Collection\').concat(self.name).concat(\'.xmi\')', auto, content = all , }
 		: "collection" name "{"
-		    schema
-		    actions
+		    schema {PartitionHandling{name = '(\'src/\').concat(\'Schema\').concat(self.name).concat(\'.xmi\')', auto, content = all ,} }
+		    actions {PartitionHandling{name = '(\'src/\').concat(\'Schema\').concat(self.name).concat(\'.xmi\')', auto, content = all ,} }
 		  "}"
 		;
 	
@@ -57,7 +57,7 @@ syntax Collection(k=0 ) {
 		  "}"
 		;
 	
-	template Field
+	template Field PartitionHandling{name = '(\'src/\').concat(\'Field_\').concat(self.name).concat(\'.xmi\')', auto, content = all ,}
 		: (unique ? "unique") type $cardinality name 
 		  (isDefined(defaultValue) ? "default"    defaultValue)	-- TODO: what is the root for the default value? the current record?
 		  (isDefined(formula)      ? "formula"    formula)      -- TODO: defaultValue and formula seem to be pretty redundant
