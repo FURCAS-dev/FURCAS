@@ -65,47 +65,51 @@ public abstract class AbstractTracer<T extends RefObjectImpl> implements Tracer 
 	return getRootExpression(getExpression());
     }
     
-    protected OclExpression getRootExpression(RefObjectImpl x) {
-	RefObjectImpl parent = getLogicalImmediateComposite(x);
+    public static OclExpression getRootExpression(RefObjectImpl x, CoreConnection connection) {
+	RefObjectImpl parent = getLogicalImmediateComposite(x, connection);
 	while (parent != null) {
 	    x = parent;
-	    parent = getLogicalImmediateComposite(x);
+	    parent = getLogicalImmediateComposite(x, connection);
 	}
 	return (OclExpression) x;
     }
+
+    protected OclExpression getRootExpression(RefObjectImpl x) {
+	return getRootExpression(x, getConnection());
+    }
     
-    private RefObjectImpl getLogicalImmediateComposite(RefObjectImpl x) {
-	RefObjectImpl result = (RefObjectImpl) x.refImmediateComposite(getConnection().getSession());
+    private static RefObjectImpl getLogicalImmediateComposite(RefObjectImpl x, CoreConnection connection) {
+	RefObjectImpl result = (RefObjectImpl) x.refImmediateComposite(connection.getSession());
 	if (result == null) {
 	    if (x instanceof VariableDeclaration) {
 		// maybe this is a tuplePart of a TupleLiteralExp
-		ATuplePartTupleLiteralExpImpl a = (ATuplePartTupleLiteralExpImpl) getConnection().getAssociation(
+		ATuplePartTupleLiteralExpImpl a = (ATuplePartTupleLiteralExpImpl) connection.getAssociation(
 			ATuplePartTupleLiteralExp.ASSOCIATION_DESCRIPTOR);
 		JmiListImpl<TupleLiteralExp> tupleLiteralCollection = ((JmiListImpl<TupleLiteralExp>) a
-			.getTupleLiteralExp(getConnection(), (VariableDeclaration) x));
-		result = ((TupleLiteralExpImpl) tupleLiteralCollection.iterator(getConnection()).next());
+			.getTupleLiteralExp(connection, (VariableDeclaration) x));
+		result = ((TupleLiteralExpImpl) tupleLiteralCollection.iterator(connection).next());
 	    } else {
 		// check if x is the expression defining a collection item in a collection literal expression
-		AItemCollectionItemImpl a = (AItemCollectionItemImpl) getConnection().getAssociation(
+		AItemCollectionItemImpl a = (AItemCollectionItemImpl) connection.getAssociation(
 			AItemCollectionItem.ASSOCIATION_DESCRIPTOR);
-		result = (RefObjectImpl) a.getCollectionItem(getConnection(), (OclExpression) x);
+		result = (RefObjectImpl) a.getCollectionItem(connection, (OclExpression) x);
 		if (result == null) {
 		    // check if x is the "first" or "last" expression in a CollectionRange
-		    AFirstCollectionRangeImpl firstAssoc = (AFirstCollectionRangeImpl) getConnection().getAssociation(
+		    AFirstCollectionRangeImpl firstAssoc = (AFirstCollectionRangeImpl) connection.getAssociation(
 			    AFirstCollectionRange.ASSOCIATION_DESCRIPTOR);
-		    result = (RefObjectImpl) firstAssoc.getCollectionRange(getConnection(), (OclExpression) x);
+		    result = (RefObjectImpl) firstAssoc.getCollectionRange(connection, (OclExpression) x);
 		    if (result == null) {
-			ALastCollectionRangeImpl lastAssoc = (ALastCollectionRangeImpl) getConnection().getAssociation(
+			ALastCollectionRangeImpl lastAssoc = (ALastCollectionRangeImpl) connection.getAssociation(
 				ALastCollectionRange.ASSOCIATION_DESCRIPTOR);
-			result = (RefObjectImpl) lastAssoc.getCollectionRange(getConnection(), (OclExpression) x);
+			result = (RefObjectImpl) lastAssoc.getCollectionRange(connection, (OclExpression) x);
 		    }
 		}
 		if (result != null && result instanceof CollectionLiteralPart) {
 		    // walk right through to the collection literal expression
-		    APartsCollectionLiteralExpImpl cleAssoc = (APartsCollectionLiteralExpImpl) getConnection().getAssociation(
+		    APartsCollectionLiteralExpImpl cleAssoc = (APartsCollectionLiteralExpImpl) connection.getAssociation(
 			    APartsCollectionLiteralExp.ASSOCIATION_DESCRIPTOR);
-		    result = (RefObjectImpl) ((JmiListImpl<CollectionLiteralExp>) cleAssoc.getCollectionLiteralExp(getConnection(),
-			    (CollectionLiteralPart) result)).iterator(getConnection()).next();
+		    result = (RefObjectImpl) ((JmiListImpl<CollectionLiteralExp>) cleAssoc.getCollectionLiteralExp(connection,
+			    (CollectionLiteralPart) result)).iterator(connection).next();
 		}
 	    }
 	}
