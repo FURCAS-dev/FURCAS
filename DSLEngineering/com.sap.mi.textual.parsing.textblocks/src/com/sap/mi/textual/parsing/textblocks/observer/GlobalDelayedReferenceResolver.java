@@ -58,12 +58,9 @@ import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.InvalidConnectionException;
 import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.PartitionEditingNotPossibleException;
 import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.PartitionsNotSavedException;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.events.EventChain;
@@ -124,8 +121,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			     }
 			 }
 			 if(newRefs != null && newRefs.size() > 0) {
-			     GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.addAll(newRefs);
-	                     backgroundResolver.scheduleIfNeeded();
+			     GlobalDelayedReferenceResolver.this.resolve(newRefs);
 			 }
 		     }
 		}
@@ -416,21 +412,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	}
     }
 
-    public class BackgroundResolver  {
-	
-	private final GlobalDelayedReferenceResolver resolver;
-	
-        public BackgroundResolver(final GlobalDelayedReferenceResolver resolver) {
-	    this.resolver = resolver;
-	}
-
-	public void scheduleIfNeeded() {
-	    if (!resolver.hasEmptyQueue()) {
-		resolver.resolveReferences(new NullProgressMonitor());
-	    }
-	}
-    }
-
     private final Set<DelayedReference> unresolvedReferences = new HashSet<DelayedReference>();
 
     public Set<DelayedReference> getUnresolvedReferences() {
@@ -455,15 +436,25 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
     private final Map<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>> delayedReference2ReEvaluationListener = new HashMap<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>>();
     private final Set<ConcreteSyntax> registeredSytaxes = new HashSet<ConcreteSyntax>();
+    
+    /**
+     * Synchronized access to this collection on this object (the {@link GlobalDelayedReferenceResolver} instance)
+     * because the repetition of reference resolution is affected by it.
+     */
     private final Collection<DelayedReference> iaUnresolvedReferences = new Vector<DelayedReference>();
-    private final BackgroundResolver backgroundResolver;
+    
     private Map<ConcreteSyntax, ObservableInjectingParser> parsersBySyntax = new HashMap<ConcreteSyntax, ObservableInjectingParser>();
+    
+    /**
+     * Tells if there is currently a call to {@link #resolveReferences(IProgressMonitor)} running on this object.
+     * Setting / clearing this flag must be synchronized on this object.
+     */
+    private boolean resolveRunning;
 
     public GlobalDelayedReferenceResolver() {
 	// Do the assignment here as the constructor will be invoked by the
 	// extension point.
 	instance = this;
-	backgroundResolver = new BackgroundResolver(this);
     }
 
     public static synchronized GlobalDelayedReferenceResolver getInstance() {
@@ -1199,75 +1190,98 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
     }
     
     public void resolveReferences(IProgressMonitor monitor) {
-	Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
-	monitor.beginTask("Reevaluating OCL References...", workingCopy.size());
-	Collection<DelayedReference> deferredReferences = new ArrayList<DelayedReference>();
-	Set<Connection> connectionsToSave = new HashSet<Connection>();
-	iaUnresolvedReferences.removeAll(workingCopy);
-	for (final DelayedReference ref : workingCopy) {
-	    if (!ref.getConnection().isAlive()) {
-		Activator.logWarning("Could not re-resolve reference: " + ref + ". Connection: " + ref.getConnection()
-			+ " is not alive anymore!");
-		monitor.worked(1);
-		continue;
+	synchronized(this) {
+	    if (!resolveRunning) {
+		resolveRunning = true;
+	    } else {
+		return;
 	    }
-	    assert !(ref.getModelElement() instanceof RefObject) || ref.getConnection() == ((RefObject) ref.getModelElement()).get___Connection()
-	    	: "Element must be resolved in given connection.";
-
-	    try {
-		final RefPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(ref.getConnection(),
-			(RefBaseObject) ref.getModelElement());
-
-		ref.getConnection().getCommandStack().execute(
-			new Command(ref.getConnection(), "Re-evaluate unresolved Reference") {
-
-			    @Override
-			    public boolean canExecute() {
-				return true;
-			    }
-
-			    @Override
-			    public void doExecute() {
-				reEvaluateUnresolvedRef(ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
-			    }
-
-			    @Override
-			    public Collection<PartitionOperation> getAffectedPartitions() {
-				PRI pri = ((Partitionable) ref.getModelElement()).get___Partition().getPri();
-				PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
-				return Collections.singleton(editOperation);
-			    }
-
-			});
-		connectionsToSave.add(ref.getConnection());
-	    } catch (InvalidObjectException ex) {
-		Activator.logWarning("Could not re-resolve reference: " + ref + ". Element: " + ref.getModelElement()
-			+ " is not alive anymore! Reference is ignored and removed.");
-	    } catch (PartitionEditingNotPossibleException ex) {
-		Activator.logWarning("Could not re-resolve reference: " + ref + ". Partition: " + ex.getPri()
-			+ " is locked by connection " + ref.getConnection() +"! Will try again later");
-		deferredReferences.add(ref);
-	    } catch (Exception ex) {
-		Activator.logError(ex, " Could not re-resolve reference: " + ref + ". Reference is ignored and removed.");
-	    }
-	    monitor.worked(1);
 	}
-	//TODO see if this is good, maybe we should not save these connection automatically
-	for (Connection connection : connectionsToSave) {
-            try {
-                connection.save();
-            } catch (NullPartitionNotEmptyException e) {
-                Activator.logError(e, " Could not save connection: " + connection + " after re-resolving reference");
-            } catch (ReferencedTransientElementsException e) {
-                Activator.logError(e, " Could not save connection: " + connection + " after re-resolving reference");
-            } catch (PartitionsNotSavedException e) {
-                Activator.logError(e, " Could not save connection: " + connection + " after re-resolving reference");
-            }
-        }
-	// deferred references will tried to be resolved again later so dont't
-	// remove them
-	iaUnresolvedReferences.addAll(deferredReferences);
-	backgroundResolver.scheduleIfNeeded();
-	monitor.done();
+	// invariant: resolveRunning is true and was set by this invocation
+	try {
+	    boolean referencesAddedFromOutsideOrOneResolved;
+	    do {
+		referencesAddedFromOutsideOrOneResolved = false;
+		Collection<DelayedReference> failedReferences = new ArrayList<DelayedReference>();
+		Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>();
+		synchronized (this) {
+		    workingCopy.addAll(iaUnresolvedReferences);
+		    iaUnresolvedReferences.clear();
+		}
+		monitor.beginTask("Reevaluating OCL References...", workingCopy.size());
+		for (final DelayedReference ref : workingCopy) {
+		    if (!ref.getConnection().isAlive()) {
+			Activator.logWarning("Could not re-resolve reference: " + ref + ". Connection: "
+				+ ref.getConnection() + " is not alive anymore!");
+			monitor.worked(1);
+			continue;
+		    }
+		    assert !(ref.getModelElement() instanceof RefObject)
+			    || ref.getConnection() == ((RefObject) ref.getModelElement()).get___Connection() : "Element must be resolved in given connection.";
+
+		    try {
+			final RefPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(ref
+				.getConnection(), (RefBaseObject) ref.getModelElement());
+			ref.getConnection().getCommandStack().execute(
+				new Command(ref.getConnection(), "Re-evaluate unresolved Reference") {
+				    @Override
+				    public boolean canExecute() {
+					return true;
+				    }
+
+				    @Override
+				    public void doExecute() {
+					reEvaluateUnresolvedRef(ref.getConnection(), outermostPackage, ref, ref
+						.getTextBlock());
+				    }
+
+				    @Override
+				    public Collection<PartitionOperation> getAffectedPartitions() {
+					PRI pri = ((Partitionable) ref.getModelElement()).get___Partition().getPri();
+					PartitionOperation editOperation = new PartitionOperation(
+						PartitionOperation.Operation.EDIT, pri);
+					return Collections.singleton(editOperation);
+				    }
+				});
+			referencesAddedFromOutsideOrOneResolved = true; // no exception means successfully resolved
+		    } catch (InvalidObjectException ex) {
+			Activator.logWarning("Could not re-resolve reference: " + ref + ". Element: "
+				+ ref.getModelElement() + " is not alive anymore! Reference is ignored and removed.");
+		    } catch (PartitionEditingNotPossibleException ex) {
+			Activator.logWarning("Could not re-resolve reference: " + ref + ". Partition: " + ex.getPri()
+				+ " is locked by connection " + ref.getConnection() + "! Will try again later");
+			failedReferences.add(ref);
+		    } catch (Exception ex) {
+			Activator.logError(ex, " Could not re-resolve reference: " + ref
+				+ ". Reference is ignored and removed.");
+		    }
+		    monitor.worked(1);
+		}
+		monitor.done();
+		synchronized (this) {
+		    referencesAddedFromOutsideOrOneResolved = referencesAddedFromOutsideOrOneResolved
+			    || !iaUnresolvedReferences.isEmpty();
+		    // will try to resolve deferred references again later; re-queue. Note that this
+		    // doesn't force another run; if nothing changed, we still wouldn't be able to resolve
+		    iaUnresolvedReferences.addAll(failedReferences);
+		    if (!referencesAddedFromOutsideOrOneResolved) {
+			resolveRunning = false;
+		    }
+		}
+	    } while (referencesAddedFromOutsideOrOneResolved);
+	} finally {
+	    // should any uncaught exception occur, at least reset the resolveRunning flag
+	    // to let subsequent invocations enter the method again
+	    resolveRunning = false;
+	}
+    }
+    
+    private void resolve(Collection<DelayedReference> unresolvedReferences) {
+	if (unresolvedReferences != null && !unresolvedReferences.isEmpty()) {
+	    synchronized (iaUnresolvedReferences) {
+		iaUnresolvedReferences.addAll(unresolvedReferences);
+	    }
+	    resolveReferences(new NullProgressMonitor());
+	}
     }
 }
