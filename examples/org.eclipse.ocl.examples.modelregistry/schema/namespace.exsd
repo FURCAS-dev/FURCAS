@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.ocl.modelregistry" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.ocl.modelregistry" id="namespace" name="%ExtPoint.namespace"/>
+      </appinfo>
+      <documentation>
+         The Model Registry supports accessing content by access keys with an appropriate value.
+&lt;p&gt;
+The &lt;tt&gt;namespace&lt;/tt&gt; extension point supports declaration of these keys.
+Default keys support access through informal ModelNames or through
+URIs.
+&lt;p&gt;
+The &lt;tt&gt;org.eclipse.ocl.registry.editor&lt;/tt&gt; plug-in provides a Property Page
+that may be activated on a per-project, folder or file basis for projects
+to which the ModelRegistryNature has been added. The Property Page supports
+definition of model references by particular values of accessors.
+&lt;p&gt;
+Thus a folder registration of the ModelName &lt;tt&gt;ecore&lt;/tt&gt; could be bound to
+&lt;tt&gt;platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore&lt;/tt&gt; so that the
+registration applied to all files in that folder and its sub-folders.
+&lt;p&gt;
+Alternatively, a project-wide registration of the URI
+&lt;tt&gt;http://www.w3.org/XML/1998/namespace&lt;/tt&gt; could be bound to
+&lt;tt&gt;platform:/resource/MyProject/mynamespace.ecore&lt;/tt&gt; to experiment
+with an alternate definition of a standard model.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="accessor"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The standard extension point type name.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The optional extension point identifier.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The optional extension point name.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="accessor">
+      <annotation>
+         <documentation>
+            Definition of an access key by which models are located on the model registry.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Class implementing Accessor that realises an access key for a model registration.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ocl.registry.model.Accessor$Installer:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         ? a candidate for Eclipse EMF 2.4.0.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         The Model Name and URI registrations are:
+&lt;pre&gt;
+  &lt;extension point=&quot;org.eclipse.ocl.registry.namespace&quot;&gt;
+     &lt;accessor class=&quot;org.eclipse.ocl.registry.model.ModelNameAccessor&quot;/&gt;
+     &lt;accessor class=&quot;org.eclipse.ocl.registry.model.URIAccessor&quot;/&gt;
+  &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         Registered accessor kinds must implement the Accessor interface.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         Accessor kinds for an informal ModelName and a URI are provided.
+&lt;br&gt;
+The ModelResolver interface and more particularly the ModelResourceResolver
+class support identification of the Resource associated by an accessor.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2007 E.D.Willink and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>
