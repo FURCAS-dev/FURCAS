@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mreg:ModelRegistrySettings xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mreg="http://www.eclipse.org/gmt/umlx/2007/ModelRegistry">
+  <resource name="">
+    <entry accessor="OCL" kind="Model Name" uri="platform:/plugin/org.eclipse.gmt.umlx.qvt/model/essentialocl.ecore"/>
+    <entry accessor="QVTcore" kind="Model Name" uri="platform:/plugin/org.eclipse.gmt.umlx.qvt/model/qvtcore.ecore"/>
+    <entry accessor="QVTrelation" kind="Model Name" uri="platform:/plugin/org.eclipse.gmt.umlx.qvt/model/qvtrelation.ecore"/>
+    <entry accessor="QVTtemplate" kind="Model Name" uri="platform:/plugin/org.eclipse.gmt.umlx.qvt/model/qvttemplate.ecore"/>
+  </resource>
+  <resource name="phantomFolder">
+    <entry accessor="ambiguousAccessor" kind="Model Name" uri="model:/name/accessor"/>
+    <entry accessor="ambiguousAccessor" kind="URI" uri="uri:/accessor"/>
+    <entry accessor="ecoreRelativeFileAccessor" kind="Model Name" uri="mini.ecore"/>
+    <entry accessor="emofRelativeFileAccessor" kind="Model Name" uri="model/mini.emof"/>
+    <entry accessor="xmlEmofRelativeFileAccessor" kind="Model Name" uri="model/miniEMOF.xml"/>
+    <entry accessor="km3" kind="Model Name" uri="km3.km3" serialization="KM3"/>
+    <entry accessor="platformColonAccessor" kind="Model Name" uri="platform:/resource/QvtrTestFiles/ModelMorfExamples/ClassToClass_CT/Example1/ClassMM_CT.xml"/>
+  </resource>
+  <resource name="model">
+    <entry accessor="umlMM" kind="Model Name" uri="platform:/resource/QvtrTestFiles/ModelMorfExamples/ClassToClass_CT/Example1/ClassMM_CT.xml"/>
+  </resource>
+  <resource name="model/phantomFile">
+    <entry accessor="umlMM" kind="Model Name" uri="platform:/resource/QvtrTestFiles/ModelMorfExamples/ClassToClass_CT/Example1/ClassMM_CT.xml"/>
+  </resource>
+</mreg:ModelRegistrySettings>

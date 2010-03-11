@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mreg:ModelRegistrySettings xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mreg="http://www.eclipse.org/gmt/umlx/2007/ModelRegistry">
+  <resource name="/org.eclipse.gmt.umlx.registry.tests">
+    <entry accessor="KM3" kind="Model Name" serialization="KM3" uri="platform:/resource/org.eclipse.gmt.umlx.registry.km3/model/KM3.km3"/>
+  </resource>
+</mreg:ModelRegistrySettings>
