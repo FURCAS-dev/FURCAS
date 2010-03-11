@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+	<provider id="org.eclipse.team.cvs.core.cvsnature">
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc,org.eclipse.ocl.doc,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/org.eclipse,www/modeling/mdt/ocl,org.eclipse.ocl.www,"/>
+	</provider>
+</psf>
