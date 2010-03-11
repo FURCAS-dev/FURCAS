@@ -49,7 +49,7 @@ public class CtsHistoryDocumentProvider extends CtsDocumentProvider {
 	    // Snapshot the just saved document version
 	    try {
                 monitor.beginTask("Creating Document Snapshot", 1000);
-                ctsDocument.getDocumentHistory().createNewSnapshot(monitor);
+                //ctsDocument.getDocumentHistory().createNewSnapshot(monitor);
             }
             finally {
                 monitor.done();
