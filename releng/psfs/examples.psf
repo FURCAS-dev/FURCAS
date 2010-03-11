@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+	<provider id="org.eclipse.team.cvs.core.cvsnature">
+		<!--project reference="1.0,:pserver:anonymous@lpg.cvs.sourceforge.net:/cvsroot/lpg,lpg.runtime,lpg.runtime,"/-->
+		<!--project reference="1.0,:pserver:anonymous@lpg.cvs.sourceforge.net:/cvsroot/lpg,lpg.runtime.java,lpg.runtime.java,"/-->
+
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.validation/plugins/org.eclipse.emf.validation,org.eclipse.emf.validation,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.transaction,org.eclipse.emf.transaction,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.transaction.ui,org.eclipse.emf.transaction.ui,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.workspace,org.eclipse.emf.workspace,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.workspace.ui,org.eclipse.emf.workspace.ui,"/>
+
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library,org.eclipse.emf.examples.library,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.edit,org.eclipse.emf.examples.library.edit,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor,org.eclipse.emf.examples.library.editor,"/>
+
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples,org.eclipse.ocl.examples,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.interpreter,org.eclipse.ocl.examples.interpreter,"/>
+
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.common,org.eclipse.ocl.examples.common,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model,org.eclipse.ocl.examples.editor.model,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model.edit,org.eclipse.ocl.examples.editor.model.edit,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model.editor,org.eclipse.ocl.examples.editor.model.editor,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.ocl.ui,org.eclipse.ocl.examples.editor.ocl.ui,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.ocl.ui.ecore,org.eclipse.ocl.examples.editor.ocl.ui.ecore,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.ui,org.eclipse.ocl.examples.editor.ui,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry,org.eclipse.ocl.examples.modelregistry,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.edit,org.eclipse.ocl.examples.modelregistry.edit,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.editor,org.eclipse.ocl.examples.modelregistry.editor,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.ui,org.eclipse.ocl.examples.modelregistry.ui,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser,org.eclipse.ocl.examples.parser,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.ocl,org.eclipse.ocl.examples.parser.ocl,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.unresolved,org.eclipse.ocl.examples.parser.unresolved,"/>
+		
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.empty,org.eclipse.ocl.examples.project.empty,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.royalandloyal,org.eclipse.ocl.examples.project.royalandloyal,"/>
+
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.examples.tests,org.eclipse.ocl.examples.tests,"/>
+	</provider>
+	<!-- You may install Subclipse from Eclipse update site URL: http://subclipse.tigris.org/update_1.6.x -->
+	<provider id="org.tigris.subversion.subclipse.core.svnnature">
+  		<project reference="0.9.3,http://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.runtime,org.eclipse.imp.runtime"/>
+	</provider>
+	<!--provider id="org.eclipse.team.svn.core.svnnature">
+  		<project reference="1.0.1,http://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.runtime,org.eclipse.imp.runtime"/>
+	</provider-->
+</psf>
