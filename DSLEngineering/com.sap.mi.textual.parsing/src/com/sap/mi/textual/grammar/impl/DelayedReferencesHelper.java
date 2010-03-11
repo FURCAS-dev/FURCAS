@@ -238,21 +238,61 @@ public class DelayedReferencesHelper {
 	    }
 	    // add the parsed part to the object
 	    parser.setResolveProxies(originalResolveProxiesValue);
-	    reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
-	    // by default use partition of reference.getModelElement
-	    if (reference.getModelElement() instanceof RefObject
-		    && reference.getRealValue() instanceof Partitionable) {
-		((RefObject) reference.getModelElement()).get___Partition()
-			.assignElementIncludingChildren((Partitionable) reference.getRealValue());
-	    }
-	    modelAdapter.set(reference.getModelElement(), reference.getPropertyName(), reference
-		    .getRealValue());
+	    //first try to resolve if there is a model element that already exists and can be reused
+	    RefObject candidate = findCandidateFromProxy((RefObject) reference.getModelElement(), reference.getPropertyName(), parseReturn);
+	    if(candidate != null) {
+	        //element already exists so we can reuse it
+	        return;
+	    } else {
+	        reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
+	        // by default use partition of reference.getModelElement
+                if (reference.getModelElement() instanceof RefObject
+                        && reference.getRealValue() instanceof Partitionable) {
+                    ((RefObject) reference.getModelElement()).get___Partition()
+                            .assignElementIncludingChildren(
+                                    (Partitionable) reference.getRealValue());
+                }
+                modelAdapter.set(reference.getModelElement(), reference
+                        .getPropertyName(), reference.getRealValue());
+            }
 	} finally {
 	    if (reference.hasContext() && next instanceof RefObject) {
 		parser.leaveContext();
 	    }
 	    parser.getCurrentContextStack().pop();
 	}
+    }
+
+    private RefObject findCandidateFromProxy(RefObject parent, String property, Object parseReturn) throws ModelElementCreationException {
+        if(parseReturn instanceof IModelElementProxy) {
+            IModelElementProxy proxy = (IModelElementProxy) parseReturn;
+            ((ModelElementProxy) proxy).setIsReferenceOnly(true);
+            try {
+                Object resolved = injector.createOrResolve(proxy, null, null);
+                Object parentValue = injector.getModelAdapter().get(parent, property);
+                if(parentValue instanceof Collection<?>) {
+                    if(((Collection<?>) parentValue).contains(resolved)) {
+                        return (RefObject) resolved;
+                    }
+                } else if(parentValue instanceof RefObject) {
+                    if(parentValue.equals(resolved)){
+                        return (RefObject) resolved;
+                    }
+                }
+            } catch (ModelElementCreationException e) {
+                //element not found so return null.
+                return null;
+            } catch (ModelAdapterException e) {
+                //this shouldn't happen, as the get() done above
+                //should always return a valid value
+                throw new ModelElementCreationException(
+                        "Error resolving modelelemnt proxy for parent: "
+                                + parent + " and property " + property, e);
+            } finally {
+                ((ModelElementProxy) proxy).setIsReferenceOnly(false);
+            }
+        }
+        return null;
     }
 
     private String getRuleNameFromWhenAsClauses(DelayedReference reference, IModelAdapter modelAdapter,

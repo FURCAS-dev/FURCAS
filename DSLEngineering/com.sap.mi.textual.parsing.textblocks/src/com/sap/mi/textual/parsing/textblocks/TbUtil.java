@@ -527,7 +527,10 @@ public class TbUtil {
             for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
                 if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
                     if(forEachContext.getSourceModelelement().equals(sourceModelElement)) {
-                        forEachContext.getContextElement().add(contextModelElement);
+                        if(!forEachContext.getContextElement().contains(contextModelElement)) {
+                            forEachContext.getContextElement().add(contextModelElement);
+                            forEachContext.setResultModelElement(resultElement);
+                        }
                         forEachContextExists = true;
                     }
                 }
@@ -537,6 +540,7 @@ public class TbUtil {
                 newContext.setForeachPredicatePropertyInit(sequenceElement);
                 newContext.setSourceModelelement(sourceModelElement);
                 newContext.getContextElement().add(contextModelElement);
+                newContext.setResultModelElement(resultElement);
                 contextBlock.getForeachContext().add(newContext);
             }
         

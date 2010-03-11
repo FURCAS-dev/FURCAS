@@ -139,6 +139,10 @@ public class ModelElementProxy implements IModelElementProxy {
 	public boolean isReferenceOnly() {
 		return referenceOnly;
 	}
+	
+	public void setIsReferenceOnly(boolean value) {
+	    this.referenceOnly = value;
+	}
 
 	/**
 	 * @return

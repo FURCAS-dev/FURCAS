@@ -375,7 +375,7 @@ public class AdapterJMIHelper {
 	AssociationBean assocBean = findAssociation(refAObject, propertyName);
 	try {
 	    if (assocBean.isFirst) {
-		if (value instanceof Collection) {
+		if (value instanceof Collection<?>) {
 		    for (Object obj : ((Collection<?>) value)) {
 			assocBean.refAss
 				.refAddLink(refAObject, (RefObject) obj);
@@ -384,7 +384,7 @@ public class AdapterJMIHelper {
 		    assocBean.refAss.refAddLink(refAObject, (RefObject) value);
 		}
 	    } else {
-		if (value instanceof Collection) {
+		if (value instanceof Collection<?>) {
 		    for (Object obj : ((Collection<?>) value)) {
 			assocBean.refAss
 				.refAddLink((RefObject) obj, refAObject);
@@ -587,7 +587,7 @@ public class AdapterJMIHelper {
 			Object result = reg
 					.evaluateExpression(useContextInsteadOfSelf ? contextRefObject
 							: sourceModelElement);
-			if (result instanceof Collection) {
+			if (result instanceof Collection<?>) {
 				if (((Collection<?>) result).size() == 0) {
 					return null;
 				} else {
@@ -666,7 +666,7 @@ public class AdapterJMIHelper {
 			Object result = reg
 					.evaluateExpression(useContextInsteadOfSelf ? contextRefObject
 							: sourceModelElement);
-			if (result instanceof Collection) {
+			if (result instanceof Collection<?>) {
 				if (((Collection<?>) result).size() == 0) {
 					return null;
 				} else if (((Collection<?>) result).size() == 1) {

@@ -477,7 +477,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
             if (contextObject instanceof IModelElementProxy) {
         	contextObject = ((IModelElementProxy) contextObject).getRealObject();
             }
-            if ( ! (( contextObject instanceof RefObject) || contextObject instanceof Collection ||
+            if ( ! (( contextObject instanceof RefObject) || contextObject instanceof Collection<?> ||
         	    isPrimitive(contextObject))) {
                 throw new IllegalArgumentException("Illegal Model Element type " + contextObject.getClass() + ", RefObject required");
             } 

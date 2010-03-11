@@ -437,7 +437,7 @@ public class MoinModelAdapterDelegate {
 
             List<RefObject> contents = null;
             // look into immediate contents of context and look for appropriate object, and make sure it is unique
-            if(contextObject instanceof Collection) {
+            if(contextObject instanceof Collection<?>) {
             	for (Object obj : ((Collection<?>)contextObject)) {
             		if(obj instanceof RefObject) {
             			contents = getContainedElements((RefObject) obj);
@@ -499,7 +499,7 @@ public class MoinModelAdapterDelegate {
 			if(element instanceof Reference &&
 					((Reference) element).getExposedEnd().getAggregation().equals(AggregationKindEnum.COMPOSITE)) {
 				Object result = contextObject.refGetValue(element);
-				if(result instanceof Collection) {
+				if(result instanceof Collection<?>) {
 				    for (Object o : (Collection<?>) result) {
 					allContents.add((RefObject) o);
 				    }
