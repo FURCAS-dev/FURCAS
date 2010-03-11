@@ -3,6 +3,9 @@
  */
 package com.sap.mi.textual.common.interfaces;
 
+import tcs.Property;
+import tcs.SequenceElement;
+
 /**
  * A ModelElementProxy is a class that represents an occurence of a ModelElement in a text.
  * The intended use is currently that a parser lets the Injector create a proxy, call diverse set 
@@ -22,4 +25,10 @@ public interface IModelElementProxy {
      * @return
      */
     public boolean isReferenceOnly();
+
+	void setSequenceElement(SequenceElement currentSequenceElement);
+
+	SequenceElement getSequenceElement();
+
+
 }

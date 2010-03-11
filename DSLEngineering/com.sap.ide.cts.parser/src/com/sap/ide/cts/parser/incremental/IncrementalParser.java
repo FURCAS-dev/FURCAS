@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.Set;
 
 import tcs.ClassTemplate;
+import tcs.ConcreteSyntax;
 import tcs.OperatorTemplate;
+import tcs.PartitionHandling;
 import tcs.Property;
 import textblockdefinition.TextBlockDefinition;
 import textblocks.AbstractToken;
@@ -64,19 +66,19 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 public class IncrementalParser extends IncrementalRecognizer {
 
 	private static final String MAIN_PARSE_RULE_NAME = "main";
-	
+
 	private final TextBlockReuseStrategy reuseStrategy;
-	
+
 	protected final ParserFactory<?, ?> parserFactory;
 
 	protected final Collection<CRI> additionalCRIScope;
 
 	protected final ObservableInjectingParser batchParser;
-	
+
 	protected final ITextBlocksTokenStream tbtokenStream;
-	
+
 	protected final TextBlockFactory tbFactory;
-	
+
 	private final ReferenceHandler referenceHandler;
 
 	private Collection<PRI> syntaxPartitions;
@@ -93,36 +95,39 @@ public class IncrementalParser extends IncrementalRecognizer {
 
         private boolean errorMode = false;
 	
+	private ConcreteSyntax concreteSyntax;
+
+	private ModelPartition defaultPartition;
+
 	public IncrementalParser(Connection connection,
-		ParserFactory<?, ?> parserFactory,
-		IncrementalLexer incrementalLexer,
-		ObservableInjectingParser batchParser,
-		TextBlockReuseStrategy reuseStrategy,
-		Collection<CRI> additionalCRIScope) {
-        	super(connection);
-        	this.parserFactory = parserFactory;
-        	this.additionalCRIScope = additionalCRIScope;
-        	if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
-        		throw new IllegalArgumentException(
-        				"token stream of parser needs to be "
-        						+ "ITextBlocksTokenStream in order to be used with incremental parser");
-        	}
-        	this.tbtokenStream = (ITextBlocksTokenStream) batchParser.getTokenStream();
-        	this.batchParser = batchParser;
-        	this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-        	this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
-        	this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
-        			batchParser, getReferenceHandler(), partitionHandler);
-        	this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksPackage, reuseStrategy, modelElementFactory);
-        	this.reuseStrategy = reuseStrategy;
-        	this.reuseStrategy.setReferenceHandler(getReferenceHandler());
-        	this.reuseStrategy.setTextBlockFactory(tbFactory);
+			ParserFactory<?, ?> parserFactory,
+			IncrementalLexer incrementalLexer,
+			ObservableInjectingParser batchParser,
+			TextBlockReuseStrategy reuseStrategy,
+			Collection<CRI> additionalCRIScope) {
+		super(connection);
+		this.parserFactory = parserFactory;
+		this.additionalCRIScope = additionalCRIScope;
+		if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
+			throw new IllegalArgumentException(
+					"token stream of parser needs to be "
+							+ "ITextBlocksTokenStream in order to be used with incremental parser");
+		}
+		this.tbtokenStream = (ITextBlocksTokenStream) batchParser
+				.getTokenStream();
+		this.batchParser = batchParser;
+		this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+		this.referenceHandler = new ReferenceHandlerImpl(batchParser,
+				tbtokenStream, partitionHandler);
+		this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
+				batchParser, referenceHandler, partitionHandler);
+		this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksPackage,
+				reuseStrategy, modelElementFactory, partitionHandler);
+		this.reuseStrategy = reuseStrategy;
+		this.reuseStrategy.setReferenceHandler(referenceHandler);
+		this.reuseStrategy.setTextBlockFactory(tbFactory);
 	}
-	
-	public TextBlock incrementalParse(TextBlock root) {
-	    return incrementalParse(root, false);
-	}
-	
+
 	/**
 	 * Incrementally parses the given root block. The algorithm assumes that all
 	 * changed blocks and tokens are correctly marked (using
@@ -153,6 +158,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 							.getMetamodelCri(connection), syntaxPartitions,
 					parserFactory.getParserLookupScope(connection),
 					additionalCRIScope);
+
+			concreteSyntax = TcsUtil.getSyntaxByName(connection, parserFactory
+					.getLanguageId());
+			setConcreteSyntax(concreteSyntax);
+			partitionHandler.SetMainPartition_And_MainContent(concreteSyntax,
+					connection, getDefaultPartition());
+
 			// IParsingObserver originalObserver = batchParser.getObserver();
 			batchParser.setObserver(parserTextBlocksHandler);
 			// Ensure no model elements get created
@@ -225,6 +237,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 					    } else {
 					        errornous = true;
 					    }
+
 					}
 
 					TextBlockProxy tbProxy = parserTextBlocksHandler
@@ -264,6 +277,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                                             }
                                         }
 
+
 				} catch (SyntaxElementException e) {
 					throw new RuntimeException(e);
 				} catch (JmiException e) {
@@ -289,7 +303,16 @@ public class IncrementalParser extends IncrementalRecognizer {
 		}
 		return newRoot;
 	}
-	
+
+	public ConcreteSyntax getConcreteSyntax() {
+		return concreteSyntax;
+	}
+
+	public void setConcreteSyntax(ConcreteSyntax concreteSyntax) {
+		this.concreteSyntax = concreteSyntax;
+	}
+
+
 	/**
 	 * Searches for the least common ancestor of the given left and right
 	 * boundary nodes.
@@ -304,7 +327,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 		TarjansLCA<DocumentNode> lca = new TarjansLCA<DocumentNode>(
 				new IncrementalParser.TextBlocksTarjanTreeContentProvider());
 		return lca.lcaSearch(rootNode, leftBoundary, rightBoundary);
-	
+
 	}
 
 	private boolean comsumedAllTokens(TextBlock commonAncestor) {
@@ -343,21 +366,20 @@ public class IncrementalParser extends IncrementalRecognizer {
 	/**
 	 * Sets the default partition that is used to assign all created model
 	 * elements. In this case the same partition as the one from the root blocks
-	 * corresponding model element is used. 
+	 * corresponding model element is used.
 	 * 
 	 * 
 	 * @param root
 	 */
 	private void setDefaultPartitionFromRoot(TextBlock root) {
-		ModelPartition defaultPartition = null;
-		if (root.getCorrespondingModelElements().size() != 0) {
-			defaultPartition = ((Partitionable) root
-					.getCorrespondingModelElements().iterator().next())
-					.get___Partition();
-		} else {
-			defaultPartition = ((Partitionable) root).get___Partition();
-		}
-		partitionHandler.setDefaultPartition(defaultPartition);
+		defaultPartition = ((Partitionable) root
+				.getCorrespondingModelElements().iterator().next())
+				.get___Partition();
+
+	}
+
+	public ModelPartition getDefaultPartition() {
+		return defaultPartition;
 	}
 
 	public List<ParsingError> getErrorList() {
@@ -379,7 +401,6 @@ public class IncrementalParser extends IncrementalRecognizer {
 		tbtokenStream.seek(startToken);
 		return commonAncestor;
 	}
-
 
 	/**
 	 * Finds a suitable starting point which means that the block needs to have
@@ -439,6 +460,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 * 
 	 * @param oldVersion
 	 * @param newVersion
+	 * @param mainPartitionContent2 
+	 * @param mainPartition2 
+	 * @param modelPartition 
 	 * @return
 	 */
 	private TextBlock mergeTbModelFromProxies(TextBlock oldVersion,
@@ -446,17 +470,25 @@ public class IncrementalParser extends IncrementalRecognizer {
 		TextBlock result = null;
 
 		TbBean resultBean = reuseStrategy
-				.reuseTextBlock(oldVersion, newVersion);
+				.reuseTextBlock(oldVersion, newVersion, getDefaultPartition());
 
 		TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
 		result = resultBean.textBlock;
-		partitionHandler.assignToPartition(result, oldVersion);
+
+		if ((partitionHandler.getMainPartitionContent() != null)
+				&& ((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
+						.equalsIgnoreCase("textblocks")))) {
+			partitionHandler.assignToPartition(oldVersion.get___Partition(),
+					result, result.getType().getParseRule());
+		}
+
 		if (resultBean.reuseType
 				.equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
 			// the element that was created for the new textblock has to be
 			// added to the composite of the old one
 			// i.e., the old element has to be deleted as it is obsolete now.
-			if (TcsUtil.isStructureTypeTemplate(result.getType().getParseRule())
+			if (TcsUtil
+					.isStructureTypeTemplate(result.getType().getParseRule())
 					|| TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 				// TODO maybe also do this for non compositely referenced
 				// elements??
@@ -469,13 +501,15 @@ public class IncrementalParser extends IncrementalRecognizer {
 					value = newVersion.getReferencedElements().iterator()
 							.next();
 				}
+				Property property = (Property) newVersion.getSequenceElement();
 
-				SetNewFeatureBean bean = new SetNewFeatureBean(oldVersion
-						.getParentBlock().getCorrespondingModelElements()
-						.iterator().next(), ((Property) oldVersion
-						.getSequenceElement()).getPropertyReference()
-						.getStrucfeature().getName(), value.getRealObject(), 0);
-				getReferenceHandler().setNewFeature(bean, false);
+					SetNewFeatureBean bean = new SetNewFeatureBean(oldVersion
+							.getParentBlock().getCorrespondingModelElements()
+							.iterator().next(), ((Property) oldVersion
+							.getSequenceElement()).getPropertyReference()
+							.getStrucfeature().getName(),
+							value.getRealObject(), 0, property);
+					referenceHandler.setNewFeature(bean, false);
 			} else {
 				replaceCorrespondingModelElements(oldVersion, result);
 			}
@@ -539,15 +573,16 @@ public class IncrementalParser extends IncrementalRecognizer {
 			// difficult, which composite is used then?
 			// some check which parent is in a deeper hierarchy than the other
 			// one has to be done..
-		        Set<RefObject> elementsToDelete = new HashSet<RefObject>(1);
+			Set<RefObject> elementsToDelete = new HashSet<RefObject>(1);
 			for (RefObject correspondingModelElement : correspondingModelElements) {
 
 				RefObject parent = (RefObject) correspondingModelElement
 						.refImmediateComposite();
 
 				if (parent != null) {
-					IncrementalParsingUtil.CompositeRefAssociationBean compositeFeatureAssocBean = IncrementalParsingUtil.findComposingFeature(
-							parent, correspondingModelElement, connection);
+					IncrementalParsingUtil.CompositeRefAssociationBean compositeFeatureAssocBean = IncrementalParsingUtil
+							.findComposingFeature(parent,
+									correspondingModelElement, connection);
 
 					if (compositeFeatureAssocBean != null
 							&& compositeFeatureAssocBean.compositeFeatureAssoc != null) {
@@ -637,17 +672,37 @@ public class IncrementalParser extends IncrementalRecognizer {
 													correspondingNewElement,
 													parent);
 								}
-								boolean isInTransientPartition = IncrementalParsingUtil.isInTransientPartition(correspondingNewElement);
+								boolean isInTransientPartition = IncrementalParsingUtil
+										.isInTransientPartition(correspondingNewElement);
 								if (isInTransientPartition) {
-									partitionHandler.assignToPartition(correspondingNewElement, parent);
+									if (((partitionHandler.getMainPartitionContent()
+											.equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
+											.equalsIgnoreCase("model")))) {
+										partitionHandler.assignToPartition(
+												getDefaultPartition(),
+												correspondingNewElement,
+												newVersion.getType()
+														.getParseRule());
+									}
 								}
 							}
 						}
-						if (correspondingNew.size() > 0) {
-							newVersion
-									.assign___PartitionIncludingChildren(oldVersion
-											.get___Partition());
-						}
+						if (((partitionHandler.getMainPartitionContent()
+								.equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
+								.equalsIgnoreCase("textblocks")))) {
+						
+							
+							partitionHandler.assignToPartition(
+									getDefaultPartition(),
+									(RefObject)newVersion,
+									newVersion.getType()
+											.getParseRule());
+							
+//								newVersion
+//									.assign___PartitionIncludingChildren(oldVersion
+//										.get___Partition());
+							}
+
 
 					} else {
 						// may be a root element that is composed nowhere
@@ -670,14 +725,22 @@ public class IncrementalParser extends IncrementalRecognizer {
 					// one
 					for (RefObject correspondingNewCandidate : newVersion
 							.getCorrespondingModelElements()) {
-						partitionHandler.assignToPartition(correspondingNewCandidate, correspondingModelElement);
+						
+						if (((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
+								.equalsIgnoreCase("model")))) {
+							partitionHandler.assignToPartition(
+									getDefaultPartition(),
+									correspondingNewCandidate, newVersion
+											.getType().getParseRule());
+						}
+						
 					}
 				}
 			}
 			for (RefObject elementToDelete : elementsToDelete) {
-			    if(elementToDelete.is___Alive()) {
-				elementToDelete.refDelete();
-			    }
+				if (elementToDelete.is___Alive()) {
+					elementToDelete.refDelete();
+				}
 			}
 		}
 	}
@@ -794,13 +857,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 	}
 
+
 	public Collection<TextBlock> getChangedBlocks() {
 		return reuseStrategy.getChangedBlocks();
 	}
 
-    public ReferenceHandler getReferenceHandler() {
-        return referenceHandler;
-    }
-	
+        public ReferenceHandler getReferenceHandler() {
+            return referenceHandler;
+        }
 
 }

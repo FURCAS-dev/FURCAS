@@ -201,7 +201,7 @@ public class IncrementalParserFacade {
 					.getTokens().get(0));
 			observer.setRootBlock(preparedTextBlock);
 			TextBlock newRoot = incrementalParser
-					.incrementalParse(preparedTextBlock);
+					.incrementalParse(preparedTextBlock, false);
 			return newRoot;
 		} else {
 			return rootBlock;

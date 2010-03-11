@@ -62,7 +62,9 @@ syntax TCS {
 
         -- the root element of any syntax definition
         template TCS::ConcreteSyntax main context
-                :       "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
+                :       "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") 
+                (isDefined(partitionHandling) ? partitionHandling )
+                "{" [
                                 templates
                                 (isDefined(keywords) ? "keywords" "{" [ keywords ] "}")
                                 (isDefined(symbols) ? "symbols" "{" [ symbols ] "}")
@@ -164,9 +166,26 @@ syntax TCS {
                                 (isNonPrimary ? "nonPrimary")
                                 (isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
                           )
+                          (isDefined(partitionHandling) ? partitionHandling )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
                         textBlockDefinition{forcedUpper=1}
                 ;
+                
+        template TCS::'PartitionHandling'
+				:"PartitionHandling" "{"
+				[(isDefined(name)? "name" "=" name "," )
+				(isAutomaticPartition ? "auto" ",")
+				(isDefined(container) ? "container" "=" container ",")
+				(isDefined(content)? "content" "=" content ",")
+				]
+				"}"
+			;  
+				
+		enumerationTemplate TCS::PartitionContentEnum
+			:   #all = "all",
+				#model	= "model",
+				#textblocks = "textblocks"
+			;
 
         template TCS::OperatorTemplate context addToContext
                 :       "operatorTemplate" $reference "("
@@ -569,6 +588,11 @@ syntax TCS {
         template TCS::ModePArg
                 :       "mode" "=" mode{as = identifierOrKeyword}
                 ;
+                
+         template TCS::PartitionHandlingPArg
+		:	partitionHandling
+		;
+		       
 -- @end Property Arguments
 
 

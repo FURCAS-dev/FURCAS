@@ -21,4 +21,5 @@ Export-Package: coghead,
  coghead.packages.__impl,
  coghead.xpath,
  coghead.xpath.__impl
+Import-Package: coghead
 

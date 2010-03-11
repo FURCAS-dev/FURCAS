@@ -183,6 +183,7 @@ public class IncrementalParsingUtil {
 	 */
 	static SetNewFeatureBean setFeatureWithNewValue(TextBlockProxy newVersion,
 		TextBlock parentTextBlock) {
+		Property property = (Property) newVersion.getSequenceElement();
 		if (newVersion.getParent() != null) {
 			int indexInCorrespondingElements = 0;
 			for (IModelElementProxy parentProxy : newVersion.getParent()
@@ -204,12 +205,22 @@ public class IncrementalParsingUtil {
 									indexInCorrespondingElements,
 									parentTextBlock);
 								if (parentRefObject != null) {
-									return new SetNewFeatureBean(
-										parentRefObject,
-										key,
-										proxy
-											.getRealObject(),
-										valueIndex);
+									if ( (property instanceof Property) && (property != null) && (property.getPropertyArgs().size() > 0)) {
+										return new SetNewFeatureBean(
+											parentRefObject,
+											key,
+											proxy
+												.getRealObject(),
+											valueIndex,
+											property);
+									} else {
+										return new SetNewFeatureBean(
+											parentRefObject,
+											key,
+											proxy
+												.getRealObject(),
+											valueIndex);
+									}
 								}
 							}
 						}
@@ -224,12 +235,23 @@ public class IncrementalParsingUtil {
 									indexInCorrespondingElements,
 									parentTextBlock);
 								if (parentRefObject != null) {
-									return new SetNewFeatureBean(
-										parentRefObject,
-										key,
-										proxy
-											.getRealObject(),
-										valueIndex);
+									if (property
+											.getPropertyArgs().size() > 0) {
+											return new SetNewFeatureBean(
+												parentRefObject,
+												key,
+												proxy
+													.getRealObject(),
+												valueIndex,
+												property);
+										} else {
+											return new SetNewFeatureBean(
+												parentRefObject,
+												key,
+												proxy
+													.getRealObject(),
+												valueIndex);
+										}
 								}
 							}
 						}

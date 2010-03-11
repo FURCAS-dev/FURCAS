@@ -42,6 +42,7 @@ import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.parsing.textblocks.observer.TokenRelocationUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
@@ -82,16 +83,16 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	@Override
-	public TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion) {
+	public TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion, ModelPartition defaultPartition) {
 		return reusetextBlockInteral(TbVersionUtil.getOtherVersion(oldVersion,
-			VersionEnum.CURRENT), newVersion);
+			VersionEnum.CURRENT), newVersion, defaultPartition);
 	}
 
-	private TbBean reusetextBlockInteral(TextBlock oldVersion, TextBlockProxy newVersion) {
+	private TbBean reusetextBlockInteral(TextBlock oldVersion, TextBlockProxy newVersion, ModelPartition defaultPartition) {
 
 		// now check if textblock was changed
 		if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
-			return handleReferenceOnlyTemplate(oldVersion, newVersion);
+			return handleReferenceOnlyTemplate(oldVersion, newVersion,defaultPartition);
 		} else if (isTBEqual(oldVersion, newVersion)) {
 			//first see if different alternatives were chosen.
 			handleAlternativeChoices(oldVersion, newVersion);
@@ -111,7 +112,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 					TextBlock original = getOriginalVersion(
 						(TextBlockProxy) subNode, oldVersion);
 					TbBean subNodeResult = reusetextBlockInteral(original,
-						(TextBlockProxy) subNode);
+						(TextBlockProxy) subNode, defaultPartition);
 					if (subNodeResult.isNew) {
 						addToBlockAt(oldVersion, endIndex,
 							subNodeResult.textBlock);
@@ -168,8 +169,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						if (newFeatureBean != null) {
 							// it might be null in the case of operator
 							// templates?
-							referenceHandler
-								.setNewFeature(
+							referenceHandler.setNewFeature(
 									newFeatureBean,
 									TcsUtil
 										.isReferenceOnly(subNodeResult.textBlock
@@ -231,7 +231,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		// return new TbBean(tbCreator.createNewTextBlock(newVersion), true,
 		// getReuseType(oldVersion, newVersion));
 		TextBlock tb = tbFactory
-			.createNewTextBlock(newVersion, oldVersion.getParentBlock());
+			.createNewTextBlock(newVersion, oldVersion.getParentBlock(), defaultPartition);
 		changedBlocks.add(tb);
 		if (!TbUtil.isEmpty(oldVersion)) {
 			// old version still there to this was an insert case
@@ -250,6 +250,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 * @param newVersion
 	 */
 	private void handleContextElements(TextBlock oldVersion, TextBlockProxy newVersion) {
+	
 	    // clear context
             oldVersion.getElementsInContext().clear();
             //add all elements that exists in the new version
@@ -268,17 +269,29 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		
 	}
 
-	private TbBean handleReferenceOnlyTemplate(TextBlock oldVersion, TextBlockProxy newVersion) {
+	private TbBean handleReferenceOnlyTemplate(TextBlock oldVersion, TextBlockProxy newVersion, ModelPartition defaultPartition) {
+		Property property = (Property) newVersion.getSequenceElement();
 		for (RefObject ro : new ArrayList<RefObject>(oldVersion.getParentBlock()
 			.getCorrespondingModelElements())) {
 			for (RefObject value : new ArrayList<RefObject>(oldVersion
 				.getReferencedElements())) {
 				try {
-					SetNewFeatureBean bean = new SetNewFeatureBean(ro,
-						((Property) oldVersion.getSequenceElement())
-							.getPropertyReference().getStrucfeature()
-							.getName(), value, 0);
-					referenceHandler.unsetFeature(bean);
+					//if there is a property or not
+					if (property instanceof Property) {
+						SetNewFeatureBean bean = new SetNewFeatureBean(ro,
+							((Property) oldVersion.getSequenceElement())
+								.getPropertyReference().getStrucfeature()
+								.getName(), value, 0, property);
+						referenceHandler.unsetFeature(bean);
+					}else {
+						SetNewFeatureBean bean = new SetNewFeatureBean(ro,
+							((Property) oldVersion.getSequenceElement())
+								.getPropertyReference().getStrucfeature()
+								.getName(), value, 0);
+						referenceHandler.unsetFeature(bean);
+					}
+					
+					
 					oldVersion.getReferencedElements().remove(ro);
 				} catch (Exception e) {
 					continue;
@@ -286,7 +299,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			}
 		}
 		TextBlock tb = tbFactory
-			.createNewTextBlock(newVersion, oldVersion.getParentBlock());
+			.createNewTextBlock(newVersion, oldVersion.getParentBlock(),defaultPartition );
 		changedBlocks.add(tb);
 		if (!TbUtil.isEmpty(oldVersion)) {
 			// old version still there to this was an insert case
@@ -789,6 +802,12 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
             if (oldVersion.is___Alive()) {
                 TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion,
                         VersionEnum.REFERENCE);
+                Property propertyOfOldversion = null;
+                
+                if ((oldVersion.getSequenceElement() != null) && (oldVersion.getSequenceElement() instanceof Property)) {
+       			 propertyOfOldversion = (Property) oldVersion.getSequenceElement();
+       		}
+                
                 if (reference != null) {
                     for (TextBlock tb : reference.getSubBlocks()) {
                         // delete if there is no current version and the template
@@ -803,13 +822,32 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                     for (RefObject value : new ArrayList<RefObject>(
                                             tb.getReferencedElements())) {
                                         try {
-                                            SetNewFeatureBean bean = new SetNewFeatureBean(
-                                                    ro, ((Property) oldVersion
-                                                            .getSequenceElement())
-                                                            .getPropertyReference()
-                                                            .getStrucfeature()
-                                                            .getName(), value, 0);
-                                            referenceHandler.unsetFeature(bean);
+                                        	
+                                        	// if there is a property or not
+        									if ((propertyOfOldversion != null) && (propertyOfOldversion instanceof Property)) {
+        										SetNewFeatureBean bean = new SetNewFeatureBean(
+        											ro,
+        											((Property) oldVersion
+        												.getSequenceElement())
+        												.getPropertyReference()
+        												.getStrucfeature()
+        												.getName(),
+        											value, 0,
+        											propertyOfOldversion);
+        										referenceHandler
+        											.unsetFeature(bean);
+        									} else {
+        										SetNewFeatureBean bean = new SetNewFeatureBean(
+        											ro,
+        											((Property) oldVersion
+        												.getSequenceElement())
+        												.getPropertyReference()
+        												.getStrucfeature()
+        												.getName(),
+        											value, 0);
+        										referenceHandler.unsetFeature(bean);
+        									} 
+        									
                                         } catch (Exception ex) {
                                             // do nothing just try next
                                             // element

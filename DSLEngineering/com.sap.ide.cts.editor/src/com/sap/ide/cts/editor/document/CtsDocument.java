@@ -15,7 +15,9 @@ import textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
+import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -151,6 +153,19 @@ public class CtsDocument extends AbstractDocument {
 	    // no root node found, so create a new one
 	    rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(inputObject, tbPackage, concreteSyntax, con,
 		    parserFactory);
+	    DefaultPartitionAssignmentHandlerImpl partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+	    partitionHandler.SetMainPartition_And_MainContent(concreteSyntax, con, inputObject.get___Partition());
+	    if (completelyItitialized) {
+			
+		}
+	    //////////////////
+	    //////////////////
+	    ///////////////////
+	    //pour le root
+	    if (partitionHandler.getMainPartitionContent().equalsIgnoreCase("all") || partitionHandler.getMainPartition().equals("textblocks")) {
+	    	 partitionHandler.assignToPartition(inputObject.get___Partition(), (RefObject)rootBlock, rootTemplate);
+		}
+	   
 	}
 
 	if (rootBlock == null) {
