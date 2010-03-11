@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.editor.model/src"
+    creationIcons="false" modelPluginID="org.eclipse.ocl.examples.editor.model" modelName="Editor"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>Editor.ecore</foreignModel>
+  <genPackages prefix="Editor" basePackage="org.eclipse.ocl.examples" disposableProviderFactory="true"
+      contentTypeIdentifier="org.eclipse.ocl.editor" ecorePackage="Editor.ecore#/">
+    <genDataTypes ecoreDataType="Editor.ecore#//FormatProvider"/>
+    <genDataTypes ecoreDataType="Editor.ecore#//ImageProvider"/>
+    <genDataTypes ecoreDataType="Editor.ecore#//TextProvider"/>
+    <genClasses image="false" ecoreClass="Editor.ecore#//AbstractLabelElement"/>
+    <genClasses image="false" ecoreClass="Editor.ecore#//AbstractNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Editor.ecore#//AbstractNode/behavior"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Editor.ecore#//AbstractNode/base"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Editor.ecore#//AbstractOutlineElement"/>
+    <genClasses image="false" ecoreClass="Editor.ecore#//Behavior"/>
+    <genClasses ecoreClass="Editor.ecore#//EcoreLabelElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Editor.ecore#//EcoreLabelElement/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Editor.ecore#//EcoreLabelElement/end"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//EcoreLabelElement/hideIfBlank"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//EcoreLabelElement/prefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//EcoreLabelElement/separator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//EcoreLabelElement/suffix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//EcoreLabelElement/textProvider"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//EcoreNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Editor.ecore#//EcoreNode/element"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//EditorDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//EditorDefinition/language"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Editor.ecore#//EditorDefinition/extends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Editor.ecore#//EditorDefinition/node"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//FoldingBehavior"/>
+    <genClasses ecoreClass="Editor.ecore#//JavaLabelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//JavaLabelElement/class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//JavaLabelElement/method"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//JavaNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//JavaNode/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//LabelBehavior" labelFeature="#//editor/LabelBehavior/format">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//LabelBehavior/image"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//LabelBehavior/imageProvider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//LabelBehavior/format"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//LabelBehavior/formatProvider"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Editor.ecore#//LabelBehavior/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//OutlineBehavior">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Editor.ecore#//OutlineBehavior/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//OutlineBehavior/hidden"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//OutlineElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Editor.ecore#//OutlineElement/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="Editor.ecore#//OutlineGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//OutlineGroup/image"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//OutlineGroup/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Editor.ecore#//OutlineGroup/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Editor.ecore#//OutlineGroup/hidden"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
