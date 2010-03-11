@@ -715,12 +715,12 @@ public abstract class AbstractGrammarBasedEditor extends
 					.getNewestVersion(rootBlock);
 			ParseCommand parseCommand = null;
 			if (dry) {
-			    dryParse(previousBlock);
-			    //parseCommand = new ParseCommand(previousBlock, getWorkingConnection(), this, /*errorMode*/ true);
+			    //dryParse(previousBlock);
+			    parseCommand = new ParseCommand(previousBlock, getWorkingConnection(), this, /*errorMode*/ true);
 				
 			} else {
 			    parseCommand = new ParseCommand(previousBlock, getWorkingConnection(), this, /*errorMode*/ false);
-			
+			}
     			    try {
                                 ParsingTextblocksActivator.getDefault().enableMoinLogging(getWorkingConnection());
                                 getWorkingConnection().getCommandStack().execute(parseCommand);
@@ -756,7 +756,7 @@ public abstract class AbstractGrammarBasedEditor extends
                                 }
                             }
                             setModel(newBlock);
-			}
+			
 		} catch (SemanticParserException e) {
 			for (ParsingError ex : e.getIssuesList()) {
 				showInputInvalidInfo(ex);

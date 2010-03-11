@@ -33,7 +33,9 @@ import tcs.SequenceElement;
 import tcs.Template;
 import textblocks.AbstractToken;
 import textblocks.TextBlock;
+import textblocks.VersionEnum;
 
+import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.model.TypedElement;
@@ -500,10 +502,12 @@ public class CtsContentAssistUtil {
 									displayString = (String) result;
 								}
 							} catch (Exception e1) {
-								System.out
-										.println("Error executing invert-query: "
-												+ e1.getMessage());
-
+//								System.out
+//										.println("Error executing invert-query: "
+//												+ e1.getMessage());
+							    //this is not necessarily an error
+							    //as we investigate whether the current property fits the element
+							    //if this is not the case this caught exception may occur
 							}
 
 							if (displayString != null) {
@@ -588,13 +592,17 @@ public class CtsContentAssistUtil {
 	}
 
 	private static List<RefObject> getQueryResult(ITextViewer viewer, int line,
-			int charPositionInLine, TextBlocksModel tbModel, Property prop,
+			int charPositionInLine, TextBlocksModel textBlocksModel, Property prop,
 			QueryParg queryArg) {
+	        TextBlocksModel currentTbModel = textBlocksModel;
 		List<RefObject> oclElements = new ArrayList<RefObject>();
+		TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel.getRoot(),VersionEnum.CURRENT);
+		if(currentVersion != null) {
+                    currentTbModel = new TextBlocksModel(currentVersion, null);
+		}
+		if (currentTbModel != null && currentTbModel.getRoot() != null) {
 
-		if (tbModel != null && tbModel.getRoot() != null) {
-
-			AbstractToken floorToken = tbModel.getFloorTokenInRoot(getOffset(
+			AbstractToken floorToken = currentTbModel.getFloorTokenInRoot(getOffset(
 					viewer, line, charPositionInLine));
 			TextBlock parentBlock = floorToken.getParentBlock();
 			while (parentBlock != null

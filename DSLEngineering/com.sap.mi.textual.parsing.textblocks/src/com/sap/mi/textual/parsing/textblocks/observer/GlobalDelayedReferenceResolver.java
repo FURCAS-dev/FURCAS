@@ -677,16 +677,22 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			    // to be able to incrementally re evaluate the reference later
 			    // we need to setup a link between the textblock and the
 			    // template used in the ref
-			    unresolvedRef.getTextBlock().getAdditionalTemplates().add(
-				    ((ParserTextBlocksHandler) parser.getObserver()).getCurrentTbProxy()
-					    .getTemplate());
-                            referringDocumentNode.getCorrespondingModelElements().add(
-                                        (RefObject) unresolvedRef.getRealValue());
-                            TbUtil.addForEachContext(unresolvedRef
-                                    .getTextBlock(), (RefObject) unresolvedRef
-                                    .getModelElement(), (RefObject) unresolvedRef
-                                    .getCurrentForeachElement(),(ForeachPredicatePropertyInit) unresolvedRef
-                                    .getQueryElement(), (RefObject) unresolvedRef.getRealValue(), conn);
+			    Template template = ((ParserTextBlocksHandler) parser.getObserver()).getCurrentTbProxy()
+	                        .getTemplate();
+			    if(! unresolvedRef.getTextBlock().getAdditionalTemplates().contains(template)) {
+			        unresolvedRef.getTextBlock().getAdditionalTemplates().add(
+	                                    template);
+			    }
+			    RefObject value = (RefObject) unresolvedRef.getRealValue();
+                            if(! referringDocumentNode.getCorrespondingModelElements().contains(value)) {
+                                referringDocumentNode.getCorrespondingModelElements().add(value);
+                            }
+                                        
+                            TbUtil.addForEachContext(unresolvedRef.getTextBlock(), 
+                                    (RefObject) unresolvedRef.getModelElement(),
+                                    (RefObject) unresolvedRef.getElementForSelf(),
+                                    (ForeachPredicatePropertyInit) unresolvedRef.getQueryElement(),
+                                    (RefObject) unresolvedRef.getRealValue(), conn);
                             parser.setDelayedReferencesAfterParsing();
 			} else {
 			    if (unresolvedRef.getRealValue() instanceof RefObject) {
@@ -698,7 +704,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 			    removeRegistration(unresolvedRef);
 			    notifyReferenceResolvingListenerReferenceResolved(unresolvedRef);
 			}
-		    }
+		    } 
 		} else {
 		    removeRegistration(unresolvedRef);
 		}

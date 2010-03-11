@@ -100,7 +100,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	Stack<Template> currentParentTemplateStack = new Stack<Template>();
 	boolean currentIsOperator = false;
 
-	private int loglevel = 0; // 0 = no log, 1 = errorsonly, 2 = all
+	private int loglevel = 2; // 0 = no log, 1 = errorsonly, 2 = all
 
 	public void reset() {
 		foundError = false;
@@ -363,7 +363,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
 		// mark last created context as error context
 		if (getLastContext() != null) {
-			getLastContext().setErrorContext(true);
+//			getLastContext().setErrorContext(true);
 		}
 
 	}

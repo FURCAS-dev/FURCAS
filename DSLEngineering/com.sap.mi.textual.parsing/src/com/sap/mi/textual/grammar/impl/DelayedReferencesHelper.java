@@ -11,6 +11,7 @@ package com.sap.mi.textual.grammar.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,7 +20,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 
+import tcs.ForeachPredicatePropertyInit;
 import tcs.Template;
+import textblocks.ForeachContext;
+import textblocks.TextBlock;
 
 import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
@@ -118,6 +122,17 @@ public class DelayedReferencesHelper {
 		    .getPropertyName(), reference.getKeyValue(), flattenOCL, contextElement);
 	    // if there is no result it will be null
 	    if (result == null) {
+	        //we need to delete all elements created for this foreach
+	        if(reference.getTextBlock() != null) {
+	            for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
+                        if(fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
+                                reference.getModelElement().equals(fec.getSourceModelelement())) {
+                            //delete element and fec 
+                            fec.getResultModelElement().refDelete();
+                            fec.refDelete();
+                        }
+                    }
+	        }
 		return false;
 	    } else {
 		Iterator<?> resultIt = result.iterator();
@@ -152,6 +167,23 @@ public class DelayedReferencesHelper {
 			setReference(parser, reference, next, ruleName, modelAdapter);
 		    }
 		}
+		//delete all elements that were created by this foreach but are not valid anymore
+		if(reference.getTextBlock() != null) {
+                    for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
+                        if(fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
+                                reference.getModelElement().equals(fec.getSourceModelelement())) {
+                            for (Object object : result) {
+                                if(! fec.getContextElement().contains(object)) {
+                                    //element was responsible for creating this result but
+                                    //is not in the foreach anymore thus
+                                    //delete element and fec 
+                                    fec.getResultModelElement().refDelete();
+                                    fec.refDelete();   
+                                }
+                            }
+                        }
+                    }
+                }
 	    }
 	} catch (LookupPathNavigationException e) {
 	    reportProblem(e.getMessage(), reference.getToken());
@@ -239,9 +271,13 @@ public class DelayedReferencesHelper {
 	    // add the parsed part to the object
 	    parser.setResolveProxies(originalResolveProxiesValue);
 	    //first try to resolve if there is a model element that already exists and can be reused
-	    RefObject candidate = findCandidateFromProxy((RefObject) reference.getModelElement(), reference.getPropertyName(), parseReturn);
+	    RefObject candidate = findCandidateFromProxy((RefObject) reference.getModelElement(), 
+	            reference.getPropertyName(), parseReturn, (RefObject) reference.getElementForSelf(),//(RefObject) next, 
+	            (ForeachPredicatePropertyInit) reference.getQueryElement(), (TextBlock) reference.getTextBlock());
 	    if(candidate != null) {
 	        //element already exists so we can reuse it
+	        reference.setRealValue(candidate);
+	        ((ModelElementProxy) parseReturn).setRealObject(candidate);
 	        return;
 	    } else {
 	        reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
@@ -263,33 +299,24 @@ public class DelayedReferencesHelper {
 	}
     }
 
-    private RefObject findCandidateFromProxy(RefObject parent, String property, Object parseReturn) throws ModelElementCreationException {
-        if(parseReturn instanceof IModelElementProxy) {
-            IModelElementProxy proxy = (IModelElementProxy) parseReturn;
-            ((ModelElementProxy) proxy).setIsReferenceOnly(true);
-            try {
-                Object resolved = injector.createOrResolve(proxy, null, null);
-                Object parentValue = injector.getModelAdapter().get(parent, property);
-                if(parentValue instanceof Collection<?>) {
-                    if(((Collection<?>) parentValue).contains(resolved)) {
-                        return (RefObject) resolved;
-                    }
-                } else if(parentValue instanceof RefObject) {
-                    if(parentValue.equals(resolved)){
-                        return (RefObject) resolved;
+    private RefObject findCandidateFromProxy(RefObject parent, String property, Object parseReturn, RefObject foreachContext,
+            ForeachPredicatePropertyInit foreachPropertyInit, TextBlock tb) throws ModelElementCreationException {
+        if(parseReturn instanceof IModelElementProxy && tb != null) {
+            for (ForeachContext fec : tb.getForeachContext()) {
+                if(fec.getForeachPredicatePropertyInit().equals(foreachPropertyInit) && 
+                        fec.getContextElement().contains(foreachContext) &&
+                        fec.getSourceModelelement().equals(parent)) {
+                    //the element was already created in a previous foreach evaluation
+                    //so we will reuse the parent element
+                    if(fec.getResultModelElement() != null) {
+                        return fec.getResultModelElement();
+                    } else {
+                        //no result means the element has been deleted
+                        //so we need to get rid of the foreachcontext element as well
+                        fec.refDelete();
                     }
                 }
-            } catch (ModelElementCreationException e) {
-                //element not found so return null.
-                return null;
-            } catch (ModelAdapterException e) {
-                //this shouldn't happen, as the get() done above
-                //should always return a valid value
-                throw new ModelElementCreationException(
-                        "Error resolving modelelemnt proxy for parent: "
-                                + parent + " and property " + property, e);
-            } finally {
-                ((ModelElementProxy) proxy).setIsReferenceOnly(false);
+                    
             }
         }
         return null;
