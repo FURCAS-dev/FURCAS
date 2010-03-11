@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.ocl.examples.editor.ocl.ui;singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Require-Bundle: org.eclipse.core.resources;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.ocl.examples.editor.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ocl.examples.parser.ocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Activator: org.eclipse.ocl.examples.editor.ocl.ui.OCLPlugin
+Export-Package: org.eclipse.ocl.examples.editor.ocl.ui,
+ org.eclipse.ocl.examples.editor.ocl.ui.imp
