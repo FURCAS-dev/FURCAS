@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.parser.unresolved/src"
+    modelPluginID="org.eclipse.ocl.examples.parser.unresolved" modelName="Unresolved"
+    modelPluginClass="" editorPluginClass="org.eclipse.ocl.examples.parser.unresolved.presentation.UnresolvedEditorPlugin"
+    rootImplementsInterface="" testSuiteClass="org.eclipse.ocl.examples.parser.unresolved.tests.UnresolvedAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" editorPluginID="org.eclipse.ocl.examples.parser.unresolved.editor">
+  <foreignModel>Unresolved.ecore</foreignModel>
+  <genPackages prefix="Unresolved" basePackage="org.eclipse.ocl.examples.parser" disposableProviderFactory="true"
+      generateExampleClass="false" ecorePackage="Unresolved.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Unresolved.ecore#//UnresolvedEnum">
+      <genEnumLiterals ecoreEnumLiteral="Unresolved.ecore#//UnresolvedEnum/UNRESOLVED_ENUM_LITERAL"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="Unresolved.ecore#//UnresolvedDataType"/>
+    <genClasses ecoreClass="Unresolved.ecore#//UnresolvedClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unresolved.ecore#//UnresolvedClass/unresolvedAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Unresolved.ecore#//UnresolvedClass/unresolvedReference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Unresolved.ecore#//UnresolvedClass/unresolvedProperty"/>
+      <genOperations ecoreOperation="Unresolved.ecore#//UnresolvedClass/unresolvedOperation"/>
+    </genClasses>
+    <genClasses ecoreClass="Unresolved.ecore#//UnresolvedClassifier"/>
+  </genPackages>
+</genmodel:GenModel>
