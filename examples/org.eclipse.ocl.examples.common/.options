@@ -1,0 +1,4 @@
+# Debugging options for the org.eclipse.qvt.declarative.editor.ui plug-in
+
+# Turn on general EObject adapter notification
+org.eclipse.ocl.examples.ecore/notification=false
