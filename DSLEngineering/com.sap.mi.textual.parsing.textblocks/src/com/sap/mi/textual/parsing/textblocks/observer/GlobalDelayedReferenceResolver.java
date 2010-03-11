@@ -578,24 +578,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	return result;
     }
 
-//    private void addFilterAndListenerForDeleteEvent(Connection connection,
-//	    HashMap<EventFilter, Map<ListenerType, EventListener>> result) {
-//	DocumentNodeReferencedElement refAssoc = connection
-//		.getAssociation(DocumentNodeReferencedElement.ASSOCIATION_DESCRIPTOR);
-//	Association tbAssoc = refAssoc.refMetaObject();
-//	EventFilter filter = new AssociationFilter(tbAssoc);
-//	Map<ListenerType, EventListener> listenerForType = new HashMap<ListenerType, EventListener>();
-//	listenerForType.put(ListenerType.PRE_CHANGE, this);
-//	result.put(filter, listenerForType);
-//
-//	// also register event for deletion of element to remove from unresolved
-//	// references if element is deleted
-//	EventFilter deleteFilter = new EventTypeFilter(ElementDeleteEvent.class);
-//	Map<ListenerType, EventListener> listenerForDeleteEvent = new HashMap<ListenerType, EventListener>();
-//	listenerForDeleteEvent.put(ListenerType.UPDATE, this);
-//	result.put(deleteFilter, listenerForDeleteEvent);
-//    }
-
     public void reEvaluateUnresolvedRef(Connection conn,
 	    RefPackage outermostPackage, DelayedReference unresolvedRef) {
 	reEvaluateUnresolvedRef(conn, outermostPackage, unresolvedRef, null);
@@ -656,20 +638,20 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                     ((ParserTextBlocksHandler) parser.getObserver()).setConnection(conn);
                     parser.setInjector(modelInjector);
                     //remove all old values
-                    try {
-                        Set<RefObject> correspondingElements = new HashSet<RefObject>(unresolvedRef.getTextBlock().getCorrespondingModelElements());
-                        Set<RefObject> filteredElements = filterCorrespondingElementsByDelayedReferenceSourceType(conn, unresolvedRef.getTextBlock(), unresolvedRef);
-                        correspondingElements.removeAll(filteredElements);
-                        for (RefObject value : correspondingElements) {
-                            modelInjector.unset(unresolvedRef.getModelElement(), unresolvedRef.getPropertyName(), value);
-                            //if we are here no exception occurred which means element was successfully unset
-                            //as foreachpredicates always create new values we have to delete the old one
-                            value.refDelete();
-                            // FIXME remove DelayedReferences from queue that try to set a property on value
-                        }
-                    } catch (Exception e) {
-                        // TODO: handle exception
-                    }
+//                    try {
+//                        Set<RefObject> correspondingElements = new HashSet<RefObject>(unresolvedRef.getTextBlock().getCorrespondingModelElements());
+//                        Set<RefObject> filteredElements = filterCorrespondingElementsByDelayedReferenceSourceType(conn, unresolvedRef.getTextBlock(), unresolvedRef);
+//                        correspondingElements.removeAll(filteredElements);
+//                        for (RefObject value : correspondingElements) {
+//                            modelInjector.unset(unresolvedRef.getModelElement(), unresolvedRef.getPropertyName(), value);
+//                            //if we are here no exception occurred which means element was successfully unset
+//                            //as foreachpredicates always create new values we have to delete the old one
+//                            value.refDelete();
+//                            // FIXME remove DelayedReferences from queue that try to set a property on value
+//                        }
+//                    } catch (Exception e) {
+//                        // TODO: handle exception
+//                    }
                 }
 
 	    } else {

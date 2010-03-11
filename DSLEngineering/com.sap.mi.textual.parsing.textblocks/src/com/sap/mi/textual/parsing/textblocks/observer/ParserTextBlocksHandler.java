@@ -2,7 +2,6 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 
 import static com.sap.mi.textual.parsing.textblocks.TbUtil.getNewestVersion;
 
-import java.security.UnrecoverableEntryException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +21,6 @@ import tcs.Template;
 import textblocks.AbstractToken;
 import textblocks.DocumentNode;
 import textblocks.DocumentNodeReferencesCorrespondingModelElement;
-import textblocks.ForeachContext;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
