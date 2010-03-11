@@ -7,6 +7,11 @@ is http://eclipse.org/modeling/mdt/ocl/resources/ocl.psf which is maintained at
 
 Here you will find
 
+features.psf
+------------
+
+that loads features needed to develop/build/run parser features
+
 parser-tools.psf
 ----------------
 
@@ -27,3 +32,10 @@ that loads plugins needed to develop/build/run test features
 - org.eclipse.test
 - org.eclipse.ant.optional.junit
 - org.eclipse.uml2.uml.resources
+
+www.psf
+-------
+
+that loads the doc and web support projects
+- org.eclipse.ocl.doc
+- org.eclipse.ocl.www
