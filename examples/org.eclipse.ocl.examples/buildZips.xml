@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.eclipse.ocl.examples" default="zip.examples" basedir=".">
+	<target name="init">
+	</target>
+
+	<patternset id="zip.excludes"
+		excludes="src.zip,build.xml,javaCompiler*,temp.folder/**,@dot/**"/>
+	
+	<target name="zip.examples" depends="init">
+		<condition property="examplesDir" value="../../examples/" else="../">
+		    <available file="../../examples" type="dir"/>
+		</condition>
+		<!-- This example may have been compiled already in the Master feature -->
+		<zip destfile="zips/interpreter.zip" basedir="${examplesDir}org.eclipse.ocl.examples.interpreter">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		<zip destfile="zips/empty.zip" basedir="${examplesDir}org.eclipse.ocl.examples.project.empty">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		<zip destfile="zips/royalandloyal.zip" basedir="${examplesDir}org.eclipse.ocl.examples.project.royalandloyal">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		
+		<zip destfile="zips/library.zip" basedir="${examplesDir}org.eclipse.emf.examples.library"/>
+		<zip destfile="zips/libraryEdit.zip" basedir="${examplesDir}org.eclipse.emf.examples.library.edit"/>
+		<zip destfile="zips/libraryEditor.zip" basedir="${examplesDir}org.eclipse.emf.examples.library.editor"/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.ocl.examples.">
+		<delete>
+			<fileset dir="zips" includes="*.zip"/>
+		</delete>
+		<antcall target="refresh"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.refreshLocal resource="/org.eclipse.ocl.examples" depth="infinite"/>
+	</target>
+</project>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2006,2010 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *   E.D.Willink - Bug 289761
+ *
+ * </copyright>
+ *
+ * $Id: plugin.xml,v 1.1 2010/03/11 10:16:52 ewillink Exp $
+ */
+-->
+<?eclipse version="3.0"?>
+<plugin
+>
+   <extension point="org.eclipse.ui.newWizards">
+      <category id="org.eclipse.ocl.examples.category"
+            name="%OCL_category"
+            parentCategory="org.eclipse.ui.Examples"/>
+      <wizard id="org.eclipse.ocl.examples.interpreter"
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.ocl.examples.category"
+            class="org.eclipse.ocl.examples.internal.wizard.InterpreterExampleWizard"
+            hasPages="false"
+            project="true"
+            name="%OCL_Interpreter_name"
+            icon="$nl$/icons/elcl16/oclconsole_co.gif">
+         <description>%OCL_Interpreter_description</description>
+      </wizard>
+     <wizard id="org.eclipse.ocl.examples.ocl.royalandloyal"           
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.ocl.examples.category"
+            class="org.eclipse.ocl.examples.internal.wizard.RoyalAndLoyalExampleWizard"
+            hasPages="false"
+            project="true"
+            name="%Royal_and_Loyal_name"
+            icon="$nl$/icons/OCLModelFile.gif">
+         <description>%Royal_and_Loyal_description</description>
+      </wizard>
+      <wizard id="org.eclipse.ocl.examples.ocl.empty"           
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.ocl.examples.category"
+            class="org.eclipse.ocl.examples.internal.wizard.EmptyExampleWizard"
+            hasPages="false"
+            project="true"
+            name="%EmptyOCL_name"
+            icon="$nl$/icons/OCLModelFile.gif">
+         <description>%EmptyOCL_description</description>
+      </wizard>
+   </extension>
+</plugin>
