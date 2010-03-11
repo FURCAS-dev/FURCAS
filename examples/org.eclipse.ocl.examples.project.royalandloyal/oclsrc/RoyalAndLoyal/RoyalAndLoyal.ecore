@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2007,2008 M.Garcia and others.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors:
+     J.Warmer, A.Kleppe - original example in 'The Object Constraint Language Second Edition'
+     M.Garcia - realisation of the example for use within Eclipse 
+-->
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="RandL"
+    nsURI="http://de.tuhh.sts.octopus/octopus2emfatic/2006/RandL" nsPrefix="RandL">
+  <eClassifiers xsi:type="ecore:EEnum" name="RandLColor">
+    <eLiterals name="silver"/>
+    <eLiterals name="gold" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceLevel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="program" eType="#//LoyaltyProgram"
+        eOpposite="#//LoyaltyProgram/levels"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="availableServices" ordered="false"
+        upperBound="-1" eType="#//Service" eOpposite="#//Service/level"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Membership" ordered="false"
+        upperBound="-1" eType="#//Membership" eOpposite="#//Membership/currentLevel"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Gender">
+    <eLiterals name="male"/>
+    <eLiterals name="female" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transaction" abstract="true">
+    <eOperations name="program" eType="#//LoyaltyProgram">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="result = self.card.Membership.programs"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="points" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="date" eType="#//Date" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="account" eType="#//LoyaltyAccount"
+        eOpposite="#//LoyaltyAccount/transactions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generatedBy" eType="#//Service"
+        eOpposite="#//Service/transactions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="card" eType="#//CustomerCard"
+        eOpposite="#//CustomerCard/transactions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoyaltyAccount">
+    <eOperations name="earn">
+      <eParameters name="i" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eOperations>
+    <eOperations name="burn">
+      <eParameters name="i" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eOperations>
+    <eOperations name="getCustomerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/body">
+        <details key="body" value="self.Membership.card.owner.name"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isEmpty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="result = self.points = 0"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="true"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="points" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/init">
+        <details key="init" value="0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalPointsEarned" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transactions->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Earning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usedServices" ordered="false"
+        upperBound="-1" eType="#//Service" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transactions->collect( i_Transaction : Transaction | i_Transaction.generatedBy )->asSet()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Membership" eType="#//Membership"
+        eOpposite="#//Membership/account"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transactions" ordered="false"
+        upperBound="-1" eType="#//Transaction" eOpposite="#//Transaction/account">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/init">
+        <details key="init" value="Set{}"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Earning" eSuperTypes="#//Transaction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramPartner">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfCustomers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deliveredServices" ordered="false"
+        upperBound="-1" eType="#//Service" eOpposite="#//Service/partner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programs" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//LoyaltyProgram" eOpposite="#//LoyaltyProgram/partners"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Burning" eSuperTypes="#//Transaction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TransactionReport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="balance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.card.Membership.account.points"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalEarned" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.lines->collect( i_TransactionReportLine : TransactionReportLine | i_TransactionReportLine.transaction )->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Earning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalBurned" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.lines->collect( i_TransactionReportLine : TransactionReportLine | i_TransactionReportLine.transaction )->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Burning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.card.Membership.account.number"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.card.owner.name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="until" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Date" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lines" ordered="false"
+        upperBound="-1" eType="#//TransactionReportLine" eOpposite="#//TransactionReportLine/report"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="card" eType="#//CustomerCard"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomerCard">
+    <eOperations name="getTransactions" ordered="false" upperBound="-1" eType="#//Transaction">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/body">
+        <details key="body" value="self.transactions->select( i_Transaction : Transaction | i_Transaction.date.isAfter(from) and i_Transaction.date.isBefore(until) )"/>
+      </eAnnotations>
+      <eParameters name="until" eType="#//Date"/>
+      <eParameters name="from" eType="#//Date"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/init">
+        <details key="init" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//RandLColor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="printedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.owner.title.concat(' ').concat(self.owner.name)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="goodThru" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validFrom" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myLevel" eType="#//ServiceLevel"
+        changeable="false" volatile="true" transient="true" derived="true" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.Membership.currentLevel"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Customer"
+        eOpposite="#//Customer/cards"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Membership" eType="#//Membership"
+        eOpposite="#//Membership/card"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transactions" ordered="false"
+        upperBound="-1" eType="#//Transaction" eOpposite="#//Transaction/card">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/init">
+        <details key="init" value="Set{}"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Date">
+    <eOperations name="isBefore" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eParameters name="t" eType="#//Date"/>
+    </eOperations>
+    <eOperations name="isEqual" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eParameters name="t" eType="#//Date"/>
+    </eOperations>
+    <eOperations name="fromYMD" eType="#//Date">
+      <eParameters name="m" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eParameters name="k" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eParameters name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eOperations>
+    <eOperations name="isAfter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eParameters name="t" eType="#//Date"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="month" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Membership">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentLevel" eType="#//ServiceLevel"
+        eOpposite="#//ServiceLevel/Membership"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="card" eType="#//CustomerCard"
+        eOpposite="#//CustomerCard/Membership"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="account" eType="#//LoyaltyAccount"
+        eOpposite="#//LoyaltyAccount/Membership"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programs" lowerBound="1"
+        eType="#//LoyaltyProgram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participants" lowerBound="1"
+        eType="#//Customer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container_RandL">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_Customer" upperBound="-1"
+        eType="#//Customer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_Date" upperBound="-1"
+        eType="#//Date" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_CustomerCard"
+        upperBound="-1" eType="#//CustomerCard" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_Membership" upperBound="-1"
+        eType="#//Membership" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_Service" upperBound="-1"
+        eType="#//Service" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_LoyaltyProgram"
+        upperBound="-1" eType="#//LoyaltyProgram" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_Earning" upperBound="-1"
+        eType="#//Earning" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_LoyaltyAccount"
+        upperBound="-1" eType="#//LoyaltyAccount" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_ServiceLevel"
+        upperBound="-1" eType="#//ServiceLevel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_TransactionReport"
+        upperBound="-1" eType="#//TransactionReport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_ProgramPartner"
+        upperBound="-1" eType="#//ProgramPartner" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_Burning" upperBound="-1"
+        eType="#//Burning" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref_RandL_TransactionReportLine"
+        upperBound="-1" eType="#//TransactionReportLine" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service">
+    <eOperations name="calcPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eOperations name="upgradePointsEarned">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.calcPoints() = self.calcPoints() + amount"/>
+      </eAnnotations>
+      <eParameters name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceNr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pointsEarned" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pointsBurned" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partner" eType="#//ProgramPartner"
+        eOpposite="#//ProgramPartner/deliveredServices"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transactions" ordered="false"
+        upperBound="-1" eType="#//Transaction" eOpposite="#//Transaction/generatedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="level" eType="#//ServiceLevel"
+        eOpposite="#//ServiceLevel/availableServices"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Customer">
+    <eOperations name="birthdayHappens">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.age = self.age + 1"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="age" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gender" eType="#//Gender"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateOfBirth" eType="#//Date"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programs" ordered="false"
+        upperBound="-1" eType="#//LoyaltyProgram" eOpposite="#//LoyaltyProgram/participants"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cards" ordered="false"
+        upperBound="-1" eType="#//CustomerCard" eOpposite="#//CustomerCard/owner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberships" upperBound="-1"
+        eType="#//Membership"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransactionReportLine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partnerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transaction.generatedBy.partner.name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceDesc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transaction.generatedBy.description"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="points" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transaction.points"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transaction.amount"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="date" eType="#//Date" changeable="false"
+        volatile="true" transient="true" derived="true" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/derive">
+        <details key="derive" value="self.transaction.date"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transaction" eType="#//Transaction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="report" eType="#//TransactionReport"
+        eOpposite="#//TransactionReport/lines"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoyaltyProgram">
+    <eOperations name="selectPopularPartners" ordered="false" upperBound="-1" eType="#//ProgramPartner">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="let popularTrans : Set(Transaction) = result->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->collect( i_Service : Service | i_Service.transactions )->asSet() in (popularTrans->forAll( i_Transaction : Transaction | i_Transaction.date.isAfter(d) )) and (popularTrans->select( i_Transaction : Transaction | i_Transaction.amount > 500.00 )->size()) > 20000"/>
+      </eAnnotations>
+      <eParameters name="d" eType="#//Date"/>
+    </eOperations>
+    <eOperations name="addService">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="self.levels->includes(l)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.levels->collect( i_ServiceLevel : ServiceLevel | i_ServiceLevel.availableServices )->includes(s)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="self.partners->includes(p)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.partners->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->includes(s)"/>
+      </eAnnotations>
+      <eParameters name="s" eType="#//Service"/>
+      <eParameters name="l" eType="#//ServiceLevel"/>
+      <eParameters name="p" eType="#//ProgramPartner"/>
+    </eOperations>
+    <eOperations name="getServices" ordered="false" upperBound="-1" eType="#//Service">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/body">
+        <details key="body" value="if self.partners->includes(pp) then    &#xA;    pp.deliveredServices    &#xA;    else    &#xA;Set{}    &#xA;    endif"/>
+      </eAnnotations>
+      <eParameters name="pp" eType="#//ProgramPartner"/>
+    </eOperations>
+    <eOperations name="enrollAndCreateCustomer" eType="#//Customer">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="((result.oclIsNew() and result.name = n) and result.dateOfBirth = d) and self.participants->includes(result)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="true"/>
+      </eAnnotations>
+      <eParameters name="n" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="d" eType="#//Date"/>
+    </eOperations>
+    <eOperations name="enroll">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.Membership->select( m : Membership | m.participants = c )->forAll( i_Membership : Membership | i_Membership.account.asSet()->notEmpty() and i_Membership.account.points = 0 )"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.participants = self.participants->including(c)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.participants = self.participants->including(c)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="c.name &lt;> ''"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="c.name &lt;> ''"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="not self.participants->includes(c)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.participants = self.participants->including(c)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="self.participants = self.participants->including(c)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/pre">
+        <details key="pre" value="not self.participants->includes(c)"/>
+      </eAnnotations>
+      <eParameters name="c" eType="#//Customer"/>
+    </eOperations>
+    <eOperations name="addTransaction">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/post">
+        <details key="post" value="let acc : LoyaltyAccount = self.memberships->collect( i_Membership : Membership | i_Membership.account )->select( a : LoyaltyAccount | a.number = accNr )->any( i_LoyaltyAccount : LoyaltyAccount | true ) in let newT : Transaction = self.partners->select( p : ProgramPartner | p.name = pName )->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->select( s : Service | s.serviceNr = servId )->collect( i_Service : Service | i_Service.transactions )->select( i_Transaction : Transaction | (i_Transaction.date = d) and i_Transaction.amount = amnt )->any( i_Transaction : Transaction | true ) in let card : CustomerCard = self.memberships->select( m : Membership | m.account.number = accNr )->collect( i_Membership : Membership | i_Membership.card )->any( i_CustomerCard : CustomerCard | true ) in acc.points = acc.points + newT.points"/>
+      </eAnnotations>
+      <eParameters name="d" eType="#//Date"/>
+      <eParameters name="servId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eParameters name="pName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="amnt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+      <eParameters name="accNr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eOperations>
+    <eOperations name="getServices" ordered="false" upperBound="-1" eType="#//Service">
+      <eAnnotations source="http://www.eclipse.org/OCL/1.0.0/body">
+        <details key="body" value="self.partners->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->asSet()"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partners" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//ProgramPartner" eOpposite="#//ProgramPartner/programs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="levels" lowerBound="1"
+        upperBound="-1" eType="#//ServiceLevel" eOpposite="#//ServiceLevel/program"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
+        eType="#//Customer" eOpposite="#//Customer/programs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberships" upperBound="-1"
+        eType="#//Membership"/>
+  </eClassifiers>
+</ecore:EPackage>
