@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   
+   <extension point="org.eclipse.ui.editors">
+      <editor id="org.eclipse.ocl.editor.ocl.ui.OCLInEcoreEditor"
+            class="org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreEditor"
+            contributorClass="org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreActionBarContributor"
+            default="false"
+            extensions="ecore"
+            icon="icons/OCLInEcoreModelFile.gif"
+            name="OCL in Ecore Editor"/>
+   </extension>
+
+   <extension point="org.eclipse.imp.runtime.languageDescription">
+      <language language="oclInEcore" extensions="ecore" description="OCL embedded in an Ecore Model"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.parser" name="OCL Parser Wrapper">
+      <parser language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreParseController"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.tokenColorer">
+      <tokenColorer language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLTokenColorer"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.foldingUpdater">
+      <foldingUpdater language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLFoldingUpdater"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.modelTreeBuilder">
+      <treeBuilder language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLTreeModelBuilder"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.labelProvider">
+      <labelProvider language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLLabelProvider"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.referenceResolvers">
+      <referenceResolver language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLReferenceResolver"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.documentationProvider">
+      <docProvider language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLDocumentationProvider"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.hoverHelper" name="OCL Hover Helper">
+      <hoverHelper language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLHoverHelper"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.contentProposer">
+      <proposer language="oclInEcore" class="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLContentProposer"/>
+   </extension>
+   <extension point="org.eclipse.imp.runtime.editorActionContributions">
+      <editorActionContributor language="oclInEcore" class="org.eclipse.ocl.examples.editor.ui.actions.CommonActionContributor"/>
+   </extension>
+
+</plugin>
