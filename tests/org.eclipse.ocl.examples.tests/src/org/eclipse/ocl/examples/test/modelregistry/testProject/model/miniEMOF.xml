@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emof:Package xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:emof="http://schema.omg.org/spec/mof/2.0/emof.xmi" xmi:id="miniecore"
+    name="miniemof">
+  <ownedType xmi:type="emof:Class" xmi:id="miniecore.MiniEcore" name="MiniEmof">
+    <ownedAttribute xmi:id="miniemof.MiniEmof.@eStructuralFeatures.0" name="miniEmof"
+        upper="*" type="miniecore.MiniEcore"/>
+  </ownedType>
+</emof:Package>
