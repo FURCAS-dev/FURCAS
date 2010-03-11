@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="label_generator" name="%_UI_LabelGenerator_extensionpoint" schema="schema/label_generator.exsd"/>
+
+   <extension point="org.eclipse.ocl.examples.common.label_generator">
+      <generator for="org.eclipse.emf.ecore.ENamedElement"
+      	class="org.eclipse.ocl.examples.common.label.generators.ENamedElementLabelGenerator"/>
+      <generator for="org.eclipse.emf.ecore.EObject"
+      	class="org.eclipse.ocl.examples.common.label.generators.EObjectLabelGenerator"/>
+      <generator for="org.eclipse.emf.common.util.URI"
+      	class="org.eclipse.ocl.examples.common.label.generators.EcoreURILabelGenerator"/>
+      <generator for="java.lang.String"
+      	class="org.eclipse.ocl.examples.common.label.generators.StringLabelGenerator"/>
+   </extension>
+
+</plugin>
