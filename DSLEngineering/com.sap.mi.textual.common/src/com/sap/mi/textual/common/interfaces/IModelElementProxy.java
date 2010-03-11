@@ -26,9 +26,4 @@ public interface IModelElementProxy {
      */
     public boolean isReferenceOnly();
 
-	void setSequenceElement(SequenceElement currentSequenceElement);
-
-	SequenceElement getSequenceElement();
-
-
 }
