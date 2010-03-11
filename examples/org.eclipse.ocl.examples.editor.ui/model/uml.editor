@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ed:EditorDefinition xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ed="http://www.eclipse.org/ocl/1.0/Editor" language="uml">
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Class">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif"
+        format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Constraint">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif"
+        imageProvider="org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLImageProvider"
+        format="{0}{1}::&lt;???>{3}{4} - {5}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"
+          hideIfBlank="true" suffix=": "/>
+      <elements xsi:type="ed:EcoreLabelElement" path="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint/specification http://www.eclipse.org/ocl/1.1.0/OCL/Utilities#//ExpressionInOCL/contextVariable"
+          end="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"
+          separator=""/>
+      <elements xsi:type="ed:EcoreLabelElement" path="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint/constrainedElement"
+          end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"
+          separator=", "/>
+      <elements xsi:type="ed:EcoreLabelElement" path="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint/specification http://www.eclipse.org/ocl/1.1.0/OCL/Utilities#//ExpressionInOCL/parameterVariable"
+          end="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"
+          hideIfBlank="true" prefix="(" separator=", " suffix=")"/>
+      <elements xsi:type="ed:EcoreLabelElement" path="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint/specification http://www.eclipse.org/ocl/1.1.0/OCL/Utilities#//ExpressionInOCL/bodyExpression"
+          end="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"
+          hideIfBlank="true" prefix=" : " separator=""/>
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//Constraint/constrainedElement"
+          separator=", "/>
+    </behavior>
+    <behavior xsi:type="ed:OutlineBehavior">
+      <elements xsi:type="ed:OutlineElement" feature="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//Constraint/specification"/>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//DataType">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EDataType.gif"
+        format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Enumeration">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EEnum.gif"
+        format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//EnumerationLiteral">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EEnumLiteral.gif"
+        format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Operation">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EOperation.gif"
+        format="{0}({1}) : {2}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+      <elements xsi:type="ed:EcoreLabelElement" path="http://www.eclipse.org/uml2/3.0.0/UML#//BehavioralFeature/ownedParameter http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"
+          end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"
+          separator=","/>
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"/>
+    </behavior>
+    <behavior xsi:type="ed:OutlineBehavior">
+      <elements xsi:type="ed:OutlineGroup" hidden="true">
+        <elements xsi:type="ed:OutlineElement" feature="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//BehavioralFeature/raisedException"/>
+      </elements>
+      <elements xsi:type="ed:OutlineGroup" hidden="true">
+        <elements xsi:type="ed:OutlineElement" feature="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//BehavioralFeature/ownedParameter"/>
+      </elements>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Package">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EPackage.gif"
+        format="{0}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+    </behavior>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Parameter">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EParameter.gif"
+        format="{0} : {1}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EReference http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"/>
+    </behavior>
+    <behavior xsi:type="ed:OutlineBehavior" elements=""/>
+  </node>
+  <node xsi:type="ed:EcoreNode" element="ecore:EClass http://www.eclipse.org/uml2/3.0.0/UML#//Property">
+    <behavior xsi:type="ed:LabelBehavior" image="/org.eclipse.emf.ecore.edit/icons/full/obj16/EAttribute.gif"
+        format="{0} : {1}">
+      <elements xsi:type="ed:EcoreLabelElement" end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+      <elements xsi:type="ed:EcoreLabelElement" path="http://www.eclipse.org/uml2/3.0.0/UML#//TypedElement/type"
+          end="ecore:EAttribute http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement/name"/>
+    </behavior>
+  </node>
+</ed:EditorDefinition>
