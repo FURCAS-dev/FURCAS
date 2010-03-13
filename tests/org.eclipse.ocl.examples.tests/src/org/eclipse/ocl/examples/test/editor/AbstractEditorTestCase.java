@@ -12,13 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: AbstractEditorTestCase.java,v 1.1 2010/03/13 13:17:23 ewillink Exp $
+ * $Id: AbstractEditorTestCase.java,v 1.2 2010/03/13 18:11:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.editor.ui.ICreationFactory;
 import org.eclipse.ocl.examples.editor.ui.builder.CommonBuilder;
 import org.eclipse.swt.widgets.Display;
@@ -47,6 +49,33 @@ import org.eclipse.ui.PlatformUI;
 
 public abstract class AbstractEditorTestCase extends TestCase
 {
+	protected static void checkAbsent(String when, IDocument document, String what) {
+		int index = document.get().indexOf(what);
+		if (index >= 0) {
+			fail(when + " - '" + what + "' found");
+		}
+	}
+	
+	protected static void checkAbsent(String when, Collection<String> strings, String what) {
+		if (strings.contains(what)) {
+			fail(when + " - '" + what + "' found");
+		}
+	}
+
+	protected static int checkPresent(String when, IDocument document, String what) {
+		int index = document.get().indexOf(what);
+		if (index < 0) {
+			fail(when + " - '" + what + "' not found");
+		}
+		return index;
+	}
+	
+	protected static void checkPresent(String when, Collection<String> strings, String what) {
+		if (!strings.contains(what)) {
+			fail(when + " - '" + what + "' not found");
+		}
+	}
+
 	public static class LogListener implements ILogListener
 	{
 		private List<IStatus> statuses = new ArrayList<IStatus>();
@@ -141,7 +170,6 @@ public abstract class AbstractEditorTestCase extends TestCase
 	protected IProject project;
 	protected IWorkbenchPage workbenchPage;
 	protected List<IFile> files = new ArrayList<IFile>();
-
 	protected IFile createFile(String fileName) throws CoreException {
 		IFile file = project.getFile(fileName);
 		IContainer container = file.getParent();

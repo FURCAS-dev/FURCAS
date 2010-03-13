@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLInEcoreResourceTests.java,v 1.1 2010/03/13 13:17:23 ewillink Exp $
+ * $Id: OCLInEcoreResourceTests.java,v 1.2 2010/03/13 18:11:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor.ocl.ecore;
 
@@ -28,54 +28,15 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreEditor;
 import org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreParseController;
+import org.eclipse.ocl.examples.test.editor.OCLInEcoreTestFile;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
 public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 {	
-	protected void checkAbsent(String when, IDocument document, String what) {
-		int index = document.get().indexOf(what);
-		if (index >= 0) {
-			fail(when + " - '" + what + "' found");
-		}
-	}
-	
-	protected void checkAbsent(String when, List<String> strings, String what) {
-		if (strings.contains(what)) {
-			fail(when + " - '" + what + "' found");
-		}
-	}
-	
-	protected void checkConstraint(String when, EClass eClass, String which, String what) {
-		String expression = EcoreUtil.getAnnotation(eClass, OCLDelegateDomain.OCL_DELEGATE_URI, which);
-		assertEquals(when, what, expression);
-	}
-	
-	protected void checkConstraints(String when, EClass eClass, String... whiches) {
-		List<String> constraints = EcoreUtil.getConstraints(eClass);		
-		assertEquals(when + " - cionstraint count", whiches.length, constraints.size());
-		for (String which : whiches) {
-			checkPresent(when, constraints, which);
-		}
-	}
-
-	protected int checkPresent(String when, IDocument document, String what) {
-		int index = document.get().indexOf(what);
-		if (index < 0) {
-			fail(when + " - '" + what + "' not found");
-		}
-		return index;
-	}
-	
-	protected void checkPresent(String when, List<String> strings, String what) {
-		if (!strings.contains(what)) {
-			fail(when + " - '" + what + "' not found");
-		}
-	}
 
 	/**
 	 * Test that an editor can be opened on an empty file and that the editor closes
@@ -83,7 +44,7 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 	 */
 	public void testDeleteFileClosesEditor() throws CoreException, ExecutionException, BadLocationException, IOException {
 		IFile file = project.getFile(getName() + " .ecore");
-		EcoreTestFile testFile = new EcoreTestFile(file);
+		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
 		IFileEditorInput editorInput = testFile.getEditorInput();
 		IEditorPart editor = workbenchPage.openEditor(editorInput, getEditorId());
 		try {
@@ -106,7 +67,7 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 		final String oldInvariantExpression = "true <> false";
 		final String newInvariantExpression = "-- a prefix\nfalse <> true\n-- a suffix";
 		IFile file = project.getFile(getName() + " .ecore");
-		EcoreTestFile testFile = new EcoreTestFile(file);
+		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
 		EPackage initPackage = testFile.createEPackageWithDelegates(null, "testPackage");
 		EClass initClass = testFile.createEClass(initPackage, "testClass");
 		testFile.createInvariant(initClass, invariantName, oldInvariantExpression);
@@ -154,7 +115,7 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 		final String oldInvariantExpression = "true <> false";
 		final String newInvariantExpression = "false <==> true";
 		IFile file = project.getFile(getName() + " .ecore");
-		EcoreTestFile testFile = new EcoreTestFile(file);
+		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
 		EPackage initPackage = testFile.createEPackageWithDelegates(null, "testPackage");
 		EClass initClass = testFile.createEClass(initPackage, "testClass");
 		testFile.createInvariant(initClass, invariantName, oldInvariantExpression);
@@ -201,7 +162,7 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 		final String newInvariantName = "changedTestInvariant";
 		final String invariantExpression = "true <> false";
 		IFile file = project.getFile(getName() + " .ecore");
-		EcoreTestFile testFile = new EcoreTestFile(file);
+		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
 		EPackage initPackage = testFile.createEPackageWithDelegates(null, "testPackage");
 		EClass initClass = testFile.createEClass(initPackage, "testClass");
 		testFile.createInvariant(initClass, oldInvariantName, invariantExpression);
@@ -246,145 +207,4 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 			workbenchPage.closeEditor(editor, false);
 		}
 	}
-	
-/*
-	public void testOpenAndRename() throws CoreException, ExecutionException, BadLocationException {
-		IFile file = createMinimalTestFile();
-		IFileEditorInput editorInput = new FileEditorInput(file);
-		QVTcMultiEditor editor = (QVTcMultiEditor) workbenchPage.openEditor(editorInput, getMultiEditorId());
-		try {
-			assertNotNull("Editor is open", workbenchPage.findEditor(editorInput));
-			file.move(file.getFullPath().addFileExtension(".rename"), true, monitor);
-			runAsyncMessages(editor.getDisplay(), "Move File");
-			assertTrue("File does not exist", !file.exists());
-			assertNull("Editor is closed", workbenchPage.findEditor(editorInput));
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
-	}
-
-	public void testOpenEditAndDeleteAndKeep() throws CoreException, ExecutionException, BadLocationException {
-		IFile file = createMinimalTestFile();
-		IFileEditorInput editorInput = new FileEditorInput(file);
-		QVTcMultiEditor editor = (QVTcMultiEditor) workbenchPage.openEditor(editorInput, getMultiEditorId());
-		try {
-			final Display display = editor.getDisplay();
-			TextPageManager textPageManager = (TextPageManager) editor.getActivePageManager();
-			assertEquals("Page managers", 4, editor.getPageManagers().size());
-			
-			ITextEditorWithUndoContext textEditor = textPageManager.getEditor();
-			IDocumentProvider documentProvider = textEditor.getDocumentProvider();
-			AbstractDocument document = (AbstractDocument) documentProvider.getDocument(editorInput);
-			document.replace(0, 0, " ");
-			runAsyncMessages(display, "Typing");
-			
-			assertTrue("Edited isDirty", editor.isDirty());
-			assertTrue("Edited isDirtyPage", editor.isDirtyPage());
-			textPageManager.refresh();
-	
-			file.delete(true, monitor);
-			runAsyncMessages(display, "Delete File");
-			assertNotNull("Editor is still open", workbenchPage.findEditor(editorInput));
-			assertTrue("File does not exist", !file.exists());
-			display.asyncExec(new ButtonPress(display, IDialogConstants.OK_LABEL));
-			editor.doSave(monitor);
-			runAsyncMessages(editor.getDisplay(), "Save");
-			assertFalse("Saved isNotDirty", editor.isDirty());
-			assertFalse("Saved isNotDirtyPage", editor.isDirtyPage());
-			assertTrue("File exists", file.exists());
-			file.delete(true, monitor);
-			runAsyncMessages(display, "Delete File");
-			assertTrue("File does not exist", !file.exists());
-			assertNull("Editor is closed", workbenchPage.findEditor(editorInput));
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
-	}
-
-	public void testOpenEditAndDeleteAndLose() throws CoreException, ExecutionException, BadLocationException {
-		IFile file = createMinimalTestFile();
-		IFileEditorInput editorInput = new FileEditorInput(file);
-		QVTcMultiEditor editor = (QVTcMultiEditor) workbenchPage.openEditor(editorInput, getMultiEditorId());
-		try {
-			final Display display = editor.getDisplay();
-			TextPageManager textPageManager = (TextPageManager) editor.getActivePageManager();
-			assertEquals("Page managers", 4, editor.getPageManagers().size());
-			
-			ITextEditorWithUndoContext textEditor = textPageManager.getEditor();
-			IDocumentProvider documentProvider = textEditor.getDocumentProvider();
-			AbstractDocument document = (AbstractDocument) documentProvider.getDocument(editorInput);
-			document.replace(0, 0, " ");
-			runAsyncMessages(display, "Typing");
-			
-			assertTrue("Edited isDirty", editor.isDirty());
-			assertTrue("Edited isDirtyPage", editor.isDirtyPage());
-			textPageManager.refresh();
-	
-			file.delete(true, monitor);
-			runAsyncMessages(display, "Delete File");
-			assertNotNull("Editor is still open", workbenchPage.findEditor(editorInput));
-			assertTrue("Deleted isDirty", editor.isDirty());
-			assertTrue("Deleted isDirtyPage", editor.isDirtyPage());
-			assertTrue("File does not exist", !file.exists());
-			display.asyncExec(new ButtonPress(display, IDialogConstants.CANCEL_LABEL));
-			editor.doSave(monitor);
-			runAsyncMessages(editor.getDisplay(), "NonSave");
-			assertTrue("Unsaved isDirty", editor.isDirty());
-			assertTrue("Unsaved isDirtyPage", editor.isDirtyPage());
-			display.asyncExec(new ButtonPress(display, IDialogConstants.OK_LABEL));
-			editor.doSave(monitor);
-			runAsyncMessages(editor.getDisplay(), "Save");
-			assertFalse("Saved isNotDirty", editor.isDirty());
-			assertFalse("Saved isNotDirtyPage", editor.isDirtyPage());
-			assertTrue("File exists", file.exists());
-			file.delete(true, monitor);
-			runAsyncMessages(display, "Delete File");
-			assertTrue("File does not exist", !file.exists());
-			assertNull("Editor is closed", workbenchPage.findEditor(editorInput));
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
-	}
-
-	public void testOpenEditAndRename() throws CoreException, ExecutionException, BadLocationException {
-		IFile file = createMinimalTestFile();
-		IFileEditorInput editorInput = new FileEditorInput(file);
-		QVTcMultiEditor editor = (QVTcMultiEditor) workbenchPage.openEditor(editorInput, getMultiEditorId());
-		try {
-			final Display display = editor.getDisplay();
-			TextPageManager textPageManager = (TextPageManager) editor.getActivePageManager();
-			assertEquals("Page managers", 4, editor.getPageManagers().size());
-			
-			ITextEditorWithUndoContext textEditor = textPageManager.getEditor();
-			IDocumentProvider documentProvider = textEditor.getDocumentProvider();
-			AbstractDocument document = (AbstractDocument) documentProvider.getDocument(editorInput);
-			document.replace(0, 0, " ");
-			runAsyncMessages(display, "Typing");
-			
-			assertTrue("Edited isDirty", editor.isDirty());
-			assertTrue("Edited isDirtyPage", editor.isDirtyPage());
-			assertEquals("Edited title", file.getName(), editor.getTitle());
-			textPageManager.refresh();
-	
-			file.move(file.getFullPath().addFileExtension("rename"), true, monitor);
-			runAsyncMessages(editor.getDisplay(), "Move File");
-			String newName = file.getName() + ".rename";
-			assertEquals("Moved title", newName, editor.getTitle());
-			assertNotNull("Editor is still open", workbenchPage.findEditor(editorInput));
-			assertTrue("File does not exist", !file.exists());
-			editor.doSave(monitor);
-			runAsyncMessages(editor.getDisplay(), "Save");
-			assertFalse("Saved isNotDirty", editor.isDirty());
-			assertFalse("Saved isNotDirtyPage", editor.isDirtyPage());
-			assertFalse("Old file does not exist", file.exists());
-			IFile newFile = (IFile) file.getParent().findMember(newName);		
-			assertTrue("New file exists", newFile.exists());
-			newFile.delete(true, monitor);
-			runAsyncMessages(display, "Delete File");
-			assertFalse("New file does not exist", newFile.exists());
-			assertNotNull("Editor is open", workbenchPage.findEditor(editorInput));
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
-	} */
 }
