@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInEcoreSynchronizer.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
+ * $Id: OCLInEcoreSynchronizer.java,v 1.3 2010/03/13 18:09:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -62,6 +62,18 @@ import org.eclipse.ocl.utilities.UMLReflection;
 
 public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 {
+	public static String getSourceText(BasicEnvironment environment, Object astNode) {
+		CSTNode astMapping = environment.getASTMapping(astNode);
+		IToken startToken = astMapping.getStartToken();
+		IToken prevToken = startToken.getIPrsStream().getIToken(startToken.getTokenIndex()-1);
+		IToken endToken = astMapping.getEndToken();
+		IToken[] followingAdjuncts = endToken.getFollowingAdjuncts();
+		if ((followingAdjuncts != null) && (followingAdjuncts.length > 0)) {
+			endToken = followingAdjuncts[followingAdjuncts.length-1];
+		}
+		return startToken.getILexStream().toString(prevToken.getEndOffset()+1, endToken.getEndOffset());
+	}
+	
 	private static final String ECORE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI;
 	private static final String OCL_URI = ECORE_URI + "/OCL";
 	private static final String CONSTRAINTS_KEY = "constraints";
@@ -124,16 +136,8 @@ public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 			if (bodyExpression == null) {
 				return;
 			}
-			CSTNode astMapping = environment.getASTMapping(bodyExpression);
-			IToken startToken = astMapping.getStartToken();
-			IToken prevToken = startToken.getIPrsStream().getIToken(startToken.getTokenIndex()-1);
-			IToken endToken = astMapping.getEndToken();
-			IToken[] followingAdjuncts = endToken.getFollowingAdjuncts();
-			if ((followingAdjuncts != null) && (followingAdjuncts.length > 0)) {
-				endToken = followingAdjuncts[followingAdjuncts.length-1];
-			}
+			String text = getSourceText(environment, bodyExpression);
 			EOperation ecoreInvariant;
-			String text = startToken.getILexStream().toString(prevToken.getEndOffset()+1, endToken.getEndOffset());
 			if ((constrainedElement instanceof EClass)
 			 && ((ecoreInvariant = EcoreUtils.getEcoreInvariant((EClass)constrainedElement, constraint.getName())) != null)) {
 				setEAnnotation(ecoreInvariant, OCL_URI, BODY_KEY, text);
