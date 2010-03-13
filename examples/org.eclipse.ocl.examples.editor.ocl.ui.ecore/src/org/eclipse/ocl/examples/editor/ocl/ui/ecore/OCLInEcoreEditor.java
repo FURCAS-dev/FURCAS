@@ -1,18 +1,18 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2007 IBM Corporation and others.
+ * Copyright (c) 2010 Eclipse Modeling Project and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   IBM - Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
  *
- * $Id: OCLInEcoreEditor.java,v 1.1 2010/03/11 14:53:54 ewillink Exp $
+ * $Id: OCLInEcoreEditor.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -24,17 +24,10 @@ import java.util.Collections;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -45,11 +38,9 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
@@ -59,10 +50,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -74,7 +62,6 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.imp.parser.IParseController;
@@ -84,7 +71,6 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -94,6 +80,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ocl.examples.editor.ui.common.ProblemIndicationManager;
+import org.eclipse.ocl.examples.editor.ui.common.ResourceChangeManager;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonParseController;
 import org.eclipse.ocl.examples.editor.ui.text.UniversalTextEditor;
 import org.eclipse.swt.dnd.DND;
@@ -103,6 +91,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
@@ -112,7 +101,6 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
@@ -123,49 +111,19 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 /**
- * This is an example of a Ecore model editor. <!-- begin-user-doc --> <!--
- * end-user-doc -->
- * 
- * @generated
+ * The OCL in Ecore model editor.
  */
 public class OCLInEcoreEditor extends UniversalTextEditor
-		// extends MultiPageEditorPart
-		implements IOCLInEcoreEditor, IEditingDomainProvider, /* ISelectionProvider, */
+		implements IOCLInEcoreEditor, IEditingDomainProvider,
 		IMenuListener, IViewerProvider, IGotoMarker {
-	/*
-	 * public static class XML extends OCLInEcoreEditor { public XML() { try {
-	 * editingDomain
-	 * .getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap
-	 * ().put("*", new GenericXMLResourceFactoryImpl());
-	 * 
-	 * Class<?> theItemProviderClass =
-	 * CommonPlugin.loadClass("org.eclipse.xsd.edit",
-	 * "org.eclipse.xsd.provider.XSDItemProviderAdapterFactory"); AdapterFactory
-	 * xsdItemProviderAdapterFactory =
-	 * (AdapterFactory)theItemProviderClass.newInstance();
-	 * adapterFactory.insertAdapterFactory(xsdItemProviderAdapterFactory); }
-	 * catch (Exception exception) { OCLPlugin.INSTANCE.log(exception); } }
-	 * 
-	 * @Override public void createModel() { super.createModel();
-	 * 
-	 * // Load the schema and packages that were used to load the instance into
-	 * this resource set. // ResourceSet resourceSet =
-	 * editingDomain.getResourceSet(); if
-	 * (!resourceSet.getResources().isEmpty()) { Resource resource =
-	 * resourceSet.getResources().get(0); if (!resource.getContents().isEmpty())
-	 * { EObject rootObject = resource.getContents().get(0); Resource
-	 * metaDataResource = rootObject.eClass().eResource(); if (metaDataResource
-	 * != null && metaDataResource.getResourceSet() != null) {
-	 * resourceSet.getResources
-	 * ().addAll(metaDataResource.getResourceSet().getResources()); } } } } }
-	 */
+
+	public static final String ECORE_FILE_EXTENSION = "ecore";
+	public static final String EMOF_FILE_EXTENSION = "emof";
+
 	protected ISelectionProvider selectionProvider = new ISelectionProvider() {
 
 		/**
 		 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
 		 */
 		public void addSelectionChangedListener(
 				ISelectionChangedListener listener) {
@@ -194,57 +152,39 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	
 	/**
 	 * This keeps track of the editing domain that is used to track all changes
-	 * to the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * to the model.
 	 */
 	protected AdapterFactoryEditingDomain editingDomain;
 
 	/**
 	 * This is the one adapter factory used for providing views of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
 	/**
-	 * This is the content outline page. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
+	 * This is the content outline page.
 	 */
 	protected OCLInEcoreContentOutlinePage contentOutlinePage;
 
 	/**
-	 * This is the property sheet page. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
+	 * This is the property sheet page.
 	 */
 	protected PropertySheetPage propertySheetPage;
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline. The
-	 * parent relation must be correctly defined for this to work. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * parent relation must be correctly defined for this to work.
 	 */
 	protected TreeViewer selectionViewer;
 
 	/**
 	 * This keeps track of the active content viewer, which may be either one of
-	 * the viewers in the pages or the content outline viewer. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * the viewers in the pages or the content outline viewer.
 	 */
 	protected Viewer currentViewer;
 
 	/**
-	 * This listens to which ever viewer is active. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This listens to which ever viewer is active.
 	 * 
 	 * @generated
 	 */
@@ -253,34 +193,17 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	/**
 	 * This keeps track of all the
 	 * {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are
-	 * listening to this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * listening to this editor.
 	 */
 	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
 
 	/**
-	 * This keeps track of the selection of the editor as a whole. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * This keeps track of the selection of the editor as a whole.
 	 */
 	protected ISelection editorSelection = StructuredSelection.EMPTY;
 
 	/**
-	 * The MarkerHelper is responsible for creating workspace resource markers
-	 * presented in Eclipse's Problems View. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
-
-	/**
-	 * This listens for when the outline becomes active <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * This listens for when the outline becomes active
 	 */
 	protected IPartListener partListener = new IPartListener() {
 		public void partActivated(IWorkbenchPart p) {
@@ -292,10 +215,10 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 			} else if (p instanceof PropertySheet) {
 				if (((PropertySheet) p).getCurrentPage() == propertySheetPage) {
 					getActionBarContributor().setActiveEditor(OCLInEcoreEditor.this);
-					handleActivate();
+					resourceChangeManager.handleActivate();
 				}
 			} else if (p == OCLInEcoreEditor.this) {
-				handleActivate();
+				resourceChangeManager.handleActivate();
 			}
 		}
 
@@ -315,343 +238,171 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 			// Ignore.
 		}
 	};
-
-	/**
-	 * Resources that have been removed since last activation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected Collection<Resource> removedResources = new ArrayList<Resource>();
-
-	/**
-	 * Resources that have been changed since last activation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected Collection<Resource> changedResources = new ArrayList<Resource>();
-
-	/**
-	 * Resources that have been saved. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected Collection<Resource> savedResources = new ArrayList<Resource>();
-
-	/**
-	 * Map to store the diagnostic associated with a resource. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-
-	/**
-	 * Controls whether the problem indication should be updated. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected boolean updateProblemIndication = true;
-
-	/**
-	 * Adapter used to update the problem indication when resources are demanded
-	 * loaded. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
+	
+	protected final ProblemIndicationManager problemIndicationManager = new ProblemIndicationManager()
+	{
 		@Override
-		public void notifyChanged(Notification notification) {
-			if (notification.getNotifier() instanceof Resource) {
-				switch (notification.getFeatureID(Resource.class)) {
-				case Resource.RESOURCE__IS_LOADED:
-				case Resource.RESOURCE__ERRORS:
-				case Resource.RESOURCE__WARNINGS: {
-					Resource resource = (Resource) notification.getNotifier();
-					Diagnostic diagnostic = analyzeResourceProblems(resource,
-							null);
-					if (diagnostic.getSeverity() != Diagnostic.OK) {
-						resourceToDiagnosticMap.put(resource, diagnostic);
-					} else {
-						resourceToDiagnosticMap.remove(resource);
-					}
+		protected void asyncExec(Runnable runnable) {
+			getDisplay().asyncExec(runnable);
+		}
 
-					if (updateProblemIndication) {
-						getSite().getShell().getDisplay().asyncExec(
-								new Runnable() {
-									public void run() {
-										updateProblemIndication();
-									}
-								});
-					}
-					break;
-				}
-				}
-			} else {
-				super.notifyChanged(notification);
+		@Override
+		protected void createProblemEditor(BasicDiagnostic diagnostic) {
+/*			ProblemEditorPart problemEditorPart = new ProblemEditorPart();
+			problemEditorPart.setDiagnostic(diagnostic);
+			problemEditorPart.setMarkerHelper(markerHelper);
+			try
+			{
+				int lastEditorPage = getPageCount() - 1;
+				addPage(++lastEditorPage, problemEditorPart, getEditorInput());
+				setPageText(lastEditorPage, problemEditorPart.getPartName());
+				setActivePage(lastEditorPage);
+				//					 showTabs();
 			}
+			catch (PartInitException exception)
+			{
+				OCLExamplesEditorPlugin.INSTANCE.log(exception);
+			} */
 		}
 
 		@Override
-		protected void setTarget(Resource target) {
-			basicSetTarget(target);
+		protected ProblemEditorPart getProblemEditor() {
+//			int lastEditorPage = getPageCount() - 1;
+//			if (lastEditorPage < 0) {
+				return null;
+//			}
+//			IEditorPart lastEditor = getEditor(lastEditorPage);
+//			if (!(lastEditor instanceof ProblemEditorPart)) {
+//				return null;
+//			}
+//			return (ProblemEditorPart)lastEditor;
 		}
 
 		@Override
-		protected void unsetTarget(Resource target) {
-			basicUnsetTarget(target);
+		public ResourceSet getResourceSet() {
+			return OCLInEcoreEditor.this.getResourceSet();
+		}
+
+		@Override
+		protected void setActiveEditor(IEditorPart editor) {
+//			OCLInEcoreEditor.this.setActiveEditor(editor);
 		}
 	};
 
 	/**
-	 * This listens for workspace changes. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
+	 * This listens for workspace changes.
 	 */
-	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
-		public void resourceChanged(IResourceChangeEvent event) {
-			IResourceDelta delta = event.getDelta();
-			try {
-				class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-					protected ResourceSet resourceSet = editingDomain
-							.getResourceSet();
-					protected Collection<Resource> changedResources = new ArrayList<Resource>();
-					protected Collection<Resource> removedResources = new ArrayList<Resource>();
+	
+	protected final ResourceChangeManager resourceChangeManager = new ResourceChangeManager()
+	{
+		@Override
+		protected void asyncExec(Runnable runnable) {
+			getDisplay().asyncExec(runnable);
+		}
 
-					public boolean visit(IResourceDelta delta) {
-						if (delta.getResource().getType() == IResource.FILE) {
-							if (delta.getKind() == IResourceDelta.REMOVED
-									|| delta.getKind() == IResourceDelta.CHANGED
-									&& delta.getFlags() != IResourceDelta.MARKERS) {
-								Resource resource = resourceSet.getResource(
-										URI
-												.createPlatformResourceURI(
-														delta.getFullPath()
-																.toString(),
-														true), false);
-								if (resource != null) {
-									if (delta.getKind() == IResourceDelta.REMOVED) {
-										removedResources.add(resource);
-									} else if (!savedResources.remove(resource)) {
-										changedResources.add(resource);
-									}
-								}
-							}
-						}
+		@Override
+		protected void closeEditor(boolean save) {
+			getSite().getPage().closeEditor(OCLInEcoreEditor.this, save);
+		}
 
-						return true;
-					}
+		@Override
+		protected void flushCommandStack() {
+			getEditingDomain().getCommandStack().flush();				// FIXME operation history
+		}
 
-					public Collection<Resource> getChangedResources() {
-						return changedResources;
-					}
+		@Override
+		public AdapterFactoryEditingDomain getEditingDomain() {
+			return OCLInEcoreEditor.this.getEditingDomain();
+		}
 
-					public Collection<Resource> getRemovedResources() {
-						return removedResources;
-					}
-				}
+		@Override
+		public ResourceSet getResourceSet() {
+			return OCLInEcoreEditor.this.getResourceSet();
+		}
 
-				final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-				delta.accept(visitor);
+		@Override
+		protected Shell getShell() {
+			return OCLInEcoreEditor.this.getSite().getShell();
+		}
 
-				if (!visitor.getRemovedResources().isEmpty()) {
-					getSite().getShell().getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							removedResources.addAll(visitor
-									.getRemovedResources());
-							if (!isDirty()) {
-								getSite().getPage().closeEditor(
-										OCLInEcoreEditor.this, false);
-							}
-						}
-					});
-				}
+		/**
+		 * Shows a dialog that asks if conflicting changes should be discarded.
+		 */
+		@Override
+		public boolean handleDirtyConflict()
+		{
+			return MessageDialog.openQuestion (getShell(),
+					getString("_UI_FileConflict_label"),
+					getString("_WARN_FileConflict"));
+		}
 
-				if (!visitor.getChangedResources().isEmpty()) {
-					getSite().getShell().getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							changedResources.addAll(visitor
-									.getChangedResources());
-							if (getSite().getPage().getActiveEditor() == OCLInEcoreEditor.this) {
-								handleActivate();
-							}
-						}
-					});
-				}
-			} catch (CoreException exception) {
-				OCLInEcorePlugin.INSTANCE.log(exception);
+		@Override
+		protected void handleResourceException(Resource resource, Exception exception, boolean forceUpdate) {
+			problemIndicationManager.handleResourceException(resource, exception, forceUpdate);
+		}
+
+		@Override
+		public boolean isActiveEditor() {
+			return getSite().getPage().getActiveEditor() == OCLInEcoreEditor.this;
+		}
+
+		@Override
+		public boolean isDirty() {
+			return OCLInEcoreEditor.this.isDirty();
+		}
+
+		@Override
+		protected void refreshAfterSave() {
+			((BasicCommandStack) getEditingDomain().getCommandStack()).saveIsDone();		// FIXME operation history
+			firePropertyChange(IEditorPart.PROP_DIRTY);
+		}
+
+		@Override
+		protected void refreshSelection(boolean forceRefresh) {
+			ISelection selection = selectionProvider.getSelection();
+			if (forceRefresh) {
+				selectionProvider.setSelection(selection);
 			}
+			else if (AdapterFactoryEditingDomain.isStale(selection)) {
+				selectionProvider.setSelection(StructuredSelection.EMPTY);
+			}
+		}
+
+		@Override
+		protected void resumeProblemIndicationUpdate() {
+			problemIndicationManager.resumeProblemIndicationUpdate();
+		}
+
+		@Override
+		protected void resumeResourceListening() {
+//			OCLInEcoreEditor.this.resumeResourceListening();
+		}
+
+		@Override
+		protected void suspendResourceListening() {
+//			OCLInEcoreEditor.this.suspendResourceListening();
+		}
+
+		@Override
+		public void setPartName(String partName) {
+			OCLInEcoreEditor.this.setPartName(partName);
+		}
+
+		@Override
+		protected void suspendProblemIndicationUpdate() {
+			problemIndicationManager.suspendProblemIndicationUpdate();
 		}
 	};
 
 	private Composite container;
 
 	/**
-	 * Handles activation of the editor or it's associated views. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void handleActivate() {
-		// Recompute the read only state.
-		//
-		if (editingDomain.getResourceToReadOnlyMap() != null) {
-			editingDomain.getResourceToReadOnlyMap().clear();
-
-			// Refresh any actions that may become enabled or disabled.
-			//
-			selectionProvider.setSelection(selectionProvider.getSelection());
-		}
-
-		if (!removedResources.isEmpty()) {
-			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(OCLInEcoreEditor.this, false);
-			} else {
-				removedResources.clear();
-				changedResources.clear();
-				savedResources.clear();
-			}
-		} else if (!changedResources.isEmpty()) {
-			changedResources.removeAll(savedResources);
-			handleChangedResources();
-			changedResources.clear();
-			savedResources.clear();
-		}
-	}
-
-	/**
-	 * Handles what to do with changed resources on activation. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void handleChangedResources() {
-		if (!changedResources.isEmpty()
-				&& (!isDirty() || handleDirtyConflict())) {
-			if (isDirty()) {
-				changedResources.addAll(editingDomain.getResourceSet()
-						.getResources());
-			}
-			editingDomain.getCommandStack().flush();
-
-			updateProblemIndication = false;
-			for (Resource resource : changedResources) {
-				if (resource.isLoaded()) {
-					resource.unload();
-					try {
-						resource.load(Collections.EMPTY_MAP);
-					} catch (IOException exception) {
-						if (!resourceToDiagnosticMap.containsKey(resource)) {
-							resourceToDiagnosticMap
-									.put(resource, analyzeResourceProblems(
-											resource, exception));
-						}
-					}
-				}
-			}
-
-			if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
-				selectionProvider.setSelection(StructuredSelection.EMPTY);
-			}
-
-			updateProblemIndication = true;
-			updateProblemIndication();
-		}
-	}
-
-	/**
-	 * Updates the problems indication with the information described in the
-	 * specified diagnostic. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void updateProblemIndication() {
-		/*
-		 * if (updateProblemIndication) { BasicDiagnostic diagnostic = new
-		 * BasicDiagnostic (Diagnostic.OK, "org.eclipse.emf.ecore.editor", 0,
-		 * null, new Object [] { editingDomain.getResourceSet() }); for
-		 * (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) { if
-		 * (childDiagnostic.getSeverity() != Diagnostic.OK) {
-		 * diagnostic.add(childDiagnostic); } }
-		 * 
-		 * int lastEditorPage = getPageCount() - 1; if (lastEditorPage >= 0 &&
-		 * getEditor(lastEditorPage) instanceof ProblemEditorPart) {
-		 * ((ProblemEditorPart
-		 * )getEditor(lastEditorPage)).setDiagnostic(diagnostic); if
-		 * (diagnostic.getSeverity() != Diagnostic.OK) {
-		 * setActivePage(lastEditorPage); } } else if (diagnostic.getSeverity()
-		 * != Diagnostic.OK) { ProblemEditorPart problemEditorPart = new
-		 * ProblemEditorPart(); problemEditorPart.setDiagnostic(diagnostic);
-		 * problemEditorPart.setMarkerHelper(markerHelper); try {
-		 * addPage(++lastEditorPage, problemEditorPart, getEditorInput());
-		 * setPageText(lastEditorPage, problemEditorPart.getPartName());
-		 * setActivePage(lastEditorPage); showTabs(); } catch (PartInitException
-		 * exception) { OCLPlugin.INSTANCE.log(exception); } }
-		 * 
-		 * if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-		 * markerHelper.deleteMarkers(editingDomain.getResourceSet()); if
-		 * (diagnostic.getSeverity() != Diagnostic.OK) { try {
-		 * markerHelper.createMarkers(diagnostic); } catch (CoreException
-		 * exception) { OCLPlugin.INSTANCE.log(exception); } } } }
-		 */
-	}
-
-	/**
-	 * Shows a dialog that asks if conflicting changes should be discarded. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected boolean handleDirtyConflict() {
-		return MessageDialog.openQuestion(getSite().getShell(),
-				getString("_UI_FileConflict_label"),
-				getString("_WARN_FileConflict"));
-	}
-
-	/**
-	 * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
+	 * This creates a model editor.
 	 */
 	public OCLInEcoreEditor() {
 		super();
 		setDocumentProvider(new OCLInEcoreDocumentProvider(this));
 		initializeEditingDomain();
-	}
-
-	/**
-	 * Returns a diagnostic describing the errors and warnings listed in the
-	 * resource and the specified exception (if any). <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public Diagnostic analyzeResourceProblems(Resource resource,
-			Exception exception) {
-		if (!resource.getErrors().isEmpty()
-				|| !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(
-					Diagnostic.ERROR,
-					"org.eclipse.emf.ecore.editor",
-					0,
-					getString("_UI_CreateModelError_message", resource.getURI()),
-					new Object[] { exception == null ? (Object) resource
-							: exception });
-			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
-			return basicDiagnostic;
-		} else if (exception != null) {
-			return new BasicDiagnostic(Diagnostic.ERROR,
-					"org.eclipse.emf.ecore.editor", 0, getString(
-							"_UI_CreateModelError_message", resource.getURI()),
-					new Object[] { exception });
-		} else {
-			return Diagnostic.OK_INSTANCE;
-		}
 	}
 
 	@Override
@@ -670,10 +421,442 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	}
 
 	/**
-	 * This sets up the editing domain for the model editor. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This creates a context menu for the viewer and adds a listener as well
+	 * registering the menu for extension.
+	 */
+	protected void createContextMenuForGen(StructuredViewer viewer) {
+		MenuManager contextMenu = new MenuManager("#PopUp");
+		contextMenu.add(new Separator("additions"));
+		contextMenu.setRemoveAllWhenShown(true);
+		contextMenu.addMenuListener(this);
+		Menu menu = contextMenu.createContextMenu(viewer.getControl());
+		viewer.getControl().setMenu(menu);
+		getSite().registerContextMenu(contextMenu,
+				new UnwrappingSelectionProvider(viewer));
+
+		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
+				viewer));
+		viewer.addDropSupport(dndOperations, transfers,
+				new EditingDomainViewerDropAdapter(editingDomain, viewer));
+	}
+
+	public void createContextMenuFor(StructuredViewer viewer) {
+		createContextMenuForGen(viewer);
+
+		viewer.getControl().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDoubleClick(MouseEvent event) {
+				if (event.button == 1) {
+					try {
+						getEditorSite().getPage().showView(
+								"org.eclipse.ui.views.PropertySheet");
+					} catch (PartInitException exception) {
+						OCLInEcorePlugin.INSTANCE.log(exception);
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * This is the method called to load a resource into the editing domain's
+	 * resource set based on the editor's input.
+	 */
+	public void createModelGen() {
+		URI resourceURI = EditUIUtil.getURI(getEditorInput());
+		Exception exception = null;
+		Resource resource = null;
+		try {
+			// Load the resource through the editing domain.
+			//
+			resource = editingDomain.getResourceSet().getResource(resourceURI,
+					true);
+		} catch (Exception e) {
+			exception = e;
+			resource = editingDomain.getResourceSet().getResource(resourceURI,
+					false);
+		}
+
+		problemIndicationManager.initializeProblemIndication(resource, exception);
+	}
+
+	@Override
+	public void createPartControl(Composite parent) {
+		this.container = parent;
+		super.createPartControl(parent);
+	}
+
+	public void createModel() {
+		editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(
+				EcorePlugin.computePlatformURIMap());
+
+		createModelGen();
+
+		if (!editingDomain.getResourceSet().getResources().isEmpty()) {
+			for (Iterator<EObject> i = editingDomain.getResourceSet()
+					.getResources().get(0).getAllContents(); i.hasNext();) {
+				EObject eObject = i.next();
+				if (eObject instanceof ETypeParameter
+						|| eObject instanceof EGenericType
+						&& !((EGenericType) eObject).getETypeArguments()
+								.isEmpty()) {
+					// FIXME
+					// ((EcoreActionBarContributor)getActionBarContributor()).showGenerics(true);
+					break;
+				}
+			}
+		}
+	}
+
+	@Override
+	public void dispose() {
+		problemIndicationManager.suspendProblemIndicationUpdate();
+		resourceChangeManager.dispose();
+
+		getSite().getPage().removePartListener(partListener);
+
+		adapterFactory.dispose();
+
+		if (getActionBarContributor().getActiveEditor() == this) {
+			getActionBarContributor().setActiveEditor(null);
+		}
+
+		if (propertySheetPage != null) {
+			propertySheetPage.dispose();
+		}
+
+		if (contentOutlinePage != null) {
+			contentOutlinePage.dispose();
+		}
+
+		super.dispose();
+	}
+
+	/**
+	 * This is for implementing {@link IEditorPart} and simply saves the model
+	 * file.
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		resourceChangeManager.doSave(progressMonitor);
+	}
+
+	/**
+	 * This is used to track the active viewer. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
+	 * 
+	 @Override protected void pageChange(int pageIndex) {
+	 *           super.pageChange(pageIndex);
+	 * 
+	 *           if (contentOutlinePage != null) {
+	 *           handleContentOutlineSelection(
+	 *           contentOutlinePage.getSelection()); } }
+	 */
+
+	/**
+	 * This is here for the listener to be able to call it.
+	 */
+	@Override
+	protected void firePropertyChange(int action) {
+		super.firePropertyChange(action);
+	}
+
+	/**
+	 * This is how the framework determines which interfaces we implement.
+	 */
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Object getAdapter(Class key) {
+		if (key.equals(IContentOutlinePage.class)) {
+			return getContentOutlinePage();
+		} else if (key.equals(IPropertySheetPage.class)) {
+			return getPropertySheetPage();
+		} else if (key.equals(IGotoMarker.class)) {
+			return this;
+		} else {
+			return super.getAdapter(key);
+		}
+	}
+
+	/**
+	 * This accesses a cached version of the content outliner.
+	 */
+	public IContentOutlinePage getContentOutlinePage() {
+		if (contentOutlinePage == null) {
+
+			contentOutlinePage = new OCLInEcoreContentOutlinePage(this);
+
+			// Listen to selection so that we can handle it is a special way.
+			//
+			contentOutlinePage
+					.addSelectionChangedListener(new ISelectionChangedListener() {
+						// This ensures that we handle selections correctly.
+						//
+						public void selectionChanged(SelectionChangedEvent event) {
+							handleContentOutlineSelection(event.getSelection());
+						}
+					});
+		}
+
+		return contentOutlinePage;
+	}
+
+	public Display getDisplay() {
+		return getSite().getShell().getDisplay();
+	}
+
+	/**
+	 * This accesses a cached version of the property sheet.
+	 */
+	public IPropertySheetPage getPropertySheetPage() {
+		if (propertySheetPage == null) {
+			propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
+				@Override
+				public void setSelectionToViewer(List<?> selection) {
+					OCLInEcoreEditor.this.setSelectionToViewer(selection);
+					OCLInEcoreEditor.this.setFocus();
+				}
+
+				@Override
+				public void setActionBars(IActionBars actionBars) {
+					super.setActionBars(actionBars);
+					getActionBarContributor().shareGlobalActions(this,
+							actionBars);
+				}
+			};
+			propertySheetPage
+					.setPropertySourceProvider(new AdapterFactoryContentProvider(
+							adapterFactory));
+		}
+
+		return propertySheetPage;
+	}
+
+	/**
+	 * This deals with how we want selection in the outliner to affect the other
+	 * views.
+	 */
+	public void handleContentOutlineSelection(ISelection selection) {
+		if (selectionViewer != null && !selection.isEmpty()
+				&& selection instanceof IStructuredSelection) {
+			Iterator<?> selectedElements = ((IStructuredSelection) selection)
+					.iterator();
+			if (selectedElements.hasNext()) {
+				// Get the first selected element.
+				//
+				Object selectedElement = selectedElements.next();
+
+				ArrayList<Object> selectionList = new ArrayList<Object>();
+				selectionList.add(selectedElement);
+				while (selectedElements.hasNext()) {
+					selectionList.add(selectedElements.next());
+				}
+
+				// Set the selection to the widget.
+				//
+				selectionViewer.setSelection(new StructuredSelection(
+						selectionList));
+			}
+		}
+	}
+
+	/**
+	 * This is for implementing {@link IEditorPart} and simply tests the command
+	 * stack.
+	 */
+	@Override
+	public boolean isDirty() {
+		return ((BasicCommandStack) editingDomain.getCommandStack())
+				.isSaveNeeded();
+	}
+
+	/**
+	 * This returns whether something has been persisted to the URI of the
+	 * specified resource. The implementation uses the URI converter from the
+	 * editor's resource set to try to open an input stream.
+	 */
+	protected boolean isPersisted(Resource resource) {
+		boolean result = false;
+		try {
+			InputStream stream = editingDomain.getResourceSet()
+					.getURIConverter().createInputStream(resource.getURI());
+			if (stream != null) {
+				result = true;
+				stream.close();
+			}
+		} catch (IOException e) {
+			// Ignore
+		}
+		return result;
+	}
+
+	/**
+	 * This always returns true because it is not currently supported.
+	 */
+	@Override
+	public boolean isSaveAsAllowed() {
+		return true;
+	}
+
+	/**
+	 * This also changes the editor's input. 
+	 */
+	@Override
+	public void doSaveAs() {
+		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
+		saveAsDialog.create();
+		saveAsDialog.setMessage(OCLInEcorePlugin.INSTANCE
+				.getString("_UI_SaveAs_message"));
+		saveAsDialog.open();
+		IPath path = saveAsDialog.getResult();
+		if (path != null) {
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+			if (file != null) {
+				ResourceSet resourceSet = editingDomain.getResourceSet();
+				Resource currentResource = resourceSet.getResources().get(0);
+				String currentExtension = currentResource.getURI()
+						.fileExtension();
+
+				URI newURI = URI.createPlatformResourceURI(file.getFullPath()
+						.toString(), true);
+				String newExtension = newURI.fileExtension();
+
+				if (currentExtension.equals(ECORE_FILE_EXTENSION)
+						&& newExtension.equals(EMOF_FILE_EXTENSION)
+						|| currentExtension.equals(EMOF_FILE_EXTENSION)
+						&& newExtension.equals(ECORE_FILE_EXTENSION)) {
+					Resource newResource = resourceSet.createResource(newURI);
+					newResource.getContents().addAll(
+							currentResource.getContents());
+					resourceSet.getResources().remove(0);
+					resourceSet.getResources().move(0, newResource);
+				} else {
+					currentResource.setURI(newURI);
+				}
+
+				IFileEditorInput modelFile = new FileEditorInput(file);
+				setInputWithNotify(modelFile);
+				setPartName(file.getName());
+				doSave(getActionBars().getStatusLineManager()
+						.getProgressMonitor());
+			}
+		}
+	}
+
+	protected void doSaveAs(URI uri, IEditorInput editorInput) {
+		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+		setInputWithNotify(editorInput);
+		setPartName(editorInput.getName());
+		IProgressMonitor progressMonitor = getActionBars()
+				.getStatusLineManager() != null ? getActionBars()
+				.getStatusLineManager().getProgressMonitor()
+				: new NullProgressMonitor();
+		doSave(progressMonitor);
+	}
+
+	/**
+	 * This looks up a string in the plugin's plugin.properties file.
+	 */
+	private static String getString(String key) {
+		return OCLInEcorePlugin.INSTANCE.getString(key);
+	}
+
+	/**
+	 * This looks up a string in plugin.properties, making a substitution.
+	 */
+	private static String getString(String key, Object s1) {
+		return OCLInEcorePlugin.INSTANCE.getString(key, new Object[] { s1 });
+	}
+
+	public EditingDomainActionBarContributor getActionBarContributor() {
+		return (EditingDomainActionBarContributor) getEditorSite()
+				.getActionBarContributor();
+	}
+
+	public IActionBars getActionBars() {
+		return getActionBarContributor().getActionBars();
+	}
+
+	public AdapterFactory getAdapterFactory() {
+		return adapterFactory;
+	}
+
+	/**
+	 * This returns the editing domain as required by the
+	 * {@link IEditingDomainProvider} interface. This is important for
+	 * implementing the static methods of {@link AdapterFactoryEditingDomain}
+	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
+	 */
+	public AdapterFactoryEditingDomain getEditingDomain() {
+		return editingDomain;
+	}
+
+	@Override
+	public OCLInEcoreParseController getParseController() {
+		return (OCLInEcoreParseController) super.getParseController();
+	}
+
+	public ResourceSet getResourceSet() {
+		return getEditingDomain().getResourceSet();
+	}
+
+	/**
+	 * This returns the viewer as required by the {@link IViewerProvider}
+	 * interface.
+	 */
+	public Viewer getViewer() {
+		return currentViewer;
+	}
+
+	@Override
+	public void gotoMarker(IMarker marker) {
+		try {
+			if (marker.getType().equals(EValidator.MARKER)) {
+				String uriAttribute = marker.getAttribute(
+						EValidator.URI_ATTRIBUTE, null);
+				if (uriAttribute != null) {
+					URI uri = URI.createURI(uriAttribute);
+					EObject eObject = editingDomain.getResourceSet()
+							.getEObject(uri, true);
+					if (eObject != null) {
+						setSelectionToViewer(Collections
+								.singleton(editingDomain.getWrapper(eObject)));
+					}
+				}
+			}
+		} catch (CoreException exception) {
+			OCLInEcorePlugin.INSTANCE.log(exception);
+		}
+	}
+
+	/**
+	 * Shows a dialog that asks if conflicting changes should be discarded.
+	 */
+	protected boolean handleDirtyConflict() {
+		return MessageDialog.openQuestion(getSite().getShell(),
+				getString("_UI_FileConflict_label"),
+				getString("_WARN_FileConflict"));
+	}
+
+	/**
+	 * This is called during startup.
+	 */
+	@Override
+	public void init(IEditorSite site, IEditorInput editorInput) {
+		setSite(site);
+		setInputWithNotify(editorInput);
+		setPartName(editorInput.getName());
+		site.setSelectionProvider(selectionProvider);
+		site.getPage().addPartListener(partListener);
+		resourceChangeManager.init();
+	}
+
+	/**
+	 * This sets up the editing domain for the model editor.
 	 */
 	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
@@ -729,128 +912,17 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	}
 
 	/**
-	 * This is here for the listener to be able to call it. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help
+	 * fill the context menus with contributions from the Edit menu.
 	 */
-	@Override
-	protected void firePropertyChange(int action) {
-		super.firePropertyChange(action);
-	}
-
-	/**
-	 * This sets the selection into whichever viewer is active. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setSelectionToViewer(Collection<?> collection) {
-		final Collection<?> theSelection = collection;
-		// Make sure it's okay.
-		//
-		if (theSelection != null && !theSelection.isEmpty()) {
-			Runnable runnable = new Runnable() {
-				public void run() {
-					// Try to select the items in the current content viewer of
-					// the editor.
-					//
-					if (currentViewer != null) {
-						currentViewer.setSelection(new StructuredSelection(
-								theSelection.toArray()), true);
-					}
-				}
-			};
-			getSite().getShell().getDisplay().asyncExec(runnable);
-		}
-	}
-
-	public Display getDisplay() {
-		return getSite().getShell().getDisplay();
-	}
-
-	/**
-	 * This returns the editing domain as required by the
-	 * {@link IEditingDomainProvider} interface. This is important for
-	 * implementing the static methods of {@link AdapterFactoryEditingDomain}
-	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EditingDomain getEditingDomain() {
-		return editingDomain;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public class ReverseAdapterFactoryContentProvider extends
-			AdapterFactoryContentProvider {
-		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		public ReverseAdapterFactoryContentProvider(
-				AdapterFactory adapterFactory) {
-			super(adapterFactory);
-		}
-
-		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		@Override
-		public Object[] getElements(Object object) {
-			Object parent = super.getParent(object);
-			return (parent == null ? Collections.EMPTY_SET : Collections
-					.singleton(parent)).toArray();
-		}
-
-		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		@Override
-		public Object[] getChildren(Object object) {
-			Object parent = super.getParent(object);
-			return (parent == null ? Collections.EMPTY_SET : Collections
-					.singleton(parent)).toArray();
-		}
-
-		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		@Override
-		public boolean hasChildren(Object object) {
-			Object parent = super.getParent(object);
-			return parent != null;
-		}
-
-		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		@Override
-		public Object getParent(Object object) {
-			return null;
-		}
+	public void menuAboutToShow(IMenuManager menuManager) {
+		((IMenuListener) getEditorSite().getActionBarContributor())
+				.menuAboutToShow(menuManager);
 	}
 
 	/**
 	 * This makes sure that one content viewer, either for the current page or
-	 * the outline view, if it has focus, is the current one. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * the outline view, if it has focus, is the current one.
 	 */
 	public void setCurrentViewer(Viewer viewer) {
 		// If it is changing...
@@ -896,635 +968,26 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	}
 
 	/**
-	 * This returns the viewer as required by the {@link IViewerProvider}
-	 * interface. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * This sets the selection into whichever viewer is active.
 	 */
-	public Viewer getViewer() {
-		return currentViewer;
-	}
-
-	/**
-	 * This creates a context menu for the viewer and adds a listener as well
-	 * registering the menu for extension. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void createContextMenuForGen(StructuredViewer viewer) {
-		MenuManager contextMenu = new MenuManager("#PopUp");
-		contextMenu.add(new Separator("additions"));
-		contextMenu.setRemoveAllWhenShown(true);
-		contextMenu.addMenuListener(this);
-		Menu menu = contextMenu.createContextMenu(viewer.getControl());
-		viewer.getControl().setMenu(menu);
-		getSite().registerContextMenu(contextMenu,
-				new UnwrappingSelectionProvider(viewer));
-
-		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
-		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
-				viewer));
-		viewer.addDropSupport(dndOperations, transfers,
-				new EditingDomainViewerDropAdapter(editingDomain, viewer));
-	}
-
-	public void createContextMenuFor(StructuredViewer viewer) {
-		createContextMenuForGen(viewer);
-
-		viewer.getControl().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDoubleClick(MouseEvent event) {
-				if (event.button == 1) {
-					try {
-						getEditorSite().getPage().showView(
-								"org.eclipse.ui.views.PropertySheet");
-					} catch (PartInitException exception) {
-						OCLInEcorePlugin.INSTANCE.log(exception);
-					}
-				}
-			}
-		});
-	}
-
-	/**
-	 * This is the method called to load a resource into the editing domain's
-	 * resource set based on the editor's input. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void createModelGen() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput());
-		Exception exception = null;
-		Resource resource = null;
-		try {
-			// Load the resource through the editing domain.
-			//
-			resource = editingDomain.getResourceSet().getResource(resourceURI,
-					true);
-		} catch (Exception e) {
-			exception = e;
-			resource = editingDomain.getResourceSet().getResource(resourceURI,
-					false);
-		}
-
-		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
-		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource, analyzeResourceProblems(
-					resource, exception));
-		}
-		editingDomain.getResourceSet().eAdapters()
-				.add(problemIndicationAdapter);
-	}
-
-	@Override
-	public void createPartControl(Composite parent) {
-		this.container = parent;
-		super.createPartControl(parent);
-	}
-
-	public void createModel() {
-		editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(
-				EcorePlugin.computePlatformURIMap());
-
-		createModelGen();
-
-		if (!editingDomain.getResourceSet().getResources().isEmpty()) {
-			for (Iterator<EObject> i = editingDomain.getResourceSet()
-					.getResources().get(0).getAllContents(); i.hasNext();) {
-				EObject eObject = i.next();
-				if (eObject instanceof ETypeParameter
-						|| eObject instanceof EGenericType
-						&& !((EGenericType) eObject).getETypeArguments()
-								.isEmpty()) {
-					// FIXME
-					// ((EcoreActionBarContributor)getActionBarContributor()).showGenerics(true);
-					break;
-				}
-			}
-		}
-	}
-
-	/**
-	 * This is the method used by the framework to install your own controls.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 *            <p>
-	 *            This is not generated to preserve setting the selection until
-	 *            that goes into the template.
-	 * 
-	 @Override public void createPages() { // Creates the model from the editor
-	 *           input // createModel();
-	 * 
-	 *           // Only creates the other pages if there is something that can
-	 *           be edited // if
-	 *           (!getEditingDomain().getResourceSet().getResources().isEmpty())
-	 *           { // Create a page for the selection tree view. // Tree tree =
-	 *           new Tree(getContainer(), SWT.MULTI); selectionViewer = new
-	 *           TreeViewer(tree); setCurrentViewer(selectionViewer);
-	 * 
-	 *           selectionViewer.setContentProvider(new
-	 *           AdapterFactoryContentProvider(adapterFactory));
-	 *           selectionViewer.setLabelProvider(new
-	 *           AdapterFactoryLabelProvider(adapterFactory));
-	 *           selectionViewer.setInput(editingDomain.getResourceSet());
-	 *           selectionViewer.setSelection(new
-	 *           StructuredSelection(editingDomain
-	 *           .getResourceSet().getResources().get(0)), true);
-	 * 
-	 *           new AdapterFactoryTreeEditor(selectionViewer.getTree(),
-	 *           adapterFactory);
-	 * 
-	 *           createContextMenuFor(selectionViewer); int pageIndex =
-	 *           addPage(tree); setPageText(pageIndex,
-	 *           getString("_UI_SelectionPage_label"));
-	 * 
-	 *           setActivePage(0); }
-	 * 
-	 *           // Ensures that this editor will only display the page's tab //
-	 *           area if there are more than one page //
-	 *           getContainer().addControlListener (new ControlAdapter() {
-	 *           boolean guard = false;
-	 * @Override public void controlResized(ControlEvent event) { if (!guard) {
-	 *           guard = true; hideTabs(); guard = false; } } });
-	 * 
-	 *           updateProblemIndication(); }
-	 */
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public void dispose() {
-		updateProblemIndication = false;
-
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(
-				resourceChangeListener);
-
-		getSite().getPage().removePartListener(partListener);
-
-		adapterFactory.dispose();
-
-		if (getActionBarContributor().getActiveEditor() == this) {
-			getActionBarContributor().setActiveEditor(null);
-		}
-
-		if (propertySheetPage != null) {
-			propertySheetPage.dispose();
-		}
-
-		if (contentOutlinePage != null) {
-			contentOutlinePage.dispose();
-		}
-
-		super.dispose();
-	}
-
-	/**
-	 * This is for implementing {@link IEditorPart} and simply saves the model
-	 * file. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public void doSave(IProgressMonitor progressMonitor) {
-		// Save only resources that have actually changed.
+	public void setSelectionToViewer(Collection<?> collection) {
+		final Collection<?> theSelection = collection;
+		// Make sure it's okay.
 		//
-		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
-		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
-				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-
-		// Do the work within an operation because this is a long running
-		// activity that modifies the workbench.
-		//
-		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
-			// This is the method that gets invoked when the operation runs.
-			//
-			@Override
-			public void execute(IProgressMonitor monitor) {
-				// Save the resources to the file system.
-				//
-				boolean first = true;
-				for (Resource resource : editingDomain.getResourceSet()
-						.getResources()) {
-					if ((first || !resource.getContents().isEmpty() || isPersisted(resource))
-							&& !editingDomain.isReadOnly(resource)) {
-						try {
-							long timeStamp = resource.getTimeStamp();
-							resource.save(saveOptions);
-							if (resource.getTimeStamp() != timeStamp) {
-								savedResources.add(resource);
-							}
-						} catch (Exception exception) {
-							resourceToDiagnosticMap
-									.put(resource, analyzeResourceProblems(
-											resource, exception));
-						}
-						first = false;
+		if (theSelection != null && !theSelection.isEmpty()) {
+			Runnable runnable = new Runnable() {
+				public void run() {
+					// Try to select the items in the current content viewer of
+					// the editor.
+					//
+					if (currentViewer != null) {
+						currentViewer.setSelection(new StructuredSelection(
+								theSelection.toArray()), true);
 					}
-				}
-			}
-		};
-
-		updateProblemIndication = false;
-		try {
-			// This runs the options, and shows progress.
-			//
-			new ProgressMonitorDialog(getSite().getShell()).run(true, false,
-					operation);
-
-			// Refresh the necessary state.
-			//
-			((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
-			firePropertyChange(IEditorPart.PROP_DIRTY);
-		} catch (Exception exception) {
-			// Something went wrong that shouldn't.
-			//
-			OCLInEcorePlugin.INSTANCE.log(exception);
-		}
-		updateProblemIndication = true;
-		updateProblemIndication();
-	}
-
-	/**
-	 * If there is just one page in the multi-page editor part, this hides the
-	 * single tab at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * 
-	 *            protected void hideTabs() { if (getPageCount() <= 1) {
-	 *            setPageText(0, ""); if (getContainer() instanceof CTabFolder)
-	 *            { ((CTabFolder)getContainer()).setTabHeight(1); Point point =
-	 *            getContainer().getSize(); getContainer().setSize(point.x,
-	 *            point.y + 6); } } }
-	 */
-
-	/**
-	 * If there is more than one page in the multi-page editor part, this shows
-	 * the tabs at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * 
-	 *            protected void showTabs() { if (getPageCount() > 1) {
-	 *            setPageText(0, getString("_UI_SelectionPage_label")); if
-	 *            (getContainer() instanceof CTabFolder) {
-	 *            ((CTabFolder)getContainer()).setTabHeight(SWT.DEFAULT); Point
-	 *            point = getContainer().getSize();
-	 *            getContainer().setSize(point.x, point.y - 6); } } }
-	 */
-
-	/**
-	 * This is used to track the active viewer. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * 
-	 @Override protected void pageChange(int pageIndex) {
-	 *           super.pageChange(pageIndex);
-	 * 
-	 *           if (contentOutlinePage != null) {
-	 *           handleContentOutlineSelection(
-	 *           contentOutlinePage.getSelection()); } }
-	 */
-
-	/**
-	 * This is how the framework determines which interfaces we implement. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@SuppressWarnings("rawtypes")
-	@Override
-	public Object getAdapter(Class key) {
-		if (key.equals(IContentOutlinePage.class)) {
-			return getContentOutlinePage();
-		} else if (key.equals(IPropertySheetPage.class)) {
-			return getPropertySheetPage();
-		} else if (key.equals(IGotoMarker.class)) {
-			return this;
-		} else {
-			return super.getAdapter(key);
-		}
-	}
-
-	/**
-	 * This accesses a cached version of the content outliner. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public IContentOutlinePage getContentOutlinePage() {
-		if (contentOutlinePage == null) {
-
-			contentOutlinePage = new OCLInEcoreContentOutlinePage(this);
-
-			// Listen to selection so that we can handle it is a special way.
-			//
-			contentOutlinePage
-					.addSelectionChangedListener(new ISelectionChangedListener() {
-						// This ensures that we handle selections correctly.
-						//
-						public void selectionChanged(SelectionChangedEvent event) {
-							handleContentOutlineSelection(event.getSelection());
-						}
-					});
-		}
-
-		return contentOutlinePage;
-	}
-
-	/**
-	 * This accesses a cached version of the property sheet. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public IPropertySheetPage getPropertySheetPage() {
-		if (propertySheetPage == null) {
-			propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
-				@Override
-				public void setSelectionToViewer(List<?> selection) {
-					OCLInEcoreEditor.this.setSelectionToViewer(selection);
-					OCLInEcoreEditor.this.setFocus();
-				}
-
-				@Override
-				public void setActionBars(IActionBars actionBars) {
-					super.setActionBars(actionBars);
-					getActionBarContributor().shareGlobalActions(this,
-							actionBars);
 				}
 			};
-			propertySheetPage
-					.setPropertySourceProvider(new AdapterFactoryContentProvider(
-							adapterFactory));
+			getSite().getShell().getDisplay().asyncExec(runnable);
 		}
-
-		return propertySheetPage;
-	}
-
-	/**
-	 * This deals with how we want selection in the outliner to affect the other
-	 * views. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void handleContentOutlineSelection(ISelection selection) {
-		if (selectionViewer != null && !selection.isEmpty()
-				&& selection instanceof IStructuredSelection) {
-			Iterator<?> selectedElements = ((IStructuredSelection) selection)
-					.iterator();
-			if (selectedElements.hasNext()) {
-				// Get the first selected element.
-				//
-				Object selectedElement = selectedElements.next();
-
-				ArrayList<Object> selectionList = new ArrayList<Object>();
-				selectionList.add(selectedElement);
-				while (selectedElements.hasNext()) {
-					selectionList.add(selectedElements.next());
-				}
-
-				// Set the selection to the widget.
-				//
-				selectionViewer.setSelection(new StructuredSelection(
-						selectionList));
-			}
-		}
-	}
-
-	/**
-	 * This is for implementing {@link IEditorPart} and simply tests the command
-	 * stack. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public boolean isDirty() {
-		return ((BasicCommandStack) editingDomain.getCommandStack())
-				.isSaveNeeded();
-	}
-
-	/**
-	 * This returns whether something has been persisted to the URI of the
-	 * specified resource. The implementation uses the URI converter from the
-	 * editor's resource set to try to open an input stream. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected boolean isPersisted(Resource resource) {
-		boolean result = false;
-		try {
-			InputStream stream = editingDomain.getResourceSet()
-					.getURIConverter().createInputStream(resource.getURI());
-			if (stream != null) {
-				result = true;
-				stream.close();
-			}
-		} catch (IOException e) {
-			// Ignore
-		}
-		return result;
-	}
-
-	/**
-	 * This always returns true because it is not currently supported. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public boolean isSaveAsAllowed() {
-		return true;
-	}
-
-	public static final String ECORE_FILE_EXTENSION = "ecore";
-	public static final String EMOF_FILE_EXTENSION = "emof";
-
-	/**
-	 * This also changes the editor's input. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void doSaveAs() {
-		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
-		saveAsDialog.create();
-		saveAsDialog.setMessage(OCLInEcorePlugin.INSTANCE
-				.getString("_UI_SaveAs_message"));
-		saveAsDialog.open();
-		IPath path = saveAsDialog.getResult();
-		if (path != null) {
-			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-			if (file != null) {
-				ResourceSet resourceSet = editingDomain.getResourceSet();
-				Resource currentResource = resourceSet.getResources().get(0);
-				String currentExtension = currentResource.getURI()
-						.fileExtension();
-
-				URI newURI = URI.createPlatformResourceURI(file.getFullPath()
-						.toString(), true);
-				String newExtension = newURI.fileExtension();
-
-				if (currentExtension.equals(ECORE_FILE_EXTENSION)
-						&& newExtension.equals(EMOF_FILE_EXTENSION)
-						|| currentExtension.equals(EMOF_FILE_EXTENSION)
-						&& newExtension.equals(ECORE_FILE_EXTENSION)) {
-					Resource newResource = resourceSet.createResource(newURI);
-					newResource.getContents().addAll(
-							currentResource.getContents());
-					resourceSet.getResources().remove(0);
-					resourceSet.getResources().move(0, newResource);
-				} else {
-					currentResource.setURI(newURI);
-				}
-
-				IFileEditorInput modelFile = new FileEditorInput(file);
-				setInputWithNotify(modelFile);
-				setPartName(file.getName());
-				doSave(getActionBars().getStatusLineManager()
-						.getProgressMonitor());
-			}
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
-		setInputWithNotify(editorInput);
-		setPartName(editorInput.getName());
-		IProgressMonitor progressMonitor = getActionBars()
-				.getStatusLineManager() != null ? getActionBars()
-				.getStatusLineManager().getProgressMonitor()
-				: new NullProgressMonitor();
-		doSave(progressMonitor);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * 
-	 @Override public void setFocus() { getControl(getActivePage()).setFocus();
-	 *           }
-	 */
-
-	/**
-	 * This looks up a string in the plugin's plugin.properties file. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private static String getString(String key) {
-		return OCLInEcorePlugin.INSTANCE.getString(key);
-	}
-
-	/**
-	 * This looks up a string in plugin.properties, making a substitution. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private static String getString(String key, Object s1) {
-		return OCLInEcorePlugin.INSTANCE.getString(key, new Object[] { s1 });
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EditingDomainActionBarContributor getActionBarContributor() {
-		return (EditingDomainActionBarContributor) getEditorSite()
-				.getActionBarContributor();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public IActionBars getActionBars() {
-		return getActionBarContributor().getActionBars();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public AdapterFactory getAdapterFactory() {
-		return adapterFactory;
-	}
-
-	@Override
-	public OCLInEcoreParseController getParseController() {
-		return (OCLInEcoreParseController) super.getParseController();
-	}
-
-	public ResourceSet getResourceSet() {
-		return getEditingDomain().getResourceSet();
-	}
-
-	@Override
-	public void gotoMarker(IMarker marker) {
-		try {
-			if (marker.getType().equals(EValidator.MARKER)) {
-				String uriAttribute = marker.getAttribute(
-						EValidator.URI_ATTRIBUTE, null);
-				if (uriAttribute != null) {
-					URI uri = URI.createURI(uriAttribute);
-					EObject eObject = editingDomain.getResourceSet()
-							.getEObject(uri, true);
-					if (eObject != null) {
-						setSelectionToViewer(Collections
-								.singleton(editingDomain.getWrapper(eObject)));
-					}
-				}
-			}
-		} catch (CoreException exception) {
-			OCLInEcorePlugin.INSTANCE.log(exception);
-		}
-	}
-
-	/**
-	 * This is called during startup. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public void init(IEditorSite site, IEditorInput editorInput) {
-		setSite(site);
-		setInputWithNotify(editorInput);
-		setPartName(editorInput.getName());
-		site.setSelectionProvider(selectionProvider);
-		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(
-				resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
-	}
-
-	/**
-	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help
-	 * fill the context menus with contributions from the Edit menu. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void menuAboutToShow(IMenuManager menuManager) {
-		((IMenuListener) getEditorSite().getActionBarContributor())
-				.menuAboutToShow(menuManager);
 	}
 
 	public void setStatusLineManager(ISelection selection) {
