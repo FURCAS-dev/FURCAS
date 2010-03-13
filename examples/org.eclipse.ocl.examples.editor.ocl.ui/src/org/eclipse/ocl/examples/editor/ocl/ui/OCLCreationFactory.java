@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLCreationFactory.java,v 1.2 2010/03/13 13:15:09 ewillink Exp $
+ * $Id: OCLCreationFactory.java,v 1.3 2010/03/13 18:09:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui;
 
@@ -37,7 +37,7 @@ public class OCLCreationFactory extends AbstractCreationFactory
 {
 	public static OCLCreationFactory INSTANCE = new OCLCreationFactory();
 	public static final String BUILDER_ID = "org.eclipse.ocl.editor.ocl.ui.OCLBuilder"; //$NON-NLS-1$
-	public static final String EDITOR_ID = "org.eclipse.ocl.editor.ocl.ui.OCLInEcoreEditor"; //$NON-NLS-1$
+	public static final String EDITOR_ID = "org.eclipse.ocl.editor.ocl.ui.OCLEditor"; //$NON-NLS-1$
 	public static final String NATURE_ID = "org.eclipse.ocl.editor.ocl.ui.OCLNature"; //$NON-NLS-1$
 	public static final String PROBLEM_MARKER_ID = "org.eclipse.ocl.editor.ocl.ui.oclProblem"; //$NON-NLS-1$
 
