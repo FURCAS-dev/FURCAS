@@ -12,23 +12,26 @@
  * 
  * </copyright>
  *
- * $Id: ClassUtils.java,v 1.1 2010/03/11 13:54:19 ewillink Exp $
+ * $Id: ClassUtils.java,v 1.2 2010/03/13 13:01:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.common.utils;
 
 public class ClassUtils
 {	
 	/**
-	 * Return object cast to objectClass.
+	 * Return object cast to requiredClass.
 	 * @param object to cast.
-	 * @param objectClass to cast to.
+	 * @param requiredClass to cast to.
 	 * @return cast object or null
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Object> T asClassOrNull(Object object, Class<T> objectClass) {
+	public static <T extends Object> T asClassOrNull(Object object, Class<T> requiredClass) {
 		if (object == null)
 			return null;
-		if (!objectClass.isAssignableFrom(object.getClass()))
+		if (requiredClass == null)
+			return null;
+		Class<?> objectClass = object.getClass();
+		if (!objectClass.isAssignableFrom(objectClass))
 			return null;
 		return (T) object;
 	}
@@ -85,6 +88,19 @@ public class ClassUtils
 			return false;
 		}
 		return left.equals(right);
+	}
+	
+	/**
+	 * Return the fully typed class of an object.
+	 * @param <T> type
+	 * @param object the object
+	 * @return the class
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> Class<T> getClass(T object) {
+		if (object == null)
+			return null;
+		return (Class<T>) object.getClass();
 	}
 	
 	/**
