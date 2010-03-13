@@ -7,7 +7,8 @@ Bundle-Activator: org.eclipse.ocl.examples.modelregistry.eclipse.ModelRegistryPl
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.6.0,4.0.0)";resolution:=optional,
  org.eclipse.core.resources;bundle-version="[3.6.0,4.0.0)";resolution:=optional,
- org.eclipse.emf.ecore.xmi;bundle-version="[2.5.0,3.0.0)";visibility:=reexport
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.5.0,3.0.0)";visibility:=reexport,
+ org.eclipse.ocl.examples.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.ocl.examples.modelregistry,

@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.modelregistry.model.ModelSerialization;
 import org.eclipse.ocl.examples.modelregistry.model.NamedSerialization;
-import org.eclipse.ocl.examples.modelregistry.util.ClassUtils;
 
 /**
  * The map of serialization name to resource factory.
@@ -64,7 +64,7 @@ public class ModelSerializationRegistry
 
 	public FactorySerializationDelegate getSerialization(String name) {
 		ModelSerialization modelSerialisation = serializations.get(name);
-		return ClassUtils.asClass(modelSerialisation, FactorySerializationDelegate.class);
+		return ClassUtils.asClassOrNull(modelSerialisation, FactorySerializationDelegate.class);
 	}
 
 	public ModelSerialization getSerializationOrCreate(String name) {
