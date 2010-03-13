@@ -31,6 +31,7 @@ public class EclipseProjectHandle extends EclipseFileHandle implements ProjectHa
 {
 	private Map<IResource,EclipseFileHandle> handles = new HashMap<IResource,EclipseFileHandle>();
 	private List<String> registryNames;
+	private URI uri = null;
 	
 	public EclipseProjectHandle(IProject project) {
 		super(project);
@@ -85,7 +86,7 @@ public class EclipseProjectHandle extends EclipseFileHandle implements ProjectHa
 		if (registryNames.isEmpty()) {
 			return null;
 		}
-		URI registryURI = URI.createURI(registryNames.get(0));
+		URI registryURI = URI.createURI(registryNames.get(0), false);
 		URI projectURI = getURI();
 		URI resolvedURI = registryURI.resolve(projectURI);
 		return resolvedURI;
@@ -94,7 +95,7 @@ public class EclipseProjectHandle extends EclipseFileHandle implements ProjectHa
 	public List<URI> getRegistryURIs() {
 		List<URI> registryURIs = new ArrayList<URI>();
 		for (String registryName : registryNames) {
-			URI registryURI = URI.createURI(registryName);
+			URI registryURI = URI.createURI(registryName, false);
 			URI projectURI = getURI();
 			URI resolvedURI = registryURI.resolve(projectURI);
 			registryURIs.add(resolvedURI);
@@ -115,7 +116,10 @@ public class EclipseProjectHandle extends EclipseFileHandle implements ProjectHa
 //	}
 
 	@Override public URI getURI() {
-		return URI.createURI(resource.getLocationURI().toString() + "/");
+		if (uri  == null) {
+			uri = URI.createPlatformResourceURI(resource.getFullPath().toString() + "/", true);
+		}
+		return uri;
 	}
 	
 	public void refreshRegistry() {

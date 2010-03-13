@@ -27,6 +27,7 @@ public class EclipseFileHandle extends PlatformObject implements FileHandle
 {
 	protected final EclipseProjectHandle projectHandle;
 	protected final IResource resource;
+	private URI uri = null;
 	
 	protected EclipseFileHandle(IProject project) {
 		this.projectHandle = (EclipseProjectHandle) this;
@@ -81,7 +82,10 @@ public class EclipseFileHandle extends PlatformObject implements FileHandle
 	}
 
 	public URI getURI() {
-		return URI.createURI(resource.getLocationURI().toString());
+		if (uri  == null) {
+			uri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+		}
+		return uri;
 	}
 
 	public IFile isFile() { return resource instanceof IFile ? (IFile)resource : null; }
