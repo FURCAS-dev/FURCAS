@@ -1,18 +1,18 @@
 /**
  * <copyright>
- * 
- * Copyright (c) 2008,2010 Eclipse Modeling Project and others.
- * All rights reserved. This program and the accompanying materials
+ *
+ * Copyright (c) 2010 Eclipse Modeling Project and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- * E.D.Willink - initial API and implementation
- * 
+ *   E.D.Willink - Initial API and implementation
+ *
  * </copyright>
  *
- * $Id: OCLInEcorePlugin.java,v 1.1 2010/03/11 14:53:54 ewillink Exp $
+ * $Id: OCLInEcorePlugin.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -30,43 +30,32 @@ import org.eclipse.imp.runtime.PluginBase;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonEditorDefinition;
 import org.eclipse.ocl.examples.editor.ui.imp.ICommonPlugin;
 
-public class OCLInEcorePlugin extends EMFPlugin // extends PluginBase implements
-// ICommonPlugin
+public class OCLInEcorePlugin extends EMFPlugin
 {
 	public static final String kPluginID = "org.eclipse.ocl.examples.editor.ocl.ui"; //$NON-NLS-1$
 	public static final String kLanguageName = "ocl"; //$NON-NLS-1$
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
+	 * Keep track of the singleton.
 	 */
 	public static final OCLInEcorePlugin INSTANCE = new OCLInEcorePlugin();
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
+	 * Keep track of the singleton.
 	 */
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * Create the instance.
 	 */
 	public OCLInEcorePlugin() {
 		super(new ResourceLocator[] {});
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin.
 	 * 
 	 * @return the singleton instance.
-	 * @generated
 	 */
 	@Override
 	public ResourceLocator getPluginResourceLocator() {
@@ -74,11 +63,9 @@ public class OCLInEcorePlugin extends EMFPlugin // extends PluginBase implements
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin.
 	 * 
 	 * @return the singleton instance.
-	 * @generated
 	 */
 	public static Implementation getPlugin() {
 		return plugin;
@@ -94,14 +81,10 @@ public class OCLInEcorePlugin extends EMFPlugin // extends PluginBase implements
 	}
 
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 */
-	public static class Implementation /* extends EclipseUIPlugin */extends
-			PluginBase implements ICommonPlugin, ResourceLocator, Logger,
-			EMFPlugin.InternalEclipsePlugin {
+	public static class Implementation extends PluginBase
+		implements ICommonPlugin, ResourceLocator, Logger, EMFPlugin.InternalEclipsePlugin {
 
 		public CommonEditorDefinition editorDefinition = null;
 		/**
@@ -112,9 +95,7 @@ public class OCLInEcorePlugin extends EMFPlugin // extends PluginBase implements
 		protected EMFPlugin.InternalHelper helper;
 
 		/**
-		 * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
+		 * Creates an instance. 
 		 */
 		public Implementation() {
 			super();
@@ -201,23 +182,4 @@ public class OCLInEcorePlugin extends EMFPlugin // extends PluginBase implements
 			helper.log(logEntry);
 		}
 	}
-
-	/**
-	 * The unique instance of this plugin class
-	 */
-	// protected static OCLPlugin sPlugin;
-
-	// public static OCLPlugin getInstance() {
-	// SMS 11 Jul 2007
-	// Added conditional call to constructor in case the plugin
-	// class has not been auto-started
-	// if (sPlugin == null)
-	// new OCLPlugin();
-	// return sPlugin;
-	// }
-
-	// public OCLPlugin() {
-	// super();
-	// sPlugin = this;
-	// }
 }

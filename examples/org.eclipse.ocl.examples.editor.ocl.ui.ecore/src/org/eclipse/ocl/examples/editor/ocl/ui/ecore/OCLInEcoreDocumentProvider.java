@@ -1,10 +1,24 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2010 Eclipse Modeling Project and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: OCLInEcoreDocumentProvider.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
+ */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
 import java.io.IOException;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
@@ -14,9 +28,13 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 
+/**
+ * An OCLInEcoreDocumentProvider provides the OCL text as the Document of an
+ * Ecore Resource and installs an OCLInEcoreSynchronizer to transfer OCL changes
+ * back to the Ecore Resource.
+ */
 public class OCLInEcoreDocumentProvider extends FileDocumentProvider
 {
 	private final class MyOCLInEcoreSynchronizer extends OCLInEcoreSynchronizer
@@ -57,72 +75,6 @@ public class OCLInEcoreDocumentProvider extends FileDocumentProvider
 	
 	public OCLInEcoreDocumentProvider(IOCLInEcoreEditor editor) {
 		this.editor = editor;		
-	}
-	
-	@Override
-	public boolean canSaveDocument(Object element) {
-		// TODO Auto-generated method stub
-		return super.canSaveDocument(element);
-	}
-	
-	@Override
-	public void setCanSaveDocument(Object element) {
-		// TODO Auto-generated method stub
-		super.setCanSaveDocument(element);
-	}
-
-	@Override
-	protected void disposeElementInfo(Object element, ElementInfo info) {
-		// TODO Auto-generated method stub
-		super.disposeElementInfo(element, info);
-	}
-
-	@Override
-	protected void handleElementContentChanged(
-			IFileEditorInput fileEditorInput) {
-		// TODO Auto-generated method stub
-		super.handleElementContentChanged(fileEditorInput);
-	}
-
-	@Override
-	protected void handleElementMoved(IFileEditorInput fileEditorInput,
-			IPath path) {
-		// TODO Auto-generated method stub
-		super.handleElementMoved(fileEditorInput, path);
-	}
-
-	@Override
-	protected void handleElementDeleted(IFileEditorInput fileEditorInput) {
-		// TODO Auto-generated method stub
-		super.handleElementDeleted(fileEditorInput);
-	}
-
-	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element,
-			IDocument document, boolean overwrite) throws CoreException {
-/*		OCLInEcoreExporter exporter = new OCLInEcoreExporter(editor.getParseController());
-		Collection<Resource> resources = exporter.export();
-		if (resources != null) {
-			for (Resource resource : resources) {
-				try {
-					monitor.subTask("Saving " + resource.getURI());
-					resource.save(null);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				finally {
-					monitor.done();
-				}
-			}
-		} */
-	}
-	
-	@Override
-	protected void doResetDocument(Object element, IProgressMonitor monitor)
-			throws CoreException {
-		// TODO Auto-generated method stub
-		super.doResetDocument(element, monitor);
 	}
 
 	@Override
