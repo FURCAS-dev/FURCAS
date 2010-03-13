@@ -62,7 +62,7 @@ public class Registration<A extends Accessor<A>> implements Comparable<Registrat
 	public ModelSerialization getSerialization() { return modelSerialization; }
 	public String getSerializationName() { return modelSerialization.getName(); }
 	public URI getURI() { return uri; }
-	public String getURIString() { return getURI().toString(); }
+	public String getURIString() { return URI.decode(getURI().toString()); }
 
 	@Override
 	public int hashCode() {
