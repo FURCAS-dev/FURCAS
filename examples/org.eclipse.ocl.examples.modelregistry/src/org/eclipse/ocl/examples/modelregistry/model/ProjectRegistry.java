@@ -222,7 +222,7 @@ public class ProjectRegistry
 							A castAccessor = (A) new UnregisteredAccessor(namespaceName, modelRegistration.getAccessor());
 							accessor = castAccessor;
 						}
-						URI ecoreURI = URI.createURI(modelRegistration.getUri());
+						URI ecoreURI = URI.createURI(modelRegistration.getUri(), false);
 						String serializationName = modelRegistration.getSerialization();
 						if (serializationName == null)
 							serializationName = DEFAULT_SERIALISATION_NAME;
