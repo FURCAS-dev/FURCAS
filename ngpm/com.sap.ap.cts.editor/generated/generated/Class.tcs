@@ -299,8 +299,8 @@ syntax Class(k=0 ) {
 	-- by another template; TODO how to express this? Perhaps by explicit "opposite" keyword?
 	template ClassTypeDefinition #property context
 		: associationEnd{mode=property, forcedLower=1}
-		  {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false',
-		     unique=lookIn("OCL:self.associationEnd.otherEnd().type.unique"),
+		  {{ lowerMultiplicity<-'0', upperMultiplicity<-'-1', ordered<-'false',
+		     unique<-lookIn("OCL:self.associationEnd.otherEnd().type.unique"),
 		     ownedObjectParameters=foreach("OCL:#context(root).oclAsType(data::classes::SapClass).formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
 		     objectParameters=lookIn("OCL:self.ownedObjectParameters")
 		  }}
@@ -322,17 +322,17 @@ syntax Class(k=0 ) {
 	-- This is the end on the side of the property declaration; the type definition
 	-- is already set as it is being defined "inside-out"
 	template data::classes::AssociationEnd #property
-		: ( composite ? "owns" ) association{mode=property} {{ name='"unnamed"', navigable='false',
+		: ( composite ? "owns" ) association{mode=property} {{ name<-'"unnamed"', navigable<-'false',
 		  -- The following would mark the end as equality contribution if it occurs in a value type
 		  -- contributesToEquality=lookIn("#context.valueType") }}
-		  contributesToEquality='true' }}
+		  contributesToEquality<-'true' }}
 		;
 	
 	-- The task of this template is to match / produce the association and the second association end and (this
 	-- is the part solved by forcedUppper=1) add it to the ends where one element is already expected.
 	template data::classes::Association #property
 		: ends { forcedLower=1, forcedUpper=1 }
-		  {{ name='"unnamed"', package_=lookIn("OCL:#context(root).oclAsType(data::classes::SapClass).package_") }}
+		  {{ name<-'"unnamed"', package_=lookIn("OCL:#context(root).oclAsType(data::classes::SapClass).package_") }}
 		;
 		
 	template data::classes::AssociationEnd context

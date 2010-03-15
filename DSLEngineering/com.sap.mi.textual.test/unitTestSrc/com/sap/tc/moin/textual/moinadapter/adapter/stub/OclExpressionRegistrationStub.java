@@ -8,7 +8,6 @@ import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
@@ -139,13 +138,13 @@ public class OclExpressionRegistrationStub implements OclExpressionRegistration 
 	}
 
 	@Override
-	public Set<MRI> getAffectedModelElements(EventChain events, Connection conn) {
+	public Set<MRI> getAffectedModelElements(List<ChangeEvent> events, Connection conn) {
 	    // TODO Auto-generated method stub
 	    return null;
 	}
 
 	@Override
-	public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events,
+	public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(ChangeEvent event,
 		String replacementFor__TEMP__) {
 	    // TODO Auto-generated method stub
 	    return false;

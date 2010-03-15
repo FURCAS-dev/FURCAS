@@ -11,7 +11,6 @@ import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
@@ -275,14 +274,14 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
     }
 
     @Override
-    public Set<MRI> getAffectedModelElements(EventChain events, Connection conn) {
+    public Set<MRI> getAffectedModelElements(List<ChangeEvent> events, Connection conn) {
         return this.oclExpressionRegistration.getAffectedModelElements(events, conn);
     }
 
     @Override
-    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events,
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(ChangeEvent event,
 	    String replacementFor__TEMP__) {
-	return this.oclExpressionRegistration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events,
+	return this.oclExpressionRegistration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event,
 		replacementFor__TEMP__);
     }
     
