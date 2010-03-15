@@ -110,10 +110,10 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
     
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result = new HashSet<AnnotatedRefObjectImpl>();
 	for (NavigationStep singleStep : getSteps()) {
-	    Set<RefObjectImpl> fromSet = Collections.singleton(fromObject);
+	    Set<AnnotatedRefObjectImpl> fromSet = Collections.singleton(fromObject);
 	    result.addAll(singleStep.navigate(conn, fromSet, cache));
 	}
 	return result;

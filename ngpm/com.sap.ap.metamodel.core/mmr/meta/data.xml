@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Thu Mar 04 23:33:23 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Wed Mar 10 13:04:34 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -1944,7 +1944,11 @@ body:
         self.oclAsType(Constant).initExpression.getType()
       else
          if self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator]-&gt;notEmpty() then
-           self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
+           if self.oclAsType(Constant).initExpression-&gt;notEmpty() then
+             self.oclAsType(Constant).initExpression.getType()
+           else
+             self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
+           endif
          else
            null
          endif

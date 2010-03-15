@@ -58,4 +58,11 @@
             objectClass="bibtex.LiteratureDb">
       </association>
    </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            dynamicParserFactoryClass="furcas.examples.parser.BibtexParserFactory"
+            languageID="Bibtex">
+      </configuration>
+   </extension>
 </plugin> 

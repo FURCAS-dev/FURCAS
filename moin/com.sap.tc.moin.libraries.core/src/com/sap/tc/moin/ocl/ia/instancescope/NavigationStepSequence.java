@@ -169,8 +169,8 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result = Collections.singleton(fromObject);
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result = Collections.singleton(fromObject);
 	if (isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {

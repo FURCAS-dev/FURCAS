@@ -8,11 +8,7 @@ import textblocks.TextBlock;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
 
 /**
  * This class enables incremental pretty printing by using the class PrettyPrinter. 
@@ -29,10 +25,15 @@ public class IncrementalPrettyPrinter
 	/**
 	 * Method starting incremental pretty printer
 	 * @param rootTbs
+	 * 					old text blocks existing for text block to be printed
 	 * @param source
+	 * 					correpsonding model element
 	 * @param syntax
+	 * 					concrete syntax of text block
 	 * @param target
+	 * 					extractor stream
 	 * @param template
+	 * 					template which is used for model element
 	 * @throws SyntaxAndModelMismatchException
 	 */
 	public void prettyPrint(RefObject[] rootTbs, RefObject source,
@@ -55,6 +56,7 @@ public class IncrementalPrettyPrinter
 		String toDelete = null;
 
 		// check if a textblock has already existed for the model element source
+		// if there are more textblocks existing choose first one fitting
 		for (RefObject o : rootTbs)
 		{
 			if (o instanceof TextBlock)
@@ -62,7 +64,9 @@ public class IncrementalPrettyPrinter
 				oldTbForSource = (TextBlock) o;
 				iOldTbLength = oldTbForSource.getLength();
 				
-				if(!template.equals(oldTbForSource.getType().getParseRule())) 
+				// if template has no syntax contribution, pretty printing is
+				// currently not possible
+				if(oldTbForSource.getType() == null || !template.equals(oldTbForSource.getType().getParseRule())) 
 				{
 					oldTbForSource = null;
 					continue;
@@ -77,10 +81,10 @@ public class IncrementalPrettyPrinter
 					parent = oldTbForSource.getParentBlock();
 					iOldAbsoluteOffset = oldTbForSource.getAbsoluteOffset();
 					iOldOffset = oldTbForSource.getOffset();
-					iOldTbIndex = parent.getSubNodes().indexOf(o);
+					iOldTbIndex = parent.getSubNodes().indexOf(oldTbForSource);
 					context = new PrettyPrintContext();
 					this.constructContext(context, oldTbForSource, source, syntax);
-					parent.getSubBlocks().remove(o);
+					parent.getSubBlocks().remove(oldTbForSource);
 
 					// remove substring representing the removed textblock
 					cachedString = TbNavigationUtil.getUltraRoot(parent)
@@ -93,10 +97,13 @@ public class IncrementalPrettyPrinter
 					cachedString = cachedString.replace(toDelete, "");
 					parent.setCachedString(cachedString);
 				}
-				o.refDelete();
+				oldTbForSource.refDelete();
+				break;
 			}
 		}
 		
+		// text block is either subblock or root block
+		// avoids pretty printing of text blocks with no syntax contribution
 		if(oldTbForSource != null || rootTbs.length == 0)
 		{
 			// call pretty printer with corresponding model element
@@ -112,7 +119,7 @@ public class IncrementalPrettyPrinter
 				if (parent != null)
 				{
 					rootBlock.setOffset(iOldOffset);
-					parent.getSubNodes().add(iOldTbIndex, rootBlock);
+					parent.getSubBlocks().add(iOldTbIndex, rootBlock);
 					rootBlock.setParentBlock(parent);
 					int lengthToAdd = rootBlock.getLength() - iOldTbLength;
 					TbChangeUtil.updateOffsetsWithinTextBlock(rootBlock,

@@ -92,15 +92,15 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result;
-	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result;
+	if (currentlyEvaluatingNavigateFor.get().contains(fromObject.getElement()) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
-	    currentlyEvaluatingNavigateFor.get().add(fromObject);
-	    Set<RefObjectImpl> set = Collections.singleton(fromObject);
+	    currentlyEvaluatingNavigateFor.get().add(fromObject.getElement());
+	    Set<AnnotatedRefObjectImpl> set = Collections.singleton(fromObject);
 	    result = actualStep.navigate(conn, set, cache);
-	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
+	    currentlyEvaluatingNavigateFor.get().remove(fromObject.getElement());
 	}
 	return result;
     }
@@ -109,11 +109,11 @@ public class IndirectingStep extends AbstractNavigationStep {
      * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion 
      */
     @Override
-    protected void incrementNavigateCounter(CoreConnection conn, Set<RefObjectImpl> from) {
+    protected void incrementNavigateCounter(CoreConnection conn, Set<AnnotatedRefObjectImpl> from) {
 	boolean oneFromObjectIsEvaluating = false;
 	
-	for(RefObjectImpl obj : from){
-	    if( currentlyEvaluatingNavigateFor.get().contains(obj) ){
+	for(AnnotatedRefObjectImpl obj : from){
+	    if( currentlyEvaluatingNavigateFor.get().contains(obj.getElement()) ){
 		oneFromObjectIsEvaluating = true;
 		return;
 	    }

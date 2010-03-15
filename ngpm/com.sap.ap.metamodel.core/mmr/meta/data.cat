@@ -1422,7 +1422,11 @@
 |        self.oclAsType(Constant).initExpression.getType()
 |      else
 |         if self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator]->notEmpty() then
-|           self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
+|           if self.oclAsType(Constant).initExpression->notEmpty() then
+|             self.oclAsType(Constant).initExpression.getType()
+|           else
+|             self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
+|           endif
 |         else
 |           null
 |         endif
