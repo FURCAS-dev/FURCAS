@@ -29,6 +29,62 @@ import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
 
 public class GeneralTests extends RunletTestCase {
+    
+    public void testSimpleGroupByWithoutMapping() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "group 1->including(2) by dim1:fact.div(fact)",
+            "group 1->including(2) by dim1:fact");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(2, result.length);
+        assertEquals(0, errors.length);
+        assertEquals(1, result[0].size());
+        boolean found1 = false;
+        boolean found2 = false;
+        for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> r : result[0].flatten()) {
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(1))) {
+        	found1 = true;
+            }
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(2))) {
+        	found2 = true;
+            }
+        }
+        assertTrue(found1 && found2);
+        assertEquals(2, result[1].size());
+        found1 = false;
+        found2 = false;
+        for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> r : result[1].flatten()) {
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(1))) {
+        	found1 = true;
+            }
+            if (((NativeObject) r).getNativeObject().equals(new Fraction(2))) {
+        	found2 = true;
+            }
+        }
+        assertTrue(found1 && found2);
+    }
+
+    public void testSimpleMap() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "var f=const function(String s):Number { return s.length(); }",
+            "\"abc\"->map(f)",
+            "\"abc\"->including(\"defg\")->map(f)",
+            "\"abc\"->including(\"defg\")->map(f)->map(const function(Number n):Number { return n.times(2); })");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(4, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(3) },
+        	result[1]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(3), new Fraction(4) },
+        	result[2]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(6), new Fraction(8) },
+        	result[3]);
+    }
+
     public void testMultiFunctionCall() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
             "new FunctionTest().test()");
@@ -848,14 +904,20 @@ public class GeneralTests extends RunletTestCase {
         assertNOEquals(false, result[7]);
     }
     
-    public void testCreateEntityWithInitializers() throws Exception {
-	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-	            "var c = new City(name: \"Karl-Marx-Stadt\")",
-	            "c.name == \"Karl-Marx-Stadt\"");
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+    /**
+     * This test case was created because temporarily we have/had the problem of being
+     * unable to create a proper respective model in the evaluator because of issues with
+     * unresolved reference handling. This test case, however, relies on a readily parsed
+     * (with hacks and manual interventions) test model that uses entity creation with
+     * property initializers.
+     */
+    public void testEntityCreationWithInitializersInClass() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "new City().m().name");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
-        assertEquals(2, result.length);
+        assertEquals(1, result.length);
         assertEquals(0, errors.length);
-        assertNOEquals(true, result[1]);
+        assertNOEquals("Karl-Marx-Stadt", result[0]);
     }
 }

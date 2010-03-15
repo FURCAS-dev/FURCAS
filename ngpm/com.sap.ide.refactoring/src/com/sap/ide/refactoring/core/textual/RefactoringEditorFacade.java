@@ -7,6 +7,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.widgets.Display;
 
 import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
@@ -67,8 +68,13 @@ public class RefactoringEditorFacade {
      * Refresh the editor with the (new) information available in the model.
      */
     public void refreshUI() {
-	getDocument().repairLineInformation();
-	((Viewer) getSourceViewer()).refresh();
+	Display.getDefault().asyncExec(new Runnable() {
+	    @Override
+	    public void run() {
+		getDocument().repairLineInformation();
+		((Viewer) getSourceViewer()).refresh();
+	    }
+	});
     }
 
     public ISourceViewer getSourceViewer() {
@@ -85,7 +91,8 @@ public class RefactoringEditorFacade {
 	ModelPartition partition = model.getRoot().get___Partition();
 	CtsTextBlockTCSExtractorStream stream = new CtsTextBlockTCSExtractorStream(pkg, partition, getParserFactory());
 
-	CtsPrettyPrinter.prettyPrint(getDecoratedDomainRootObject(), syntax, stream);
+	CtsPrettyPrinter.prettyPrint(getDecoratedDomainRootObject(), syntax, stream, /* ClassTemplate template */ null,
+		/* PrettyPrintContext context */ null);
 	model.setRootTextBlock(stream.getRootBlock());
     }
 

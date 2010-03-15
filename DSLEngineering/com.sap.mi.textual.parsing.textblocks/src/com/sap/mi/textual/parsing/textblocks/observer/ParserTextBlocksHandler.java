@@ -12,6 +12,7 @@ import java.util.Map;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
+import tcs.ForeachPredicatePropertyInit;
 import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
 import tcs.OperatorTemplate;
@@ -23,6 +24,7 @@ import textblocks.DocumentNodeReferencesCorrespondingModelElement;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
@@ -73,7 +75,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	// flag to indicate whether root rule has been entered yet or not. 
 	private int ruleDepth = -1; // -1 initial value means outside root context
 
-	private final Connection connection;
+	private Connection connection;
 
 	private Map<String, Template> templateCache  = new HashMap<String, Template>();
 
@@ -114,6 +116,11 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		this.input = input;
 		this.traverser = new TextBlockTraverser();
 	}
+	
+	public void setConnection(Connection conn) {
+	        this.connection = conn;
+	    }
+
 	
 	/**
 	 * returns the current TextBlockProxy of the TextBlockTraverser.
@@ -246,7 +253,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                                 + "\" as class "
                                 + " where template.metaReference = class";
     
-                        result = connection.getMQLProcessor().execute(query);
+                        result = connection.getMQLProcessor().execute(query, mappingQueryScope);
                         refObjects = result.getRefObjects("template");
     
                         if (refObjects.length > 1) {
@@ -529,45 +536,74 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 * The given <code>modelElement</code> is added to the
 	 * {@link DocumentNode#getReferencedElements()} of the
 	 * corresponding {@link AbstractToken} of the <code>referenceLocation</code>
-	 * {@link Token}.
+	 * {@link Token}. The <code>referenceType</code> indicates what the type of the
+	 * {@link DelayedReference} was that was resolved. That can be e.g., {@link DelayedReference#SEMANTIC_PREDICATE}
+	 * meaning that the delayed reference was created for a things like a {@link ForeachPredicatePropertyInit}.
+	 * 
 	 */
 	@Override
-	public void notifyModelElementResolvedOutOfContext(Object modelElement,
-			Object contextModelElement, Token referenceLocation) {
-		TextBlock contextBlock = getTextBlockForElementAt((RefObject) contextModelElement, (ANTLR3LocationToken) referenceLocation);
-		if(contextBlock != null && modelElement instanceof RefObject) {
-		    boolean isModelElementInCurrentTbProxy = false;
-		    for (IModelElementProxy proxy : getCurrentTbProxy().getCorrespondingModelElements()) {
-                        if(modelElement.equals(proxy.getRealObject())) {
-                            isModelElementInCurrentTbProxy =true;
-                        }
+        public void notifyModelElementResolvedOutOfContext(Object modelElement,
+                Object contextModelElement, Token referenceLocation,
+                DelayedReference reference) {
+            if (contextModelElement instanceof ResolvedModelElementProxy) {
+                contextModelElement = ((ResolvedModelElementProxy) contextModelElement)
+                        .getRealObject();
+            }
+            RefObject sourceModelElement = null;
+            if (reference.getModelElement() instanceof ResolvedModelElementProxy) {
+                contextModelElement = ((ResolvedModelElementProxy) reference.getModelElement())
+                        .getRealObject();
+            } else {
+                sourceModelElement = (RefObject) reference.getModelElement();
+            }
+            TextBlock contextBlock = getTextBlockForElementAt(
+                    (RefObject) contextModelElement,
+                    (ANTLR3LocationToken) referenceLocation);
+            if (contextBlock != null && modelElement instanceof RefObject) {
+                // boolean isModelElementInCurrentTbProxy = false;
+                // for (IModelElementProxy proxy :
+                // getCurrentTbProxy().getCorrespondingModelElements()) {
+                // if(modelElement.equals(proxy.getRealObject())) {
+                // isModelElementInCurrentTbProxy =true;
+                // }
+                // }
+                if (reference.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+                    // this means we are in the resolving of a foreachproperty init
+                    // thus we have to add the curently set template to the
+                    // additionalTemplates of
+                    // of the contextBlock. This will make all injectoractions
+                    // associated with the template
+                    // available for the GDR for the given model element
+                    contextBlock.getAdditionalTemplates().add(
+                            getCurrentTbProxy().getTemplate());
+                    contextBlock.getCorrespondingModelElements().add((RefObject) modelElement);
+                    TbUtil.addForEachContext(contextBlock, sourceModelElement,
+                            (RefObject) contextModelElement, (ForeachPredicatePropertyInit) reference.getQueryElement(), (RefObject) modelElement, connection);
+                } else {
+                    AbstractToken referenceToken = navigateToToken(contextBlock,
+                            referenceLocation);
+                    if (referenceToken == null) {
+                        // reference location doesn't correspond to a token. Add to
+                        // block
+                        contextBlock.getReferencedElements().add(
+                                (RefObject) modelElement);
+                    } else {
+                        referenceToken.getReferencedElements().add(
+                                (RefObject) modelElement);
                     }
-		    if(isModelElementInCurrentTbProxy) {
-		        //this means we are in the resolving of a foreachproperty init
-		        //thus we have to add the curently set template to the additionalTemplates of
-		        //of the contextBlock. This will make all injectoractions associated with the template
-		        //available for the GDR for the given model element
-		        contextBlock.getAdditionalTemplates().add(getCurrentTbProxy().getTemplate());
-		    }
-		    
-			AbstractToken referenceToken = navigateToToken(contextBlock, referenceLocation);
-			if (referenceToken == null) {
-				//reference location doesn't correspond to a token. Add to block
-				contextBlock.getReferencedElements().add((RefObject) modelElement);
-			} else {
-				referenceToken.getReferencedElements().add(
-					(RefObject) modelElement);
-			}
-		}
-	}
+                }
+            }
+        }
 	
-	/**
+	
+
+    /**
 	 * Attaches the current {@link SequenceElement} or {@link InjectorAction} to the given
 	 * {@link DelayedReference}.
 	 */
 	@Override
     	public void notifyDelayedReferenceCreated(DelayedReference ref) {
-	    if(traverser.getCurrent().getSequenceElement() instanceof InjectorActionsBlock) {
+	    if(traverser.getCurrentSequenceElement() instanceof InjectorActionsBlock) {
     		ref.setQueryElement(traverser.getCurrent().getInjectorAction());
 	    } else {
 		ref.setQueryElement(traverser.getCurrent().getSequenceElement());
@@ -595,6 +631,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	private AbstractToken navigateToToken(TextBlock contextBlock,
 			Token referenceLocation) {
+	    if (referenceLocation != null) {
 		int absoluteLocation = ((ANTLR3LocationToken)referenceLocation).getStartIndex();
 		int relativeLocation = absoluteLocation - TbUtil.getAbsoluteOffset(contextBlock);
 		for (AbstractToken tok : contextBlock.getTokens()) {
@@ -602,6 +639,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 				return tok;
 			}
 		}
+	    }
 		return null;
 	}
 
@@ -642,7 +680,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		    DocumentNode node = iterator.next();
 		    int candidateOffset = TbUtil.getAbsoluteOffset(node);
 
-		    if ( (candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()) ) {
+		    if (referenceToken != null && ((candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()))) {
 		        continue;
 		    }
 
@@ -769,6 +807,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         //ruleDepth = 0;
     }
 
+    
    
 
     

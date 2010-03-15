@@ -12,6 +12,7 @@ import tcs.AtomExp;
 import tcs.ConditionalElement;
 import tcs.OperatorTemplate;
 import tcs.Property;
+import tcs.PropertyReference;
 import tcs.SequenceElement;
 import tcs.Template;
 import textblockdefinition.TextblockDefinitionGeneralisation;
@@ -336,7 +337,12 @@ public class IncrementalParsingUtil {
 		TypedElement compareToProperty = null;
 		if (subNode instanceof LexedToken) {
 	                if(((LexedToken) subNode).isOperator()) {
-		                compareToProperty = ((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo().getStrucfeature();
+		                PropertyReference storeOperatorTo = ((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo();
+                                if(storeOperatorTo != null) {
+                                    compareToProperty = storeOperatorTo.getStrucfeature();
+                                } else {
+                                    return;
+                                }
 	                } else if (((LexedToken) subNode).getSequenceElement() != null && checkIsDefinedOptional(subNode)) {
 				// if the subNode is responsible for a property that is set through
 				// an isDefined clause

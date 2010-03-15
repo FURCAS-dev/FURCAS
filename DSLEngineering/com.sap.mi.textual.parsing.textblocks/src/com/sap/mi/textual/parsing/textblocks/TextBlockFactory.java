@@ -26,7 +26,6 @@ public interface TextBlockFactory {
 	 * @param parent The parent to which to add the new proxy.
 	 * @return A newly instantiated {@link TextBlock}
 	 */
-//	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent);
 	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent,
 			ModelPartition defaultPartition);
 	

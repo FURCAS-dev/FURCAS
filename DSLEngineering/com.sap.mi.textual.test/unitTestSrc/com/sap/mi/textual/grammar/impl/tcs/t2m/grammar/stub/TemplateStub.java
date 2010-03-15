@@ -100,11 +100,11 @@ public class TemplateStub extends LocatedElementStub implements Template {
         
     }
 
-    @Override
-    public Collection<Template> getCalledTemplates() throws JmiException {
-    	// TODO Auto-generated method stub
-    	return null;
-    }
+//    @Override
+//    public Collection<Template> getCalledTemplates() throws JmiException {
+//    	// TODO Auto-generated method stub
+//    	return null;
+//    }
     
     @Override
     public boolean hasSyntaxContributions() throws JmiException {

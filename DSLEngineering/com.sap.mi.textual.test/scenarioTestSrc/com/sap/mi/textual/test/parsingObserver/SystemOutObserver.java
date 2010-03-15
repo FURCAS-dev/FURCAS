@@ -114,9 +114,10 @@ public class SystemOutObserver extends ConsistencyChecksObserver implements IPar
      */
     @Override
     public void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation) {
-	super.notifyModelElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation);
-        System.out.println( "Resolved " + modelElement + " in " + contextModelElement + " at " + referenceLocation);
+            Object contextModelElement, Token referenceLocation, DelayedReference reference) {
+	super.notifyModelElementResolvedOutOfContext(modelElement, contextModelElement, referenceLocation, reference);
+        System.out.println( "Resolved " + modelElement + " in " + contextModelElement + " at " + referenceLocation +
+                "; ReferenceType: " + reference);
     }
 
     

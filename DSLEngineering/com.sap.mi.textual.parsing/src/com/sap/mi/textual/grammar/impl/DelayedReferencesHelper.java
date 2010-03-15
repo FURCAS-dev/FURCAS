@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-02-03 18:15:17 +0100 (Mi, 03 Feb 2010) $
- * Revision: $Revision: 9353 $
+ * Date: $Date: 2010-03-08 12:31:07 +0100 (Mo, 08 Mrz 2010) $
+ * Revision: $Revision: 9544 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
@@ -25,6 +25,7 @@ import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -186,7 +187,7 @@ public class DelayedReferencesHelper {
 	    InvocationTargetException, ModelElementCreationException {
 	// invoke the parser to execute the template
 	Method methodToCall = parser.getClass().getMethod(ruleName);
-	parser.reset();
+	//parser.reset();
 	if (!Modifier.isFinal(methodToCall.getModifiers())) {
 	    throw new UnknownProductionRuleException(ruleName
 		    + " is not a production rule in generated Parser.");
@@ -201,6 +202,7 @@ public class DelayedReferencesHelper {
 	    proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
 	}
 	
+	parser.setCurrentForeachElement(next);
 	if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
             parser.addContext(proxyForContextElement);
             if(proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof RefObject) {
@@ -230,23 +232,67 @@ public class DelayedReferencesHelper {
 	}
 	try {
 	    Object parseReturn = methodToCall.invoke(parser);
+	    if (parseReturn == null) {
+		throw new ModelElementCreationException("Unable to create model element using parse rule "+ruleName+
+			". Parse errors: "+parser.getInjector().getErrorList());
+	    }
 	    // add the parsed part to the object
 	    parser.setResolveProxies(originalResolveProxiesValue);
-	    reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
-	    // by default use partition of reference.getModelElement
-	    if (reference.getModelElement() instanceof RefObject
-		    && reference.getRealValue() instanceof Partitionable) {
-		((RefObject) reference.getModelElement()).get___Partition()
-			.assignElementIncludingChildren((Partitionable) reference.getRealValue());
-	    }
-	    modelAdapter.set(reference.getModelElement(), reference.getPropertyName(), reference
-		    .getRealValue());
+	    //first try to resolve if there is a model element that already exists and can be reused
+	    RefObject candidate = findCandidateFromProxy((RefObject) reference.getModelElement(), reference.getPropertyName(), parseReturn);
+	    if(candidate != null) {
+	        //element already exists so we can reuse it
+	        return;
+	    } else {
+	        reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
+	        // by default use partition of reference.getModelElement
+                if (reference.getModelElement() instanceof RefObject
+                        && reference.getRealValue() instanceof Partitionable) {
+                    ((RefObject) reference.getModelElement()).get___Partition()
+                            .assignElementIncludingChildren(
+                                    (Partitionable) reference.getRealValue());
+                }
+                modelAdapter.set(reference.getModelElement(), reference
+                        .getPropertyName(), reference.getRealValue());
+            }
 	} finally {
 	    if (reference.hasContext() && next instanceof RefObject) {
 		parser.leaveContext();
 	    }
 	    parser.getCurrentContextStack().pop();
 	}
+    }
+
+    private RefObject findCandidateFromProxy(RefObject parent, String property, Object parseReturn) throws ModelElementCreationException {
+        if(parseReturn instanceof IModelElementProxy) {
+            IModelElementProxy proxy = (IModelElementProxy) parseReturn;
+            ((ModelElementProxy) proxy).setIsReferenceOnly(true);
+            try {
+                Object resolved = injector.createOrResolve(proxy, null, null);
+                Object parentValue = injector.getModelAdapter().get(parent, property);
+                if(parentValue instanceof Collection<?>) {
+                    if(((Collection<?>) parentValue).contains(resolved)) {
+                        return (RefObject) resolved;
+                    }
+                } else if(parentValue instanceof RefObject) {
+                    if(parentValue.equals(resolved)){
+                        return (RefObject) resolved;
+                    }
+                }
+            } catch (ModelElementCreationException e) {
+                //element not found so return null.
+                return null;
+            } catch (ModelAdapterException e) {
+                //this shouldn't happen, as the get() done above
+                //should always return a valid value
+                throw new ModelElementCreationException(
+                        "Error resolving modelelemnt proxy for parent: "
+                                + parent + " and property " + property, e);
+            } finally {
+                ((ModelElementProxy) proxy).setIsReferenceOnly(false);
+            }
+        }
+        return null;
     }
 
     private String getRuleNameFromWhenAsClauses(DelayedReference reference, IModelAdapter modelAdapter,
@@ -369,14 +415,15 @@ public class DelayedReferencesHelper {
 		    Object result;
 		    result = modelAdapter.createOrResolveElement(proxy.getType(), proxy.getAttributeMap(), null, null,
 			    false, true);
-		    if (result instanceof RefObject)
-			reference.setModelElement(result);
+		    if (result instanceof RefObject) {
+                reference.setModelElement(result);
+            }
 		} else {
 		    reference.setModelElement(proxy.getRealObject());
 		}
 	    }
 	    Object result = modelAdapter.setOclReference(reference.getModelElement(), reference.getPropertyName(),
-		    reference.getKeyValue(), reference.getOclQuery(), contextElement);
+		    reference.getKeyValue(), reference.getOclQuery(), contextElement, reference.getCurrentForeachElement());
 	    if (result == null) {
 		String message = "Referenced ModelElement for query '" + reference.getOclQuery()
 			+ "' was not found for property '" + reference.getPropertyName() + "' of "
@@ -405,7 +452,7 @@ public class DelayedReferencesHelper {
 	    IModelAdapter modelAdapter, ContextManager contextManager, Object contextElement)
 	    throws ModelAdapterException, LookupPathNavigationException {
 	// check if something like "#context(..)" is contained in the query
-	Matcher match = ContextManager.contextPattern.matcher(reference.getOclQuery());
+	Matcher match = ContextAndForeachHelper.contextPattern.matcher(reference.getOclQuery());
 	if (match.find()) {
 	    String occurence = match.group();
 	    if (match.groupCount() >= 2) {
@@ -660,11 +707,11 @@ public class DelayedReferencesHelper {
 	Object candidate = null;
 
 	if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
-	    candidate = modelAdapter.setOclReference(reference.getTextBlock(), reference.getPropertyName(),
-                    reference.getKeyValue(), reference.getOclQuery(), contextElement);
+	    candidate = modelAdapter.setOclReference( contextElement, reference.getPropertyName(),
+                    reference.getKeyValue(), reference.getOclQuery().replaceAll("self.", "#context"), reference.getTextBlock(),  reference.getCurrentForeachElement());
 	} else {
 	    candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
-		keyValue);
+	            keyValue);
 	}
 
 	if (candidate != null) {

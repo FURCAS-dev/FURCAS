@@ -265,7 +265,7 @@ public class TestMoinAdapterWithTCSMeta {
         adapter.set(syntax, "operatorLists", opList);
         
         String oclQuery = "Select from where";
-        adapter.setOclReference(classTemplate, "operatorList", "test", oclQuery, null);
+        adapter.setOclReference(classTemplate, "operatorList", "test", oclQuery, null, null);
     }
     
     @Test

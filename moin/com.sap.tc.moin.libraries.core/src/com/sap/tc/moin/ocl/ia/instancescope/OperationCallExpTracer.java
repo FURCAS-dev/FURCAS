@@ -77,7 +77,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 		if (argument instanceof TypeExp) {
 		    Classifier type = ((TypeExpImpl) argument).getReferredType(getConnection());
 		    IdentityNavigationStep identityStep = new IdentityNavigationStep(getConnection(), (MofClass) getExpression().getType(getConnection()),
-			    (MofClass) type, (OclExpressionInternal) getExpression());
+			    (MofClass) type, (OclExpressionInternal) getExpression(), pathCache);
 		    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(getConnection(),
 			    getExpression().getSource(getConnection()), context, classScopeAnalyzer);
 		    result = pathCache.navigationStepFromSequence(getConnection(), getExpression(), identityStep, sourceStep);
@@ -94,7 +94,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 			    .getArguments(getConnection())).get(getConnection().getSession(), 0);
 		    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(getConnection(), argument, context, classScopeAnalyzer);
 		    result = new BranchingNavigationStep(getConnection(), getInnermostElementType(getExpression().getType(
-			        getConnection())), context, getExpression(), sourcePath, argumentPath);
+			        getConnection())), context, getExpression(), pathCache, sourcePath, argumentPath);
 		} else {
 		    result = sourcePath;
 		}

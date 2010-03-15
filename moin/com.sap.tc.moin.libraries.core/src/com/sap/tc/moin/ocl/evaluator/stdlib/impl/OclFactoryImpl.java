@@ -47,7 +47,8 @@ public class OclFactoryImpl extends OclFactory {
     public OclAny create( Object underlyingObject ) {
 
         if ( underlyingObject == null ) {
-            throw new MoinLocalizedBaseRuntimeException( MoinOclEvaluatorMessages.UNDERLYINGVALUENOTNULL );
+            //throw new MoinLocalizedBaseRuntimeException( MoinOclEvaluatorMessages.UNDERLYINGVALUENOTNULL );
+            return OclVoidImpl.OCL_UNDEFINED;
         }
 
         /*
@@ -183,7 +184,9 @@ public class OclFactoryImpl extends OclFactory {
 
         for ( Iterator<? extends RefObject> it = refObjects.iterator( ); it.hasNext( ); ) {
             RefObject refObject = it.next( );
-            set.add( createModelObject( refObject ) );
+            if(refObject != null) {
+                set.add( createModelObject( refObject ) );
+            }
         }
     }
 

@@ -26,7 +26,7 @@
 <M c='2' q='data.classes.A_ownedTypeDefinitions_ownerSignature' i='E0234C8C51EB7BD93E4B11DEBD740018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.A_implements__implementation' i='E0234C8C51EB7BDF3E4B11DEB2830018DE1146FF' se='1' ce='0' oe='-1'/>
 <M c='2' q='data.classes.InputOfSignature' i='E0234C8C51EB7BE83E4B11DEC7270018DE1146FF' se='1' ce='1' oe='0'/>
-<M c='2' q='data.classes.A_signature_functionSignatureTypeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.A_signature_typeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='data.classes.OwnedSignatures' i='E0234C8C51EB7BF13E4B11DE9A020018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='2' q='data.classes.A_ownedSignature_functionSignatureTypeDefinition' i='E0234C8C51EB7BF43E4B11DE9C2C0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='data.classes.A_implementation_functionSignature' i='E0234C8C51EB7BF73E4B11DECFA20018DE1146FF' se='1' ce='1' oe='-1'/>
@@ -44,8 +44,8 @@
 <M c='2' q='dataaccess.expressions.VariableExpression' i='E075D95551F2A7D13E4B11DEC9820018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.FunctionCallExpression' i='E075D95551F2A7DA3E4B11DEAA800018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_calledBlock_functionCallExpression' i='E075D95551F518B53E4B11DECB1D0018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_calledBlock_blockOfFunctionCallExpression' i='E075D95551F518B53E4B11DECB1D0018DE1146FF' se='1' ce='1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallParameters' i='E075D95551F518BE3E4B11DEA11F0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
@@ -889,11 +889,11 @@
 <L f='E012BF1E27AD33D2E9AD11DEA4F9EFACC0A868C8' s='E012BF1E28CB26F1E9AD11DE8461EFACC0A868C8'/>
 <L f='E012BF1E27C01F90E9AD11DEB25AEFACC0A868C8' s='E012BF1E28CB26F1E9AD11DE8461EFACC0A868C8'/>
 </data.classes.InputOfSignature>
-<data.classes.A_signature_functionSignatureTypeDefinition c='2'>
+<data.classes.A_signature_typeDefinition c='2'>
 <L f='E012BF1E27B6A9B3E9AD11DE970AEFACC0A868C8' s='E012BF1E27BDD5A0E9AD11DE8328EFACC0A868C8'/>
 <L f='E012BF1E27DCCF52E9AD11DE9EA4EFACC0A868C8' s='E012BF1E27DCCF53E9AD11DEC85CEFACC0A868C8'/>
 <L f='E012BF1E28B81421E9AD11DEBB20EFACC0A868C8' s='E012BF1E28BA8520E9AD11DE8455EFACC0A868C8'/>
-</data.classes.A_signature_functionSignatureTypeDefinition>
+</data.classes.A_signature_typeDefinition>
 <data.classes.OwnedSignatures c='2'>
 <L f='E0BF539C5C6D5C71561011DEA2270019D29902CC' s='E012BF1E28CB26F1E9AD11DE8461EFACC0A868C8'/>
 </data.classes.OwnedSignatures>
@@ -986,17 +986,17 @@
 <L f='E012BF1E27C74B80E9AD11DEAF9AEFACC0A868C8' s='E012BF1E28BF4011E9AD11DEC88FEFACC0A868C8'/>
 <L f='E012BF1E27C01F90E9AD11DEB25AEFACC0A868C8' s='E012BF1E28C18A01E9AD11DEBEDDEFACC0A868C8'/>
 </dataaccess.expressions.A_variable_variableExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E012BF1E27EFE222E9AD11DECFA3EFACC0A868C8' s='E012BF1E27EFE221E9AD11DEBEF1EFACC0A868C8'/>
 <L f='E012BF1E27F25320E9AD11DE9035EFACC0A868C8' s='E012BF1E27EFE222E9AD11DECFA3EFACC0A868C8'/>
 <L f='E012BF1E27F95802E9AD11DE9CA3EFACC0A868C8' s='E012BF1E27F95801E9AD11DE8691EFACC0A868C8'/>
 <L f='E012BF1E28C8B5F0E9AD11DEAC6CEFACC0A868C8' s='E012BF1E28C66C00E9AD11DEA7E5EFACC0A868C8'/>
-</dataaccess.expressions.A_withArgument_argument>
-<dataaccess.expressions.A_calledBlock_functionCallExpression c='2'>
+</dataaccess.expressions.A_argumentOf_argument>
+<dataaccess.expressions.A_calledBlock_blockOfFunctionCallExpression c='2'>
 <L f='E012BF1E27E64530E9AD11DEAD07EFACC0A868C8' s='E012BF1E27E64534E9AD11DE90F7EFACC0A868C8'/>
 <L f='E012BF1E28BA8521E9AD11DEB2A3EFACC0A868C8' s='E012BF1E28C3FB00E9AD11DEC149EFACC0A868C8'/>
 <L f='E0677A9A19972A69561611DEB9C90019D29902CC' s='E0677A9A19972A6D561611DECF550019D29902CC'/>
-</dataaccess.expressions.A_calledBlock_functionCallExpression>
+</dataaccess.expressions.A_calledBlock_blockOfFunctionCallExpression>
 <dataaccess.expressions.SignatureCallParameters c='2'>
 <L f='E012BF1E27E64533E9AD11DEA96EEFACC0A868C8' s='E012BF1E27E64534E9AD11DE90F7EFACC0A868C8'/>
 <L f='E012BF1E28BCCF11E9AD11DECE2BEFACC0A868C8' s='E012BF1E28C3FB00E9AD11DEC149EFACC0A868C8'/>

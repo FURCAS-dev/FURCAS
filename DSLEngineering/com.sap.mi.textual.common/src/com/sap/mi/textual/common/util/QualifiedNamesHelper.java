@@ -15,7 +15,7 @@ public class QualifiedNamesHelper {
         StringBuilder qualifiedname = new StringBuilder();
         
         for (Iterator<String> iterator = nameList.iterator(); iterator.hasNext();) {
-            String string = (String) iterator.next();
+            String string = iterator.next();
             qualifiedname.append(string);
             if (iterator.hasNext()) {
                 qualifiedname.append("::");

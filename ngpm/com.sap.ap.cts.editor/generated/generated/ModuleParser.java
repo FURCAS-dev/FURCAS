@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2009-12-07 16:10:20
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2010-03-03 09:14:40
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -84,7 +84,7 @@ public class ModuleParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g"; }
 
 
-       private static final String syntaxUUID = "E0B91841A28FE6E0E34211DECBBEF34D8D1505E2";
+       private static final String syntaxUUID = "E012BF1ECFAC8D70269C11DF8247DB7F8D1505E2";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }

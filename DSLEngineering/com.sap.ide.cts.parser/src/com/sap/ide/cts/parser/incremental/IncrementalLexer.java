@@ -94,6 +94,9 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 	}
 	
 	public Eostoken getEOS() {
+	        if(!eosRef.is___Alive()) {
+	            eosRef = createEOSToken(textblocksPackage, VersionEnum.CURRENT, getEOSTokenType());
+	        }
 		return eosRef;
 	}
 	
@@ -474,6 +477,12 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		if(currentRoot == null) {
 		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
 				VersionEnum.CURRENT, true, shortPrettyPrinter);
+		} else {
+		   //TODO fix possibly incomplete textblocks to be able to reuse or recreate them for 
+		    //current version
+		    TbChangeUtil.revertToVersion(root, VersionEnum.PREVIOUS);
+		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
+                            VersionEnum.CURRENT, true, shortPrettyPrinter);
 		}
 	    	if (moinLoggingWasEnabled) {
 	    	    ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());

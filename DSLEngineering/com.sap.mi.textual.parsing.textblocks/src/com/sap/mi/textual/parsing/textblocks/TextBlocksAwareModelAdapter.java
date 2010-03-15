@@ -173,9 +173,9 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
      */
     @Override
     public Object setOclReference(Object modelElement, String propertyName,
-            Object keyValue, String oclQuery, Object contextElement)
+            Object keyValue, String oclQuery, Object contextElement, Object currentForeachElement)
             throws ModelAdapterException, ReferenceSettingException {
-        return modelAdapter.setOclReference(modelElement, propertyName, keyValue, oclQuery, contextElement);
+        return modelAdapter.setOclReference(modelElement, propertyName, keyValue, oclQuery, contextElement, currentForeachElement);
     }
 
     /* (non-Javadoc)

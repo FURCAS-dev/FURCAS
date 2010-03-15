@@ -142,7 +142,10 @@ public class OclTypeImpl extends BaseOclAny implements OclType {
         Set<RefObjectImpl> instances = new HashSet<RefObjectImpl>( );
         if ( !foundMris.isEmpty( ) ) {
             for ( MRI mri : foundMris ) {
-                instances.add( (RefObjectImpl) connection.getElement( mri ) );
+                RefObjectImpl element = (RefObjectImpl) connection.getElement( mri );
+                if(element != null) {
+                    instances.add( element );
+                }
             }
         }
         return instances;

@@ -44,12 +44,12 @@
 <M c='2' q='dataaccess.expressions.This' i='E075D95551F2A7DD3E4B11DECB680018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='2' q='dataaccess.expressions.SignatureCallParameters' i='E075D95551F518BE3E4B11DEA11F0018DE1146FF' se='1' ce='1' oe='0'/>
 <M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.Ternary' i='E075D955E4CCEB235B1111DEA8D500155883529C'/>
-<M c='2' q='dataaccess.expressions.A_falseExpr_ternary' i='E075D955E4CF5C215B1111DEBB4E00155883529C' se='1' ce='1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_trueExpr_ternary' i='E075D955E4CF5C245B1111DEC42D00155883529C' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_falseExpr_falseOfTernary' i='E075D955E4CF5C215B1111DEBB4E00155883529C' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_trueExpr_trueOfTernary' i='E075D955E4CF5C245B1111DEC42D00155883529C' se='1' ce='1' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
 <M c='2' q='behavioral.actions.Return' i='E0BC871351C30C2D3E4B11DE89360018DE1146FF'/>
@@ -561,10 +561,10 @@
 <L f='E00EA3B75B679E93777511DE89F800155883529C' s='E00EA3B75B679E95777511DEBFF900155883529C'/>
 <L f='E00EA3B75B6A0F99777511DE8CB000155883529C' s='E00EA3B75B6A0F9D777511DE804000155883529C'/>
 </dataaccess.expressions.A_object_objectBasedExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E00EA3B75B6C5986777511DE88A600155883529C' s='E00EA3B75B6C5985777511DE87B500155883529C'/>
 <L f='E00EA3B75B6ECA81777511DEB8F500155883529C' s='E00EA3B75B6ECA80777511DE996300155883529C'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <dataaccess.expressions.SignatureCallParameters c='2'>
 <L f='E00EA3B75B6A0F9C777511DE899200155883529C' s='E00EA3B75B6A0F9D777511DE804000155883529C'/>
 </dataaccess.expressions.SignatureCallParameters>
@@ -572,12 +572,12 @@
 <L f='E00EA3B75B679E95777511DEBFF900155883529C' s='E007956A8C6F56C7778B11DE8B5C00155883529C'/>
 <L f='E00EA3B75B6A0F9D777511DE804000155883529C' s='local:E0A5ADB54D58E777777311DEA25100155883529C'/>
 </dataaccess.expressions.SignatureCallToSignature>
-<dataaccess.expressions.A_falseExpr_ternary c='2'>
+<dataaccess.expressions.A_falseExpr_falseOfTernary c='2'>
 <L f='E00EA3B75B6C5988777511DE973000155883529C' s='E00EA3B75B6C5989777511DEABBA00155883529C'/>
-</dataaccess.expressions.A_falseExpr_ternary>
-<dataaccess.expressions.A_trueExpr_ternary c='2'>
+</dataaccess.expressions.A_falseExpr_falseOfTernary>
+<dataaccess.expressions.A_trueExpr_trueOfTernary c='2'>
 <L f='E00EA3B75B6C5986777511DE88A600155883529C' s='E00EA3B75B6C5989777511DEABBA00155883529C'/>
-</dataaccess.expressions.A_trueExpr_ternary>
+</dataaccess.expressions.A_trueExpr_trueOfTernary>
 <textblocks.TextBlock_ElementsInContext c='1'>
 <L f='E007956A8BFF56E1778B11DEBF3E00155883529C' s='E00EA3B7D1E522A3777411DEC14000155883529C'/>
 <L f='E007956A8BFF56F4778B11DEBFFB00155883529C' s='E00EA3B75B6A0F93777511DE90E200155883529C'/>

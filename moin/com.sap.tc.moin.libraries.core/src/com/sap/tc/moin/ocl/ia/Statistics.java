@@ -1,10 +1,16 @@
 package com.sap.tc.moin.ocl.ia;
 
 import java.util.List;
+import java.util.Map;
 
+import org.omg.ocl.expressions.OclExpression;
+
+import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
+import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.core.ocl.service.impl.OclExpressionRegistrationImpl;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 
 /**
@@ -34,9 +40,13 @@ public abstract class Statistics {
     public abstract void setCurrentObjectForSelf(Object elementForSelf);
     public abstract String toString(OclExpressionRegistration registration, Connection conn);
     public abstract String toCsv(OclExpressionRegistration registration, Connection conn);
+    public abstract void instanceScopeNavigationStepComputed(InstanceScopeAnalysis instanceScopeAnalyzer, OclExpression exp, NavigationStep step, long timeInNanoseconds);
     public abstract void instanceScopeAnalysisPerformed(OclExpressionRegistration registration, ModelChangeEvent mce, long timeInNanoseconds, int numberOfAffectedElements);
     public abstract void classScopeAnalysisPerformed(OclExpressionRegistration registration, long timeInNanoseconds);
     public abstract void evaluated(OclExpressionRegistrationImpl registration, long l);
     public abstract String getCsvHeader();
     public abstract void doneWithEvent(OclExpressionRegistrationImpl oclExpressionRegistrationImpl, ModelChangeEvent mce);
+    public abstract void stepPerformed(NavigationStep step);
+    public abstract Map<NavigationStep, Integer> getStepsInfo();
+    public abstract void haveIntersectingSubclassTreeCalled(MofClass a, MofClass b);
 }

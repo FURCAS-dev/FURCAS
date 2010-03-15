@@ -40,7 +40,7 @@ public class PrettyPrintCommand extends Command {
 	@Override
 	public void doExecute() {
 		try {
-			CtsPrettyPrinter.prettyPrint(refObject, syntax, target);
+			CtsPrettyPrinter.prettyPrint(refObject, syntax, target, null, null);
 
 			result = target.getRootBlock();
 		} catch (SyntaxAndModelMismatchException e) {

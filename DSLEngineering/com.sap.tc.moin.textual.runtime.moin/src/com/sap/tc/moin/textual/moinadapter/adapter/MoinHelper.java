@@ -3,18 +3,16 @@ package com.sap.tc.moin.textual.moinadapter.adapter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.impl.context.ContextManager;
-import com.sap.tc.moin.ocl.utils.jmi.OclHelper;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.model.Aliases;
 import com.sap.tc.moin.repository.mmi.model.Import;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 
@@ -23,19 +21,11 @@ public class MoinHelper {
 	private static final String QUERY_PARAM_NAME = "\\?";
 
     /**
-     * The {@link ContextManager#contextPatternAsString} pattern contains two groups where the second group is for the name of the
-     * context tag. This group therefore contains three groups, the second being the context tag, the third being the name of the
-     * type to which the context is cast.
+     * Finds all {@link RefPackage}s that are imported by the given root.
+     * 
+     * @param root
+     * @return
      */
-	private static final Pattern oclAsTypePattern = Pattern.compile(ContextManager.contextPatternAsString+
-		"\\b*\\.\\b*oclAsType\\(\\b*([^\\(]*)\\b*\\)");
-
-	/**
-	 * Finds all {@link RefPackage}s that are imported by the given root.
-	 * 
-	 * @param root
-	 * @return
-	 */
 	public static Collection<? extends RefPackage> getImportedRefPackages(
 			RefPackage root) {
 		Collection<RefPackage> packages = new ArrayList<RefPackage>();
@@ -77,21 +67,6 @@ public class MoinHelper {
             return packages;
 	}
 
-	public static boolean usesContext(String queryToExecute) {
-		Matcher matcher = ContextManager.contextPattern.matcher(queryToExecute);
-		return matcher.find();
-	}
-
-	/**
-	 * Checks if the <tt>oclExpression</tt> contains a combination of the sort
-	 * <tt>#context(...).oclAsType(...)</tt>. This can be used to determine the type of
-	 * the "self" variable which will then be the evaluation context for the expression
-	 */
-	public static boolean usesContextWithSubsequentCast(String oclExpression) {
-		Matcher matcher = oclAsTypePattern.matcher(oclExpression);
-		return matcher.find();
-	}
-
 	public static String prepareOclQuery(String queryToExecute,
 			Object contextObject, Object keyValue)
 			throws ModelAdapterException {
@@ -100,24 +75,22 @@ public class MoinHelper {
 			if (result.startsWith("OCL:")) {
 				result = result.replaceFirst("OCL:", "");
 			}
-			if (usesContext(result)) {
+			if (ContextAndForeachHelper.usesContext(result)) {
 				if (result.indexOf(OCL_SELF) > -1) {
 					throw new ModelAdapterException(
 							"Ocl Query cannot contain #context and self at the same time.");
 				} else {
-					// if (contextObject instanceof RefObject ||
-					// (contextObject instanceof IModelElementProxy &&
-					// ((IModelElementProxy)contextObject).getRealObject() !=
-					// null)) {
-					result = result.replaceAll(ContextManager.contextPattern
+					result = result.replaceAll(ContextAndForeachHelper.contextPattern
 							.pattern(), OCL_SELF);
-					// } else if(contextObject instanceof IModelElementProxy) {
-					// }else {
-					// throw new ModelAdapterException(
-					// "#context has to be a model element but was:"
-					// + contextObject.getClass());
-					// }
 				}
+			} else if(ContextAndForeachHelper.usesForeach(result)) {
+			    if (result.indexOf(OCL_SELF) > -1) {
+                                throw new ModelAdapterException(
+                                                "Ocl Query cannot contain #foreach and self at the same time.");
+                            } else {
+                                result = result.replaceAll(ContextAndForeachHelper.foreachPattern
+                                                .pattern(), OCL_SELF);
+                            }
 			}
 
 			if (keyValue != null) {
@@ -145,22 +118,47 @@ public class MoinHelper {
 		return (MofClass) resultSet.getRefObjects("instance")[0];
 	}
 
-	/**
-	 * If the {@link #oclAsTypePattern} matches, this method determines the type to
-	 * which the context is being cast. If the pattern does not match or the
-	 * type is not found, <tt>null</tt> is returned.
-	 */
-	public static RefObject getContextMetaObject(Connection connection, Collection<RefPackage> packagesForLookup, String oclExpression) {
-	    RefObject result = null;
-	    Matcher matcher = oclAsTypePattern.matcher(oclExpression);
-	    if (matcher.find()) {
-		if (matcher.groupCount() >= 3) {
-		    String oclTypeName = matcher.group(3);
-		    List<String> path = OclHelper.getPath(oclTypeName);
-		    result = OclHelper.lookupModelElementByPathName(connection, path, packagesForLookup);
+	    public static RefPackage getOutermostPackageThroughClusteredImports(
+		    Connection conn, RefBaseObject refObject) {
+		RefPackage result = refObject.refOutermostPackage();
+		RefPackage candidate = result;
+		while (candidate != null) {
+		    // ascend the clustered imports in the metamodel
+		    MofPackage p = candidate.refMetaObject();
+		    candidate = null;
+		    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
+		    for (Import i : a.getImporter(p)) {
+			if (i.isClustered()) {
+			    MofPackage importer = (MofPackage) i.getContainer();
+			    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
+				    importer);
+			    result = candidate;
+			    break;
+			}
+		    }
 		}
+		return result;
 	    }
-	    return result;
-	}
 
+	    public static RefPackage getOutermostPackageThroughClusteredImportsFromMofClass(
+		    Connection conn, MofClass mofClass) {
+		RefPackage result = conn.getJmiHelper().getRefClassForMofClass(mofClass).refOutermostPackage();
+		RefPackage candidate = result;
+		while (candidate != null) {
+		    // ascend the clustered imports in the metamodel
+		    MofPackage p = candidate.refMetaObject();
+		    candidate = null;
+		    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
+		    for (Import i : a.getImporter(p)) {
+			if (i.isClustered()) {
+			    MofPackage importer = (MofPackage) i.getContainer();
+			    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
+				    importer);
+			    result = candidate;
+			    break;
+			}
+		    }
+		}
+		return result;
+	    }
 }

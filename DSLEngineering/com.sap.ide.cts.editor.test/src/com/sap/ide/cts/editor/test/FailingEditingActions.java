@@ -10,63 +10,37 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import modelmanagement.Package;
+import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.ui.PartInitException;
 import org.junit.Test;
 
 import behavioral.actions.Block;
 import behavioral.actions.NamedValueDeclaration;
-import behavioral.actions.Return;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.CtsHistoryDocument;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
+import com.sap.mi.fwk.ModelManager;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.ModelPartition;
+import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
+import com.sap.tc.moin.repository.PartitionsNotSavedException;
+import com.sap.tc.moin.repository.ReferencedTransientElementsException;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import data.classes.MethodSignature;
 import data.classes.NamedValue;
 import data.classes.SapClass;
-import dataaccess.expressions.MethodCallExpression;
 
 public class FailingEditingActions extends RunletEditorTest {
-    
-
-    /**
-     * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
-     * multiplicity of calling a method with 1..1 output multiplicity should change to 1..1.
-     */
-    @Test
-    public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
-        assertNotNull(refObject); 
-        assertTrue(refObject.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(refObject);
-        CtsDocument document = getDocument(editor);
-        document.replace(52, 0, "1");
-        document.replace(53, 0, ".");
-        document.replace(54, 0, ".");
-        document.replace(55, 0, "1");
-        document.replace(56, 0, " ");
-        document.replace(70, 0, " ");
-        document.replace(71, 0, "1");
-        document.replace(72, 0, ".");
-        document.replace(73, 0, ".");
-        document.replace(74, 0, "1");
-        saveAll(editor);
-        assertTrue(refObject.is___Alive());
-	MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
-		.iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
-	assertEquals(1, mce.getType().getLowerMultiplicity());
-        close(editor);
-    };
 
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.
@@ -94,7 +68,7 @@ public class FailingEditingActions extends RunletEditorTest {
         Collection<JmiException> verificationResults = variableDeclaration.getNamedValue().getInitExpression().
         							refVerifyConstraints(/* deepVerity */ true);
         assertEquals("Expected to find one semantic error in variable declaration before fix", 1, verificationResults.size());
-        pos = document.get().indexOf(";");
+        pos = document.get().indexOf(");");
         document.replace(pos, 0, "->iterate(p|p)"); // this will make it semantically correct again
         saveAll(editor);
         Collection<JmiException> verificationResults2 = variableDeclaration.getNamedValue().getInitExpression().
@@ -164,5 +138,70 @@ public class FailingEditingActions extends RunletEditorTest {
     }
 
     
+    /** Currently fails with a StackOverflowError due to nested update event handler calls
+     */
+	@Test
+	public void testDeleteStatementFromMethod() throws NullPartitionNotEmptyException,
+			ReferencedTransientElementsException, PartitionsNotSavedException,
+			BadLocationException, CoreException {
+
+		NgpmPackage rootPkg = connection
+				.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
+		final SapClass clazz = (SapClass) rootPkg.getData().getClasses()
+				.getSapClass().refCreateInstanceInPartition(
+						ModelManager.getPartitionService().getPartition(
+								connection, getProject(),
+								new Path("src/Package1235568260162.types")));
+		final Package pack = (Package) rootPkg.getModelmanagement()
+				.getPackage().refCreateInstanceInPartition(
+						ModelManager.getPartitionService().getPartition(
+								connection, getProject(),
+								new Path("src/Package1235568260162.types")));
+		clazz.setPackage(pack);
+		clazz.setName("Humba");
+		connection.save();
+
+		AbstractGrammarBasedEditor editor = openEditor(clazz);
+
+		CtsDocument document = getDocument(editor);
+		String contents = document.get();
+		int bodyStart = contents.indexOf('{');
+		String newBody = "Boolean playWithPersistence() {"
+				+ "store this;"
+				+ "commit;"
+				+ "var repositoryContainsThis = all Organization->iterate(contains=false; i|contains.or(i==this));"
+				+ "return repositoryContainsThis;" + "}"
+				+ "owns Person* persons {.,+=,-=}";
+		document.replace(bodyStart + 1, 0, newBody);
+		assertEquals("class Humba {" + newBody + "\n  \n}", document.get());
+
+		saveAll(editor);
+
+		assertEquals(4, clazz.getOwnedSignatures().size());
+		Block body = (Block) clazz.getOwnedSignatures().iterator().next()
+				.getImplementation();
+		assertEquals(4, body.getStatements().size());
+
+		contents = document.get();
+		String commitString = "commit;";
+		int commitStatmentIndex = contents.indexOf(commitString);
+		document.replace(commitStatmentIndex, commitString.length(), "");
+		assertEquals(
+				"class Humba {Boolean playWithPersistence() {"
+						+ "store this;"
+						+ "var repositoryContainsThis = all Organization->iterate(contains=false; i|contains.or(i==this));"
+						+ "return repositoryContainsThis;" + "}"
+						+ "owns Person* persons {.,+=,-=}\n  \n}", document.get());
+
+		saveAll(editor);
+
+		assertEquals(4, clazz.getOwnedSignatures().size());
+		body = (Block) clazz.getOwnedSignatures().iterator().next()
+				.getImplementation();
+		assertEquals(3, body.getStatements().size());
+
+		close(editor);
+	}
+	
 
 }

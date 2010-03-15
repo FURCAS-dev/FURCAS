@@ -96,6 +96,8 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 		public void doExecute() {
 			try {
 				callBatchParser(existingRoot);
+				//FIXME: evaluate foreach references to reestablish links where templates used in foreachs
+				//are referenced as additionalTemplates
 				TextBlockProxy proxy = parserTextBlocksHandler.getCurrentTbProxy();
 				recoverMappingLink(existingRoot, proxy);
 			} catch (Exception ex) {

@@ -8,7 +8,6 @@ import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 public class ResolvedModelElementProxy implements IModelElementProxy {
 
 	private final Object realObject;
-	private SequenceElement sequenceElement;
 
 	@Override
 	public Object getRealObject() {
@@ -50,16 +49,5 @@ public class ResolvedModelElementProxy implements IModelElementProxy {
 	    } else if (!realObject.equals(other.getRealObject()))
 		return false;
 	    return true;
-	}
-	@Override
-	public SequenceElement getSequenceElement() {
-		return sequenceElement;
-	}
-	
-	@Override
-	public void setSequenceElement(SequenceElement sequenceElement) {
-		this.sequenceElement = sequenceElement; 
-		
-	}
-	
+	}	
 }

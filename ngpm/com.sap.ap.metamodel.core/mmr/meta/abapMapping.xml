@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Jan 29 17:41:51 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Thu Mar 04 23:33:29 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -524,14 +524,14 @@ inv:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.896' 
+    <Model:Import xmi.id = 'G.928' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.897' 
+    <Model:Import xmi.id = 'G.929' 
       name = 'localization' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -680,7 +680,7 @@ inv:
       </Model:Namespace.contents>
     </Model:Association>
     <!-- ==================== abapMapping.org.omg.sap2mof.store=no    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.898' 
+    <Model:Tag xmi.id = 'G.930' 
       name = 'org.omg.sap2mof.store=no' annotation = '' 
       tagId = 'org.omg.sap2mof.store' >
       <Model:Tag.values>
@@ -694,7 +694,7 @@ inv:
       </Model:Tag.elements>
     </Model:Tag>
     <!-- ==================== abapMapping.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.899' 
+    <Model:Tag xmi.id = 'G.931' 
       name = 'org.omg.sap2mof.store=yes' annotation = '' 
       tagId = 'org.omg.sap2mof.store' >
       <Model:Tag.values>
@@ -707,7 +707,7 @@ inv:
         <Model:ModelElement xmi.idref = 'a47EB7BC4006F'/>
       </Model:Tag.elements>
     </Model:Tag>
-    <Model:Import xmi.id = 'G.900' 
+    <Model:Import xmi.id = 'G.932' 
       name = 'data' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

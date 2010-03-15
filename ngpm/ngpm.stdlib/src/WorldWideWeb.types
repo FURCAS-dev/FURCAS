@@ -26,7 +26,7 @@
 <M c='2' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
 <M c='2' q='dataaccess.expressions.VariableExpression' i='E075D95551F2A7D13E4B11DEC9820018DE1146FF'/>
 <M c='2' q='dataaccess.expressions.A_variable_variableExpression' i='E075D95551F518A93E4B11DEC5A80018DE1146FF' se='1' ce='-1' oe='-1'/>
-<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_argumentOf_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
 <M c='1' q='textblocks.TextBlock_ElementsInContext' i='E0A5ADB5AB2F7F905A9411DEA82300016CE99C52' se='0' ce='-1' oe='-1'/>
 <M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
 <M c='2' q='behavioral.actions.Return' i='E0BC871351C30C2D3E4B11DE89360018DE1146FF'/>
@@ -174,9 +174,9 @@
 <dataaccess.expressions.A_variable_variableExpression c='2'>
 <L f='E0E41B9870C4166770A411DEA9F500155883529C' s='E0E41B9870C4166B70A411DE9FF300155883529C'/>
 </dataaccess.expressions.A_variable_variableExpression>
-<dataaccess.expressions.A_withArgument_argument c='2'>
+<dataaccess.expressions.A_argumentOf_argument c='2'>
 <L f='E0E41B9870C4166C70A411DE9D1700155883529C' s='E0E41B9870C4166B70A411DE9FF300155883529C'/>
-</dataaccess.expressions.A_withArgument_argument>
+</dataaccess.expressions.A_argumentOf_argument>
 <textblocks.TextBlock_ElementsInContext c='1'>
 <L f='E0E41B9870C4166170A411DECC8400155883529C' s='E0E41B9870C4166770A411DEA9F500155883529C'/>
 </textblocks.TextBlock_ElementsInContext>

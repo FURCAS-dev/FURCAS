@@ -13,6 +13,7 @@ import textblocks.LexedToken;
 import textblocks.TextBlock;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
@@ -102,10 +103,10 @@ public class ShortPrettyPrinter {
         		    }
         		    Object value = investigator.get(referencedObject,
         			    refersToArg.getPropertyName());
-        		    if (value instanceof Collection && ((Collection<?>)value).size() > 0) {
+        		    if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
         			value = ((Collection<?>) value).iterator().next();
         		    }
-        		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection)) {
+        		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
         			newvalue = value.toString();
         		    }
         		    
@@ -132,10 +133,10 @@ public class ShortPrettyPrinter {
 				    .getStrucfeature().getName());
 		    // TODO handle pretty printing and escaping according to
 		    // syntax
-		    if (value instanceof Collection && ((Collection<?>)value).size() > 0) {
+		    if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
 			value = ((Collection<?>) value).iterator().next();
 		    }
-		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection)) {
+		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
 			newvalue = value.toString();
 		    }
 		    break;
@@ -164,7 +165,7 @@ public class ShortPrettyPrinter {
 	    TbUtil.constructContext(token, lcb);
 
 	    if (!lcb.getContextStack().isEmpty()
-		    && MoinHelper.usesContext(query)) {
+		    && ContextAndForeachHelper.usesContext(query)) {
 		self = (RefObject) lcb.getContextStack().peek().getRealObject();
 	    }
 	    query = MoinHelper.prepareOclQuery(query, self, token.getValue());

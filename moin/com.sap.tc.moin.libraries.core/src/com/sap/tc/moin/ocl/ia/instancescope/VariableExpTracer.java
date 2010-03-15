@@ -111,7 +111,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(getConnection(), argumentExpression, context, classScopeAnalyzer));
 	}
 	indirectingStep.setActualStep(new BranchingNavigationStep(getConnection(),
-		(MofClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepsPerCall.toArray(new NavigationStep[0])));
+		getInnermostElementType(getExpression().getType(getConnection())), context, getExpression(), pathCache, stepsPerCall.toArray(new NavigationStep[0])));
 	return indirectingStep;
     }
 
@@ -148,7 +148,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(getConnection(), ((IterateExpImpl) getVariableDeclaration()
 		.getBaseExp(getConnection())).getBody(getConnection()), context, classScopeAnalyzer);
 	return new BranchingNavigationStep(getConnection(),
-		(MofClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepForInitExpression, stepForBodyExpression);
+		getInnermostElementType(getExpression().getType(getConnection())), context, getExpression(), pathCache, stepForInitExpression, stepForBodyExpression);
     }
 
     private NavigationStep tracebackIteratorVariable(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
@@ -171,12 +171,12 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	    }
 	    indirectingStep.setActualStep(new BranchingNavigationStep(
 		    getConnection(),
-		    (MofClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepsForCalls.toArray(new NavigationStep[0])));
+		    getInnermostElementType(getExpression().getType(getConnection())), context, getExpression(), pathCache, stepsForCalls.toArray(new NavigationStep[0])));
 	    result = indirectingStep;
 	} else {
 	    // self occurred outside of an operation; it evaluates to s for s being the context
 	    result = new IdentityNavigationStep(getConnection(), (MofClass) getExpression().getType(getConnection()),
-		    (MofClass) getExpression().getType(getConnection()), (OclExpressionInternal) getExpression());
+		    (MofClass) getExpression().getType(getConnection()), (OclExpressionInternal) getExpression(), pathCache);
 	}
 	return result;
     }

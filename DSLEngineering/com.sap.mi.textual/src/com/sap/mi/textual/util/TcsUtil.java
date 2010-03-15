@@ -77,7 +77,7 @@ public class TcsUtil {
 	        List<RuleBodyPropertyConstraint> constraints = buffer.getCurrentConstraints();
 	        
 	        for (Iterator<RuleBodyPropertyConstraint> iterator = constraints.iterator(); iterator.hasNext();) {
-	            RuleBodyPropertyConstraint ruleBodyPropertyConstraint = (RuleBodyPropertyConstraint) iterator.next();
+	            RuleBodyPropertyConstraint ruleBodyPropertyConstraint = iterator.next();
 	            if (ruleBodyPropertyConstraint instanceof PropertyInstanceOfConstraint) {
 	                PropertyInstanceOfConstraint instOfConst = (PropertyInstanceOfConstraint) ruleBodyPropertyConstraint;
 	                if (instOfConst.getPropertyName().equals(name)) {

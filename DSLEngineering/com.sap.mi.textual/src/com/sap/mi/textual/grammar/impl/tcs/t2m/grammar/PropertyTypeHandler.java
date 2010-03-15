@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-09-18 14:13:44 +0200 (Fr, 18 Sep 2009) $
- * @version $Revision: 7886 $
- * @author: $Author: c5106462 $
+ * Date: $Date: 2010-02-26 09:30:11 +0100 (Fr, 26 Feb 2010) $
+ * @version $Revision: 9485 $
+ * @author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
@@ -355,15 +355,13 @@ public class PropertyTypeHandler<Type extends Object> {
 	 * @param name
 	 * @param args
 	 * @throws SyntaxElementException
-	 * @throws MetamodelNameResolvingException
 	 * @throws MetaModelLookupException
 	 */
 	private void addQueriedReferenceCode(Property prop,
 			StringBuilder ruleBodyPart,
 			ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyListName,
 			String propertyName, PropertyArgs args)
-			throws SyntaxElementException, MetaModelLookupException,
-			MetamodelNameResolvingException {
+			throws SyntaxElementException, MetaModelLookupException {
 		// creates temp = ...
 		appendRefersToTempPart(prop, ruleBodyPart,
 				metaModelTypeOfPropertyListName, args.asPArg, args.refersTo,
@@ -483,15 +481,13 @@ public class PropertyTypeHandler<Type extends Object> {
 	 * @param refersTo
 	 * @throws SyntaxElementException
 	 * @throws MetaModelLookupException
-	 * @throws MetamodelNameResolvingException
 	 */
 	private void appendRefersToTempPart(
 			Property prop,
 			StringBuilder ruleBodyPart,
 			ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference,
 			AsParg asPArg, RefersToParg refersTo, boolean primitivesOnly)
-			throws SyntaxElementException, MetaModelLookupException,
-			MetamodelNameResolvingException {
+			throws SyntaxElementException, MetaModelLookupException {
 		// example:
 		// temp=identifier {setRef(ret, "author", "Author", "name", temp, null,
 		// "never", null, false, null);}

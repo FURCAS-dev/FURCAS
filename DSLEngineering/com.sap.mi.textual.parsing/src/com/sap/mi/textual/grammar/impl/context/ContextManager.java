@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
@@ -31,13 +30,6 @@ public class ContextManager {
     private ContextLookUpCache lookupCache;
     
     private Set<Context> rootContexts;
-
-    public static final String contextPatternAsString = "#context(\\((\\w*)\\))?";
-    
-    /**
-     * The pattern to match #context(...) or #context
-     */
-    public static final Pattern contextPattern = Pattern.compile(contextPatternAsString);
 
     public ContextManager() {
         resetContextManager();

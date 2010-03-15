@@ -164,7 +164,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider
 	 * @param context
 	 *            the context to use
 	 */
-	private void createActions(ActionContext context)
+	public void createActions(ActionContext context)
 	{
 	}
 	
@@ -176,7 +176,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider
 	 *            the menu item to add, the value might be <code>null</code>.
 	 * @generated
 	 */
-	private void addToContextMenu(Object item)
+	public void addToContextMenu(Object item)
 	{
 		if(item != null)
 		{

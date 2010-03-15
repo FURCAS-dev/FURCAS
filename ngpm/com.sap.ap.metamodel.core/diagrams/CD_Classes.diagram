@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/com/sap/mi/gfw/mm' i='1' v='1.0'/>
+<M c='1' q='links.PictogramLinkReferencesBusinessObjects' i='45E806E30284FE5FB2DF4EEE3C28FAD397F8DCD7' se='1' ce='-1' oe='0'/>
+<M c='1' q='datatypes.Color' i='45E806E31BEE0BFC06414C9B3C40BD0ABFB5FC54'/>
+<M c='1' q='pictograms.GraphicsAlgorithmHasForegroundColor' i='45E806E339C380ACB9D54742385FA5A67110FC14' se='1' ce='-1' oe='-1'/>
+<M c='1' q='pictograms.DiagramContainsColors' i='45E806E346B62DC200B947272E8FDE657EE11680' se='1' ce='1' oe='-1'/>
+<M c='1' q='links.DiagramLinkReferencesDiagram' i='45E806E34864C34AAB914D1B0575B8FF0AE0200F' se='1' ce='-1' oe='-1'/>
+<M c='1' q='links.PictogramLink' i='45E806E357AEC9BF0C7D4C3417DA8693C081773B'/>
+<M c='1' q='pictograms.Font' i='45E806E35856AAF1B14B4F923905D5D6147B02C7'/>
+<M c='1' q='links.DiagramLinkReferencesPictogramLinks' i='45E806E369DC288747324E4122F8E53651800C8C' se='1' ce='-1' oe='-1'/>
+<M c='1' q='pictograms.Rectangle' i='45E806E37120AD4D7CC74AC23483FCA2046A785F' ova='renderingStyle'/>
+<M c='1' q='pictograms.GraphicsAlgorithmHasBackgroundColor' i='45E806E39B5A5621D3A049D41BDCF825E4F1DFCD' se='0' ce='-1' oe='-1'/>
+<M c='1' q='links.PictogramElementContainsPictogramLink' i='45E806E3A923DD06475A493C25D3E37647D0913C' se='0' ce='0' oe='-1'/>
+<M c='1' q='pictograms.Diagram' i='45E806E3B28EF07AFA0A4F2C342AC45B58528277'/>
+<M c='1' q='links.DiagramLink' i='45E806E3F50C9691A7AD41B1112AD1FB129489D9'/>
+<M c='1' q='pictograms.PictogramelementContainsGraphicsalgorithm' i='45E806E3FAA2BB1CBA6D4FD32BB3E5E85E90D191' se='1' ce='1' oe='-1'/>
+<M c='1' q='pictograms.Style' i='46973F2C80BDECBB311F11DCC8D8001125D59A18' ova='renderingStyle,font'/>
+<M c='1' q='pictograms.StyleContainerContainsStyles' i='46973F2C80C28091311F11DCAD2F001125D59A18' se='1' ce='1' oe='-1'/>
+<pictograms.Style m:c='1' m:i='E04BE6EEE7A41D70149111DF9837EEDE8D1505E2' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' id='diagramStyle' description='' font='E0A2F768E7A61940149111DFB006EEDE8D1505E2' horizontalAlignment='ALIGNMENT_LEFT' verticalAlignment='ALIGNMENT_CENTER' angle='0' stretchH='false' stretchV='false' proportional='false'/>
+<datatypes.Color m:c='1' m:i='E04BE6EEE7A492A0149111DF9BC6EEDE8D1505E2' red='0' green='0' blue='0'/>
+<pictograms.Diagram m:c='1' m:i='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2' visible='true' active='false' gridUnit='10' diagramTypeId='com.sap.ide.moftool.class' name='Classes' snapToGrid='true' showGuides='true'/>
+<pictograms.Rectangle m:c='1' m:i='E0A2F768E79B6AE0149111DFAB77EEDE8D1505E2' width='1000' height='1000' x='0' y='0'/>
+<datatypes.Color m:c='1' m:i='E0A2F768E7A11030149111DF9105EEDE8D1505E2' red='227' green='238' blue='249'/>
+<datatypes.Color m:c='1' m:i='E0A2F768E7A18560149111DF9663EEDE8D1505E2' red='255' green='255' blue='255'/>
+<pictograms.Font m:c='1' m:i='E0A2F768E7A61940149111DFB006EEDE8D1505E2' name='Arial' size='8' italic='false' bold='false'/>
+<links.PictogramLink m:c='1' m:i='E0A2F768E7A7EE00149111DFB553EEDE8D1505E2'/>
+<links.DiagramLink m:c='1' m:i='E0A2F768E7A83C20149111DFB8A2EEDE8D1505E2'/>
+<links.PictogramLinkReferencesBusinessObjects c='1'>
+<L f='local:E0234C8C51EDECC23E4B11DE81160018DE1146FF' s='E0A2F768E7A7EE00149111DFB553EEDE8D1505E2'/>
+</links.PictogramLinkReferencesBusinessObjects>
+<pictograms.GraphicsAlgorithmHasForegroundColor c='1'>
+<L f='E04BE6EEE7A492A0149111DF9BC6EEDE8D1505E2' s='E04BE6EEE7A41D70149111DF9837EEDE8D1505E2'/>
+<L f='E0A2F768E7A11030149111DF9105EEDE8D1505E2' s='E0A2F768E79B6AE0149111DFAB77EEDE8D1505E2'/>
+</pictograms.GraphicsAlgorithmHasForegroundColor>
+<pictograms.DiagramContainsColors c='1'>
+<L f='E04BE6EEE7A492A0149111DF9BC6EEDE8D1505E2' s='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2'/>
+<L f='E0A2F768E7A11030149111DF9105EEDE8D1505E2' s='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2'/>
+<L f='E0A2F768E7A18560149111DF9663EEDE8D1505E2' s='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2'/>
+</pictograms.DiagramContainsColors>
+<links.DiagramLinkReferencesDiagram c='1'>
+<L f='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2' s='E0A2F768E7A83C20149111DFB8A2EEDE8D1505E2'/>
+</links.DiagramLinkReferencesDiagram>
+<links.DiagramLinkReferencesPictogramLinks c='1'>
+<L f='E0A2F768E7A7EE00149111DFB553EEDE8D1505E2' s='E0A2F768E7A83C20149111DFB8A2EEDE8D1505E2'/>
+</links.DiagramLinkReferencesPictogramLinks>
+<pictograms.GraphicsAlgorithmHasBackgroundColor c='1'>
+<L f='E04BE6EEE7A41D70149111DF9837EEDE8D1505E2' s='E0A2F768E7A18560149111DF9663EEDE8D1505E2'/>
+<L f='E0A2F768E79B6AE0149111DFAB77EEDE8D1505E2' s='E0A2F768E7A18560149111DF9663EEDE8D1505E2'/>
+</pictograms.GraphicsAlgorithmHasBackgroundColor>
+<links.PictogramElementContainsPictogramLink c='1'>
+<L f='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2' s='E0A2F768E7A7EE00149111DFB553EEDE8D1505E2'/>
+</links.PictogramElementContainsPictogramLink>
+<pictograms.PictogramelementContainsGraphicsalgorithm c='1'>
+<L f='E0A2F768E79B6AE0149111DFAB77EEDE8D1505E2' s='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2'/>
+</pictograms.PictogramelementContainsGraphicsalgorithm>
+<pictograms.StyleContainerContainsStyles c='1'>
+<L f='E04BE6EEE7A41D70149111DF9837EEDE8D1505E2' s='E0A2F768E79AA790149111DFB6D3EEDE8D1505E2'/>
+</pictograms.StyleContainerContainsStyles>
+</Partition>

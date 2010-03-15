@@ -28,6 +28,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 
 /**
  * A document implementation that is responsible for presenting a text blocks
@@ -75,8 +76,9 @@ public class CtsDocument extends AbstractDocument {
 	    ModelEditorInputRecoveryStrategy recoveryStrategy, ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
 
 	syntax = concreteSyntax;
+	GlobalDelayedReferenceResolver.getInstance();
 	GlobalDelayedReferenceResolver.getInstance().registerReferenceForIncrementalEvaluation(syntax, syntax.get___Connection(),
-		GlobalDelayedReferenceResolver.getInstance().getOutermostPackageThroughClusteredImports(
+		MoinHelper.getOutermostPackageThroughClusteredImports(
 			syntax.get___Connection(), modelEditorInput.getRefObject()), observableInjectingParser,
 			parserFactory.getRuleNameFinder(), monitor);
 

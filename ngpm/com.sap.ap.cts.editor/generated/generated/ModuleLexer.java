@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2009-12-07 16:10:20
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2010-03-03 09:14:41
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;

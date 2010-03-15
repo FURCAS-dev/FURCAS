@@ -46,10 +46,12 @@ import com.sap.runlet.interpreter.expressions.EqualsInterpreter;
 import com.sap.runlet.interpreter.expressions.ExcludingAtInterpreter;
 import com.sap.runlet.interpreter.expressions.ExcludingInterpreter;
 import com.sap.runlet.interpreter.expressions.FunctionFromMethodExpressionInterpreter;
+import com.sap.runlet.interpreter.expressions.GroupByInterpreter;
 import com.sap.runlet.interpreter.expressions.HeadInterpreter;
 import com.sap.runlet.interpreter.expressions.IncludingAtInterpreter;
 import com.sap.runlet.interpreter.expressions.IncludingInterpreter;
 import com.sap.runlet.interpreter.expressions.IterateInterpreter;
+import com.sap.runlet.interpreter.expressions.MapInterpreter;
 import com.sap.runlet.interpreter.expressions.MethodCallInterpreter;
 import com.sap.runlet.interpreter.expressions.NumberLiteralInterpreter;
 import com.sap.runlet.interpreter.expressions.ObjectCountInterpreter;
@@ -116,6 +118,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.analytics.CellSet;
 import dataaccess.analytics.DimensionExpression;
+import dataaccess.analytics.GroupBy;
 import dataaccess.expressions.AssociationEndNavigationExpression;
 import dataaccess.expressions.ContentEquals;
 import dataaccess.expressions.Equals;
@@ -302,6 +305,10 @@ public class RunletInterpreter extends
 		conn.getClass(dataaccess.query.Selection.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(OqlQueryInterpreter.class,
 		conn.getClass(dataaccess.query.OqlQuery.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(MapInterpreter.class,
+		conn.getClass(dataaccess.expressions.Map.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(GroupByInterpreter.class,
+		conn.getClass(GroupBy.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override

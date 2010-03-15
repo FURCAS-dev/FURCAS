@@ -120,7 +120,7 @@ public class ConsistencyChecksObserver implements IParsingObserver {
      */
     @Override
     public void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation) {
+            Object contextModelElement, Token referenceLocation, DelayedReference reference) {
         outOfContextResolved.add(modelElement);
         
     }
@@ -230,7 +230,7 @@ public class ConsistencyChecksObserver implements IParsingObserver {
 
     @Override
     public void reset() {
-       ruleContextStack = new Stack<List<String>>();
+        ruleContextStack = new Stack<List<String>>();
         sequenceContextStack = new Stack<Integer>();
         errorsInRule = new ArrayList<RecognitionException>();
         elementsResolved = new ArrayList<Object>();
@@ -248,6 +248,4 @@ public class ConsistencyChecksObserver implements IParsingObserver {
         injectorActionsEnteredNotleft = 0;
     }
 
-	
-    
 }

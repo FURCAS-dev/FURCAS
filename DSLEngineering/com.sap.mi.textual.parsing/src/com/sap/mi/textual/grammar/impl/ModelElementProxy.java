@@ -12,8 +12,6 @@ import java.util.Set;
 
 import org.antlr.runtime.Token;
 
-import tcs.SequenceElement;
-
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 
 /**
@@ -32,7 +30,6 @@ public class ModelElementProxy implements IModelElementProxy {
 	private Token firstToken;
 	private Token lastToken;
 	private Object textBlock;
-	private SequenceElement sequenceElement;
 
 	/**
 	 * @param name
@@ -142,6 +139,10 @@ public class ModelElementProxy implements IModelElementProxy {
 	public boolean isReferenceOnly() {
 		return referenceOnly;
 	}
+	
+	public void setIsReferenceOnly(boolean value) {
+	    this.referenceOnly = value;
+	}
 
 	/**
 	 * @return
@@ -205,16 +206,4 @@ public class ModelElementProxy implements IModelElementProxy {
         public Object getTextBlock() {
             return textBlock;
         }
-
-		@Override
-		public void setSequenceElement(SequenceElement currentSequenceElement) {
-			this.sequenceElement = currentSequenceElement;
-		}
-		
-		@Override
-		public SequenceElement getSequenceElement() {
-			return sequenceElement;
-		}
-
-
 }

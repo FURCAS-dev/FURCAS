@@ -32,7 +32,6 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 
 	private final MOINModelAdapter adapter;
 	private final Connection connection;
-	private final Collection<PRI> metamodelPRIs;
 
 	/**
 	 * @param metamodelPRIs
@@ -40,7 +39,6 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 	 */
 	public MOINTCSAdapter(Connection connection, Set<PRI> metamodelPRIs) {
 		super();
-		this.metamodelPRIs = metamodelPRIs;
 		this.connection = connection;
 		final RefPackage rootPackage = connection
 				.getPackage(TcsPackage.PACKAGE_DESCRIPTOR);
@@ -224,12 +222,12 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 	 */
 	@Override
 	public Object setOclReference(Object modelElement, String propertyName,
-			Object keyValue, String oclQuery, Object contextObject)
+			Object keyValue, String oclQuery, Object contextObject, Object currentForeachElement)
 			throws ModelAdapterException {
 		Object result = adapter
 				.setOclReference(modelElement, propertyName,
 						keyValue, oclQuery,
-						contextObject);
+						contextObject, currentForeachElement);
 		return result;
 	}
 

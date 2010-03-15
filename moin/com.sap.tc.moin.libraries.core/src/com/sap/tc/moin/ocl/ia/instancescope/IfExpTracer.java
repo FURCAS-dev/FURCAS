@@ -16,7 +16,7 @@ public class IfExpTracer extends AbstractTracer<IfExpImpl> {
 	NavigationStep thenPath = pathCache.getOrCreateNavigationPath(getConnection(), getExpression().getThenExpression(getConnection()), context, classScopeAnalyzer);
 	NavigationStep elsePath = pathCache.getOrCreateNavigationPath(getConnection(), getExpression().getElseExpression(getConnection()), context, classScopeAnalyzer);
 	return new BranchingNavigationStep(getConnection(),
-		getInnermostElementType(getExpression().getType(getConnection())), context, getExpression(), thenPath, elsePath);
+		getInnermostElementType(getExpression().getType(getConnection())), context, getExpression(), pathCache, thenPath, elsePath);
     }
 
 }

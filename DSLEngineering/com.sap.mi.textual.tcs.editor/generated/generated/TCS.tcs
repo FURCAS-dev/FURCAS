@@ -12,6 +12,9 @@ syntax TCS {
         primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
                 value = "unescapeString(%token%)",
 		serializer="\"%value%\"";
+	
+	primitiveTemplate plainStringSymbol for PrimitiveTypes::String using STRING:
+                value = "unescapeString(%token%)";
 
         primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
                 value = "Integer.valueOf(%token%)";
@@ -151,7 +154,7 @@ syntax TCS {
                         (isReferenceOnly 
                           ? "referenceOnly" -- Reference Templates do not have other classTemplate attributes 
                           : 
-                                (isDefined(mode) ? "#" mode)
+                                (isDefined(mode) ? "#" mode{as = plainStringSymbol})
                                 (isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
                                 (isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
                                 (isMulti ? "multi")

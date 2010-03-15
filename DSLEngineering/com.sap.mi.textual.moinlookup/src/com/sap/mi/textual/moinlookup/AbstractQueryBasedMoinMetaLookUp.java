@@ -18,6 +18,7 @@ import tcs.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
@@ -281,21 +282,17 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
     @Override
     public List<String> validateOclQuery(Object template1, String query, Object context) {
 	if (context instanceof RefObject && template1 instanceof Template) {
+	    MofClass contextClass = (MofClass) context;
 	    Template template = (Template)template1;
-	    Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
-	    
 	    MofClass elementClass = MoinHelper.getReflectElement(connection);
-
-	    RefObject parsingContext = null;
-	    if (!MoinHelper.usesContext(query)) {
-		parsingContext = template.getMetaReference();
-	    } else {
-		parsingContext = elementClass;
-		// TODO currently this works only if a "#context" is
-		// postfixed
-		// by a .oclAsType(...) expression.
-	    }
 	    try {
+		RefPackage outermost = MoinHelper.getOutermostPackageThroughClusteredImportsFromMofClass(((RefObject) context)
+			.get___Connection(), contextClass);
+		Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
+		packagesForLookup.addAll(MoinHelper.getImportedRefPackages(outermost));
+		packagesForLookup.add(outermost);
+		RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
+			packagesForLookup, elementClass);
 		query = MoinHelper.prepareOclQuery(
 				query, null, "__TEMP__");
 		if (query != null) {
@@ -356,6 +353,8 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
 		}
 		return Collections.singletonList(message);
 	    } catch (ModelAdapterException e) {
+		return Collections.singletonList(e.getMessage());
+	    } catch (RuntimeException e) {
 		return Collections.singletonList(e.getMessage());
 	    }
 	} else {

@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-07-14 16:45:01 +0200 (Di, 14 Jul 2009) $
- * @version $Revision: 7557 $
+ * Date: $Date: 2010-03-04 17:03:31 +0100 (Do, 04 Mrz 2010) $
+ * @version $Revision: 9523 $
  * @author: $Author: c5106462 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
@@ -154,7 +154,8 @@ public class OperatorHandler {
             String initString = "java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);";
 
 
-            writer.addRule(new ClassProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), null));
+            ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), false, true);
+            writer.addRule(rule);
         }
     }
 

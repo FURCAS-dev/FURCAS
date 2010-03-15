@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-10-13 17:07:30 +0200 (Di, 13 Okt 2009) $
- * @version $Revision: 8308 $
+ * Date: $Date: 2010-03-04 17:03:31 +0100 (Do, 04 Mrz 2010) $
+ * @version $Revision: 9523 $
  * @author: $Author: c5106462 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
@@ -32,7 +32,6 @@ import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.mi.textual.moinlookup.util.MetamodelNameResolvingException;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.MessageHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -179,7 +178,7 @@ public class ClassTemplateHandler<Type extends Object> {
                 	String implRuleInitString = getInitString(template, false, true, true);
                 	addTemplateSequenceToRuleBody(template, ruleBodyBufferFactory, implRuleBody);
                 	addPostActions(template, implRuleBody);
-                	writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulenameImpl, "Object ret2", implRuleInitString, implRuleBody.toString(), false));
+                	writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulenameImpl, "Object ret2", implRuleInitString, implRuleBody.toString(), false, true));
                 	
                 	//Now create an abstract rule that has alternatives for the 
                 	//implementation rule as well as all subtypes.
@@ -201,7 +200,7 @@ public class ClassTemplateHandler<Type extends Object> {
             	}
             }
             // templateRulename is not null
-            writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulename, "Object ret2", initString, rulebody.toString(), isAbstractRule));
+            writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulename, "Object ret2", initString, rulebody.toString(), !isAbstractRule, !isAbstractRule));
         }
 
     }
@@ -248,9 +247,8 @@ public class ClassTemplateHandler<Type extends Object> {
      * @param overRideAddtoContext
      * @return
      * @throws JmiException 
-     * @throws MetaModelLookupException 
      */
-    private String getInitString(ClassTemplate template, boolean forceAddToContextFalse, boolean addObjectCreation, boolean withEnterNotification) throws MetaModelLookupException {
+    private String getInitString(ClassTemplate template, boolean forceAddToContextFalse, boolean addObjectCreation, boolean withEnterNotification) {
 
         StringBuilder initString = new StringBuilder(128);
         try {
@@ -286,8 +284,6 @@ public class ClassTemplateHandler<Type extends Object> {
             }
         } catch (SyntaxElementException e) {
             errorBucket.addException(e);
-        } catch (MetamodelNameResolvingException e) {
-            errorBucket.addError("Could not resolve referenced MetamodelElement." + MessageHelper.getTemplateName(template), template);
         }
         return initString.toString();
     }
@@ -437,7 +433,7 @@ public class ClassTemplateHandler<Type extends Object> {
                             "Object ret2", 
                             initString, 
                             rulebody.toString(), 
-                            false  // ! is not abstract, this is the case where the abstract template refers to a non-abstract model element
+                            true, true  // ! is not abstract, this is the case where the abstract template refers to a non-abstract model element
             ));
         }
     }
