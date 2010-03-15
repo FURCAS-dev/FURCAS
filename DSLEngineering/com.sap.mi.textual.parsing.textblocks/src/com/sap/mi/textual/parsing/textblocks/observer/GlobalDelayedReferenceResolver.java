@@ -588,6 +588,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	    TextBlock contextTextBlock) {
 	LocalContextBuilder localContextBuilder = new LocalContextBuilder();
 	try {
+	    // ensure that the model element uses the current connection
+            ensureUsageOfConnection(unresolvedRef, conn);
 	    LexedTokenWrapper token = (LexedTokenWrapper) unresolvedRef
 		    .getToken();
 	    DocumentNode referringDocumentNode = null;
@@ -595,7 +597,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	    ModelInjector modelInjector = constructModelInjector(conn,
                     outermostPackage);
 	    ObservableInjectingParser parser = null;
-        if (token != null) {
+            if (token != null) {
 		AbstractToken modelElementToken = token.getWrappedToken();
 		LexedToken tokenInCurrentConnection = (LexedToken) conn
 			.getElement(modelElementToken.get___Mri());
@@ -614,7 +616,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 		referringDocumentNode = tokenInCurrentConnection;
                 //also rebuild the context for the parser, 
                 //as it may be used e.g. in foreach predicate references
-		if(unresolvedRef.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+		if(unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
 		    parser.reset();
                     TbUtil.constructContext(tokenInCurrentConnection, parser);
 		}
@@ -622,92 +624,75 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
 		
-	    } else if (contextTextBlock != null) {
-		TbUtil.constructContext(contextTextBlock, localContextBuilder);
-		referringDocumentNode = contextTextBlock;
-		if(!localContextBuilder.getContextStack().isEmpty()) {
-		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
-		}
-		cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
-		parser = getParser(cs);
-		//also rebuild the context for the parser, 
-                //as it may be used e.g. in foreach predicate references
-                if(unresolvedRef.getType() == DelayedReference.SEMANTIC_PREDICATE) {
-                    parser.reset();
-                    TbUtil.constructContext(contextTextBlock, parser);
-                    ((ParserTextBlocksHandler) parser.getObserver()).setConnection(conn);
-                    parser.setInjector(modelInjector);
-                    //remove all old values
-//                    try {
-//                        Set<RefObject> correspondingElements = new HashSet<RefObject>(unresolvedRef.getTextBlock().getCorrespondingModelElements());
-//                        Set<RefObject> filteredElements = filterCorrespondingElementsByDelayedReferenceSourceType(conn, unresolvedRef.getTextBlock(), unresolvedRef);
-//                        correspondingElements.removeAll(filteredElements);
-//                        for (RefObject value : correspondingElements) {
-//                            modelInjector.unset(unresolvedRef.getModelElement(), unresolvedRef.getPropertyName(), value);
-//                            //if we are here no exception occurred which means element was successfully unset
-//                            //as foreachpredicates always create new values we have to delete the old one
-//                            value.refDelete();
-//                            // FIXME remove DelayedReferences from queue that try to set a property on value
-//                        }
-//                    } catch (Exception e) {
-//                        // TODO: handle exception
-//                    }
-                }
+    	    } else if (contextTextBlock != null) {
+    		TbUtil.constructContext(contextTextBlock, localContextBuilder);
+    		referringDocumentNode = contextTextBlock;
+    		if(!localContextBuilder.getContextStack().isEmpty()) {
+    		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
+    		}
+    		cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
+    		parser = getParser(cs);
+    		//also rebuild the context for the parser, 
+                    //as it may be used e.g. in foreach predicate references
+                    if(unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+                        parser.reset();
+                        TbUtil.constructContext(contextTextBlock, parser);
+                        ((ParserTextBlocksHandler) parser.getObserver()).setConnection(conn);
+                        parser.setInjector(modelInjector);
+                    }
+    
+    	    } else {
+    		removeRegistration(unresolvedRef);
+    		notifyReferenceResolvingListenerReferencesRemoved(Collections
+    			.singleton(unresolvedRef));
+    		return;
+    	    }
+            	//TODO set currentForeachElement on reference
+    	    try {
+	        boolean resolved = modelInjector.resolveReference(
+                        unresolvedRef, localContextBuilder.getContextManager(),
+                        parser);
+                if (resolved) {
+                    if (unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+                        // to be able to incrementally re evaluate the reference
+                        // later
+                        // we need to setup a link between the textblock and the
+                        // template used in the ref
+                        Template template = ((ParserTextBlocksHandler) parser
+                                .getObserver()).getCurrentTbProxy()
+                                .getTemplate();
+                        if (!unresolvedRef.getTextBlock()
+                                .getAdditionalTemplates().contains(template)) {
+                            unresolvedRef.getTextBlock()
+                                    .getAdditionalTemplates().add(template);
+                        }
+                        RefObject value = (RefObject) unresolvedRef
+                                .getRealValue();
+                        if (!referringDocumentNode
+                                .getCorrespondingModelElements()
+                                .contains(value)) {
+                            referringDocumentNode
+                                    .getCorrespondingModelElements().add(value);
+                        }
 
-	    } else {
-		removeRegistration(unresolvedRef);
-		notifyReferenceResolvingListenerReferencesRemoved(Collections
-			.singleton(unresolvedRef));
-		return;
-	    }
-        	//TODO set currentForeachElement on reference
-	    try {
-		// ensure that the model element uses the current connection
-		RefObject elementInCurrentConnection = (RefObject) conn
-			.getElement(((Partitionable) unresolvedRef
-				.getModelElement()).get___Mri());
-		if (elementInCurrentConnection != null) {
-		    unresolvedRef.setModelElement(elementInCurrentConnection);
-		    
-                    boolean resolved = modelInjector.resolveReference(unresolvedRef,
-			    localContextBuilder.getContextManager(), 
-			    parser);
-		    if (resolved) {
-			if (unresolvedRef.getType() == DelayedReference.SEMANTIC_PREDICATE) {
-			    // to be able to incrementally re evaluate the reference later
-			    // we need to setup a link between the textblock and the
-			    // template used in the ref
-			    Template template = ((ParserTextBlocksHandler) parser.getObserver()).getCurrentTbProxy()
-	                        .getTemplate();
-			    if(! unresolvedRef.getTextBlock().getAdditionalTemplates().contains(template)) {
-			        unresolvedRef.getTextBlock().getAdditionalTemplates().add(
-	                                    template);
-			    }
-			    RefObject value = (RefObject) unresolvedRef.getRealValue();
-                            if(! referringDocumentNode.getCorrespondingModelElements().contains(value)) {
-                                referringDocumentNode.getCorrespondingModelElements().add(value);
-                            }
-                                        
-                            TbUtil.addForEachContext(unresolvedRef.getTextBlock(), 
-                                    (RefObject) unresolvedRef.getModelElement(),
-                                    (RefObject) unresolvedRef.getElementForSelf(),
-                                    (ForeachPredicatePropertyInit) unresolvedRef.getQueryElement(),
-                                    (RefObject) unresolvedRef.getRealValue(), conn);
-                            parser.setDelayedReferencesAfterParsing();
-			} else {
-			    if (unresolvedRef.getRealValue() instanceof RefObject) {
-			        referringDocumentNode.getReferencedElements().add(
-					(RefObject) unresolvedRef.getRealValue());
-			    }
-			}
-			if(!unresolvedRef.isGenericReference()) {
-			    removeRegistration(unresolvedRef);
-			    notifyReferenceResolvingListenerReferenceResolved(unresolvedRef);
-			}
-		    } 
-		} else {
-		    removeRegistration(unresolvedRef);
-		}
+                        // TbUtil.addForEachContext(unresolvedRef.getTextBlock(),
+                        // (RefObject) unresolvedRef.getModelElement(),
+                        // (RefObject) unresolvedRef.getCurrentForeachElement(),
+                        // (ForeachPredicatePropertyInit)
+                        // unresolvedRef.getQueryElement(),
+                        // (RefObject) unresolvedRef.getRealValue(), conn);
+                        parser.setDelayedReferencesAfterParsing();
+                    } else {
+                        if (unresolvedRef.getRealValue() instanceof RefObject) {
+                            referringDocumentNode.getReferencedElements().add(
+                                    (RefObject) unresolvedRef.getRealValue());
+                        }
+                    }
+                    if (!unresolvedRef.isGenericReference()) {
+                        removeRegistration(unresolvedRef);
+                        notifyReferenceResolvingListenerReferenceResolved(unresolvedRef);
+                    }
+                }
 	    } catch (ModelElementCreationException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -716,6 +701,78 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	} catch (InvalidConnectionException ice) {
 	    ice.printStackTrace();
 	}
+    }
+
+    /**
+     * Ensures that the {@link DelayedReference unresolvedRef} carries the element using the correct
+     * connection given by <code>conn</code>.
+     * 
+     * @param unresolvedRef the {@link DelayedReference} for which the elements should be checked.
+     * @param conn the {@link Connection} where the elements should be used from.
+     */
+    private void ensureUsageOfConnection(DelayedReference unresolvedRef,
+            Connection conn) {
+        RefObject elementInCurrentConnection = (RefObject) conn
+            .getElement(((Partitionable) unresolvedRef
+                .getModelElement()).get___Mri());
+        if(elementInCurrentConnection == null) {
+            throw new RuntimeException("Element: " + unresolvedRef
+                    .getModelElement() + " is not available in connection: " + conn);
+        } else {
+            unresolvedRef.setModelElement(elementInCurrentConnection);
+        }
+        Object elementInOldConnection = unresolvedRef.getContextElement();
+        if(elementInOldConnection != null) {
+            elementInCurrentConnection = (RefObject) conn
+                    .getElement(((Partitionable) elementInOldConnection)
+                            .get___Mri());
+            if (elementInCurrentConnection == null) {
+                throw new RuntimeException("Element: "
+                        + elementInOldConnection
+                        + " is not available in connection: " + conn);
+            } else {
+                unresolvedRef.setContextElement(elementInCurrentConnection);
+            }
+        }
+        elementInOldConnection = unresolvedRef.getCurrentForeachElement();
+        if(elementInOldConnection != null) {
+            elementInCurrentConnection = (RefObject) conn
+                    .getElement(((Partitionable) elementInOldConnection)
+                            .get___Mri());
+            if (elementInCurrentConnection == null) {
+                throw new RuntimeException("Element: "
+                        + elementInOldConnection
+                        + " is not available in connection: " + conn);
+            } else {
+                unresolvedRef.setCurrentForeachElement(elementInCurrentConnection);
+            }
+        }
+        elementInOldConnection = unresolvedRef.getQueryElement();
+        if(elementInOldConnection != null) {
+            elementInCurrentConnection = (RefObject) conn
+                    .getElement(((Partitionable) elementInOldConnection)
+                            .get___Mri());
+            if (elementInCurrentConnection == null) {
+                throw new RuntimeException("Element: "
+                        + elementInOldConnection
+                        + " is not available in connection: " + conn);
+            } else {
+                unresolvedRef.setQueryElement(elementInCurrentConnection);
+            }
+        }
+        elementInOldConnection = unresolvedRef.getTextBlock();
+        if(elementInOldConnection != null) {
+            elementInCurrentConnection = (RefObject) conn
+                    .getElement(((Partitionable) elementInOldConnection)
+                            .get___Mri());
+            if (elementInCurrentConnection == null) {
+                throw new RuntimeException("Element: "
+                        + elementInOldConnection
+                        + " is not available in connection: " + conn);
+            } else {
+                unresolvedRef.setTextBlock((TextBlock) elementInCurrentConnection);
+            }
+        }
     }
 
     private ObservableInjectingParser getParser(ConcreteSyntax concretesyntax) {
@@ -1028,7 +1085,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                 hasContext = ((ClassTemplate) block.getParentTemplate()).isContext();
             }
             DelayedReference ref = new DelayedReference(null,
-                        null, DelayedReference.SEMANTIC_PREDICATE, 
+                        null, DelayedReference.TYPE_SEMANTIC_PREDICATE, 
                         null,
                         foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(), query, foreachPredicatePropertyInit.getMode(), list, ruleNameFinder, null, 
                         hasContext, /*isOptional: ForEach is always considered optional as 

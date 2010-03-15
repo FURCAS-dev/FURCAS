@@ -73,7 +73,7 @@ public class FailingEditingActions extends RunletEditorTest {
         saveAll(editor);
         Collection<JmiException> verificationResults2 = variableDeclaration.getNamedValue().getInitExpression().
         							refVerifyConstraints(/* deepVerity */ true);
-        assertEquals("Expected to find no semantic errors in variable declaration after fix", 0, verificationResults2.size());
+        assertEquals("Expected to find no semantic errors in variable declaration after fix", null, verificationResults2);
         close(editor);
     };
    

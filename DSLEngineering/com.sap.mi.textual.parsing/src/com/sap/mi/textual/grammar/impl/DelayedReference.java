@@ -37,8 +37,11 @@ public class DelayedReference implements Cloneable {
     /** The Constant AUTOCREATE_MISSING. */
     public static final String AUTOCREATE_MISSING = "ifmissing";
 
+    /** Constant for reference type default */
+    public static final int TYPE_DEFAULT = 0;
+    
     /** Constant for reference type semantic predicate */
-    public static final int SEMANTIC_PREDICATE = 1;
+    public static final int TYPE_SEMANTIC_PREDICATE = 1;
 
     public static final int CONTEXT_LOOKUP = 2;
 
@@ -442,7 +445,7 @@ public class DelayedReference implements Cloneable {
     @Override
     public String toString() {
         String result = modelElement != null && modelElement.getClass() != null ? modelElement.getClass().getName() : "<generic>";
-        if(getType() == DelayedReference.SEMANTIC_PREDICATE) {
+        if(getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
             result += " [FOR_EACH_PROPERTY_INIT] ";
         }
         result += '.'
@@ -465,7 +468,14 @@ public class DelayedReference implements Cloneable {
      */
     public void setModelElement(Object newObject) {
         this.modelElement = newObject;
-
+    }
+    
+    public RefObject getUnwrappedModelElement() {
+        if(modelElement instanceof IModelElementProxy) {
+            return (RefObject) ((IModelElementProxy) modelElement).getRealObject();
+        } else {
+            return (RefObject) modelElement;
+        }
     }
 
     /**
@@ -584,5 +594,9 @@ public class DelayedReference implements Cloneable {
     
     public Connection getConnection() {
         return connection;
+    }
+
+    public void setCurrentForeachElement(RefObject currentForeachElement) {
+        this.currentForeachElement = currentForeachElement;
     }
 }

@@ -522,13 +522,13 @@ public class TbUtil {
         }
 
         public static void addForEachContext(TextBlock contextBlock, RefObject sourceModelElement,
-            RefObject contextModelElement, ForeachPredicatePropertyInit sequenceElement, RefObject resultElement, Connection connection) {
+            RefObject currentForEachElement, ForeachPredicatePropertyInit sequenceElement, RefObject resultElement, Connection connection) {
             boolean forEachContextExists = false;
             for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
                 if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
                     if(forEachContext.getSourceModelelement().equals(sourceModelElement)) {
-                        if(!forEachContext.getContextElement().contains(contextModelElement)) {
-                            forEachContext.getContextElement().add(contextModelElement);
+                        if(!forEachContext.getContextElement().contains(currentForEachElement)) {
+                            forEachContext.getContextElement().add(currentForEachElement);
                             forEachContext.setResultModelElement(resultElement);
                         }
                         forEachContextExists = true;
@@ -539,7 +539,7 @@ public class TbUtil {
                 ForeachContext newContext = (ForeachContext) connection.getClass(ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
                 newContext.setForeachPredicatePropertyInit(sequenceElement);
                 newContext.setSourceModelelement(sourceModelElement);
-                newContext.getContextElement().add(contextModelElement);
+                newContext.getContextElement().add(currentForEachElement);
                 newContext.setResultModelElement(resultElement);
                 contextBlock.getForeachContext().add(newContext);
             }

@@ -993,7 +993,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 			String mode, String query, List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext) {
 		ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
 		DelayedReference ref = new DelayedReference(getCurrentContextElement(),
-				getCurrentForeachElement(), DelayedReference.SEMANTIC_PREDICATE, object,
+				getCurrentForeachElement(), DelayedReference.TYPE_SEMANTIC_PREDICATE, object,
 				propertyName, query, mode, preds, ruleNameFinder, lastToken, 
 				hasContext, /*isOptional: ForEach is always considered optional as 
 				 * error reporting will be done based on metamodel constraints.*/

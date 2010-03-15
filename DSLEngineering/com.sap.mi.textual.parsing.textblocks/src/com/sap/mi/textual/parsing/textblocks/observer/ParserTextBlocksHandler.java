@@ -549,25 +549,12 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 contextModelElement = ((ResolvedModelElementProxy) contextModelElement)
                         .getRealObject();
             }
-            RefObject sourceModelElement = null;
-            if (reference.getModelElement() instanceof ResolvedModelElementProxy) {
-                contextModelElement = ((ResolvedModelElementProxy) reference.getModelElement())
-                        .getRealObject();
-            } else {
-                sourceModelElement = (RefObject) reference.getModelElement();
-            }
             TextBlock contextBlock = getTextBlockForElementAt(
                     (RefObject) contextModelElement,
                     (ANTLR3LocationToken) referenceLocation);
             if (contextBlock != null && modelElement instanceof RefObject) {
-                // boolean isModelElementInCurrentTbProxy = false;
-                // for (IModelElementProxy proxy :
-                // getCurrentTbProxy().getCorrespondingModelElements()) {
-                // if(modelElement.equals(proxy.getRealObject())) {
-                // isModelElementInCurrentTbProxy =true;
-                // }
-                // }
-                if (reference.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+
+                if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
                     // this means we are in the resolving of a foreachproperty init
                     // thus we have to add the curently set template to the
                     // additionalTemplates of
@@ -577,8 +564,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     contextBlock.getAdditionalTemplates().add(
                             getCurrentTbProxy().getTemplate());
                     contextBlock.getCorrespondingModelElements().add((RefObject) modelElement);
-                    TbUtil.addForEachContext(contextBlock, sourceModelElement,
-                            (RefObject) contextModelElement, (ForeachPredicatePropertyInit) reference.getQueryElement(), (RefObject) modelElement, connection);
+
                 } else {
                     AbstractToken referenceToken = navigateToToken(contextBlock,
                             referenceLocation);
@@ -608,7 +594,6 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	    } else {
 		ref.setQueryElement(traverser.getCurrent().getSequenceElement());
 	    }
-	    	
         }
 	
 	@Override
