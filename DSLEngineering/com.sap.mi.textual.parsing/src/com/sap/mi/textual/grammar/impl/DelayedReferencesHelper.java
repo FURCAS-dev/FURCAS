@@ -244,7 +244,7 @@ public class DelayedReferencesHelper {
     private Template getTemplateFromPredicateSemantic(
             PredicateSemantic activePredicateSemantic, DelayedReference ref) {
         int index = ref.getPredicateActionList().indexOf(activePredicateSemantic);
-        if(index >= 0) {
+        if(index >= 0 && ((ForeachPredicatePropertyInit)ref.getQueryElement()) != null) {
             int i = 0;
             for (tcs.PredicateSemantic predSem : ((ForeachPredicatePropertyInit)ref.getQueryElement()).getPredicatesemantic()) {
                 if(i++ == index) {
@@ -272,7 +272,9 @@ public class DelayedReferencesHelper {
 	parser.setResolveProxies(false);
 	DelegationParsingObserver delegator = new DelegationParsingObserver();
 	IParsingObserver originalObserver = parser.getObserver();
-	delegator.addParsingObserver(originalObserver);
+	if(originalObserver != null) {
+	    delegator.addParsingObserver(originalObserver);
+	}
 	delegator.addParsingObserver(new ForeachParsingObeserver(reference.getTextBlock()));
 	parser.setObserver(delegator);
 	
@@ -339,12 +341,14 @@ public class DelayedReferencesHelper {
                 }
                 modelAdapter.set(reference.getModelElement(), reference
                         .getPropertyName(), reference.getRealValue());
-                addForEachContext(reference.getTextBlock(), 
+                if(reference.getTextBlock() != null) {
+                    addForEachContext(reference.getTextBlock(), 
                         (RefObject) reference.getModelElement(),
                         (RefObject) next,
                         (ForeachPredicatePropertyInit) reference.getQueryElement(),
                         (RefObject) reference.getRealValue(), 
                         ((Partitionable) reference.getModelElement()).get___Connection());
+                }
             }
 	} finally {
 	    if (reference.hasContext() && next instanceof RefObject) {
