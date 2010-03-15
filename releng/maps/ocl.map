@@ -16,7 +16,7 @@ feature@org.eclipse.ocl.doc=v201001201930,:pserver:anonymous@dev.eclipse.org:/cv
 feature@org.eclipse.ocl.edit=v200912161120,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit-feature
 
 plugin@org.eclipse.ocl=v201003031545,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
-plugin@org.eclipse.ocl.doc=v200912161120,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
+plugin@org.eclipse.ocl.doc=v201003160300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
 plugin@org.eclipse.ocl.tests=v201003031545,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.tests
 plugin@org.eclipse.ocl.ecore=v201003031545,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.ecore
 plugin@org.eclipse.ocl.ecore.tests=v201003031545,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.ecore.tests
