@@ -14,6 +14,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -87,13 +88,13 @@ public class DelayedReferencesHelper {
 	    ContextManager contextManager, ObservableInjectingParser parser) throws ModelAdapterException,
 	    ModelElementCreationException {
 	Object contextElement = reference.getContextElement();
-
+	
 	if (contextElement instanceof IModelElementProxy) {
 	    IModelElementProxy proxyContext = (IModelElementProxy) contextElement;
 	    contextElement = proxyContext.getRealObject();
 	}
 
-	if (reference.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+	if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
 	    return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
 	}
 	if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
@@ -102,6 +103,7 @@ public class DelayedReferencesHelper {
 	    return setDelayedReferenceWithLookup(reference, modelAdapter, contextManager, contextElement);
 	}
     }
+    
 
     private boolean setDelayedReferenceWithPredicate(DelayedReference reference, IModelAdapter modelAdapter,
 	    ContextManager contextManager, Object contextElement, ObservableInjectingParser parser)
@@ -137,53 +139,79 @@ public class DelayedReferencesHelper {
 	    } else {
 		Iterator<?> resultIt = result.iterator();
 		// loop over the results to handle them one by one
+		//delete all elements that were created by this foreach but are not valid anymore
+		HashMap<RefObject, RefObject> reusableElementsByForeachElement = new HashMap<RefObject, RefObject>();
+                
 		while (resultIt.hasNext()) {
 		    Object next = resultIt.next();
 		    if (!(next instanceof Boolean) || ((Boolean) next).booleanValue()) {
 			// look if there are possible when/as constructs
-			String ruleName = getRuleNameFromWhenAsClauses(reference, modelAdapter, contextElement);
-			if (ruleName == null) {
-			    // no matching when/as combination; perform default handling:
-			    if (next instanceof RefObject) {
-				MofClass myResultObj = (MofClass) ((RefObject) next).refMetaObject();
-				// get the template
-				Template tmpl = findTemplate(myResultObj, reference.getMode(), parser.getInjector()
-					.getModelAdapter().getPRIPartitions(myResultObj.get___Connection(),
-						parser.getLanguageId()));
-				// get the rule name from the template
-				ruleName = reference.getRuleNameFinder().getRuleName(tmpl, reference.getMode());
-			    } else {
-				// handle the base types
-				if (!(next instanceof String) || !(next instanceof Number)) {
-				    reportProblem("The OCL element " + next + " cannot be used.", reference.getToken());
-				    return false;
-				}
-			    }
-			}
-			if (ruleName == null) {
-			    reportProblem("At least one as parameter is needet in that case.", reference.getToken());
-			    return false;
-			}
-			setReference(parser, reference, next, ruleName, modelAdapter);
-		    }
-		}
-		//delete all elements that were created by this foreach but are not valid anymore
-		if(reference.getTextBlock() != null) {
-                    for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
-                        if(fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
-                                reference.getModelElement().equals(fec.getSourceModelelement())) {
-                            for (Object object : result) {
-                                if(! fec.getContextElement().contains(object)) {
-                                    //element was responsible for creating this result but
-                                    //is not in the foreach anymore thus
-                                    //delete element and fec 
-                                    fec.getResultModelElement().refDelete();
-                                    fec.refDelete();   
+		        PredicateSemantic activePredicateSemantic = getActivePredicateFromWhenAsClauses(reference, modelAdapter, contextElement);
+		        Template tmpl = getTemplateFromPredicateSemantic(activePredicateSemantic, reference);
+		        String ruleName = null;
+			if (activePredicateSemantic == null) {
+                            // no matching when/as combination; perform default handling:
+                            if (next instanceof RefObject) {
+                                MofClass myResultObj = (MofClass) ((RefObject) next).refMetaObject();
+                                // get the template
+                                tmpl = findTemplate(myResultObj, reference.getMode(), parser.getInjector()
+                                        .getModelAdapter().getPRIPartitions(myResultObj.get___Connection(),
+                                                parser.getLanguageId()));
+                                // get the rule name from the template
+                                ruleName = reference.getRuleNameFinder().getRuleName(tmpl, reference.getMode());
+                            } else {
+                                // handle the base types
+                                if (!(next instanceof String) || !(next instanceof Number)) {
+                                    reportProblem("The OCL element " + next + " cannot be used.", reference.getToken());
+                                    return false;
                                 }
                             }
+                        } else {
+                            ruleName = activePredicateSemantic.getAs();
                         }
-                    }
-                }
+                        if (ruleName == null) {
+                            reportProblem("At least one as parameter is needet in that case.", reference.getToken());
+                            return false;
+                        }
+			if(reference.getTextBlock() != null) {
+	                    for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
+	                        if(fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
+	                            reference.getModelElement().equals(fec.getSourceModelelement())) {
+	                            if(! fec.getContextElement().contains(next)) {
+	                                //element was responsible for creating this result but
+	                                //is not in the foreach anymore thus
+	                                //delete element and fec 
+	                                fec.getResultModelElement().refDelete();
+	                                fec.refDelete();   
+	                            } else {
+	                                for (RefObject ce : fec.getContextElement()) {
+	                                    if(ce.equals(next)) {
+	                                        //the current FEC was created for this object
+	                                        //thus we need to check if the type fits
+	                                        if(fec.getResultModelElement() == null) {
+	                                            fec.refDelete();
+	                                        } else {
+        	                                        if(  fec.getResultModelElement().refMetaObject().equals(tmpl.getMetaReference())) {
+        	                                            //we can reuse the element as the type fits, 
+        	                                            //TODO check how we can incrementally decide which attributes
+        	                                            //of the element should be set or if we need to reset all the
+        	                                            //attributes in order to let them be set new
+        	                                            reusableElementsByForeachElement.put((RefObject) next, fec.getResultModelElement());
+        	                                        } else {
+        	                                            fec.getResultModelElement().refDelete();
+        	                                            fec.refDelete();
+        	                                            break;
+        	                                        }
+	                                        }
+	                                    }
+	                                }
+	                            }
+	                        }
+	                    }
+	                }
+			setReference(parser, reference, next, ruleName, modelAdapter, reusableElementsByForeachElement.get(next));
+		    }
+		}
 	    }
 	} catch (LookupPathNavigationException e) {
 	    reportProblem(e.getMessage(), reference.getToken());
@@ -213,8 +241,24 @@ public class DelayedReferencesHelper {
 	return true;
     }
 	
+    private Template getTemplateFromPredicateSemantic(
+            PredicateSemantic activePredicateSemantic, DelayedReference ref) {
+        int index = ref.getPredicateActionList().indexOf(activePredicateSemantic);
+        if(index >= 0) {
+            int i = 0;
+            for (tcs.PredicateSemantic predSem : ((ForeachPredicatePropertyInit)ref.getQueryElement()).getPredicatesemantic()) {
+                if(i++ == index) {
+                    return predSem.getAs();
+                }
+            }
+            return null;
+        } else {
+            return null;
+        }
+    }
+
     private void setReference(ObservableInjectingParser parser, DelayedReference reference, Object next,
-	    String ruleName, IModelAdapter modelAdapter) throws ModelAdapterException, SecurityException,
+	    String ruleName, IModelAdapter modelAdapter, RefObject reusableResultElement) throws ModelAdapterException, SecurityException,
 	    NoSuchMethodException, UnknownProductionRuleException, IllegalArgumentException, IllegalAccessException,
 	    InvocationTargetException, ModelElementCreationException {
 	// invoke the parser to execute the template
@@ -226,6 +270,11 @@ public class DelayedReferencesHelper {
 	}
 	boolean originalResolveProxiesValue = parser.isResolveProxies();
 	parser.setResolveProxies(false);
+	DelegationParsingObserver delegator = new DelegationParsingObserver();
+	IParsingObserver originalObserver = parser.getObserver();
+	delegator.addParsingObserver(originalObserver);
+	delegator.addParsingObserver(new ForeachParsingObeserver(reference.getTextBlock()));
+	parser.setObserver(delegator);
 	
 	IModelElementProxy proxyForContextElement = null;
 	if (reference.getContextElement() instanceof IModelElementProxy) {
@@ -235,6 +284,7 @@ public class DelayedReferencesHelper {
 	}
 	
 	parser.setCurrentForeachElement(next);
+	
 	if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
             parser.addContext(proxyForContextElement);
             if(proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof RefObject) {
@@ -269,15 +319,14 @@ public class DelayedReferencesHelper {
 			". Parse errors: "+parser.getInjector().getErrorList());
 	    }
 	    // add the parsed part to the object
-	    parser.setResolveProxies(originalResolveProxiesValue);
 	    //first try to resolve if there is a model element that already exists and can be reused
-	    RefObject candidate = findCandidateFromProxy((RefObject) reference.getModelElement(), 
-	            reference.getPropertyName(), parseReturn, (RefObject) reference.getElementForSelf(),//(RefObject) next, 
-	            (ForeachPredicatePropertyInit) reference.getQueryElement(), (TextBlock) reference.getTextBlock());
-	    if(candidate != null) {
+//	    RefObject candidate = findCandidateFromProxy((RefObject) reference.getModelElement(), 
+//	            reference.getPropertyName(), parseReturn, (RefObject) reference.getElementForSelf(),//(RefObject) next, 
+//	            (ForeachPredicatePropertyInit) reference.getQueryElement(), (TextBlock) reference.getTextBlock());
+	    if(reusableResultElement != null) {
 	        //element already exists so we can reuse it
-	        reference.setRealValue(candidate);
-	        ((ModelElementProxy) parseReturn).setRealObject(candidate);
+	        reference.setRealValue(reusableResultElement);
+	        ((ModelElementProxy) parseReturn).setRealObject(reusableResultElement);
 	        return;
 	    } else {
 	        reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
@@ -290,39 +339,56 @@ public class DelayedReferencesHelper {
                 }
                 modelAdapter.set(reference.getModelElement(), reference
                         .getPropertyName(), reference.getRealValue());
+                addForEachContext(reference.getTextBlock(), 
+                        (RefObject) reference.getModelElement(),
+                        (RefObject) next,
+                        (ForeachPredicatePropertyInit) reference.getQueryElement(),
+                        (RefObject) reference.getRealValue(), 
+                        ((Partitionable) reference.getModelElement()).get___Connection());
             }
 	} finally {
 	    if (reference.hasContext() && next instanceof RefObject) {
 		parser.leaveContext();
 	    }
 	    parser.getCurrentContextStack().pop();
+	    parser.setObserver(originalObserver);
+	    parser.setResolveProxies(originalResolveProxiesValue);
 	}
     }
-
-    private RefObject findCandidateFromProxy(RefObject parent, String property, Object parseReturn, RefObject foreachContext,
-            ForeachPredicatePropertyInit foreachPropertyInit, TextBlock tb) throws ModelElementCreationException {
-        if(parseReturn instanceof IModelElementProxy && tb != null) {
-            for (ForeachContext fec : tb.getForeachContext()) {
-                if(fec.getForeachPredicatePropertyInit().equals(foreachPropertyInit) && 
-                        fec.getContextElement().contains(foreachContext) &&
-                        fec.getSourceModelelement().equals(parent)) {
-                    //the element was already created in a previous foreach evaluation
-                    //so we will reuse the parent element
-                    if(fec.getResultModelElement() != null) {
-                        return fec.getResultModelElement();
-                    } else {
-                        //no result means the element has been deleted
-                        //so we need to get rid of the foreachcontext element as well
-                        fec.refDelete();
+    
+    private static void addForEachContext(TextBlock contextBlock, RefObject sourceModelElement,
+            RefObject currentForEachElement, ForeachPredicatePropertyInit sequenceElement, RefObject resultElement, Connection connection) {
+            boolean forEachContextExists = false;
+            
+            //FIXME: The contextBlock may be null if there was a foreach that was created by another foreach
+            //then the textblock is never set. Find out when and where this could be done
+            
+            
+            
+            
+            for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
+                if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
+                    if(forEachContext.getSourceModelelement().equals(sourceModelElement)) {
+                        if(!forEachContext.getContextElement().contains(currentForEachElement)) {
+                            forEachContext.getContextElement().add(currentForEachElement);
+                            forEachContext.setResultModelElement(resultElement);
+                        }
+                        forEachContextExists = true;
                     }
                 }
-                    
             }
+            if(!forEachContextExists) {
+                ForeachContext newContext = (ForeachContext) connection.getClass(ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
+                newContext.setForeachPredicatePropertyInit(sequenceElement);
+                newContext.setSourceModelelement(sourceModelElement);
+                newContext.getContextElement().add(currentForEachElement);
+                newContext.setResultModelElement(resultElement);
+                contextBlock.getForeachContext().add(newContext);
+            }
+        
         }
-        return null;
-    }
 
-    private String getRuleNameFromWhenAsClauses(DelayedReference reference, IModelAdapter modelAdapter,
+    private PredicateSemantic getActivePredicateFromWhenAsClauses(DelayedReference reference, IModelAdapter modelAdapter,
 	    Object contextElement) throws ModelAdapterException {
 	for (PredicateSemantic nextPred : reference.getPredicateActionList()) {
 	    if (nextPred.getWhen() != null) {
@@ -332,11 +398,11 @@ public class DelayedReferencesHelper {
 		    Iterator<?> resIt = resultBool.iterator();
 		    Object nextBool = resIt.next();
 		    if (nextBool instanceof Boolean && (Boolean) nextBool) {
-			return nextPred.getAs();
+			return nextPred;
 		    }
 		}
 	    } else {
-		return nextPred.getAs(); // no when-clause means "handle always"
+		return nextPred; // no when-clause means "handle always"
 	    }
 	}
 	return null;
@@ -416,7 +482,7 @@ public class DelayedReferencesHelper {
 
 		    if (refObjects.length > 1) {
 			// throw new
-			// RuntimeException("Ambigous templates found for: " +
+			// RuntimeException("Ambigous temp)lates found for: " +
 			// createdElement + " mode=" + mode);
 			template = (Template) refObjects[1];
 		    } else if (refObjects.length == 1) {

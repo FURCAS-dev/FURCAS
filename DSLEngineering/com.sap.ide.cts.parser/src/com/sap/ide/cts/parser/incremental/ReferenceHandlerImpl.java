@@ -187,11 +187,12 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 				.getUnresolvedReferences())) {
 			AbstractToken refToken = tbtokenStream
 					.getTokenModelElementForParserToken(ref.getToken());
+			ref.setTextBlock(refToken.getParentBlock());
 			boolean resolveNewlyFromToken = tokensForReferenceResolving
 					.contains(tbtokenStream
 							.getTokenModelElementForParserToken(ref.getToken()));
 			boolean newlyResolve = newlyResolvableReferences.contains(ref);
-			if(ref.getType() == DelayedReference.SEMANTIC_PREDICATE && refToken != null){
+			if(ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE && refToken != null){
 				if(TbVersionUtil.getOtherVersion(tbtokenStream
 						.getTokenModelElementForParserToken(ref.getToken())
 						.getParentBlock(), VersionEnum.REFERENCE) != null) {
@@ -288,7 +289,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 				.iterator();
 		while (newRefIt.hasNext()) {
 			DelayedReference ref = newRefIt.next();
-			if (ref.getType() == DelayedReference.SEMANTIC_PREDICATE &&
+			if (ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE &&
 				ref.getRealValue() != null && ref.getRealValue() instanceof RefObject) {
 				((LexedToken) tbtokenStream
 						.getTokenModelElementForParserToken(ref.getToken()))

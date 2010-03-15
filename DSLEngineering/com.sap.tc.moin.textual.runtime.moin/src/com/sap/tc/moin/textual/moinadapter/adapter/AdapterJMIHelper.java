@@ -459,9 +459,26 @@ public class AdapterJMIHelper {
 		// RefObject endBObject = getInstance(endBClass); //, logicalKeys,
 		// null);
 		if (isFirst) {
+		    if(refAss.refLinkExists(endAObject, endBObject)) {
+		        //only add if upper mult > 1 and non unique
+		        if((endExposed.otherEnd().getMultiplicity().getUpper() > 1 || 
+		                    endExposed.otherEnd().getMultiplicity().getUpper() == JmiHelper.MULTIPLICITY_BOUND_INFINITE) 
+		                && !endExposed.otherEnd().getMultiplicity().isUnique()) {
+		            refAss.refAddLink(endAObject, endBObject);
+		        }
+		    } else {
 			refAss.refAddLink(endAObject, endBObject);
+		    }
 		} else {
+		    if(refAss.refLinkExists(endBObject, endAObject)) {
+		        if((endExposed.getMultiplicity().getUpper() > 1 || 
+                                    endExposed.getMultiplicity().getUpper() == JmiHelper.MULTIPLICITY_BOUND_INFINITE) 
+                               && !endExposed.getMultiplicity().isUnique()) {
+                            refAss.refAddLink(endBObject, endAObject);
+                        }
+                    } else {
 			refAss.refAddLink(endBObject, endAObject);
+                    }
 		}
 	}
 
