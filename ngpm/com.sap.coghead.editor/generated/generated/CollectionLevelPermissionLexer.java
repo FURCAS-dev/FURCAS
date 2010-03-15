@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-03-10 11:33:05
+// $ANTLR 3.1.1 C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-03-10 17:47:12
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;

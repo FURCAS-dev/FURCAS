@@ -159,7 +159,7 @@ public class CtsDocument extends AbstractDocument {
 	    //////////////////
 	    //////////////////
 	    ///////////////////
-	    //pour le root
+	    
 	    if (partitionHandler.getMainPartitionContent().equalsIgnoreCase("all") || partitionHandler.getMainPartition().equals("textblocks")) {
 	    	 partitionHandler.assignToPartition(inputObject.get___Partition(), (RefObject)rootBlock, rootTemplate);
 		}

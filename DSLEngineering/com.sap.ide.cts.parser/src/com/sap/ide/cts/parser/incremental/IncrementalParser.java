@@ -693,11 +693,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 									newVersion.getType()
 											.getParseRule());
 							
-//								newVersion
-//									.assign___PartitionIncludingChildren(oldVersion
-//										.get___Partition());
-							}
 
+							}
 
 					} else {
 						// may be a root element that is composed nowhere
