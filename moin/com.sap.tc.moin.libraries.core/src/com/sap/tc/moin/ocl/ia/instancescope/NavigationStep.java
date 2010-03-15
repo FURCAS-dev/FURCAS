@@ -33,7 +33,7 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  */
 public interface NavigationStep {
-    Set<RefObjectImpl> navigate(CoreConnection conn, Set<RefObjectImpl> from, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache);
+    Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, Set<AnnotatedRefObjectImpl> from, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache);
     
     /**
      * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is

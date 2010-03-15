@@ -124,7 +124,7 @@ public class InstanceScopeAnalysis {
     }
 
     public Set<MRI> getAffectedElements(MofClassImpl context, Collection<? extends ChangeEvent> changeEvents) {
-	Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache = new HashMap<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>>();
+	Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache = new HashMap<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>>();
 	Set<MRI> result = new HashSet<MRI>();
 	for (ChangeEvent ce : changeEvents) {
 	    if (ce instanceof ModelChangeEvent) {
@@ -139,7 +139,7 @@ public class InstanceScopeAnalysis {
      * before the <tt>changeEvent</tt> occurred.
      */
     public Set<MRI> getAffectedElements(MofClassImpl context, ModelChangeEvent changeEvent,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
 	if (changeEvent instanceof ElementLifeCycleEvent) {
 	    // create and delete of elements only affects the allInstances expressions;
 	    // for those, however, no "self" context can easily be determined and therefore
@@ -159,12 +159,20 @@ public class InstanceScopeAnalysis {
 		RefObjectImpl sourceElement = getSourceElement(changeEvent,
 			(ModelPropertyCallExpInternal) attributeOrAssociationEndCall);
 		if (sourceElement != null) {
+		    /*
+		     * TODO the targetElement may also be useful: when in the continuation of the expression the
+		     * target element does not contribute to the expression's result, e.g., because it is filtered
+		     * out in a subsequent ->select expression or there is a ->isEmpty() or ->notEmpty() expression,
+		     * we can be smarter about telling if the change event could at all lead to a change of the
+		     * expression's evaluation result.
+		     */
+		    
 		    // the source element may have been deleted already by subsequent events; at this point,
 		    // this makes it impossible to trace the change event back to a context; all we have is
 		    // the LRI of a no longer existing model element...
-		    for (RefObjectImpl roi : self(attributeOrAssociationEndCall, sourceElement, context,
+		    for (AnnotatedRefObjectImpl roi : self(attributeOrAssociationEndCall, sourceElement, context,
 			    ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap(), cache)) {
-			result.add(roi.get___Mri());
+			result.add(roi.getElement().get___Mri());
 		    }
 		}
 	    }
@@ -173,13 +181,12 @@ public class InstanceScopeAnalysis {
     }
 
     /**
-     * Checks if all {@link ModelChangeEvent}s contained in <tt>events</tt> are attribute changes and the expressions
-     * affected by the change event are all attribute call expressions for an attribute of primitive type that is used
-     * in a direct comparison with a constant literal. If this is the case, compares the old and new value with the
-     * literal's value, considering the comparison operator. If no change occurs in comparison result for any of the
-     * events, <tt>true</tt> is returned because then the expression value didn't change based on the change event. If
-     * any of the events is an event of different type or the attribute is not of primitive type or its value is not
-     * compared to a constant, <tt>false</tt> is returned.
+     * Checks if <tt>event</tt> is an attribute change event and the expressions affected by the change event are all
+     * attribute call expressions for an attribute of primitive type that is used in a direct comparison with a constant
+     * literal. If this is the case, compares the old and new value with the literal's value, considering the comparison
+     * operator. If no change occurs in comparison result for any of the events, <tt>true</tt> is returned because then
+     * the expression value didn't change based on the change event. If any of the events is an event of different type
+     * or the attribute is not of primitive type or its value is not compared to a constant, <tt>false</tt> is returned.
      * <p>
      * 
      * Note that further performance improvements are conceivable but not yet implemented. For example, the attribute
@@ -193,62 +200,59 @@ public class InstanceScopeAnalysis {
      *            special "__TEMP__" constant but with the parameter value instead in case the comparison argument is a
      *            string literal with value "__TEMP__".
      */
-    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events,
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(ChangeEvent ce,
 	    String replacementFor__TEMP__) {
-	for (ChangeEvent ce : events) {
-	    if (ce instanceof ModelChangeEvent) {
-		ModelChangeEvent changeEvent = (ModelChangeEvent) ce;
-		Set<? extends ModelPropertyCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
-		if (calls.size() == 0) {
-		    return false; // probably an allInstances-triggered element creation/deletion event
-		}
-		for (ModelPropertyCallExp attributeOrAssociationEndCall : calls) {
-		    if (changeEvent instanceof AttributeValueChangeEvent) {
-			AttributeValueChangeEvent avce = (AttributeValueChangeEvent) changeEvent;
-			if (attributeOrAssociationEndCall instanceof AttributeCallExp) {
-			    AttributeCallExpInternal ace = (AttributeCallExpInternal) attributeOrAssociationEndCall;
-			    CoreConnection conn = ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap();
-			    if (ace.getType(conn) instanceof PrimitiveType) {
-				if (ace.getReferredAttribute(conn).get___Mri().equals(avce.getAffectedMetaObjectMri())) {
-				    OclExpressionInternal otherArgument = null;
-				    OperationCallExpInternal op;
-				    boolean attributeIsParameter = false;
-				    op = (OperationCallExpInternal) ace.getParentOperation(conn); // argument of a comparison operation?
-				    if (op != null && isComparisonOperation(op, conn)) {
-					otherArgument = (OclExpressionInternal) op.getSource(conn);
-					attributeIsParameter = true;
-				    } else {
-					PropertyCallExp propertyCallExp = ace.getAppliedProperty(conn); // source of a comparison operation?
-					if (propertyCallExp != null
-						&& propertyCallExp instanceof OperationCallExp
-						&& isComparisonOperation(((OperationCallExpInternal) propertyCallExp),
-							conn)) {
-					    op = ((OperationCallExpInternal) propertyCallExp);
-					    otherArgument = (OclExpressionInternal) ((JmiListImpl<?>) op
-						    .getArguments(conn)).iterator(conn).next();
-					    attributeIsParameter = false;
-					}
-				    }
-				    if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
-					if (doesComparisonResultChange(
-						avce, (PrimitiveLiteralExpInternal) otherArgument,
-						replacementFor__TEMP__, op.getReferredOperation(conn).getName(), attributeIsParameter)) {
-					    return false;
-					}
-				    } else {
-					// attribute not used in comparison operation; we assume a change
-					return false;
+	if (ce instanceof ModelChangeEvent) {
+	    ModelChangeEvent changeEvent = (ModelChangeEvent) ce;
+	    Set<? extends ModelPropertyCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
+	    if (calls.size() == 0) {
+		return false; // probably an allInstances-triggered element creation/deletion event
+	    }
+	    for (ModelPropertyCallExp attributeOrAssociationEndCall : calls) {
+		if (changeEvent instanceof AttributeValueChangeEvent) {
+		    AttributeValueChangeEvent avce = (AttributeValueChangeEvent) changeEvent;
+		    if (attributeOrAssociationEndCall instanceof AttributeCallExp) {
+			AttributeCallExpInternal ace = (AttributeCallExpInternal) attributeOrAssociationEndCall;
+			CoreConnection conn = ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap();
+			if (ace.getType(conn) instanceof PrimitiveType) {
+			    if (ace.getReferredAttribute(conn).get___Mri().equals(avce.getAffectedMetaObjectMri())) {
+				OclExpressionInternal otherArgument = null;
+				OperationCallExpInternal op;
+				boolean attributeIsParameter = false;
+				op = (OperationCallExpInternal) ace.getParentOperation(conn); // argument of a comparison operation?
+				if (op != null && isComparisonOperation(op, conn)) {
+				    otherArgument = (OclExpressionInternal) op.getSource(conn);
+				    attributeIsParameter = true;
+				} else {
+				    PropertyCallExp propertyCallExp = ace.getAppliedProperty(conn); // source of a comparison operation?
+				    if (propertyCallExp != null
+					    && propertyCallExp instanceof OperationCallExp
+					    && isComparisonOperation(((OperationCallExpInternal) propertyCallExp), conn)) {
+					op = ((OperationCallExpInternal) propertyCallExp);
+					otherArgument = (OclExpressionInternal) ((JmiListImpl<?>) op.getArguments(conn))
+						.iterator(conn).next();
+					attributeIsParameter = false;
 				    }
 				}
+				if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
+				    if (doesComparisonResultChange(avce, (PrimitiveLiteralExpInternal) otherArgument,
+					    replacementFor__TEMP__, op.getReferredOperation(conn).getName(),
+					    attributeIsParameter)) {
+					return false;
+				    }
+				} else {
+				    // attribute not used in comparison operation; we assume a change
+				    return false;
+				}
 			    }
-			} else {
-			    // not an attribute call expression; strange, but then we don't know anything
-			    return false;
 			}
 		    } else {
-			// not an attribute change event; consider changed
+			// not an attribute call expression; strange, but then we don't know anything
 			return false;
 		    }
+		} else {
+		    // not an attribute change event; consider changed
+		    return false;
 		}
 	    }
 	}
@@ -333,12 +337,13 @@ public class InstanceScopeAnalysis {
      * evaluates to <tt>sourceElement</tt>. This means, all contexts for which the source expression evaluates to
      * <tt>sourceElement</tt> are guaranteed to be found.
      */
-    private Set<RefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement,
-	    MofClass context, CoreConnection connection, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+    private Set<AnnotatedRefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement,
+	    MofClass context, CoreConnection connection, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
 	NavigationStep step = getNavigationStepsToSelfForExpression(connection, attributeOrAssociationEndCall
 		.getSource(), context);
-	Set<RefObjectImpl> sourceElementAsSet = Collections.singleton(sourceElement);
-	Set<RefObjectImpl> result = step.navigate(connection, sourceElementAsSet, cache);
+	Set<AnnotatedRefObjectImpl> sourceElementAsSet = Collections.singleton(
+		new AnnotatedRefObjectImpl("<start>\nat object: "+sourceElement, sourceElement));
+	Set<AnnotatedRefObjectImpl> result = step.navigate(connection, sourceElementAsSet, cache);
 	Statistics.getInstance().stepPerformed(step);
 	return result;
     }

@@ -33,8 +33,8 @@ public class IdentityNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result = new LinkedHashSet<RefObjectImpl>(1);
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result = new LinkedHashSet<AnnotatedRefObjectImpl>(1);
 	result.add(fromObject);
 	return result;
     }

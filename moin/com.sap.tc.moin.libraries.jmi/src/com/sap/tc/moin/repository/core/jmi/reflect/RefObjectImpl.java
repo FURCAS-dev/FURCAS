@@ -1,5 +1,6 @@
 package com.sap.tc.moin.repository.core.jmi.reflect;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -7,16 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 import com.sap.tc.moin.repository.LRI;
 import com.sap.tc.moin.repository.MRI;
@@ -40,6 +31,15 @@ import com.sap.tc.moin.repository.core.jmi.extension.RefObjectExtension;
 import com.sap.tc.moin.repository.exception.MoinIllegalArgumentException;
 import com.sap.tc.moin.repository.exception.MoinIllegalStateException;
 import com.sap.tc.moin.repository.metamodels.DeploymentExtension;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
+import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.tc.moin.repository.mmi.reflect.RefClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 import com.sap.tc.moin.repository.spi.ps.SpiAssociation;
 import com.sap.tc.moin.repository.spi.ps.SpiClass;
@@ -470,6 +470,14 @@ public abstract class RefObjectImpl extends RefFeaturedImpl implements RefObject
     public String toString( ) {
 
         StringBuilder result = new StringBuilder( );
+        String nameRepresentation = "";
+        try {
+            Method getName = getClass().getMethod("getName");
+            nameRepresentation = "\""+getName.invoke(this)+"\" ";
+        } catch (Throwable t) {
+            // well, then we don't seem to have a name...
+        }
+        result.append(nameRepresentation);
         result.append( "{" ); //$NON-NLS-1$
         if ( refMetaObject( ) != null ) {
             result.append( getClass( ).getName( ) );
