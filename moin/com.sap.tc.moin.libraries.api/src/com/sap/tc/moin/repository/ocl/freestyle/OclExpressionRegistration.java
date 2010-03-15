@@ -8,7 +8,6 @@ import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
@@ -184,8 +183,8 @@ public interface OclExpressionRegistration extends OclRegistration {
      * in the <tt>events</tt> collection and adds up all affected elements into the result set which is always
      * valid (non-<tt>null</tt>) but may be empty.
      */
-    public Set<MRI> getAffectedModelElements(EventChain events, Connection conn);
+    public Set<MRI> getAffectedModelElements(List<ChangeEvent> events, Connection conn);
 
-    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events, String replacementFor__TEMP__);
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(ChangeEvent event, String replacementFor__TEMP__);
 
 }

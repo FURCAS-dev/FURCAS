@@ -7,11 +7,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
+import com.sap.tc.moin.ocl.utils.impl.OclSerializer;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 public abstract class AbstractNavigationStep implements NavigationStep {
@@ -27,6 +30,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private Set<SourceTypeChangeListener> sourceTypeChangeListeners;
     private Set<TargetTypeChangeListener> targetTypeChangeListeners;
     private boolean alwaysEmpty;
+    private String annotation;
 
     public AbstractNavigationStep(MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo) {
 	this.sourceType = sourceType;
@@ -95,13 +99,61 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     public OclExpressionInternal getDebugInfo() {
 	return debugInfo;
     }
+    
+    protected AnnotatedRefObjectImpl annotateRefObject(CoreConnection conn, AnnotatedRefObjectImpl fromObject,
+	    RefObjectImpl next) {
+	return new AnnotatedRefObjectImpl(fromObject.getAnnotation()+
+		"\n------------- tracing back through ---------------\n"+
+		getAnnotation(conn)+
+		"\narriving at object: "+next,
+		next);
+    }
+
+    protected String getAnnotation(CoreConnection conn) {
+	if (annotation == null) {
+	    annotation = getVerboseDebugInfo(conn);
+	}
+	return annotation;
+    }
+
+    /**
+     * Constructs a human-readable description of the OCL expression used as debug info for this
+     * navigation step. This includes traveling up to the root expression in which the debug info
+     * expression is embedded.
+     */
+    private String getVerboseDebugInfo(CoreConnection conn) {
+	final String notInDebugMode = "To enable annotations, set the system property com.sap.tc.moin.ocl.debug to true, "+
+		"e.g., by using the VM argument -Dcom.sap.tc.moin.ocl.debug=true";
+	final boolean debugMode = Boolean.getBoolean("com.sap.tc.moin.ocl.debug");
+	OclSerializer serializer = OclSerializer.getInstance(conn);
+	try {
+	    if (debugMode) {
+	    return "Step's expression: "
+	    	+ serializer.serialize((OclExpression) this.getDebugInfo(), new RefPackage[0])
+	    	+ "\n ===== in expression =====\n"
+	    	+ serializer.serializeAndHighlight(
+	    		AbstractTracer.getRootExpression((RefObjectImpl) this.getDebugInfo(), conn),
+	    		(OclExpression) this.getDebugInfo(),
+	    		new RefPackage[0])+
+	    	(InstanceScopeAnalysis.getDefines(conn, AbstractTracer.getRootExpression((RefObjectImpl) this
+	    		.getDebugInfo(), conn)) != null ? "\n ===== which is the body of operation "
+	    		+ InstanceScopeAnalysis.getDefines(conn,
+	    			AbstractTracer.getRootExpression((RefObjectImpl) this.getDebugInfo(), conn)).getName()
+	    		+ " =====" : "");
+	    } else {
+		return notInDebugMode;
+	    }
+	} catch (Exception e) {
+	    throw new RuntimeException(e);
+	}
+    }
 
     /**
      * The incrementing of the navigate counter gets its own protected method because subclasses
      * must be able to suppress incrementing under special circumstances
      * (e.g. suppress count of additional recursive round trip in IndirectingStep)
      */
-    protected void incrementNavigateCounter(CoreConnection conn, Set<RefObjectImpl> from){
+    protected void incrementNavigateCounter(CoreConnection conn, Set<AnnotatedRefObjectImpl> from){
 	navigateCounter++;
     }
     
@@ -110,20 +162,20 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * manages the type checks.
      */
     @Override
-    public Set<RefObjectImpl> navigate(CoreConnection conn, Set<RefObjectImpl> from,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+    public Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, Set<AnnotatedRefObjectImpl> from,
+	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
 	incrementNavigateCounter(conn, from);
 	
-	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
+	Set<AnnotatedRefObjectImpl> result = new HashSet<AnnotatedRefObjectImpl>();
 	if (isAbsolute()) {
 	    from = Collections.singleton(null);
 	}
 	if (!isAlwaysEmpty()) { // don't do anything for empty steps
-	    for (RefObjectImpl fromObject : from) {
+	    for (AnnotatedRefObjectImpl fromObject : from) {
 		// for absolute steps, don't do the source type check and invoke just once, passing null for "from"
-		if (isAbsolute() || AbstractTracer.doesTypeMatch(conn, getSourceType(), fromObject)) {
-		    for (RefObjectImpl singleResult : getFromCacheOrNavigate(conn, fromObject, cache)) {
-			if (AbstractTracer.doesTypeMatch(conn, getTargetType(), singleResult)) {
+		if (isAbsolute() || AbstractTracer.doesTypeMatch(conn, getSourceType(), fromObject.getElement())) {
+		    for (AnnotatedRefObjectImpl singleResult : getFromCacheOrNavigate(conn, fromObject, cache)) {
+			if (AbstractTracer.doesTypeMatch(conn, getTargetType(), singleResult.getElement())) {
 			    result.add(singleResult);
 			}
 		    }
@@ -134,10 +186,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	return result;
     }
     
-    private Collection<RefObjectImpl> getFromCacheOrNavigate(CoreConnection conn, RefObjectImpl fromObject,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result;
-	Pair<NavigationStep, RefObjectImpl> cacheKey = new Pair<NavigationStep, RefObjectImpl>(this, fromObject);
+    private Collection<AnnotatedRefObjectImpl> getFromCacheOrNavigate(CoreConnection conn,
+	    AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result;
+	Pair<NavigationStep, RefObjectImpl> cacheKey = new Pair<NavigationStep, RefObjectImpl>(this, fromObject.getElement());
 	result = cache.get(cacheKey);
 	if (result == null) {
 	    cacheMisses++;
@@ -179,8 +231,8 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	}
     }
     
-    protected abstract Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache);
+    protected abstract Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject,
+	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache);
 
     public String toString() {
 	Map<NavigationStep, Integer> visited = new HashMap<NavigationStep, Integer>();

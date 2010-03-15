@@ -1,5 +1,6 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,8 +46,12 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	return InstanceScopeAnalysis.getAllPossibleContextInstances(conn, getTargetType());
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result = new HashSet<AnnotatedRefObjectImpl>();
+	for (RefObjectImpl roi : InstanceScopeAnalysis.getAllPossibleContextInstances(conn, getTargetType())) {
+	    result.add(annotateRefObject(conn, fromObject, roi));
+	}
+	return result;
     }
 
     @Override

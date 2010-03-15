@@ -18,8 +18,10 @@ public class RefImmediateCompositeNavigationStep extends AbstractNavigationStep 
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result = Collections.singleton((RefObjectImpl) fromObject.refImmediateComposite(conn.getSession()));
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result = Collections.singleton(
+		annotateRefObject(conn, fromObject, 
+		((RefObjectImpl) fromObject.getElement().refImmediateComposite(conn.getSession()))));
 	return result;
     }
 

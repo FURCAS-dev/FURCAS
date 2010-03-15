@@ -23,29 +23,28 @@ import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 public class AssociationNavigationStep extends AbstractNavigationStep {
     private static Logger logger = Logger.getLogger(AssociationNavigationStep.class.getName());
     private final AssociationEnd toEnd;
-
     public AssociationNavigationStep(MofClass sourceType, MofClass targetType, AssociationEnd toEnd, OclExpressionInternal debugInfo) {
 	super(sourceType, targetType, debugInfo);
 	this.toEnd = toEnd;
     }
-
+    
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result;
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	Set<AnnotatedRefObjectImpl> result;
 
 	Association assoc = (Association) ((AssociationEndInternal) toEnd).getContainer(conn);
 	SpiJmiHelper jmiHelper = conn.getCoreJmiHelper();
 	RefAssociationImpl refAssoc = (RefAssociationImpl) jmiHelper.getRefAssociationForAssociation(conn.getSession(),
 		assoc);
 	JmiListImpl<RefObject> objectOrCollection = (JmiListImpl<RefObject>) refAssoc.refQuery(conn,
-		((AssociationEndInternal) toEnd).otherEnd(conn), fromObject);
-	result = new LinkedHashSet<RefObjectImpl>(objectOrCollection.size(conn.getSession()));
+		((AssociationEndInternal) toEnd).otherEnd(conn), fromObject.getElement());
+	result = new LinkedHashSet<AnnotatedRefObjectImpl>(objectOrCollection.size(conn.getSession()));
 	for (Iterator<RefObject> i = objectOrCollection.iterator(conn); i.hasNext();) {
 	    RefObjectImpl next = (RefObjectImpl) i.next();
 	    if (next == null) {
 		logger.warning("Got null from a JmiList; probably dangling reference after refDelete()? Skipping element in OCL Instance Scope Impact Analysis");
 	    } else {
-		result.add(next);
+		result.add(annotateRefObject(conn, fromObject, next));
 	    }
 	}
 	return result;
