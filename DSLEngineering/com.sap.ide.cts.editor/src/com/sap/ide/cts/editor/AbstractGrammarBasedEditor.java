@@ -951,12 +951,12 @@ public abstract class AbstractGrammarBasedEditor extends
 		}
 		TextBlock newBlock = previousBlock;
 
-		try {
-			dryParse(previousBlock);
-		} catch (SemanticParserException e) {
-			syntacticallyCorrect = false;
-			throw e;
-		}
+//		try {
+//			dryParse(previousBlock);
+//		} catch (SemanticParserException e) {
+//			syntacticallyCorrect = false;
+//			throw e;
+//		}
 
 		if (syntacticallyCorrect) {
 		        //reset errors in modelinjector
