@@ -48,7 +48,7 @@
 		</ant>
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
-			<property name="id" value="org.eclipse.ocl.examples.project.rotalandloyal"/>
+			<property name="id" value="org.eclipse.ocl.examples.project.royalandloyal"/>
 		</ant>
 	</target>
 
