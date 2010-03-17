@@ -90,7 +90,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 
 	@Override
 	public void setNewFeature(SetNewFeatureBean newFeatureBean,
-			boolean assignToPartition) {
+			boolean assignToPartition, TextBlock correspondingTextBlock) {
 //		IncrementalParsingUtil.setNewFeature(newFeatureBean, batchParser
 //				.getInjector(), assignToPartition);
 		batchParser.getInjector().set(newFeatureBean.parentRefObject,
@@ -103,18 +103,39 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 				// the main
 				// partition
 
-				if (((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
-						.equalsIgnoreCase("model")))) {
+				if (((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) )) {
 
 					if (partitionHandler.getMainPartition() != null) { // it will be stored in the
 						// main partition
+						System.out.println("The element " +newFeatureBean.value+ "in SetNewfeature1 has been stored in ....." );
+
 						partitionHandler.getMainPartition()
 								.assignElementIncludingChildren((RefObject) newFeatureBean.value);
+						
+						//
+						/////
+						/////
+						/////
+						//Der Fall TB Model und All unterscheiden
+						System.out.println("The element " +newFeatureBean.value+ " TEXTBLOCK ....in correspondingTextBlock has been stored in ....." );
+						partitionHandler.getMainPartition().assignElementIncludingChildren((RefObject) correspondingTextBlock);
+						System.out.println("");
+						System.out.println(partitionHandler.getMainPartition());
 
 					} else {// or it will be stored in the parent partition
+						System.out.println("The element " +newFeatureBean.value+ " TEXTBLOCK ..in SetNewfeature has been stored in ....." );
+
 						newFeatureBean.parentRefObject.get___Partition()
 								.assignElementIncludingChildren(
 										(RefObject) newFeatureBean.value);
+						
+						//////
+						/////
+						/////Konzept hier auch
+						newFeatureBean.parentRefObject.get___Partition()
+						.assignElementIncludingChildren(
+								(RefObject) correspondingTextBlock);
+						System.out.println(newFeatureBean.parentRefObject.get___Partition());
 					}
 
 				}
@@ -136,8 +157,19 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 							|| (partitionHandling.getContent().toString()
 									.equalsIgnoreCase("all"))) {
 						if (partitionHandler.getMainPartition() != null) {
+							System.out.println("The element " +newFeatureBean.value+ "in SetNewfeature1(Else) has been stored in ....." );
+
 							partitionHandler.getMainPartition()
 									.assignElementIncludingChildren((RefObject) newFeatureBean.value);
+							
+							//////////////
+							/////////////
+							///////////////
+							//////////////
+							/////////////
+							
+							partitionHandler.getMainPartition()
+							.assignElementIncludingChildren((RefObject) correspondingTextBlock);
 
 						} else {
 							newFeatureBean.parentRefObject.get___Partition()
@@ -157,10 +189,22 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 									.equalsIgnoreCase("model"))
 							|| (partitionHandling.getContent().toString()
 									.equalsIgnoreCase("all"))) {
+						System.out.println("The element " +newFeatureBean.value+ "in SetNewfeature1 (if else) has been stored in ....." );
+
 						partitionHandler.assignToPartition(
 								newFeatureBean.parentRefObject
 										.get___Partition(),
 								(RefObject) newFeatureBean.value,
+								partitionHandling);
+						
+						///////////////////
+						///////////////////////////
+						//////////////////////////
+						////////////////////////
+						
+						partitionHandler.assignToPartition(
+								correspondingTextBlock.get___Partition(),
+								(RefObject) correspondingTextBlock,
 								partitionHandling);
 					}
 

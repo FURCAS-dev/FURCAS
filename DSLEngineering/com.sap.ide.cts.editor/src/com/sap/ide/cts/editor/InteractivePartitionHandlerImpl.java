@@ -40,7 +40,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 public class InteractivePartitionHandlerImpl implements
 	InteractivePartitionHandler {
 
-	 private Object object;
+	 	private Object object;
 	    private IProject project;
 	    private PRI targetPRI;
 	    private static String response;
@@ -48,6 +48,8 @@ public class InteractivePartitionHandlerImpl implements
 //	    private List<PRI> priResponse = new ArrayList<PRI>();
 //	    private Map<Integer,List> responses = new HashMap<Integer, List>();
 	    private SetInteractiveResult InteractiveResult;
+	    private Display display;
+	    private Shell shell;
 	    
 	    
 	    /*
@@ -81,8 +83,8 @@ public class InteractivePartitionHandlerImpl implements
 //		return targetPRI;
 		
 		
-		Display display = new Display();
-		Shell shell = new Shell(display);
+		display = new Display();
+		shell = new Shell(display);
 		shell.setSize(300, 300);
 
 		final Shell shell2 = new Shell(display);

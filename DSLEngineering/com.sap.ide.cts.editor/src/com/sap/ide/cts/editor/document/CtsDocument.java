@@ -153,17 +153,21 @@ public class CtsDocument extends AbstractDocument {
 	    // no root node found, so create a new one
 	    rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(inputObject, tbPackage, concreteSyntax, con,
 		    parserFactory);
-	    DefaultPartitionAssignmentHandlerImpl partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-	    partitionHandler.SetMainPartition_And_MainContent(concreteSyntax, con, inputObject.get___Partition());
+	   
 	    if (completelyItitialized) {
 			
 		}
+	   
 	    //////////////////
 	    //////////////////
 	    ///////////////////
+	    DefaultPartitionAssignmentHandlerImpl partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+	    partitionHandler.SetMainPartition_And_MainContent(concreteSyntax, con, inputObject.get___Partition());
 	    
 	    if (partitionHandler.getMainPartitionContent().equalsIgnoreCase("all") || partitionHandler.getMainPartition().equals("textblocks")) {
-	    	 partitionHandler.assignToPartition(inputObject.get___Partition(), (RefObject)rootBlock, rootTemplate);
+			System.out.println("The element " +rootBlock+ "in CtsDocument has been stored in ....." );
+
+	    	partitionHandler.assignToPartition(inputObject.get___Partition(), (RefObject)rootBlock, rootTemplate);
 		}
 	   
 	}

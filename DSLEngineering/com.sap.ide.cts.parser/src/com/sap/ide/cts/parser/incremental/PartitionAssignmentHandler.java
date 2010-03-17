@@ -95,5 +95,8 @@ public interface PartitionAssignmentHandler {
 	
 	ConcreteSyntax getConcreteSyntax();
 
+	void setInterActivePartitionHandler(
+			InteractivePartitionHandler interactivePartitionHandler);
+
 
 }

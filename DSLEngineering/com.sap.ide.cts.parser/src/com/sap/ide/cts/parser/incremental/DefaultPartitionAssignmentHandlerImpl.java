@@ -24,7 +24,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		PartitionAssignmentHandler {
 
 	private RefPackage[] packagesForLookup;
-	private InteractivePartitionHandler interactivePartitionHandler;
+	private InteractivePartitionHandler interactivePartitionHandler ;
 	private String mainPartitionContent;
 	private ModelPartition mainPartition;
 	private ConcreteSyntax concreteSyntax2;
@@ -45,7 +45,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	@Override
 	public void assignToPartition(ModelPartition partition,
 			RefObject newElement, Template template) {
-		// setMainPartition(mainPartition);
 		if (template != null) {
 			if (template instanceof ClassTemplate) {
 
@@ -65,11 +64,18 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 						if (template.getConcretesyntax().getPartitionHandling() != null) {
 							partition = getMainPartition();
 							// setPartition(partition);
+							System.out.println("");
+							System.out.println(partition);
+							System.out.println("");
 							partition
 									.assignElementIncludingChildren(newElement);
+							
 						}
 					} else {
 						partition = newElement.get___Partition();
+						System.out.println("");
+						System.out.println(partition);
+						System.out.println("");
 						partition.assignElementIncludingChildren(newElement);
 					}
 
@@ -129,10 +135,16 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			if (getConcreteSyntax() != null) {
 				if (getConcreteSyntax().getPartitionHandling() != null) {
 					partition = getMainPartition();
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
 					partition.assignElementIncludingChildren(refObject);
 				}
 			} else {
 				partition = refObject.get___Partition();
+				System.out.println("");
+				System.out.println(partition);
+				System.out.println("");
 				partition.assignElementIncludingChildren(refObject);
 			}
 
@@ -146,6 +158,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			 */
 
 		} else if (!partitionHandling.isAutomaticPartition()) {
+			
 
 			assignToPartitionNotAutomaticForProperty(partition,
 					originalPartition, refObject, partitionHandling,
@@ -218,7 +231,10 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			// }
 
 		}
-
+		
+		System.out.println("");
+		System.out.println(partition);
+		System.out.println("");
 		partition.assignElementIncludingChildren(refObject);
 
 	}
@@ -280,6 +296,10 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				partition = connection.createPartition(newTargetPRI);
 			}
 		}
+		
+		System.out.println("");
+		System.out.println(partition);
+		System.out.println("");
 
 		partition.assignElementIncludingChildren(newElement);
 
@@ -303,6 +323,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		} else {
 			partition = connection.createPartition(targetPRI);
 		}
+		System.out.println("");
+		System.out.println(partition);
+		System.out.println("");
 		partition.assignElementIncludingChildren(newElement);
 
 	}
@@ -349,6 +372,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				}
 
 			}
+			System.out.println("");
+			System.out.println(partition);
+			System.out.println("");
 
 			partition.assignElementIncludingChildren(refObject);
 		}
@@ -401,6 +427,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				}
 
 			}
+			System.out.println("");
+			System.out.println(partition);
+			System.out.println("");
 			partition.assignElementIncludingChildren(newElement);
 
 		}
@@ -408,7 +437,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	public void setInteractivePartitionHandler(InteractivePartitionHandler iph) {
 		this.interactivePartitionHandler = iph;
-
 	}
 
 	@Override
@@ -579,7 +607,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		if (!proxy.isReferenceOnly()) {
 			// assign to builded partition
 
-			if (se instanceof Property) {
+			if (se != null && se instanceof Property) {
 				Property seqElement = (Property) se;
 
 				if ((TcsUtil.getPartitionHandlingParg(seqElement) != null)
@@ -599,10 +627,39 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 						// the model element will be
 						// stored just when content
 						// equals all or model
+						Object refGetValue = "";
+						try {
+							refGetValue = result.refGetValue("name");
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
+						System.out.println("The element " +result+ " mit name " + refGetValue+" in assignFromProxy1 has been stored in ....." );
 
 						assignToPartition(defaultPartition, result, TcsUtil
 								.getPartitionHandlingParg(seqElement)
 								.getPartitionhandling());
+					}
+				}else {
+					
+						if ((getMainPartitionContent().equalsIgnoreCase("all"))
+								|| (getMainPartitionContent()
+										.equalsIgnoreCase("model"))
+								) {
+							Object refGetValue = "";
+							try {
+								refGetValue = result.refGetValue("name");
+							}catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out.println("The element " +result+ " mit name " +refGetValue+" in assignFromProxy2 has been stored in ....." );
+
+							assignToPartition(defaultPartition, result, template);
+							
+						
+
+						
+					}else {
+						
 					}
 				}
 
@@ -610,14 +667,28 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 				if ((getMainPartitionContent().equalsIgnoreCase("all"))
 						|| (getMainPartitionContent().equalsIgnoreCase("texblocks"))) {
+					Object refGetValue = "";
+					try {
+						refGetValue = result.refGetValue("name");
+					}catch (Exception e) {
+						// TODO: handle exception
+					}
+					System.out.println("The element " +result+ "mit name "+refGetValue+"i n assignFromProxy3 has been stored in ....." );
+
 					assignToPartition(defaultPartition, result, template);
 
-				} else {
-
-					assignToPartition(defaultPartition, result, template);
-				}
+				} 
+//				else {
+//
+//					assignToPartition(defaultPartition, result, template);
+//				}
 
 			}
+			////////////
+			////////////////////
+			///////////////////
+			/////////////////
+			setInteractivePartitionHandler(interactivePartitionHandler);
 
 		}
 
@@ -657,33 +728,57 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				if (connection.getPartition(concretSyntax_PRI) != null) {
 					mainPartition = connection.getPartition(concretSyntax_PRI);
 					setMainPartition(mainPartition);
+					mainPartitionContent = concreteSyntax.getPartitionHandling().getContent().toString();
+					setMainPartitionContent(mainPartitionContent);
 				} else {
 
 					mainPartition = connection
 							.createPartition(concretSyntax_PRI);
 					setMainPartition(mainPartition);
+					mainPartitionContent = concreteSyntax.getPartitionHandling().getContent().toString();
+					setMainPartitionContent(mainPartitionContent);
 				}
 			} else {
-				SetInteractiveResult interactiveResult3 = interactivePartitionHandler
-						.getPartitionFor(concreteSyntax.getPartitionHandling(),defaultPartition1,
-								concreteSyntax, connection);
-				
-				if (interactiveResult3.getPri_Result()!= null) {
-					if (connection.partitionExists(concretSyntax_PRI)) {
-						mainPartition = connection.getPartition(concretSyntax_PRI);
-						setMainPartition(mainPartition);
+//				SetInteractiveResult interactiveResult3 = interactivePartitionHandler
+//						.getPartitionFor(concreteSyntax.getPartitionHandling(),defaultPartition1,
+//								concreteSyntax, connection);
+//				
+//				if (interactiveResult3.getPri_Result()!= null) {
+//					if (connection.partitionExists(concretSyntax_PRI)) {
+//						mainPartition = connection.getPartition(concretSyntax_PRI);
+//						setMainPartition(mainPartition);
+//
+//					} else {
+//						mainPartition = connection
+//								.createPartition(concretSyntax_PRI);
+//						setMainPartition(mainPartition);
+//					}
+//				}
+				PRI concretSyntax_PRI1 = null;
+				concretSyntax_PRI1 = getPRI_Of_ConcreteSyntax(concreteSyntax,
+						connection, defaultPartition1);
 
-					} else {
-						mainPartition = connection
-								.createPartition(concretSyntax_PRI);
-						setMainPartition(mainPartition);
-					}
+				if (connection.getPartition(concretSyntax_PRI1) != null) {
+					mainPartition = connection.getPartition(concretSyntax_PRI1);
+					setMainPartition(mainPartition);
+					mainPartitionContent = concreteSyntax.getPartitionHandling().getContent().toString();
+					setMainPartitionContent(mainPartitionContent);
+				} else {
+
+					mainPartition = connection
+							.createPartition(concretSyntax_PRI1);
+					setMainPartition(mainPartition);
+					mainPartitionContent = concreteSyntax.getPartitionHandling().getContent().toString();
+					setMainPartitionContent(mainPartitionContent);
 				}
-			}
-			mainPartitionContent = concreteSyntax.getPartitionHandling()
-					.getContent().toString();
-			setMainPartitionContent(mainPartitionContent);
+			
+			
+				
+			}	
+			setInteractivePartitionHandler(interactivePartitionHandler);
+			
 		}
+		
 	}
 
 	public void setConcreteSyntax(ConcreteSyntax concreteSyntax2) {
@@ -729,5 +824,12 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		}
 		return newPRI;
 	}
+
+	@Override
+	public void setInterActivePartitionHandler(
+			InteractivePartitionHandler interactivePartitionHandler) {
+		this.interactivePartitionHandler = interactivePartitionHandler; 
+	}
+
 
 }

@@ -49,8 +49,9 @@ public interface ReferenceHandler {
 	 * Set the feature according to the given {@link SetNewFeatureBean};
 	 * 
 	 * @param newFeatureBean
+	 * @param textBlock 
 	 */
-	void setNewFeature(SetNewFeatureBean newFeatureBean, boolean assignToPartition);
+	void setNewFeature(SetNewFeatureBean newFeatureBean, boolean assignToPartition, TextBlock textBlock);
 
 	/**
 	 * Sets the value of the property that is represented by the given <code>subNode</code>

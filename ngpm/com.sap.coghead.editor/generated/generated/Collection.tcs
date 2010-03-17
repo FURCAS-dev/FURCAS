@@ -1,4 +1,5 @@
-syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyntax_\').concat(\'CS\').concat(\'.xmi\')', auto , content = all , }  {
+syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyntax_\').concat(\'.xmi\')' , content = all , }  {
+-- PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyntax_\').concat(self.name).concat(\'.xmi\')' , content = all , }  {
 -- k = 0 means manually defined syntactic predicates
 
 	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
@@ -10,16 +11,16 @@ syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyn
 	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING: 
 		value = "unescapeString(%token%)", 
 		serializer="'\\\"' + %value%.toCString() + '\\\"'";
- 
+  
 	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
 		value = "Integer.valueOf(%token%)";
-		  
+		    
 	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
 		value = "Long.valueOf(%token%)";
 		 
 	primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
 		value = "%token%";
-
+ 
 	primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
 		value = "%token%";
 		
@@ -38,12 +39,14 @@ syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyn
 	enumerationTemplate ElementaryTypeEnum auto;
 	enumerationTemplate Axis auto;
 	
-	template Collection main context(env) PartitionHandling{name = '(\'src/\').concat(\'Collection\').concat(self.name).concat(\'.xmi\')', auto, content = all , }
+	--	PartitionHandling{name = '(\'src/\').concat(\'Collection5\').concat(self.name).concat(\'.xmi\')',  content = all , }
+	
+	template Collection main context(env) PartitionHandling{name = '(\'src/\').concat(\'Collection5\').concat(\'.xmi\')', auto,  content = all , }
 		: "collection" name "{"
-		    schema {PartitionHandling{name = '(\'src/\').concat(\'Schema\').concat(self.name).concat(\'.xmi\')', auto, content = all ,} }
-		    actions {PartitionHandling{name = '(\'src/\').concat(\'Schema\').concat(self.name).concat(\'.xmi\')', auto, content = all ,} }
+		    schema {PartitionHandling{name = '(\'src/\').concat(\'Schema5\').concat(\'.xmi\')', content = all ,} }
+		    actions {PartitionHandling{name = '(\'src/\').concat(\'Actions5\').concat(\'.xmi\')',  content = all ,} }
 		  "}"
-		;
+		; 
 	
 	template Schema
 		: entries{separator=";"} (isDefined(entries) ? ";")
@@ -54,10 +57,10 @@ syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyn
 	template FieldGroup context(FieldGroup)
 		: "group" $cardinality name "{"
 		  		fields{mode=inFieldGroup, separator=";"}
-		  "}"
+		  "}" 
 		;
 	
-	template Field PartitionHandling{name = '(\'src/\').concat(\'Field_\').concat(self.name).concat(\'.xmi\')', auto, content = all ,}
+	template Field PartitionHandling{name = '(\'src/\').concat(\'Field5\').concat(\'.xmi\')', content = all ,}
 		: (unique ? "unique") type $cardinality name 
 		  (isDefined(defaultValue) ? "default"    defaultValue)	-- TODO: what is the root for the default value? the current record?
 		  (isDefined(formula)      ? "formula"    formula)      -- TODO: defaultValue and formula seem to be pretty redundant
@@ -84,7 +87,9 @@ syntax Collection(k=0 )PartitionHandling{name = '(\'src/\').concat(\'ConcreteSyn
 	template coghead::xpath::AxisStep
 		: 	(isDefined(axis) ? axis "::") nodeTest
 		;
-	
+		
+		
+	 
 	-- TODO: do we need to introduce a Predicate MM class to get the syntax right?
 	-- The separator constructed used here is awkward.	
 	operatorTemplate coghead::xpath::FilterExpr(operators = lbracket, source='expression')

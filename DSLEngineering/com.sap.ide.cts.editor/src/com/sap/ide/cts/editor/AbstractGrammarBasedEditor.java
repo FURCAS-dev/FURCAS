@@ -1218,7 +1218,7 @@ public abstract class AbstractGrammarBasedEditor extends
 				getWorkingConnection(), getParserFactory(), getLexer(),
 				getParser(), reuseStrategy, getAdditionalLookupCRIS());
 		partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-		partitionHandler.setInteractivePartitionHandler(new InteractivePartitionHandlerImpl());
+		incrementalParser.setInteractivePartitionHandler(new InteractivePartitionHandlerImpl());
 		
 		shortPrettyPrinter = new ShortPrettyPrinter(new MOINModelAdapter(
         		parserFactory.getMetamodelPackage(getWorkingConnection()),

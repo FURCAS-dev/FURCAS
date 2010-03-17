@@ -12,6 +12,8 @@ import java.util.Set;
 
 import org.antlr.runtime.Token;
 
+import tcs.Property;
+
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 
 /**
@@ -96,6 +98,25 @@ public class ModelElementProxy implements IModelElementProxy {
 	 * @param index
 	 */
 	public void addProxyAttribute(String prop, Object value, int index) {
+		List<Object> existingList = attributeMap.get(prop);
+		if (existingList == null) {
+			existingList = new ArrayList<Object>();
+		}
+		if(value instanceof Collection<?>) {
+		    existingList.addAll(index, (Collection<?>)value);
+		} else {
+		    existingList.add(index, value);
+		}
+		
+		attributeMap.put(prop, existingList);
+	}
+	/**
+	 * @param prop
+	 * @param value
+	 * @param index
+	 * @param tcs_property
+	 */
+	public void addProxyAttribute(String prop, Object value, int index, Property tcs_property) {
 		List<Object> existingList = attributeMap.get(prop);
 		if (existingList == null) {
 			existingList = new ArrayList<Object>();

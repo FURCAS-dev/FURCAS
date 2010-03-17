@@ -99,6 +99,11 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 	private ModelPartition defaultPartition;
 
+	public void setInteractivePartitionHandler(
+			InteractivePartitionHandler interactivePartitionHandler) {
+		this.partitionHandler.setInterActivePartitionHandler(interactivePartitionHandler);
+	}
+
 	public IncrementalParser(Connection connection,
 			ParserFactory<?, ?> parserFactory,
 			IncrementalLexer incrementalLexer,
@@ -158,10 +163,10 @@ public class IncrementalParser extends IncrementalRecognizer {
 							.getMetamodelCri(connection), syntaxPartitions,
 					parserFactory.getParserLookupScope(connection),
 					additionalCRIScope);
-
 			concreteSyntax = TcsUtil.getSyntaxByName(connection, parserFactory
 					.getLanguageId());
 			setConcreteSyntax(concreteSyntax);
+			
 			partitionHandler.SetMainPartition_And_MainContent(concreteSyntax,
 					connection, getDefaultPartition());
 
@@ -311,7 +316,6 @@ public class IncrementalParser extends IncrementalRecognizer {
 	public void setConcreteSyntax(ConcreteSyntax concreteSyntax) {
 		this.concreteSyntax = concreteSyntax;
 	}
-
 
 	/**
 	 * Searches for the least common ancestor of the given left and right
@@ -478,6 +482,14 @@ public class IncrementalParser extends IncrementalRecognizer {
 		if ((partitionHandler.getMainPartitionContent() != null)
 				&& ((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
 						.equalsIgnoreCase("textblocks")))) {
+			Object refGetValue = "";
+			try {
+				refGetValue = result.refGetValue("name");
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.println("The element " +result+ "mit name "+ refGetValue+" in mergeFromProxy has been stored in ....." );
+
 			partitionHandler.assignToPartition(oldVersion.get___Partition(),
 					result, result.getType().getParseRule());
 		}
@@ -509,7 +521,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 							.getSequenceElement()).getPropertyReference()
 							.getStrucfeature().getName(),
 							value.getRealObject(), 0, property);
-					referenceHandler.setNewFeature(bean, false);
+					referenceHandler.setNewFeature(bean, false, result);
 			} else {
 				replaceCorrespondingModelElements(oldVersion, result);
 			}
@@ -525,7 +537,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 			SetNewFeatureBean newFeatureBean = IncrementalParsingUtil
 					.insertFeatureValue(resultBean.textBlock, oldVersion,
 							insertBefore);
-			getReferenceHandler().setNewFeature(newFeatureBean, true);
+			getReferenceHandler().setNewFeature(newFeatureBean, true, result);
 		} else if (resultBean.reuseType
 				.equals(TextBlockReuseStrategy.ReuseType.COMPLETE)) {
 			// no further actions have to be done, the tb was completely re-used
@@ -678,6 +690,14 @@ public class IncrementalParser extends IncrementalRecognizer {
 									if (((partitionHandler.getMainPartitionContent()
 											.equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
 											.equalsIgnoreCase("model")))) {
+										Object refGetValue = "";
+										try {
+											refGetValue = correspondingNewElement.refGetValue("name");
+										}catch (Exception e) {
+											// TODO: handle exception
+										}
+										System.out.println("The element " +correspondingNewElement+ "mit name " +refGetValue+" in replaceCorrespondingModelElements has been stored in ....." );
+
 										partitionHandler.assignToPartition(
 												getDefaultPartition(),
 												correspondingNewElement,
@@ -690,8 +710,14 @@ public class IncrementalParser extends IncrementalRecognizer {
 						if (((partitionHandler.getMainPartitionContent()
 								.equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
 								.equalsIgnoreCase("textblocks")))) {
-						
-							
+							Object refGetValue = "";
+							try {
+								refGetValue = newVersion.refGetValue("name");
+							}catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out.println("The element " +newVersion+ "mit name " +refGetValue+" in replaceCorrespondingModelElements2 has been stored in ....." );
+
 							partitionHandler.assignToPartition(
 									getDefaultPartition(),
 									(RefObject)newVersion,
@@ -725,6 +751,14 @@ public class IncrementalParser extends IncrementalRecognizer {
 						
 						if (((partitionHandler.getMainPartitionContent().equalsIgnoreCase("all")) || (partitionHandler.getMainPartitionContent()
 								.equalsIgnoreCase("model")))) {
+							Object refGetValue = "";
+							try {
+								refGetValue = correspondingNewCandidate.refGetValue("name");
+							}catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out.println("The element " +correspondingNewCandidate+ " mit name" +refGetValue+" in replaceCorrespondingModelElements3 has been stored in ....." );
+
 							partitionHandler.assignToPartition(
 									getDefaultPartition(),
 									correspondingNewCandidate, newVersion

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tcs.ClassTemplate;
+import tcs.Property;
 import tcs.Template;
 import textblockdefinition.TextBlockDefinition;
 import textblocks.AbstractToken;
@@ -30,7 +31,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	private Map<Template, TextBlockDefinition> tbDefsMap = new HashMap<Template, TextBlockDefinition>();
 	private TextBlockReuseStrategy reuseStrategy;
 	private ModelElementFromTextBlocksFactory modelElementFactory;
-	private PartitionAssignmentHandler partitionHandlerTextblock;
+	private PartitionAssignmentHandler partitionHandlerTextblock ;
 
 	public ReuseAwareTextBlockFactoryImpl(TextblocksPackage textblocksPackage,
 			TextBlockReuseStrategy tbReuseStrategy,
@@ -40,7 +41,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		this.textblocksPackage = textblocksPackage;
 		reuseStrategy = tbReuseStrategy;
 		this.modelElementFactory = modelElementFactory;
-		this.partitionHandlerTextblock = partitionHandlerTextblock;
+		this.partitionHandlerTextblock =  partitionHandlerTextblock;
 	}
 
 	@Override
@@ -87,13 +88,76 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		tb.setSequenceElement(newVersion.getSequenceElement());
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
 		tb.getAdditionalTemplates().addAll(newVersion.getAdditionalTemplates());
-
 		if (partitionHandlerTextblock.getMainPartitionContent()
 				.equalsIgnoreCase("all")
 				|| partitionHandlerTextblock.getMainPartitionContent()
 						.equalsIgnoreCase("Textblocks")) {
+			Object refGetValue = "";
+			try {
+				refGetValue = tb.refGetValue("name");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			if (tb.getSequenceElement() != null
+					&& tb.getSequenceElement() instanceof Property) {
+				// /////////////////
+				// ////////////////////////
+				// ///////////////////////////
+				// //////////////////////
+				// ////////////////////
+				if (TcsUtil.getPartitionHandlingParg((Property) tb
+						.getSequenceElement() )!= null) {
+					
+				
+
+				if ((TcsUtil.getPartitionHandlingParg((Property) tb
+						.getSequenceElement())).getPartitionhandling() != null) {
+					System.out
+					.println("The element "
+							+ tb
+							+ "mit name "
+							+ refGetValue
+							+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, TcsUtil
+									.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+									.getPartitionhandling());
+				}else {
+					System.out
+					.println("The element "
+							+ tb
+							+ "mit name "
+							+ refGetValue
+							+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
 			partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
 					tb.getType().getParseRule());
+					
+				}
+			}else {
+				System.out
+				.println("The element "
+						+ tb
+						+ "mit name "
+						+ refGetValue
+						+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+		partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
+				tb.getType().getParseRule());
+				
+			}
+			}else {
+				System.out
+				.println("The element "
+						+ tb
+						+ "mit name "
+						+ refGetValue
+						+ "in instantiateBlockAndMoveTokens has been stored in .....");
+		partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
+				tb.getType().getParseRule());
+			}
+			
 		}
 
 		int endIndex = 0;
@@ -197,6 +261,9 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 				.getTextblockdefinition().getTextBlockDefinition()
 				.refCreateInstance();
 		tbDef.setParseRule(template);
+		System.out.println("The element " + tbDef
+				+ "in initializeTextBlockDefinition has been stored in .....");
+
 		((Partitionable) template).get___Partition()
 				.assignElementIncludingChildren(tbDef);
 		return tbDef;

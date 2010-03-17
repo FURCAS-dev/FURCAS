@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import tcs.ClassTemplate;
 import tcs.Template;
 
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
@@ -56,8 +57,12 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 				}
 
 				instantiateProxy(elements, proxy, template);
+				if (partitionHandler.getMainPartitionContent().equalsIgnoreCase("all") || partitionHandler.getMainPartitionContent().equalsIgnoreCase("textblocks") ) {
 
-				partitionHandler.assignFromProxy(proxy, newVersion.getSequenceElement(), template, defaultPartition);
+					partitionHandler.assignFromProxy(proxy, newVersion.getSequenceElement(), template, defaultPartition);
+				}
+
+				
 
 			}
 		}
