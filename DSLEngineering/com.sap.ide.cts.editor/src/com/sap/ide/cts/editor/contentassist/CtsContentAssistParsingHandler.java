@@ -61,6 +61,11 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	 * set to true after an error is found
 	 */
 	private Boolean foundError = false;
+	/**
+	 * set to true after an error context has been created
+	 * to prevent any false proposals after that
+	 */
+	private Boolean skipContextCreation = false;
 
 	public CtsContentAssistParsingHandler(ConcreteSyntax syntax) {
 		Assert.isNotNull(syntax);
@@ -100,7 +105,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	Stack<Template> currentParentTemplateStack = new Stack<Template>();
 	boolean currentIsOperator = false;
 
-	private int loglevel = 2; // 0 = no log, 1 = errorsonly, 2 = all
+	private int loglevel = 0; // 0 = no log, 1 = errorsonly, 2 = all
 
 	public void reset() {
 		foundError = false;
@@ -144,6 +149,11 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	}
 
 	public CtsContentAssistContext getFloorContext(TextPosition position) {
+		// TODO maybe move this to a better location
+		if (foundError && getLastContext() != null && getLastContext().isErrorContext() != true) {
+			getLastContext().setErrorContext(true);
+		}
+		
 		if (positionMap.containsKey(position)) {
 			return positionMap.get(position);
 		}
@@ -360,12 +370,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 		logInfo("notifyErrorInRule " + re);
 
 		foundError = true;
-
-		// mark last created context as error context
-		if (getLastContext() != null) {
-//			getLastContext().setErrorContext(true);
-		}
-
 	}
 
 	private CtsContentAssistContext getLastContext() {
@@ -461,7 +465,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 				return;
 			}
 
-			if (foundError) {
+			if (skipContextCreation) {
 				logInfo("skipping context creation");
 				return;
 			}
@@ -488,6 +492,12 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
 	private CtsContentAssistContext createContextFromToken(Token token) {
 		CtsContentAssistContext context = new CtsContentAssistContext();
+		
+		if (foundError) {
+			context.setErrorContext(true);
+			skipContextCreation = true;
+		}		
+		
 		context.setToken(token);
 		context.setSequenceElement(currentSequenceElementStack.peek());
 		context.setParentFunctionCallStack(TcsUtil
@@ -507,7 +517,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	public void notifyTokenConsumeWithError(Token token) {
 		logInfo("notifyTokenConsumeWithError " + token);
 
-		if (foundError) {
+		if (skipContextCreation) {
 			logInfo("skipping context creation");
 			return;
 		}
@@ -531,7 +541,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 			}
 
 			CtsContentAssistContext context = createContextFromToken(token);
-			context.setErrorContext(true);
 
 			addContextToPositionMap(context);
 		}
