@@ -8,6 +8,7 @@
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl-feature,org.eclipse.ocl-feature,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature,org.eclipse.ocl.uml-feature,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.master-feature,org.eclipse.ocl.master-feature,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit-feature,org.eclipse.ocl.edit-feature,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature,org.eclipse.ocl.doc-feature,"/>
 
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples-feature,org.eclipse.ocl.examples-feature,"/>
