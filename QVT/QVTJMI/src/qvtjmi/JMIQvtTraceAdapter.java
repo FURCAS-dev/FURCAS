@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2008 ikv++ technologies ag and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     ikv++ technologies ag - initial API and implementation
- *******************************************************************************/
-
 package qvtjmi;
 
 import java.net.URI;
@@ -62,12 +51,10 @@ import de.ikv.medini.qvt.model.qvtbase.Transformation;
 import de.ikv.medini.qvt.model.qvtrelation.Relation;
 
 /**
- * The standard trace adapter for EMF models. This trace adapter derives the
+ * The standard trace adapter for MOF models. This trace adapter derives the
  * trace metamodel from
  * 
- * @author Michael Wagner
- * @author Omar Ekine
- * @author ekine Jörg Kiegeland
+ * @author Thomas Goldschmidt
  * 
  */
 public class JMIQvtTraceAdapter implements QvtTraceAdapter {
@@ -689,10 +676,13 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		MofPackage currentMofTransformation = null;
 		while (it.hasNext()) {
 			obj = it.next();
-			if (obj instanceof MofPackage)
+			if (obj instanceof MofPackage && ((MofPackage) obj).getName() != null) {
 				if (((MofPackage) obj).getName().equals(
-						relation.getTransformation().getName()))
+						relation.getTransformation().getName())) {
 					currentMofTransformation = (MofPackage) obj;
+					break;
+				}
+			}
 		}
 		// MofPackage currentMofTransformation = (MofPackage)
 		// partition.getElements().getPackageRegistry().get(nsURI);

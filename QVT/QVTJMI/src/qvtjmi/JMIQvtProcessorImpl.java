@@ -357,6 +357,10 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 //			CRI cri = ((ModelPartition)getModels().get(0)).getPri().getCri();
 //			PRI traceMMPRI = connection.getSession().getMoin().createPri(cri.getDataAreaDescriptor().getFacilityId(),
 //					cri.getDataAreaDescriptor().getDataAreaName(), cri.getContainerName(), "/moin/TraceMM.xmi");
+//			traceMMPartition = connection.getPartition(traceMMPRI);
+//			if(traceMMPartition == null) {
+//			    traceMMPartition = connection.createPartition(traceMMPRI);
+//			}
 			traceMMPartition = connection.getNullPartition();
 		}
 		return traceMMPartition;

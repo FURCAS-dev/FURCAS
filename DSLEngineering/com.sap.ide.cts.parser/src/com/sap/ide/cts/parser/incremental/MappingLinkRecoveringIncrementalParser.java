@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import tcs.ClassTemplate;
+import tcs.ForeachPredicatePropertyInit;
 import tcs.Template;
 import textblockdefinition.TextBlockDefinition;
 import textblocks.Bostoken;
@@ -34,6 +35,13 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 		super(connection, parserFactory, incrementalLexer, batchParser, reuseStrategy, additionalCRIScope);
 	}
 
+	/**
+	 * FIXME: Recover {@link ForeachPredicatePropertyInit#getInjectorActionsBlockReference()} from broken mapping!
+	 * 
+	 * @param existingRoot
+	 * @param rootTemplate
+	 * @throws TextBlockMappingRecoveringFailedException
+	 */
 	public void recoverMappingLink(TextBlock existingRoot, ClassTemplate rootTemplate)
 		throws TextBlockMappingRecoveringFailedException {
 		ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(

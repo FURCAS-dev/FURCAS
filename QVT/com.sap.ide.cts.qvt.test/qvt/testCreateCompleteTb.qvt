@@ -1,0 +1,36 @@
+transformation testCreateTb(source:ngpm, target:TCS) {
+        top relation SapClass2TextBlock {
+        	pname : String;
+                enforce domain source sapClass:ngpm::data::classes::SapClass {
+                	name = pname
+                };
+                enforce domain target tb:TCS::textblocks::TextBlock {
+                	tokens = tok:TCS::textblocks::LexedToken{
+                	       value = pname
+                	},
+                	correspondingModelElements = OrderedSet { sapClass }
+                };
+                where {
+                       AddEOSBOSTokens(tb); 
+                }
+        }
+
+        relation AddEOSBOSTokens {
+                newTokens : OrderedSet( TCS::textblocks::AbstractToken );
+                enforce domain target tb:TCS::textblocks::TextBlock {
+                        tokens = bos:TCS::textblocks::BOSToken{
+                                value = 'BOS',
+                                type = -2
+                        },
+                        tokens = newTokens,
+                        tokens = eos:TCS::textblocks::EOSToken{
+                                value = 'EOS',
+                                type = -1
+                        }
+                        };
+                when {
+                        newTokens = tb.tokens;
+                }
+        }
+     
+}
