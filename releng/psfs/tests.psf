@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+	<provider id="org.eclipse.team.cvs.core.cvsnature">	
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.tests,org.eclipse.ocl.tests,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.ecore.tests,org.eclipse.ocl.ecore.tests,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests,org.eclipse.ocl.uml.tests,"/>
+
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.examples.tests,org.eclipse.ocl.examples.tests,"/>
+	</provider>
+</psf>

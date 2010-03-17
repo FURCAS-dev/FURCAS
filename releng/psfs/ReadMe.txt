@@ -23,7 +23,7 @@ that loads plugins needed to develop/build/run parser features
 - lpg.generator.linux_x86_64
 - lpg.generator.macosx_x86
 - lpg.generator.macosx_x86_64
-- lpg.generator.wun32_x86
+- lpg.generator.win32_x86
 
 test-tools.psf
 --------------
@@ -32,6 +32,11 @@ that loads plugins needed to develop/build/run test features
 - org.eclipse.test
 - org.eclipse.ant.optional.junit
 - org.eclipse.uml2.uml.resources
+
+tests.psf
+------------
+
+that loads test plugins needed to test developed plugins
 
 www.psf
 -------
