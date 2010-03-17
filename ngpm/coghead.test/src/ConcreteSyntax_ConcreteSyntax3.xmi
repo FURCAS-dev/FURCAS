@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
+<M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
+<M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
+<textblocks.LexedToken m:c='1' m:i='E0677A9A2A4BB9D32DC411DF9D04F0918D150615' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='11' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
+<textblocks.TextBlock m:c='1' m:i='E0677A9A3640F1B52DC411DFA9CAF0918D150615' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='26' length='23' offsetRelative='true' isComplete='true' parentAltChoices='1'/>
+<textblocks.TextBlock_Contains_Tokens c='1'>
+<L f='E0677A9A2A4BB9D32DC411DF9D04F0918D150615' s='E0677A9A3640F1B52DC411DFA9CAF0918D150615'/>
+</textblocks.TextBlock_Contains_Tokens>
+<textblocks.TextBlock_Contains_Subblocks c='1'>
+<L f='local:E0677A9A368AF3002DC411DF8EBBF0918D150615' s='E0677A9A3640F1B52DC411DFA9CAF0918D150615'/>
+<L f='local:E0677A9A372118802DC411DFC87FF0918D150615' s='E0677A9A3640F1B52DC411DFA9CAF0918D150615'/>
+</textblocks.TextBlock_Contains_Subblocks>
+<textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
+<L f='local:E0677A9A3805AC252DC411DF938AF0918D150615' s='E0677A9A3640F1B52DC411DFA9CAF0918D150615'/>
+</textblocks.DocumentNode_References_CorrespondingModelElement>
+</Partition>

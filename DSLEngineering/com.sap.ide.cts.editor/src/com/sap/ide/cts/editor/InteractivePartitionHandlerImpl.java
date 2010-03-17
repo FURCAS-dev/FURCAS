@@ -56,7 +56,14 @@ public class InteractivePartitionHandlerImpl implements
 	     * return a PRI of the Partition after interacting with the user
 	     */
 
-	    @Override
+	    public InteractivePartitionHandlerImpl(Shell shell2) {
+			shell = shell2;
+			// TODO Auto-generated constructor stub
+		}
+
+
+
+		@Override
 	    public SetInteractiveResult getPartitionFor(PartitionHandling ph, ModelPartition partition,
 		    RefObject newElement , Connection connection) {
 //		// Choose the correct element to be show to the user
@@ -83,22 +90,22 @@ public class InteractivePartitionHandlerImpl implements
 //		return targetPRI;
 		
 		
-		display = new Display();
-		shell = new Shell(display);
-		shell.setSize(300, 300);
-
-		final Shell shell2 = new Shell(display);
-		shell2.setText("Please choose one of this options");
-		shell2.setSize(350, 160);
+//		display = new Display();
+//		shell = new Shell(display);
+//		shell.setSize(300, 300);
+//
+//		final Shell shell2 = new Shell(display);
+		shell.setText("Please choose one of this options");
+		shell.setSize(350, 160);
 
 		RowLayout rowLayout = new RowLayout();
-		shell2.setLayout(rowLayout);
+		shell.setLayout(rowLayout);
 
-		final Button button1 = new Button(shell2, SWT.PUSH);
+		final Button button1 = new Button(shell, SWT.PUSH);
 		button1.setText("Model");
-		final Button button2 = new Button(shell2, SWT.PUSH);
+		final Button button2 = new Button(shell, SWT.PUSH);
 		button2.setText("Textblock");
-		final Button button3 = new Button(shell2, SWT.PUSH);
+		final Button button3 = new Button(shell, SWT.PUSH);
 		button3.setText("All");
 
 		MessageBox messageBox2 = new MessageBox(shell, SWT.OK | SWT.CANCEL
@@ -120,7 +127,7 @@ public class InteractivePartitionHandlerImpl implements
 //			responses.put(new Integer(1), priResponse);
 				  
 			
-			shell2.open();
+			shell.open();
 
 			Listener listener = new Listener() {
 				@Override
@@ -131,19 +138,19 @@ public class InteractivePartitionHandlerImpl implements
 //						eventResponse.add(response);
 //						responses.put(new Integer(2), eventResponse);
 						System.out.println("Model was clicked ");
-						shell2.close();
+						shell.close();
 					} else if (event.widget == button2) {
 						response = "Textblocks";
 //						eventResponse.add(response);
 //						responses.put(new Integer(2), eventResponse);
 						System.out.println("Textblocks was clicked ");
-						shell2.close();
+						shell.close();
 					} else if (event.widget == button3) {
 						response = "All";
 //						eventResponse.add(response);
 //						responses.put(new Integer(2), eventResponse);
 						System.out.println("All was clicked ");
-						shell2.close();
+						shell.close();
 					}
 				}
 

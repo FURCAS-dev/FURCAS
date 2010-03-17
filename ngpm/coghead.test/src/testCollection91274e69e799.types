@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
+<textblocks.TextBlock m:c='1' m:i='E0356A0473C4AFD0310D11DFB351FC4B8D150765' childrenChanged='false' version='CURRENT' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' isComplete='true'/>
+<textblocks.TextBlock m:c='1' m:i='E0A5ADB505D1087030EA11DFA077C2C88D150765' childrenChanged='false' version='CURRENT' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' isComplete='true' parentAltChoices='1'/>
+</Partition>
