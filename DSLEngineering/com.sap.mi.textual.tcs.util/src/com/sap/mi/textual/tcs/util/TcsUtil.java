@@ -371,6 +371,16 @@ public class TcsUtil {
 
 		return result;
 	}
+	
+	public static Operator findOperatorByLiteralValue(OperatorTemplate ot, String operatorValue) {
+		for (Operator o : ot.getOperators()) {
+			if (o.getLiteral().getValue().equals(operatorValue)) {
+				return o;
+			}
+		}
+		
+		return null;
+	}
 
 	private static OperatorList getOperatorList(ClassTemplate ct,
 			ConcreteSyntax syntax) {

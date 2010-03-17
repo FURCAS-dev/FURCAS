@@ -8,7 +8,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
+import org.antlr.runtime.ClassicToken;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Parser;
 import org.eclipse.core.runtime.Assert;
@@ -23,6 +25,20 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
+import tcs.FunctionCall;
+import tcs.Keyword;
+import tcs.LiteralRef;
+import tcs.Operator;
+import tcs.OperatorTemplate;
+import tcs.Property;
+import tcs.Sequence;
+import tcs.Template;
+import textblocks.AbstractToken;
+import textblocks.DocumentNode;
+import textblocks.LexedToken;
+import textblocks.OmittedToken;
+import textblocks.TextBlock;
+import textblocks.VersionEnum;
 
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.document.CtsDocument;
@@ -32,12 +48,29 @@ import com.sap.mi.textual.grammar.ParserFacade;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
+import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+import com.sap.mi.textual.parsing.textblocks.TbUtil;
+import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.ModelPartition;
 
 public class CtsContentAssistProcessor implements IContentAssistProcessor {
+	
+	private static final String TRANSIENT_PARTITION_NAME = "ContentAssistProcessorTransientPartition";
+
+	/**
+	 * clears the parsing handler transient partition on this connection
+	 * 
+	 * @param c
+	 */
+	public static void clearTransientPartition(Connection c) {
+		ModelPartition transientPartition = c
+				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
+		transientPartition.deleteElements();
+	}
 
 	private Class<? extends Lexer> lexerClass;
 	private Class<? extends Parser> parserClass;
@@ -144,7 +177,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
 			int line, int charPositionInLine, TextBlocksModel tbModel) {
 
-		try {
+		try {		
 			List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
 			initParsingHandler(viewer);
@@ -154,7 +187,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			if (!inComment(viewer, line, charPositionInLine)) {
 
 				CtsContentAssistContext context = getContext(line,
-						charPositionInLine);
+						charPositionInLine, tbModel, viewer);
 
 				// workaround for ANTLR unlexed tokens that get parsed but start
 				// with whitespace
@@ -162,7 +195,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 					if (CtsContentAssistUtil.isContextAtWhitespace(viewer,
 							context)) {
-						context = getPreviousContext(context, viewer);
+						context = getPreviousContext(context, viewer, tbModel);
 					}
 				}
 
@@ -207,7 +240,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 							charPositionInLine, context.getToken())) {
 
 						CtsContentAssistContext previousContext = getPreviousContext(
-								context, viewer);
+								context, viewer, tbModel);
 
 						// get proposals that follow previous token, and apply
 						// prefix filter
@@ -278,6 +311,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			// clear transient partitions used by content assist
 			TcsUtil.clearTransientPartition(connection);
 			CtsContentAssistParsingHandler.clearTransientPartition(connection);
+			clearTransientPartition(connection);
 		}
 
 		return null;
@@ -369,16 +403,173 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	}
 
 	private CtsContentAssistContext getPreviousContext(
-			CtsContentAssistContext context, ITextViewer viewer) {
+			CtsContentAssistContext context, ITextViewer viewer,
+			TextBlocksModel tbModel) throws BadLocationException {
 		// get the context one offset before this context
 		return getContext(
 				CtsContentAssistUtil.getLine(context.getToken()),
-				CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
+				CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1,
+				tbModel, viewer);
 	}
 
-	private CtsContentAssistContext getContext(int line, int charPositionInLine) {
+	private CtsContentAssistContext getContext(int line,
+			int charPositionInLine, TextBlocksModel tbModel, ITextViewer viewer)
+			throws BadLocationException {
 
-		return parsingHandler.getFloorContext(line, charPositionInLine);
+		// TODO code below is an idea how to extract the context from the up-to-date
+		// textblocks model. does not get all test cases green, thus keep parsing handler
+		// for now
+		if (true) {
+			return parsingHandler.getFloorContext(line, charPositionInLine);
+		}
+		
+		// CURRENTLY UNUSED BEGIN
+		
+	    TextBlocksModel currentTbModel = tbModel;
+		TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel
+				.getRoot(), VersionEnum.CURRENT);
+		if (currentVersion != null) {
+			currentTbModel = new TextBlocksModel(currentVersion, null);
+		}
+
+		CtsContentAssistContext ctx = new CtsContentAssistContext();
+		// compute context from tbModel
+
+		int curOffset = CtsContentAssistUtil.getAbsoluteOffset(viewer, line,
+				charPositionInLine);
+
+		// get first non-whitespace token
+		AbstractToken floorToken = currentTbModel.getFloorTokenInRoot(curOffset);
+		while (floorToken instanceof OmittedToken) {
+			floorToken = currentTbModel.getFloorTokenInRoot(TbUtil
+					.getAbsoluteOffset(floorToken) - 1);
+		}
+		
+		int tokenAbsoluteOffset = TbUtil.getAbsoluteOffset(floorToken);
+		
+		int tokenLine = viewer.getDocument().getLineOfOffset(tokenAbsoluteOffset);
+		int tokenOffsetInLine = tokenAbsoluteOffset - viewer.getDocument().getLineOffset(tokenLine);
+		
+		// TODO remove Token dependency from context?
+		
+		ClassicToken tok = new ClassicToken(floorToken.getType());
+		tok.setLine(tokenLine+1);
+		tok.setCharPositionInLine(tokenOffsetInLine);
+		tok.setText(floorToken.getValue());
+		
+		ctx.setToken(tok);
+		
+		if (floorToken instanceof LexedToken) {
+			LexedToken lexedTok = (LexedToken)floorToken;
+			ctx.setSequenceElement(lexedTok.getSequenceElement());
+		} else {
+			ctx.setErrorContext(true);
+		}
+		
+		Stack<FunctionCall> parentFunctionCallStack = new Stack<FunctionCall>();
+		Stack<Property> parentPropertyStack = new Stack<Property>();
+		Stack<Template> parentTemplateStack = new Stack<Template>();
+		
+		TextBlock parentBlock = floorToken.getParentBlock();
+		while (parentBlock != null) {
+			if (parentBlock.getType() != null && parentBlock.getType().getParseRule() != null) {
+				parentTemplateStack.add(0, parentBlock.getType().getParseRule());
+			}
+			if (parentBlock.getSequenceElement() instanceof FunctionCall) {
+				parentFunctionCallStack.add(0, (FunctionCall) parentBlock.getSequenceElement());
+			}
+			if (parentBlock.getSequenceElement() instanceof Property) {
+				parentPropertyStack.add(0, (Property) parentBlock.getSequenceElement());
+			}
+			
+			parentBlock = parentBlock.getParentBlock();
+		}
+		
+		ctx.setParentFunctionCallStack(parentFunctionCallStack);
+		ctx.setParentPropertyStack(parentPropertyStack);
+		ctx.setParentTemplateStack(parentTemplateStack);
+		
+		// enumeration handling
+		if (ctx.getSequenceElement() instanceof Property) {
+			if (TcsUtil.isEnumeration((Property)ctx.getSequenceElement())) {
+					// replace current sequence element with LiteralRef
+					Connection c = TcsUtil.getConnectionFromRefObject(syntax);
+					ModelPartition transientPartition = c
+							.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
+					Sequence dummy = (Sequence) c.getClass(tcs.Sequence.CLASS_DESCRIPTOR)
+					.refCreateInstanceInPartition(transientPartition);
+					LiteralRef litRef = (LiteralRef) c.getClass(
+							tcs.LiteralRef.CLASS_DESCRIPTOR).refCreateInstanceInPartition(
+							transientPartition);
+
+					Keyword keyword = (Keyword) c.getClass(tcs.Keyword.CLASS_DESCRIPTOR)
+							.refCreateInstanceInPartition(transientPartition);
+					keyword.setValue("ENUMERATION_VALUE");
+
+					litRef.setReferredLiteral(keyword);
+					dummy.getElements().add(litRef);
+					
+					ctx.setSequenceElement(litRef);
+			}
+		}
+		
+		boolean isOperator = false;
+		if (!parentTemplateStack.isEmpty()) {
+			if (parentTemplateStack.peek() instanceof OperatorTemplate) {
+				OperatorTemplate parentOT = (OperatorTemplate) parentTemplateStack.peek();
+				Operator matchingOp = TcsUtil.findOperatorByLiteralValue(parentOT, tok.getText());
+				if (matchingOp != null) {
+					int arity = matchingOp.getArity();
+					if (arity == 1) {
+						if (matchingOp.isPostfix()) {
+							// operator context if this is the last lexed token in the textblock
+							// TODO test if this is true and implement
+							
+						} else {
+							// operator context if this is the first lexed token in the textblock
+							// TODO test if this is true and implemnt
+						}
+					} else {
+						// operator context if this is the first lexed token in the textblock
+						// TODO need more tests
+						DocumentNode current = TbNavigationUtil.getPreviousInSubTree(floorToken);
+						isOperator = true;
+						while (current != null) {
+							if (current instanceof LexedToken) {
+								isOperator = false;
+							}
+							current = TbNavigationUtil.getPreviousInSubTree(current);
+						}	
+					}
+				}
+			}
+		}
+		
+		if (isOperator) {
+			// replace current sequence element with LiteralRef holding the operator value
+			Connection c = TcsUtil.getConnectionFromRefObject(syntax);
+			ModelPartition transientPartition = c
+					.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
+			Sequence dummy = (Sequence) c.getClass(tcs.Sequence.CLASS_DESCRIPTOR)
+			.refCreateInstanceInPartition(transientPartition);
+			LiteralRef litRef = (LiteralRef) c.getClass(
+					tcs.LiteralRef.CLASS_DESCRIPTOR).refCreateInstanceInPartition(
+					transientPartition);
+
+			Keyword keyword = (Keyword) c.getClass(tcs.Keyword.CLASS_DESCRIPTOR)
+					.refCreateInstanceInPartition(transientPartition);
+			keyword.setValue(tok.getText());
+
+			litRef.setReferredLiteral(keyword);
+			dummy.getElements().add(litRef);
+			
+			ctx.setSequenceElement(litRef);
+		}
+		ctx.setOperator(isOperator);
+		
+		return ctx;
+		
+		// CURRENTLY UNUSED END
 	}
 
 	private static ConcreteSyntax getSyntax(Connection connection,
