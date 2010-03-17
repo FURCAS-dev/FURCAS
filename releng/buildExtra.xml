@@ -28,7 +28,7 @@
 		      target below for the other part of this process.-->
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
-			<property name="id" value="org.eclipse.emf.ocl.examples.interpreter"/>
+			<property name="id" value="org.eclipse.ocl.examples.interpreter"/>
 		</ant>
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
@@ -87,7 +87,7 @@
 		<!-- We call the special ant task in the example plugin in order to
 		      zip up all of the actual examples plugins as zips contained in this
 		      plugin. -->
-		<ant dir="${buildDirectory}/plugins/org.eclipse.emf.ocl.examples" antfile="${buildDirectory}/plugins/org.eclipse.emf.ocl.examples/buildZips.xml"/>
+		<ant dir="${buildDirectory}/plugins/org.eclipse.ocl.examples" antfile="${buildDirectory}/plugins/org.eclipse.ocl.examples/buildZips.xml"/>
 	</target>
 
 	<target name="postBuild">
