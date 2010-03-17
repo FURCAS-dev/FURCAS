@@ -42,6 +42,14 @@
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.emf.examples.library.editor"/>
 		</ant>
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.ocl.examples.project.empty"/>
+		</ant>
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.ocl.examples.project.rotalandloyal"/>
+		</ant>
 	</target>
 
 	<target name="postFetch">
