@@ -46,7 +46,6 @@ import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
@@ -58,7 +57,11 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 
 	public Object getIdentityObject(Object obj) {
 		// EcoreUtil.getID((EObject)obj);
-		Object result = this.getValueForFeature(obj, "mediniIdentifier");
+		//Object result = this.getValueForFeature(obj, "mediniIdentifier");
+	        Object result = null;
+	        if(obj instanceof RefObject) {
+	            result = ((RefObject)obj).refMofId();
+	        } 
 		if (result == null) {
 			return obj;
 		}
@@ -269,8 +272,13 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		String nsPrefix = betweenPackageAndClass == -1 ? "" : modelElementType.substring(0, betweenPackageAndClass);
 		for (Object metamodel : this.getProcessor().getMetaModels()) {
 			MofPackage mmPack = (MofPackage)metamodel;
-			MofPackage innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
-					Arrays.asList(nsPrefix.split("::")), mmPack);
+			List<String> nameAsList = Arrays.asList(nsPrefix.split("::"));
+            MofPackage innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
+					nameAsList, mmPack);
+			if(innerPack == null) {
+			    innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
+                                    nameAsList.subList(1, nameAsList.size()), mmPack);
+			}
 			if (innerPack != null) {
 				RefPackage innerPackRef = connection.getJmiHelper()
 						.getRefPackageForMofPackage(innerPack);

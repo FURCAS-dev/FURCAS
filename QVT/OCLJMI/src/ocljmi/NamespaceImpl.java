@@ -12,6 +12,7 @@ import org.oslo.ocl20.semantics.bridge.ModelElement;
 import org.oslo.ocl20.semantics.bridge.Namespace;
 
 import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.Import;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
 
@@ -57,6 +58,14 @@ public class NamespaceImpl extends org.oslo.ocl20.semantics.bridge.impl.Namespac
 							_elements.put(name, mel);
 							return mel;
 						}
+					} else if(me instanceof Import) {
+					    MofPackage pp= (MofPackage) ((Import) me).getImportedNamespace();
+	                                        
+                                            if (name.equals(pp.getName())) {
+                                                    mel = this.processor.getBridgeFactory().buildNamespace(pp);
+                                                    _elements.put(name, mel);
+                                                    return mel;
+                                            }
 					}
 				}
 				return null;

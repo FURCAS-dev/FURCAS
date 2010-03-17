@@ -1456,13 +1456,14 @@ public final class JmiHelperImpl implements SpiJmiHelper {
      * @param p
      * @return A {@link Collection} of {@link MofPackage MofPackages}
      * @author dD044784
+     * @param connection 
      */
-    private Collection getClusteredPackages( MofPackage p ) {
+    private Collection getClusteredPackages( MofPackage p, Connection connection ) {
 
         Collection packages = new ArrayList( );
-        List contents = p.getContents( );
-        for ( int i = 0, n = contents.size( ); i < n; i++ ) {
-            ModelElement element = (ModelElement) contents.get( i );
+        JmiList contents = (JmiList) p.getContents( );
+        for ( int i = 0, n = contents.size( ( (CoreConnection) connection).getSession() ); i < n; i++ ) {
+            ModelElement element = (ModelElement) contents.get( ( (CoreConnection) connection).getSession(), i );
             if ( element instanceof Import && ( (Import) element ).isClustered( ) ) {
                 Namespace namespace = ( (Import) element ).getImportedNamespace( );
                 if ( namespace instanceof MofPackage ) {
@@ -1480,12 +1481,12 @@ public final class JmiHelperImpl implements SpiJmiHelper {
      * @return A {@link Collection} of {@link MofPackage MofPackages}
      * @author dD044784
      */
-    private Collection getNestedPackages( MofPackage p ) {
+    private Collection getNestedPackages( MofPackage p, Connection connection ) {
 
         Collection packages = new ArrayList( );
-        List contents = p.getContents( );
-        for ( int i = 0, n = contents.size( ); i < n; i++ ) {
-            ModelElement element = (ModelElement) contents.get( i );
+        JmiList contents = (JmiList) p.getContents( );
+        for ( int i = 0, n = contents.size( ( (CoreConnection) connection).getSession() ); i < n; i++ ) {
+            ModelElement element = (ModelElement) contents.get( ( (CoreConnection) connection).getSession(), i );
             if ( element instanceof MofPackage ) {
                 packages.add( element );
             }
@@ -1520,15 +1521,15 @@ public final class JmiHelperImpl implements SpiJmiHelper {
     public ModelElement findElementByQualifiedName( Connection connection, List qnameToSearch, MofPackage mofPackage ) {
 
         if ( mofPackage.getName( ).equals( qnameToSearch.get( 0 ) ) ) {
-            ModelElement result = matchQNameInNamespace( qnameToSearch, 1, mofPackage );
+            ModelElement result = matchQNameInNamespace( qnameToSearch, 1, mofPackage, connection );
             if ( result != null ) {
                 return result;
             }
         }
         // first check if the first part of the qname can be found here
         Map<MofPackage, NestedAndClusteredPackages> packageChildrenByParent = new HashMap<MofPackage, NestedAndClusteredPackages>( );
-        Collection clusteredImports = getClusteredPackages( mofPackage );
-        Collection nestedPackages = getNestedPackages( mofPackage );
+        Collection clusteredImports = getClusteredPackages( mofPackage, connection );
+        Collection nestedPackages = getNestedPackages( mofPackage, connection );
         packageChildrenByParent.put( mofPackage, new NestedAndClusteredPackages( clusteredImports, nestedPackages ) );
         while ( packageChildrenByParent.size( ) > 0 ) {
             for ( Entry<MofPackage, NestedAndClusteredPackages> entry : packageChildrenByParent.entrySet( ) ) {
@@ -1539,7 +1540,7 @@ public final class JmiHelperImpl implements SpiJmiHelper {
                     MofPackage childMofPackage = (MofPackage) iterMofPackageChildren.next( );
                     if ( childMofPackage != null && childMofPackage.getName( ).equals( qnameToSearch.get( 0 ) ) ) {
                         // try to match the rest of the qname
-                        ModelElement result = matchQNameInNamespace( qnameToSearch, 0, (MofPackage) parent.refMetaObject( ) );
+                        ModelElement result = matchQNameInNamespace( qnameToSearch, 0, (MofPackage) parent.refMetaObject( ), connection );
                         if ( result != null ) {
                             return result;
                         }
@@ -1550,7 +1551,7 @@ public final class JmiHelperImpl implements SpiJmiHelper {
                     MofPackage childMofPackage = (MofPackage) iterMofPackageChildren.next( );
                     if ( childMofPackage != null && childMofPackage.getName( ).equals( qnameToSearch.get( 0 ) ) ) {
                         // try to match the rest of the qname
-                        ModelElement result = matchQNameInNamespace( qnameToSearch, 0, (MofPackage) parent.refMetaObject( ) );
+                        ModelElement result = matchQNameInNamespace( qnameToSearch, 1, childMofPackage, connection );
                         if ( result != null ) {
                             return result;
                         }
@@ -1566,7 +1567,7 @@ public final class JmiHelperImpl implements SpiJmiHelper {
                 clusteredImports = entry.getValue( ).clustered;
                 for ( Iterator iterPackages = clusteredImports.iterator( ); iterPackages.hasNext( ); ) {
                     MofPackage childMofPackage = (MofPackage) iterPackages.next( );
-                    temp.put( childMofPackage, new NestedAndClusteredPackages( getClusteredPackages( childMofPackage ), getNestedPackages( childMofPackage ) ) );
+                    temp.put( childMofPackage, new NestedAndClusteredPackages( getClusteredPackages( childMofPackage, connection ), getNestedPackages( childMofPackage, connection ) ) );
                 }
             }
             packageChildrenByParent = temp;
@@ -1587,14 +1588,14 @@ public final class JmiHelperImpl implements SpiJmiHelper {
      * @return the {@link ModelElement} matching the given qualified name or
      * <tt>null</tt> if it cannot be found
      */
-    private ModelElement matchQNameInNamespace( List qname, int index, Namespace namespace ) {
+    private ModelElement matchQNameInNamespace( List qname, int index, Namespace namespace, Connection connection ) {
 
         try {
-            ModelElement result = namespace.lookupElement( (String) qname.get( index ) );
+            ModelElement result = ((NamespaceInternal) namespace).lookupElement((CoreConnection) connection, (String) qname.get( index ) );
             if ( qname.size( ) - 1 == index ) {
                 return result;
             } else if ( result instanceof Namespace ) {
-                return matchQNameInNamespace( qname, index + 1, (Namespace) result );
+                return matchQNameInNamespace( qname, index + 1, (Namespace) result, connection );
             } else {
                 return null;
             }

@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.lang.model.element.Element;
+
 import org.eclipse.emf.common.util.EList;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.SemanticsVisitor;
@@ -29,7 +31,9 @@ import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
  * 
  */
 public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelElementType {
-	public OclModelElementTypeImpl(com.sap.tc.moin.repository.mmi.model.Classifier impl, OclProcessor proc) {
+	private static final String REFLECT_ELEMENT_MOFID = "45ED2E29000DEAF733A545E62844AF3FC5E44767";
+
+    public OclModelElementTypeImpl(com.sap.tc.moin.repository.mmi.model.Classifier impl, OclProcessor proc) {
 		super(proc);
 		this._impl = impl;
 		List oper = super.getOperations();
@@ -196,7 +200,8 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 			if (c instanceof OclModelElementTypeImpl) {
 				com.sap.tc.moin.repository.mmi.model.Classifier cc = ((OclModelElementTypeImpl) c)._impl;
 				MofClass self = (MofClass) this._impl;
-				return new Boolean(cc.equals(self) || self.allSupertypes().contains(cc));
+				return new Boolean(cc.equals(self) || self.allSupertypes().contains(cc) ||
+				        cc.refMofId().equals(REFLECT_ELEMENT_MOFID));
 			}
 		} else if (this._impl instanceof EnumerationType) {
 		} else if (this._impl instanceof PrimitiveType) {
