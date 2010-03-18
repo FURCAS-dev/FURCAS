@@ -1841,7 +1841,7 @@ public class PrettyPrinter
 													(MofClass) property
 															.getPropertyReference()
 															.getStrucfeature()
-															.getType()));
+															.getType()), null);
 
 					this.serializePrimitive(refValue, primitiveTemplateName);
 				}
@@ -2332,6 +2332,7 @@ public class PrettyPrinter
 
 			String oclQuery = p.getValue();
 			RefObject contextObject = computeContextObject(oclQuery);
+			RefObject foreachObject = computeForeachObject(oclQuery);
 
 			Object expectedValue = null;
 			try
@@ -2341,7 +2342,7 @@ public class PrettyPrinter
 					// keyValue is always null for LookUpPropertyInits
 					// in QueryPArg it denotes the RefersToParg propertyValue
 					expectedValue = TcsUtil.executeOclQuery(
-							(RefObject) element, oclQuery, contextObject, null);
+							(RefObject) element, oclQuery, contextObject, foreachObject, null);
 				}
 			}
 			catch (ModelAdapterException e)
@@ -2358,6 +2359,11 @@ public class PrettyPrinter
 			}
 
 		}
+	}
+
+	private RefObject computeForeachObject(String oclQuery) {
+	    // TODO Auto-generated method stub
+	    return null;
 	}
 
 	private void validatePrimitivePropertyInit(Object element,

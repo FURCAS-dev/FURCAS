@@ -177,7 +177,7 @@ public class AdapterJMIHelperTest {
 
         
         AdapterJMIHelper helper = new AdapterJMIHelper(root, connection, jmihelper, new HashSet<PRI>(),  new HashSet<CRI>());
-        assertEquals(oclExpressionRegistrationStub.result, helper.findElementWithOCLQuery(source, "property", "test", "self.property = $property", null));
+        assertEquals(oclExpressionRegistrationStub.result, helper.findElementWithOCLQuery(source, "property", "test", "self.property = $property", null, null));
     }
     @Test
     public void testOCLQueryWithContext() throws ModelAdapterException {
@@ -202,7 +202,7 @@ public class AdapterJMIHelperTest {
 
         
         AdapterJMIHelper helper = new AdapterJMIHelper(root, connection, jmihelper, new HashSet<PRI>(),  new HashSet<CRI>());
-        assertEquals(oclExpressionRegistrationStub.result, helper.findElementWithOCLQuery(source, "property", "test", "#context.property = $property", context));
+        assertEquals(oclExpressionRegistrationStub.result, helper.findElementWithOCLQuery(source, "property", "test", "#context.property = $property", context, null));
     }
     
     

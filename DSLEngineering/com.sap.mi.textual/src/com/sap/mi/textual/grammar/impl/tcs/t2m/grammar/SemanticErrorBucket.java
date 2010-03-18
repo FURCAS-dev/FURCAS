@@ -90,7 +90,7 @@ public class SemanticErrorBucket {
         @Override
         public int hashCode() {
             // using XOR operator ^
-            return message.hashCode() ^ modelElement.hashCode() ^ severity;
+            return (message == null ? 0 : message.hashCode()) ^ (modelElement == null ? 0 : modelElement.hashCode()) ^ severity;
         }
         
     }

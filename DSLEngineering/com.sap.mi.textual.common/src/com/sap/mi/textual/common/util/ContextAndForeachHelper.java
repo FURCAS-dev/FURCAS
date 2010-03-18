@@ -24,7 +24,7 @@ import com.sap.tc.moin.repository.mql.MQLResultSet;
 public class ContextAndForeachHelper {
     public static final String contextPatternAsString = "#context(\\((\\w*)\\))?";
 
-    public static final String foreachPatternAsString = "#foreach\\((\\w*)\\)";
+    public static final String foreachPatternAsString = "#foreach\\((\\w+(::\\w+)*)\\)";
 
     /**
      * The pattern to match #context(...) or #context

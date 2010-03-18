@@ -118,16 +118,17 @@ syntax Class(k=0 ) {
 		;
 	
 	template ActualObjectParameter #converter
-		:  {{ 
-			formalObjectParameter=lookIn("OCL:let sig=#context.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature) in
-        				sig.owner.oclAsType(SapClass).formalObjectParameters->at(sig.input->indexOf(#context.oclAsType(Parameter)))"),
-			value=foreach("OCL:#context.oclAsType(Parameter)", mode="converter", as=VariableExpression)
+		:  {{
+			formalObjectParameter=lookIn("OCL:let sig=#foreach(Parameter).ownerSignature.oclAsType(MethodSignature) in
+        				sig.owner.oclAsType(SapClass).formalObjectParameters->at(sig.input->indexOf(#foreach(Parameter)))")
 		   }}
+		   value{mode=converter}
 		;
 		
+	template dataaccess::expressions::Expression #converter abstract;
 	template VariableExpression #converter
 		: {{
-			variable=lookIn("OCL:#context.oclAsType(NamedValue)")
+			variable=lookIn("OCL:#foreach(NamedValue)")
 		  }}
 		;
 	
@@ -308,14 +309,15 @@ syntax Class(k=0 ) {
 	
 	template ActualObjectParameter #localAssociationEnd
 		:  {{ 
-			formalObjectParameter=lookIn("OCL:#context.oclAsType(Parameter)"),
-			value=foreach("OCL:#context.oclAsType(Parameter)", mode="localAssociationEnd", as=VariableExpression)
+			  formalObjectParameter=lookIn("OCL:#foreach(Parameter)")
 		   }}
+           value{mode=localAssociationEnd}
 		;
-		
+
+    template dataaccess::expressions::Expression #localAssociationEnd abstract;
 	template VariableExpression #localAssociationEnd
 		: {{
-			variable=lookIn("OCL:#context.oclAsType(NamedValue)")
+			variable=lookIn("OCL:#foreach(Parameter)")
 		  }}
 		;
 	
@@ -643,12 +645,12 @@ syntax Class(k=0 ) {
              	     {{ objectParameters=lookIn("OCL:self.ownedObjectParameters") }}
           	  ]]
 		  {{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true', 
-		  	clazz = lookIn("OCL:#context.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate") }}
+		  	clazz = lookIn("OCL:self.ownerTypedElement.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate") }}
 		;
 		
 	template TypeDefinition #thisInObjectCreationExpression abstract;
 	
-	template ClassTypeDefinition #thisInObjectCreationExpression context
+	template ClassTypeDefinition #thisInObjectCreationExpression
 		: {{  lowerMultiplicity = '1', 
 		      upperMultiplicity = '1', 
 		      ordered = 'true',  
@@ -671,7 +673,7 @@ syntax Class(k=0 ) {
 		
 	template TypeDefinition #this abstract;
 	
-	template ClassTypeDefinition #this context -- context needed for foreach
+	template ClassTypeDefinition #this
 		: {{
 			lowerMultiplicity = '1', 
 			upperMultiplicity = '1', 
@@ -878,8 +880,8 @@ syntax Class(k=0 ) {
 		;
 	
 	template ClassTypeDefinition #singleFromMany
-		: {{ clazz=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).clazz"),
-	         objectParameters=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).objectParameters"), 
+		: {{ clazz=lookIn("OCL:#foreach(ClassTypeDefinition).clazz"),
+	         objectParameters=lookIn("OCL:#foreach(ClassTypeDefinition).objectParameters"), 
 		     lowerMultiplicity='1',
 		     upperMultiplicity='1',
 		     ordered='false',
@@ -887,7 +889,7 @@ syntax Class(k=0 ) {
 		;
 	
 	template FunctionSignatureTypeDefinition #singleFromMany
-		: {{ signature=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).signature"),
+		: {{ signature=lookIn("OCL:#foreach(FunctionSignatureTypeDefinition).signature"),
 		     lowerMultiplicity='1',
 		     upperMultiplicity='1',
 		     ordered='false',
@@ -895,24 +897,24 @@ syntax Class(k=0 ) {
 		;
 
 	template ClassTypeDefinition #manyFromSingle
-		: {{ clazz=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).clazz"),
-	         objectParameters=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).objectParameters"), 
-		     lowerMultiplicity=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).lowerMultiplicity"),
+		: {{ clazz=lookIn("OCL:#foreach(ClassTypeDefinition).clazz"),
+	         objectParameters=lookIn("OCL:#foreach(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity=lookIn("OCL:#foreach(ClassTypeDefinition).lowerMultiplicity"),
 		     upperMultiplicity='-1',
-		     ordered=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).ordered"),
+		     ordered=lookIn("OCL:#foreach(ClassTypeDefinition).ordered"),
 		     unique='false' }}
 		;
 	
 	template FunctionSignatureTypeDefinition #manyFromSingle
-		: {{ signature=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).signature"),
-		     lowerMultiplicity=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).lowerMultiplicity"),
+		: {{ signature=lookIn("OCL:#foreach(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity=lookIn("OCL:#foreach(FunctionSignatureTypeDefinition).lowerMultiplicity"),
 		     upperMultiplicity='-1',
-		     ordered=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).ordered"),
+		     ordered=lookIn("OCL:#foreach(FunctionSignatureTypeDefinition).ordered"),
 		     unique='false' }}
 		;
 	
 	template NestedTypeDefinition #manyFromSingle
-		: {{ type=lookIn("OCL:#context.oclAsType(NestedTypeDefinition).type"),
+		: {{ type=lookIn("OCL:#foreach(NestedTypeDefinition).type"),
 	         lowerMultiplicity='0',
 		     upperMultiplicity='-1',
 		     ordered='false',
@@ -950,33 +952,33 @@ syntax Class(k=0 ) {
 	
 	template ClassTypeDefinition #iteratorFromClause
 		: {{
-			clazz=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).clazz
+			clazz=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).clazz
 							  else
-							      #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(ClassTypeDefinition).clazz
+							      self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(ClassTypeDefinition).clazz
 							  endif"),
-			objectParameters=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).objectParameters
+			objectParameters=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).objectParameters
 							  else
-							      #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(ClassTypeDefinition).objectParameters
+							      self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(ClassTypeDefinition).objectParameters
 							  endif"),
-			lowerMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
-							  else
-							      1
-							  endif"),
-			upperMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).upperMultiplicity
+			lowerMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
 							  else
 							      1
 							  endif"),
-			ordered=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered
+			upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).upperMultiplicity
+							  else
+							      1
+							  endif"),
+			ordered=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered
 							  else
 							      false
 							  endif"),
-			unique=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique
+			unique=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique
 							  else
 							      false
 							  endif")
@@ -985,28 +987,28 @@ syntax Class(k=0 ) {
 
 	template FunctionSignatureTypeDefinition #iteratorFromClause
 		: {{
-			signature=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(FunctionSignatureTypeDefinition).signature
+			signature=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(FunctionSignatureTypeDefinition).signature
 							  else
-							      #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(FunctionSignatureTypeDefinition).signature
+							      self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(FunctionSignatureTypeDefinition).signature
 							  endif"),
-			lowerMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
-							  else
-							      1
-							  endif"),
-			upperMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.upperMultiplicity
+			lowerMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
 							  else
 							      1
 							  endif"),
-			ordered=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered
+			upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.upperMultiplicity
+							  else
+							      1
+							  endif"),
+			ordered=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered
 							  else
 							      false
 							  endif"),
-			unique=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
-								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique
+			unique=lookIn("OCL:if self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique
 							  else
 							      false
 							  endif")
@@ -1016,11 +1018,11 @@ syntax Class(k=0 ) {
     -- This must have been a NestedTypeDefinition nested within a NestedTypeDefinition
 	template NestedTypeDefinition #iteratorFromClause
 		: {{
-			type=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type"),
-			lowerMultiplicity=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity"),
-			upperMultiplicity=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.upperMultiplicity"),
-			ordered=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered"),
-			unique=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique")
+			type=lookIn("OCL:self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type"),
+			lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity"),
+			upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.upperMultiplicity"),
+			ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered"),
+			unique=lookIn("OCL:self.ownerTypedElement.oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique")
 		  }}
 		;
 	
@@ -1267,7 +1269,8 @@ syntax Class(k=0 ) {
 		: name
 		  association{mode=groupByMapResultProperties}
 		  signatureImplementations{mode=groupByMapResultPropertiesGetter, forcedLower=1, forcedUpper=1}
-		  {{ type=foreach("OCL:self.valueInit->any(true).value.getType()", mode="groupByMapResultAssociationEndType"),
+		  type{mode=groupByMapResultAssociationEndType}
+		  {{
 		     navigable='true'
 		  }}
 		;
@@ -1288,11 +1291,15 @@ syntax Class(k=0 ) {
 		     -- TODO this is a workaround to avoid ping-pong between the two association ends
 		     -- because they are associated with the same textblock and the OCL impact analysis
 		     -- can't determine which one was populated by which rule
-		     name=lookIn("OCL:if self.name.subString(1,12) = 'opposite_of_' then
-		                        self.name
-		                      else
+		     name=lookIn("OCL:if self.name->notEmpty() then
+                                if self.name.subString(1,12) = 'opposite_of_' then
+		                          self.name
+		                        else
+		                         'opposite_of_'.concat(self.otherEnd().name)
+		                        endif
+                              else
 		                        'opposite_of_'.concat(self.otherEnd().name)
-		                      endif")
+                              endif")
 		  }}
 		;
 	
@@ -1300,7 +1307,7 @@ syntax Class(k=0 ) {
 		: {{
 			lowerMultiplicity = '1', 
 			upperMultiplicity = '1', 
-			ordered = 'true',  
+			ordered = 'false',  
 			unique = 'true',  
 			clazz = lookIn("OCL:self.associationEnd.otherEnd().valueInit->any(true).objectLiteral.valueClass"),
 		    	ownedObjectParameters=foreach("OCL:self.clazz.formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
