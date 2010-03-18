@@ -54,14 +54,16 @@ public class Utilities {
 	public static void recursiveRemoveDir(File directory) {
 		String[] filelist = directory.list();
 		File tmpFile = null;
-		for (String element : filelist) {
-			tmpFile = new File(directory.getAbsolutePath(), element);
-			if (tmpFile.isDirectory()) {
-				Utilities.recursiveRemoveDir(tmpFile);
-			} else if (tmpFile.isFile()) {
-				tmpFile.delete();
-			}
+		if(filelist != null) {
+        		for (String element : filelist) {
+        			tmpFile = new File(directory.getAbsolutePath(), element);
+        			if (tmpFile.isDirectory()) {
+        				Utilities.recursiveRemoveDir(tmpFile);
+        			} else if (tmpFile.isFile()) {
+        				tmpFile.delete();
+        			}
+        		}
+        		directory.delete();
 		}
-		directory.delete();
 	}
 }
