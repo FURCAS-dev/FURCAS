@@ -37,7 +37,7 @@ public class TestCreateTextBlocksByQVT extends QVTTestCase {
         TextBlock tb = (TextBlock) tbs.iterator().next();
         assertEquals(3, tb.getTokens().size());
         assertTrue(Bostoken.class.isAssignableFrom(tb.getTokens().get(0).getClass()));
-        //assertTrue(Eostoken.class.isAssignableFrom(tb.getTokens().get(2).getClass()));
+        assertTrue(Eostoken.class.isAssignableFrom(tb.getTokens().get(2).getClass()));
         assertEquals(this.sapClass, tb.getCorrespondingModelElements().get(0));
     }
 
