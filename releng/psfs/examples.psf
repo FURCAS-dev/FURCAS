@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 	<provider id="org.eclipse.team.cvs.core.cvsnature">
-		<!--project reference="1.0,:pserver:anonymous@lpg.cvs.sourceforge.net:/cvsroot/lpg,lpg.runtime,lpg.runtime,"/-->
-		<!--project reference="1.0,:pserver:anonymous@lpg.cvs.sourceforge.net:/cvsroot/lpg,lpg.runtime.java,lpg.runtime.java,"/-->
-
-		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.validation/plugins/org.eclipse.emf.validation,org.eclipse.emf.validation,"/>
-		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.transaction,org.eclipse.emf.transaction,"/>
-		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.transaction.ui,org.eclipse.emf.transaction.ui,"/>
-		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.workspace,org.eclipse.emf.workspace,"/>
-		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.transaction/plugins/org.eclipse.emf.workspace.ui,org.eclipse.emf.workspace.ui,"/>
-
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library,org.eclipse.emf.examples.library,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.edit,org.eclipse.emf.examples.library.edit,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor,org.eclipse.emf.examples.library.editor,"/>
