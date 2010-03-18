@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CSTOutline.java,v 1.1 2010/03/11 14:51:23 ewillink Exp $
+ * $Id: CSTOutline.java,v 1.2 2010/03/18 15:13:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.cst;
 
@@ -79,7 +79,7 @@ import org.eclipse.ui.part.PageBookView;
 public class CSTOutline extends PageBookView implements ISelectionProvider,
         ISelectionChangedListener {
 
-	public static final String VIEW_ID = "org.eclipse.ocl.examples.editor.ui.cst";
+	public static final String VIEW_ID = "org.eclipse.ocl.editor.ui.cst";
 
 
     /**

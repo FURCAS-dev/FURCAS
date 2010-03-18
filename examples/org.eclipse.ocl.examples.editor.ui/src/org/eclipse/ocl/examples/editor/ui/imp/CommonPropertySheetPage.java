@@ -12,17 +12,19 @@
  * 
  * </copyright>
  *
- * $Id: CommonPropertySheetPage.java,v 1.1 2010/03/11 14:51:21 ewillink Exp $
+ * $Id: CommonPropertySheetPage.java,v 1.2 2010/03/18 15:13:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.imp;
 
 import java.util.List;
 
-import org.eclipse.emf.transaction.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ocl.examples.common.label.LabelGeneratorRegistry;
 import org.eclipse.ocl.examples.editor.ui.OCLExamplesEditorPlugin;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
+import org.eclipse.ocl.examples.editor.ui.imp.ICommonParseResult;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.IPageSite;
