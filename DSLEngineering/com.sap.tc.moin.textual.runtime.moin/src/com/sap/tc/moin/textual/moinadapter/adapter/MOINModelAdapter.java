@@ -430,7 +430,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
         if (sourceModelElement instanceof RefObject) {
             RefObject refObject = (RefObject) sourceModelElement;
 //try {
-            return delegate.setQueriedReference(refObject, referencePropertyName, keyValue, oclQuery, contextObject);
+            return delegate.setQueriedReference(refObject, referencePropertyName, keyValue, oclQuery, contextObject, currentForeachElement);
 //catch( MQLException e) {}
             
         } else {

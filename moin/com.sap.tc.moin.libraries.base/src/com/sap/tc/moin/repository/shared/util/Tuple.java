@@ -68,7 +68,8 @@ public class Tuple {
         @Override
         public String toString( ) {
 
-            return "[" + a.toString( ) + ", " + b.toString( ) + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return "[" + (a==null?"null":a.toString( )) + ", " +
+            	(b==null?"null":b.toString( )) + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
     }
 

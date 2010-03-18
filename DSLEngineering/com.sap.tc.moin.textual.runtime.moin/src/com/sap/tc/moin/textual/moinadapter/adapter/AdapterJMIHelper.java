@@ -580,7 +580,7 @@ public class AdapterJMIHelper {
 
 		useContextInsteadOfSelf = ContextAndForeachHelper.usesContext(queryToExecute);
 		// TODO check use of #foreach
-		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, contextObject, keyValue);
+		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, keyValue);
 		try {
 	            RefClass registerForBaseClass = useContextInsteadOfSelf ? contextRefObject
                             .refClass() : sourceModelElement
@@ -639,30 +639,33 @@ public class AdapterJMIHelper {
 	
 	public Object findElementWithOCLQuery(RefObject sourceModelElement,
                 String referencePropertyName, Object keyValue, String oclQuery,
-                Object contextObject) throws ModelAdapterException {
-	    return findElementWithOCLQuery(sourceModelElement, referencePropertyName, keyValue, oclQuery, contextObject, null);
+                Object contextObject, Object foreachObject) throws ModelAdapterException {
+	    return findElementWithOCLQuery(sourceModelElement, referencePropertyName, keyValue, oclQuery, contextObject, null, foreachObject);
 	}
 
 	/**
 	 * It is possible to define an OCL QUery to find Elements. For multi-valued results a
 	 * collection will be returned.
+	 * @param foreachObject TODO
 	 */
 	public Object findElementWithOCLQuery(RefObject sourceModelElement,
 			String referencePropertyName, Object keyValue, String oclQuery,
-			Object contextObject, RefClass registerForBaseClass) throws ModelAdapterException {
+			Object contextObject, RefClass registerForBaseClass, Object foreachObject) throws ModelAdapterException {
 
 		String queryToExecute = oclQuery;
-		Boolean useContextInsteadOfSelf = false;
 		RefObject contextRefObject = unwrapProxy(contextObject);
-
-		useContextInsteadOfSelf = ContextAndForeachHelper.usesContext(queryToExecute);
-		// TODO check use of #foreach
-		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, contextObject, keyValue);
+		RefObject objectForSelf;
+		if (ContextAndForeachHelper.usesContext(oclQuery)) {
+		    objectForSelf = contextRefObject;
+		} else if (ContextAndForeachHelper.usesForeach(oclQuery)) {
+		    objectForSelf = unwrapProxy(foreachObject);
+		} else {
+		    objectForSelf = sourceModelElement;
+		}
+		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, keyValue);
 		try {
 		        if(registerForBaseClass == null) {
-		            registerForBaseClass = useContextInsteadOfSelf ? contextRefObject
-                                    .refClass() : sourceModelElement
-                                    .refClass();
+		            registerForBaseClass = objectForSelf.refClass();
 		        }
 		    	String registrationName = getOclRegistrationName(queryToExecute, registerForBaseClass);
 			OclExpressionRegistration reg = (OclExpressionRegistration) connection
@@ -681,8 +684,7 @@ public class AdapterJMIHelper {
 
 			}
 			Object result = reg
-					.evaluateExpression(useContextInsteadOfSelf ? contextRefObject
-							: sourceModelElement);
+					.evaluateExpression(objectForSelf);
 			if (result instanceof Collection<?>) {
 				if (((Collection<?>) result).size() == 0) {
 					return null;

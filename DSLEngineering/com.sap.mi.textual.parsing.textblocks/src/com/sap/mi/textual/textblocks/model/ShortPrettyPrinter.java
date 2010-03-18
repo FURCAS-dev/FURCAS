@@ -168,7 +168,7 @@ public class ShortPrettyPrinter {
 		    && ContextAndForeachHelper.usesContext(query)) {
 		self = (RefObject) lcb.getContextStack().peek().getRealObject();
 	    }
-	    query = MoinHelper.prepareOclQuery(query, self, token.getValue());
+	    query = MoinHelper.prepareOclQuery(query, token.getValue());
 
 	    if (self != null) {
 		RefPackage root = self.refOutermostPackage();
