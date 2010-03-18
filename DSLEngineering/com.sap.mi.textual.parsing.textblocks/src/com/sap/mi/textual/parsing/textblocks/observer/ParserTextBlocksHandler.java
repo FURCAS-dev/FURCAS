@@ -501,29 +501,31 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 			    //need to add left hand side textblock to current one as child to correctly represent 
 			    //composition
 			    String storeLeftToProperty = ((OperatorTemplate) currentTextBlock.getTemplate()).getStoreLeftSideTo().getStrucfeature().getName();
-			    ModelElementProxy leftHandSide = (ModelElementProxy) ((Collection<Object>)((ModelElementProxy)newModelElement).getAttributeMap().get(storeLeftToProperty)).iterator().next();
-			    TextBlockProxy leftHandSideTBProxy = (TextBlockProxy) leftHandSide.getTextBlock();
-			    //add all consumed tokens and textblock starting from the lefthand side proxy to the current textblock
-			    TextBlockProxy parent = leftHandSideTBProxy.getParent();
-			    if(parent != null) {
-			        int index = parent.getSubNodes().indexOf(leftHandSideTBProxy);
-                                List<Object> elementsMoved = new ArrayList<Object>();
-                                for (; index < parent.getSubNodes().size(); index++) {
-                                    Object element = parent.getSubNodes().get(index);
-                                    elementsMoved.add(element);
-                                }
-                                int position = 0;
-                                for (Object object : elementsMoved) {
-                                    if (!object.equals(currentTextBlock)) {
-                                        // remove elements from their original parent
-                                        parent.getSubNodes().remove(object);
-                                        if (object instanceof TextBlockProxy) {
-                                            ((TextBlockProxy) object).setParent(currentTextBlock);
+			    if(((ModelElementProxy)newModelElement).getAttributeMap().get(storeLeftToProperty) != null) {
+        			    ModelElementProxy leftHandSide = (ModelElementProxy) ((Collection<Object>)((ModelElementProxy)newModelElement).getAttributeMap().get(storeLeftToProperty)).iterator().next();
+        			    TextBlockProxy leftHandSideTBProxy = (TextBlockProxy) leftHandSide.getTextBlock();
+        			    //add all consumed tokens and textblock starting from the lefthand side proxy to the current textblock
+        			    TextBlockProxy parent = leftHandSideTBProxy.getParent();
+        			    if(parent != null) {
+        			        int index = parent.getSubNodes().indexOf(leftHandSideTBProxy);
+                                        List<Object> elementsMoved = new ArrayList<Object>();
+                                        for (; index < parent.getSubNodes().size(); index++) {
+                                            Object element = parent.getSubNodes().get(index);
+                                            elementsMoved.add(element);
                                         }
-                                        // add elements to current proxy at start index
-                                        currentTextBlock.addSubNodeAt(object, position++);
-                                    }
-                                }
+                                        int position = 0;
+                                        for (Object object : elementsMoved) {
+                                            if (!object.equals(currentTextBlock)) {
+                                                // remove elements from their original parent
+                                                parent.getSubNodes().remove(object);
+                                                if (object instanceof TextBlockProxy) {
+                                                    ((TextBlockProxy) object).setParent(currentTextBlock);
+                                                }
+                                                // add elements to current proxy at start index
+                                                currentTextBlock.addSubNodeAt(object, position++);
+                                            }
+                                        }
+        			    }
 			    }
 			}
 		} else {
