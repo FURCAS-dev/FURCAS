@@ -125,8 +125,10 @@ public class ShortPrettyPrinter {
 	        }
 	    }	    
 	} else {
-	    for (RefObject referencedObject : token.getParentBlock()
-		    .getCorrespondingModelElements()) {
+//	    for (RefObject referencedObject : token.getParentBlock()
+//		    .getCorrespondingModelElements()) {
+	    //it is always the first element as all others do not have a syntax contribution!
+	    RefObject referencedObject = token.getParentBlock().getCorrespondingModelElements().get(0);
 		try {
 		    Object value = investigator
 			    .get(referencedObject, se.getPropertyReference()
@@ -139,12 +141,12 @@ public class ShortPrettyPrinter {
 		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
 			newvalue = value.toString();
 		    }
-		    break;
+//		    break;
 		} catch (ModelAdapterException e) {
 		    // element does not have such a property
-		    continue;
+//		    continue;
 		}
-	    }
+//	    }
 	}
 	return newvalue;
     }

@@ -493,7 +493,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		}
 		if (newModelElement instanceof IModelElementProxy) {
 			TextBlockProxy currentTextBlock = traverser.getCurrent();
-			currentTextBlock.addCorrespondingModelElement(
+			currentTextBlock.getCorrespondingModelElements().add(0, //always add at first position as it is the "leading" element
 					(IModelElementProxy) newModelElement);
 			((ModelElementProxy) newModelElement).setTextBlock(currentTextBlock);
 			if(currentTextBlock.getTemplate() instanceof OperatorTemplate &&
