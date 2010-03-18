@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInEcoreEditor.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
+ * $Id: OCLInEcoreEditor.java,v 1.3 2010/03/18 15:13:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -21,10 +21,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.EventObject;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -34,10 +31,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -47,23 +40,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -83,16 +69,13 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ocl.examples.editor.ui.common.ProblemIndicationManager;
 import org.eclipse.ocl.examples.editor.ui.common.ResourceChangeManager;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonParseController;
-import org.eclipse.ocl.examples.editor.ui.text.UniversalTextEditor;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -104,16 +87,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-import org.eclipse.ui.views.properties.IPropertySheetPage;
-import org.eclipse.ui.views.properties.PropertySheet;
-import org.eclipse.ui.views.properties.PropertySheetPage;
 
 /**
  * The OCL in Ecore model editor.
  */
-public class OCLInEcoreEditor extends UniversalTextEditor
+public class OCLInEcoreEditor extends CommonTextEditor
 		implements IOCLInEcoreEditor, IEditingDomainProvider,
 		IMenuListener, IViewerProvider, IGotoMarker {
 
@@ -149,27 +128,6 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 			setStatusLineManager(selection);
 		}
 	};
-	
-	/**
-	 * This keeps track of the editing domain that is used to track all changes
-	 * to the model.
-	 */
-	protected AdapterFactoryEditingDomain editingDomain;
-
-	/**
-	 * This is the one adapter factory used for providing views of the model.
-	 */
-	protected ComposedAdapterFactory adapterFactory;
-
-	/**
-	 * This is the content outline page.
-	 */
-	protected OCLInEcoreContentOutlinePage contentOutlinePage;
-
-	/**
-	 * This is the property sheet page.
-	 */
-	protected PropertySheetPage propertySheetPage;
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline. The
@@ -207,7 +165,7 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	 */
 	protected IPartListener partListener = new IPartListener() {
 		public void partActivated(IWorkbenchPart p) {
-			if (p instanceof ContentOutline) {
+			/* if (p instanceof ContentOutline) {
 				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
 					getActionBarContributor().setActiveEditor(OCLInEcoreEditor.this);
 					setCurrentViewer(contentOutlinePage.getContentOutlineViewer());
@@ -217,7 +175,7 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 					getActionBarContributor().setActiveEditor(OCLInEcoreEditor.this);
 					resourceChangeManager.handleActivate();
 				}
-			} else if (p == OCLInEcoreEditor.this) {
+			} else */ if (p == OCLInEcoreEditor.this) {
 				resourceChangeManager.handleActivate();
 			}
 		}
@@ -394,8 +352,6 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		}
 	};
 
-	private Composite container;
-
 	/**
 	 * This creates a model editor.
 	 */
@@ -403,6 +359,23 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		super();
 		setDocumentProvider(new OCLInEcoreDocumentProvider(this));
 		initializeEditingDomain();
+	}
+
+	@Override
+	protected IContentOutlinePage createASTOutlinePage() {
+		IContentOutlinePage contentOutlinePage = new OCLInEcoreContentOutlinePage(this);
+
+		// Listen to selection so that we can handle it is a special way.
+		//
+		contentOutlinePage
+				.addSelectionChangedListener(new ISelectionChangedListener() {
+					// This ensures that we handle selections correctly.
+					//
+					public void selectionChanged(SelectionChangedEvent event) {
+						handleContentOutlineSelection(event.getSelection());
+					}
+				});
+		return contentOutlinePage;
 	}
 
 	@Override
@@ -482,12 +455,6 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		problemIndicationManager.initializeProblemIndication(resource, exception);
 	}
 
-	@Override
-	public void createPartControl(Composite parent) {
-		this.container = parent;
-		super.createPartControl(parent);
-	}
-
 	public void createModel() {
 		editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(
 				EcorePlugin.computePlatformURIMap());
@@ -517,19 +484,19 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 
 		getSite().getPage().removePartListener(partListener);
 
-		adapterFactory.dispose();
+//		adapterFactory.dispose();
 
 		if (getActionBarContributor().getActiveEditor() == this) {
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		if (propertySheetPage != null) {
-			propertySheetPage.dispose();
-		}
+//		if (propertySheetPage != null) {
+//			propertySheetPage.dispose();
+//		}
 
-		if (contentOutlinePage != null) {
-			contentOutlinePage.dispose();
-		}
+//		if (contentOutlinePage != null) {
+//			contentOutlinePage.dispose();
+//		}
 
 		super.dispose();
 	}
@@ -571,11 +538,11 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class key) {
-		if (key.equals(IContentOutlinePage.class)) {
+/*		if (key.equals(IContentOutlinePage.class)) {
 			return getContentOutlinePage();
 		} else if (key.equals(IPropertySheetPage.class)) {
 			return getPropertySheetPage();
-		} else if (key.equals(IGotoMarker.class)) {
+		} else */ if (key.equals(IGotoMarker.class)) {
 			return this;
 		} else {
 			return super.getAdapter(key);
@@ -584,7 +551,7 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 
 	/**
 	 * This accesses a cached version of the content outliner.
-	 */
+	 *
 	public IContentOutlinePage getContentOutlinePage() {
 		if (contentOutlinePage == null) {
 
@@ -603,15 +570,11 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		}
 
 		return contentOutlinePage;
-	}
-
-	public Display getDisplay() {
-		return getSite().getShell().getDisplay();
-	}
+	} */
 
 	/**
 	 * This accesses a cached version of the property sheet.
-	 */
+	 *
 	public IPropertySheetPage getPropertySheetPage() {
 		if (propertySheetPage == null) {
 			propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
@@ -634,7 +597,7 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		}
 
 		return propertySheetPage;
-	}
+	} */
 
 	/**
 	 * This deals with how we want selection in the outliner to affect the other
@@ -772,27 +735,8 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		return OCLInEcorePlugin.INSTANCE.getString(key, new Object[] { s1 });
 	}
 
-	public EditingDomainActionBarContributor getActionBarContributor() {
-		return (EditingDomainActionBarContributor) getEditorSite()
-				.getActionBarContributor();
-	}
-
 	public IActionBars getActionBars() {
 		return getActionBarContributor().getActionBars();
-	}
-
-	public AdapterFactory getAdapterFactory() {
-		return adapterFactory;
-	}
-
-	/**
-	 * This returns the editing domain as required by the
-	 * {@link IEditingDomainProvider} interface. This is important for
-	 * implementing the static methods of {@link AdapterFactoryEditingDomain}
-	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
-	 */
-	public AdapterFactoryEditingDomain getEditingDomain() {
-		return editingDomain;
 	}
 
 	@Override
@@ -853,62 +797,6 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 		site.setSelectionProvider(selectionProvider);
 		site.getPage().addPartListener(partListener);
 		resourceChangeManager.init();
-	}
-
-	/**
-	 * This sets up the editing domain for the model editor.
-	 */
-	protected void initializeEditingDomain() {
-		// Create an adapter factory that yields item providers.
-		//
-		adapterFactory = new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
-		adapterFactory
-				.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-		adapterFactory
-				.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-		// Create the command stack that will notify this editor as commands are
-		// executed.
-		//
-		BasicCommandStack commandStack = new BasicCommandStack();
-
-		// Add a listener to set the most recent command's affected objects to
-		// be the selection of the viewer with focus.
-		//
-		commandStack.addCommandStackListener(new CommandStackListener() {
-			public void commandStackChanged(final EventObject event) {
-				getContainer().getDisplay().asyncExec(new Runnable() {
-					public void run() {
-						firePropertyChange(IEditorPart.PROP_DIRTY);
-
-						// Try to select the affected objects.
-						//
-						Command mostRecentCommand = ((CommandStack) event
-								.getSource()).getMostRecentCommand();
-						if (mostRecentCommand != null) {
-							setSelectionToViewer(mostRecentCommand
-									.getAffectedObjects());
-						}
-						if (propertySheetPage != null
-								&& !propertySheetPage.getControl().isDisposed()) {
-							propertySheetPage.refresh();
-						}
-					}
-				});
-			}
-
-			private Widget getContainer() {
-				return container;
-			}
-		});
-
-		// Create the editing domain with a special command stack.
-		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
-				commandStack, new HashMap<Resource, Boolean>());
 	}
 
 	/**
@@ -991,10 +879,10 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 	}
 
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null
+		IStatusLineManager statusLineManager = /*currentViewer != null
 				&& currentViewer == contentOutlinePage.getContentOutlineViewer()
 				? contentOutlinePage.getContentOutlineStatusLineManager()
-				: getActionBars().getStatusLineManager();
+				:*/ getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
@@ -1008,7 +896,7 @@ public class OCLInEcoreEditor extends UniversalTextEditor
 				}
 				case 1: {
 					String text = new AdapterFactoryItemDelegator(
-							adapterFactory).getText(collection.iterator()
+							getAdapterFactory()).getText(collection.iterator()
 							.next());
 					statusLineManager.setMessage(getString(
 							"_UI_SingleObjectSelected", text));
