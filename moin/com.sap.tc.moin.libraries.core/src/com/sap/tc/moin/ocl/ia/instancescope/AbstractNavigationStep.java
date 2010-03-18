@@ -102,11 +102,18 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     
     protected AnnotatedRefObjectImpl annotateRefObject(CoreConnection conn, AnnotatedRefObjectImpl fromObject,
 	    RefObjectImpl next) {
-	return new AnnotatedRefObjectImpl(fromObject.getAnnotation()+
+	final String notInDebugMode = "To enable annotations, set the system property com.sap.tc.moin.ocl.debug to true, "
+		+ "e.g., by using the VM argument -Dcom.sap.tc.moin.ocl.debug=true";
+	final boolean debugMode = Boolean.getBoolean("com.sap.tc.moin.ocl.debug");
+	if (debugMode) {
+	    return new AnnotatedRefObjectImpl(fromObject.getAnnotation()+
 		"\n------------- tracing back through ---------------\n"+
 		getAnnotation(conn)+
 		"\narriving at object: "+next,
 		next);
+	} else {
+	    return new AnnotatedRefObjectImpl(notInDebugMode, next);
+	}
     }
 
     protected String getAnnotation(CoreConnection conn) {
@@ -122,24 +129,22 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * expression is embedded.
      */
     private String getVerboseDebugInfo(CoreConnection conn) {
-	final String notInDebugMode = "To enable annotations, set the system property com.sap.tc.moin.ocl.debug to true, "+
-		"e.g., by using the VM argument -Dcom.sap.tc.moin.ocl.debug=true";
+	final String notInDebugMode = "To enable annotations, set the system property com.sap.tc.moin.ocl.debug to true, "
+		+ "e.g., by using the VM argument -Dcom.sap.tc.moin.ocl.debug=true";
 	final boolean debugMode = Boolean.getBoolean("com.sap.tc.moin.ocl.debug");
-	OclSerializer serializer = OclSerializer.getInstance(conn);
 	try {
 	    if (debugMode) {
-	    return "Step's expression: "
-	    	+ serializer.serialize((OclExpression) this.getDebugInfo(), new RefPackage[0])
-	    	+ "\n ===== in expression =====\n"
-	    	+ serializer.serializeAndHighlight(
-	    		AbstractTracer.getRootExpression((RefObjectImpl) this.getDebugInfo(), conn),
-	    		(OclExpression) this.getDebugInfo(),
-	    		new RefPackage[0])+
-	    	(InstanceScopeAnalysis.getDefines(conn, AbstractTracer.getRootExpression((RefObjectImpl) this
-	    		.getDebugInfo(), conn)) != null ? "\n ===== which is the body of operation "
-	    		+ InstanceScopeAnalysis.getDefines(conn,
-	    			AbstractTracer.getRootExpression((RefObjectImpl) this.getDebugInfo(), conn)).getName()
-	    		+ " =====" : "");
+		OclSerializer serializer = OclSerializer.getInstance(conn);
+		return "Step's expression: "
+			+ serializer.serialize((OclExpression) this.getDebugInfo(), new RefPackage[0])
+			+ "\n ===== in expression =====\n"
+			+ serializer.serializeAndHighlight(AbstractTracer.getRootExpression((RefObjectImpl) this
+				.getDebugInfo(), conn), (OclExpression) this.getDebugInfo(), new RefPackage[0])
+			+ (InstanceScopeAnalysis.getDefines(conn, AbstractTracer.getRootExpression((RefObjectImpl) this
+				.getDebugInfo(), conn)) != null ? "\n ===== which is the body of operation "
+				+ InstanceScopeAnalysis.getDefines(conn,
+					AbstractTracer.getRootExpression((RefObjectImpl) this.getDebugInfo(), conn))
+					.getName() + " =====" : "");
 	    } else {
 		return notInDebugMode;
 	    }

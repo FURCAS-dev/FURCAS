@@ -1825,7 +1825,7 @@ public class TcsUtil {
 	}
 
 	public static Object executeOclQuery(RefObject element, String oclQuery,
-			RefObject contextObject, String keyValue)
+			RefObject contextObject, RefObject foreachObject, String keyValue)
 			throws ModelAdapterException {
 		if (oclQuery != null) {
 
@@ -1838,7 +1838,7 @@ public class TcsUtil {
 
 			// propName is never used in findElementWithOCLQuery
 			expectedValue = oclHelper.findElementWithOCLQuery(element, null,
-					keyValue, oclQuery, contextObject);
+					keyValue, oclQuery, contextObject, foreachObject);
 
 			return expectedValue;
 		}

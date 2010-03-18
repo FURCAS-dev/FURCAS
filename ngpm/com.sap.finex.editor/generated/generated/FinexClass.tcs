@@ -532,13 +532,13 @@ syntax FinexClass(k=0 ) {
 		  {{ type=lookIn("OCL:self.defaultValue.type"),
 		     navigable='true',
 		     singleMultiplicity='true',
-		     name=lookIn("OCL:#context.oclAsType(FromClause).alias.name")
+		     name=lookIn("OCL:#foreach(FromClause).alias.name")
 		  }}
 		;
 	
 	template behavior::expressions::Expression #oqlQueryWithImplicitSelect abstract;
 	template behavior::expressions::NamedValueExpression #oqlQueryWithImplicitSelect
-		: {{ namedValue=lookIn("OCL:#context.oclAsType(FromClause).alias"),
+		: {{ namedValue=lookIn("OCL:#foreach(FromClause).alias"),
 		     type=lookIn("OCL:self.namedValue.type")
 		  }}
 		;

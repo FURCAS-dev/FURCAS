@@ -577,16 +577,17 @@ public class MoinModelAdapterDelegate {
     public static final String OCL_QUERY_PREFIX = "OCL:";
     
     /**
-     * @param refObject
      * @param referencePropertyName
      * @param keyValue 
      * @param oclQuery
      * @param contextObject 
+     * @param foreachObject TODO
+     * @param refObject
      * @return
      * @throws ModelAdapterException 
      */
     public Object setQueriedReference(RefObject sourceModelElement,
-            String referencePropertyName, Object keyValue, String oclQuery, Object contextObject) throws ModelAdapterException, ReferenceSettingException {
+            String referencePropertyName, Object keyValue, String oclQuery, Object contextObject, Object foreachObject) throws ModelAdapterException, ReferenceSettingException {
         
         if (keyValue instanceof RefObject || keyValue instanceof StructureTypeMockObject) {
             //TODO what if the property is not a string??
@@ -596,10 +597,10 @@ public class MoinModelAdapterDelegate {
     	Object refObject = null;
     	if(oclQuery.startsWith(OCL_QUERY_PREFIX)) {
     		refObject = jmiHelperDelegate.findElementWithOCLQuery(sourceModelElement, 
-    				referencePropertyName, keyValue, oclQuery.substring(OCL_QUERY_PREFIX.length()), contextObject);
+    				referencePropertyName, keyValue, oclQuery.substring(OCL_QUERY_PREFIX.length()), contextObject, foreachObject);
     	} else {
     	    	refObject = jmiHelperDelegate.findElementWithOCLQuery(sourceModelElement, 
-			referencePropertyName, keyValue, oclQuery, contextObject);
+			referencePropertyName, keyValue, oclQuery, contextObject, foreachObject);
     	}
         
         // create link

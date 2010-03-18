@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,9 @@ import org.omg.ocl.expressions.__impl.ModelPropertyCallExpInternal;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import org.omg.ocl.expressions.__impl.OperationCallExpInternal;
 import org.omg.ocl.expressions.__impl.PrimitiveLiteralExpInternal;
+import org.omg.ocl.expressions.__impl.PropertyCallExpInternal;
 
+import com.sap.tc.moin.ocl.evaluator.localization.MoinOclEvaluatorMessages;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
 import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.ia.Statistics;
@@ -38,19 +41,27 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
+import com.sap.tc.moin.repository.core.CoreSession;
+import com.sap.tc.moin.repository.core.jmi.reflect.RefAssociationImpl;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl;
+import com.sap.tc.moin.repository.core.jmi.util.MoinMetamodelCode;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
 import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementLifeCycleEvent;
 import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
+import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
+import com.sap.tc.moin.repository.mmi.model.Association;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.Operation;
 import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
+import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndImpl;
+import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndInternal;
 import com.sap.tc.moin.repository.mmi.model.__impl.AssociationWrapper;
 import com.sap.tc.moin.repository.mmi.model.__impl.ClassifierInternal;
 import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
@@ -140,6 +151,8 @@ public class InstanceScopeAnalysis {
      */
     public Set<MRI> getAffectedElements(MofClassImpl context, ModelChangeEvent changeEvent,
 	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	CoreConnection conn = ((ConnectionWrapper) changeEvent.getEventTriggerConnection())
+		.unwrap();
 	if (changeEvent instanceof ElementLifeCycleEvent) {
 	    // create and delete of elements only affects the allInstances expressions;
 	    // for those, however, no "self" context can easily be determined and therefore
@@ -148,36 +161,163 @@ public class InstanceScopeAnalysis {
 	    // If package extents are created (RefPackage), those may also trigger ElementLifeCycleEvents.
 	    // However, their meta object would not be a Classifier but rather a package. Filter this case:
 	    if (metaObject instanceof Classifier && expressionContainsAllInstancesCallForType((ClassifierInternal) ((Wrapper<?>) metaObject).unwrap())) {
-		return getAllPossibleContextInstancesMris(((ConnectionWrapper) changeEvent.getEventTriggerConnection())
-			.unwrap(), context);
+		return getAllPossibleContextInstancesMris(conn, context);
 	    } else {
 		return Collections.emptySet();
 	    }
 	} else {
 	    Set<MRI> result = new LinkedHashSet<MRI>();
 	    for (ModelPropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(changeEvent)) {
-		RefObjectImpl sourceElement = getSourceElement(changeEvent,
+		Pair<RefObjectImpl, RefObjectImpl> sourceAndTargetElement = getSourceAndTargetElement(changeEvent,
 			(ModelPropertyCallExpInternal) attributeOrAssociationEndCall);
-		if (sourceElement != null) {
-		    /*
-		     * TODO the targetElement may also be useful: when in the continuation of the expression the
-		     * target element does not contribute to the expression's result, e.g., because it is filtered
-		     * out in a subsequent ->select expression or there is a ->isEmpty() or ->notEmpty() expression,
-		     * we can be smarter about telling if the change event could at all lead to a change of the
-		     * expression's evaluation result.
-		     */
-		    
-		    // the source element may have been deleted already by subsequent events; at this point,
-		    // this makes it impossible to trace the change event back to a context; all we have is
-		    // the LRI of a no longer existing model element...
-		    for (AnnotatedRefObjectImpl roi : self(attributeOrAssociationEndCall, sourceElement, context,
-			    ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap(), cache)) {
-			result.add(roi.getElement().get___Mri());
+		if (sourceAndTargetElement != null && sourceAndTargetElement.getA() != null) {
+		    if (sourceAndTargetElement.getB() == null ||
+			mayHaveChangedConsideringTargetElement(changeEvent, attributeOrAssociationEndCall,
+			    sourceAndTargetElement.getB(), conn)) {
+			// the source element may have been deleted already by subsequent events; at this point,
+			// this makes it impossible to trace the change event back to a context; all we have is
+			// the LRI of a no longer existing model element...
+			for (AnnotatedRefObjectImpl roi : self(attributeOrAssociationEndCall, sourceAndTargetElement
+				.getA(), context, conn, cache)) {
+			    result.add(roi.getElement().get___Mri());
+			}
 		    }
 		}
 	    }
 	    return result;
 	}
+    }
+
+   /**
+     * When in the continuation of the expression the target element does not contribute to the expression's result,
+     * e.g., because it is filtered out in a subsequent ->select expression or there is a ->isEmpty() or ->notEmpty()
+     * expression, we can be smarter about telling if the change event could at all lead to a change of the expression's
+     * evaluation result.
+     * 
+     * If attributeOrAssociationEndCall is an AssociationEndCallExp or an AttributeCallExp for an object-valued
+     * attribute, and the event is a LinkRemoveEvent, the value of the overall expression has not changed if the
+     * attributeOrAssociationEndCall is the source of another AssociationEndCallExp or AttributeCallExp which for the
+     * targetElement of the original change event evaluates to an empty set or is itself the source of such an
+     * expression for which this condition holds recursively.
+     */
+    private boolean mayHaveChangedConsideringTargetElement(ModelChangeEvent changeEvent,
+	    ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl targetElement, CoreConnection conn) {
+	boolean result = true; // be conservative; need to prove cases where no change may happen
+	if (changeEvent instanceof LinkChangeEvent) {
+	    PropertyCallExp isSourceOf = ((ModelPropertyCallExpInternal) attributeOrAssociationEndCall).getAppliedProperty(conn);
+	    if (isSourceOf != null) {
+		result = !leadsToEmptySet(isSourceOf, targetElement, conn, (LinkChangeEvent) changeEvent);
+	    }
+	}
+	return result;
+    }
+
+    /**
+     * Evaluate <tt>e</tt> using <tt>source</tt> as the element where to start the navigation. If the result is empty,
+     * return <tt>true</tt>. If not, and if <tt>e</tt> is the source of another {@link PropertyCallExp} that is either
+     * an {@link AttributeCallExp} or an {@link AssociationEndCallExp}, try this recursively. If recursively for all
+     * elements reached by the first navigation this leads to empty sets again, return <tt>true</tt>, too.<p>
+     * 
+     * A result of <tt>false</tt> just means we can't guarantee that evaluating <tt>e</tt> with <tt>source</tt>
+     * leads to an empty set; it still may, but we don't know.
+     * @param originalEvent TODO
+     */
+    private boolean leadsToEmptySet(PropertyCallExp e, RefObjectImpl source, CoreConnection conn, LinkChangeEvent originalEvent) {
+	boolean result;
+	if (e instanceof AttributeCallExp || e instanceof AssociationEndCallExp) {
+	    if (navigationAffectedByLinkChange(e, source, originalEvent, conn)) {
+		result = false;
+	    } else {
+		Object o = null;
+		if (e instanceof AttributeCallExp) {
+		    Attribute attribute = ((AttributeCallExpInternal) e).getReferredAttribute(conn);
+		    // if the intended navigation could have been affected by the original link change event
+		    // because we're navigating across the same attribute and the source object is part of the
+		    // link change event, we can't be sure how the result is affected by the change event;
+		    // therefore, be conservative and answer "false"
+		    o = source.refGetValue(conn, attribute);
+		} else {
+		    AssociationEndImpl ae = (AssociationEndImpl) ((AssociationEndCallExpInternal) e)
+			    .getReferredAssociationEnd(conn);
+		    Association a = (Association) ae.getContainer(conn);
+		    CoreSession session = conn.getSession();
+		    // Get the proxy-object for the association (which contains the link
+		    // set) and query it for the value/s
+		    SpiJmiHelper jmiHelper = conn.getCoreJmiHelper();
+		    RefAssociationImpl refAssoc = (RefAssociationImpl) jmiHelper.getRefAssociationForAssociation(
+			    session, a);
+		    if (refAssoc == null) {
+			throw new MoinLocalizedBaseRuntimeException(MoinOclEvaluatorMessages.EXTRACTREFASSOCFAILED, a
+				.getName());
+		    }
+		    o = refAssoc.refQuery(conn, MoinMetamodelCode.otherEnd(conn, ae), source);
+		}
+		if (o == null) {
+		    result = true;
+		} else {
+		    PropertyCallExp isSourceOf = ((PropertyCallExpInternal) e).getAppliedProperty(conn);
+		    if (isSourceOf == null) {
+			result = false; // can't judge (yet); TODO think about supporting other expression types such as
+					// iterators and isEmpty()/notEmpty()
+		    } else {
+			if (o instanceof Collection<?>) {
+			    JmiListImpl<?> list = (JmiListImpl<?>) o;
+			    if (list.isEmpty(conn.getSession())) {
+				result = true;
+			    } else {
+				Iterator<?> i = list.iterator(conn);
+				result = true;
+				while (result && i.hasNext()) {
+				    RefObjectImpl roi = (RefObjectImpl) i.next();
+				    if (!leadsToEmptySet(isSourceOf, roi, conn, originalEvent)) {
+					result = false;
+				    }
+				}
+			    }
+			} else {
+			    if (o instanceof RefObjectImpl) {
+				// o is a single object that is source of another property call expression
+				result = leadsToEmptySet(isSourceOf, (RefObjectImpl) o, conn, originalEvent);
+			    } else {
+				// could, e.g., be an instance of a DataType, such as Integer, etc.
+				// and therefore can only be source of an operation call that
+				// will most likely produce a non-empty set.
+				result = false;
+			    }
+			}
+		    }
+		}
+	    }
+	} else {
+	    // TODO OperationCallExp not supported (yet)
+	    result = false;
+	}
+	return result;
+    }
+
+    /**
+     * Detects the case where the sequence of links traversed leads back to the link that is subject of the
+     * original change event.
+     * @param e expected to be either an {@link AttributeCallExp} or an {@link AssociationEndCallExp}
+     */
+    private boolean navigationAffectedByLinkChange(PropertyCallExp e, RefObjectImpl source,
+	    LinkChangeEvent originalEvent, CoreConnection conn) {
+	MRI metaObjectMri;
+	boolean result;
+	if (e instanceof AttributeCallExp) {
+	    metaObjectMri = ((AttributeCallExpInternal) e).getReferredAttribute(conn).get___Mri();
+	} else {
+	    metaObjectMri = ((AssociationEndInternal) ((AssociationEndCallExpInternal) e).getReferredAssociationEnd(conn)).
+	    	getContainer(conn).get___Mri();
+	}
+	if (originalEvent.getAffectedMetaObjectMri().equals(metaObjectMri) &&
+		(source.get___Mri().equals(originalEvent.getFirstLinkEndMri()) ||
+	         source.get___Mri().equals(originalEvent.getSecondLinkEndMri()))) {
+	    result = true;
+	} else {
+	    result = false;
+	}
+	return result;
     }
 
     /**
@@ -376,20 +516,22 @@ public class InstanceScopeAnalysis {
      *            <tt>attributeOrAssociationEndCall</tt> has to be of type {@link AttributeCallExp} in case
      *            <tt>changeEvent</tt> is an {@link AttributeValueChangeEvent}, and of type
      *            {@link AssociationEndCallExp} in case <tt>changeEvent</tt> is of type {@link LinkChangeEvent}.
-     * @return <tt>null</tt> in case the source element indicated by the change event does not conform to the static
-     *         attribute or association call's source expression type. <tt>null</tt> may also result if the element
-     *         indicated by the event cannot be resolved (anymore). This is still an open issue. See the to-do marker
-     *         below. In all other cases, the source element on which the event occured, is returned.
+     * @return the source element in the {@link Pair#getA() first component}, the target element in the
+     *         {@link Pair#getB() second component}, if any. <tt>null</tt> in case the source element indicated by the
+     *         change event does not conform to the static attribute or association call's source expression type.
+     *         <tt>null</tt> may also result for the contained source or target element if the element indicated by the
+     *         event cannot be resolved (anymore). This is still an open issue. See the to-do marker below. In all other
+     *         cases, the source element on which the event occured, is returned.
      */
-    private RefObjectImpl getSourceElement(ModelChangeEvent changeEvent, ModelPropertyCallExpInternal attributeOrAssociationEndCall) {
+    private Pair<RefObjectImpl, RefObjectImpl> getSourceAndTargetElement(ModelChangeEvent changeEvent, ModelPropertyCallExpInternal attributeOrAssociationEndCall) {
 	Connection conn = changeEvent.getEventTriggerConnection();
 	CoreConnection coreConn = ((ConnectionWrapper) conn).unwrap();
 	assert changeEvent instanceof AttributeValueChangeEvent || changeEvent instanceof LinkChangeEvent;
-	RefObjectImpl result;
+	Pair<RefObjectImpl, RefObjectImpl> result;
 	if (changeEvent instanceof AttributeValueChangeEvent) {
 	    Wrapper<?> sourceElement = (Wrapper<?>) ((AttributeValueChangeEvent) changeEvent).getAffectedElement(conn);
 	    if (sourceElement != null) {
-		result = (RefObjectImpl) sourceElement.unwrap();
+		result = new Pair<RefObjectImpl, RefObjectImpl>(/* source */ (RefObjectImpl) sourceElement.unwrap(), /* target */ null);
 	    } else {
 		result = null;
 	    }
@@ -398,21 +540,33 @@ public class InstanceScopeAnalysis {
 	    SpiJmiHelper jmiHelper = coreConn.getCoreJmiHelper();
 	    int aeceEndNumber = jmiHelper.getAssociationEndNumber(coreConn.getSession(), aece.getReferredAssociationEnd(coreConn));
 	    LinkChangeEvent lce = (LinkChangeEvent) changeEvent;
-	    RefObject refObjectResult;
+	    RefObject sourceElement;
+	    RefObject targetElement;
+	    RefObjectImpl sourceElementUnwrapped;
+	    RefObjectImpl targetElementUnwrapped;
 	    if (aeceEndNumber == 0) {
-		refObjectResult = lce.getSecondLinkEnd(conn);
+		sourceElement = lce.getSecondLinkEnd(conn);
+		targetElement = lce.getFirstLinkEnd(conn);
 	    } else {
-		refObjectResult = lce.getFirstLinkEnd(conn);
+		sourceElement = lce.getFirstLinkEnd(conn);
+		targetElement = lce.getSecondLinkEnd(conn);
 	    }
-	    if (refObjectResult != null) {
-		result = (RefObjectImpl) ((Wrapper<?>) refObjectResult).unwrap();
+	    if (sourceElement != null) {
+		sourceElementUnwrapped = (RefObjectImpl) ((Wrapper<?>) sourceElement).unwrap();
 	    } else {
 		// TODO clarify if this is a severe problem; deletes may have occurred; how does this impact the impact analysis?
-		result = null;
+		sourceElementUnwrapped = null;
 	    }
+	    if (targetElement != null) {
+		targetElementUnwrapped = (RefObjectImpl) ((Wrapper<?>) targetElement).unwrap();
+	    } else {
+		// TODO clarify if this is a severe problem; deletes may have occurred; how does this impact the impact analysis?
+		targetElementUnwrapped = null;
+	    }
+	    result = new Pair<RefObjectImpl, RefObjectImpl>(sourceElementUnwrapped, targetElementUnwrapped);
 	}
-	if (result != null
-		&& !result.refIsInstanceOf(coreConn.getSession(),
+	if (result.getA() != null
+		&& !result.getA().refIsInstanceOf(coreConn.getSession(),
 			((OclExpressionInternal) attributeOrAssociationEndCall.getSource(coreConn)).getType(coreConn),
 			/* considerSubtypes */ true)) {
 	    result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
