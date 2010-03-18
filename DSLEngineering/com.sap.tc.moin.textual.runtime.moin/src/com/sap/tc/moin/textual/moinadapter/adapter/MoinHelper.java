@@ -67,8 +67,7 @@ public class MoinHelper {
             return packages;
 	}
 
-	public static String prepareOclQuery(String queryToExecute,
-			Object contextObject, Object keyValue)
+	public static String prepareOclQuery(String queryToExecute, Object keyValue)
 			throws ModelAdapterException {
 		String result = queryToExecute;
 		if (queryToExecute != null) {
@@ -78,7 +77,9 @@ public class MoinHelper {
 			if (ContextAndForeachHelper.usesContext(result)) {
 				if (result.indexOf(OCL_SELF) > -1) {
 					throw new ModelAdapterException(
-							"Ocl Query cannot contain #context and self at the same time.");
+							"OCL Query cannot contain #context and self at the same time.");
+				} else if (ContextAndForeachHelper.usesForeach(result)) {
+				    throw new ModelAdapterException("OCL query cannot contain #foreach and #context at the same time");
 				} else {
 					result = result.replaceAll(ContextAndForeachHelper.contextPattern
 							.pattern(), OCL_SELF);
@@ -86,7 +87,9 @@ public class MoinHelper {
 			} else if(ContextAndForeachHelper.usesForeach(result)) {
 			    if (result.indexOf(OCL_SELF) > -1) {
                                 throw new ModelAdapterException(
-                                                "Ocl Query cannot contain #foreach and self at the same time.");
+                                                "OCL Query cannot contain #foreach and self at the same time.");
+			    } else if (ContextAndForeachHelper.usesContext(result)) {
+				throw new ModelAdapterException("OCL query cannot contain #foreach and #context at the same time");
                             } else {
                                 result = result.replaceAll(ContextAndForeachHelper.foreachPattern
                                                 .pattern(), OCL_SELF);

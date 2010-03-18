@@ -294,7 +294,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
 		RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
 			packagesForLookup, elementClass);
 		query = MoinHelper.prepareOclQuery(
-				query, null, "__TEMP__");
+				query, "__TEMP__");
 		if (query != null) {
 		    String name = "<syntaxcheck>";
 		    OclExpressionRegistration registration = (OclExpressionRegistration) connection

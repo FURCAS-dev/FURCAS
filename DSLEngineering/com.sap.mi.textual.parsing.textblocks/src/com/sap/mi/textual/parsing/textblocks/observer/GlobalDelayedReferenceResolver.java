@@ -1019,8 +1019,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                             null,
                             null,
                             property.getPropertyReference().getStrucfeature().getName(), null, null, query, false, null);
-                    query = MoinHelper.prepareOclQuery(query, null,
-                        TEMPORARY_QUERY_PARAM_REPLACEMENT);
+                    query = MoinHelper.prepareOclQuery(query, TEMPORARY_QUERY_PARAM_REPLACEMENT);
                     if (query != null) {
                         ref.setQueryElement(property);
                         ref.setGenericReference(true);
@@ -1204,7 +1203,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	            .deleteRegistration(oclRegistrationName);
 	    }
 	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, mofIdToOclQueryPairs.get(mofId), template, packagesForLookup, elementClass);
-	    String preparedQuery = MoinHelper.prepareOclQuery(mofIdToOclQueryPairs.get(mofId), null, null);
+	    String preparedQuery = MoinHelper.prepareOclQuery(mofIdToOclQueryPairs.get(mofId), null);
 	    registration = connection.getOclRegistryService()
 	        .getFreestyleRegistry().createExpressionRegistration(oclRegistrationName,
 	            preparedQuery, OclRegistrationSeverity.Info,
@@ -1238,7 +1237,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
             //now replace any #context parts within the query with self
             //and use the context element type for registration if it is
             //used here, 
-            query = MoinHelper.prepareOclQuery(query, null, null);
+            query = MoinHelper.prepareOclQuery(query, null);
             if (query != null) {
                 ref.setQueryElement(injectorAction);
                 ref.setGenericReference(true);

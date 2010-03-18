@@ -497,7 +497,7 @@ public class CtsContentAssistUtil {
 							String displayString = null;
 							try {
 								Object result = TcsUtil.executeOclQuery(refObj,
-										invert, null, null);
+										invert, null, null, null);
 								if (result instanceof String) {
 									displayString = (String) result;
 								}
@@ -600,8 +600,8 @@ public class CtsContentAssistUtil {
 		if(currentVersion != null) {
                     currentTbModel = new TextBlocksModel(currentVersion, null);
 		}
-		if (currentTbModel != null && currentTbModel.getRoot() != null) {
-
+		// currentTbModel is non-null at this point
+		if (currentTbModel.getRoot() != null) {
 			AbstractToken floorToken = currentTbModel.getFloorTokenInRoot(getOffset(
 					viewer, line, charPositionInLine));
 			TextBlock parentBlock = floorToken.getParentBlock();
@@ -618,6 +618,7 @@ public class CtsContentAssistUtil {
 						.get(0);
 				RefObject contextElement = getContextElement(element,
 						parentBlock, TcsUtil.getContextTag(queryArg.getQuery()));
+				RefObject foreachObject = getForeachElement(TcsUtil.getContextTag(queryArg.getQuery()));
 
 				Object oclResult = null;
 
@@ -625,7 +626,7 @@ public class CtsContentAssistUtil {
 					// prefix is null as refersTo/query does not use
 					// ? in query
 					oclResult = TcsUtil.executeOclQuery(element, queryArg
-							.getQuery(), contextElement, null);
+							.getQuery(), contextElement, foreachObject, null);
 
 				} catch (Exception e1) {
 					System.out.println("Error executing ocl query: "
@@ -648,6 +649,11 @@ public class CtsContentAssistUtil {
 			}
 		}
 		return oclElements;
+	}
+
+	private static RefObject getForeachElement(String contextTag) {
+	    // TODO Auto-generated method stub
+	    return null;
 	}
 
 	private static RefObject getContextElement(RefObject element,
