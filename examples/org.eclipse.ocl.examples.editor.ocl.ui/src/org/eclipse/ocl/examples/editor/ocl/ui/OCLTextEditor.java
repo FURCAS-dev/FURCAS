@@ -12,13 +12,13 @@
  * 
  * </copyright>
  *
- * $Id: OCLTextEditor.java,v 1.1 2010/03/11 14:52:52 ewillink Exp $
+ * $Id: OCLTextEditor.java,v 1.2 2010/03/18 15:13:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui;
 
-import org.eclipse.ocl.examples.editor.ui.text.UniversalTextEditor;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
 
-public class OCLTextEditor extends UniversalTextEditor
+public class OCLTextEditor extends CommonTextEditor
 {
 	public OCLTextEditor() {
 	}

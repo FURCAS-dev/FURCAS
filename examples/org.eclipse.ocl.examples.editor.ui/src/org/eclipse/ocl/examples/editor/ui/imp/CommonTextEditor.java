@@ -12,33 +12,35 @@
  * 
  * </copyright>
  *
- * $Id: CommonTextEditor.java,v 1.1 2010/03/11 14:51:20 ewillink Exp $
+ * $Id: CommonTextEditor.java,v 1.2 2010/03/18 15:13:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.imp;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EventObject;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
-import org.eclipse.emf.workspace.IWorkspaceCommandStack;
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.imp.editor.LanguageServiceManager;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.parser.ISourcePositionLocator;
@@ -62,11 +64,13 @@ import org.eclipse.ocl.examples.editor.ui.cst.CSTOutline;
 import org.eclipse.ocl.examples.editor.ui.cst.CSTOutlinePage;
 import org.eclipse.ocl.examples.editor.ui.cst.ICSTOutlinePage;
 import org.eclipse.ocl.examples.editor.ui.text.ITextEditorWithUndoContext;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.text.undo.DocumentUndoManagerRegistry;
 import org.eclipse.text.undo.IDocumentUndoManager;
-import org.eclipse.ui.IEditorActionBarContributor;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
@@ -79,7 +83,7 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 */
-	protected TransactionalEditingDomainImpl editingDomain;
+	protected AdapterFactoryEditingDomain editingDomain;
 	/**
 	 * This is the property sheet page.
 	 */
@@ -97,6 +101,8 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 	 */
 	protected IShowInTargetList showInTargetList = null;
 
+	private Composite container;
+
 	public CommonTextEditor() {
 	    initializeEditingDomain();
 	}
@@ -109,9 +115,15 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		return new CSTOutlinePage(this);
 	}
 
+	@Override
+	public void createPartControl(Composite parent) {
+		this.container = parent;
+		super.createPartControl(parent);
+	}
+
 	protected IPropertySheetPage createPropertySheetPage() {
 		PropertySheetPage page = new CommonPropertySheetPage(this);
-		page.setPropertySourceProvider(new TransactionalAdapterFactoryContentProvider(getTransactionalEditingDomain(), getAdapterFactory()));
+		page.setPropertySourceProvider(new AdapterFactoryContentProvider(getAdapterFactory()));
 		return page;
 	}
 	
@@ -188,7 +200,7 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		return unwrappedSelections;
 	}
 
-	protected ISelection getASTorCSTSelection(ISelection selection, ICommonParseResult parseResult) {
+	public ISelection getASTorCSTSelection(ISelection selection, ICommonParseResult parseResult) {
 		if (selection instanceof TextSelection) {
 			Object node = getASTNode(selection, parseResult);
 			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
@@ -244,8 +256,8 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		return selection;
 	}
 
-	public IEditorActionBarContributor getActionBarContributor() {
-	    return getEditorSite().getActionBarContributor();
+	public EditingDomainActionBarContributor getActionBarContributor() {
+	    return (EditingDomainActionBarContributor) getEditorSite().getActionBarContributor();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -278,7 +290,6 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		return editingDomain.getAdapterFactory();
 	}
 
-//	@Override
 	public AdapterFactoryEditingDomain getAdapterFactoryEditingDomain() {
 		return editingDomain;
 	}
@@ -302,8 +313,7 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		return domainAdapterFactories;
 	}
 
-//	@Override
-	public EditingDomain getEditingDomain() {
+	public AdapterFactoryEditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 
@@ -313,10 +323,6 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 
 	public LanguageServiceManager getLanguageServiceManager() {
 		return fLanguageServiceManager;
-	}
-
-	public IOperationHistory getOperationHistory() {
-		return getWorkspaceCommandStack().getOperationHistory();
 	}
 
 	@Override
@@ -331,10 +337,6 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 	public Shell getShell() {
 		return getSite().getShell();
 	}
-
-	public TransactionalEditingDomain getTransactionalEditingDomain() {
-		return editingDomain;
-	}
 	
 	public IUndoContext getUndoContext() {
 		ISourceViewer sourceViewer = getSourceViewer();
@@ -346,32 +348,60 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		return null;
 	}
 
-	public IWorkspaceCommandStack getWorkspaceCommandStack() {
-//		return (IWorkspaceCommandStack) super.getCommandStack();
-		return (IWorkspaceCommandStack) editingDomain.getCommandStack();
-	}
-
 	/**
 	 * This sets up the editing domain for the model editor.
 	 */
 	protected void initializeEditingDomain() {
-	    // Use next line to re-use ResourceSet
-//	    editingDomain = (TransactionalEditingDomainImpl) TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
-//		"org.eclipse.ocl.examples.editor.QVTEditingDomain");
-		editingDomain = createEditingDomain();
-	    ComposedAdapterFactory adapterFactory = (ComposedAdapterFactory) editingDomain.getAdapterFactory();
-	    // Install the item providers.
-	    //
-//	    adapterFactory.addAdapterFactory(new PagedResourceItemProviderAdapterFactory(this));
-	    adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-	    for (AdapterFactory domainAdapterFactory : getDomainAdapterFactories())
-	    	adapterFactory.addAdapterFactory(domainAdapterFactory);
-	}
+		// Create an adapter factory that yields item providers.
+		//
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-	protected TransactionalEditingDomainImpl createEditingDomain() {
-//		TransactionalEditingDomainImpl editingDomain = (TransactionalEditingDomainImpl) new PagedEditingDomainFactory().createEditingDomain();
-//	    editingDomain.setID(getEditingDomainID());
-	    return null;
+		adapterFactory
+				.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
+		// Create the command stack that will notify this editor as commands are
+		// executed.
+		//
+		BasicCommandStack commandStack = new BasicCommandStack();
+
+		// Add a listener to set the most recent command's affected objects to
+		// be the selection of the viewer with focus.
+		//
+		commandStack.addCommandStackListener(new CommandStackListener() {
+			public void commandStackChanged(final EventObject event) {
+				getContainer().getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						firePropertyChange(IEditorPart.PROP_DIRTY);
+
+						// Try to select the affected objects.
+						//
+						Command mostRecentCommand = ((CommandStack) event
+								.getSource()).getMostRecentCommand();
+//						if (mostRecentCommand != null) {
+//							setSelectionToViewer(mostRecentCommand
+//									.getAffectedObjects());
+//						}
+//						if (propertySheetPage != null
+//								&& !propertySheetPage.getControl().isDisposed()) {
+//							propertySheetPage.refresh();
+//						}
+					}
+				});
+			}
+
+			private Widget getContainer() {
+				return container;
+			}
+		});
+
+		// Create the editing domain with a special command stack.
+		//
+		editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
+				commandStack, new HashMap<Resource, Boolean>());
 	}
 
 	public boolean refresh() {
