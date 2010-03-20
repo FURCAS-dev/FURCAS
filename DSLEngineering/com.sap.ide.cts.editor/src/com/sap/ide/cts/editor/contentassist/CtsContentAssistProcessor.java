@@ -415,15 +415,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	private CtsContentAssistContext getContext(int line,
 			int charPositionInLine, TextBlocksModel tbModel, ITextViewer viewer)
 			throws BadLocationException {
-
-		// TODO code below is an idea how to extract the context from the up-to-date
-		// textblocks model. does not get all test cases green, thus keep parsing handler
-		// for now
-		if (true) {
-			return parsingHandler.getFloorContext(line, charPositionInLine);
-		}
-		
-		// CURRENTLY UNUSED BEGIN
 		
 	    TextBlocksModel currentTbModel = tbModel;
 		TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel
@@ -440,9 +431,14 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 		// get first non-whitespace token
 		AbstractToken floorToken = currentTbModel.getFloorTokenInRoot(curOffset);
+		
 		while (floorToken instanceof OmittedToken) {
 			floorToken = currentTbModel.getFloorTokenInRoot(TbUtil
 					.getAbsoluteOffset(floorToken) - 1);
+		}
+		
+		if (floorToken == null) {
+			return null;
 		}
 		
 		int tokenAbsoluteOffset = TbUtil.getAbsoluteOffset(floorToken);
@@ -460,8 +456,13 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		ctx.setToken(tok);
 		
 		if (floorToken instanceof LexedToken) {
-			LexedToken lexedTok = (LexedToken)floorToken;
-			ctx.setSequenceElement(lexedTok.getSequenceElement());
+			LexedToken lexedTok = (LexedToken) floorToken;
+			if (lexedTok.getSequenceElement() != null) {
+				ctx.setSequenceElement(lexedTok.getSequenceElement());
+			} else {
+				ctx.setSequenceElement(lexedTok.getParentBlock()
+						.getSequenceElement());
+			}
 		} else {
 			ctx.setErrorContext(true);
 		}
@@ -568,8 +569,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		ctx.setOperator(isOperator);
 		
 		return ctx;
-		
-		// CURRENTLY UNUSED END
 	}
 
 	private static ConcreteSyntax getSyntax(Connection connection,

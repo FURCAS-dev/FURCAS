@@ -195,13 +195,24 @@ public class IncrementalParserFacade {
 	 * @return
 	 */
 	public TextBlock parseIncrementally(TextBlock rootBlock) {
+		return parseIncrementally(rootBlock, false);
+	}
+	
+	/**
+	 * Uses the {@link IncrementalParser} to parse only the necessary parts of
+	 * the given root {@link TextBlock}.
+	 * 
+	 * @param rootBlock
+	 * @return
+	 */
+	public TextBlock parseIncrementally(TextBlock rootBlock, boolean errorMode) {
 		if (lexAndPrepareParsing(rootBlock)) {
 			TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
 			incrementalLexer.setCurrentTokenForParser(preparedTextBlock
 					.getTokens().get(0));
 			observer.setRootBlock(preparedTextBlock);
 			TextBlock newRoot = incrementalParser
-					.incrementalParse(preparedTextBlock);
+					.incrementalParse(preparedTextBlock, errorMode);
 			return newRoot;
 		} else {
 			return rootBlock;

@@ -70,8 +70,6 @@ public class GeneratedTextblocksBasedTest extends
 
 			assertNotNull(result);
 			
-			// re-create tbModel
-			TbChangeUtil.cleanUp(result);
 			// add a new template
 			tbModel = new TextBlocksModel(result, new MOINModelAdapter(facade
 					.getParserFactory().getMetamodelPackage(connection),
@@ -97,6 +95,19 @@ public class GeneratedTextblocksBasedTest extends
 						postFixtureParseReplacement.getLength(),
 						postFixtureParseReplacement.getReplacementString());
 			}
+			
+			result = facade.parseIncrementally(rootBlock, true);
+			
+			result = TbVersionUtil.getOtherVersion(rootBlock, VersionEnum.CURRENT);
+
+			assertNotNull(result);
+			
+			// re-create tbModel
+			TbChangeUtil.cleanUp(result);
+			// add a new template
+			tbModel = new TextBlocksModel(result, new MOINModelAdapter(facade
+					.getParserFactory().getMetamodelPackage(connection),
+					connection, null, null));
 		}
 	}
 

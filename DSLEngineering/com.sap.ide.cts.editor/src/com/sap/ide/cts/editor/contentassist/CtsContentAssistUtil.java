@@ -905,9 +905,11 @@ public class CtsContentAssistUtil {
 				String contents = getDocumentContents(viewer);
 				int offset = getAbsoluteOffset(viewer, getLine(context.getToken()), getCharPositionInLine(context.getToken()));
 				
-				char c = contents.charAt(offset);
-				if (isWhitespace(c)) {
-					return true;
+				if (offset >= 0 && offset < contents.length()) {
+					char c = contents.charAt(offset);
+					if (isWhitespace(c)) {
+						return true;
+					}
 				}
 			}
 		}
