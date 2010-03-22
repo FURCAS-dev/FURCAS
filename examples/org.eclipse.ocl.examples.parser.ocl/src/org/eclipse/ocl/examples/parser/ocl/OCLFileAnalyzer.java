@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLFileAnalyzer.java,v 1.1 2010/03/11 14:43:54 ewillink Exp $
+ * $Id: OCLFileAnalyzer.java,v 1.2 2010/03/22 01:10:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.parser.ocl;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.cst.PackageDeclarationCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
@@ -85,8 +86,12 @@ implements ICSTFileEcoreAnalyzer<OCLTopLevelEnvironment>
 	}
 
 	protected void installConstraints(OCLTopLevelEnvironment topLevelEnvironment, List<Constraint> constraints) {
-		if (!constraints.isEmpty())
-			topLevelEnvironment.getASTNode().getContents().addAll(constraints);
+		if (!constraints.isEmpty()) {
+			XMIResource astNode = topLevelEnvironment.getASTNode();
+			if (astNode != null) {
+				astNode.getContents().addAll(constraints);
+			}
+		}
 	}
 
 	protected boolean isCancelled() {
