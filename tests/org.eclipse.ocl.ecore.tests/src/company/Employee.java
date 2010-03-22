@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: Employee.java,v 1.1 2010/02/27 13:27:41 ewillink Exp $
+ * $Id: Employee.java,v 1.2 2010/03/22 20:03:21 ewillink Exp $
  */
 package company;
 
@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see company.CompanyPackage#getEmployee()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName'"
- *        annotation="org.eclipse.ocl.ecore.OCL mustHaveName='not name.oclIsUndefined()'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL mustHaveName='not name.oclIsUndefined()'"
  * @generated
  */
 public interface Employee extends EObject {
@@ -138,7 +138,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Direct Reports</em>' reference list.
 	 * @see company.CompanyPackage#getEmployee_DirectReports()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="org.eclipse.ocl.ecore.OCL derivation='company.employees->select(manager = self)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='company.employees->select(manager = self)'"
 	 * @generated
 	 */
 	EList<Employee> getDirectReports();
@@ -155,7 +155,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>All Reports</em>' reference list.
 	 * @see company.CompanyPackage#getEmployee_AllReports()
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
-	 *        annotation="org.eclipse.ocl.ecore.OCL derivation='Employee.allInstances()->select(reportsTo(self))'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='Employee.allInstances()->select(reportsTo(self))'"
 	 * @generated
 	 */
 	EList<Employee> getAllReports();
@@ -172,7 +172,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Reporting Chain</em>' reference list.
 	 * @see company.CompanyPackage#getEmployee_ReportingChain()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="org.eclipse.ocl.ecore.OCL derivation='if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif'"
 	 * @generated
 	 */
 	EList<Employee> getReportingChain();
@@ -181,7 +181,7 @@ public interface Employee extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="org.eclipse.ocl.ecore.OCL body='self.reportingChain->includes(manager)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.reportingChain->includes(manager)'"
 	 * @generated
 	 */
 	boolean reportsTo(Employee manager);
@@ -190,7 +190,7 @@ public interface Employee extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="org.eclipse.ocl.ecore.OCL body='manager.oclIsUndefined() implies directReports->size() > 0'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='manager.oclIsUndefined() implies directReports->size() > 0'"
 	 * @generated
 	 */
 	boolean noManagerImpliesDirectReports(DiagnosticChain diagnostics, Map<Object, Object> context);

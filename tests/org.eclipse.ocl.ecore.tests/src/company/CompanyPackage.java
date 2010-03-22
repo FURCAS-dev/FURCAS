@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CompanyPackage.java,v 1.1 2010/02/27 13:27:41 ewillink Exp $
+ * $Id: CompanyPackage.java,v 1.2 2010/03/22 20:03:21 ewillink Exp $
  */
 package company;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see company.CompanyFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='org.eclipse.ocl.ecore.OCL' settingDelegates='org.eclipse.ocl.ecore.OCL' validationDelegates='org.eclipse.ocl.ecore.OCL'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL'"
  * @generated
  */
 public interface CompanyPackage extends EPackage {
@@ -120,13 +120,22 @@ public interface CompanyPackage extends EPackage {
 	int COMPANY_FEATURE_COUNT = 3;
 
 	/**
+	 * The operation id for the '<em>Dummy Invariant</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY___DUMMY_INVARIANT__DIAGNOSTICCHAIN_MAP = 0;
+
+	/**
 	 * The number of operations of the '<em>Company</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPANY_OPERATION_COUNT = 0;
+	int COMPANY_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link company.impl.EmployeeImpl <em>Employee</em>}' class.
@@ -281,6 +290,16 @@ public interface CompanyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCompany_Size();
+
+	/**
+	 * Returns the meta object for the '{@link company.Company#dummyInvariant(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Dummy Invariant</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Dummy Invariant</em>' operation.
+	 * @see company.Company#dummyInvariant(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCompany__DummyInvariant__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link company.Employee <em>Employee</em>}'.
@@ -444,6 +463,14 @@ public interface CompanyPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPANY__SIZE = eINSTANCE.getCompany_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Dummy Invariant</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPANY___DUMMY_INVARIANT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCompany__DummyInvariant__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link company.impl.EmployeeImpl <em>Employee</em>}' class.

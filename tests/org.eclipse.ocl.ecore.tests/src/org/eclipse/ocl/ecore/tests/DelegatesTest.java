@@ -8,11 +8,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
+ *  C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
+ * 	E.D.Willink - Bug 306079
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.1 2010/02/27 13:27:40 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.2 2010/03/22 20:03:21 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
@@ -219,6 +220,8 @@ public class DelegatesTest extends AbstractTestSuite
 		
 		set(employee, employeeName, "Joe");
 		validateWithoutError(employee);
+
+		validateWithoutError(acme);
 	}
 
 	public void doTest_eAttributeDerivation(String modelName) {

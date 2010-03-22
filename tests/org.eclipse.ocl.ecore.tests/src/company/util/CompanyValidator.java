@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CompanyValidator.java,v 1.1 2010/02/27 13:27:41 ewillink Exp $
+ * $Id: CompanyValidator.java,v 1.2 2010/03/22 20:03:22 ewillink Exp $
  */
 package company.util;
 
@@ -58,12 +58,20 @@ public class CompanyValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "company"; //$NON-NLS-1$
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Dummy Invariant' of 'Company'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int COMPANY__DUMMY_INVARIANT = 1;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Manager Implies Direct Reports' of 'Employee'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS = 1;
+	public static final int EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -71,7 +79,7 @@ public class CompanyValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -138,7 +146,25 @@ public class CompanyValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCompany(Company company, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(company, diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(company, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCompany_dummyInvariant(company, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the dummyInvariant constraint of '<em>Company</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompany_dummyInvariant(Company company, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return company.dummyInvariant(diagnostics, context);
 	}
 
 	/**

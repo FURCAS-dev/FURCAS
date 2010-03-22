@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: Company.java,v 1.1 2010/02/27 13:27:41 ewillink Exp $
+ * $Id: Company.java,v 1.2 2010/03/22 20:03:21 ewillink Exp $
  */
 package company;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -96,9 +98,18 @@ public interface Company extends EObject {
 	 * @see company.CompanySizeKind
 	 * @see company.CompanyPackage#getCompany_Size()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="org.eclipse.ocl.ecore.OCL derivation='let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =\r    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},\r         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},\r         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in\rtable->any(range->includes(employees->size())).size'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =\r    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},\r         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},\r         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in\rtable->any(range->includes(employees->size())).size'"
 	 * @generated
 	 */
 	CompanySizeKind getSize();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='true'"
+	 * @generated
+	 */
+	boolean dummyInvariant(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Company
