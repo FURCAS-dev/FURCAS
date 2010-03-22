@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLInEcoreResourceTests.java,v 1.2 2010/03/13 18:11:25 ewillink Exp $
+ * $Id: OCLInEcoreResourceTests.java,v 1.3 2010/03/22 01:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor.ocl.ecore;
 
@@ -23,39 +23,102 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreEditor;
-import org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreParseController;
+import org.eclipse.ocl.cst.BooleanLiteralExpCS;
+import org.eclipse.ocl.cst.CSTNode;
+import org.eclipse.ocl.cst.OperationCallExpCS;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.examples.test.editor.OCLInEcoreTestFile;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
 public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 {	
+	@Override
+	protected void checkTextASTSelection(Object astNode, CSTNode cstNode) {
+		Object expectedConstrainedElement = getConstraint((EObject) cstNode.getAst()).getConstrainedElements().get(0);
+		Object actualConstrainedElement = getConstrainedElement((EObject) astNode);
+		assertSame(expectedConstrainedElement, actualConstrainedElement);
+	}
+
+	@Override
+	protected OCLInEcoreTestFile createEcoreTestFile(IFile ecoreFile) {
+		return new OCLInEcoreTestFile(ecoreFile);
+	}
+
+	@Override
+	protected OCLInEcoreTestFile createOCLTestFile(OCLInEcoreTestFile ecoreTestFile) {
+		return ecoreTestFile;
+	}
+
+	private ENamedElement getConstrainedElement(EObject ast) {
+		for (EObject eObject = ast; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof ENamedElement) {
+				return (ENamedElement) eObject;
+			}
+		}
+		return null;
+	}
+
+	private Constraint getConstraint(EObject ast) {
+		for (EObject eObject = ast; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof Constraint) {
+				return (Constraint) eObject;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Test that an editor can be opened on an empty file and that the editor closes
 	 * when that file is deleted.
 	 */
 	public void testDeleteFileClosesEditor() throws CoreException, ExecutionException, BadLocationException, IOException {
-		IFile file = project.getFile(getName() + " .ecore");
-		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
-		IFileEditorInput editorInput = testFile.getEditorInput();
-		IEditorPart editor = workbenchPage.openEditor(editorInput, getEditorId());
-		try {
-			assertNotNull("Editor is open", workbenchPage.findEditor(editorInput));
-			file.delete(true, monitor);
-			runAsyncMessages(editor.getSite().getShell().getDisplay(), "Delete File");
-			assertTrue("File does not exist", !file.exists());
-			assertNull("Editor is closed", workbenchPage.findEditor(editorInput));
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
+		ecoreFile.delete(true, monitor);
+		runAsyncMessages(editor.getSite().getShell().getDisplay(), "Delete File");
+		assertTrue("File does not exist", !ecoreFile.exists());
+		assertNull("Editor is closed", page.findEditor(editorInput));
+	}
+	
+	/**
+	 * Test that a class invariant body expression can be added in two parts with an intervening syntax error, saved and reloaded.
+	 */
+	public void testCreateInvariantExpression() throws CoreException, ExecutionException, BadLocationException, IOException {
+		EClass eClass = ecoreTestFile.getEClass(editor.getResourceSet(), initClass);
+		assertNotNull("Constrained Class exists", eClass);
+		OCLInEcoreTestFile.InvariantChecker oldChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		oldChecker.checkConstraints("Before Edit", oldInvariantName);
+		oldChecker.checkConstraint("Before Edit", oldInvariantName, oldInvariantExpression);
+		//
+		int start = checkPresent("Before Edit", document, oldInvariantExpression)+oldInvariantExpression.length();
+		checkAbsent("Before Edit", document, newInvariantExpression);
+		//
+		document.replace(start, 0, newInvariantPart1);
+		display.readAndDispatch();
+		parse(document.get());
+		document.replace(start+newInvariantPart1.length(), 0, newInvariantPart2);
+		display.readAndDispatch();
+		parse(document.get());
+		//
+		OCLInEcoreTestFile.InvariantChecker newChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		newChecker.checkConstraints("After Edit", oldInvariantName, newInvariantName);
+		newChecker.checkConstraint("After Edit", oldInvariantName, oldInvariantExpression);
+		newChecker.checkConstraint("After Edit", newInvariantName, newInvariantExpression);
+		checkPresent("After Edit", document, oldInvariantExpression);
+		checkPresent("After Edit", document, newInvariantExpression);
+		//
+		editor.doSave(monitor);
+		ResourceSet resourceSet = ecoreTestFile.reload();
+		EClass reloadClass = ecoreTestFile.getEClass(resourceSet, initClass);
+		assertNotNull("Constrained Class reloaded", reloadClass);
+		OCLInEcoreTestFile.InvariantChecker reloadChecker = ecoreTestFile.createInvariantChecker(reloadClass);		
+		reloadChecker.checkConstraints("After Reload", oldInvariantName, newInvariantName);
+		reloadChecker.checkConstraint("After Reload", oldInvariantName, oldInvariantExpression);
+		reloadChecker.checkConstraint("After Reload", newInvariantName, newInvariantExpression);
 	}
 	
 	/**
@@ -63,46 +126,32 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 	 * text change when the invariant expression is pasted and then saved.
 	 */
 	public void testEditInvariantExpression() throws CoreException, ExecutionException, BadLocationException, IOException {
-		final String invariantName = "testInvariant";
-		final String oldInvariantExpression = "true <> false";
-		final String newInvariantExpression = "-- a prefix\nfalse <> true\n-- a suffix";
-		IFile file = project.getFile(getName() + " .ecore");
-		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
-		EPackage initPackage = testFile.createEPackageWithDelegates(null, "testPackage");
-		EClass initClass = testFile.createEClass(initPackage, "testClass");
-		testFile.createInvariant(initClass, invariantName, oldInvariantExpression);
-		IFileEditorInput editorInput = testFile.getEditorInput();
-		OCLInEcoreEditor editor = (OCLInEcoreEditor) workbenchPage.openEditor(editorInput, getEditorId());
-		try {
-			assertNotNull("Editor is open", workbenchPage.findEditor(editorInput));
-			EClass eClass = testFile.getEClass(editor.getResourceSet(), initClass);
-			assertNotNull("Constrained Class exists", eClass);
-			checkConstraints("Before Edit", eClass, invariantName);
-			checkConstraint("Before Edit", eClass, invariantName, oldInvariantExpression);
-			OCLInEcoreParseController parseController = editor.getParseController();
-			IDocumentProvider documentProvider = editor.getDocumentProvider();
-			IDocument document = documentProvider.getDocument(editorInput);
-			//
-			int start = checkPresent("Before Edit", document, oldInvariantExpression);
-			checkAbsent("Before Edit", document, newInvariantExpression);
-			//
-			document.replace(start, oldInvariantExpression.length(), newInvariantExpression);
-			parseController.parseWithoutCaching(document.get(), monitor);
-			//
-			checkConstraints("After Edit", eClass, invariantName);
-			checkConstraint("After Edit", eClass, invariantName, newInvariantExpression);
-			checkAbsent("After Edit", document, oldInvariantExpression);
-			checkPresent("After Edit", document, newInvariantExpression);
-			//
-			editor.doSave(monitor);
-			ResourceSet resourceSet = testFile.reload();
-			EClass reloadClass = testFile.getEClass(resourceSet, initClass);
-			assertNotNull("Constrained Class reloaded", reloadClass);
-			checkConstraints("After Reload", reloadClass, invariantName);
-			checkConstraint("After Reload", reloadClass, invariantName, newInvariantExpression);
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
+		EClass eClass = ecoreTestFile.getEClass(editor.getResourceSet(), initClass);
+		assertNotNull("Constrained Class exists", eClass);
+		OCLInEcoreTestFile.InvariantChecker oldChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		oldChecker.checkConstraints("Before Edit", oldInvariantName);
+		oldChecker.checkConstraint("Before Edit", oldInvariantName, oldInvariantExpression);
+		//
+		int start = checkPresent("Before Edit", document, oldInvariantExpression);
+		checkAbsent("Before Edit", document, newInvariantExpression);
+		//
+		document.replace(start, oldInvariantExpression.length(), newInvariantExpression);
+		parse(document.get());
+		//
+		OCLInEcoreTestFile.InvariantChecker newChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		newChecker.checkConstraints("After Edit", oldInvariantName);
+		newChecker.checkConstraint("After Edit", oldInvariantName, newInvariantExpression);
+		checkAbsent("After Edit", document, oldInvariantExpression);
+		checkPresent("After Edit", document, newInvariantExpression);
+		//
+		editor.doSave(monitor);
+		ResourceSet resourceSet = ecoreTestFile.reload();
+		EClass reloadClass = ecoreTestFile.getEClass(resourceSet, initClass);
+		assertNotNull("Constrained Class reloaded", reloadClass);
+
+		OCLInEcoreTestFile.InvariantChecker reloadChecker = ecoreTestFile.createInvariantChecker(reloadClass);		
+		reloadChecker.checkConstraints("After Reload", oldInvariantName);
+		reloadChecker.checkConstraint("After Reload", oldInvariantName, newInvariantExpression);
 	}
 	
 	/**
@@ -111,46 +160,31 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 	 * and then saved.
 	 */
 	public void testEditInvariantExpressionToError() throws CoreException, ExecutionException, BadLocationException, IOException {
-		final String invariantName = "testInvariant";
-		final String oldInvariantExpression = "true <> false";
-		final String newInvariantExpression = "false <==> true";
-		IFile file = project.getFile(getName() + " .ecore");
-		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
-		EPackage initPackage = testFile.createEPackageWithDelegates(null, "testPackage");
-		EClass initClass = testFile.createEClass(initPackage, "testClass");
-		testFile.createInvariant(initClass, invariantName, oldInvariantExpression);
-		IFileEditorInput editorInput = testFile.getEditorInput();
-		OCLInEcoreEditor editor = (OCLInEcoreEditor) workbenchPage.openEditor(editorInput, getEditorId());
-		try {
-			assertNotNull("Editor is open", workbenchPage.findEditor(editorInput));
-			EClass eClass = testFile.getEClass(editor.getResourceSet(), initClass);
-			assertNotNull("Constrained Class exists", eClass);
-			checkConstraints("Before Edit", eClass, invariantName);
-			checkConstraint("Before Edit", eClass, invariantName, oldInvariantExpression);
-			OCLInEcoreParseController parseController = editor.getParseController();
-			IDocumentProvider documentProvider = editor.getDocumentProvider();
-			IDocument document = documentProvider.getDocument(editorInput);
-			//
-			int start = checkPresent("Before Edit", document, oldInvariantExpression);
-			checkAbsent("Before Edit", document, newInvariantExpression);
-			//
-			document.replace(start, oldInvariantExpression.length(), newInvariantExpression);
-			parseController.parseWithoutCaching(document.get(), monitor);
-			//
-			checkConstraints("After Edit", eClass, invariantName);
-			checkConstraint("After Edit", eClass, invariantName, oldInvariantExpression);
-			checkAbsent("After Edit", document, oldInvariantExpression);
-			checkPresent("After Edit", document, newInvariantExpression);
-			//
-			editor.doSave(monitor);
-			ResourceSet resourceSet = testFile.reload();
-			EClass reloadClass = testFile.getEClass(resourceSet, initClass);
-			assertNotNull("Constrained Class reloaded", reloadClass);
-			checkConstraints("After Reload", reloadClass, invariantName);
-			checkConstraint("After Reload", reloadClass, invariantName, oldInvariantExpression);
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
+		EClass eClass = ecoreTestFile.getEClass(editor.getResourceSet(), initClass);
+		assertNotNull("Constrained Class exists", eClass);
+		OCLInEcoreTestFile.InvariantChecker oldChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		oldChecker.checkConstraints("Before Edit", oldInvariantName);
+		oldChecker.checkConstraint("Before Edit", oldInvariantName, oldInvariantExpression);
+		//
+		int start = checkPresent("Before Edit", document, oldInvariantExpression);
+		checkAbsent("Before Edit", document, newInvariantExpression);
+		//
+		document.replace(start, oldInvariantExpression.length(), newInvariantExpression);
+		parse(document.get());
+		//
+		OCLInEcoreTestFile.InvariantChecker newChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		newChecker.checkConstraints("After Edit", oldInvariantName);
+		newChecker.checkConstraint("After Edit", oldInvariantName, newInvariantExpression);
+		checkAbsent("After Edit", document, oldInvariantExpression);
+		checkPresent("After Edit", document, newInvariantExpression);
+		//
+		editor.doSave(monitor);
+		ResourceSet resourceSet = ecoreTestFile.reload();
+		EClass reloadClass = ecoreTestFile.getEClass(resourceSet, initClass);
+		assertNotNull("Constrained Class reloaded", reloadClass);
+		OCLInEcoreTestFile.InvariantChecker reloadChecker = ecoreTestFile.createInvariantChecker(reloadClass);		
+		reloadChecker.checkConstraints("After Reload", oldInvariantName);
+		reloadChecker.checkConstraint("After Reload", oldInvariantName, newInvariantExpression);
 	}
 	
 	/**
@@ -158,53 +192,50 @@ public class OCLInEcoreResourceTests extends AbstractOCLInEcoreEditorTestCase
 	 * text change when the invariant name is pasted and then saved.
 	 */
 	public void testEditInvariantName() throws CoreException, ExecutionException, BadLocationException, IOException {
-		final String oldInvariantName = "oldTestInvariant";
-		final String newInvariantName = "changedTestInvariant";
-		final String invariantExpression = "true <> false";
-		IFile file = project.getFile(getName() + " .ecore");
-		OCLInEcoreTestFile testFile = new OCLInEcoreTestFile(file);
-		EPackage initPackage = testFile.createEPackageWithDelegates(null, "testPackage");
-		EClass initClass = testFile.createEClass(initPackage, "testClass");
-		testFile.createInvariant(initClass, oldInvariantName, invariantExpression);
-		IFileEditorInput editorInput = testFile.getEditorInput();
-		OCLInEcoreEditor editor = (OCLInEcoreEditor) workbenchPage.openEditor(editorInput, getEditorId());
-		try {
-			assertNotNull("Editor is open", workbenchPage.findEditor(editorInput));
-			EClass eClass = testFile.getEClass(editor.getResourceSet(), initClass);
-			assertNotNull("Constrained Class exists", eClass);
-			checkConstraints("Before Edit", eClass, oldInvariantName);
-			List<String> oldConstraints = EcoreUtil.getConstraints(eClass);
-			checkPresent("Before Edit", oldConstraints, oldInvariantName);
-			checkAbsent("Before Edit", oldConstraints, newInvariantName);
-			OCLInEcoreParseController parseController = editor.getParseController();
-			IDocumentProvider documentProvider = editor.getDocumentProvider();
-			IDocument document = documentProvider.getDocument(editorInput);
-			//
-			int start = checkPresent("Before Edit", document, oldInvariantName);
-			checkAbsent("Before Edit", document, newInvariantName);
-			checkPresent("Before Edit", document, invariantExpression);
-			//
-			document.replace(start, oldInvariantName.length(), newInvariantName);
-			parseController.parseWithoutCaching(document.get(), monitor);
-			//
-			checkConstraints("After Edit", eClass, newInvariantName);
-			List<String> newConstraints = EcoreUtil.getConstraints(eClass);
-			checkAbsent("After Edit", newConstraints, oldInvariantName);
-			checkPresent("After Edit", newConstraints, newInvariantName);
-			checkAbsent("After Edit", document, oldInvariantName);
-			checkPresent("After Edit", document, newInvariantName);
-			checkPresent("After Edit", document, invariantExpression);
-			//
-			editor.doSave(monitor);
-			ResourceSet resourceSet = testFile.reload();
-			EClass reloadClass = testFile.getEClass(resourceSet, initClass);
-			assertNotNull("Constrained Class reloaded", reloadClass);
-			checkConstraints("After Reload", reloadClass, newInvariantName);
-			List<String> reloadConstraints = EcoreUtil.getConstraints(reloadClass);
-			checkAbsent("After Reload", reloadConstraints, oldInvariantName);
-			checkPresent("After Reload", reloadConstraints, newInvariantName);
-		} finally {
-			workbenchPage.closeEditor(editor, false);
-		}
+		EClass eClass = ecoreTestFile.getEClass(editor.getResourceSet(), initClass);
+		assertNotNull("Constrained Class exists", eClass);
+		OCLInEcoreTestFile.InvariantChecker oldChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		oldChecker.checkConstraints("Before Edit", oldInvariantName);
+		List<String> oldConstraints = EcoreUtil.getConstraints(eClass);
+		checkPresent("Before Edit", oldConstraints, oldInvariantName);
+		checkAbsent("Before Edit", oldConstraints, newInvariantName);
+		IDocumentProvider documentProvider = editor.getDocumentProvider();
+		IDocument document = documentProvider.getDocument(editorInput);
+		//
+		int start = checkPresent("Before Edit", document, oldInvariantName);
+		checkAbsent("Before Edit", document, newInvariantName);
+		checkPresent("Before Edit", document, oldInvariantExpression);
+		//
+		document.replace(start, oldInvariantName.length(), newInvariantName);
+		parse(document.get());
+		//
+		OCLInEcoreTestFile.InvariantChecker newChecker = ecoreTestFile.createInvariantChecker(eClass);		
+		newChecker.checkConstraints("After Edit", newInvariantName);
+		List<String> newConstraints = EcoreUtil.getConstraints(eClass);
+		checkAbsent("After Edit", newConstraints, oldInvariantName);
+		checkPresent("After Edit", newConstraints, newInvariantName);
+		checkAbsent("After Edit", document, oldInvariantName);
+		checkPresent("After Edit", document, newInvariantName);
+		checkPresent("After Edit", document, oldInvariantExpression);
+		//
+		editor.doSave(monitor);
+		ResourceSet resourceSet = ecoreTestFile.reload();
+		EClass reloadClass = ecoreTestFile.getEClass(resourceSet, initClass);
+		assertNotNull("Constrained Class reloaded", reloadClass);
+		OCLInEcoreTestFile.InvariantChecker reloadChecker = ecoreTestFile.createInvariantChecker(reloadClass);		
+		reloadChecker.checkConstraints("After Reload", newInvariantName);
+		List<String> reloadConstraints = EcoreUtil.getConstraints(reloadClass);
+		checkAbsent("After Reload", reloadConstraints, oldInvariantName);
+		checkPresent("After Reload", reloadConstraints, newInvariantName);
+	}
+	
+	/**
+	 * Test that selections propagate.
+	 */
+	public void testSelect() throws CoreException, ExecutionException, BadLocationException, IOException, InterruptedException {
+		//
+		parse(document.get());
+		doTestTextSelection(oldInvariantExpression, OperationCallExpCS.class);
+		doTestTextSelection("false", BooleanLiteralExpCS.class);
 	}
 }

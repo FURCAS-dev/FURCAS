@@ -12,13 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: OCLInEcoreTestFile.java,v 1.1 2010/03/13 18:11:25 ewillink Exp $
+ * $Id: OCLInEcoreTestFile.java,v 1.2 2010/03/22 01:27:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.EMap;
@@ -33,14 +36,37 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 
-public class OCLInEcoreTestFile extends EcoreTestFile
+public class OCLInEcoreTestFile extends EcoreTestFileBase implements OCLTestFile
 {
+	public class InvariantChecker
+	{
+		private final EClass eClass;
+		
+		public InvariantChecker(EClass eClass) {
+			this.eClass = eClass;
+		}
+		
+		public void checkConstraint(String when, String which, String what) {
+			String expression = EcoreUtil.getAnnotation(eClass, OCLDelegateDomain.OCL_DELEGATE_URI, which);
+			TestCase.assertEquals(when, what, expression);
+		}
+		
+		public void checkConstraints(String when, String... whiches) {
+			List<String> constraints = EcoreUtil.getConstraints(eClass);		
+			TestCase.assertEquals(when + " - constraint count", whiches.length, constraints.size());
+			for (String which : whiches) {
+				AbstractEditorTestCase.checkPresent(when, constraints, which);
+			}
+		}
+	}
+
 	public OCLInEcoreTestFile(IFile file) {
 		super(file);
 	}
 
-	public EPackage createEPackageWithDelegates(EPackage parentPackage, String name) {
-		EPackage ePackage = createEPackage(parentPackage, name);
+	@Override
+	public EPackage createEPackage(EPackage parentPackage, String name) {
+		EPackage ePackage = super.createEPackage(parentPackage, name);
 	    EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 	    eAnnotation.setSource(EcorePackage.eNS_URI);
 	    EMap<String, String> details = eAnnotation.getDetails();
@@ -59,5 +85,9 @@ public class OCLInEcoreTestFile extends EcoreTestFile
 	    Set<String> constraints = new HashSet<String>(EcoreUtil.getConstraints(eClass));
 	    constraints.add(name);
 	    EcoreUtil.setConstraints(eClass, new ArrayList<String>(constraints));
+	}
+
+	public InvariantChecker createInvariantChecker(EClass eClass) {
+		return new InvariantChecker(eClass);
 	}
 }

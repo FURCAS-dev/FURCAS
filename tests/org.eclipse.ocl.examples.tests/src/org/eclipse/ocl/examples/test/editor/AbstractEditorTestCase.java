@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AbstractEditorTestCase.java,v 1.2 2010/03/13 18:11:25 ewillink Exp $
+ * $Id: AbstractEditorTestCase.java,v 1.3 2010/03/22 01:27:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor;
 
@@ -37,18 +37,44 @@ import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.examples.editor.ui.ICreationFactory;
 import org.eclipse.ocl.examples.editor.ui.builder.CommonBuilder;
+import org.eclipse.ocl.examples.editor.ui.cst.CSTOutline;
+import org.eclipse.ocl.examples.editor.ui.cst.ICSTOutlinePage;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonParseController;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonParseResult;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonPropertySheetPage;
+import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Synchronizer;
+import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.texteditor.IDocumentProvider;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.eclipse.ui.views.properties.IPropertySheetPage;
 
-public abstract class AbstractEditorTestCase extends TestCase
+public abstract class AbstractEditorTestCase<E extends CommonTextEditor, ET extends EcoreTestFile, OT extends OCLTestFile> extends TestCase
 {
+	public static final String testClassName = "testClass";
+	public static final String testPackageName = "testPackage";
+	public static final String oldInvariantName = "oldInvariant";
+	public static final String newInvariantName = "newInvariant";
+	public static final String oldInvariantExpression = "true <> false";
+	public static final String newInvariantExpression = "-- a prefix\nfalse <> true\n-- a suffix";
+	public static final String newInvariantPart1 = "\ncontext " + testPackageName + "::" + testClassName + "\nin";
+	public static final String newInvariantPart2 = "v " + newInvariantName + ":" + newInvariantExpression + "\n";
+
 	protected static void checkAbsent(String when, IDocument document, String what) {
 		int index = document.get().indexOf(what);
 		if (index >= 0) {
@@ -168,8 +194,46 @@ public abstract class AbstractEditorTestCase extends TestCase
 	protected Synchronizer dummySynchronizer;
 	protected IProgressMonitor monitor = new NullProgressMonitor();
 	protected IProject project;
-	protected IWorkbenchPage workbenchPage;
 	protected List<IFile> files = new ArrayList<IFile>();
+
+	protected IFile ecoreFile;
+	protected ET ecoreTestFile;
+	protected OT oclTestFile;
+	protected EPackage initPackage;
+	protected EClass initClass;
+	protected IFileEditorInput editorInput;
+	protected E editor;
+	protected IWorkbenchPage page;
+	protected IContentOutlinePage astOutlinePage;
+	protected ICSTOutlinePage cstOutlinePage;
+	protected CommonPropertySheetPage propertyPage;
+	protected Display display;
+	protected IDocumentProvider documentProvider;
+	protected IDocument document;
+	protected CommonParseController parseController;
+
+	protected void checkTextSelection(int start, int length, Class<? extends CSTNode> cstClass) {
+		ISelection cstSelection = cstOutlinePage.getSelection();
+		ModelTreeNode cstTreeNode = (ModelTreeNode) ((IStructuredSelection)cstSelection).getFirstElement();
+		CSTNode cstNode = (CSTNode) cstTreeNode.getASTNode();
+		assertTrue(cstClass.isAssignableFrom(cstNode.getClass()));
+		assertEquals(start, cstNode.getStartOffset());
+		assertEquals(start + length, cstNode.getEndOffset() + 1);
+//
+		ISelection astSelection = astOutlinePage.getSelection();
+		ModelTreeNode astTreeNode = (ModelTreeNode) ((IStructuredSelection)astSelection).getFirstElement();
+		Object astNode = astTreeNode.getASTNode();
+		checkTextASTSelection(astNode, cstNode);
+//
+		ISelection propertySelection = propertyPage.getSelection();
+		Object propertyNode =  ((IStructuredSelection)propertySelection).getFirstElement();
+		assertSame(astNode, propertyNode);
+	}
+	
+	protected abstract void checkTextASTSelection(Object astNode, CSTNode cstNode);
+
+	protected abstract ET createEcoreTestFile(IFile ecoreFile);
+	
 	protected IFile createFile(String fileName) throws CoreException {
 		IFile file = project.getFile(fileName);
 		IContainer container = file.getParent();
@@ -201,12 +265,42 @@ public abstract class AbstractEditorTestCase extends TestCase
 		return folder;
 	}
 
+	protected abstract OT createOCLTestFile(ET ecoreTestFile);
+
 	protected abstract ICreationFactory getCreationFactory();
+
+	protected void doTestTextSelection(String text, Class<? extends CSTNode> cstClass) throws InterruptedException {
+		int start = checkPresent("Search For", document, text);
+		int length = text.length();
+		editor.selectAndReveal(start, length);
+		display.readAndDispatch();
+//		readAndDispatchFor(1000);
+		checkTextSelection(start, length, cstClass);
+	}
 
 	protected abstract String getEditorId();
 	
 	protected String getProjectId() {
 		return getClass().getPackage().getName();
+	}
+
+	protected CommonParseResult parse(String documentText) {
+		CommonParseResult parseResult = parseController.parseWithoutCaching(documentText, monitor);
+		// Occasionally we get an NPE from the AST
+		//  try to pin it down
+		//  ?? IMP schedules its parse concurrently ??
+		assertNotNull(parseResult.getAST());
+		assertNotNull(ecoreTestFile);
+		return parseResult;
+	}
+
+	protected void readAndDispatchFor(long delay) throws InterruptedException {
+		Display display = editor.getDisplay();
+		long waitUntil = System.currentTimeMillis() + delay;
+		do {		
+			if (!display.readAndDispatch())
+				Thread.sleep(100);
+		} while(System.currentTimeMillis() < waitUntil);
 	}
 
 	protected void runAsyncMessages(Display display, final String message) {
@@ -235,12 +329,44 @@ public abstract class AbstractEditorTestCase extends TestCase
 			project.open(monitor);
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-		workbenchPage = workbenchWindow.getActivePage();
+		page = workbenchWindow.getActivePage();
 		dummySynchronizer = new Synchronizer(Display.getDefault());
+
+		ecoreFile = project.getFile(getName() + " .ecore");
+		ecoreTestFile = createEcoreTestFile(ecoreFile);
+		initPackage = ecoreTestFile.createEPackage(null, testPackageName);
+		initClass = ecoreTestFile.createEClass(initPackage, testClassName);
+		oclTestFile = createOCLTestFile(ecoreTestFile);
+		oclTestFile.createInvariant(initClass, oldInvariantName, oldInvariantExpression);
+		editorInput = oclTestFile.getEditorInput();
+		@SuppressWarnings("unchecked")
+		E castEditor = (E) page.openEditor(editorInput, getEditorId());
+		editor = castEditor;
+		assertNotNull("Editor is open", page.findEditor(editorInput));
+		display = editor.getDisplay();
+		documentProvider = editor.getDocumentProvider();
+		document = documentProvider.getDocument(editorInput);
+		parseController = (CommonParseController) editor.getParseController();
+		//
+		display.readAndDispatch();
+		@SuppressWarnings("unused")
+		IViewPart propertyPart = page.showView("org.eclipse.ui.views.PropertySheet");
+		display.readAndDispatch();
+		@SuppressWarnings("unused")
+		IViewPart cstPart = page.showView("org.eclipse.ui.views.ContentOutline");
+		display.readAndDispatch();
+		@SuppressWarnings("unused")
+		IViewPart astPart = page.showView(CSTOutline.VIEW_ID); //, null, IWorkbenchPage.VIEW_ACTIVATE);
+		display.readAndDispatch();
+		editor.setFocus();
+		astOutlinePage = (IContentOutlinePage) editor.getAdapter(IContentOutlinePage.class);
+		cstOutlinePage = (ICSTOutlinePage) editor.getAdapter(ICSTOutlinePage.class);
+		propertyPage = (CommonPropertySheetPage) editor.getAdapter(IPropertySheetPage.class);
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
+		page.closeEditor(editor, false);
 		Exception ex = null;
 		for (IFile file : files) {
 			try {
