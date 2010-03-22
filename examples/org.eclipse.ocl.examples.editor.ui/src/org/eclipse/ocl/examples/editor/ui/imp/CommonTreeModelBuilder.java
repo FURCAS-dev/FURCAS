@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CommonTreeModelBuilder.java,v 1.1 2010/03/11 14:51:20 ewillink Exp $
+ * $Id: CommonTreeModelBuilder.java,v 1.2 2010/03/22 01:15:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.imp;
 
@@ -73,10 +73,13 @@ public class CommonTreeModelBuilder extends TreeModelBuilderBase
 		protected void enterOutlineElement(N astNode, OutlineElement element) {
 			if (astNode instanceof EObject) {
 				EStructuralFeature feature = element.getFeature();
-				Object selection = ((EObject)astNode).eGet(feature, false);
-				enter(selection);
-			} else
-				unexpectedEnterOutline(astNode, element);
+				if ((feature != null) && !feature.eIsProxy()) {	// Occurs for bad mnodels
+					Object selection = ((EObject)astNode).eGet(feature, false);
+					enter(selection);
+					return;
+				}
+			}
+			unexpectedEnterOutline(astNode, element);
 		}
 
 		protected void enterOutlineGroup(N astNode, OutlineGroup group) {
@@ -126,13 +129,13 @@ public class CommonTreeModelBuilder extends TreeModelBuilderBase
 		protected boolean isEmptyOutlineElement(N astNode, OutlineElement element) {
 			if (astNode instanceof EObject) {
 				EStructuralFeature feature = element.getFeature();
-				Object selection = ((EObject)astNode).eGet(feature, false);
-				if (feature.isMany())
-					return ((Collection<?>)selection).isEmpty();
-				else
-					return false;
-			} else
-				return false;
+				if ((feature != null) && !feature.eIsProxy()) {
+					Object selection = ((EObject)astNode).eGet(feature, false);
+					if (feature.isMany() && (selection instanceof Collection<?>))
+						return ((Collection<?>)selection).isEmpty();
+				}
+			}
+			return false;
 		}
 
 		protected boolean isEmptyOutlineGroup(N astNode, OutlineGroup group) {
