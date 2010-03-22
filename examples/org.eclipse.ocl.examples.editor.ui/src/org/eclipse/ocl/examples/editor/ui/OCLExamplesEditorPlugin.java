@@ -43,8 +43,7 @@ public class OCLExamplesEditorPlugin extends EclipseUIPlugin
 
 	public static final TracingOption RESOURCE_LOAD = new TracingOption(PLUGIN_ID, "resource/load"); //$NON-NLS-1$
 
-	public static final TracingOption SELECTION_INNER = new TracingOption(PLUGIN_ID, "selection/inner"); //$NON-NLS-1$
-	public static final TracingOption SELECTION_OUTER = new TracingOption(PLUGIN_ID, "selection/outer"); //$NON-NLS-1$
+	public static final TracingOption SELECTION = new TracingOption(PLUGIN_ID, "selection"); //$NON-NLS-1$
 
 	public static final TracingOption VISITOR_SELECTION = new TracingOption(PLUGIN_ID, "visitor/selection"); //$NON-NLS-1$
 	public static final TracingOption VISITOR_TRACE = new TracingOption(PLUGIN_ID, "visitor/trace"); //$NON-NLS-1$

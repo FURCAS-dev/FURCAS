@@ -12,13 +12,11 @@
  * 
  * </copyright>
  *
- * $Id: ASTOutlinePage.java,v 1.1 2010/03/11 14:51:22 ewillink Exp $
+ * $Id: ASTOutlinePage.java,v 1.2 2010/03/22 01:15:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.cst;
 
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ocl.examples.common.label.LabelGeneratorRegistry;
-import org.eclipse.ocl.examples.editor.ui.OCLExamplesEditorPlugin;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
 import org.eclipse.ocl.examples.editor.ui.imp.ICommonParseResult;
 
@@ -30,12 +28,9 @@ public class ASTOutlinePage extends CommonOutlinePage
 
 	@Override
 	public void setSelection(ISelection selection) {
-		if (!isChangingSelection()) {
-			ICommonParseResult currentResult = editor.getParseController().getCurrentResult();
-			if (currentResult != null)
-				selection = editor.getASTSelection(selection, currentResult);
-			super.setSelection(selection);
-		} else if (OCLExamplesEditorPlugin.SELECTION_INNER.isActive())
-			OCLExamplesEditorPlugin.SELECTION_INNER.println(getClass(), "setSelection " + LabelGeneratorRegistry.debugLabelFor(selection));
+		ICommonParseResult currentResult = editor.getParseController().getCurrentResult();
+		if (currentResult != null)
+			selection = editor.getASTSelection(selection, currentResult);
+		super.setSelection(selection);
 	}
 }

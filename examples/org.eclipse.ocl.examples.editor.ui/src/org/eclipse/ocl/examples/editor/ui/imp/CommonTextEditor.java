@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CommonTextEditor.java,v 1.2 2010/03/18 15:13:06 ewillink Exp $
+ * $Id: CommonTextEditor.java,v 1.3 2010/03/22 01:15:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.imp;
 
@@ -28,8 +28,6 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -154,107 +152,6 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 		}
 		super.doSave(progressMonitor);
 	}
-	
-	protected Object getASTNode(ISelection selection, ICommonParseResult parseResult) {
-		Resource ast = parseResult.getAST();
-		Object node = getCSTNode((TextSelection) selection, parseResult);
-		if (node instanceof CSTNode) {
-			for (Object cstNode = node; cstNode instanceof CSTNode; cstNode = ((EObject) cstNode).eContainer()) {
-				node = ((CSTNode)cstNode).getAst();
-				if ((node != null) && (node instanceof EObject) && (((EObject)node).eResource() == ast))
-					break;
-			}
-		}
-		return node;
-	}
-
-	protected List<Object> getASTNodes(ISelection selection, ICommonParseResult parseResult) {
-		List<Object> unwrappedSelections = new ArrayList<Object>(((IStructuredSelection)selection).size());
-		for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
-			Object node = parseResult.getASTNode(i.next());
-			if (node != null)
-				unwrappedSelections.add(node);
-		}
-		return unwrappedSelections;
-	}
-
-	public ISelection getASTSelection(ISelection selection, ICommonParseResult parseResult) {
-		if (selection instanceof TextSelection) {
-			Object node = getASTNode(selection, parseResult);
-			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
-		}
-		else if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
-			List<Object> unwrappedSelections = getASTNodes(selection, parseResult);
-			selection = new StructuredSelection(unwrappedSelections);		
-		}
-		return selection;
-	}
-
-	protected List<Object> getASTorCSTNodes(ISelection selection, ICommonParseResult parseResult) {
-		List<Object> unwrappedSelections = new ArrayList<Object>(((IStructuredSelection)selection).size());
-		for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
-			Object node = parseResult.getASTorCSTNode(i.next());
-			if (node != null)
-				unwrappedSelections.add(node);
-		}
-		return unwrappedSelections;
-	}
-
-	public ISelection getASTorCSTSelection(ISelection selection, ICommonParseResult parseResult) {
-		if (selection instanceof TextSelection) {
-			Object node = getASTNode(selection, parseResult);
-			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
-		}
-		else if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
-			List<Object> unwrappedSelections = getASTorCSTNodes(selection, parseResult);
-			selection = new StructuredSelection(unwrappedSelections);			
-		}
-		return selection;
-	}
-
-	public IAnnotationModel getAnnotationModel() {	
-		return getDocumentProvider().getAnnotationModel(getEditorInput());
-	}
-
-	public Annotation[] getAnnotations() {
-		IAnnotationModel annotationModel = getAnnotationModel();
-		List<Annotation> annotationList = new ArrayList<Annotation>();
-		for (Iterator<?> i = annotationModel.getAnnotationIterator(); i.hasNext(); ) {
-			Annotation annotation = (Annotation) i.next();
-			if (PARSE_ANNOTATION_TYPE.equals(annotation.getType()))
-				annotationList.add(annotation);
-		}
-		return annotationList.toArray(new Annotation[annotationList.size()]);
-	}
-
-	protected Object getCSTNode(TextSelection selection, ICommonParseResult parseResult) {
-		int length = selection.getLength();
-		int offset = selection.getOffset();
-		ISourcePositionLocator nodeLocator = parseResult.getSourcePositionLocator();
-		return nodeLocator.findNode(parseResult.getCST(), offset, offset+length);
-	}
-
-	protected List<CSTNode> getCSTNodes(ISelection selection, ICommonParseResult parseResult) {
-		List<CSTNode> unwrappedSelections = new ArrayList<CSTNode>(((IStructuredSelection)selection).size());
-		for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
-			CSTNode node = parseResult.getCSTNode(i.next());
-			if (node != null)
-				unwrappedSelections.add(node);
-		}
-		return unwrappedSelections;
-	}
-
-	public ISelection getCSTSelection(ISelection selection, ICommonParseResult parseResult) {
-		if (selection instanceof TextSelection) {
-			Object node = getCSTNode((TextSelection) selection, parseResult);
-			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
-		}
-		else if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
-			List<CSTNode> unwrappedSelections = getCSTNodes(selection, parseResult);
-			selection = new StructuredSelection(unwrappedSelections);			
-		}
-		return selection;
-	}
 
 	public EditingDomainActionBarContributor getActionBarContributor() {
 	    return (EditingDomainActionBarContributor) getEditorSite().getActionBarContributor();
@@ -293,6 +190,128 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 	public AdapterFactoryEditingDomain getAdapterFactoryEditingDomain() {
 		return editingDomain;
 	}
+	
+	protected Object getASTNode(TextSelection selection, ICommonParseResult parseResult) {
+		Resource ast = parseResult.getAST();
+		Object node = getCSTNode(selection, parseResult);
+		if (node instanceof CSTNode) {
+			for (Object cstNode = node; cstNode instanceof CSTNode; cstNode = ((EObject) cstNode).eContainer()) {
+				node = getCorrespondingASTNodeIn((CSTNode) cstNode, ast);
+				if (node != null)
+					break;
+			}
+		}
+		return node;
+	}
+	
+	protected List<Object> getASTNodes(ISelection selection, ICommonParseResult parseResult) {
+		List<Object> unwrappedSelections = new ArrayList<Object>(((IStructuredSelection)selection).size());
+		for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
+			Object node = parseResult.getASTNode(i.next());
+			if (node != null)
+				unwrappedSelections.add(node);
+		}
+		return unwrappedSelections;
+	}
+
+	public ISelection getASTSelection(ISelection selection, ICommonParseResult parseResult) {
+		if (selection instanceof TextSelection) {
+			Object node = getASTNode((TextSelection) selection, parseResult);
+			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
+		}
+		else if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
+			List<Object> unwrappedSelections = getASTNodes(selection, parseResult);
+			selection = new StructuredSelection(unwrappedSelections);		
+		}
+		return selection;
+	}
+
+	protected List<Object> getASTorCSTNodes(ISelection selection, ICommonParseResult parseResult) {
+		List<Object> unwrappedSelections = new ArrayList<Object>(((IStructuredSelection)selection).size());
+		for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
+			Object node = parseResult.getASTorCSTNode(i.next());
+			if (node != null)
+				unwrappedSelections.add(node);
+		}
+		return unwrappedSelections;
+	}
+
+	public ISelection getASTorCSTSelection(ISelection selection, ICommonParseResult parseResult) {
+		if (selection instanceof TextSelection) {
+			Object node = getASTNode((TextSelection) selection, parseResult);
+			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
+		}
+		else if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
+			List<Object> unwrappedSelections = getASTorCSTNodes(selection, parseResult);
+			selection = new StructuredSelection(unwrappedSelections);			
+		}
+		return selection;
+	}
+
+	public IAnnotationModel getAnnotationModel() {	
+		return getDocumentProvider().getAnnotationModel(getEditorInput());
+	}
+
+	public Annotation[] getAnnotations() {
+		IAnnotationModel annotationModel = getAnnotationModel();
+		List<Annotation> annotationList = new ArrayList<Annotation>();
+		for (Iterator<?> i = annotationModel.getAnnotationIterator(); i.hasNext(); ) {
+			Annotation annotation = (Annotation) i.next();
+			if (PARSE_ANNOTATION_TYPE.equals(annotation.getType()))
+				annotationList.add(annotation);
+		}
+		return annotationList.toArray(new Annotation[annotationList.size()]);
+	}
+
+	protected Object getCSTNode(TextSelection selection, ICommonParseResult parseResult) {
+		int length = selection.getLength();
+		int offset = selection.getOffset();
+		ISourcePositionLocator nodeLocator = parseResult.getSourcePositionLocator();
+		return nodeLocator.findNode(parseResult.getCST(), offset, offset+length);
+	}
+
+	public List<CSTNode> getCSTNodes(ISelection selection, ICommonParseResult parseResult) {
+		List<CSTNode> unwrappedSelections = new ArrayList<CSTNode>(((IStructuredSelection)selection).size());
+		for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
+			CSTNode node = parseResult.getCSTNode(i.next());
+			if (node != null)
+				unwrappedSelections.add(node);
+		}
+		return unwrappedSelections;
+	}
+
+	public ISelection getCSTSelection(ISelection selection, ICommonParseResult parseResult) {
+		if (selection instanceof TextSelection) {
+			Object node = getCSTNode((TextSelection) selection, parseResult);
+			selection = node != null ? new StructuredSelection(node) : StructuredSelection.EMPTY;
+		}
+		else if ((selection instanceof IStructuredSelection) && !selection.isEmpty()) {
+			List<CSTNode> unwrappedSelections = getCSTNodes(selection, parseResult);
+			selection = new StructuredSelection(unwrappedSelections);			
+		}
+		return selection;
+	}
+	
+	/**
+	 * Return the AST node corresponding to cstNode provided it forms part of
+	 * the node hierarchy of ast, return null otherwise.
+	 * <p>
+	 * FIXME This method is used to avoid location of AST outline elements for CST
+	 * contexts following references to definition model.
+	 */
+	protected Object getCorrespondingASTNodeIn(CSTNode cstNode, Resource ast) {
+		Object node = cstNode.getAst();
+		if (node == null) {
+			return null;
+		}
+		if (!(node instanceof EObject)) {
+			return null;
+		}
+//		if (((EObject)node).eResource() != ast) {
+//			return null;
+//		}
+		return node;
+	}
 
 	public ICreationFactory getCreationFactory() {
 		return getParseController().getCreationFactory();
@@ -315,10 +334,6 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 
 	public AdapterFactoryEditingDomain getEditingDomain() {
 		return editingDomain;
-	}
-
-	public String getEditingDomainID() {
-		return "org.eclipse.ocl.examples.editingDomainID";		// FIXME share this with diagram editor plugin.xml's
 	}
 
 	public LanguageServiceManager getLanguageServiceManager() {
@@ -379,8 +394,8 @@ public class CommonTextEditor extends UniversalEditor implements ITextEditorWith
 
 						// Try to select the affected objects.
 						//
-						Command mostRecentCommand = ((CommandStack) event
-								.getSource()).getMostRecentCommand();
+//						Command mostRecentCommand = ((CommandStack) event
+//								.getSource()).getMostRecentCommand();
 //						if (mostRecentCommand != null) {
 //							setSelectionToViewer(mostRecentCommand
 //									.getAffectedObjects());

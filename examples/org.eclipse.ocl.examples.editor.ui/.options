@@ -45,8 +45,5 @@ org.eclipse.ocl.examples.editor.ui/annotation/create=false
 org.eclipse.ocl.examples.editor.ui/annotation/delete=false
 org.eclipse.ocl.examples.editor.ui/annotation/update=false
 
-# Generate a diagnostic for each outer selection change
-org.eclipse.ocl.examples.editor.ui/selection/outer=false
-
-# Generate a diagnostic for each inner selection change too
-org.eclipse.ocl.examples.editor.ui/selection/inner=false
+# Generate a diagnostic for each selection change
+org.eclipse.ocl.examples.editor.ui/selection=false

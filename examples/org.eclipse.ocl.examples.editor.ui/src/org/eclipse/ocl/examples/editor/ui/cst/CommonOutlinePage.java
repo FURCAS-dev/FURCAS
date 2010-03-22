@@ -12,9 +12,11 @@
  * 
  * </copyright>
  *
- * $Id: CommonOutlinePage.java,v 1.2 2010/03/11 15:31:47 ewillink Exp $
+ * $Id: CommonOutlinePage.java,v 1.3 2010/03/22 01:15:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.cst;
+
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +34,7 @@ import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonTreeModelBuilder;
 import org.eclipse.ocl.examples.editor.ui.imp.ICommonParseResult;
 import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.IPageSite;
 
@@ -39,8 +42,7 @@ public abstract class CommonOutlinePage extends IMPOutlinePage implements ICSTOu
 {
 	protected final CommonTextEditor editor;
 	protected final CommonTreeModelBuilder treeModelBuilder;
-	private boolean changingSelection = false;	// Set true while selection is changing to inhibit recursive call-backs
-
+	
 	public CommonOutlinePage(CommonTextEditor editor, CommonTreeModelBuilder treeModelBuilder) {
 		super(editor.getParseController(), treeModelBuilder,
 			editor.getLanguageServiceManager().getLabelProvider(),
@@ -53,8 +55,9 @@ public abstract class CommonOutlinePage extends IMPOutlinePage implements ICSTOu
 	@Override
 	public void dispose() {
 		super.dispose();
-		getSite().getPage().removePostSelectionListener(this);
-		getSite().getPage().removeSelectionListener(this);
+		IWorkbenchPage page = getSite().getPage();
+		page.removePostSelectionListener(this);
+		page.removeSelectionListener(this);
 		editor.removeModelListener(this);
 	}
 
@@ -80,63 +83,90 @@ public abstract class CommonOutlinePage extends IMPOutlinePage implements ICSTOu
 	@Override
 	public void init(IPageSite pageSite) {
 		editor.addModelListener(this);
-		pageSite.getPage().addSelectionListener(this);			// Outline Click and Text Double Click, Text Single Click after Double Click
-		pageSite.getPage().addPostSelectionListener(this);		// Text Single Click after Single Click	
+		IWorkbenchPage page = pageSite.getPage();
+		page.addSelectionListener(this);			// Outline Click and Text Double Click, Text Single Click after Double Click
+		page.addPostSelectionListener(this);		// Text Single Click after Single Click	
 		super.init(pageSite);
 	}
-	
-	protected boolean isChangingSelection() {
-		return changingSelection;
+
+	protected void resumeSelectionListening() {
+		IWorkbenchPage page = getSite().getPage();
+		page.addSelectionListener(this);
+		page.addPostSelectionListener(this);	
+        getTreeViewer().addSelectionChangedListener(this);
 	}
 
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-        if (!changingSelection) {
-            if (OCLExamplesEditorPlugin.SELECTION_OUTER.isActive())
-    			OCLExamplesEditorPlugin.SELECTION_OUTER.println(getClass(), "selectionChanged1 " + LabelGeneratorRegistry.debugLabelFor(event.getSelection()));
-//    		System.out.println(getClass().getSimpleName() + ".selectionChanged");
-        	try {
-        		changingSelection = true;
-            	ISelection selection = event.getSelection();
-				fireSelectionChanged(selection);
-        		if ((selection instanceof IStructuredSelection) && (((IStructuredSelection)selection).size() == 1)) {
-        			Object object = ((IStructuredSelection)selection).getFirstElement();
-        			ICommonParseResult currentResult = editor.getParseController().getCurrentResult();
-					CSTNode cstNode = currentResult != null ? currentResult.getCSTNode(object) : null;
-        			if (cstNode != null)
-        				editor.selectAndReveal(cstNode.getStartOffset(), cstNode.getEndOffset() - cstNode.getStartOffset() + 1);
-        		}	      	
-        	}
-        	finally {
-        		changingSelection = false;
-        	}
-        }      
-        else if (OCLExamplesEditorPlugin.SELECTION_INNER.isActive())
-			OCLExamplesEditorPlugin.SELECTION_INNER.println(getClass(), "selectionChanged1 " + LabelGeneratorRegistry.debugLabelFor(event.getSelection()));
+        if (OCLExamplesEditorPlugin.SELECTION.isActive())
+			OCLExamplesEditorPlugin.SELECTION.println(getClass(), "selectionChanged1 " + LabelGeneratorRegistry.debugLabelFor(event.getSelection()));
+    	try {
+    		suspendSelectionListening();
+        	ISelection selection = event.getSelection();
+			fireSelectionChanged(selection);
+//    		if ((selection instanceof IStructuredSelection) && (((IStructuredSelection)selection).size() == 1)) {
+//    			Object object = ((IStructuredSelection)selection).getFirstElement();
+    			ICommonParseResult currentResult = editor.getParseController().getCurrentResult();
+    			List<CSTNode> cstNodes = editor.getCSTNodes(selection, currentResult);
+    			int minStartOffset = -1;
+    			int maxEndOffset = 0;
+    			for (CSTNode cstNode : cstNodes) {
+    				int startOffset = cstNode.getStartOffset();
+    				int endOffset = cstNode.getEndOffset();
+    				if ((startOffset >= 0) && (endOffset >= startOffset)) {
+	    				if (minStartOffset < 0) {
+	    					minStartOffset = startOffset;
+	    					maxEndOffset = endOffset;
+	    				}
+	    				else {
+	    					if (startOffset < minStartOffset) {
+		    					minStartOffset = startOffset;
+	    					}
+	    					if (endOffset > maxEndOffset) {
+		    					maxEndOffset = endOffset;
+	    					}
+	    				}
+    				}
+    			}
+    			if (minStartOffset >= 0) {
+    				editor.selectAndReveal(minStartOffset, maxEndOffset - minStartOffset + 1);
+    			}
+    			else {
+       				editor.selectAndReveal(0, 0);
+    			}
+//				CSTNode cstNode = currentResult != null ? currentResult.getCSTNode(object) : null;
+//    			if (cstNode != null)
+//    				editor.selectAndReveal(cstNode.getStartOffset(), cstNode.getEndOffset() - cstNode.getStartOffset() + 1);
+//    		}	      	
+    	}
+    	finally {
+       		resumeSelectionListening();
+    	}
 	}
 
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		if (!isChangingSelection())
-			setSelection(selection);
-        else if (OCLExamplesEditorPlugin.SELECTION_INNER.isActive())
-			OCLExamplesEditorPlugin.SELECTION_INNER.println(getClass(), "selectionChanged2 " + LabelGeneratorRegistry.debugLabelFor(selection));
+		setSelection(selection);
 	}
 
 	@Override
 	public void setSelection(ISelection selection) {
-        if (!changingSelection) {
-//    		System.out.println(getClass().getSimpleName() + ".setSelection");
-        	try {
-    			if (OCLExamplesEditorPlugin.SELECTION_OUTER.isActive())
-    				OCLExamplesEditorPlugin.SELECTION_OUTER.println(getClass(), "setSelection " + LabelGeneratorRegistry.debugLabelFor(selection));
-        		changingSelection = true;
-    			ISelection itemSelection = getItemSelection(selection);
-        		super.setSelection(itemSelection);
-        	}
-        	finally {
-        		changingSelection = false;
-        	}
-        }
+    	try {
+			if (OCLExamplesEditorPlugin.SELECTION.isActive())
+				OCLExamplesEditorPlugin.SELECTION.println(getClass(), "setSelection " + LabelGeneratorRegistry.debugLabelFor(selection));
+			suspendSelectionListening();
+			ISelection itemSelection = getItemSelection(selection);
+    		super.setSelection(itemSelection);
+    	}
+    	finally {
+    		resumeSelectionListening();
+    	}
+	}
+
+	protected void suspendSelectionListening() {
+		IWorkbenchPage page = getSite().getPage();
+		page.removeSelectionListener(this);
+		page.removePostSelectionListener(this);
+        getTreeViewer().removeSelectionChangedListener(this);
 	}
 
 	@Override

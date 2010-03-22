@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CommonPropertySheetPage.java,v 1.2 2010/03/18 15:13:06 ewillink Exp $
+ * $Id: CommonPropertySheetPage.java,v 1.3 2010/03/22 01:15:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.imp;
 
@@ -32,6 +32,7 @@ import org.eclipse.ui.part.IPageSite;
 public final class CommonPropertySheetPage extends ExtendedPropertySheetPage
 {
  	protected final CommonTextEditor textEditor;
+ 	private ISelection selection;
   	
 	public CommonPropertySheetPage(CommonTextEditor textEditor) {
 		super(textEditor.getAdapterFactoryEditingDomain());
@@ -44,6 +45,10 @@ public final class CommonPropertySheetPage extends ExtendedPropertySheetPage
 		getSite().getPage().removePostSelectionListener(this);
 	}
 
+	public ISelection getSelection() {
+		return selection;
+	}
+	
 	@Override
 	public void init(IPageSite pageSite) {
 		pageSite.getPage().addPostSelectionListener(this);
@@ -57,12 +62,11 @@ public final class CommonPropertySheetPage extends ExtendedPropertySheetPage
 	}
 
 	@Override
-	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-//		System.out.println(getClass().getSimpleName() + ".selectionChanged()");
+	public void selectionChanged(IWorkbenchPart part, ISelection newSelection) {
 		ICommonParseResult currentResult = textEditor.getParseController().getCurrentResult();
-		selection = currentResult != null ? textEditor.getASTorCSTSelection(selection, currentResult) : StructuredSelection.EMPTY;
-        if (OCLExamplesEditorPlugin.SELECTION_OUTER.isActive())
-			OCLExamplesEditorPlugin.SELECTION_OUTER.println(getClass(), "selectionChanged " + LabelGeneratorRegistry.debugLabelFor(selection));
+		selection = currentResult != null ? textEditor.getASTorCSTSelection(newSelection, currentResult) : StructuredSelection.EMPTY;
+        if (OCLExamplesEditorPlugin.SELECTION.isActive())
+			OCLExamplesEditorPlugin.SELECTION.println(getClass(), "selectionChanged " + LabelGeneratorRegistry.debugLabelFor(selection));
 		super.selectionChanged(part, selection);
 	}
 
