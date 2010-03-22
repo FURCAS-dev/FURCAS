@@ -9,10 +9,11 @@
  * 
  * Contributors: 
  *   E.D.Willink - Initial API and implementation
+ * 	 E.D.Willink - Bug 306079
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.1 2010/02/27 13:27:32 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.2 2010/03/22 20:03:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -36,25 +37,9 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 
 	private static List<DelegatedBehavior<?, ?, ?>> delegatedBehaviors = null;
 
-	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() { // FIXME
-																				// Maybe
-																				// use
-																				// an
-																				// extension
-																				// point
-																				// here
-																				// (but
-																				// need
-																				// a
-																				// common
-																				// Factory,
-																				// Registry
-																				// supertype
-																				// for
-																				// a
-																				// user-defined
-																				// fourth
-																				// behavior)
+	public static List<DelegatedBehavior<?, ?, ?>> getDelegatedBehaviors() {
+		// FIXME Maybe use an extension point here (but need a common
+		//  Factory, Registry supertype for a user-defined fourth behavior)
 		if (delegatedBehaviors == null) {
 			delegatedBehaviors = new ArrayList<DelegatedBehavior<?, ?, ?>>();
 			delegatedBehaviors.add(InvocationBehavior.INSTANCE);
@@ -63,6 +48,19 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		}
 		return delegatedBehaviors;
 	};
+
+	public List<DelegateDomain> getDelegateDomains(E eObject) {
+		EPackage ePackage = getEPackage(eObject);
+		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
+		List<DelegateDomain> delegateDomains = new ArrayList<DelegateDomain>();
+		for (DelegateDomain delegateDomain : adapter.getDelegateDomains(this)) {
+			String uri = delegateDomain.getURI();
+			if (eObject.getEAnnotation(uri) != null) {
+				delegateDomains.add(delegateDomain);
+			}
+		}
+		return delegateDomains;
+	}
 
 	public List<F> getFactories(E eObject) {
 		EPackage ePackage = getEPackage(eObject);

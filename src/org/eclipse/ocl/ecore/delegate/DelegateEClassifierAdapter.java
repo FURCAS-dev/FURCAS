@@ -9,10 +9,11 @@
  * 
  * Contributors: 
  *   E.D.Willink - Initial API and implementation
+ * 	 E.D.Willink - Bug 306079
  *
  * </copyright>
  *
- * $Id: DelegateEClassifierAdapter.java,v 1.1 2010/02/27 13:27:31 ewillink Exp $
+ * $Id: DelegateEClassifierAdapter.java,v 1.2 2010/03/22 20:03:18 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -22,7 +23,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -56,6 +59,19 @@ public class DelegateEClassifierAdapter extends AdapterImpl {
 			EClassifier eClassifier = getTarget();
 			validationDelegateMap = new HashMap<String, ValidationDelegate>();
 			List<ValidationDelegate.Factory> factories = ValidationBehavior.INSTANCE.getFactories(eClassifier);
+			if (eClassifier instanceof EClass) {
+				for (EOperation eOperation : ((EClass)eClassifier).getEOperations()) {
+					if (EcoreUtil.isInvariant(eOperation)) {					
+						List<DelegateDomain> opDelegateDomains = InvocationBehavior.INSTANCE.getDelegateDomains(eOperation);
+						for (DelegateDomain opDelegateDomain : opDelegateDomains) {
+							ValidationDelegate.Factory opFactory = ValidationBehavior.INSTANCE.getFactory(opDelegateDomain, eClassifier);
+							if (!factories.contains(opFactory)) {
+								factories.add(opFactory);
+							}
+						}
+					}
+				}
+			}
 			if (!factories.isEmpty()) {
 				for (ValidationDelegate.Factory factory : factories) {
 					ValidationDelegate validationDelegate = factory.createValidationDelegate(eClassifier);
