@@ -12,35 +12,18 @@
  * 
  * </copyright>
  *
- * $Id: AbstractOCLInEcoreEditorTestCase.java,v 1.2 2010/03/13 18:11:25 ewillink Exp $
+ * $Id: AbstractOCLInEcoreEditorTestCase.java,v 1.3 2010/03/22 01:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor.ocl.ecore;
 
-
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreCreationFactory;
+import org.eclipse.ocl.examples.editor.ocl.ui.ecore.OCLInEcoreEditor;
 import org.eclipse.ocl.examples.editor.ui.ICreationFactory;
 import org.eclipse.ocl.examples.test.editor.AbstractEditorTestCase;
+import org.eclipse.ocl.examples.test.editor.OCLInEcoreTestFile;
 
-public abstract class AbstractOCLInEcoreEditorTestCase extends AbstractEditorTestCase
+public abstract class AbstractOCLInEcoreEditorTestCase extends AbstractEditorTestCase<OCLInEcoreEditor, OCLInEcoreTestFile, OCLInEcoreTestFile>
 {	
-	protected void checkConstraint(String when, EClass eClass, String which, String what) {
-		String expression = EcoreUtil.getAnnotation(eClass, OCLDelegateDomain.OCL_DELEGATE_URI, which);
-		assertEquals(when, what, expression);
-	}
-	
-	protected void checkConstraints(String when, EClass eClass, String... whiches) {
-		List<String> constraints = EcoreUtil.getConstraints(eClass);		
-		assertEquals(when + " - constraint count", whiches.length, constraints.size());
-		for (String which : whiches) {
-			checkPresent(when, constraints, which);
-		}
-	}
-
 	@Override
 	protected ICreationFactory getCreationFactory() {
 		return OCLInEcoreCreationFactory.INSTANCE;

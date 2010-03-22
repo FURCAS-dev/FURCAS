@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AbstractOCLEditorTestCase.java,v 1.1 2010/03/13 18:11:25 ewillink Exp $
+ * $Id: AbstractOCLEditorTestCase.java,v 1.2 2010/03/22 01:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor.ocl;
 
@@ -21,9 +21,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ocl.examples.editor.ui.ICreationFactory;
 import org.eclipse.ocl.examples.modelregistry.environment.ProjectHandle;
 import org.eclipse.ocl.examples.test.editor.AbstractEditorTestCase;
+import org.eclipse.ocl.examples.test.editor.EcoreTestFileBase;
+import org.eclipse.ocl.examples.test.editor.OCLForEcoreTestFile;
 import org.eclipse.ocl.examples.editor.ocl.ui.OCLCreationFactory;
+import org.eclipse.ocl.examples.editor.ocl.ui.OCLTextEditor;
 
-public abstract class AbstractOCLEditorTestCase extends AbstractEditorTestCase
+public abstract class AbstractOCLEditorTestCase extends AbstractEditorTestCase<OCLTextEditor, EcoreTestFileBase, OCLForEcoreTestFile>
 {
 	protected IFile createModelRegistryFile() throws CoreException {
 		final String contents = 
