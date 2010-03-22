@@ -12,20 +12,21 @@
  *
  * </copyright>
  *
- * $Id: OCLInEcoreCreationFactory.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
+ * $Id: OCLInEcoreCreationFactory.java,v 1.3 2010/03/22 01:22:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.ocl.examples.editor.ocl.ui.OCLMarkerProblemHandler;
 import org.eclipse.ocl.examples.editor.ocl.ui.OCLNature;
 import org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLParseController;
 import org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLSourcePositionLocator;
-import org.eclipse.ocl.examples.editor.ocl.ui.imp.OCLTreeModelBuilder;
 import org.eclipse.ocl.examples.editor.ui.builder.CommonNature;
 import org.eclipse.ocl.examples.editor.ui.common.AbstractCreationFactory;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonTreeModelBuilder;
@@ -47,7 +48,11 @@ public class OCLInEcoreCreationFactory extends AbstractCreationFactory
 	
 	public OCLFileEnvironment createFileEnvironment(FileHandle fileHandle, ResourceSet resourceSet, URI astURI) {
 		XMIResource astResource = (XMIResource) resourceSet.createResource(astURI, org.eclipse.ocl.ecore.EcorePackage.eCONTENT_TYPE);
-		resourceSet.getResources().remove(astResource);		// Hide compiled resource from save and outline
+		Adapter adapter = EcoreUtil.getAdapter(astResource.eAdapters(), OCLInEcoreSynchronizer.ResourceWatcher.class);
+		if (adapter != null) {
+			astResource.eAdapters().remove(adapter);
+		}
+//		resourceSet.getResources().remove(astResource);		// Hide compiled resource from save and outline
 		return new OCLInEcoreFileEnvironment(fileHandle, resourceSet, astResource);
 	}
 	
@@ -69,7 +74,7 @@ public class OCLInEcoreCreationFactory extends AbstractCreationFactory
 
 	@Override
 	public CommonTreeModelBuilder createTreeModelBuilder(boolean showAST) {
-		return new OCLTreeModelBuilder(showAST);
+		return new OCLInEcoreTreeModelBuilder(showAST);
 	}
 
 	public OCLUnparser createUnparser(Resource resource) {
