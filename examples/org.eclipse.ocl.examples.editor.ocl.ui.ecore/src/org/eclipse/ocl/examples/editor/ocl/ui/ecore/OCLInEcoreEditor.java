@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInEcoreEditor.java,v 1.3 2010/03/18 15:13:08 ewillink Exp $
+ * $Id: OCLInEcoreEditor.java,v 1.4 2010/03/22 01:23:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -35,7 +37,9 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
@@ -50,6 +54,7 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -66,10 +71,19 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ocl.cst.CSTNode;
+import org.eclipse.ocl.cst.CollectionLiteralPartCS;
+import org.eclipse.ocl.cst.OCLExpressionCS;
+import org.eclipse.ocl.cst.SimpleNameCS;
+import org.eclipse.ocl.cst.VariableCS;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.editor.ui.common.ProblemIndicationManager;
 import org.eclipse.ocl.examples.editor.ui.common.ResourceChangeManager;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonParseController;
 import org.eclipse.ocl.examples.editor.ui.imp.CommonTextEditor;
+import org.eclipse.ocl.examples.editor.ui.imp.ICommonParseResult;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.MouseAdapter;
@@ -87,7 +101,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * The OCL in Ecore model editor.
@@ -98,6 +111,20 @@ public class OCLInEcoreEditor extends CommonTextEditor
 
 	public static final String ECORE_FILE_EXTENSION = "ecore";
 	public static final String EMOF_FILE_EXTENSION = "emof";
+
+	/**
+	 * This looks up a string in the plugin's plugin.properties file.
+	 */
+	private static String getString(String key) {
+		return OCLInEcorePlugin.INSTANCE.getString(key);
+	}
+
+	/**
+	 * This looks up a string in plugin.properties, making a substitution.
+	 */
+	private static String getString(String key, Object s1) {
+		return OCLInEcorePlugin.INSTANCE.getString(key, new Object[] { s1 });
+	}
 
 	protected ISelectionProvider selectionProvider = new ISelectionProvider() {
 
@@ -361,7 +388,7 @@ public class OCLInEcoreEditor extends CommonTextEditor
 		initializeEditingDomain();
 	}
 
-	@Override
+/*	@Override
 	protected IContentOutlinePage createASTOutlinePage() {
 		IContentOutlinePage contentOutlinePage = new OCLInEcoreContentOutlinePage(this);
 
@@ -376,7 +403,7 @@ public class OCLInEcoreEditor extends CommonTextEditor
 					}
 				});
 		return contentOutlinePage;
-	}
+	} */
 
 	@Override
 	protected void createActions() {
@@ -549,6 +576,31 @@ public class OCLInEcoreEditor extends CommonTextEditor
 		}
 	}
 
+	@Override
+	public List<CSTNode> getCSTNodes(ISelection selection, ICommonParseResult parseResult) {
+		List<CSTNode> cstNodes = super.getCSTNodes(selection, parseResult);
+		removeReferences(cstNodes);
+		if (cstNodes.isEmpty()) {
+			for (Iterator<?> i = ((IStructuredSelection)selection).iterator(); i.hasNext(); ) {
+				Object object = i.next();
+				if (object instanceof ModelTreeNode)
+					object = ((ModelTreeNode)object).getASTNode();
+				if (object instanceof EModelElement) {
+					EAnnotation eAnnotation = ((EModelElement) object).getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+					if (eAnnotation != null) {
+						for (Map.Entry<String, String> entry : eAnnotation.getDetails().entrySet()) {
+							CSTNode node = parseResult.getCSTNode(entry);
+							if (node != null)
+								cstNodes.add(node);
+						}
+					}
+					                      
+				}
+			}			
+		}
+		return cstNodes;
+	}
+
 	/**
 	 * This accesses a cached version of the content outliner.
 	 *
@@ -571,6 +623,45 @@ public class OCLInEcoreEditor extends CommonTextEditor
 
 		return contentOutlinePage;
 	} */
+
+	/*
+	 * Overridden to provoke a walk up the Outline AST until an AST node with a
+	 * structural AST mapping is found. (The more refined OCL expression tertms have
+	 * no corresponding counrerpart in the Ecore AST where OCL is textual.) 
+	 */
+	@Override
+	protected Object getCorrespondingASTNodeIn(CSTNode cstNode, Resource ast) {
+		Object node = cstNode.getAst();
+		if (node == null) {
+			return null;
+		}
+		if (!(node instanceof EObject)) {
+			return null;
+		}
+		if (cstNode instanceof OCLExpressionCS) {
+			return null;
+		}
+		if (cstNode instanceof CollectionLiteralPartCS) {
+			return null;
+		}
+		if (cstNode instanceof VariableCS) {	// TupleLiteralPartCS
+			return null;
+		}
+		if (node instanceof Constraint) {
+			Constraint constraint = (Constraint)node;
+			Map.Entry<String, String> entry = EcoreUtils.getEAnnotationDetail(constraint);
+			if (entry != null) {
+				node = entry;
+			}
+			else {
+				List<EModelElement> constrainedElements = constraint.getConstrainedElements();
+				if (!constrainedElements.isEmpty()) {
+					node = constrainedElements.get(0);
+				}				
+			}
+		}
+		return node;
+	}
 
 	/**
 	 * This accesses a cached version of the property sheet.
@@ -721,20 +812,6 @@ public class OCLInEcoreEditor extends CommonTextEditor
 		doSave(progressMonitor);
 	}
 
-	/**
-	 * This looks up a string in the plugin's plugin.properties file.
-	 */
-	private static String getString(String key) {
-		return OCLInEcorePlugin.INSTANCE.getString(key);
-	}
-
-	/**
-	 * This looks up a string in plugin.properties, making a substitution.
-	 */
-	private static String getString(String key, Object s1) {
-		return OCLInEcorePlugin.INSTANCE.getString(key, new Object[] { s1 });
-	}
-
 	public IActionBars getActionBars() {
 		return getActionBarContributor().getActionBars();
 	}
@@ -806,6 +883,15 @@ public class OCLInEcoreEditor extends CommonTextEditor
 	public void menuAboutToShow(IMenuManager menuManager) {
 		((IMenuListener) getEditorSite().getActionBarContributor())
 				.menuAboutToShow(menuManager);
+	}
+
+	protected void removeReferences(List<CSTNode> cstNodes) {
+		for (int i = cstNodes.size(); --i >= 0; ) {
+			CSTNode cstNode = cstNodes.get(i);
+			if (cstNode instanceof SimpleNameCS) {
+				cstNodes.remove(i);
+			}
+		}		
 	}
 
 	/**
