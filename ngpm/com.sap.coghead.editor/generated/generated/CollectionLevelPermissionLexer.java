@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-03-10 17:47:12
+// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-03-19 19:42:11
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -182,15 +182,15 @@ public class CollectionLevelPermissionLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g"; }
+    public String getGrammarFileName() { return "Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g"; }
 
     // $ANTLR start "T__34"
     public final void mT__34() throws RecognitionException {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:117:7: ( 'EQUALS' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:117:9: 'EQUALS'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:117:7: ( 'EQUALS' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:117:9: 'EQUALS'
             {
             match("EQUALS"); if (state.failed) return ;
 
@@ -210,8 +210,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:118:7: ( 'GREATER_THAN' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:118:9: 'GREATER_THAN'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:118:7: ( 'GREATER_THAN' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:118:9: 'GREATER_THAN'
             {
             match("GREATER_THAN"); if (state.failed) return ;
 
@@ -231,8 +231,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:119:7: ( 'LESS_THAN' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:119:9: 'LESS_THAN'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:119:7: ( 'LESS_THAN' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:119:9: 'LESS_THAN'
             {
             match("LESS_THAN"); if (state.failed) return ;
 
@@ -252,8 +252,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:120:7: ( 'GREATER_OR_EQUALS' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:120:9: 'GREATER_OR_EQUALS'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:120:7: ( 'GREATER_OR_EQUALS' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:120:9: 'GREATER_OR_EQUALS'
             {
             match("GREATER_OR_EQUALS"); if (state.failed) return ;
 
@@ -273,8 +273,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:121:7: ( 'LESS_OR_EQUALS' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:121:9: 'LESS_OR_EQUALS'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:121:7: ( 'LESS_OR_EQUALS' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:121:9: 'LESS_OR_EQUALS'
             {
             match("LESS_OR_EQUALS"); if (state.failed) return ;
 
@@ -294,8 +294,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:122:7: ( 'CONTAINS' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:122:9: 'CONTAINS'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:122:7: ( 'CONTAINS' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:122:9: 'CONTAINS'
             {
             match("CONTAINS"); if (state.failed) return ;
 
@@ -315,8 +315,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:123:7: ( 'collection' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:123:9: 'collection'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:123:7: ( 'collection' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:123:9: 'collection'
             {
             match("collection"); if (state.failed) return ;
 
@@ -336,8 +336,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:124:7: ( 'permissions' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:124:9: 'permissions'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:124:7: ( 'permissions' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:124:9: 'permissions'
             {
             match("permissions"); if (state.failed) return ;
 
@@ -357,8 +357,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:125:7: ( 'default' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:125:9: 'default'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:125:7: ( 'default' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:125:9: 'default'
             {
             match("default"); if (state.failed) return ;
 
@@ -378,8 +378,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:126:7: ( 'create' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:126:9: 'create'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:126:7: ( 'create' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:126:9: 'create'
             {
             match("create"); if (state.failed) return ;
 
@@ -399,8 +399,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:127:7: ( ',' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:127:9: ','
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:127:7: ( ',' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:127:9: ','
             {
             match(','); if (state.failed) return ;
 
@@ -419,8 +419,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:128:7: ( 'retrieve' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:128:9: 'retrieve'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:128:7: ( 'retrieve' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:128:9: 'retrieve'
             {
             match("retrieve"); if (state.failed) return ;
 
@@ -440,8 +440,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:129:7: ( 'update' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:129:9: 'update'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:129:7: ( 'update' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:129:9: 'update'
             {
             match("update"); if (state.failed) return ;
 
@@ -461,8 +461,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:130:7: ( 'delete' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:130:9: 'delete'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:130:7: ( 'delete' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:130:9: 'delete'
             {
             match("delete"); if (state.failed) return ;
 
@@ -482,8 +482,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:131:7: ( 'data-driven' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:131:9: 'data-driven'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:131:7: ( 'data-driven' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:131:9: 'data-driven'
             {
             match("data-driven"); if (state.failed) return ;
 
@@ -503,8 +503,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:132:7: ( 'from' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:132:9: 'from'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:132:7: ( 'from' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:132:9: 'from'
             {
             match("from"); if (state.failed) return ;
 
@@ -524,8 +524,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:133:7: ( 'as' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:133:9: 'as'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:133:7: ( 'as' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:133:9: 'as'
             {
             match("as"); if (state.failed) return ;
 
@@ -545,8 +545,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:134:7: ( 'where' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:134:9: 'where'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:134:7: ( 'where' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:134:9: 'where'
             {
             match("where"); if (state.failed) return ;
 
@@ -566,8 +566,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:135:7: ( 'and' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:135:9: 'and'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:135:7: ( 'and' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:135:9: 'and'
             {
             match("and"); if (state.failed) return ;
 
@@ -587,21 +587,21 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:489:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:489:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:9: '//' (~ ( '\\r' | '\\n' ) )*
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:9: '//' (~ ( '\\r' | '\\n' ) )*
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:14: (~ ( '\\r' | '\\n' ) )*
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -614,7 +614,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:15: ~ ( '\\r' | '\\n' )
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:490:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -660,21 +660,21 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:495:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:495:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/*"); if (state.failed) return ;
 
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -699,7 +699,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:43: ( '\\n' | ~ '\\n' )
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:496:43: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -747,8 +747,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:501:3: ( '[' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:502:3: '['
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:501:3: ( '[' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:502:3: '['
             {
             match('['); if (state.failed) return ;
 
@@ -767,8 +767,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:507:3: ( ']' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:508:3: ']'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:507:3: ( ']' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:508:3: ']'
             {
             match(']'); if (state.failed) return ;
 
@@ -787,8 +787,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:513:3: ( '{' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:514:3: '{'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:513:3: ( '{' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:514:3: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -807,8 +807,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:519:3: ( '}' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:520:3: '}'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:519:3: ( '}' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:520:3: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -827,8 +827,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = LANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:525:3: ( '<' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:526:3: '<'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:525:3: ( '<' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:526:3: '<'
             {
             match('<'); if (state.failed) return ;
 
@@ -847,8 +847,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = RANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:531:3: ( '>' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:532:3: '>'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:531:3: ( '>' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:532:3: '>'
             {
             match('>'); if (state.failed) return ;
 
@@ -867,8 +867,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:537:3: ( '(' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:538:3: '('
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:537:3: ( '(' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:538:3: '('
             {
             match('('); if (state.failed) return ;
 
@@ -887,8 +887,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:543:3: ( ')' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:544:3: ')'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:543:3: ( ')' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:544:3: ')'
             {
             match(')'); if (state.failed) return ;
 
@@ -907,8 +907,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = EXCL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:549:3: ( '!' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:550:3: '!'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:549:3: ( '!' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:550:3: '!'
             {
             match('!'); if (state.failed) return ;
 
@@ -927,8 +927,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:555:3: ( '=' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:556:3: '='
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:555:3: ( '=' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:556:3: '='
             {
             match('='); if (state.failed) return ;
 
@@ -947,8 +947,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = EQUALSEQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:561:3: ( '==' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:562:3: '=='
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:561:3: ( '==' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:562:3: '=='
             {
             match("=="); if (state.failed) return ;
 
@@ -968,8 +968,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:567:3: ( ':=' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:568:3: ':='
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:567:3: ( ':=' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:568:3: ':='
             {
             match(":="); if (state.failed) return ;
 
@@ -989,8 +989,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:573:3: ( '.' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:574:3: '.'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:573:3: ( '.' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:574:3: '.'
             {
             match('.'); if (state.failed) return ;
 
@@ -1009,8 +1009,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = ARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:579:3: ( '->' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:580:3: '->'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:579:3: ( '->' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:580:3: '->'
             {
             match("->"); if (state.failed) return ;
 
@@ -1030,8 +1030,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:585:3: ( ':' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:586:3: ':'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:585:3: ( ':' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:586:3: ':'
             {
             match(':'); if (state.failed) return ;
 
@@ -1050,8 +1050,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = DCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:591:3: ( '::' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:592:3: '::'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:591:3: ( '::' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:592:3: '::'
             {
             match("::"); if (state.failed) return ;
 
@@ -1071,8 +1071,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:597:3: ( ';' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:598:3: ';'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:597:3: ( ';' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:598:3: ';'
             {
             match(';'); if (state.failed) return ;
 
@@ -1091,10 +1091,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -1125,7 +1125,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:6: '\\r' '\\n'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:607:6: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -1133,7 +1133,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:608:5: '\\n' '\\r'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:608:5: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -1141,14 +1141,14 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:609:5: '\\r'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:609:5: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:610:5: '\\n'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:610:5: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -1176,8 +1176,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:616:2: ( ( ' ' | '\\t' ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:616:4: ( ' ' | '\\t' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:616:2: ( ( ' ' | '\\t' ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:616:4: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1206,8 +1206,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:623:2: ( '0' .. '9' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:623:4: '0' .. '9'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:623:2: ( '0' .. '9' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:623:4: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -1222,8 +1222,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:628:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:628:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -1247,17 +1247,17 @@ public class CollectionLevelPermissionLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:4: ( ALPHA ) ( ALPHA | DIGIT )*
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:4: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:4: ( ALPHA )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:5: ALPHA
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:4: ( ALPHA )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:5: ALPHA
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:12: ( ALPHA | DIGIT )*
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:639:12: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
@@ -1270,7 +1270,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -1305,10 +1305,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:643:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:643:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:643:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:643:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:643:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:643:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1327,17 +1327,17 @@ public class CollectionLevelPermissionLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:644:4: SNAME
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:644:4: SNAME
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:645:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:645:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
                     {
                     match('\''); if (state.failed) return ;
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:646:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:646:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1353,7 +1353,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:648:4: '\\n'
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:648:4: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -1363,7 +1363,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:649:6: ~ ( '\\\\' | '\\'' | '\\n' )
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:649:6: ~ ( '\\\\' | '\\'' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1407,11 +1407,11 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:656:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:656:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:656:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:656:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
             {
             match('\"'); if (state.failed) return ;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:657:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:657:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
             loop7:
             do {
                 int alt7=3;
@@ -1427,7 +1427,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:659:4: '\\n'
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:659:4: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1437,7 +1437,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:660:5: ~ ( '\\\\' | '\"' | '\\n' )
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:660:5: ~ ( '\\\\' | '\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1475,10 +1475,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:2: ( ( DIGIT )+ )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:4: ( DIGIT )+
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:2: ( ( DIGIT )+ )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:4: ( DIGIT )+
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:4: ( DIGIT )+
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:4: ( DIGIT )+
             int cnt8=0;
             loop8:
             do {
@@ -1492,7 +1492,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:5: DIGIT
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:668:5: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1523,7 +1523,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:2: ( '.' ( DIGIT )+ | ( DIGIT )+ '.' ( DIGIT )* )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:2: ( '.' ( DIGIT )+ | ( DIGIT )+ '.' ( DIGIT )* )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1542,10 +1542,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:4: '.' ( DIGIT )+
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:4: '.' ( DIGIT )+
                     {
                     match('.'); if (state.failed) return ;
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:8: ( DIGIT )+
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:8: ( DIGIT )+
                     int cnt9=0;
                     loop9:
                     do {
@@ -1559,7 +1559,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:8: DIGIT
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:674:8: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -1580,9 +1580,9 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:4: ( DIGIT )+ '.' ( DIGIT )*
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:4: ( DIGIT )+ '.' ( DIGIT )*
                     {
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:4: ( DIGIT )+
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:4: ( DIGIT )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1596,7 +1596,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:4: DIGIT
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:4: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -1614,7 +1614,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     } while (true);
 
                     match('.'); if (state.failed) return ;
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:15: ( DIGIT )*
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:15: ( DIGIT )*
                     loop11:
                     do {
                         int alt11=2;
@@ -1627,7 +1627,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:15: DIGIT
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:675:15: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -1653,10 +1653,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
     // $ANTLR start "DOUBLE"
     public final void mDOUBLE() throws RecognitionException {
         try {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:681:2: ( ( '.' ( DIGIT )+ | ( DIGIT )+ ( '.' ( DIGIT )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:681:4: ( '.' ( DIGIT )+ | ( DIGIT )+ ( '.' ( DIGIT )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:681:2: ( ( '.' ( DIGIT )+ | ( DIGIT )+ ( '.' ( DIGIT )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:681:4: ( '.' ( DIGIT )+ | ( DIGIT )+ ( '.' ( DIGIT )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
             {
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:681:4: ( '.' ( DIGIT )+ | ( DIGIT )+ ( '.' ( DIGIT )* )? )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:681:4: ( '.' ( DIGIT )+ | ( DIGIT )+ ( '.' ( DIGIT )* )? )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1675,10 +1675,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:682:4: '.' ( DIGIT )+
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:682:4: '.' ( DIGIT )+
                     {
                     match('.'); if (state.failed) return ;
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:682:8: ( DIGIT )+
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:682:8: ( DIGIT )+
                     int cnt13=0;
                     loop13:
                     do {
@@ -1692,7 +1692,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:682:8: DIGIT
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:682:8: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -1713,9 +1713,9 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:6: ( DIGIT )+ ( '.' ( DIGIT )* )?
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:6: ( DIGIT )+ ( '.' ( DIGIT )* )?
                     {
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:6: ( DIGIT )+
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:6: ( DIGIT )+
                     int cnt14=0;
                     loop14:
                     do {
@@ -1729,7 +1729,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:6: DIGIT
+                    	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:6: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -1746,7 +1746,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                         cnt14++;
                     } while (true);
 
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:13: ( '.' ( DIGIT )* )?
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:13: ( '.' ( DIGIT )* )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1755,10 +1755,10 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:15: '.' ( DIGIT )*
+                            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:15: '.' ( DIGIT )*
                             {
                             match('.'); if (state.failed) return ;
-                            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:19: ( DIGIT )*
+                            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:19: ( DIGIT )*
                             loop15:
                             do {
                                 int alt15=2;
@@ -1771,7 +1771,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                                 switch (alt15) {
                             	case 1 :
-                            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:19: DIGIT
+                            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:684:19: DIGIT
                             	    {
                             	    mDIGIT(); if (state.failed) return ;
 
@@ -1805,7 +1805,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:686:17: ( '+' | '-' )?
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:686:17: ( '+' | '-' )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1814,7 +1814,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -1832,7 +1832,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
             }
 
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:686:32: ( DIGIT )+
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:686:32: ( DIGIT )+
             int cnt19=0;
             loop19:
             do {
@@ -1846,7 +1846,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:686:32: DIGIT
+            	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:686:32: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1877,12 +1877,12 @@ public class CollectionLevelPermissionLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT_OR_FLOAT_OR_DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' ) )=> DOUBLE | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' ) )=> DOUBLE | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
             int alt20=5;
             alt20 = dfa20.predict(input);
             switch (alt20) {
                 case 1 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:9: ( INT '..' )=> INT
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:9: ( INT '..' )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1892,7 +1892,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:691:7: ( INT '.' NAME )=> INT
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:691:7: ( INT '.' NAME )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1902,7 +1902,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:692:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' ) )=> DOUBLE
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:692:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' ) )=> DOUBLE
                     {
                     mDOUBLE(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1912,7 +1912,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:699:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:699:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1922,7 +1922,7 @@ public class CollectionLevelPermissionLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:706:9: INT
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:706:9: INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1942,313 +1942,313 @@ public class CollectionLevelPermissionLexer extends Lexer {
     // $ANTLR end "RANGE_OR_INT_OR_FLOAT_OR_DOUBLE"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:8: ( T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | ARROW | COLON | DCOLON | SEMICOLON | NL | WS | NAME | STRING | INT | RANGE_OR_INT_OR_FLOAT_OR_DOUBLE )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:8: ( T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | ARROW | COLON | DCOLON | SEMICOLON | NL | WS | NAME | STRING | INT | RANGE_OR_INT_OR_FLOAT_OR_DOUBLE )
         int alt21=44;
         alt21 = dfa21.predict(input);
         switch (alt21) {
             case 1 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:10: T__34
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:10: T__34
                 {
                 mT__34(); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:16: T__35
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:16: T__35
                 {
                 mT__35(); if (state.failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:22: T__36
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:22: T__36
                 {
                 mT__36(); if (state.failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:28: T__37
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:28: T__37
                 {
                 mT__37(); if (state.failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:34: T__38
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:34: T__38
                 {
                 mT__38(); if (state.failed) return ;
 
                 }
                 break;
             case 6 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:40: T__39
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:40: T__39
                 {
                 mT__39(); if (state.failed) return ;
 
                 }
                 break;
             case 7 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:46: T__40
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:46: T__40
                 {
                 mT__40(); if (state.failed) return ;
 
                 }
                 break;
             case 8 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:52: T__41
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:52: T__41
                 {
                 mT__41(); if (state.failed) return ;
 
                 }
                 break;
             case 9 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:58: T__42
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:58: T__42
                 {
                 mT__42(); if (state.failed) return ;
 
                 }
                 break;
             case 10 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:64: T__43
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:64: T__43
                 {
                 mT__43(); if (state.failed) return ;
 
                 }
                 break;
             case 11 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:70: T__44
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:70: T__44
                 {
                 mT__44(); if (state.failed) return ;
 
                 }
                 break;
             case 12 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:76: T__45
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:76: T__45
                 {
                 mT__45(); if (state.failed) return ;
 
                 }
                 break;
             case 13 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:82: T__46
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:82: T__46
                 {
                 mT__46(); if (state.failed) return ;
 
                 }
                 break;
             case 14 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:88: T__47
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:88: T__47
                 {
                 mT__47(); if (state.failed) return ;
 
                 }
                 break;
             case 15 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:94: T__48
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:94: T__48
                 {
                 mT__48(); if (state.failed) return ;
 
                 }
                 break;
             case 16 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:100: T__49
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:100: T__49
                 {
                 mT__49(); if (state.failed) return ;
 
                 }
                 break;
             case 17 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:106: T__50
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:106: T__50
                 {
                 mT__50(); if (state.failed) return ;
 
                 }
                 break;
             case 18 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:112: T__51
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:112: T__51
                 {
                 mT__51(); if (state.failed) return ;
 
                 }
                 break;
             case 19 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:118: T__52
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:118: T__52
                 {
                 mT__52(); if (state.failed) return ;
 
                 }
                 break;
             case 20 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:124: COMMENT
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:124: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
             case 21 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:132: MULTI_LINE_COMMENT
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:132: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
 
                 }
                 break;
             case 22 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:151: LBRACKET
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:151: LBRACKET
                 {
                 mLBRACKET(); if (state.failed) return ;
 
                 }
                 break;
             case 23 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:160: RBRACKET
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:160: RBRACKET
                 {
                 mRBRACKET(); if (state.failed) return ;
 
                 }
                 break;
             case 24 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:169: LCURL
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:169: LCURL
                 {
                 mLCURL(); if (state.failed) return ;
 
                 }
                 break;
             case 25 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:175: RCURL
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:175: RCURL
                 {
                 mRCURL(); if (state.failed) return ;
 
                 }
                 break;
             case 26 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:181: LANGLE
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:181: LANGLE
                 {
                 mLANGLE(); if (state.failed) return ;
 
                 }
                 break;
             case 27 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:188: RANGLE
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:188: RANGLE
                 {
                 mRANGLE(); if (state.failed) return ;
 
                 }
                 break;
             case 28 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:195: LPAREN
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:195: LPAREN
                 {
                 mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
             case 29 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:202: RPAREN
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:202: RPAREN
                 {
                 mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
             case 30 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:209: EXCL
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:209: EXCL
                 {
                 mEXCL(); if (state.failed) return ;
 
                 }
                 break;
             case 31 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:214: EQUALS
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:214: EQUALS
                 {
                 mEQUALS(); if (state.failed) return ;
 
                 }
                 break;
             case 32 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:221: EQUALSEQUALS
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:221: EQUALSEQUALS
                 {
                 mEQUALSEQUALS(); if (state.failed) return ;
 
                 }
                 break;
             case 33 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:234: ASSIGN
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:234: ASSIGN
                 {
                 mASSIGN(); if (state.failed) return ;
 
                 }
                 break;
             case 34 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:241: DOT
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:241: DOT
                 {
                 mDOT(); if (state.failed) return ;
 
                 }
                 break;
             case 35 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:245: ARROW
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:245: ARROW
                 {
                 mARROW(); if (state.failed) return ;
 
                 }
                 break;
             case 36 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:251: COLON
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:251: COLON
                 {
                 mCOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 37 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:257: DCOLON
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:257: DCOLON
                 {
                 mDCOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 38 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:264: SEMICOLON
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:264: SEMICOLON
                 {
                 mSEMICOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 39 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:274: NL
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:274: NL
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
             case 40 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:277: WS
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:277: WS
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
             case 41 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:280: NAME
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:280: NAME
                 {
                 mNAME(); if (state.failed) return ;
 
                 }
                 break;
             case 42 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:285: STRING
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:285: STRING
                 {
                 mSTRING(); if (state.failed) return ;
 
                 }
                 break;
             case 43 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:292: INT
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:292: INT
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
             case 44 :
-                // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:296: RANGE_OR_INT_OR_FLOAT_OR_DOUBLE
+                // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:1:296: RANGE_OR_INT_OR_FLOAT_OR_DOUBLE
                 {
                 mRANGE_OR_INT_OR_FLOAT_OR_DOUBLE(); if (state.failed) return ;
 
@@ -2261,8 +2261,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
     // $ANTLR start synpred1_CollectionLevelPermission
     public final void synpred1_CollectionLevelPermission_fragment() throws RecognitionException {   
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:9: ( INT '..' )
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:11: INT '..'
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:9: ( INT '..' )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:690:11: INT '..'
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
@@ -2274,8 +2274,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
     // $ANTLR start synpred2_CollectionLevelPermission
     public final void synpred2_CollectionLevelPermission_fragment() throws RecognitionException {   
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:691:7: ( INT '.' NAME )
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:691:9: INT '.' NAME
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:691:7: ( INT '.' NAME )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:691:9: INT '.' NAME
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2287,8 +2287,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
     // $ANTLR start synpred3_CollectionLevelPermission
     public final void synpred3_CollectionLevelPermission_fragment() throws RecognitionException {   
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:692:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' ) )
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:692:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:692:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' ) )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:692:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) ( 'e' | 'E' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2319,8 +2319,8 @@ public class CollectionLevelPermissionLexer extends Lexer {
 
     // $ANTLR start synpred4_CollectionLevelPermission
     public final void synpred4_CollectionLevelPermission_fragment() throws RecognitionException {   
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:699:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\Users\\siani\\runtime-workspace\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:699:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:699:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:699:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;

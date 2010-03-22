@@ -205,7 +205,7 @@ public class IncrementalParsingUtil {
 									indexInCorrespondingElements,
 									parentTextBlock);
 								if (parentRefObject != null) {
-									if ( (property instanceof Property) && (property != null) && (property.getPropertyArgs().size() > 0)) {
+									if ( (property instanceof Property) && (property != null) ) {
 										return new SetNewFeatureBean(
 											parentRefObject,
 											key,
@@ -235,8 +235,8 @@ public class IncrementalParsingUtil {
 									indexInCorrespondingElements,
 									parentTextBlock);
 								if (parentRefObject != null) {
-									if (property
-											.getPropertyArgs().size() > 0) {
+									if ( (property instanceof Property) && (property != null) ) {
+
 											return new SetNewFeatureBean(
 												parentRefObject,
 												key,
@@ -634,12 +634,21 @@ public class IncrementalParsingUtil {
 				} else {
 					value = values;
 				}
+				if (newVersion.getSequenceElement()!= null &&  newVersion.getSequenceElement() instanceof Property) {
+					return new SetNewFeatureBean(
+							parentRefObject,
+							((Property) oldVersion.getSequenceElement())
+								.getPropertyReference().getStrucfeature().getName(),
+							value, index, (Property) oldVersion.getSequenceElement() );
+				}else {
+					return new SetNewFeatureBean(
+							parentRefObject,
+							((Property) oldVersion.getSequenceElement())
+								.getPropertyReference().getStrucfeature().getName(),
+							value, index);
+				}
 
-				return new SetNewFeatureBean(
-					parentRefObject,
-					((Property) oldVersion.getSequenceElement())
-						.getPropertyReference().getStrucfeature().getName(),
-					value, index);
+				
 			}
 		}
 		return null;

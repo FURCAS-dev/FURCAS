@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tcs.ClassTemplate;
+import tcs.ConcreteSyntax;
+import tcs.Property;
 import tcs.Template;
 import textblockdefinition.TextBlockDefinition;
 import textblocks.AbstractToken;
@@ -88,13 +90,8 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
 		tb.getAdditionalTemplates().addAll(newVersion.getAdditionalTemplates());
 
-		if (partitionHandlerTextblock.getMainPartitionContent()
-				.equalsIgnoreCase("all")
-				|| partitionHandlerTextblock.getMainPartitionContent()
-						.equalsIgnoreCase("Textblocks")) {
-			partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
-					tb.getType().getParseRule());
-		}
+		// To assign Elements to the correspondent Partition
+		assign_TB_ToPartition(tb, defaultPartition);
 
 		int endIndex = 0;
 		for (Object subNode : newVersion.getSubNodes()) {
@@ -153,6 +150,535 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		return tb;
 	}
 
+	private void assign_TB_ToPartition(TextBlock tb,
+			ModelPartition defaultPartition) {
+
+		if (tb instanceof TextBlock) {
+			TextBlock resultTB = (TextBlock) tb;
+			if (resultTB.getType().getParseRule() instanceof ClassTemplate) {
+				ClassTemplate classTemp = (ClassTemplate) resultTB.getType()
+						.getParseRule();
+				classTemplateAssignment(tb, defaultPartition, classTemp);
+			} else if (resultTB.getType().getParseRule() instanceof ConcreteSyntax) {
+				ConcreteSyntax classTemp = (ConcreteSyntax) resultTB.getType()
+						.getParseRule();
+				concreteSyntaxAssigment(tb, defaultPartition, classTemp);
+			}else{
+				anotherElementsAssignment(tb, defaultPartition);
+			}
+
+		}
+
+	}
+	private void anotherElementsAssignment(TextBlock tb,
+			ModelPartition defaultPartition){
+		if (partitionHandlerTextblock.getMainPartitionContent()
+				.equalsIgnoreCase("all")
+				|| partitionHandlerTextblock.getMainPartitionContent()
+						.equalsIgnoreCase("Textblocks")) {
+			Object refGetValue = "";
+			try {
+				refGetValue = tb.refGetValue("name");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			if (tb.getSequenceElement() != null
+					&& tb.getSequenceElement() instanceof Property) {
+				
+				if (TcsUtil.getPartitionHandlingParg((Property) tb
+						.getSequenceElement() )!= null) {
+					
+				
+
+				if ((TcsUtil.getPartitionHandlingParg((Property) tb
+						.getSequenceElement())).getPartitionhandling() != null) {
+					System.out
+					.println("The element "
+							+ tb
+							+ "mit name "
+							+ refGetValue
+							+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, TcsUtil
+									.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+									.getPartitionhandling());
+				}else {
+					System.out
+					.println("The element "
+							+ tb
+							+ "mit name "
+							+ refGetValue
+							+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+			partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
+					tb.getType().getParseRule());
+					
+				}
+			}else {
+				System.out
+				.println("The element "
+						+ tb
+						+ "mit name "
+						+ refGetValue
+						+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+		partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
+				tb.getType().getParseRule());
+				
+			}
+			}else {
+				System.out
+				.println("The element "
+						+ tb
+						+ "mit name "
+						+ refGetValue
+						+ "in instantiateBlockAndMoveTokens has been stored in .....");
+		partitionHandlerTextblock.assignToPartition(defaultPartition, tb,
+				tb.getType().getParseRule());
+			}
+			
+		}
+	}
+	
+	private void classTemplateAssignment(TextBlock tb,
+			ModelPartition defaultPartition, ClassTemplate classTemp) {
+		if (classTemp.getPartitionHandling() != null) {
+			
+		
+		if (classTemp.getPartitionHandling().getContent() != null) {
+
+			if (classTemp.getPartitionHandling().getContent().toString()
+					.equalsIgnoreCase("textblocks")
+					|| classTemp.getPartitionHandling().getContent().toString()
+							.equalsIgnoreCase("all")) {
+
+				Object refGetValue = "";
+				try {
+					refGetValue = tb.refGetValue("name");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+				if (tb.getSequenceElement() != null
+						&& tb.getSequenceElement() instanceof Property) {
+
+					if (TcsUtil.getPartitionHandlingParg((Property) tb
+							.getSequenceElement()) != null) {
+
+						if ((TcsUtil.getPartitionHandlingParg((Property) tb
+								.getSequenceElement())).getPartitionhandling() != null) {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb,
+									TcsUtil.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+											.getPartitionhandling());
+						} else {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb, tb.getType()
+											.getParseRule());
+
+						}
+					} else {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb, tb.getType()
+										.getParseRule());
+
+					}
+				} else {
+					System.out
+							.println("The element "
+									+ tb
+									+ "mit name "
+									+ refGetValue
+									+ "in instantiateBlockAndMoveTokens has been stored in .....");
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, tb.getType().getParseRule());
+				}
+
+			}
+		}else {
+
+			if (partitionHandlerTextblock.getMainPartitionContent()
+					.equalsIgnoreCase("all")
+					|| partitionHandlerTextblock.getMainPartition().equals(
+							"textblocks")) {
+				Object refGetValue = "";
+				try {
+					refGetValue = tb.refGetValue("name");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+				if (tb.getSequenceElement() != null
+						&& tb.getSequenceElement() instanceof Property) {
+
+					if (TcsUtil.getPartitionHandlingParg((Property) tb
+							.getSequenceElement()) != null) {
+
+						if ((TcsUtil.getPartitionHandlingParg((Property) tb
+								.getSequenceElement())).getPartitionhandling() != null) {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb,
+									TcsUtil.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+											.getPartitionhandling());
+						} else {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb, tb.getType()
+											.getParseRule());
+
+						}
+					} else {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb, tb.getType()
+										.getParseRule());
+
+					}
+				} else {
+					System.out
+							.println("The element "
+									+ tb
+									+ "mit name "
+									+ refGetValue
+									+ "in instantiateBlockAndMoveTokens has been stored in .....");
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, tb.getType().getParseRule());
+				}
+
+			}
+
+		}
+	}else{
+
+
+		if (partitionHandlerTextblock.getMainPartitionContent()
+				.equalsIgnoreCase("all")
+				|| partitionHandlerTextblock.getMainPartition().equals(
+						"textblocks")) {
+			Object refGetValue = "";
+			try {
+				refGetValue = tb.refGetValue("name");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			if (tb.getSequenceElement() != null
+					&& tb.getSequenceElement() instanceof Property) {
+
+				if (TcsUtil.getPartitionHandlingParg((Property) tb
+						.getSequenceElement()) != null) {
+
+					if ((TcsUtil.getPartitionHandlingParg((Property) tb
+							.getSequenceElement())).getPartitionhandling() != null) {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb,
+								TcsUtil.getPartitionHandlingParg(
+										(Property) tb.getSequenceElement())
+										.getPartitionhandling());
+					} else {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb, tb.getType()
+										.getParseRule());
+
+					}
+				} else {
+					System.out
+							.println("The element "
+									+ tb
+									+ "mit name "
+									+ refGetValue
+									+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, tb.getType()
+									.getParseRule());
+
+				}
+			} else {
+				System.out
+						.println("The element "
+								+ tb
+								+ "mit name "
+								+ refGetValue
+								+ "in instantiateBlockAndMoveTokens has been stored in .....");
+				partitionHandlerTextblock.assignToPartition(
+						defaultPartition, tb, tb.getType().getParseRule());
+			}
+
+		}
+	}
+
+	}
+
+	private void concreteSyntaxAssigment(TextBlock tb,
+			ModelPartition defaultPartition, ConcreteSyntax classTemp) {
+		
+		if(classTemp.getPartitionHandling() != null){
+		if (classTemp.getPartitionHandling().getContent() != null) {
+
+			if (classTemp.getPartitionHandling().getContent().toString()
+					.equalsIgnoreCase("textblocks")
+					|| classTemp.getPartitionHandling().getContent().toString()
+							.equalsIgnoreCase("all")) {
+
+				Object refGetValue = "";
+				try {
+					refGetValue = tb.refGetValue("name");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+				if (tb.getSequenceElement() != null
+						&& tb.getSequenceElement() instanceof Property) {
+
+					if (TcsUtil.getPartitionHandlingParg((Property) tb
+							.getSequenceElement()) != null) {
+
+						if ((TcsUtil.getPartitionHandlingParg((Property) tb
+								.getSequenceElement())).getPartitionhandling() != null) {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb,
+									TcsUtil.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+											.getPartitionhandling());
+						} else {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb, tb.getType()
+											.getParseRule());
+
+						}
+					} else {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb, tb.getType()
+										.getParseRule());
+
+					}
+				} else {
+					System.out
+							.println("The element "
+									+ tb
+									+ "mit name "
+									+ refGetValue
+									+ "in instantiateBlockAndMoveTokens has been stored in .....");
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, tb.getType().getParseRule());
+				}
+
+			}
+		} else {
+
+			if (partitionHandlerTextblock.getMainPartitionContent()
+					.equalsIgnoreCase("all")
+					|| partitionHandlerTextblock.getMainPartition().equals(
+							"textblocks")) {
+				Object refGetValue = "";
+				try {
+					refGetValue = tb.refGetValue("name");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+				if (tb.getSequenceElement() != null
+						&& tb.getSequenceElement() instanceof Property) {
+
+					if (TcsUtil.getPartitionHandlingParg((Property) tb
+							.getSequenceElement()) != null) {
+
+						if ((TcsUtil.getPartitionHandlingParg((Property) tb
+								.getSequenceElement())).getPartitionhandling() != null) {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb,
+									TcsUtil.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+											.getPartitionhandling());
+						} else {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb, tb.getType()
+											.getParseRule());
+
+						}
+					} else {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb, tb.getType()
+										.getParseRule());
+
+					}
+				} else {
+					System.out
+							.println("The element "
+									+ tb
+									+ "mit name "
+									+ refGetValue
+									+ "in instantiateBlockAndMoveTokens has been stored in .....");
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, tb.getType().getParseRule());
+				}
+
+			}
+		}
+		}else {
+			
+
+			if (partitionHandlerTextblock.getMainPartitionContent()
+					.equalsIgnoreCase("all")
+					|| partitionHandlerTextblock.getMainPartition().equals(
+							"textblocks")) {
+				Object refGetValue = "";
+				try {
+					refGetValue = tb.refGetValue("name");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+				if (tb.getSequenceElement() != null
+						&& tb.getSequenceElement() instanceof Property) {
+
+					if (TcsUtil.getPartitionHandlingParg((Property) tb
+							.getSequenceElement()) != null) {
+
+						if ((TcsUtil.getPartitionHandlingParg((Property) tb
+								.getSequenceElement())).getPartitionhandling() != null) {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property1 has been stored in .....");
+
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb,
+									TcsUtil.getPartitionHandlingParg(
+											(Property) tb.getSequenceElement())
+											.getPartitionhandling());
+						} else {
+							System.out
+									.println("The element "
+											+ tb
+											+ "mit name "
+											+ refGetValue
+											+ "in instantiateBlockAndMoveTokens for property2 has been stored in .....");
+							partitionHandlerTextblock.assignToPartition(
+									defaultPartition, tb, tb.getType()
+											.getParseRule());
+
+						}
+					} else {
+						System.out
+								.println("The element "
+										+ tb
+										+ "mit name "
+										+ refGetValue
+										+ "in instantiateBlockAndMoveTokens for property3 has been stored in .....");
+						partitionHandlerTextblock.assignToPartition(
+								defaultPartition, tb, tb.getType()
+										.getParseRule());
+
+					}
+				} else {
+					System.out
+							.println("The element "
+									+ tb
+									+ "mit name "
+									+ refGetValue
+									+ "in instantiateBlockAndMoveTokens has been stored in .....");
+					partitionHandlerTextblock.assignToPartition(
+							defaultPartition, tb, tb.getType().getParseRule());
+				}
+
+			}
+		}
+
+	}
+
 	/**
 	 * Get the {@link TextBlockDefinition} for the given template.
 	 * 
@@ -197,6 +723,9 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 				.getTextblockdefinition().getTextBlockDefinition()
 				.refCreateInstance();
 		tbDef.setParseRule(template);
+		System.out.println("The element " + tbDef
+				+ "in initializeTextBlockDefinition has been stored in .....");
+
 		((Partitionable) template).get___Partition()
 				.assignElementIncludingChildren(tbDef);
 		return tbDef;

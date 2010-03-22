@@ -88,6 +88,7 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
@@ -1217,8 +1218,9 @@ public abstract class AbstractGrammarBasedEditor extends
 		incrementalParser = new MappingLinkRecoveringIncrementalParser(
 				getWorkingConnection(), getParserFactory(), getLexer(),
 				getParser(), reuseStrategy, getAdditionalLookupCRIS());
-		partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-		partitionHandler.setInteractivePartitionHandler(new InteractivePartitionHandlerImpl());
+		//partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+		//partitionHandler.setInteractivePartitionHandler(new InteractivePartitionHandlerImpl(Display.getCurrent().getActiveShell()));
+		incrementalParser.setInteractivePartitionHandler(new InteractivePartitionHandlerImpl(Display.getCurrent().getActiveShell()));
 		
 		shortPrettyPrinter = new ShortPrettyPrinter(new MOINModelAdapter(
         		parserFactory.getMetamodelPackage(getWorkingConnection()),

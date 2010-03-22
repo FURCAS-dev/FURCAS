@@ -89,7 +89,8 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	private TbBean reusetextBlockInteral(TextBlock oldVersion, TextBlockProxy newVersion, ModelPartition defaultPartition) {
-
+		
+		 
 		// now check if textblock was changed
 		if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 			return handleReferenceOnlyTemplate(oldVersion, newVersion,defaultPartition);
@@ -120,6 +121,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						// corresponding model elements
 						// to the appropriate feature of the original
 						// corresponding model element
+						
 						SetNewFeatureBean newFeatureBean = IncrementalParsingUtil
 							.setFeatureWithNewValue(
 								(TextBlockProxy) subNode,
@@ -169,12 +171,15 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						if (newFeatureBean != null) {
 							// it might be null in the case of operator
 							// templates?
+						
+								
 							referenceHandler.setNewFeature(
 									newFeatureBean,
 									TcsUtil
 										.isReferenceOnly(subNodeResult.textBlock
 											.getType()
-											.getParseRule()));
+											.getParseRule()),
+											subNodeResult.textBlock);
 						}
 					}
 				} else if (subNode instanceof AbstractToken) {

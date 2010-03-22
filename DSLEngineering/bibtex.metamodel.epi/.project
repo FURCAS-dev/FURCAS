@@ -36,12 +36,12 @@
 		<link>
 			<name>xmisrc/cfg</name>
 			<type>2</type>
-			<location>DSL_ENGINEERING/bibtex.metamodel/cfg</location>
+			<locationURI>DSL_ENGINEERING/bibtex.metamodel/cfg</locationURI>
 		</link>
 		<link>
 			<name>xmisrc/moin</name>
 			<type>2</type>
-			<location>DSL_ENGINEERING/bibtex.metamodel/moin</location>
+			<locationURI>DSL_ENGINEERING/bibtex.metamodel/moin</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

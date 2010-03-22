@@ -10,6 +10,8 @@ package com.sap.mi.textual.grammar;
 
 import java.util.List;
 
+import tcs.Property;
+
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -72,6 +74,20 @@ public interface IModelInjector extends IInjectionHelper {
      * @param index
      */
     void set(Object modelElement, String prop, Object value, int index);
+    
+
+//    /**
+//     * sets a named feature of a modelelement to some value, which might also be
+//     * a modelElement. Additionally an index may be provided that indicates at
+//     * which position within an ordered property the value should be added.
+//     * 
+//     * @param modelElement
+//     * @param prop
+//     * @param value
+//     * @param index
+//     */
+//	void set(Object parentRefObject, String property, Object value,
+//			int valueIndex, Property tcsProperty);
 
     /**
      * Used to remove the <tt>value</tt> from the given property of the
