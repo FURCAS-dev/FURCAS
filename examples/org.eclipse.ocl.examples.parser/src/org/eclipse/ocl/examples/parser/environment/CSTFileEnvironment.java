@@ -47,6 +47,7 @@ implements ICSTFileEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private CSTFileEnvironment(EPackage.Registry registry, FileHandle file, ResourceSet resourceSet, XMIResource astResource) {
 		super(null);		// Null suppresses inherited createTypeResolver
 //		super(registry, null);		// Null suppresses inherited createTypeResolver
+		assert (astResource != null);
 		ast = astResource;
 		typeResolver = createTypeResolver(ast);
 		this.registry = registry;

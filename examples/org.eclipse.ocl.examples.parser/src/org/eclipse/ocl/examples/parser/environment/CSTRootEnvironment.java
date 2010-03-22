@@ -76,6 +76,7 @@ implements ICSTRootEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 	protected CSTRootEnvironment(ICSTFileEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> fileEnvironment, XMIResource astNode, CST cstNode) {
 		super(fileEnvironment, astNode, cstNode);
+		assert (astNode != null);
 		this.fileEnvironment = fileEnvironment;
 		initASTMapping(astNode, cstNode);
 	}
