@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CommonEditorDefinition.java,v 1.1 2010/03/11 14:51:20 ewillink Exp $
+ * $Id: CommonEditorDefinition.java,v 1.2 2010/03/22 01:13:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ui.imp;
 
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -86,34 +87,38 @@ public class CommonEditorDefinition implements IResourceChangeListener, IResourc
     }
     
 	protected EcoreNode findEcoreClass(EClass subType) {
-		for (EClass superType : subType.getESuperTypes()) {
-			EcoreNode ecoreNode = ecoreMap.get(superType);
-			if (ecoreNode != null)
-				return ecoreNode; 
-			ecoreNode = findEcoreClass(superType);
-			if (ecoreNode != null)
-				return ecoreNode; 
+		if (ecoreMap != null) {
+			for (EClass superType : subType.getESuperTypes()) {
+				EcoreNode ecoreNode = ecoreMap.get(superType);
+				if (ecoreNode != null)
+					return ecoreNode; 
+				ecoreNode = findEcoreClass(superType);
+				if (ecoreNode != null)
+					return ecoreNode; 
+			}
 		}
 		return null;
 	}
 
 	protected JavaNode findJavaClass(Class<?> subClass) {
-		Class<?> superClass = subClass.getSuperclass();
-		if (superClass != null) {
-			JavaNode javaNode = javaMap.get(superClass);
-			if (javaNode != null)
-				return javaNode; 
-			javaNode = findJavaClass(superClass);
-			if (javaNode != null)
-				return javaNode; 
-		}
-		for (Class<?> superInterface : subClass.getInterfaces()) {
-			JavaNode javaNode = javaMap.get(superInterface);
-			if (javaNode != null)
-				return javaNode; 
-			javaNode = findJavaClass(superInterface);
-			if (javaNode != null)
-				return javaNode; 
+		if (javaMap != null) {
+			Class<?> superClass = subClass.getSuperclass();
+			if (superClass != null) {
+				JavaNode javaNode = javaMap.get(superClass);
+				if (javaNode != null)
+					return javaNode; 
+				javaNode = findJavaClass(superClass);
+				if (javaNode != null)
+					return javaNode; 
+			}
+			for (Class<?> superInterface : subClass.getInterfaces()) {
+				JavaNode javaNode = javaMap.get(superInterface);
+				if (javaNode != null)
+					return javaNode; 
+				javaNode = findJavaClass(superInterface);
+				if (javaNode != null)
+					return javaNode; 
+			}
 		}
 		return null;
 	}
@@ -151,6 +156,7 @@ public class CommonEditorDefinition implements IResourceChangeListener, IResourc
 		if ((editorDefinition == null) && (editorURI != null)) {
 			try {
 				ResourceSet resourceSet = new ResourceSetImpl();
+			    resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
 				resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("editor", new XMIResourceFactoryImpl());
 				Resource resource = resourceSet.createResource(editorURI);
 				resource.load(null);
@@ -290,8 +296,12 @@ public class CommonEditorDefinition implements IResourceChangeListener, IResourc
 			        			break;
 						if (i <= 0) {
 							editorDefinition = null;
-							ecoreMap.clear();
-							javaMap.clear();
+							if (ecoreMap != null) {
+								ecoreMap.clear();
+							}
+							if (javaMap != null) {
+								javaMap.clear();
+							}
 							return false;
 						}
 			        }
