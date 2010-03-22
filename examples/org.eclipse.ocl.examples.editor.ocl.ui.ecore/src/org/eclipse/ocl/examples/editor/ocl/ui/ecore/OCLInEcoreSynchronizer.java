@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInEcoreSynchronizer.java,v 1.3 2010/03/13 18:09:38 ewillink Exp $
+ * $Id: OCLInEcoreSynchronizer.java,v 1.4 2010/03/22 01:23:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import lpg.runtime.IToken;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.common.utils.TracingAdapter;
 import org.eclipse.ocl.lpg.BasicEnvironment;
+import org.eclipse.ocl.lpg.BasicEnvironment2;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 public abstract class OCLInEcoreSynchronizer extends TracingAdapter
@@ -122,7 +124,7 @@ public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 			setConstraintNames(constrainedElement, constraintsNameSet);
 		}
 		
-		public void exportConstraint(BasicEnvironment environment, EModelElement constrainedElement, Constraint constraint) {
+		public void exportConstraint(BasicEnvironment2 environment, EModelElement constrainedElement, Constraint constraint) {
 			EList<EModelElement> constrainedElements = constraint.getConstrainedElements();
 			if (constrainedElements.isEmpty()) {
 				return;
@@ -140,17 +142,17 @@ public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 			EOperation ecoreInvariant;
 			if ((constrainedElement instanceof EClass)
 			 && ((ecoreInvariant = EcoreUtils.getEcoreInvariant((EClass)constrainedElement, constraint.getName())) != null)) {
-				setEAnnotation(ecoreInvariant, OCL_URI, BODY_KEY, text);
+				setEAnnotation(environment, constraint, ecoreInvariant, OCL_URI, BODY_KEY, text);
 			}
 			else if (constrainedElement instanceof EClassifier) {
 				addConstraintName(constrainedElement, constraint.getName());
-				setEAnnotation(constrainedElement, OCL_URI, constraint.getName(), text);
+				setEAnnotation(environment, constraint, constrainedElement, OCL_URI, constraint.getName(), text);
 			}
 			else if (constrainedElement instanceof EOperation) {
-				setEAnnotation(constrainedElement, OCL_URI, BODY_KEY, text);
+				setEAnnotation(environment, constraint, constrainedElement, OCL_URI, BODY_KEY, text);
 			}
 			else if (constrainedElement instanceof EStructuralFeature) {
-				setEAnnotation(constrainedElement, OCL_URI, DERIVATION_KEY, text);
+				setEAnnotation(environment, constraint, constrainedElement, OCL_URI, DERIVATION_KEY, text);
 			}
 		}
 
@@ -183,12 +185,19 @@ public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 			setConstraintNames(constrainedElement, constraintsNameSet);
 		}
 
-		protected void setEAnnotation(EModelElement element, String source, String key, String newValue) {
-		    EAnnotation eAnnotation = getEAnnotation(element, source);
-		    String oldValue = eAnnotation.getDetails().get(key);
+		protected void setEAnnotation(BasicEnvironment2 environment, Constraint constraint, EModelElement constrainedElement, String source, String key, String newValue) {
+		    EAnnotation eAnnotation = getEAnnotation(constrainedElement, source);
+		    EMap<String, String> details = eAnnotation.getDetails();
+			String oldValue = details.get(key);
 		    if (!ClassUtils.equals(oldValue, newValue)) {
-		    	eAnnotation.getDetails().put(key, newValue);
+		    	details.put(key, newValue);
 		    }
+	    	int indexOfKey = details.indexOfKey(key);
+		    if (indexOfKey >= 0) { 
+		    	Entry<String, String> entry = details.get(indexOfKey);
+		    	CSTNode cstConstraint = environment.getASTMapping(constraint);
+		    	environment.initASTMapping(entry, cstConstraint, null);
+		    }	    
 		}
 
 		protected void setConstraintNames(EModelElement constrainedElement, Set<String> constraintsNameSet) {
@@ -470,7 +479,7 @@ public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 		}
 	}
 
-	public void exportConstraintsToResource(BasicEnvironment environment, List<Constraint> constraints) {
+	public void exportConstraintsToResource(BasicEnvironment2 environment, List<Constraint> constraints) {
 		try {
 			exporter = new Exporter();
 			Set<Detail> residualDetails = new HashSet<Detail>();
@@ -512,10 +521,10 @@ public abstract class OCLInEcoreSynchronizer extends TracingAdapter
 				List<Detail> details = contents.get(constrainedElement);
 				if (details != null) {
 					for (Detail detail : details) {
-						if (!residualDetails.contains(detail)) {
-							residualDetails.remove(detail);
-							break;
-						}
+//						if (!residualDetails.contains(detail)) {
+//							residualDetails.remove(detail);
+//							break;
+//						}
 						exporter.exportConstraint(environment, detail.getContainer(), constraint);
 					}
 				}
