@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInEcoreDocumentProvider.java,v 1.2 2010/03/13 13:16:49 ewillink Exp $
+ * $Id: OCLInEcoreDocumentProvider.java,v 1.3 2010/03/22 01:21:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui.ecore;
 
@@ -51,7 +51,7 @@ public class OCLInEcoreDocumentProvider extends FileDocumentProvider
 			if (display != null) {
 				if (display.getThread() == Thread.currentThread()) {
 					String oldText = document.get();
-					if (!newText.equals(oldText)) {
+					if (needsUpdate(newText, oldText)) {
 						document.set(newText);
 					}
 				}
@@ -60,7 +60,7 @@ public class OCLInEcoreDocumentProvider extends FileDocumentProvider
 						public void run() {
 							if (!display.isDisposed()) {
 								String oldText = document.get();
-								if (!newText.equals(oldText)) {
+								if (needsUpdate(newText, oldText)) {
 									document.set(newText);
 								}
 							}
@@ -68,6 +68,30 @@ public class OCLInEcoreDocumentProvider extends FileDocumentProvider
 					});
 				}
 			}
+		}
+
+		private boolean needsUpdate(String newText, String oldText) {
+			int iNewMax = newText.length();
+			int iOldMax = oldText.length();
+			int iOld = 0;
+			int iNew = 0;
+			while ((iNew < iNewMax) && (iOld < iOldMax)) {
+				char newChar = newText.charAt(iNew++);
+				char oldChar = oldText.charAt(iOld++);
+				if (newChar != oldChar) {
+					while (Character.isWhitespace(newChar)) {
+						newChar = iNew < iNewMax ? newText.charAt(iNew++) : null;
+					}
+					while (Character.isWhitespace(oldChar)) {
+						oldChar = iOld < iOldMax ? oldText.charAt(iOld++) : null;
+					}
+					if (newChar != oldChar) {
+						return true;
+					}
+					// FIXME check whitespace is between tokens
+				}
+			}
+			return (iNew != iNewMax) || (iOld != iOldMax);
 		}
 	}
 
