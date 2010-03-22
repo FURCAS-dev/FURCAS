@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreUtils.java,v 1.1 2010/03/11 13:54:19 ewillink Exp $
+ * $Id: EcoreUtils.java,v 1.2 2010/03/22 01:09:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.common.utils;
 
@@ -25,10 +25,13 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -36,9 +39,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
 import org.eclipse.ocl.examples.common.label.ILabelGenerator;
 import org.eclipse.ocl.examples.common.label.LabelGeneratorRegistry;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 public class EcoreUtils
 {	
@@ -203,6 +211,62 @@ public class EcoreUtils
 			}
 		}
 		return targetGenericType.getERawType();
+	}
+
+	/**
+	 * Return the Ecore EStringToStringMapEntry that realises a given Constraint.
+	 * 
+	 * @param constraint the constraint
+	 * @return the annotation detail entry, null if not found
+	 */
+	public static Map.Entry<String, String> getEAnnotationDetail(Constraint constraint) {
+		List<EModelElement> constrainedElements = constraint.getConstrainedElements();
+		if (constrainedElements.isEmpty()) {
+			return null;
+		}
+		EModelElement constrainedElement = constrainedElements.get(0);
+		String keyName;
+		String stereotype = constraint.getStereotype();
+		if (UMLReflection.INVARIANT.equals(stereotype)) {
+			keyName = constraint.getName();
+			if (constrainedElement instanceof EClass) {
+				EOperation apiOperation = EcoreUtils.getEcoreInvariant((EClass) constrainedElement, keyName);
+				if (apiOperation != null) {
+					constrainedElement = apiOperation;
+					keyName = InvocationBehavior.BODY_CONSTRAINT_KEY;
+				}
+			}
+		}
+		else if (UMLReflection.DERIVATION.equals(stereotype)){
+			keyName = SettingBehavior.DERIVATION_CONSTRAINT_KEY;
+		}
+		else if (UMLReflection.INITIAL.equals(stereotype)){
+			keyName = SettingBehavior.INITIAL_CONSTRAINT_KEY;
+		}
+		else if (UMLReflection.BODY.equals(stereotype)){
+			keyName = InvocationBehavior.BODY_CONSTRAINT_KEY;
+		}
+//			else if (UMLReflection.PRECONDITION.equals(stereotype)){
+//				node = InvocationBehavior.PRECONDITION_CONSTRAINT_KEY;
+//			}
+//			else if (UMLReflection.POSTCONDITION.equals(stereotype)){
+//				node = InvocationBehavior.POSTCONDITION_CONSTRAINT_KEY;
+//			}
+		else {
+			keyName = null;
+		}
+	    EAnnotation eAnnotation = constrainedElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+	    if (eAnnotation == null) {
+	    	return null;
+	    }
+	    EMap<String, String> details = eAnnotation.getDetails();
+	    if (keyName != null) {
+	    	int indexOfKey = details.indexOfKey(keyName);
+		    if (indexOfKey >= 0) { 
+		    	return details.get(indexOfKey);
+		    }
+	    }
+		return null;
 	}
 
 	/**
