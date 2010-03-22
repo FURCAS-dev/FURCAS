@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CompanyImpl.java,v 1.1 2010/02/27 13:27:41 ewillink Exp $
+ * $Id: CompanyImpl.java,v 1.2 2010/03/22 20:03:21 ewillink Exp $
  */
 package company.impl;
 
@@ -21,11 +21,16 @@ import company.CompanyPackage;
 import company.CompanySizeKind;
 import company.Employee;
 
+import company.util.CompanyValidator;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -156,6 +161,36 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #dummyInvariant(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Dummy Invariant</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #dummyInvariant(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DUMMY_INVARIANT_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "true"; //$NON-NLS-1$
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean dummyInvariant(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			CompanyValidator.validate
+				(CompanyPackage.Literals.COMPANY,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
+				 CompanyPackage.Literals.COMPANY___DUMMY_INVARIANT__DIAGNOSTICCHAIN_MAP,
+				 DUMMY_INVARIANT_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 CompanyValidator.DIAGNOSTIC_SOURCE,
+				 CompanyValidator.COMPANY__DUMMY_INVARIANT);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -256,6 +291,21 @@ public class CompanyImpl extends EObjectImpl implements Company {
 				return SIZE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case CompanyPackage.COMPANY___DUMMY_INVARIANT__DIAGNOSTICCHAIN_MAP:
+				return dummyInvariant((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
