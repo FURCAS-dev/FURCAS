@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLCreationFactory.java,v 1.3 2010/03/13 18:09:04 ewillink Exp $
+ * $Id: OCLCreationFactory.java,v 1.4 2010/03/22 01:20:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.editor.ocl.ui;
 
@@ -45,6 +45,7 @@ public class OCLCreationFactory extends AbstractCreationFactory
 	
 	public OCLFileEnvironment createFileEnvironment(FileHandle fileHandle, ResourceSet resourceSet, URI astURI) {
 		XMIResource astResource = (XMIResource) resourceSet.createResource(astURI, org.eclipse.ocl.ecore.EcorePackage.eCONTENT_TYPE);
+		astResource.getURI();		// FIXME Debugging: create the NPE now rather than much later
 		return new OCLFileEnvironment(fileHandle, resourceSet, astResource);
 	}
 	
