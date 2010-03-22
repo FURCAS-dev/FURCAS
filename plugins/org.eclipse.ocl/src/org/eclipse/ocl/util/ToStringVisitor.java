@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.11 2010/02/08 20:57:24 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.12 2010/03/22 01:28:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -690,7 +690,9 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
             
             result.append(" = "); //$NON-NLS-1$
         } else {
-            result.append("inv: "); //$NON-NLS-1$
+            result.append("inv "); //$NON-NLS-1$
+            result.append(getName(constraint));
+            result.append(": "); //$NON-NLS-1$
         }
         
         result.append(visit(getSpecification(constraint)));
