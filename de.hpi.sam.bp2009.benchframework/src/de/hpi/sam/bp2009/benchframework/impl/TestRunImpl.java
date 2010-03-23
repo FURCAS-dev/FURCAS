@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -64,7 +64,7 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	protected ResourceSet model = MODEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' reference list.
+	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOperators()
@@ -123,7 +123,7 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 */
 	public EList<Operator> getOperators() {
 		if (operators == null) {
-			operators = new EObjectWithInverseResolvingEList<Operator>(Operator.class, this, BenchframeworkPackage.TEST_RUN__OPERATORS, BenchframeworkPackage.OPERATOR__TEST_RUN);
+			operators = new EObjectContainmentWithInverseEList<Operator>(Operator.class, this, BenchframeworkPackage.TEST_RUN__OPERATORS, BenchframeworkPackage.OPERATOR__TEST_RUN);
 		}
 		return operators;
 	}

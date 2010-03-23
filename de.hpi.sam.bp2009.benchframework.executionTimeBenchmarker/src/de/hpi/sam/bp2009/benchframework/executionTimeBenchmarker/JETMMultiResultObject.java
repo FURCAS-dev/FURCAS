@@ -28,29 +28,19 @@ import de.hpi.sam.bp2009.benchframework.ResultObject;
  */
 public interface JETMMultiResultObject extends ResultObject {
 	/**
-	 * Returns the value of the '<em><b>Results</b></em>' attribute.
+	 * Returns the value of the '<em><b>Results</b></em>' containment reference list.
+	 * The list contents are of type {@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Results</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Results</em>' attribute.
-	 * @see #setResults(EList)
+	 * @return the value of the '<em>Results</em>' containment reference list.
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMMultiResultObject_Results()
-	 * @model many="false" transient="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<JETMResultObject> getResults();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject#getResults <em>Results</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Results</em>' attribute.
-	 * @see #getResults()
-	 * @generated
-	 */
-	void setResults(EList<JETMResultObject> value);
 
 } // JETMMultiResultObject

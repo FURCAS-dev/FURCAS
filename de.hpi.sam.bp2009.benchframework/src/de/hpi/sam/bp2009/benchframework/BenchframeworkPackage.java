@@ -69,34 +69,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getEngine()
 	 * @generated
 	 */
-	int ENGINE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Test Runs</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE__TEST_RUNS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Exeptions During Last Run</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE__EXEPTIONS_DURING_LAST_RUN = 1;
-
-	/**
-	 * The number of structural features of the '<em>Engine</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE_FEATURE_COUNT = 2;
+	int ENGINE = 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}' class.
@@ -106,10 +79,10 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOperator()
 	 * @generated
 	 */
-	int OPERATOR = 1;
+	int OPERATOR = 2;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -118,7 +91,7 @@ public interface BenchframeworkPackage extends EPackage {
 	int OPERATOR__OPTION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -127,7 +100,7 @@ public interface BenchframeworkPackage extends EPackage {
 	int OPERATOR__RESULT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -170,43 +143,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultProcessor()
 	 * @generated
 	 */
-	int RESULT_PROCESSOR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Result Page</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_PROCESSOR__RESULT_PAGE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Testrun</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_PROCESSOR__TESTRUN = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_PROCESSOR__NAME = 2;
-
-	/**
-	 * The number of structural features of the '<em>Result Processor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_PROCESSOR_FEATURE_COUNT = 3;
+	int RESULT_PROCESSOR = 6;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}' class.
@@ -217,6 +154,156 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	int OPTION_OBJECT = 3;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl <em>Result Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultObject()
+	 * @generated
+	 */
+	int RESULT_OBJECT = 5;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUserInterface()
+	 * @generated
+	 */
+	int USER_INTERFACE = 9;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.TestRunImpl <em>Test Run</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.TestRunImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getTestRun()
+	 * @generated
+	 */
+	int TEST_RUN = 8;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl <em>Random Number Option Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberOptionObject()
+	 * @generated
+	 */
+	int RANDOM_NUMBER_OPTION_OBJECT = 4;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl <em>Start Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartOperator()
+	 * @generated
+	 */
+	int START_OPERATOR = 7;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl <em>End Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getEndOperator()
+	 * @generated
+	 */
+	int END_OPERATOR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__OPTION = OPERATOR__OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__RESULT = OPERATOR__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__TEST_RUN = OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__NAME = OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__DESCRIPTION = OPERATOR__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Start Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR__START_OPERATOR = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>End Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Test Runs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENGINE__TEST_RUNS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Exeptions During Last Run</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENGINE__EXEPTIONS_DURING_LAST_RUN = 1;
+
+	/**
+	 * The number of structural features of the '<em>Engine</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENGINE_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
@@ -235,136 +322,6 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPTION_OBJECT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl <em>Result Object</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultObject()
-	 * @generated
-	 */
-	int RESULT_OBJECT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Status</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_OBJECT__STATUS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Message</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_OBJECT__MESSAGE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Result Object</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_OBJECT_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUserInterface()
-	 * @generated
-	 */
-	int USER_INTERFACE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Engine</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_INTERFACE__ENGINE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Available Operators</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_INTERFACE__AVAILABLE_OPERATORS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Result Processor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_INTERFACE__RESULT_PROCESSOR = 2;
-
-	/**
-	 * The number of structural features of the '<em>User Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_INTERFACE_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.TestRunImpl <em>Test Run</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.TestRunImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getTestRun()
-	 * @generated
-	 */
-	int TEST_RUN = 6;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_RUN__MODEL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Operators</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_RUN__OPERATORS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Test Run</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_RUN_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl <em>Random Number Option Object</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getRandomNumberOptionObject()
-	 * @generated
-	 */
-	int RANDOM_NUMBER_OPTION_OBJECT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
@@ -412,17 +369,70 @@ public interface BenchframeworkPackage extends EPackage {
 	int RANDOM_NUMBER_OPTION_OBJECT_FEATURE_COUNT = OPTION_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl <em>Start Operator</em>}' class.
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartOperator()
 	 * @generated
+	 * @ordered
 	 */
-	int START_OPERATOR = 8;
+	int RESULT_OBJECT__STATUS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_OBJECT__MESSAGE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Result Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_OBJECT_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Result Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_PROCESSOR__RESULT_PAGE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Testrun</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_PROCESSOR__TESTRUN = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_PROCESSOR__NAME = 2;
+
+	/**
+	 * The number of structural features of the '<em>Result Processor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_PROCESSOR_FEATURE_COUNT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -431,7 +441,7 @@ public interface BenchframeworkPackage extends EPackage {
 	int START_OPERATOR__OPTION = OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -440,7 +450,7 @@ public interface BenchframeworkPackage extends EPackage {
 	int START_OPERATOR__RESULT = OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -467,114 +477,85 @@ public interface BenchframeworkPackage extends EPackage {
 	int START_OPERATOR__DESCRIPTION = OPERATOR__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>End Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OPERATOR__END_OPERATOR = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Start Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int START_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+	int START_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl <em>End Operator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getEndOperator()
-	 * @generated
-	 */
-	int END_OPERATOR = 9;
-
-	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Model</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OPERATOR__OPTION = OPERATOR__OPTION;
+	int TEST_RUN__MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OPERATOR__RESULT = OPERATOR__RESULT;
+	int TEST_RUN__OPERATORS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The number of structural features of the '<em>Test Run</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OPERATOR__TEST_RUN = OPERATOR__TEST_RUN;
+	int TEST_RUN_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Engine</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OPERATOR__NAME = OPERATOR__NAME;
+	int USER_INTERFACE__ENGINE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Available Operators</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OPERATOR__DESCRIPTION = OPERATOR__DESCRIPTION;
+	int USER_INTERFACE__AVAILABLE_OPERATORS = 1;
 
 	/**
-	 * The number of structural features of the '<em>End Operator</em>' class.
+	 * The feature id for the '<em><b>Result Processor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
+	int USER_INTERFACE__RESULT_PROCESSOR = 2;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl <em>Start And End Operator Option Object</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartAndEndOperatorOptionObject()
-	 * @generated
-	 */
-	int START_AND_END_OPERATOR_OPTION_OBJECT = 10;
-
-	/**
-	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
+	 * The number of structural features of the '<em>User Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int START_AND_END_OPERATOR_OPTION_OBJECT__WIZARD_PAGE = OPTION_OBJECT__WIZARD_PAGE;
-
-	/**
-	 * The feature id for the '<em><b>Other End</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END = OPTION_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Start And End Operator Option Object</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int START_AND_END_OPERATOR_OPTION_OBJECT_FEATURE_COUNT = OPTION_OBJECT_FEATURE_COUNT + 1;
+	int USER_INTERFACE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
@@ -584,7 +565,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStatus()
 	 * @generated
 	 */
-	int STATUS = 11;
+	int STATUS = 10;
 
 	/**
 	 * The meta object id for the '<em>Output Stream</em>' data type.
@@ -594,7 +575,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOutputStream()
 	 * @generated
 	 */
-	int OUTPUT_STREAM = 12;
+	int OUTPUT_STREAM = 11;
 
 	/**
 	 * The meta object id for the '<em>Wizard Page</em>' data type.
@@ -604,7 +585,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getWizardPage()
 	 * @generated
 	 */
-	int WIZARD_PAGE = 13;
+	int WIZARD_PAGE = 12;
 
 	/**
 	 * The meta object id for the '<em>UI Component</em>' data type.
@@ -614,7 +595,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUIComponent()
 	 * @generated
 	 */
-	int UI_COMPONENT = 14;
+	int UI_COMPONENT = 13;
 
 
 	/**
@@ -625,7 +606,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 15;
+	int EXCEPTION = 14;
 
 
 	/**
@@ -647,7 +628,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getCloneNotSupportedException()
 	 * @generated
 	 */
-	int CLONE_NOT_SUPPORTED_EXCEPTION = 17;
+	int CLONE_NOT_SUPPORTED_EXCEPTION = 15;
 
 
 	/**
@@ -693,10 +674,10 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getOperator();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Option</em>'.
+	 * @return the meta object for the containment reference '<em>Option</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.Operator#getOption()
 	 * @see #getOperator()
 	 * @generated
@@ -704,10 +685,10 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getOperator_Option();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Result</em>'.
+	 * @return the meta object for the containment reference '<em>Result</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.Operator#getResult()
 	 * @see #getOperator()
 	 * @generated
@@ -715,10 +696,10 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getOperator_Result();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}'.
+	 * Returns the meta object for the container reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Test Run</em>'.
+	 * @return the meta object for the container reference '<em>Test Run</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.Operator#getTestRun()
 	 * @see #getOperator()
 	 * @generated
@@ -908,10 +889,10 @@ public interface BenchframeworkPackage extends EPackage {
 	EAttribute getTestRun_Model();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.TestRun#getOperators <em>Operators</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.hpi.sam.bp2009.benchframework.TestRun#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Operators</em>'.
+	 * @return the meta object for the containment reference list '<em>Operators</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.TestRun#getOperators()
 	 * @see #getTestRun()
 	 * @generated
@@ -972,6 +953,17 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getStartOperator();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.StartOperator#getEndOperator <em>End Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>End Operator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.StartOperator#getEndOperator()
+	 * @see #getStartOperator()
+	 * @generated
+	 */
+	EReference getStartOperator_EndOperator();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.EndOperator <em>End Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -982,25 +974,15 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getEndOperator();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject <em>Start And End Operator Option Object</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.EndOperator#getStartOperator <em>Start Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Start And End Operator Option Object</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject
+	 * @return the meta object for the reference '<em>Start Operator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.EndOperator#getStartOperator()
+	 * @see #getEndOperator()
 	 * @generated
 	 */
-	EClass getStartAndEndOperatorOptionObject();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject#getOtherEnd <em>Other End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Other End</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject#getOtherEnd()
-	 * @see #getStartAndEndOperatorOptionObject()
-	 * @generated
-	 */
-	EReference getStartAndEndOperatorOptionObject_OtherEnd();
+	EReference getEndOperator_StartOperator();
 
 	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}'.
@@ -1137,7 +1119,7 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass OPERATOR = eINSTANCE.getOperator();
 
 		/**
-		 * The meta object literal for the '<em><b>Option</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Option</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1145,7 +1127,7 @@ public interface BenchframeworkPackage extends EPackage {
 		EReference OPERATOR__OPTION = eINSTANCE.getOperator_Option();
 
 		/**
-		 * The meta object literal for the '<em><b>Result</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Result</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1153,7 +1135,7 @@ public interface BenchframeworkPackage extends EPackage {
 		EReference OPERATOR__RESULT = eINSTANCE.getOperator_Result();
 
 		/**
-		 * The meta object literal for the '<em><b>Test Run</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Test Run</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1307,7 +1289,7 @@ public interface BenchframeworkPackage extends EPackage {
 		EAttribute TEST_RUN__MODEL = eINSTANCE.getTestRun_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>Operators</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Operators</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1359,6 +1341,14 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass START_OPERATOR = eINSTANCE.getStartOperator();
 
 		/**
+		 * The meta object literal for the '<em><b>End Operator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference START_OPERATOR__END_OPERATOR = eINSTANCE.getStartOperator_EndOperator();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl <em>End Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1369,22 +1359,12 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass END_OPERATOR = eINSTANCE.getEndOperator();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl <em>Start And End Operator Option Object</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl
-		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStartAndEndOperatorOptionObject()
-		 * @generated
-		 */
-		EClass START_AND_END_OPERATOR_OPTION_OBJECT = eINSTANCE.getStartAndEndOperatorOptionObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Other End</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Start Operator</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END = eINSTANCE.getStartAndEndOperatorOptionObject_OtherEnd();
+		EReference END_OPERATOR__START_OPERATOR = eINSTANCE.getEndOperator_StartOperator();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.

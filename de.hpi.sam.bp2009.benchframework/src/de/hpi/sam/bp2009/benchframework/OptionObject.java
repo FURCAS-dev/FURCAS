@@ -6,8 +6,6 @@
  */
 package de.hpi.sam.bp2009.benchframework;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardPage;
 
@@ -17,7 +15,7 @@ import org.eclipse.jface.wizard.WizardPage;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The base class of all option for an operator, should be subclasses to support specific concepts.
+ * The base class of all option objects for an operator, should be subclasses to support specific concepts.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,30 +58,6 @@ public interface OptionObject extends EObject {
 	 * @generated
 	 */
 	void setWizardPage(WizardPage value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * used for text based interfaces
-	 * OptionObject should be able to extract their information out of this map
-	 * <!-- end-model-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	Map<String, Object> getOptionsAsMap();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * used for text based interfaces
-	 * OptionObject should be able to extract their information out of this map
-	 * <!-- end-model-doc -->
-	 * @model
-	 * @generated
-	 */
-	void setOptionsAsMap(Map<String, Object> map);
 
 	/**
 	 * <!-- begin-user-doc -->

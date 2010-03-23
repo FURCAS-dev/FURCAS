@@ -6,11 +6,13 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
@@ -31,14 +33,14 @@ import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
  */
 public class EventCounterResultObjectImpl extends ResultObjectImpl implements EventCounterResultObject {
 	/**
-	 * The cached value of the '{@link #getEventCounts() <em>Event Counts</em>}' attribute.
+	 * The cached value of the '{@link #getEventCounts() <em>Event Counts</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEventCounts()
 	 * @generated
 	 * @ordered
 	 */
-	protected Map<String, Integer> eventCounts;
+	protected EMap<String, Integer> eventCounts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,7 +66,10 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map<String, Integer> getEventCounts() {
+	public EMap<String, Integer> getEventCounts() {
+		if (eventCounts == null) {
+			eventCounts = new EcoreEMap<String,Integer>(EventCounterPackage.Literals.ESTRING_TO_EINTEGER_MAP, EStringToEIntegerMapImpl.class, this, EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS);
+		}
 		return eventCounts;
 	}
 
@@ -73,11 +78,13 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEventCounts(Map<String, Integer> newEventCounts) {
-		Map<String, Integer> oldEventCounts = eventCounts;
-		eventCounts = newEventCounts;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS, oldEventCounts, eventCounts));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS:
+				return ((InternalEList<?>)getEventCounts()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -89,7 +96,8 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS:
-				return getEventCounts();
+				if (coreType) return getEventCounts();
+				else return getEventCounts().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -99,12 +107,11 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS:
-				setEventCounts((Map<String, Integer>)newValue);
+				((EStructuralFeature.Setting)getEventCounts()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -119,7 +126,7 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS:
-				setEventCounts((Map<String, Integer>)null);
+				getEventCounts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -134,25 +141,9 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS:
-				return eventCounts != null;
+				return eventCounts != null && !eventCounts.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (eventCounts: ");
-		result.append(eventCounts);
-		result.append(')');
-		return result.toString();
 	}
 
 } //EventCounterResultObjectImpl

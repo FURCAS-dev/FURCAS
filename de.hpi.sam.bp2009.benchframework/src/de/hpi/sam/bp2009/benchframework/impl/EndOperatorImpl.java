@@ -13,10 +13,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 
 /**
@@ -31,24 +33,16 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl#getTestRun <em>Test Run</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl#getStartOperator <em>Start Operator</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class EndOperatorImpl extends EObjectImpl implements EndOperator {
-	/**
-	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOption()
-	 * @generated
-	 * @ordered
-	 */
-	protected OptionObject option;
 
 	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getResult()
@@ -56,16 +50,6 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	 * @ordered
 	 */
 	protected ResultObject result;
-
-	/**
-	 * The cached value of the '{@link #getTestRun() <em>Test Run</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestRun()
-	 * @generated
-	 * @ordered
-	 */
-	protected TestRun testRun;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -108,6 +92,16 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getStartOperator() <em>Start Operator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected StartOperator startOperator;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -129,39 +123,23 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public OptionObject getOption() {
-		if (option != null && option.eIsProxy()) {
-			InternalEObject oldOption = (InternalEObject)option;
-			option = (OptionObject)eResolveProxy(oldOption);
-			if (option != oldOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.END_OPERATOR__OPTION, oldOption, option));
-			}
-		}
-		return option;
+		if(getStartOperator()!=null)
+			return getStartOperator().getOption();
+		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OptionObject basicGetOption() {
-		return option;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setOption(OptionObject newOption) {
-		OptionObject oldOption = option;
-		option = newOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__OPTION, oldOption, option));
+		if(getStartOperator()!=null)
+			getStartOperator().setOption(newOption);
+		throw new IllegalStateException("No StartOperator avalaible, shared Option cannot be set.");
 	}
 
 	/**
@@ -170,14 +148,6 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	 * @generated
 	 */
 	public ResultObject getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (ResultObject)eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.END_OPERATOR__RESULT, oldResult, result));
-			}
-		}
 		return result;
 	}
 
@@ -186,58 +156,11 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResultObject basicGetResult() {
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResult(ResultObject newResult) {
+	public NotificationChain basicSetResult(ResultObject newResult, NotificationChain msgs) {
 		ResultObject oldResult = result;
 		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__RESULT, oldResult, result));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun getTestRun() {
-		if (testRun != null && testRun.eIsProxy()) {
-			InternalEObject oldTestRun = (InternalEObject)testRun;
-			testRun = (TestRun)eResolveProxy(oldTestRun);
-			if (testRun != oldTestRun) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.END_OPERATOR__TEST_RUN, oldTestRun, testRun));
-			}
-		}
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun basicGetTestRun() {
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		TestRun oldTestRun = testRun;
-		testRun = newTestRun;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__TEST_RUN, oldTestRun, newTestRun);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__RESULT, oldResult, newResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -248,11 +171,52 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTestRun(TestRun newTestRun) {
-		if (newTestRun != testRun) {
+	public void setResult(ResultObject newResult) {
+		if (newResult != result) {
 			NotificationChain msgs = null;
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+			if (result != null)
+				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BenchframeworkPackage.END_OPERATOR__RESULT, null, msgs);
+			if (newResult != null)
+				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BenchframeworkPackage.END_OPERATOR__RESULT, null, msgs);
+			msgs = basicSetResult(newResult, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__RESULT, newResult, newResult));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestRun getTestRun() {
+		if (eContainerFeatureID() != BenchframeworkPackage.END_OPERATOR__TEST_RUN) return null;
+		return (TestRun)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTestRun, BenchframeworkPackage.END_OPERATOR__TEST_RUN, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestRun(TestRun newTestRun) {
+		if (newTestRun != eInternalContainer() || (eContainerFeatureID() != BenchframeworkPackage.END_OPERATOR__TEST_RUN && newTestRun != null)) {
+			if (EcoreUtil.isAncestor(this, newTestRun))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTestRun != null)
 				msgs = ((InternalEObject)newTestRun).eInverseAdd(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
 			msgs = basicSetTestRun(newTestRun, msgs);
@@ -309,6 +273,66 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StartOperator getStartOperator() {
+		if (startOperator != null && startOperator.eIsProxy()) {
+			InternalEObject oldStartOperator = (InternalEObject)startOperator;
+			startOperator = (StartOperator)eResolveProxy(oldStartOperator);
+			if (startOperator != oldStartOperator) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.END_OPERATOR__START_OPERATOR, oldStartOperator, startOperator));
+			}
+		}
+		return startOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StartOperator basicGetStartOperator() {
+		return startOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStartOperator(StartOperator newStartOperator, NotificationChain msgs) {
+		StartOperator oldStartOperator = startOperator;
+		startOperator = newStartOperator;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__START_OPERATOR, oldStartOperator, newStartOperator);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStartOperator(StartOperator newStartOperator) {
+		if (newStartOperator != startOperator) {
+			NotificationChain msgs = null;
+			if (startOperator != null)
+				msgs = ((InternalEObject)startOperator).eInverseRemove(this, BenchframeworkPackage.START_OPERATOR__END_OPERATOR, StartOperator.class, msgs);
+			if (newStartOperator != null)
+				msgs = ((InternalEObject)newStartOperator).eInverseAdd(this, BenchframeworkPackage.START_OPERATOR__END_OPERATOR, StartOperator.class, msgs);
+			msgs = basicSetStartOperator(newStartOperator, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__START_OPERATOR, newStartOperator, newStartOperator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void execute() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -324,11 +348,35 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BenchframeworkPackage.END_OPERATOR__TEST_RUN:
-				if (testRun != null)
-					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetTestRun((TestRun)otherEnd, msgs);
+			case BenchframeworkPackage.END_OPERATOR__START_OPERATOR:
+				if (startOperator != null)
+					msgs = ((InternalEObject)startOperator).eInverseRemove(this, BenchframeworkPackage.START_OPERATOR__END_OPERATOR, StartOperator.class, msgs);
+				return basicSetStartOperator((StartOperator)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BenchframeworkPackage.END_OPERATOR__OPTION:
+				throw new UnsupportedOperationException("Inverse remove of StartOperator OptionObject is not allowed.");
+			case BenchframeworkPackage.END_OPERATOR__RESULT:
+				return basicSetResult(null, msgs);
+			case BenchframeworkPackage.END_OPERATOR__TEST_RUN:
+				return basicSetTestRun(null, msgs);
+			case BenchframeworkPackage.END_OPERATOR__START_OPERATOR:
+				return basicSetStartOperator(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -337,12 +385,12 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
 			case BenchframeworkPackage.END_OPERATOR__TEST_RUN:
-				return basicSetTestRun(null, msgs);
+				return eInternalContainer().eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -354,18 +402,18 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BenchframeworkPackage.END_OPERATOR__OPTION:
-				if (resolve) return getOption();
-				return basicGetOption();
+				return getOption();
 			case BenchframeworkPackage.END_OPERATOR__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
+				return getResult();
 			case BenchframeworkPackage.END_OPERATOR__TEST_RUN:
-				if (resolve) return getTestRun();
-				return basicGetTestRun();
+				return getTestRun();
 			case BenchframeworkPackage.END_OPERATOR__NAME:
 				return getName();
 			case BenchframeworkPackage.END_OPERATOR__DESCRIPTION:
 				return getDescription();
+			case BenchframeworkPackage.END_OPERATOR__START_OPERATOR:
+				if (resolve) return getStartOperator();
+				return basicGetStartOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -392,6 +440,9 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 				return;
 			case BenchframeworkPackage.END_OPERATOR__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case BenchframeworkPackage.END_OPERATOR__START_OPERATOR:
+				setStartOperator((StartOperator)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -420,6 +471,9 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 			case BenchframeworkPackage.END_OPERATOR__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case BenchframeworkPackage.END_OPERATOR__START_OPERATOR:
+				setStartOperator((StartOperator)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -427,21 +481,23 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case BenchframeworkPackage.END_OPERATOR__OPTION:
-				return option != null;
+				return getOption() != null;
 			case BenchframeworkPackage.END_OPERATOR__RESULT:
 				return result != null;
 			case BenchframeworkPackage.END_OPERATOR__TEST_RUN:
-				return testRun != null;
+				return getTestRun() != null;
 			case BenchframeworkPackage.END_OPERATOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BenchframeworkPackage.END_OPERATOR__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case BenchframeworkPackage.END_OPERATOR__START_OPERATOR:
+				return startOperator != null;
 		}
 		return super.eIsSet(featureID);
 	}

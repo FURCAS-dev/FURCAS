@@ -87,6 +87,13 @@ public class BenchframeworkSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case BenchframeworkPackage.END_OPERATOR: {
+				EndOperator endOperator = (EndOperator)theEObject;
+				T result = caseEndOperator(endOperator);
+				if (result == null) result = caseOperator(endOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BenchframeworkPackage.ENGINE: {
 				Engine engine = (Engine)theEObject;
 				T result = caseEngine(engine);
@@ -99,33 +106,9 @@ public class BenchframeworkSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BenchframeworkPackage.RESULT_PROCESSOR: {
-				ResultProcessor resultProcessor = (ResultProcessor)theEObject;
-				T result = caseResultProcessor(resultProcessor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BenchframeworkPackage.OPTION_OBJECT: {
 				OptionObject optionObject = (OptionObject)theEObject;
 				T result = caseOptionObject(optionObject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BenchframeworkPackage.RESULT_OBJECT: {
-				ResultObject resultObject = (ResultObject)theEObject;
-				T result = caseResultObject(resultObject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BenchframeworkPackage.USER_INTERFACE: {
-				UserInterface userInterface = (UserInterface)theEObject;
-				T result = caseUserInterface(userInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BenchframeworkPackage.TEST_RUN: {
-				TestRun testRun = (TestRun)theEObject;
-				T result = caseTestRun(testRun);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,6 +119,18 @@ public class BenchframeworkSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BenchframeworkPackage.RESULT_OBJECT: {
+				ResultObject resultObject = (ResultObject)theEObject;
+				T result = caseResultObject(resultObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BenchframeworkPackage.RESULT_PROCESSOR: {
+				ResultProcessor resultProcessor = (ResultProcessor)theEObject;
+				T result = caseResultProcessor(resultProcessor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BenchframeworkPackage.START_OPERATOR: {
 				StartOperator startOperator = (StartOperator)theEObject;
 				T result = caseStartOperator(startOperator);
@@ -143,17 +138,15 @@ public class BenchframeworkSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BenchframeworkPackage.END_OPERATOR: {
-				EndOperator endOperator = (EndOperator)theEObject;
-				T result = caseEndOperator(endOperator);
-				if (result == null) result = caseOperator(endOperator);
+			case BenchframeworkPackage.TEST_RUN: {
+				TestRun testRun = (TestRun)theEObject;
+				T result = caseTestRun(testRun);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT: {
-				StartAndEndOperatorOptionObject startAndEndOperatorOptionObject = (StartAndEndOperatorOptionObject)theEObject;
-				T result = caseStartAndEndOperatorOptionObject(startAndEndOperatorOptionObject);
-				if (result == null) result = caseOptionObject(startAndEndOperatorOptionObject);
+			case BenchframeworkPackage.USER_INTERFACE: {
+				UserInterface userInterface = (UserInterface)theEObject;
+				T result = caseUserInterface(userInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,21 +301,6 @@ public class BenchframeworkSwitch<T> {
 	 * @generated
 	 */
 	public T caseEndOperator(EndOperator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Start And End Operator Option Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Start And End Operator Option Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStartAndEndOperatorOptionObject(StartAndEndOperatorOptionObject object) {
 		return null;
 	}
 

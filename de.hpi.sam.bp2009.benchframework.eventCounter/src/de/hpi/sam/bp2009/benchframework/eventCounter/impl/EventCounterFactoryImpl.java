@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
 import de.hpi.sam.bp2009.benchframework.eventCounter.*;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -66,6 +67,7 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 			case EventCounterPackage.EVENT_COUNTER_END: return createEventCounterEnd();
 			case EventCounterPackage.EVENT_COUNTER_OPTION_OBJECT: return createEventCounterOptionObject();
 			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT: return createEventCounterResultObject();
+			case EventCounterPackage.ESTRING_TO_EINTEGER_MAP: return (EObject)createEStringToEIntegerMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -139,6 +141,16 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 	public EventCounterResultObject createEventCounterResultObject() {
 		EventCounterResultObjectImpl eventCounterResultObject = new EventCounterResultObjectImpl();
 		return eventCounterResultObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, Integer> createEStringToEIntegerMap() {
+		EStringToEIntegerMapImpl eStringToEIntegerMap = new EStringToEIntegerMapImpl();
+		return eStringToEIntegerMap;
 	}
 
 	/**

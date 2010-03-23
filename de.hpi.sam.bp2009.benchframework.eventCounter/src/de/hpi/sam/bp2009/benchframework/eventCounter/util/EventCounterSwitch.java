@@ -6,13 +6,16 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.util;
 
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
 
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.eventCounter.*;
 
 import java.util.List;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -93,6 +96,7 @@ public class EventCounterSwitch<T> {
 			case EventCounterPackage.EVENT_COUNTER_START: {
 				EventCounterStart eventCounterStart = (EventCounterStart)theEObject;
 				T result = caseEventCounterStart(eventCounterStart);
+				if (result == null) result = caseStartOperator(eventCounterStart);
 				if (result == null) result = caseOperator(eventCounterStart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -100,6 +104,7 @@ public class EventCounterSwitch<T> {
 			case EventCounterPackage.EVENT_COUNTER_END: {
 				EventCounterEnd eventCounterEnd = (EventCounterEnd)theEObject;
 				T result = caseEventCounterEnd(eventCounterEnd);
+				if (result == null) result = caseEndOperator(eventCounterEnd);
 				if (result == null) result = caseOperator(eventCounterEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -114,6 +119,12 @@ public class EventCounterSwitch<T> {
 				EventCounterResultObject eventCounterResultObject = (EventCounterResultObject)theEObject;
 				T result = caseEventCounterResultObject(eventCounterResultObject);
 				if (result == null) result = caseResultObject(eventCounterResultObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventCounterPackage.ESTRING_TO_EINTEGER_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Integer> eStringToEIntegerMap = (Map.Entry<String, Integer>)theEObject;
+				T result = caseEStringToEIntegerMap(eStringToEIntegerMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,6 +193,21 @@ public class EventCounterSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EString To EInteger Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EString To EInteger Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEStringToEIntegerMap(Map.Entry<String, Integer> object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -193,6 +219,36 @@ public class EventCounterSwitch<T> {
 	 * @generated
 	 */
 	public T caseOperator(Operator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Start Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Start Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStartOperator(StartOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>End Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>End Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEndOperator(EndOperator object) {
 		return null;
 	}
 

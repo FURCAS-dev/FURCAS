@@ -10,6 +10,7 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
 
 import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -68,6 +69,7 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT: return createJETMResultObject();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT: return createExecutionTimeBenchmarkerOptionObject();
 			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT: return createJETMMultiResultObject();
+			case ExecutionTimeBenchmarkerPackage.ESTRING_TO_ETM_POINT_MAP: return (EObject)createEStringToETMPointMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -159,6 +161,16 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	public JETMMultiResultObject createJETMMultiResultObject() {
 		JETMMultiResultObjectImpl jetmMultiResultObject = new JETMMultiResultObjectImpl();
 		return jetmMultiResultObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, EtmPoint> createEStringToETMPointMap() {
+		EStringToETMPointMapImpl eStringToETMPointMap = new EStringToETMPointMapImpl();
+		return eStringToETMPointMap;
 	}
 
 	/**

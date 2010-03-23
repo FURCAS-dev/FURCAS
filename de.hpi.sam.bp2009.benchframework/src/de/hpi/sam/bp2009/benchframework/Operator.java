@@ -30,59 +30,59 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Operator extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Option</b></em>' reference.
+	 * Returns the value of the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Option</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Option</em>' reference.
+	 * @return the value of the '<em>Option</em>' containment reference.
 	 * @see #setOption(OptionObject)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_Option()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	OptionObject getOption();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Option</em>' reference.
+	 * @param value the new value of the '<em>Option</em>' containment reference.
 	 * @see #getOption()
 	 * @generated
 	 */
 	void setOption(OptionObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Result</b></em>' reference.
+	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result</em>' reference.
+	 * @return the value of the '<em>Result</em>' containment reference.
 	 * @see #setResult(ResultObject)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_Result()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	ResultObject getResult();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result</em>' reference.
+	 * @param value the new value of the '<em>Result</em>' containment reference.
 	 * @see #getResult()
 	 * @generated
 	 */
 	void setResult(ResultObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Test Run</b></em>' reference.
+	 * Returns the value of the '<em><b>Test Run</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.hpi.sam.bp2009.benchframework.TestRun#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -90,20 +90,20 @@ public interface Operator extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test Run</em>' reference.
+	 * @return the value of the '<em>Test Run</em>' container reference.
 	 * @see #setTestRun(TestRun)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_TestRun()
 	 * @see de.hpi.sam.bp2009.benchframework.TestRun#getOperators
-	 * @model opposite="operators"
+	 * @model opposite="operators" transient="false"
 	 * @generated
 	 */
 	TestRun getTestRun();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Test Run</em>' reference.
+	 * @param value the new value of the '<em>Test Run</em>' container reference.
 	 * @see #getTestRun()
 	 * @generated
 	 */

@@ -73,31 +73,31 @@ public interface EventCounterPackage extends EPackage {
 	int EVENT_COUNTER_START = 0;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
+	int EVENT_COUNTER_START__OPTION = BenchframeworkPackage.START_OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+	int EVENT_COUNTER_START__RESULT = BenchframeworkPackage.START_OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+	int EVENT_COUNTER_START__TEST_RUN = BenchframeworkPackage.START_OPERATOR__TEST_RUN;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -106,7 +106,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__NAME = BenchframeworkPackage.OPERATOR__NAME;
+	int EVENT_COUNTER_START__NAME = BenchframeworkPackage.START_OPERATOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -115,16 +115,16 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+	int EVENT_COUNTER_START__DESCRIPTION = BenchframeworkPackage.START_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>End Point</b></em>' reference.
+	 * The feature id for the '<em><b>End Operator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__END_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+	int EVENT_COUNTER_START__END_OPERATOR = BenchframeworkPackage.START_OPERATOR__END_OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Adapter</b></em>' attribute.
@@ -133,7 +133,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__ADAPTER = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+	int EVENT_COUNTER_START__ADAPTER = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Start</em>' class.
@@ -142,7 +142,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 2;
+	int EVENT_COUNTER_START_FEATURE_COUNT = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterEndImpl <em>End</em>}' class.
@@ -155,31 +155,31 @@ public interface EventCounterPackage extends EPackage {
 	int EVENT_COUNTER_END = 1;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
+	int EVENT_COUNTER_END__OPTION = BenchframeworkPackage.END_OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+	int EVENT_COUNTER_END__RESULT = BenchframeworkPackage.END_OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+	int EVENT_COUNTER_END__TEST_RUN = BenchframeworkPackage.END_OPERATOR__TEST_RUN;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -188,7 +188,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END__NAME = BenchframeworkPackage.OPERATOR__NAME;
+	int EVENT_COUNTER_END__NAME = BenchframeworkPackage.END_OPERATOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -197,16 +197,16 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+	int EVENT_COUNTER_END__DESCRIPTION = BenchframeworkPackage.END_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Start Point</b></em>' reference.
+	 * The feature id for the '<em><b>Start Operator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END__START_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+	int EVENT_COUNTER_END__START_OPERATOR = BenchframeworkPackage.END_OPERATOR__START_OPERATOR;
 
 	/**
 	 * The number of structural features of the '<em>End</em>' class.
@@ -215,7 +215,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_END_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+	int EVENT_COUNTER_END_FEATURE_COUNT = BenchframeworkPackage.END_OPERATOR_FEATURE_COUNT + 0;
 
 
 	/**
@@ -266,7 +266,7 @@ public interface EventCounterPackage extends EPackage {
 	int EVENT_COUNTER_RESULT_OBJECT__MESSAGE = BenchframeworkPackage.RESULT_OBJECT__MESSAGE;
 
 	/**
-	 * The feature id for the '<em><b>Event Counts</b></em>' attribute.
+	 * The feature id for the '<em><b>Event Counts</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -284,6 +284,43 @@ public interface EventCounterPackage extends EPackage {
 	int EVENT_COUNTER_RESULT_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EStringToEIntegerMapImpl <em>EString To EInteger Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EStringToEIntegerMapImpl
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getEStringToEIntegerMap()
+	 * @generated
+	 */
+	int ESTRING_TO_EINTEGER_MAP = 4;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EINTEGER_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EINTEGER_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>EString To EInteger Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_EINTEGER_MAP_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '<em>Adapter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,7 +328,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getAdapter()
 	 * @generated
 	 */
-	int ADAPTER = 4;
+	int ADAPTER = 5;
 
 
 	/**
@@ -303,17 +340,6 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEventCounterStart();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getEndPoint <em>End Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>End Point</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getEndPoint()
-	 * @see #getEventCounterStart()
-	 * @generated
-	 */
-	EReference getEventCounterStart_EndPoint();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getAdapter <em>Adapter</em>}'.
@@ -337,17 +363,6 @@ public interface EventCounterPackage extends EPackage {
 	EClass getEventCounterEnd();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd#getStartPoint <em>Start Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Start Point</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd#getStartPoint()
-	 * @see #getEventCounterEnd()
-	 * @generated
-	 */
-	EReference getEventCounterEnd_StartPoint();
-
-	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject <em>Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -368,15 +383,49 @@ public interface EventCounterPackage extends EPackage {
 	EClass getEventCounterResultObject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject#getEventCounts <em>Event Counts</em>}'.
+	 * Returns the meta object for the map '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject#getEventCounts <em>Event Counts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Event Counts</em>'.
+	 * @return the meta object for the map '<em>Event Counts</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject#getEventCounts()
 	 * @see #getEventCounterResultObject()
 	 * @generated
 	 */
-	EAttribute getEventCounterResultObject_EventCounts();
+	EReference getEventCounterResultObject_EventCounts();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To EInteger Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EString To EInteger Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.EString"
+	 *        valueDataType="org.eclipse.emf.ecore.EIntegerObject"
+	 * @generated
+	 */
+	EClass getEStringToEIntegerMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToEIntegerMap()
+	 * @generated
+	 */
+	EAttribute getEStringToEIntegerMap_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToEIntegerMap()
+	 * @generated
+	 */
+	EAttribute getEStringToEIntegerMap_Value();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.notify.Adapter <em>Adapter</em>}'.
@@ -422,14 +471,6 @@ public interface EventCounterPackage extends EPackage {
 		EClass EVENT_COUNTER_START = eINSTANCE.getEventCounterStart();
 
 		/**
-		 * The meta object literal for the '<em><b>End Point</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT_COUNTER_START__END_POINT = eINSTANCE.getEventCounterStart_EndPoint();
-
-		/**
 		 * The meta object literal for the '<em><b>Adapter</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -446,14 +487,6 @@ public interface EventCounterPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EVENT_COUNTER_END = eINSTANCE.getEventCounterEnd();
-
-		/**
-		 * The meta object literal for the '<em><b>Start Point</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT_COUNTER_END__START_POINT = eINSTANCE.getEventCounterEnd_StartPoint();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterOptionObjectImpl <em>Option Object</em>}' class.
@@ -476,12 +509,38 @@ public interface EventCounterPackage extends EPackage {
 		EClass EVENT_COUNTER_RESULT_OBJECT = eINSTANCE.getEventCounterResultObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Event Counts</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Event Counts</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS = eINSTANCE.getEventCounterResultObject_EventCounts();
+		EReference EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS = eINSTANCE.getEventCounterResultObject_EventCounts();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EStringToEIntegerMapImpl <em>EString To EInteger Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EStringToEIntegerMapImpl
+		 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getEStringToEIntegerMap()
+		 * @generated
+		 */
+		EClass ESTRING_TO_EINTEGER_MAP = eINSTANCE.getEStringToEIntegerMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ESTRING_TO_EINTEGER_MAP__KEY = eINSTANCE.getEStringToEIntegerMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ESTRING_TO_EINTEGER_MAP__VALUE = eINSTANCE.getEStringToEIntegerMap_Value();
 
 		/**
 		 * The meta object literal for the '<em>Adapter</em>' data type.

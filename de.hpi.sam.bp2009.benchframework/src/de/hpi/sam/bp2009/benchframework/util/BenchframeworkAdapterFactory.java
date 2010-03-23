@@ -72,6 +72,10 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 	protected BenchframeworkSwitch<Adapter> modelSwitch =
 		new BenchframeworkSwitch<Adapter>() {
 			@Override
+			public Adapter caseEndOperator(EndOperator object) {
+				return createEndOperatorAdapter();
+			}
+			@Override
 			public Adapter caseEngine(Engine object) {
 				return createEngineAdapter();
 			}
@@ -80,40 +84,32 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 				return createOperatorAdapter();
 			}
 			@Override
-			public Adapter caseResultProcessor(ResultProcessor object) {
-				return createResultProcessorAdapter();
-			}
-			@Override
 			public Adapter caseOptionObject(OptionObject object) {
 				return createOptionObjectAdapter();
-			}
-			@Override
-			public Adapter caseResultObject(ResultObject object) {
-				return createResultObjectAdapter();
-			}
-			@Override
-			public Adapter caseUserInterface(UserInterface object) {
-				return createUserInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseTestRun(TestRun object) {
-				return createTestRunAdapter();
 			}
 			@Override
 			public Adapter caseRandomNumberOptionObject(RandomNumberOptionObject object) {
 				return createRandomNumberOptionObjectAdapter();
 			}
 			@Override
+			public Adapter caseResultObject(ResultObject object) {
+				return createResultObjectAdapter();
+			}
+			@Override
+			public Adapter caseResultProcessor(ResultProcessor object) {
+				return createResultProcessorAdapter();
+			}
+			@Override
 			public Adapter caseStartOperator(StartOperator object) {
 				return createStartOperatorAdapter();
 			}
 			@Override
-			public Adapter caseEndOperator(EndOperator object) {
-				return createEndOperatorAdapter();
+			public Adapter caseTestRun(TestRun object) {
+				return createTestRunAdapter();
 			}
 			@Override
-			public Adapter caseStartAndEndOperatorOptionObject(StartAndEndOperatorOptionObject object) {
-				return createStartAndEndOperatorOptionObjectAdapter();
+			public Adapter caseUserInterface(UserInterface object) {
+				return createUserInterfaceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -272,20 +268,6 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEndOperatorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject <em>Start And End Operator Option Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject
-	 * @generated
-	 */
-	public Adapter createStartAndEndOperatorOptionObjectAdapter() {
 		return null;
 	}
 

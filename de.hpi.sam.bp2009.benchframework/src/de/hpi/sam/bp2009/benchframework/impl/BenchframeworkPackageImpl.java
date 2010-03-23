@@ -6,24 +6,9 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.EndOperator;
-import de.hpi.sam.bp2009.benchframework.Engine;
-import de.hpi.sam.bp2009.benchframework.Operator;
-import de.hpi.sam.bp2009.benchframework.OptionObject;
-import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
-import de.hpi.sam.bp2009.benchframework.ResultObject;
-import de.hpi.sam.bp2009.benchframework.ResultProcessor;
-import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
-import de.hpi.sam.bp2009.benchframework.StartOperator;
-import de.hpi.sam.bp2009.benchframework.Status;
-import de.hpi.sam.bp2009.benchframework.TestRun;
-import de.hpi.sam.bp2009.benchframework.UserInterface;
-
 import java.io.OutputStream;
-
 import java.util.Random;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -33,12 +18,23 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.jface.wizard.WizardPage;
-
 import org.eclipse.swt.widgets.Composite;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.EndOperator;
+import de.hpi.sam.bp2009.benchframework.Engine;
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
+import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
+import de.hpi.sam.bp2009.benchframework.Status;
+import de.hpi.sam.bp2009.benchframework.TestRun;
+import de.hpi.sam.bp2009.benchframework.UserInterface;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,13 +112,6 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	private EClass endOperatorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass startAndEndOperatorOptionObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -509,6 +498,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStartOperator_EndOperator() {
+		return (EReference)startOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEndOperator() {
 		return endOperatorEClass;
 	}
@@ -518,17 +516,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStartAndEndOperatorOptionObject() {
-		return startAndEndOperatorOptionObjectEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStartAndEndOperatorOptionObject_OtherEnd() {
-		return (EReference)startAndEndOperatorOptionObjectEClass.getEStructuralFeatures().get(0);
+	public EReference getEndOperator_StartOperator() {
+		return (EReference)endOperatorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -622,6 +611,9 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		isCreated = true;
 
 		// Create classes and their features
+		endOperatorEClass = createEClass(END_OPERATOR);
+		createEReference(endOperatorEClass, END_OPERATOR__START_OPERATOR);
+
 		engineEClass = createEClass(ENGINE);
 		createEReference(engineEClass, ENGINE__TEST_RUNS);
 		createEAttribute(engineEClass, ENGINE__EXEPTIONS_DURING_LAST_RUN);
@@ -633,38 +625,34 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEAttribute(operatorEClass, OPERATOR__NAME);
 		createEAttribute(operatorEClass, OPERATOR__DESCRIPTION);
 
-		resultProcessorEClass = createEClass(RESULT_PROCESSOR);
-		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__RESULT_PAGE);
-		createEReference(resultProcessorEClass, RESULT_PROCESSOR__TESTRUN);
-		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__NAME);
-
 		optionObjectEClass = createEClass(OPTION_OBJECT);
 		createEAttribute(optionObjectEClass, OPTION_OBJECT__WIZARD_PAGE);
-
-		resultObjectEClass = createEClass(RESULT_OBJECT);
-		createEAttribute(resultObjectEClass, RESULT_OBJECT__STATUS);
-		createEAttribute(resultObjectEClass, RESULT_OBJECT__MESSAGE);
-
-		userInterfaceEClass = createEClass(USER_INTERFACE);
-		createEReference(userInterfaceEClass, USER_INTERFACE__ENGINE);
-		createEReference(userInterfaceEClass, USER_INTERFACE__AVAILABLE_OPERATORS);
-		createEReference(userInterfaceEClass, USER_INTERFACE__RESULT_PROCESSOR);
-
-		testRunEClass = createEClass(TEST_RUN);
-		createEAttribute(testRunEClass, TEST_RUN__MODEL);
-		createEReference(testRunEClass, TEST_RUN__OPERATORS);
 
 		randomNumberOptionObjectEClass = createEClass(RANDOM_NUMBER_OPTION_OBJECT);
 		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX);
 		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST);
 		createEAttribute(randomNumberOptionObjectEClass, RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR);
 
+		resultObjectEClass = createEClass(RESULT_OBJECT);
+		createEAttribute(resultObjectEClass, RESULT_OBJECT__STATUS);
+		createEAttribute(resultObjectEClass, RESULT_OBJECT__MESSAGE);
+
+		resultProcessorEClass = createEClass(RESULT_PROCESSOR);
+		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__RESULT_PAGE);
+		createEReference(resultProcessorEClass, RESULT_PROCESSOR__TESTRUN);
+		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__NAME);
+
 		startOperatorEClass = createEClass(START_OPERATOR);
+		createEReference(startOperatorEClass, START_OPERATOR__END_OPERATOR);
 
-		endOperatorEClass = createEClass(END_OPERATOR);
+		testRunEClass = createEClass(TEST_RUN);
+		createEAttribute(testRunEClass, TEST_RUN__MODEL);
+		createEReference(testRunEClass, TEST_RUN__OPERATORS);
 
-		startAndEndOperatorOptionObjectEClass = createEClass(START_AND_END_OPERATOR_OPTION_OBJECT);
-		createEReference(startAndEndOperatorOptionObjectEClass, START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END);
+		userInterfaceEClass = createEClass(USER_INTERFACE);
+		createEReference(userInterfaceEClass, USER_INTERFACE__ENGINE);
+		createEReference(userInterfaceEClass, USER_INTERFACE__AVAILABLE_OPERATORS);
+		createEReference(userInterfaceEClass, USER_INTERFACE__RESULT_PROCESSOR);
 
 		// Create enums
 		statusEEnum = createEEnum(STATUS);
@@ -674,8 +662,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		wizardPageEDataType = createEDataType(WIZARD_PAGE);
 		uiComponentEDataType = createEDataType(UI_COMPONENT);
 		exceptionEDataType = createEDataType(EXCEPTION);
-		randomNumberGeneratorEDataType = createEDataType(RANDOM_NUMBER_GENERATOR);
 		cloneNotSupportedExceptionEDataType = createEDataType(CLONE_NOT_SUPPORTED_EXCEPTION);
+		randomNumberGeneratorEDataType = createEDataType(RANDOM_NUMBER_GENERATOR);
 	}
 
 	/**
@@ -706,12 +694,14 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		endOperatorEClass.getESuperTypes().add(this.getOperator());
 		randomNumberOptionObjectEClass.getESuperTypes().add(this.getOptionObject());
 		startOperatorEClass.getESuperTypes().add(this.getOperator());
-		endOperatorEClass.getESuperTypes().add(this.getOperator());
-		startAndEndOperatorOptionObjectEClass.getESuperTypes().add(this.getOptionObject());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(endOperatorEClass, EndOperator.class, "EndOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEndOperator_StartOperator(), this.getStartOperator(), this.getStartOperator_EndOperator(), "startOperator", null, 0, 1, EndOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(engineEClass, Engine.class, "Engine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEngine_TestRuns(), this.getTestRun(), null, "testRuns", null, 0, -1, Engine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
@@ -734,40 +724,32 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEOperation(op, g1);
 
 		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperator_Option(), this.getOptionObject(), null, "option", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperator_Result(), this.getResultObject(), null, "result", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperator_TestRun(), this.getTestRun(), this.getTestRun_Operators(), "testRun", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperator_Option(), this.getOptionObject(), null, "option", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperator_Result(), this.getResultObject(), null, "result", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperator_TestRun(), this.getTestRun(), this.getTestRun_Operators(), "testRun", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOperator_Name(), ecorePackage.getEString(), "name", "", 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOperator_Description(), ecorePackage.getEString(), "description", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(operatorEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getResultProcessor_ResultPage(), this.getWizardPage(), "resultPage", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getResultProcessor_Testrun(), this.getTestRun(), null, "testrun", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getResultProcessor_Name(), ecorePackage.getEString(), "name", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(optionObjectEClass, OptionObject.class, "OptionObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOptionObject_WizardPage(), this.getWizardPage(), "wizardPage", null, 0, 1, OptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(optionObjectEClass, null, "getOptionsAsMap", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		initEOperation(op, g1);
-
-		op = addEOperation(optionObjectEClass, null, "setOptionsAsMap", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "map", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = addEOperation(optionObjectEClass, this.getOptionObject(), "clone", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getCloneNotSupportedException());
+
+		initEClass(randomNumberOptionObjectEClass, RandomNumberOptionObject.class, "RandomNumberOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRandomNumberOptionObject_NumberListIndex(), ecorePackage.getEInt(), "numberListIndex", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getRandomNumberOptionObject_NumberList(), g1, "numberList", null, 0, 1, RandomNumberOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRandomNumberOptionObject_NumberGenerator(), this.getRandomNumberGenerator(), "numberGenerator", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEIntegerObject(), "upperLimit", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultObject_Status(), this.getStatus(), "status", "", 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -776,14 +758,17 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		op = addEOperation(resultObjectEClass, this.getUIComponent(), "getComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUIComponent(), "parent", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUserInterface_Engine(), this.getEngine(), null, "engine", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserInterface_AvailableOperators(), this.getOperator(), null, "availableOperators", null, 0, -1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserInterface_ResultProcessor(), this.getResultProcessor(), null, "resultProcessor", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getResultProcessor_ResultPage(), this.getWizardPage(), "resultPage", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getResultProcessor_Testrun(), this.getTestRun(), null, "testrun", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResultProcessor_Name(), ecorePackage.getEString(), "name", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(startOperatorEClass, StartOperator.class, "StartOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStartOperator_EndOperator(), this.getEndOperator(), this.getEndOperator_StartOperator(), "endOperator", null, 0, 1, StartOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testRunEClass, TestRun.class, "TestRun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestRun_Model(), ecorePackage.getEResourceSet(), "model", null, 0, 1, TestRun.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestRun_Operators(), this.getOperator(), this.getOperator_TestRun(), "operators", null, 0, -1, TestRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestRun_Operators(), this.getOperator(), this.getOperator_TestRun(), "operators", null, 0, -1, TestRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(testRunEClass, null, "getInstanceForClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		ETypeParameter t1 = addETypeParameter(op, "returnType");
@@ -813,25 +798,10 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		initEClass(randomNumberOptionObjectEClass, RandomNumberOptionObject.class, "RandomNumberOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRandomNumberOptionObject_NumberListIndex(), ecorePackage.getEInt(), "numberListIndex", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(ecorePackage.getEIntegerObject());
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getRandomNumberOptionObject_NumberList(), g1, "numberList", null, 0, 1, RandomNumberOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRandomNumberOptionObject_NumberGenerator(), this.getRandomNumberGenerator(), "numberGenerator", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEIntegerObject(), "upperLimit", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(startOperatorEClass, StartOperator.class, "StartOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(endOperatorEClass, EndOperator.class, "EndOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(startAndEndOperatorOptionObjectEClass, StartAndEndOperatorOptionObject.class, "StartAndEndOperatorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStartAndEndOperatorOptionObject_OtherEnd(), this.getOperator(), null, "otherEnd", null, 0, 1, StartAndEndOperatorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserInterface_Engine(), this.getEngine(), null, "engine", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserInterface_AvailableOperators(), this.getOperator(), null, "availableOperators", null, 0, -1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserInterface_ResultProcessor(), this.getResultProcessor(), null, "resultProcessor", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(statusEEnum, Status.class, "Status");
@@ -844,8 +814,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEDataType(wizardPageEDataType, WizardPage.class, "WizardPage", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(uiComponentEDataType, Composite.class, "UIComponent", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(randomNumberGeneratorEDataType, Random.class, "RandomNumberGenerator", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(cloneNotSupportedExceptionEDataType, CloneNotSupportedException.class, "CloneNotSupportedException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(randomNumberGeneratorEDataType, Random.class, "RandomNumberGenerator", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -6,21 +6,22 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import java.util.HashMap;
 import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
@@ -32,15 +33,14 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals;
+import de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-
 import etm.core.configuration.BasicEtmConfigurator;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
-import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,12 +49,6 @@ import java.util.Map;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getOption <em>Option</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getResult <em>Result</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getTestRun <em>Test Run</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getEndPoint <em>End Point</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getMonitor <em>Monitor</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getPoint <em>Point</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getStringToPoint <em>String To Point</em>}</li>
@@ -63,87 +57,7 @@ import java.util.Map;
  *
  * @generated
  */
-public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements ExecutionTimeBenchmarkerStart {
-	/**
-	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOption()
-	 * @generated
-	 * @ordered
-	 */
-	protected OptionObject option;
-
-	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResult()
-	 * @generated
-	 * @ordered
-	 */
-	protected ResultObject result;
-
-	/**
-	 * The cached value of the '{@link #getTestRun() <em>Test Run</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestRun()
-	 * @generated
-	 * @ordered
-	 */
-	protected TestRun testRun;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = "";
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getEndPoint() <em>End Point</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPoint()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExecutionTimeBenchmarkerEnd endPoint;
-
+public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl implements ExecutionTimeBenchmarkerStart {
 	/**
 	 * The default value of the '{@link #getMonitor() <em>Monitor</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -184,14 +98,14 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	protected EtmPoint point = POINT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStringToPoint() <em>String To Point</em>}' attribute.
+	 * The cached value of the '{@link #getStringToPoint() <em>String To Point</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getStringToPoint()
 	 * @generated
 	 * @ordered
 	 */
-	protected Map<String, EtmPoint> stringToPoint;
+	protected EMap<String, EtmPoint> stringToPoint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,13 +115,13 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	public ExecutionTimeBenchmarkerStartImpl() {
 		super();
 		ExecutionTimeBenchmarkerOptionObject options = ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerOptionObject();
-		setOption(options);
+		basicSetOption(options,null);
 		setName("Execution Time Benchmark Start");
 		setDescription("Starts a time measurement.");
 		ExecutionTimeBenchmarkerEnd end = ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerEnd();
-		setEndPoint(end); //setStartPoint is the EOpposite of this reference, we don't need to set it explicitly
+		setEndOperator(end); //setStartPoint is the EOpposite of this reference, we don't need to set it explicitly
 		end.setOption(options);
-		setStringToPoint(new HashMap<String, EtmPoint>());
+		getStringToPoint().clear();
 	}
 
 	/**
@@ -218,168 +132,6 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	protected EClass eStaticClass() {
 		return ExecutionTimeBenchmarkerPackage.Literals.EXECUTION_TIME_BENCHMARKER_START;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OptionObject getOption() {
-		if (option != null && option.eIsProxy()) {
-			InternalEObject oldOption = (InternalEObject)option;
-			option = (OptionObject)eResolveProxy(oldOption);
-			if (option != oldOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__OPTION, oldOption, option));
-			}
-		}
-		return option;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OptionObject basicGetOption() {
-		return option;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOption(OptionObject newOption) {
-		OptionObject oldOption = option;
-		option = newOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__OPTION, oldOption, option));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (ResultObject)eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__RESULT, oldResult, result));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject basicGetResult() {
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResult(ResultObject newResult) {
-		ResultObject oldResult = result;
-		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__RESULT, oldResult, result));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun getTestRun() {
-		if (testRun != null && testRun.eIsProxy()) {
-			InternalEObject oldTestRun = (InternalEObject)testRun;
-			testRun = (TestRun)eResolveProxy(oldTestRun);
-			if (testRun != oldTestRun) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN, oldTestRun, testRun));
-			}
-		}
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun basicGetTestRun() {
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExecutionTimeBenchmarkerEnd getEndPoint() {
-		if (endPoint != null && endPoint.eIsProxy()) {
-			InternalEObject oldEndPoint = (InternalEObject)endPoint;
-			endPoint = (ExecutionTimeBenchmarkerEnd)eResolveProxy(oldEndPoint);
-			if (endPoint != oldEndPoint) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, oldEndPoint, endPoint));
-			}
-		}
-		return endPoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExecutionTimeBenchmarkerEnd basicGetEndPoint() {
-		return endPoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndPoint(ExecutionTimeBenchmarkerEnd newEndPoint, NotificationChain msgs) {
-		ExecutionTimeBenchmarkerEnd oldEndPoint = endPoint;
-		endPoint = newEndPoint;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, oldEndPoint, newEndPoint);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPoint(ExecutionTimeBenchmarkerEnd newEndPoint) {
-		if (newEndPoint != endPoint) {
-			NotificationChain msgs = null;
-			if (endPoint != null)
-				msgs = ((InternalEObject)endPoint).eInverseRemove(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, ExecutionTimeBenchmarkerEnd.class, msgs);
-			if (newEndPoint != null)
-				msgs = ((InternalEObject)newEndPoint).eInverseAdd(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, ExecutionTimeBenchmarkerEnd.class, msgs);
-			msgs = basicSetEndPoint(newEndPoint, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, newEndPoint, newEndPoint));
 	}
 
 	/**
@@ -429,51 +181,11 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map<String, EtmPoint> getStringToPoint() {
-		return stringToPoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStringToPoint(Map<String, EtmPoint> newStringToPoint) {
-		Map<String, EtmPoint> oldStringToPoint = stringToPoint;
-		stringToPoint = newStringToPoint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT, oldStringToPoint, stringToPoint));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EtmPoint getStartPointForUUID(String uuid) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
-				if (testRun != null)
-					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
-				return basicSetTestRun((TestRun)otherEnd, msgs);
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
-				if (endPoint != null)
-					msgs = ((InternalEObject)endPoint).eInverseRemove(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, ExecutionTimeBenchmarkerEnd.class, msgs);
-				return basicSetEndPoint((ExecutionTimeBenchmarkerEnd)otherEnd, msgs);
+	public EMap<String, EtmPoint> getStringToPoint() {
+		if (stringToPoint == null) {
+			stringToPoint = new EcoreEMap<String,EtmPoint>(ExecutionTimeBenchmarkerPackage.Literals.ESTRING_TO_ETM_POINT_MAP, EStringToETMPointMapImpl.class, this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		return stringToPoint;
 	}
 
 	/**
@@ -484,10 +196,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
-				return basicSetTestRun(null, msgs);
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
-				return basicSetEndPoint(null, msgs);
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
+				return ((InternalEList<?>)getStringToPoint()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -500,28 +210,13 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__OPTION:
-				if (resolve) return getOption();
-				return basicGetOption();
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
-				if (resolve) return getTestRun();
-				return basicGetTestRun();
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__NAME:
-				return getName();
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__DESCRIPTION:
-				return getDescription();
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
-				if (resolve) return getEndPoint();
-				return basicGetEndPoint();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__MONITOR:
 				return getMonitor();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				return getPoint();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				return getStringToPoint();
+				if (coreType) return getStringToPoint();
+				else return getStringToPoint().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -531,28 +226,9 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__OPTION:
-				setOption((OptionObject)newValue);
-				return;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__RESULT:
-				setResult((ResultObject)newValue);
-				return;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
-				setTestRun((TestRun)newValue);
-				return;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__NAME:
-				setName((String)newValue);
-				return;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
-				setEndPoint((ExecutionTimeBenchmarkerEnd)newValue);
-				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__MONITOR:
 				setMonitor((EtmMonitor)newValue);
 				return;
@@ -560,7 +236,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 				setPoint((EtmPoint)newValue);
 				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				setStringToPoint((Map<String, EtmPoint>)newValue);
+				((EStructuralFeature.Setting)getStringToPoint()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -571,76 +247,10 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 * @generated NOT
 	 */
 	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		TestRun oldTestRun = testRun;
-		if(endPoint!=null)
-			endPoint.setTestRun(newTestRun);
-		testRun = newTestRun;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.OPERATOR__TEST_RUN, oldTestRun, newTestRun);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		if(getEndOperator()!=null)
+			getEndOperator().setTestRun(newTestRun);
+		msgs = eBasicSetContainer((InternalEObject)newTestRun, BenchframeworkPackage.START_OPERATOR__TEST_RUN, msgs);
 		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTestRun(TestRun newTestRun) {
-		if (newTestRun != testRun) {
-			NotificationChain msgs = null;
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
-			if (newTestRun != null)
-				msgs = ((InternalEObject)newTestRun).eInverseAdd(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
-			msgs = basicSetTestRun(newTestRun, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN, newTestRun, newTestRun));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -651,9 +261,6 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
-				setEndPoint((ExecutionTimeBenchmarkerEnd)null);
-				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__MONITOR:
 				setMonitor(MONITOR_EDEFAULT);
 				return;
@@ -663,7 +270,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 			//make sure start and endpoint reference the same testrun
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
 				setTestRun(null);
-				getEndPoint().setTestRun(null);
+				if(getEndOperator()!=null)
+					getEndOperator().setTestRun(null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -677,24 +285,12 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__OPTION:
-				return option != null;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__RESULT:
-				return result != null;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
-				return testRun != null;
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
-				return endPoint != null;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__MONITOR:
 				return MONITOR_EDEFAULT == null ? monitor != null : !MONITOR_EDEFAULT.equals(monitor);
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				return POINT_EDEFAULT == null ? point != null : !POINT_EDEFAULT.equals(point);
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				return stringToPoint != null;
+				return stringToPoint != null && !stringToPoint.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -709,16 +305,10 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", description: ");
-		result.append(description);
-		result.append(", monitor: ");
+		result.append(" (monitor: ");
 		result.append(monitor);
 		result.append(", point: ");
 		result.append(point);
-		result.append(", stringToPoint: ");
-		result.append(stringToPoint);
 		result.append(')');
 		return result.toString();
 	}
@@ -729,7 +319,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	public void execute() {
 		//reset results of the endpoint
-		getEndPoint().setResult(null);
+		getEndOperator().setResult(null);
 		BasicEtmConfigurator.configure();
 		setMonitor(EtmManager.getEtmMonitor());
 		getMonitor().start();
@@ -785,10 +375,10 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 					r.setTransactionTime(p.getTransactionTime());
 					r.setStatus(Status.SUCCESSFUL);
 					r.setMessage("Point collected: " +notification.getNewStringValue() +"\nid:"+ notification.getOldStringValue());
-					if(!(getEndPoint().getResult()!=null && getEndPoint().getResult() instanceof JETMMultiResultObject)){
-						getEndPoint().setResult(ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMMultiResultObject());
+					if(!(getEndOperator().getResult()!=null && getEndOperator().getResult() instanceof JETMMultiResultObject)){
+						getEndOperator().setResult(ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMMultiResultObject());
 					}
-					((JETMMultiResultObject)getEndPoint().getResult()).getResults().add(r);
+					((JETMMultiResultObject)getEndOperator().getResult()).getResults().add(r);
 					getStringToPoint().remove(notification.getOldStringValue());
 				}
 

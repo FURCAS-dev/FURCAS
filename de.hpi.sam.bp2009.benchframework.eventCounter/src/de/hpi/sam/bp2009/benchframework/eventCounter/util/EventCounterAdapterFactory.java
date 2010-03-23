@@ -6,11 +6,14 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.util;
 
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
 
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.eventCounter.*;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -91,8 +94,20 @@ public class EventCounterAdapterFactory extends AdapterFactoryImpl {
 				return createEventCounterResultObjectAdapter();
 			}
 			@Override
+			public Adapter caseEStringToEIntegerMap(Map.Entry<String, Integer> object) {
+				return createEStringToEIntegerMapAdapter();
+			}
+			@Override
 			public Adapter caseOperator(Operator object) {
 				return createOperatorAdapter();
+			}
+			@Override
+			public Adapter caseStartOperator(StartOperator object) {
+				return createStartOperatorAdapter();
+			}
+			@Override
+			public Adapter caseEndOperator(EndOperator object) {
+				return createEndOperatorAdapter();
 			}
 			@Override
 			public Adapter caseResultObject(ResultObject object) {
@@ -175,6 +190,20 @@ public class EventCounterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To EInteger Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createEStringToEIntegerMapAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -185,6 +214,34 @@ public class EventCounterAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.StartOperator <em>Start Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.StartOperator
+	 * @generated
+	 */
+	public Adapter createStartOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.EndOperator <em>End Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.EndOperator
+	 * @generated
+	 */
+	public Adapter createEndOperatorAdapter() {
 		return null;
 	}
 

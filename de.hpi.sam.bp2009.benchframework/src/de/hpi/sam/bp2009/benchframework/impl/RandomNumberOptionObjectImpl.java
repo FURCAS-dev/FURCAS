@@ -6,7 +6,6 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
-import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -257,29 +256,7 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map<String, Object> getOptionsAsMap() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOptionsAsMap(Map<String, Object> map) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public RandomNumberOptionObject clone() throws CloneNotSupportedException {
 		return (RandomNumberOptionObject) EcoreUtil.copy(this);

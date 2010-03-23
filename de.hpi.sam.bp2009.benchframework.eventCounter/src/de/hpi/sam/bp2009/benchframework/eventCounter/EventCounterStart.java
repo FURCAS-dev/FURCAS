@@ -8,7 +8,7 @@ package de.hpi.sam.bp2009.benchframework.eventCounter;
 
 import org.eclipse.emf.common.notify.Adapter;
 
-import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,6 @@ import de.hpi.sam.bp2009.benchframework.Operator;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getEndPoint <em>End Point</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getAdapter <em>Adapter</em>}</li>
  * </ul>
  * </p>
@@ -31,35 +30,7 @@ import de.hpi.sam.bp2009.benchframework.Operator;
  * @model
  * @generated
  */
-public interface EventCounterStart extends Operator {
-	/**
-	 * Returns the value of the '<em><b>End Point</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd#getStartPoint <em>Start Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>End Point</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>End Point</em>' reference.
-	 * @see #setEndPoint(EventCounterEnd)
-	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage#getEventCounterStart_EndPoint()
-	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd#getStartPoint
-	 * @model opposite="startPoint"
-	 * @generated
-	 */
-	EventCounterEnd getEndPoint();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getEndPoint <em>End Point</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End Point</em>' reference.
-	 * @see #getEndPoint()
-	 * @generated
-	 */
-	void setEndPoint(EventCounterEnd value);
-
+public interface EventCounterStart extends StartOperator {
 	/**
 	 * Returns the value of the '<em><b>Adapter</b></em>' attribute.
 	 * <!-- begin-user-doc -->

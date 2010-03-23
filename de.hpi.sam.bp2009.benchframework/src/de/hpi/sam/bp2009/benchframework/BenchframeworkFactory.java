@@ -80,15 +80,6 @@ public interface BenchframeworkFactory extends EFactory {
 	EndOperator createEndOperator();
 
 	/**
-	 * Returns a new object of class '<em>Start And End Operator Option Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Start And End Operator Option Object</em>'.
-	 * @generated
-	 */
-	StartAndEndOperatorOptionObject createStartAndEndOperatorOptionObject();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

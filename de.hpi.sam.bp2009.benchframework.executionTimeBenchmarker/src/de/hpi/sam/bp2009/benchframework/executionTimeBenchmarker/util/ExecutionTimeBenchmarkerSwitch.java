@@ -6,14 +6,18 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util;
 
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
 
+import etm.core.monitor.EtmPoint;
 import java.util.List;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -94,6 +98,7 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START: {
 				ExecutionTimeBenchmarkerStart executionTimeBenchmarkerStart = (ExecutionTimeBenchmarkerStart)theEObject;
 				T result = caseExecutionTimeBenchmarkerStart(executionTimeBenchmarkerStart);
+				if (result == null) result = caseStartOperator(executionTimeBenchmarkerStart);
 				if (result == null) result = caseOperator(executionTimeBenchmarkerStart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -101,6 +106,7 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END: {
 				ExecutionTimeBenchmarkerEnd executionTimeBenchmarkerEnd = (ExecutionTimeBenchmarkerEnd)theEObject;
 				T result = caseExecutionTimeBenchmarkerEnd(executionTimeBenchmarkerEnd);
+				if (result == null) result = caseEndOperator(executionTimeBenchmarkerEnd);
 				if (result == null) result = caseOperator(executionTimeBenchmarkerEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -123,6 +129,12 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 				JETMMultiResultObject jetmMultiResultObject = (JETMMultiResultObject)theEObject;
 				T result = caseJETMMultiResultObject(jetmMultiResultObject);
 				if (result == null) result = caseResultObject(jetmMultiResultObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExecutionTimeBenchmarkerPackage.ESTRING_TO_ETM_POINT_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, EtmPoint> eStringToETMPointMap = (Map.Entry<String, EtmPoint>)theEObject;
+				T result = caseEStringToETMPointMap(eStringToETMPointMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -206,6 +218,21 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EString To ETM Point Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EString To ETM Point Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEStringToETMPointMap(Map.Entry<String, EtmPoint> object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -217,6 +244,36 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 	 * @generated
 	 */
 	public T caseOperator(Operator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Start Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Start Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStartOperator(StartOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>End Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>End Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEndOperator(EndOperator object) {
 		return null;
 	}
 

@@ -5,8 +5,6 @@
  * $Id$
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -115,7 +113,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	 */
 	protected ExecutionTimeBenchmarkerOptionObjectImpl() {
 		super();
-		setWizardPage(new ExecutionTimeWizardPage(this));
 	}
 
 	/**
@@ -210,28 +207,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 		endLiteral = newEndLiteral;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__END_LITERAL, oldEndLiteral, endLiteral));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map<String, Object> getOptionsAsMap() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOptionsAsMap(Map<String, Object> map) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 
 	/**

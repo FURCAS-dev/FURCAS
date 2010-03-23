@@ -65,7 +65,7 @@ public interface TestRun extends EObject {
 	void setModel(ResourceSet value);
 
 	/**
-	 * Returns the value of the '<em><b>Operators</b></em>' reference list.
+	 * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
 	 * The list contents are of type {@link de.hpi.sam.bp2009.benchframework.Operator}.
 	 * It is bidirectional and its opposite is '{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}'.
 	 * <!-- begin-user-doc -->
@@ -78,10 +78,10 @@ public interface TestRun extends EObject {
 	 * All operator, that should be executed on exuting the testrun
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Operators</em>' reference list.
+	 * @return the value of the '<em>Operators</em>' containment reference list.
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getTestRun_Operators()
 	 * @see de.hpi.sam.bp2009.benchframework.Operator#getTestRun
-	 * @model opposite="testRun"
+	 * @model opposite="testRun" containment="true"
 	 * @generated
 	 */
 	EList<Operator> getOperators();

@@ -68,13 +68,12 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BenchframeworkPackage.ENGINE: return createEngine();
-			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
-			case BenchframeworkPackage.TEST_RUN: return createTestRun();
-			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT: return createRandomNumberOptionObject();
-			case BenchframeworkPackage.START_OPERATOR: return createStartOperator();
 			case BenchframeworkPackage.END_OPERATOR: return createEndOperator();
-			case BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT: return createStartAndEndOperatorOptionObject();
+			case BenchframeworkPackage.ENGINE: return createEngine();
+			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT: return createRandomNumberOptionObject();
+			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
+			case BenchframeworkPackage.START_OPERATOR: return createStartOperator();
+			case BenchframeworkPackage.TEST_RUN: return createTestRun();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,10 +95,10 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return createWizardPageFromString(eDataType, initialValue);
 			case BenchframeworkPackage.UI_COMPONENT:
 				return createUIComponentFromString(eDataType, initialValue);
-			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
-				return createRandomNumberGeneratorFromString(eDataType, initialValue);
 			case BenchframeworkPackage.CLONE_NOT_SUPPORTED_EXCEPTION:
 				return createCloneNotSupportedExceptionFromString(eDataType, initialValue);
+			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
+				return createRandomNumberGeneratorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -121,10 +120,10 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return convertWizardPageToString(eDataType, instanceValue);
 			case BenchframeworkPackage.UI_COMPONENT:
 				return convertUIComponentToString(eDataType, instanceValue);
-			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
-				return convertRandomNumberGeneratorToString(eDataType, instanceValue);
 			case BenchframeworkPackage.CLONE_NOT_SUPPORTED_EXCEPTION:
 				return convertCloneNotSupportedExceptionToString(eDataType, instanceValue);
+			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
+				return convertRandomNumberGeneratorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -188,16 +187,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public EndOperator createEndOperator() {
 		EndOperatorImpl endOperator = new EndOperatorImpl();
 		return endOperator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StartAndEndOperatorOptionObject createStartAndEndOperatorOptionObject() {
-		StartAndEndOperatorOptionObjectImpl startAndEndOperatorOptionObject = new StartAndEndOperatorOptionObjectImpl();
-		return startAndEndOperatorOptionObject;
 	}
 
 	/**

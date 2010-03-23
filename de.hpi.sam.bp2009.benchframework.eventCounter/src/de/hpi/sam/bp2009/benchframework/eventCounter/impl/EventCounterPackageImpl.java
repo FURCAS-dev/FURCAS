@@ -6,24 +6,23 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import java.util.Map;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,6 +58,13 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 * @generated
 	 */
 	private EClass eventCounterResultObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eStringToEIntegerMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,17 +151,8 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventCounterStart_EndPoint() {
-		return (EReference)eventCounterStartEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getEventCounterStart_Adapter() {
-		return (EAttribute)eventCounterStartEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)eventCounterStartEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -165,15 +162,6 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 */
 	public EClass getEventCounterEnd() {
 		return eventCounterEndEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEventCounterEnd_StartPoint() {
-		return (EReference)eventCounterEndEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -199,8 +187,35 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEventCounterResultObject_EventCounts() {
-		return (EAttribute)eventCounterResultObjectEClass.getEStructuralFeatures().get(0);
+	public EReference getEventCounterResultObject_EventCounts() {
+		return (EReference)eventCounterResultObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEStringToEIntegerMap() {
+		return eStringToEIntegerMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEStringToEIntegerMap_Key() {
+		return (EAttribute)eStringToEIntegerMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEStringToEIntegerMap_Value() {
+		return (EAttribute)eStringToEIntegerMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -241,16 +256,18 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 
 		// Create classes and their features
 		eventCounterStartEClass = createEClass(EVENT_COUNTER_START);
-		createEReference(eventCounterStartEClass, EVENT_COUNTER_START__END_POINT);
 		createEAttribute(eventCounterStartEClass, EVENT_COUNTER_START__ADAPTER);
 
 		eventCounterEndEClass = createEClass(EVENT_COUNTER_END);
-		createEReference(eventCounterEndEClass, EVENT_COUNTER_END__START_POINT);
 
 		eventCounterOptionObjectEClass = createEClass(EVENT_COUNTER_OPTION_OBJECT);
 
 		eventCounterResultObjectEClass = createEClass(EVENT_COUNTER_RESULT_OBJECT);
-		createEAttribute(eventCounterResultObjectEClass, EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS);
+		createEReference(eventCounterResultObjectEClass, EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS);
+
+		eStringToEIntegerMapEClass = createEClass(ESTRING_TO_EINTEGER_MAP);
+		createEAttribute(eStringToEIntegerMapEClass, ESTRING_TO_EINTEGER_MAP__KEY);
+		createEAttribute(eStringToEIntegerMapEClass, ESTRING_TO_EINTEGER_MAP__VALUE);
 
 		// Create data types
 		adapterEDataType = createEDataType(ADAPTER);
@@ -287,27 +304,24 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		eventCounterStartEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
-		eventCounterEndEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
+		eventCounterStartEClass.getESuperTypes().add(theBenchframeworkPackage.getStartOperator());
+		eventCounterEndEClass.getESuperTypes().add(theBenchframeworkPackage.getEndOperator());
 		eventCounterResultObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getResultObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventCounterStartEClass, EventCounterStart.class, "EventCounterStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventCounterStart_EndPoint(), this.getEventCounterEnd(), this.getEventCounterEnd_StartPoint(), "endPoint", null, 0, 1, EventCounterStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEventCounterStart_Adapter(), this.getAdapter(), "adapter", null, 0, 1, EventCounterStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventCounterEndEClass, EventCounterEnd.class, "EventCounterEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventCounterEnd_StartPoint(), this.getEventCounterStart(), this.getEventCounterStart_EndPoint(), "startPoint", null, 0, 1, EventCounterEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventCounterOptionObjectEClass, EventCounterOptionObject.class, "EventCounterOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(eventCounterResultObjectEClass, EventCounterResultObject.class, "EventCounterResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEIntegerObject());
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getEventCounterResultObject_EventCounts(), g1, "eventCounts", null, 0, 1, EventCounterResultObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventCounterResultObject_EventCounts(), this.getEStringToEIntegerMap(), null, "eventCounts", null, 0, -1, EventCounterResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eStringToEIntegerMapEClass, Map.Entry.class, "EStringToEIntegerMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEStringToEIntegerMap_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEStringToEIntegerMap_Value(), ecorePackage.getEIntegerObject(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

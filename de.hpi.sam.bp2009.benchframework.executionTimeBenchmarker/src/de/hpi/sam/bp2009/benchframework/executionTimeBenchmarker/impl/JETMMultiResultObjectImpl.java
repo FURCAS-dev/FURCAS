@@ -6,11 +6,14 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -36,7 +39,7 @@ import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
  */
 public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMMultiResultObject {
 	/**
-	 * The cached value of the '{@link #getResults() <em>Results</em>}' attribute.
+	 * The cached value of the '{@link #getResults() <em>Results</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getResults()
@@ -52,7 +55,7 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	 */
 	protected JETMMultiResultObjectImpl() {
 		super();
-		setResults(new BasicEList<JETMResultObject>());
+		getResults().clear();
 	}
 
 	/**
@@ -71,6 +74,9 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	 * @generated
 	 */
 	public EList<JETMResultObject> getResults() {
+		if (results == null) {
+			results = new EObjectContainmentEList<JETMResultObject>(JETMResultObject.class, this, ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT__RESULTS);
+		}
 		return results;
 	}
 
@@ -79,11 +85,13 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResults(EList<JETMResultObject> newResults) {
-		EList<JETMResultObject> oldResults = results;
-		results = newResults;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT__RESULTS, oldResults, results));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT__RESULTS:
+				return ((InternalEList<?>)getResults()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -110,7 +118,8 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT__RESULTS:
-				setResults((EList<JETMResultObject>)newValue);
+				getResults().clear();
+				getResults().addAll((Collection<? extends JETMResultObject>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -125,7 +134,7 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT__RESULTS:
-				setResults((EList<JETMResultObject>)null);
+				getResults().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -140,26 +149,11 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT__RESULTS:
-				return results != null;
+				return results != null && !results.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (results: ");
-		result.append(results);
-		result.append(')');
-		return result.toString();
-	}
 	@Override
 	public Composite getComposite(Composite parent) {
 		Composite comp = new Composite(parent, SWT.LEFT);

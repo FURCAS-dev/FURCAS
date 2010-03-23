@@ -74,31 +74,31 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_START = 0;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
+	int EXECUTION_TIME_BENCHMARKER_START__OPTION = BenchframeworkPackage.START_OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+	int EXECUTION_TIME_BENCHMARKER_START__RESULT = BenchframeworkPackage.START_OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+	int EXECUTION_TIME_BENCHMARKER_START__TEST_RUN = BenchframeworkPackage.START_OPERATOR__TEST_RUN;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -107,7 +107,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__NAME = BenchframeworkPackage.OPERATOR__NAME;
+	int EXECUTION_TIME_BENCHMARKER_START__NAME = BenchframeworkPackage.START_OPERATOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -116,16 +116,16 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+	int EXECUTION_TIME_BENCHMARKER_START__DESCRIPTION = BenchframeworkPackage.START_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>End Point</b></em>' reference.
+	 * The feature id for the '<em><b>End Operator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__END_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+	int EXECUTION_TIME_BENCHMARKER_START__END_OPERATOR = BenchframeworkPackage.START_OPERATOR__END_OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Monitor</b></em>' attribute.
@@ -134,7 +134,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__MONITOR = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+	int EXECUTION_TIME_BENCHMARKER_START__MONITOR = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Point</b></em>' attribute.
@@ -143,16 +143,16 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 2;
+	int EXECUTION_TIME_BENCHMARKER_START__POINT = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>String To Point</b></em>' attribute.
+	 * The feature id for the '<em><b>String To Point</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 3;
+	int EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Start</em>' class.
@@ -161,7 +161,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 4;
+	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
@@ -174,31 +174,31 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_END = 1;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
+	int EXECUTION_TIME_BENCHMARKER_END__OPTION = BenchframeworkPackage.END_OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+	int EXECUTION_TIME_BENCHMARKER_END__RESULT = BenchframeworkPackage.END_OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+	int EXECUTION_TIME_BENCHMARKER_END__TEST_RUN = BenchframeworkPackage.END_OPERATOR__TEST_RUN;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -207,7 +207,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__NAME = BenchframeworkPackage.OPERATOR__NAME;
+	int EXECUTION_TIME_BENCHMARKER_END__NAME = BenchframeworkPackage.END_OPERATOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -216,16 +216,16 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+	int EXECUTION_TIME_BENCHMARKER_END__DESCRIPTION = BenchframeworkPackage.END_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Start Point</b></em>' reference.
+	 * The feature id for the '<em><b>Start Operator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__START_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+	int EXECUTION_TIME_BENCHMARKER_END__START_OPERATOR = BenchframeworkPackage.END_OPERATOR__START_OPERATOR;
 
 	/**
 	 * The number of structural features of the '<em>End</em>' class.
@@ -234,7 +234,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+	int EXECUTION_TIME_BENCHMARKER_END_FEATURE_COUNT = BenchframeworkPackage.END_OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl <em>JETM Result Object</em>}' class.
@@ -394,7 +394,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int JETM_MULTI_RESULT_OBJECT__MESSAGE = BenchframeworkPackage.RESULT_OBJECT__MESSAGE;
 
 	/**
-	 * The feature id for the '<em><b>Results</b></em>' attribute.
+	 * The feature id for the '<em><b>Results</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -412,6 +412,43 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int JETM_MULTI_RESULT_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl <em>EString To ETM Point Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getEStringToETMPointMap()
+	 * @generated
+	 */
+	int ESTRING_TO_ETM_POINT_MAP = 5;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_ETM_POINT_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_ETM_POINT_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>EString To ETM Point Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESTRING_TO_ETM_POINT_MAP_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,7 +456,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getMeasurableClassLiterals()
 	 * @generated
 	 */
-	int MEASURABLE_CLASS_LITERALS = 5;
+	int MEASURABLE_CLASS_LITERALS = 6;
 
 	/**
 	 * The meta object id for the '<em>ETM Monitor</em>' data type.
@@ -429,7 +466,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMMonitor()
 	 * @generated
 	 */
-	int ETM_MONITOR = 6;
+	int ETM_MONITOR = 7;
 
 
 	/**
@@ -440,7 +477,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMPoint()
 	 * @generated
 	 */
-	int ETM_POINT = 7;
+	int ETM_POINT = 8;
 
 
 	/**
@@ -452,17 +489,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExecutionTimeBenchmarkerStart();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getEndPoint <em>End Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>End Point</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getEndPoint()
-	 * @see #getExecutionTimeBenchmarkerStart()
-	 * @generated
-	 */
-	EReference getExecutionTimeBenchmarkerStart_EndPoint();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getMonitor <em>Monitor</em>}'.
@@ -487,15 +513,15 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	EAttribute getExecutionTimeBenchmarkerStart_Point();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint <em>String To Point</em>}'.
+	 * Returns the meta object for the map '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint <em>String To Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>String To Point</em>'.
+	 * @return the meta object for the map '<em>String To Point</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint()
 	 * @see #getExecutionTimeBenchmarkerStart()
 	 * @generated
 	 */
-	EAttribute getExecutionTimeBenchmarkerStart_StringToPoint();
+	EReference getExecutionTimeBenchmarkerStart_StringToPoint();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
@@ -506,17 +532,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExecutionTimeBenchmarkerEnd();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd#getStartPoint <em>Start Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Start Point</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd#getStartPoint()
-	 * @see #getExecutionTimeBenchmarkerEnd()
-	 * @generated
-	 */
-	EReference getExecutionTimeBenchmarkerEnd_StartPoint();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject <em>JETM Result Object</em>}'.
@@ -626,15 +641,49 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	EClass getJETMMultiResultObject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject#getResults <em>Results</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject#getResults <em>Results</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Results</em>'.
+	 * @return the meta object for the containment reference list '<em>Results</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject#getResults()
 	 * @see #getJETMMultiResultObject()
 	 * @generated
 	 */
-	EAttribute getJETMMultiResultObject_Results();
+	EReference getJETMMultiResultObject_Results();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To ETM Point Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EString To ETM Point Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.EString"
+	 *        valueDataType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMPoint"
+	 * @generated
+	 */
+	EClass getEStringToETMPointMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToETMPointMap()
+	 * @generated
+	 */
+	EAttribute getEStringToETMPointMap_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEStringToETMPointMap()
+	 * @generated
+	 */
+	EAttribute getEStringToETMPointMap_Value();
 
 	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}'.
@@ -701,14 +750,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		EClass EXECUTION_TIME_BENCHMARKER_START = eINSTANCE.getExecutionTimeBenchmarkerStart();
 
 		/**
-		 * The meta object literal for the '<em><b>End Point</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXECUTION_TIME_BENCHMARKER_START__END_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_EndPoint();
-
-		/**
 		 * The meta object literal for the '<em><b>Monitor</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -725,12 +766,12 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		EAttribute EXECUTION_TIME_BENCHMARKER_START__POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_Point();
 
 		/**
-		 * The meta object literal for the '<em><b>String To Point</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>String To Point</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_StringToPoint();
+		EReference EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_StringToPoint();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
@@ -741,14 +782,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXECUTION_TIME_BENCHMARKER_END = eINSTANCE.getExecutionTimeBenchmarkerEnd();
-
-		/**
-		 * The meta object literal for the '<em><b>Start Point</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXECUTION_TIME_BENCHMARKER_END__START_POINT = eINSTANCE.getExecutionTimeBenchmarkerEnd_StartPoint();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl <em>JETM Result Object</em>}' class.
@@ -837,12 +870,38 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		EClass JETM_MULTI_RESULT_OBJECT = eINSTANCE.getJETMMultiResultObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Results</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Results</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute JETM_MULTI_RESULT_OBJECT__RESULTS = eINSTANCE.getJETMMultiResultObject_Results();
+		EReference JETM_MULTI_RESULT_OBJECT__RESULTS = eINSTANCE.getJETMMultiResultObject_Results();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl <em>EString To ETM Point Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getEStringToETMPointMap()
+		 * @generated
+		 */
+		EClass ESTRING_TO_ETM_POINT_MAP = eINSTANCE.getEStringToETMPointMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ESTRING_TO_ETM_POINT_MAP__KEY = eINSTANCE.getEStringToETMPointMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ESTRING_TO_ETM_POINT_MAP__VALUE = eINSTANCE.getEStringToETMPointMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}' enum.
