@@ -8,16 +8,11 @@ package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.OptionObject;
-import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
@@ -145,42 +140,16 @@ public class EventCounterStartImpl extends StartOperatorImpl implements EventCou
 		}
 		super.eSet(featureID, newValue);
 	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		if(getEndOperator()!=null)
-			getEndOperator().setTestRun(newTestRun);
-		msgs = eBasicSetContainer((InternalEObject)newTestRun, BenchframeworkPackage.START_OPERATOR__TEST_RUN, msgs);
-		return msgs;
-	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventCounterPackage.EVENT_COUNTER_START__OPTION:
-				setOption((OptionObject)null);
-				return;
-			case EventCounterPackage.EVENT_COUNTER_START__RESULT:
-				setResult((ResultObject)null);
-				return;
-			case EventCounterPackage.EVENT_COUNTER_START__TEST_RUN:
-				setTestRun((TestRun)null);
-				getEndOperator().setTestRun((TestRun)null);
-				return;
-			case EventCounterPackage.EVENT_COUNTER_START__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case EventCounterPackage.EVENT_COUNTER_START__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
 			case EventCounterPackage.EVENT_COUNTER_START__ADAPTER:
 				setAdapter(ADAPTER_EDEFAULT);
 				return;

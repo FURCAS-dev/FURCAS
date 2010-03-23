@@ -13,9 +13,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jface.wizard.WizardPage;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
@@ -27,7 +24,6 @@ import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl#getWizardPage <em>Wizard Page</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl#getNumberListIndex <em>Number List Index</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl#getNumberList <em>Number List</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.RandomNumberOptionObjectImpl#getNumberGenerator <em>Number Generator</em>}</li>
@@ -36,27 +32,7 @@ import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
  *
  * @generated
  */
-public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomNumberOptionObject {
-	/**
-	 * The default value of the '{@link #getWizardPage() <em>Wizard Page</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWizardPage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final WizardPage WIZARD_PAGE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getWizardPage() <em>Wizard Page</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWizardPage()
-	 * @generated
-	 * @ordered
-	 */
-	protected WizardPage wizardPage = WIZARD_PAGE_EDEFAULT;
-
+public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements RandomNumberOptionObject {
 	/**
 	 * The default value of the '{@link #getNumberListIndex() <em>Number List Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -125,27 +101,6 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 	@Override
 	protected EClass eStaticClass() {
 		return BenchframeworkPackage.Literals.RANDOM_NUMBER_OPTION_OBJECT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WizardPage getWizardPage() {
-		return wizardPage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWizardPage(WizardPage newWizardPage) {
-		WizardPage oldWizardPage = wizardPage;
-		wizardPage = newWizardPage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE, oldWizardPage, wizardPage));
 	}
 
 	/**
@@ -253,14 +208,6 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 		return getNumberList().get(getNumberListIndex());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public RandomNumberOptionObject clone() throws CloneNotSupportedException {
-		return (RandomNumberOptionObject) EcoreUtil.copy(this);
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,8 +217,6 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE:
-				return getWizardPage();
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX:
 				return getNumberListIndex();
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST:
@@ -291,9 +236,6 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE:
-				setWizardPage((WizardPage)newValue);
-				return;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX:
 				setNumberListIndex((Integer)newValue);
 				return;
@@ -315,9 +257,6 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE:
-				setWizardPage(WIZARD_PAGE_EDEFAULT);
-				return;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX:
 				setNumberListIndex(NUMBER_LIST_INDEX_EDEFAULT);
 				return;
@@ -339,8 +278,6 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__WIZARD_PAGE:
-				return WIZARD_PAGE_EDEFAULT == null ? wizardPage != null : !WIZARD_PAGE_EDEFAULT.equals(wizardPage);
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX:
 				return numberListIndex != NUMBER_LIST_INDEX_EDEFAULT;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST:
@@ -361,9 +298,7 @@ public class RandomNumberOptionObjectImpl extends EObjectImpl implements RandomN
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (wizardPage: ");
-		result.append(wizardPage);
-		result.append(", numberListIndex: ");
+		result.append(" (numberListIndex: ");
 		result.append(numberListIndex);
 		result.append(", numberList: ");
 		result.append(numberList);

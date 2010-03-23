@@ -26,7 +26,7 @@ import org.eclipse.jface.wizard.WizardPage;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOptionObject()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface OptionObject extends EObject {

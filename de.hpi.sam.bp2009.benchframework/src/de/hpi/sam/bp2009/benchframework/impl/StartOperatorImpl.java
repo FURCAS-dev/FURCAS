@@ -228,9 +228,14 @@ public class StartOperatorImpl extends EObjectImpl implements StartOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
+		/*
+		 * Start and EndOperator always in the same Testrun
+		 */
+		if(getEndOperator()!=null)
+			getEndOperator().setTestRun(newTestRun);
 		msgs = eBasicSetContainer((InternalEObject)newTestRun, BenchframeworkPackage.START_OPERATOR__TEST_RUN, msgs);
 		return msgs;
 	}
@@ -327,7 +332,7 @@ public class StartOperatorImpl extends EObjectImpl implements StartOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public NotificationChain basicSetEndOperator(EndOperator newEndOperator, NotificationChain msgs) {
 		EndOperator oldEndOperator = endOperator;
@@ -336,6 +341,13 @@ public class StartOperatorImpl extends EObjectImpl implements StartOperator {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.START_OPERATOR__END_OPERATOR, oldEndOperator, newEndOperator);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		/*
+		 * Remove the old Operator from the Testrun and move the new in my TestRun
+		 */
+		if(oldEndOperator!=null)
+			oldEndOperator.setTestRun(null);
+		if(newEndOperator!=null)
+			newEndOperator.setTestRun(getTestRun());
 		return msgs;
 	}
 
@@ -345,6 +357,7 @@ public class StartOperatorImpl extends EObjectImpl implements StartOperator {
 	 * @generated
 	 */
 	public void setEndOperator(EndOperator newEndOperator) {
+		EndOperator oldEndOperator= endOperator;
 		if (newEndOperator != endOperator) {
 			NotificationChain msgs = null;
 			if (endOperator != null)

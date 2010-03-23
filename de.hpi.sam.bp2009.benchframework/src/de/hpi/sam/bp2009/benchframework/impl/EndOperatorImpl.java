@@ -42,6 +42,16 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
 public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 
 	/**
+	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected OptionObject option;
+
+	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,12 +144,28 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOption(OptionObject newOption, NotificationChain msgs) {
+		OptionObject oldOption = option;
+		option = newOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.END_OPERATOR__OPTION, oldOption, newOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void setOption(OptionObject newOption) {
 		if(getStartOperator()!=null)
 			getStartOperator().setOption(newOption);
-		throw new IllegalStateException("No StartOperator avalaible, shared Option cannot be set.");
+		// TODO appropriate error handling
+
 	}
 
 	/**
@@ -229,9 +255,11 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getName() {
+		if(getStartOperator()!=null)
+			return "End for "+getStartOperator().getName();
 		return name;
 	}
 

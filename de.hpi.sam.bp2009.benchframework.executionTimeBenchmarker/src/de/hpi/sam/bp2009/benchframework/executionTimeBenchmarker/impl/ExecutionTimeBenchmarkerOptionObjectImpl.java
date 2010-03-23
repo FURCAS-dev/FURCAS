@@ -8,12 +8,11 @@ package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jface.wizard.WizardPage;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +21,6 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl#getWizardPage <em>Wizard Page</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl#getStartLiteral <em>Start Literal</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl#getClassLiteral <em>Class Literal</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl#getEndLiteral <em>End Literal</em>}</li>
@@ -31,26 +29,7 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
  *
  * @generated
  */
-public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implements ExecutionTimeBenchmarkerOptionObject {
-	/**
-	 * The default value of the '{@link #getWizardPage() <em>Wizard Page</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWizardPage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final WizardPage WIZARD_PAGE_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getWizardPage() <em>Wizard Page</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWizardPage()
-	 * @generated
-	 * @ordered
-	 */
-	protected WizardPage wizardPage = WIZARD_PAGE_EDEFAULT;
-
+public class ExecutionTimeBenchmarkerOptionObjectImpl extends OptionObjectImpl implements ExecutionTimeBenchmarkerOptionObject {
 	/**
 	 * The default value of the '{@link #getStartLiteral() <em>Start Literal</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -130,27 +109,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WizardPage getWizardPage() {
-		return wizardPage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWizardPage(WizardPage newWizardPage) {
-		WizardPage oldWizardPage = wizardPage;
-		wizardPage = newWizardPage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE, oldWizardPage, wizardPage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Integer getStartLiteral() {
 		return startLiteral;
 	}
@@ -217,8 +175,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE:
-				return getWizardPage();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__START_LITERAL:
 				return getStartLiteral();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__CLASS_LITERAL:
@@ -237,9 +193,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE:
-				setWizardPage((WizardPage)newValue);
-				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__START_LITERAL:
 				setStartLiteral((Integer)newValue);
 				return;
@@ -261,9 +214,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE:
-				setWizardPage(WIZARD_PAGE_EDEFAULT);
-				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__START_LITERAL:
 				setStartLiteral(START_LITERAL_EDEFAULT);
 				return;
@@ -285,8 +235,6 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE:
-				return WIZARD_PAGE_EDEFAULT == null ? wizardPage != null : !WIZARD_PAGE_EDEFAULT.equals(wizardPage);
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__START_LITERAL:
 				return START_LITERAL_EDEFAULT == null ? startLiteral != null : !START_LITERAL_EDEFAULT.equals(startLiteral);
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__CLASS_LITERAL:
@@ -307,9 +255,7 @@ public class ExecutionTimeBenchmarkerOptionObjectImpl extends EObjectImpl implem
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (wizardPage: ");
-		result.append(wizardPage);
-		result.append(", startLiteral: ");
+		result.append(" (startLiteral: ");
 		result.append(startLiteral);
 		result.append(", classLiteral: ");
 		result.append(classLiteral);
