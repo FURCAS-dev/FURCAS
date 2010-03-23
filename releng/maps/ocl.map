@@ -52,8 +52,6 @@ plugin@org.eclipse.ocl.examples.tests=v201003231410,:pserver:anonymous@dev.eclip
 !*** IMP plug-ins ***************************************************************************
 !*** plugin@org.eclipse.imp.runtime=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.imp,,org.eclipse.imp.runtime
 !*** plugin@org.eclipse.imp.runtime=SVN,,svn://dev.eclipse.org/svnroot/technology/org.eclipse.imp/tags/features/org.eclipse.imp.runtime/0.1.104.v201003141548,,org.eclipse.imp.runtime
-!*** plugin@org.eclipse.imp.runtime=SVN,tags/features/org.eclipse.imp.runtime/0.1.104.v201003141548,svn://dev.eclipse.org/svnroot/technology/org.eclipse.imp,,org.eclipse.imp.runtime
-!*** plugin@org.eclipse.imp.runtime=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.imp,tag=tags,path=features/org.eclipse.imp.runtime/0.1.104.v201003141548/org.eclipse.imp.runtime
 plugin@org.eclipse.imp.runtime=SVN,0.1.104.v201003141548,svn://dev.eclipse.org/svnroot/technology/org.eclipse.imp,tags/features/org.eclipse.imp.runtime,org.eclipse.imp.runtime
 
 !*** Plugins, features and fragments for Eclipse Coordinated Releases
