@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
@@ -58,7 +59,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	private static final String RANDOM_GENERATOR_DESCRIPTION = "Instantiates a random instance of the model and adds all needed references to it.";
 	private static final String RANDOM_GENERATOR_NAME = "Random Model Instanciator";
 	/**
-	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
+	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOption()
@@ -67,7 +68,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 */
 	protected OptionObject option;
 	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getResult()
@@ -75,15 +76,6 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 * @ordered
 	 */
 	protected ResultObject result;
-	/**
-	 * The cached value of the '{@link #getTestRun() <em>Test Run</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestRun()
-	 * @generated
-	 * @ordered
-	 */
-	protected TestRun testRun;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -149,14 +141,6 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 * @generated
 	 */
 	public OptionObject getOption() {
-		if (option != null && option.eIsProxy()) {
-			InternalEObject oldOption = (InternalEObject)option;
-			option = (OptionObject)eResolveProxy(oldOption);
-			if (option != oldOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomGeneratorPackage.RANDOM_GENERATOR__OPTION, oldOption, option));
-			}
-		}
 		return option;
 	}
 
@@ -165,96 +149,11 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionObject basicGetOption() {
-		return option;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOption(OptionObject newOption) {
+	public NotificationChain basicSetOption(OptionObject newOption, NotificationChain msgs) {
 		OptionObject oldOption = option;
 		option = newOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__OPTION, oldOption, option));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (ResultObject)eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomGeneratorPackage.RANDOM_GENERATOR__RESULT, oldResult, result));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject basicGetResult() {
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResult(ResultObject newResult) {
-		ResultObject oldResult = result;
-		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__RESULT, oldResult, result));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun getTestRun() {
-		if (testRun != null && testRun.eIsProxy()) {
-			InternalEObject oldTestRun = (InternalEObject)testRun;
-			testRun = (TestRun)eResolveProxy(oldTestRun);
-			if (testRun != oldTestRun) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN, oldTestRun, testRun));
-			}
-		}
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun basicGetTestRun() {
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		TestRun oldTestRun = testRun;
-		testRun = newTestRun;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN, oldTestRun, newTestRun);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__OPTION, oldOption, newOption);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -265,11 +164,95 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTestRun(TestRun newTestRun) {
-		if (newTestRun != testRun) {
+	public void setOption(OptionObject newOption) {
+		if (newOption != option) {
 			NotificationChain msgs = null;
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+			if (option != null)
+				msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RandomGeneratorPackage.RANDOM_GENERATOR__OPTION, null, msgs);
+			if (newOption != null)
+				msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RandomGeneratorPackage.RANDOM_GENERATOR__OPTION, null, msgs);
+			msgs = basicSetOption(newOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__OPTION, newOption, newOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResultObject getResult() {
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResult(ResultObject newResult, NotificationChain msgs) {
+		ResultObject oldResult = result;
+		result = newResult;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__RESULT, oldResult, newResult);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResult(ResultObject newResult) {
+		if (newResult != result) {
+			NotificationChain msgs = null;
+			if (result != null)
+				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RandomGeneratorPackage.RANDOM_GENERATOR__RESULT, null, msgs);
+			if (newResult != null)
+				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RandomGeneratorPackage.RANDOM_GENERATOR__RESULT, null, msgs);
+			msgs = basicSetResult(newResult, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR__RESULT, newResult, newResult));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestRun getTestRun() {
+		if (eContainerFeatureID() != RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN) return null;
+		return (TestRun)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTestRun, RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestRun(TestRun newTestRun) {
+		if (newTestRun != eInternalContainer() || (eContainerFeatureID() != RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN && newTestRun != null)) {
+			if (EcoreUtil.isAncestor(this, newTestRun))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTestRun != null)
 				msgs = ((InternalEObject)newTestRun).eInverseAdd(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
 			msgs = basicSetTestRun(newTestRun, msgs);
@@ -368,8 +351,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				if (testRun != null)
-					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetTestRun((TestRun)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -383,6 +366,10 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
+				return basicSetOption(null, msgs);
+			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
+				return basicSetResult(null, msgs);
 			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
 				return basicSetTestRun(null, msgs);
 		}
@@ -395,17 +382,28 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
+				return eInternalContainer().eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR__OPTION:
-				if (resolve) return getOption();
-				return basicGetOption();
+				return getOption();
 			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
+				return getResult();
 			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				if (resolve) return getTestRun();
-				return basicGetTestRun();
+				return getTestRun();
 			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
 				return getName();
 			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:
@@ -481,7 +479,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 			case RandomGeneratorPackage.RANDOM_GENERATOR__RESULT:
 				return result != null;
 			case RandomGeneratorPackage.RANDOM_GENERATOR__TEST_RUN:
-				return testRun != null;
+				return getTestRun() != null;
 			case RandomGeneratorPackage.RANDOM_GENERATOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RandomGeneratorPackage.RANDOM_GENERATOR__DESCRIPTION:

@@ -1,8 +1,11 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -12,11 +15,14 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.Engine;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.TestRun;
+import de.hpi.sam.bp2009.benchframework.util.BenchframeworkResourceFactoryImpl;
 
 public class RunningPage extends WizardPage {
 	final static String NEW_LINE = System.getProperty("line.separator");
@@ -32,7 +38,7 @@ public class RunningPage extends WizardPage {
 		setDescription("Start the Testrun.");
 		setPageComplete(false);
 	}
-	public void createControl(Composite parent) {
+	public void createControl(final Composite parent) {
 		//create the widgets for the page
 		scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
@@ -125,6 +131,38 @@ public class RunningPage extends WizardPage {
 
 		});
 		//ProgressBar bar = new ProgressBar(composite, SWT.CENTER);
+		Button save= new Button(composite,SWT.CENTER);
+		save.setText("SAVE");
+		save.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				FileDialog dialog = new FileDialog (parent.getShell(), SWT.SAVE);
+				String absoluteFilePath= dialog.open();
+				if(absoluteFilePath==null)
+					return;
+				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
+				if(wiz.getRun().eResource()==null){
+					//not assoziated yet
+					
+					new BenchframeworkResourceFactoryImpl().createResource(URI.createFileURI(absoluteFilePath)).getContents().add(wiz.getRun());
+				}
+				TestRun run= wiz.getRun();
+				try {
+					run.eResource().save(null);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+				
+			}
+		});
 	    setControl(scrolledComposite);
 
 	}

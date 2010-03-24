@@ -91,7 +91,7 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int EMBED_MODIFIED_IA_OPERATOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -100,7 +100,7 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int EMBED_MODIFIED_IA_OPERATOR__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -109,7 +109,7 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int EMBED_MODIFIED_IA_OPERATOR__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

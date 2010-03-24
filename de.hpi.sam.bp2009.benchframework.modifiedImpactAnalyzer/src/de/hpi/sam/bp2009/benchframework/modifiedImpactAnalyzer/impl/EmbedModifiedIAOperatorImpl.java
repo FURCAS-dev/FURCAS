@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +51,7 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	private static final String DESCRIPTION = "The Impact analyzer determines which OCL Conditions have to be reevaluated on a certain internal event.";
 	
 	/**
-	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
+	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOption()
@@ -60,7 +61,7 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	protected OptionObject option;
 
 	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getResult()
@@ -68,16 +69,6 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	 * @ordered
 	 */
 	protected ResultObject result;
-
-	/**
-	 * The cached value of the '{@link #getTestRun() <em>Test Run</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestRun()
-	 * @generated
-	 * @ordered
-	 */
-	protected TestRun testRun;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -148,14 +139,6 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	 * @generated
 	 */
 	public OptionObject getOption() {
-		if (option != null && option.eIsProxy()) {
-			InternalEObject oldOption = (InternalEObject)option;
-			option = (OptionObject)eResolveProxy(oldOption);
-			if (option != oldOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION, oldOption, option));
-			}
-		}
 		return option;
 	}
 
@@ -164,96 +147,11 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionObject basicGetOption() {
-		return option;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOption(OptionObject newOption) {
+	public NotificationChain basicSetOption(OptionObject newOption, NotificationChain msgs) {
 		OptionObject oldOption = option;
 		option = newOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION, oldOption, option));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (ResultObject)eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT, oldResult, result));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject basicGetResult() {
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResult(ResultObject newResult) {
-		ResultObject oldResult = result;
-		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT, oldResult, result));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun getTestRun() {
-		if (testRun != null && testRun.eIsProxy()) {
-			InternalEObject oldTestRun = (InternalEObject)testRun;
-			testRun = (TestRun)eResolveProxy(oldTestRun);
-			if (testRun != oldTestRun) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN, oldTestRun, testRun));
-			}
-		}
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun basicGetTestRun() {
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		TestRun oldTestRun = testRun;
-		testRun = newTestRun;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN, oldTestRun, newTestRun);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION, oldOption, newOption);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -264,11 +162,95 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTestRun(TestRun newTestRun) {
-		if (newTestRun != testRun) {
+	public void setOption(OptionObject newOption) {
+		if (newOption != option) {
 			NotificationChain msgs = null;
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+			if (option != null)
+				msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION, null, msgs);
+			if (newOption != null)
+				msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION, null, msgs);
+			msgs = basicSetOption(newOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION, newOption, newOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResultObject getResult() {
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResult(ResultObject newResult, NotificationChain msgs) {
+		ResultObject oldResult = result;
+		result = newResult;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT, oldResult, newResult);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResult(ResultObject newResult) {
+		if (newResult != result) {
+			NotificationChain msgs = null;
+			if (result != null)
+				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT, null, msgs);
+			if (newResult != null)
+				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT, null, msgs);
+			msgs = basicSetResult(newResult, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT, newResult, newResult));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestRun getTestRun() {
+		if (eContainerFeatureID() != ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN) return null;
+		return (TestRun)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTestRun, ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestRun(TestRun newTestRun) {
+		if (newTestRun != eInternalContainer() || (eContainerFeatureID() != ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN && newTestRun != null)) {
+			if (EcoreUtil.isAncestor(this, newTestRun))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTestRun != null)
 				msgs = ((InternalEObject)newTestRun).eInverseAdd(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
 			msgs = basicSetTestRun(newTestRun, msgs);
@@ -341,8 +323,8 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN:
-				if (testRun != null)
-					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetTestRun((TestRun)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -356,6 +338,10 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION:
+				return basicSetOption(null, msgs);
+			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT:
+				return basicSetResult(null, msgs);
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN:
 				return basicSetTestRun(null, msgs);
 		}
@@ -368,17 +354,28 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN:
+				return eInternalContainer().eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__OPTION:
-				if (resolve) return getOption();
-				return basicGetOption();
+				return getOption();
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
+				return getResult();
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN:
-				if (resolve) return getTestRun();
-				return basicGetTestRun();
+				return getTestRun();
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__NAME:
 				return getName();
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__DESCRIPTION:
@@ -454,7 +451,7 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__RESULT:
 				return result != null;
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__TEST_RUN:
-				return testRun != null;
+				return getTestRun() != null;
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR__DESCRIPTION:

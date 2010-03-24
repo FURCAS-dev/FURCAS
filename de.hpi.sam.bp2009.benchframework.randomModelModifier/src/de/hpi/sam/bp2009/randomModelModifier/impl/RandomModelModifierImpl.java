@@ -52,7 +52,7 @@ import de.hpi.sam.bp2009.randomModelModifier.Task;
  */
 public class RandomModelModifierImpl extends EObjectImpl implements RandomModelModifier {
 	/**
-	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
+	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOption()
@@ -61,7 +61,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	protected OptionObject option;
 	/**
-	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getResult()
@@ -69,15 +69,6 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @ordered
 	 */
 	protected ResultObject result;
-	/**
-	 * The cached value of the '{@link #getTestRun() <em>Test Run</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestRun()
-	 * @generated
-	 * @ordered
-	 */
-	protected TestRun testRun;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -185,8 +176,8 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-				if (testRun != null)
-					msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetTestRun((TestRun)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -200,6 +191,10 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
+				return basicSetOption(null, msgs);
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
+				return basicSetResult(null, msgs);
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
 				return basicSetTestRun(null, msgs);
 		}
@@ -212,17 +207,28 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
+				return eInternalContainer().eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION:
-				if (resolve) return getOption();
-				return basicGetOption();
+				return getOption();
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
+				return getResult();
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-				if (resolve) return getTestRun();
-				return basicGetTestRun();
+				return getTestRun();
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
 				return getName();
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
@@ -298,7 +304,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT:
 				return result != null;
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN:
-				return testRun != null;
+				return getTestRun() != null;
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__DESCRIPTION:
@@ -524,14 +530,6 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @generated
 	 */
 	public OptionObject getOption() {
-		if (option != null && option.eIsProxy()) {
-			InternalEObject oldOption = (InternalEObject)option;
-			option = (OptionObject)eResolveProxy(oldOption);
-			if (option != oldOption) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION, oldOption, option));
-			}
-		}
 		return option;
 	}
 
@@ -540,96 +538,11 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionObject basicGetOption() {
-		return option;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOption(OptionObject newOption) {
+	public NotificationChain basicSetOption(OptionObject newOption, NotificationChain msgs) {
 		OptionObject oldOption = option;
 		option = newOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION, oldOption, option));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject getResult() {
-		if (result != null && result.eIsProxy()) {
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (ResultObject)eResolveProxy(oldResult);
-			if (result != oldResult) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT, oldResult, result));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject basicGetResult() {
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResult(ResultObject newResult) {
-		ResultObject oldResult = result;
-		result = newResult;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT, oldResult, result));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun getTestRun() {
-		if (testRun != null && testRun.eIsProxy()) {
-			InternalEObject oldTestRun = (InternalEObject)testRun;
-			testRun = (TestRun)eResolveProxy(oldTestRun);
-			if (testRun != oldTestRun) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN, oldTestRun, testRun));
-			}
-		}
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TestRun basicGetTestRun() {
-		return testRun;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		TestRun oldTestRun = testRun;
-		testRun = newTestRun;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN, oldTestRun, newTestRun);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION, oldOption, newOption);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -640,11 +553,95 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTestRun(TestRun newTestRun) {
-		if (newTestRun != testRun) {
+	public void setOption(OptionObject newOption) {
+		if (newOption != option) {
 			NotificationChain msgs = null;
-			if (testRun != null)
-				msgs = ((InternalEObject)testRun).eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
+			if (option != null)
+				msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION, null, msgs);
+			if (newOption != null)
+				msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION, null, msgs);
+			msgs = basicSetOption(newOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__OPTION, newOption, newOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResultObject getResult() {
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResult(ResultObject newResult, NotificationChain msgs) {
+		ResultObject oldResult = result;
+		result = newResult;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT, oldResult, newResult);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResult(ResultObject newResult) {
+		if (newResult != result) {
+			NotificationChain msgs = null;
+			if (result != null)
+				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT, null, msgs);
+			if (newResult != null)
+				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT, null, msgs);
+			msgs = basicSetResult(newResult, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__RESULT, newResult, newResult));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestRun getTestRun() {
+		if (eContainerFeatureID() != RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN) return null;
+		return (TestRun)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTestRun, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestRun(TestRun newTestRun) {
+		if (newTestRun != eInternalContainer() || (eContainerFeatureID() != RandomModelModifierPackage.RANDOM_MODEL_MODIFIER__TEST_RUN && newTestRun != null)) {
+			if (EcoreUtil.isAncestor(this, newTestRun))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTestRun != null)
 				msgs = ((InternalEObject)newTestRun).eInverseAdd(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
 			msgs = basicSetTestRun(newTestRun, msgs);

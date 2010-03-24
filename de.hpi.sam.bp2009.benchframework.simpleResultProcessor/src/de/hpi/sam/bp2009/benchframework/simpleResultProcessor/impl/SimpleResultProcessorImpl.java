@@ -140,8 +140,6 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 	 * @generated
 	 */
 	public void setTestrun(TestRun newTestrun) {
-		if(getResultPage()!=null)
-			((SimpleResultPage)getResultPage()).setOps(newTestrun.getOperators());
 		TestRun oldTestrun = testrun;
 		testrun = newTestrun;
 		if (eNotificationRequired())
