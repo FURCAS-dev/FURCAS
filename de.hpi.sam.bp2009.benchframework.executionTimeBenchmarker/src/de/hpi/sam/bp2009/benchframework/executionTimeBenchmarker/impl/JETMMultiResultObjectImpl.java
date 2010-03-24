@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -165,5 +166,20 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 			obj.getComposite(comp);
 		}
 		return comp;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getCSV() {
+		String msg = "";
+		Iterator<JETMResultObject> it = getResults().iterator();
+		while (it.hasNext()){
+			JETMResultObject rsObj = it.next();
+			msg += rsObj.getCSV() + "\n";
+		}		
+		return msg;
 	}
 } //JETMMultiResultObjectImpl

@@ -95,4 +95,12 @@ public interface ResultObject extends EObject {
 	 */
 	Composite getComposite(Composite parent);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	String getCSV();
+
 } // ResultObject

@@ -758,6 +758,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		op = addEOperation(resultObjectEClass, this.getUIComponent(), "getComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUIComponent(), "parent", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(resultObjectEClass, ecorePackage.getEString(), "getCSV", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultProcessor_ResultPage(), this.getWizardPage(), "resultPage", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResultProcessor_Testrun(), this.getTestRun(), null, "testrun", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

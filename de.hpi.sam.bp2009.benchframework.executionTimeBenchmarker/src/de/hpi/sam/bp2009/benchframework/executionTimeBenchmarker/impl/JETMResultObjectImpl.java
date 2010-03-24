@@ -401,4 +401,13 @@ public class JETMResultObjectImpl extends ResultObjectImpl implements JETMResult
 		bld.insert(0,"Duration: ");
 		return bld.toString();
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getCSV() {	
+		return getDuration() + "ns";
+	}
 } //JETMResultObjectImpl

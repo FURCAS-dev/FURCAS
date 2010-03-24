@@ -6,19 +6,18 @@
  */
 package de.hpi.sam.bp2009.benchframework.csvResultProcessor.impl;
 
-import de.hpi.sam.bp2009.benchframework.TestRun;
-
-import de.hpi.sam.bp2009.benchframework.csvResultProcessor.CsvResultProcessor;
-import de.hpi.sam.bp2009.benchframework.csvResultProcessor.CsvResultProcessorPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jface.wizard.WizardPage;
+
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.TestRun;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.CsvResultProcessor;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.CsvResultProcessorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,7 +95,7 @@ public class CsvResultProcessorImpl extends EObjectImpl implements CsvResultProc
 	public CsvResultProcessorImpl() {
 		super();
 		setName(NAME);
-		setResultPage(new CsvResultPage());
+		setResultPage(new CsvResultPage(new BasicEList<Operator>()));
 	}
 
 	/**
@@ -159,9 +158,11 @@ public class CsvResultProcessorImpl extends EObjectImpl implements CsvResultProc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setTestrun(TestRun newTestrun) {
+		if(getResultPage()!=null)
+			((CsvResultPage)getResultPage()).setOps(newTestrun.getOperators());
 		TestRun oldTestrun = testrun;
 		testrun = newTestrun;
 		if (eNotificationRequired())

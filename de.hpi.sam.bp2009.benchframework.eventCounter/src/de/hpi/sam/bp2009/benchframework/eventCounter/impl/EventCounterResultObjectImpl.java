@@ -145,5 +145,18 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getCSV() {
+		String msg = "";
+		for (String key : this.getEventCounts().keySet()){
+			msg += key + " " + this.getEventCounts().get(key).toString() + "\n";
+		}		
+		return msg;
+	}
 
 } //EventCounterResultObjectImpl

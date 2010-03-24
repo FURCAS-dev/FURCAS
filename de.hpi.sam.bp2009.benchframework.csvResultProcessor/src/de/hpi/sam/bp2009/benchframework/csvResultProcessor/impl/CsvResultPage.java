@@ -1,13 +1,16 @@
 package de.hpi.sam.bp2009.benchframework.csvResultProcessor.impl;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -15,7 +18,11 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.ResultObject;
+
 public class CsvResultPage extends WizardPage {
+	private static final String SAVE_BUTTON_LABEL = "save";
 	private static final String PAGENAME = "CSV Result Page";
 	private static final String PAGETITLE = "CSV Result Page";
 	private static final String PAGEDESCRIPTION = "Save results to a .csv file";
@@ -24,18 +31,32 @@ public class CsvResultPage extends WizardPage {
 	
 	String filePath;
 	Text textarea;
+	private EList<Operator> ops;
 
-	public CsvResultPage(){
+	public CsvResultPage(EList<Operator> ops){
 		super(PAGENAME);
 		setTitle(PAGETITLE);
 		setDescription(PAGEDESCRIPTION);
+		this.ops = ops;
+	}
+	
+	/**
+	 * @return the ops
+	 */
+	public EList<Operator> getOps() {
+		return ops;
+	}
+	/**
+	 * @param ops the ops to set
+	 */
+	public void setOps(EList<Operator> ops) {
+		this.ops = ops;
 	}
 
 	protected CsvResultPage(String pageName) {
 		super(pageName);
 	}
 
-	@Override
 	public void createControl(Composite parent) {
 		final Composite composite = new Composite(parent, SWT.None);
 		GridLayout layout = new GridLayout(3, false);
@@ -79,11 +100,45 @@ public class CsvResultPage extends WizardPage {
 			}
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {}
-		});	
+		});
+		
+		Button saveButton = new Button(composite, SWT.NONE);
+		saveButton.setText(SAVE_BUTTON_LABEL);
+		saveButton.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//save result as csv
+				File result = new File(textarea.getText());
+				FileOutputStream fw = null;
+				try {
+					result.createNewFile();														
+					fw = new FileOutputStream(result);
+					if (result.exists()){
+						for (Operator o : ops) {
+							ResultObject r = o.getResult();
+							String msg = r.getCSV() + "\n";
+							fw.write(msg.getBytes());
+						}
+					}
+					else System.err.println("File could not be written.");
+				} catch (IOException e1) {
+					System.err.println("File could not be saved");
+					e1.printStackTrace();
+				} finally {
+					try {
+						fw.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+		
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {}
+		});		
 		setControl(composite);		
-	}
-	
-	public boolean performFinish() {
-		return true;
 	}
 }

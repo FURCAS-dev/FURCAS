@@ -83,6 +83,7 @@
     <eOperations name="getComposite" eType="#//UIComponent">
       <eParameters name="parent" eType="#//UIComponent"/>
     </eOperations>
+    <eOperations name="getCSV" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
