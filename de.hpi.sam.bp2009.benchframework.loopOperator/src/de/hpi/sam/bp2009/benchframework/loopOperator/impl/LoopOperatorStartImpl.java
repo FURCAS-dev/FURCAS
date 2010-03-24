@@ -9,10 +9,10 @@ package de.hpi.sam.bp2009.benchframework.loopOperator.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorFactory;
-import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorStart;
 
@@ -40,9 +40,6 @@ public class LoopOperatorStartImpl extends StartOperatorImpl implements LoopOper
 		setName(NAME);
 		setDescription(DESCRIPTION);
 		setOption(LoopOperatorFactory.eINSTANCE.createLoopOperatorOptionObject());
-		//Loop Operator StartPoints don't need a wizard page, because configuration takes place on the EndPoints
-		getOption().setWizardPage(null);
-		((LoopOperatorOptionObject)getOption()).setOperator(this);
 	}
 
 	/**
@@ -64,6 +61,11 @@ public class LoopOperatorStartImpl extends StartOperatorImpl implements LoopOper
 		//nothing to do here...
 		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 		getResult().setStatus(Status.SUCCESSFUL);
+	}
+
+	@Override
+	public EndOperator createEndOperator() {
+		return LoopOperatorFactory.eINSTANCE.createLoopOperatorEnd();
 	}
 
 } //LoopOperatorStartImpl

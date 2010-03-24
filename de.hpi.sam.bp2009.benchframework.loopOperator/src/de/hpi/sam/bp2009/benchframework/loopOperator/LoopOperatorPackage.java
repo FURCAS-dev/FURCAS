@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
-import org.eclipse.emf.ecore.EReference;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 /**
@@ -78,7 +77,7 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_START = 0;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,7 +86,7 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_START__OPTION = BenchframeworkPackage.START_OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -96,7 +95,7 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_START__RESULT = BenchframeworkPackage.START_OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,6 +122,15 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_START__DESCRIPTION = BenchframeworkPackage.START_OPERATOR__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>End Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_OPERATOR_START__END_OPERATOR = BenchframeworkPackage.START_OPERATOR__END_OPERATOR;
+
+	/**
 	 * The number of structural features of the '<em>Start</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,7 +150,7 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_END = 1;
 
 	/**
-	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -151,7 +159,7 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_END__OPTION = BenchframeworkPackage.END_OPERATOR__OPTION;
 
 	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -160,7 +168,7 @@ public interface LoopOperatorPackage extends EPackage {
 	int LOOP_OPERATOR_END__RESULT = BenchframeworkPackage.END_OPERATOR__RESULT;
 
 	/**
-	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * The feature id for the '<em><b>Test Run</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -185,6 +193,15 @@ public interface LoopOperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOOP_OPERATOR_END__DESCRIPTION = BenchframeworkPackage.END_OPERATOR__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Start Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_OPERATOR_END__START_OPERATOR = BenchframeworkPackage.END_OPERATOR__START_OPERATOR;
 
 	/**
 	 * The number of structural features of the '<em>End</em>' class.
@@ -212,16 +229,7 @@ public interface LoopOperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_OPERATOR_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT__WIZARD_PAGE;
-
-	/**
-	 * The feature id for the '<em><b>Other End</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_OPERATOR_OPTION_OBJECT__OTHER_END = BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT__OTHER_END;
+	int LOOP_OPERATOR_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
 
 	/**
 	 * The feature id for the '<em><b>Loop Count</b></em>' attribute.
@@ -230,16 +238,7 @@ public interface LoopOperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT = BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_OPERATOR_OPTION_OBJECT__OPERATOR = BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT_FEATURE_COUNT + 1;
+	int LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Option Object</em>' class.
@@ -248,7 +247,7 @@ public interface LoopOperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_OPERATOR_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.START_AND_END_OPERATOR_OPTION_OBJECT_FEATURE_COUNT + 2;
+	int LOOP_OPERATOR_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -291,17 +290,6 @@ public interface LoopOperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLoopOperatorOptionObject_LoopCount();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Operator</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject#getOperator()
-	 * @see #getLoopOperatorOptionObject()
-	 * @generated
-	 */
-	EReference getLoopOperatorOptionObject_Operator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -362,14 +350,6 @@ public interface LoopOperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT = eINSTANCE.getLoopOperatorOptionObject_LoopCount();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOOP_OPERATOR_OPTION_OBJECT__OPERATOR = eINSTANCE.getLoopOperatorOptionObject_Operator();
 
 	}
 

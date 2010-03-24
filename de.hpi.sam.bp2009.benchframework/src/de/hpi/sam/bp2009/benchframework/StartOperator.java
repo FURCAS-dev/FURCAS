@@ -25,7 +25,7 @@ package de.hpi.sam.bp2009.benchframework;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getStartOperator()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface StartOperator extends Operator {
@@ -57,5 +57,13 @@ public interface StartOperator extends Operator {
 	 * @generated
 	 */
 	void setEndOperator(EndOperator value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EndOperator createEndOperator();
 
 } // StartOperator

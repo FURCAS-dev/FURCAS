@@ -39,7 +39,7 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
  *
  * @generated
  */
-public class StartOperatorImpl extends EObjectImpl implements StartOperator {
+public abstract class StartOperatorImpl extends EObjectImpl implements StartOperator {
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -357,7 +357,6 @@ public class StartOperatorImpl extends EObjectImpl implements StartOperator {
 	 * @generated
 	 */
 	public void setEndOperator(EndOperator newEndOperator) {
-		EndOperator oldEndOperator= endOperator;
 		if (newEndOperator != endOperator) {
 			NotificationChain msgs = null;
 			if (endOperator != null)
@@ -374,13 +373,16 @@ public class StartOperatorImpl extends EObjectImpl implements StartOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void execute() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+	public abstract EndOperator createEndOperator();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract void execute();
 
 	/**
 	 * <!-- begin-user-doc -->

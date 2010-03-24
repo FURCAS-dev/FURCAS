@@ -17,12 +17,10 @@ import org.eclipse.emf.ecore.EClass;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
-import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
 import de.hpi.sam.bp2009.benchframework.StartOperator;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.impl.EndOperatorImpl;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorEnd;
-import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage;
 
@@ -48,8 +46,6 @@ public class LoopOperatorEndImpl extends EndOperatorImpl implements LoopOperator
 		super();
 		setName(NAME);
 		setDescription(DESCTRIPTION);
-		setOption(LoopOperatorFactory.eINSTANCE.createLoopOperatorOptionObject());
-		((LoopOperatorOptionObject)getOption()).setOperator(this);
 	}
 
 	/**
@@ -73,7 +69,7 @@ public class LoopOperatorEndImpl extends EndOperatorImpl implements LoopOperator
 	 */
 	public void execute() {
 		EList<Operator> operatorList = getTestRun().getOperators();
-		int startIndex = operatorList.indexOf(((LoopOperatorOptionObject)option).getOtherEnd());
+		int startIndex = operatorList.indexOf(getStartOperator());
 		int endIndex = operatorList.indexOf(this);
 
 		LoopOperatorOptionObject opt=((LoopOperatorOptionObject)getOption());
@@ -106,6 +102,7 @@ public class LoopOperatorEndImpl extends EndOperatorImpl implements LoopOperator
 		Map<StartOperator, Integer> offsetMap = new HashMap<StartOperator, Integer>();
 		for (Operator op : loopBody){
 			Operator sibling = (Operator)op.eClass().getEPackage().getEFactoryInstance().create(op.eClass());
+			sibling.setName(sibling.getName() + "created by " + getName());
 			try {
 				sibling.setOption((op.getOption()).clone());
 			} catch (CloneNotSupportedException e) {
@@ -116,7 +113,7 @@ public class LoopOperatorEndImpl extends EndOperatorImpl implements LoopOperator
 			//to associate the correct end operators with each start operator, we use the offset in the operator list
 			//this assumes that the start and end operators are placed correctly (like correct brackets)
 			if (op instanceof StartOperator){
-				EndOperator end = (EndOperator) ((StartAndEndOperatorOptionObject)op.getOption()).getOtherEnd();
+				EndOperator end = ((StartOperator)op).getEndOperator();
 				int offset = loopBody.indexOf(end) - loopBody.indexOf(op);
 				offsetMap.put((StartOperator) sibling, offset);
 			}
@@ -124,8 +121,7 @@ public class LoopOperatorEndImpl extends EndOperatorImpl implements LoopOperator
 		//set the correct links between start and end
 		for (StartOperator start : offsetMap.keySet()){
 			EndOperator end = (EndOperator) siblingList.get(siblingList.indexOf(start) + offsetMap.get(start));
-			((StartAndEndOperatorOptionObject)start.getOption()).setOtherEnd(end);
-			((StartAndEndOperatorOptionObject)end.getOption()).setOtherEnd(start);
+			start.setEndOperator(end);
 		}
 		return siblingList;
 	}

@@ -9,7 +9,6 @@ package de.hpi.sam.bp2009.benchframework.loopOperator.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -152,15 +151,6 @@ public class LoopOperatorPackageImpl extends EPackageImpl implements LoopOperato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLoopOperatorOptionObject_Operator() {
-		return (EReference)loopOperatorOptionObjectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LoopOperatorFactory getLoopOperatorFactory() {
 		return (LoopOperatorFactory)getEFactoryInstance();
 	}
@@ -190,7 +180,6 @@ public class LoopOperatorPackageImpl extends EPackageImpl implements LoopOperato
 
 		loopOperatorOptionObjectEClass = createEClass(LOOP_OPERATOR_OPTION_OBJECT);
 		createEAttribute(loopOperatorOptionObjectEClass, LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT);
-		createEReference(loopOperatorOptionObjectEClass, LOOP_OPERATOR_OPTION_OBJECT__OPERATOR);
 	}
 
 	/**
@@ -226,7 +215,7 @@ public class LoopOperatorPackageImpl extends EPackageImpl implements LoopOperato
 		// Add supertypes to classes
 		loopOperatorStartEClass.getESuperTypes().add(theBenchframeworkPackage.getStartOperator());
 		loopOperatorEndEClass.getESuperTypes().add(theBenchframeworkPackage.getEndOperator());
-		loopOperatorOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getStartAndEndOperatorOptionObject());
+		loopOperatorOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getOptionObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(loopOperatorStartEClass, LoopOperatorStart.class, "LoopOperatorStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -235,7 +224,6 @@ public class LoopOperatorPackageImpl extends EPackageImpl implements LoopOperato
 
 		initEClass(loopOperatorOptionObjectEClass, LoopOperatorOptionObject.class, "LoopOperatorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLoopOperatorOptionObject_LoopCount(), ecorePackage.getEInt(), "loopCount", null, 0, 1, LoopOperatorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLoopOperatorOptionObject_Operator(), theBenchframeworkPackage.getOperator(), null, "operator", null, 0, 1, LoopOperatorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

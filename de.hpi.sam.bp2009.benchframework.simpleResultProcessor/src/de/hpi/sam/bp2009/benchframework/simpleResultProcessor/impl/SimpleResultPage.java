@@ -73,7 +73,7 @@ public class SimpleResultPage extends WizardPage {
 			Label label1 = new Label(composite, SWT.CENTER);
 			label1.setText(o.getName());
 			try{
-			r.getComposite(composite);
+				r.getComposite(composite);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -90,10 +90,10 @@ public class SimpleResultPage extends WizardPage {
 
 		//add each element of the stack trace
 		for (StackTraceElement element : aThrowable.getStackTrace() ){
-		result.append( element );
-		result.append( NEW_LINE );
+			result.append( element );
+			result.append( NEW_LINE );
 		}
 		return result.toString();
-		}
+	}
 
 }

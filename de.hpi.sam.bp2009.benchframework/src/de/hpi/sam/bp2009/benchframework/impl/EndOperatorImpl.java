@@ -39,7 +39,7 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
  *
  * @generated
  */
-public class EndOperatorImpl extends EObjectImpl implements EndOperator {
+public abstract class EndOperatorImpl extends EObjectImpl implements EndOperator {
 
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
@@ -359,13 +359,9 @@ public class EndOperatorImpl extends EObjectImpl implements EndOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void execute() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+	public abstract void execute();
 
 	/**
 	 * <!-- begin-user-doc -->

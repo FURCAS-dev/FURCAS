@@ -25,7 +25,7 @@ package de.hpi.sam.bp2009.benchframework;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getEndOperator()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface EndOperator extends Operator {

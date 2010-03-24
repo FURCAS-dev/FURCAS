@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
 
 public class ListPage extends WizardPage {
 	private static final String RESULT_COMBO_BOX_LABEL = "choose a resultview:";
@@ -159,6 +160,10 @@ public class ListPage extends WizardPage {
 				EClass cls = nameToEclass.get(name);
 				
 				EObject obj=cls.getEPackage().getEFactoryInstance().create(cls);
+				if(obj instanceof StartOperator){
+					StartOperator start = (StartOperator) obj;
+					start.setEndOperator(start.createEndOperator());
+				}
 				
 				if(obj instanceof Operator){
 					Operator op= (Operator)obj;

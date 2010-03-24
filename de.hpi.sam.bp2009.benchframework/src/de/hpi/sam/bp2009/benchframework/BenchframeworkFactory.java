@@ -62,24 +62,6 @@ public interface BenchframeworkFactory extends EFactory {
 	RandomNumberOptionObject createRandomNumberOptionObject();
 
 	/**
-	 * Returns a new object of class '<em>Start Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Start Operator</em>'.
-	 * @generated
-	 */
-	StartOperator createStartOperator();
-
-	/**
-	 * Returns a new object of class '<em>End Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>End Operator</em>'.
-	 * @generated
-	 */
-	EndOperator createEndOperator();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

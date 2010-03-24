@@ -6,20 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.loopOperator.util;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EObject;
+
 import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
-
-import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
 import de.hpi.sam.bp2009.benchframework.StartOperator;
-import de.hpi.sam.bp2009.benchframework.loopOperator.*;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EObject;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorEnd;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorStart;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,10 +103,6 @@ public class LoopOperatorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOptionObject(OptionObject object) {
 				return createOptionObjectAdapter();
-			}
-			@Override
-			public Adapter caseStartAndEndOperatorOptionObject(StartAndEndOperatorOptionObject object) {
-				return createStartAndEndOperatorOptionObjectAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -224,20 +219,6 @@ public class LoopOperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOptionObjectAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject <em>Start And End Operator Option Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject
-	 * @generated
-	 */
-	public Adapter createStartAndEndOperatorOptionObjectAdapter() {
 		return null;
 	}
 

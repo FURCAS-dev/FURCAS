@@ -8,8 +8,7 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="LoopOperatorStart" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//StartOperator"/>
   <eClassifiers xsi:type="ecore:EClass" name="LoopOperatorEnd" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//EndOperator"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LoopOperatorOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//StartAndEndOperatorOptionObject">
+  <eClassifiers xsi:type="ecore:EClass" name="LoopOperatorOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="loopCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="ecore:EClass ../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
   </eClassifiers>
 </ecore:EPackage>

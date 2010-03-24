@@ -68,11 +68,9 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BenchframeworkPackage.END_OPERATOR: return createEndOperator();
 			case BenchframeworkPackage.ENGINE: return createEngine();
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT: return createRandomNumberOptionObject();
 			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
-			case BenchframeworkPackage.START_OPERATOR: return createStartOperator();
 			case BenchframeworkPackage.TEST_RUN: return createTestRun();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -167,26 +165,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public RandomNumberOptionObject createRandomNumberOptionObject() {
 		RandomNumberOptionObjectImpl randomNumberOptionObject = new RandomNumberOptionObjectImpl();
 		return randomNumberOptionObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StartOperator createStartOperator() {
-		StartOperatorImpl startOperator = new StartOperatorImpl();
-		return startOperator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EndOperator createEndOperator() {
-		EndOperatorImpl endOperator = new EndOperatorImpl();
-		return endOperator;
 	}
 
 	/**

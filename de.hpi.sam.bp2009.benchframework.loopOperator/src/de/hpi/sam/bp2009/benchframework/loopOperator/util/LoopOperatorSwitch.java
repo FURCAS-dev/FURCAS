@@ -6,18 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.loopOperator.util;
 
-import de.hpi.sam.bp2009.benchframework.EndOperator;
-import de.hpi.sam.bp2009.benchframework.Operator;
-import de.hpi.sam.bp2009.benchframework.OptionObject;
-
-import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
-import de.hpi.sam.bp2009.benchframework.StartOperator;
-import de.hpi.sam.bp2009.benchframework.loopOperator.*;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import de.hpi.sam.bp2009.benchframework.EndOperator;
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.StartOperator;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorEnd;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorStart;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,7 +113,6 @@ public class LoopOperatorSwitch<T> {
 			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT: {
 				LoopOperatorOptionObject loopOperatorOptionObject = (LoopOperatorOptionObject)theEObject;
 				T result = caseLoopOperatorOptionObject(loopOperatorOptionObject);
-				if (result == null) result = caseStartAndEndOperatorOptionObject(loopOperatorOptionObject);
 				if (result == null) result = caseOptionObject(loopOperatorOptionObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -223,21 +223,6 @@ public class LoopOperatorSwitch<T> {
 	 * @generated
 	 */
 	public T caseOptionObject(OptionObject object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Start And End Operator Option Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Start And End Operator Option Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStartAndEndOperatorOptionObject(StartAndEndOperatorOptionObject object) {
 		return null;
 	}
 

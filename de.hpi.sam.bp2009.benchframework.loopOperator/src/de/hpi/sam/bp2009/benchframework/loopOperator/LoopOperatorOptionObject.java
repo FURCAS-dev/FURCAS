@@ -6,8 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework.loopOperator;
 
-import de.hpi.sam.bp2009.benchframework.Operator;
-import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +17,6 @@ import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject#getLoopCount <em>Loop Count</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject#getOperator <em>Operator</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,7 +24,7 @@ import de.hpi.sam.bp2009.benchframework.StartAndEndOperatorOptionObject;
  * @model
  * @generated
  */
-public interface LoopOperatorOptionObject extends StartAndEndOperatorOptionObject {
+public interface LoopOperatorOptionObject extends OptionObject {
 	/**
 	 * Returns the value of the '<em><b>Loop Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,31 +50,5 @@ public interface LoopOperatorOptionObject extends StartAndEndOperatorOptionObjec
 	 * @generated
 	 */
 	void setLoopCount(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Operator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operator</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operator</em>' reference.
-	 * @see #setOperator(Operator)
-	 * @see de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage#getLoopOperatorOptionObject_Operator()
-	 * @model
-	 * @generated
-	 */
-	Operator getOperator();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject#getOperator <em>Operator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operator</em>' reference.
-	 * @see #getOperator()
-	 * @generated
-	 */
-	void setOperator(Operator value);
 
 } // LoopOperatorOptionObject

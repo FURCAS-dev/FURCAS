@@ -8,11 +8,9 @@ package de.hpi.sam.bp2009.benchframework.loopOperator.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import de.hpi.sam.bp2009.benchframework.Operator;
-import de.hpi.sam.bp2009.benchframework.impl.StartAndEndOperatorOptionObjectImpl;
+import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorOptionObject;
 import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage;
 
@@ -24,13 +22,12 @@ import de.hpi.sam.bp2009.benchframework.loopOperator.LoopOperatorPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.loopOperator.impl.LoopOperatorOptionObjectImpl#getLoopCount <em>Loop Count</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.loopOperator.impl.LoopOperatorOptionObjectImpl#getOperator <em>Operator</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LoopOperatorOptionObjectImpl extends StartAndEndOperatorOptionObjectImpl implements LoopOperatorOptionObject {
+public class LoopOperatorOptionObjectImpl extends OptionObjectImpl implements LoopOperatorOptionObject {
 	/**
 	 * The default value of the '{@link #getLoopCount() <em>Loop Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,16 +47,6 @@ public class LoopOperatorOptionObjectImpl extends StartAndEndOperatorOptionObjec
 	 * @ordered
 	 */
 	protected int loopCount = LOOP_COUNT_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected Operator operator;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,52 +94,11 @@ public class LoopOperatorOptionObjectImpl extends StartAndEndOperatorOptionObjec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getOperator() {
-		if (operator != null && operator.eIsProxy()) {
-			InternalEObject oldOperator = (InternalEObject)operator;
-			operator = (Operator)eResolveProxy(oldOperator);
-			if (operator != oldOperator) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__OPERATOR, oldOperator, operator));
-			}
-		}
-		return operator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operator basicGetOperator() {
-		return operator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOperator(Operator newOperator) {
-		Operator oldOperator = operator;
-		operator = newOperator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__OPERATOR, oldOperator, operator));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT:
 				return getLoopCount();
-			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__OPERATOR:
-				if (resolve) return getOperator();
-				return basicGetOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,9 +113,6 @@ public class LoopOperatorOptionObjectImpl extends StartAndEndOperatorOptionObjec
 		switch (featureID) {
 			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT:
 				setLoopCount((Integer)newValue);
-				return;
-			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__OPERATOR:
-				setOperator((Operator)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,9 +129,6 @@ public class LoopOperatorOptionObjectImpl extends StartAndEndOperatorOptionObjec
 			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT:
 				setLoopCount(LOOP_COUNT_EDEFAULT);
 				return;
-			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__OPERATOR:
-				setOperator((Operator)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,8 +143,6 @@ public class LoopOperatorOptionObjectImpl extends StartAndEndOperatorOptionObjec
 		switch (featureID) {
 			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__LOOP_COUNT:
 				return loopCount != LOOP_COUNT_EDEFAULT;
-			case LoopOperatorPackage.LOOP_OPERATOR_OPTION_OBJECT__OPERATOR:
-				return operator != null;
 		}
 		return super.eIsSet(featureID);
 	}

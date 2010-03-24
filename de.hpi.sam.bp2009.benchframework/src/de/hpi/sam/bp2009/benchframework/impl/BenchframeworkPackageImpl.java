@@ -699,7 +699,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		startOperatorEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(endOperatorEClass, EndOperator.class, "EndOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(endOperatorEClass, EndOperator.class, "EndOperator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEndOperator_StartOperator(), this.getStartOperator(), this.getStartOperator_EndOperator(), "startOperator", null, 0, 1, EndOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(engineEClass, Engine.class, "Engine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -763,8 +763,10 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEReference(getResultProcessor_Testrun(), this.getTestRun(), null, "testrun", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResultProcessor_Name(), ecorePackage.getEString(), "name", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(startOperatorEClass, StartOperator.class, "StartOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(startOperatorEClass, StartOperator.class, "StartOperator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStartOperator_EndOperator(), this.getEndOperator(), this.getEndOperator_StartOperator(), "endOperator", null, 0, 1, StartOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(startOperatorEClass, this.getEndOperator(), "createEndOperator", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(testRunEClass, TestRun.class, "TestRun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestRun_Model(), ecorePackage.getEResourceSet(), "model", null, 0, 1, TestRun.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -20,9 +20,6 @@
       <operator
             name="Loop Start"
             operatorClass="de.hpi.sam.bp2009.benchframework.loopOperator.impl.LoopOperatorStartImpl"></operator>
-      <operator
-            name="Loop End"
-            operatorClass="de.hpi.sam.bp2009.benchframework.loopOperator.impl.LoopOperatorEndImpl"></operator>
    </extension>
 
 </plugin>
