@@ -135,15 +135,17 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @generated NOT
+	*/
 	public void setTestrun(TestRun newTestrun) {
-		TestRun oldTestrun = testrun;
-		testrun = newTestrun;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN, oldTestrun, testrun));
+	if(getResultPage()!=null)
+	((SimpleResultPage)getResultPage()).setOps(newTestrun.getOperators());
+	TestRun oldTestrun = testrun;
+	testrun = newTestrun;
+	if (eNotificationRequired())
+	eNotify(new ENotificationImpl(this, Notification.SET, SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN, oldTestrun, testrun));
 	}
 
 	/**
