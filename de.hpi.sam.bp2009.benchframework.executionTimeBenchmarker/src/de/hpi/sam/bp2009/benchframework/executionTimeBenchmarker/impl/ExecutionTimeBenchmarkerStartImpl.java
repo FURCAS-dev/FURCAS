@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
@@ -412,6 +413,12 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 		rslt.setStatus(Status.SUCCESSFUL);
 		rslt.setMessage("Monitor started!");
 		setResult(rslt);
+	}
+
+	@Override
+	public EndOperator createEndOperator() {
+		
+		return ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerEnd();
 	}
 
 

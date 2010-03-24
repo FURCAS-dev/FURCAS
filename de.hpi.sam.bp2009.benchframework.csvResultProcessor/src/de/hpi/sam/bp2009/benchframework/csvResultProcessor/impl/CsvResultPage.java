@@ -79,7 +79,11 @@ public class CsvResultPage extends WizardPage {
 			}
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {}
-		});
+		});	
 		setControl(composite);		
+	}
+	
+	public boolean performFinish() {
+		return true;
 	}
 }

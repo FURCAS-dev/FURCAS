@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
@@ -210,6 +211,11 @@ public class EventCounterStartImpl extends StartOperatorImpl implements EventCou
 			public void setTarget(Notifier newTarget) {}
 		});
 		em.eAdapters().add(getAdapter());
+	}
+
+	@Override
+	public EndOperator createEndOperator() {
+		return EventCounterFactory.eINSTANCE.createEventCounterEnd();
 	}
 
 
