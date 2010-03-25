@@ -11,12 +11,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +36,7 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
  */
 public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionObject {
 	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' attribute.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstraints()
@@ -76,7 +78,7 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 		//TODO weiterreichen der Eingabe der Constraints an die Gui
 		EList<String> list= new BasicEList<String>();
 		list.add("context Class0: self.attribute0 < 10");
-		def.setConstraints(list);
+		def.getConstraints().addAll(list);
 		return def;
 	}
 	/**
@@ -95,19 +97,10 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	 * @generated
 	 */
 	public EList<String> getConstraints() {
+		if (constraints == null) {
+			constraints = new EDataTypeUniqueEList<String>(String.class, this, OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS);
+		}
 		return constraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraints(EList<String> newConstraints) {
-		EList<String> oldConstraints = constraints;
-		constraints = newConstraints;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS, oldConstraints, constraints));
 	}
 
 	/**
@@ -157,7 +150,8 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
-				setConstraints((EList<String>)newValue);
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends String>)newValue);
 				return;
 			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
 				setUseImpactAnalyzer((Boolean)newValue);
@@ -175,7 +169,7 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
-				setConstraints((EList<String>)null);
+				getConstraints().clear();
 				return;
 			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
 				setUseImpactAnalyzer(USE_IMPACT_ANALYZER_EDEFAULT);
@@ -193,7 +187,7 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
-				return constraints != null;
+				return constraints != null && !constraints.isEmpty();
 			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
 				return useImpactAnalyzer != USE_IMPACT_ANALYZER_EDEFAULT;
 		}

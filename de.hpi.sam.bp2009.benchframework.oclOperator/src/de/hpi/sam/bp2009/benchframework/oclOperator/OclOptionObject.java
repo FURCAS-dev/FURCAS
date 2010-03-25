@@ -29,30 +29,20 @@ import org.eclipse.emf.common.util.EList;
 public interface OclOptionObject extends OptionObject {
 	
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' attribute.
+	 * Returns the value of the '<em><b>Constraints</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraints</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' attribute.
-	 * @see #setConstraints(EList)
+	 * @return the value of the '<em>Constraints</em>' attribute list.
 	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage#getOclOptionObject_Constraints()
-	 * @model many="false" transient="true"
+	 * @model
 	 * @generated
 	 */
 	EList<String> getConstraints();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints <em>Constraints</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraints</em>' attribute.
-	 * @see #getConstraints()
-	 * @generated
-	 */
-	void setConstraints(EList<String> value);
 
 	/**
 	 * Returns the value of the '<em><b>Use Impact Analyzer</b></em>' attribute.

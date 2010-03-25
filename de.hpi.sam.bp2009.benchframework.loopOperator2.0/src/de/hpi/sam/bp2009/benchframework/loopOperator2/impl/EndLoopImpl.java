@@ -56,7 +56,7 @@ public class EndLoopImpl extends EndOperatorImpl implements EndLoop {
 	public void execute() {
 		// Start with Operator duplication
 		Integer rep= ((LoopOption)getOption()).getRepetitions();
-		if(rep<=0) {
+		if(rep==null || rep<=0) {
 			setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 			getResult().setStatus(Status.SUCCESSFUL);
 			getResult().setMessage("No more repetitions left");

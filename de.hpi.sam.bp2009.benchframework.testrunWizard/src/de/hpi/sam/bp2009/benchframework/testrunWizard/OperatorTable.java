@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.viewers.ICellModifier;
@@ -29,6 +30,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.TestRun;
 
 public class OperatorTable {
 	private static final String 	ORDERNR="Order";
@@ -57,18 +59,12 @@ public class OperatorTable {
 		Assert.isLegal(!(sum>100),"Column width exceeds 100 percent");
 		Assert.isLegal(PROPS.length==PROPSWIDTH.length,"column count and width count do not match");
 	}
-	private List<Operator> operatorList= new ArrayList<Operator>();
+	private TestframeworkWizard wiz;
 	/**
 	 * @return the selectedOperatorList
 	 */
 	public List<Operator> getSelectedOperatorList() {
 		return selectedOperatorList;
-	}
-	/**
-	 * @param operatorList the operatorList to set
-	 */
-	public void setOperatorList(List<Operator> operatorList) {
-		this.operatorList = operatorList;
 	}
 
 	/**
@@ -77,13 +73,14 @@ public class OperatorTable {
 	void refresh(){
 		if(tv==null)
 			return;
+		tv.setInput(getTestRun().getOperators());
 		tv.refresh();
 	}
 	void createTable(Composite parent){
 		tv = new TableViewer(parent, SWT.BORDER_DASH |SWT.MULTI |SWT.FULL_SELECTION);
 		tv.setContentProvider(new OperatorContentProvider());
 		tv.setLabelProvider(new OperatorLabelProvider(this));
-		tv.setInput(operatorList);
+		tv.setInput(getTestRun().getOperators());
 		tv.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			@Override
@@ -178,7 +175,7 @@ public class OperatorTable {
 			if (OperatorTable.NAME.equals(property))
 				return opObj.getName();
 			else if (OperatorTable.ORDERNR.equals(property))
-				return table.operatorList.indexOf(opObj)+"";
+				return table.getTestRun().getOperators().indexOf(opObj)+"";
 			else if (OperatorTable.DESCRIPTION.equals(property))
 				return opObj.getDescription();
 			else
@@ -192,10 +189,11 @@ public class OperatorTable {
 			try{
 				if (OperatorTable.ORDERNR.equals(property)){
 					Integer i=Integer.parseInt((String) value);
-					if(i>=table.operatorList.size())
-						i=table.operatorList.size()-1;
-					table.operatorList.remove(p);
-					table.operatorList.add(i,p);
+					EList<Operator> list = table.getTestRun().getOperators();
+					if(i>=list.size())
+						i=list.size()-1;
+					list.remove(p);
+					list.add(i,p);
 				}
 			}catch(NumberFormatException e)
 			{e.printStackTrace();}
@@ -213,6 +211,7 @@ public class OperatorTable {
 		}
 
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			System.out.println("content changed");
 		}
 	}
 	class OperatorLabelProvider implements ITableLabelProvider {
@@ -231,7 +230,7 @@ public class OperatorTable {
 			Operator op = (Operator) element;
 			switch (columnIndex) {
 			case 0:
-				return (table.operatorList.indexOf(op))+"";
+				return (table.getTestRun().getOperators().indexOf(op))+"";
 			case 1:
 				return op.getName();
 			case 2:
@@ -252,6 +251,20 @@ public class OperatorTable {
 
 		public void removeListener(ILabelProviderListener listener) {
 		}
+	}
+
+	private TestRun getTestRun(){
+		if(getTestframeworkWizard()==null)
+			return null;
+		return getTestframeworkWizard().getRun();
+	}
+
+	public void setWizard(TestframeworkWizard testframeworkWizard) {
+		this.wiz=testframeworkWizard;
+		
+	}
+	public TestframeworkWizard getTestframeworkWizard(){
+		return wiz;
 	}
 
 }

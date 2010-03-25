@@ -115,12 +115,15 @@ public class OclOperatorWizardPage extends WizardPage {
 		// TODO create an EList with all constraints and pass it to the option object
 		EList<String> constraints = new BasicEList<String>();
 		for (Text tb: textareas){
-			constraints.add(tb.getText());
+			String con=tb.getText();
+			if(con!=null && con.length()>0)
+				constraints.add(tb.getText());
 		}
 		if (option==null)
 			return super.getNextPage();
-		else
-			option.setConstraints(constraints);
+		else{
+			option.getConstraints().clear();
+			option.getConstraints().addAll(constraints);}
 		return super.getNextPage();
 	}
 }

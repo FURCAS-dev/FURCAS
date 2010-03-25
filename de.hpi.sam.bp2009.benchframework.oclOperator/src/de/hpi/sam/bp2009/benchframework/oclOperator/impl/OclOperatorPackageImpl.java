@@ -304,10 +304,7 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		addEParameter(op, this.getOclOptionObject(), "option", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(oclOptionObjectEClass, OclOptionObject.class, "OclOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getOclOptionObject_Constraints(), g1, "constraints", null, 0, 1, OclOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOclOptionObject_Constraints(), theEcorePackage.getEString(), "constraints", null, 0, -1, OclOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOclOptionObject_UseImpactAnalyzer(), theEcorePackage.getEBoolean(), "useImpactAnalyzer", null, 0, 1, OclOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclUtilEClass, OclUtil.class, "OclUtil", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -319,8 +316,8 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		op = addEOperation(oclUtilEClass, null, "getOCLExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "completeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEResourceSet(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(theExpressionsPackage.getOCLExpression());
-		g2 = createEGenericType();
+		EGenericType g1 = createEGenericType(theExpressionsPackage.getOCLExpression());
+		EGenericType g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
