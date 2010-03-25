@@ -6,7 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker;
 
-import org.eclipse.emf.common.util.EMap;
+import java.util.Map;
 
 import de.hpi.sam.bp2009.benchframework.StartOperator;
 import etm.core.monitor.EtmMonitor;
@@ -46,7 +46,7 @@ public interface ExecutionTimeBenchmarkerStart extends StartOperator {
 	 * @return the value of the '<em>Monitor</em>' attribute.
 	 * @see #setMonitor(EtmMonitor)
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getExecutionTimeBenchmarkerStart_Monitor()
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMMonitor"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMMonitor" transient="true"
 	 * @generated
 	 */
 	EtmMonitor getMonitor();
@@ -72,7 +72,7 @@ public interface ExecutionTimeBenchmarkerStart extends StartOperator {
 	 * @return the value of the '<em>Point</em>' attribute.
 	 * @see #setPoint(EtmPoint)
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getExecutionTimeBenchmarkerStart_Point()
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMPoint"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMPoint" transient="true"
 	 * @generated
 	 */
 	EtmPoint getPoint();
@@ -88,20 +88,29 @@ public interface ExecutionTimeBenchmarkerStart extends StartOperator {
 	void setPoint(EtmPoint value);
 
 	/**
-	 * Returns the value of the '<em><b>String To Point</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link etm.core.monitor.EtmPoint},
+	 * Returns the value of the '<em><b>String To Point</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>String To Point</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>String To Point</em>' map.
+	 * @return the value of the '<em>String To Point</em>' attribute.
+	 * @see #setStringToPoint(Map)
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getExecutionTimeBenchmarkerStart_StringToPoint()
-	 * @model mapType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.EStringToETMPointMap<org.eclipse.emf.ecore.EString, de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMPoint>"
+	 * @model transient="true"
 	 * @generated
 	 */
-	EMap<String, EtmPoint> getStringToPoint();
+	Map<String, EtmPoint> getStringToPoint();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint <em>String To Point</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>String To Point</em>' attribute.
+	 * @see #getStringToPoint()
+	 * @generated
+	 */
+	void setStringToPoint(Map<String, EtmPoint> value);
 
 } // ExecutionTimeBenchmarkerStart

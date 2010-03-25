@@ -172,7 +172,7 @@ public interface RandomGeneratorPackage extends EPackage {
 	int RANDOM_GENERATOR_OPTION_OBJECT__NUMBER_GENERATOR = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model</b></em>' reference.
+	 * The feature id for the '<em><b>Meta Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -211,10 +211,10 @@ public interface RandomGeneratorPackage extends EPackage {
 	EClass getRandomGeneratorOptionObject();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Meta Model</em>'.
+	 * @return the meta object for the containment reference '<em>Meta Model</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel()
 	 * @see #getRandomGeneratorOptionObject()
 	 * @generated
@@ -262,7 +262,7 @@ public interface RandomGeneratorPackage extends EPackage {
 		 */
 		EClass RANDOM_GENERATOR_OPTION_OBJECT = eINSTANCE.getRandomGeneratorOptionObject();
 		/**
-		 * The meta object literal for the '<em><b>Meta Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Meta Model</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

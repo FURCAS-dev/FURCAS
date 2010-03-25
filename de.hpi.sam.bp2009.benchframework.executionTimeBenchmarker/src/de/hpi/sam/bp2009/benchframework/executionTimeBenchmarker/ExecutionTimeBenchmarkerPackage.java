@@ -146,7 +146,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_START__POINT = BenchframeworkPackage.START_OPERATOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>String To Point</b></em>' map.
+	 * The feature id for the '<em><b>String To Point</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -412,43 +412,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int JETM_MULTI_RESULT_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl <em>EString To ETM Point Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl
-	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getEStringToETMPointMap()
-	 * @generated
-	 */
-	int ESTRING_TO_ETM_POINT_MAP = 5;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_ETM_POINT_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_ETM_POINT_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To ETM Point Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_ETM_POINT_MAP_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -456,7 +419,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getMeasurableClassLiterals()
 	 * @generated
 	 */
-	int MEASURABLE_CLASS_LITERALS = 6;
+	int MEASURABLE_CLASS_LITERALS = 5;
 
 	/**
 	 * The meta object id for the '<em>ETM Monitor</em>' data type.
@@ -466,7 +429,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMMonitor()
 	 * @generated
 	 */
-	int ETM_MONITOR = 7;
+	int ETM_MONITOR = 6;
 
 
 	/**
@@ -477,7 +440,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMPoint()
 	 * @generated
 	 */
-	int ETM_POINT = 8;
+	int ETM_POINT = 7;
 
 
 	/**
@@ -513,15 +476,15 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	EAttribute getExecutionTimeBenchmarkerStart_Point();
 
 	/**
-	 * Returns the meta object for the map '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint <em>String To Point</em>}'.
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint <em>String To Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>String To Point</em>'.
+	 * @return the meta object for the attribute '<em>String To Point</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint()
 	 * @see #getExecutionTimeBenchmarkerStart()
 	 * @generated
 	 */
-	EReference getExecutionTimeBenchmarkerStart_StringToPoint();
+	EAttribute getExecutionTimeBenchmarkerStart_StringToPoint();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
@@ -652,40 +615,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	EReference getJETMMultiResultObject_Results();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To ETM Point Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To ETM Point Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString"
-	 *        valueDataType="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ETMPoint"
-	 * @generated
-	 */
-	EClass getEStringToETMPointMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToETMPointMap()
-	 * @generated
-	 */
-	EAttribute getEStringToETMPointMap_Key();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToETMPointMap()
-	 * @generated
-	 */
-	EAttribute getEStringToETMPointMap_Value();
-
-	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -701,7 +630,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>ETM Monitor</em>'.
 	 * @see etm.core.monitor.EtmMonitor
-	 * @model instanceClass="etm.core.monitor.EtmMonitor"
+	 * @model instanceClass="etm.core.monitor.EtmMonitor" serializeable="false"
 	 * @generated
 	 */
 	EDataType getETMMonitor();
@@ -712,7 +641,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>ETM Point</em>'.
 	 * @see etm.core.monitor.EtmPoint
-	 * @model instanceClass="etm.core.monitor.EtmPoint"
+	 * @model instanceClass="etm.core.monitor.EtmPoint" serializeable="false"
 	 * @generated
 	 */
 	EDataType getETMPoint();
@@ -766,12 +695,12 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		EAttribute EXECUTION_TIME_BENCHMARKER_START__POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_Point();
 
 		/**
-		 * The meta object literal for the '<em><b>String To Point</b></em>' map feature.
+		 * The meta object literal for the '<em><b>String To Point</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_StringToPoint();
+		EAttribute EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_StringToPoint();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
@@ -876,32 +805,6 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference JETM_MULTI_RESULT_OBJECT__RESULTS = eINSTANCE.getJETMMultiResultObject_Results();
-
-		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl <em>EString To ETM Point Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.EStringToETMPointMapImpl
-		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getEStringToETMPointMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_ETM_POINT_MAP = eINSTANCE.getEStringToETMPointMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_ETM_POINT_MAP__KEY = eINSTANCE.getEStringToETMPointMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_ETM_POINT_MAP__VALUE = eINSTANCE.getEStringToETMPointMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}' enum.

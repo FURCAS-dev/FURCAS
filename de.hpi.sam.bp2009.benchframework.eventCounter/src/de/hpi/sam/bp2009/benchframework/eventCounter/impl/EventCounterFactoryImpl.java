@@ -6,18 +6,21 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
-import de.hpi.sam.bp2009.benchframework.eventCounter.*;
-
 import java.util.Map;
-import org.eclipse.emf.common.notify.Adapter;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,8 +84,6 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case EventCounterPackage.ADAPTER:
-				return createAdapterFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,8 +97,6 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case EventCounterPackage.ADAPTER:
-				return convertAdapterToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -151,24 +150,6 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 	public Map.Entry<String, Integer> createEStringToEIntegerMap() {
 		EStringToEIntegerMapImpl eStringToEIntegerMap = new EStringToEIntegerMapImpl();
 		return eStringToEIntegerMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createAdapterFromString(EDataType eDataType, String initialValue) {
-		return (Adapter)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAdapterToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

@@ -6,19 +6,17 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreEMap;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -99,14 +97,14 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 	protected EtmPoint point = POINT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStringToPoint() <em>String To Point</em>}' map.
+	 * The cached value of the '{@link #getStringToPoint() <em>String To Point</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getStringToPoint()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, EtmPoint> stringToPoint;
+	protected Map<String, EtmPoint> stringToPoint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,7 +120,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 		ExecutionTimeBenchmarkerEnd end = ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerEnd();
 		setEndOperator(end); //setStartPoint is the EOpposite of this reference, we don't need to set it explicitly
 		end.setOption(options);
-		getStringToPoint().clear();
+		setStringToPoint(new HashMap<String, EtmPoint>());
 	}
 
 	/**
@@ -182,10 +180,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, EtmPoint> getStringToPoint() {
-		if (stringToPoint == null) {
-			stringToPoint = new EcoreEMap<String,EtmPoint>(ExecutionTimeBenchmarkerPackage.Literals.ESTRING_TO_ETM_POINT_MAP, EStringToETMPointMapImpl.class, this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT);
-		}
+	public Map<String, EtmPoint> getStringToPoint() {
 		return stringToPoint;
 	}
 
@@ -194,13 +189,11 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				return ((InternalEList<?>)getStringToPoint()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public void setStringToPoint(Map<String, EtmPoint> newStringToPoint) {
+		Map<String, EtmPoint> oldStringToPoint = stringToPoint;
+		stringToPoint = newStringToPoint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT, oldStringToPoint, stringToPoint));
 	}
 
 	/**
@@ -216,8 +209,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				return getPoint();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				if (coreType) return getStringToPoint();
-				else return getStringToPoint().map();
+				return getStringToPoint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,6 +219,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -237,7 +230,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 				setPoint((EtmPoint)newValue);
 				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				((EStructuralFeature.Setting)getStringToPoint()).set(newValue);
+				setStringToPoint((Map<String, EtmPoint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -291,7 +284,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				return POINT_EDEFAULT == null ? point != null : !POINT_EDEFAULT.equals(point);
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
-				return stringToPoint != null && !stringToPoint.isEmpty();
+				return stringToPoint != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -310,6 +303,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 		result.append(monitor);
 		result.append(", point: ");
 		result.append(point);
+		result.append(", stringToPoint: ");
+		result.append(stringToPoint);
 		result.append(')');
 		return result.toString();
 	}

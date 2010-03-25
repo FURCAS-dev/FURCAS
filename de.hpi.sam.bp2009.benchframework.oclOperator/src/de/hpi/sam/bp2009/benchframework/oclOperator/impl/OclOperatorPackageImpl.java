@@ -330,7 +330,7 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		initEAttribute(getOclResult_QueriesToResults(), g1, "queriesToResults", null, 0, 1, OclResult.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
-		initEDataType(iQueryResultEDataType, IQueryResult.class, "IQueryResult", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iQueryResultEDataType, IQueryResult.class, "IQueryResult", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

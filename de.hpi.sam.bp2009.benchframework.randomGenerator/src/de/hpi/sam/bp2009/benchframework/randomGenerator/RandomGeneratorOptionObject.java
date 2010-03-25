@@ -32,26 +32,26 @@ import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
  */
 public interface RandomGeneratorOptionObject extends RandomNumberOptionObject {
 	/**
-	 * Returns the value of the '<em><b>Meta Model</b></em>' reference.
+	 * Returns the value of the '<em><b>Meta Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta Model</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model</em>' reference.
+	 * @return the value of the '<em>Meta Model</em>' containment reference.
 	 * @see #setMetaModel(EPackage)
 	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage#getRandomGeneratorOptionObject_MetaModel()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EPackage getMetaModel();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Model</em>' reference.
+	 * @param value the new value of the '<em>Meta Model</em>' containment reference.
 	 * @see #getMetaModel()
 	 * @generated
 	 */

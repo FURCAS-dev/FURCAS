@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -36,7 +37,7 @@ import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
  */
 public class RandomGeneratorOptionObjectImpl extends RandomNumberOptionObjectImpl implements RandomGeneratorOptionObject {
 	/**
-	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' reference.
+	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMetaModel()
@@ -72,14 +73,6 @@ public class RandomGeneratorOptionObjectImpl extends RandomNumberOptionObjectImp
 	 * @generated
 	 */
 	public EPackage getMetaModel() {
-		if (metaModel != null && metaModel.eIsProxy()) {
-			InternalEObject oldMetaModel = (InternalEObject)metaModel;
-			metaModel = (EPackage)eResolveProxy(oldMetaModel);
-			if (metaModel != oldMetaModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, oldMetaModel, metaModel));
-			}
-		}
 		return metaModel;
 	}
 
@@ -88,8 +81,14 @@ public class RandomGeneratorOptionObjectImpl extends RandomNumberOptionObjectImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EPackage basicGetMetaModel() {
-		return metaModel;
+	public NotificationChain basicSetMetaModel(EPackage newMetaModel, NotificationChain msgs) {
+		EPackage oldMetaModel = metaModel;
+		metaModel = newMetaModel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, oldMetaModel, newMetaModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -98,10 +97,31 @@ public class RandomGeneratorOptionObjectImpl extends RandomNumberOptionObjectImp
 	 * @generated
 	 */
 	public void setMetaModel(EPackage newMetaModel) {
-		EPackage oldMetaModel = metaModel;
-		metaModel = newMetaModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, oldMetaModel, metaModel));
+		if (newMetaModel != metaModel) {
+			NotificationChain msgs = null;
+			if (metaModel != null)
+				msgs = ((InternalEObject)metaModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, null, msgs);
+			if (newMetaModel != null)
+				msgs = ((InternalEObject)newMetaModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, null, msgs);
+			msgs = basicSetMetaModel(newMetaModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, newMetaModel, newMetaModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
+				return basicSetMetaModel(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -113,8 +133,7 @@ public class RandomGeneratorOptionObjectImpl extends RandomNumberOptionObjectImp
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
-				if (resolve) return getMetaModel();
-				return basicGetMetaModel();
+				return getMetaModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

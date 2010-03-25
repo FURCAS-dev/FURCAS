@@ -204,7 +204,7 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 		initEClass(randomGeneratorEClass, RandomGenerator.class, "RandomGenerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(randomGeneratorOptionObjectEClass, RandomGeneratorOptionObject.class, "RandomGeneratorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRandomGeneratorOptionObject_MetaModel(), theEcorePackage.getEPackage(), null, "metaModel", null, 0, 1, RandomGeneratorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRandomGeneratorOptionObject_MetaModel(), theEcorePackage.getEPackage(), null, "metaModel", null, 0, 1, RandomGeneratorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

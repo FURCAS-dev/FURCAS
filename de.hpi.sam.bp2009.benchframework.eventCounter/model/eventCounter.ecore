@@ -7,14 +7,16 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This operator starts event counting. It holds a map from string to int to identify the different types of events e.g. incoming events, mapped internal events, events sent to a specific application or thelike."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adapter" eType="#//Adapter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adapter" eType="#//Adapter"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventCounterEnd" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//EndOperator">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This operator ends event counting."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"
+      serializable="false"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventCounterOptionObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventCounterResultObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventCounts" upperBound="-1"

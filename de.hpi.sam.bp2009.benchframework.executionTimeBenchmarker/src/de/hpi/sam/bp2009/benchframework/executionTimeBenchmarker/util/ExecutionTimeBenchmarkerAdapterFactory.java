@@ -6,22 +6,22 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EObject;
+
 import de.hpi.sam.bp2009.benchframework.EndOperator;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
-
 import de.hpi.sam.bp2009.benchframework.StartOperator;
-import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
-
-import etm.core.monitor.EtmPoint;
-import java.util.Map;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,10 +98,6 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseJETMMultiResultObject(JETMMultiResultObject object) {
 				return createJETMMultiResultObjectAdapter();
-			}
-			@Override
-			public Adapter caseEStringToETMPointMap(Map.Entry<String, EtmPoint> object) {
-				return createEStringToETMPointMapAdapter();
 			}
 			@Override
 			public Adapter caseOperator(Operator object) {
@@ -210,20 +206,6 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createJETMMultiResultObjectAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To ETM Point Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see java.util.Map.Entry
-	 * @generated
-	 */
-	public Adapter createEStringToETMPointMapAdapter() {
 		return null;
 	}
 

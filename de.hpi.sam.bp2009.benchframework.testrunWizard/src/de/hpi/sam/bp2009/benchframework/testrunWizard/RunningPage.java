@@ -132,13 +132,17 @@ public class RunningPage extends WizardPage {
 		});
 		//ProgressBar bar = new ProgressBar(composite, SWT.CENTER);
 		Button save= new Button(composite,SWT.CENTER);
-		save.setText("SAVE");
+		save.setText("Save");
+		save.setToolTipText("Save the current state of the testrun to XMI");
 		save.addSelectionListener(new SelectionListener() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				FileDialog dialog = new FileDialog (parent.getShell(), SWT.SAVE);
-				String absoluteFilePath= dialog.open();
+				FileDialog dialog = new FileDialog(parent.getShell(), SWT.SAVE);
+				dialog.setFilterNames(new String[] {"XMI Files"});
+				dialog.setFilterExtensions(new String[] {"*.xmi"});
+				dialog.setFileName("saved_testrun");
+				String absoluteFilePath = dialog.open();
 				if(absoluteFilePath==null)
 					return;
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());

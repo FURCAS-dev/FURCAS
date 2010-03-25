@@ -6,12 +6,11 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -69,13 +68,6 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass jetmMultiResultObjectEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eStringToETMPointMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,8 +186,8 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExecutionTimeBenchmarkerStart_StringToPoint() {
-		return (EReference)executionTimeBenchmarkerStartEClass.getEStructuralFeatures().get(2);
+	public EAttribute getExecutionTimeBenchmarkerStart_StringToPoint() {
+		return (EAttribute)executionTimeBenchmarkerStartEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -311,33 +303,6 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEStringToETMPointMap() {
-		return eStringToETMPointMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToETMPointMap_Key() {
-		return (EAttribute)eStringToETMPointMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToETMPointMap_Value() {
-		return (EAttribute)eStringToETMPointMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getMeasurableClassLiterals() {
 		return measurableClassLiteralsEEnum;
 	}
@@ -391,7 +356,7 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		executionTimeBenchmarkerStartEClass = createEClass(EXECUTION_TIME_BENCHMARKER_START);
 		createEAttribute(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__MONITOR);
 		createEAttribute(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__POINT);
-		createEReference(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT);
+		createEAttribute(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT);
 
 		executionTimeBenchmarkerEndEClass = createEClass(EXECUTION_TIME_BENCHMARKER_END);
 
@@ -408,10 +373,6 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 
 		jetmMultiResultObjectEClass = createEClass(JETM_MULTI_RESULT_OBJECT);
 		createEReference(jetmMultiResultObjectEClass, JETM_MULTI_RESULT_OBJECT__RESULTS);
-
-		eStringToETMPointMapEClass = createEClass(ESTRING_TO_ETM_POINT_MAP);
-		createEAttribute(eStringToETMPointMapEClass, ESTRING_TO_ETM_POINT_MAP__KEY);
-		createEAttribute(eStringToETMPointMapEClass, ESTRING_TO_ETM_POINT_MAP__VALUE);
 
 		// Create enums
 		measurableClassLiteralsEEnum = createEEnum(MEASURABLE_CLASS_LITERALS);
@@ -460,9 +421,14 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(executionTimeBenchmarkerStartEClass, ExecutionTimeBenchmarkerStart.class, "ExecutionTimeBenchmarkerStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExecutionTimeBenchmarkerStart_Monitor(), this.getETMMonitor(), "monitor", null, 0, 1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExecutionTimeBenchmarkerStart_Point(), this.getETMPoint(), "point", null, 0, 1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExecutionTimeBenchmarkerStart_StringToPoint(), this.getEStringToETMPointMap(), null, "stringToPoint", null, 0, -1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutionTimeBenchmarkerStart_Monitor(), this.getETMMonitor(), "monitor", null, 0, 1, ExecutionTimeBenchmarkerStart.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutionTimeBenchmarkerStart_Point(), this.getETMPoint(), "point", null, 0, 1, ExecutionTimeBenchmarkerStart.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getETMPoint());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getExecutionTimeBenchmarkerStart_StringToPoint(), g1, "stringToPoint", null, 0, 1, ExecutionTimeBenchmarkerStart.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(executionTimeBenchmarkerEndEClass, ExecutionTimeBenchmarkerEnd.class, "ExecutionTimeBenchmarkerEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -482,10 +448,6 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		initEClass(jetmMultiResultObjectEClass, JETMMultiResultObject.class, "JETMMultiResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getJETMMultiResultObject_Results(), this.getJETMResultObject(), null, "results", null, 0, -1, JETMMultiResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eStringToETMPointMapEClass, Map.Entry.class, "EStringToETMPointMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEStringToETMPointMap_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEStringToETMPointMap_Value(), this.getETMPoint(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		// Initialize enums and add enum literals
 		initEEnum(measurableClassLiteralsEEnum, MeasurableClassLiterals.class, "MeasurableClassLiterals");
 		addEEnumLiteral(measurableClassLiteralsEEnum, MeasurableClassLiterals.IMPACT_ANALYZER);
@@ -493,8 +455,8 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		addEEnumLiteral(measurableClassLiteralsEEnum, MeasurableClassLiterals.OCL_EVALUATOR);
 
 		// Initialize data types
-		initEDataType(etmMonitorEDataType, EtmMonitor.class, "ETMMonitor", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(etmPointEDataType, EtmPoint.class, "ETMPoint", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(etmMonitorEDataType, EtmMonitor.class, "ETMMonitor", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(etmPointEDataType, EtmPoint.class, "ETMPoint", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

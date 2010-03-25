@@ -6,19 +6,21 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
-
-import etm.core.monitor.EtmMonitor;
-import etm.core.monitor.EtmPoint;
-import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,7 +71,6 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT: return createJETMResultObject();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT: return createExecutionTimeBenchmarkerOptionObject();
 			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT: return createJETMMultiResultObject();
-			case ExecutionTimeBenchmarkerPackage.ESTRING_TO_ETM_POINT_MAP: return (EObject)createEStringToETMPointMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -85,10 +86,6 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 			case ExecutionTimeBenchmarkerPackage.MEASURABLE_CLASS_LITERALS:
 				return createMeasurableClassLiteralsFromString(eDataType, initialValue);
-			case ExecutionTimeBenchmarkerPackage.ETM_MONITOR:
-				return createETMMonitorFromString(eDataType, initialValue);
-			case ExecutionTimeBenchmarkerPackage.ETM_POINT:
-				return createETMPointFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -104,10 +101,6 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 			case ExecutionTimeBenchmarkerPackage.MEASURABLE_CLASS_LITERALS:
 				return convertMeasurableClassLiteralsToString(eDataType, instanceValue);
-			case ExecutionTimeBenchmarkerPackage.ETM_MONITOR:
-				return convertETMMonitorToString(eDataType, instanceValue);
-			case ExecutionTimeBenchmarkerPackage.ETM_POINT:
-				return convertETMPointToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -168,16 +161,6 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, EtmPoint> createEStringToETMPointMap() {
-		EStringToETMPointMapImpl eStringToETMPointMap = new EStringToETMPointMapImpl();
-		return eStringToETMPointMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MeasurableClassLiterals createMeasurableClassLiteralsFromString(EDataType eDataType, String initialValue) {
 		MeasurableClassLiterals result = MeasurableClassLiterals.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -191,42 +174,6 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	 */
 	public String convertMeasurableClassLiteralsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EtmMonitor createETMMonitorFromString(EDataType eDataType, String initialValue) {
-		return (EtmMonitor)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertETMMonitorToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EtmPoint createETMPointFromString(EDataType eDataType, String initialValue) {
-		return (EtmPoint)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertETMPointToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

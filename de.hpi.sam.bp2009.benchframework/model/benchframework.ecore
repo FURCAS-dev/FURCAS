@@ -54,7 +54,8 @@
       <details key="documentation" value="The base class of all option objects for an operator, should be subclasses to support specific concepts."/>
     </eAnnotations>
     <eOperations name="clone" eType="#//OptionObject" eExceptions="#//CloneNotSupportedException"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardPage" eType="#//WizardPage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardPage" eType="#//WizardPage"
+        transient="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="used for eclipse wizard based option entering"/>
       </eAnnotations>

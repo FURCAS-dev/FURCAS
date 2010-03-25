@@ -44,7 +44,7 @@ public interface OptionObject extends EObject {
 	 * @return the value of the '<em>Wizard Page</em>' attribute.
 	 * @see #setWizardPage(WizardPage)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOptionObject_WizardPage()
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.WizardPage"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.WizardPage" transient="true"
 	 * @generated
 	 */
 	WizardPage getWizardPage();

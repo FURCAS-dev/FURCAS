@@ -42,7 +42,7 @@ public interface EventCounterStart extends StartOperator {
 	 * @return the value of the '<em>Adapter</em>' attribute.
 	 * @see #setAdapter(Adapter)
 	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage#getEventCounterStart_Adapter()
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.eventCounter.Adapter"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.eventCounter.Adapter" transient="true"
 	 * @generated
 	 */
 	Adapter getAdapter();

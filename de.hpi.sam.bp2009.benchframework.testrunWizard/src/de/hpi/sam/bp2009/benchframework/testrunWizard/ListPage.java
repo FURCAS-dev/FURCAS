@@ -71,9 +71,9 @@ public class ListPage extends WizardPage {
 		tbl.createTable(composite);
 
 		buildRemoveButton(composite);
-		buildLoadButton(composite);
 		generateEClassMappingAndSelectionBoxForResultProcessors(composite);
-	
+		buildLoadButton(composite);
+
 		setControl(composite);
 		setPageComplete(true);
 	}
@@ -172,8 +172,13 @@ public class ListPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					FileDialog dialog = new FileDialog(parent.getShell(), SWT.SAVE);
+					FileDialog dialog = new FileDialog(parent.getShell(), SWT.OPEN);
+					dialog.setFilterNames(new String[] {"XMI Files"});
+					dialog.setFilterExtensions(new String[] {"*.xmi"});
+					
 					String absoluteFilePath = dialog.open();
+
+					
 					if (absoluteFilePath == null)
 						return;
 					TestframeworkWizard wiz = ((TestframeworkWizard) getWizard());

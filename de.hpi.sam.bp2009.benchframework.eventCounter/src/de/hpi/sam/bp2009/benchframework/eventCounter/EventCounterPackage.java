@@ -433,7 +433,7 @@ public interface EventCounterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Adapter</em>'.
 	 * @see org.eclipse.emf.common.notify.Adapter
-	 * @model instanceClass="org.eclipse.emf.common.notify.Adapter"
+	 * @model instanceClass="org.eclipse.emf.common.notify.Adapter" serializeable="false"
 	 * @generated
 	 */
 	EDataType getAdapter();

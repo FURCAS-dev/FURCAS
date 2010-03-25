@@ -6,18 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import de.hpi.sam.bp2009.benchframework.oclOperator.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.emf.query.statements.IQueryResult;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,8 +81,6 @@ public class OclOperatorFactoryImpl extends EFactoryImpl implements OclOperatorF
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case OclOperatorPackage.IQUERY_RESULT:
-				return createIQueryResultFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -95,8 +94,6 @@ public class OclOperatorFactoryImpl extends EFactoryImpl implements OclOperatorF
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case OclOperatorPackage.IQUERY_RESULT:
-				return convertIQueryResultToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -140,24 +137,6 @@ public class OclOperatorFactoryImpl extends EFactoryImpl implements OclOperatorF
 	public OclResult createOclResult() {
 		OclResultImpl oclResult = new OclResultImpl();
 		return oclResult;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IQueryResult createIQueryResultFromString(EDataType eDataType, String initialValue) {
-		return (IQueryResult)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertIQueryResultToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

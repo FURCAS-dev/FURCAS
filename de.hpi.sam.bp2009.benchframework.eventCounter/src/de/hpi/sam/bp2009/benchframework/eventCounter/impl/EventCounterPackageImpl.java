@@ -310,7 +310,7 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventCounterStartEClass, EventCounterStart.class, "EventCounterStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEventCounterStart_Adapter(), this.getAdapter(), "adapter", null, 0, 1, EventCounterStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventCounterStart_Adapter(), this.getAdapter(), "adapter", null, 0, 1, EventCounterStart.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventCounterEndEClass, EventCounterEnd.class, "EventCounterEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -324,7 +324,7 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 		initEAttribute(getEStringToEIntegerMap_Value(), ecorePackage.getEIntegerObject(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
-		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(adapterEDataType, Adapter.class, "Adapter", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

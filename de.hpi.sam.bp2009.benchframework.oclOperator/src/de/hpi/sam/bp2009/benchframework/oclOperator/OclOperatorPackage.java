@@ -326,7 +326,7 @@ public interface OclOperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>IQuery Result</em>'.
 	 * @see org.eclipse.emf.query.statements.IQueryResult
-	 * @model instanceClass="org.eclipse.emf.query.statements.IQueryResult"
+	 * @model instanceClass="org.eclipse.emf.query.statements.IQueryResult" serializeable="false"
 	 * @generated
 	 */
 	EDataType getIQueryResult();

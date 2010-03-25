@@ -40,7 +40,8 @@
       <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="IQueryResult" instanceClassName="org.eclipse.emf.query.statements.IQueryResult"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IQueryResult" instanceClassName="org.eclipse.emf.query.statements.IQueryResult"
+      serializable="false"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclResult" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="queriesToResults" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
