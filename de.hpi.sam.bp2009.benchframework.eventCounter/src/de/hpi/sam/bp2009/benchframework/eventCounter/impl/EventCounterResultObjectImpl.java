@@ -154,7 +154,7 @@ public class EventCounterResultObjectImpl extends ResultObjectImpl implements Ev
 	public String getCSV() {
 		String msg = "";
 		for (String key : this.getEventCounts().keySet()){
-			msg += key + " " + this.getEventCounts().get(key).toString() + "\n";
+			msg += key + " " + this.getEventCounts().get(key).toString() + " , ";
 		}		
 		return msg;
 	}

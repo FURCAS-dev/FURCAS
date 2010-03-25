@@ -2,8 +2,8 @@ package de.hpi.sam.bp2009.benchframework.csvResultProcessor.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.loopOperator2.impl.EndLoopImpl;
 
 public class CsvResultPage extends WizardPage {
 	private static final String SAVE_BUTTON_LABEL = "save";
@@ -115,10 +116,19 @@ public class CsvResultPage extends WizardPage {
 					result.createNewFile();														
 					fw = new FileOutputStream(result);
 					if (result.exists()){
-						for (Operator o : ops) {
-							ResultObject r = o.getResult();
-							String msg = r.getCSV() + "\n";
-							fw.write(msg.getBytes());
+						for (Operator op : ops) {
+							ResultObject r = op.getResult();
+							String msg;
+							if (r != null){
+								if (op instanceof EndLoopImpl) msg = "\n\n";
+								else {									
+									msg = r.getCSV();
+									//if msg is not empty and don't ends with a comma, append one
+									msg = msg.trim();
+									if ((!msg.endsWith(",") && !"".equals(msg))) msg += " , "; 
+								}								
+								fw.write(msg.getBytes());
+							}						
 						}
 					}
 					else System.err.println("File could not be written.");
@@ -132,8 +142,7 @@ public class CsvResultPage extends WizardPage {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}
-		
+				}		
 			}
 			
 			@Override

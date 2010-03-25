@@ -178,7 +178,7 @@ public class JETMMultiResultObjectImpl extends ResultObjectImpl implements JETMM
 		Iterator<JETMResultObject> it = getResults().iterator();
 		while (it.hasNext()){
 			JETMResultObject rsObj = it.next();
-			msg += rsObj.getCSV() + "\n";
+			msg += rsObj.getCSV() + " , ";
 		}		
 		return msg;
 	}

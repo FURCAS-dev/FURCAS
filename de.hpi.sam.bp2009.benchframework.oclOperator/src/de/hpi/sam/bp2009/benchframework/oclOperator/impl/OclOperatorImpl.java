@@ -481,6 +481,9 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	public void execute() {
 		setResult(OclOperatorFactory.eINSTANCE.createOclResult());
 		if (option instanceof OclOptionObject){
+			for (String query: ((OclOptionObject) option).getConstraints()){
+				((OclResultImpl)getResult()).addQuery("\"" + query + "\"");
+			}
 			if(((OclOptionObject) option).isUseImpactAnalyzer())
 				registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
 			else

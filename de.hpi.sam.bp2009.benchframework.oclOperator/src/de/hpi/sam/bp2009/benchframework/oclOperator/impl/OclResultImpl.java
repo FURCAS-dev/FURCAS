@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.query.statements.IQueryResult;
@@ -44,6 +46,20 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 * @ordered
 	 */
 	protected Map<String, IQueryResult> queriesToResults;
+	
+	protected EList<String> queries = new BasicEList<String>();
+
+	public EList<String> getQueries() {
+		return queries;
+	}
+
+	public void setQueries(EList<String> queries) {
+		this.queries = queries;
+	}
+	
+	public void addQuery(String query){
+		this.queries.add(query);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,5 +191,20 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 			label1.setText(entry.getKey() +" : "+entry.getValue());
 		}
 		return composite;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getCSV() {
+		String msg = "";
+		if (queries == null) return msg;
+		for (String query: getQueries()){
+			if (msg != "") msg += " + ";
+			msg += (query);
+		}
+		return msg;
 	}
 } //OclResultImpl
