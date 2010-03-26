@@ -740,11 +740,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		initEClass(randomNumberOptionObjectEClass, RandomNumberOptionObject.class, "RandomNumberOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomNumberOptionObject_NumberListIndex(), ecorePackage.getEInt(), "numberListIndex", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(ecorePackage.getEIntegerObject());
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getRandomNumberOptionObject_NumberList(), g1, "numberList", null, 0, 1, RandomNumberOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRandomNumberOptionObject_NumberGenerator(), this.getRandomNumberGenerator(), "numberGenerator", null, 0, 1, RandomNumberOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRandomNumberOptionObject_NumberList(), ecorePackage.getEIntegerObject(), "numberList", null, 0, -1, RandomNumberOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRandomNumberOptionObject_NumberGenerator(), this.getRandomNumberGenerator(), "numberGenerator", null, 0, 1, RandomNumberOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(randomNumberOptionObjectEClass, ecorePackage.getEIntegerObject(), "getNextInt", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEIntegerObject(), "upperLimit", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -819,7 +816,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEDataType(uiComponentEDataType, Composite.class, "UIComponent", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(cloneNotSupportedExceptionEDataType, CloneNotSupportedException.class, "CloneNotSupportedException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(randomNumberGeneratorEDataType, Random.class, "RandomNumberGenerator", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(randomNumberGeneratorEDataType, Random.class, "RandomNumberGenerator", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -189,7 +189,7 @@ public class ListPage extends WizardPage {
 					setPageComplete(true);
 					tbl.refresh();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+					// TODO Show Error Message
 					e1.printStackTrace();
 				}
 			}

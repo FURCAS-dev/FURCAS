@@ -70,12 +70,11 @@
     </eOperations>
     <eOperations name="getNextInt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberListIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberList" transient="true">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-      </eGenericType>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberGenerator" eType="#//RandomNumberGenerator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberList" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberGenerator" eType="#//RandomNumberGenerator"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultObject">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -178,5 +177,6 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"
       serializable="false"/>
   <eClassifiers xsi:type="ecore:EDataType" name="CloneNotSupportedException" instanceClassName="java.lang.CloneNotSupportedException"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="RandomNumberGenerator" instanceClassName="java.util.Random"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="RandomNumberGenerator" instanceClassName="java.util.Random"
+      serializable="false"/>
 </ecore:EPackage>

@@ -154,7 +154,7 @@ public interface RandomGeneratorPackage extends EPackage {
 	int RANDOM_GENERATOR_OPTION_OBJECT__NUMBER_LIST_INDEX = BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX;
 
 	/**
-	 * The feature id for the '<em><b>Number List</b></em>' attribute.
+	 * The feature id for the '<em><b>Number List</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

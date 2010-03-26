@@ -114,8 +114,7 @@ public class OperatorTable {
 
 			@Override
 			public void controlMoved(ControlEvent e) {
-				// TODO Auto-generated method stub
-
+				//nothing to do
 			}
 		});
 
@@ -132,7 +131,6 @@ public class OperatorTable {
 				}catch (NumberFormatException e) {
 					return "No Valid Index";
 				}
-				// TODO Auto-generated method stub
 				return null;
 			}
 		});
@@ -145,7 +143,6 @@ public class OperatorTable {
 		tv.setColumnProperties(PROPS);
 		tv.setCellModifier(new OperatorCellModifier(tv,this));
 		tv.setCellEditors(editors);
-		System.out.println(tv.isCellEditorActive());
 		tv.refresh();
 		table.pack();
 
@@ -211,7 +208,6 @@ public class OperatorTable {
 		}
 
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			System.out.println("content changed");
 		}
 	}
 	class OperatorLabelProvider implements ITableLabelProvider {

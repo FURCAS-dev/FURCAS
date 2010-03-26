@@ -6,13 +6,14 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
+import java.util.Collection;
 import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
@@ -54,7 +55,7 @@ public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements Ra
 	protected int numberListIndex = NUMBER_LIST_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getNumberList() <em>Number List</em>}' attribute.
+	 * The cached value of the '{@link #getNumberList() <em>Number List</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getNumberList()
@@ -128,24 +129,13 @@ public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements Ra
 	 * <!-- begin-user-doc -->
 	 * This method is lazy, that means if there is no numberList to get, then we initialize one and return it, else we return the existing one.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Integer> getNumberList() {
-		if (numberList == null)
-			setNumberList(new BasicEList<Integer>());
-		return numberList;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberList(EList<Integer> newNumberList) {
-		EList<Integer> oldNumberList = numberList;
-		numberList = newNumberList;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST, oldNumberList, numberList));
+	public EList<Integer> getNumberList() {
+		if (numberList == null) {
+			numberList = new EDataTypeUniqueEList<Integer>(Integer.class, this, BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST);
+		}
+		return numberList;
 	}
 
 	/**
@@ -240,7 +230,8 @@ public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements Ra
 				setNumberListIndex((Integer)newValue);
 				return;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST:
-				setNumberList((EList<Integer>)newValue);
+				getNumberList().clear();
+				getNumberList().addAll((Collection<? extends Integer>)newValue);
 				return;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR:
 				setNumberGenerator((Random)newValue);
@@ -261,7 +252,7 @@ public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements Ra
 				setNumberListIndex(NUMBER_LIST_INDEX_EDEFAULT);
 				return;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST:
-				setNumberList((EList<Integer>)null);
+				getNumberList().clear();
 				return;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR:
 				setNumberGenerator(NUMBER_GENERATOR_EDEFAULT);
@@ -281,7 +272,7 @@ public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements Ra
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST_INDEX:
 				return numberListIndex != NUMBER_LIST_INDEX_EDEFAULT;
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_LIST:
-				return numberList != null;
+				return numberList != null && !numberList.isEmpty();
 			case BenchframeworkPackage.RANDOM_NUMBER_OPTION_OBJECT__NUMBER_GENERATOR:
 				return NUMBER_GENERATOR_EDEFAULT == null ? numberGenerator != null : !NUMBER_GENERATOR_EDEFAULT.equals(numberGenerator);
 		}

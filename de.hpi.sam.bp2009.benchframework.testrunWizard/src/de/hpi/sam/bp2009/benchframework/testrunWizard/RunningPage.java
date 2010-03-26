@@ -155,8 +155,9 @@ public class RunningPage extends WizardPage {
 				try {
 					run.eResource().save(null);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					error.setText(getCustomStackTrace(e1)+"\n");
+					composite.layout();
+					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				}
 				
 			}

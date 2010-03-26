@@ -73,6 +73,9 @@ public class EventCounterStartImpl extends StartOperatorImpl implements EventCou
 		setDescription(DESCRIPTION);
 		setEndOperator(EventCounterFactory.eINSTANCE.createEventCounterEnd()); 
 		
+	}
+
+	private void createResultObject() {
 		//create the result object
 		EventCounterResultObject rslt = EventCounterFactory.eINSTANCE.createEventCounterResultObject();
 		rslt.getEventCounts().put("incoming EMF Events", 0);
@@ -190,6 +193,8 @@ public class EventCounterStartImpl extends StartOperatorImpl implements EventCou
 	
 	@Override
 	public void execute() {
+		createResultObject();
+
 		//register an adapter at the Modified Event Manager
 		final EventManager em = ((TestRun)eContainer()).getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
 		setAdapter(new Adapter() {		

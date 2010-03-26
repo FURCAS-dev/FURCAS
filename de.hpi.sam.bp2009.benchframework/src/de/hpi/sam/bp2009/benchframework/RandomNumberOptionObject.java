@@ -61,30 +61,20 @@ public interface RandomNumberOptionObject extends OptionObject {
 	void setNumberListIndex(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Number List</b></em>' attribute.
+	 * Returns the value of the '<em><b>Number List</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Integer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Number List</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Number List</em>' attribute.
-	 * @see #setNumberList(EList)
+	 * @return the value of the '<em>Number List</em>' attribute list.
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getRandomNumberOptionObject_NumberList()
-	 * @model many="false" transient="true"
+	 * @model transient="true"
 	 * @generated
 	 */
 	EList<Integer> getNumberList();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject#getNumberList <em>Number List</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Number List</em>' attribute.
-	 * @see #getNumberList()
-	 * @generated
-	 */
-	void setNumberList(EList<Integer> value);
 
 	/**
 	 * Returns the value of the '<em><b>Number Generator</b></em>' attribute.
@@ -97,7 +87,7 @@ public interface RandomNumberOptionObject extends OptionObject {
 	 * @return the value of the '<em>Number Generator</em>' attribute.
 	 * @see #setNumberGenerator(Random)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getRandomNumberOptionObject_NumberGenerator()
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.RandomNumberGenerator"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.RandomNumberGenerator" transient="true"
 	 * @generated
 	 */
 	Random getNumberGenerator();

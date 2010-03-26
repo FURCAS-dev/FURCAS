@@ -6,23 +6,24 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
-import de.hpi.sam.bp2009.benchframework.*;
-
 import java.io.OutputStream;
 
-import java.util.Random;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.jface.wizard.WizardPage;
-
 import org.eclipse.swt.widgets.Composite;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.Engine;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
+import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
+import de.hpi.sam.bp2009.benchframework.TestRun;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,8 +96,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return createUIComponentFromString(eDataType, initialValue);
 			case BenchframeworkPackage.CLONE_NOT_SUPPORTED_EXCEPTION:
 				return createCloneNotSupportedExceptionFromString(eDataType, initialValue);
-			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
-				return createRandomNumberGeneratorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -120,8 +119,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 				return convertUIComponentToString(eDataType, instanceValue);
 			case BenchframeworkPackage.CLONE_NOT_SUPPORTED_EXCEPTION:
 				return convertCloneNotSupportedExceptionToString(eDataType, instanceValue);
-			case BenchframeworkPackage.RANDOM_NUMBER_GENERATOR:
-				return convertRandomNumberGeneratorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -238,24 +235,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	 * @generated
 	 */
 	public String convertUIComponentToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Random createRandomNumberGeneratorFromString(EDataType eDataType, String initialValue) {
-		return (Random)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertRandomNumberGeneratorToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
