@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="scopeProvider"
+    nsURI="http://de.hpi.sam.bp2009.solution.scopeProvider" nsPrefix="solution.scopeProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="ScopeProvider">
+    <eOperations name="setupForEObjects">
+      <eParameters name="initialObjects" lowerBound="1" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    </eOperations>
+    <eOperations name="setupForResources">
+      <eParameters name="initialResources" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    </eOperations>
+    <eOperations name="setupForResourceSets">
+      <eParameters name="initialResourceSets" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
+    </eOperations>
+    <eOperations name="getForwardScopeAsResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    <eOperations name="getForwardScopeAsEObjects" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eOperations name="getForwardScopeAsURIs" upperBound="-1" eType="#//URI"/>
+    <eOperations name="getBackwardScopeAsResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    <eOperations name="getBackwardScopeAsEObjects" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eOperations name="getBackwardScopeAsURIs" upperBound="-1" eType="#//URI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="org.eclipse.emf.common.util.URI"/>
+</ecore:EPackage>

@@ -148,17 +148,6 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void subscribeTransactional(Notifier root, EventFilter filter, Adapter caller) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT

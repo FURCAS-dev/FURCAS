@@ -58,15 +58,7 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
-	 * @generated
-	 */
-	void subscribe(Notifier root, EventFilter filter, Adapter caller);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootMany="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootRequired="true" rootMany="true" filterRequired="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true"
 	 * @generated
 	 */
 	void subscribe(EList<Notifier> root, EventFilter filter, Adapter caller);
@@ -74,15 +66,7 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
-	 * @generated
-	 */
-	void subscribeTransactional(Notifier root, EventFilter filter, Adapter caller);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootMany="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootRequired="true" rootMany="true" filterRequired="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true"
 	 * @generated
 	 */
 	void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller);
@@ -90,7 +74,7 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model applicationDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @model applicationDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" applicationRequired="true" msgRequired="true"
 	 * @generated
 	 */
 	void notifyApplication(Adapter application, EventNotification msg);
@@ -98,7 +82,7 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" notificationDataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true" notificationDataType="de.hpi.sam.bp2009.solution.eventManager.Notification" notificationRequired="true" filterRequired="true"
 	 * @generated
 	 */
 	void handleEMFEvent(Adapter caller, Notification notification, EventFilter filter);
@@ -106,7 +90,7 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true"
 	 * @generated
 	 */
 	boolean unsubscribe(Adapter caller);

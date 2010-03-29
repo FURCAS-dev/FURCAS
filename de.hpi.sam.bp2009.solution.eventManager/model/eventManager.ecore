@@ -8,36 +8,26 @@
       <details key="documentation"/>
     </eAnnotations>
     <eOperations name="subscribe">
-      <eParameters name="root" eType="#//Notifier"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
-      <eParameters name="caller" eType="#//Adapter"/>
-    </eOperations>
-    <eOperations name="subscribe">
-      <eParameters name="root" upperBound="-1" eType="#//Notifier"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
-      <eParameters name="caller" eType="#//Adapter"/>
+      <eParameters name="root" lowerBound="1" upperBound="-1" eType="#//Notifier"/>
+      <eParameters name="filter" lowerBound="1" eType="#//EventFilter"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
     </eOperations>
     <eOperations name="subscribeTransactional">
-      <eParameters name="root" eType="#//Notifier"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
-      <eParameters name="caller" eType="#//Adapter"/>
-    </eOperations>
-    <eOperations name="subscribeTransactional">
-      <eParameters name="root" upperBound="-1" eType="#//Notifier"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
-      <eParameters name="caller" eType="#//Adapter"/>
+      <eParameters name="root" lowerBound="1" upperBound="-1" eType="#//Notifier"/>
+      <eParameters name="filter" lowerBound="1" eType="#//EventFilter"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
     </eOperations>
     <eOperations name="notifyApplication">
-      <eParameters name="application" eType="#//Adapter"/>
-      <eParameters name="msg" eType="#//EventNotification"/>
+      <eParameters name="application" lowerBound="1" eType="#//Adapter"/>
+      <eParameters name="msg" lowerBound="1" eType="#//EventNotification"/>
     </eOperations>
     <eOperations name="handleEMFEvent">
-      <eParameters name="caller" eType="#//Adapter"/>
-      <eParameters name="notification" eType="#//Notification"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
+      <eParameters name="notification" lowerBound="1" eType="#//Notification"/>
+      <eParameters name="filter" lowerBound="1" eType="#//EventFilter"/>
     </eOperations>
     <eOperations name="unsubscribe" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-      <eParameters name="caller" eType="#//Adapter"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventMapper" lowerBound="1"
         eType="#//EventMappper"/>

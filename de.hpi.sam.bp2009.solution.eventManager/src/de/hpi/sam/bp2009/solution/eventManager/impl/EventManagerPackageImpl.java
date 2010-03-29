@@ -836,36 +836,26 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		initEReference(getEventManager_EventMapper(), this.getEventMappper(), null, "eventMapper", null, 1, 1, EventManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNotifier(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNotifier(), "root", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "subscribeTransactional", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNotifier(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(eventManagerEClass, null, "subscribeTransactional", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNotifier(), "root", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "notifyApplication", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "application", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventNotification(), "msg", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "application", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventNotification(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "handleEMFEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNotification(), "notification", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotification(), "notification", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, theEcorePackage.getEBoolean(), "unsubscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelChangeEventEClass, ModelChangeEvent.class, "ModelChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelChangeEvent_SourceObject(), ecorePackage.getEObject(), null, "sourceObject", null, 0, 1, ModelChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
