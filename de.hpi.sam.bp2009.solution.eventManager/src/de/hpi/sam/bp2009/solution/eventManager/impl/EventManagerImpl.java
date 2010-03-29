@@ -10,6 +10,7 @@ package de.hpi.sam.bp2009.solution.eventManager.impl;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -134,6 +135,39 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribe(EList<Notifier> root, EventFilter filter, Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribeTransactional(Notifier root, EventFilter filter, Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void notifyApplication(Adapter application, EventNotification msg) {
@@ -143,7 +177,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void handleEMFEvent(Adapter caller, Notification notification, EventFilter filter) {
 		EventNotification noti = EventManagerFactory.eINSTANCE.createEventNotification();
@@ -151,6 +185,17 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		noti.setEvent(getEventMapper().mapNotificationToEvent(notification));
 		if(filter.matchesFor(noti.getEvent()))
 			notifyApplication(caller, noti);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean unsubscribe(Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

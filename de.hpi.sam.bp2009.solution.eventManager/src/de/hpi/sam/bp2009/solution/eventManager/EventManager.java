@@ -9,6 +9,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -65,6 +66,30 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootMany="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	void subscribe(EList<Notifier> root, EventFilter filter, Adapter caller);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	void subscribeTransactional(Notifier root, EventFilter filter, Adapter caller);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootMany="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model applicationDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
 	 * @generated
 	 */
@@ -77,5 +102,13 @@ public interface EventManager extends EObject {
 	 * @generated
 	 */
 	void handleEMFEvent(Adapter caller, Notification notification, EventFilter filter);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	boolean unsubscribe(Adapter caller);
 
 } // EventManager

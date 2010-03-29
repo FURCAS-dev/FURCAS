@@ -12,6 +12,21 @@
       <eParameters name="filter" eType="#//EventFilter"/>
       <eParameters name="caller" eType="#//Adapter"/>
     </eOperations>
+    <eOperations name="subscribe">
+      <eParameters name="root" upperBound="-1" eType="#//Notifier"/>
+      <eParameters name="filter" eType="#//EventFilter"/>
+      <eParameters name="caller" eType="#//Adapter"/>
+    </eOperations>
+    <eOperations name="subscribeTransactional">
+      <eParameters name="root" eType="#//Notifier"/>
+      <eParameters name="filter" eType="#//EventFilter"/>
+      <eParameters name="caller" eType="#//Adapter"/>
+    </eOperations>
+    <eOperations name="subscribeTransactional">
+      <eParameters name="root" upperBound="-1" eType="#//Notifier"/>
+      <eParameters name="filter" eType="#//EventFilter"/>
+      <eParameters name="caller" eType="#//Adapter"/>
+    </eOperations>
     <eOperations name="notifyApplication">
       <eParameters name="application" eType="#//Adapter"/>
       <eParameters name="msg" eType="#//EventNotification"/>
@@ -20,6 +35,9 @@
       <eParameters name="caller" eType="#//Adapter"/>
       <eParameters name="notification" eType="#//Notification"/>
       <eParameters name="filter" eType="#//EventFilter"/>
+    </eOperations>
+    <eOperations name="unsubscribe" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="caller" eType="#//Adapter"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventMapper" lowerBound="1"
         eType="#//EventMappper"/>
