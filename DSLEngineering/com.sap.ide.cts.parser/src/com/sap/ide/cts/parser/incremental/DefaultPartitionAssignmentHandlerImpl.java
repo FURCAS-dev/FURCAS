@@ -93,10 +93,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				} else if (!classTemplate.getPartitionHandling()
 						.isAutomaticPartition()) {
 
-					assignToPartitionNotAutomatic(partition, originalPartition,
+					assignToPartitionNotAutomatic(partition,
 							newElement, classTemplate, newElement
-									.get___Connection(), getMainPartition(),
-							template.getConcretesyntax());
+									.get___Connection(), getMainPartition());
 				}
 				/*
 				 * the case without Template
@@ -163,9 +162,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		} else if (!partitionHandling.isAutomaticPartition()) {
 
 			assignToPartitionNotAutomaticForProperty(partition,
-					originalPartition, refObject, partitionHandling, refObject
-							.get___Connection(), getMainPartition(),
-					getConcreteSyntax());
+					 refObject, partitionHandling, refObject
+							.get___Connection());
 		}
 
 	}
@@ -335,52 +333,84 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	// not automatic partition for Properties
 	private void assignToPartitionNotAutomaticForProperty(
-			ModelPartition partition, PRI originalPartition,
+			ModelPartition partition,
 			RefObject refObject, PartitionHandling partitionHandling,
-			Connection connection, ModelPartition mainPartition,
-			ConcreteSyntax concreteSyntax) {
-		// //////////////////////
-		// //////////////////////
-		// /////////////////////////
-		// //////////////////////
-		// @christian Unterscheidung bei refObject bei Interaktion mit dem User
-		// 
-		// RefObject refObject kann noch instanceof texblock||RefObject sein
-
+			Connection connection) {
+		
 		SetInteractiveResult interactiveResult = interactivePartitionHandler
 				.getPartitionFor(partitionHandling, partition, refObject,
 						connection);
-		if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
-				"model")
-				|| interactiveResult.getMainPartitionContent()
-						.equalsIgnoreCase("all")
-				|| partitionHandling.getContent().toString().equalsIgnoreCase(
-						"all")
-				|| partitionHandling.getContent().toString().equalsIgnoreCase(
-						"model")
-				|| getMainPartitionContent().toString().equalsIgnoreCase("all")
-				|| getMainPartitionContent().equalsIgnoreCase("model")) {
 
-			if (interactiveResult.getPri_Result() != null) {
-				// to check if the partition already exists!
-				if (connection.partitionExists(interactiveResult
-						.getPri_Result())) {
-					partition = connection.getPartition(interactiveResult
-							.getPri_Result());
+		if (refObject instanceof TextBlock) {
+			TextBlock resultTB = (TextBlock) refObject;
+			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
+					"all")
+					|| interactiveResult.getMainPartitionContent()
+							.equalsIgnoreCase("textblocks")) {
+
+				if (interactiveResult.getPri_Result() != null) {
+					// to check if the partition already exists!
+					if (connection.partitionExists(interactiveResult
+							.getPri_Result())) {
+						partition = connection.getPartition(interactiveResult
+								.getPri_Result());
+					} else {
+						partition = connection
+								.createPartition(interactiveResult
+										.getPri_Result());
+
+					}
+
 				} else {
-					partition = connection.createPartition(interactiveResult
-							.getPri_Result());
+					/*
+					 * the user don´t want a manual partition and it will be
+					 * stored in the main partition
+					 */
+					if (getMainPartition() != null) {
+						partition = getMainPartition();
+					} else {
+						partition = refObject.get___Partition();
+					}
 
 				}
 
-			} else {
-				/*
-				 * the user don´t want a manual partition
-				 */
-				if (mainPartition != null) {
-					partition = mainPartition;
+			}
+			System.out.println("");
+			System.out.println(partition);
+			System.out.println("");
+
+			partition.assignElementIncludingChildren(resultTB);
+			
+		} else {
+			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
+					"all")
+					|| interactiveResult.getMainPartitionContent()
+							.equalsIgnoreCase("model")) {
+
+				if (interactiveResult.getPri_Result() != null) {
+					// to check if the partition already exists!
+					if (connection.partitionExists(interactiveResult
+							.getPri_Result())) {
+						partition = connection.getPartition(interactiveResult
+								.getPri_Result());
+					} else {
+						partition = connection
+								.createPartition(interactiveResult
+										.getPri_Result());
+
+					}
+
 				} else {
-					partition = refObject.get___Partition();
+					/*
+					 * the user don´t want a manual partition and it will be
+					 * stored in the main partition
+					 */
+					if (getMainPartition() != null) {
+						partition = getMainPartition();
+					} else {
+						partition = refObject.get___Partition();
+					}
+
 				}
 
 			}
@@ -391,68 +421,100 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			partition.assignElementIncludingChildren(refObject);
 		}
 
+		
+
 	}
 
 	// not automatic partition for classTemplate
 
-	private void assignToPartitionNotAutomatic(ModelPartition partition,
-			PRI originalPartition, RefObject newElement,
+	private void assignToPartitionNotAutomatic(ModelPartition partition, RefObject refObject,
 			ClassTemplate classTemplate, Connection connection,
-			ModelPartition mainPartition, ConcreteSyntax concreteSyntax) {
-		// //////////////////////
-		// //////////////////////
-		// /////////////////////////
-		// //////////////////////
-		// @christian Unterscheidung bei refObject bei Interaktion mit dem
-		// User
+			ModelPartition mainPartition) {
 
-		SetInteractiveResult interactiveResult2 = interactivePartitionHandler
+		SetInteractiveResult interactiveResult = interactivePartitionHandler
 				.getPartitionFor(classTemplate.getPartitionHandling(),
-						partition, newElement, connection);
+						partition, refObject, connection);
+		
+		if (refObject instanceof TextBlock) {
+			TextBlock resultTB = (TextBlock) refObject;
+			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
+					"all")
+					|| interactiveResult.getMainPartitionContent()
+							.equalsIgnoreCase("textblocks")) {
 
-		if (interactiveResult2.getMainPartitionContent().equalsIgnoreCase(
-				"model")
-				|| interactiveResult2.getMainPartitionContent()
-						.equalsIgnoreCase("all")
-				|| classTemplate.getPartitionHandling().getContent().toString()
-						.equalsIgnoreCase("all")
-				|| classTemplate.getPartitionHandling().getContent().toString()
-						.equalsIgnoreCase("model")
-				|| getMainPartitionContent().toString().equalsIgnoreCase("all")
-				|| getMainPartitionContent().equalsIgnoreCase("model")) {
+				if (interactiveResult.getPri_Result() != null) {
+					// to check if the partition already exists!
+					if (connection.partitionExists(interactiveResult
+							.getPri_Result())) {
+						partition = connection.getPartition(interactiveResult
+								.getPri_Result());
+					} else {
+						partition = connection
+								.createPartition(interactiveResult
+										.getPri_Result());
 
-			if (interactiveResult2.getPri_Result() != null) {
-				// to check if the partition already exists!
-				if (connection.partitionExists(interactiveResult2
-						.getPri_Result())) {
-					partition = connection.getPartition(interactiveResult2
-							.getPri_Result());
+					}
+
 				} else {
-					partition = connection.createPartition(interactiveResult2
-							.getPri_Result());
+					/*
+					 * the user don´t want a manual partition and it will be
+					 * stored in the main partition
+					 */
+					if (getMainPartition() != null) {
+						partition = getMainPartition();
+					} else {
+						partition = refObject.get___Partition();
+					}
 
-				}
-
-			} else {
-				/*
-				 * the user don´t want a manual partition
-				 */
-
-				if (mainPartition != null) {
-					partition = mainPartition; // The DefaultPartition is the
-					// partition of the
-					// concretesyntax
-				} else {
-					partition = newElement.get___Partition();
 				}
 
 			}
 			System.out.println("");
 			System.out.println(partition);
 			System.out.println("");
-			partition.assignElementIncludingChildren(newElement);
 
+			partition.assignElementIncludingChildren(resultTB);
+			
+		} else {
+			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
+					"all")
+					|| interactiveResult.getMainPartitionContent()
+							.equalsIgnoreCase("model")) {
+
+				if (interactiveResult.getPri_Result() != null) {
+					// to check if the partition already exists!
+					if (connection.partitionExists(interactiveResult
+							.getPri_Result())) {
+						partition = connection.getPartition(interactiveResult
+								.getPri_Result());
+					} else {
+						partition = connection
+								.createPartition(interactiveResult
+										.getPri_Result());
+
+					}
+
+				} else {
+					/*
+					 * the user don´t want a manual partition and it will be
+					 * stored in the main partition
+					 */
+					if (getMainPartition() != null) {
+						partition = getMainPartition();
+					} else {
+						partition = refObject.get___Partition();
+					}
+
+				}
+
+			}
+			System.out.println("");
+			System.out.println(partition);
+			System.out.println("");
+
+			partition.assignElementIncludingChildren(refObject);
 		}
+
 	}
 
 	public void setInteractivePartitionHandler(InteractivePartitionHandler iph) {
@@ -685,7 +747,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					e.printStackTrace();
 				}
 
-				
 				try {
 					evaluatedOCL = reg.evaluateExpression(refObject).toString();
 				} catch (OclManagerException e) {
@@ -810,8 +871,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			}
 
 		} else if (template instanceof ClassTemplate
-				&& ((ClassTemplate) template).getPartitionHandling()
-						 != null) {
+				&& ((ClassTemplate) template).getPartitionHandling() != null) {
 
 			if (((ClassTemplate) template).getPartitionHandling().getContent()
 					.toString().equalsIgnoreCase("textblocks")

@@ -51,11 +51,18 @@ public class InteractivePartitionHandlerImpl extends Dialog implements
 	public SetInteractiveResult getPartitionFor(PartitionHandling ph,
 			ModelPartition partition, RefObject newElement,
 			Connection connection) {
+		
+		Object refGetValue = "";
+		try {
+			refGetValue = newElement.refGetValue("name");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		MessageBox messageBox2 = new MessageBox(shell, SWT.OK | SWT.CANCEL
 				| SWT.ICON_WARNING);
 		messageBox2.setText("MANUAL PARTITION?");
-		messageBox2.setMessage("Do you want a manual partition?");
+		messageBox2.setMessage("Do you want a manual partition for the element "+ refGetValue +" ?");
 
 		if (messageBox2.open() == SWT.OK) {
 

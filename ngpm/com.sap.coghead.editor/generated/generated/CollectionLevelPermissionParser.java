@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-03-19 19:42:11
+// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-03-22 12:43:30
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -88,7 +88,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g"; }
 
 
-       private static final String syntaxUUID = "E04695301C9E6B71338711DF9C16C6608D150765";
+       private static final String syntaxUUID = "E04695301F06521035A811DF80F2E4778D150765";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -670,22 +670,22 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:3: ( 'collection' 'permissions' LCURL 'default' LCURL ( ( 'create' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) ( ( 'retrieve' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) ( ( 'update' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) ( ( 'delete' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) RCURL ( ( 'data-driven' LCURL (temp= coghead_templatedpermission ( ( SEMICOLON ) temp= coghead_templatedpermission )* )? RCURL ) | ) RCURL )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:4: 'collection' 'permissions' LCURL 'default' LCURL ( ( 'create' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) ( ( 'retrieve' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) ( ( 'update' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) ( ( 'delete' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | ) RCURL ( ( 'data-driven' LCURL (temp= coghead_templatedpermission ( ( SEMICOLON ) temp= coghead_templatedpermission )* )? RCURL ) | ) RCURL
             {
-            _beforeSeqEl("E04695301BEE7C60338711DF92DBC6608D150765");
+            _beforeSeqEl("E04695301E00C8F035A811DFA2E8E4778D150765");
             match(input,40,FOLLOW_40_in_coghead_collectionlevelpermission381); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301BF1D7C0338711DFA48EC6608D150765");
+            _beforeSeqEl("E04695301E03D63035A811DFC2B3E4778D150765");
             match(input,41,FOLLOW_41_in_coghead_collectionlevelpermission384); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301BF1D7C1338711DF926BC6608D150765");
+            _beforeSeqEl("E04695301E03D63135A811DF9A80E4778D150765");
             match(input,LCURL,FOLLOW_LCURL_in_coghead_collectionlevelpermission388); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301BF1D7C2338711DFAAB0C6608D150765");
+            _beforeSeqEl("E04695301E03D63235A811DFCAADE4778D150765");
             match(input,42,FOLLOW_42_in_coghead_collectionlevelpermission392); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301BF1D7C3338711DFC76AC6608D150765");
+            _beforeSeqEl("E04695301E03FD4035A811DFA734E4778D150765");
             match(input,LCURL,FOLLOW_LCURL_in_coghead_collectionlevelpermission396); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C2591F0338711DF9322C6608D150765");
+            _beforeSeqEl("E04695301E65F36035A811DF82B1E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:487: ( ( 'create' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | )
             int alt4=2;
             int LA4_0 = input.LA(1);
@@ -710,16 +710,16 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:504: ( 'create' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:505: 'create' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON
                     {
-                    _beforeSeqEl("E04695301C069840338711DFA102C6608D150765");
+                    _beforeSeqEl("E04695301E262B4035A811DFA26AE4778D150765");
                     match(input,43,FOLLOW_43_in_coghead_collectionlevelpermission406); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C069841338711DFCB2EC6608D150765");
+                    _beforeSeqEl("E04695301E26525035A811DFAFBEE4778D150765");
                     match(input,COLON,FOLLOW_COLON_in_coghead_collectionlevelpermission410); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C06BF50338711DFA8F2C6608D150765");
+                    _beforeSeqEl("E04695301E26525135A811DFA4F0E4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_collectionlevelpermission415); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C1E3EF0338711DFB3AFC6608D150765");
+                    _beforeSeqEl("E04695301E5C2F6035A811DFC82FE4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:812: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt3=2;
                     int LA3_0 = input.LA(1);
@@ -757,7 +757,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:1031: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:306:1032: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C0A68D0338711DF86B3C6608D150765");
+                            	    _beforeSeqEl("E04695301E2DCC6035A811DF9EAEE4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_collectionlevelpermission431); 
                             	    _afterSeqEl();
 
@@ -787,10 +787,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C251CC0338711DF8421C6608D150765");
+                    _beforeSeqEl("E04695301E641EA035A811DF80D4E4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_collectionlevelpermission450); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2543D0338711DFB304C6608D150765");
+                    _beforeSeqEl("E04695301E641EA135A811DFADF7E4778D150765");
                     match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_collectionlevelpermission455); 
                     _afterSeqEl();
 
@@ -812,7 +812,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C2E1D70338711DF9408C6608D150765");
+            _beforeSeqEl("E04695301E6F694035A811DFC830E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:307:77: ( ( 'retrieve' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | )
             int alt7=2;
             int LA7_0 = input.LA(1);
@@ -837,16 +837,16 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:307:94: ( 'retrieve' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:307:95: 'retrieve' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON
                     {
-                    _beforeSeqEl("E04695301C2CE4F1338711DF98C6C6608D150765");
+                    _beforeSeqEl("E04695301E6E57D035A811DFBEF0E4778D150765");
                     match(input,45,FOLLOW_45_in_coghead_collectionlevelpermission478); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2CE4F2338711DFBA51C6608D150765");
+                    _beforeSeqEl("E04695301E6E57D135A811DFBA6BE4778D150765");
                     match(input,COLON,FOLLOW_COLON_in_coghead_collectionlevelpermission482); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2D0C00338711DF93A0C6608D150765");
+                    _beforeSeqEl("E04695301E6E57D235A811DFB617E4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_collectionlevelpermission487); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2D8130338711DF8CD5C6608D150765");
+                    _beforeSeqEl("E04695301E6ECD0235A811DFA252E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:307:404: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
@@ -884,7 +884,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:307:629: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:307:630: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C2D0C03338711DFA0D5C6608D150765");
+                            	    _beforeSeqEl("E04695301E6E7EE235A811DFB683E4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_collectionlevelpermission503); 
                             	    _afterSeqEl();
 
@@ -914,10 +914,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2DCF50338711DFC9ECC6608D150765");
+                    _beforeSeqEl("E04695301E6F1B2035A811DFA87CE4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_collectionlevelpermission522); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2DCF51338711DFB326C6608D150765");
+                    _beforeSeqEl("E04695301E6F1B2135A811DF89B8E4778D150765");
                     match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_collectionlevelpermission527); 
                     _afterSeqEl();
 
@@ -939,7 +939,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C2F7D00338711DFA1BDC6608D150765");
+            _beforeSeqEl("E04695301E71651035A811DFCF81E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:308:77: ( ( 'update' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | )
             int alt10=2;
             int LA10_0 = input.LA(1);
@@ -964,16 +964,16 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:308:94: ( 'update' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:308:95: 'update' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON
                     {
-                    _beforeSeqEl("E04695301C2E92A0338711DF8A6DC6608D150765");
+                    _beforeSeqEl("E04695301E6FDE7135A811DFA7A7E4778D150765");
                     match(input,46,FOLLOW_46_in_coghead_collectionlevelpermission550); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2E92A1338711DFCA55C6608D150765");
+                    _beforeSeqEl("E04695301E6FDE7235A811DF8BAEE4778D150765");
                     match(input,COLON,FOLLOW_COLON_in_coghead_collectionlevelpermission554); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2E92A2338711DF879FC6608D150765");
+                    _beforeSeqEl("E04695301E70058035A811DFB310E4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_collectionlevelpermission559); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2EE0C2338711DFA9D1C6608D150765");
+                    _beforeSeqEl("E04695301E70C8D135A811DF88C9E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:308:402: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
@@ -1011,7 +1011,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:308:625: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:308:626: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C2EB9B0338711DFC33FC6608D150765");
+                            	    _beforeSeqEl("E04695301E70058335A811DF8FC0E4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_collectionlevelpermission575); 
                             	    _afterSeqEl();
 
@@ -1041,10 +1041,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2F2EE0338711DF82ADC6608D150765");
+                    _beforeSeqEl("E04695301E7116F035A811DF9C9FE4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_collectionlevelpermission594); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2F2EE1338711DFB8A2C6608D150765");
+                    _beforeSeqEl("E04695301E7116F135A811DFCEB5E4778D150765");
                     match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_collectionlevelpermission599); 
                     _afterSeqEl();
 
@@ -1066,7 +1066,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C30B580338711DFA420C6608D150765");
+            _beforeSeqEl("E04695301E72C4A035A811DF9E34E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:309:77: ( ( 'delete' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON ) | )
             int alt13=2;
             int LA13_0 = input.LA(1);
@@ -1091,16 +1091,16 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:309:94: ( 'delete' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:309:95: 'delete' COLON LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN SEMICOLON
                     {
-                    _beforeSeqEl("E04695301C2FCB21338711DFC841C6608D150765");
+                    _beforeSeqEl("E04695301E71DA4035A811DF97CCE4778D150765");
                     match(input,47,FOLLOW_47_in_coghead_collectionlevelpermission622); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2FCB22338711DFA5B3C6608D150765");
+                    _beforeSeqEl("E04695301E71DA4135A811DF9B76E4778D150765");
                     match(input,COLON,FOLLOW_COLON_in_coghead_collectionlevelpermission626); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C2FCB23338711DF8813C6608D150765");
+                    _beforeSeqEl("E04695301E71DA4235A811DFADB4E4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_collectionlevelpermission631); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C304050338711DF8B0EC6608D150765");
+                    _beforeSeqEl("E04695301E724F7135A811DF9835E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:309:402: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
@@ -1138,7 +1138,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:309:625: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:309:626: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C2FF232338711DFB2FBC6608D150765");
+                            	    _beforeSeqEl("E04695301E72015035A811DFB2FAE4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_collectionlevelpermission647); 
                             	    _afterSeqEl();
 
@@ -1168,10 +1168,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C306760338711DFC0FBC6608D150765");
+                    _beforeSeqEl("E04695301E72768035A811DFCA37E4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_collectionlevelpermission666); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C306761338711DF8F9DC6608D150765");
+                    _beforeSeqEl("E04695301E72768135A811DFC644E4778D150765");
                     match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_collectionlevelpermission671); 
                     _afterSeqEl();
 
@@ -1193,10 +1193,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C30DC90338711DF94F2C6608D150765");
+            _beforeSeqEl("E04695301E72EBB035A811DFC211E4778D150765");
             match(input,RCURL,FOLLOW_RCURL_in_coghead_collectionlevelpermission689); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C31C6F0338711DF9A6DC6608D150765");
+            _beforeSeqEl("E04695301E73FD2035A811DF80E3E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:310:159: ( ( 'data-driven' LCURL (temp= coghead_templatedpermission ( ( SEMICOLON ) temp= coghead_templatedpermission )* )? RCURL ) | )
             int alt16=2;
             int LA16_0 = input.LA(1);
@@ -1221,13 +1221,13 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:310:176: ( 'data-driven' LCURL (temp= coghead_templatedpermission ( ( SEMICOLON ) temp= coghead_templatedpermission )* )? RCURL )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:310:177: 'data-driven' LCURL (temp= coghead_templatedpermission ( ( SEMICOLON ) temp= coghead_templatedpermission )* )? RCURL
                     {
-                    _beforeSeqEl("E04695301C3103A1338711DFC890C6608D150765");
+                    _beforeSeqEl("E04695301E7339D035A811DFC580E4778D150765");
                     match(input,48,FOLLOW_48_in_coghead_collectionlevelpermission699); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C312AB0338711DFAF72C6608D150765");
+                    _beforeSeqEl("E04695301E7339D135A811DFB2D3E4778D150765");
                     match(input,LCURL,FOLLOW_LCURL_in_coghead_collectionlevelpermission703); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C3151C1338711DFBCB6C6608D150765");
+                    _beforeSeqEl("E04695301E7360E135A811DF8BFDE4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:310:406: (temp= coghead_templatedpermission ( ( SEMICOLON ) temp= coghead_templatedpermission )* )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
@@ -1265,7 +1265,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:310:509: ( SEMICOLON )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:310:510: SEMICOLON
                             	    {
-                            	    _beforeSeqEl("E04695301C312AB2338711DF9A4FC6608D150765");
+                            	    _beforeSeqEl("E04695301E7339D335A811DF9715E4778D150765");
                             	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_collectionlevelpermission720); 
                             	    _afterSeqEl();
 
@@ -1295,7 +1295,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C3178D0338711DFBAA0C6608D150765");
+                    _beforeSeqEl("E04695301E73AF0035A811DFA8D5E4778D150765");
                     match(input,RCURL,FOLLOW_RCURL_in_coghead_collectionlevelpermission740); 
                     _afterSeqEl();
 
@@ -1317,7 +1317,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C31C6F1338711DFCB04C6608D150765");
+            _beforeSeqEl("E04695301E744B4035A811DF8CA6E4778D150765");
             match(input,RCURL,FOLLOW_RCURL_in_coghead_collectionlevelpermission758); 
             _afterSeqEl();
 
@@ -1363,10 +1363,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:3: ( LBRACKET (temp= coghead_query ) RBRACKET ( ( 'retrieve' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | ) ( ( 'update' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | ) ( ( 'delete' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | ) )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:4: LBRACKET (temp= coghead_query ) RBRACKET ( ( 'retrieve' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | ) ( ( 'update' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | ) ( ( 'delete' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | )
             {
-            _beforeSeqEl("E04695301C3E9830338711DF9FF3C6608D150765");
+            _beforeSeqEl("E04695301E87D34035A811DFB10EE4778D150765");
             match(input,LBRACKET,FOLLOW_LBRACKET_in_coghead_templatedpermission800); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C3E9832338711DFC562C6608D150765");
+            _beforeSeqEl("E04695301E87D34235A811DF8869E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:148: (temp= coghead_query )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:150: temp= coghead_query
             {
@@ -1381,10 +1381,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C3EBF40338711DFA851C6608D150765");
+            _beforeSeqEl("E04695301E87FA5035A811DF9CAEE4778D150765");
             match(input,RBRACKET,FOLLOW_RBRACKET_in_coghead_templatedpermission815); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C3FF7C0338711DFB13EC6608D150765");
+            _beforeSeqEl("E04695301E8959E035A811DFB9F8E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:365: ( ( 'retrieve' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | )
             int alt19=2;
             int LA19_0 = input.LA(1);
@@ -1409,13 +1409,13 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:382: ( 'retrieve' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:383: 'retrieve' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN
                     {
-                    _beforeSeqEl("E04695301C3F0D60338711DF937CC6608D150765");
+                    _beforeSeqEl("E04695301E88487035A811DF8AFBE4778D150765");
                     match(input,45,FOLLOW_45_in_coghead_templatedpermission825); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C3F0D61338711DF92DBC6608D150765");
+                    _beforeSeqEl("E04695301E88487135A811DFB172E4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_templatedpermission829); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C3F8291338711DF914FC6608D150765");
+                    _beforeSeqEl("E04695301E88BDA135A811DFB931E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:610: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
@@ -1453,7 +1453,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:825: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:325:826: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C3F3470338711DF98EBC6608D150765");
+                            	    _beforeSeqEl("E04695301E88487435A811DF8BECE4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_templatedpermission845); 
                             	    _afterSeqEl();
 
@@ -1483,7 +1483,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C3FD0B0338711DFAA65C6608D150765");
+                    _beforeSeqEl("E04695301E8932D035A811DFC74FE4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_templatedpermission864); 
                     _afterSeqEl();
 
@@ -1505,7 +1505,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C410930338711DFAFC6C6608D150765");
+            _beforeSeqEl("E04695301E8AE08035A811DF89DDE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:326:77: ( ( 'update' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | )
             int alt22=2;
             int LA22_0 = input.LA(1);
@@ -1530,13 +1530,13 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:326:94: ( 'update' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:326:95: 'update' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN
                     {
-                    _beforeSeqEl("E04695301C4045E1338711DFCF52C6608D150765");
+                    _beforeSeqEl("E04695301E89CF1035A811DFB397E4778D150765");
                     match(input,46,FOLLOW_46_in_coghead_templatedpermission887); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C4045E2338711DF8014C6608D150765");
+                    _beforeSeqEl("E04695301E89CF1135A811DFC8E1E4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_templatedpermission891); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C40BB10338711DF9CBFC6608D150765");
+                    _beforeSeqEl("E04695301E8A1D3235A811DF8619E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:326:320: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt21=2;
                     int LA21_0 = input.LA(1);
@@ -1574,7 +1574,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:326:533: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:326:534: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C406CF2338711DFA20EC6608D150765");
+                            	    _beforeSeqEl("E04695301E89CF1435A811DF93A4E4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_templatedpermission907); 
                             	    _afterSeqEl();
 
@@ -1604,7 +1604,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C40E220338711DFC4CEC6608D150765");
+                    _beforeSeqEl("E04695301E8A926035A811DF8968E4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_templatedpermission926); 
                     _afterSeqEl();
 
@@ -1626,7 +1626,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C421AA0338711DF8A19C6608D150765");
+            _beforeSeqEl("E04695301E8C672035A811DFA2C9E4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:327:77: ( ( 'delete' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN ) | )
             int alt25=2;
             int LA25_0 = input.LA(1);
@@ -1651,13 +1651,13 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:327:94: ( 'delete' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:327:95: 'delete' LPAREN (temp= identifier ( ( ',' ) temp= identifier )* )? RPAREN
                     {
-                    _beforeSeqEl("E04695301C415750338711DFAAF3C6608D150765");
+                    _beforeSeqEl("E04695301E8B2EA135A811DF87D4E4778D150765");
                     match(input,47,FOLLOW_47_in_coghead_templatedpermission949); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C415751338711DF856CC6608D150765");
+                    _beforeSeqEl("E04695301E8B55B035A811DF80BCE4778D150765");
                     match(input,LPAREN,FOLLOW_LPAREN_in_coghead_templatedpermission953); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C41A573338711DFB5B6C6608D150765");
+                    _beforeSeqEl("E04695301E8BCAE135A811DFB78DE4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:327:320: (temp= identifier ( ( ',' ) temp= identifier )* )?
                     int alt24=2;
                     int LA24_0 = input.LA(1);
@@ -1695,7 +1695,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:327:533: ( ',' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:327:534: ','
                             	    {
-                            	    _beforeSeqEl("E04695301C417E60338711DFC8E4C6608D150765");
+                            	    _beforeSeqEl("E04695301E8B55B335A811DFCE42E4778D150765");
                             	    match(input,44,FOLLOW_44_in_coghead_templatedpermission969); 
                             	    _afterSeqEl();
 
@@ -1725,7 +1725,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     }
 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C41F390338711DFA0F0C6608D150765");
+                    _beforeSeqEl("E04695301E8C401035A811DFAFF2E4778D150765");
                     match(input,RPAREN,FOLLOW_RPAREN_in_coghead_templatedpermission988); 
                     _afterSeqEl();
 
@@ -1790,10 +1790,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:342:3: ( 'from' (temp= coghead_collectiontemplate ( ( ',' ) temp= coghead_collectiontemplate )* ) )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:342:4: 'from' (temp= coghead_collectiontemplate ( ( ',' ) temp= coghead_collectiontemplate )* )
             {
-            _beforeSeqEl("E04695301C446490338711DF9B03C6608D150765");
+            _beforeSeqEl("E04695301E8ED82035A811DFC0FFE4778D150765");
             match(input,49,FOLLOW_49_in_coghead_query1042); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C448BA1338711DFA703C6608D150765");
+            _beforeSeqEl("E04695301E8F264035A811DFA56EE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:342:144: (temp= coghead_collectiontemplate ( ( ',' ) temp= coghead_collectiontemplate )* )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:342:146: temp= coghead_collectiontemplate ( ( ',' ) temp= coghead_collectiontemplate )*
             {
@@ -1823,7 +1823,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:342:245: ( ',' )
             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:342:246: ','
             	    {
-            	    _beforeSeqEl("E04695301C446492338711DFC11DC6608D150765");
+            	    _beforeSeqEl("E04695301E8EFF3035A811DFB3E7E4778D150765");
             	    match(input,44,FOLLOW_44_in_coghead_query1057); 
             	    _afterSeqEl();
 
@@ -1971,7 +1971,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:3: ( (temp= identifier ) 'as' (temp= identifier ) ( ( 'where' (temp= coghead_fieldtemplate ( ( 'and' ) temp= coghead_fieldtemplate )* )? ) | ) )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:4: (temp= identifier ) 'as' (temp= identifier ) ( ( 'where' (temp= coghead_fieldtemplate ( ( 'and' ) temp= coghead_fieldtemplate )* )? ) | )
             {
-            _beforeSeqEl("E04695301C4994B3338711DF8ED2C6608D150765");
+            _beforeSeqEl("E04695301E947D7335A811DFBDEEE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:63: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:65: temp= identifier
             {
@@ -1986,10 +1986,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C49BBC0338711DFB4E4C6608D150765");
+            _beforeSeqEl("E04695301E94CB9035A811DFCA2AE4778D150765");
             match(input,50,FOLLOW_50_in_coghead_collectiontemplate1194); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C49BBC2338711DF802AC6608D150765");
+            _beforeSeqEl("E04695301E94CB9235A811DFAEADE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:360: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:362: temp= identifier
             {
@@ -2004,7 +2004,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C4AA620338711DF8749C6608D150765");
+            _beforeSeqEl("E04695301E95B5F035A811DFB69CE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:488: ( ( 'where' (temp= coghead_fieldtemplate ( ( 'and' ) temp= coghead_fieldtemplate )* )? ) | )
             int alt29=2;
             int LA29_0 = input.LA(1);
@@ -2029,10 +2029,10 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:505: ( 'where' (temp= coghead_fieldtemplate ( ( 'and' ) temp= coghead_fieldtemplate )* )? )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:506: 'where' (temp= coghead_fieldtemplate ( ( 'and' ) temp= coghead_fieldtemplate )* )?
                     {
-                    _beforeSeqEl("E04695301C4A09E1338711DFC634C6608D150765");
+                    _beforeSeqEl("E04695301E9540C035A811DFC5F7E4778D150765");
                     match(input,51,FOLLOW_51_in_coghead_collectiontemplate1213); 
                     _afterSeqEl();
-                    _beforeSeqEl("E04695301C4A5801338711DF9669C6608D150765");
+                    _beforeSeqEl("E04695301E9567D135A811DFB092E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:647: (temp= coghead_fieldtemplate ( ( 'and' ) temp= coghead_fieldtemplate )* )?
                     int alt28=2;
                     int LA28_0 = input.LA(1);
@@ -2070,7 +2070,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:738: ( 'and' )
                             	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:384:739: 'and'
                             	    {
-                            	    _beforeSeqEl("E04695301C4A30F1338711DF8C48C6608D150765");
+                            	    _beforeSeqEl("E04695301E9540C235A811DFB16BE4778D150765");
                             	    match(input,52,FOLLOW_52_in_coghead_collectiontemplate1228); 
                             	    _afterSeqEl();
 
@@ -2205,7 +2205,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:408:3: ( (temp= identifier ) EQUALS (temp= coghead_expression ) )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:408:4: (temp= identifier ) EQUALS (temp= coghead_expression )
             {
-            _beforeSeqEl("E04695301C4E0184338711DFAD82C6608D150765");
+            _beforeSeqEl("E04695301E98EA4235A811DFC34DE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:408:63: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:408:65: temp= identifier
             {
@@ -2220,13 +2220,13 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             }
 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C4E4FA0338711DFC3D1C6608D150765");
+            _beforeSeqEl("E04695301E99115035A811DF927EE4778D150765");
             match(input,EQUALS,FOLLOW_EQUALS_in_coghead_operatortemplate1334); 
             _afterSeqEl();
-            _beforeSeqEl("E04695301C55F0C0338711DFB0A5C6608D150765");
+            _beforeSeqEl("E04695301EA51F4035A811DFA79AE4778D150765");
             _enterInjectorAction();setProperty(ret, "operator", coghead.OperatorEnumEnum.EQUALS);_exitInjectorAction();
             _afterSeqEl();
-            _beforeSeqEl("E04695301C5B20E1338711DF8DECC6608D150765");
+            _beforeSeqEl("E04695301EAAC49135A811DF93ADE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:408:570: (temp= coghead_expression )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:408:572: temp= coghead_expression
             {
@@ -2484,7 +2484,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:464:3: ( (temp= stringSymbol ) )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:464:4: (temp= stringSymbol )
             {
-            _beforeSeqEl("E04695301C7140F0338711DF9463C6608D150765");
+            _beforeSeqEl("E04695301EC6FF2035A811DFB36AE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:464:63: (temp= stringSymbol )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:464:65: temp= stringSymbol
             {
@@ -2542,7 +2542,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:3: ( ( ( (temp= integerAsStringSymbol ) ) | ( (temp= doubleAsStringSymbol ) ) | ( (temp= floatAsStringSymbol ) ) ) )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:4: ( ( (temp= integerAsStringSymbol ) ) | ( (temp= doubleAsStringSymbol ) ) | ( (temp= floatAsStringSymbol ) ) )
             {
-            _beforeSeqEl("E04695301C778281338711DFC921C6608D150765");
+            _beforeSeqEl("E04695301ED1867035A811DF81FBE4778D150765");
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:63: ( ( (temp= integerAsStringSymbol ) ) | ( (temp= doubleAsStringSymbol ) ) | ( (temp= floatAsStringSymbol ) ) )
             int alt31=3;
             switch ( input.LA(1) ) {
@@ -2576,7 +2576,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:80: ( (temp= integerAsStringSymbol ) )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:81: (temp= integerAsStringSymbol )
                     {
-                    _beforeSeqEl("E04695301C747541338711DFBE67C6608D150765");
+                    _beforeSeqEl("E04695301ECA0C6035A811DFAF77E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:140: (temp= integerAsStringSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:478:142: temp= integerAsStringSymbol
                     {
@@ -2605,7 +2605,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:479:20: ( (temp= doubleAsStringSymbol ) )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:479:21: (temp= doubleAsStringSymbol )
                     {
-                    _beforeSeqEl("E04695301C773461338711DFC033C6608D150765");
+                    _beforeSeqEl("E04695301ECF8AA135A811DFCE55E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:479:80: (temp= doubleAsStringSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:479:82: temp= doubleAsStringSymbol
                     {
@@ -2634,7 +2634,7 @@ public class CollectionLevelPermissionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:480:20: ( (temp= floatAsStringSymbol ) )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:480:21: (temp= floatAsStringSymbol )
                     {
-                    _beforeSeqEl("E04695301C775B72338711DFBC7BC6608D150765");
+                    _beforeSeqEl("E04695301ECFFFD135A811DFAF94E4778D150765");
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:480:80: (temp= floatAsStringSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g:480:82: temp= floatAsStringSymbol
                     {
