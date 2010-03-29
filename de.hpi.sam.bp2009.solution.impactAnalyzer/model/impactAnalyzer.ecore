@@ -8,20 +8,11 @@
       <details key="documentation"/>
     </eAnnotations>
     <eOperations name="createFilterForQuery" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventFilter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="synthesis an EventFilter for the given Query, if an event matches the returned filter the OCL query has to be reevaluated."/>
-      </eAnnotations>
-      <eParameters name="query" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+      <eParameters name="query" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
     </eOperations>
-    <eOperations name="getContextObjects">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Analyse the given OCL Query and backward navigate the Query from the root EObject of the given EventNotification. Return all context object from which the given query has to be reevaluated."/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
-        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-      </eGenericType>
+    <eOperations name="getContextObjects" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression">
       <eParameters name="event" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventNotification"/>
-      <eParameters name="query" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+      <eParameters name="query" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
     </eOperations>
   </eClassifiers>
 </ecore:EPackage>

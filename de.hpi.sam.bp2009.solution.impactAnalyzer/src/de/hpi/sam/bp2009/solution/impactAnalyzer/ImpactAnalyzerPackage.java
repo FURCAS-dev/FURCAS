@@ -6,12 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 /**
  * <!-- begin-user-doc -->

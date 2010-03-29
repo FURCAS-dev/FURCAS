@@ -7,17 +7,15 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.ecore.EcorePackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
-import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +79,7 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 
 		// Initialize simple dependencies
 		EventManagerPackage.eINSTANCE.eClass();
-		OclEvaluatorPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theImpactAnalyzerPackage.createPackageContents();
@@ -163,7 +161,6 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 
 		// Obtain other dependent packages
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
-		OclEvaluatorPackage theOclEvaluatorPackage = (OclEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(OclEvaluatorPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
@@ -176,15 +173,11 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		initEClass(impactAnalyzerEClass, ImpactAnalyzer.class, "ImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = addEOperation(impactAnalyzerEClass, theEventManagerPackage.getEventFilter(), "createFilterForQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theOclEvaluatorPackage.getOclQuery(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getOCLExpression(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(impactAnalyzerEClass, null, "getContextObjects", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(impactAnalyzerEClass, theEcorePackage.getOCLExpression(), "getContextObjects", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEventManagerPackage.getEventNotification(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theOclEvaluatorPackage.getOclQuery(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(theEcorePackage.getEEList());
-		EGenericType g2 = createEGenericType(theEcorePackage.getEObject());
-		g1.getETypeArguments().add(g2);
-		initEOperation(op, g1);
+		addEParameter(op, theEcorePackage.getOCLExpression(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

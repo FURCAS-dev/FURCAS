@@ -1,33 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.impactAnalyzer/src"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.impactAnalyzer/src"
     modelPluginID="de.hpi.sam.bp2009.solution.impactAnalyzer" modelName="ImpactAnalyzer"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.genmodel#//oclEvaluator">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
   <foreignModel>impactAnalyzer.ecore</foreignModel>
-  <genPackages prefix="ImpactAnalyzer" basePackage="de.hpi.sam.bp2009.solution" resource="XML"
-      disposableProviderFactory="true" ecorePackage="impactAnalyzer.ecore#/">
+  <genPackages prefix="ImpactAnalyzer" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
+      ecorePackage="impactAnalyzer.ecore#/">
     <genClasses ecoreClass="impactAnalyzer.ecore#//ImpactAnalyzer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/oclEvaluator"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/eventManager"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute impactAnalyzer.ecore#//ImpactAnalyzer/queries"/>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/handleInternalEvent">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/handleInternalEvent/queries"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/handleInternalEvent/eventNotification"/>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/createFilterForQuery">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/createFilterForQuery/query"/>
       </genOperations>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/notifyApplication">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/notifyApplication/application"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/notifyApplication/msg"/>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/getContextObjects">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/getContextObjects/event"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/getContextObjects/query"/>
       </genOperations>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/root"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/receiver"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/oclQueries"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="impactAnalyzer.ecore#//QueryReevaluateNotification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute impactAnalyzer.ecore#//QueryReevaluateNotification/reevaluatedQueries"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -3,13 +3,17 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer/src"
     modelPluginID="de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer" modelName="ModifiedImpactAnalyzer"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="../../de.hpi.sam.bp2009.benchframework/model/benchframework.genmodel#//benchframework platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager ../../de.hpi.sam.bp2009.solution.impactAnalyzer/model/impactAnalyzer.genmodel#//impactAnalyzer platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.genmodel#//oclEvaluator">
+    usedGenPackages="../../de.hpi.sam.bp2009.benchframework/model/benchframework.genmodel#//benchframework platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager ../../de.hpi.sam.bp2009.solution.impactAnalyzer/model/impactAnalyzer.genmodel#//impactAnalyzer platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
   <foreignModel>modifiedImpactAnalyzer.ecore</foreignModel>
   <genPackages prefix="ModifiedImpactAnalyzer" basePackage="de.hpi.sam.bp2009.benchframework"
-      resource="XML" disposableProviderFactory="true" ecorePackage="modifiedImpactAnalyzer.ecore#/">
+      disposableProviderFactory="true" ecorePackage="modifiedImpactAnalyzer.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="modifiedImpactAnalyzer.ecore#//ModifiedImpactAnalyzerNotifyLiterals">
+      <genEnumLiterals ecoreEnumLiteral="modifiedImpactAnalyzer.ecore#//ModifiedImpactAnalyzerNotifyLiterals/START_FILTER_CREATION"/>
+      <genEnumLiterals ecoreEnumLiteral="modifiedImpactAnalyzer.ecore#//ModifiedImpactAnalyzerNotifyLiterals/END_FILTER_CREATION"/>
+      <genEnumLiterals ecoreEnumLiteral="modifiedImpactAnalyzer.ecore#//ModifiedImpactAnalyzerNotifyLiterals/START_CONTEXT_OBJECT_ANALYZATION"/>
+      <genEnumLiterals ecoreEnumLiteral="modifiedImpactAnalyzer.ecore#//ModifiedImpactAnalyzerNotifyLiterals/END_CONTEXT_OBJECT_ANALYZATION"/>
+    </genEnums>
     <genClasses ecoreClass="modifiedImpactAnalyzer.ecore#//ModifiedImpactAnalyzer"/>
-    <genClasses ecoreClass="modifiedImpactAnalyzer.ecore#//IncomingEventNotification"/>
-    <genClasses ecoreClass="modifiedImpactAnalyzer.ecore#//OutgoingResultNotification"/>
-    <genClasses ecoreClass="modifiedImpactAnalyzer.ecore#//modifiedIAOperator"/>
+    <genClasses ecoreClass="modifiedImpactAnalyzer.ecore#//EmbedModifiedIAOperator"/>
   </genPackages>
 </genmodel:GenModel>

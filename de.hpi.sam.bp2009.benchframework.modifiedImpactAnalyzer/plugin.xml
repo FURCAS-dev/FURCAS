@@ -18,11 +18,6 @@
             genModel="model/modifiedImpactAnalyzer.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="modifiedimpactanalyzer"
-            class="de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.util.ModifiedImpactAnalyzerResourceFactoryImpl"/>
-   </extension>
    <extension
          point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
       <operator

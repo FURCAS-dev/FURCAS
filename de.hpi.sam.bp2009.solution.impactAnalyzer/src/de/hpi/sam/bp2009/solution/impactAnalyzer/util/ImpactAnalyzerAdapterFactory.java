@@ -6,15 +6,13 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
 /**
  * <!-- begin-user-doc -->

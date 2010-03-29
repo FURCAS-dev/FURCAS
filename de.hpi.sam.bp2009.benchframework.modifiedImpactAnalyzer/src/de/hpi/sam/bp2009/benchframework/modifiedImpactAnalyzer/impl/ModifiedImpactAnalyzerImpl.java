@@ -9,10 +9,9 @@ package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl;
 import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals;
@@ -20,7 +19,6 @@ import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAna
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
-import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,17 +50,17 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl implements Mo
 	}
 
 	@Override
-	public EList<EObject> getContextObjects(EventNotification event,
-			OclQuery query) {
+	public OCLExpression getContextObjects(EventNotification event,
+			OCLExpression query) {
 		UUID id = UUID.randomUUID();
 		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION.getName()));
-		EList<EObject> result = super.getContextObjects(event, query);
+		OCLExpression result = super.getContextObjects(event, query);
 		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION.getName()));
 		return result;
 	}
 	
 	@Override
-	public EventFilter createFilterForQuery(OclQuery query) {
+	public EventFilter createFilterForQuery(OCLExpression query) {
 		UUID id = UUID.randomUUID();
 		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION.getName()));
 		EventFilter result = super.createFilterForQuery(query);
