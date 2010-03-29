@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/coghead' i='1' v=''/>
+<M c='1' q='coghead.Schema' i='49D62CFB32044570206511DE92260019D29902CC'/>
+<M c='1' q='coghead.Field' i='49D62CFB3209005A206511DE83200019D29902CC'/>
+<M c='1' q='coghead.A_schema_collection' i='49D62CFB3209007E206511DE8AB20019D29902CC' se='0' ce='1' oe='-1'/>
+<M c='1' q='coghead.A_entries_schema' i='49D62CFB320DE284206511DEA81B0019D29902CC' se='0' ce='1' oe='-1'/>
+<coghead.Field m:c='1' m:i='E0E14F86DAC6A3702D3211DFBE53C3C28D150615' name='first' cardinality='1' unique='false' type='string'/>
+<coghead.Field m:c='1' m:i='E0E14F86DCF3B2102D3111DF8AE0C3C28D150615' name='first' cardinality='1' unique='false' type='string'/>
+<coghead.Schema m:c='1' m:i='E0E14F86DE270C802D3211DFC3D5C3C28D150615'/>
+<coghead.Schema m:c='1' m:i='E0E14F86E10E91802D3111DFBE75C3C28D150615'/>
+<coghead.A_schema_collection c='1'>
+<L f='E0E14F86DE270C802D3211DFC3D5C3C28D150615' s='local:E0E14F86DF87D5002D3211DFA64AC3C28D150615'/>
+</coghead.A_schema_collection>
+<coghead.A_entries_schema c='1'>
+<L f='E0E14F86DAC6A3702D3211DFBE53C3C28D150615' s='E0E14F86DE270C802D3211DFC3D5C3C28D150615'/>
+<L f='E0E14F86DCF3B2102D3111DF8AE0C3C28D150615' s='E0E14F86E10E91802D3111DFBE75C3C28D150615'/>
+</coghead.A_entries_schema>
+</Partition>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/coghead' i='1' v=''/>
+<M c='1' q='coghead.action.UserDefinedAction' i='49DA875A69A64C3A22FD11DE9C810019D29902CC'/>
+<M c='1' q='coghead.action.A_signature_action' i='49DA875A69A8964622FD11DEA3B40019D29902CC' se='1' ce='1' oe='-1'/>
+<coghead.action.UserDefinedAction m:c='1' m:i='E0E14F866FAF7260302011DFA058D6198D150615' name='nameY' scope='RECORD' sideEffectFree='false'/>
+<coghead.action.A_signature_action c='1'>
+<L f='local:E0E14F86FA2D0CA0301F11DFAF4ED6198D150615' s='E0E14F866FAF7260302011DFA058D6198D150615'/>
+</coghead.action.A_signature_action>
+</Partition>
