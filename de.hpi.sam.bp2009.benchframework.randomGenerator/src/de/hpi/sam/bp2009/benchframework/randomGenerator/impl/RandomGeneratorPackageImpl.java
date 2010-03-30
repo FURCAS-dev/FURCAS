@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -202,6 +203,11 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(randomGeneratorEClass, RandomGenerator.class, "RandomGenerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = addEOperation(randomGeneratorEClass, null, "generateRandomModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEIntegerObject(), "number", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResource(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEPackage(), "pkg", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(randomGeneratorOptionObjectEClass, RandomGeneratorOptionObject.class, "RandomGeneratorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRandomGeneratorOptionObject_MetaModel(), theEcorePackage.getEPackage(), null, "metaModel", null, 0, 1, RandomGeneratorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

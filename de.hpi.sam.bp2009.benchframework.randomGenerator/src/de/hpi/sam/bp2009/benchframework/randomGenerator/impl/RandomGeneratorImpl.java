@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
@@ -306,6 +306,34 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void generateRandomModel(Integer number, Resource resource, EPackage metaModel) {
+		metaClasses=getAllClassesOfEPackage(metaModel);
+		assert(number<metaClasses.size());
+
+		//instantiate the meta model
+		instantiate(metaClasses.get(number), resource);
+	}
+
+	private ArrayList<EClass> getAllClassesOfEPackage(EPackage metaModel) {
+		ArrayList<EClass> classes = new ArrayList<EClass>();
+
+		//get all classes in the meta model
+		for(EClassifier cls:metaModel.getEClassifiers()){
+			if (cls instanceof EClass ){
+				EClass c = (EClass) cls;
+				if(c.isAbstract())
+					continue;
+				classes.add(c);
+			}
+		}
+		return classes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * The strategy to generate the model instance is to choose a class of the meta model at random and generate the minimum number of required referenced/containing classes.
 	 * Therefore not all classes of the meta model have to be in the generated instance if they're referenced with a lower bound of 0. 
 	 * <!-- end-user-doc -->
@@ -316,24 +344,13 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
 		//make sure to start at index 0 even if executed multiple times
 		options.setNumberListIndex(0);
+		EPackage metaModel = options.getMetaModel();
+		Integer number = options.getNextInt(metaClasses.size());
+		
 		ResourceSetImpl resultRS = new ResourceSetImpl();
 		Resource result = resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
-		EPackage metaModel = options.getMetaModel();
 		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
-		metaClasses = new ArrayList<EClass>();
-
-		//get all classes in the meta model
-		for(EClassifier cls:metaModel.getEClassifiers()){
-			if (cls instanceof EClass ){
-				EClass c = (EClass) cls;
-				if(c.isAbstract())
-					continue;
-				metaClasses.add(c);
-			}
-		}
-
-		//instantiate the meta model
-		instantiate(metaClasses.get(options.getNextInt(metaClasses.size())), result);
+		generateRandomModel(number, result, metaModel);
 		this.getTestRun().setModel(resultRS);
 		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 		getResult().setStatus(Status.SUCCESSFUL);
@@ -341,6 +358,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		//reset the numberListIndex in case the generator is executed multiple times
 		
 	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

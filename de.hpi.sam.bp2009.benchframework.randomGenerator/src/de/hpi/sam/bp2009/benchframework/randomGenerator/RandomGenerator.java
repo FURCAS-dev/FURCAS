@@ -1,12 +1,9 @@
-/**
- * <copyright>
- * </copyright>
- *
- * $Id$
- */
 package de.hpi.sam.bp2009.benchframework.randomGenerator;
 
+
 import de.hpi.sam.bp2009.benchframework.Operator;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,4 +20,12 @@ import de.hpi.sam.bp2009.benchframework.Operator;
  * @generated
  */
 public interface RandomGenerator extends Operator {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void generateRandomModel(Integer number, Resource resource, EPackage pkg);
+
 } // RandomGenerator
