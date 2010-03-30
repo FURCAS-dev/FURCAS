@@ -512,6 +512,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
 		assert(resource!=null);
 		OclUtil oclUtil = OclOperatorFactory.eINSTANCE.createOclUtil();
@@ -542,7 +543,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		else{
 			for (Query item: list){
 				EventFilter filter = ia.createFilterForQuery(item.getExpression());
-				em.subscribe(resource, filter, new Adapter() {
+				em.subscribe((EList<Notifier>) resource, filter, new Adapter() {
 
 					@Override
 					public void setTarget(Notifier newTarget) {

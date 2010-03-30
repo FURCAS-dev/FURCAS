@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Text;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 
 public class OclOperatorWizardPage extends WizardPage {
+	private static final String WARNING	=	"Check if the Random Model Instantiator is in List before the OCL Operator!";
 	private static final String PAGETITEL	=	"OCL Operator Configuration";
 	private static final String PAGEDESC	=	"Set the options for the OCL Operator.";
 	private static final String LABELTEXT 	= 	"Enter the Constraint in OCL";
@@ -36,7 +37,7 @@ public class OclOperatorWizardPage extends WizardPage {
 		super(pageName);
 		setTitle(PAGETITEL);
 		setDescription(PAGEDESC);
-
+				
 		setPageComplete(false);
 	}
 	protected OclOperatorWizardPage(String pageName, OclOptionObject option) {
@@ -52,6 +53,10 @@ public class OclOperatorWizardPage extends WizardPage {
 		scrolledComposite.setContent(composite);
 		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
+		Label note = new Label (composite, SWT.NONE);
+		note.setText(WARNING);
+		Label empty = new Label (composite, SWT.NONE);
+		empty.setText("");
 		Button btn = new Button(composite, SWT.CHECK);
 		btn.setText(LABELTEXTIA);
 		btn.addSelectionListener(new SelectionListener() {

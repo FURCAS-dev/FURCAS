@@ -131,6 +131,8 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		Integer times = options.getTimes();
 		//collect all instance objects from all resources
 		BasicEList<EObject> classList = new BasicEList<EObject>();
+		if (getTestRun().getModel()== null) 
+			throw new IllegalStateException("Random Model Modifier needs a Model in the Testrun");
 		for (Resource r: getTestRun().getModel().getResources()){
 			TreeIterator<EObject> it = r.getAllContents();
 			while(it.hasNext()){
