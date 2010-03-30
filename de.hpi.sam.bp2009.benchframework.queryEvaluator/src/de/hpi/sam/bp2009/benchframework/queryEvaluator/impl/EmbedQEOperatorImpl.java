@@ -4,63 +4,49 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
+package de.hpi.sam.bp2009.benchframework.queryEvaluator.impl;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.OCL.Query;
-
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
+
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.EmbedQEOperator;
 import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluatorFactory;
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluatorPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ocl Operator</b></em>'.
+ * An implementation of the model object '<em><b>Embed QE Operator</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl#getOption <em>Option</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl#getResult <em>Result</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl#getTestRun <em>Test Run</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.queryEvaluator.impl.EmbedQEOperatorImpl#getOption <em>Option</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.queryEvaluator.impl.EmbedQEOperatorImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.queryEvaluator.impl.EmbedQEOperatorImpl#getTestRun <em>Test Run</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.queryEvaluator.impl.EmbedQEOperatorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.queryEvaluator.impl.EmbedQEOperatorImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OclOperatorImpl extends EObjectImpl implements OclOperator {
-
-	private static final String NAME = "Ocl Operator";
-	private static final String DESCRIPTION = "Evaluates a specific ocl expression";
-
+public class EmbedQEOperatorImpl extends EObjectImpl implements EmbedQEOperator {
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -70,6 +56,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @ordered
 	 */
 	protected OptionObject option;
+
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -79,6 +66,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @ordered
 	 */
 	protected ResultObject result;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,6 +76,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = "";
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,6 +86,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,6 +96,11 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @ordered
 	 */
 	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	private static final String NAME = "Query Evaluator";
+
+	private static final String DESCRIPTION = "The Query Evaluator evaluates the given query on a given set of context objects";
+
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -121,9 +116,8 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OclOperatorImpl() {
+	public EmbedQEOperatorImpl() {
 		super();
-		setOption(OclOperatorFactory.eINSTANCE.createOclOptionObject());
 		this.setName(NAME);
 		this.setDescription(DESCRIPTION);
 	}
@@ -135,7 +129,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OclOperatorPackage.Literals.OCL_OPERATOR;
+		return QueryEvaluatorPackage.Literals.EMBED_QE_OPERATOR;
 	}
 
 	/**
@@ -156,7 +150,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		OptionObject oldOption = option;
 		option = newOption;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__OPTION, oldOption, newOption);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION, oldOption, newOption);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -171,14 +165,14 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		if (newOption != option) {
 			NotificationChain msgs = null;
 			if (option != null)
-				msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OclOperatorPackage.OCL_OPERATOR__OPTION, null, msgs);
+				msgs = ((InternalEObject)option).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION, null, msgs);
 			if (newOption != null)
-				msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OclOperatorPackage.OCL_OPERATOR__OPTION, null, msgs);
+				msgs = ((InternalEObject)newOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION, null, msgs);
 			msgs = basicSetOption(newOption, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__OPTION, newOption, newOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION, newOption, newOption));
 	}
 
 	/**
@@ -199,7 +193,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		ResultObject oldResult = result;
 		result = newResult;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__RESULT, oldResult, newResult);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT, oldResult, newResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -214,14 +208,14 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		if (newResult != result) {
 			NotificationChain msgs = null;
 			if (result != null)
-				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OclOperatorPackage.OCL_OPERATOR__RESULT, null, msgs);
+				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT, null, msgs);
 			if (newResult != null)
-				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OclOperatorPackage.OCL_OPERATOR__RESULT, null, msgs);
+				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT, null, msgs);
 			msgs = basicSetResult(newResult, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__RESULT, newResult, newResult));
+			eNotify(new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT, newResult, newResult));
 	}
 
 	/**
@@ -230,7 +224,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @generated
 	 */
 	public TestRun getTestRun() {
-		if (eContainerFeatureID() != OclOperatorPackage.OCL_OPERATOR__TEST_RUN) return null;
+		if (eContainerFeatureID() != QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN) return null;
 		return (TestRun)eContainer();
 	}
 
@@ -240,7 +234,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @generated
 	 */
 	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newTestRun, OclOperatorPackage.OCL_OPERATOR__TEST_RUN, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newTestRun, QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN, msgs);
 		return msgs;
 	}
 
@@ -250,7 +244,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * @generated
 	 */
 	public void setTestRun(TestRun newTestRun) {
-		if (newTestRun != eInternalContainer() || (eContainerFeatureID() != OclOperatorPackage.OCL_OPERATOR__TEST_RUN && newTestRun != null)) {
+		if (newTestRun != eInternalContainer() || (eContainerFeatureID() != QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN && newTestRun != null)) {
 			if (EcoreUtil.isAncestor(this, newTestRun))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -262,7 +256,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__TEST_RUN, newTestRun, newTestRun));
+			eNotify(new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN, newTestRun, newTestRun));
 	}
 
 	/**
@@ -283,7 +277,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__NAME, oldName, name));
 	}
 
 	/**
@@ -304,7 +298,19 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPERATOR__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, QueryEvaluatorPackage.EMBED_QE_OPERATOR__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void execute() {
+		this.getTestRun().setInstanceForClass(QueryEvaluator.class, QueryEvaluatorFactory.eINSTANCE.createQueryEvaluator());
+		this.setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
+		getResult().setStatus(Status.SUCCESSFUL);
+		getResult().setMessage("Attached QueryEvaluator to TestRun");
 	}
 
 	/**
@@ -315,7 +321,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetTestRun((TestRun)otherEnd, msgs);
@@ -331,11 +337,11 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OclOperatorPackage.OCL_OPERATOR__OPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION:
 				return basicSetOption(null, msgs);
-			case OclOperatorPackage.OCL_OPERATOR__RESULT:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT:
 				return basicSetResult(null, msgs);
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				return basicSetTestRun(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -349,7 +355,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				return eInternalContainer().eInverseRemove(this, BenchframeworkPackage.TEST_RUN__OPERATORS, TestRun.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -363,15 +369,15 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OclOperatorPackage.OCL_OPERATOR__OPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION:
 				return getOption();
-			case OclOperatorPackage.OCL_OPERATOR__RESULT:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT:
 				return getResult();
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				return getTestRun();
-			case OclOperatorPackage.OCL_OPERATOR__NAME:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__NAME:
 				return getName();
-			case OclOperatorPackage.OCL_OPERATOR__DESCRIPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -385,19 +391,19 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OclOperatorPackage.OCL_OPERATOR__OPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION:
 				setOption((OptionObject)newValue);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__RESULT:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT:
 				setResult((ResultObject)newValue);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				setTestRun((TestRun)newValue);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__NAME:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__NAME:
 				setName((String)newValue);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__DESCRIPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -412,19 +418,19 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OclOperatorPackage.OCL_OPERATOR__OPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION:
 				setOption((OptionObject)null);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__RESULT:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT:
 				setResult((ResultObject)null);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				setTestRun((TestRun)null);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__NAME:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case OclOperatorPackage.OCL_OPERATOR__DESCRIPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -439,15 +445,15 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OclOperatorPackage.OCL_OPERATOR__OPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__OPTION:
 				return option != null;
-			case OclOperatorPackage.OCL_OPERATOR__RESULT:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__RESULT:
 				return result != null;
-			case OclOperatorPackage.OCL_OPERATOR__TEST_RUN:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__TEST_RUN:
 				return getTestRun() != null;
-			case OclOperatorPackage.OCL_OPERATOR__NAME:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case OclOperatorPackage.OCL_OPERATOR__DESCRIPTION:
+			case QueryEvaluatorPackage.EMBED_QE_OPERATOR__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
@@ -471,100 +477,4 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		return result.toString();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 */
-
-	public void execute() {
-		setResult(OclOperatorFactory.eINSTANCE.createOclResult());
-		if (option instanceof OclOptionObject){
-			for (String query: ((OclOptionObject) option).getConstraints()){
-				((OclResultImpl)getResult()).addQuery("\"" + query + "\"");
-			}
-			if(((OclOptionObject) option).isUseImpactAnalyzer())
-				registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
-			else
-				executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
-			getResult().setStatus(Status.SUCCESSFUL);
-		}else{
-			getResult().setStatus(Status.FAILED);
-			getResult().setMessage("Invalid OptionObject");
-		}
-
-
-	}
-
-	public void executeQueries(ResourceSet resource, OclOptionObject option) {
-		OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
-		QueryEvaluator queryEvaluator = getTestRun().getInstanceForClass(QueryEvaluator.class);
-		for(String con: option.getConstraints()){
-			boolean r = ocl.executeQueryOn(con, resource, queryEvaluator);
-			if(getResult() instanceof OclResult)
-				((OclResult)getResult()).getQueriesToResults().put(con, r);
-		}
-
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
-		assert(resource!=null);
-		OclUtil oclUtil = OclOperatorFactory.eINSTANCE.createOclUtil();
-		OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
-		EList<Query> list= new BasicEList<Query>();
-		
-		for(String con: option.getConstraints()){
-			Query q = null;
-			try {
-				OCLExpression expr = (OCLExpression) oclUtil.getOCLExpression(con, resource);
-				q = ocl.createQuery(expr);
-			} catch (ParserException e) {
-				throw new IllegalArgumentException("Invalid Query, parsing failed " + e.getMessage(), e);
-			}
-			list.add(q);
-		}
-		
-		final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
-		final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
-		final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);
-
-		if(ia== null)
-			throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
-		else if(em == null)
-			throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
-		else if(qe == null)
-			throw new IllegalArgumentException("Invalid Testrun, no Query Evaluator defined");
-		else{
-			for (Query item: list){
-				EventFilter filter = ia.createFilterForQuery(item.getExpression());
-				em.subscribe(resource, filter, new Adapter() {
-
-					@Override
-					public void setTarget(Notifier newTarget) {
-					}
-
-					@Override
-					public void notifyChanged(Notification notification) {
-						//TODO: call ia to getContext Object
-						System.out.println(getName() +" gets Notfied");
-					}
-
-					@Override
-					public boolean isAdapterForType(Object type) {
-						return false;
-					}
-
-					@Override
-					public Notifier getTarget() {
-						return ia;
-					}});
-			}
-		}
-	}
-
-} //OclOperatorImpl
+} //EmbedQEOperatorImpl

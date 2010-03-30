@@ -7,12 +7,11 @@
 package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +27,10 @@ public interface OclUtil extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.oclOperator.IQueryResult"
+	 * @model
 	 * @generated
 	 */
-	IQueryResult executeQueryOn(String completeConstraint, ResourceSet resource);
+	boolean executeQueryOn(String completeConstraint, ResourceSet resource, QueryEvaluator evaluator);
 
 	/**
 	 * <!-- begin-user-doc -->

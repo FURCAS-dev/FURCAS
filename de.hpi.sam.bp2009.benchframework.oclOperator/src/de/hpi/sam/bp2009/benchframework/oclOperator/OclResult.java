@@ -6,11 +6,9 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator;
 
-import de.hpi.sam.bp2009.benchframework.ResultObject;
-
 import java.util.Map;
 
-import org.eclipse.emf.query.statements.IQueryResult;
+import de.hpi.sam.bp2009.benchframework.ResultObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +41,7 @@ public interface OclResult extends ResultObject {
 	 * @model transient="true"
 	 * @generated
 	 */
-	Map<String, IQueryResult> getQueriesToResults();
+	Map<String, Boolean> getQueriesToResults();
 
 	/**
 	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclResult#getQueriesToResults <em>Queries To Results</em>}' attribute.
@@ -53,6 +51,6 @@ public interface OclResult extends ResultObject {
 	 * @see #getQueriesToResults()
 	 * @generated
 	 */
-	void setQueriesToResults(Map<String, IQueryResult> value);
+	void setQueriesToResults(Map<String, Boolean> value);
 
 } // OclResult

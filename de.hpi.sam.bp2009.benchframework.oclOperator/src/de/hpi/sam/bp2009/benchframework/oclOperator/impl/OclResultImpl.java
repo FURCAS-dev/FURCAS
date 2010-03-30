@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -45,7 +44,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 * @generated
 	 * @ordered
 	 */
-	protected Map<String, IQueryResult> queriesToResults;
+	protected Map<String, Boolean> queriesToResults;
 	
 	protected EList<String> queries = new BasicEList<String>();
 
@@ -85,7 +84,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map<String, IQueryResult> getQueriesToResults() {
+	public Map<String, Boolean> getQueriesToResults() {
 		return queriesToResults;
 	}
 
@@ -94,8 +93,8 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQueriesToResults(Map<String, IQueryResult> newQueriesToResults) {
-		Map<String, IQueryResult> oldQueriesToResults = queriesToResults;
+	public void setQueriesToResults(Map<String, Boolean> newQueriesToResults) {
+		Map<String, Boolean> oldQueriesToResults = queriesToResults;
 		queriesToResults = newQueriesToResults;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_RESULT__QUERIES_TO_RESULTS, oldQueriesToResults, queriesToResults));
@@ -125,7 +124,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case OclOperatorPackage.OCL_RESULT__QUERIES_TO_RESULTS:
-				setQueriesToResults((Map<String, IQueryResult>)newValue);
+				setQueriesToResults((Map<String, Boolean>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +139,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case OclOperatorPackage.OCL_RESULT__QUERIES_TO_RESULTS:
-				setQueriesToResults((Map<String, IQueryResult>)null);
+				setQueriesToResults((Map<String, Boolean>)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -186,7 +185,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 		Composite composite = super.getComposite(parent);
 		if(queriesToResults==null)
 			return composite;
-		for(Entry<String, IQueryResult> entry:queriesToResults.entrySet()){
+		for(Entry<String, Boolean> entry:queriesToResults.entrySet()){
 			Label label1 = new Label(composite, SWT.CENTER);
 			label1.setText(entry.getKey() +" : "+entry.getValue());
 		}

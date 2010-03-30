@@ -15,10 +15,7 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals;
-import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals;
-
-
-
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluatorNotifyLiterals;
 
 public class ExecutionTimeWizardPage extends WizardPage {
 	
@@ -100,7 +97,7 @@ public class ExecutionTimeWizardPage extends WizardPage {
 			addLiteralToBoxes(name, value, EVENT_MANAGER);
 		}
 		//adds all measurement points from OclOpt to the comboboxes
-		for(  ModifiedOclOptimizerNotifyLiterals literal: ModifiedOclOptimizerNotifyLiterals.values()){
+		for(  QueryEvaluatorNotifyLiterals literal: QueryEvaluatorNotifyLiterals.values()){
 			String name = literal.name();
 			int value = literal.getValue();
 			addLiteralToBoxes(name, value, OCL_EVALUATOR);

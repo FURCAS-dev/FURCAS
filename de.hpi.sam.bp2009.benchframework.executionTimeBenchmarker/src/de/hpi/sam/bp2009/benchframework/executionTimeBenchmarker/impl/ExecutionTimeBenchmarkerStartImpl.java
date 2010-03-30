@@ -33,9 +33,9 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResult
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals;
 import de.hpi.sam.bp2009.benchframework.impl.StartOperatorImpl;
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import etm.core.configuration.BasicEtmConfigurator;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
@@ -328,8 +328,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends StartOperatorImpl impleme
 			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.IMPACT_ANALYZER_VALUE)==0 && getTestRun().getInstanceForClass(ImpactAnalyzer.class) != null) {
 				noti=(Notifier) getTestRun().getInstanceForClass(ImpactAnalyzer.class);
 			}
-			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.OCL_EVALUATOR_VALUE)==0 && getTestRun().getInstanceForClass(OCLEvaluator.class) != null) {
-				noti=(Notifier) getTestRun().getInstanceForClass(OCLEvaluator.class);
+			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.OCL_EVALUATOR_VALUE)==0 && getTestRun().getInstanceForClass(QueryEvaluator.class) != null) {
+				noti=(Notifier) getTestRun().getInstanceForClass(QueryEvaluator.class);
 			}
 			else {
 				ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();

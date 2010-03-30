@@ -6,12 +6,11 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -237,17 +236,6 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_RESULT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '<em>IQuery Result</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.query.statements.IQueryResult
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
-	 * @generated
-	 */
-	int IQUERY_RESULT = 4;
-
-
-	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator <em>Ocl Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -319,17 +307,6 @@ public interface OclOperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOclResult_QueriesToResults();
-
-	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.query.statements.IQueryResult <em>IQuery Result</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>IQuery Result</em>'.
-	 * @see org.eclipse.emf.query.statements.IQueryResult
-	 * @model instanceClass="org.eclipse.emf.query.statements.IQueryResult" serializeable="false"
-	 * @generated
-	 */
-	EDataType getIQueryResult();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -416,16 +393,6 @@ public interface OclOperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OCL_RESULT__QUERIES_TO_RESULTS = eINSTANCE.getOclResult_QueriesToResults();
-
-		/**
-		 * The meta object literal for the '<em>IQuery Result</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.query.statements.IQueryResult
-		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
-		 * @generated
-		 */
-		EDataType IQUERY_RESULT = eINSTANCE.getIQueryResult();
 
 	}
 

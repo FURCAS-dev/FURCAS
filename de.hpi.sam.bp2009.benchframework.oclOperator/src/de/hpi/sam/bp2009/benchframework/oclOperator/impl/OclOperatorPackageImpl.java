@@ -6,29 +6,25 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.utilities.UtilitiesPackage;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.query.statements.IQueryResult;
-import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.types.TypesPackage;
-import org.eclipse.ocl.utilities.UtilitiesPackage;
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluatorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,13 +60,6 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 	 * @generated
 	 */
 	private EClass oclResultEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType iQueryResultEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -119,11 +108,11 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		isInited = true;
 
 		// Initialize simple dependencies
-		BenchframeworkPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 		UtilitiesPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
+		QueryEvaluatorPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theOclOperatorPackage.createPackageContents();
@@ -208,15 +197,6 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getIQueryResult() {
-		return iQueryResultEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OclOperatorFactory getOclOperatorFactory() {
 		return (OclOperatorFactory)getEFactoryInstance();
 	}
@@ -250,9 +230,6 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 
 		oclResultEClass = createEClass(OCL_RESULT);
 		createEAttribute(oclResultEClass, OCL_RESULT__QUERIES_TO_RESULTS);
-
-		// Create data types
-		iQueryResultEDataType = createEDataType(IQUERY_RESULT);
 	}
 
 	/**
@@ -281,6 +258,7 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		// Obtain other dependent packages
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		QueryEvaluatorPackage theQueryEvaluatorPackage = (QueryEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(QueryEvaluatorPackage.eNS_URI);
 		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Create type parameters
@@ -309,9 +287,10 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 
 		initEClass(oclUtilEClass, OclUtil.class, "OclUtil", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(oclUtilEClass, this.getIQueryResult(), "executeQueryOn", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(oclUtilEClass, theEcorePackage.getEBoolean(), "executeQueryOn", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "completeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEResourceSet(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theQueryEvaluatorPackage.getQueryEvaluator(), "evaluator", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(oclUtilEClass, null, "getOCLExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "completeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -325,12 +304,9 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEString());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getIQueryResult());
+		g2 = createEGenericType(theEcorePackage.getEBooleanObject());
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getOclResult_QueriesToResults(), g1, "queriesToResults", null, 0, 1, OclResult.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize data types
-		initEDataType(iQueryResultEDataType, IQueryResult.class, "IQueryResult", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

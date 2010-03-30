@@ -28,9 +28,10 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eOperations name="executeQueryOn" eType="#//IQueryResult">
+    <eOperations name="executeQueryOn" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
       <eParameters name="completeConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
+      <eParameters name="evaluator" eType="ecore:EClass ../../de.hpi.sam.bp2009.benchframework.queryEvaluator/model/queryEvaluator.ecore#//QueryEvaluator"/>
     </eOperations>
     <eOperations name="getOCLExpression">
       <eGenericType eClassifier="ecore:EClass platform:/plugin/org.eclipse.ocl/model/OCL.ecore#//expressions/OCLExpression">
@@ -40,13 +41,11 @@
       <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="IQueryResult" instanceClassName="org.eclipse.emf.query.statements.IQueryResult"
-      serializable="false"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclResult" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="queriesToResults" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eTypeArguments eClassifier="#//IQueryResult"/>
+        <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBooleanObject"/>
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>

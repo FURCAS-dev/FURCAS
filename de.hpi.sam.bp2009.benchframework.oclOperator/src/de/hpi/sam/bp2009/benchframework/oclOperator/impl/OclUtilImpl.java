@@ -7,10 +7,15 @@
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -20,22 +25,18 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.query.conditions.Condition;
-import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
-import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.emf.query.statements.SELECT;
-import org.eclipse.emf.query.statements.WHERE;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.helper.OCLHelper;
-import org.eclipse.ocl.OCL;
-
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCL.Query;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.helper.ConstraintKind;
 
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
+import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,13 +68,13 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	protected EClass eStaticClass() {
 		return OclOperatorPackage.Literals.OCL_UTIL;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public IQueryResult executeQueryOn(String completeConstraint, ResourceSet resource) {
+	public boolean executeQueryOn(String completeConstraint, ResourceSet resource, QueryEvaluator evaluator) {
 		
 		Pattern pattern=Pattern.compile(regex);
 		Matcher match=pattern.matcher(completeConstraint);
@@ -84,7 +85,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		queryContext=queryContext.trim();
 		String queryInvariant=completeConstraint.substring(completeConstraint.indexOf("inv:")+4);
 		queryInvariant=queryInvariant.trim();
-		IQueryResult results= null;
+		boolean results = false;
 		Registry registry = resource.getPackageRegistry();
 		EPackage packageInstance=null;
 		for(String key: registry.keySet()){
@@ -102,7 +103,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		}
 		
 		try {
-			results = validateOclQuery(context, queryInvariant, resource);
+			results = validateOclQuery(context, queryInvariant, resource, evaluator);
 		} catch (ParserException e) {
 			e.printStackTrace();
 		}
@@ -132,15 +133,13 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		
 		EClass contextClass = castToEClass(cls);
 		
-		
 		OCLExpression<EClassifier> query1 = null;
 
 		    // create an OCL instance for Ecore
-		    OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ocl;
-		    ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+		    OCL ocl = OCL.newInstance();
 		    
 		    // create an OCL helper object
-		    OCLHelper<EClassifier, ?, ?, Constraint> helper = ocl.createOCLHelper();
+		    Helper helper = ocl.createOCLHelper();
 		    
 		    // set the OCL context classifier
 		    helper.setContext(contextClass);
@@ -207,20 +206,34 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	 * @throws ParserException 
 	 * @throws ParserException
 	 */
-	public static IQueryResult validateOclQuery(EClass context, String query, ResourceSet resource) throws ParserException{
-		org.eclipse.ocl.ecore.OCL ocl= org.eclipse.ocl.ecore.OCL.newInstance();
-		Condition condition=null;
-		condition = new org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition<EClassifier, EClass, EObject>(
-					ocl.getEnvironment(),
-					query,
-					context);
-		BasicEList<EObject> list= new BasicEList<EObject>();
-		for(Resource r: resource.getResources())
-			list.addAll(r.getContents());
-		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
-				new FROM(list), new WHERE((EObjectCondition) condition));
-
-		return statement.execute();
+	@SuppressWarnings("unchecked")
+	public boolean validateOclQuery(EClass context, String queryString, ResourceSet resource, QueryEvaluator evaluator) throws ParserException{
+		OCL ocl= OCL.newInstance();
+		
+		// build a valid extent map
+		// TODO: build an appropriate scope using the scope provider
+		Map<EClass, Set<? extends EObject>> extents = new HashMap<EClass, Set<? extends EObject>>();
+		BasicEList<EObject> scope = new BasicEList<EObject>();
+		for (Resource r : resource.getResources()){
+			TreeIterator<EObject> it = r.getAllContents();
+			while (it.hasNext()){
+				EObject element = it.next();
+				if (! extents.containsKey(element.eClass())){
+					extents.put(element.eClass(), new HashSet<EObject>());
+				}
+				Set<EObject> content = (Set<EObject>) extents.get(element.eClass());
+				content.add(element);
+				extents.put(element.eClass(), content);
+				scope.add(element); // add all EObjects to the scope
+			}
+		}
+		
+		Helper helper = ocl.createOCLHelper();
+		Constraint constraint = helper.createConstraint(ConstraintKind.INVARIANT, queryString);
+		helper.setContext(context);
+		Query query = ocl.createQuery(constraint);
+		evaluator.evaluateQuery(query, scope);
+		return query.check(context);
 	}
 	
 
