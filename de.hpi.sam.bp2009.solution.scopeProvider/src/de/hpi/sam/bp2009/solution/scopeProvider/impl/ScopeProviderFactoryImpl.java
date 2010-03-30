@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.scopeProvider.impl;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.*;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EClass;
@@ -79,6 +80,8 @@ public class ScopeProviderFactoryImpl extends EFactoryImpl implements ScopeProvi
 		switch (eDataType.getClassifierID()) {
 			case ScopeProviderPackage.URI:
 				return createURIFromString(eDataType, initialValue);
+			case ScopeProviderPackage.IPROJECT:
+				return createIProjectFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -94,6 +97,8 @@ public class ScopeProviderFactoryImpl extends EFactoryImpl implements ScopeProvi
 		switch (eDataType.getClassifierID()) {
 			case ScopeProviderPackage.URI:
 				return convertURIToString(eDataType, instanceValue);
+			case ScopeProviderPackage.IPROJECT:
+				return convertIProjectToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -124,6 +129,24 @@ public class ScopeProviderFactoryImpl extends EFactoryImpl implements ScopeProvi
 	 * @generated
 	 */
 	public String convertURIToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IProject createIProjectFromString(EDataType eDataType, String initialValue) {
+		return (IProject)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIProjectToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

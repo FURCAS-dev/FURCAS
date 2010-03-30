@@ -13,12 +13,17 @@
     <eOperations name="setupForResourceSets">
       <eParameters name="initialResourceSets" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
     </eOperations>
-    <eOperations name="getForwardScopeAsResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
     <eOperations name="getForwardScopeAsEObjects" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eOperations name="getForwardScopeAsProjects" upperBound="-1" eType="#//IProject"/>
+    <eOperations name="getForwardScopeAsResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
     <eOperations name="getForwardScopeAsURIs" upperBound="-1" eType="#//URI"/>
-    <eOperations name="getBackwardScopeAsResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
     <eOperations name="getBackwardScopeAsEObjects" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eOperations name="getBackwardScopeAsProjects" upperBound="-1" eType="#//IProject"/>
+    <eOperations name="getBackwardScopeAsResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
     <eOperations name="getBackwardScopeAsURIs" upperBound="-1" eType="#//URI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialProjects" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//IProject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="org.eclipse.emf.common.util.URI"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IProject" instanceClassName="org.eclipse.core.resources.IProject"/>
 </ecore:EPackage>

@@ -6,44 +6,60 @@
  */
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Set;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Scope Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderImpl#getInitialProjects <em>Initial Projects</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
  */
 public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
+	/**
+	 * The cached value of the '{@link #getInitialProjects() <em>Initial Projects</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialProjects()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IProject> initialProjects;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,6 +82,18 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<IProject> getInitialProjects() {
+		if (initialProjects == null) {
+			initialProjects = new EDataTypeUniqueEList<IProject>(IProject.class, this, ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS);
+		}
+		return initialProjects;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void setupForEObjects(EList<EObject> initialObjects) {
@@ -80,17 +108,6 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	}
 
 	/**
-	 * Creates a new EList containing all Elements of the given set
-	 * @param initialResources given Set
-	 * @return new EList
-	 */
-	private EList<Resource> convertSetToEList(Set<Resource> initialResources) {
-		EList<Resource> list= new BasicEList<Resource>();
-		list.addAll(initialResources);
-		return list;
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -102,61 +119,8 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 			if(converter==null){
 				converter= URIConverter.INSTANCE;
 			}
-			URI uri=converter.normalize(res.getURI());
-			java.net.URI netUri= java.net.URI.create(uri.toString());
-			IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
-			IProject project=null;
-
-			for(IContainer c: result)
-				if(c instanceof IProject)
-					project=(IProject) c;
-			/*
-			 * Think about a better way for resource without projects
-			 */
-			if(project==null)
-				throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
-
-			IResource member = project.findMember("model");
-			if(member==null || !(member instanceof IFolder))
-				throw new IllegalArgumentException(project.getName() +" does not contain a model folder. It is invalid.");
-			
-			final Set<Resource> resources= new HashSet<Resource>();
-			try {
-				member.accept(new IResourceVisitor() {
-					@Override
-					public boolean visit(IResource resource)  {
-						boolean successful=false;
-						if ("xmi".equals(resource.getFileExtension())) {
-							ResourceImpl r= new ResourceImpl(URI.createURI(resource.getLocationURI().toString()));
-							/*
-							 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
-			    	    */
-							try{
-								r.load(null);
-								successful=true;
-							}catch (Exception e) {
-								// TODO: handle exception
-							}
-							
-							if(r.getErrors().size()>0)
-								successful=false;
-						}
-						
-						if(successful)
-							resources.add(new ResourceImpl(URI.createURI(resource.getLocationURI().toString())));
-						//r.unload();
-
-						return true;
-					}
-				}
-				);
-			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(resources.size()>0){
-				
-			}
+			IProject project = getProjectForResource(res, converter);
+			getInitialProjects().add(project);
 		}
 
 
@@ -180,56 +144,74 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Resource> getForwardScopeAsResources() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<EObject> getForwardScopeAsEObjects() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return scopeAsEObjects(getForwardScopeAsResources());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 */
+	public EList<IProject> getForwardScopeAsProjects() {
+		return scopeAsProjects(true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Resource> getForwardScopeAsResources() {
+		return scopeAsResources(getForwardScopeAsProjects());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public EList<URI> getForwardScopeAsURIs() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return scopeAsUris(getForwardScopeAsResources());
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Resource> getBackwardScopeAsResources() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<EObject> getBackwardScopeAsEObjects() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return scopeAsEObjects(getBackwardScopeAsResources());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<IProject> getBackwardScopeAsProjects() {
+		return scopeAsProjects(false);
+
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Resource> getBackwardScopeAsResources() {
+		return scopeAsResources(getBackwardScopeAsProjects());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<URI> getBackwardScopeAsURIs() {
+		return scopeAsUris(getBackwardScopeAsResources());
 	}
 
 	/**
@@ -237,10 +219,238 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<URI> getBackwardScopeAsURIs() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+				return getInitialProjects();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+				getInitialProjects().clear();
+				getInitialProjects().addAll((Collection<? extends IProject>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+				getInitialProjects().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+				return initialProjects != null && !initialProjects.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (initialProjects: "); //$NON-NLS-1$
+		result.append(initialProjects);
+		result.append(')');
+		return result.toString();
+	}
+
+	/**
+	 * Creates a new EList containing all Elements of the given set
+	 * @param initialResources given Set
+	 * @return new EList
+	 */
+	private EList<Resource> convertSetToEList(Set<Resource> initialResources) {
+		EList<Resource> list= new BasicEList<Resource>();
+		list.addAll(initialResources);
+		return list;
+	}
+
+	private IProject getProjectForResource(Resource res, URIConverter converter)
+			throws IllegalArgumentException {
+		URI uri=converter.normalize(res.getURI());
+		java.net.URI netUri= java.net.URI.create(uri.toString());
+		IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
+		IProject project=null;
+		for(IFile file:ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)){
+			project=file.getProject();
+		}
+		for(IContainer c: result)
+			if(c instanceof IProject)
+				project=(IProject) c;
+		/*
+		 * Think about a better way for resource without projects
+		 */
+		if(project==null)
+			throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+		return project;
+	}
+
+	private Set<Resource> getAllResourceFromDirectory(IResource modelDirectory) {
+		final Set<Resource> resources= new HashSet<Resource>();
+		try {
+			modelDirectory.accept(new IResourceVisitor() {
+				@Override
+				public boolean visit(IResource resource)  {
+					boolean successful=false;
+	
+					if ("xmi".equals(resource.getFileExtension())) {
+						ResourceImpl r= new ResourceImpl(URI.createURI(resource.getLocationURI().toString()));
+						/*
+						 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
+						 */
+						try{
+							r.load(null);
+							successful=true;
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
+						
+						if(r.getErrors().size()>0)
+							successful=false;
+					}
+					
+					if(successful)
+						resources.add(new ResourceImpl(URI.createURI(resource.getLocationURI().toString())));
+					//r.unload();
+	
+					return true;
+				}
+			}
+			);
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resources;
+	}
+
+	private IResource getModelDirectoryFromProject(IProject project)
+			throws IllegalArgumentException {
+		IResource member = project.findMember("model");
+		if(member==null || !(member instanceof IFolder))
+			throw new IllegalArgumentException(project.getName() +" does not contain a model folder. It is invalid.");
+		return member;
+	}
+
+	private EList<EObject> iteratorToEList(Iterator<Object> treeIterator) {
+		EList<EObject> treeAsList= new BasicEList<EObject>();
+		while(treeIterator.hasNext()){
+			Object next=treeIterator.next();
+			if(next instanceof EObject)
+				treeAsList.add((EObject) next);
+		}
+		return treeAsList;
+	}
+
+	/**
+	 * Computes recursively all referenced or referencing projects from a given pool and initial project
+	 * @param project project to compute the references for
+	 * @param referencedProjects list of all referenced projects, initial empty
+	 * @param pool pool of all projects which can be in the references
+	 * @param forward switch to decide if one get all reference projects of the given one or all referencing projects
+	 * @return the List of all references
+	 * @throws CoreException
+	 */
+	private EList<IProject> recursiveGetReferenceProjectsForEList(IProject project,EList<IProject> referencedProjects, Collection<IProject> pool, Boolean forward) throws CoreException{
+		IProject[] refProjects = null;
+		if(forward){
+			refProjects=project.getReferencedProjects();
+			if(!referencedProjects.contains(project) && pool.contains(project))
+				referencedProjects.add(project);
+		}
+		else
+			refProjects= project.getReferencingProjects();
+		
+		for(IProject referenced:refProjects ){
+			if(referencedProjects.contains(referenced))
+				continue;
+			if(!pool.contains(referenced))
+				continue;
+			referencedProjects.add(referenced);
+			recursiveGetReferenceProjectsForEList(referenced, referencedProjects, pool, forward);
+		}
+		return referencedProjects;		
+	}
+
+	private EList<EObject> scopeAsEObjects(EList<Resource> resources) {
+		EList<EObject> result= new BasicEList<EObject>();
+		for(Resource resource: resources){
+			/*
+			 * FIXME unfortunately a memory leak
+			 */
+	
+			result.addAll(iteratorToEList(EcoreUtil.getAllContents(resource, true)));
+			}
+		return result;
+	}
+
+	private EList<IProject> scopeAsProjects(Boolean forward) {
+		EList<IProject> result= new BasicEList<IProject>();
+		Collection<IProject> pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
+		
+		for(IProject project: getInitialProjects()){
+			try {
+				result = recursiveGetReferenceProjectsForEList(project, result, pool, forward);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	private EList<Resource> scopeAsResources(EList<IProject> projects)
+			throws IllegalArgumentException {
+		EList<Resource> result= new BasicEList<Resource>();
+		for(IProject project: projects){
+			IResource modelDir = getModelDirectoryFromProject(project);
+			result.addAll(
+					getAllResourceFromDirectory(modelDir));
+		}
+		return result;
+	}
+
+	private EList<URI> scopeAsUris(EList<Resource> resources) {
+		EList<URI> result= new BasicEList<URI>();
+		for(Resource res: resources){
+			result.add(res.getURI());
+		}
+		return result;
 	}
 
 } //ScopeProviderImpl

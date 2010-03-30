@@ -10,6 +10,8 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
@@ -37,6 +39,13 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 	 * @generated
 	 */
 	private EDataType uriEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType iProjectEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -113,8 +122,26 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getScopeProvider_InitialProjects() {
+		return (EAttribute)scopeProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getURI() {
 		return uriEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getIProject() {
+		return iProjectEDataType;
 	}
 
 	/**
@@ -146,9 +173,11 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 
 		// Create classes and their features
 		scopeProviderEClass = createEClass(SCOPE_PROVIDER);
+		createEAttribute(scopeProviderEClass, SCOPE_PROVIDER__INITIAL_PROJECTS);
 
 		// Create data types
 		uriEDataType = createEDataType(URI);
+		iProjectEDataType = createEDataType(IPROJECT);
 	}
 
 	/**
@@ -182,6 +211,7 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(scopeProviderEClass, ScopeProvider.class, "ScopeProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getScopeProvider_InitialProjects(), this.getIProject(), "initialProjects", null, 1, -1, ScopeProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		EOperation op = addEOperation(scopeProviderEClass, null, "setupForEObjects", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEObject(), "initialObjects", 1, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -192,20 +222,25 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 		op = addEOperation(scopeProviderEClass, null, "setupForResourceSets", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEResourceSet(), "initialResourceSets", 1, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(scopeProviderEClass, ecorePackage.getEResource(), "getForwardScopeAsResources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		addEOperation(scopeProviderEClass, ecorePackage.getEObject(), "getForwardScopeAsEObjects", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(scopeProviderEClass, this.getIProject(), "getForwardScopeAsProjects", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(scopeProviderEClass, ecorePackage.getEResource(), "getForwardScopeAsResources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(scopeProviderEClass, this.getURI(), "getForwardScopeAsURIs", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(scopeProviderEClass, ecorePackage.getEResource(), "getBackwardScopeAsResources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		addEOperation(scopeProviderEClass, ecorePackage.getEObject(), "getBackwardScopeAsEObjects", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(scopeProviderEClass, this.getIProject(), "getBackwardScopeAsProjects", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(scopeProviderEClass, ecorePackage.getEResource(), "getBackwardScopeAsResources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(scopeProviderEClass, this.getURI(), "getBackwardScopeAsURIs", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types
 		initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(iProjectEDataType, IProject.class, "IProject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
