@@ -6,12 +6,9 @@
  */
 package de.hpi.sam.bp2009.solution.scopeProvider;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -23,30 +20,30 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInitialProjects <em>Initial Projects</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources <em>In Memory Resources</em>}</li>
  * </ul>
  * </p>
  *
  * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getScopeProvider()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface ScopeProvider extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Initial Projects</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.core.resources.IProject}.
+	 * Returns the value of the '<em><b>In Memory Resources</b></em>' attribute list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.resource.Resource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Initial Projects</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>In Memory Resources</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initial Projects</em>' attribute list.
-	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getScopeProvider_InitialProjects()
-	 * @model dataType="de.hpi.sam.bp2009.solution.scopeProvider.IProject" required="true" ordered="false"
+	 * @return the value of the '<em>In Memory Resources</em>' attribute list.
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getScopeProvider_InMemoryResources()
+	 * @model transient="true"
 	 * @generated
 	 */
-	EList<IProject> getInitialProjects();
+	EList<Resource> getInMemoryResources();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,23 +75,7 @@ public interface ScopeProvider extends EObject {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	EList<Resource> getForwardScopeAsResources();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
 	EList<EObject> getForwardScopeAsEObjects();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.IProject"
-	 * @generated
-	 */
-	EList<IProject> getForwardScopeAsProjects();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -110,23 +91,7 @@ public interface ScopeProvider extends EObject {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	EList<Resource> getBackwardScopeAsResources();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
 	EList<EObject> getBackwardScopeAsEObjects();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.IProject"
-	 * @generated
-	 */
-	EList<IProject> getBackwardScopeAsProjects();
 
 	/**
 	 * <!-- begin-user-doc -->

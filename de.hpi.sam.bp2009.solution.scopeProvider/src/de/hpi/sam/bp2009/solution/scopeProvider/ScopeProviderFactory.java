@@ -26,13 +26,13 @@ public interface ScopeProviderFactory extends EFactory {
 	ScopeProviderFactory eINSTANCE = de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Scope Provider</em>'.
+	 * Returns a new object of class '<em>Project Based Scope Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Scope Provider</em>'.
+	 * @return a new object of class '<em>Project Based Scope Provider</em>'.
 	 * @generated
 	 */
-	ScopeProvider createScopeProvider();
+	ProjectBasedScopeProvider createProjectBasedScopeProvider();
 
 	/**
 	 * Returns the package supported by this factory.

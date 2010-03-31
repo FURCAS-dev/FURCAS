@@ -5,6 +5,10 @@
  * $Id$
  */
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
+
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,38 +22,50 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Scope Provider</b></em>'.
+ * An implementation of the model object '<em><b>Project Based Scope Provider</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderImpl#getInitialProjects <em>Initial Projects</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl#getInMemoryResources <em>In Memory Resources</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl#getInitialProjects <em>Initial Projects</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
+public class ProjectBasedScopeProviderImpl extends EObjectImpl implements ProjectBasedScopeProvider {
+	/**
+	 * The cached value of the '{@link #getInMemoryResources() <em>In Memory Resources</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInMemoryResources()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Resource> inMemoryResources;
 	/**
 	 * The cached value of the '{@link #getInitialProjects() <em>Initial Projects</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -65,7 +81,7 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ScopeProviderImpl() {
+	protected ProjectBasedScopeProviderImpl() {
 		super();
 	}
 
@@ -76,7 +92,19 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ScopeProviderPackage.Literals.SCOPE_PROVIDER;
+		return ScopeProviderPackage.Literals.PROJECT_BASED_SCOPE_PROVIDER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Resource> getInMemoryResources() {
+		if (inMemoryResources == null) {
+			inMemoryResources = new EDataTypeUniqueEList<Resource>(Resource.class, this, ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES);
+		}
+		return inMemoryResources;
 	}
 
 	/**
@@ -86,7 +114,7 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	 */
 	public EList<IProject> getInitialProjects() {
 		if (initialProjects == null) {
-			initialProjects = new EDataTypeUniqueEList<IProject>(IProject.class, this, ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS);
+			initialProjects = new EDataTypeUniqueEList<IProject>(IProject.class, this, ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS);
 		}
 		return initialProjects;
 	}
@@ -119,6 +147,7 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 			if(converter==null){
 				converter= URIConverter.INSTANCE;
 			}
+			getInMemoryResources().add(res);
 			IProject project = getProjectForResource(res, converter);
 			getInitialProjects().add(project);
 		}
@@ -222,8 +251,10 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-			return getInitialProjects();
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
+				return getInMemoryResources();
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
+				return getInitialProjects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,10 +268,14 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-			getInitialProjects().clear();
-			getInitialProjects().addAll((Collection<? extends IProject>)newValue);
-			return;
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
+				getInMemoryResources().clear();
+				getInMemoryResources().addAll((Collection<? extends Resource>)newValue);
+				return;
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
+				getInitialProjects().clear();
+				getInitialProjects().addAll((Collection<? extends IProject>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -253,9 +288,12 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-			getInitialProjects().clear();
-			return;
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
+				getInMemoryResources().clear();
+				return;
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
+				getInitialProjects().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,8 +306,10 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-			return initialProjects != null && !initialProjects.isEmpty();
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
+				return inMemoryResources != null && !inMemoryResources.isEmpty();
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
+				return initialProjects != null && !initialProjects.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -284,10 +324,63 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (initialProjects: "); //$NON-NLS-1$
+		result.append(" (inMemoryResources: "); //$NON-NLS-1$
+		result.append(inMemoryResources);
+		result.append(", initialProjects: "); //$NON-NLS-1$
 		result.append(initialProjects);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * Add a resource with the given URI to the given Set of resources
+	 * if an resource with the same uri is in the inMemory List, this resource will be added
+	 * @param resources Set to add in resource
+	 * @param uri uri of the resource to add
+	 */
+	private void addNewOrInMemoryResource(final Set<Resource> resources,
+			URI uri) {
+		Resource inMemory=null;
+		for(Resource r: getInMemoryResources())
+			if(uri.equals(r.getURI()))
+					inMemory=r;
+		
+		resources.add(inMemory==null ? new XMIResourceImpl(uri) : inMemory);
+	}
+
+	/**
+	 * @param resource
+	 * @param successful
+	 * @return
+	 */
+	private boolean checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI uri) {
+		Boolean successful = false;
+	
+		ResourceSet load_resourceSet = new ResourceSetImpl();
+	
+		/*
+		 * Register XML Factory implementation using DEFAULT_EXTENSION
+		 */
+		load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+				"*", new XMLResourceFactoryImpl());
+		/*
+		 * Load the resource using the URI
+		 */
+		Resource r = load_resourceSet.getResource(uri,true);
+	
+		/*
+		 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
+		 */
+		try{
+			r.load(null);
+			successful=true;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	
+		if(r.getErrors().size()>0)
+			successful=false;
+		return successful;
 	}
 
 	/**
@@ -344,46 +437,12 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 			}
 
 			if(successful)
-				resources.add(new XMIResourceImpl(URI.createURI(f.getLocationURI().toString())));
+				addNewOrInMemoryResource(resources, URI.createURI(f.getLocationURI().toString()));
 			//r.unload();
 
 		}
 
 		return resources;
-	}
-	/**
-	 * @param resource
-	 * @param successful
-	 * @return
-	 */
-	private boolean checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI uri) {
-		Boolean successful = false;
-
-		ResourceSet load_resourceSet = new ResourceSetImpl();
-
-		/*
-		 * Register XML Factory implementation using DEFAULT_EXTENSION
-		 */
-		load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				"*", new XMLResourceFactoryImpl());
-		/*
-		 * Load the resource using the URI
-		 */
-		Resource r = load_resourceSet.getResource(uri,true);
-
-		/*
-		 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
-		 */
-		try{
-			r.load(null);
-			successful=true;
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		if(r.getErrors().size()>0)
-			successful=false;
-		return successful;
 	}
 
 	private IFolder getModelDirectoryFromProject(IProject project)throws IllegalArgumentException {
@@ -494,4 +553,5 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 		return result;
 	}
 
-} //ScopeProviderImpl
+
+} //ProjectBasedScopeProviderImpl

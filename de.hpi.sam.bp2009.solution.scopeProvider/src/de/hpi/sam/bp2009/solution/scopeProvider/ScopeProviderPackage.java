@@ -60,23 +60,33 @@ public interface ScopeProviderPackage extends EPackage {
 	ScopeProviderPackage eINSTANCE = de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderImpl <em>Scope Provider</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl <em>Project Based Scope Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderImpl
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getProjectBasedScopeProvider()
+	 * @generated
+	 */
+	int PROJECT_BASED_SCOPE_PROVIDER = 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider <em>Scope Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider
 	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getScopeProvider()
 	 * @generated
 	 */
-	int SCOPE_PROVIDER = 0;
+	int SCOPE_PROVIDER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Initial Projects</b></em>' attribute list.
+	 * The feature id for the '<em><b>In Memory Resources</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCOPE_PROVIDER__INITIAL_PROJECTS = 0;
+	int SCOPE_PROVIDER__IN_MEMORY_RESOURCES = 0;
 
 	/**
 	 * The number of structural features of the '<em>Scope Provider</em>' class.
@@ -88,6 +98,33 @@ public interface ScopeProviderPackage extends EPackage {
 	int SCOPE_PROVIDER_FEATURE_COUNT = 1;
 
 	/**
+	 * The feature id for the '<em><b>In Memory Resources</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES = SCOPE_PROVIDER__IN_MEMORY_RESOURCES;
+
+	/**
+	 * The feature id for the '<em><b>Initial Projects</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS = SCOPE_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Project Based Scope Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_BASED_SCOPE_PROVIDER_FEATURE_COUNT = SCOPE_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '<em>URI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,7 +132,7 @@ public interface ScopeProviderPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getURI()
 	 * @generated
 	 */
-	int URI = 1;
+	int URI = 2;
 
 
 	/**
@@ -106,8 +143,29 @@ public interface ScopeProviderPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getIProject()
 	 * @generated
 	 */
-	int IPROJECT = 2;
+	int IPROJECT = 3;
 
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider <em>Project Based Scope Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project Based Scope Provider</em>'.
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider
+	 * @generated
+	 */
+	EClass getProjectBasedScopeProvider();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider#getInitialProjects <em>Initial Projects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Initial Projects</em>'.
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider#getInitialProjects()
+	 * @see #getProjectBasedScopeProvider()
+	 * @generated
+	 */
+	EAttribute getProjectBasedScopeProvider_InitialProjects();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider <em>Scope Provider</em>}'.
@@ -120,15 +178,15 @@ public interface ScopeProviderPackage extends EPackage {
 	EClass getScopeProvider();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInitialProjects <em>Initial Projects</em>}'.
+	 * Returns the meta object for the attribute list '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources <em>In Memory Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Initial Projects</em>'.
-	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInitialProjects()
+	 * @return the meta object for the attribute list '<em>In Memory Resources</em>'.
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources()
 	 * @see #getScopeProvider()
 	 * @generated
 	 */
-	EAttribute getScopeProvider_InitialProjects();
+	EAttribute getScopeProvider_InMemoryResources();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>URI</em>}'.
@@ -175,14 +233,14 @@ public interface ScopeProviderPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderImpl <em>Scope Provider</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl <em>Project Based Scope Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderImpl
-		 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getScopeProvider()
+		 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl
+		 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getProjectBasedScopeProvider()
 		 * @generated
 		 */
-		EClass SCOPE_PROVIDER = eINSTANCE.getScopeProvider();
+		EClass PROJECT_BASED_SCOPE_PROVIDER = eINSTANCE.getProjectBasedScopeProvider();
 
 		/**
 		 * The meta object literal for the '<em><b>Initial Projects</b></em>' attribute list feature.
@@ -190,7 +248,25 @@ public interface ScopeProviderPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SCOPE_PROVIDER__INITIAL_PROJECTS = eINSTANCE.getScopeProvider_InitialProjects();
+		EAttribute PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS = eINSTANCE.getProjectBasedScopeProvider_InitialProjects();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider <em>Scope Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider
+		 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getScopeProvider()
+		 * @generated
+		 */
+		EClass SCOPE_PROVIDER = eINSTANCE.getScopeProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>In Memory Resources</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCOPE_PROVIDER__IN_MEMORY_RESOURCES = eINSTANCE.getScopeProvider_InMemoryResources();
 
 		/**
 		 * The meta object literal for the '<em>URI</em>' data type.

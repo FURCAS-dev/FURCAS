@@ -64,7 +64,7 @@ public class ScopeProviderFactoryImpl extends EFactoryImpl implements ScopeProvi
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ScopeProviderPackage.SCOPE_PROVIDER: return createScopeProvider();
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER: return createProjectBasedScopeProvider();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -109,9 +109,9 @@ public class ScopeProviderFactoryImpl extends EFactoryImpl implements ScopeProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ScopeProvider createScopeProvider() {
-		ScopeProviderImpl scopeProvider = new ScopeProviderImpl();
-		return scopeProvider;
+	public ProjectBasedScopeProvider createProjectBasedScopeProvider() {
+		ProjectBasedScopeProviderImpl projectBasedScopeProvider = new ProjectBasedScopeProviderImpl();
+		return projectBasedScopeProvider;
 	}
 
 	/**

@@ -72,6 +72,10 @@ public class ScopeProviderAdapterFactory extends AdapterFactoryImpl {
 	protected ScopeProviderSwitch<Adapter> modelSwitch =
 		new ScopeProviderSwitch<Adapter>() {
 			@Override
+			public Adapter caseProjectBasedScopeProvider(ProjectBasedScopeProvider object) {
+				return createProjectBasedScopeProviderAdapter();
+			}
+			@Override
 			public Adapter caseScopeProvider(ScopeProvider object) {
 				return createScopeProviderAdapter();
 			}
@@ -94,6 +98,20 @@ public class ScopeProviderAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider <em>Project Based Scope Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider
+	 * @generated
+	 */
+	public Adapter createProjectBasedScopeProviderAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider <em>Scope Provider</em>}'.

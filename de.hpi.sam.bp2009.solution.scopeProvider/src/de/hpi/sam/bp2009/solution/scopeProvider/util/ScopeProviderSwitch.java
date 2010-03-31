@@ -87,6 +87,13 @@ public class ScopeProviderSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER: {
+				ProjectBasedScopeProvider projectBasedScopeProvider = (ProjectBasedScopeProvider)theEObject;
+				T result = caseProjectBasedScopeProvider(projectBasedScopeProvider);
+				if (result == null) result = caseScopeProvider(projectBasedScopeProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ScopeProviderPackage.SCOPE_PROVIDER: {
 				ScopeProvider scopeProvider = (ScopeProvider)theEObject;
 				T result = caseScopeProvider(scopeProvider);
@@ -95,6 +102,21 @@ public class ScopeProviderSwitch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project Based Scope Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project Based Scope Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProjectBasedScopeProvider(ProjectBasedScopeProvider object) {
+		return null;
 	}
 
 	/**
