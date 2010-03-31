@@ -5,7 +5,6 @@
  * $Id$
  */
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,7 +16,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.BasicEList;
@@ -29,9 +27,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
@@ -222,8 +222,8 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-				return getInitialProjects();
+		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+			return getInitialProjects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,10 +237,10 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-				getInitialProjects().clear();
-				getInitialProjects().addAll((Collection<? extends IProject>)newValue);
-				return;
+		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+			getInitialProjects().clear();
+			getInitialProjects().addAll((Collection<? extends IProject>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -253,9 +253,9 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-				getInitialProjects().clear();
-				return;
+		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+			getInitialProjects().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,8 +268,8 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
-				return initialProjects != null && !initialProjects.isEmpty();
+		case ScopeProviderPackage.SCOPE_PROVIDER__INITIAL_PROJECTS:
+			return initialProjects != null && !initialProjects.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -302,7 +302,7 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	}
 
 	private IProject getProjectForResource(Resource res, URIConverter converter)
-			throws IllegalArgumentException {
+	throws IllegalArgumentException {
 		URI uri=converter.normalize(res.getURI());
 		java.net.URI netUri= java.net.URI.create(uri.toString());
 		IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
@@ -320,52 +320,85 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 			throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
 		return project;
 	}
-
-	private Set<Resource> getAllResourceFromDirectory(IResource modelDirectory) {
+	private Set<Resource> getAllResourceFromDirectory(IFolder modelDirectory) throws CoreException {
 		final Set<Resource> resources= new HashSet<Resource>();
-		try {
-			modelDirectory.accept(new IResourceVisitor() {
-				@Override
-				public boolean visit(IResource resource)  {
-					boolean successful=false;
-	
-					if ("xmi".equals(resource.getFileExtension())) {
-						ResourceImpl r= new ResourceImpl(URI.createURI(resource.getLocationURI().toString()));
-						/*
-						 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
-						 */
-						try{
-							r.load(null);
-							successful=true;
-						}catch (Exception e) {
-							// TODO: handle exception
-						}
-						
-						if(r.getErrors().size()>0)
-							successful=false;
-					}
-					
-					if(successful)
-						resources.add(new ResourceImpl(URI.createURI(resource.getLocationURI().toString())));
-					//r.unload();
-	
-					return true;
+		for(IResource f:modelDirectory.members()){
+			boolean successful=false;
+
+			if (f.getFileExtension().endsWith("xmi")) {
+				successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI().toString()));
+				XMIResourceImpl r = new XMIResourceImpl(URI.createURI(f.getLocationURI().toString()));
+				/*
+				 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
+				 */
+				try{
+					r.load(null);
+					successful=true;
+				}catch (Exception e) {
+					e.printStackTrace();
+					// TODO: handle exception
 				}
+
+				if(r.getErrors().size()>0)
+					successful=false;
 			}
-			);
+
+			if(successful)
+				resources.add(new XMIResourceImpl(URI.createURI(f.getLocationURI().toString())));
+			//r.unload();
+
+		}
+
+		return resources;
+	}
+	/**
+	 * @param resource
+	 * @param successful
+	 * @return
+	 */
+	private boolean checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI uri) {
+		Boolean successful = false;
+
+		ResourceSet load_resourceSet = new ResourceSetImpl();
+
+		/*
+		 * Register XML Factory implementation using DEFAULT_EXTENSION
+		 */
+		load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+				"*", new XMLResourceFactoryImpl());
+		/*
+		 * Load the resource using the URI
+		 */
+		Resource r = load_resourceSet.getResource(uri,true);
+
+		/*
+		 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
+		 */
+		try{
+			r.load(null);
+			successful=true;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		if(r.getErrors().size()>0)
+			successful=false;
+		return successful;
+	}
+
+	private IFolder getModelDirectoryFromProject(IProject project)throws IllegalArgumentException {
+		//refresh if project is not totally loaded some resources should appear hear
+		try {
+			project.refreshLocal(IResource.DEPTH_INFINITE, null);
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return resources;
-	}
-
-	private IResource getModelDirectoryFromProject(IProject project)
-			throws IllegalArgumentException {
-		IResource member = project.findMember("model");
+		IResource member = project.findMember("model", true);
+		project.getLocation().toFile().listFiles();
 		if(member==null || !(member instanceof IFolder))
 			throw new IllegalArgumentException(project.getName() +" does not contain a model folder. It is invalid.");
-		return member;
+		return (IFolder)member;
 	}
 
 	private EList<EObject> iteratorToEList(Iterator<Object> treeIterator) {
@@ -388,15 +421,18 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	 * @throws CoreException
 	 */
 	private EList<IProject> recursiveGetReferenceProjectsForEList(IProject project,EList<IProject> referencedProjects, Collection<IProject> pool, Boolean forward) throws CoreException{
+		/*
+		 * referencing in both directions is reflexive
+		 */
+		if(!referencedProjects.contains(project) && pool.contains(project))
+			referencedProjects.add(project);
+
 		IProject[] refProjects = null;
-		if(forward){
+		if(forward)
 			refProjects=project.getReferencedProjects();
-			if(!referencedProjects.contains(project) && pool.contains(project))
-				referencedProjects.add(project);
-		}
 		else
 			refProjects= project.getReferencingProjects();
-		
+
 		for(IProject referenced:refProjects ){
 			if(referencedProjects.contains(referenced))
 				continue;
@@ -414,20 +450,21 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 			/*
 			 * FIXME unfortunately a memory leak
 			 */
-	
+
 			result.addAll(iteratorToEList(EcoreUtil.getAllContents(resource, true)));
-			}
+		}
 		return result;
 	}
 
 	private EList<IProject> scopeAsProjects(Boolean forward) {
 		EList<IProject> result= new BasicEList<IProject>();
 		Collection<IProject> pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
-		
+
 		for(IProject project: getInitialProjects()){
 			try {
 				result = recursiveGetReferenceProjectsForEList(project, result, pool, forward);
 			} catch (CoreException e) {
+				// TODO Add Exception to an intern array of errors
 				e.printStackTrace();
 			}
 		}
@@ -435,12 +472,16 @@ public class ScopeProviderImpl extends EObjectImpl implements ScopeProvider {
 	}
 
 	private EList<Resource> scopeAsResources(EList<IProject> projects)
-			throws IllegalArgumentException {
+	throws IllegalArgumentException {
 		EList<Resource> result= new BasicEList<Resource>();
 		for(IProject project: projects){
-			IResource modelDir = getModelDirectoryFromProject(project);
-			result.addAll(
-					getAllResourceFromDirectory(modelDir));
+			IFolder modelDir = getModelDirectoryFromProject(project);
+			try {
+				result.addAll(getAllResourceFromDirectory(modelDir));
+			} catch (CoreException e) {
+				// TODO Add Exception to an intern array of errors
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}

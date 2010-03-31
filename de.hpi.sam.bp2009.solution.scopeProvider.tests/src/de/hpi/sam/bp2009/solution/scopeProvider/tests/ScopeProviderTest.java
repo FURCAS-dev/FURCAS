@@ -7,6 +7,8 @@
 package de.hpi.sam.bp2009.solution.scopeProvider.tests;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -17,15 +19,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderFactory;
+import de.hpi.sam.petriNet.PetriNetPackage;
 
 import junit.framework.TestCase;
 
@@ -117,44 +124,101 @@ public class ScopeProviderTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		c1=createProjectWithResources("1");
-		c2=createProjectWithResources("2");
+		setFixture(ScopeProviderFactory.eINSTANCE.createScopeProvider());
+
+		EPackage metaModel= PetriNetPackage.eINSTANCE;
+		c1=serializeModelToProject("1",metaModel);
+		c2=serializeModelToProject("2",metaModel);
 		IProject[] projects={c2.p};
 		IProjectDescription desc = c1.p.getDescription();
 		desc.setReferencedProjects(projects);
 		c1.p.setDescription(desc, null);
 	}
+	@SuppressWarnings("unused")
+	private Resource serializeMetaModel(EPackage package1, String uri){
+		ResourceSet metaResourceSet = new ResourceSetImpl();
 
-	private Container createProjectWithResources(String projectName)
-			throws CoreException, IOException {
+		/*
+		 * Register XML Factory implementation to handle .ecore files
+		 */
+		metaResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+				"ecore", new  XMLResourceFactoryImpl());
+
+		/*
+		 * Create empty resource with the given URI
+		 */
+		Resource metaResource = metaResourceSet.createResource(URI.createURI(uri));
+
+		/*
+		 * Add bookStoreEPackage to contents list of the resource 
+		 */
+		metaResource.getContents().add(package1);
+
+		System.out.println(package1.getNsURI());
+		package1.setNsURI(uri);
+		try {
+			/*
+			 * Save the resource
+			 */
+			metaResource.save(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return metaResource;
+
+	}
+	
+	private Container serializeModelToProject(String projectName, EPackage metaModel){
 		IProject p1 = new ProjectCreator(ResourcesPlugin.getWorkspace()).createProject(projectName);
-		setFixture(ScopeProviderFactory.eINSTANCE.createScopeProvider());
 		IFolder folder3 = p1.getFolder("model");
+		try {
+			folder3.create(false, true, null);
+		} catch (CoreException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//serializeMetaModel(metaModel,folder3.getRawLocationURI().toString()+"/metaModel.ecore");
 
-		NullProgressMonitor monitor = new NullProgressMonitor();
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+		    "*", new  XMLResourceFactoryImpl());
+		resourceSet.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
+		Resource resource = resourceSet.createResource(URI.createURI(folder3.getRawLocationURI().toString()+"/test1.xmi"));
 
-		// "creating package = 3 folders"
-		folder3.create(false, true, monitor);	
-		
-		ResourceSetImpl resultRS = new ResourceSetImpl();
-		Resource resource1 = resultRS.createResource(URI.createURI(folder3.getRawLocationURI().toString()+"/test1.xmi"));
-		
-		EPackage metaModel=RandomGeneratorFactory.eINSTANCE.createRandomGeneratorOptionObject().getMetaModel();
-		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);		
-		RandomGeneratorFactory.eINSTANCE.createRandomGenerator().generateRandomModel(1, resource1,metaModel);
-		
-		resource1.save(null);
-		Resource resource2 = resultRS.createResource(URI.createURI(folder3.getRawLocationURI().toString()+"/test2.xmi"));
-		
-		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);		
-		RandomGeneratorFactory.eINSTANCE.createRandomGenerator().generateRandomModel(1, resource2,metaModel);
-		
-		resource2.save(null);
-		Container c= new Container();
-		c.p=p1;
-		c.r1=resource1;
-		c.r2=resource2;
-		return c;
+		RandomGeneratorFactory.eINSTANCE.createRandomGenerator().generateRandomModel(1, resource,metaModel);
+
+		/*
+		* Save the resource using OPTION_SCHEMA_LOCATION save option toproduce 
+		* xsi:schemaLocation attribute in the document
+		*/
+		Map options = new HashMap();
+		options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+		try{
+		     resource.save(options);
+		   }catch (IOException e) {
+		     e.printStackTrace();
+		   }
+			Resource resource1 = resourceSet.createResource(URI.createURI(folder3.getRawLocationURI().toString()+"/test2.xmi"));
+
+			RandomGeneratorFactory.eINSTANCE.createRandomGenerator().generateRandomModel(1, resource1,metaModel);
+
+			/*
+			* Save the resource using OPTION_SCHEMA_LOCATION save option toproduce 
+			* xsi:schemaLocation attribute in the document
+			*/
+			Map options1 = new HashMap();
+			options1.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+			try{
+			     resource1.save(options1);
+			   }catch (IOException e) {
+			     e.printStackTrace();
+			   }
+				Container c= new Container();
+				c.p=p1;
+				c.r1=resource;
+				c.r2=resource1;
+				return c;
+
 	}
 
 	/**
@@ -237,7 +301,8 @@ public class ScopeProviderTest extends TestCase {
 		BasicEList<IProject> result= new BasicEList<IProject>();
 		result.add(c1.p);
 		result.add(c2.p);
-		assertTrue(getFixture().getForwardScopeAsProjects().containsAll(result));
+		EList<IProject> scope = getFixture().getForwardScopeAsProjects();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
 	}
 
 	/**
@@ -248,6 +313,7 @@ public class ScopeProviderTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testGetForwardScopeAsResources() {
+		
 		BasicEList<Resource> list= new BasicEList<Resource>();
 		list.add(c1.r1);
 		getFixture().setupForResources(list);
@@ -257,7 +323,8 @@ public class ScopeProviderTest extends TestCase {
 		result.add(c1.r2);
 		result.add(c2.r1);
 		result.add(c2.r2);
-		assertTrue(getFixture().getForwardScopeAsResources().containsAll(result));
+		EList<Resource> scope = getFixture().getForwardScopeAsResources();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
 	}
 
 	/**
@@ -275,19 +342,47 @@ public class ScopeProviderTest extends TestCase {
 		BasicEList<Resource> result= new BasicEList<Resource>();
 		result.add(c2.r1);
 		result.add(c2.r2);
-		assertTrue(getFixture().getForwardScopeAsResources().containsAll(result));
+		EList<Resource> scope = getFixture().getForwardScopeAsResources();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
 	}
 	/**
 	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsURIs() <em>Get Forward Scope As UR Is</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsURIs()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetForwardScopeAsURIs() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		BasicEList<Resource> list= new BasicEList<Resource>();
+		list.add(c2.r1);
+		getFixture().setupForResources(list);
+		BasicEList<URI> result= new BasicEList<URI>();
+		result.add(c2.r1.getURI());
+		result.add(c2.r2.getURI());
+		EList<URI> scope = getFixture().getForwardScopeAsURIs();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
+	}
+	
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsURIs() <em>Get Forward Scope As UR Is</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsURIs()
+	 * @generated NOT
+	 */
+	public void testGetForwardScopeAsURIs2() {
+		BasicEList<Resource> list= new BasicEList<Resource>();
+		list.add(c1.r1);
+		getFixture().setupForResources(list);
+		BasicEList<URI> result= new BasicEList<URI>();
+		result.add(c1.r1.getURI());
+		result.add(c1.r2.getURI());
+		result.add(c2.r1.getURI());
+		result.add(c2.r2.getURI());	
+		
+		
+		EList<URI> scope = getFixture().getForwardScopeAsURIs();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
 	}
 
 	/**
@@ -334,12 +429,39 @@ public class ScopeProviderTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsURIs()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetBackwardScopeAsURIs() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		BasicEList<Resource> list= new BasicEList<Resource>();
+		list.add(c2.r1);
+		getFixture().setupForResources(list);
+		BasicEList<URI> result= new BasicEList<URI>();
+		result.add(c1.r1.getURI());
+		result.add(c1.r2.getURI());
+		result.add(c2.r1.getURI());
+		result.add(c2.r2.getURI());	
+		
+		
+		EList<URI> scope = getFixture().getBackwardScopeAsURIs();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
+	}
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsURIs() <em>Get Backward Scope As UR Is</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsURIs()
+	 * @generated NOT
+	 */
+	public void testGetBackwardScopeAsURIs2() {
+		BasicEList<Resource> list= new BasicEList<Resource>();
+		list.add(c1.r1);
+		getFixture().setupForResources(list);
+		BasicEList<URI> result= new BasicEList<URI>();
+		result.add(c1.r1.getURI());
+		result.add(c1.r2.getURI());
+		
+		EList<URI> scope = getFixture().getBackwardScopeAsURIs();
+		assertTrue(scope.containsAll(result) && result.containsAll(scope));
 	}
 
 } //ScopeProviderTest

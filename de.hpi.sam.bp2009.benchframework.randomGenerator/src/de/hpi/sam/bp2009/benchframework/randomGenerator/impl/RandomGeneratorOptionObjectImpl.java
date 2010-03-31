@@ -262,7 +262,7 @@ public class RandomGeneratorOptionObjectImpl extends RandomNumberOptionObjectImp
 		outgoingArcsRef.setLowerBound(0);
 		
 		EReference targetRef = ecoreFactory.createEReference();
-		targetRef.setName("source");
+		targetRef.setName("target");
 		targetRef.setEType(nodeClass);
 		targetRef.setUpperBound(1);
 		targetRef.setLowerBound(1);
