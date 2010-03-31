@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<root xmlns="http://sap.com/moin/test/simpleContent" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://sap.com/moin/test/simpleContent ComplexTypeWithSimpleContent.xsd">
-	<elementExtension attr="attrV" value="11">testExtension</elementExtension>
-	<elementRestriction value="12">testRestrition</elementRestriction>
-</root>

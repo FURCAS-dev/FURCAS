@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?>
-<plugin>
-
-     <extension point="com.sap.tc.moin.runtime.MoinMetaModel" >
-     	<custom_serialization registrationFile="registration/TestBackwardCompatibility.xml"/>
-     </extension>	  	
-
-</plugin>

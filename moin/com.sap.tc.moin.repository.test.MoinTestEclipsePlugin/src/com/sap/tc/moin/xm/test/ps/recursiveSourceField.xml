@@ -1,6 +1,0 @@
-﻿<field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://sap.com/moin/xm/test/recursive" xsi:schemaLocation="http://sap.com/moin/xm/test/recursive recursive.xsd">
-	<name>field11</name>
-	<type>boolean</type>
-</field>
-
