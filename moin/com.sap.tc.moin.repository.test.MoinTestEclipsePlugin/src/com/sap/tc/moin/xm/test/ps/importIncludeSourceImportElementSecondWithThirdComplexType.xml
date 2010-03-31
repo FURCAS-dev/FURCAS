@@ -1,5 +1,0 @@
-﻿<ImportSecondElementWithImportThirdComplexType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://sap.com/moin/xm/test/secondImport" xmlns:ns3="http://sap.com/moin/xm/test/thirdImport" xsi:schemaLocation="http://sap.com/moin/xm/test/secondImport ImportTestSecond.xsd http://sap.com/moin/xm/test/thirdImport ImportThird.xsd" att="test">
-	<ns3:el>5</ns3:el>
-</ImportSecondElementWithImportThirdComplexType>
-

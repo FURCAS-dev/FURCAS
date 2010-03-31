@@ -1,7 +1,0 @@
-//** B.template
-NoTranslation
-UseMacros(moin.buildplugin)
-
-ImportAllLibs(PurposeLabels(compile,api))
-
-BuildMoinMetaModel(sap.com,HMMOINTESTS,tc/moin/ocl/tests/serviceinteractions,ServiceInteractions,PF)

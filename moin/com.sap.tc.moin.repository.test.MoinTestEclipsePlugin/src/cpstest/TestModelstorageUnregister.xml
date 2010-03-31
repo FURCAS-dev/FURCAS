@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<ModelstorageInf xmlns="http://sap.com/moin/MoinArchive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://sap.com/moin/MoinArchive modelstorage_inf.xsd">	
-	<FilePatterns>
-		<Pattern suffix="unregtest"/>
-		<Pattern suffix="unregtest2" />		
-	</FilePatterns>
-</ModelstorageInf>
