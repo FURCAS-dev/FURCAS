@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g 2010-03-22 12:43:38
+// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g 2010-03-31 17:34:04
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class CollectionParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DOUBLE", "BOOL", "BINARY", "DATE", "LCURL", "RCURL", "SEMICOLON", "LPAREN", "RPAREN", "LBRACKET", "DCOLON", "RBRACKET", "LANGLE", "COLON", "EQUALS", "DOT", "COMMENT", "MULTI_LINE_COMMENT", "RANGLE", "EXCL", "EQUALSEQUALS", "ASSIGN", "DDOT", "ARROW", "PIPE", "INCLUDING", "EXCLUDING", "INCLUDINGAT", "EXCLUDINGAT", "ITERATE", "LCURL_LBRACK", "LBRACK_LCURL", "RCURL_RBRACK", "RBRACK_RCURL", "STAR", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "OBJECT", "RANGE_OR_INT_OR_FLOAT_OR_DOUBLE", "'completesIn'", "'constraint'", "'collection'", "'void'", "'default'", "'foreach'", "'$'", "'group'", "'body'", "'notify'", "'in'", "'const'", "'break'", "'formula'", "'while'", "'/'", "'subject'", "'unique'", "'string'", "'timepoint'", "'duration'", "'number'", "'boolean'", "'child'", "'descendant'", "'attribute'", "'self'", "'descendant_or_self'", "'following_sibling'", "'following'", "'namespace'", "'ancestor'", "'preceding_sibling'", "'preceding'", "'ancestor_or_self'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DOUBLE", "BOOL", "BINARY", "DATE", "LCURL", "RCURL", "SEMICOLON", "LPAREN", "RPAREN", "LBRACKET", "DCOLON", "RBRACKET", "LANGLE", "COLON", "EQUALS", "DOT", "COMMENT", "MULTI_LINE_COMMENT", "RANGLE", "EXCL", "EQUALSEQUALS", "ASSIGN", "DDOT", "ARROW", "PIPE", "INCLUDING", "EXCLUDING", "INCLUDINGAT", "EXCLUDINGAT", "ITERATE", "LCURL_LBRACK", "LBRACK_LCURL", "RCURL_RBRACK", "RBRACK_RCURL", "STAR", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "OBJECT", "RANGE_OR_INT_OR_FLOAT_OR_DOUBLE", "'void'", "'collection'", "'completesIn'", "'in'", "'break'", "'foreach'", "'constraint'", "'/'", "'while'", "'unique'", "'formula'", "'body'", "'subject'", "'group'", "'const'", "'default'", "'notify'", "'$'", "'string'", "'timepoint'", "'duration'", "'number'", "'boolean'", "'child'", "'descendant'", "'attribute'", "'self'", "'descendant_or_self'", "'following_sibling'", "'following'", "'namespace'", "'ancestor'", "'preceding_sibling'", "'preceding'", "'ancestor_or_self'"
     };
     public static final int T__68=68;
     public static final int T__69=69;
@@ -121,7 +121,7 @@ public class CollectionParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g"; }
 
 
-       private static final String syntaxUUID = "E007956A24397F5335A811DFC9F8E4778D150765";
+       private static final String syntaxUUID = "E0356A04D52A4AE03CDA11DF9C50FF398D150765";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -240,7 +240,7 @@ public class CollectionParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifierOrKeyword"
-    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'completesIn' | 'constraint' | 'collection' | 'void' | 'default' | 'foreach' | '$' | 'group' | 'body' | 'notify' | 'in' | 'const' | 'break' | 'formula' | 'while' | '/' | 'subject' | 'unique' ) ;
+    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'void' | 'collection' | 'completesIn' | 'in' | 'break' | 'foreach' | 'constraint' | '/' | 'while' | 'unique' | 'formula' | 'body' | 'subject' | 'group' | 'const' | 'default' | 'notify' | '$' ) ;
     public final Object identifierOrKeyword() throws RecognitionException {
 
         Object ret2 = null;
@@ -249,10 +249,10 @@ public class CollectionParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:218:3: ( (ast= NAME | 'completesIn' | 'constraint' | 'collection' | 'void' | 'default' | 'foreach' | '$' | 'group' | 'body' | 'notify' | 'in' | 'const' | 'break' | 'formula' | 'while' | '/' | 'subject' | 'unique' ) )
-            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:219:3: (ast= NAME | 'completesIn' | 'constraint' | 'collection' | 'void' | 'default' | 'foreach' | '$' | 'group' | 'body' | 'notify' | 'in' | 'const' | 'break' | 'formula' | 'while' | '/' | 'subject' | 'unique' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:218:3: ( (ast= NAME | 'void' | 'collection' | 'completesIn' | 'in' | 'break' | 'foreach' | 'constraint' | '/' | 'while' | 'unique' | 'formula' | 'body' | 'subject' | 'group' | 'const' | 'default' | 'notify' | '$' ) )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:219:3: (ast= NAME | 'void' | 'collection' | 'completesIn' | 'in' | 'break' | 'foreach' | 'constraint' | '/' | 'while' | 'unique' | 'formula' | 'body' | 'subject' | 'group' | 'const' | 'default' | 'notify' | '$' )
             {
-            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:219:3: (ast= NAME | 'completesIn' | 'constraint' | 'collection' | 'void' | 'default' | 'foreach' | '$' | 'group' | 'body' | 'notify' | 'in' | 'const' | 'break' | 'formula' | 'while' | '/' | 'subject' | 'unique' )
+            // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:219:3: (ast= NAME | 'void' | 'collection' | 'completesIn' | 'in' | 'break' | 'foreach' | 'constraint' | '/' | 'while' | 'unique' | 'formula' | 'body' | 'subject' | 'group' | 'const' | 'default' | 'notify' | '$' )
             int alt1=19;
             switch ( input.LA(1) ) {
             case NAME:
@@ -371,51 +371,51 @@ public class CollectionParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:221:5: 'completesIn'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:221:5: 'void'
                     {
                     match(input,50,FOLLOW_50_in_identifierOrKeyword102); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "completesIn";
-                    }
-
-                    }
-                    break;
-                case 3 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:222:5: 'constraint'
-                    {
-                    match(input,51,FOLLOW_51_in_identifierOrKeyword110); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "constraint";
-                    }
-
-                    }
-                    break;
-                case 4 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:223:5: 'collection'
-                    {
-                    match(input,52,FOLLOW_52_in_identifierOrKeyword118); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "collection";
-                    }
-
-                    }
-                    break;
-                case 5 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:224:5: 'void'
-                    {
-                    match(input,53,FOLLOW_53_in_identifierOrKeyword126); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "void";
                     }
 
                     }
                     break;
+                case 3 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:222:5: 'collection'
+                    {
+                    match(input,51,FOLLOW_51_in_identifierOrKeyword110); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "collection";
+                    }
+
+                    }
+                    break;
+                case 4 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:223:5: 'completesIn'
+                    {
+                    match(input,52,FOLLOW_52_in_identifierOrKeyword118); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "completesIn";
+                    }
+
+                    }
+                    break;
+                case 5 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:224:5: 'in'
+                    {
+                    match(input,53,FOLLOW_53_in_identifierOrKeyword126); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "in";
+                    }
+
+                    }
+                    break;
                 case 6 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:225:5: 'default'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:225:5: 'break'
                     {
                     match(input,54,FOLLOW_54_in_identifierOrKeyword134); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "default";
+                      ret = "break";
                     }
 
                     }
@@ -431,121 +431,121 @@ public class CollectionParser extends ObservableInjectingParser {
                     }
                     break;
                 case 8 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:227:5: '$'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:227:5: 'constraint'
                     {
                     match(input,56,FOLLOW_56_in_identifierOrKeyword150); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "$";
+                      ret = "constraint";
                     }
 
                     }
                     break;
                 case 9 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:228:5: 'group'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:228:5: '/'
                     {
                     match(input,57,FOLLOW_57_in_identifierOrKeyword158); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "group";
-                    }
-
-                    }
-                    break;
-                case 10 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:229:5: 'body'
-                    {
-                    match(input,58,FOLLOW_58_in_identifierOrKeyword166); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "body";
-                    }
-
-                    }
-                    break;
-                case 11 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:230:5: 'notify'
-                    {
-                    match(input,59,FOLLOW_59_in_identifierOrKeyword174); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "notify";
-                    }
-
-                    }
-                    break;
-                case 12 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:231:5: 'in'
-                    {
-                    match(input,60,FOLLOW_60_in_identifierOrKeyword182); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "in";
-                    }
-
-                    }
-                    break;
-                case 13 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:232:5: 'const'
-                    {
-                    match(input,61,FOLLOW_61_in_identifierOrKeyword190); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "const";
-                    }
-
-                    }
-                    break;
-                case 14 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:233:5: 'break'
-                    {
-                    match(input,62,FOLLOW_62_in_identifierOrKeyword198); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "break";
-                    }
-
-                    }
-                    break;
-                case 15 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:234:5: 'formula'
-                    {
-                    match(input,63,FOLLOW_63_in_identifierOrKeyword206); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "formula";
-                    }
-
-                    }
-                    break;
-                case 16 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:235:5: 'while'
-                    {
-                    match(input,64,FOLLOW_64_in_identifierOrKeyword214); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "while";
-                    }
-
-                    }
-                    break;
-                case 17 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:236:5: '/'
-                    {
-                    match(input,65,FOLLOW_65_in_identifierOrKeyword222); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "/";
                     }
 
                     }
                     break;
-                case 18 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:237:5: 'subject'
+                case 10 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:229:5: 'while'
                     {
-                    match(input,66,FOLLOW_66_in_identifierOrKeyword230); if (state.failed) return ret2;
+                    match(input,58,FOLLOW_58_in_identifierOrKeyword166); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "while";
+                    }
+
+                    }
+                    break;
+                case 11 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:230:5: 'unique'
+                    {
+                    match(input,59,FOLLOW_59_in_identifierOrKeyword174); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "unique";
+                    }
+
+                    }
+                    break;
+                case 12 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:231:5: 'formula'
+                    {
+                    match(input,60,FOLLOW_60_in_identifierOrKeyword182); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "formula";
+                    }
+
+                    }
+                    break;
+                case 13 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:232:5: 'body'
+                    {
+                    match(input,61,FOLLOW_61_in_identifierOrKeyword190); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "body";
+                    }
+
+                    }
+                    break;
+                case 14 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:233:5: 'subject'
+                    {
+                    match(input,62,FOLLOW_62_in_identifierOrKeyword198); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "subject";
                     }
 
                     }
                     break;
+                case 15 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:234:5: 'group'
+                    {
+                    match(input,63,FOLLOW_63_in_identifierOrKeyword206); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "group";
+                    }
+
+                    }
+                    break;
+                case 16 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:235:5: 'const'
+                    {
+                    match(input,64,FOLLOW_64_in_identifierOrKeyword214); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "const";
+                    }
+
+                    }
+                    break;
+                case 17 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:236:5: 'default'
+                    {
+                    match(input,65,FOLLOW_65_in_identifierOrKeyword222); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "default";
+                    }
+
+                    }
+                    break;
+                case 18 :
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:237:5: 'notify'
+                    {
+                    match(input,66,FOLLOW_66_in_identifierOrKeyword230); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "notify";
+                    }
+
+                    }
+                    break;
                 case 19 :
-                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:238:5: 'unique'
+                    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:238:5: '$'
                     {
                     match(input,67,FOLLOW_67_in_identifierOrKeyword238); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "unique";
+                      ret = "$";
                     }
 
                     }
@@ -1492,14 +1492,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:383:4: 'collection' (temp= identifier ) LCURL (temp= coghead_schema ) (temp= coghead_action_action (temp= coghead_action_action )* )? RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23B8687135A811DFC8A4E4778D150765");
+              _beforeSeqEl("E0356A04D4C288613CDA11DFB90CFF398D150765");
             }
-            match(input,52,FOLLOW_52_in_coghead_collection759); if (state.failed) return ret2;
+            match(input,51,FOLLOW_51_in_coghead_collection759); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23B8687335A811DFC143E4778D150765");
+              _beforeSeqEl("E0356A04D4C288633CDA11DFC815FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:383:150: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:383:152: temp= identifier
@@ -1520,14 +1520,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23B88F8035A811DF9FCAE4778D150765");
+              _beforeSeqEl("E0356A04D4C2AF703CDA11DFA928FF398D150765");
             }
             match(input,LCURL,FOLLOW_LCURL_in_coghead_collection773); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23BFBB7035A811DF9C4CE4778D150765");
+              _beforeSeqEl("E0356A04D4C4F9603CDA11DFB52AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:383:359: (temp= coghead_schema )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:383:361: temp= coghead_schema
@@ -1548,13 +1548,13 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C0099035A811DF8906E4778D150765");
+              _beforeSeqEl("E0356A04D4C520733CDA11DFAE0AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:383:492: (temp= coghead_action_action (temp= coghead_action_action )* )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==NAME||LA5_0==50||LA5_0==52||LA5_0==61) ) {
+            if ( (LA5_0==NAME||(LA5_0>=51 && LA5_0<=52)||LA5_0==64) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1576,7 +1576,7 @@ public class CollectionParser extends ObservableInjectingParser {
                         int alt4=2;
                         int LA4_0 = input.LA(1);
 
-                        if ( (LA4_0==NAME||LA4_0==50||LA4_0==52||LA4_0==61) ) {
+                        if ( (LA4_0==NAME||(LA4_0>=51 && LA4_0<=52)||LA4_0==64) ) {
                             alt4=1;
                         }
 
@@ -1613,7 +1613,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C0099135A811DFA886E4778D150765");
+              _beforeSeqEl("E0356A04D4C547803CDA11DF9713FF398D150765");
             }
             match(input,RCURL,FOLLOW_RCURL_in_coghead_collection811); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1665,13 +1665,13 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:397:4: (temp= coghead_schemaentry ( ( SEMICOLON ) temp= coghead_schemaentry )* )? ( ( SEMICOLON ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C38C0035A811DF9141E4778D150765");
+              _beforeSeqEl("E0356A04D4C87BD03CDA11DF98A7FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:397:63: (temp= coghead_schemaentry ( ( SEMICOLON ) temp= coghead_schemaentry )* )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==57||(LA7_0>=67 && LA7_0<=72)) ) {
+            if ( (LA7_0==59||LA7_0==63||(LA7_0>=68 && LA7_0<=72)) ) {
                 alt7=1;
             }
             switch (alt7) {
@@ -1696,7 +1696,7 @@ public class CollectionParser extends ObservableInjectingParser {
                         if ( (LA6_0==SEMICOLON) ) {
                             int LA6_1 = input.LA(2);
 
-                            if ( (LA6_1==57||(LA6_1>=67 && LA6_1<=72)) ) {
+                            if ( (LA6_1==59||LA6_1==63||(LA6_1>=68 && LA6_1<=72)) ) {
                                 alt6=1;
                             }
 
@@ -1715,7 +1715,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:397:146: SEMICOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E007956A23C33DE135A811DFAA66E4778D150765");
+                    	      _beforeSeqEl("E0356A04D4C854C13CDA11DF8967FF398D150765");
                     	    }
                     	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_schema865); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -1755,7 +1755,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C3B31335A811DFADDEE4778D150765");
+              _beforeSeqEl("E0356A04D4C8C9F03CDA11DFA4B1FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:397:393: ( ( SEMICOLON ) | )
             int alt8=2;
@@ -1764,7 +1764,7 @@ public class CollectionParser extends ObservableInjectingParser {
             if ( (LA8_0==SEMICOLON) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==NAME||LA8_0==RCURL||LA8_0==50||LA8_0==52||LA8_0==61) ) {
+            else if ( (LA8_0==NAME||LA8_0==RCURL||(LA8_0>=51 && LA8_0<=52)||LA8_0==64) ) {
                 alt8=2;
             }
             else {
@@ -1785,7 +1785,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:397:411: SEMICOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23C3B31135A811DFA65DE4778D150765");
+                      _beforeSeqEl("E0356A04D4C8A2E33CDA11DF89B8FF398D150765");
                     }
                     match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_schema891); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -1859,10 +1859,10 @@ public class CollectionParser extends ObservableInjectingParser {
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( (LA9_0==57) ) {
+            if ( (LA9_0==63) ) {
                 alt9=1;
             }
-            else if ( ((LA9_0>=67 && LA9_0<=72)) ) {
+            else if ( (LA9_0==59||(LA9_0>=68 && LA9_0<=72)) ) {
                 alt9=2;
             }
             else {
@@ -1942,14 +1942,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:422:4: 'group' cardinality[ret] (temp= identifier ) LCURL (temp= coghead_field_inFieldGroup ( ( SEMICOLON ) temp= coghead_field_inFieldGroup )* )? RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C512A135A811DF92C0E4778D150765");
+              _beforeSeqEl("E0356A04D4CA02713CDA11DF9AB5FF398D150765");
             }
-            match(input,57,FOLLOW_57_in_coghead_fieldgroup980); if (state.failed) return ret2;
+            match(input,63,FOLLOW_63_in_coghead_fieldgroup980); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C6723035A811DFB6FFE4778D150765");
+              _beforeSeqEl("E0356A04D4CA29803CDA11DFA560FF398D150765");
             }
             pushFollow(FOLLOW_cardinality_in_coghead_fieldgroup983);
             cardinality(ret);
@@ -1961,7 +1961,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C8951135A811DF9D11E4778D150765");
+              _beforeSeqEl("E0356A04D4CC4C613CDA11DF8799FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:422:236: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:422:238: temp= identifier
@@ -1982,20 +1982,20 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C8951235A811DF9140E4778D150765");
+              _beforeSeqEl("E0356A04D4CC4C623CDA11DFA169FF398D150765");
             }
             match(input,LCURL,FOLLOW_LCURL_in_coghead_fieldgroup998); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23C9F4A135A811DFCE32E4778D150765");
+              _beforeSeqEl("E0356A04D4CC9A803CDA11DFCFF8FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:422:445: (temp= coghead_field_inFieldGroup ( ( SEMICOLON ) temp= coghead_field_inFieldGroup )* )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( ((LA11_0>=67 && LA11_0<=72)) ) {
+            if ( (LA11_0==59||(LA11_0>=68 && LA11_0<=72)) ) {
                 alt11=1;
             }
             switch (alt11) {
@@ -2033,7 +2033,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:422:534: SEMICOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E007956A23C9CD9035A811DFBFC9E4778D150765");
+                    	      _beforeSeqEl("E0356A04D4CC73713CDA11DF857AFF398D150765");
                     	    }
                     	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_fieldgroup1015); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -2073,7 +2073,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23CA1BB035A811DF9F7BE4778D150765");
+              _beforeSeqEl("E0356A04D4CCC1903CDA11DFBABFFF398D150765");
             }
             match(input,RCURL,FOLLOW_RCURL_in_coghead_fieldgroup1035); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -2125,13 +2125,13 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:436:4: ( ( 'unique' ) | ) (temp= coghead_elementarytypeenum ) cardinality[ret] (temp= identifier ) ( ( 'default' (temp= coghead_expression ) ) | ) ( ( 'formula' (temp= coghead_expression ) ) | ) ( ( 'constraint' (temp= coghead_expression ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23CEFDB035A811DF951EE4778D150765");
+              _beforeSeqEl("E0356A04D4CF59A03CDA11DF9493FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:436:64: ( ( 'unique' ) | )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==67) ) {
+            if ( (LA12_0==59) ) {
                 alt12=1;
             }
             else if ( ((LA12_0>=68 && LA12_0<=72)) ) {
@@ -2155,9 +2155,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:436:82: 'unique'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23CED6A135A811DFB961E4778D150765");
+                      _beforeSeqEl("E0356A04D4CEE4713CDA11DFAFA2FF398D150765");
                     }
-                    match(input,67,FOLLOW_67_in_coghead_field1082); if (state.failed) return ret2;
+                    match(input,59,FOLLOW_59_in_coghead_field1082); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2195,7 +2195,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23CF24C035A811DFA7B4E4778D150765");
+              _beforeSeqEl("E0356A04D4CF80B13CDA11DF93B5FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:76: (temp= coghead_elementarytypeenum )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:78: temp= coghead_elementarytypeenum
@@ -2216,7 +2216,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23CF24C135A811DFAE0CE4778D150765");
+              _beforeSeqEl("E0356A04D4CF80B23CDA11DFC752FF398D150765");
             }
             pushFollow(FOLLOW_cardinality_in_coghead_field1110);
             cardinality(ret);
@@ -2228,7 +2228,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23CF24C335A811DF8D8DE4778D150765");
+              _beforeSeqEl("E0356A04D4CF80B43CDA11DFCC92FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:310: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:312: temp= identifier
@@ -2249,16 +2249,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23CF99F135A811DFB945E4778D150765");
+              _beforeSeqEl("E0356A04D4CFF5E03CDA11DF8676FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:438: ( ( 'default' (temp= coghead_expression ) ) | )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==54) ) {
+            if ( (LA13_0==65) ) {
                 alt13=1;
             }
-            else if ( (LA13_0==NAME||(LA13_0>=RCURL && LA13_0<=SEMICOLON)||(LA13_0>=50 && LA13_0<=52)||LA13_0==61||LA13_0==63) ) {
+            else if ( (LA13_0==NAME||(LA13_0>=RCURL && LA13_0<=SEMICOLON)||(LA13_0>=51 && LA13_0<=52)||LA13_0==56||LA13_0==60||LA13_0==64) ) {
                 alt13=2;
             }
             else {
@@ -2279,14 +2279,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:456: 'default' (temp= coghead_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23CF72E135A811DF8300E4778D150765");
+                      _beforeSeqEl("E0356A04D4CFCED03CDA11DFB768FF398D150765");
                     }
-                    match(input,54,FOLLOW_54_in_coghead_field1130); if (state.failed) return ret2;
+                    match(input,65,FOLLOW_65_in_coghead_field1130); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23CF72E335A811DFB04FE4778D150765");
+                      _beforeSeqEl("E0356A04D4CFCED23CDA11DFA404FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:599: (temp= coghead_expression )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:437:601: temp= coghead_expression
@@ -2334,16 +2334,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D00F2035A811DF9056E4778D150765");
+              _beforeSeqEl("E0356A04D4D044013CDA11DF88BBFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:438:77: ( ( 'formula' (temp= coghead_expression ) ) | )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==63) ) {
+            if ( (LA14_0==60) ) {
                 alt14=1;
             }
-            else if ( (LA14_0==NAME||(LA14_0>=RCURL && LA14_0<=SEMICOLON)||(LA14_0>=50 && LA14_0<=52)||LA14_0==61) ) {
+            else if ( (LA14_0==NAME||(LA14_0>=RCURL && LA14_0<=SEMICOLON)||(LA14_0>=51 && LA14_0<=52)||LA14_0==56||LA14_0==64) ) {
                 alt14=2;
             }
             else {
@@ -2364,14 +2364,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:438:95: 'formula' (temp= coghead_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23CFC10335A811DFAC05E4778D150765");
+                      _beforeSeqEl("E0356A04D4D01CF13CDA11DFAE1AFF398D150765");
                     }
-                    match(input,63,FOLLOW_63_in_coghead_field1162); if (state.failed) return ret2;
+                    match(input,60,FOLLOW_60_in_coghead_field1162); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23CFE81135A811DFA8DDE4778D150765");
+                      _beforeSeqEl("E0356A04D4D01CF33CDA11DFC7B3FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:438:238: (temp= coghead_expression )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:438:240: temp= coghead_expression
@@ -2419,16 +2419,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D05D4135A811DFC16AE4778D150765");
+              _beforeSeqEl("E0356A04D4D0B9303CDA11DF82F3FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:439:77: ( ( 'constraint' (temp= coghead_expression ) ) | )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
-            if ( (LA15_0==51) ) {
+            if ( (LA15_0==56) ) {
                 alt15=1;
             }
-            else if ( (LA15_0==NAME||(LA15_0>=RCURL && LA15_0<=SEMICOLON)||LA15_0==50||LA15_0==52||LA15_0==61) ) {
+            else if ( (LA15_0==NAME||(LA15_0>=RCURL && LA15_0<=SEMICOLON)||(LA15_0>=51 && LA15_0<=52)||LA15_0==64) ) {
                 alt15=2;
             }
             else {
@@ -2449,14 +2449,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:439:95: 'constraint' (temp= coghead_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D0363135A811DFB9F4E4778D150765");
+                      _beforeSeqEl("E0356A04D4D092203CDA11DFC1E6FF398D150765");
                     }
-                    match(input,51,FOLLOW_51_in_coghead_field1194); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_coghead_field1194); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D0363335A811DF9033E4778D150765");
+                      _beforeSeqEl("E0356A04D4D092223CDA11DFA025FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:439:241: (temp= coghead_expression )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:439:243: temp= coghead_expression
@@ -2549,13 +2549,13 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:454:4: ( ( 'unique' ) | ) (temp= coghead_elementarytypeenum ) cardinality[ret] (temp= identifier ) ( ( 'default' (temp= coghead_expression ) ) | ) ( ( 'formula' (temp= coghead_expression ) ) | ) ( ( 'constraint' (temp= coghead_expression ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D195C035A811DF9BD4E4778D150765");
+              _beforeSeqEl("E0356A04D4D1F1B13CDA11DF9455FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:454:64: ( ( 'unique' ) | )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
-            if ( (LA16_0==67) ) {
+            if ( (LA16_0==59) ) {
                 alt16=1;
             }
             else if ( ((LA16_0>=68 && LA16_0<=72)) ) {
@@ -2579,9 +2579,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:454:82: 'unique'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D16EB135A811DF95EEE4778D150765");
+                      _beforeSeqEl("E0356A04D4D1CAA23CDA11DFACA4FF398D150765");
                     }
-                    match(input,67,FOLLOW_67_in_coghead_field_inFieldGroup1263); if (state.failed) return ret2;
+                    match(input,59,FOLLOW_59_in_coghead_field_inFieldGroup1263); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2619,7 +2619,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D195C235A811DF9364E4778D150765");
+              _beforeSeqEl("E0356A04D4D218C13CDA11DF9E4AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:76: (temp= coghead_elementarytypeenum )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:78: temp= coghead_elementarytypeenum
@@ -2640,7 +2640,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D1BCD035A811DFCE94E4778D150765");
+              _beforeSeqEl("E0356A04D4D218C23CDA11DF94BDFF398D150765");
             }
             pushFollow(FOLLOW_cardinality_in_coghead_field_inFieldGroup1291);
             cardinality(ret);
@@ -2652,7 +2652,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D1BCD235A811DFAF31E4778D150765");
+              _beforeSeqEl("E0356A04D4D218C43CDA11DF8D1AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:310: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:312: temp= identifier
@@ -2673,7 +2673,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D53F4035A811DF9A8EE4778D150765");
+              _beforeSeqEl("E0356A04D4D23FD23CDA11DF825BFF398D150765");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "schema", null, null, "OCL:#context(FieldGroup).oclAsType(FieldGroup).schema", true);_exitInjectorAction();
@@ -2682,16 +2682,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D58D6135A811DF94D0E4778D150765");
+              _beforeSeqEl("E0356A04D4D2B5003CDA11DFA5F5FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:660: ( ( 'default' (temp= coghead_expression ) ) | )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==54) ) {
+            if ( (LA17_0==65) ) {
                 alt17=1;
             }
-            else if ( ((LA17_0>=RCURL && LA17_0<=SEMICOLON)||LA17_0==51||LA17_0==63) ) {
+            else if ( ((LA17_0>=RCURL && LA17_0<=SEMICOLON)||LA17_0==56||LA17_0==60) ) {
                 alt17=2;
             }
             else {
@@ -2712,14 +2712,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:678: 'default' (temp= coghead_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D5665135A811DFA525E4778D150765");
+                      _beforeSeqEl("E0356A04D4D28DF03CDA11DF9B82FF398D150765");
                     }
-                    match(input,54,FOLLOW_54_in_coghead_field_inFieldGroup1314); if (state.failed) return ret2;
+                    match(input,65,FOLLOW_65_in_coghead_field_inFieldGroup1314); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D5665335A811DFA59DE4778D150765");
+                      _beforeSeqEl("E0356A04D4D28DF23CDA11DFBDC7FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:821: (temp= coghead_expression )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:455:823: temp= coghead_expression
@@ -2767,16 +2767,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D6029035A811DFC232E4778D150765");
+              _beforeSeqEl("E0356A04D4D303203CDA11DFB437FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:456:77: ( ( 'formula' (temp= coghead_expression ) ) | )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==63) ) {
+            if ( (LA18_0==60) ) {
                 alt18=1;
             }
-            else if ( ((LA18_0>=RCURL && LA18_0<=SEMICOLON)||LA18_0==51) ) {
+            else if ( ((LA18_0>=RCURL && LA18_0<=SEMICOLON)||LA18_0==56) ) {
                 alt18=2;
             }
             else {
@@ -2797,14 +2797,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:456:95: 'formula' (temp= coghead_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D5DB8035A811DFA62AE4778D150765");
+                      _beforeSeqEl("E0356A04D4D2DC113CDA11DFCDC8FF398D150765");
                     }
-                    match(input,63,FOLLOW_63_in_coghead_field_inFieldGroup1346); if (state.failed) return ret2;
+                    match(input,60,FOLLOW_60_in_coghead_field_inFieldGroup1346); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D5DB8235A811DFC1CAE4778D150765");
+                      _beforeSeqEl("E0356A04D4D2DC133CDA11DF8410FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:456:238: (temp= coghead_expression )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:456:240: temp= coghead_expression
@@ -2852,13 +2852,13 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23D650B035A811DF81A6E4778D150765");
+              _beforeSeqEl("E0356A04D4D351413CDA11DF9525FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:457:77: ( ( 'constraint' (temp= coghead_expression ) ) | )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
-            if ( (LA19_0==51) ) {
+            if ( (LA19_0==56) ) {
                 alt19=1;
             }
             else if ( ((LA19_0>=RCURL && LA19_0<=SEMICOLON)) ) {
@@ -2882,14 +2882,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:457:95: 'constraint' (temp= coghead_expression )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D629A135A811DFA72CE4778D150765");
+                      _beforeSeqEl("E0356A04D4D32A323CDA11DF8999FF398D150765");
                     }
-                    match(input,51,FOLLOW_51_in_coghead_field_inFieldGroup1378); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_coghead_field_inFieldGroup1378); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23D629A335A811DF8BF5E4778D150765");
+                      _beforeSeqEl("E0356A04D4D32A343CDA11DF91CEFF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:457:241: (temp= coghead_expression )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:457:243: temp= coghead_expression
@@ -3029,7 +3029,7 @@ public class CollectionParser extends ObservableInjectingParser {
                 alt20=1;
                 }
                 break;
-            case 56:
+            case 67:
                 {
                 alt20=2;
                 }
@@ -3318,7 +3318,7 @@ public class CollectionParser extends ObservableInjectingParser {
                 int alt22=2;
                 int LA22_0 = input.LA(1);
 
-                if ( (LA22_0==65) && (synpred2_Collection())) {
+                if ( (LA22_0==57) && (synpred2_Collection())) {
                     alt22=1;
                 }
 
@@ -3336,7 +3336,7 @@ public class CollectionParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _beforeSeqEl();
             	    }
-            	    match(input,65,FOLLOW_65_in_xpathexpressions_priority_11610); if (state.failed) return ret2;
+            	    match(input,57,FOLLOW_57_in_xpathexpressions_priority_11610); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      opName = "/";
             	    }
@@ -3510,7 +3510,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:540:4: ( ( (temp= coghead_xpath_axis ) DCOLON ) | ) (temp= coghead_xpath_nodetest )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23E803F035A811DF834CE4778D150765");
+              _beforeSeqEl("E0356A04D4E48F503CDA11DF8AD4FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:540:64: ( ( (temp= coghead_xpath_axis ) DCOLON ) | )
             int alt23=2;
@@ -3540,7 +3540,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:540:82: (temp= coghead_xpath_axis ) DCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23E7DCE035A811DF8CB0E4778D150765");
+                      _beforeSeqEl("E0356A04D4E468423CDA11DF9D62FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:540:141: (temp= coghead_xpath_axis )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:540:143: temp= coghead_xpath_axis
@@ -3561,7 +3561,7 @@ public class CollectionParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23E7DCE135A811DF8C2FE4778D150765");
+                      _beforeSeqEl("E0356A04D4E468433CDA11DFC095FF398D150765");
                     }
                     match(input,DCOLON,FOLLOW_DCOLON_in_coghead_xpath_axisstep1733); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3595,7 +3595,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23E803F235A811DFACC3E4778D150765");
+              _beforeSeqEl("E0356A04D4E4B6613CDA11DFB953FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:541:76: (temp= coghead_xpath_nodetest )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:541:78: temp= coghead_xpath_nodetest
@@ -3661,13 +3661,13 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:555:4: (temp= coghead_xpath_xpathexpression )? RBRACKET
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23EA9C0235A811DF9711E4778D150765");
+              _beforeSeqEl("E0356A04D4E727623CDA11DFC6FFFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:555:63: (temp= coghead_xpath_xpathexpression )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( ((LA24_0>=NAME && LA24_0<=DOUBLE)||LA24_0==LPAREN||LA24_0==56||(LA24_0>=73 && LA24_0<=84)) ) {
+            if ( ((LA24_0>=NAME && LA24_0<=DOUBLE)||LA24_0==LPAREN||LA24_0==67||(LA24_0>=73 && LA24_0<=84)) ) {
                 alt24=1;
             }
             switch (alt24) {
@@ -3693,7 +3693,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23EAC31035A811DFCAD0E4778D150765");
+              _beforeSeqEl("E0356A04D4E74E703CDA11DFC525FF398D150765");
             }
             match(input,RBRACKET,FOLLOW_RBRACKET_in_coghead_xpath_filterexpr1811); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -3794,7 +3794,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:580:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23F1A0E135A811DFC4AEE4778D150765");
+              _beforeSeqEl("E0356A04D4EE05303CDA11DFC9F7FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:580:63: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:580:65: temp= identifier
@@ -3860,14 +3860,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:594:4: '$' (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23F4600035A811DFC4D1E4778D150765");
+              _beforeSeqEl("E0356A04D4F04F203CDA11DFB881FF398D150765");
             }
-            match(input,56,FOLLOW_56_in_coghead_xpath_variableref1918); if (state.failed) return ret2;
+            match(input,67,FOLLOW_67_in_coghead_xpath_variableref1918); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23F6A9F035A811DF8F99E4778D150765");
+              _beforeSeqEl("E0356A04D4F076313CDA11DF8173FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:594:141: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:594:143: temp= identifier
@@ -4011,7 +4011,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:618:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23FBB30235A811DFA030E4778D150765");
+              _beforeSeqEl("E0356A04D4F558303CDA11DFB77CFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:618:63: (temp= stringSymbol )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:618:65: temp= stringSymbol
@@ -4077,7 +4077,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:632:4: ( ( (temp= integerAsStringSymbol ) ) | ( (temp= doubleAsStringSymbol ) ) | ( (temp= floatAsStringSymbol ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A23FF0E6035A811DF9B13E4778D150765");
+              _beforeSeqEl("E0356A04D4F83E613CDA11DFA990FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:632:63: ( ( (temp= integerAsStringSymbol ) ) | ( (temp= doubleAsStringSymbol ) ) | ( (temp= floatAsStringSymbol ) ) )
             int alt26=3;
@@ -4116,7 +4116,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:632:81: (temp= integerAsStringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23FE722235A811DFB5E3E4778D150765");
+                      _beforeSeqEl("E0356A04D4F7C9323CDA11DFA97CFF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:632:140: (temp= integerAsStringSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:632:142: temp= integerAsStringSymbol
@@ -4155,7 +4155,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:633:21: (temp= doubleAsStringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23FE993235A811DF9380E4778D150765");
+                      _beforeSeqEl("E0356A04D4F7F0433CDA11DF96EDFF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:633:80: (temp= doubleAsStringSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:633:82: temp= doubleAsStringSymbol
@@ -4194,7 +4194,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:634:21: (temp= floatAsStringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A23FEE75035A811DF8950E4778D150765");
+                      _beforeSeqEl("E0356A04D4F817533CDA11DF99CCFF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:634:80: (temp= floatAsStringSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:634:82: temp= floatAsStringSymbol
@@ -4312,16 +4312,16 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:653:4: ( ( 'collection' ) | ) ( ( 'const' ) | ) ( ( 'completesIn' LANGLE (temp= longSymbol )? ) | () ) (temp= identifier ) (temp= coghead_action_signature ) (temp= coghead_action_block )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2408362135A811DFA819E4778D150765");
+              _beforeSeqEl("E0356A04D4FE0AC03CDA11DF936FFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:653:64: ( ( 'collection' ) | )
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==52) ) {
+            if ( (LA27_0==51) ) {
                 alt27=1;
             }
-            else if ( (LA27_0==NAME||LA27_0==50||LA27_0==61) ) {
+            else if ( (LA27_0==NAME||LA27_0==52||LA27_0==64) ) {
                 alt27=2;
             }
             else {
@@ -4342,9 +4342,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:653:82: 'collection'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A24080F1135A811DFCCE9E4778D150765");
+                      _beforeSeqEl("E0356A04D4FDE3B13CDA11DF8AB2FF398D150765");
                     }
-                    match(input,52,FOLLOW_52_in_actionbasics2174); if (state.failed) return ;
+                    match(input,51,FOLLOW_51_in_actionbasics2174); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4382,16 +4382,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2408844035A811DFCA07E4778D150765");
+              _beforeSeqEl("E0356A04D4FE58E03CDA11DFA908FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:654:77: ( ( 'const' ) | )
             int alt28=2;
             int LA28_0 = input.LA(1);
 
-            if ( (LA28_0==61) ) {
+            if ( (LA28_0==64) ) {
                 alt28=1;
             }
-            else if ( (LA28_0==NAME||LA28_0==50) ) {
+            else if ( (LA28_0==NAME||LA28_0==52) ) {
                 alt28=2;
             }
             else {
@@ -4412,9 +4412,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:654:95: 'const'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A24085D3335A811DFC4ABE4778D150765");
+                      _beforeSeqEl("E0356A04D4FE31D23CDA11DFB32DFF398D150765");
                     }
-                    match(input,61,FOLLOW_61_in_actionbasics2198); if (state.failed) return ;
+                    match(input,64,FOLLOW_64_in_actionbasics2198); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4452,13 +4452,13 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2408D26035A811DFA640E4778D150765");
+              _beforeSeqEl("E0356A04D4FEA7013CDA11DFA341FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:655:76: ( ( 'completesIn' LANGLE (temp= longSymbol )? ) | () )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
-            if ( (LA30_0==50) ) {
+            if ( (LA30_0==52) ) {
                 alt30=1;
             }
             else if ( (LA30_0==NAME) ) {
@@ -4482,21 +4482,21 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:655:94: 'completesIn' LANGLE (temp= longSymbol )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2408844135A811DF8532E4778D150765");
+                      _beforeSeqEl("E0356A04D4FE58E13CDA11DFAFE3FF398D150765");
                     }
-                    match(input,50,FOLLOW_50_in_actionbasics2221); if (state.failed) return ;
+                    match(input,52,FOLLOW_52_in_actionbasics2221); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2408844235A811DF997EE4778D150765");
+                      _beforeSeqEl("E0356A04D4FE58E23CDA11DF9F1CFF398D150765");
                     }
                     match(input,LANGLE,FOLLOW_LANGLE_in_actionbasics2225); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2408844435A811DFA85AE4778D150765");
+                      _beforeSeqEl("E0356A04D4FE7FF13CDA11DFB454FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:655:324: (temp= longSymbol )?
                     int alt29=2;
@@ -4560,7 +4560,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2408D26235A811DF9CAFE4778D150765");
+              _beforeSeqEl("E0356A04D4FECE103CDA11DFBFBAFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:656:112: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:656:114: temp= identifier
@@ -4581,7 +4581,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2408F97135A811DFCC71E4778D150765");
+              _beforeSeqEl("E0356A04D4FECE123CDA11DF9EADFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:656:239: (temp= coghead_action_signature )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:656:241: temp= coghead_action_signature
@@ -4602,7 +4602,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2408F97335A811DFC678E4778D150765");
+              _beforeSeqEl("E0356A04D4FECE143CDA11DFA377FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:656:385: (temp= coghead_action_block )?
             int alt31=2;
@@ -4677,16 +4677,16 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:669:4: ( ( 'collection' ) | ) ( ( 'const' ) | ) ( ( 'completesIn' LANGLE (temp= longSymbol )? ) | () ) (temp= identifier ) (temp= coghead_action_signature ) (temp= coghead_action_block )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A240F3B0235A811DF8C86E4778D150765");
+              _beforeSeqEl("E0356A04D50229703CDA11DF8E0AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:669:64: ( ( 'collection' ) | )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
-            if ( (LA32_0==52) ) {
+            if ( (LA32_0==51) ) {
                 alt32=1;
             }
-            else if ( (LA32_0==NAME||LA32_0==50||LA32_0==61) ) {
+            else if ( (LA32_0==NAME||LA32_0==52||LA32_0==64) ) {
                 alt32=2;
             }
             else {
@@ -4707,9 +4707,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:669:82: 'collection'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A240F3B0035A811DFCEE1E4778D150765");
+                      _beforeSeqEl("E0356A04D50202613CDA11DF9E14FF398D150765");
                     }
-                    match(input,52,FOLLOW_52_in_coghead_action_userdefinedaction2321); if (state.failed) return ret2;
+                    match(input,51,FOLLOW_51_in_coghead_action_userdefinedaction2321); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4747,16 +4747,16 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A240F892035A811DFA6ADE4778D150765");
+              _beforeSeqEl("E0356A04D50250823CDA11DF93EAFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:670:77: ( ( 'const' ) | )
             int alt33=2;
             int LA33_0 = input.LA(1);
 
-            if ( (LA33_0==61) ) {
+            if ( (LA33_0==64) ) {
                 alt33=1;
             }
-            else if ( (LA33_0==NAME||LA33_0==50) ) {
+            else if ( (LA33_0==NAME||LA33_0==52) ) {
                 alt33=2;
             }
             else {
@@ -4777,9 +4777,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:670:95: 'const'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A240F621235A811DFC4DBE4778D150765");
+                      _beforeSeqEl("E0356A04D50250803CDA11DFA9ACFF398D150765");
                     }
-                    match(input,61,FOLLOW_61_in_coghead_action_userdefinedaction2345); if (state.failed) return ret2;
+                    match(input,64,FOLLOW_64_in_coghead_action_userdefinedaction2345); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4817,13 +4817,13 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A240FD74035A811DFCE1AE4778D150765");
+              _beforeSeqEl("E0356A04D5029EA13CDA11DFBB6AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:671:76: ( ( 'completesIn' LANGLE (temp= longSymbol )? ) | () )
             int alt35=2;
             int LA35_0 = input.LA(1);
 
-            if ( (LA35_0==50) ) {
+            if ( (LA35_0==52) ) {
                 alt35=1;
             }
             else if ( (LA35_0==NAME) ) {
@@ -4847,21 +4847,21 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:671:94: 'completesIn' LANGLE (temp= longSymbol )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A240F892135A811DF8E5AE4778D150765");
+                      _beforeSeqEl("E0356A04D50277903CDA11DF972BFF398D150765");
                     }
-                    match(input,50,FOLLOW_50_in_coghead_action_userdefinedaction2368); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_coghead_action_userdefinedaction2368); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A240F892235A811DFC134E4778D150765");
+                      _beforeSeqEl("E0356A04D50277913CDA11DFA23CFF398D150765");
                     }
                     match(input,LANGLE,FOLLOW_LANGLE_in_coghead_action_userdefinedaction2372); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A240F892435A811DFB87DE4778D150765");
+                      _beforeSeqEl("E0356A04D50277933CDA11DFCC13FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:671:324: (temp= longSymbol )?
                     int alt34=2;
@@ -4925,7 +4925,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A240FFE5135A811DF80B8E4778D150765");
+              _beforeSeqEl("E0356A04D502C5B13CDA11DFBC69FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:672:112: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:672:114: temp= identifier
@@ -4946,7 +4946,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A240FFE5335A811DF8CBBE4778D150765");
+              _beforeSeqEl("E0356A04D502C5B33CDA11DFC241FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:672:239: (temp= coghead_action_signature )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:672:241: temp= coghead_action_signature
@@ -4967,7 +4967,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A240FFE5535A811DFC57FE4778D150765");
+              _beforeSeqEl("E0356A04D502ECC13CDA11DF8341FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:672:385: (temp= coghead_action_block )?
             int alt36=2;
@@ -5044,14 +5044,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:4: LPAREN (temp= identifier )? RPAREN COLON ( ( (temp= identifier ) ) | ( 'void' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2410E8B035A811DF8985E4778D150765");
+              _beforeSeqEl("E0356A04D503B0103CDA11DFCE47FF398D150765");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_coghead_action_signature2473); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2410E8B435A811DFA810E4778D150765");
+              _beforeSeqEl("E0356A04D503D7213CDA11DFC10EFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:146: (temp= identifier )?
             int alt37=2;
@@ -5083,7 +5083,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241136D035A811DF8C82E4778D150765");
+              _beforeSeqEl("E0356A04D50BC6603CDA11DFB19AFF398D150765");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "additionalInputForm", null, null, "OCL:if self.additionalInput->isEmpty() then"+"		    									 	null "+"		    									 else "+"		    									 	self.additionalInput.collection.getDefaultForm() "+"		    									 endif", true);_exitInjectorAction();
@@ -5092,21 +5092,21 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241136D135A811DFBC2CE4778D150765");
+              _beforeSeqEl("E0356A04D50BC6613CDA11DFA633FF398D150765");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_coghead_action_signature2493); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241136D235A811DFB35CE4778D150765");
+              _beforeSeqEl("E0356A04D50BC6623CDA11DFA21FFF398D150765");
             }
             match(input,COLON,FOLLOW_COLON_in_coghead_action_signature2498); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2411AC0135A811DF9CCEE4778D150765");
+              _beforeSeqEl("E0356A04D50C62A03CDA11DF8CA8FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:902: ( ( (temp= identifier ) ) | ( 'void' ) )
             int alt38=2;
@@ -5115,7 +5115,7 @@ public class CollectionParser extends ObservableInjectingParser {
             if ( (LA38_0==NAME) ) {
                 alt38=1;
             }
-            else if ( (LA38_0==53) ) {
+            else if ( (LA38_0==50) ) {
                 alt38=2;
             }
             else {
@@ -5136,7 +5136,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:920: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A24115DE435A811DFBE29E4778D150765");
+                      _beforeSeqEl("E0356A04D50C14813CDA11DFAEC0FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:979: (temp= identifier )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:981: temp= identifier
@@ -5175,9 +5175,9 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:686:1167: 'void'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A241184F135A811DF849FE4778D150765");
+                      _beforeSeqEl("E0356A04D50C3B913CDA11DFC665FF398D150765");
                     }
-                    match(input,53,FOLLOW_53_in_coghead_action_signature2527); if (state.failed) return ret2;
+                    match(input,50,FOLLOW_50_in_coghead_action_signature2527); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -5242,20 +5242,20 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:701:4: LCURL (temp= coghead_action_statement ( ( SEMICOLON ) temp= coghead_action_statement )* )? ( ( SEMICOLON ) | ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2416B51035A811DFBB54E4778D150765");
+              _beforeSeqEl("E0356A04D5116BB03CDA11DF89A6FF398D150765");
             }
             match(input,LCURL,FOLLOW_LCURL_in_coghead_action_block2574); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2416DC2135A811DF81D8E4778D150765");
+              _beforeSeqEl("E0356A04D51192C13CDA11DFB444FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:701:145: (temp= coghead_action_statement ( ( SEMICOLON ) temp= coghead_action_statement )* )?
             int alt40=2;
             int LA40_0 = input.LA(1);
 
-            if ( (LA40_0==NAME||LA40_0==EQUALS||LA40_0==55||LA40_0==59||LA40_0==62||LA40_0==64||(LA40_0>=68 && LA40_0<=72)) ) {
+            if ( (LA40_0==NAME||LA40_0==EQUALS||(LA40_0>=54 && LA40_0<=55)||LA40_0==58||LA40_0==66||(LA40_0>=68 && LA40_0<=72)) ) {
                 alt40=1;
             }
             switch (alt40) {
@@ -5280,7 +5280,7 @@ public class CollectionParser extends ObservableInjectingParser {
                         if ( (LA39_0==SEMICOLON) ) {
                             int LA39_1 = input.LA(2);
 
-                            if ( (LA39_1==NAME||LA39_1==EQUALS||LA39_1==55||LA39_1==59||LA39_1==62||LA39_1==64||(LA39_1>=68 && LA39_1<=72)) ) {
+                            if ( (LA39_1==NAME||LA39_1==EQUALS||(LA39_1>=54 && LA39_1<=55)||LA39_1==58||LA39_1==66||(LA39_1>=68 && LA39_1<=72)) ) {
                                 alt39=1;
                             }
 
@@ -5299,7 +5299,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     	    // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:701:236: SEMICOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E007956A2416B51235A811DFC4C6E4778D150765");
+                    	      _beforeSeqEl("E0356A04D5116BB23CDA11DF9185FF398D150765");
                     	    }
                     	    match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_action_block2591); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -5339,7 +5339,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A24172A4035A811DFC268E4778D150765");
+              _beforeSeqEl("E0356A04D511E0E03CDA11DFBD4CFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:701:491: ( ( SEMICOLON ) | )
             int alt41=2;
@@ -5369,7 +5369,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:701:509: SEMICOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2417033335A811DFB9FBE4778D150765");
+                      _beforeSeqEl("E0356A04D511B9D33CDA11DFAF20FF398D150765");
                     }
                     match(input,SEMICOLON,FOLLOW_SEMICOLON_in_coghead_action_block2617); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -5403,7 +5403,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A24172A4135A811DF8A43E4778D150765");
+              _beforeSeqEl("E0356A04D511E0E13CDA11DFA1F3FF398D150765");
             }
             match(input,RCURL,FOLLOW_RCURL_in_coghead_action_block2635); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -5450,17 +5450,17 @@ public class CollectionParser extends ObservableInjectingParser {
             int alt42=5;
             switch ( input.LA(1) ) {
             case 55:
-            case 64:
+            case 58:
                 {
                 alt42=1;
                 }
                 break;
-            case 62:
+            case 54:
                 {
                 alt42=2;
                 }
                 break;
-            case 59:
+            case 66:
                 {
                 alt42=3;
                 }
@@ -5607,7 +5607,7 @@ public class CollectionParser extends ObservableInjectingParser {
             int alt43=2;
             int LA43_0 = input.LA(1);
 
-            if ( (LA43_0==64) ) {
+            if ( (LA43_0==58) ) {
                 alt43=1;
             }
             else if ( (LA43_0==55) ) {
@@ -5690,14 +5690,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:739:4: 'while' (temp= coghead_expression ) (temp= coghead_action_block )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2418FF0035A811DFB5EDE4778D150765");
+              _beforeSeqEl("E0356A04D513B5A03CDA11DF9B95FF398D150765");
             }
-            match(input,64,FOLLOW_64_in_coghead_action_whilestatement2770); if (state.failed) return ret2;
+            match(input,58,FOLLOW_58_in_coghead_action_whilestatement2770); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2418FF0235A811DFCEE8E4778D150765");
+              _beforeSeqEl("E0356A04D513DCB13CDA11DFA36AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:739:145: (temp= coghead_expression )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:739:147: temp= coghead_expression
@@ -5718,7 +5718,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2419261035A811DFA56DE4778D150765");
+              _beforeSeqEl("E0356A04D513DCB33CDA11DFA9A7FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:739:289: (temp= coghead_action_block )?
             int alt44=2;
@@ -5795,14 +5795,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:753:4: 'foreach' (temp= coghead_variable_forEachStatement ) 'in' (temp= identifier ) (temp= coghead_action_block )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2419E96135A811DFB554E4778D150765");
+              _beforeSeqEl("E0356A04D514C7103CDA11DFB4F4FF398D150765");
             }
             match(input,55,FOLLOW_55_in_coghead_action_foreachstatement2832); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241A107035A811DFA054E4778D150765");
+              _beforeSeqEl("E0356A04D514C7133CDA11DF9172FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:753:147: (temp= coghead_variable_forEachStatement )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:753:149: temp= coghead_variable_forEachStatement
@@ -5823,14 +5823,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241A107135A811DFCF7BE4778D150765");
+              _beforeSeqEl("E0356A04D514EE203CDA11DF98ABFF398D150765");
             }
-            match(input,60,FOLLOW_60_in_coghead_action_foreachstatement2845); if (state.failed) return ret2;
+            match(input,53,FOLLOW_53_in_coghead_action_foreachstatement2845); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241A378135A811DF99B7E4778D150765");
+              _beforeSeqEl("E0356A04D514EE233CDA11DFCC97FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:753:388: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:753:390: temp= identifier
@@ -5851,7 +5851,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241A378335A811DFA753E4778D150765");
+              _beforeSeqEl("E0356A04D51515313CDA11DFAD20FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:753:594: (temp= coghead_action_block )?
             int alt45=2;
@@ -5928,7 +5928,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:767:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241B21E135A811DFC4E8E4778D150765");
+              _beforeSeqEl("E0356A04D515D8813CDA11DFCD8AFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:767:63: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:767:65: temp= identifier
@@ -5949,7 +5949,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241B971035A811DFA0BDE4778D150765");
+              _beforeSeqEl("E0356A04D5164DB13CDA11DF94A3FF398D150765");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setRef(ret, "elementaryType", list("coghead","ElementaryTypeEnum"), null, null, "#context(foreachStatement).oclAsType(ForEachStatement).collectionVariable.elementaryType", null, null, false, null, true);_exitInjectorAction();_enterInjectorAction();setRef(ret, "schemaType", list("coghead","Schema"), null, null, "#context(foreachStatement).oclAsType(ForEachStatement).collectionVariable.schemaType", null, null, false, null, true);_exitInjectorAction();_enterInjectorAction();setProperty(ret, "multiplicity", coghead.action.MultiplicityEnum.SINGLE);_exitInjectorAction();_enterInjectorAction();setRef(ret, "env", list("coghead","DefinitionEnvironment"), null, null, "#context(foreachStatement).oclAsType(ForEachStatement).ownedBlock", null, null, false, null, true);_exitInjectorAction();
@@ -6000,9 +6000,9 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:781:4: 'break'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241C817035A811DF803FE4778D150765");
+              _beforeSeqEl("E0356A04D51711003CDA11DFBCBBFF398D150765");
             }
-            match(input,62,FOLLOW_62_in_coghead_action_breakstatement2957); if (state.failed) return ret2;
+            match(input,54,FOLLOW_54_in_coghead_action_breakstatement2957); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -6052,14 +6052,14 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:4: 'notify' (temp= coghead_expression ) 'subject' (temp= coghead_expression ) 'body' (temp= coghead_expression )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241D1DB035A811DF9AB2E4778D150765");
+              _beforeSeqEl("E0356A04D517D4503CDA11DFCB8BFF398D150765");
             }
-            match(input,59,FOLLOW_59_in_coghead_action_notification2997); if (state.failed) return ret2;
+            match(input,66,FOLLOW_66_in_coghead_action_notification2997); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241D44C135A811DFA7A2E4778D150765");
+              _beforeSeqEl("E0356A04D517D4523CDA11DFABCDFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:146: (temp= coghead_expression )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:148: temp= coghead_expression
@@ -6080,14 +6080,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241D44C235A811DF9075E4778D150765");
+              _beforeSeqEl("E0356A04D517D4533CDA11DFCFBBFF398D150765");
             }
-            match(input,66,FOLLOW_66_in_coghead_action_notification3010); if (state.failed) return ret2;
+            match(input,62,FOLLOW_62_in_coghead_action_notification3010); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241D44C435A811DFA5EBE4778D150765");
+              _beforeSeqEl("E0356A04D517FB603CDA11DFB628FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:363: (temp= coghead_expression )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:365: temp= coghead_expression
@@ -6108,14 +6108,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241D6BD035A811DF9248E4778D150765");
+              _beforeSeqEl("E0356A04D517FB613CDA11DF930FFF398D150765");
             }
-            match(input,58,FOLLOW_58_in_coghead_action_notification3023); if (state.failed) return ret2;
+            match(input,61,FOLLOW_61_in_coghead_action_notification3023); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241D6BD235A811DFC8ADE4778D150765");
+              _beforeSeqEl("E0356A04D517FB633CDA11DF8854FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:582: (temp= coghead_expression )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:795:584: temp= coghead_expression
@@ -6181,7 +6181,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:809:4: (temp= coghead_variable )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241E2F2135A811DFC5FAE4778D150765");
+              _beforeSeqEl("E0356A04D518E5C13CDA11DFA8FEFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:809:63: (temp= coghead_variable )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:809:65: temp= coghead_variable
@@ -6247,7 +6247,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:823:4: (temp= identifier )? EQUALS (temp= identifier )? DOT (temp= identifier ) LPAREN (temp= identifier )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241EF27235A811DF9B49E4778D150765");
+              _beforeSeqEl("E0356A04D519A9123CDA11DF9621FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:823:63: (temp= identifier )?
             int alt46=2;
@@ -6279,14 +6279,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F198035A811DF9065E4778D150765");
+              _beforeSeqEl("E0356A04D519D0203CDA11DFCAA9FF398D150765");
             }
             match(input,EQUALS,FOLLOW_EQUALS_in_coghead_action_performactionstatement3133); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F198335A811DF8DD0E4778D150765");
+              _beforeSeqEl("E0356A04D519D0233CDA11DFA411FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:823:342: (temp= identifier )?
             int alt47=2;
@@ -6318,14 +6318,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F409035A811DF8001E4778D150765");
+              _beforeSeqEl("E0356A04D519F7303CDA11DFA2E1FF398D150765");
             }
             match(input,DOT,FOLLOW_DOT_in_coghead_action_performactionstatement3150); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F409435A811DF8269E4778D150765");
+              _beforeSeqEl("E0356A04D519F7343CDA11DFB472FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:823:617: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:823:619: temp= identifier
@@ -6346,14 +6346,14 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F67A035A811DFC52CE4778D150765");
+              _beforeSeqEl("E0356A04D51A1E403CDA11DFA9EFFF398D150765");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_coghead_action_performactionstatement3165); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F67A335A811DF8A2FE4778D150765");
+              _beforeSeqEl("E0356A04D51A1E433CDA11DF9FBEFF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:823:900: (temp= identifier )?
             int alt48=2;
@@ -6385,7 +6385,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A241F67A435A811DFAA1AE4778D150765");
+              _beforeSeqEl("E0356A04D51A45503CDA11DFC469FF398D150765");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_coghead_action_performactionstatement3182); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -6437,7 +6437,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:837:4: ( ( (temp= coghead_elementarytypeenum ) ) | ( (temp= identifier ) ( ( LBRACKET RBRACKET ) | ) ) ) (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2423865135A811DFB710E4778D150765");
+              _beforeSeqEl("E0356A04D51C1A103CDA11DF88E0FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:837:63: ( ( (temp= coghead_elementarytypeenum ) ) | ( (temp= identifier ) ( ( LBRACKET RBRACKET ) | ) ) )
             int alt50=2;
@@ -6467,7 +6467,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:837:81: (temp= coghead_elementarytypeenum )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2422C30035A811DF849FE4778D150765");
+                      _beforeSeqEl("E0356A04D51B2FB13CDA11DF8B80FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:837:140: (temp= coghead_elementarytypeenum )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:837:142: temp= coghead_elementarytypeenum
@@ -6506,7 +6506,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:838:21: (temp= identifier ) ( ( LBRACKET RBRACKET ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2423112035A811DFA0A1E4778D150765");
+                      _beforeSeqEl("E0356A04D51B7DD13CDA11DFC54AFF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:838:80: (temp= identifier )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:838:82: temp= identifier
@@ -6527,7 +6527,7 @@ public class CollectionParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A24235F4035A811DFA62FE4778D150765");
+                      _beforeSeqEl("E0356A04D51BCBF23CDA11DFC127FF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:838:297: ( ( LBRACKET RBRACKET ) | )
                     int alt49=2;
@@ -6557,14 +6557,14 @@ public class CollectionParser extends ObservableInjectingParser {
                             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:838:315: LBRACKET RBRACKET
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E007956A2423383235A811DF9FD7E4778D150765");
+                              _beforeSeqEl("E0356A04D51BA4E33CDA11DF9707FF398D150765");
                             }
                             match(input,LBRACKET,FOLLOW_LBRACKET_in_coghead_variable3265); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E007956A2423383335A811DFA600E4778D150765");
+                              _beforeSeqEl("E0356A04D51BCBF03CDA11DFA5E1FF398D150765");
                             }
                             match(input,RBRACKET,FOLLOW_RBRACKET_in_coghead_variable3270); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -6619,7 +6619,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2423AD6135A811DFC965E4778D150765");
+              _beforeSeqEl("E0356A04D51C1A123CDA11DFBF06FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:839:108: (temp= identifier )
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:839:110: temp= identifier
@@ -6640,7 +6640,7 @@ public class CollectionParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A2423D47035A811DF8B66E4778D150765");
+              _beforeSeqEl("E0356A04D51C41223CDA11DFA955FF398D150765");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "env", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -6686,7 +6686,7 @@ public class CollectionParser extends ObservableInjectingParser {
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:849:4: ( ( LBRACKET RBRACKET ) | ( LBRACKET (temp= integerSymbol ) RBRACKET ) | () )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A24255B1035A811DF81E8E4778D150765");
+              _beforeSeqEl("E0356A04D51DC7C13CDA11DFBA67FF398D150765");
             }
             // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:849:63: ( ( LBRACKET RBRACKET ) | ( LBRACKET (temp= integerSymbol ) RBRACKET ) | () )
             int alt51=3;
@@ -6730,21 +6730,21 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:849:81: LBRACKET RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A242497C035A811DF8E71E4778D150765");
+                      _beforeSeqEl("E0356A04D51D04703CDA11DFC4DFFF398D150765");
                     }
                     match(input,LBRACKET,FOLLOW_LBRACKET_in_cardinality3344); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A242497C135A811DF8D8FE4778D150765");
+                      _beforeSeqEl("E0356A04D51D2B803CDA11DF8A1DFF398D150765");
                     }
                     match(input,RBRACKET,FOLLOW_RBRACKET_in_cardinality3349); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2424BED035A811DFC587E4778D150765");
+                      _beforeSeqEl("E0356A04D51D52903CDA11DFAC25FF398D150765");
                     }
                     if ( state.backtracking==0 ) {
                       _enterInjectorAction();setProperty(ret, "cardinality", -1);_exitInjectorAction();
@@ -6771,14 +6771,14 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:850:21: LBRACKET (temp= integerSymbol ) RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2424E5E135A811DFC661E4778D150765");
+                      _beforeSeqEl("E0356A04D51D79A03CDA11DF917DFF398D150765");
                     }
                     match(input,LBRACKET,FOLLOW_LBRACKET_in_cardinality3367); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A24250CF135A811DF9339E4778D150765");
+                      _beforeSeqEl("E0356A04D51D79A23CDA11DFCE9EFF398D150765");
                     }
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:850:165: (temp= integerSymbol )
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:850:167: temp= integerSymbol
@@ -6799,7 +6799,7 @@ public class CollectionParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A24250CF235A811DFAEDFE4778D150765");
+                      _beforeSeqEl("E0356A04D51D79A33CDA11DF88FCFF398D150765");
                     }
                     match(input,RBRACKET,FOLLOW_RBRACKET_in_cardinality3382); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -6824,7 +6824,7 @@ public class CollectionParser extends ObservableInjectingParser {
                     // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:851:21: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E007956A2425340235A811DFC07DE4778D150765");
+                      _beforeSeqEl("E0356A04D51DA0B23CDA11DFAF38FF398D150765");
                     }
                     if ( state.backtracking==0 ) {
                       _enterInjectorAction();setProperty(ret, "cardinality", 1);_exitInjectorAction();
@@ -6884,7 +6884,7 @@ public class CollectionParser extends ObservableInjectingParser {
         // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:499:40: ( '/' )
         // Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\Collection.g:499:41: '/'
         {
-        match(input,65,FOLLOW_65_in_synpred2_Collection1604); if (state.failed) return ;
+        match(input,57,FOLLOW_57_in_synpred2_Collection1604); if (state.failed) return ;
 
         }
     }
@@ -6972,61 +6972,61 @@ public class CollectionParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_84_in_coghead_xpath_axis697 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_collection_in_main725 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_main728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_coghead_collection759 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_51_in_coghead_collection759 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_coghead_collection766 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURL_in_coghead_collection773 = new BitSet(new long[]{0x2214000000006010L,0x00000000000001F8L});
-    public static final BitSet FOLLOW_coghead_schema_in_coghead_collection781 = new BitSet(new long[]{0x2014000000002010L});
-    public static final BitSet FOLLOW_coghead_action_action_in_coghead_collection791 = new BitSet(new long[]{0x2014000000002010L});
-    public static final BitSet FOLLOW_coghead_action_action_in_coghead_collection799 = new BitSet(new long[]{0x2014000000002010L});
+    public static final BitSet FOLLOW_LCURL_in_coghead_collection773 = new BitSet(new long[]{0x8818000000006010L,0x00000000000001F1L});
+    public static final BitSet FOLLOW_coghead_schema_in_coghead_collection781 = new BitSet(new long[]{0x0018000000002010L,0x0000000000000001L});
+    public static final BitSet FOLLOW_coghead_action_action_in_coghead_collection791 = new BitSet(new long[]{0x0018000000002010L,0x0000000000000001L});
+    public static final BitSet FOLLOW_coghead_action_action_in_coghead_collection799 = new BitSet(new long[]{0x0018000000002010L,0x0000000000000001L});
     public static final BitSet FOLLOW_RCURL_in_coghead_collection811 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_schemaentry_in_coghead_schema856 = new BitSet(new long[]{0x0000000000004002L});
-    public static final BitSet FOLLOW_SEMICOLON_in_coghead_schema865 = new BitSet(new long[]{0x0200000000000000L,0x00000000000001F8L});
+    public static final BitSet FOLLOW_SEMICOLON_in_coghead_schema865 = new BitSet(new long[]{0x8800000000000000L,0x00000000000001F0L});
     public static final BitSet FOLLOW_coghead_schemaentry_in_coghead_schema873 = new BitSet(new long[]{0x0000000000004002L});
     public static final BitSet FOLLOW_SEMICOLON_in_coghead_schema891 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_fieldgroup_in_coghead_schemaentry942 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_field_in_coghead_schemaentry950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_coghead_fieldgroup980 = new BitSet(new long[]{0x0000000000020010L});
+    public static final BitSet FOLLOW_63_in_coghead_fieldgroup980 = new BitSet(new long[]{0x0000000000020010L});
     public static final BitSet FOLLOW_cardinality_in_coghead_fieldgroup983 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_coghead_fieldgroup991 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURL_in_coghead_fieldgroup998 = new BitSet(new long[]{0x0200000000002000L,0x00000000000001F8L});
+    public static final BitSet FOLLOW_LCURL_in_coghead_fieldgroup998 = new BitSet(new long[]{0x8800000000002000L,0x00000000000001F0L});
     public static final BitSet FOLLOW_coghead_field_inFieldGroup_in_coghead_fieldgroup1006 = new BitSet(new long[]{0x0000000000006000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_coghead_fieldgroup1015 = new BitSet(new long[]{0x0200000000000000L,0x00000000000001F8L});
+    public static final BitSet FOLLOW_SEMICOLON_in_coghead_fieldgroup1015 = new BitSet(new long[]{0x8800000000000000L,0x00000000000001F0L});
     public static final BitSet FOLLOW_coghead_field_inFieldGroup_in_coghead_fieldgroup1023 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_RCURL_in_coghead_fieldgroup1035 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_coghead_field1082 = new BitSet(new long[]{0x0200000000000000L,0x00000000000001F8L});
+    public static final BitSet FOLLOW_59_in_coghead_field1082 = new BitSet(new long[]{0x8800000000000000L,0x00000000000001F0L});
     public static final BitSet FOLLOW_coghead_elementarytypeenum_in_coghead_field1104 = new BitSet(new long[]{0x0000000000020010L});
     public static final BitSet FOLLOW_cardinality_in_coghead_field1110 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_coghead_field1118 = new BitSet(new long[]{0x8048000000000002L});
-    public static final BitSet FOLLOW_54_in_coghead_field1130 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_expression_in_coghead_field1137 = new BitSet(new long[]{0x8008000000000002L});
-    public static final BitSet FOLLOW_63_in_coghead_field1162 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_expression_in_coghead_field1169 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_51_in_coghead_field1194 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
+    public static final BitSet FOLLOW_identifier_in_coghead_field1118 = new BitSet(new long[]{0x1100000000000002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_coghead_field1130 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_expression_in_coghead_field1137 = new BitSet(new long[]{0x1100000000000002L});
+    public static final BitSet FOLLOW_60_in_coghead_field1162 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_expression_in_coghead_field1169 = new BitSet(new long[]{0x0100000000000002L});
+    public static final BitSet FOLLOW_56_in_coghead_field1194 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
     public static final BitSet FOLLOW_coghead_expression_in_coghead_field1201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_coghead_field_inFieldGroup1263 = new BitSet(new long[]{0x0200000000000000L,0x00000000000001F8L});
+    public static final BitSet FOLLOW_59_in_coghead_field_inFieldGroup1263 = new BitSet(new long[]{0x8800000000000000L,0x00000000000001F0L});
     public static final BitSet FOLLOW_coghead_elementarytypeenum_in_coghead_field_inFieldGroup1285 = new BitSet(new long[]{0x0000000000020010L});
     public static final BitSet FOLLOW_cardinality_in_coghead_field_inFieldGroup1291 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_coghead_field_inFieldGroup1299 = new BitSet(new long[]{0x8048000000000002L});
-    public static final BitSet FOLLOW_54_in_coghead_field_inFieldGroup1314 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_expression_in_coghead_field_inFieldGroup1321 = new BitSet(new long[]{0x8008000000000002L});
-    public static final BitSet FOLLOW_63_in_coghead_field_inFieldGroup1346 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_expression_in_coghead_field_inFieldGroup1353 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_51_in_coghead_field_inFieldGroup1378 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
+    public static final BitSet FOLLOW_identifier_in_coghead_field_inFieldGroup1299 = new BitSet(new long[]{0x1100000000000002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_coghead_field_inFieldGroup1314 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_expression_in_coghead_field_inFieldGroup1321 = new BitSet(new long[]{0x1100000000000002L});
+    public static final BitSet FOLLOW_60_in_coghead_field_inFieldGroup1346 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_expression_in_coghead_field_inFieldGroup1353 = new BitSet(new long[]{0x0100000000000002L});
+    public static final BitSet FOLLOW_56_in_coghead_field_inFieldGroup1378 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
     public static final BitSet FOLLOW_coghead_expression_in_coghead_field_inFieldGroup1385 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_xpathexpression_in_coghead_expression1438 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_literal_in_primary_coghead_xpath_xpathexpression1465 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_variableref_in_primary_coghead_xpath_xpathexpression1473 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_axisstep_in_primary_coghead_xpath_xpathexpression1481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_primary_coghead_xpath_xpathexpression1490 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
+    public static final BitSet FOLLOW_LPAREN_in_primary_coghead_xpath_xpathexpression1490 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
     public static final BitSet FOLLOW_coghead_xpath_xpathexpression_in_primary_coghead_xpath_xpathexpression1496 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_RPAREN_in_primary_coghead_xpath_xpathexpression1500 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_primary_coghead_xpath_xpathexpression_in_xpathexpressions_priority_01538 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_LBRACKET_in_xpathexpressions_priority_01547 = new BitSet(new long[]{0x01000000000881F0L,0x00000000001FFE00L});
+    public static final BitSet FOLLOW_LBRACKET_in_xpathexpressions_priority_01547 = new BitSet(new long[]{0x00000000000881F0L,0x00000000001FFE08L});
     public static final BitSet FOLLOW_coghead_xpath_filterexpr_in_xpathexpressions_priority_01555 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_xpathexpressions_priority_0_in_xpathexpressions_priority_11601 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_xpathexpressions_priority_11610 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_xpath_pathexpr_in_xpathexpressions_priority_11617 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_xpathexpressions_priority_0_in_xpathexpressions_priority_11621 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_xpathexpressions_priority_0_in_xpathexpressions_priority_11601 = new BitSet(new long[]{0x0200000000000002L});
+    public static final BitSet FOLLOW_57_in_xpathexpressions_priority_11610 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_xpath_pathexpr_in_xpathexpressions_priority_11617 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_xpathexpressions_priority_0_in_xpathexpressions_priority_11621 = new BitSet(new long[]{0x0200000000000002L});
     public static final BitSet FOLLOW_xpathexpressions_priority_1_in_coghead_xpath_xpathexpression1659 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_axis_in_coghead_xpath_axisstep1726 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_DCOLON_in_coghead_xpath_axisstep1733 = new BitSet(new long[]{0x0000000000000010L,0x00000000001FFE00L});
@@ -7035,7 +7035,7 @@ public class CollectionParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_RBRACKET_in_coghead_xpath_filterexpr1811 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_nametest_in_coghead_xpath_nodetest1841 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifier_in_coghead_xpath_nametest1875 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_coghead_xpath_variableref1918 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_67_in_coghead_xpath_variableref1918 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_coghead_xpath_variableref1925 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_stringliteral_in_coghead_xpath_literal1965 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_xpath_numberliteral_in_coghead_xpath_literal1973 = new BitSet(new long[]{0x0000000000000002L});
@@ -7044,17 +7044,17 @@ public class CollectionParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_doubleAsStringSymbol_in_coghead_xpath_numberliteral2079 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_floatAsStringSymbol_in_coghead_xpath_numberliteral2099 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_action_userdefinedaction_in_coghead_action_action2144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_actionbasics2174 = new BitSet(new long[]{0x2004000000000010L});
-    public static final BitSet FOLLOW_61_in_actionbasics2198 = new BitSet(new long[]{0x0004000000000010L});
-    public static final BitSet FOLLOW_50_in_actionbasics2221 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_51_in_actionbasics2174 = new BitSet(new long[]{0x0010000000000010L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_actionbasics2198 = new BitSet(new long[]{0x0010000000000010L});
+    public static final BitSet FOLLOW_52_in_actionbasics2221 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_LANGLE_in_actionbasics2225 = new BitSet(new long[]{0x0000000000000050L});
     public static final BitSet FOLLOW_longSymbol_in_actionbasics2233 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_actionbasics2260 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_coghead_action_signature_in_actionbasics2270 = new BitSet(new long[]{0x0000000000001002L});
     public static final BitSet FOLLOW_coghead_action_block_in_actionbasics2280 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_coghead_action_userdefinedaction2321 = new BitSet(new long[]{0x2004000000000010L});
-    public static final BitSet FOLLOW_61_in_coghead_action_userdefinedaction2345 = new BitSet(new long[]{0x0004000000000010L});
-    public static final BitSet FOLLOW_50_in_coghead_action_userdefinedaction2368 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_51_in_coghead_action_userdefinedaction2321 = new BitSet(new long[]{0x0010000000000010L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_coghead_action_userdefinedaction2345 = new BitSet(new long[]{0x0010000000000010L});
+    public static final BitSet FOLLOW_52_in_coghead_action_userdefinedaction2368 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_LANGLE_in_coghead_action_userdefinedaction2372 = new BitSet(new long[]{0x0000000000000050L});
     public static final BitSet FOLLOW_longSymbol_in_coghead_action_userdefinedaction2380 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_coghead_action_userdefinedaction2407 = new BitSet(new long[]{0x0000000000008000L});
@@ -7063,12 +7063,12 @@ public class CollectionParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_LPAREN_in_coghead_action_signature2473 = new BitSet(new long[]{0x0000000000010010L});
     public static final BitSet FOLLOW_identifier_in_coghead_action_signature2481 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_RPAREN_in_coghead_action_signature2493 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_COLON_in_coghead_action_signature2498 = new BitSet(new long[]{0x0020000000000010L});
+    public static final BitSet FOLLOW_COLON_in_coghead_action_signature2498 = new BitSet(new long[]{0x0004000000000010L});
     public static final BitSet FOLLOW_identifier_in_coghead_action_signature2512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_coghead_action_signature2527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_coghead_action_block2574 = new BitSet(new long[]{0x4A80000000406010L,0x00000000000001F9L});
+    public static final BitSet FOLLOW_50_in_coghead_action_signature2527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_coghead_action_block2574 = new BitSet(new long[]{0x8CC0000000406010L,0x00000000000001F4L});
     public static final BitSet FOLLOW_coghead_action_statement_in_coghead_action_block2582 = new BitSet(new long[]{0x0000000000006000L});
-    public static final BitSet FOLLOW_SEMICOLON_in_coghead_action_block2591 = new BitSet(new long[]{0x4A80000000400010L,0x00000000000001F9L});
+    public static final BitSet FOLLOW_SEMICOLON_in_coghead_action_block2591 = new BitSet(new long[]{0x8CC0000000400010L,0x00000000000001F4L});
     public static final BitSet FOLLOW_coghead_action_statement_in_coghead_action_block2599 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_SEMICOLON_in_coghead_action_block2617 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_RCURL_in_coghead_action_block2635 = new BitSet(new long[]{0x0000000000000002L});
@@ -7079,21 +7079,21 @@ public class CollectionParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_coghead_action_performactionstatement_in_coghead_action_statement2705 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_action_whilestatement_in_coghead_action_looplikestatement2732 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_action_foreachstatement_in_coghead_action_looplikestatement2740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_coghead_action_whilestatement2770 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
+    public static final BitSet FOLLOW_58_in_coghead_action_whilestatement2770 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
     public static final BitSet FOLLOW_coghead_expression_in_coghead_action_whilestatement2777 = new BitSet(new long[]{0x0000000000001002L});
     public static final BitSet FOLLOW_coghead_action_block_in_coghead_action_whilestatement2787 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_55_in_coghead_action_foreachstatement2832 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_coghead_variable_forEachStatement_in_coghead_action_foreachstatement2839 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_coghead_action_foreachstatement2845 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_coghead_variable_forEachStatement_in_coghead_action_foreachstatement2839 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_coghead_action_foreachstatement2845 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_coghead_action_foreachstatement2852 = new BitSet(new long[]{0x0000000000001002L});
     public static final BitSet FOLLOW_coghead_action_block_in_coghead_action_foreachstatement2862 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifier_in_coghead_variable_forEachStatement2911 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_coghead_action_breakstatement2957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_coghead_action_notification2997 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_expression_in_coghead_action_notification3004 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_coghead_action_notification3010 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
-    public static final BitSet FOLLOW_coghead_expression_in_coghead_action_notification3017 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_coghead_action_notification3023 = new BitSet(new long[]{0x01000000000081F0L,0x00000000001FFE00L});
+    public static final BitSet FOLLOW_54_in_coghead_action_breakstatement2957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_coghead_action_notification2997 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_expression_in_coghead_action_notification3004 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_coghead_action_notification3010 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
+    public static final BitSet FOLLOW_coghead_expression_in_coghead_action_notification3017 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_coghead_action_notification3023 = new BitSet(new long[]{0x00000000000081F0L,0x00000000001FFE08L});
     public static final BitSet FOLLOW_coghead_expression_in_coghead_action_notification3030 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_coghead_variable_in_coghead_action_variabledeclarationstatement3077 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifier_in_coghead_action_performactionstatement3124 = new BitSet(new long[]{0x0000000000400000L});
@@ -7115,6 +7115,6 @@ public class CollectionParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_integerSymbol_in_cardinality3375 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_RBRACKET_in_cardinality3382 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LBRACKET_in_synpred1_Collection1541 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_synpred2_Collection1604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_synpred2_Collection1604 = new BitSet(new long[]{0x0000000000000002L});
 
 }

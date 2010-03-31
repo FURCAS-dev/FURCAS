@@ -29,6 +29,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	private String mainPartitionContent;
 	private ModelPartition mainPartition;
 	private ConcreteSyntax concreteSyntax2;
+	private SetInteractiveResult interactiveResult;
 
 	/**
 	 * Assigns the <code>newElement</code> with the given Template
@@ -337,9 +338,12 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			RefObject refObject, PartitionHandling partitionHandling,
 			Connection connection) {
 		
-		SetInteractiveResult interactiveResult = interactivePartitionHandler
-				.getPartitionFor(partitionHandling, partition, refObject,
-						connection);
+
+		if(interactiveResult == null || !interactiveResult.isInteractivePartition()) {
+			interactiveResult = interactivePartitionHandler
+					.getPartitionFor(partitionHandling,
+							partition, refObject, connection);
+		}
 
 		if (refObject instanceof TextBlock) {
 			TextBlock resultTB = (TextBlock) refObject;
@@ -430,10 +434,13 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	private void assignToPartitionNotAutomatic(ModelPartition partition, RefObject refObject,
 			ClassTemplate classTemplate, Connection connection,
 			ModelPartition mainPartition) {
-
-		SetInteractiveResult interactiveResult = interactivePartitionHandler
-				.getPartitionFor(classTemplate.getPartitionHandling(),
-						partition, refObject, connection);
+		
+		
+		if(interactiveResult == null || !interactiveResult.isInteractivePartition()) {
+			interactiveResult = interactivePartitionHandler
+					.getPartitionFor(classTemplate.getPartitionHandling(),
+							partition, refObject, connection);
+		}
 		
 		if (refObject instanceof TextBlock) {
 			TextBlock resultTB = (TextBlock) refObject;

@@ -90,9 +90,6 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
 		tb.getAdditionalTemplates().addAll(newVersion.getAdditionalTemplates());
 
-		// To assign Elements to the correspondent Partition
-		assign_TB_ToPartition(tb, defaultPartition);
-
 		int endIndex = 0;
 		for (Object subNode : newVersion.getSubNodes()) {
 			if (subNode instanceof TextBlockProxy) {
@@ -147,6 +144,10 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 				}
 			}
 		}
+		
+		// To assign Elements to the correspondent Partition
+		assign_TB_ToPartition(tb, defaultPartition);
+		
 		return tb;
 	}
 

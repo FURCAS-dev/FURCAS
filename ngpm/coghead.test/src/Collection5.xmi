@@ -9,7 +9,6 @@
 <M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_Has_DocumentNodeVersions' i='480716BCBE2DC5500C5F11DDB14600016CE99C52' se='1' ce='-1' oe='0'/>
-<M c='1' q='textblocks.TextBlockType' i='480716BCBE2DC5530C5F11DD93AC00016CE99C52' se='1' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
 <M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
 <M c='2' q='coghead.Collection' i='49D62CFB3204456B206511DE84790019D29902CC'/>
@@ -98,8 +97,8 @@
 <textblocks.LexedToken m:c='1' m:i='E0356A046C11B591310D11DFB6C1FC4B8D150765' childrenChanged='false' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='false' lookahead='0' lookback='0' state='0' type='0' isOperator='false'/>
 <textblocks.LexedToken m:c='1' m:i='E0356A046C11B592310D11DF964DFC4B8D150765' childrenChanged='false' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='false' lookahead='0' lookback='0' state='0' type='0' isOperator='false'/>
 <textblocks.EOSToken m:c='1' m:i='E0356A046C11B593310D11DF8E5DFC4B8D150765' childrenChanged='false' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='false' lookahead='0' lookback='0' state='0' type='0'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A04BF5A8CD031AD11DFB7EFF04A8D150765' childrenChanged='false' version='PREVIOUS' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='63' offsetRelative='true' value='collection testCollection{&#13;&#10;string s1;&#13;&#10;string s2 ;&#13;&#10;string s3}' lookahead='0' lookback='0' state='0' type='0' isOperator='false'/>
 <textblocks.LexedToken m:c='1' m:i='E0356A04C319E990310F11DFBE94FC4B8D150765' childrenChanged='false' version='PREVIOUS' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='84' offsetRelative='true' value='collection newCollection{&#13;&#10;group name7 { }&#13;&#10;name8 ( additionalInput8 ) : output { }}' lookahead='0' lookback='0' state='0' type='0' isOperator='false'/>
+<textblocks.LexedToken m:c='1' m:i='E0367719022875A03CD911DFC095DCD98D150765' childrenChanged='false' version='PREVIOUS' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='63' offsetRelative='true' value='collection testCollection{&#13;&#10;string s1;&#13;&#10;string s2 ;&#13;&#10;string s3}' lookahead='0' lookback='0' state='0' type='0' isOperator='false'/>
 <textblocks.TextBlock m:c='1' m:i='E0367719F4146F0031AC11DF81E2FCEC8D150765' childrenChanged='true' version='PREVIOUS' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='63' offsetRelative='false' isComplete='true' cachedString='collection testCollection{&#13;&#10;string s1;&#13;&#10;string s2 ;&#13;&#10;string s3}'/>
 <textblocks.BOSToken m:c='1' m:i='E0367719F415325031AC11DF9BE9FCEC8D150765' childrenChanged='false' version='PREVIOUS' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' value='BOS' lookahead='0' lookback='0' state='0' type='-2'/>
 <textblocks.EOSToken m:c='1' m:i='E0367719F417071031AC11DF9D87FCEC8D150765' childrenChanged='false' version='PREVIOUS' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='63' length='0' offsetRelative='true' value='EOS' lookahead='0' lookback='0' state='0' type='-1'/>
@@ -211,7 +210,7 @@
 <L f='E0356A046C11B592310D11DF964DFC4B8D150765' s='E0356A046C0F4480310D11DF9D01FC4B8D150765'/>
 <L f='E0356A046C11B593310D11DF8E5DFC4B8D150765' s='E0356A046C0F4480310D11DF9D01FC4B8D150765'/>
 <L f='E0367719F415325031AC11DF9BE9FCEC8D150765' s='E0367719F4146F0031AC11DF81E2FCEC8D150765'/>
-<L f='E0356A04BF5A8CD031AD11DFB7EFF04A8D150765' s='E0367719F4146F0031AC11DF81E2FCEC8D150765'/>
+<L f='E0367719022875A03CD911DFC095DCD98D150765' s='E0367719F4146F0031AC11DF81E2FCEC8D150765'/>
 <L f='E0367719F417071031AC11DF9D87FCEC8D150765' s='E0367719F4146F0031AC11DF81E2FCEC8D150765'/>
 <L f='E0677A9A386FB8B0311E11DF9F53EB8C8D150765' s='E0677A9A387C89F0311E11DFCE57EB8C8D150765'/>
 <L f='E0677A9A38707C00311E11DF9484EB8C8D150765' s='E0677A9A387C89F0311E11DFCE57EB8C8D150765'/>
@@ -310,9 +309,6 @@
 <L f='E0677A9A387473A0311E11DFB30FEB8C8D150765' s='E0E14F86CF1BBF10312411DFA67AEF848D150765'/>
 <L f='E0677A9A386FB8B0311E11DF9F53EB8C8D150765' s='E0E14F86CF1E0900312411DFA0F6EF848D150765'/>
 </textblocks.DocumentNode_Has_DocumentNodeVersions>
-<textblocks.TextBlockType c='1'>
-<L f='local:E0E1B8C6A7D7435031AD11DFCFBAF04A8D150765' s='E0367719F4146F0031AC11DF81E2FCEC8D150765'/>
-</textblocks.TextBlockType>
 <coghead.A_actions_collection c='2'>
 <L f='local:E007956A8BAD39E1310411DF93C2D5628D150765' s='E007956A8BAF83D6310411DFC5C2D5628D150765'/>
 <L f='local:E0677A9A388144E1311E11DFC7ECEB8C8D150765' s='E0677A9A38827D60311E11DF9B4FEB8C8D150765'/>
