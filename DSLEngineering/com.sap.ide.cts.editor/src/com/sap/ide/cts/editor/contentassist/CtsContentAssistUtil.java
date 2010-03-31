@@ -652,7 +652,13 @@ public class CtsContentAssistUtil {
 	}
 
 	private static RefObject getForeachElement(String contextTag) {
-	    // TODO Auto-generated method stub
+	    // currently the ForeachElement is only used in queries of model elements without
+		// syntactical elements and is thus currently irrelevant for content assist
+		
+		// once this changes a new testcase needs to be created and this implementation
+		// can be derived from getContextElement()
+		
+		// do nothing
 	    return null;
 	}
 

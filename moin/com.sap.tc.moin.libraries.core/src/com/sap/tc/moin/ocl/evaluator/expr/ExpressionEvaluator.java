@@ -1,11 +1,20 @@
 package com.sap.tc.moin.ocl.evaluator.expr;
 
+import java.util.Set;
+
+import org.omg.ocl.expressions.ModelPropertyCallExp;
 import org.omg.ocl.expressions.OclExpression;
+import org.omg.ocl.expressions.PropertyCallExp;
 
 import com.sap.tc.moin.ocl.evaluator.EvaluationContext;
 import com.sap.tc.moin.ocl.evaluator.StackedEvaluator;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclAny;
+import com.sap.tc.moin.ocl.evaluator.stdlib.OclCollection;
 import com.sap.tc.moin.repository.core.CoreConnection;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode.NodeRoleTypes;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Evaluates an expression and returns the result of that expression.
@@ -32,6 +41,34 @@ public abstract class ExpressionEvaluator {
      * @return The result of the expression
      */
     public abstract OclAny evaluate( CoreConnection connection, OclExpression expression, EvaluationContext ctx );
+
+    /**
+     * Evaluate the supplied <code>expression</code> using the supplied
+     * <code>ctx</code>, and return the result.
+     * 
+     * @param connection the core connection
+     * @param expression The expression to evaluate
+     * @param ctx The context that the expression is to be evaluated in. With the current implementation,
+     * the key reason to ask to this in the signature is that it forces the called to create an
+     * instances of {@link EvaluationContext} before calling this method which in turn puts the
+     * {@link EvaluationContext} object on the {@link EvaluationContext.CurrentContext} for the current
+     * thread.
+     * @return The result of the expression
+     */
+    public abstract OclAny evaluate(CoreConnection connection, OclExpression expression, EvaluationContext ctx,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
+    
+    /**
+     * Like {@link #evaluate(CoreConnection, OclExpression, EvaluationContext, Set)}, but pushes
+     * <tt>sourceObject</tt> onto the evaluation stack in role {@link NodeRoleTypes#Source} so that
+     * the {@link ModelPropertyCallExp} <tt>expression</tt> can use it instead of having to compute it.<p>
+     * 
+     * If <tt>expression</tt>'s source expression is of collection type (upper multiplicity greater than 1),
+     * and <tt>sourceObject</tt> is not an {@link OclCollection}, an {@link OclCollection} will be created
+     * on the fly to wrap <tt>sourceObject</tt> appropriately to, e.g., let loop expressions work properly.
+     */
+    public abstract OclAny evaluate(CoreConnection connection, PropertyCallExp expression, OclAny sourceObject,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
 
     // ///////////////////////////////////////////////////////////////
     // Registry pattern to lookup the ExpressionEvaluator instance //

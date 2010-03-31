@@ -6,13 +6,10 @@
 	<classpathentry kind="lib" path="gxt/gxt.jar"/>
 	<classpathentry kind="lib" path="gwt/gwt-dev-windows.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.sap.runlet.tomcat"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.eclipse.core.resources_3.4.2.R34x_v20090126.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.eclipse.core.runtime_3.4.0.v20080512.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.eclipse.ui.workbench_3.4.2.M20090127-1700.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.eclipse.osgi_3.4.3.R34x_v20081215-1030.jar"/>
-	<classpathentry kind="var" path="DEV_WORKSPACE/com.sap.runlet.interpreter/bin"/>
-	<classpathentry kind="var" path="DEV_WORKSPACE/com.sap.tc.moin.libraries.api/bin"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.sap.runlet.abstractinterpreter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.sap.ap.metamodel.core.epi"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OSGi"/>
+	<classpathentry kind="lib" path="/com.sap.tc.moin.libraries.api/bin"/>
+	<classpathentry kind="lib" path="/com.sap.runlet.interpreter/bin"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

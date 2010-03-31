@@ -225,7 +225,7 @@ public class DeferredConstraintViolationStatusItemImpl implements DeferredConstr
             try {
                 EvaluationContext evalCtx = new EvaluationContextImpl( self );
 
-                return new StackedEvaluator( ).debug( this.myConnection, expr, evalCtx );
+                return new StackedEvaluator( ).debug( this.myConnection, expr );
 
             } finally {
                 // Reset the current context so that the current thread can create
@@ -255,7 +255,7 @@ public class DeferredConstraintViolationStatusItemImpl implements DeferredConstr
             try {
                 EvaluationContext evalCtx = new EvaluationContextImpl( self );
 
-                return new StackedEvaluator( ).debug( this.myConnection, expr, evalCtx );
+                return new StackedEvaluator( ).debug( this.myConnection, expr );
 
             } finally {
                 // Reset the current context so that the current thread can create

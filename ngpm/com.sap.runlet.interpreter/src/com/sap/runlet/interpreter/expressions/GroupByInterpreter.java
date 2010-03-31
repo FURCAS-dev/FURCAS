@@ -22,7 +22,6 @@ import data.classes.Association;
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.NativeImpl;
-import data.classes.NestedTypeDefinition;
 import data.classes.SapClass;
 import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
@@ -82,7 +81,7 @@ public class GroupByInterpreter implements Interpreter<GroupBy, SapClass, TypeDe
 	final Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> resultObjects = Collections
 		.synchronizedCollection(unsynchronizedResultObjects);
 	Set<Thread> mappingThreads = new HashSet<Thread>();
-	final TypeDefinition typeOfOneGroup = ((NestedTypeDefinition) groupBy.getType()).getType();
+	final TypeDefinition typeOfOneGroup = groupBy.getGroupedFacts().getType();
 	for (final Map<DimensionDefinition, LogicallyEqualsWrapper<AssociationEnd, TypeDefinition, ClassTypeDefinition>> dimensions :
 	     groups.keySet()) {
 	    // map each group in parallel because map expression has to be side effect free

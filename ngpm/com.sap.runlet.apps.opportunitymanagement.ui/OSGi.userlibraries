@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="OSGi" systemlibrary="false">
+        <archive path="/home/trxadm/eclipse352/eclipse/plugins/org.eclipse.core.resources_3.5.2.R35x_v20091203-1235.jar"/>
+        <archive path="/home/trxadm/eclipse352/eclipse/plugins/org.eclipse.core.runtime_3.5.0.v20090525.jar"/>
+        <archive path="/home/trxadm/eclipse352/eclipse/plugins/org.eclipse.osgi_3.5.2.R35x_v20100126.jar"/>
+        <archive path="/home/trxadm/eclipse352/eclipse/plugins/org.eclipse.ui.workbench_3.5.2.M20100113-0800.jar"/>
+    </library>
+</eclipse-userlibraries>

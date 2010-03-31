@@ -3,15 +3,21 @@ package com.sap.tc.moin.ocl.ia;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.ocl.expressions.ModelPropertyCallExp;
 import org.omg.ocl.expressions.OclExpression;
+import org.omg.ocl.expressions.OperationCallExp;
 
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
+import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis.LeadsToEmptySetResult;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.ocl.service.impl.OclExpressionRegistrationImpl;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * To gather statistics about the OCL Impact Analysis, set the system property
@@ -49,4 +55,10 @@ public abstract class Statistics {
     public abstract void stepPerformed(NavigationStep step);
     public abstract Map<NavigationStep, Integer> getStepsInfo();
     public abstract void haveIntersectingSubclassTreeCalled(MofClass a, MofClass b);
+    public abstract void checkingIfParameterlessOperationCallIsEmpty(OperationCallExp opCall, ModelChangeEvent event, RefObject on);
+    public abstract List<Pair<String, Integer>> getParameterlessOperationCallEmptyCheckInfo(CoreConnection conn);
+    public abstract void affectedElementComputedForSourceOfParameterlessOperation(ModelPropertyCallExp attributeOrAssociationEndCall);
+    public abstract List<Pair<String, Integer>> getAffectedElementComputedForSourceOfParameterlessOperationInfo(CoreConnection conn);
+    public abstract void leadsToEmptySetPerformed(OclExpressionRegistrationImpl forRegistration, long time, LeadsToEmptySetResult result);
+    public abstract String getLeadsToEmptySetPerformancesAsCsv();
 }
