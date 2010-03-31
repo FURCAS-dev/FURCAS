@@ -6,13 +6,14 @@
  */
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
-
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
@@ -22,25 +23,22 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +47,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl#getInMemoryResources <em>In Memory Resources</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl#getInitialProjects <em>Initial Projects</em>}</li>
  * </ul>
  * </p>
@@ -57,15 +54,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
  * @generated
  */
 public class ProjectBasedScopeProviderImpl extends EObjectImpl implements ProjectBasedScopeProvider {
-	/**
-	 * The cached value of the '{@link #getInMemoryResources() <em>In Memory Resources</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInMemoryResources()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Resource> inMemoryResources;
 	/**
 	 * The cached value of the '{@link #getInitialProjects() <em>Initial Projects</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -75,7 +63,7 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 	 * @ordered
 	 */
 	protected EList<IProject> initialProjects;
-
+	protected List<WeakReference<Resource>> inMemoryResourceList;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,16 +83,16 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		return ScopeProviderPackage.Literals.PROJECT_BASED_SCOPE_PROVIDER;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+
 	public EList<Resource> getInMemoryResources() {
-		if (inMemoryResources == null) {
-			inMemoryResources = new EDataTypeUniqueEList<Resource>(Resource.class, this, ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES);
+		EList<Resource> result= new BasicEList<Resource>();
+		if (inMemoryResourceList == null) {
+			return result;
 		}
-		return inMemoryResources;
+		for(WeakReference<Resource> ref: inMemoryResourceList){
+			result.add(ref.get());
+		}
+		return result;
 	}
 
 	/**
@@ -147,7 +135,9 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			if(converter==null){
 				converter= URIConverter.INSTANCE;
 			}
-			getInMemoryResources().add(res);
+			EList<Resource> inmem=getInMemoryResources();
+			inmem.add(res);
+			setInMemoryResources(inmem);
 			IProject project = getProjectForResource(res, converter);
 			getInitialProjects().add(project);
 		}
@@ -246,13 +236,22 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setInMemoryResources(EList<Resource> resources) {
+		inMemoryResourceList= new ArrayList<WeakReference<Resource>>();
+		for(Resource r: resources)
+			inMemoryResourceList.add(new WeakReference<Resource>(r));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
-				return getInMemoryResources();
 			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
 				return getInitialProjects();
 		}
@@ -268,10 +267,6 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
-				getInMemoryResources().clear();
-				getInMemoryResources().addAll((Collection<? extends Resource>)newValue);
-				return;
 			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
 				getInitialProjects().clear();
 				getInitialProjects().addAll((Collection<? extends IProject>)newValue);
@@ -288,9 +283,6 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
-				getInMemoryResources().clear();
-				return;
 			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
 				getInitialProjects().clear();
 				return;
@@ -306,8 +298,6 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES:
-				return inMemoryResources != null && !inMemoryResources.isEmpty();
 			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
 				return initialProjects != null && !initialProjects.isEmpty();
 		}
@@ -324,9 +314,7 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (inMemoryResources: "); //$NON-NLS-1$
-		result.append(inMemoryResources);
-		result.append(", initialProjects: "); //$NON-NLS-1$
+		result.append(" (initialProjects: "); //$NON-NLS-1$
 		result.append(initialProjects);
 		result.append(')');
 		return result.toString();
@@ -413,6 +401,7 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
 		return project;
 	}
+	
 	private Set<Resource> getAllResourceFromDirectory(IFolder modelDirectory) throws CoreException {
 		final Set<Resource> resources= new HashSet<Resource>();
 		for(IResource f:modelDirectory.members()){
@@ -460,7 +449,7 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		return (IFolder)member;
 	}
 
-	private EList<EObject> iteratorToEList(Iterator<Object> treeIterator) {
+	private EList<EObject> iteratorToEList(Iterator<?> treeIterator) {
 		EList<EObject> treeAsList= new BasicEList<EObject>();
 		while(treeIterator.hasNext()){
 			Object next=treeIterator.next();
@@ -509,8 +498,14 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			/*
 			 * FIXME unfortunately a memory leak
 			 */
-
-			result.addAll(iteratorToEList(EcoreUtil.getAllContents(resource, true)));
+			if(!resource.isLoaded())
+				try {
+					resource.load(null);
+				} catch (IOException e) {
+					// TODO Add Exception to an intern array of errors
+					e.printStackTrace();
+				}
+			result.addAll(iteratorToEList(resource.getAllContents()));
 		}
 		return result;
 	}

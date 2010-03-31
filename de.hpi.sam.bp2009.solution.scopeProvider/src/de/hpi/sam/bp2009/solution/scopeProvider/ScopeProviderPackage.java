@@ -80,31 +80,13 @@ public interface ScopeProviderPackage extends EPackage {
 	int SCOPE_PROVIDER = 1;
 
 	/**
-	 * The feature id for the '<em><b>In Memory Resources</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCOPE_PROVIDER__IN_MEMORY_RESOURCES = 0;
-
-	/**
 	 * The number of structural features of the '<em>Scope Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCOPE_PROVIDER_FEATURE_COUNT = 1;
-
-	/**
-	 * The feature id for the '<em><b>In Memory Resources</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_BASED_SCOPE_PROVIDER__IN_MEMORY_RESOURCES = SCOPE_PROVIDER__IN_MEMORY_RESOURCES;
+	int SCOPE_PROVIDER_FEATURE_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Initial Projects</b></em>' attribute list.
@@ -178,17 +160,6 @@ public interface ScopeProviderPackage extends EPackage {
 	EClass getScopeProvider();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources <em>In Memory Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>In Memory Resources</em>'.
-	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources()
-	 * @see #getScopeProvider()
-	 * @generated
-	 */
-	EAttribute getScopeProvider_InMemoryResources();
-
-	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>URI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -259,14 +230,6 @@ public interface ScopeProviderPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SCOPE_PROVIDER = eINSTANCE.getScopeProvider();
-
-		/**
-		 * The meta object literal for the '<em><b>In Memory Resources</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SCOPE_PROVIDER__IN_MEMORY_RESOURCES = eINSTANCE.getScopeProvider_InMemoryResources();
 
 		/**
 		 * The meta object literal for the '<em>URI</em>' data type.

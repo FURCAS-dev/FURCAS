@@ -148,15 +148,6 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getScopeProvider_InMemoryResources() {
-		return (EAttribute)scopeProviderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getURI() {
 		return uriEDataType;
 	}
@@ -202,7 +193,6 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 		createEAttribute(projectBasedScopeProviderEClass, PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS);
 
 		scopeProviderEClass = createEClass(SCOPE_PROVIDER);
-		createEAttribute(scopeProviderEClass, SCOPE_PROVIDER__IN_MEMORY_RESOURCES);
 
 		// Create data types
 		uriEDataType = createEDataType(URI);
@@ -269,7 +259,6 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 		addEOperation(projectBasedScopeProviderEClass, this.getURI(), "getBackwardScopeAsURIs", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(scopeProviderEClass, ScopeProvider.class, "ScopeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getScopeProvider_InMemoryResources(), ecorePackage.getEResource(), "inMemoryResources", null, 0, -1, ScopeProvider.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(scopeProviderEClass, null, "setupForEObjects", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEObject(), "initialObjects", 1, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -287,6 +276,11 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 		addEOperation(scopeProviderEClass, ecorePackage.getEObject(), "getBackwardScopeAsEObjects", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(scopeProviderEClass, this.getURI(), "getBackwardScopeAsURIs", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(scopeProviderEClass, null, "setInMemoryResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEResource(), "resources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(scopeProviderEClass, ecorePackage.getEResource(), "getInMemoryResources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types
 		initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

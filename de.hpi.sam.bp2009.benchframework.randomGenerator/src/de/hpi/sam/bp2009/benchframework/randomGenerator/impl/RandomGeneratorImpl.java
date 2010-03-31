@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.RandomNumberOptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
@@ -314,7 +315,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		assert(number<metaClasses.size());
 
 		//instantiate the meta model
-		instantiate(metaClasses.get(number), resource);
+		Integer n = number == 0 ? ((RandomNumberOptionObject)getOption()).getNextInt(metaClasses.size()): number;		
+		instantiate(metaClasses.get(n), resource);
 	}
 
 	private ArrayList<EClass> getAllClassesOfEPackage(EPackage metaModel) {
@@ -345,12 +347,11 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		//make sure to start at index 0 even if executed multiple times
 		options.setNumberListIndex(0);
 		EPackage metaModel = options.getMetaModel();
-		Integer number = options.getNextInt(metaClasses.size());
 		
 		ResourceSetImpl resultRS = new ResourceSetImpl();
 		Resource result = resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
 		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
-		generateRandomModel(number, result, metaModel);
+		generateRandomModel(null, result, metaModel);
 		this.getTestRun().setModel(resultRS);
 		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 		getResult().setStatus(Status.SUCCESSFUL);

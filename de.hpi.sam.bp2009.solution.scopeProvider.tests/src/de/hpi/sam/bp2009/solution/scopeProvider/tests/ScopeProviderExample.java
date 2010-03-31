@@ -6,26 +6,21 @@
  */
 package de.hpi.sam.bp2009.solution.scopeProvider.tests;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderFactory;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
-
 import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.util.Diagnostician;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderFactory;
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,7 +59,7 @@ public class ScopeProviderExample {
 			System.out.println("Enter a list of file paths or URIs that have content like this:"); //$NON-NLS-1$
 			try {
 				Resource resource = resourceSet.createResource(URI.createURI("http:///My.scopeprovider")); //$NON-NLS-1$
-				ScopeProvider root = ScopeProviderFactory.eINSTANCE.createScopeProvider();
+				ProjectBasedScopeProvider root = ScopeProviderFactory.eINSTANCE.createProjectBasedScopeProvider();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			}

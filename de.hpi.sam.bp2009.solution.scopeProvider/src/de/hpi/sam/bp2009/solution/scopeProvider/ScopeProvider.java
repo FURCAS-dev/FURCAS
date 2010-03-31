@@ -17,12 +17,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * A representation of the model object '<em><b>Scope Provider</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources <em>In Memory Resources</em>}</li>
- * </ul>
- * </p>
  *
  * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getScopeProvider()
  * @model interface="true" abstract="true"
@@ -30,17 +24,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  */
 public interface ScopeProvider extends EObject {
 	/**
-	 * Returns the value of the '<em><b>In Memory Resources</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.resource.Resource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>In Memory Resources</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>In Memory Resources</em>' attribute list.
-	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getScopeProvider_InMemoryResources()
-	 * @model transient="true"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	EList<Resource> getInMemoryResources();
@@ -100,5 +90,13 @@ public interface ScopeProvider extends EObject {
 	 * @generated
 	 */
 	EList<URI> getBackwardScopeAsURIs();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model resourcesMany="true"
+	 * @generated
+	 */
+	void setInMemoryResources(EList<Resource> resources);
 
 } // ScopeProvider

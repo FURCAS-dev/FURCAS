@@ -89,6 +89,10 @@ public interface ProjectBasedScopeProvider extends ScopeProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ScopeProvider tries to load all resources from the referenced projects with an XMIResourceImpl.
+	 * Attention: No instance equality provided, when resources are not in the inMemory list.
+	 * <!-- end-model-doc -->
 	 * @model kind="operation"
 	 * @generated
 	 */
@@ -121,6 +125,10 @@ public interface ProjectBasedScopeProvider extends ScopeProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * ScopeProvider tries to load all resources from the referenced projects with an XMIResourceImpl.
+	 * Attention: No instance equality provided, when resources are not in the inMemory list.
+	 * <!-- end-model-doc -->
 	 * @model kind="operation"
 	 * @generated
 	 */
