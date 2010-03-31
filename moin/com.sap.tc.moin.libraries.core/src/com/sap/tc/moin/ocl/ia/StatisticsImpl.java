@@ -10,20 +10,28 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
+import org.omg.ocl.expressions.ModelPropertyCallExp;
 import org.omg.ocl.expressions.OclExpression;
+import org.omg.ocl.expressions.OperationCallExp;
 
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
+import com.sap.tc.moin.ocl.ia.instancescope.AbstractTracer;
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
+import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis.LeadsToEmptySetResult;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.OclExpressionRegistrationWrapper;
+import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.core.ocl.service.impl.OclExpressionRegistrationImpl;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.shared.util.Tuple.Triple;
 
 public class StatisticsImpl extends Statistics {
@@ -41,6 +49,9 @@ public class StatisticsImpl extends Statistics {
     private Map<NavigationStep, Integer> stepBag = new HashMap<NavigationStep, Integer>();
     private Map<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long> timeToComputeNavigationStepInNanoseconds = new HashMap<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long>();
     private Map<Set<MofClass>, Integer> haveintersectingSubclassCalls = new HashMap<Set<MofClass>, Integer>();
+    Map<OperationCallExp, Set<Pair<ModelChangeEvent, RefObject>>> emptySetCheckForParameterlessOperationCall = new HashMap<OperationCallExp, Set<Pair<ModelChangeEvent, RefObject>>>();
+    private Map<ModelPropertyCallExp, Integer> affectedElementComputedForSourceOfParameterlessOperation = new HashMap<ModelPropertyCallExp, Integer>();
+    private Map<String, List<Pair<Long, LeadsToEmptySetResult>>> leadsToEmptySetTimes = new HashMap<String, List<Pair<Long, LeadsToEmptySetResult>>>();
     
     private static class Record {
 	public Record(OclExpressionRegistration registration, ModelChangeEvent event, List<String> allInstancesQName, Object elementForSelf) {
@@ -253,6 +264,30 @@ public class StatisticsImpl extends Statistics {
 			((MofClass) registration.getContext()).getQualifiedName()).size());
 	    }
 	}
+	// now come the leadsToEmptySetTimes, arranged in two columns: average times for "YES" and average times for all NO_* results
+	long yesTimeSum = 0;
+	int yesCount = 0;
+	long noTimeSum = 0;
+	int noCount = 0;
+	if (leadsToEmptySetTimes.containsKey(registration.getName())) {
+	    for (Pair<Long, LeadsToEmptySetResult> pair : leadsToEmptySetTimes.get(registration.getName())) {
+		if (pair.getB() == LeadsToEmptySetResult.YES) {
+		    yesTimeSum += pair.getA();
+		    yesCount++;
+		} else {
+		    noTimeSum += pair.getA();
+		    noCount++;
+		}
+	    }
+	}
+	result.append('\t');
+	result.append((double) yesTimeSum / (double) yesCount);
+	result.append('\t');
+	result.append(yesCount);
+	result.append('\t');
+	result.append((double) noTimeSum / (double) noCount);
+	result.append('\t');
+	result.append(noCount);
 	return result.toString();
     }
 
@@ -415,7 +450,7 @@ public class StatisticsImpl extends Statistics {
 
     @Override
     public String getCsvHeader() {
-	return "Expression\tClass scope analysis (ns)\tevents\tinstance scope path construction (ns)\tavg instance scope (ns)\tavg affected elements\t#evals\tavg eval time (ns)\tallInstances()\tcontext elements\n";
+	return "Expression\tClass scope analysis (ns)\tevents\tinstance scope path construction (ns)\tavg instance scope (ns)\tavg affected elements\t#evals\tavg eval time (ns)\tallInstances()\tcontext elements\tleads to empty avg YES time (ns)\tleads to empty YES count\tleads to empty avg NO time (ns)\tleads to empty NO count\n";
     }
 
     @Override
@@ -440,6 +475,43 @@ public class StatisticsImpl extends Statistics {
 	timeToComputeNavigationStepInNanoseconds.put(new Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>(
 		instanceScopeAnalyzer, exp, step), timeInNanoseconds);
     }
+    
+    @Override
+    public void checkingIfParameterlessOperationCallIsEmpty(OperationCallExp opCall, ModelChangeEvent event, RefObject on) {
+	Set<Pair<ModelChangeEvent, RefObject>> set = emptySetCheckForParameterlessOperationCall.get(opCall);
+	if (set == null) {
+	    set = new HashSet<Pair<ModelChangeEvent, RefObject>>();
+	    emptySetCheckForParameterlessOperationCall.put(opCall, set);
+	}
+	set.add(new Pair<ModelChangeEvent, RefObject>(event, on));
+    }
+    
+    @Override
+    public List<Pair<String, Integer>> getParameterlessOperationCallEmptyCheckInfo(CoreConnection conn) {
+	ArrayList<Pair<String, Integer>> result = new ArrayList<Pair<String, Integer>>();
+	com.sap.tc.moin.ocl.utils.impl.OclSerializer serializer = com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(conn);
+	for (Map.Entry<OperationCallExp, Set<Pair<ModelChangeEvent, RefObject>>> entry : emptySetCheckForParameterlessOperationCall.entrySet()) {
+	    String opCallAsString;
+	    try {
+		opCallAsString = serializer.serialize(entry.getKey(),
+		    new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0]) +
+		    "\n ===== in expression =====\n" +
+		  com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(conn).
+		    serializeAndHighlight(AbstractTracer.getRootExpression((RefObjectImpl) entry.getKey(), conn),
+		                          entry.getKey(),
+		    new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0]) +
+		  (InstanceScopeAnalysis.getDefines(conn, AbstractTracer.getRootExpression(
+		        (RefObjectImpl) entry.getKey(), conn)) != null ? "\n ===== which is the body of operation "
+		  				+ InstanceScopeAnalysis.getDefines(conn,
+		  					AbstractTracer.getRootExpression((RefObjectImpl) entry.getKey(), conn))
+		  					.getName() + " =====" : "");
+	    } catch (Exception e) {
+		throw new RuntimeException(e);
+	    }
+	    result.add(new Pair<String, Integer>(opCallAsString, entry.getValue().size()));
+	}
+	return result;
+    }
 
     @Override
     public void haveIntersectingSubclassTreeCalled(MofClass a, MofClass b) {
@@ -451,6 +523,72 @@ public class StatisticsImpl extends Statistics {
 	    count = 0;
 	}
 	haveintersectingSubclassCalls.put(mcs, count+1);
+    }
+
+    @Override
+    public void affectedElementComputedForSourceOfParameterlessOperation(ModelPropertyCallExp attributeOrAssociationEndCall) {
+	Integer i = affectedElementComputedForSourceOfParameterlessOperation .get(attributeOrAssociationEndCall);
+	if (i==null) {
+	    i = 1;
+	} else {
+	    i++;
+	}
+	affectedElementComputedForSourceOfParameterlessOperation.put(attributeOrAssociationEndCall, i);
+    }
+
+    @Override
+    public List<Pair<String, Integer>> getAffectedElementComputedForSourceOfParameterlessOperationInfo(
+	    CoreConnection conn) {
+	ArrayList<Pair<String, Integer>> result = new ArrayList<Pair<String, Integer>>();
+	com.sap.tc.moin.ocl.utils.impl.OclSerializer serializer = com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(conn);
+	for (Map.Entry<ModelPropertyCallExp, Integer> entry : affectedElementComputedForSourceOfParameterlessOperation.entrySet()) {
+	    String opCallAsString;
+	    try {
+		opCallAsString = serializer.serialize(entry.getKey(),
+		    new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0]) +
+		    "\n ===== in expression =====\n" +
+		  com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(conn).
+		    serializeAndHighlight(AbstractTracer.getRootExpression((RefObjectImpl) entry.getKey(), conn),
+		                          entry.getKey(),
+		    new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0]) +
+		  (InstanceScopeAnalysis.getDefines(conn, AbstractTracer.getRootExpression(
+		        (RefObjectImpl) entry.getKey(), conn)) != null ? "\n ===== which is the body of operation "
+		  				+ InstanceScopeAnalysis.getDefines(conn,
+		  					AbstractTracer.getRootExpression((RefObjectImpl) entry.getKey(), conn))
+		  					.getName() + " =====" : "");
+	    } catch (Exception e) {
+		throw new RuntimeException(e);
+	    }
+	    result.add(new Pair<String, Integer>(opCallAsString, entry.getValue()));
+	}
+	return result;
+    }
+
+    @Override
+    public void leadsToEmptySetPerformed(OclExpressionRegistrationImpl forRegistration, long time,
+	    LeadsToEmptySetResult result) {
+	List<Pair<Long, LeadsToEmptySetResult>> list = leadsToEmptySetTimes.get(forRegistration.getName());
+	if (list == null) {
+	    list = new ArrayList<Pair<Long, LeadsToEmptySetResult>>();
+	    leadsToEmptySetTimes.put(forRegistration.getName(), list);
+	}
+	list.add(new Pair<Long, LeadsToEmptySetResult>(time, result));
+    }
+    
+    @Override
+    public String getLeadsToEmptySetPerformancesAsCsv() {
+	StringBuilder result = new StringBuilder();
+	for (Entry<String, List<Pair<Long, LeadsToEmptySetResult>>> entry : leadsToEmptySetTimes.entrySet()) {
+	    for (Pair<Long, LeadsToEmptySetResult> pair : entry.getValue()) {
+		result.append(entry.getKey());
+		result.append('\t');
+		result.append(pair.getB());
+		result.append('\t');
+		result.append(pair.getA());
+		result.append('\n');
+	    }
+	}
+	return result.toString();
     }
 
 }

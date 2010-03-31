@@ -277,7 +277,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
             EvaluationContext evalCtx = new EvaluationContextImpl( oclContext );
 
-            return new StackedEvaluator( ).debug( this.myConnection, expression, evalCtx );
+            return new StackedEvaluator( ).debug( this.myConnection, expression );
 
         } finally {
             // Reset the current context so that the current thread can create
@@ -304,7 +304,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
             EvaluationContext evalCtx = new EvaluationContextImpl( oclContext );
 
-            return new StackedEvaluator( ).debug( this.myConnection, expression, evalCtx );
+            return new StackedEvaluator( ).debug( this.myConnection, expression );
 
         } finally {
             // Reset the current context so that the current thread can create
@@ -764,7 +764,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     private InstanceScopeAnalysis getImpactAnalyzer(CoreConnection conn) {
 
         if ( this.analyzer == null ) {
-	    this.analyzer = new InstanceScopeAnalysis(getExpression(), conn, instanceScopeAnalysisPathCache,
+	    this.analyzer = new InstanceScopeAnalysis(this, conn, instanceScopeAnalysisPathCache,
 		    getClassScopeAnalyzer(/* notifyNewContextElement */false));
         }
         return this.analyzer;

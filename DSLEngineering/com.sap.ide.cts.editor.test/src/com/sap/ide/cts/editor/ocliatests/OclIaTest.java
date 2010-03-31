@@ -171,11 +171,14 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
     public void testAnalysisOfRecursiveOperationWithSelf() throws OclManagerException {
 	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
 		"testAnalysisOfRecursiveOperationWithSelf",
-		"self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()->select(s | s.name = '__TEXT___')", MethodCallExpression.CLASS_DESCRIPTOR);
+		"self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()->select(s | s.name = 'testMethod')", MethodCallExpression.CLASS_DESCRIPTOR);
 
 	// construct something like "new HumbaClass1().m()"
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
+	MethodSignature ms = connection.createElement(MethodSignature.CLASS_DESCRIPTOR);
+	ms.setName("testMethod");
+	cl1.getOwnedSignatures().add(ms);
 	final ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinition(connection, cl1, 1, 1);
 	ctd.setClazz(null); // do that again later to cause the appropriate event
 	final MethodCallExpression mce = connection.createElement(MethodCallExpression.CLASS_DESCRIPTOR);

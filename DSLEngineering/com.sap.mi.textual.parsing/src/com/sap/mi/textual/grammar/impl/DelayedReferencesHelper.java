@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-03-15 16:05:02 +0100 (Mo, 15 Mrz 2010) $
- * Revision: $Revision: 9574 $
- * Author: $Author: c5106462 $
+ * Date: $Date: 2010-03-24 11:09:14 +0100 (Mi, 24 Mrz 2010) $
+ * Revision: $Revision: 9617 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
 
@@ -127,7 +127,8 @@ public class DelayedReferencesHelper {
 	        //we need to delete all elements created for this foreach
 	        if(reference.getTextBlock() != null) {
 	            for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
-                        if(fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
+                        if(fec.getForeachPredicatePropertyInit() != null &&
+                        	fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
                                 reference.getModelElement().equals(fec.getSourceModelelement())) {
                             //delete element and fec 
                             fec.getResultModelElement().refDelete();

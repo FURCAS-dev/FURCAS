@@ -35,6 +35,7 @@ import org.omg.ocl.expressions.ModelPropertyCallExp;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.OperationCallExp;
 import org.omg.ocl.expressions.PrimitiveLiteralExp;
+import org.omg.ocl.expressions.PropertyCallExp;
 import org.omg.ocl.expressions.RealLiteralExp;
 import org.omg.ocl.expressions.StringLiteralExp;
 import org.omg.ocl.expressions.TupleLiteralExp;
@@ -54,6 +55,7 @@ import org.omg.ocl.expressions.__impl.IntegerLiteralExpImpl;
 import org.omg.ocl.expressions.__impl.IterateExpImpl;
 import org.omg.ocl.expressions.__impl.LetExpImpl;
 import org.omg.ocl.expressions.__impl.LoopExpInternal;
+import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
 import org.omg.ocl.expressions.__impl.PropertyCallExpInternal;
 import org.omg.ocl.expressions.__impl.RealLiteralExpImpl;
@@ -85,6 +87,7 @@ import com.sap.tc.moin.ocl.evaluator.stdlib.OclVoid;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OperationNotFoundException;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclCollectionImpl;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclInvalidImpl;
+import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclSequenceImpl;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclVoidImpl;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.iterators.AnyHandler;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.iterators.CollectHandler;
@@ -131,6 +134,7 @@ import com.sap.tc.moin.repository.mmi.model.__impl.MofPackageImpl;
 import com.sap.tc.moin.repository.mmi.model.__impl.OperationImpl;
 import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 import com.sap.tc.moin.repository.mmi.reflect.RefException;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
@@ -142,6 +146,7 @@ import com.sap.tc.moin.repository.shared.logger.MoinLocationEnum;
 import com.sap.tc.moin.repository.shared.logger.MoinLogger;
 import com.sap.tc.moin.repository.shared.logger.MoinLoggerFactory;
 import com.sap.tc.moin.repository.shared.logger.MoinSeverity;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 
 /**
@@ -819,8 +824,14 @@ public class StackedEvaluator extends ExpressionEvaluator {
     
     @Override
     public OclAny evaluate( CoreConnection connection, OclExpression expression, EvaluationContext dummy ) {
+	return this.evaluate(connection, expression, dummy, /* throwExceptionWhenVisiting */ null);
+    }
+
+    @Override
+    public OclAny evaluate(CoreConnection connection, OclExpression expression, EvaluationContext ctx,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	evaluations++;
-        return this.evaluateInt( connection, expression, dummy, false ).getValue( );
+        return this.evaluateInt( connection, expression, false, throwExceptionWhenVisiting ).getValue( );
     }
 
     /**
@@ -828,31 +839,64 @@ public class StackedEvaluator extends ExpressionEvaluator {
      * 
      * @param connection connection
      * @param expression expression
-     * @param dummy not really required
      * @return the debugger root node
      */
-    public OclDebuggerNode debug( CoreConnection connection, OclExpression expression, EvaluationContext dummy ) {
-
-        return this.evaluateInt( connection, expression, dummy, true );
+    public OclDebuggerNode debug( CoreConnection connection, OclExpression expression ) {
+        return this.evaluateInt( connection, expression, true, /* throwExceptionWhenVisiting */ null);
     }
 
-    private MyContext evaluateInt( CoreConnection connection, OclExpression expression, EvaluationContext dummy, boolean debugMode ) {
-
-        CoreSession session = connection.getSession( );
-        ContextStack contextStack = new ContextStack( );
-
+    /**
+     * The <tt>throwExceptionWhenVisiting</tt> argument  can be used to tell the interpreter to throw
+     * an exception when trying to navigate to an attribute or association end starting from a certain
+     * element. This, in turn, can be useful during impact analysis, when after a change event partial
+     * re-evaluation should take place and the caller wants to guarantee that a result is returned
+     * only if modified areas of the model are not touched upon evaluation. Concretely, the pair
+     * is expected to have either an {@link Attribute} or an {@link AssociationEnd} object in role
+     * {@link Pair#getA()} and the source element where navigation starts as role {@link Pair#getB()}.
+     * When a navigation on that source object is performed using the attribute or association,
+     * an unchecked {@link NavigatingModifiedLinkException} is thrown. It is permissible to pass
+     * <tt>null</tt> for <tt>throwExceptionWhenVisiting</tt> which means that no check will be performed
+     * and the exception won't be thrown.
+     */
+    private MyContext evaluateInt( CoreConnection connection, OclExpression expression, boolean debugMode,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting ) {
+        ContextStack contextStack = new ContextStack();
         OclSerializer serializer = null;
-        if ( debugMode ) {
-            serializer = OclSerializer.getInstance( connection );
+        if (debugMode) {
+            serializer = OclSerializer.getInstance(connection);
         }
+        contextStack.push(new MyContext(connection, expression, NodeRoleTypes.Root, serializer));
+        MyContext currentContext = evaluateWithStack(contextStack, connection, throwExceptionWhenVisiting, serializer);
+        return currentContext;
+    }
 
-        contextStack.push( new MyContext( connection, expression, NodeRoleTypes.Root, serializer ) );
+    @Override
+    public OclAny evaluate(CoreConnection connection, PropertyCallExp expression, OclAny sourceObject,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
+	try {
+	    OclExpression sourceExpr = ((PropertyCallExpInternal) expression).getSource(connection);
+	    new EvaluationContextImpl(sourceObject); // push sourceObject onto the evaluation context stack
+	    ContextStack contextStack = new ContextStack();
+	    MyContext rootCtx = new MyContext(connection, expression, NodeRoleTypes.Root, /* serializer */null);
+	    MyContext sourceCtx = new MyContext(connection, sourceExpr, NodeRoleTypes.Source, /* serializer */null);
+	    contextStack.push(sourceCtx);
+	    contextStack.pop(sourceObject); // sets the value on the sourceCtx to sourceObject
+	    rootCtx.addChild(sourceCtx);
+	    contextStack.push(rootCtx);
+	    MyContext currentContext = evaluateWithStack(contextStack, connection, throwExceptionWhenVisiting, /* serializer */
+		    null);
+	    return currentContext.getValue();
+	} finally {
+	    EvaluationContext.CurrentContext.reset();
+	}
+    }
+
+    private MyContext evaluateWithStack(ContextStack contextStack, CoreConnection connection,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting, OclSerializer serializer) {
+        CoreSession session = connection.getSession();
         boolean traceDebug = LOGGER.isLoggedOrTraced( MoinSeverity.DEBUG );
-
-        EvaluationContext rootContext = EvaluationContext.CurrentContext.get( );
-
+	EvaluationContext rootContext = EvaluationContext.CurrentContext.get( );
         MyContext currentContext = null;
-
         while ( !contextStack.isEmpty( ) ) {
 
             currentContext = contextStack.peek( );
@@ -1145,7 +1189,6 @@ public class StackedEvaluator extends ExpressionEvaluator {
 
                 LoopExpInternal loopExp = (LoopExpInternal) currentExp;
 
-                OclCollectionImpl collection = (OclCollectionImpl) src;
                 JmiList<VariableDeclaration> iterators = (JmiList<VariableDeclaration>) loopExp.getIterators( connection );
 
                 List<String> itNames = new ArrayList<String>( );
@@ -1157,12 +1200,15 @@ public class StackedEvaluator extends ExpressionEvaluator {
                     }
                 }
 
+                OclCollection collection;
+                if (!(src instanceof OclCollection)) {
+                    collection = this.oclFactory.createSequenceFromOclAnyObjects(Collections.singletonList(src));
+                } else {
+                    collection = (OclCollectionImpl) src;
+                }
                 Collection<OclAny> wrappedCollection = collection.getWrappedCollection( );
-
                 ResultHandler handler = null;
-
                 if ( currentExp instanceof IterateExp ) {
-
                     VariableDeclarationImpl accumulatorDecl = (VariableDeclarationImpl) ( (IterateExpImpl) loopExp ).getResult( connection );
                     String accumulatorName = accumulatorDecl.getVarName( );
 
@@ -1275,8 +1321,17 @@ public class StackedEvaluator extends ExpressionEvaluator {
 
                     AssociationEndCallExp assocEndCallExp = (AssociationEndCallExp) currentExp;
                     RefObject srcRefObject = ( (OclModelElement) src ).getWrappedRefObject( );
-                    AssociationEnd assocEnd = ( (AssociationEndCallExpImpl) assocEndCallExp ).getReferredAssociationEnd( connection );
-
+		    AssociationEnd assocEnd = ((AssociationEndCallExpImpl) assocEndCallExp).getReferredAssociationEnd(connection);
+		    if (throwExceptionWhenVisiting != null) {
+			for (Pair<RefFeatured, RefObject> throwExceptionWhenVisitingElement : throwExceptionWhenVisiting) {
+			    if (throwExceptionWhenVisitingElement.getA().equals(assocEnd)
+				    && throwExceptionWhenVisitingElement.getB().equals(srcRefObject)) {
+				throw new NavigatingModifiedLinkException("Trying to navigate to association end "
+					+ assocEnd + " starting from element " + srcRefObject
+					+ " but the link has changed which would lead to incorrect results");
+			    }
+			}
+		    }
                     OclAny result = extractAssociationEndValue( connection, srcRefObject, assocEnd );
                     contextStack.pop( result );
 
@@ -1304,7 +1359,17 @@ public class StackedEvaluator extends ExpressionEvaluator {
                             throw new EvaluatorException( MoinOclEvaluatorMessages.MOIN_OCL_EVALUATOR_002 );
                         }
                         RefObjectImpl srcRefObj = (RefObjectImpl) ( (OclModelElement) src ).getWrappedRefObject( );
-                        Object attributeValue = srcRefObj.refGetValue( connection, attribute );
+			if (throwExceptionWhenVisiting != null) {
+			    for (Pair<RefFeatured, RefObject> throwExceptionWhenVisitingElement : throwExceptionWhenVisiting) {
+				if (throwExceptionWhenVisitingElement.getA().equals(attribute)
+					&& throwExceptionWhenVisitingElement.getB().equals(srcRefObj)) {
+				    throw new NavigatingModifiedLinkException("Trying to navigate to association end "
+					    + attribute + " starting from element " + srcRefObj
+					    + " but the link has changed which would lead to incorrect results");
+				}
+			    }
+			}
+			Object attributeValue = srcRefObj.refGetValue( connection, attribute );
 
                         if ( attributeValue != null ) {
                             MultiplicityType multiplicity = attribute.getMultiplicity( );
@@ -1416,9 +1481,7 @@ public class StackedEvaluator extends ExpressionEvaluator {
                 throw new MoinLocalizedBaseRuntimeException( MoinOclEvaluatorMessages.EXPRTYPENOTSUPPORTED, currentExp.getClass( ).getName( ) );
             }
         }
-
-        return currentContext;
-
+	return currentContext;
     }
 
     private OclAny extractAssociationEndValue( CoreConnection connection, RefObject srcRefObject, AssociationEnd assocEnd ) {
@@ -1467,8 +1530,7 @@ public class StackedEvaluator extends ExpressionEvaluator {
             }
             return this.oclFactory.createSetFromRefObjects( refObjs );
         } catch (TypeMismatchException e) {
-            // FIXME this exception currently may occur based on what I consider a bug in the impact analysis
-            // Obviously, for OperationCallExp elements the derivation of the reverse path doesn't work properly.
+            // FIXME this exception currently may occur when forward-navigating during impact analysis
             System.err.println("Caught exception "+e.getMessage()+
         	    ", probably because of bug in OCL Impact Analysis");
             return this.oclFactory.createOrderedSetFromRefObjects(new ArrayList<RefObject>());

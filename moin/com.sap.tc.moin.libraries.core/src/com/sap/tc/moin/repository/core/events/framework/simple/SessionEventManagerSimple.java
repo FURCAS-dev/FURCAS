@@ -478,6 +478,7 @@ public class SessionEventManagerSimple implements SessionEventManager {
 
     // TODO remove again; this is only for statistics purposes
     public static int deliveredEvents = 0;
+    public static int unsuccessfulMatches = 0;
     /**
      * This method notifies all interested listeners by invoking the fireEvent()
      * method on their associated Notifier.
@@ -503,6 +504,8 @@ public class SessionEventManagerSimple implements SessionEventManager {
                 if ( FilterMatchesEvent.matches( event, notifier.getFilter( ) ) ) {
                     deliveredEvents++;
                     notifier.fireEvent( event );
+                } else {
+                    unsuccessfulMatches++;
                 }
             }
         }

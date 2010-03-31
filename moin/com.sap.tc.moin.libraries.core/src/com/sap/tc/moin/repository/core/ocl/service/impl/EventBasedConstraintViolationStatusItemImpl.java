@@ -197,7 +197,7 @@ public class EventBasedConstraintViolationStatusItemImpl implements EventBasedCo
 
             try {
                 EvaluationContext evalCtx = new EvaluationContextImpl( self );
-                return new StackedEvaluator( ).debug( connection, expr, evalCtx );
+                return new StackedEvaluator( ).debug( connection, expr );
 
             } finally {
                 // Reset the current context so that the current thread can create

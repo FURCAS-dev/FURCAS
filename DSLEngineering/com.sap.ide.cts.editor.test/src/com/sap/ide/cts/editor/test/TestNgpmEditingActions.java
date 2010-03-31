@@ -33,10 +33,13 @@ import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.PartitionsNotSavedException;
 import com.sap.tc.moin.repository.ReferencedTransientElementsException;
+import com.sap.tc.moin.repository.core.ConnectionWrapper;
+import com.sap.tc.moin.repository.core.events.framework.simple.SessionEventManagerSimple;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
@@ -488,8 +491,8 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         assertTrue(clazz.is___Alive()); 
         AbstractGrammarBasedEditor editor = openEditor(clazz);
         CtsDocument document = getDocument(editor);
-        document.replace(65, 1, "");
-        document.replace(65, 0, "a");
+        document.replace(63, 1, "");
+        document.replace(63, 0, "a");
         saveAll(editor);
         failOnError(editor);
         assertTrue(clazz.is___Alive());
@@ -1684,31 +1687,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
     };
 
     /**
-     * When changing "this" to the identifier denoting a parameter, a method call on "this" should now have the parameter
-     * VariableExpression as object.
-     */
-    @Test
-    public void testChangeThisToParameter() throws PartInitException, BadLocationException, CoreException {
-	// Source / Copy of: PF.IDE:E03677193DABB480CE4211DE898D0019D29902CC
-	final SapClass refObject = findClass("ThisToParameterChange");
-	assertNotNull(refObject);
-	assertTrue(refObject.is___Alive());
-	AbstractGrammarBasedEditor editor = openEditor(refObject);
-	CtsDocument document = getDocument(editor);
-	document.replace(76, 4, "t");
-	saveAll(editor);
-	// failOnError(editor);
-	assertTrue(refObject.is___Alive());
-	// Your assertions on refObject here
-	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
-	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
-	assertNotNull(mce.getObject());
-	assertTrue(mce.getObject() instanceof VariableExpression);
-	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
-	close(editor);
-    };
-    
-    /**
      * The outcommenting doesn't seem to be honored by the incremental parser.
      */
     @Test
@@ -1743,6 +1721,31 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         close(editor);
     };
    
+    /**
+     * When changing "this" to the identifier denoting a parameter, a method call on "this" should now have the parameter
+     * VariableExpression as object.
+     */
+    @Test
+    public void testChangeThisToParameter() throws PartInitException, BadLocationException, CoreException {
+	// Source / Copy of: PF.IDE:E03677193DABB480CE4211DE898D0019D29902CC
+	final SapClass refObject = findClass("ThisToParameterChange");
+	assertNotNull(refObject);
+	assertTrue(refObject.is___Alive());
+	AbstractGrammarBasedEditor editor = openEditor(refObject);
+	CtsDocument document = getDocument(editor);
+	document.replace(76, 4, "t");
+	saveAll(editor);
+	// failOnError(editor);
+	assertTrue(refObject.is___Alive());
+	// Your assertions on refObject here
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+	assertNotNull(mce.getObject());
+	assertTrue(mce.getObject() instanceof VariableExpression);
+	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+	close(editor);
+    };
+    
     /**
      * Currently fails with a StackOverflowError due to nested update event handler calls
      */
@@ -1799,6 +1802,14 @@ public class TestNgpmEditingActions extends RunletEditorTest {
     public void testReadStatistice() {
 	GlobalDelayedReferenceResolver resolver = GlobalDelayedReferenceResolver.getInstance();
 	System.out.println(resolver.getDebugInfoAsCsv(connection));
+	int changeEvents = SessionEventManagerSimple.changeEvents;
+	int deliveredEvents = SessionEventManagerSimple.deliveredEvents;
+	int unsuccessfulMatches = SessionEventManagerSimple.unsuccessfulMatches;
+	System.out.println(""+changeEvents+" change events, "+deliveredEvents+" of which delivered to listeners, "+
+		unsuccessfulMatches+" unsuccessful match attempts\n");
+	System.out.println(Statistics.getInstance().getAffectedElementComputedForSourceOfParameterlessOperationInfo(
+		((ConnectionWrapper) connection).unwrap()));
+	System.out.println("\n"+Statistics.getInstance().getLeadsToEmptySetPerformancesAsCsv());
     }
 
 }
