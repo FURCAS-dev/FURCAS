@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclToAst"
+    nsURI="http://de.hpi.sam.bp2009.solution.oclToAst" nsPrefix="solution.oclToAst">
+  <eClassifiers xsi:type="ecore:EClass" name="EAnnotationOCLParser">
+    <eOperations name="convertOclAnnotation" unique="false">
+      <eParameters name="modelElement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EModelElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="SOURCE" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="http://de.hpi.sam.bp2009.OCL" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="KIND" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="OCL.Kind" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EXPRESSION" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="OCL.Expression" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="NAME" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="OCL.Name" unsettable="true"/>
+  </eClassifiers>
+</ecore:EPackage>
