@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AllEditorTests.java,v 1.2 2010/03/13 18:11:25 ewillink Exp $
+ * $Id: AllEditorTests.java,v 1.3 2010/04/02 05:38:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor;
 
@@ -21,15 +21,13 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.ocl.examples.test.AllExamplesTests;
-import org.eclipse.ocl.examples.test.editor.ocl.OCLResourceTests;
-import org.eclipse.ocl.examples.test.editor.ocl.ecore.OCLInEcoreResourceTests;
 
 public class AllEditorTests extends TestCase
 {
 	public static void buildSuite(TestSuite suite) {
 		if (AllExamplesTests.eclipseIsRunning()) {
-			suite.addTestSuite(OCLInEcoreResourceTests.class);
-			suite.addTestSuite(OCLResourceTests.class);
+//			suite.addTestSuite(OCLInEcoreResourceTests.class);
+//			suite.addTestSuite(OCLResourceTests.class);
 		}
 	}
 
