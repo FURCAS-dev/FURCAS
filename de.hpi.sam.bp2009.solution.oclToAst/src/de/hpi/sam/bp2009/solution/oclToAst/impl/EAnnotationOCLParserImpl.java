@@ -6,28 +6,17 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.helper.ConstraintKind;
 
@@ -263,22 +252,22 @@ public class EAnnotationOCLParserImpl extends EObjectImpl implements EAnnotation
 		String k = a.getDetails().get(getKIND());
 		OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
 		Helper helper = ocl.createOCLHelper();
-		Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env = ocl.getEnvironment();
 		
 		switch (modelElement.eClass().getClassifierID()){
 			case EcorePackage.ECLASSIFIER:
-				env=env.getFactory().createClassifierContext(env, (EClassifier)modelElement);
+			case EcorePackage.ECLASS:
+			case EcorePackage.EDATA_TYPE:
+				helper.setContext((EClassifier)modelElement);
+				break;
 			case EcorePackage.EATTRIBUTE:
-				env=env.getFactory().createAttributeContext(env, (EAttribute)modelElement);
+				helper.setAttributeContext(((EAttribute)modelElement).getEContainingClass(), (EAttribute)modelElement);
+				break;
 			case EcorePackage.EOPERATION:
-				env=env.getFactory().createOperationContext(env, (EOperation)modelElement);
-			case EcorePackage.EPACKAGE:{
-				List<String> list = new ArrayList<String>();
-				list.add(((EPackage)modelElement).getNsURI().toString());
-				env=env.getFactory().createPackageContext(env, list);
-				}
+				helper.setOperationContext(((EOperation)modelElement).getEContainingClass(), (EOperation)modelElement);
+				break;
 			default:
-				env=env.getFactory().createInstanceContext(env, modelElement);
+				helper.setInstanceContext(modelElement);
+				break;
 		}
 		Constraint c=null;
 		try {
