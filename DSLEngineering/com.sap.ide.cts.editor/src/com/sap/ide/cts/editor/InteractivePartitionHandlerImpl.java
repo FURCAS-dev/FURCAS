@@ -53,12 +53,11 @@ public class InteractivePartitionHandlerImpl extends Dialog implements
 	public SetInteractiveResult getPartitionFor(PartitionHandling ph,
 			ModelPartition partition, RefObject newElement,
 			Connection connection) {
-		
-		return getDialogResult(new Shell(Display.getCurrent()
-				.getActiveShell().getShell(), Display.getCurrent()
-				.getActiveShell().getStyle()), newElement, partition);
-	}
 
+		return getDialogResult(new Shell(Display.getCurrent().getActiveShell()
+				.getShell(), Display.getCurrent().getActiveShell().getStyle()),
+				newElement, partition);
+	}
 
 	protected Object getIndividualResourcesToExport(IAdaptable rootResource) {
 
@@ -73,144 +72,115 @@ public class InteractivePartitionHandlerImpl extends Dialog implements
 		return result[dialog.getResult().length - 1];
 	}
 
-	private SetInteractiveResult getDialogResult(final Shell shell2, RefObject newElement, final ModelPartition partition) {
-		final SetInteractiveResult setResult = new SetInteractiveResult(null, null, false);
+	private SetInteractiveResult getDialogResult(final Shell shell3,
+			RefObject newElement, final ModelPartition partition) {
+		final SetInteractiveResult setResult = new SetInteractiveResult(null,
+				null, false);
 		String name = "";
-		
-		shell2.setText("Please choose one of this options");
-		shell2.setSize(400, 300);
-		shell2.setLayout(new GridLayout());
-		
-		Text text = new Text(shell2, SWT.BORDER|SWT.V_SCROLL|SWT.H_SCROLL);
+
+		shell3.setText("Please choose one of this options");
+		shell3.setSize(400, 300);
+		shell3.setLayout(new GridLayout());
+
+		Text text = new Text(shell3, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		text.setEditable(false);
 		text.setBounds(5, 5, 200, 20);
 		text.setLayoutData(new GridData(SWT.UP, SWT.CENTER, true, true));
 		if (newElement instanceof TextBlock) {
 			if (((TextBlock) newElement).getCorrespondingModelElements().size() > 0) {
-				RefObject newRefObject = ((TextBlock) newElement).getCorrespondingModelElements().get(0);
-				name  = (String) newRefObject.refGetValue("name");
-				text.setText("The TextBlock of the Element : " +name);
+				RefObject newRefObject = ((TextBlock) newElement)
+						.getCorrespondingModelElements().get(0);
+				name = (String) newRefObject.refGetValue("name");
+				text.setText("The TextBlock of the Element : " + name);
 			}
-		}else {
-			name  = (String) newElement.refGetValue("name");
-			text.setText("the Element with the value : " + name );
+		} else {
+			name = (String) newElement.refGetValue("name");
+			text.setText("the Element with the value : " + name);
 		}
-		
-		final Button browse = new Button(shell2, SWT.PUSH);
+
+		final Button browse = new Button(shell3, SWT.PUSH);
 		browse.setText("BROWSE");
 		browse.setSize(15, 15);
 		browse.setLayoutData(new GridData(SWT.RIGHT, SWT.UP, true, true));
 
-		final Button button1 = new Button(shell2, SWT.RADIO);
+		final Button button1 = new Button(shell3, SWT.RADIO);
 		button1.setText("Model");
-		final Button button2 = new Button(shell2, SWT.RADIO);
+		final Button button2 = new Button(shell3, SWT.RADIO);
 		button2.setText("Textblock");
-		final Button button3 = new Button(shell2, SWT.RADIO);
+		final Button button3 = new Button(shell3, SWT.RADIO);
 		button3.setText("All");
-//		button3.setEnabled(true);
-		final Button button4 = new Button(shell2, SWT.CHECK);
+		// button3.setEnabled(true);
+		final Button button4 = new Button(shell3, SWT.CHECK);
 		button4.setText("For All the next Elements");
-		
-		
-		final Button ok = new Button(shell2, SWT.PUSH);
+
+		final Button ok = new Button(shell3, SWT.PUSH);
 		ok.setText("OK");
 		ok.setSize(15, 15);
 		ok.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false, true));
 
-		final Button cancel = new Button(shell2, SWT.PUSH);
+		final Button cancel = new Button(shell3, SWT.PUSH);
 		cancel.setText("CANCEL");
-//		cancel.setSize(15, 15);
+		// cancel.setSize(15, 15);
 		cancel.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false, true));
-		
-		shell2.open();
-		
+
 		Listener listener = new Listener() {
 			@Override
 			public void handleEvent(Event event) {
 				response = "";
-//				interactivePartition = false;
-				targetPRI = null;
-//				if (event.widget == button1) {
-//					response = "Model";
-//					setResult.setMainPartitionContent(response);
-//					System.out.println("Model was clicked ");
-//				} else if (event.widget == button2) {
-//					response = "Textblocks";
-//					setResult.setMainPartitionContent(response);
-//					System.out.println("Textblocks was clicked ");
-//				} else if (event.widget == button3) {
-//					response = "All";
-//					setResult.setMainPartitionContent(response);
-//					System.out.println("All was clicked ");
-//				}else if (event.widget == button4) {
-//					setResult.setInteractivePartition(true);
-//					System.out.println("For All the Elements was clicked ");
+				// interactivePartition = false;
+				targetPRI = null; 
+				
 				if (event.widget == browse) {
 					project = ModelManager.getModelAdapter().getProject(
 							partition.getPri().getCri());
 					object = getIndividualResourcesToExport(project);
 
 					IPath path = new Path("src/".concat(object.toString()));
-					targetPRI = ModelManager.getPartitionService().getPRI(project,
-							path);
+					targetPRI = ModelManager.getPartitionService().getPRI(
+							project, path);
 					setResult.setPri_Result(targetPRI);
 					System.out.println("browse was clicked ");
 					browse.setEnabled(false);
-				}else if (event.widget == ok) {
+				} else if (event.widget == ok) {
 					System.out.println("ok was clicked ");
-					
-//					shell2.close();
-				}else if (event.widget == cancel) {
-					// eventResponse.add(response);
-					// responses.put(new Integer(2), eventResponse);
+					if (button1.getSelection()) {
+						response = "Model";
+						setResult.setMainPartitionContent(response);
+						System.out.println("Model was clicked ");
+					} else if (button2.getSelection()) {
+						response = "Textblocks";
+						setResult.setMainPartitionContent(response);
+						System.out.println("Textblocks was clicked ");
+					} else {
+						response = "All";
+						setResult.setMainPartitionContent(response);
+						System.out.println("All was clicked ");
+					}
+					if (button4.getSelection()) {
+						setResult.setInteractivePartition(true);
+						System.out.println("For All the Elements was clicked ");
+					}
+					shell3.close();
+
+				} else if (event.widget == cancel) {
 					System.out.println("cancel was clicked ");
-//					shell2.close();
+					 shell3.close();
 				}
 			}
-			
 
 		};
-		
-		
 
-//		button1.addListener(SWT.Selection, listener);
-//		button2.addListener(SWT.Selection, listener);
-//		button3.addListener(SWT.Selection, listener);
 		browse.addListener(SWT.Selection, listener);
 		ok.addListener(SWT.Selection, listener);
 		cancel.addListener(SWT.Selection, listener);
-	
-		 while (!shell.getDisplay().isDisposed()) {
-		      if (!shell.getDisplay().readAndDispatch()) {
-		    	  shell.getDisplay().sleep();
-		      }
-		   
-		 shell.getDisplay().dispose();
-		 }
-		 
-		
-		
-		if (button1.getSelection()) {
-			response = "Model";
-			setResult.setMainPartitionContent(response);
-			System.out.println("Model was clicked ");
-		} else if (button2.getSelection()) {
-			response = "Textblocks";
-			setResult.setMainPartitionContent(response);
-			System.out.println("Textblocks was clicked ");
-		} else {
-			response = "All";
-			setResult.setMainPartitionContent(response);
-			System.out.println("All was clicked ");
-		}
-		if (button4.getSelection()) {
-			setResult.setInteractivePartition(true);
-			System.out.println("For All the Elements was clicked ");
-		}
-		
-		 
-		return setResult;
-		
-	}
 
+		shell3.open();
+		while (!shell3.isDisposed()) {
+			if (!shell3.getDisplay().readAndDispatch()) {
+				shell3.getDisplay().sleep();
+			}
+		}
+
+		return setResult;
+	}
 }
