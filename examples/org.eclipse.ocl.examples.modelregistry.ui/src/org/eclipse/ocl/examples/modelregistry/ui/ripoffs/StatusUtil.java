@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2000, 2005 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +10,11 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *     E.D.Willink - copied from org.eclipse.jdt.internal.ui.dialogs
- *******************************************************************************/
+ *
+ * </copyright>
+ *
+ * $Id: StatusUtil.java,v 1.2 2010/04/08 06:26:00 ewillink Exp $
+ */
 package org.eclipse.ocl.examples.modelregistry.ui.ripoffs;
 
 import org.eclipse.core.runtime.IStatus;
