@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2007,2010 Eclipse Modeling Project.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +9,11 @@
  *
  * Contributors:
  *     E.D.Willink - initial API and implementation
- *******************************************************************************/
+ *
+ * </copyright>
+ *
+ * $Id: CSTFormattingHelper.java,v 1.2 2010/04/08 06:26:17 ewillink Exp $
+ */
 package org.eclipse.ocl.examples.parser.utils;
 
 import java.util.ArrayList;
