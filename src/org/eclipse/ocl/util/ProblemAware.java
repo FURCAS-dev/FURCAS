@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2009 Borland Software Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +9,11 @@
  *
  * Contributors:
  *     Radek Dvorak - initial API and implementation
- *******************************************************************************/
+ *
+ * </copyright>
+ *
+ * $Id: ProblemAware.java,v 1.2 2010/04/08 06:26:42 ewillink Exp $
+ */
 package org.eclipse.ocl.util;
 
 import org.eclipse.emf.common.util.Diagnostic;

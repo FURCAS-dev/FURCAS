@@ -1,4 +1,6 @@
-/*******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +12,13 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.6 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.7 2010/04/08 06:26:42 ewillink Exp $
  * /
- *******************************************************************************/
+ *
+ * </copyright>
+ *
+ * $Id: UtilitiesFactoryImpl.java,v 1.7 2010/04/08 06:26:42 ewillink Exp $
+ */
 package org.eclipse.ocl.utilities.impl;
 
 import org.eclipse.emf.ecore.EClass;
