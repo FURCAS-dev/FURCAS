@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-04-06 11:42:53
+// $ANTLR 3.1.1 Z:\\cts.git\\ngpm\\com.sap.coghead.editor\\generated\\generated\\CollectionLevelPermission.g 2010-04-07 10:32:33
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
