@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 Eclipse Modeling Project and others.
+ * Copyright (c) 2010 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DelegateEClassifierAdapter.java,v 1.2 2010/03/22 20:03:18 ewillink Exp $
+ * $Id: DelegateEClassifierAdapter.java,v 1.3 2010/04/08 06:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
