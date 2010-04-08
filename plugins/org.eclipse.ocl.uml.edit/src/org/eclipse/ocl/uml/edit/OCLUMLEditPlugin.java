@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLEditPlugin.java,v 1.1 2009/10/30 19:06:07 ewillink Exp $
+ * $Id: OCLUMLEditPlugin.java,v 1.2 2010/04/08 06:25:51 ewillink Exp $
  */
 package org.eclipse.ocl.uml.edit;
 
