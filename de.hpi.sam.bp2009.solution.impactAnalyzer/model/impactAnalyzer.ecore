@@ -8,11 +8,11 @@
       <details key="documentation"/>
     </eAnnotations>
     <eOperations name="createFilterForQuery" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventFilter">
-      <eParameters name="query" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
+      <eParameters name="query" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/Constraint"/>
     </eOperations>
-    <eOperations name="getContextObjects" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression">
-      <eParameters name="event" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventNotification"/>
-      <eParameters name="query" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
+    <eOperations name="getContextObjects" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/Constraint">
+      <eParameters name="event" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//ModelChangeEvent"/>
+      <eParameters name="query" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/Constraint"/>
     </eOperations>
   </eClassifiers>
 </ecore:EPackage>

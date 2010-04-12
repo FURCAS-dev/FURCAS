@@ -35,24 +35,6 @@ public interface EventManagerFactory extends EFactory {
 	EventManager createEventManager();
 
 	/**
-	 * Returns a new object of class '<em>Model Change Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Change Event</em>'.
-	 * @generated
-	 */
-	ModelChangeEvent createModelChangeEvent();
-
-	/**
-	 * Returns a new object of class '<em>Element Change Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Change Event</em>'.
-	 * @generated
-	 */
-	ElementChangeEvent createElementChangeEvent();
-
-	/**
 	 * Returns a new object of class '<em>Attribute Value Change Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,24 +42,6 @@ public interface EventManagerFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeValueChangeEvent createAttributeValueChangeEvent();
-
-	/**
-	 * Returns a new object of class '<em>Element Life Cycle Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Life Cycle Event</em>'.
-	 * @generated
-	 */
-	ElementLifeCycleEvent createElementLifeCycleEvent();
-
-	/**
-	 * Returns a new object of class '<em>Link Life Cycle Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Life Cycle Event</em>'.
-	 * @generated
-	 */
-	LinkLifeCycleEvent createLinkLifeCycleEvent();
 
 	/**
 	 * Returns a new object of class '<em>Element Create Event</em>'.
@@ -215,15 +179,6 @@ public interface EventManagerFactory extends EFactory {
 	AssociationFilter createAssociationFilter();
 
 	/**
-	 * Returns a new object of class '<em>Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event Notification</em>'.
-	 * @generated
-	 */
-	EventNotification createEventNotification();
-
-	/**
 	 * Returns a new object of class '<em>Event Mappper</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -231,6 +186,15 @@ public interface EventManagerFactory extends EFactory {
 	 * @generated
 	 */
 	EventMappper createEventMappper();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Multi Value Change Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Multi Value Change Event</em>'.
+	 * @generated
+	 */
+	AttributeMultiValueChangeEvent createAttributeMultiValueChangeEvent();
 
 	/**
 	 * Returns the package supported by this factory.

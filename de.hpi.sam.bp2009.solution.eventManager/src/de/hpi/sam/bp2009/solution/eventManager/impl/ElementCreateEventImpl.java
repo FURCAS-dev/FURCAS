@@ -6,10 +6,10 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->

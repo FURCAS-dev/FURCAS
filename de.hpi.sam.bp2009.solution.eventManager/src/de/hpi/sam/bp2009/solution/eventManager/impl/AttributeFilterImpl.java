@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
@@ -96,12 +97,15 @@ public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if(!(event.eClass().equals(EventManagerPackage.Literals.ATTRIBUTE_VALUE_CHANGE_EVENT)))
+			return false;
+		AttributeValueChangeEvent a= (AttributeValueChangeEvent)event;
+		if(a.getChangedAttribute().equals(getAttribute()))
+			return true;
+		return false;
 	}
 	/**
 	 * <!-- begin-user-doc -->

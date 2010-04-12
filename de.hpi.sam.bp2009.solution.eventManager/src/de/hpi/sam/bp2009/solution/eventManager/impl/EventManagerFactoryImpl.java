@@ -66,11 +66,7 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case EventManagerPackage.EVENT_MANAGER: return createEventManager();
-			case EventManagerPackage.MODEL_CHANGE_EVENT: return createModelChangeEvent();
-			case EventManagerPackage.ELEMENT_CHANGE_EVENT: return createElementChangeEvent();
 			case EventManagerPackage.ATTRIBUTE_VALUE_CHANGE_EVENT: return createAttributeValueChangeEvent();
-			case EventManagerPackage.ELEMENT_LIFE_CYCLE_EVENT: return createElementLifeCycleEvent();
-			case EventManagerPackage.LINK_LIFE_CYCLE_EVENT: return createLinkLifeCycleEvent();
 			case EventManagerPackage.ELEMENT_CREATE_EVENT: return createElementCreateEvent();
 			case EventManagerPackage.ELEMENT_DELETE_EVENT: return createElementDeleteEvent();
 			case EventManagerPackage.LINK_CREATE_EVENT: return createLinkCreateEvent();
@@ -86,8 +82,8 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 			case EventManagerPackage.COMPOSITION_HIERARCHY_FILTER: return createCompositionHierarchyFilter();
 			case EventManagerPackage.PACKAGE_FILTER: return createPackageFilter();
 			case EventManagerPackage.ASSOCIATION_FILTER: return createAssociationFilter();
-			case EventManagerPackage.EVENT_NOTIFICATION: return createEventNotification();
 			case EventManagerPackage.EVENT_MAPPPER: return createEventMappper();
+			case EventManagerPackage.ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT: return createAttributeMultiValueChangeEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -146,49 +142,9 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelChangeEvent createModelChangeEvent() {
-		ModelChangeEventImpl modelChangeEvent = new ModelChangeEventImpl();
-		return modelChangeEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ElementChangeEvent createElementChangeEvent() {
-		ElementChangeEventImpl elementChangeEvent = new ElementChangeEventImpl();
-		return elementChangeEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public AttributeValueChangeEvent createAttributeValueChangeEvent() {
 		AttributeValueChangeEventImpl attributeValueChangeEvent = new AttributeValueChangeEventImpl();
 		return attributeValueChangeEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ElementLifeCycleEvent createElementLifeCycleEvent() {
-		ElementLifeCycleEventImpl elementLifeCycleEvent = new ElementLifeCycleEventImpl();
-		return elementLifeCycleEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LinkLifeCycleEvent createLinkLifeCycleEvent() {
-		LinkLifeCycleEventImpl linkLifeCycleEvent = new LinkLifeCycleEventImpl();
-		return linkLifeCycleEvent;
 	}
 
 	/**
@@ -346,9 +302,9 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventNotification createEventNotification() {
-		EventNotificationImpl eventNotification = new EventNotificationImpl();
-		return eventNotification;
+	public EventMappper createEventMappper() {
+		EventMappperImpl eventMappper = new EventMappperImpl();
+		return eventMappper;
 	}
 
 	/**
@@ -356,9 +312,9 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventMappper createEventMappper() {
-		EventMappperImpl eventMappper = new EventMappperImpl();
-		return eventMappper;
+	public AttributeMultiValueChangeEvent createAttributeMultiValueChangeEvent() {
+		AttributeMultiValueChangeEventImpl attributeMultiValueChangeEvent = new AttributeMultiValueChangeEventImpl();
+		return attributeMultiValueChangeEvent;
 	}
 
 	/**

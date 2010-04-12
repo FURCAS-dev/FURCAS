@@ -7,10 +7,10 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Constraint;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ public interface ImpactAnalyzer extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EventFilter createFilterForQuery(OCLExpression query);
+	EventFilter createFilterForQuery(Constraint query);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,6 +37,6 @@ public interface ImpactAnalyzer extends EObject {
 	 * @model
 	 * @generated
 	 */
-	OCLExpression getContextObjects(EventNotification event, OCLExpression query);
+	Constraint getContextObjects(ModelChangeEvent event, Constraint query);
 
 } // ImpactAnalyzer

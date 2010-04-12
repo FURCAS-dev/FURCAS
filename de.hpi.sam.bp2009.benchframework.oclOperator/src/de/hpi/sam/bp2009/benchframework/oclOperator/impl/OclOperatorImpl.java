@@ -6,7 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import org.eclipse.emf.common.notify.Adapter;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.Notifier;
@@ -18,10 +19,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.OCL.Query;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -37,6 +38,8 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
@@ -512,22 +515,21 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@SuppressWarnings("unchecked")
 	public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
 		assert(resource!=null);
-		OclUtil oclUtil = OclOperatorFactory.eINSTANCE.createOclUtil();
+		EList<Constraint> list= new BasicEList<Constraint>();
 		OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
-		EList<Query> list= new BasicEList<Query>();
-		
 		for(String con: option.getConstraints()){
-			Query q = null;
 			try {
-				OCLExpression expr = (OCLExpression) oclUtil.getOCLExpression(con, resource);
-				q = ocl.createQuery(expr);
+				//FIXME verify and test, I assume that a model context is necessary, steal it from the 
+				OCLInput input = new OCLInput(con);
+				List<Constraint> test = ocl.parse(input);
+				for(Constraint c:test)
+					list.add(c);
 			} catch (ParserException e) {
 				throw new IllegalArgumentException("Invalid Query, parsing failed " + e.getMessage(), e);
 			}
-			list.add(q);
+		
 		}
 		
 		final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
@@ -541,29 +543,20 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 		else if(qe == null)
 			throw new IllegalArgumentException("Invalid Testrun, no Query Evaluator defined");
 		else{
-			for (Query item: list){
-				EventFilter filter = ia.createFilterForQuery(item.getExpression());
-				em.subscribe((EList<Notifier>) resource, filter, new Adapter() {
-
+			for (Constraint item: list){
+				EventFilter filter = ia.createFilterForQuery(item);
+				EList<Notifier> notifiers = new BasicEList<Notifier>();
+				notifiers.add(resource);
+				em.subscribe(notifiers, filter, new EventListenerImpl() {
 					@Override
-					public void setTarget(Notifier newTarget) {
-					}
-
-					@Override
-					public void notifyChanged(Notification notification) {
+					public void handleEvent(ModelChangeEvent event,
+							EventFilter matchingFilter) {
 						//TODO: call ia to getContext Object
-						System.out.println(getName() +" gets Notfied");
+						System.out.println("handleEvent");
+						super.handleEvent(event, matchingFilter);
+						
 					}
-
-					@Override
-					public boolean isAdapterForType(Object type) {
-						return false;
-					}
-
-					@Override
-					public Notifier getTarget() {
-						return ia;
-					}});
+				});
 			}
 		}
 	}

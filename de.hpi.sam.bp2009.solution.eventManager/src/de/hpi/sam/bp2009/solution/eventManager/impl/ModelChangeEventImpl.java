@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ModelChangeEventImpl extends EObjectImpl implements ModelChangeEvent {
+public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelChangeEvent {
 	/**
 	 * The cached value of the '{@link #getSourceObject() <em>Source Object</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -98,6 +99,13 @@ public class ModelChangeEventImpl extends EObjectImpl implements ModelChangeEven
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT, oldSourceObject, sourceObject));
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	abstract public EventFilter getFilter();
 
 	/**
 	 * <!-- begin-user-doc -->

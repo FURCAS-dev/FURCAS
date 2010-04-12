@@ -173,11 +173,11 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		initEClass(impactAnalyzerEClass, ImpactAnalyzer.class, "ImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = addEOperation(impactAnalyzerEClass, theEventManagerPackage.getEventFilter(), "createFilterForQuery", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getOCLExpression(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getConstraint(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(impactAnalyzerEClass, theEcorePackage.getOCLExpression(), "getContextObjects", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEventManagerPackage.getEventNotification(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getOCLExpression(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(impactAnalyzerEClass, theEcorePackage.getConstraint(), "getContextObjects", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEventManagerPackage.getModelChangeEvent(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getConstraint(), "query", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

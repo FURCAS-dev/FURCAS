@@ -6,6 +6,9 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
+import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -13,9 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,9 +103,13 @@ public class AssociationFilterImpl extends EObjectImpl implements AssociationFil
 	 * @generated NOT
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		//TODO Handle specific assoziations
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if(!(event instanceof LinkLifeCycleEvent))
+			return false;
+		LinkLifeCycleEvent l = (LinkLifeCycleEvent)event;
+		if(l.getChangedReference().equals(getReference()))
+			return true;
+		return false;
+		
 	}
 
 	/**

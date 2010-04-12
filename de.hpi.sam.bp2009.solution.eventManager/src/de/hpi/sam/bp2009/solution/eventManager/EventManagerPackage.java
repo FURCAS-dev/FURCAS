@@ -136,13 +136,22 @@ public interface EventManagerPackage extends EPackage {
 	int ELEMENT_CHANGE_EVENT__SOURCE_OBJECT = MODEL_CHANGE_EVENT__SOURCE_OBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_CHANGE_EVENT__CHANGED_CLASS = MODEL_CHANGE_EVENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Element Change Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_CHANGE_EVENT_FEATURE_COUNT = MODEL_CHANGE_EVENT_FEATURE_COUNT + 0;
+	int ELEMENT_CHANGE_EVENT_FEATURE_COUNT = MODEL_CHANGE_EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeValueChangeEventImpl <em>Attribute Value Change Event</em>}' class.
@@ -164,13 +173,49 @@ public interface EventManagerPackage extends EPackage {
 	int ATTRIBUTE_VALUE_CHANGE_EVENT__SOURCE_OBJECT = ELEMENT_CHANGE_EVENT__SOURCE_OBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_CLASS = ELEMENT_CHANGE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Changed Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_ATTRIBUTE = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Before</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_CHANGE_EVENT__BEFORE = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>After</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_VALUE_CHANGE_EVENT__AFTER = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Value Change Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_VALUE_CHANGE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
+	int ATTRIBUTE_VALUE_CHANGE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.LinkLifeCycleEventImpl <em>Link Life Cycle Event</em>}' class.
@@ -202,13 +247,31 @@ public interface EventManagerPackage extends EPackage {
 	int ELEMENT_LIFE_CYCLE_EVENT__SOURCE_OBJECT = ELEMENT_CHANGE_EVENT__SOURCE_OBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_LIFE_CYCLE_EVENT__CHANGED_CLASS = ELEMENT_CHANGE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_LIFE_CYCLE_EVENT__CONTAINING_ELEMENT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Element Life Cycle Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_LIFE_CYCLE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
+	int ELEMENT_LIFE_CYCLE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Object</b></em>' reference.
@@ -220,13 +283,40 @@ public interface EventManagerPackage extends EPackage {
 	int LINK_LIFE_CYCLE_EVENT__SOURCE_OBJECT = ELEMENT_CHANGE_EVENT__SOURCE_OBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_LIFE_CYCLE_EVENT__CHANGED_CLASS = ELEMENT_CHANGE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Changed Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_LIFE_CYCLE_EVENT__CHANGED_REFERENCE = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Corresponding Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_LIFE_CYCLE_EVENT__CORRESPONDING_OBJECT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Link Life Cycle Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_LIFE_CYCLE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
+	int LINK_LIFE_CYCLE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ElementCreateEventImpl <em>Element Create Event</em>}' class.
@@ -246,6 +336,24 @@ public interface EventManagerPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENT_CREATE_EVENT__SOURCE_OBJECT = ELEMENT_LIFE_CYCLE_EVENT__SOURCE_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_CREATE_EVENT__CHANGED_CLASS = ELEMENT_LIFE_CYCLE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_CREATE_EVENT__CONTAINING_ELEMENT = ELEMENT_LIFE_CYCLE_EVENT__CONTAINING_ELEMENT;
 
 	/**
 	 * The number of structural features of the '<em>Element Create Event</em>' class.
@@ -276,6 +384,24 @@ public interface EventManagerPackage extends EPackage {
 	int ELEMENT_DELETE_EVENT__SOURCE_OBJECT = ELEMENT_LIFE_CYCLE_EVENT__SOURCE_OBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_DELETE_EVENT__CHANGED_CLASS = ELEMENT_LIFE_CYCLE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_DELETE_EVENT__CONTAINING_ELEMENT = ELEMENT_LIFE_CYCLE_EVENT__CONTAINING_ELEMENT;
+
+	/**
 	 * The number of structural features of the '<em>Element Delete Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,6 +430,33 @@ public interface EventManagerPackage extends EPackage {
 	int LINK_CREATE_EVENT__SOURCE_OBJECT = LINK_LIFE_CYCLE_EVENT__SOURCE_OBJECT;
 
 	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_CREATE_EVENT__CHANGED_CLASS = LINK_LIFE_CYCLE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Changed Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_CREATE_EVENT__CHANGED_REFERENCE = LINK_LIFE_CYCLE_EVENT__CHANGED_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Corresponding Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_CREATE_EVENT__CORRESPONDING_OBJECT = LINK_LIFE_CYCLE_EVENT__CORRESPONDING_OBJECT;
+
+	/**
 	 * The number of structural features of the '<em>Link Create Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -330,6 +483,33 @@ public interface EventManagerPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK_DELETE_EVENT__SOURCE_OBJECT = LINK_LIFE_CYCLE_EVENT__SOURCE_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_DELETE_EVENT__CHANGED_CLASS = LINK_LIFE_CYCLE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Changed Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_DELETE_EVENT__CHANGED_REFERENCE = LINK_LIFE_CYCLE_EVENT__CHANGED_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Corresponding Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_DELETE_EVENT__CORRESPONDING_OBJECT = LINK_LIFE_CYCLE_EVENT__CORRESPONDING_OBJECT;
 
 	/**
 	 * The number of structural features of the '<em>Link Delete Event</em>' class.
@@ -668,43 +848,6 @@ public interface EventManagerPackage extends EPackage {
 	int ASSOCIATION_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventNotificationImpl <em>Event Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventNotificationImpl
-	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventNotification()
-	 * @generated
-	 */
-	int EVENT_NOTIFICATION = 22;
-
-	/**
-	 * The feature id for the '<em><b>Event</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_NOTIFICATION__EVENT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Notification</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_NOTIFICATION__NOTIFICATION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Event Notification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_NOTIFICATION_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventMappperImpl <em>Event Mappper</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -712,7 +855,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventMappper()
 	 * @generated
 	 */
-	int EVENT_MAPPPER = 23;
+	int EVENT_MAPPPER = 22;
 
 	/**
 	 * The number of structural features of the '<em>Event Mappper</em>' class.
@@ -724,6 +867,98 @@ public interface EventManagerPackage extends EPackage {
 	int EVENT_MAPPPER_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl <em>Event Listener</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventListener()
+	 * @generated
+	 */
+	int EVENT_LISTENER = 23;
+
+	/**
+	 * The number of structural features of the '<em>Event Listener</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_LISTENER_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeMultiValueChangeEventImpl <em>Attribute Multi Value Change Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.AttributeMultiValueChangeEventImpl
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getAttributeMultiValueChangeEvent()
+	 * @generated
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT = 24;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__SOURCE_OBJECT = ATTRIBUTE_VALUE_CHANGE_EVENT__SOURCE_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Changed Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__CHANGED_CLASS = ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Changed Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__CHANGED_ATTRIBUTE = ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Before</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__BEFORE = ATTRIBUTE_VALUE_CHANGE_EVENT__BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>After</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__AFTER = ATTRIBUTE_VALUE_CHANGE_EVENT__AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Add</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__ADD = ATTRIBUTE_VALUE_CHANGE_EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Multi Value Change Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT_FEATURE_COUNT = ATTRIBUTE_VALUE_CHANGE_EVENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '<em>Adapter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -731,7 +966,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getAdapter()
 	 * @generated
 	 */
-	int ADAPTER = 24;
+	int ADAPTER = 25;
 
 
 	/**
@@ -742,7 +977,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getNotification()
 	 * @generated
 	 */
-	int NOTIFICATION = 25;
+	int NOTIFICATION = 26;
 
 
 	/**
@@ -753,7 +988,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getNotifier()
 	 * @generated
 	 */
-	int NOTIFIER = 26;
+	int NOTIFIER = 27;
 
 
 	/**
@@ -809,6 +1044,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getElementChangeEvent();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent#getChangedClass <em>Changed Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Changed Class</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent#getChangedClass()
+	 * @see #getElementChangeEvent()
+	 * @generated
+	 */
+	EReference getElementChangeEvent_ChangedClass();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent <em>Attribute Value Change Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,6 +1063,39 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAttributeValueChangeEvent();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent#getChangedAttribute <em>Changed Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Changed Attribute</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent#getChangedAttribute()
+	 * @see #getAttributeValueChangeEvent()
+	 * @generated
+	 */
+	EReference getAttributeValueChangeEvent_ChangedAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent#getBefore <em>Before</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Before</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent#getBefore()
+	 * @see #getAttributeValueChangeEvent()
+	 * @generated
+	 */
+	EAttribute getAttributeValueChangeEvent_Before();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent#getAfter <em>After</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>After</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent#getAfter()
+	 * @see #getAttributeValueChangeEvent()
+	 * @generated
+	 */
+	EAttribute getAttributeValueChangeEvent_After();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent <em>Element Life Cycle Event</em>}'.
@@ -829,6 +1108,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getElementLifeCycleEvent();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent#getContainingElement <em>Containing Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Containing Element</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent#getContainingElement()
+	 * @see #getElementLifeCycleEvent()
+	 * @generated
+	 */
+	EReference getElementLifeCycleEvent_ContainingElement();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent <em>Link Life Cycle Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -837,6 +1127,28 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLinkLifeCycleEvent();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent#getChangedReference <em>Changed Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Changed Reference</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent#getChangedReference()
+	 * @see #getLinkLifeCycleEvent()
+	 * @generated
+	 */
+	EReference getLinkLifeCycleEvent_ChangedReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent#getCorrespondingObject <em>Corresponding Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Corresponding Object</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent#getCorrespondingObject()
+	 * @see #getLinkLifeCycleEvent()
+	 * @generated
+	 */
+	EReference getLinkLifeCycleEvent_CorrespondingObject();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent <em>Element Create Event</em>}'.
@@ -1120,38 +1432,6 @@ public interface EventManagerPackage extends EPackage {
 	EReference getAssociationFilter_Reference();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventNotification <em>Event Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event Notification</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventNotification
-	 * @generated
-	 */
-	EClass getEventNotification();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.EventNotification#getEvent <em>Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Event</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventNotification#getEvent()
-	 * @see #getEventNotification()
-	 * @generated
-	 */
-	EReference getEventNotification_Event();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.eventManager.EventNotification#getNotification <em>Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Notification</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventNotification#getNotification()
-	 * @see #getEventNotification()
-	 * @generated
-	 */
-	EAttribute getEventNotification_Notification();
-
-	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMappper <em>Event Mappper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1160,6 +1440,37 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEventMappper();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventListener <em>Event Listener</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event Listener</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventListener
+	 * @generated
+	 */
+	EClass getEventListener();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent <em>Attribute Multi Value Change Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Multi Value Change Event</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent
+	 * @generated
+	 */
+	EClass getAttributeMultiValueChangeEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent#isAdd <em>Add</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Add</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent#isAdd()
+	 * @see #getAttributeMultiValueChangeEvent()
+	 * @generated
+	 */
+	EAttribute getAttributeMultiValueChangeEvent_Add();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.notify.Adapter <em>Adapter</em>}'.
@@ -1263,6 +1574,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass ELEMENT_CHANGE_EVENT = eINSTANCE.getElementChangeEvent();
 
 		/**
+		 * The meta object literal for the '<em><b>Changed Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT_CHANGE_EVENT__CHANGED_CLASS = eINSTANCE.getElementChangeEvent_ChangedClass();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeValueChangeEventImpl <em>Attribute Value Change Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1271,6 +1590,30 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ATTRIBUTE_VALUE_CHANGE_EVENT = eINSTANCE.getAttributeValueChangeEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Changed Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_ATTRIBUTE = eINSTANCE.getAttributeValueChangeEvent_ChangedAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Before</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_VALUE_CHANGE_EVENT__BEFORE = eINSTANCE.getAttributeValueChangeEvent_Before();
+
+		/**
+		 * The meta object literal for the '<em><b>After</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_VALUE_CHANGE_EVENT__AFTER = eINSTANCE.getAttributeValueChangeEvent_After();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ElementLifeCycleEventImpl <em>Element Life Cycle Event</em>}' class.
@@ -1283,6 +1626,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass ELEMENT_LIFE_CYCLE_EVENT = eINSTANCE.getElementLifeCycleEvent();
 
 		/**
+		 * The meta object literal for the '<em><b>Containing Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT_LIFE_CYCLE_EVENT__CONTAINING_ELEMENT = eINSTANCE.getElementLifeCycleEvent_ContainingElement();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.LinkLifeCycleEventImpl <em>Link Life Cycle Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1291,6 +1642,22 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LINK_LIFE_CYCLE_EVENT = eINSTANCE.getLinkLifeCycleEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Changed Reference</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LINK_LIFE_CYCLE_EVENT__CHANGED_REFERENCE = eINSTANCE.getLinkLifeCycleEvent_ChangedReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Corresponding Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LINK_LIFE_CYCLE_EVENT__CORRESPONDING_OBJECT = eINSTANCE.getLinkLifeCycleEvent_CorrespondingObject();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ElementCreateEventImpl <em>Element Create Event</em>}' class.
@@ -1541,32 +1908,6 @@ public interface EventManagerPackage extends EPackage {
 		EReference ASSOCIATION_FILTER__REFERENCE = eINSTANCE.getAssociationFilter_Reference();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventNotificationImpl <em>Event Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventNotificationImpl
-		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventNotification()
-		 * @generated
-		 */
-		EClass EVENT_NOTIFICATION = eINSTANCE.getEventNotification();
-
-		/**
-		 * The meta object literal for the '<em><b>Event</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT_NOTIFICATION__EVENT = eINSTANCE.getEventNotification_Event();
-
-		/**
-		 * The meta object literal for the '<em><b>Notification</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EVENT_NOTIFICATION__NOTIFICATION = eINSTANCE.getEventNotification_Notification();
-
-		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventMappperImpl <em>Event Mappper</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1575,6 +1916,34 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EVENT_MAPPPER = eINSTANCE.getEventMappper();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl <em>Event Listener</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventListener()
+		 * @generated
+		 */
+		EClass EVENT_LISTENER = eINSTANCE.getEventListener();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeMultiValueChangeEventImpl <em>Attribute Multi Value Change Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.AttributeMultiValueChangeEventImpl
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getAttributeMultiValueChangeEvent()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT = eINSTANCE.getAttributeMultiValueChangeEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Add</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__ADD = eINSTANCE.getAttributeMultiValueChangeEvent_Add();
 
 		/**
 		 * The meta object literal for the '<em>Adapter</em>' data type.

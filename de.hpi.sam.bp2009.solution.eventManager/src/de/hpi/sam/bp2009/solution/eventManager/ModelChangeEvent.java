@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getModelChangeEvent()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ModelChangeEvent extends EObject {
@@ -49,5 +49,13 @@ public interface ModelChangeEvent extends EObject {
 	 * @generated
 	 */
 	void setSourceObject(EObject value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EventFilter getFilter();
 
 } // ModelChangeEvent

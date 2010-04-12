@@ -11,13 +11,13 @@ import java.util.UUID;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Constraint;
 
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 /**
@@ -50,17 +50,17 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl implements Mo
 	}
 
 	@Override
-	public OCLExpression getContextObjects(EventNotification event,
-			OCLExpression query) {
+	public Constraint getContextObjects(ModelChangeEvent event,
+			Constraint query) {
 		UUID id = UUID.randomUUID();
 		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION.getName()));
-		OCLExpression result = super.getContextObjects(event, query);
+		Constraint result = super.getContextObjects(event, query);
 		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION.getName()));
 		return result;
 	}
 	
 	@Override
-	public EventFilter createFilterForQuery(OCLExpression query) {
+	public EventFilter createFilterForQuery(Constraint query) {
 		UUID id = UUID.randomUUID();
 		eNotify(new ENotificationImpl(this, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION_VALUE, Notification.NO_FEATURE_ID, id, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION.getName()));
 		EventFilter result = super.createFilterForQuery(query);

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter;
@@ -30,11 +31,11 @@ import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventListener;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
 import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
@@ -211,14 +212,21 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eventNotificationEClass = null;
+	private EClass eventMappperEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eventMappperEClass = null;
+	private EClass eventListenerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeMultiValueChangeEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -355,8 +363,44 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getElementChangeEvent_ChangedClass() {
+		return (EReference)elementChangeEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAttributeValueChangeEvent() {
 		return attributeValueChangeEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeValueChangeEvent_ChangedAttribute() {
+		return (EReference)attributeValueChangeEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeValueChangeEvent_Before() {
+		return (EAttribute)attributeValueChangeEventEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeValueChangeEvent_After() {
+		return (EAttribute)attributeValueChangeEventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -373,8 +417,35 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getElementLifeCycleEvent_ContainingElement() {
+		return (EReference)elementLifeCycleEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLinkLifeCycleEvent() {
 		return linkLifeCycleEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLinkLifeCycleEvent_ChangedReference() {
+		return (EReference)linkLifeCycleEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLinkLifeCycleEvent_CorrespondingObject() {
+		return (EReference)linkLifeCycleEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -625,35 +696,35 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventNotification() {
-		return eventNotificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEventNotification_Event() {
-		return (EReference)eventNotificationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEventNotification_Notification() {
-		return (EAttribute)eventNotificationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEventMappper() {
 		return eventMappperEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventListener() {
+		return eventListenerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttributeMultiValueChangeEvent() {
+		return attributeMultiValueChangeEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttributeMultiValueChangeEvent_Add() {
+		return (EAttribute)attributeMultiValueChangeEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -718,12 +789,19 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		createEReference(modelChangeEventEClass, MODEL_CHANGE_EVENT__SOURCE_OBJECT);
 
 		elementChangeEventEClass = createEClass(ELEMENT_CHANGE_EVENT);
+		createEReference(elementChangeEventEClass, ELEMENT_CHANGE_EVENT__CHANGED_CLASS);
 
 		attributeValueChangeEventEClass = createEClass(ATTRIBUTE_VALUE_CHANGE_EVENT);
+		createEReference(attributeValueChangeEventEClass, ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_ATTRIBUTE);
+		createEAttribute(attributeValueChangeEventEClass, ATTRIBUTE_VALUE_CHANGE_EVENT__BEFORE);
+		createEAttribute(attributeValueChangeEventEClass, ATTRIBUTE_VALUE_CHANGE_EVENT__AFTER);
 
 		elementLifeCycleEventEClass = createEClass(ELEMENT_LIFE_CYCLE_EVENT);
+		createEReference(elementLifeCycleEventEClass, ELEMENT_LIFE_CYCLE_EVENT__CONTAINING_ELEMENT);
 
 		linkLifeCycleEventEClass = createEClass(LINK_LIFE_CYCLE_EVENT);
+		createEReference(linkLifeCycleEventEClass, LINK_LIFE_CYCLE_EVENT__CHANGED_REFERENCE);
+		createEReference(linkLifeCycleEventEClass, LINK_LIFE_CYCLE_EVENT__CORRESPONDING_OBJECT);
 
 		elementCreateEventEClass = createEClass(ELEMENT_CREATE_EVENT);
 
@@ -768,11 +846,12 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		associationFilterEClass = createEClass(ASSOCIATION_FILTER);
 		createEReference(associationFilterEClass, ASSOCIATION_FILTER__REFERENCE);
 
-		eventNotificationEClass = createEClass(EVENT_NOTIFICATION);
-		createEReference(eventNotificationEClass, EVENT_NOTIFICATION__EVENT);
-		createEAttribute(eventNotificationEClass, EVENT_NOTIFICATION__NOTIFICATION);
-
 		eventMappperEClass = createEClass(EVENT_MAPPPER);
+
+		eventListenerEClass = createEClass(EVENT_LISTENER);
+
+		attributeMultiValueChangeEventEClass = createEClass(ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT);
+		createEAttribute(attributeMultiValueChangeEventEClass, ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__ADD);
 
 		// Create data types
 		adapterEDataType = createEDataType(ADAPTER);
@@ -830,6 +909,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		compositionHierarchyFilterEClass.getESuperTypes().add(this.getEventFilter());
 		packageFilterEClass.getESuperTypes().add(this.getEventFilter());
 		associationFilterEClass.getESuperTypes().add(this.getEventFilter());
+		attributeMultiValueChangeEventEClass.getESuperTypes().add(this.getAttributeValueChangeEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventManagerEClass, EventManager.class, "EventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -838,35 +918,43 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventListener(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "subscribeTransactional", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventListener(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "notifyApplication", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "application", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventNotification(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventListener(), "application", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelChangeEvent(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventFilter(), "matchingFilter", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "handleEMFEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotification(), "notification", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, theEcorePackage.getEBoolean(), "unsubscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventListener(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelChangeEventEClass, ModelChangeEvent.class, "ModelChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelChangeEventEClass, ModelChangeEvent.class, "ModelChangeEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelChangeEvent_SourceObject(), ecorePackage.getEObject(), null, "sourceObject", null, 0, 1, ModelChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementChangeEventEClass, ElementChangeEvent.class, "ElementChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		addEOperation(modelChangeEventEClass, this.getEventFilter(), "getFilter", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(elementChangeEventEClass, ElementChangeEvent.class, "ElementChangeEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElementChangeEvent_ChangedClass(), theEcorePackage.getEClass(), null, "changedClass", null, 0, 1, ElementChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeValueChangeEventEClass, AttributeValueChangeEvent.class, "AttributeValueChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeValueChangeEvent_ChangedAttribute(), ecorePackage.getEAttribute(), null, "changedAttribute", null, 0, 1, AttributeValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeValueChangeEvent_Before(), ecorePackage.getEJavaObject(), "before", null, 0, 1, AttributeValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeValueChangeEvent_After(), theEcorePackage.getEJavaObject(), "after", null, 0, 1, AttributeValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementLifeCycleEventEClass, ElementLifeCycleEvent.class, "ElementLifeCycleEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(elementLifeCycleEventEClass, ElementLifeCycleEvent.class, "ElementLifeCycleEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElementLifeCycleEvent_ContainingElement(), theEcorePackage.getEObject(), null, "containingElement", null, 0, 1, ElementLifeCycleEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(linkLifeCycleEventEClass, LinkLifeCycleEvent.class, "LinkLifeCycleEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(linkLifeCycleEventEClass, LinkLifeCycleEvent.class, "LinkLifeCycleEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLinkLifeCycleEvent_ChangedReference(), theEcorePackage.getEReference(), null, "changedReference", null, 0, 1, LinkLifeCycleEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLinkLifeCycleEvent_CorrespondingObject(), theEcorePackage.getEObject(), null, "correspondingObject", null, 0, 1, LinkLifeCycleEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementCreateEventEClass, ElementCreateEvent.class, "ElementCreateEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -914,14 +1002,19 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		initEClass(associationFilterEClass, AssociationFilter.class, "AssociationFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociationFilter_Reference(), theEcorePackage.getEReference(), null, "reference", null, 0, 1, AssociationFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eventNotificationEClass, EventNotification.class, "EventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventNotification_Event(), this.getModelChangeEvent(), null, "event", null, 0, 1, EventNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEventNotification_Notification(), this.getNotification(), "notification", null, 0, 1, EventNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(eventMappperEClass, EventMappper.class, "EventMappper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(eventMappperEClass, this.getModelChangeEvent(), "mapNotificationToEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(eventMappperEClass, this.getModelChangeEvent(), "mapNotificationToEvent", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotification(), "notification", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(eventListenerEClass, EventListener.class, "EventListener", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(eventListenerEClass, null, "handleEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelChangeEvent(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventFilter(), "matchingFilter", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(attributeMultiValueChangeEventEClass, AttributeMultiValueChangeEvent.class, "AttributeMultiValueChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttributeMultiValueChangeEvent_Add(), ecorePackage.getEBoolean(), "add", null, 0, 1, AttributeMultiValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

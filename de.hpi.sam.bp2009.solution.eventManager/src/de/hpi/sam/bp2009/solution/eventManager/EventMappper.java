@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.solution.eventManager;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -26,6 +27,6 @@ public interface EventMappper extends EObject {
 	 * @model notificationDataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
 	 * @generated
 	 */
-	ModelChangeEvent mapNotificationToEvent(Notification notification);
+	EList<ModelChangeEvent> mapNotificationToEvent(Notification notification);
 
 } // EventMappper

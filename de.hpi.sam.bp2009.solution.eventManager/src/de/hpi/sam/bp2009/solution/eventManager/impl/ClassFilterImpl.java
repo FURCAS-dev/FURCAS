@@ -6,15 +6,16 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
+import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -101,12 +102,12 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return ((event instanceof ElementChangeEvent) 
+				&& ((ElementChangeEvent)event).getChangedClass().equals(getWantedClass()));
+			
 	}
 
 	/**

@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.util;
 
+import de.hpi.sam.bp2009.solution.eventManager.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -272,15 +273,24 @@ public class EventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.EVENT_NOTIFICATION: {
-				EventNotification eventNotification = (EventNotification)theEObject;
-				T result = caseEventNotification(eventNotification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EventManagerPackage.EVENT_MAPPPER: {
 				EventMappper eventMappper = (EventMappper)theEObject;
 				T result = caseEventMappper(eventMappper);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventManagerPackage.EVENT_LISTENER: {
+				EventListener eventListener = (EventListener)theEObject;
+				T result = caseEventListener(eventListener);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventManagerPackage.ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT: {
+				AttributeMultiValueChangeEvent attributeMultiValueChangeEvent = (AttributeMultiValueChangeEvent)theEObject;
+				T result = caseAttributeMultiValueChangeEvent(attributeMultiValueChangeEvent);
+				if (result == null) result = caseAttributeValueChangeEvent(attributeMultiValueChangeEvent);
+				if (result == null) result = caseElementChangeEvent(attributeMultiValueChangeEvent);
+				if (result == null) result = caseModelChangeEvent(attributeMultiValueChangeEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -619,21 +629,6 @@ public class EventManagerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEventNotification(EventNotification object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Event Mappper</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -645,6 +640,36 @@ public class EventManagerSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventMappper(EventMappper object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event Listener</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event Listener</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventListener(EventListener object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Multi Value Change Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Multi Value Change Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMultiValueChangeEvent(AttributeMultiValueChangeEvent object) {
 		return null;
 	}
 

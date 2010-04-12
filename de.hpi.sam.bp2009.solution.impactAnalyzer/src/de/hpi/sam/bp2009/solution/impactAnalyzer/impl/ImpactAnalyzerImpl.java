@@ -8,10 +8,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Constraint;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -47,6 +46,16 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EventFilter createFilterForQuery(Constraint query) {
+
+		return new TautologyFilter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,20 +66,12 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public EventFilter createFilterForQuery(OCLExpression query) {
-		return new TautologyFilter();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OCLExpression getContextObjects(EventNotification event, OCLExpression query) {
+	public Constraint getContextObjects(ModelChangeEvent event, Constraint query) {
 		// TODO: implement this method
-		return query;
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 } //ImpactAnalyzerImpl

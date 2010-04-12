@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.util;
 
+import de.hpi.sam.bp2009.solution.eventManager.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -182,12 +183,16 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createAssociationFilterAdapter();
 			}
 			@Override
-			public Adapter caseEventNotification(EventNotification object) {
-				return createEventNotificationAdapter();
-			}
-			@Override
 			public Adapter caseEventMappper(EventMappper object) {
 				return createEventMappperAdapter();
+			}
+			@Override
+			public Adapter caseEventListener(EventListener object) {
+				return createEventListenerAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMultiValueChangeEvent(AttributeMultiValueChangeEvent object) {
+				return createAttributeMultiValueChangeEventAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -518,20 +523,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventNotification <em>Event Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventNotification
-	 * @generated
-	 */
-	public Adapter createEventNotificationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMappper <em>Event Mappper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -542,6 +533,34 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventMappperAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventListener <em>Event Listener</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventListener
+	 * @generated
+	 */
+	public Adapter createEventListenerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent <em>Attribute Multi Value Change Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent
+	 * @generated
+	 */
+	public Adapter createAttributeMultiValueChangeEventAdapter() {
 		return null;
 	}
 

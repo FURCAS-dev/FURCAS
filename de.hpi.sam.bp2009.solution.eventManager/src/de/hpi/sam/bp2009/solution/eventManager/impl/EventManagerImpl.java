@@ -7,7 +7,13 @@
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 
-import org.eclipse.emf.common.notify.Adapter;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
@@ -18,11 +24,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventListener;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +45,13 @@ import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
  * @generated
  */
 public class EventManagerImpl extends EObjectImpl implements EventManager {
+	private class EventAdapter extends EContentAdapter{
+		@Override
+		public void notifyChanged(Notification notification) {
+			super.notifyChanged(notification);
+			handleEMFEvent(notification);	
+		}
+	}
 	/**
 	 * The cached value of the '{@link #getEventMapper() <em>Event Mapper</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -46,8 +60,11 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * @generated
 	 * @ordered
 	 */
+	
 	protected EventMappper eventMapper;
-
+	private Map<EventFilter, EventListener> rootFilterToListenerMap = new HashMap<EventFilter, EventListener>();
+	private EventAdapter adapter = new EventAdapter();
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,51 +72,8 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	protected EventManagerImpl() {
 		super();
 		this.setEventMapper(EventManagerFactory.eINSTANCE.createEventMappper());
+		this.adapter= new EventAdapter();
 	}
-	
-	private class EventAdapter extends EContentAdapter{
-		Adapter caller;
-		EventFilter filter;
-		//EventMappper mapper;
-
-		public EventAdapter(Adapter listener, EventFilter filter, EventMappper mapper) {
-			this.caller = listener;
-			this.filter = filter;
-			//this.mapper = mapper;
-		}
-		@Override
-		public void notifyChanged(Notification notification) {
-			super.notifyChanged(notification);
-			handleEMFEvent(caller, notification, filter);	
-		}
-	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.EVENT_MANAGER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EventMappper getEventMapper() {
-		if (eventMapper != null && eventMapper.eIsProxy()) {
-			InternalEObject oldEventMapper = (InternalEObject)eventMapper;
-			eventMapper = (EventMappper)eResolveProxy(oldEventMapper);
-			if (eventMapper != oldEventMapper) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
-			}
-		}
-		return eventMapper;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,84 +81,6 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 */
 	public EventMappper basicGetEventMapper() {
 		return eventMapper;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventMapper(EventMappper newEventMapper) {
-		EventMappper oldEventMapper = eventMapper;
-		eventMapper = newEventMapper;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
-		root.eAdapters().add(new EventAdapter(caller, filter, getEventMapper()));
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void subscribe(EList<Notifier> root, EventFilter filter, Adapter caller) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void notifyApplication(Adapter application, EventNotification msg) {
-		application.notifyChanged(msg);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void handleEMFEvent(Adapter caller, Notification notification, EventFilter filter) {
-		EventNotification noti = EventManagerFactory.eINSTANCE.createEventNotification();
-		noti.setNotification(notification);
-		noti.setEvent(getEventMapper().mapNotificationToEvent(notification));
-		if(filter.matchesFor(noti.getEvent()))
-			notifyApplication(caller, noti);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean unsubscribe(Adapter caller) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -208,6 +104,20 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * @generated
 	 */
 	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER:
+				return eventMapper != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER:
@@ -215,6 +125,16 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 				return;
 		}
 		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return EventManagerPackage.Literals.EVENT_MANAGER;
 	}
 
 	/**
@@ -237,13 +157,117 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER:
-				return eventMapper != null;
+	public EventMappper getEventMapper() {
+		if (eventMapper != null && eventMapper.eIsProxy()) {
+			InternalEObject oldEventMapper = (InternalEObject)eventMapper;
+			eventMapper = (EventMappper)eResolveProxy(oldEventMapper);
+			if (eventMapper != oldEventMapper) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
+			}
 		}
-		return super.eIsSet(featureID);
+		return eventMapper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void handleEMFEvent(Notification notification) {
+		System.out.println(notification);
+		for(ModelChangeEvent event:getEventMapper().mapNotificationToEvent(notification) ){
+			System.out.println("Mapped Event:----"+event);
+			for(EventFilter filter: getFilters(event)){
+				EventListener app= getEventListenerForFilter(filter);
+				if(app!=null)
+					notifyApplication( app, event, filter);
+			}
+		}
+	}
+
+	private EventListener getEventListenerForFilter(EventFilter filter) {
+		return rootFilterToListenerMap.get(filter); 		
+	}
+
+	private Collection<? extends EventFilter> getFilters(ModelChangeEvent event) {
+		HashSet<EventFilter> result = new HashSet<EventFilter>();
+		for(EventFilter filter:rootFilterToListenerMap.keySet())
+			if(filter.matchesFor(event))
+					result.add(filter);
+		return result ;
+		
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void notifyApplication(EventListener application, ModelChangeEvent event, EventFilter matchingFilter) {
+		application.handleEvent(event, matchingFilter);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventMapper(EventMappper newEventMapper) {
+		EventMappper oldEventMapper = eventMapper;
+		eventMapper = newEventMapper;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
+	}
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void subscribe(EList<Notifier> root, EventFilter filter, EventListener caller) {
+		for(Notifier noti: root){
+			subscribe(noti, filter, caller);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void subscribe(Notifier root, EventFilter filter, EventListener caller) {
+		root.eAdapters().add(adapter);
+		rootFilterToListenerMap.put(filter, caller);
+		
+		
+		
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribeTransactional(EList<Notifier> root, EventFilter filter, EventListener caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean unsubscribe(EventListener caller) {
+		Set<EventFilter> filters = new HashSet<EventFilter>();
+		for(Entry<EventFilter, EventListener> entry: rootFilterToListenerMap.entrySet())
+			if(entry.getValue().equals(caller))
+				filters.add(entry.getKey());
+		for(EventFilter e: filters)
+			rootFilterToListenerMap.remove(e);
+		
+		return filters.isEmpty();
 	}
 
 } //EventManagerImpl

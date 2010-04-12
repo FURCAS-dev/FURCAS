@@ -98,12 +98,10 @@ public class ContainerFilterImpl extends EObjectImpl implements ContainerFilter 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return (getContainer().equals(event.getSourceObject()));
 	}
 
 	/**

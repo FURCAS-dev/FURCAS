@@ -39,5 +39,6 @@ public class ElementDeleteEventImpl extends ElementLifeCycleEventImpl implements
 	protected EClass eStaticClass() {
 		return EventManagerPackage.Literals.ELEMENT_DELETE_EVENT;
 	}
+	
 
 } //ElementDeleteEventImpl
