@@ -440,8 +440,37 @@ public class RoseNode
     return !"false".equalsIgnoreCase(attributeValue);
   }
 
-  public boolean isOrdered()
-  {
+  public boolean isOrdered() {
+    for (RoseNode n : getNodes()) {
+      if (n.getKey().equals("Constraints")) {
+        StringTokenizer tokenizer = new StringTokenizer(n.getValue());
+        while (tokenizer.hasMoreTokens()) {
+          String token = tokenizer.nextToken();
+          if (token.equals("\"ordered\"")) {
+            return true;
+          }
+        }
+      } else if (n.getKey().equals("attributes")) {
+        if (!n.getNodes().isEmpty()) {
+          String tool = null;
+          String name = null;
+          String value = null;
+          for (RoseNode grandchild : n.getNodes().get(0).getNodes()) {
+            if (grandchild.getKey().equals("tool")) {
+              tool = grandchild.getValue();
+            } else if (grandchild.getKey().equals("name")) {
+              name = grandchild.getValue();
+            } else if (grandchild.getKey().equals("value") && grandchild.getValue().equals("Text") &&
+                !grandchild.getNodes().isEmpty()) {
+              value = grandchild.getNodes().get(0).getValue();
+            }
+          }
+          if (tool.equals("\"MOF\"") && name.equals("\"uml2mof.isOrdered\"") && value.equalsIgnoreCase("\"true\"")) {
+            return true;
+          }
+        }
+      }
+    }
     String attributeValue = getAttributeValue("Ecore", "isOrdered");
     return !"false".equalsIgnoreCase(attributeValue);
   }

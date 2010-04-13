@@ -632,6 +632,14 @@ public class RoseEcoreBuilder implements RoseVisitor
             ref1.getName() }));
           roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1, "EObject");
         }
+      } else {
+    	  EcoreUtil.setOppositePropertyName(ref2, ref1.getName());
+    	  EcoreUtil.setOppositePropertyOrdered(ref2, ref1.isOrdered());
+    	  EcoreUtil.setOppositePropertyUnique(ref2, ref1.isUnique());
+    	  EcoreUtil.setOppositePropertyContainment(ref2, ref1.isContainment());
+    	  EcoreUtil.setOppositePropertyChangeable(ref2, ref1.isChangeable());
+    	  EcoreUtil.setOppositePropertyLowerBound(ref2, ref1.getLowerBound());
+    	  EcoreUtil.setOppositePropertyUpperBound(ref2, ref1.getUpperBound());
       }
       if (ref2Navigable)
       {
@@ -650,6 +658,14 @@ public class RoseEcoreBuilder implements RoseVisitor
             ref2.getName() }));
           roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2, "EObject");
         }
+      } else {
+    	  EcoreUtil.setOppositePropertyName(ref1, ref2.getName());
+    	  EcoreUtil.setOppositePropertyOrdered(ref1, ref2.isOrdered());
+    	  EcoreUtil.setOppositePropertyUnique(ref1, ref2.isUnique());
+    	  EcoreUtil.setOppositePropertyContainment(ref1, ref2.isContainment());
+    	  EcoreUtil.setOppositePropertyChangeable(ref1, ref2.isChangeable());
+    	  EcoreUtil.setOppositePropertyLowerBound(ref1, ref2.getLowerBound());
+    	  EcoreUtil.setOppositePropertyUpperBound(ref1, ref2.getUpperBound());
       }
     }
 

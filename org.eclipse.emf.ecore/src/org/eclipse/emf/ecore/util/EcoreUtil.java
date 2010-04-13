@@ -3603,6 +3603,107 @@ public class EcoreUtil
     }
   }
 
+  static final String OPPOSITE_PROPERTY_NAME_KEY = "oppositePropertyName";
+
+  public static String getOppositePropertyName(EReference eReference)
+  {
+    return getStringAnnotation(eReference, OPPOSITE_PROPERTY_NAME_KEY);
+  }
+
+  public static void setOppositePropertyName(EReference eReference, String oppositePropertyName)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_NAME_KEY, oppositePropertyName);
+  }
+  
+  static final String OPPOSITE_PROPERTY_ORDERED_KEY = "oppositePropertyOrdered";
+
+  public static boolean getOppositePropertyOrdered(EReference eReference)
+  {
+    return Boolean.getBoolean(getStringAnnotation(eReference, OPPOSITE_PROPERTY_ORDERED_KEY));
+  }
+
+  public static void setOppositePropertyOrdered(EReference eReference, boolean oppositePropertyOrdered)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_ORDERED_KEY, Boolean.toString(oppositePropertyOrdered));
+  }
+  
+  static final String OPPOSITE_PROPERTY_UNIQUE_KEY = "oppositePropertyUnique";
+
+  public static boolean getOppositePropertyUnique(EReference eReference)
+  {
+    return Boolean.getBoolean(getStringAnnotation(eReference, OPPOSITE_PROPERTY_UNIQUE_KEY));
+  }
+
+  public static void setOppositePropertyUnique(EReference eReference, boolean oppositePropertyUnique)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_UNIQUE_KEY, Boolean.toString(oppositePropertyUnique));
+  }
+  
+  static final String OPPOSITE_PROPERTY_CHANGEABLE_KEY = "oppositePropertyChangeable";
+
+  public static boolean getOppositePropertyChangeable(EReference eReference)
+  {
+    return Boolean.getBoolean(getStringAnnotation(eReference, OPPOSITE_PROPERTY_CHANGEABLE_KEY));
+  }
+
+  public static void setOppositePropertyChangeable(EReference eReference, boolean oppositePropertyChangeable)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_CHANGEABLE_KEY, Boolean.toString(oppositePropertyChangeable));
+  }
+  
+  static final String OPPOSITE_PROPERTY_CONTAINMENT_KEY = "oppositePropertyContainment";
+
+  public static boolean getOppositePropertyContainment(EReference eReference)
+  {
+    return Boolean.getBoolean(getStringAnnotation(eReference, OPPOSITE_PROPERTY_CONTAINMENT_KEY));
+  }
+
+  public static void setOppositePropertyContainment(EReference eReference, boolean oppositePropertyContainment)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_CONTAINMENT_KEY, Boolean.toString(oppositePropertyContainment));
+  }
+  
+  static final String OPPOSITE_PROPERTY_LOWER_BOUND_KEY = "oppositePropertyLowerBound";
+
+  public static int getOppositePropertyLowerBound(EReference eReference)
+  {
+    return Integer.getInteger(getStringAnnotation(eReference, OPPOSITE_PROPERTY_LOWER_BOUND_KEY));
+  }
+
+  public static void setOppositePropertyLowerBound(EReference eReference, int oppositePropertyLowerBound)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_LOWER_BOUND_KEY, Integer.toString(oppositePropertyLowerBound));
+  }
+  
+  static final String OPPOSITE_PROPERTY_UPPER_BOUND_KEY = "oppositePropertyLowerBound";
+
+  public static int getOppositePropertyUpperBound(EReference eReference)
+  {
+    return Integer.getInteger(getStringAnnotation(eReference, OPPOSITE_PROPERTY_UPPER_BOUND_KEY));
+  }
+
+  public static void setOppositePropertyUpperBound(EReference eReference, int oppositePropertyUpperBound)
+  {
+    setStringAnnotation(eReference, OPPOSITE_PROPERTY_UPPER_BOUND_KEY, Integer.toString(oppositePropertyUpperBound));
+  }
+  
+  private static String getStringAnnotation(EModelElement eModelElement, String annotationName) {
+	EAnnotation eAnnotation = eModelElement.getEAnnotation(ExtendedMetaData.ANNOTATION_URI);
+	return eAnnotation == null ? "" : eAnnotation.getDetails().get(annotationName);
+  }
+
+  private static void setStringAnnotation(EModelElement eModelElement, String annotationName, String value) {
+	    EAnnotation eAnnotation = eModelElement.getEAnnotation(ExtendedMetaData.ANNOTATION_URI);
+	    if (eAnnotation != null) {
+	      eAnnotation.getDetails().removeKey(annotationName);
+	    } else {
+	      eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+	      eAnnotation.setSource(ExtendedMetaData.ANNOTATION_URI);
+	      eModelElement.getEAnnotations().add(eAnnotation);
+	    }
+	    eAnnotation.getDetails().put(annotationName, value);
+  }
+
   /**
    * Generates a universally unique identifier, 
    * i.e., a <a href="http://www.ietf.org/rfc/rfc4122.txt">UUID</a>.
