@@ -10,9 +10,13 @@ public class TextBlockMappingRecoveringFailedException extends Exception {
     public TextBlockMappingRecoveringFailedException(Exception e) {
 	super(e);
     }
-
+    
     public TextBlockMappingRecoveringFailedException(String string) {
-	super(string);
+        super(string);
+    }
+
+    public TextBlockMappingRecoveringFailedException(Exception cause, String string) {
+	super(string, cause);
     }
 
 }

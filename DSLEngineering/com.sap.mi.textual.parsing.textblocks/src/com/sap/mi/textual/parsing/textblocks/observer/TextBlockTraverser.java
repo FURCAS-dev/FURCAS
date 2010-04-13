@@ -72,7 +72,7 @@ public class TextBlockTraverser {
         stack.peek().addSubNode(token);
     }
     
-    public List<Object> getSubNodes() {
+    public List<?> getSubNodes() {
         return stack.peek().getSubNodes();        
     }
     

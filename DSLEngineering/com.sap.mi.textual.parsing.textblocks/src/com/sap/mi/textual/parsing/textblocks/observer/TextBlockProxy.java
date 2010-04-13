@@ -11,7 +11,7 @@ import textblocks.AbstractToken;
 
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 
-public class TextBlockProxy{
+public class TextBlockProxy {
 	
 	private TextBlockProxy parent;
 	
@@ -29,7 +29,7 @@ public class TextBlockProxy{
 		return temp.toString();
 	}
 
-	private List<Object>subNodes = new ArrayList<Object>();
+	private List<Object> subNodes = new ArrayList<Object>();
 
 	private boolean complete;
 
@@ -85,16 +85,16 @@ public class TextBlockProxy{
 		return complete;
 	}
 
-	public void addCorrespondingModelElement(IModelElementProxy newModelElement) {
+	public void addCorrespondingModelElementProxy(IModelElementProxy newModelElement) {
 	    if(getTemplate() != null && getTemplate() instanceof ClassTemplate &&
 		    ((ClassTemplate)getTemplate()).isReferenceOnly()) {
-		addReferencedElement(newModelElement);
+		addReferencedElementProxy(newModelElement);
 	    } else {
 		this.correspondingModelElements.add(newModelElement);
 	    }
 	}
 
-	public List<IModelElementProxy> getCorrespondingModelElements() {
+	public List<IModelElementProxy> getCorrespondingModelElementProxies() {
 		return correspondingModelElements;
 	}
 
@@ -122,11 +122,11 @@ public class TextBlockProxy{
 		subNodes.remove(textBlockProxy);
 	}
 
-	public void addCorrespondingModelElements(
+	public void addCorrespondingModelElementProxies(
 			List<IModelElementProxy> correspondingModelElements) {
 	    if(getTemplate() != null && getTemplate() instanceof ClassTemplate &&
 		    ((ClassTemplate)getTemplate()).isReferenceOnly()) {
-		addReferencedElements(correspondingModelElements);
+		addReferencedElementProxies(correspondingModelElements);
 	    } else {
 		this.correspondingModelElements.addAll(correspondingModelElements);
 	    }
@@ -148,15 +148,15 @@ public class TextBlockProxy{
 	    return contextElements;
 	}
 
-	public List<IModelElementProxy> getReferencedElements() {
+	public List<IModelElementProxy> getReferencedElementProxies() {
 	    return referencedElements;
 	}
 	
-	public void addReferencedElement(IModelElementProxy referencedElement) {
+	public void addReferencedElementProxy(IModelElementProxy referencedElement) {
 		this.referencedElements.add(referencedElement);
 	}
 	
-	public void addReferencedElements(
+	public void addReferencedElementProxies(
 		List<IModelElementProxy> referencedElements) {
 	    this.referencedElements.addAll(referencedElements);
 	}

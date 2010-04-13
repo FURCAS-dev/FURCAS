@@ -33,8 +33,8 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 	@Override
 	public Collection<? extends RefObject> createModelElementsFromTextBlock(TextBlockProxy newVersion) {
 		List<RefObject> elements = new ArrayList<RefObject>(newVersion
-			.getCorrespondingModelElements().size());
-		for (IModelElementProxy proxy : newVersion.getCorrespondingModelElements()) {
+			.getCorrespondingModelElementProxies().size());
+		for (IModelElementProxy proxy : newVersion.getCorrespondingModelElementProxies()) {
 			if (proxy instanceof ModelElementProxy) {
 				instantiateProxy(elements, proxy);
 			}

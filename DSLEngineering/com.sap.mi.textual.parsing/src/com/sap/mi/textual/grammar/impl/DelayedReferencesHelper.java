@@ -32,6 +32,7 @@ import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelAdapter;
+import com.sap.mi.textual.grammar.IModelInjector;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
@@ -64,9 +65,9 @@ public class DelayedReferencesHelper {
      * @param injector
      *            the injector
      */
-    public DelayedReferencesHelper(ModelInjector injector) {
+    public DelayedReferencesHelper(IModelInjector injector) {
 	super();
-	this.injector = injector;
+	this.injector = (ModelInjector) injector;
     }
 
     /**
@@ -118,15 +119,13 @@ public class DelayedReferencesHelper {
 		reportProblem("You must specify an OCL query.", reference.getToken());
 		return false;
 	    }
-	    String flattenOCL = appendFlattenToOclQuery(reference);
-	    // evaluate the predicate by OCL, return value is a list of objects
-	    Collection<?> result = modelAdapter.getPredicateOclReference(reference.getModelElement(), reference
-		    .getPropertyName(), reference.getKeyValue(), flattenOCL, contextElement);
+	    Collection<?> result = evaluateForeachOcl((RefObject) reference.getModelElement(), reference, modelAdapter,
+                contextElement);
 	    // if there is no result it will be null
 	    if (result == null) {
 	        //we need to delete all elements created for this foreach
 	        if(reference.getTextBlock() != null) {
-	            for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
+	            for (ForeachContext fec : new ArrayList<ForeachContext>(((TextBlock) reference.getTextBlock()).getForeachContext())) {
                         if(fec.getForeachPredicatePropertyInit() != null &&
                         	fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
                                 reference.getModelElement().equals(fec.getSourceModelelement())) {
@@ -139,7 +138,7 @@ public class DelayedReferencesHelper {
 		return false;
 	    } else {
 		Iterator<?> resultIt = result.iterator();
-		// loop over the results to handle them one by one
+		// loop over the results to handle them one by one,
 		//delete all elements that were created by this foreach but are not valid anymore
 		HashMap<RefObject, RefObject> reusableElementsByForeachElement = new HashMap<RefObject, RefObject>();
                 
@@ -175,7 +174,7 @@ public class DelayedReferencesHelper {
                             return false;
                         }
 			if(reference.getTextBlock() != null) {
-	                    for (ForeachContext fec : new ArrayList<ForeachContext>(reference.getTextBlock().getForeachContext())) {
+	                    for (ForeachContext fec : new ArrayList<ForeachContext>(((TextBlock) reference.getTextBlock()).getForeachContext())) {
 	                        if(fec.getForeachPredicatePropertyInit().equals(reference.getQueryElement()) &&
 	                            reference.getModelElement().equals(fec.getSourceModelelement())) {
 	                            if(! fec.getContextElement().contains(next)) {
@@ -241,6 +240,16 @@ public class DelayedReferencesHelper {
 	}
 	return true;
     }
+
+    public Collection<?> evaluateForeachOcl(RefObject sourceElement, DelayedReference reference,
+            IModelAdapter modelAdapter, Object contextElement)
+            throws ModelAdapterException {
+        String flattenOCL = appendFlattenToOclQuery(reference);
+	    // evaluate the predicate by OCL, return value is a list of objects
+	    Collection<?> result = modelAdapter.getPredicateOclReference(sourceElement, reference
+		    .getPropertyName(), reference.getKeyValue(), flattenOCL, contextElement);
+        return result;
+    }
 	
     private Template getTemplateFromPredicateSemantic(
             PredicateSemantic activePredicateSemantic, DelayedReference ref) {
@@ -276,7 +285,7 @@ public class DelayedReferencesHelper {
 	if(originalObserver != null) {
 	    delegator.addParsingObserver(originalObserver);
 	}
-	delegator.addParsingObserver(new ForeachParsingObeserver(reference.getTextBlock()));
+	delegator.addParsingObserver(new ForeachParsingObeserver((TextBlock) reference.getTextBlock()));
 	parser.setObserver(delegator);
 	
 	IModelElementProxy proxyForContextElement = null;
@@ -343,7 +352,7 @@ public class DelayedReferencesHelper {
                 modelAdapter.set(reference.getModelElement(), reference
                         .getPropertyName(), reference.getRealValue());
                 if(reference.getTextBlock() != null) {
-                    addForEachContext(reference.getTextBlock(), 
+                    addForEachContext((TextBlock) reference.getTextBlock(), 
                         (RefObject) reference.getModelElement(),
                         (RefObject) next,
                         (ForeachPredicatePropertyInit) reference.getQueryElement(),
@@ -367,10 +376,7 @@ public class DelayedReferencesHelper {
             
             //FIXME: The contextBlock may be null if there was a foreach that was created by another foreach
             //then the textblock is never set. Find out when and where this could be done
-            
-            
-            
-            
+
             for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
                 if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
                     if(forEachContext.getSourceModelelement().equals(sourceModelElement)) {

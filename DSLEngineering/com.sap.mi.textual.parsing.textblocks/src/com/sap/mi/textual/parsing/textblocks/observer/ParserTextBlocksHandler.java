@@ -346,7 +346,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 					//instanciate additional model elements so add them to the elements of this block
 					//and remove empty block;
 					contextTextBlock.addAdditionalTemplate(currentTextBlock.getTemplate());
-					contextTextBlock.addCorrespondingModelElements(currentTextBlock.getCorrespondingModelElements());
+					contextTextBlock.addCorrespondingModelElementProxies(currentTextBlock.getCorrespondingModelElementProxies());
 					contextTextBlock.addAdditionalTemplates(currentTextBlock.getAdditionalTemplates());
 					contextTextBlock.removeSubNode(currentTextBlock);
 				} else {
@@ -493,7 +493,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		}
 		if (newModelElement instanceof IModelElementProxy) {
 			TextBlockProxy currentTextBlock = traverser.getCurrent();
-			currentTextBlock.getCorrespondingModelElements().add(0, //always add at first position as it is the "leading" element
+			currentTextBlock.getCorrespondingModelElementProxies().add(0, //always add at first position as it is the "leading" element
 					(IModelElementProxy) newModelElement);
 			((ModelElementProxy) newModelElement).setTextBlock(currentTextBlock);
 			if(currentTextBlock.getTemplate() instanceof OperatorTemplate &&
@@ -514,7 +514,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                                 }
                                 int position = 0;
                                 for (Object object : elementsMoved) {
-                                    if (!object.equals(currentTextBlock)) {
+                                    if (!currentTextBlock.equals(object)) {
                                         // remove elements from their original parent
                                         parent.getSubNodes().remove(object);
                                         if (object instanceof TextBlockProxy) {
@@ -594,6 +594,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	    } else {
 		ref.setQueryElement(traverser.getCurrent().getSequenceElement());
 	    }
+	    ref.setTextBlock(traverser.getCurrent());
         }
 	
 	@Override

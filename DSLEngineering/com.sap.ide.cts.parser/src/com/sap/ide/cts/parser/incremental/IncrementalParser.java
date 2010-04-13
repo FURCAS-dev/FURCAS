@@ -90,8 +90,6 @@ public class IncrementalParser extends IncrementalRecognizer {
 	private ModelElementFromTextBlocksFactory modelElementFactory;
 
 	private PartitionAssignmentHandler partitionHandler;
-
-        private boolean errorMode = false;
 	
 	public IncrementalParser(Connection connection,
 		ParserFactory<?, ?> parserFactory,
@@ -140,7 +138,6 @@ public class IncrementalParser extends IncrementalRecognizer {
 	 */
 	public TextBlock incrementalParse(TextBlock root, boolean errorMode) {
 		reset();
-		this.errorMode = errorMode;
 		setDefaultPartitionFromRoot(root);
 		TextBlock newRoot = root;
 		// if there is a change
@@ -463,10 +460,10 @@ public class IncrementalParser extends IncrementalRecognizer {
 				IModelElementProxy value = null;
 				if (TcsUtil.isStructureTypeTemplate(result.getType()
 						.getParseRule())) {
-					value = newVersion.getCorrespondingModelElements()
+					value = newVersion.getCorrespondingModelElementProxies()
 							.iterator().next();
 				} else if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
-					value = newVersion.getReferencedElements().iterator()
+					value = newVersion.getReferencedElementProxies().iterator()
 							.next();
 				}
 
