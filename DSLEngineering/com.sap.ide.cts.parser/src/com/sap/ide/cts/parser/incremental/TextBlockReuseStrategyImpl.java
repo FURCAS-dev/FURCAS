@@ -745,7 +745,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	/**
 	 * Assuming that the oldVersion will be reused and therefore all elements within
 	 * {@link DocumentNode#getCorrespondingModelElements()} have their correspondents within
-	 * {@link TextBlockProxy#getCorrespondingModelElements()} of the new version. Therefore the
+	 * {@link TextBlockProxy#getCorrespondingModelElementProxies()} of the new version. Therefore the
 	 * proxies will be set resolved with the elements from the old version.
 	 * 
 	 * The same applies for the {@link TextBlock#getReferencedModelElements() {
@@ -757,9 +757,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	private void resolveProxies(TextBlock oldVersion, TextBlockProxy newVersion) {
 		int i = 0;
 		for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
-			if (newVersion.getCorrespondingModelElements().size() >= i + 1) {
+			if (newVersion.getCorrespondingModelElementProxies().size() >= i + 1) {
 				ModelElementProxy proxy = (ModelElementProxy) newVersion
-					.getCorrespondingModelElements().get(i);
+					.getCorrespondingModelElementProxies().get(i);
 				proxy.setRealObject(ro);
 			} else {
 				break;
@@ -768,9 +768,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		}
 		i = 0;
 		for (RefObject ro : oldVersion.getReferencedElements()) {
-			if (newVersion.getReferencedElements().size() >= i + 1) {
+			if (newVersion.getReferencedElementProxies().size() >= i + 1) {
 				ModelElementProxy proxy = (ModelElementProxy) newVersion
-					.getReferencedElements().get(i);
+					.getReferencedElementProxies().get(i);
 				proxy.setRealObject(ro);
 			} else {
 				break;

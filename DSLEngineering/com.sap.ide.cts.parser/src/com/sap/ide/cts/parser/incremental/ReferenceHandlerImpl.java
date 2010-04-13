@@ -116,9 +116,9 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 		if (oldVersion.getCorrespondingModelElements().size() > 0) {
 			RefObject modelElement = oldVersion.getCorrespondingModelElements()
 					.iterator().next();
-			if (newVersion.getCorrespondingModelElements().size() > 0) {
+			if (newVersion.getCorrespondingModelElementProxies().size() > 0) {
 				ModelElementProxy proxy = (ModelElementProxy) newVersion
-						.getCorrespondingModelElements().iterator().next();
+						.getCorrespondingModelElementProxies().iterator().next();
 				// first find out which alternatives have been chosen by
 				// walking through all tokens and getting the alternatives
 				// from the attached sequence elements

@@ -10,8 +10,6 @@ package com.sap.mi.textual.grammar.impl;
 
 import java.util.List;
 
-import textblocks.TextBlock;
-
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
@@ -115,7 +113,7 @@ public class DelayedReference implements Cloneable {
 
     private boolean hasContext;
 
-    private TextBlock textBlock;
+    private Object textBlock;
 
     private Connection connection;
 
@@ -580,11 +578,11 @@ public class DelayedReference implements Cloneable {
         }
     }
 
-    public void setTextBlock(TextBlock textBlock) {
+    public void setTextBlock(Object textBlock) {
         this.textBlock = textBlock;
     }
 
-    public TextBlock getTextBlock() {
+    public Object getTextBlock() {
         return textBlock;
     }
 

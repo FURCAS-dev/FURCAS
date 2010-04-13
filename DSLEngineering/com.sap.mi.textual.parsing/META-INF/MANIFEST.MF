@@ -19,3 +19,4 @@ Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
  com.sap.mi.fwk;bundle-version="1.0.0",
  org.eclipse.core.resources;bundle-version="3.4.2",
  org.antlr;bundle-version="3.1.1";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

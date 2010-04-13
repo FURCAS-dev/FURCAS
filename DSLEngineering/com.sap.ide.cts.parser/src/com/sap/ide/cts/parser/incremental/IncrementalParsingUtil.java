@@ -15,7 +15,6 @@ import tcs.Property;
 import tcs.PropertyReference;
 import tcs.SequenceElement;
 import tcs.Template;
-import textblockdefinition.TextblockDefinitionGeneralisation;
 import textblocks.AbstractToken;
 import textblocks.DocumentNode;
 import textblocks.LexedToken;
@@ -186,7 +185,7 @@ public class IncrementalParsingUtil {
 		if (newVersion.getParent() != null) {
 			int indexInCorrespondingElements = 0;
 			for (IModelElementProxy parentProxy : newVersion.getParent()
-				.getCorrespondingModelElements()) {
+				.getCorrespondingModelElementProxies()) {
 				// first find corresponding attribute within parent proxy
 				for (String key : ((ModelElementProxy) parentProxy)
 					.getAttributeMap().keySet()) {
@@ -194,7 +193,7 @@ public class IncrementalParsingUtil {
 					for (Object value : ((ModelElementProxy) parentProxy)
 						.getAttributeMap().get(key)) {
 						for (IModelElementProxy proxy : newVersion
-							.getCorrespondingModelElements()) {
+							.getCorrespondingModelElementProxies()) {
 							if (proxy.equals(value)) {
 								// found element to be replaced
 								RefObject parentRefObject = getCorrespondingElement(
@@ -214,7 +213,7 @@ public class IncrementalParsingUtil {
 							}
 						}
 						for (IModelElementProxy proxy : newVersion
-							.getReferencedElements()) {
+							.getReferencedElementProxies()) {
 							if (proxy.equals(value)) {
 								// found element to be replaced
 								RefObject parentRefObject = getCorrespondingElement(
@@ -360,9 +359,9 @@ public class IncrementalParsingUtil {
 					.getStrucfeature();
 			}
 			for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
-				if (newVersion.getCorrespondingModelElements().size() >= i + 1) {
+				if (newVersion.getCorrespondingModelElementProxies().size() >= i + 1) {
 					ModelElementProxy correspondingProxy = (ModelElementProxy) newVersion
-						.getCorrespondingModelElements().get(i);
+						.getCorrespondingModelElementProxies().get(i);
 					List<Object> values = correspondingProxy.getAttributeMap()
 						.get(compareToProperty.getName());
 					if (values == null) {

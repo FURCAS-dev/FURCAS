@@ -1104,4 +1104,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 	public IParsingObserver getObserver() {
 	    return observer;
 	}
+	
+        public List<DelayedReference> getDelayedReferences() {
+            return unResolvedDelayedReferenceList;
+        }
 }

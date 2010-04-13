@@ -720,13 +720,15 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                         // later
                         // we need to setup a link between the textblock and the
                         // template used in the ref
-                        Template template = ((ParserTextBlocksHandler) parser
+                        Collection<Template> templates = ((ParserTextBlocksHandler) parser
                                 .getObserver()).getCurrentTbProxy()
-                                .getTemplate();
-                        if (!unresolvedRef.getTextBlock()
-                                .getAdditionalTemplates().contains(template)) {
-                            unresolvedRef.getTextBlock()
-                                    .getAdditionalTemplates().add(template);
+                                .getAdditionalTemplates();
+                        for (Template template : templates) {
+                            if (!((TextBlock) unresolvedRef.getTextBlock())
+                                    .getAdditionalTemplates().contains(template)) {
+                                ((TextBlock) unresolvedRef.getTextBlock())
+                                        .getAdditionalTemplates().add(template);
+                            }   
                         }
                         RefObject value = (RefObject) unresolvedRef
                                 .getRealValue();
@@ -1343,7 +1345,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
 				    @Override
 				    public void doExecute() {
-					reEvaluateUnresolvedRef(ref.getConnection(), outermostPackage, ref, ref
+					reEvaluateUnresolvedRef(ref.getConnection(), outermostPackage, ref, (TextBlock) ref
 						.getTextBlock());
 				    }
 

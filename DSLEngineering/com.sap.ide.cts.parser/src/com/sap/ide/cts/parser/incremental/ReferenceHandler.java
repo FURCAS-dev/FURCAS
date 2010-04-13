@@ -5,6 +5,7 @@ import textblocks.LexedToken;
 import textblocks.TextBlock;
 
 import com.sap.mi.textual.grammar.impl.DelayedReference;
+import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
@@ -77,6 +78,11 @@ public interface ReferenceHandler {
 	 * <code>newVersion</code> to apply them to an existing model element. It is important that
 	 * the correct sequence of alternatives is chosen to find out which properties need to be
 	 * transferred to the new element.
+	 * 
+	 * @TODO check if this is needed. This functionality should already have been provided by
+	 * the {@link GlobalDelayedReferenceResolver}.Maybe for those elements that are just  something like this:
+	 * {{property = 1}. These elements are maybe not handled by the GDRR. On the other hand the value should only 
+	 * change according to changes in the parsed alternatives.
 	 * 
 	 * @param oldVersion
 	 * @param newVersion
