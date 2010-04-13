@@ -1,0 +1,108 @@
+grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
+import "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.ecore"
+//generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
+
+Model returns DocumentCS:
+	(imports+=importCS)*
+	(packages+=packageDeclarationCS | contexts+=contextDeclCS)*;
+
+FQN:
+	ID ('.' ID)*;
+
+importCS returns ImportCS :
+	'import' importedNamespace=FQN
+;
+
+packageDeclarationCS returns PackageDeclarationCS:
+	'package' name=pathNameCS (contexts+=contextDeclCS)* 'endpackage'
+;
+
+contextDeclCS returns ContextDeclCS:
+	propertyContextDeclCS
+|	classifierContextDeclCS
+|	operationContextDeclCS
+;
+
+propertyContextDeclCS returns PropertyContextDeclCS :
+	'context' contextName=pathNameCS ':' type=typeCS
+	((init=initCS (der=derCS)?)? | (der=derCS (init=initCS)?))
+;
+
+initCS returns InitCS :
+	'init' ':' expression=OclExpressionCS
+;
+
+derCS returns DerCS :
+	'derive' ':' expression=OclExpressionCS
+;
+
+classifierContextDeclCS returns ClassifierContextDeclCS :
+	'context' (selfName=simpleNameCS ':' )? contextName=pathNameCS (invs+=invCS | defs+=defCS)*
+;
+
+invCS returns InvCS :
+	'inv' (constraintName=simpleNameCS)? ':' expression=OclExpressionCS
+;
+
+defCS returns DefCS :
+	(static?='static')? 'def' (constraintName=simpleNameCS)? ':' constrainedName=simpleNameCS
+	('(' (parameters+=parameterCS (',' parameters+=parameterCS)*)? ')')?
+	':' (type=typeCS)? '=' expression=OclExpressionCS
+;
+
+operationContextDeclCS returns OperationContextDeclCS :
+	'context' contextName=pathNameCS '('
+	(parameters+=parameterCS (',' parameters+=parameterCS)*)?
+	')' ':' (type=typeCS)?
+	((pres+=preCS) | (posts+=postCS) | (bodies+=bodyCS))*
+;
+
+parameterCS returns essentialocl::VariableCS:
+	name=simpleNameCS (':' type=typeCS)? ( '=' initExpression=OclExpressionCS)?
+;
+
+preCS returns PreCS :
+	'pre' (constraintName=simpleNameCS)? ':' expression=OclExpressionCS
+;
+
+postCS returns PostCS :
+	'post' (constraintName=simpleNameCS)? ':' expression=OclExpressionCS
+;
+
+bodyCS returns BodyCS :
+	'body' (constraintName=simpleNameCS)? ':' expression=OclExpressionCS
+;
+
+constraintCS returns ConstraintCS :
+	initCS
+|	derCS
+|	namedConstraintCS
+;
+
+namedConstraintCS returns NamedConstraintCS :
+	bodyCS
+|	defCS
+|	invCS
+|	postCS
+|	preCS
+;
+
+extendedPrimaryExpCS returns essentialocl::OclExpressionCS:
+	primaryExpCS
+|	OclMessageExpCS 	// OclExpressionCS[E]
+;
+
+OclMessageExpCS returns OclMessageCS:
+	source=primaryExpCS
+	op=('^^'|'^') messageName=simpleNameCS
+	'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')'
+;
+
+OclMessageArgCS returns essentialocl::OclExpressionCS:
+	({OclMessageArgCS}'?' (':' type=typeCS)?)
+|	OclExpressionCS
+;
+

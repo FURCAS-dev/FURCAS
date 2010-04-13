@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-Version: 3.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.completeocl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.antlr.runtime,
+ de.itemis.xtext.antlr;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.ocl.examples.xtext.completeocl,
+ org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST,
+ org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl,
+ org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util,
+ org.eclipse.ocl.examples.xtext.completeocl.parseTreeConstruction,
+ org.eclipse.ocl.examples.xtext.completeocl.parser.antlr,
+ org.eclipse.ocl.examples.xtext.completeocl.parser.antlr.internal,
+ org.eclipse.ocl.examples.xtext.completeocl.services,
+ org.eclipse.ocl.examples.xtext.completeocl.validation
+

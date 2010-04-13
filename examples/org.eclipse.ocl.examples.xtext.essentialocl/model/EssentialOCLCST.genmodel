@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.essentialocl/emf-gen"
+    editDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.editor/emf-gen"
+    modelPluginID="org.eclipse.ocl.examples.xtext.essentialocl" modelName="EssentialOCLCST"
+    testsDirectory="/org.eclipse.ocl.examples.xtext.essentialocl.tests/emf-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" classNamePattern="">
+  <foreignModel>EssentialOCLCST.ecore</foreignModel>
+  <genPackages prefix="EssentialOCLCST" basePackage="org.eclipse.ocl.examples.xtext.essentialocl"
+      disposableProviderFactory="true" generateExampleClass="false" ecorePackage="EssentialOCLCST.ecore#/">
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//OclExpressionCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//SimpleNameCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//SimpleNameCS/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//SimpleNameCS/collectionLiteralParts"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//PathNameCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//PathNameCS/simpleNames"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//TypeCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//CollectionTypeCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CollectionTypeCS/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CollectionTypeCS/typeCS"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CollectionTypeCS/collectionLiteralParts"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//TupleTypeCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//TupleTypeCS/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//TupleTypeCS/part"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//VariableCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//VariableCS/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//VariableCS/typeCS"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//VariableCS/initExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//LiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//CollectionLiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//CollectionLiteralPartCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CollectionLiteralPartCS/expressionCS"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CollectionLiteralPartCS/lastExpressionCS"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//PrimitiveLiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//TupleLiteralExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//TupleLiteralExpCS/part"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//IntegerLiteralExpCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//IntegerLiteralExpCS/integerSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//RealLiteralExpCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//RealLiteralExpCS/realSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//StringLiteralExpCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//StringLiteralExpCS/stringSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//BooleanLiteralExpCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//BooleanLiteralExpCS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//UnlimitedNaturalLiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//InvalidLiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//NullLiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//TypeLiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//CallArgumentsCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CallArgumentsCS/pathName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CallArgumentsCS/arguments"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//VariableExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//IfExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//IfExpCS/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//IfExpCS/thenExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//IfExpCS/elseExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//LetExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//LetExpCS/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//LetExpCS/in"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//BinaryExpressionCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//BinaryExpressionCS/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//BinaryExpressionCS/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//BinaryExpressionCS/right"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//UnaryExpressionCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//UnaryExpressionCS/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//UnaryExpressionCS/source"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//CallExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CallExpCS/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//CallExpCS/callArguments"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//ArrowCallArgumentsCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//ArrowCallArgumentsCS/variable1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//ArrowCallArgumentsCS/variable2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//ArrowCallArgumentsCS/body"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCST.ecore#//DotIndexArgumentsCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCST.ecore#//DotIndexArgumentsCS/indexes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCST.ecore#//DotIndexArgumentsCS/isPre"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
