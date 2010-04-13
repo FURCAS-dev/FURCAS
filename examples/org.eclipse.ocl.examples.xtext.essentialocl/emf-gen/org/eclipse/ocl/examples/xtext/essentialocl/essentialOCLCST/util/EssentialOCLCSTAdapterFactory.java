@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTAdapterFactory.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: EssentialOCLCSTAdapterFactory.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -82,20 +82,12 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	protected EssentialOCLCSTSwitch<Adapter> modelSwitch =
 		new EssentialOCLCSTSwitch<Adapter>() {
 			@Override
-			public Adapter caseArrowCallArgumentsCS(ArrowCallArgumentsCS object) {
-				return createArrowCallArgumentsCSAdapter();
-			}
-			@Override
 			public Adapter caseBinaryExpressionCS(BinaryExpressionCS object) {
 				return createBinaryExpressionCSAdapter();
 			}
 			@Override
 			public Adapter caseBooleanLiteralExpCS(BooleanLiteralExpCS object) {
 				return createBooleanLiteralExpCSAdapter();
-			}
-			@Override
-			public Adapter caseCallArgumentsCS(CallArgumentsCS object) {
-				return createCallArgumentsCSAdapter();
 			}
 			@Override
 			public Adapter caseCallExpCS(CallExpCS object) {
@@ -114,12 +106,12 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 				return createCollectionTypeCSAdapter();
 			}
 			@Override
-			public Adapter caseDotIndexArgumentsCS(DotIndexArgumentsCS object) {
-				return createDotIndexArgumentsCSAdapter();
-			}
-			@Override
 			public Adapter caseIfExpCS(IfExpCS object) {
 				return createIfExpCSAdapter();
+			}
+			@Override
+			public Adapter caseIndexExpCS(IndexExpCS object) {
+				return createIndexExpCSAdapter();
 			}
 			@Override
 			public Adapter caseIntegerLiteralExpCS(IntegerLiteralExpCS object) {
@@ -144,6 +136,10 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOclExpressionCS(OclExpressionCS object) {
 				return createOclExpressionCSAdapter();
+			}
+			@Override
+			public Adapter caseOperationExpressionCS(OperationExpressionCS object) {
+				return createOperationExpressionCSAdapter();
 			}
 			@Override
 			public Adapter casePathNameCS(PathNameCS object) {
@@ -228,6 +224,20 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOclExpressionCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS <em>Operation Expression CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS
+	 * @generated
+	 */
+	public Adapter createOperationExpressionCSAdapter() {
 		return null;
 	}
 
@@ -498,20 +508,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS <em>Call Arguments CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS
-	 * @generated
-	 */
-	public Adapter createCallArgumentsCSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableExpCS <em>Variable Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -536,6 +532,20 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS <em>Index Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS
+	 * @generated
+	 */
+	public Adapter createIndexExpCSAdapter() {
 		return null;
 	}
 
@@ -592,34 +602,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCallExpCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS <em>Arrow Call Arguments CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS
-	 * @generated
-	 */
-	public Adapter createArrowCallArgumentsCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS <em>Dot Index Arguments CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS
-	 * @generated
-	 */
-	public Adapter createDotIndexArgumentsCSAdapter() {
 		return null;
 	}
 

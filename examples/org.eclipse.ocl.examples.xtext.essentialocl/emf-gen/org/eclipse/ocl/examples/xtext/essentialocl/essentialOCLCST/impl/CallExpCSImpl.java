@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: CallExpCSImpl.java,v 1.2 2010/04/13 20:35:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -20,21 +20,16 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,33 +38,44 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpression
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl#getCallArguments <em>Call Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl#getVariable1 <em>Variable1</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl#getVariable2 <em>Variable2</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
+public class CallExpCSImpl extends OperationExpressionCSImpl implements CallExpCS {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
+	 * The cached value of the '{@link #getVariable1() <em>Variable1</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSource()
+	 * @see #getVariable1()
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS source;
+	protected VariableCS variable1;
 
 	/**
-	 * The cached value of the '{@link #getCallArguments() <em>Call Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getVariable2() <em>Variable2</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCallArguments()
+	 * @see #getVariable2()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CallArgumentsCS> callArguments;
+	protected VariableCS variable2;
+
+	/**
+	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArguments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OclExpressionCS> arguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,8 +101,8 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getSource() {
-		return source;
+	public VariableCS getVariable1() {
+		return variable1;
 	}
 
 	/**
@@ -104,11 +110,11 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(OclExpressionCS newSource, NotificationChain msgs) {
-		OclExpressionCS oldSource = source;
-		source = newSource;
+	public NotificationChain basicSetVariable1(VariableCS newVariable1, NotificationChain msgs) {
+		VariableCS oldVariable1 = variable1;
+		variable1 = newVariable1;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE, oldSource, newSource);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1, oldVariable1, newVariable1);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -119,18 +125,18 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(OclExpressionCS newSource) {
-		if (newSource != source) {
+	public void setVariable1(VariableCS newVariable1) {
+		if (newVariable1 != variable1) {
 			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE, null, msgs);
-			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE, null, msgs);
-			msgs = basicSetSource(newSource, msgs);
+			if (variable1 != null)
+				msgs = ((InternalEObject)variable1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1, null, msgs);
+			if (newVariable1 != null)
+				msgs = ((InternalEObject)newVariable1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1, null, msgs);
+			msgs = basicSetVariable1(newVariable1, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE, newSource, newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1, newVariable1, newVariable1));
 	}
 
 	/**
@@ -138,11 +144,54 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CallArgumentsCS> getCallArguments() {
-		if (callArguments == null) {
-			callArguments = new EObjectContainmentEList<CallArgumentsCS>(CallArgumentsCS.class, this, EssentialOCLCSTPackage.CALL_EXP_CS__CALL_ARGUMENTS);
+	public VariableCS getVariable2() {
+		return variable2;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetVariable2(VariableCS newVariable2, NotificationChain msgs) {
+		VariableCS oldVariable2 = variable2;
+		variable2 = newVariable2;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2, oldVariable2, newVariable2);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return callArguments;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVariable2(VariableCS newVariable2) {
+		if (newVariable2 != variable2) {
+			NotificationChain msgs = null;
+			if (variable2 != null)
+				msgs = ((InternalEObject)variable2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2, null, msgs);
+			if (newVariable2 != null)
+				msgs = ((InternalEObject)newVariable2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2, null, msgs);
+			msgs = basicSetVariable2(newVariable2, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2, newVariable2, newVariable2));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OclExpressionCS> getArguments() {
+		if (arguments == null) {
+			arguments = new EObjectContainmentEList<OclExpressionCS>(OclExpressionCS.class, this, EssentialOCLCSTPackage.CALL_EXP_CS__ARGUMENTS);
+		}
+		return arguments;
 	}
 
 	/**
@@ -153,10 +202,12 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE:
-				return basicSetSource(null, msgs);
-			case EssentialOCLCSTPackage.CALL_EXP_CS__CALL_ARGUMENTS:
-				return ((InternalEList<?>)getCallArguments()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1:
+				return basicSetVariable1(null, msgs);
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2:
+				return basicSetVariable2(null, msgs);
+			case EssentialOCLCSTPackage.CALL_EXP_CS__ARGUMENTS:
+				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -169,10 +220,12 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE:
-				return getSource();
-			case EssentialOCLCSTPackage.CALL_EXP_CS__CALL_ARGUMENTS:
-				return getCallArguments();
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1:
+				return getVariable1();
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2:
+				return getVariable2();
+			case EssentialOCLCSTPackage.CALL_EXP_CS__ARGUMENTS:
+				return getArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,12 +239,15 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE:
-				setSource((OclExpressionCS)newValue);
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1:
+				setVariable1((VariableCS)newValue);
 				return;
-			case EssentialOCLCSTPackage.CALL_EXP_CS__CALL_ARGUMENTS:
-				getCallArguments().clear();
-				getCallArguments().addAll((Collection<? extends CallArgumentsCS>)newValue);
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2:
+				setVariable2((VariableCS)newValue);
+				return;
+			case EssentialOCLCSTPackage.CALL_EXP_CS__ARGUMENTS:
+				getArguments().clear();
+				getArguments().addAll((Collection<? extends OclExpressionCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,11 +261,14 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE:
-				setSource((OclExpressionCS)null);
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1:
+				setVariable1((VariableCS)null);
 				return;
-			case EssentialOCLCSTPackage.CALL_EXP_CS__CALL_ARGUMENTS:
-				getCallArguments().clear();
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2:
+				setVariable2((VariableCS)null);
+				return;
+			case EssentialOCLCSTPackage.CALL_EXP_CS__ARGUMENTS:
+				getArguments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -223,10 +282,12 @@ public class CallExpCSImpl extends OclExpressionCSImpl implements CallExpCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.CALL_EXP_CS__SOURCE:
-				return source != null;
-			case EssentialOCLCSTPackage.CALL_EXP_CS__CALL_ARGUMENTS:
-				return callArguments != null && !callArguments.isEmpty();
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE1:
+				return variable1 != null;
+			case EssentialOCLCSTPackage.CALL_EXP_CS__VARIABLE2:
+				return variable2 != null;
+			case EssentialOCLCSTPackage.CALL_EXP_CS__ARGUMENTS:
+				return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

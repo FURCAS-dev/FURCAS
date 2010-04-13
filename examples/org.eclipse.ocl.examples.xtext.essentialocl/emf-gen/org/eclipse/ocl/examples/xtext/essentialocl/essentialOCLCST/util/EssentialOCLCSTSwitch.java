@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTSwitch.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: EssentialOCLCSTSwitch.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -97,16 +97,10 @@ public class EssentialOCLCSTSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EssentialOCLCSTPackage.ARROW_CALL_ARGUMENTS_CS: {
-				ArrowCallArgumentsCS arrowCallArgumentsCS = (ArrowCallArgumentsCS)theEObject;
-				T result = caseArrowCallArgumentsCS(arrowCallArgumentsCS);
-				if (result == null) result = caseCallArgumentsCS(arrowCallArgumentsCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSTPackage.BINARY_EXPRESSION_CS: {
 				BinaryExpressionCS binaryExpressionCS = (BinaryExpressionCS)theEObject;
 				T result = caseBinaryExpressionCS(binaryExpressionCS);
+				if (result == null) result = caseOperationExpressionCS(binaryExpressionCS);
 				if (result == null) result = caseOclExpressionCS(binaryExpressionCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -120,15 +114,10 @@ public class EssentialOCLCSTSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSTPackage.CALL_ARGUMENTS_CS: {
-				CallArgumentsCS callArgumentsCS = (CallArgumentsCS)theEObject;
-				T result = caseCallArgumentsCS(callArgumentsCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSTPackage.CALL_EXP_CS: {
 				CallExpCS callExpCS = (CallExpCS)theEObject;
 				T result = caseCallExpCS(callExpCS);
+				if (result == null) result = caseOperationExpressionCS(callExpCS);
 				if (result == null) result = caseOclExpressionCS(callExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -158,17 +147,18 @@ public class EssentialOCLCSTSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS: {
-				DotIndexArgumentsCS dotIndexArgumentsCS = (DotIndexArgumentsCS)theEObject;
-				T result = caseDotIndexArgumentsCS(dotIndexArgumentsCS);
-				if (result == null) result = caseCallArgumentsCS(dotIndexArgumentsCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSTPackage.IF_EXP_CS: {
 				IfExpCS ifExpCS = (IfExpCS)theEObject;
 				T result = caseIfExpCS(ifExpCS);
 				if (result == null) result = caseOclExpressionCS(ifExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.INDEX_EXP_CS: {
+				IndexExpCS indexExpCS = (IndexExpCS)theEObject;
+				T result = caseIndexExpCS(indexExpCS);
+				if (result == null) result = caseOperationExpressionCS(indexExpCS);
+				if (result == null) result = caseOclExpressionCS(indexExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -216,6 +206,13 @@ public class EssentialOCLCSTSwitch<T> {
 			case EssentialOCLCSTPackage.OCL_EXPRESSION_CS: {
 				OclExpressionCS oclExpressionCS = (OclExpressionCS)theEObject;
 				T result = caseOclExpressionCS(oclExpressionCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.OPERATION_EXPRESSION_CS: {
+				OperationExpressionCS operationExpressionCS = (OperationExpressionCS)theEObject;
+				T result = caseOperationExpressionCS(operationExpressionCS);
+				if (result == null) result = caseOclExpressionCS(operationExpressionCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -302,6 +299,7 @@ public class EssentialOCLCSTSwitch<T> {
 			case EssentialOCLCSTPackage.UNARY_EXPRESSION_CS: {
 				UnaryExpressionCS unaryExpressionCS = (UnaryExpressionCS)theEObject;
 				T result = caseUnaryExpressionCS(unaryExpressionCS);
+				if (result == null) result = caseOperationExpressionCS(unaryExpressionCS);
 				if (result == null) result = caseOclExpressionCS(unaryExpressionCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -344,6 +342,21 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseOclExpressionCS(OclExpressionCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Expression CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Expression CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationExpressionCS(OperationExpressionCS object) {
 		return null;
 	}
 
@@ -633,21 +646,6 @@ public class EssentialOCLCSTSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Call Arguments CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Call Arguments CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCallArgumentsCS(CallArgumentsCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Variable Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -674,6 +672,21 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseIfExpCS(IfExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Index Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Index Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndexExpCS(IndexExpCS object) {
 		return null;
 	}
 
@@ -734,36 +747,6 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseCallExpCS(CallExpCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Arrow Call Arguments CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Arrow Call Arguments CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseArrowCallArgumentsCS(ArrowCallArgumentsCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dot Index Arguments CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dot Index Arguments CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDotIndexArgumentsCS(DotIndexArgumentsCS object) {
 		return null;
 	}
 

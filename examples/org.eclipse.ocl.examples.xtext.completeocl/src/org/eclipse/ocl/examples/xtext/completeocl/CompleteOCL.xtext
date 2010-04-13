@@ -90,9 +90,14 @@ namedConstraintCS returns NamedConstraintCS :
 |	preCS
 ;
 
-extendedPrimaryExpCS returns essentialocl::OclExpressionCS:
+messageExpCS returns essentialocl::OclExpressionCS:
 	primaryExpCS
 |	OclMessageExpCS 	// OclExpressionCS[E]
+;
+	
+preExpCS returns essentialocl::OclExpressionCS:
+	indexExpCS
+	({essentialocl::UnaryExpressionCS.source=current} '@' op='pre')?
 ;
 
 OclMessageExpCS returns OclMessageCS:

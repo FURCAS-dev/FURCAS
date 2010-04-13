@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -70,16 +70,14 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EssentialOCLCSTPackage.ARROW_CALL_ARGUMENTS_CS: return createArrowCallArgumentsCS();
 			case EssentialOCLCSTPackage.BINARY_EXPRESSION_CS: return createBinaryExpressionCS();
 			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
-			case EssentialOCLCSTPackage.CALL_ARGUMENTS_CS: return createCallArgumentsCS();
 			case EssentialOCLCSTPackage.CALL_EXP_CS: return createCallExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS: return createDotIndexArgumentsCS();
 			case EssentialOCLCSTPackage.IF_EXP_CS: return createIfExpCS();
+			case EssentialOCLCSTPackage.INDEX_EXP_CS: return createIndexExpCS();
 			case EssentialOCLCSTPackage.INTEGER_LITERAL_EXP_CS: return createIntegerLiteralExpCS();
 			case EssentialOCLCSTPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
 			case EssentialOCLCSTPackage.LET_EXP_CS: return createLetExpCS();
@@ -309,16 +307,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallArgumentsCS createCallArgumentsCS() {
-		CallArgumentsCSImpl callArgumentsCS = new CallArgumentsCSImpl();
-		return callArgumentsCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public VariableExpCS createVariableExpCS() {
 		VariableExpCSImpl variableExpCS = new VariableExpCSImpl();
 		return variableExpCS;
@@ -332,6 +320,16 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public IfExpCS createIfExpCS() {
 		IfExpCSImpl ifExpCS = new IfExpCSImpl();
 		return ifExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IndexExpCS createIndexExpCS() {
+		IndexExpCSImpl indexExpCS = new IndexExpCSImpl();
+		return indexExpCS;
 	}
 
 	/**
@@ -372,26 +370,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public CallExpCS createCallExpCS() {
 		CallExpCSImpl callExpCS = new CallExpCSImpl();
 		return callExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ArrowCallArgumentsCS createArrowCallArgumentsCS() {
-		ArrowCallArgumentsCSImpl arrowCallArgumentsCS = new ArrowCallArgumentsCSImpl();
-		return arrowCallArgumentsCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DotIndexArgumentsCS createDotIndexArgumentsCS() {
-		DotIndexArgumentsCSImpl dotIndexArgumentsCS = new DotIndexArgumentsCSImpl();
-		return dotIndexArgumentsCS;
 	}
 
 	/**

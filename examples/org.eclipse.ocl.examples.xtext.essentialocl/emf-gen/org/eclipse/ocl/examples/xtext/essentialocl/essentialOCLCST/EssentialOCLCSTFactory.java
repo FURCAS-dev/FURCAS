@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -216,15 +216,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	TypeLiteralExpCS createTypeLiteralExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Call Arguments CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Call Arguments CS</em>'.
-	 * @generated
-	 */
-	CallArgumentsCS createCallArgumentsCS();
-
-	/**
 	 * Returns a new object of class '<em>Variable Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,6 +232,15 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	IfExpCS createIfExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Index Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Index Exp CS</em>'.
+	 * @generated
+	 */
+	IndexExpCS createIndexExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Let Exp CS</em>'.
@@ -277,24 +277,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	CallExpCS createCallExpCS();
-
-	/**
-	 * Returns a new object of class '<em>Arrow Call Arguments CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Arrow Call Arguments CS</em>'.
-	 * @generated
-	 */
-	ArrowCallArgumentsCS createArrowCallArgumentsCS();
-
-	/**
-	 * Returns a new object of class '<em>Dot Index Arguments CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dot Index Arguments CS</em>'.
-	 * @generated
-	 */
-	DotIndexArgumentsCS createDotIndexArgumentsCS();
 
 	/**
 	 * Returns the package supported by this factory.
