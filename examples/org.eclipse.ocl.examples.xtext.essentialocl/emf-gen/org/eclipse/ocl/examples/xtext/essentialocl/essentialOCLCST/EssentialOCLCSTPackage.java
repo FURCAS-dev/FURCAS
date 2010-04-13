@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -77,7 +77,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getOclExpressionCS()
 	 * @generated
 	 */
-	int OCL_EXPRESSION_CS = 15;
+	int OCL_EXPRESSION_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeCSImpl <em>Type CS</em>}' class.
@@ -87,7 +87,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 23;
+	int TYPE_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
@@ -97,7 +97,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getSimpleNameCS()
 	 * @generated
 	 */
-	int SIMPLE_NAME_CS = 19;
+	int SIMPLE_NAME_CS = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
@@ -107,7 +107,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getPathNameCS()
 	 * @generated
 	 */
-	int PATH_NAME_CS = 16;
+	int PATH_NAME_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
@@ -117,7 +117,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getCollectionTypeCS()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_CS = 7;
+	int COLLECTION_TYPE_CS = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleTypeCSImpl <em>Tuple Type CS</em>}' class.
@@ -127,7 +127,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleTypeCS()
 	 * @generated
 	 */
-	int TUPLE_TYPE_CS = 22;
+	int TUPLE_TYPE_CS = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableCSImpl <em>Variable CS</em>}' class.
@@ -137,7 +137,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 27;
+	int VARIABLE_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.LiteralExpCSImpl <em>Literal Exp CS</em>}' class.
@@ -147,7 +147,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getLiteralExpCS()
 	 * @generated
 	 */
-	int LITERAL_EXP_CS = 13;
+	int LITERAL_EXP_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
@@ -157,7 +157,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getCollectionLiteralExpCS()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_EXP_CS = 5;
+	int COLLECTION_LITERAL_EXP_CS = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionLiteralPartCSImpl <em>Collection Literal Part CS</em>}' class.
@@ -167,7 +167,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getCollectionLiteralPartCS()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_PART_CS = 6;
+	int COLLECTION_LITERAL_PART_CS = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.PrimitiveLiteralExpCSImpl <em>Primitive Literal Exp CS</em>}' class.
@@ -177,7 +177,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 17;
+	int PRIMITIVE_LITERAL_EXP_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -187,7 +187,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 21;
+	int TUPLE_LITERAL_EXP_CS = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IntegerLiteralExpCSImpl <em>Integer Literal Exp CS</em>}' class.
@@ -197,7 +197,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getIntegerLiteralExpCS()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP_CS = 10;
+	int INTEGER_LITERAL_EXP_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.RealLiteralExpCSImpl <em>Real Literal Exp CS</em>}' class.
@@ -207,7 +207,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getRealLiteralExpCS()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP_CS = 18;
+	int REAL_LITERAL_EXP_CS = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -217,7 +217,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 20;
+	int STRING_LITERAL_EXP_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -227,7 +227,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getBooleanLiteralExpCS()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXP_CS = 2;
+	int BOOLEAN_LITERAL_EXP_CS = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.UnlimitedNaturalLiteralExpCSImpl <em>Unlimited Natural Literal Exp CS</em>}' class.
@@ -237,7 +237,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 26;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InvalidLiteralExpCSImpl <em>Invalid Literal Exp CS</em>}' class.
@@ -247,7 +247,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getInvalidLiteralExpCS()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP_CS = 11;
+	int INVALID_LITERAL_EXP_CS = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
@@ -257,7 +257,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 14;
+	int NULL_LITERAL_EXP_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeLiteralExpCSImpl <em>Type Literal Exp CS</em>}' class.
@@ -267,44 +267,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 24;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallArgumentsCSImpl <em>Call Arguments CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallArgumentsCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getCallArgumentsCS()
-	 * @generated
-	 */
-	int CALL_ARGUMENTS_CS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_ARGUMENTS_CS__PATH_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_ARGUMENTS_CS__ARGUMENTS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Call Arguments CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_ARGUMENTS_CS_FEATURE_COUNT = 2;
+	int TYPE_LITERAL_EXP_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableExpCSImpl <em>Variable Exp CS</em>}' class.
@@ -314,7 +277,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getVariableExpCS()
 	 * @generated
 	 */
-	int VARIABLE_EXP_CS = 28;
+	int VARIABLE_EXP_CS = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -324,7 +287,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getIfExpCS()
 	 * @generated
 	 */
-	int IF_EXP_CS = 9;
+	int IF_EXP_CS = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
@@ -334,7 +297,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getLetExpCS()
 	 * @generated
 	 */
-	int LET_EXP_CS = 12;
+	int LET_EXP_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BinaryExpressionCSImpl <em>Binary Expression CS</em>}' class.
@@ -344,7 +307,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getBinaryExpressionCS()
 	 * @generated
 	 */
-	int BINARY_EXPRESSION_CS = 1;
+	int BINARY_EXPRESSION_CS = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.UnaryExpressionCSImpl <em>Unary Expression CS</em>}' class.
@@ -354,7 +317,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnaryExpressionCS()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION_CS = 25;
+	int UNARY_EXPRESSION_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl <em>Call Exp CS</em>}' class.
@@ -364,71 +327,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getCallExpCS()
 	 * @generated
 	 */
-	int CALL_EXP_CS = 4;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ArrowCallArgumentsCSImpl <em>Arrow Call Arguments CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ArrowCallArgumentsCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getArrowCallArgumentsCS()
-	 * @generated
-	 */
-	int ARROW_CALL_ARGUMENTS_CS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_CALL_ARGUMENTS_CS__PATH_NAME = CALL_ARGUMENTS_CS__PATH_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_CALL_ARGUMENTS_CS__ARGUMENTS = CALL_ARGUMENTS_CS__ARGUMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Variable1</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_CALL_ARGUMENTS_CS__VARIABLE1 = CALL_ARGUMENTS_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Variable2</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_CALL_ARGUMENTS_CS__VARIABLE2 = CALL_ARGUMENTS_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Body</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_CALL_ARGUMENTS_CS__BODY = CALL_ARGUMENTS_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Arrow Call Arguments CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_CALL_ARGUMENTS_CS_FEATURE_COUNT = CALL_ARGUMENTS_CS_FEATURE_COUNT + 3;
+	int CALL_EXP_CS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Expression CS</em>' class.
@@ -440,13 +339,23 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int OCL_EXPRESSION_CS_FEATURE_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperationExpressionCSImpl <em>Operation Expression CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperationExpressionCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getOperationExpressionCS()
+	 * @generated
+	 */
+	int OPERATION_EXPRESSION_CS = 14;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_EXPRESSION_CS__LEFT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
+	int OPERATION_EXPRESSION_CS__SOURCE = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -455,16 +364,43 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_EXPRESSION_CS__OP = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
+	int OPERATION_EXPRESSION_CS__OP = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * The number of structural features of the '<em>Operation Expression CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_EXPRESSION_CS__RIGHT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
+	int OPERATION_EXPRESSION_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_EXPRESSION_CS__SOURCE = OPERATION_EXPRESSION_CS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_EXPRESSION_CS__OP = OPERATION_EXPRESSION_CS__OP;
+
+	/**
+	 * The feature id for the '<em><b>Argument</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_EXPRESSION_CS__ARGUMENT = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Binary Expression CS</em>' class.
@@ -473,7 +409,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_EXPRESSION_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
+	int BINARY_EXPRESSION_CS_FEATURE_COUNT = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Literal Exp CS</em>' class.
@@ -518,16 +454,43 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS__SOURCE = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
+	int CALL_EXP_CS__SOURCE = OPERATION_EXPRESSION_CS__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Call Arguments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Op</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS__CALL_ARGUMENTS = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
+	int CALL_EXP_CS__OP = OPERATION_EXPRESSION_CS__OP;
+
+	/**
+	 * The feature id for the '<em><b>Variable1</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__VARIABLE1 = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Variable2</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__VARIABLE2 = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__ARGUMENTS = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Call Exp CS</em>' class.
@@ -536,7 +499,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
+	int CALL_EXP_CS_FEATURE_COUNT = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Exp CS</em>' class.
@@ -620,61 +583,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int COLLECTION_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DotIndexArgumentsCSImpl <em>Dot Index Arguments CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DotIndexArgumentsCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getDotIndexArgumentsCS()
-	 * @generated
-	 */
-	int DOT_INDEX_ARGUMENTS_CS = 8;
-
-	/**
-	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOT_INDEX_ARGUMENTS_CS__PATH_NAME = CALL_ARGUMENTS_CS__PATH_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOT_INDEX_ARGUMENTS_CS__ARGUMENTS = CALL_ARGUMENTS_CS__ARGUMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Indexes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOT_INDEX_ARGUMENTS_CS__INDEXES = CALL_ARGUMENTS_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOT_INDEX_ARGUMENTS_CS__IS_PRE = CALL_ARGUMENTS_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Dot Index Arguments CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOT_INDEX_ARGUMENTS_CS_FEATURE_COUNT = CALL_ARGUMENTS_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -709,6 +617,52 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int IF_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl <em>Index Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getIndexExpCS()
+	 * @generated
+	 */
+	int INDEX_EXP_CS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXP_CS__SOURCE = OPERATION_EXPRESSION_CS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXP_CS__OP = OPERATION_EXPRESSION_CS__OP;
+
+	/**
+	 * The feature id for the '<em><b>Indexes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXP_CS__INDEXES = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Index Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXP_CS_FEATURE_COUNT = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
@@ -909,22 +863,22 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TYPE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Op</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_EXPRESSION_CS__OP = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_EXPRESSION_CS__SOURCE = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
+	int UNARY_EXPRESSION_CS__SOURCE = OPERATION_EXPRESSION_CS__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_EXPRESSION_CS__OP = OPERATION_EXPRESSION_CS__OP;
 
 	/**
 	 * The number of structural features of the '<em>Unary Expression CS</em>' class.
@@ -933,7 +887,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_EXPRESSION_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
+	int UNARY_EXPRESSION_CS_FEATURE_COUNT = OPERATION_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp CS</em>' class.
@@ -999,6 +953,38 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOclExpressionCS();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS <em>Operation Expression CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Operation Expression CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS
+	 * @generated
+	 */
+	EClass getOperationExpressionCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Source</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS#getSource()
+	 * @see #getOperationExpressionCS()
+	 * @generated
+	 */
+	EReference getOperationExpressionCS_Source();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Op</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperationExpressionCS#getOp()
+	 * @see #getOperationExpressionCS()
+	 * @generated
+	 */
+	EAttribute getOperationExpressionCS_Op();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS <em>Simple Name CS</em>}'.
@@ -1389,38 +1375,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getTypeLiteralExpCS();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS <em>Call Arguments CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Call Arguments CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS
-	 * @generated
-	 */
-	EClass getCallArgumentsCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS#getPathName <em>Path Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS#getPathName()
-	 * @see #getCallArgumentsCS()
-	 * @generated
-	 */
-	EReference getCallArgumentsCS_PathName();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS#getArguments <em>Arguments</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallArgumentsCS#getArguments()
-	 * @see #getCallArgumentsCS()
-	 * @generated
-	 */
-	EReference getCallArgumentsCS_Arguments();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableExpCS <em>Variable Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1474,6 +1428,27 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EReference getIfExpCS_ElseExpression();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS <em>Index Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Index Exp CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS
+	 * @generated
+	 */
+	EClass getIndexExpCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS#getIndexes <em>Indexes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Indexes</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS#getIndexes()
+	 * @see #getIndexExpCS()
+	 * @generated
+	 */
+	EReference getIndexExpCS_Indexes();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS <em>Let Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1516,37 +1491,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getBinaryExpressionCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getLeft <em>Left</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getLeft()
+	 * @return the meta object for the containment reference '<em>Argument</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getArgument()
 	 * @see #getBinaryExpressionCS()
 	 * @generated
 	 */
-	EReference getBinaryExpressionCS_Left();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getOp <em>Op</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Op</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getOp()
-	 * @see #getBinaryExpressionCS()
-	 * @generated
-	 */
-	EAttribute getBinaryExpressionCS_Op();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getRight <em>Right</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getRight()
-	 * @see #getBinaryExpressionCS()
-	 * @generated
-	 */
-	EReference getBinaryExpressionCS_Right();
+	EReference getBinaryExpressionCS_Argument();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS <em>Unary Expression CS</em>}'.
@@ -1559,28 +1512,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getUnaryExpressionCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getOp <em>Op</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Op</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getOp()
-	 * @see #getUnaryExpressionCS()
-	 * @generated
-	 */
-	EAttribute getUnaryExpressionCS_Op();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getSource()
-	 * @see #getUnaryExpressionCS()
-	 * @generated
-	 */
-	EReference getUnaryExpressionCS_Source();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS <em>Call Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1591,101 +1522,37 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getCallExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getSource()
-	 * @see #getCallExpCS()
-	 * @generated
-	 */
-	EReference getCallExpCS_Source();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getCallArguments <em>Call Arguments</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Call Arguments</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getCallArguments()
-	 * @see #getCallExpCS()
-	 * @generated
-	 */
-	EReference getCallExpCS_CallArguments();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS <em>Arrow Call Arguments CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Arrow Call Arguments CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS
-	 * @generated
-	 */
-	EClass getArrowCallArgumentsCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS#getVariable1 <em>Variable1</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable1 <em>Variable1</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Variable1</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS#getVariable1()
-	 * @see #getArrowCallArgumentsCS()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable1()
+	 * @see #getCallExpCS()
 	 * @generated
 	 */
-	EReference getArrowCallArgumentsCS_Variable1();
+	EReference getCallExpCS_Variable1();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS#getVariable2 <em>Variable2</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable2 <em>Variable2</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Variable2</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS#getVariable2()
-	 * @see #getArrowCallArgumentsCS()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable2()
+	 * @see #getCallExpCS()
 	 * @generated
 	 */
-	EReference getArrowCallArgumentsCS_Variable2();
+	EReference getCallExpCS_Variable2();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS#getBody <em>Body</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getArguments <em>Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Body</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowCallArgumentsCS#getBody()
-	 * @see #getArrowCallArgumentsCS()
+	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getArguments()
+	 * @see #getCallExpCS()
 	 * @generated
 	 */
-	EReference getArrowCallArgumentsCS_Body();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS <em>Dot Index Arguments CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dot Index Arguments CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS
-	 * @generated
-	 */
-	EClass getDotIndexArgumentsCS();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS#getIndexes <em>Indexes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Indexes</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS#getIndexes()
-	 * @see #getDotIndexArgumentsCS()
-	 * @generated
-	 */
-	EReference getDotIndexArgumentsCS_Indexes();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS#isIsPre <em>Is Pre</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Pre</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS#isIsPre()
-	 * @see #getDotIndexArgumentsCS()
-	 * @generated
-	 */
-	EAttribute getDotIndexArgumentsCS_IsPre();
+	EReference getCallExpCS_Arguments();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1718,6 +1585,32 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OCL_EXPRESSION_CS = eINSTANCE.getOclExpressionCS();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperationExpressionCSImpl <em>Operation Expression CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperationExpressionCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getOperationExpressionCS()
+		 * @generated
+		 */
+		EClass OPERATION_EXPRESSION_CS = eINSTANCE.getOperationExpressionCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_EXPRESSION_CS__SOURCE = eINSTANCE.getOperationExpressionCS_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_EXPRESSION_CS__OP = eINSTANCE.getOperationExpressionCS_Op();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
@@ -2054,32 +1947,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass TYPE_LITERAL_EXP_CS = eINSTANCE.getTypeLiteralExpCS();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallArgumentsCSImpl <em>Call Arguments CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallArgumentsCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getCallArgumentsCS()
-		 * @generated
-		 */
-		EClass CALL_ARGUMENTS_CS = eINSTANCE.getCallArgumentsCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CALL_ARGUMENTS_CS__PATH_NAME = eINSTANCE.getCallArgumentsCS_PathName();
-
-		/**
-		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CALL_ARGUMENTS_CS__ARGUMENTS = eINSTANCE.getCallArgumentsCS_Arguments();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableExpCSImpl <em>Variable Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2124,6 +1991,24 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EReference IF_EXP_CS__ELSE_EXPRESSION = eINSTANCE.getIfExpCS_ElseExpression();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl <em>Index Exp CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getIndexExpCS()
+		 * @generated
+		 */
+		EClass INDEX_EXP_CS = eINSTANCE.getIndexExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Indexes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX_EXP_CS__INDEXES = eINSTANCE.getIndexExpCS_Indexes();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2160,28 +2045,12 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass BINARY_EXPRESSION_CS = eINSTANCE.getBinaryExpressionCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Argument</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_EXPRESSION_CS__LEFT = eINSTANCE.getBinaryExpressionCS_Left();
-
-		/**
-		 * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BINARY_EXPRESSION_CS__OP = eINSTANCE.getBinaryExpressionCS_Op();
-
-		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BINARY_EXPRESSION_CS__RIGHT = eINSTANCE.getBinaryExpressionCS_Right();
+		EReference BINARY_EXPRESSION_CS__ARGUMENT = eINSTANCE.getBinaryExpressionCS_Argument();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.UnaryExpressionCSImpl <em>Unary Expression CS</em>}' class.
@@ -2194,22 +2063,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass UNARY_EXPRESSION_CS = eINSTANCE.getUnaryExpressionCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute UNARY_EXPRESSION_CS__OP = eINSTANCE.getUnaryExpressionCS_Op();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNARY_EXPRESSION_CS__SOURCE = eINSTANCE.getUnaryExpressionCS_Source();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CallExpCSImpl <em>Call Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2220,38 +2073,12 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass CALL_EXP_CS = eINSTANCE.getCallExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CALL_EXP_CS__SOURCE = eINSTANCE.getCallExpCS_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Call Arguments</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CALL_EXP_CS__CALL_ARGUMENTS = eINSTANCE.getCallExpCS_CallArguments();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ArrowCallArgumentsCSImpl <em>Arrow Call Arguments CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ArrowCallArgumentsCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getArrowCallArgumentsCS()
-		 * @generated
-		 */
-		EClass ARROW_CALL_ARGUMENTS_CS = eINSTANCE.getArrowCallArgumentsCS();
-
-		/**
 		 * The meta object literal for the '<em><b>Variable1</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ARROW_CALL_ARGUMENTS_CS__VARIABLE1 = eINSTANCE.getArrowCallArgumentsCS_Variable1();
+		EReference CALL_EXP_CS__VARIABLE1 = eINSTANCE.getCallExpCS_Variable1();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable2</b></em>' containment reference feature.
@@ -2259,41 +2086,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ARROW_CALL_ARGUMENTS_CS__VARIABLE2 = eINSTANCE.getArrowCallArgumentsCS_Variable2();
+		EReference CALL_EXP_CS__VARIABLE2 = eINSTANCE.getCallExpCS_Variable2();
 
 		/**
-		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ARROW_CALL_ARGUMENTS_CS__BODY = eINSTANCE.getArrowCallArgumentsCS_Body();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DotIndexArgumentsCSImpl <em>Dot Index Arguments CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DotIndexArgumentsCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getDotIndexArgumentsCS()
-		 * @generated
-		 */
-		EClass DOT_INDEX_ARGUMENTS_CS = eINSTANCE.getDotIndexArgumentsCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Indexes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DOT_INDEX_ARGUMENTS_CS__INDEXES = eINSTANCE.getDotIndexArgumentsCS_Indexes();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Pre</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOT_INDEX_ARGUMENTS_CS__IS_PRE = eINSTANCE.getDotIndexArgumentsCS_IsPre();
+		EReference CALL_EXP_CS__ARGUMENTS = eINSTANCE.getCallExpCS_Arguments();
 
 	}
 

@@ -39,64 +39,61 @@ terminal ANY_OTHER: .;
 //  Names
 //---------------------------------------------------------------------
 /*  Temporary backward compatibility support for 7.4.8 conceptual usage 
-    conceptualOperationName returns SimpleNameCS:
-    	value='and'
-    	| value='implies'
-    	| value='not'
-    	| value='or'
-    	| value='xor'
-    	| value='<'
-    	| value='<='
-    	| value='>='
-    	| value='>'
-    	| value='='
-    	| value='<>'
-    	| value='+'
-    	| value='-'
-    	| value='*'
-    	| value='/';
-    conceptualOperationNameCS returns SimpleNameCS:
-    	conceptualOperationName; */
-    
-/*    reservedKeyword returns SimpleNameCS: 
-    	value='and'
-    	| value='else'
-    	| value='endif'
-    	| value='if'
-    	| value='implies'
-    	| value='in'
-    	| value='let'
-    	| value='not'
-    	| value='or'
-    	| value='then'
-    	| value='xor'; */
+conceptualOperationName returns SimpleNameCS:
+	value='and'
+	| value='implies'
+	| value='not'
+	| value='or'
+	| value='xor'
+	| value='<'
+	| value='<='
+	| value='>='
+	| value='>'
+	| value='='
+	| value='<>'
+	| value='+'
+	| value='-'
+	| value='*'
+	| value='/';
+conceptualOperationNameCS returns SimpleNameCS:
+	conceptualOperationName; */
 
-    tupleKeywordCS returns SimpleNameCS:
-    	value='Tuple';
-    
-//    reservedKeywordCS returns SimpleNameCS:
-//    	reservedKeyword;
-    
-    restrictedKeywordCS returns SimpleNameCS: 
-    	CollectionTypeIdentifierCS
+reservedKeywordCS returns SimpleNameCS: 
+	value='and'
+|	value='else'
+|	value='endif'
+|	value='if'
+|	value='implies'
+|	value='in'
+|	value='let'
+|	value='not'
+|	value='or'
+|	value='then'
+|	value='xor';
+
+tupleKeywordCS returns SimpleNameCS:
+	value='Tuple';
+
+restrictedKeywordCS returns SimpleNameCS: 
+	CollectionTypeIdentifierCS
 //  restrictedKeywordCS -> BooleanLiteralExpCS
 //  restrictedKeywordCS -> InvalidLiteralExpCS
 //  restrictedKeywordCS -> NullLiteralExpCS
 //-  restrictedKeywordCS -> selfKeywordCS
-	    | primitiveTypeCS
-	    | tupleKeywordCS;
-        
-    selfKeywordCS returns SimpleNameCS:
-    	value='self';
-        
-    simpleNameCS returns SimpleNameCS:
-    	value=ID;
+|	primitiveTypeCS
+|	tupleKeywordCS;
+    
+selfKeywordCS returns SimpleNameCS:
+	value='self';
+    
+simpleNameCS returns SimpleNameCS:
+	value=ID;
 
-    unreservedSimpleNameCS returns SimpleNameCS:
-    	simpleNameCS | restrictedKeywordCS;
+unreservedSimpleNameCS returns SimpleNameCS:
+	simpleNameCS | restrictedKeywordCS;
 
-    pathNameCS returns PathNameCS:
-    	simpleNames+=simpleNameCS ('::' simpleNames+=unreservedSimpleNameCS)*;
+pathNameCS returns PathNameCS:
+	simpleNames+=simpleNameCS ('::' simpleNames+=unreservedSimpleNameCS)*;
 
         
 //---------------------------------------------------------------------
@@ -104,13 +101,13 @@ terminal ANY_OTHER: .;
 //---------------------------------------------------------------------
 primitiveTypeCS returns SimpleNameCS:
 	value='Boolean'
-	| value='Integer'
-	| value='Real'
-	| value='String'
-	| value='UnlimitedNatural'
-	| value='OclAny'
-	| value='OclInvalid'
-	| value='OclVoid'
+|	value='Integer'
+|	value='Real'
+|	value='String'
+|	value='UnlimitedNatural'
+|	value='OclAny'
+|	value='OclInvalid'
+|	value='OclVoid'
 ;
     
 CollectionTypeIdentifierCS returns SimpleNameCS:
@@ -129,7 +126,7 @@ typeCS returns TypeCS:
 ;
 
 collectionTypeCS returns CollectionTypeCS:
-	value=CollectionTypeIdentifierCS '(' typeCS=typeCS ')'
+	value=CollectionTypeIdentifierCS ('(' typeCS=typeCS ')')?
 ;
 
 tupleTypeCS returns TupleTypeCS:
@@ -145,189 +142,185 @@ tuplePartCS returns VariableCS:
 //---------------------------------------------------------------------
 // EnumLiteralExpCS is parsed as a PropertyCallExpCS[C]
 //  LiteralExpCS -> EnumLiteralExpCS
-    LiteralExpCS returns LiteralExpCS:
-    	CollectionLiteralExpCS
-    |	TupleLiteralExpCS
-    |	PrimitiveLiteralExpCS
-    |	TypeLiteralExpCS;
+LiteralExpCS returns LiteralExpCS:
+	CollectionLiteralExpCS
+|	TupleLiteralExpCS
+|	PrimitiveLiteralExpCS
+|	TypeLiteralExpCS;
 
-    CollectionLiteralExpCS returns CollectionLiteralExpCS:
-    	(CollectionTypeIdentifierCS|collectionTypeCS) '{' (collectionLiteralParts+=CollectionLiteralPartCS (',' collectionLiteralParts+=CollectionLiteralPartCS)*)? '}';
+CollectionLiteralExpCS returns CollectionLiteralExpCS:	// or CollectionTypeLiteral
+	collectionTypeCS
+	('{' (collectionLiteralParts+=CollectionLiteralPartCS
+	 (',' collectionLiteralParts+=CollectionLiteralPartCS)*)?
+	 '}')?
+;
 
-    CollectionLiteralPartCS returns CollectionLiteralPartCS:
-    	expressionCS=OclExpressionCS ('..' lastExpressionCS=OclExpressionCS)?;
+CollectionLiteralPartCS returns CollectionLiteralPartCS:
+	expressionCS=OclExpressionCS ('..' lastExpressionCS=OclExpressionCS)?;
 
-    PrimitiveLiteralExpCS returns PrimitiveLiteralExpCS:
-    	IntegerLiteralExpCS
-	|	RealLiteralExpCS
-	|	StringLiteralExpCS
-	|	BooleanLiteralExpCS
-	|	UnlimitedNaturalLiteralExpCS
-	|	InvalidLiteralExpCS
-	|	NullLiteralExpCS;
+PrimitiveLiteralExpCS returns PrimitiveLiteralExpCS:
+	IntegerLiteralExpCS
+|	RealLiteralExpCS
+|	StringLiteralExpCS
+|	BooleanLiteralExpCS
+|	UnlimitedNaturalLiteralExpCS
+|	InvalidLiteralExpCS
+|	NullLiteralExpCS;
 
-    TupleLiteralExpCS returns TupleLiteralExpCS: 
-    	'Tuple' '{' part+=TupleLiteralPartCS (',' part+=TupleLiteralPartCS)* '}';
-    	
-    TupleLiteralPartCS returns VariableCS:
-    	name=simpleNameCS (':' type=typeCS)? '=' initExpression=OclExpressionCS;
+TupleLiteralExpCS returns TupleLiteralExpCS: // or TupleTypeLiteral
+	{TupleLiteralExpCS} 'Tuple' ('{' part+=TupleLiteralPartCS (',' part+=TupleLiteralPartCS)* '}')?
+;
+	
+TupleLiteralPartCS returns VariableCS:
+	name=simpleNameCS (':' type=typeCS)? '=' initExpression=OclExpressionCS;
 
-    IntegerLiteralExpCS returns IntegerLiteralExpCS:
-		integerSymbol=INTEGER_LITERAL;
+IntegerLiteralExpCS returns IntegerLiteralExpCS:
+	integerSymbol=INTEGER_LITERAL;
 
-    RealLiteralExpCS returns RealLiteralExpCS:
-		realSymbol=REAL_LITERAL;
+RealLiteralExpCS returns RealLiteralExpCS:
+	realSymbol=REAL_LITERAL;
 
-    StringLiteralExpCS returns StringLiteralExpCS:
-		stringSymbol+=STRING_LITERAL+;
+StringLiteralExpCS returns StringLiteralExpCS:
+	stringSymbol+=STRING_LITERAL+;
 
-    BooleanLiteralExpCS returns BooleanLiteralExpCS:
-		value='true'
-	|	value='false';
+BooleanLiteralExpCS returns BooleanLiteralExpCS:
+	value='true'
+|	value='false';
 
-    UnlimitedNaturalLiteralExpCS returns UnlimitedNaturalLiteralExpCS:
-		{UnlimitedNaturalLiteralExpCS} '*';
+UnlimitedNaturalLiteralExpCS returns UnlimitedNaturalLiteralExpCS:
+	{UnlimitedNaturalLiteralExpCS} '*';
 
-    InvalidLiteralExpCS returns InvalidLiteralExpCS:
-		{InvalidLiteralExpCS} 'invalid';
+InvalidLiteralExpCS returns InvalidLiteralExpCS:
+	{InvalidLiteralExpCS} 'invalid';
 
-    NullLiteralExpCS returns NullLiteralExpCS:
-		{NullLiteralExpCS} 'null';
-        
-    TypeLiteralExpCS returns TypeLiteralExpCS:
-		pathNameCS
-	|	primitiveTypeCS
-	|	collectionTypeCS
-	|	tupleTypeCS;
+NullLiteralExpCS returns NullLiteralExpCS:
+	{NullLiteralExpCS} 'null';
+    
+TypeLiteralExpCS returns TypeLiteralExpCS:
+	pathNameCS
+|	primitiveTypeCS
+//|	collectionTypeCS
+|	tupleTypeCS;
 
 //---------------------------------------------------------------------
 //  Expressions
 //---------------------------------------------------------------------
-    // An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
-    //  that let is right associative, whereas infix operators are left associative.
-    //   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
-    // is
-    //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
-    OclExpressionCS returns OclExpressionCS:
-    	impliesCS	
-    |	LetExpCS
-    ;
+// An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
+//  that let is right associative, whereas infix operators are left associative.
+//   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
+// is
+//   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
+OclExpressionCS returns OclExpressionCS:
+	impliesCS	
+|	LetExpCS
+;
+
+impliesCS returns OclExpressionCS:
+	xorCS
+	({BinaryExpressionCS.source=current} op='implies' argument=(impliesCS|LetExpCS))?
+;
+
+xorCS returns OclExpressionCS:
+	orCS
+	({BinaryExpressionCS.source=current} op='xor' argument=(xorCS|LetExpCS))?
+;
+
+orCS returns OclExpressionCS:
+	andCS
+	({BinaryExpressionCS.source=current} op='or' argument=(orCS|LetExpCS))?
+;
+
+andCS returns OclExpressionCS:
+	equalityCS
+	({BinaryExpressionCS.source=current} op='and' argument=(andCS|LetExpCS))?
+;
+
+equalityCS returns OclExpressionCS:
+	relationalCS
+	({BinaryExpressionCS.source=current} op=('='|'<>') argument=(equalityCS|LetExpCS))?
+;
+
+relationalCS returns OclExpressionCS:
+	additiveCS
+	({BinaryExpressionCS.source=current} op=('>'|'<'|'>='|'<=') argument=(relationalCS|LetExpCS))?
+;
+
+additiveCS returns OclExpressionCS:
+	multiplicativeCS
+	({BinaryExpressionCS.source=current} op=('+'|'-') argument=(additiveCS|LetExpCS))?
+;
+
+multiplicativeCS returns OclExpressionCS:
+	unaryCS
+	({BinaryExpressionCS.source=current} op=('*'|'/') argument=(multiplicativeCS|LetExpCS))?
+;
+
+unaryCS returns OclExpressionCS:
+	callingExpCS
+|	({UnaryExpressionCS} op=('-'|'not') source=unaryCS)
+;
+
+callingExpCS returns OclExpressionCS:
+	callExpCS
+	({BinaryExpressionCS.source=current} op=('.'|'->') argument=callingExpCS)?
+;
+
+iteratorVariableCS returns VariableCS:
+	name=simpleNameCS (':' type=typeCS)?
+;
+
+iteratorAccumulatorCS returns VariableCS:
+	name=simpleNameCS ':' type=typeCS '=' initExpression=OclExpressionCS
+;
+
+callExpCS returns OclExpressionCS:
+	preExpCS
+	({CallExpCS.source=current} '('
+	(variable1=iteratorVariableCS
+        ((',' variable2=iteratorVariableCS)
+        |(';' variable2=iteratorAccumulatorCS))?
+        '|')?
+    (arguments+=OclExpressionCS (',' arguments+=OclExpressionCS)*)?
+	')')?
+;
+
+preExpCS returns OclExpressionCS:
+	indexExpCS
+//  ({UnaryExpressionCS.source=current} '@' op='pre')?
+;
+
+indexExpCS returns OclExpressionCS:
+	messageExpCS
+	({IndexExpCS.source=current} '[' indexes+=OclExpressionCS (',' indexes+=OclExpressionCS)* ']')?
+;
     
-    impliesCS returns OclExpressionCS:
-    	xorCS
-    	({BinaryExpressionCS.left=current} op='implies' right=(impliesCS|LetExpCS))?
-    ;
+messageExpCS returns OclExpressionCS:
+	primaryExpCS
+//|	OclMessageExpCS // OclExpressionCS[E] is added by CompleteOCL
+;
 
-    xorCS returns OclExpressionCS:
-    	orCS
-    	({BinaryExpressionCS.left=current} op='xor' right=(xorCS|LetExpCS))?
-    ;
+primaryExpCS returns OclExpressionCS:
+	selfKeywordCS
+//|	restrictedKeywordCS
+|	LiteralExpCS    // OclExpressionCS[C]
+|	IfExpCS         // OclExpressionCS[F]
+|	'(' OclExpressionCS ')'
+;
 
-    orCS returns OclExpressionCS:
-    	andCS
-    	({BinaryExpressionCS.left=current} op='or' right=(orCS|LetExpCS))?
-    ;
+IfExpCS returns IfExpCS:
+	'if' condition=OclExpressionCS
+	'then' thenExpression=OclExpressionCS
+	'else' elseExpression=OclExpressionCS
+	'endif'
+;
 
-    andCS returns OclExpressionCS:
-    	equalityCS
-    	({BinaryExpressionCS.left=current} op='and' right=(andCS|LetExpCS))?
-    ;
+LetExpCS returns LetExpCS:
+	'let'
+	variable+=LetVariableCS (',' variable+=LetVariableCS)*
+	'in' in=OclExpressionCS
+;
 
-    equalityCS returns OclExpressionCS:
-    	relationalCS
-    	({BinaryExpressionCS.left=current} op=('='|'<>') right=(equalityCS|LetExpCS))?
-    ;
-    
-    relationalCS returns OclExpressionCS:
-    	additiveCS
-    	({BinaryExpressionCS.left=current} op=('>'|'<'|'>='|'<=') right=(relationalCS|LetExpCS))?
-    ;
-
-    additiveCS returns OclExpressionCS:
-    	multiplicativeCS
-    	({BinaryExpressionCS.left=current} op=('+'|'-') right=(additiveCS|LetExpCS))?
-    ;
-    
-    multiplicativeCS returns OclExpressionCS:
-    	unaryCS
-    	({BinaryExpressionCS.left=current} op=('*'|'/') right=(multiplicativeCS|LetExpCS))?
-    ;
-    
-    unaryCS returns OclExpressionCS:
-    	calledExpCS
-    |	{UnaryExpressionCS} op=('-'|'not') source=unaryCS
-    ;
-
-	calledExpCS returns OclExpressionCS:
-		implicitCallExpCS
-    	({CallExpCS.source=current} (callArguments+=CallArgumentsCS)+)?
-	;
-
-    CallArgumentsCS returns CallArgumentsCS:
-    (	{ArrowCallArgumentsCS} '->' pathName=pathNameCS '('
-    	(	variable1=iteratorVariableCS
-	        ((',' variable2=iteratorVariableCS)|(';' variable2=iteratorAccumulatorCS))?
-	        '|' body=OclExpressionCS
-	    |
-	        (arguments+=OclExpressionCS (',' arguments+=OclExpressionCS)*)?
-    	)')'
-    )|(	{DotIndexArgumentsCS} '.' pathName=pathNameCS
-        ('[' indexes+=OclExpressionCS (',' indexes+=OclExpressionCS)* ']')?
-        (isPre?='@pre')?
-        ('(' (arguments+=OclExpressionCS (',' arguments+=OclExpressionCS)*)? ')')?
-    );
-
-    iteratorVariableCS returns VariableCS:
-    	name=simpleNameCS (':' type=typeCS)?
-    ;
-
-    iteratorAccumulatorCS returns VariableCS:
-		name=simpleNameCS ':' type=typeCS '=' initExpression=OclExpressionCS
-	;
-
-	implicitCallExpCS returns OclExpressionCS:
-		preCallExpCS
-//    	(	(({ImplicitIndexExpCS.calls=current} '[' indexes+=OclExpressionCS (',' indexes+=OclExpressionCS)* ']')?)
-//    	|	(({ImplicitCallExpCS.calls=current} '(' (arguments+=OclExpressionCS (',' arguments+=OclExpressionCS)*)? ')')?)
-//    	)
-	;
-	
-	preCallExpCS returns OclExpressionCS:
-		extendedPrimaryExpCS
-//	|	source=primaryExpCS isPre?='@pre'
-	;
-        
-    SimpleNameExpCS returns OclExpressionCS: // AssociationClassCallExpCS[B.1.1],
-                        // PropertyCallExpCS[B],VariableExpCS[.1]
-        simpleNameCS;
-
-    extendedPrimaryExpCS returns OclExpressionCS:
-		primaryExpCS
-//  |	OclMessageExpCS // OclExpressionCS[E] is added by CompleteOCL
-    ;
-
-    primaryExpCS returns OclExpressionCS:
-		selfKeywordCS	// The only VariableExpCS not parsed as a TypeLiteralExpCS
-    |	LiteralExpCS    // OclExpressionCS[C]
-    |	IfExpCS         // OclExpressionCS[F]
-    |	'(' OclExpressionCS ')'
-    ;
-
-    IfExpCS returns IfExpCS:
-    	'if' condition=OclExpressionCS
-    	'then' thenExpression=OclExpressionCS
-    	'else' elseExpression=OclExpressionCS
-    	'endif'
-    ;
-
-    LetExpCS returns LetExpCS:
-    	'let'
-    	variable+=LetVariableCS (',' variable+=LetVariableCS)*
-    	'in' in=OclExpressionCS
-    ;
-    
-    LetVariableCS returns VariableCS:
-		name=simpleNameCS ':' type=typeCS '=' initExpression=OclExpressionCS
-	;
-
+LetVariableCS returns VariableCS:
+	name=simpleNameCS ':' type=typeCS '=' initExpression=OclExpressionCS
+;
 		

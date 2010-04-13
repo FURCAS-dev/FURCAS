@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: DotIndexArgumentsCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: IndexExpCSImpl.java,v 1.1 2010/04/13 20:35:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -26,30 +25,27 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotIndexArgumentsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Dot Index Arguments CS</b></em>'.
+ * An implementation of the model object '<em><b>Index Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DotIndexArgumentsCSImpl#getIndexes <em>Indexes</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DotIndexArgumentsCSImpl#isIsPre <em>Is Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl#getIndexes <em>Indexes</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotIndexArgumentsCS {
+public class IndexExpCSImpl extends OperationExpressionCSImpl implements IndexExpCS {
 	/**
 	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -61,31 +57,11 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	protected EList<OclExpressionCS> indexes;
 
 	/**
-	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_PRE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsPre()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isPre = IS_PRE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DotIndexArgumentsCSImpl() {
+	protected IndexExpCSImpl() {
 		super();
 	}
 
@@ -96,7 +72,7 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.DOT_INDEX_ARGUMENTS_CS;
+		return EssentialOCLCSTPackage.Literals.INDEX_EXP_CS;
 	}
 
 	/**
@@ -106,30 +82,9 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	 */
 	public EList<OclExpressionCS> getIndexes() {
 		if (indexes == null) {
-			indexes = new EObjectContainmentEList<OclExpressionCS>(OclExpressionCS.class, this, EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__INDEXES);
+			indexes = new EObjectContainmentEList<OclExpressionCS>(OclExpressionCS.class, this, EssentialOCLCSTPackage.INDEX_EXP_CS__INDEXES);
 		}
 		return indexes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsPre() {
-		return isPre;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsPre(boolean newIsPre) {
-		boolean oldIsPre = isPre;
-		isPre = newIsPre;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__IS_PRE, oldIsPre, isPre));
 	}
 
 	/**
@@ -140,7 +95,7 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__INDEXES:
+			case EssentialOCLCSTPackage.INDEX_EXP_CS__INDEXES:
 				return ((InternalEList<?>)getIndexes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -154,10 +109,8 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__INDEXES:
+			case EssentialOCLCSTPackage.INDEX_EXP_CS__INDEXES:
 				return getIndexes();
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__IS_PRE:
-				return isIsPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,12 +124,9 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__INDEXES:
+			case EssentialOCLCSTPackage.INDEX_EXP_CS__INDEXES:
 				getIndexes().clear();
 				getIndexes().addAll((Collection<? extends OclExpressionCS>)newValue);
-				return;
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__IS_PRE:
-				setIsPre((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,11 +140,8 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__INDEXES:
+			case EssentialOCLCSTPackage.INDEX_EXP_CS__INDEXES:
 				getIndexes().clear();
-				return;
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__IS_PRE:
-				setIsPre(IS_PRE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,28 +155,10 @@ public class DotIndexArgumentsCSImpl extends CallArgumentsCSImpl implements DotI
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__INDEXES:
+			case EssentialOCLCSTPackage.INDEX_EXP_CS__INDEXES:
 				return indexes != null && !indexes.isEmpty();
-			case EssentialOCLCSTPackage.DOT_INDEX_ARGUMENTS_CS__IS_PRE:
-				return isPre != IS_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isPre: ");
-		result.append(isPre);
-		result.append(')');
-		return result.toString();
-	}
-
-} //DotIndexArgumentsCSImpl
+} //IndexExpCSImpl

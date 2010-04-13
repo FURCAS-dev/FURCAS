@@ -3,35 +3,20 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="essentialOCLCST"
     nsURI="http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST" nsPrefix="essentialOCLCST">
-  <eClassifiers xsi:type="ecore:EClass" name="ArrowCallArgumentsCS" eSuperTypes="#//CallArgumentsCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable1" eType="#//VariableCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable2" eType="#//VariableCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//OclExpressionCS"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BinaryExpressionCS" eSuperTypes="#//OclExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//OclExpressionCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//OclExpressionCS"
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryExpressionCS" eSuperTypes="#//OperationExpressionCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//OclExpressionCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallArgumentsCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pathName" eType="#//PathNameCS"
+  <eClassifiers xsi:type="ecore:EClass" name="CallExpCS" eSuperTypes="#//OperationExpressionCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable1" eType="#//VariableCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable2" eType="#//VariableCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
         eType="#//OclExpressionCS" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallExpCS" eSuperTypes="#//OclExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//OclExpressionCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="callArguments" upperBound="-1"
-        eType="#//CallArgumentsCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPartCS">
@@ -48,11 +33,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="collectionLiteralParts"
         upperBound="-1" eType="#//CollectionLiteralPartCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DotIndexArgumentsCS" eSuperTypes="#//CallArgumentsCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="indexes" upperBound="-1"
-        eType="#//OclExpressionCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfExpCS" eSuperTypes="#//OclExpressionCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//OclExpressionCS"
         containment="true"/>
@@ -60,6 +40,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" eType="#//OclExpressionCS"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexExpCS" eSuperTypes="#//OperationExpressionCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexes" upperBound="-1"
+        eType="#//OclExpressionCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
@@ -74,6 +58,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//OclExpressionCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclExpressionCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationExpressionCS" abstract="true"
+      eSuperTypes="#//OclExpressionCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//OclExpressionCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathNameCS" eSuperTypes="#//TypeCS #//TypeLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNames" upperBound="-1"
         eType="#//SimpleNameCS" containment="true"/>
@@ -102,11 +92,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpressionCS" eSuperTypes="#//OclExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//OclExpressionCS"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpressionCS" eSuperTypes="#//OperationExpressionCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="VariableCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//SimpleNameCS"

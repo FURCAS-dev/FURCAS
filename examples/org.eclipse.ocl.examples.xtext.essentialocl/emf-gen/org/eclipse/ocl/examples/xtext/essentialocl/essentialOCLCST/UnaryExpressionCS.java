@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnaryExpressionCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: UnaryExpressionCS.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -22,69 +22,11 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * A representation of the model object '<em><b>Unary Expression CS</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getOp <em>Op</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getSource <em>Source</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getUnaryExpressionCS()
  * @model
  * @generated
  */
-public interface UnaryExpressionCS extends OclExpressionCS {
-	/**
-	 * Returns the value of the '<em><b>Op</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Op</em>' attribute.
-	 * @see #setOp(String)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getUnaryExpressionCS_Op()
-	 * @model
-	 * @generated
-	 */
-	String getOp();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getOp <em>Op</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Op</em>' attribute.
-	 * @see #getOp()
-	 * @generated
-	 */
-	void setOp(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(OclExpressionCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getUnaryExpressionCS_Source()
-	 * @model containment="true"
-	 * @generated
-	 */
-	OclExpressionCS getSource();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS#getSource <em>Source</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(OclExpressionCS value);
+public interface UnaryExpressionCS extends OperationExpressionCS {
 
 } // UnaryExpressionCS
