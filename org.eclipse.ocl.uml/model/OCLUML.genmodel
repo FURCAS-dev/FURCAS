@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.ocl.uml/src"
+    creationIcons="false" modelPluginID="org.eclipse.ocl.uml" templateDirectory="/org.eclipse.ocl/templates"
+    dynamicTemplates="true" modelName="OCLUML" modelPluginClass="org.eclipse.ocl.uml.internal.OCLUMLPlugin"
+    editPluginClass="org.eclipse.ocl.uml.edit.OCLUMLEditPlugin" editorPluginClass="org.eclipse.ocl.uml.editor.OCLUMLEditorPlugin"
+    nonNLSMarkers="true" codeFormatting="true" booleanFlagsField="eFlags" booleanFlagsReservedBits="8"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" copyrightFields="false"
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    pluralizedGetters="true" cacheAdapterSupport="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="DUPLICATE_FEATURES" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="SUBSETTING_PROPERTIES" value="PROCESS"/>
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="REDEFINING_OPERATIONS" value="PROCESS"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="PROCESS"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+  </genAnnotations>
+  <foreignModel>OCLUML.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
+      disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.ocl" fileExtensions="oclxmi"
+      ecorePackage="OCLUML.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="UML" basePackage="org.eclipse.ocl"
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.uml"
+        fileExtensions="ocluml,oclxmi" ecorePackage="OCLUML.ecore#//uml" operationsPackage="org.eclipse.ocl.uml.internal.operations">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/AnyType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/AnyType/ownedOperation"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/VoidType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/VoidType/ownedOperation"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/InvalidType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/InvalidType/ownedOperation"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/ElementType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TypeType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/TypeType/ownedOperation"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/MessageType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/MessageType/ownedOperation"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/MessageType/ownedAttribute"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/PrimitiveType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/CollectionType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TupleType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/BagType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/SetType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/OrderedSetType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/SequenceType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/ExpressionInOCL"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/AssociationClassCallExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/NavigationCallExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/FeatureCallExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/CallExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/OCLExpression"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/BooleanLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/PrimitiveLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/LiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/CollectionItem"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/CollectionLiteralPart"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/CollectionLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/CollectionRange"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/EnumLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/IfExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/IntegerLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/NumericLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/UnlimitedNaturalLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/InvalidLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/IterateExp"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLUML.ecore#//uml/LoopExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/IteratorExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/LetExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/MessageExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/NullLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/OperationCallExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/PropertyCallExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/RealLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/StateExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/StringLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TupleLiteralExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TupleLiteralPart"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TypeExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/UnspecifiedValueExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/Variable"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/VariableExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TemplateParameterType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/TemplateParameterType/ownedOperation"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,9 @@
+Performance Tests
+
+ Resource URI conversion
+ - no classpath URIs allowed
+ - cannonical URIs
+ 
+ ==================
+ 
+Elaborate information in modification events 

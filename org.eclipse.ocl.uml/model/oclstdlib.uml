@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.uml="http://www.eclipse.org/ocl/1.1.0/UML" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/ocl/1.1.0/UML http://www.eclipse.org/OCL/1.1.0/OCL#//uml">
+  <uml:Package xmi:id="_ajR70KjQEdu4LJng8Rasow" name="oclstdlib">
+    <eAnnotations xmi:id="_awji16jQEdu4LJng8Rasow" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+      <contents xmi:type="ecore:EPackage" xmi:id="_awji2KjQEdu4LJng8Rasow" name="oclstdlib" nsURI="http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml" nsPrefix="oclstdlib">
+        <eClassifiers xmi:type="ecore:EDataType" xmi:id="_aw12sKjQEdu4LJng8Rasow" name="Boolean" instanceClassName="Boolean"/>
+        <eClassifiers xmi:type="ecore:EDataType" xmi:id="_aw12sajQEdu4LJng8Rasow" name="Integer" instanceClassName="Integer"/>
+        <eClassifiers xmi:type="ecore:EDataType" xmi:id="_aw12sqjQEdu4LJng8Rasow" name="UnlimitedNatural" instanceClassName="UnlimitedNatural"/>
+        <eClassifiers xmi:type="ecore:EDataType" xmi:id="_aw12s6jQEdu4LJng8Rasow" name="Real" instanceClassName="Real"/>
+        <eClassifiers xmi:type="ecore:EDataType" xmi:id="_aw12tKjQEdu4LJng8Rasow" name="String" instanceClassName="String"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_aw12tajQEdu4LJng8Rasow" name="CollectionT"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_aw12tqjQEdu4LJng8Rasow" name="SetT"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_aw12t6jQEdu4LJng8Rasow" name="OrderedSetT"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_aw12uKjQEdu4LJng8Rasow" name="BagT"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_aw12uajQEdu4LJng8Rasow" name="SequenceT"/>
+      </contents>
+    </eAnnotations>
+    <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_akI3cKjQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_akVEsKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_akVEsajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEsqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEs6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_akVEtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEtajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEtqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_akVEt6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEuKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEuajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_akVEuqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEu6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEvKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_akVEvajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEvqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEv6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_akVEwKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEwajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_akVEwqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEw6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_akVExKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVExajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_akVExqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEx6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEyKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_akVEyajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEyqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEy6jQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_akVEzKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVEzajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEzqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_akVEz6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVE0KjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVE0ajQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_akVE0qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_akVE06jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:VoidType" xmi:id="_akVE1KjQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_ak5scKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_ak5scajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5scqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sc6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_ak5sdKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5sdajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sdqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_ak5sd6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5seKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5seajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_ak5seqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5se6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sfKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_ak5sfajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5sfqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sf6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_ak5sgKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sgajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_ak5sgqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sg6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_ak5shKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5shajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_ak5shqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5sh6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5siKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_ak5siajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5siqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5si6jQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_ak5sjKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5sjajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sjqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_ak5sj6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5skKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5skajQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_ak5skqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak5sk6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:InvalidType" xmi:id="_ak5slKjQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_ak_zEKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_ak_zEajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zEqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zE6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_ak_zFKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zFajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zFqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_ak_zF6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zGKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zGajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_ak_zGqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zG6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zHKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_ak_zHajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zHqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zH6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_ak_zIKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zIajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_ak_zIqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zI6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_ak_zJKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zJajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_ak_zJqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zJ6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zKKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_ak_zKajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zKqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zK6jQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_ak_zLKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zLajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zLqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_ak_zL6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zMKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zMajQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_ak_zMqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ak_zM6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_ak_zNKjQEdu4LJng8Rasow" name="Boolean">
+      <ownedOperation xmi:id="_alYNkKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_alYNkajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNkqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNk6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_alYNlKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNlajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNlqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_alYNl6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNmKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNmajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_alYNmqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNm6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNnKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_alYNnajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNnqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNn6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_alYNoKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNoajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_alYNoqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNo6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_alYNpKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNpajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_alYNpqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNp6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNqKjQEdu4LJng8Rasow" name="not" isQuery="true">
+        <ownedParameter xmi:id="_alYNqajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNqqjQEdu4LJng8Rasow" name="and" isQuery="true">
+        <ownedParameter xmi:id="_alYNq6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNrKjQEdu4LJng8Rasow" name="b" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNrajQEdu4LJng8Rasow" name="or" isQuery="true">
+        <ownedParameter xmi:id="_alYNrqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNr6jQEdu4LJng8Rasow" name="b" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNsKjQEdu4LJng8Rasow" name="implies" isQuery="true">
+        <ownedParameter xmi:id="_alYNsajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNsqjQEdu4LJng8Rasow" name="b" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_alYNs6jQEdu4LJng8Rasow" name="xor" isQuery="true">
+        <ownedParameter xmi:id="_alYNtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_alYNtajQEdu4LJng8Rasow" name="b" type="_ak_zNKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_alYNtqjQEdu4LJng8Rasow" name="Integer">
+      <ownedOperation xmi:id="_al9cYKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_al9cYajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_al9cYqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9cY6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_al9cZKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_al9cZajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9cZqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_al9cZ6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_al9caKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9caajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_al9caqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_al9ca6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9cbKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_al9cbajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_al9cbqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9cb6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_al9ccKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9ccajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_al9ccqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_al9cc6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_al9cdKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjAKjQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_amDjAajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjAqjQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjA6jQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_amDjBKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjBajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjBqjQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_amDjB6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjCKjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjCajQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_amDjCqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjC6jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjDKjQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_amDjDajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjDqjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjD6jQEdu4LJng8Rasow" name="+" isQuery="true">
+        <ownedParameter xmi:id="_amDjEKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjEajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjEqjQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_amDjE6jQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjFKjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjFajQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_amDjFqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjF6jQEdu4LJng8Rasow" name="*" isQuery="true">
+        <ownedParameter xmi:id="_amDjGKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjGajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjGqjQEdu4LJng8Rasow" name="/" isQuery="true">
+        <ownedParameter xmi:id="_amDjG6jQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjHKjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjHajQEdu4LJng8Rasow" name="min" isQuery="true">
+        <ownedParameter xmi:id="_amDjHqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjH6jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjIKjQEdu4LJng8Rasow" name="max" isQuery="true">
+        <ownedParameter xmi:id="_amDjIajQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjIqjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjI6jQEdu4LJng8Rasow" name="abs" isQuery="true">
+        <ownedParameter xmi:id="_amDjJKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjJajQEdu4LJng8Rasow" name="floor" isQuery="true">
+        <ownedParameter xmi:id="_amDjJqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjJ6jQEdu4LJng8Rasow" name="round" isQuery="true">
+        <ownedParameter xmi:id="_amDjKKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjKajQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_amDjKqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjK6jQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjLKjQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_amDjLajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjLqjQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjL6jQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_amDjMKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjMajQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjMqjQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_amDjM6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjNKjQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjNajQEdu4LJng8Rasow" name="div" isQuery="true">
+        <ownedParameter xmi:id="_amDjNqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjN6jQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_amDjOKjQEdu4LJng8Rasow" name="mod" isQuery="true">
+        <ownedParameter xmi:id="_amDjOajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_amDjOqjQEdu4LJng8Rasow" name="i" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_amDjO6jQEdu4LJng8Rasow" name="UnlimitedNatural">
+      <ownedOperation xmi:id="_arljQKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_arljQajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arljQqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arljQ6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_arljRKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arljRajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arljRqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_arljR6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arljSKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arljSajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_arljSqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arljS6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arljTKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_arljTajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arljTqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arljT6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_arljUKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arljUajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_arljUqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp4KjQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_arrp4ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp4qjQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_arrp46jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp5KjQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp5ajQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_arrp5qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp56jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp6KjQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_arrp6ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp6qjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp66jQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_arrp7KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp7ajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp7qjQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_arrp76jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp8KjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp8ajQEdu4LJng8Rasow" name="+" isQuery="true">
+        <ownedParameter xmi:id="_arrp8qjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp86jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp9KjQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_arrp9ajQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp9qjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp96jQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_arrp-KjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp-ajQEdu4LJng8Rasow" name="*" isQuery="true">
+        <ownedParameter xmi:id="_arrp-qjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp-6jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp_KjQEdu4LJng8Rasow" name="/" isQuery="true">
+        <ownedParameter xmi:id="_arrp_ajQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrp_qjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrp_6jQEdu4LJng8Rasow" name="min" isQuery="true">
+        <ownedParameter xmi:id="_arrqAKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqAajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqAqjQEdu4LJng8Rasow" name="max" isQuery="true">
+        <ownedParameter xmi:id="_arrqA6jQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqBKjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqBajQEdu4LJng8Rasow" name="abs" isQuery="true">
+        <ownedParameter xmi:id="_arrqBqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqB6jQEdu4LJng8Rasow" name="floor" isQuery="true">
+        <ownedParameter xmi:id="_arrqCKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqCajQEdu4LJng8Rasow" name="round" isQuery="true">
+        <ownedParameter xmi:id="_arrqCqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqC6jQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_arrqDKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqDajQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqDqjQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_arrqD6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqEKjQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqEajQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_arrqEqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqE6jQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqFKjQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_arrqFajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqFqjQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqF6jQEdu4LJng8Rasow" name="div" isQuery="true">
+        <ownedParameter xmi:id="_arrqGKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqGajQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_arrqGqjQEdu4LJng8Rasow" name="mod" isQuery="true">
+        <ownedParameter xmi:id="_arrqG6jQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_arrqHKjQEdu4LJng8Rasow" name="n" type="_amDjO6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_arrqHajQEdu4LJng8Rasow" name="Real">
+      <ownedOperation xmi:id="_ar99wKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_ar99wajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ar99wqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ar99w6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_ar99xKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ar99xajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ar99xqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_ar99x6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ar99yKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ar99yajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_ar99yqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ar99y6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_ar99zKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_ar99zajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_ar99zqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEYKjQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_asEEYajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEYqjQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_asEEY6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEZKjQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_asEEZajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEZqjQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_asEEZ6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEaKjQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEaajQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_asEEaqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEa6jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEbKjQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_asEEbajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEbqjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEb6jQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_asEEcKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEcajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEcqjQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_asEEc6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEdKjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEdajQEdu4LJng8Rasow" name="+" isQuery="true">
+        <ownedParameter xmi:id="_asEEdqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEd6jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEeKjQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_asEEeajQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEeqjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEe6jQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_asEEfKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEfajQEdu4LJng8Rasow" name="*" isQuery="true">
+        <ownedParameter xmi:id="_asEEfqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEf6jQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEgKjQEdu4LJng8Rasow" name="/" isQuery="true">
+        <ownedParameter xmi:id="_asEEgajQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEgqjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEg6jQEdu4LJng8Rasow" name="min" isQuery="true">
+        <ownedParameter xmi:id="_asEEhKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEhajQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEhqjQEdu4LJng8Rasow" name="max" isQuery="true">
+        <ownedParameter xmi:id="_asEEh6jQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEiKjQEdu4LJng8Rasow" name="r" type="_arrqHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEiajQEdu4LJng8Rasow" name="abs" isQuery="true">
+        <ownedParameter xmi:id="_asEEiqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEi6jQEdu4LJng8Rasow" name="floor" isQuery="true">
+        <ownedParameter xmi:id="_asEEjKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEjajQEdu4LJng8Rasow" name="round" isQuery="true">
+        <ownedParameter xmi:id="_asEEjqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_asEEj6jQEdu4LJng8Rasow" name="String">
+      <ownedOperation xmi:id="_asEEkKjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_asEEkajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEEkqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEEk6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_asEElKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asEElajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asEElqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_asEEl6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdF8KjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdF8ajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_asdF8qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdF86jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdF9KjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_asdF9ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdF9qjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdF96jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_asdF-KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdF-ajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_asdF-qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdF-6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_asdF_KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdF_ajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_asdF_qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdF_6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGAKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_asdGAajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGAqjQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGA6jQEdu4LJng8Rasow" name=">" isQuery="true">
+        <ownedParameter xmi:id="_asdGBKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGBajQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGBqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+        <ownedParameter xmi:id="_asdGB6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGCKjQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGCajQEdu4LJng8Rasow" name=">=" isQuery="true">
+        <ownedParameter xmi:id="_asdGCqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGC6jQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGDKjQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_asdGDajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGDqjQEdu4LJng8Rasow" name="concat" isQuery="true">
+        <ownedParameter xmi:id="_asdGD6jQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGEKjQEdu4LJng8Rasow" name="s" type="_asEEj6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGEajQEdu4LJng8Rasow" name="substring" isQuery="true">
+        <ownedParameter xmi:id="_asdGEqjQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGE6jQEdu4LJng8Rasow" name="lower" type="_alYNtqjQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_asdGFKjQEdu4LJng8Rasow" name="upper" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGFajQEdu4LJng8Rasow" name="toInteger" isQuery="true">
+        <ownedParameter xmi:id="_asdGFqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGF6jQEdu4LJng8Rasow" name="toReal" isQuery="true">
+        <ownedParameter xmi:id="_asdGGKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGGajQEdu4LJng8Rasow" name="toLower" isQuery="true">
+        <ownedParameter xmi:id="_asdGGqjQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGG6jQEdu4LJng8Rasow" name="toUpper" isQuery="true">
+        <ownedParameter xmi:id="_asdGHKjQEdu4LJng8Rasow" type="_asEEj6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:TypeType" xmi:id="_asdGHajQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_asdGHqjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_asdGH6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGIKjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGIajQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_asdGIqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGI6jQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGJKjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_asdGJajQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGJqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGJ6jQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_asdGKKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asdGKajQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMkKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_asjMkajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMkqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMk6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_asjMlKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMlajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_asjMlqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMl6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_asjMmKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMmajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_asjMmqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMm6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMnKjQEdu4LJng8Rasow" name="allInstances" isQuery="true">
+        <ownedParameter xmi:id="_asjMnajQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:MessageType" xmi:id="_asjMnqjQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_asjMn6jQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_asjMoKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMoajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMoqjQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_asjMo6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMpKjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMpajQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+        <ownedParameter xmi:id="_asjMpqjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMp6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMqKjQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+        <ownedParameter xmi:id="_asjMqajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMqqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMq6jQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+        <ownedParameter xmi:id="_asjMrKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMrajQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMrqjQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+        <ownedParameter xmi:id="_asjMr6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMsKjQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+        <ownedParameter xmi:id="_asjMsajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMsqjQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+        <ownedParameter xmi:id="_asjMs6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMtKjQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+        <ownedParameter xmi:id="_asjMtajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_asjMtqjQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMt6jQEdu4LJng8Rasow" name="hasReturned" isQuery="true">
+        <ownedParameter xmi:id="_asjMuKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMuajQEdu4LJng8Rasow" name="result" isQuery="true">
+        <ownedParameter xmi:id="_asjMuqjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMu6jQEdu4LJng8Rasow" name="isSignalSent" isQuery="true">
+        <ownedParameter xmi:id="_asjMvKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMvajQEdu4LJng8Rasow" name="isOperationCall" isQuery="true">
+        <ownedParameter xmi:id="_asjMvqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_asjMv6jQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_as1gcKjQEdu4LJng8Rasow" name="State"/>
+    <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_as1gcajQEdu4LJng8Rasow" name="OclExpression"/>
+    <packagedElement xmi:type="ocl.uml:CollectionType" xmi:id="_as1gcqjQEdu4LJng8Rasow" isAbstract="true" elementType="_awji1ajQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_atscE6jQEdu4LJng8Rasow" name="count" isQuery="true">
+        <ownedParameter xmi:id="_atscFKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_atscFajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscFqjQEdu4LJng8Rasow" name="excludes" isQuery="true">
+        <ownedParameter xmi:id="_atscF6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_atscGKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscGajQEdu4LJng8Rasow" name="excludesAll" isQuery="true">
+        <ownedParameter xmi:id="_atscGqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_atscG6jQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscHKjQEdu4LJng8Rasow" name="includes" isQuery="true">
+        <ownedParameter xmi:id="_atscHajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_atscHqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscH6jQEdu4LJng8Rasow" name="includesAll" isQuery="true">
+        <ownedParameter xmi:id="_atscIKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_atscIajQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscIqjQEdu4LJng8Rasow" name="isEmpty" isQuery="true">
+        <ownedParameter xmi:id="_atscI6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscJKjQEdu4LJng8Rasow" name="notEmpty" isQuery="true">
+        <ownedParameter xmi:id="_atscJajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscJqjQEdu4LJng8Rasow" name="product" isQuery="true">
+        <ownedParameter xmi:id="_atscJ6jQEdu4LJng8Rasow" type="_atscEajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_atscKKjQEdu4LJng8Rasow" name="c2" type="_atscEqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscKajQEdu4LJng8Rasow" name="sum" isQuery="true">
+        <ownedParameter xmi:id="_atscKqjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_atscK6jQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_atscLKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2kKjQEdu4LJng8Rasow" name="exists" isQuery="true">
+        <eAnnotations xmi:id="_auE2kajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2kqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2k6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2lKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2lajQEdu4LJng8Rasow" name="forAll" isQuery="true">
+        <eAnnotations xmi:id="_auE2lqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2l6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2mKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2majQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2mqjQEdu4LJng8Rasow" name="isUnique" isQuery="true">
+        <eAnnotations xmi:id="_auE2m6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2nKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2najQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2nqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2n6jQEdu4LJng8Rasow" name="one" isQuery="true">
+        <eAnnotations xmi:id="_auE2oKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2oajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2oqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2o6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2pKjQEdu4LJng8Rasow" name="any" isQuery="true">
+        <eAnnotations xmi:id="_auE2pajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2pqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2p6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2qKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2qajQEdu4LJng8Rasow" name="collect" isQuery="true">
+        <eAnnotations xmi:id="_auE2qqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2q6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2rKjQEdu4LJng8Rasow" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2rajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_auE2rqjQEdu4LJng8Rasow" name="closure" isQuery="true">
+        <eAnnotations xmi:id="_auE2r6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_auE2sKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_auE2sajQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_auE2sqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_auE2s6jQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_aujXsKjQEdu4LJng8Rasow" name="count" isQuery="true">
+        <ownedParameter xmi:id="_aujXsajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXsqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXs6jQEdu4LJng8Rasow" name="excludes" isQuery="true">
+        <ownedParameter xmi:id="_aujXtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXtajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXtqjQEdu4LJng8Rasow" name="excludesAll" isQuery="true">
+        <ownedParameter xmi:id="_aujXt6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXuKjQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXuajQEdu4LJng8Rasow" name="includes" isQuery="true">
+        <ownedParameter xmi:id="_aujXuqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXu6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXvKjQEdu4LJng8Rasow" name="includesAll" isQuery="true">
+        <ownedParameter xmi:id="_aujXvajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXvqjQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXv6jQEdu4LJng8Rasow" name="isEmpty" isQuery="true">
+        <ownedParameter xmi:id="_aujXwKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXwajQEdu4LJng8Rasow" name="notEmpty" isQuery="true">
+        <ownedParameter xmi:id="_aujXwqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXw6jQEdu4LJng8Rasow" name="product" isQuery="true">
+        <ownedParameter xmi:id="_aujXxKjQEdu4LJng8Rasow" type="_atscEajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXxajQEdu4LJng8Rasow" name="c2" type="_atscEqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXxqjQEdu4LJng8Rasow" name="sum" isQuery="true">
+        <ownedParameter xmi:id="_aujXx6jQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXyKjQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_aujXyajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXyqjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_aujXy6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXzKjQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujXzajQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_aujXzqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujXz6jQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX0KjQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_aujX0ajQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX0qjQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX06jQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_aujX1KjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX1ajQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX1qjQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_aujX16jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX2KjQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX2ajQEdu4LJng8Rasow" name="intersection" isQuery="true">
+        <ownedParameter xmi:id="_aujX2qjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX26jQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX3KjQEdu4LJng8Rasow" name="intersection" isQuery="true">
+        <ownedParameter xmi:id="_aujX3ajQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX3qjQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX36jQEdu4LJng8Rasow" name="including" isQuery="true">
+        <ownedParameter xmi:id="_aujX4KjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX4ajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX4qjQEdu4LJng8Rasow" name="excluding" isQuery="true">
+        <ownedParameter xmi:id="_aujX46jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX5KjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX5ajQEdu4LJng8Rasow" name="symmetricDifference" isQuery="true">
+        <ownedParameter xmi:id="_aujX5qjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_aujX56jQEdu4LJng8Rasow" name="s" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX6KjQEdu4LJng8Rasow" name="flatten" isQuery="true">
+        <ownedParameter xmi:id="_aujX6ajQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX6qjQEdu4LJng8Rasow" name="asBag" isQuery="true">
+        <ownedParameter xmi:id="_aujX66jQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX7KjQEdu4LJng8Rasow" name="asSet" isQuery="true">
+        <ownedParameter xmi:id="_aujX7ajQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX7qjQEdu4LJng8Rasow" name="asSequence" isQuery="true">
+        <ownedParameter xmi:id="_aujX76jQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aujX8KjQEdu4LJng8Rasow" name="asOrderedSet" isQuery="true">
+        <ownedParameter xmi:id="_aujX8ajQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGEKjQEdu4LJng8Rasow" name="exists" isQuery="true">
+        <eAnnotations xmi:id="_avOGEajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGEqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGE6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGFKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGFajQEdu4LJng8Rasow" name="forAll" isQuery="true">
+        <eAnnotations xmi:id="_avOGFqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGF6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGGKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGGajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGGqjQEdu4LJng8Rasow" name="isUnique" isQuery="true">
+        <eAnnotations xmi:id="_avOGG6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGHKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGHajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGHqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGH6jQEdu4LJng8Rasow" name="one" isQuery="true">
+        <eAnnotations xmi:id="_avOGIKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGIajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGIqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGI6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGJKjQEdu4LJng8Rasow" name="any" isQuery="true">
+        <eAnnotations xmi:id="_avOGJajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGJqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGJ6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGKKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGKajQEdu4LJng8Rasow" name="collect" isQuery="true">
+        <eAnnotations xmi:id="_avOGKqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGK6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGLKjQEdu4LJng8Rasow" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGLajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGLqjQEdu4LJng8Rasow" name="closure" isQuery="true">
+        <eAnnotations xmi:id="_avOGL6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGMKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGMajQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGMqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGM6jQEdu4LJng8Rasow" name="select" isQuery="true">
+        <eAnnotations xmi:id="_avOGNKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGNajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGNqjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGN6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGOKjQEdu4LJng8Rasow" name="reject" isQuery="true">
+        <eAnnotations xmi:id="_avOGOajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGOqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGO6jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGPKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGPajQEdu4LJng8Rasow" name="sortedBy" isQuery="true">
+        <eAnnotations xmi:id="_avOGPqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGP6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGQKjQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGQajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avOGQqjQEdu4LJng8Rasow" name="collectNested" isQuery="true">
+        <eAnnotations xmi:id="_avOGQ6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avOGRKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avOGRajQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avOGRqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:OrderedSetType" xmi:id="_avUMsKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_avUMsajQEdu4LJng8Rasow" name="count" isQuery="true">
+        <ownedParameter xmi:id="_avUMsqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMs6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMtKjQEdu4LJng8Rasow" name="excludes" isQuery="true">
+        <ownedParameter xmi:id="_avUMtajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMtqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMt6jQEdu4LJng8Rasow" name="excludesAll" isQuery="true">
+        <ownedParameter xmi:id="_avUMuKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMuajQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMuqjQEdu4LJng8Rasow" name="includes" isQuery="true">
+        <ownedParameter xmi:id="_avUMu6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMvKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMvajQEdu4LJng8Rasow" name="includesAll" isQuery="true">
+        <ownedParameter xmi:id="_avUMvqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMv6jQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMwKjQEdu4LJng8Rasow" name="isEmpty" isQuery="true">
+        <ownedParameter xmi:id="_avUMwajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMwqjQEdu4LJng8Rasow" name="notEmpty" isQuery="true">
+        <ownedParameter xmi:id="_avUMw6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMxKjQEdu4LJng8Rasow" name="product" isQuery="true">
+        <ownedParameter xmi:id="_avUMxajQEdu4LJng8Rasow" type="_atscEajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMxqjQEdu4LJng8Rasow" name="c2" type="_atscEqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMx6jQEdu4LJng8Rasow" name="sum" isQuery="true">
+        <ownedParameter xmi:id="_avUMyKjQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMyajQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_avUMyqjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMy6jQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_avUMzKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUMzajQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUMzqjQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_avUMz6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM0KjQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM0ajQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_avUM0qjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM06jQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM1KjQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_avUM1ajQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM1qjQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM16jQEdu4LJng8Rasow" name="-" isQuery="true">
+        <ownedParameter xmi:id="_avUM2KjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM2ajQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM2qjQEdu4LJng8Rasow" name="intersection" isQuery="true">
+        <ownedParameter xmi:id="_avUM26jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM3KjQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM3ajQEdu4LJng8Rasow" name="intersection" isQuery="true">
+        <ownedParameter xmi:id="_avUM3qjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM36jQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM4KjQEdu4LJng8Rasow" name="including" isQuery="true">
+        <ownedParameter xmi:id="_avUM4ajQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM4qjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM46jQEdu4LJng8Rasow" name="excluding" isQuery="true">
+        <ownedParameter xmi:id="_avUM5KjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM5ajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM5qjQEdu4LJng8Rasow" name="symmetricDifference" isQuery="true">
+        <ownedParameter xmi:id="_avUM56jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM6KjQEdu4LJng8Rasow" name="s" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM6ajQEdu4LJng8Rasow" name="flatten" isQuery="true">
+        <ownedParameter xmi:id="_avUM6qjQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM66jQEdu4LJng8Rasow" name="asBag" isQuery="true">
+        <ownedParameter xmi:id="_avUM7KjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM7ajQEdu4LJng8Rasow" name="asSet" isQuery="true">
+        <ownedParameter xmi:id="_avUM7qjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM76jQEdu4LJng8Rasow" name="asSequence" isQuery="true">
+        <ownedParameter xmi:id="_avUM8KjQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM8ajQEdu4LJng8Rasow" name="asOrderedSet" isQuery="true">
+        <ownedParameter xmi:id="_avUM8qjQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM86jQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_avUM9KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM9ajQEdu4LJng8Rasow" name="s" type="_avUMsKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM9qjQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_avUM96jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM-KjQEdu4LJng8Rasow" name="s" type="_avUMsKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM-ajQEdu4LJng8Rasow" name="append" isQuery="true">
+        <ownedParameter xmi:id="_avUM-qjQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM-6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM_KjQEdu4LJng8Rasow" name="at" isQuery="true">
+        <ownedParameter xmi:id="_avUM_ajQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUM_qjQEdu4LJng8Rasow" name="index" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUM_6jQEdu4LJng8Rasow" name="indexOf" isQuery="true">
+        <ownedParameter xmi:id="_avUNAKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNAajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNAqjQEdu4LJng8Rasow" name="insertAt" isQuery="true">
+        <ownedParameter xmi:id="_avUNA6jQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNBKjQEdu4LJng8Rasow" name="index" type="_alYNtqjQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_avUNBajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNBqjQEdu4LJng8Rasow" name="prepend" isQuery="true">
+        <ownedParameter xmi:id="_avUNB6jQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNCKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNCajQEdu4LJng8Rasow" name="subOrderedSet" isQuery="true">
+        <ownedParameter xmi:id="_avUNCqjQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNC6jQEdu4LJng8Rasow" name="lower" type="_alYNtqjQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_avUNDKjQEdu4LJng8Rasow" name="upper" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNDajQEdu4LJng8Rasow" name="first" isQuery="true">
+        <ownedParameter xmi:id="_avUNDqjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUND6jQEdu4LJng8Rasow" name="last" isQuery="true">
+        <ownedParameter xmi:id="_avUNEKjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNEajQEdu4LJng8Rasow" name="exists" isQuery="true">
+        <eAnnotations xmi:id="_avUNEqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNE6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNFKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNFajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNFqjQEdu4LJng8Rasow" name="forAll" isQuery="true">
+        <eAnnotations xmi:id="_avUNF6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNGKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNGajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNGqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNG6jQEdu4LJng8Rasow" name="isUnique" isQuery="true">
+        <eAnnotations xmi:id="_avUNHKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNHajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNHqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNH6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNIKjQEdu4LJng8Rasow" name="one" isQuery="true">
+        <eAnnotations xmi:id="_avUNIajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNIqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNI6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNJKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNJajQEdu4LJng8Rasow" name="any" isQuery="true">
+        <eAnnotations xmi:id="_avUNJqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNJ6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNKKjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNKajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNKqjQEdu4LJng8Rasow" name="collect" isQuery="true">
+        <eAnnotations xmi:id="_avUNK6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNLKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNLajQEdu4LJng8Rasow" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNLqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNL6jQEdu4LJng8Rasow" name="closure" isQuery="true">
+        <eAnnotations xmi:id="_avUNMKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNMajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNMqjQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNM6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNNKjQEdu4LJng8Rasow" name="select" isQuery="true">
+        <eAnnotations xmi:id="_avUNNajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNNqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNN6jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNOKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNOajQEdu4LJng8Rasow" name="reject" isQuery="true">
+        <eAnnotations xmi:id="_avUNOqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNO6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNPKjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNPajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNPqjQEdu4LJng8Rasow" name="sortedBy" isQuery="true">
+        <eAnnotations xmi:id="_avUNP6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNQKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNQajQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNQqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_avUNQ6jQEdu4LJng8Rasow" name="collectNested" isQuery="true">
+        <eAnnotations xmi:id="_avUNRKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_avUNRajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_avUNRqjQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_avUNR6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_avUNSKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_awFBsKjQEdu4LJng8Rasow" name="count" isQuery="true">
+        <ownedParameter xmi:id="_awFBsajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBsqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBs6jQEdu4LJng8Rasow" name="excludes" isQuery="true">
+        <ownedParameter xmi:id="_awFBtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBtajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBtqjQEdu4LJng8Rasow" name="excludesAll" isQuery="true">
+        <ownedParameter xmi:id="_awFBt6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBuKjQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBuajQEdu4LJng8Rasow" name="includes" isQuery="true">
+        <ownedParameter xmi:id="_awFBuqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBu6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBvKjQEdu4LJng8Rasow" name="includesAll" isQuery="true">
+        <ownedParameter xmi:id="_awFBvajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBvqjQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBv6jQEdu4LJng8Rasow" name="isEmpty" isQuery="true">
+        <ownedParameter xmi:id="_awFBwKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBwajQEdu4LJng8Rasow" name="notEmpty" isQuery="true">
+        <ownedParameter xmi:id="_awFBwqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBw6jQEdu4LJng8Rasow" name="product" isQuery="true">
+        <ownedParameter xmi:id="_awFBxKjQEdu4LJng8Rasow" type="_atscEajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBxajQEdu4LJng8Rasow" name="c2" type="_atscEqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBxqjQEdu4LJng8Rasow" name="sum" isQuery="true">
+        <ownedParameter xmi:id="_awFBx6jQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFByKjQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_awFByajQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFByqjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_awFBy6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBzKjQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFBzajQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_awFBzqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFBz6jQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB0KjQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_awFB0ajQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB0qjQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB06jQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_awFB1KjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB1ajQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB1qjQEdu4LJng8Rasow" name="intersection" isQuery="true">
+        <ownedParameter xmi:id="_awFB16jQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB2KjQEdu4LJng8Rasow" name="bag" type="_avUNSKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB2ajQEdu4LJng8Rasow" name="intersection" isQuery="true">
+        <ownedParameter xmi:id="_awFB2qjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB26jQEdu4LJng8Rasow" name="set" type="_auE2s6jQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB3KjQEdu4LJng8Rasow" name="including" isQuery="true">
+        <ownedParameter xmi:id="_awFB3ajQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB3qjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB36jQEdu4LJng8Rasow" name="excluding" isQuery="true">
+        <ownedParameter xmi:id="_awFB4KjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB4ajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB4qjQEdu4LJng8Rasow" name="flatten" isQuery="true">
+        <ownedParameter xmi:id="_awFB46jQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB5KjQEdu4LJng8Rasow" name="asBag" isQuery="true">
+        <ownedParameter xmi:id="_awFB5ajQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB5qjQEdu4LJng8Rasow" name="asSet" isQuery="true">
+        <ownedParameter xmi:id="_awFB56jQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB6KjQEdu4LJng8Rasow" name="asSequence" isQuery="true">
+        <ownedParameter xmi:id="_awFB6ajQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB6qjQEdu4LJng8Rasow" name="asOrderedSet" isQuery="true">
+        <ownedParameter xmi:id="_awFB66jQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB7KjQEdu4LJng8Rasow" name="exists" isQuery="true">
+        <eAnnotations xmi:id="_awFB7ajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awFB7qjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awFB76jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB8KjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB8ajQEdu4LJng8Rasow" name="forAll" isQuery="true">
+        <eAnnotations xmi:id="_awFB8qjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awFB86jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awFB9KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB9ajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awFB9qjQEdu4LJng8Rasow" name="isUnique" isQuery="true">
+        <eAnnotations xmi:id="_awFB96jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awFB-KjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awFB-ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awFB-qjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVkKjQEdu4LJng8Rasow" name="one" isQuery="true">
+        <eAnnotations xmi:id="_awXVkajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVkqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVk6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVlKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVlajQEdu4LJng8Rasow" name="any" isQuery="true">
+        <eAnnotations xmi:id="_awXVlqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVl6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVmKjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVmajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVmqjQEdu4LJng8Rasow" name="collect" isQuery="true">
+        <eAnnotations xmi:id="_awXVm6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVnKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVnajQEdu4LJng8Rasow" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVnqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVn6jQEdu4LJng8Rasow" name="closure" isQuery="true">
+        <eAnnotations xmi:id="_awXVoKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVoajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVoqjQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVo6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVpKjQEdu4LJng8Rasow" name="select" isQuery="true">
+        <eAnnotations xmi:id="_awXVpajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVpqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVp6jQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVqKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVqajQEdu4LJng8Rasow" name="reject" isQuery="true">
+        <eAnnotations xmi:id="_awXVqqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVq6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVrKjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVrajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVrqjQEdu4LJng8Rasow" name="sortedBy" isQuery="true">
+        <eAnnotations xmi:id="_awXVr6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVsKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVsajQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVsqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVs6jQEdu4LJng8Rasow" name="collectNested" isQuery="true">
+        <eAnnotations xmi:id="_awXVtKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awXVtajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awXVtqjQEdu4LJng8Rasow" type="_aujX8qjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVt6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_awXVuKjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
+      <ownedOperation xmi:id="_awXVuqjQEdu4LJng8Rasow" name="count" isQuery="true">
+        <ownedParameter xmi:id="_awXVu6jQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVvKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVvajQEdu4LJng8Rasow" name="excludes" isQuery="true">
+        <ownedParameter xmi:id="_awXVvqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVv6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVwKjQEdu4LJng8Rasow" name="excludesAll" isQuery="true">
+        <ownedParameter xmi:id="_awXVwajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVwqjQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVw6jQEdu4LJng8Rasow" name="includes" isQuery="true">
+        <ownedParameter xmi:id="_awXVxKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVxajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVxqjQEdu4LJng8Rasow" name="includesAll" isQuery="true">
+        <ownedParameter xmi:id="_awXVx6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVyKjQEdu4LJng8Rasow" name="c2" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVyajQEdu4LJng8Rasow" name="isEmpty" isQuery="true">
+        <ownedParameter xmi:id="_awXVyqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVy6jQEdu4LJng8Rasow" name="notEmpty" isQuery="true">
+        <ownedParameter xmi:id="_awXVzKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXVzajQEdu4LJng8Rasow" name="product" isQuery="true">
+        <ownedParameter xmi:id="_awXVzqjQEdu4LJng8Rasow" type="_atscEajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXVz6jQEdu4LJng8Rasow" name="c2" type="_atscEqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV0KjQEdu4LJng8Rasow" name="sum" isQuery="true">
+        <ownedParameter xmi:id="_awXV0ajQEdu4LJng8Rasow" type="_arrqHajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV0qjQEdu4LJng8Rasow" name="size" isQuery="true">
+        <ownedParameter xmi:id="_awXV06jQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV1KjQEdu4LJng8Rasow" name="=" isQuery="true">
+        <ownedParameter xmi:id="_awXV1ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV1qjQEdu4LJng8Rasow" name="s" type="_awXVuKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV16jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_awXV2KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV2ajQEdu4LJng8Rasow" name="s" type="_awXVuKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV2qjQEdu4LJng8Rasow" name="union" isQuery="true">
+        <ownedParameter xmi:id="_awXV26jQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV3KjQEdu4LJng8Rasow" name="s" type="_awXVuKjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV3ajQEdu4LJng8Rasow" name="append" isQuery="true">
+        <ownedParameter xmi:id="_awXV3qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV36jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV4KjQEdu4LJng8Rasow" name="prepend" isQuery="true">
+        <ownedParameter xmi:id="_awXV4ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV4qjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV46jQEdu4LJng8Rasow" name="insertAt" isQuery="true">
+        <ownedParameter xmi:id="_awXV5KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV5ajQEdu4LJng8Rasow" name="index" type="_alYNtqjQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_awXV5qjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV56jQEdu4LJng8Rasow" name="subSequence" isQuery="true">
+        <ownedParameter xmi:id="_awXV6KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV6ajQEdu4LJng8Rasow" name="lower" type="_alYNtqjQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_awXV6qjQEdu4LJng8Rasow" name="upper" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV66jQEdu4LJng8Rasow" name="at" isQuery="true">
+        <ownedParameter xmi:id="_awXV7KjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV7ajQEdu4LJng8Rasow" name="index" type="_alYNtqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV7qjQEdu4LJng8Rasow" name="indexOf" isQuery="true">
+        <ownedParameter xmi:id="_awXV76jQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV8KjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV8ajQEdu4LJng8Rasow" name="including" isQuery="true">
+        <ownedParameter xmi:id="_awXV8qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV86jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV9KjQEdu4LJng8Rasow" name="excluding" isQuery="true">
+        <ownedParameter xmi:id="_awXV9ajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awXV9qjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV96jQEdu4LJng8Rasow" name="first" isQuery="true">
+        <ownedParameter xmi:id="_awXV-KjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV-ajQEdu4LJng8Rasow" name="last" isQuery="true">
+        <ownedParameter xmi:id="_awXV-qjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV-6jQEdu4LJng8Rasow" name="flatten" isQuery="true">
+        <ownedParameter xmi:id="_awXV_KjQEdu4LJng8Rasow" type="_awXVuajQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awXV_ajQEdu4LJng8Rasow" name="asBag" isQuery="true">
+        <ownedParameter xmi:id="_awdcMKjQEdu4LJng8Rasow" type="_avUNSKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcMajQEdu4LJng8Rasow" name="asSet" isQuery="true">
+        <ownedParameter xmi:id="_awdcMqjQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcM6jQEdu4LJng8Rasow" name="asSequence" isQuery="true">
+        <ownedParameter xmi:id="_awdcNKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcNajQEdu4LJng8Rasow" name="asOrderedSet" isQuery="true">
+        <ownedParameter xmi:id="_awdcNqjQEdu4LJng8Rasow" type="_avUMsKjQEdu4LJng8Rasow" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcN6jQEdu4LJng8Rasow" name="exists" isQuery="true">
+        <eAnnotations xmi:id="_awdcOKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcOajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcOqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcO6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcPKjQEdu4LJng8Rasow" name="forAll" isQuery="true">
+        <eAnnotations xmi:id="_awdcPajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcPqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcP6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcQKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcQajQEdu4LJng8Rasow" name="isUnique" isQuery="true">
+        <eAnnotations xmi:id="_awdcQqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcQ6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcRKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcRajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcRqjQEdu4LJng8Rasow" name="one" isQuery="true">
+        <eAnnotations xmi:id="_awdcR6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcSKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcSajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcSqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcS6jQEdu4LJng8Rasow" name="any" isQuery="true">
+        <eAnnotations xmi:id="_awdcTKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcTajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcTqjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcT6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcUKjQEdu4LJng8Rasow" name="collect" isQuery="true">
+        <eAnnotations xmi:id="_awdcUajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcUqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcU6jQEdu4LJng8Rasow" type="_atscEqjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcVKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcVajQEdu4LJng8Rasow" name="closure" isQuery="true">
+        <eAnnotations xmi:id="_awdcVqjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcV6jQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcWKjQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcWajQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcWqjQEdu4LJng8Rasow" name="select" isQuery="true">
+        <eAnnotations xmi:id="_awdcW6jQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcXKjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcXajQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcXqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcX6jQEdu4LJng8Rasow" name="reject" isQuery="true">
+        <eAnnotations xmi:id="_awdcYKjQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcYajQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcYqjQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcY6jQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awdcZKjQEdu4LJng8Rasow" name="sortedBy" isQuery="true">
+        <eAnnotations xmi:id="_awdcZajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awdcZqjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awdcZ6jQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awdcaKjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_awji0KjQEdu4LJng8Rasow" name="collectNested" isQuery="true">
+        <eAnnotations xmi:id="_awji0ajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_awji0qjQEdu4LJng8Rasow" key="iterator"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_awji06jQEdu4LJng8Rasow" type="_awXVuajQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_awji1KjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_awji1ajQEdu4LJng8Rasow" name="T"/>
+    <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_awji1qjQEdu4LJng8Rasow" name="T2"/>
+  </uml:Package>
+  <uml:Package xmi:id="_atgO0KjQEdu4LJng8Rasow" name="tuples">
+    <packagedElement xmi:type="ocl.uml:TupleType" xmi:id="_atgO0ajQEdu4LJng8Rasow">
+      <ownedAttribute xmi:id="_atgO0qjQEdu4LJng8Rasow" name="first" type="_awji1ajQEdu4LJng8Rasow"/>
+      <ownedAttribute xmi:id="_atgO06jQEdu4LJng8Rasow" name="second" type="_awji1qjQEdu4LJng8Rasow"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package xmi:id="_atscEKjQEdu4LJng8Rasow" name="collections">
+    <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_atscEajQEdu4LJng8Rasow" elementType="_atgO0ajQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:CollectionType" xmi:id="_atscEqjQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_at-v8KjQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:BagType" xmi:id="_aujX8qjQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
+    <packagedElement xmi:type="ocl.uml:SequenceType" xmi:id="_awXVuajQEdu4LJng8Rasow" elementType="_awji1qjQEdu4LJng8Rasow"/>
+  </uml:Package>
+</xmi:XMI>

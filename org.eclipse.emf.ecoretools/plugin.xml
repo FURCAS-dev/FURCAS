@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+  Copyright (c) 2007 Anyware Technologies. All rights reserved. This program
+  and the accompanying materials are made available under the terms of the
+  Eclipse Public License v1.0 which accompanies this distribution, and is
+  available at http://www.eclipse.org/legal/epl-v10.html
+    
+  Contributors: 
+  	   Anyware Technologies - Initial API and implementation
+
+  $Id: plugin.xml,v 1.4 2008/04/28 08:41:20 jlescot Exp $
+-->
+<plugin>
+
+	<extension point="org.eclipse.ui.views">
+		<view
+			id="org.eclipse.emf.ecoretools.internal.views.EClassHierarchyView"
+			class="org.eclipse.emf.ecoretools.internal.views.EClassHierarchyView"
+			name="%ecore.class.hierarchy.view.title"
+			icon="icons/eview16/eclass_hi_nav.gif"/>
+		<view
+			id="org.eclipse.emf.ecoretools.internal.views.EReferencesView"
+			class="org.eclipse.emf.ecoretools.internal.views.EReferencesView"
+			name="%ecore.class.reference.view.title"
+			icon="icons/eview16/eref_nav.gif"/>
+	</extension>
+
+	<extension point="org.eclipse.ui.popupMenus">
+		<objectContribution
+			id="org.eclipse.emf.ecoretools.EClassAnalysis"
+			adaptable="true"
+			objectClass="org.eclipse.emf.ecore.EClass">
+			<action
+				id="org.eclipse.emf.ecoretools.internal.actions.ShowReferencesAction"
+				class="org.eclipse.emf.ecoretools.internal.actions.ShowReferencesAction"
+				enablesFor="1"
+				icon="icons/eview16/eref_nav.gif"
+				label="%menu.show.references"/>
+			<action
+				id="org.eclipse.emf.ecoretools.internal.actions.ShowHierarchyAction"
+				class="org.eclipse.emf.ecoretools.internal.actions.ShowHierarchyAction"
+				enablesFor="1"
+				icon="icons/eview16/eclass_hi_nav.gif"
+				label="%menu.show.hierarchy"/>
+		</objectContribution>
+	</extension>
+
+	<extension point="org.eclipse.ui.perspectives">
+		<perspective
+			id="org.eclipse.emf.ecoretools.perspective"
+			class="org.eclipse.emf.ecoretools.internal.ui.EcoreToolsPerspective"
+			name="%ecore.perspective.name"
+			icon="icons/eview16/etools_persp.gif"/>
+	</extension>
+
+	<!-- Add the Ecore Nature -->
+	<extension id="ecorenature" name="%ecore.nature.name" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="org.eclipse.emf.ecoretools.core.nature.EcoreNature"/>
+		</runtime>
+	</extension>
+   
+	<!-- Add the image used to decorate an Ecore project (with the Ecore Nature) -->
+	<extension point="org.eclipse.ui.ide.projectNatureImages">
+		<image
+			id="org.eclipse.emf.ecoretools.core.navigator.natureimage"
+			natureId="org.eclipse.emf.ecoretools.ecorenature"
+			icon="icons/ovr16/ecore_ovr.gif"/>
+	</extension>
+
+	<!-- Add a new wizard used to create an Ecore Project -->
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard
+			id="org.eclipse.emf.ecoretools.ui.wizards.EcoreProjectWizardID"
+			name="%ecore.project.name"
+			class="org.eclipse.emf.ecoretools.ui.wizards.NewEcoreProjectWizard"
+			category="org.eclipse.emf.ecoretools.diagram"
+			finalPerspective="org.eclipse.emf.ecoretools.perspective"
+			icon="icons/etool16/ecoreprj_wiz.gif"
+			preferredPerspectives="org.eclipse.emf.ecoretools.perspective"
+			project="true">
+			<description>%ecore.project.description</description>
+		</wizard>
+		<category
+			id="org.eclipse.emf.ecoretools.diagram"
+			name="%ecore.tools.category"/>
+	</extension>
+
+</plugin>

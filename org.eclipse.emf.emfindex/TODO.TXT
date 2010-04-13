@@ -1,0 +1,2 @@
+- IndexAdapterAPI ist schlecht
+

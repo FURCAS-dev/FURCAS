@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+/******************************************************************************
+ * Copyright (c) 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+-->
+</head>
+<body>
+
+Implementation of an OCL binding for the <tt>UML</tt> metamodel.
+
+<h2>Package Specification</h2>
+<p>
+This package defines an OCL {@linkplain org.eclipse.ocl.Environment environment}
+implementation for the <tt>UML</tt> metamodel.  Clients can use an
+{@link org.eclipse.ocl.uml.UMLEnvironmentFactory} in conjunction with the
+{@link org.eclipse.ocl.uml.OCL} class to parse and evaluated OCL constraints
+on UML models.
+</p>
+<p>
+Clients may extend the environment implementation to support custom requirements,
+such as overriding the
+{@link org.eclipse.ocl.Environment#lookupOperation} and
+{@link org.eclipse.ocl.EvaluationEnvironment#callOperation}
+methods to inject custom operations into existing metaclasses (to provide
+Java implementations, rather than defining additional operations using OCL).
+</p>
+
+<h3>OCL Parsing on Various Modeling Levels</h3>
+<p>
+The parser environments created by the UML environment factory support OCL
+expressions at both the metamodel (M2) and user model (M1) levels.  For
+user model constraints, use the classifier in the model as the context
+classifier in invocations of th {@link org.eclipse.ocl.uml.OCL} or an
+{@link org.eclipse.ocl.helper.OCLHelper} created by it.  For metamodel OCL
+(used, for example, to query the user model, itself) use the metaclass of any
+kind of element in the user model as the context classifier.  A convenient way
+to obtain this metaclass is via the
+{@link org.eclipse.ocl.uml.util.OCLUMLUtil#getMetaclass(org.eclipse.uml2.uml.Element)}
+method.
+</p>
+
+<h3>Evaluation of OCL Expressions in the UML Environment</h3>
+<p>
+The {@link org.eclipse.ocl.uml.UMLEvaluationEnvironment} provides support for
+two implementations of M0 (run-time instance) models, depending on the kind
+of object provided as the evaluation context:
+{@link org.eclipse.uml2.uml.InstanceSpecification}s and
+{@link org.eclipse.emf.ecore.EObject}s.  If the context object is an instance
+specification, then the extents of classes are considered to be the
+<code>InstanceSpecification</code>s in the model that reference them or their
+subclasses as classifiers.  If the context object is an <code>EObject</code>,
+then the extents of classes are considered to be the <code>EObject</code>s in
+the resource set that reference {@link org.eclipse.emf.ecore.EClass}es
+corresponding to the UML model classes, as described below.
+</p>
+
+<h4>Evaluation on Instance Specifications</h4>
+<p>
+In the case of <code>InstanceSpecification</code>s, navigation of
+attributes, associations, and association classes is supported by interpretation
+of the values of slots and links (instance specifications of associations and
+association classes).  The only operations that can be evaluated are those
+that are defined by the OCL Standard Library or via additional operation
+definition constraints, unless a client provides a subclass of the
+{@link org.eclipse.ocl.uml.UMLEvaluationEnvironment} with Java implementations
+of any required operations.
+</p>
+
+<h4>Evaluation on EObjects</h4>
+<p>
+In the case of <code>EObject</code>s, navigation of
+attributes and associations is supported by the <code>EObject</code> reflection
+API.  Navigation of association classes is not available, as the UML2 code
+generation does not support them (EMF having no comparable concept).
+The operations that can be evaluated are those that are defined by the OCL
+Standard Library or via additional operation definition constraints, plus any
+that are generated (usually all) to the corresponding
+{@link org.eclipse.emf.ecore.EClass}es.
+</p>
+<p>
+The evaluation of OCL on <code>EObject</code>s assumes that a corresponding
+Ecore representation of the UML model exists and can be found in EMF's
+package registry (either globally or at the <code>ResourceSet</code> level).
+This is the case for any UML model from which code was generated and for
+UML <code>Profile</code>s, which are associated with Ecore definitions.  In
+the latter case, as well as the case of ad hoc UML-to-Ecore conversions using
+the {@link org.eclipse.uml2.uml.util.UMLUtil} API, the use of dynamic
+<code>EObject</code>s naturally restricts the availability of operations at
+evaluation time.
+</p>
+
+@see org.eclipse.ocl.uml.OCL
+@see org.eclipse.ocl.uml.UMLEnvironmentFactory
+@see org.eclipse.ocl.uml.UMLEnvironment
+@see org.eclipse.ocl.uml.UMLEvaluationEnvironment
+@see org.eclipse.ocl.uml.util.OCLUMLUtil#getMetaclass(org.eclipse.uml2.uml.Element)
+
+</body>
+</html>

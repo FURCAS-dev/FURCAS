@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFIndex (Incubation)
+Bundle-SymbolicName: org.eclipse.emf.emfindex;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: Eclipse Modeling
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.emfindex,
+ org.eclipse.emf.emfindex.query,
+ org.eclipse.emf.emfindex.store
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.ocl.uml; singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.ocl.uml,
+ org.eclipse.ocl.uml.options,
+ org.eclipse.ocl.uml.impl,
+ org.eclipse.ocl.uml.internal;x-friends:="org.eclipse.ocl.uml.tests",
+ org.eclipse.ocl.uml.internal.operations,
+ org.eclipse.ocl.uml.util
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

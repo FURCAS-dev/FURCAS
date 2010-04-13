@@ -1,0 +1,154 @@
+# XMI Resource 540
+Total indexing time: 19570ms.
+Index save time: 75468
+Size on disk: 77305048
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 10499ms.
+
+# BinaryResource 540
+Total indexing time: 18395ms.
+Index save time: 98415
+Size on disk: 20578048
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 11412ms.
+
+# Efficient iterators 548
+Total indexing time: 18933ms.
+Index save time: 102888
+Size on disk: 20882912
+#EReferenceDescriptors 214268
+#EObjectDescriptors 215364
+Total query iteration time: 631ms. ????
+
+# Efficient indexing
+#Models: 540
+Total indexing time: 8476ms.
+Index save time: 76166
+Size on disk: 14051068
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 8690ms.
+
+
+#XMS 40 MB, XMX 512 MB - no other changes
+#Models: 1000
+Total indexing time: 9615ms.
+Index save time: 107878
+Size on disk: 25931728
+#EReferenceDescriptors 391000
+#EObjectDescriptors 393000
+Total query iteration time: 1210ms.
+
+#XMS 40 MB, XMX 768 MB - no other changes
+#Models: 5000
+Total indexing time: 46575ms.
+Index save time: 556022
+Size on disk: 129665632
+#EReferenceDescriptors 1955000
+#EObjectDescriptors 1965000
+Total query iteration time: 5407ms.
+
+
+#####################################################################
+# 512M heap 
+
+# Disable resource modification tracking
+#Models: 540
+Total indexing time: 5180ms.
+Index save time: 64999
+Size on disk: 14051068
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 665ms.
+
+# ArrayList instead of Stack in AbstractPruningIterator
+#Models: 540
+Total indexing time: 5235ms.
+Index save time: 65304
+Size on disk: 14051068
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 480ms.
+
+#################################################
+# XMI Resource on Sven's box
+#Models: 540
+Total indexing time: 4659ms.
+Index save time: 8424ms
+Size on disk: 82296808
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 445ms.
+
+
+# Binary Resource with buffer on Sven's Box
+#Models: 540
+Size in memory: 59 MB
+Total indexing time: 4304ms.
+Index save time: 1754ms
+Size on disk: 0 MB
+#EReferenceDescriptors 211140
+#EObjectDescriptors 212220
+Total query iteration time: 449ms.
+
+
+#Models: 1000
+Size in memory:      113 MB
+Total indexing time: 7913 ms
+Index save time:     3149 ms
+Size on disk:        25 MB
+All object and reference descriptors: 821 ms
+All EClass instances: 276 ms
+All references targeting a certain resource: 741 ms
+
+# SAP impl
+
+#Models: 1000
+Size in memory:      158 MB
+Total indexing time: 9044 ms
+Index save time:     6097 ms
+Size on disk:        5 MB
+#EReferenceDescriptors 767000
+#EObjectDescriptors 393000
+All object and reference descriptors: 23399 ms
+#EReferenceDescriptors 767000
+#EObjectDescriptors 393000
+All object and reference descriptors: 234 ms
+#EObjectDescriptors 20 (???)
+All EClass instances: 1 ms
+#ReferenceDescriptors 784
+All references targeting a certain resource: 8 ms
+
+#Models: 1000
+Size in memory:      127 MB
+Total indexing time: 8628 ms
+Index save time:     3938 ms
+Size on disk:        28 MB
+#EReferenceDescriptors 628000
+#EObjectDescriptors 393000
+All object and reference descriptors: 985 ms
+#EObjectDescriptors 20000
+All EClass instances: 277 ms
+#ReferenceDescriptors 628
+All references targeting a certain resource: 991 ms
+
+
+#Models: 2000
+Size in memory:      227 MB
+Total indexing time: 15638 ms
+Index save time:     7383 ms
+Size on disk:        50 MB
+All object and reference descriptors: 1692 ms
+All EClass instances: 558 ms
+All references targeting a certain resource: 1496 ms
+
+#Models: 5000
+Size in memory:      568 MB
+Total indexing time: 55494 ms
+Index save time:     32190 ms
+Size on disk:        127 MB
+All object and reference descriptors: 6591 ms
+All EClass instances: 1360 ms
+All references targeting a certain resource: 3607 ms

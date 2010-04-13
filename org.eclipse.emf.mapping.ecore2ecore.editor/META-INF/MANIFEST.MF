@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.mapping.ecore2ecore.editor; singleton:=true
+Bundle-Version: 2.4.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreEditorPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.mapping.ecore2ecore.action,
+ org.eclipse.emf.mapping.ecore2ecore.presentation
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.mapping.ecore2ecore;visibility:=reexport,
+ org.eclipse.emf.mapping.ui;visibility:=reexport,
+ org.eclipse.ui,
+ org.eclipse.emf.ecore.editor
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy

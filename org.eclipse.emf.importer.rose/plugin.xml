@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension id="Rose2GenModel" point="org.eclipse.core.runtime.applications">
+    <application>
+      <run class="org.eclipse.emf.importer.rose.RoseImporterApplication" />
+    </application>
+  </extension>
+
+  <extension point="org.eclipse.emf.importer.modelImporterDescriptors">
+    <modelImporterDescriptor id="org.eclipse.emf.importer.rose" name="%_UI_RoseModelImporter_label" icon="icons/full/obj16/RoseModelFile.gif" extensions="mdl" description="%_UI_RoseModelImporter_description" wizard="org.eclipse.emf.importer.rose.ui.RoseImporterWizard" />
+  </extension>
+
+  <extension point="org.eclipse.ant.core.extraClasspathEntries">
+    <extraClasspathEntry library="ant_tasks/importer.rose.tasks.jar" />
+  </extension>
+
+  <extension point="org.eclipse.ant.core.antTasks">
+    <antTask library="ant_tasks/importer.rose.tasks.jar" name="emf.Rose2Java" headless="true" class="org.eclipse.emf.importer.rose.taskdefs.RoseGeneratorTask" />
+  </extension>
+  
+  <extension point="org.eclipse.team.core.fileTypes">
+    <fileTypes extension="mdl" type="text" />
+    <fileTypes extension="cat" type="text" />
+  </extension>
+</plugin>

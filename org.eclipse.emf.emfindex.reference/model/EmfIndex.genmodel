@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.emfindex.reference/emf-gen"
+    editDirectory="" editorDirectory="" modelPluginID="org.eclipse.emf.emfindex.reference"
+    modelName="EmfIndex" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container"
+    testsDirectory="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>EmfIndex.ecore</foreignModel>
+  <genPackages prefix="Emfindex" basePackage="org.eclipse.emf.index.ecore" disposableProviderFactory="true"
+      ecorePackage="EmfIndex.ecore#/">
+    <genDataTypes ecoreDataType="EmfIndex.ecore#//EURI"/>
+    <genDataTypes ecoreDataType="EmfIndex.ecore#//ESerializable"/>
+    <genClasses image="false" ecoreClass="EmfIndex.ecore#//AbstractBaseDescriptor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//AbstractBaseDescriptor/userData"/>
+      <genOperations ecoreOperation="EmfIndex.ecore#//AbstractBaseDescriptor/getUserData">
+        <genParameters ecoreParameter="EmfIndex.ecore#//AbstractBaseDescriptor/getUserData/key"/>
+      </genOperations>
+      <genOperations ecoreOperation="EmfIndex.ecore#//AbstractBaseDescriptor/setUserData">
+        <genParameters ecoreParameter="EmfIndex.ecore#//AbstractBaseDescriptor/setUserData/key"/>
+        <genParameters ecoreParameter="EmfIndex.ecore#//AbstractBaseDescriptor/setUserData/value"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="EmfIndex.ecore#//ContainerDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//ContainerDescriptor/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//ContainerDescriptor/resourceDescriptors"/>
+    </genClasses>
+    <genClasses ecoreClass="EmfIndex.ecore#//ResourceDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//ResourceDescriptor/URI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//ResourceDescriptor/indexedVersion"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference EmfIndex.ecore#//ResourceDescriptor/container"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//ResourceDescriptor/eObjectDescriptors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//ResourceDescriptor/eReferenceDescriptors"/>
+    </genClasses>
+    <genClasses ecoreClass="EmfIndex.ecore#//EObjectDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//EObjectDescriptor/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//EObjectDescriptor/fragment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//EObjectDescriptor/eClass"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference EmfIndex.ecore#//EObjectDescriptor/resourceDescriptor"/>
+      <genOperations ecoreOperation="EmfIndex.ecore#//EObjectDescriptor/getFragmentURI"/>
+      <genOperations ecoreOperation="EmfIndex.ecore#//EObjectDescriptor/createProxy"/>
+    </genClasses>
+    <genClasses ecoreClass="EmfIndex.ecore#//EReferenceDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//EReferenceDescriptor/sourceFragment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//EReferenceDescriptor/eReference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//EReferenceDescriptor/targetFragment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//EReferenceDescriptor/targetResourceURI"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EmfIndex.ecore#//EReferenceDescriptor/targetEObjectDescriptor"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference EmfIndex.ecore#//EReferenceDescriptor/sourceResourceDescriptor"/>
+      <genOperations ecoreOperation="EmfIndex.ecore#//EReferenceDescriptor/getTargetFragmentURI"/>
+      <genOperations ecoreOperation="EmfIndex.ecore#//EReferenceDescriptor/getSourceFragmentURI"/>
+    </genClasses>
+    <genClasses ecoreClass="EmfIndex.ecore#//UserDataEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//UserDataEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EmfIndex.ecore#//UserDataEntry/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

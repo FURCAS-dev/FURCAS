@@ -1,0 +1,6 @@
+from a as a, b as b, c as c where a.books=c and b.xyz=c 
+--> from a as a, b as b where a.books=b.xyz
+
+wherecomparisonalias is missing
+
+Enum handling

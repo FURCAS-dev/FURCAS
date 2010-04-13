@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="emfIndexBuilder"
+         name="EMF Index Project Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="org.eclipse.emf.emfindex.ui.GuiceExecutableExtensionFactory">
+               <parameter
+                     name="actualClass"
+                     value="org.eclipse.emf.emfindex.ui.builder.EmfIndexProjectBuilder">
+               </parameter>
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="emfIndexNature"
+         name="EMF Index Project Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.eclipse.emf.emfindex.ui.builder.EmfIndexNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.eclipse.emf.emfindex.ui.emfIndexBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.emf.index.ui.contribution1"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="org.eclipse.emf.emfindex.ui.GuiceExecutableExtensionFactory:org.eclipse.emf.emfindex.ui.builder.ToggleNatureAction"
+               enablesFor="+"
+               id="org.eclipse.emf.index.ui.addRemoveNatureAction"
+               label="Add EMF Index Nature"
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
+         </action>
+         <visibility>
+         	<not>
+	            <objectState
+    	              name="nature"
+        	          value="org.eclipse.emf.emfindex.ui.emfIndexNature">
+            	</objectState>
+            </not>
+         </visibility>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.emf.index.ui.contribution2"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="org.eclipse.emf.emfindex.ui.GuiceExecutableExtensionFactory:org.eclipse.emf.emfindex.ui.builder.ToggleNatureAction"
+               enablesFor="+"
+               id="org.eclipse.emf.index.ui.addRemoveNatureAction"
+               label="Remove EMF Index Nature"
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
+         </action>
+         <visibility>
+            <objectState
+	              name="nature"
+    	          value="org.eclipse.emf.emfindex.ui.emfIndexNature">
+        	</objectState>
+         </visibility>
+      </objectContribution>
+   </extension>
+   <extension
+         id="emfIndexProblem"
+         name="EMF Indexer Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+
+</plugin>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1225370325887_uuid:41551805-2962-45ed-aef3-ebf6efa7c1c7</UID>
+<PACKAGE>moin.api</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>D052089</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="TUBkDKog2+U+InitializedOnce_XMSG" BKEY="LocaleProviderInitializedOnce_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MoinLocaleProvider can only be initialized once</TEXT>
+<TEXT AKEY="TypeIsNotDirectSubtype_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Type \{0} is not direct subtype of \{1}</TEXT>
+<TEXT AKEY="TypeNotDirectSubtype_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Type "{0}" is not a direct subtype of "{1}"</TEXT>
+</RESOURCES>
+</ROOT>

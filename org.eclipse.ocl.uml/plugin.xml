@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ All rights reserved.   This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors:
+   IBM - initial API and implementation
+   Zeligsoft - Bugs 231435, 248869
+
+ $Id: plugin.xml,v 1.6 2008/11/24 00:25:17 cdamus Exp $
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/ocl/1.1.0/UML" 
+       class = "org.eclipse.ocl.uml.UMLPackage"
+       genModel = "model/OCLUML.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.ocl.environments">
+    <environmentFactory
+        class="org.eclipse.ocl.uml.UMLEnvironmentFactory">
+      <package nsURI="http://www.eclipse.org/uml2/3.0.0/UML"/>
+      <package nsURI="http://www.eclipse.org/ocl/1.1.0/UML"/>
+    </environmentFactory>
+  </extension>
+  
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"
+           target="platform:/plugin/org.eclipse.ocl.uml/model/oclstdlib.uml">
+     </mapping>
+  </extension>
+
+  <extension
+        point="org.eclipse.emf.ecore.content_parser">
+     <parser
+           contentTypeIdentifier="org.eclipse.ocl.uml"
+           class="org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl" />
+  </extension>
+
+  <extension
+        point="org.eclipse.core.contenttype.contentTypes">
+     <content-type
+           base-type="org.eclipse.ocl"
+           file-extensions="ocluml,oclxmi"
+           id="org.eclipse.ocl.uml"
+           name="%_UI_UML_content_type"
+           priority="high">
+        <describer
+              class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+           <parameter
+                 name="namespacePattern"
+                 value="http://www\.eclipse\.org/ocl/1\.1\.0/UML" />
+           <parameter
+                 name="kind"
+                 value="xmi" />
+        </describer>
+     </content-type>
+  </extension>
+  <extension
+        point="org.eclipse.team.core.fileTypes">
+     <fileTypes
+           extension="ocluml"
+           type="text">
+     </fileTypes>
+  </extension>
+
+</plugin>
