@@ -1,0 +1,8 @@
+#Tue Nov 20 09:07:02 GMT 2007
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.eclipse.emf.ecore/model/Ecore.ecore
+gmf_dashboard/generationModel=platform\:/resource/org.eclipse.emf.ecoretools.diagram/models/ecore.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.eclipse.emf.ecoretools.diagram/models/ecore.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.eclipse.emf.ecoretools.diagram/models/ecore.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.eclipse.emf.ecoretools.diagram/models/ecore.gmftool

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+  Copyright (c) 2007, 2008 Anyware Technologies. All rights reserved. This program
+  and the accompanying materials are made available under the terms of the
+  Eclipse Public License v1.0 which accompanies this distribution, and is
+  available at http://www.eclipse.org/legal/epl-v10.html
+    
+  Contributors: 
+  	   Anyware Technologies - Initial API and implementation
+
+  $Id: plugin.xml,v 1.7 2009/05/06 13:16:50 jlescot Exp $
+-->
+<plugin>
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="org.eclipse.emf.ecoretools.diagram">
+         <propertyTab
+            category="domain"
+            id="org.eclipse.emf.ecoretools.diagram.modelTab"
+            label="%propertyTab.model"/>
+         <propertyTab
+               afterTab="org.eclipse.emf.ecoretools.diagram.modelTab"
+               category="domain"
+               id="org.eclipse.emf.ecoretools.diagram.modelTab.parameterTab"
+               indented="true"
+               label="%propertyTab.parameter"/>
+         <propertyTab
+               afterTab="org.eclipse.emf.ecoretools.diagram.modelTab.parameterTab"
+               category="domain"
+               id="org.eclipse.emf.ecoretools.diagram.eAnnotationTab"
+               image="icons/view16/eannotation_tab.gif"
+               label="%propertyTab.annotation">
+         </propertyTab>
+         <propertyTab
+               afterTab="org.eclipse.emf.ecoretools.diagram.eAnnotationTab"
+               category="domain"
+               id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata"
+               indented="true"
+               label="%propertyTab.extended.metadata"/>
+         <propertyTab
+               afterTab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata"
+               category="domain"
+               id="org.eclipse.emf.ecoretools.diagram.genModelDoc"
+               image="icons/view16/doc_tab.gif"
+               indented="true"
+               label="%propertyTab.genmodel.doc">
+         </propertyTab>
+         <propertyTab
+               category="documentation"
+               id="org.eclipse.emf.ecoretools.diagram.genModel"
+               label="%propertyTab.genmodel">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections contributorId="org.eclipse.emf.ecoretools.diagram">
+	     <propertySection
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.NameSection"
+	        class="org.eclipse.emf.ecoretools.properties.internal.sections.NamePropertySection"
+	        tab="org.eclipse.emf.ecoretools.diagram.modelTab">
+	        <input type="org.eclipse.emf.ecore.ENamedElement"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.LowerBoundSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.LowerBoundPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.NameSection">
+	        <input type="org.eclipse.emf.ecore.ETypedElement"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.UpperBoundSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.UpperBoundPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.LowerBoundSection">
+	        <input type="org.eclipse.emf.ecore.ETypedElement"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.ETypeSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.ETypePropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+	        afterSection="org.eclipse.emf.ecoretools.diagram.ecore.UpperBoundSection">
+            <input type="org.eclipse.emf.ecore.EAttribute"/>
+            <input type="org.eclipse.emf.ecore.EOperation"/>
+            <input type="org.eclipse.emf.ecore.EParameter"/>
+	     </propertySection>	
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.NsPrefixSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.NsPrefixPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.NameSection">
+	        <input type="org.eclipse.emf.ecore.EPackage"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.NsURISection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.NsURIPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.NsPrefixSection">
+	        <input type="org.eclipse.emf.ecore.EPackage"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.IsContainmentSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.IsContainmentPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.UpperBoundSection">
+	        <input type="org.eclipse.emf.ecore.EReference"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.EOppositeSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.EOppositePropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.IsContainmentSection">
+	        <input type="org.eclipse.emf.ecore.EReference"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.IsAbstractSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.IsAbstractPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.NameSection">
+	        <input type="org.eclipse.emf.ecore.EClass"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.IsInterfaceSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.IsInterfacePropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+            afterSection="org.eclipse.emf.ecoretools.diagram.ecore.IsAbstractSection">
+	        <input type="org.eclipse.emf.ecore.EClass"/>
+	     </propertySection>
+	     <propertySection
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.InstanceClassNameSection"
+	        class="org.eclipse.emf.ecoretools.properties.internal.sections.InstanceClassNamePropertySection"
+	        tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+	        afterSection="org.eclipse.emf.ecoretools.diagram.ecore.NameSection">
+	        <input type="org.eclipse.emf.ecore.EClassifier"/>
+	     </propertySection>
+	     <propertySection
+             id="org.eclipse.emf.ecoretools.diagram.ecore.IsSerializableSection"
+             class="org.eclipse.emf.ecoretools.properties.internal.sections.IsSerializablePropertySection"
+             tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+	        afterSection="org.eclipse.emf.ecoretools.diagram.ecore.InstanceClassNameSection">
+            <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>	      
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.EAnnotationSourceSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.EAnnotationSourcePropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab">
+            <input type="org.eclipse.emf.ecore.EAnnotation"/>
+	     </propertySection>	
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.EEnumLiteralLiteralSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.EEnumLiteralLiteralPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+	        afterSection="org.eclipse.emf.ecoretools.diagram.ecore.NameSection">
+            <input type="org.eclipse.emf.ecore.EEnumLiteral"/>
+	     </propertySection>	      
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.EEnumLiteralValueSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.EEnumLiteralValuePropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+	        afterSection="org.eclipse.emf.ecoretools.diagram.ecore.EEnumLiteralLiteralSection">
+            <input type="org.eclipse.emf.ecore.EEnumLiteral"/>
+	     </propertySection>
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.DetailEntryKeySection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.DetailEntryKeyPropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab">
+            <input type="org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl"/>
+	     </propertySection>	     
+	     <propertySection
+            id="org.eclipse.emf.ecoretools.diagram.ecore.DetailEntryValueSection"
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.DetailEntryValuePropertySection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab"
+	        afterSection="org.eclipse.emf.ecoretools.diagram.ecore.DetailEntryValueSection">
+            <input type="org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl"/>
+	     </propertySection>
+      <propertySection
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.EOperationParameterSection"
+            id="org.eclipse.emf.ecoretools.diagram.ecore.parameterSection"
+            tab="org.eclipse.emf.ecoretools.diagram.modelTab.parameterTab">
+         <input type="org.eclipse.emf.ecore.EOperation"/>
+      </propertySection>	          
+
+		  <!-- Extended Metadata Sections -->
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.QualifiedSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Qualified"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EPackage"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.AffiliationSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Affiliation"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.WildcardsSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Wildcards"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.PatternFacetSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.PatternFacet"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.EnumerationFacetSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.EnumerationFacet"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <!-- TODO add Member Types Section : EDatatype List -->
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.TotalDigitsSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.TotalDigits"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.FractionDigitsSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.FractionDigits"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.WhitespaceSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Whitespace"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.MinExclusiveSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.MinExclusive"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.MinInclusiveSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.MinInclusive"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.MaxInclusiveSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.MaxInclusive"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.MaxExclusiveSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.MaxExclusive"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.MaxLengthSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.MaxLength"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.LengthSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Length"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.MinLengthSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.MinLength"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.ItemTypeSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.ItemType"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.BaseTypeSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.BaseType"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EDataType"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.ProcessingKindSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.ProcessingKind"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.GroupSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Group"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.FeatureKindSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.FeatureKind"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.NamespaceSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Namespace"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.ContentKindSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.ContentKind"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EClass"/>
+	     </propertySection>
+	     <propertySection
+	        class="org.eclipse.emf.ecoretools.properties.internal.metadata.NameSection"
+	        id="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata.Name"
+	        tab="org.eclipse.emf.ecoretools.diagram.ecore.properties.extendedMetadata">
+	        <input type="org.eclipse.emf.ecore.EStructuralFeature"/>
+	        <input type="org.eclipse.emf.ecore.EClassifier"/>
+	     </propertySection>
+      <propertySection
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.GenModelDocumentationPropertySection"
+            id="org.eclipse.emf.ecoretools.diagram.genModelDoc"
+            tab="org.eclipse.emf.ecoretools.diagram.genModelDoc">
+         <input
+               type="org.eclipse.emf.ecore.EModelElement">
+         </input>
+      </propertySection>
+      <propertySection
+            class="org.eclipse.emf.ecoretools.properties.internal.sections.EAnnotationPropertySection"
+            id="org.eclipse.emf.ecoretools.diagram.eAnnotationSection"
+            tab="org.eclipse.emf.ecoretools.diagram.eAnnotationTab">
+         <input
+               type="org.eclipse.emf.ecore.EModelElement">
+         </input>
+      </propertySection>
+	  </propertySections>
+   </extension>
+</plugin>

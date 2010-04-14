@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.emf.ecoretools.filters" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.emf.ecoretools.filters" id="filteredDiagramType" name="org.eclipse.emf.ecoretools.filters.filteredDiagramType"/>
+      </appinfo>
+      <documentation>
+         This extension points add filtering capabilities to a diagram
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="filteredDiagramType"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="filteredDiagramType">
+      <complexType>
+         <attribute name="modelId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Specify the diagram element type
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="diagramFilter" type="string">
+            <annotation>
+               <documentation>
+                  Specify the applicable diagram elements
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecoretools.filters.diagramfilters.AbstractDiagramFilter:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.8.0
+      </documentation>
+   </annotation>
+
+
+
+
+
+</schema>

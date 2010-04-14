@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<!--Shared Editing Domain -->
+   
+   <!-- <extension point="org.eclipse.emf.transaction.editingDomains">
+      <editingDomain 
+      	factory="org.eclipse.emf.workspace.WorkspaceEditingDomainFactory" 
+      	id="org.eclipse.emf.ecoretools.diagram.EditingDomain"/>
+   </extension> -->
+   
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="ecorediag"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="ecorediag"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
+         name="%editorName"
+         icon="icons/Ecore.gif"
+         extensions="ecorediag"
+         default="true"
+         class="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditor"
+         matchingStrategy="org.eclipse.emf.ecoretools.diagram.part.EcoreMatchingStrategy"
+         contributorClass="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.eclipse.emf.ecoretools.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/Ecore.gif"
+  	     category="org.eclipse.emf.ecoretools.diagram"
+  	     class="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizard"
+  	     id="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+      <category
+           id="org.eclipse.emf.ecoretools.diagram"
+           name="%category.ecoretools">
+     </category>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="org.eclipse.emf.ecoretools.diagram.InitDiagram"
+            nameFilter="*.ecore"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="org.eclipse.emf.ecoretools.diagram.part.EcoreInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.eclipse.emf.ecoretools.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="EcoreToolsPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="EcoreToolsPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="EcoreToolsPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="EcoreToolsRender">
+         <Priority name="Lowest"/>
+         <ViewId id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.emf.ecoretools.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+   
+   <extension id="diagnostic" name="Ecore Tools Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <?gmfgen generated="true"?>
+      <contributionItemProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreContributionItemProvider">
+         <Priority name="Low">
+         </Priority>
+         <partContribution id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID">
+            <partAction menubarPath="/file/print" id="printPreviewAction">
+            </partAction>
+         </partContribution>
+      </contributionItemProvider>
+      <contributionItemProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider"
+            checkPluginLoaded="false">
+         <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.emf.ecoretools.diagram.edit.parts.EAnnotationReferencesEditPart"/>
+            <popupAction path="/editGroup" id="deleteFromModelAction"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.emf.ecoretools.diagram.edit.parts.EReferenceNameEditPart"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+         </popupContribution>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.emf.ecoretools.diagram.edit.parts.EReferenceLowerBoundUpperBoundEditPart"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+         </popupContribution>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.emf.ecoretools.diagram.edit.parts.EClassESuperTypesEditPart"/>
+            <popupAction path="/editGroup" id="deleteFromModelAction"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
+   
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <?gmfgen generated="false"?>
+      <contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
+         <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart"/>
+            <popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+            <popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="org.eclipse.emf.ecoretools.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.eclipse.emf.ecoretools.diagram.general"
+            name="%prefpage.org.eclipse.emf.ecoretools.diagram.general"
+            class="org.eclipse.emf.ecoretools.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="org.eclipse.emf.ecoretools.diagram.appearance"
+            name="%prefpage.org.eclipse.emf.ecoretools.diagram.appearance"
+            category="org.eclipse.emf.ecoretools.diagram.general"
+            class="org.eclipse.emf.ecoretools.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="org.eclipse.emf.ecoretools.diagram.connections"
+            name="%prefpage.org.eclipse.emf.ecoretools.diagram.connections"
+            category="org.eclipse.emf.ecoretools.diagram.general"
+            class="org.eclipse.emf.ecoretools.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="org.eclipse.emf.ecoretools.diagram.printing"
+            name="%prefpage.org.eclipse.emf.ecoretools.diagram.printing"
+            category="org.eclipse.emf.ecoretools.diagram.general"
+            class="org.eclipse.emf.ecoretools.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="org.eclipse.emf.ecoretools.diagram.rulersAndGrid"
+            name="%prefpage.org.eclipse.emf.ecoretools.diagram.rulersAndGrid"
+            category="org.eclipse.emf.ecoretools.diagram.general"
+            class="org.eclipse.emf.ecoretools.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+      <page
+            id="org.eclipse.emf.ecoretools.diagram.pathmaps"
+            name="%prefpage.org.eclipse.emf.ecoretools.diagram.pathmaps"
+            category="org.eclipse.emf.ecoretools.diagram.general"
+            class="org.eclipse.gmf.runtime.emf.ui.preferences.PathmapsPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.eclipse.emf.ecoretools.diagram"
+            labelProvider="org.eclipse.emf.ecoretools.diagram.sheet.EcoreSheetLabelProvider"
+            typeMapper="org.eclipse.emf.ecoretools.diagram.sheet.TabbedPropertiesTypeMapper">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+         <propertyCategory category="documentation"/>
+         <propertyCategory category="advanced"/>
+      </propertyContributor>
+   </extension>   
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.eclipse.emf.ecoretools.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="advanced"
+             id="property.tab.AdvancedPropertySection"
+             label="%propertyTab.advanced"/>
+      </propertyTabs>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>
+      <propertySections contributorId="org.eclipse.emf.ecoretools.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>    
+         <propertySection
+            id="property.section.EcorePropertySection" 
+            tab="property.tab.AdvancedPropertySection"
+            class="org.eclipse.emf.ecoretools.diagram.sheet.EcorePropertySection">
+            <input type="org.eclipse.emf.ecore.EObject"/>
+            <input type="org.eclipse.emf.ecoretools.diagram.navigator.EcoreAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="EcoreTools"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="1001,1002,1003,1004,1005,2001,2002,2003,2004,2005,2006,2007"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="3001,3002,3003"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="EcoreTools"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="1001,1002,1003,1004,1005,2001,2002,2003,2004,2005,2006,2007"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="3001,3002,3003"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="4001,4006,4007,4008,4009,4010,4002,4003,4004,4005"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="5001,5002,5003,5004,5005,5006,5007,5008"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreModelingAssistantProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.emf.ecoretools.diagram.edit.parts.EClassEditPart" id="EClass_1001"/>
+         <object class="org.eclipse.emf.ecoretools.diagram.edit.parts.EPackage2EditPart" id="EPackage_1002"/>
+         <object class="org.eclipse.emf.ecoretools.diagram.edit.parts.EAnnotationEditPart" id="EAnnotation_1003"/>
+         <object class="org.eclipse.emf.ecoretools.diagram.edit.parts.EDataTypeEditPart" id="EDataType_1004"/>
+         <object class="org.eclipse.emf.ecoretools.diagram.edit.parts.EEnumEditPart" id="EEnum_1005"/>
+         <context elements="EClass_1001,EPackage_1002,EAnnotation_1003,EDataType_1004,EEnum_1005"/>
+      </modelingAssistantProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="1001,1002,1003,1004,1005"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EPackage_79"
+               name="%metatype.name.EPackage_79"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EPackage"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EPackageEditHelper">
+            <param name="semanticHint" value="79"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EClass_1001"
+               name="%metatype.name.EClass_1001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EClass"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EClassEditHelper">
+            <param name="semanticHint" value="1001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <specializationType
+               id="org.eclipse.emf.ecoretools.diagram.EPackage_1002"
+               name="%metatype.name.EPackage_1002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.emf.ecoretools.diagram.EPackage_79"/>
+            <param name="semanticHint" value="1002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EAnnotation_1003"
+               name="%metatype.name.EAnnotation_1003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EAnnotation"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EAnnotationEditHelper">
+            <param name="semanticHint" value="1003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <specializationType
+               id="org.eclipse.emf.ecoretools.diagram.EDataType_1004"
+               name="%metatype.name.EDataType_1004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.emf.ecoretools.diagram.EDataType_2004"/>
+            <param name="semanticHint" value="1004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <specializationType
+               id="org.eclipse.emf.ecoretools.diagram.EEnum_1005"
+               name="%metatype.name.EEnum_1005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.emf.ecoretools.diagram.EEnum_2005"/>
+            <param name="semanticHint" value="1005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EAttribute_2001"
+               name="%metatype.name.EAttribute_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EAttribute"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EAttributeEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EOperation_2002"
+               name="%metatype.name.EOperation_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EOperation"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EOperationEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <specializationType
+               id="org.eclipse.emf.ecoretools.diagram.EClass_2003"
+               name="%metatype.name.EClass_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.emf.ecoretools.diagram.EClass_1001"/>
+            <param name="semanticHint" value="2003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EDataType_2004"
+               name="%metatype.name.EDataType_2004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EDataType"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EDataTypeEditHelper">
+            <param name="semanticHint" value="2004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EEnum_2005"
+               name="%metatype.name.EEnum_2005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EEnum"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EEnumEditHelper">
+            <param name="semanticHint" value="2005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EEnumLiteral_2006"
+               name="%metatype.name.EEnumLiteral_2006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EEnumLiteral"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EEnumLiteralEditHelper">
+            <param name="semanticHint" value="2006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EStringToStringMapEntry_2007"
+               name="%metatype.name.EStringToStringMapEntry_2007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EStringToStringMapEntry"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EStringToStringMapEntryEditHelper">
+            <param name="semanticHint" value="2007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <specializationType
+               id="org.eclipse.emf.ecoretools.diagram.EAnnotationReferences_3001"
+               name="%metatype.name.EAnnotationReferences_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <metamodelType
+               id="org.eclipse.emf.ecoretools.diagram.EReference_3002"
+               name="%metatype.name.EReference_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EReference"
+               edithelper="org.eclipse.emf.ecoretools.diagram.edit.helpers.EReferenceEditHelper">
+            <param name="semanticHint" value="3002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <specializationType
+               id="org.eclipse.emf.ecoretools.diagram.EClassESuperTypes_3003"
+               name="%metatype.name.EClassESuperTypes_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="3003"/>
+         </specializationType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.emf.ecoretools.diagram.TypeContext">
+         <matcher
+               class="org.eclipse.emf.ecoretools.diagram.part.CustomElementMatcher">
+         </matcher>
+         <!-- <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.emf.ecoretools.diagram.EditingDomain"/>
+         </enablement> -->
+      </clientContext> 
+      <binding context="org.eclipse.emf.ecoretools.diagram.TypeContext">
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EPackage_79"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EClass_1001"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EPackage_1002"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EAnnotation_1003"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EDataType_1004"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EEnum_1005"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EAttribute_2001"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EOperation_2002"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EClass_2003"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EDataType_2004"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EEnum_2005"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EEnumLiteral_2006"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EStringToStringMapEntry_2007"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EAnnotationReferences_3001"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EReference_3002"/>
+         <elementType ref="org.eclipse.emf.ecoretools.diagram.EClassESuperTypes_3003"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>   
+   
+   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.eclipse.emf.ecoretools.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.eclipse.emf.ecoretools.diagram"
+           properties="isURIEditorInput"
+           class="org.eclipse.emf.ecoretools.diagram.part.EcoreUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.eclipse.emf.ecoretools.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="org.eclipse.emf.ecoretools.diagram"
+           properties="isShortcut"
+           class="org.eclipse.emf.ecoretools.diagram.part.EcoreShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="org.eclipse.emf.ecoretools.diagram.resourceContent"/>
+			<contentExtension pattern="org.eclipse.emf.ecoretools.diagram.domainResourceContent"/>
+            <contentExtension pattern="org.eclipse.emf.ecoretools.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="org.eclipse.emf.ecoretools.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="org.eclipse.emf.ecoretools.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="org.eclipse.emf.ecoretools.diagram.navigator.EcoreNavigatorContentProvider" 
+            labelProvider="org.eclipse.emf.ecoretools.diagram.navigator.EcoreNavigatorLabelProvider"
+            icon="icons/Ecore.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="ecorediag"/>
+               </and>
+               <instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="org.eclipse.emf.ecoretools.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="org.eclipse.emf.ecoretools.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="org.eclipse.emf.ecoretools.diagram.navigatorSorter" 
+               class="org.eclipse.emf.ecoretools.diagram.navigator.EcoreNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="ecorediag"/>
+                  </and>
+                  <instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="org.eclipse.emf.ecoretools.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="org.eclipse.emf.ecoretools.diagram.navigator.EcoreDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.emf.ecoretools.diagram.navigator.EcoreDomainNavigatorLabelProvider"
+            icon="icons/Ecore.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="ecore"/>
+               </and>
+               <instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+         	<instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="org.eclipse.emf.ecoretools.diagram.navigatorActionProvider"
+            class="org.eclipse.emf.ecoretools.diagram.navigator.EcoreNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="org.eclipse.emf.ecoretools.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="org.eclipse.emf.ecoretools.diagram.navigatorLinkHelper"
+            class="org.eclipse.emf.ecoretools.diagram.navigator.EcoreNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.eclipse.emf.ecoretools.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="org.eclipse.emf.ecoretools.diagram.navigator.EcoreAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="org.eclipse.emf.ecoretools.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="org.eclipse.emf.ecoretools.diagram.updateDiagram"
+         contextId="org.eclipse.emf.ecoretools.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+	
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!--menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution-->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="org.eclipse.emf.ecoretools.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false">
+                     <instanceof value="org.eclipse.emf.ecoretools.diagram.edit.parts.EPackageEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command commandId="org.eclipse.emf.ecoretools.diagram.CreateShortcutAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false">
+                     <instanceof value="org.eclipse.emf.ecoretools.diagram.edit.parts.EPackageEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.eclipse.emf.ecoretools.diagram.LoadResourceAction"
+         name="%loadResourceActionLabel"
+         categoryId="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
+         defaultHandler="org.eclipse.emf.ecoretools.diagram.part.LoadResourceAction"/>
+      <command id="org.eclipse.emf.ecoretools.diagram.CreateShortcutAction"
+         name="%createShortcutActionLabel"
+         categoryId="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
+         defaultHandler="org.eclipse.emf.ecoretools.diagram.part.CreateShortcutHandler"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders" id="ValidationContributionItemProvider" name="Validation">
+      <?gmfgen generated="true"?>
+      <contributionItemProvider
+         class="org.eclipse.emf.ecoretools.diagram.providers.EcoreContributionItemProvider">
+         <Priority name="Low"/>
+         <partContribution id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID">
+            <partMenuGroup menubarPath="/diagramMenu/" id="validationGroup"/>
+            <partAction id="validateAction" menubarPath="/diagramMenu/validationGroup" toolbarPath="/toolbarAdditions"/>
+         </partContribution>
+      </contributionItemProvider>
+   </extension>
+   
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.emf.ecoretools.diagram.providers.EcoreShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="1001,1002,1003,1004,1005"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+   
+   <!-- Add validation markers in the outline -->
+   <extension point="org.eclipse.ui.decorators">
+      <decorator
+            id="validationDecorator"
+            class="org.eclipse.emf.ecoretools.diagram.decorator.EcoreValidationMarkerDecorator"
+            label="%decorator.validation.problems"
+            adaptable="true"
+            lightweight="true"
+            location="BOTTOM_LEFT"
+            state="true">
+         <description>
+            %decorator.show.errors.and.warnings
+         </description>
+         <enablement>
+            <objectClass name="org.eclipse.emf.ecore.EObject"/>
+         </enablement>
+      </decorator>
+   </extension>
+
+	<!-- Bug 159558 : Layout diagram in a TopDown way -->
+	<extension id="presentationLayoutProvider" name="%ext.presentationLayoutProvider" point="org.eclipse.gmf.runtime.diagram.ui.layoutProviders">
+		<layoutProvider class="org.eclipse.emf.ecoretools.diagram.providers.DownTopProvider">
+			<Priority name="Medium"/>
+		</layoutProvider>
+	</extension>
+	
+	<!-- Bug 211856 : Restore related links -->
+	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+		<contributionItemProvider checkPluginLoaded="false" class="org.eclipse.emf.ecoretools.diagram.providers.EcoreDiagramContributionItemProvider">
+			<Priority name="Low"/>
+			<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+				<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+				<popupAction id="restoreRelatedLinksAction" path="/navigateMenu/additions"/>
+			</popupContribution>
+		</contributionItemProvider>
+	</extension>
+
+	<!-- Provide shortcut access to wizards when the Ecore Tools perspective is activated -->
+	<extension point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.emf.ecoretools.perspective">
+			<newWizardShortcut id="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID"/>
+			<newWizardShortcut id="org.eclipse.emf.ecoretools.ui.wizards.EcoreProjectWizardID"/>
+		</perspectiveExtension>
+	</extension>
+
+	<!-- Provide shortcut access to wizards in the Project Explorer view -->
+	<extension point="org.eclipse.ui.navigator.navigatorContent">
+		<commonWizard type="new" wizardId="org.eclipse.emf.ecoretools.ui.wizards.EcoreProjectWizardID">
+     		<enablement/>
+		</commonWizard>
+		<commonWizard wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID" type="new">
+     		<enablement/>
+		</commonWizard>
+	</extension>
+
+   <!-- optionally, specify keybindings -->
+</plugin>

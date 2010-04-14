@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="Ecore Palette"
+      description="Ecore Diagram Palette">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Objects"
+        description="Diagram Nodes"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EPackage"
+          description="Create Package">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EPackage.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EPackage_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EClass"
+          description="Create Class">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EClass.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EClass_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EDataType"
+          description="Create DataType">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EDataType.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EDataType_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EEnum"
+          description="Create Enumeration">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EEnum.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EEnum_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EAnnotation"
+          description="Create Annotation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EAnnotation.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EAnnotation_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EOperation"
+          description="Create Operation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EOperation.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EOperation_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EAttribute"
+          description="Create Attribute">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EAttribute.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EAttribute_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EEnumLiteral"
+          description="Create Enumeration literal">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EEnumLiteral.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EEnumLiteral_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Details Entry"
+          description="Create Annotation details">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EStringToStringMapEntry.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EStringToStringMapEntry_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Connections"
+        description="Links"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EReference"
+          description="Create Association link">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EReference.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\EReference_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Inheritance"
+          description="Create Generalization link">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\Inheritance.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\Inheritance_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="EAnnotation link"
+          description="Create Annotation reference link">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\AnnotationLink.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons\AnnotationLink_24.gif"
+            bundle="org.eclipse.emf.ecoretools.diagram"/>
+      </tools>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+  Copyright (c) 2007, 2008 Anyware Technologies. All rights reserved. This program
+  and the accompanying materials are made available under the terms of the
+  Eclipse Public License v1.0 which accompanies this distribution, and is
+  available at http://www.eclipse.org/legal/epl-v10.html
+    
+  Contributors: 
+  	   Anyware Technologies - Initial API and implementation
+  	   
+  $Id: plugin.xml,v 1.5 2008/04/28 09:55:15 jlescot Exp $
+-->
+<plugin>
+
+	<extension-point id="filteredDiagramType" name="org.eclipse.emf.ecoretools.filters.filteredDiagramType" schema="schema/filteredDiagramType.exsd"/>
+
+	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+		<contributionItemProvider checkPluginLoaded="false" class="org.eclipse.emf.ecoretools.filters.internal.providers.FilteredDiagramContributionItemProvider">
+			<Priority name="Low"/>
+			<partContribution class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+				<partAction
+					id="diagramFilterActionMenu"
+					global="false"
+					toolbarPath="/toolbarFilterGroup"/>
+			</partContribution>
+			<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+				<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+				<popupAction id="hideSelectionAction" path="/filtersMenu/miscellaneousGroup"/>
+				<popupAction id="hideTypeAction" path="/filtersMenu/miscellaneousGroup"/>
+				<popupAction id="hideSemanticAction" path="/filtersMenu/miscellaneousGroup"/>
+				<popupAction id="showHiddenPartAction" path="/filtersMenu/miscellaneousGroup"/>
+				<popupAction id="hideInheritanceTypeAction" path="/filtersMenu/additions"/>
+				<popupAction id="hideReferenceTypeAction" path="/filtersMenu/additions"/>
+			</popupContribution>
+		</contributionItemProvider>
+	</extension>
+
+</plugin>
