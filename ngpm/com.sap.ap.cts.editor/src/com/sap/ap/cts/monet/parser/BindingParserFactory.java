@@ -22,4 +22,10 @@ public class BindingParserFactory extends AbstractRunletParserFactory<BindingPar
 	return BINDING_LANGUAGE_ID;
     }
 
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

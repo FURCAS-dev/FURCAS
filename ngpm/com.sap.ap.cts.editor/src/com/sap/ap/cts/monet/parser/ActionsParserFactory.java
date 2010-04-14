@@ -21,4 +21,10 @@ public class ActionsParserFactory extends AbstractRunletParserFactory<ActionsPar
     public String getLanguageId() {
 	return ACTIONS_LANGUAGE_ID;
     }
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

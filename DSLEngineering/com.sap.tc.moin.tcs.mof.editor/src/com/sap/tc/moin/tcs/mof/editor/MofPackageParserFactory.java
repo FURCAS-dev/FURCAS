@@ -28,7 +28,7 @@ public class MofPackageParserFactory extends
 	return PACKAGE_LANGUAGE_ID;
     }
 
-    protected String[] getHiddenChannelTokenNames() {
+    public String[] getHiddenChannelTokenNames() {
 	return new String[] { "WS", "NL", "COMMENT" };
     }
 
@@ -36,4 +36,10 @@ public class MofPackageParserFactory extends
     public RefPackage getMetamodelPackage(Connection connection) {
 	return connection.getPackage(MoinPackage.PACKAGE_DESCRIPTOR);
     }
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

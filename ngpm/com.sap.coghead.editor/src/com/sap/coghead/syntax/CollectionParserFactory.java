@@ -20,4 +20,10 @@ public class CollectionParserFactory extends AbstractCogheadParserFactory<Collec
     public String getLanguageId() {
 	return COLLECTION_LANGUAGE_ID;
     }
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

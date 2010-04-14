@@ -13,7 +13,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 public class FinexClassParserFactory extends AbstractParserFactory<FinexClassParser, FinexClassLexer> {
     private static final String FINEX_CLASS_LANGUAGE_ID = "FinexClass";
 
-    protected String[] getHiddenChannelTokenNames() {
+    public String[] getHiddenChannelTokenNames() {
 	return new String[] { "WS", "NL", "COMMENT", "MULTI_LINE_COMMENT" };
     }
 
@@ -36,4 +36,10 @@ public class FinexClassParserFactory extends AbstractParserFactory<FinexClassPar
     public String getLanguageId() {
 	return FINEX_CLASS_LANGUAGE_ID;
     }
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

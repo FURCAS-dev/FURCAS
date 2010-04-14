@@ -43,7 +43,9 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	 * "hidden channel." Typical examples are comment token types such as "WS", "NL", "COMMENT",
 	 * or "MULTI_LINE_COMMENT"
 	 */
-	protected abstract String[] getHiddenChannelTokenNames();
+	public abstract String[] getHiddenChannelTokenNames();
+	
+	public abstract Integer[] getOmittedTokensForFormatting();
 
 	@Override
 	public P createParser(TokenStream input, Connection connection) {
@@ -136,7 +138,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		}
 	}
 
-	protected int[] getHiddenChannelTokens() {
+	public int[] getHiddenChannelTokens() {
 		int[] result = new int[getHiddenChannelTokenNames().length];
 		int i = 0;
 		for (String tokenName : getHiddenChannelTokenNames()) {

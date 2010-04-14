@@ -13,7 +13,7 @@ public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, Bib
 	private static final String CLASS_LANGUAGE_ID = "Bibtex"; 
 
 	@Override
-    protected String[] getHiddenChannelTokenNames() {
+	public String[] getHiddenChannelTokenNames() {
 	return new String[] { "WS", "NL", "COMMENT" };
     }
 
@@ -36,6 +36,12 @@ public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, Bib
 	public RefPackage getMetamodelPackage(Connection connection) {
 	    BibtexPackage bibtexPackage = connection.getPackage(BibtexPackage.PACKAGE_DESCRIPTOR);
 		return bibtexPackage;
+	}
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 
 }

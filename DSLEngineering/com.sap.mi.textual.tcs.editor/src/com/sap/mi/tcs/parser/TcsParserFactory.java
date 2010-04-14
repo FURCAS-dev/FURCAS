@@ -22,7 +22,7 @@ public class TcsParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
     private static final String TCS_LANGUAGE_ID = "TCS";
 
     @Override
-    protected String[] getHiddenChannelTokenNames() {
+	public String[] getHiddenChannelTokenNames() {
 	return new String[] { "WS", "NL", "COMMENT" };
     }
 
@@ -61,5 +61,13 @@ public class TcsParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
 	referencePRIs.add(moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm"));
 	return referencePRIs;
     }
+
+
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
