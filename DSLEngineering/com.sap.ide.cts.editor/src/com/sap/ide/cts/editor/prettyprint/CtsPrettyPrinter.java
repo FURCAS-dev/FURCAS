@@ -11,8 +11,12 @@ public class CtsPrettyPrinter {
 
 	public static void prettyPrint(RefObject source, ConcreteSyntax syntax,
 			TCSExtractorStream target, ClassTemplate template, PrettyPrintContext context) throws SyntaxAndModelMismatchException {
-
-		new PrettyPrinter().prettyPrint(source, syntax, target, template, context);
+		PrettyPrinter pp = new PrettyPrinter();
+		if(target instanceof CtsTextBlockIncrementalTCSExtractorStream)
+		{
+			((CtsTextBlockIncrementalTCSExtractorStream) target).setPrettyPrinter(pp);
+		}
+		pp.prettyPrint(source, syntax, target, template, context);
 
 	}
 }

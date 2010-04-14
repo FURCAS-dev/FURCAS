@@ -1,7 +1,6 @@
 // $ANTLR 3.1.1 /home/trxadm/runtime-workspace/com.sap.ap.cts.editor/generated/generated/Class.g 2010-03-24 19:26:31
 
 package generated;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.impl.PredicateSemantic;
 import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
@@ -12,11 +11,8 @@ import org.antlr.runtime.Token;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 public class ClassParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "BOOL", "BINARY", "DATE", "PIPE", "LCURL", "RCURL", "LANGLE", "RANGLE", "COLON", "SEMICOLON", "LPAREN", "RPAREN", "EQUALS", "DOT", "DCOLON", "ARROW", "LBRACKET", "EQUALSEQUALS", "RBRACKET", "INCLUDING", "EXCLUDING", "ITERATE", "DDOT", "STAR", "LBRACK_LCURL", "RCURL_RBRACK", "LCURL_LBRACK", "RBRACK_RCURL", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "ASSIGN", "INCLUDINGAT", "EXCLUDINGAT", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "OBJECT", "RANGE_OR_INT", "'else'", "'select'", "'dim'", "'aggregate'", "'count'", "'by'", "'implements'", "'this'", "'snapshot'", "'function'", "'AddLink'", "'all'", "'const'", "'commit'", "'<$'", "'converter'", "'from'", "'NULL'", "'if'", "'key'", "'<=>'", "'class'", "'tail'", "','", "'+='", "'native'", "'delete'", "'head'", "'void'", "'new'", "'-='", "'var'", "'?'", "'return'", "'RemoveLink'", "'changed'", "'$>'", "'where'", "'while'", "'as'", "'store'", "'foreach'", "'value'", "'map'", "'owns'", "'replace'", "'rollback'", "'group'", "'___1000___'", "'___2000___'", "'___3000___'", "'___1002___'", "'___2002___'", "'___3002___'"

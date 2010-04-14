@@ -12,7 +12,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 public abstract class AbstractRunletParserFactory<P extends ObservableInjectingParser, L extends Lexer>
 extends AbstractParserFactory<P, L> {
 
-    protected String[] getHiddenChannelTokenNames() {
+    public String[] getHiddenChannelTokenNames() {
 	return new String[] { "WS", "NL", "COMMENT", "MULTI_LINE_COMMENT" };
     }
 

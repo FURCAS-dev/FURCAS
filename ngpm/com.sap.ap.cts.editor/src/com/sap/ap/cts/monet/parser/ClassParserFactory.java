@@ -21,4 +21,9 @@ public class ClassParserFactory extends AbstractRunletParserFactory<ClassParser,
     public String getLanguageId() {
 	return CLASS_LANGUAGE_ID;
     }
+
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		return new Integer[]{ClassParser.WS, ClassParser.NL};
+	}
 }

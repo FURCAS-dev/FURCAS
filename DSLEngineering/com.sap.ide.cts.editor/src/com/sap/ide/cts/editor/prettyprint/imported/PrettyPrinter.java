@@ -2426,4 +2426,9 @@ public class PrettyPrinter
 			}
 		}
 	}
+	
+	public Map<String, Token> getTokens()
+	{
+		return this.tokens;
+	}
 }

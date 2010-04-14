@@ -19,7 +19,6 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
 import data.classes.Association;
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
-import data.classes.FunctionSignatureImplementation;
 import data.classes.MethodSignature;
 import data.classes.SapClass;
 
@@ -84,16 +83,7 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 			e.printStackTrace();
 		}
 		
-		String ppClazz = action.getRootBlock().getCachedString();
-		if(ppClazz != null)
-		{
-			System.out.println(ppClazz);
-			Assert.assertTrue(ppClazz.contains("void " + method.getName()));
-		}
-		else
-		{
-			Assert.assertTrue("Pretty Printing not successfull!", false);
-		}
+		this.printTextBlock(action.getRootBlock());
 		
         close(editor);
 	}
@@ -138,16 +128,7 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 			return;
 		}
 		
-		String ppClazz = action.getRootBlock().getCachedString();
-		if(ppClazz != null)
-		{
-			System.out.println(ppClazz);
-			Assert.assertTrue(ppClazz.contains("void " + method.getName()));
-		}
-		else
-		{
-			Assert.assertTrue("Pretty Printing not successfull!", false);
-		}
+		this.printTextBlock(action.getRootBlock());
 	}
 	
 	@Test
@@ -224,72 +205,56 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 			return;
 		}
 		
-		TextBlock newBlock = action2.getRootBlock();
-		ppClazz = TbNavigationUtil.getUltraRoot(newBlock).getCachedString();
-		if(ppClazz != null)
-		{
-			System.out.println(ppClazz);
-		}
-		else
-		{
-			Assert.assertTrue("Pretty Printing not successfull!", false);
-		}
+		this.printTextBlock(action.getRootBlock());
 	}
 	
-//	@Test
-//	public void testPrettyPrintMethodAfterAddedImplementation()
-//	{
-//		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
-//        SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
-//        clazz.setName("IppClass5");
-//		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
-//				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
-//						getProject(), new Path("src/Package1235568260162.types")));
-//		method.setName("testMethod");
-//		method.setOwner(clazz);
-//		
-//		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
-//		action.runWithEvent(null);
-//		
-//		try
-//		{
-//			connection.save();
-//		}
-//		catch (Exception e)
-//		{
-//			e.printStackTrace();
-//			return;
-//		}
-//		
-//		FunctionSignatureImplementation impl = (FunctionSignatureImplementation) rootPkg.getData().getClasses().
-//				getFunctionSignatureImplementation().refCreateInstanceInPartition(ModelManager.getPartitionService().
-//						getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
-//		impl.setImplements(method);
-//		
-//		PrettyPrintAction action2 = new PrettyPrintAction((MofClass) method.refMetaObject(), method, true);
-//		action2.runWithEvent(null);
-//		
-//		try
-//		{
-//			connection.save();
-//		}
-//		catch (Exception e)
-//		{
-//			e.printStackTrace();
-//			return;
-//		}
-//		
-//		String ppClazz = action.getRootBlock().getCachedString();
-//		if(ppClazz != null)
-//		{
-//			System.out.println(ppClazz);
-//			Assert.assertTrue(ppClazz.contains("void " + method.getName()));
-//		}
-//		else
-//		{
-//			Assert.assertTrue("Pretty Printing not successfull!", false);
-//		}
-//	}
+	@Test
+	public void testPrettyPrintAfterMethodRelocation()
+	{
+		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
+        SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
+        clazz.setName("IppClass6");
+        SapClass clazz2 = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
+        clazz2.setName("IppClass7");
+		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
+				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
+						getProject(), new Path("src/Package1235568260162.types")));
+		method.setName("methodFromClass6");
+		method.setOwner(clazz);
+		
+		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+		action.runWithEvent(null);
+		
+		this.printTextBlock(action.getRootBlock());
+		
+		action = new PrettyPrintAction((MofClass) clazz2.refMetaObject(), clazz2, false);
+		action.runWithEvent(null);
+		
+		this.printTextBlock(action.getRootBlock());
+		
+		method.setOwner(clazz2);
+		
+		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+		action.runWithEvent(null);
+		
+		this.printTextBlock(action.getRootBlock());
+		
+		action = new PrettyPrintAction((MofClass) clazz2.refMetaObject(), clazz2, false);
+		action.runWithEvent(null);
+		
+		this.printTextBlock(action.getRootBlock());
+	}
+	
+	
+	
+	private void printTextBlock(TextBlock textblock)
+	{
+		if(textblock != null)
+		{
+			String classString = TbNavigationUtil.getUltraRoot(textblock).getCachedString();
+			System.out.println(classString);
+		}
+	}
 	
 //	private TextBlock getTextBlockForModelElement(RefObject modelElement)
 //	{

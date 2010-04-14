@@ -97,7 +97,7 @@ public class IncrementalPrettyPrinter
 					cachedString = cachedString.replace(toDelete, "");
 					parent.setCachedString(cachedString);
 				}
-				oldTbForSource.refDelete();
+				//oldTbForSource.refDelete();
 				break;
 			}
 		}
@@ -106,12 +106,16 @@ public class IncrementalPrettyPrinter
 		// avoids pretty printing of text blocks with no syntax contribution
 		if(oldTbForSource != null || rootTbs.length == 0)
 		{
+			if(oldTbForSource != null && target instanceof CtsTextBlockIncrementalTCSExtractorStream)
+			{
+				((CtsTextBlockIncrementalTCSExtractorStream)target).setOldTextBlock(oldTbForSource);
+			}
 			// call pretty printer with corresponding model element
 			CtsPrettyPrinter.prettyPrint(source, syntax, target, template, context);
-	
-			if (target instanceof CtsTextBlockTCSExtractorStream)
+			oldTbForSource.refDelete();
+			if (target instanceof CtsTextBlockIncrementalTCSExtractorStream)
 			{
-				rootBlock = ((CtsTextBlockTCSExtractorStream) target)
+				rootBlock = ((CtsTextBlockIncrementalTCSExtractorStream) target)
 						.getRootBlock();
 	
 				// if textblock has got a parent, hang up rootBlock and modify

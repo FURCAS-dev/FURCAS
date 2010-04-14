@@ -22,4 +22,10 @@ public class AdapterParserFactory extends AbstractRunletParserFactory<AdapterPar
 	return ADAPTER_LANGUAGE_ID;
     }
 
+	@Override
+	public Integer[] getOmittedTokensForFormatting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
