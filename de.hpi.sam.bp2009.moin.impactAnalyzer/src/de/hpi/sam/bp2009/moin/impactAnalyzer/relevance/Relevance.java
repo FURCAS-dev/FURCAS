@@ -3,23 +3,24 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.relevance;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.impl.ConstraintImpl;
+import org.eclipse.ocl.helper.ConstraintKind;
 
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.OperationCallExp;
-import org.omg.ocl.expressions.TypeExp;
-import org.omg.ocl.expressions.VariableDeclaration;
-
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.ia.tag.ExpressionKind;
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.ocl.utils.impl.OclStatementImpl;
-import com.sap.tc.moin.ocl.utils.jmi.MoinJmiCreator;
-import com.sap.tc.moin.ocl.utils.jmi.OclSemanticException;
-import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * This class is a association class. For each pair (OclStatement,InternalEvent)
@@ -30,13 +31,13 @@ import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
  */
 public abstract class Relevance {
 
-    private final InternalEvent event;
+    private final ModelChangeEvent event;
 
     private ExpressionKind kind = ExpressionKind.INSTANCE;
 
     private final Set<NavigationPath> navigationPaths = new HashSet<NavigationPath>( );
 
-    private final OclStatement stmt;
+    private final Constraint stmt;
 
     /**
      * Creates a new Relevance object for a OclStatement, InternalEvent pair.
@@ -44,7 +45,7 @@ public abstract class Relevance {
      * @param theStmt the OclStatement
      * @param theEvent the InternalEvent
      */
-    public Relevance( OclStatement theStmt, InternalEvent theEvent ) {
+    public Relevance( Constraint theStmt, ModelChangeEvent theEvent ) {
 
         this.stmt = theStmt;
         this.event = theEvent;
@@ -53,7 +54,7 @@ public abstract class Relevance {
     /**
      * @return Returns the event.
      */
-    public InternalEvent getEvent( ) {
+    public ModelChangeEvent getEvent( ) {
 
         return this.event;
     }
@@ -79,7 +80,7 @@ public abstract class Relevance {
     /**
      * @return Returns the stmt.
      */
-    public OclStatement getStmt( ) {
+    public Constraint getStmt( ) {
 
         return this.stmt;
     }
@@ -126,43 +127,43 @@ public abstract class Relevance {
      * @return Collection of OclStatements which evaluate to the set of
      * instances for which statement must be evaluated.
      */
-    public Set<OclStatement> turnIntoOcl( RefObject context, MoinJmiCreator jmiCreator ) {
+    public Set<Constraint> turnIntoOcl( EObject context ) {
 
-        Set<OclStatement> navPaths = new HashSet<OclStatement>( );
+        Set<Constraint> navPaths = new HashSet<Constraint>( );
 
         if ( this.kind == ExpressionKind.CLASS ) {
             // return allInstances()
-            RefObject resContext = this.stmt.getContext( );
-            RefObject classifierContext = this.stmt.getContext( );
+        	//TODO check that resContext only includes the context instances
+            EList<ENamedElement> resContext = this.stmt.getConstrainedElements();
+            ENamedElement classifierContext = resContext.get(0);
             // make sure we get the Classifier and not just the class proxy
-            if ( !( classifierContext instanceof Classifier ) ) {
-                classifierContext = classifierContext.refMetaObject( );
+            if ( !( classifierContext instanceof EClassifier ) ) {
+                classifierContext = classifierContext.eClass();
             }
-            try {
-                OclExpression allInstances = createAllInstancesExp( (Classifier) classifierContext, jmiCreator );
-                navPaths.add( new OclStatementImpl( resContext, allInstances, OclStatement.EXPRESSION, OclConstants.OP_ALLINSTANCES ) );
-            } catch ( OclSemanticException e ) {
-                throw new MoinLocalizedBaseRuntimeException( e );
-            }
+          	OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+        	Helper helper = ocl.createOCLHelper();
+        	helper.setContext((EClassifier) classifierContext);
+        	Constraint expr = helper.createConstraint(ConstraintKind.BODYCONDITION, ((EClassifier) classifierContext).getInstanceClassName() + ".allInstances()");           	
+            
+            navPaths.add( expr);
 
         } else if ( this.kind == ExpressionKind.INSTANCE ) {
-            try {
                 // create a union of the collections returned by each path
-                RefObject resContext = context;
+                EObject resContext = context;
                 // make sure we get the Classifier and not just the proxy
-                RefObject stmtContext = this.stmt.getContext( );
-                if ( !( stmtContext instanceof Classifier ) ) {
-                    stmtContext = stmtContext.refMetaObject( );
+                EObject stmtContext = this.stmt.getConstrainedElements().get(0);
+                if ( !( stmtContext instanceof EClassifier ) ) {
+                    stmtContext = stmtContext.eClass();
                 }
 
-                VariableDeclaration self = jmiCreator.createVariableDeclaration( OclConstants.VAR_SELF, (Classifier) context, null );
+                OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+            	Helper helper = ocl.createOCLHelper();
+            	helper.setContext((EClassifier) context);
+               self = jmiCreator.createVariableDeclaration( OclConstants.VAR_SELF, (Classifier) context, null );
 
                 for ( NavigationPath navPath : this.navigationPaths ) {
                     navPaths.add( new OclStatementImpl( resContext, navPath.turnIntoOcl( self, jmiCreator ), OclStatement.EXPRESSION, "instance" ) ); //$NON-NLS-1$
                 }
-            } catch ( OclSemanticException e ) {
-                throw new MoinLocalizedBaseRuntimeException( e );
-            }
         }
         return navPaths;
     }
@@ -291,18 +292,17 @@ public abstract class Relevance {
      * Creates a <tt>&lt;context&gt;.allInstances()</tt> expression
      * 
      * @param context
-     * @param jmiCreator
      * @return a OCL expression representing a <tt>allInstances()</tt> call to
      * <tt>context</tt>
-     * @throws OclSemanticException
+     * @throws ParserException 
      */
-    private OclExpression createAllInstancesExp( Classifier context, MoinJmiCreator jmiCreator ) throws OclSemanticException {
-
-        TypeExp contextType = jmiCreator.createTypeExp( context );
-        jmiCreator.createSetType( context );
-        Operation allInstances = jmiCreator.getStdLibraryOperation( OclConstants.T_OCLTYPESTDLIB, OclConstants.OP_ALLINSTANCES );
-        OperationCallExp allInstancesCall = jmiCreator.createOperationCallExp( allInstances, contextType );
-        return allInstancesCall;
+    private OCLExpression createAllInstancesExp( EClassifier context ) throws ParserException {
+    	OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+    	Helper helper = ocl.createOCLHelper();
+    	helper.setContext(context);
+    	OCLExpression expr = helper.createQuery(context.getInstanceClassName() + ".allInstances()");
+    	
+        return expr;
     }
 
     /**
@@ -354,6 +354,6 @@ public abstract class Relevance {
     @Override
     public String toString( ) {
 
-        return OclConstants.BRACKETLEFT + this.stmt.getName( ) + ", " + this.event.toString( ) + ", " + this.kind.toString( ) + OclConstants.BRACKETRIGHT + "\n" + this.navigationPaths.toString( ); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
+        return "(" + this.stmt.getName( ) + ", " + this.event.toString( ) + ", " + this.kind.toString( ) + ")" + "\n" + this.navigationPaths.toString( ); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
     }
 }

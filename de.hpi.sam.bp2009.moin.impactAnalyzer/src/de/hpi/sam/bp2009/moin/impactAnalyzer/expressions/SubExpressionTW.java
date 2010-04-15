@@ -9,55 +9,41 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.Vector;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.DirectionKindEnum;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.model.Parameter;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
-import com.sap.tc.moin.repository.mmi.model.__impl.OperationImpl;
-import com.sap.tc.moin.repository.mmi.model.__impl.ParameterImpl;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
+import org.eclipse.ocl.ecore.CollectionRange;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PrimitiveType;
+import org.eclipse.ocl.ecore.TupleLiteralExp;
+import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.impl.AssociationClassCallExpImpl;
+import org.eclipse.ocl.ecore.impl.IfExpImpl;
+import org.eclipse.ocl.ecore.impl.IterateExpImpl;
+import org.eclipse.ocl.ecore.impl.IteratorExpImpl;
+import org.eclipse.ocl.ecore.impl.LetExpImpl;
+import org.eclipse.ocl.ecore.impl.OperationCallExpImpl;
+import org.eclipse.ocl.ecore.impl.VariableExpImpl;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.util.OCLUtil;
 
-import org.omg.ocl.attaching.OperationBodyDefinition;
-import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
-import org.omg.ocl.expressions.AssociationEndCallExp;
-import org.omg.ocl.expressions.AttributeCallExp;
-import org.omg.ocl.expressions.CollectionItem;
-import org.omg.ocl.expressions.CollectionLiteralExp;
-import org.omg.ocl.expressions.CollectionRange;
-import org.omg.ocl.expressions.EnumLiteralExp;
-import org.omg.ocl.expressions.IfExp;
-import org.omg.ocl.expressions.IterateExp;
-import org.omg.ocl.expressions.IteratorExp;
-import org.omg.ocl.expressions.LetExp;
-import org.omg.ocl.expressions.LoopExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.OperationCallExp;
-import org.omg.ocl.expressions.TupleLiteralExp;
-import org.omg.ocl.expressions.TypeExp;
-import org.omg.ocl.expressions.VariableDeclaration;
-import org.omg.ocl.expressions.VariableExp;
-import org.omg.ocl.expressions.__impl.AssociationEndCallExpImpl;
-import org.omg.ocl.expressions.__impl.AttributeCallExpImpl;
-import org.omg.ocl.expressions.__impl.IfExpImpl;
-import org.omg.ocl.expressions.__impl.IterateExpImpl;
-import org.omg.ocl.expressions.__impl.IteratorExpImpl;
-import org.omg.ocl.expressions.__impl.LetExpImpl;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
-import org.omg.ocl.expressions.__impl.TupleLiteralExpImpl;
-import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
-import org.omg.ocl.expressions.__impl.VariableExpImpl;
-import org.omg.ocl.types.TupleType;
-
-import com.sap.tc.moin.ocl.ia.tag.ExpressionKind;
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.ocl.utils.treewalker.TreeWalker;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.JmiList;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
 
 /**
  * This class implements a algorithm for finding direct or indirect
@@ -177,20 +163,17 @@ public class SubExpressionTW extends TreeWalker {
         }
     }
 
-    private Map<RefObject, SubExprTag> node2Tag = new Hashtable<RefObject, SubExprTag>( );
+    private Map<EObject, SubExprTag> node2Tag = new Hashtable<EObject, SubExprTag>( );
 
-    protected OclStatement statement;
+    protected Constraint statement;
 
     protected Set<SubExpression> subExpressions = new HashSet<SubExpression>( );
 
-    protected Stack<Operation> visitedFeatures = new Stack<Operation>( );
+    protected Stack<EOperation> visitedFeatures = new Stack<EOperation>( );
 
-    /**
-     * @param actConnection the core connection
-     */
-    public SubExpressionTW( CoreConnection actConnection ) {
+    public SubExpressionTW( ) {
 
-        super( actConnection );
+        super( );
     }
 
     /**
@@ -200,7 +183,7 @@ public class SubExpressionTW extends TreeWalker {
      * @param tag the SubExprTag containing the current sub-expressions to which
      * <tt>node</tt> has to be added.
      */
-    private void addNodeToCurrSubExprs( OclExpression node, SubExprTag tag ) {
+    private void addNodeToCurrSubExprs( OCLExpression node, SubExprTag tag ) {
 
         // add this node to the current sub expressions
         for ( Iterator<SubExpression> i = tag.getCurrentSubExprs( ).iterator( ); i.hasNext( ); ) {
@@ -229,15 +212,15 @@ public class SubExpressionTW extends TreeWalker {
      * @param stmt the OclStatement to determine the sub expressions for
      * @return the set of sub expression in the OCL AST
      */
-    public Set<SubExpression> determineSubExpressions( OclStatement stmt ) {
+    public Set<SubExpression> determineSubExpressions( Constraint stmt ) {
 
         // keep the statement around. we will need it several times
         // in the up-methods
         this.statement = stmt;
         // start the algorithm
-        super.walk( stmt.getExpression( ) );
+        super.walk( stmt.getSpecification().getBodyExpression() );
         // collect the results
-        SubExprTag rootTag = getTag( stmt.getExpression( ) );
+        SubExprTag rootTag = getTag( stmt.getSpecification().getBodyExpression() );
         this.subExpressions.addAll( rootTag.getAccumulatedSubExprs( ) );
         this.subExpressions.addAll( rootTag.getCurrentSubExprs( ) );
         // get rid of tags
@@ -251,13 +234,13 @@ public class SubExpressionTW extends TreeWalker {
      * @param op the user-defined operation
      * @return the body of the user-defined operations
      */
-    private OclExpression getBodyExpr( Operation op ) {
+    private OCLExpression getBodyExpr( EOperation op ) {
 
         // TODO this method has to be adapted to how the parser attaches
         // user-defined operations.
         // this has not been decided yet!
         OperationBodyDefinitionImpl assoc = (OperationBodyDefinitionImpl) this.connection.getAssociation( OperationBodyDefinition.ASSOCIATION_DESCRIPTOR );
-        OclExpression bodyExpr = assoc.getBody( this.connection, op );
+        OCLExpression bodyExpr = assoc.getBody( op );
         return bodyExpr;
     }
 
@@ -268,7 +251,7 @@ public class SubExpressionTW extends TreeWalker {
      * @param operation
      * @return the return type of the operation or null.
      */
-    protected Classifier getReturnType( Operation operation ) {
+    protected EClassifier getReturnType( EOperation operation ) {
 
         if ( operation != null ) {
             JmiList<ModelElement> contents = (JmiList<ModelElement>) ( (OperationImpl) operation ).getContents( this.connection );
@@ -291,7 +274,7 @@ public class SubExpressionTW extends TreeWalker {
      * @param node the node in the AST
      * @return the <tt>SubExprTag</tt> for <tt>node</tt>
      */
-    protected SubExprTag getTag( RefObject node ) {
+    protected SubExprTag getTag( EObject node ) {
 
         SubExprTag tag = this.node2Tag.get( node );
         if ( tag == null ) {
@@ -302,12 +285,12 @@ public class SubExpressionTW extends TreeWalker {
     }
 
     /**
-     * Checks whether a <tt>Classifier</tt> is a primitiveType
+     * Checks whether a <tt>EClassifier</tt> is a primitiveType
      * 
      * @param c the <tt>Classifier</tt> to check
      * @return true if <tt>c</tt> is a primitive type
      */
-    protected boolean isPrimitiveType( Classifier c ) {
+    protected boolean isPrimitiveType( EClassifier c ) {
 
         return ( c instanceof PrimitiveType );
     }
@@ -322,9 +305,9 @@ public class SubExpressionTW extends TreeWalker {
      */
     protected boolean isStdLibOperation( OperationCallExp exp ) {
 
-        Operation referredOperation = ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection );
+        EOperation referredOperation = ( (OperationCallExpImpl) exp ).getReferredOperation( );
         OperationBodyDefinitionImpl assoc = (OperationBodyDefinitionImpl) this.connection.getAssociation( OperationBodyDefinition.ASSOCIATION_DESCRIPTOR );
-        OclExpression bodyExpr = assoc.getBody( this.connection, referredOperation );
+        OCLExpression bodyExpr = assoc.getBody( referredOperation );
         return bodyExpr == null;
     }
 
@@ -332,7 +315,7 @@ public class SubExpressionTW extends TreeWalker {
      * @param referredAttribute
      * @return true or false
      */
-    private boolean isUserDefined( Attribute referredAttribute ) {
+    private boolean isUserDefined( EAttribute referredAttribute ) {
 
         // TODO implement this method accordingly to the behaviour of the OCL
         // parser.
@@ -349,9 +332,9 @@ public class SubExpressionTW extends TreeWalker {
      */
     protected boolean isUserDefinedOperation( OperationCallExp exp ) {
 
-        Operation referredOperation = ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection );
+        EOperation referredOperation = ( (OperationCallExpImpl) exp ).getReferredOperation( );
         OperationBodyDefinitionImpl assoc = (OperationBodyDefinitionImpl) this.connection.getAssociation( OperationBodyDefinition.ASSOCIATION_DESCRIPTOR );
-        OclExpression bodyExpr = assoc.getBody( this.connection, referredOperation );
+        OCLExpression bodyExpr = assoc.getBody( referredOperation );
         return bodyExpr != null;
     }
 
@@ -365,10 +348,10 @@ public class SubExpressionTW extends TreeWalker {
         SubExprTag tag = getTag( exp );
         // this is a allInstances call
         // create direct sub expression
-        SubExpression subExp = new DirectSubExpression( this.connection, this.statement );
+        SubExpression subExp = new DirectSubExpression( this.statement );
         subExp.setKind( ExpressionKind.CLASS );
         // add node to current sub expression
-        subExp.addExpressionParts( ( (OperationCallExpImpl) exp ).getSource( this.connection ) );
+        subExp.addExpressionParts( (OCLExpression) ( (OperationCallExpImpl) exp ).getSource( ) );
         subExp.addExpressionParts( exp );
         tag.addToCurrent( subExp );
         // mark this node as visited
@@ -379,7 +362,7 @@ public class SubExpressionTW extends TreeWalker {
     protected void upAssociationEndCallExp( AssociationEndCallExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        SubExprTag sourceTag = getTag( ( (AssociationEndCallExpImpl) exp ).getSource( this.connection ) );
+        SubExprTag sourceTag = getTag( ( (AssociationClassCallExpImpl) exp ).getSource( ) );
         copySubExprs( sourceTag, tag );
         // add this node to the current sub expressions
         addNodeToCurrSubExprs( exp, tag );
@@ -391,16 +374,16 @@ public class SubExpressionTW extends TreeWalker {
     protected void upAttributeCallExp( AttributeCallExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        OclExpression source = ( (AttributeCallExpImpl) exp ).getSource( this.connection );
+        OCLExpression source = ( (AttributeCallExpImpl) exp ).getSource( );
         SubExprTag sourceTag = getTag( source );
-        if ( ( (OclExpressionInternal) source ).getType( this.connection ) instanceof TupleType ) {
+        if ( source.getType( ) instanceof TupleType ) {
             // TODO this is untested
             // the way how to determine the tuple literal depends on the
             // source
             if ( source instanceof VariableExp ) {
                 // get the variable declaration
                 VariableExpImpl varExp = (VariableExpImpl) source;
-                OclExpression initExp = ( (VariableDeclarationImpl) varExp.getReferredVariable( this.connection ) ).getInitExpression( this.connection );
+                OCLExpression initExp = (OCLExpression) (  varExp.getReferredVariable( ) ).getInitExpression( );
                 if ( initExp instanceof TupleLiteralExp ) {
                     TupleLiteralExp tupleLiteral = (TupleLiteralExp) initExp;
                     handleTupleLiteral( exp, tag, tupleLiteral );
@@ -423,14 +406,14 @@ public class SubExpressionTW extends TreeWalker {
                 // in lack of any better ideas
                 markAsClassSubExp( tag );
             }
-        } else if ( isUserDefined( ( (AttributeCallExpImpl) exp ).getReferredAttribute( this.connection ) ) ) {
+        } else if ( isUserDefined( ( (AttributeCallExpImpl) exp ).getReferredAttribute( ) ) ) {
             // TODO this is untested
             // this is a user defined attribute
             // or its value can be derived, which is pretty much the same.
             // we expend the attribute like we did with user defined operations
-            DerExpressionTW derExprTW = new DerExpressionTW( this.connection );
+            DerExpressionTW derExprTW = new DerExpressionTW( );
             // TODO get the derived value expression
-            OclExpression derExpr = null;
+            OCLExpression derExpr = null;
             Set<SubExpression> currSubExprs = derExprTW.determineSubExpressions( derExpr, this.statement, sourceTag );
             Set<SubExpression> accSubExprs = derExprTW.getAccumulatedSubExprs( );
             tag.getCurrentSubExprs( ).addAll( currSubExprs );
@@ -468,11 +451,11 @@ public class SubExpressionTW extends TreeWalker {
         // Find the right sub-expression for the name of the attribute.
         // Therefore find the variable declaration i.e. tuple part
         // which defines the variable with the name of the attribute
-        JmiList<VariableDeclaration> tupleParts = (JmiList<VariableDeclaration>) ( (TupleLiteralExpImpl) tupleLiteral ).getTuplePart( this.connection );
-        for ( Iterator<VariableDeclaration> i = tupleParts.iterator( this.connection ); i.hasNext( ); ) {
-            VariableDeclaration tuplePart = i.next( );
+        EList<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = tupleLiteral.getPart();
+        for (  Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator( ); i.hasNext( ); ) {
+            TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next( );
             SubExprTag partTag = getTag( tuplePart );
-            if ( tuplePart.getVarName( ).equals( ( (AttributeCallExpImpl) exp ).getReferredAttribute( this.connection ).getName( ) ) ) {
+            if ( tuplePart.getName( ).equals( exp.getReferredAttribute( ).getName( ) ) ) {
                 // Found the right declaration.
                 // Copy all current sub-expression of the tuple part
                 // and add them to the current sub-expressions of this node.
@@ -499,7 +482,7 @@ public class SubExpressionTW extends TreeWalker {
         // for now we start a new DirectSubExpression with CLASS relevance
         // so we do nothing wrong!
         SubExprTag tag = getTag( exp );
-        SubExpression subExp = new DirectSubExpression( this.connection, this.statement );
+        SubExpression subExp = new DirectSubExpression( this.statement );
         subExp.setKind( ExpressionKind.CLASS );
         tag.addToCurrent( subExp );
         // mark this node as visited
@@ -522,9 +505,9 @@ public class SubExpressionTW extends TreeWalker {
     protected void upIfExp( IfExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        SubExprTag condTag = getTag( ( (IfExpImpl) exp ).getCondition( this.connection ) );
-        SubExprTag thenTag = getTag( ( (IfExpImpl) exp ).getThenExpression( this.connection ) );
-        SubExprTag elseTag = getTag( ( (IfExpImpl) exp ).getElseExpression( this.connection ) );
+        SubExprTag condTag = getTag( ( (IfExpImpl) exp ).getCondition( ) );
+        SubExprTag thenTag = getTag( ( (IfExpImpl) exp ).getThenExpression( ) );
+        SubExprTag elseTag = getTag( ( (IfExpImpl) exp ).getElseExpression( ) );
         // pass up the union of sub expressions of conditon, then and else
         copySubExprs( condTag, tag );
         copySubExprs( thenTag, tag );
@@ -555,7 +538,7 @@ public class SubExpressionTW extends TreeWalker {
     protected void upLetExp( LetExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        SubExprTag inTag = getTag( ( (LetExpImpl) exp ).getIn( this.connection ) );
+        SubExprTag inTag = getTag( ( (LetExpImpl) exp ).getIn( ) );
         // pass up the sub expression attached to the inExp
         copySubExprs( inTag, tag );
         // mark this node as visited
@@ -573,11 +556,11 @@ public class SubExpressionTW extends TreeWalker {
         SubExprTag bodyTag = null;
         SubExprTag sourceTag = null;
         if ( exp instanceof IterateExp ) {
-            bodyTag = getTag( ( (IterateExpImpl) exp ).getBody( this.connection ) );
-            sourceTag = getTag( ( (IterateExpImpl) exp ).getSource( this.connection ) );
+            bodyTag = getTag( ( (IterateExpImpl) exp ).getBody( ) );
+            sourceTag = getTag( ( (IterateExpImpl) exp ).getSource( ) );
         } else {
-            bodyTag = getTag( ( (IteratorExpImpl) exp ).getBody( this.connection ) );
-            sourceTag = getTag( ( (IteratorExpImpl) exp ).getSource( this.connection ) );
+            bodyTag = getTag( ( (IteratorExpImpl) exp ).getBody( ) );
+            sourceTag = getTag( ( (IteratorExpImpl) exp ).getSource( ) );
         }
         Set<SubExpression> accSubExp = new HashSet<SubExpression>( );
         Set<SubExpression> foundAParent = new HashSet<SubExpression>( );
@@ -622,7 +605,7 @@ public class SubExpressionTW extends TreeWalker {
     @Override
     protected void upOperationCallExp( OperationCallExp exp ) {
 
-        if ( ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection ).getName( ).equals( OclConstants.OP_ALLINSTANCES ) ) {
+        if ( ( (OperationCallExpImpl) exp ).getReferredOperation( ).getName( ).equals( "allInstances" ) ) {
             upAllInstances( exp );
         } else if ( isStdLibOperation( exp ) ) {
             upStdLibOperation( exp );
@@ -639,13 +622,13 @@ public class SubExpressionTW extends TreeWalker {
     protected void upPrimitiveTypeOp( OperationCallExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        SubExprTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( this.connection ) );
+        SubExprTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( ) );
         // the operation call results in a non-object type
         // this ends all current subexpressions
         // pass up the union of sub expressions of arguments and source
-        JmiList<OclExpression> args = (JmiList<OclExpression>) ( (OperationCallExpImpl) exp ).getArguments( this.connection );
-        for ( int i = 0, n = args.size( this.connection.getSession( ) ); i < n; i++ ) {
-            OclExpression argExp = args.get( this.connection.getSession( ), i );
+         EList<org.eclipse.ocl.expressions.OCLExpression<EClassifier>> args = exp.getArgument( );
+        for ( int i = 0, n = args.size( ); i < n; i++ ) {
+            OCLExpression argExp = (OCLExpression) args.get( i );
             SubExprTag argTag = getTag( argExp );
             copySubExprs( argTag, tag );
         }
@@ -666,25 +649,25 @@ public class SubExpressionTW extends TreeWalker {
     protected void upStdLibOperation( OperationCallExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        SubExprTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( this.connection ) );
+        SubExprTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( ) );
         // all current sub expressions are continued.
         // forward sub expressions.
         copySubExprs( sourceTag, tag );
         // 
-        JmiList<OclExpression> args = (JmiList<OclExpression>) ( (OperationCallExpImpl) exp ).getArguments( this.connection );
-        for ( int i = 0, n = args.size( this.connection.getSession( ) ); i < n; i++ ) {
-            OclExpression argExp = args.get( this.connection.getSession( ), i );
+        EList<org.eclipse.ocl.expressions.OCLExpression<EClassifier>> args = exp.getArgument( );
+        for ( int i = 0, n = args.size( ); i < n; i++ ) {
+            OCLExpression argExp = (OCLExpression) args.get( i );
             SubExprTag argTag = getTag( argExp );
             copySubExprs( argTag, tag );
         }
-        if ( isPrimitiveType( getReturnType( ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection ) ) ) ) {
+        if ( isPrimitiveType( getReturnType( ( (OperationCallExpImpl) exp ).getReferredOperation( ) ) ) ) {
             // this is an operation with a primitive return type
             // end all sub expressions
             tag.addToAccumulated( tag.getCurrentSubExprs( ) );
             tag.getCurrentSubExprs( ).clear( );
         }
         // decide how to classify the subexpression
-        if ( ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection ).getName( ).equals( OclConstants.OP_PRODUCT ) ) {
+        if ( ( (OperationCallExpImpl) exp ).getReferredOperation( ).getName( ).equals( "product" ) ) {
             // this is an ugly operation!
             // in lack of any better ideas it is
             // mark as CLASS sub expression.
@@ -700,9 +683,9 @@ public class SubExpressionTW extends TreeWalker {
     protected void upTupleLiteralExp( TupleLiteralExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        JmiList<VariableDeclaration> tupleParts = (JmiList<VariableDeclaration>) ( (TupleLiteralExpImpl) exp ).getTuplePart( this.connection );
-        for ( Iterator<VariableDeclaration> i = tupleParts.iterator( this.connection ); i.hasNext( ); ) {
-            VariableDeclaration tuplePart = i.next( );
+        EList<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = exp.getPart( );
+        for ( Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator( ); i.hasNext( ); ) {
+             TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next( );
             SubExprTag partTag = getTag( tuplePart );
             copySubExprs( tag, partTag );
         }
@@ -729,7 +712,7 @@ public class SubExpressionTW extends TreeWalker {
         // TODO this is untested!
 
         SubExprTag tag = getTag( exp );
-        SubExprTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( this.connection ) );
+        SubExprTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( ) );
         // op is a user-defined operation
         // forward sub expressions
         copySubExprs( sourceTag, tag );
@@ -740,15 +723,15 @@ public class SubExpressionTW extends TreeWalker {
         // attached to the arguments are then continued and the resulting
         // sub expressions are returned.
         // TODO how does this work for recursive operations?
-        Operation op = ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection );
+        EOperation op = ( (OperationCallExpImpl) exp ).getReferredOperation( );
         // get the body definition of the operation
-        OclExpression bodyExpr = getBodyExpr( op );
-        BodyExpressionTW opBodySubExprTW = new BodyExpressionTW( this.connection, this.visitedFeatures );
+        OCLExpression bodyExpr = getBodyExpr( op );
+        BodyExpressionTW opBodySubExprTW = new BodyExpressionTW( this.visitedFeatures );
         List<SubExprTag> argTags = new Vector<SubExprTag>( );
         // get the tags attached to the arguments
-        JmiList<OclExpression> args = (JmiList<OclExpression>) ( (OperationCallExpImpl) exp ).getArguments( this.connection );
-        for ( int i = 0, n = args.size( this.connection.getSession( ) ); i < n; i++ ) {
-            OclExpression arg = args.get( this.connection.getSession( ), i );
+        EList<org.eclipse.ocl.expressions.OCLExpression<EClassifier>> args = exp.getArgument( );
+        for ( int i = 0, n = args.size( ); i < n; i++ ) {
+            OCLExpression arg = (OCLExpression) args.get( i );
             argTags.add( getTag( arg ) );
         }
         // determine sub expressions
@@ -758,7 +741,7 @@ public class SubExpressionTW extends TreeWalker {
         tag.addToCurrent( userDefSubExprs );
         tag.addToAccumulated( accuSubExprs );
 
-        if ( isPrimitiveType( getReturnType( ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection ) ) ) ) {
+        if ( isPrimitiveType( getReturnType( ( (OperationCallExpImpl) exp ).getReferredOperation( ) ) ) ) {
             // this is an operation with a primitive return type
             // end all sub expressions
             tag.addToAccumulated( tag.getCurrentSubExprs( ) );
@@ -772,7 +755,7 @@ public class SubExpressionTW extends TreeWalker {
     protected void upVariableDeclaration( VariableDeclaration decl ) {
 
         SubExprTag tag = getTag( decl );
-        OclExpression initExpr = ( (VariableDeclarationImpl) decl ).getInitExpression( this.connection );
+        OCLExpression initExpr = decl.getInitExpression( );
         if ( initExpr != null ) {
             SubExprTag initTag = getTag( initExpr );
             copySubExprs( initTag, tag );
@@ -785,22 +768,22 @@ public class SubExpressionTW extends TreeWalker {
     protected void upVariableExp( VariableExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        VariableDeclarationImpl varDecl = (VariableDeclarationImpl) ( (VariableExpImpl) exp ).getReferredVariable( this.connection );
+        Variable<EClassifier, EParameter> varDecl = ( (VariableExpImpl) exp ).getReferredVariable( );
         // order of the if statements is crucial! Someone could have defined
         // a iterator variable "self"
-        if ( varDecl.getLoopExpr( this.connection ) != null ) {
+        if ( varDecl.getLoopExpr( ) != null ) {
             // variable is an iterator variable
             // create indirect sub expression
-            SubExpression subExp = new IndirectSubExpression( this.connection, this.statement );
+            SubExpression subExp = new IndirectSubExpression( this.statement );
             subExp.setKind( ExpressionKind.INSTANCE );
             // TODO (d043530) why is the variable expression added here in the first place? What about the loop's source? Shouldn't its expressions be copied?
             subExp.addExpressionParts( exp );
             // pass sub expression up the tree
             tag.getCurrentSubExprs( ).add( subExp );
-        } else if ( varDecl.getVarName( ).equals( OclConstants.VAR_SELF ) && varDecl.getInitExpression( this.connection ) == null ) {
+        } else if ( varDecl.getName( ).equals( "self" ) && varDecl.getInitExpression( ) == null ) {
             // variable is self
             // create direct sub expression
-            SubExpression subExp = new DirectSubExpression( this.connection, this.statement );
+            SubExpression subExp = new DirectSubExpression( this.statement );
             subExp.setKind( ExpressionKind.INSTANCE );
             subExp.addExpressionParts( exp );
             // pass sub expression up the tree

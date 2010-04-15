@@ -8,11 +8,15 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 
+import de.hpi.sam.bp2009.moin.impactAnalyzer.analysis.ClassScopeAnalysis;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.analysis.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.cache.EventCache;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.cache.EventCacheEntry;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.Relevance;
@@ -21,9 +25,20 @@ import de.hpi.sam.bp2009.moin.impactAnalyzer.result.InstanceSet;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.result.impl.EvaluationUnitImpl;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.result.impl.InstanceSetImpl;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTagFactory;
+import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
+import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.impl.AndFilterImpl;
 
 
 
@@ -102,9 +117,9 @@ public class ImpactAnalyzer {
      */
     public EventFilter createFilterForQuery(EList<Constraint> oclStatements) {
 
-        long cstime = 0l;
-        long istime = 0l;
-        long fctime = 0l;
+//        long cstime = 0l;
+//        long istime = 0l;
+//        long fctime = 0l;
 
         // analyze each OclStatement
         for ( Constraint stmt : oclStatements ) {
@@ -176,7 +191,7 @@ public class ImpactAnalyzer {
 
         Set<EvaluationUnit> evalSet = new HashSet<EvaluationUnit>( );
 //        long starttime = System.nanoTime( );
-        try {
+
             // map from MoinEvents to InternalEvents
         /*
          *  events don't have to be mapped any more
@@ -205,7 +220,7 @@ public class ImpactAnalyzer {
                     }
                     // add a new instance set to it; the affected elements are determined from the element
                     for ( Constraint revPath : cacheEntry.getInstances( ) ) {
-                        Set<EObject> startingPoints = this.eventFactory.getAffectedElements( event, (EClassifier) revPath.getContext( ) );
+                        Set<EObject> startingPoints = this.eventFactory.getAffectedElements( event, (EClassifier) revPath.getConstrainedElements() );
                         if ( startingPoints != null ) {
                             InstanceSet is = new InstanceSetImpl( revPath, startingPoints );
                             unit.addInstanceSet( is );
@@ -214,58 +229,59 @@ public class ImpactAnalyzer {
                 
                 // return the set of EvaluationUnits with non-empty instance
                 // sets
-                for ( EvaluationUnit unit : stmt2EvalUnit.values( ) ) {
-                    if ( unit.getInstanceSets( ).isEmpty( ) ) {
+                for ( EvaluationUnit evalUnit : stmt2EvalUnit.values( ) ) {
+                    if ( evalUnit.getInstanceSets( ).isEmpty( ) ) {
                         continue;
                     }
-                    evalSet.add( unit );
+                    evalSet.add( evalUnit );
                 }
 
             }
             return evalSet;
-        } finally {
-            if ( LOGGER.isTraced( MoinSeverity.INFO ) ) {
-                long duration = ( starttime - System.nanoTime( ) ) / 1000000;
-                LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTEREND, duration, evalSet.size( ) );
-            }
-        }
+        
+//          finally {
+//            if ( LOGGER.isTraced( MoinSeverity.INFO ) ) {
+//                long duration = ( starttime - System.nanoTime( ) ) / 1000000;
+//                LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTEREND, duration, evalSet.size( ) );
+//            }
+//        }
     }
 
     /**
      * @param classFilter class filter
      * @return the Set of EvaluationUnits
      */
-    public Set<EvaluationUnit> filterForClasses( Set<Classifier> classFilter ) {
+    public Set<EvaluationUnit> filterForClasses( Set<EventFilter> classFilter ) {
 
-        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
-            if ( classFilter != null ) {
-                LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERFORCLASSSTART, classFilter.size( ) );
-            } else {
-                LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERFORCLASSSTART, 0 );
-            }
-        }
+//        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
+//            if ( classFilter != null ) {
+//                LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERFORCLASSSTART, classFilter.size( ) );
+//            } else {
+//                LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERFORCLASSSTART, 0 );
+//            }
+//        }
 
-        long starttime = System.nanoTime( );
+//        long starttime = System.nanoTime( );
         // map from MoinEvents to InternalEvents
-        Set<InternalEvent> intEvents;
+        Set<ModelChangeEvent> intEvents;
         if ( classFilter == null || classFilter.isEmpty( ) ) {
             intEvents = this.eventCache.events( );
         } else {
             intEvents = this.eventCache.events( classFilter );
         }
 
-        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
-            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERFORCLASSEVENTS, intEvents.size( ) );
-        }
+//        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
+//            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERFORCLASSEVENTS, intEvents.size( ) );
+//        }
         // since we will not fill the starting points here, we have only one 
         // EvaluationUnit per affected statement
         Set<EvaluationUnit> units = new HashSet<EvaluationUnit>( );
 
-        Map<OclStatement, EvaluationUnitImpl> stmt2EvalUnit = new HashMap<OclStatement, EvaluationUnitImpl>( );
-        for ( InternalEvent event : intEvents ) {
+        Map<Constraint, EvaluationUnitImpl> stmt2EvalUnit = new HashMap<Constraint, EvaluationUnitImpl>( );
+        for ( ModelChangeEvent event : intEvents ) {
             // go through all cache entries
             for ( EventCacheEntry cacheEntry : this.eventCache.lookup( event ) ) {
-                OclStatement cacheStatement = cacheEntry.getStatement( );
+                Constraint cacheStatement = cacheEntry.getStatement( );
                 EvaluationUnitImpl unit;
                 // create a new Unit or get an existing one
                 if ( stmt2EvalUnit.containsKey( cacheStatement ) ) {
@@ -275,9 +291,9 @@ public class ImpactAnalyzer {
                     stmt2EvalUnit.put( cacheStatement, unit );
                 }
                 // add a new instance sets to it
-                for ( OclStatement revPath : cacheEntry.getInstances( ) ) {
+                for ( Constraint revPath : cacheEntry.getInstances( ) ) {
                     // we can't do instance scope here
-                    Set<RefObject> startingPoints = Collections.emptySet( );
+                    Set<EObject> startingPoints = Collections.emptySet( );
                     InstanceSet is = new InstanceSetImpl( revPath, startingPoints );
                     unit.addInstanceSet( is );
                 }
@@ -285,14 +301,14 @@ public class ImpactAnalyzer {
         }
         units.addAll( stmt2EvalUnit.values( ) );
 
-        if ( LOGGER.isTraced( MoinSeverity.INFO ) ) {
-            long duration = ( starttime - System.nanoTime( ) ) / 1000000;
-            if ( classFilter != null ) {
-                LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTERFORCLASSEND, classFilter.size( ), duration, units.size( ) );
-            } else {
-                LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTERFORCLASSEND, 0, duration, units.size( ) );
-            }
-        }
+//        if ( LOGGER.isTraced( MoinSeverity.INFO ) ) {
+//            long duration = ( starttime - System.nanoTime( ) ) / 1000000;
+//            if ( classFilter != null ) {
+//                LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTERFORCLASSEND, classFilter.size( ), duration, units.size( ) );
+//            } else {
+//                LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTERFORCLASSEND, 0, duration, units.size( ) );
+//            }
+//        }
         return units;
     }
 
@@ -305,26 +321,26 @@ public class ImpactAnalyzer {
      * filter.
      * @return the <code>EvaluationUnit</code>s
      */
-    public Set<EvaluationUnit> filter( CoreConnection connection, Set<ModelChangeEvent> modelChangeEvents ) {
+    public Set<EvaluationUnit> filter( Set<ModelChangeEvent> modelChangeEvents ) {
 
         if ( modelChangeEvents.size( ) == 1 ) {
             // we can save some overhead here
-            return this.filter( connection, modelChangeEvents.iterator( ).next( ) );
+            return this.filter( modelChangeEvents.iterator( ).next( ) );
         }
 
-        long starttime = System.nanoTime( );
-
-        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
-            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERMULTSTART, modelChangeEvents.size( ) );
-        }
+//        long starttime = System.nanoTime( );
+//
+//        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
+//            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERMULTSTART, modelChangeEvents.size( ) );
+//        }
         // condense the internal events (only one lookup in the event cache)
         // the ModelChangeEvents are needed later for getting the affected
         // instances
-        Map<InternalEvent, Set<ModelChangeEvent>> im = new HashMap<InternalEvent, Set<ModelChangeEvent>>( );
+        Map<ModelChangeEvent, Set<ModelChangeEvent>> im = new HashMap<ModelChangeEvent, Set<ModelChangeEvent>>( );
         for ( ModelChangeEvent modelChangeEvent : modelChangeEvents ) {
-            InternalEvent[] internalEvents = this.eventFactory.createEvents( connection, modelChangeEvent );
+        	ModelChangeEvent[] internalEvents = this.eventFactory.createEvents( modelChangeEvent );
             for ( int eventIndex = 0; eventIndex < internalEvents.length; eventIndex++ ) {
-                InternalEvent internalEvent = internalEvents[eventIndex];
+            	ModelChangeEvent internalEvent = internalEvents[eventIndex];
                 if ( im.containsKey( internalEvent ) ) {
                     im.get( internalEvent ).add( modelChangeEvent );
                 } else {
@@ -336,26 +352,26 @@ public class ImpactAnalyzer {
         }
         // we need to have the mapping between the reverse navigation path and
         // the starting points per affected statement
-        Map<OclStatement, Map<OclStatement, Set<RefObject>>> expr = new HashMap<OclStatement, Map<OclStatement, Set<RefObject>>>( );
+        Map<Constraint, Map<Constraint, Set<EObject>>> expr = new HashMap<Constraint, Map<Constraint, Set<EObject>>>( );
         // For each internal event: get affected expressions
-        for ( Map.Entry<InternalEvent, Set<ModelChangeEvent>> me : im.entrySet( ) ) {
+        for ( Map.Entry<ModelChangeEvent, Set<ModelChangeEvent>> me : im.entrySet( ) ) {
             for ( EventCacheEntry ece : this.eventCache.lookup( me.getKey( ) ) ) {
-                OclStatement cacheStatement = ece.getStatement( );
-                Map<OclStatement, Set<RefObject>> elementsPerRevPath = expr.get( cacheStatement );
+                Constraint cacheStatement = ece.getStatement( );
+                Map<Constraint, Set<EObject>> elementsPerRevPath = expr.get( cacheStatement );
                 if ( elementsPerRevPath == null ) {
-                    elementsPerRevPath = new HashMap<OclStatement, Set<RefObject>>( );
+                    elementsPerRevPath = new HashMap<Constraint, Set<EObject>>( );
                     expr.put( cacheStatement, elementsPerRevPath );
                 }
                 // For each affected expression: get event instances, collect
                 // them in inst
-                for ( OclStatement revPath : ece.getInstances( ) ) {
-                    Set<RefObject> elements = elementsPerRevPath.get( revPath );
+                for ( Constraint revPath : ece.getInstances( ) ) {
+                    Set<EObject> elements = elementsPerRevPath.get( revPath );
                     if ( elements == null ) {
-                        elements = new HashSet<RefObject>( );
+                        elements = new HashSet<EObject>( );
                         elementsPerRevPath.put( revPath, elements );
                     }
                     for ( ModelChangeEvent mce : me.getValue( ) ) {
-                        Set<RefObject> s = this.eventFactory.getAffectedElements( mce, (Classifier) revPath.getContext( ) );
+                        Set<EObject> s = this.eventFactory.getAffectedElements( mce, (EClassifier) revPath.getConstrainedElements() );
                         if ( s != null ) {
                             elements.addAll( s );
                         }
@@ -365,19 +381,19 @@ public class ImpactAnalyzer {
         }
         // Convert the structure we just built to an EvaluationSet
         Set<EvaluationUnit> result = new HashSet<EvaluationUnit>( );
-        for ( Map.Entry<OclStatement, Map<OclStatement, Set<RefObject>>> me : expr.entrySet( ) ) {
+        for ( Map.Entry<Constraint, Map<Constraint, Set<EObject>>> me : expr.entrySet( ) ) {
             EvaluationUnitImpl eu = new EvaluationUnitImpl( me.getKey( ) );
-            for ( Map.Entry<OclStatement, Set<RefObject>> revPathEntry : me.getValue( ).entrySet( ) ) {
+            for ( Map.Entry<Constraint, Set<EObject>> revPathEntry : me.getValue( ).entrySet( ) ) {
                 InstanceSet newset = new InstanceSetImpl( revPathEntry.getKey( ), revPathEntry.getValue( ) );
                 eu.addInstanceSet( newset );
             }
             result.add( eu );
         }
 
-        if ( LOGGER.isTraced( MoinSeverity.INFO ) ) {
-            long duration = ( starttime - System.nanoTime( ) ) / 1000000;
-            LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTERMULTEND, modelChangeEvents.size( ), duration, result.size( ) );
-        }
+//        if ( LOGGER.isTraced( MoinSeverity.INFO ) ) {
+//            long duration = ( starttime - System.nanoTime( ) ) / 1000000;
+//            LOGGER.trace( MoinSeverity.INFO, ImpactAnalyzerTraces.FILTERMULTEND, modelChangeEvents.size( ), duration, result.size( ) );
+//        }
         return result;
     }
 
@@ -391,19 +407,20 @@ public class ImpactAnalyzer {
         this.tagFactory.reset( );
     }
 
-    private void applyClassScopeAnalysis( OclStatement stmt, MoinJmiCreator jmiCreator ) {
+    private void applyClassScopeAnalysis( Constraint stmt ) {
 
-        ClassScopeAnalysis csa = new ClassScopeAnalysis( jmiCreator.getConnection( ), this.eventFactory, this.tagFactory, new HashSet<OclExpression>( ) );
+        ClassScopeAnalysis csa = new ClassScopeAnalysis( this.eventFactory, this.tagFactory, new HashSet<OCLExpression>( ) );
         // start the algorithm and get the relevant events
-        csa.analyze( stmt.getExpression( ) );
+        //TODO check if cast is appropriate
+        csa.analyze( (OCLExpression) stmt.getSpecification().getBodyExpression() );
     }
 
-    private void applyInstanceScopeAnalysis( OclStatement stmt, MoinJmiCreator jmiCreator ) {
+    private void applyInstanceScopeAnalysis( Constraint stmt ) {
 
-        InstanceScopeAnalysis analysis = new InstanceScopeAnalysis( this.tagFactory, this.eventCache, jmiCreator );
-        analysis.analyze( stmt, jmiCreator );
+        InstanceScopeAnalysis analysis = new InstanceScopeAnalysis( this.tagFactory, this.eventCache );
+        analysis.analyze( stmt );
         // for testing we keep track of all relevances i.e. navigation paths
-        this.testingRevelanceSet.addAll( analysis.testingGetRelevances( ) );
+       // this.testingRevelanceSet.addAll( analysis.testingGetRelevances( ) );
     }
 
     /**
@@ -416,7 +433,7 @@ public class ImpactAnalyzer {
      * 
      * For an empty set <tt>ev</tt> this operation does nothing.
      */
-    private void addTo( Set<EventFilter> mfs, Set<EventFilter> ev, Class<? extends ChangeEvent> filterClass ) {
+    private void addTo( Set<EventFilter> mfs, Set<EventFilter> ev, EClass filterClass ) {
 
         if ( ev.isEmpty( ) ) {
             return;
@@ -428,14 +445,21 @@ public class ImpactAnalyzer {
             EventFilter nextFilter = it.next( );
             if (!(nextFilter instanceof AndFilter) && !(nextFilter instanceof NotFilter)
 		    && nextFilter.getClass().equals(firstFilter.getClass())) {
-		firstFilter.merge(nextFilter);
+            	//TODO originally a merge
+            	AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+            	andFilter.getFilters().add(firstFilter);
+            	andFilter.getFilters().add(nextFilter);
+            	firstFilter = andFilter;
             } else {
         	// add instead of merge if filter types are different
-        	mfs.add(x_and(new EventTypeFilter( filterClass ), nextFilter));
+            	EventTypeFilter eventFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
+            	eventFilter.setEventEClass(filterClass);
+        	mfs.add(x_and(eventFilter, nextFilter));
             }
         }
-
-        mfs.add( x_and( new EventTypeFilter( filterClass ), firstFilter ) );
+        EventTypeFilter eventFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
+    	eventFilter.setEventEClass(filterClass);
+        mfs.add( x_and( eventFilter , firstFilter ) );
     }
 
     /**
@@ -446,7 +470,7 @@ public class ImpactAnalyzer {
      * @return the <tt>MoinEventFilter</tt> corresponding to the set of
      * InternalEvents
      */
-    private EventFilter createFilter( CoreConnection connection, Set<InternalEvent> internalEvents ) {
+    private EventFilter createFilter( Set<ModelChangeEvent> internalEvents ) {
 
         if ( internalEvents == null || internalEvents.size( ) == 0 ) {
             /**
@@ -458,36 +482,36 @@ public class ImpactAnalyzer {
 
         // Collect instance filters in various Sets, depending on event type
 
-        Map<Class<? extends InternalEvent>, Set<EventFilter>> filters = new HashMap<Class<? extends InternalEvent>, Set<EventFilter>>( );
-        filters.put( InsertET.class, new HashSet<EventFilter>( ) );
-        filters.put( DeleteET.class, new HashSet<EventFilter>( ) );
-        filters.put( InsertRT.class, new HashSet<EventFilter>( ) );
-        filters.put( DeleteRT.class, new HashSet<EventFilter>( ) );
-        filters.put( UpdateAttribute.class, new HashSet<EventFilter>( ) );
+        Map<Class<? extends ModelChangeEvent>, Set<EventFilter>> filters = new HashMap<Class<? extends ModelChangeEvent>, Set<EventFilter>>( );
+        filters.put( ElementCreateEvent.class, new HashSet<EventFilter>( ) );
+        filters.put( ElementDeleteEvent.class, new HashSet<EventFilter>( ) );
+        filters.put( LinkCreateEvent.class, new HashSet<EventFilter>( ) );
+        filters.put( LinkDeleteEvent.class, new HashSet<EventFilter>( ) );
+        filters.put( AttributeValueChangeEvent.class, new HashSet<EventFilter>( ) );
 
-        for ( Iterator<InternalEvent> it = internalEvents.iterator( ); it.hasNext( ); ) {
-            InternalEvent ev = it.next( );
-            Set<EventFilter> filter = filters.get( ev.getType( ) );
-            filter.add( ev.getFilter( connection ) );
+        for ( Iterator<ModelChangeEvent> it = internalEvents.iterator( ); it.hasNext( ); ) {
+        	ModelChangeEvent ev = it.next( );
+            Set<EventFilter> filter = filters.get( ev.getFilter() );
+            filter.add( ev.getFilter( ) );
         }
         // Invariant: each filter from internalEvents is contained only in the set for *one* key in filters because each one has a single type
 
         // new we merge element deleted and element added where possible
-        Set<EventFilter> elementCreatedFilters = filters.get( InsertET.class );
-        Set<EventFilter> elementDeletedFilters = filters.get( DeleteET.class );
+        Set<EventFilter> elementCreatedFilters = filters.get( ElementCreateEvent.class );
+        Set<EventFilter> elementDeletedFilters = filters.get( ElementDeleteEvent.class );
 
         // Add event type filters
         Set<EventFilter> mfs = new HashSet<EventFilter>( );
-        addTo( mfs, elementCreatedFilters, ElementCreateEvent.class );
-        addTo( mfs, elementDeletedFilters, ElementDeleteEvent.class );
+        addTo( mfs, elementCreatedFilters, EventManagerFactory.eINSTANCE.createElementCreateEvent().eClass() );
+        addTo( mfs, elementDeletedFilters, EventManagerFactory.eINSTANCE.createElementDeleteEvent().eClass() );
 
         // now we merge link deleted and element added where possible
-        Set<EventFilter> linkCreatedFilters = filters.get( InsertRT.class );
-        Set<EventFilter> linkDeletedFilters = filters.get( DeleteRT.class );
+        Set<EventFilter> linkCreatedFilters = filters.get( LinkCreateEvent.class );
+        Set<EventFilter> linkDeletedFilters = filters.get( LinkDeleteEvent.class );
 
-        addTo( mfs, linkCreatedFilters, LinkAddEvent.class );
-        addTo( mfs, linkDeletedFilters, LinkRemoveEvent.class );
-        addTo( mfs, filters.get( UpdateAttribute.class ), AttributeValueEvent.class );
+        addTo( mfs, linkCreatedFilters, EventManagerFactory.eINSTANCE.createLinkCreateEvent().eClass() );
+        addTo( mfs, linkDeletedFilters, EventManagerFactory.eINSTANCE.createLinkDeleteEvent().eClass() );
+        addTo( mfs, filters.get( AttributeValueChangeEvent.class ), EventManagerFactory.eINSTANCE.createAttributeValueChangeEvent().eClass() );
         // Join them
         EventFilter flt = x_or( mfs );
         return flt;
@@ -495,7 +519,9 @@ public class ImpactAnalyzer {
 
     private EventFilter x_and( EventFilter f1, EventFilter f2 ) {
 
-        LogicalOperationFilter res = new AndFilter( f1, f2 );
+    	AndFilter res = EventManagerFactory.eINSTANCE.createAndFilter();
+    	res.getFilters().add(f1);
+    	res.getFilters().add(f2);
         return res;
     }
 
@@ -504,7 +530,8 @@ public class ImpactAnalyzer {
         if ( f1.size( ) == 1 ) {
             return f1.iterator( ).next( );
         }
-        LogicalOperationFilter res = new OrFilter( f1 );
+        OrFilter res = EventManagerFactory.eINSTANCE.createOrFilter();
+        res.getFilters().addAll(f1);
         return res;
     }
 

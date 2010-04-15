@@ -3,23 +3,23 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.result.impl;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sap.tc.moin.ocl.ia.result.EvaluationUnit;
-import com.sap.tc.moin.ocl.ia.result.InstanceSet;
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import org.eclipse.ocl.ecore.Constraint;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.result.InstanceSet;
 
 /**
  * The EvaluationUnit implementation
  */
-public class EvaluationUnitImpl implements EvaluationUnit {
+public class EvaluationUnitImpl implements de.hpi.sam.bp2009.moin.impactAnalyzer.result.EvaluationUnit {
 
-    private final OclStatement affectedStatement;
+    private final Constraint affectedStatement;
 
     private final Set<InstanceSet> instanceSets = new HashSet<InstanceSet>( );
 
     /**
      * @param theAffectedStatement {@link OclStatement}
      */
-    public EvaluationUnitImpl( OclStatement theAffectedStatement ) {
+    public EvaluationUnitImpl( Constraint theAffectedStatement ) {
 
         this.affectedStatement = theAffectedStatement;
     }
@@ -27,7 +27,7 @@ public class EvaluationUnitImpl implements EvaluationUnit {
     /**
      * @return Returns the affectedStatement.
      */
-    public OclStatement getAffectedStatement( ) {
+    public Constraint getAffectedStatement( ) {
 
         return this.affectedStatement;
     }

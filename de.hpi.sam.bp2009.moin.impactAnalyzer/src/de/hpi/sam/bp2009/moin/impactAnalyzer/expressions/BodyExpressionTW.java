@@ -9,22 +9,15 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.Vector;
 
-import com.sap.tc.moin.repository.mmi.model.DirectionKindEnum;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.model.Parameter;
-import com.sap.tc.moin.repository.mmi.model.__impl.OperationImpl;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.impl.VariableExpImpl;
+import org.eclipse.ocl.expressions.Variable;
 
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.VariableExp;
-import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
-import org.omg.ocl.expressions.__impl.VariableExpImpl;
-
-import com.sap.tc.moin.ocl.ia.tag.ExpressionKind;
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.JmiList;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
 
 /**
  * Determines sub expressions in user defined operations. The user-defined
@@ -43,9 +36,9 @@ class BodyExpressionTW extends SubExpressionTW {
      * @param actConnection {@link CoreConnection}
      * @param x the Stack of recursively analyzed operations and attributes
      */
-    public BodyExpressionTW( CoreConnection actConnection, Stack<Operation> x ) {
+    public BodyExpressionTW( Stack<EOperation> x ) {
 
-        super( actConnection );
+        super( );
         this.visitedFeatures = x;
     }
 
@@ -53,18 +46,18 @@ class BodyExpressionTW extends SubExpressionTW {
     protected void upVariableExp( VariableExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        VariableDeclarationImpl varDecl = (VariableDeclarationImpl) ( (VariableExpImpl) exp ).getReferredVariable( this.connection );
+         Variable<EClassifier, EParameter> varDecl = ( (VariableExpImpl) exp ).getReferredVariable( );
         // order of the if statements is crucial! Someone could have defined
         // a iterator variable "self"
-        if ( varDecl.getLoopExpr( this.connection ) != null ) {
+        if ( varDecl.getLoopExpr( ) != null ) {
             // variable is an iterator variable
             // create indirect sub expression
-            SubExpression subExp = new IndirectSubExpression( this.connection, this.statement );
+            SubExpression subExp = new IndirectSubExpression( this.statement );
             subExp.setKind( ExpressionKind.INSTANCE );
             subExp.addExpressionParts( exp );
             // pass sub expression up the tree
             tag.addToCurrent( subExp );
-        } else if ( varDecl.getVarName( ).equals( OclConstants.VAR_SELF ) && varDecl.getInitExpression( this.connection ) == null ) {
+        } else if ( varDecl.getName( ).equals( "self" ) && varDecl.getInitExpression( ) == null ) {
             // variable is self
             // // create direct sub expression
             // SubExpression subExp = new DirectSubExpression(statement);
@@ -76,18 +69,18 @@ class BodyExpressionTW extends SubExpressionTW {
             }
             // fix: more than one self in operation body
             // tag.addToCurrent(this.sourceTag.getCurrentSubExprs());
-        } else if ( varDecl.getInitExpression( this.connection ) == null ) {
+        } else if ( varDecl.getInitExpression( ) == null ) {
 
             // TODO there were NPEs without this when the expression contains
             // a "null" reference; this is a pragmatic workaround but should
             // be checked more deeply (the argTag in the next line would be null)
-            if ( varDecl.getVarName( ).equals( OclConstants.VAR_NULL ) ) {
+            if ( varDecl.getName( ).equals( "null" ) ) {
                 return;
             }
 
             // variable is a parameter
             // get the sub expressions attached to the arguments
-            SubExprTag argTag = this.parName2Tag.get( varDecl.getVarName( ) );
+            SubExprTag argTag = this.parName2Tag.get( varDecl.getName( ) );
             // copy all current subexpressions
             for ( Iterator<SubExpression> i = argTag.getCurrentSubExprs( ).iterator( ); i.hasNext( ); ) {
                 SubExpression subExp = i.next( );
@@ -120,7 +113,7 @@ class BodyExpressionTW extends SubExpressionTW {
      * @return the set of current sub expressions. to get the accumulated sub
      * expression call <tt>getAccumulatedSubExprs()</tt>
      */
-    public Set<SubExpression> determineSubExpressions( Operation op, OclExpression bodyExp, OclStatement stmt, SubExprTag actSourceTag, List<SubExprTag> argTags ) {
+    public Set<SubExpression> determineSubExpressions( EOperation op, OCLExpression bodyExp, Constraint stmt, SubExprTag actSourceTag, List<SubExprTag> argTags ) {
 
         this.statement = stmt;
         this.accumulatedSubExprs.clear( );

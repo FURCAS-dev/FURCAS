@@ -5,8 +5,9 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import org.eclipse.ocl.ecore.Constraint;
+
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * @author Thomas Hettel (D039141) This class keeps track of relevances.
@@ -19,14 +20,14 @@ public class RelevanceFactory {
          * @param stmt {@link OclStatement}
          * @param event {@link InternalEvent}
          */
-        public RelevanceImpl( OclStatement stmt, InternalEvent event ) {
+        public RelevanceImpl( Constraint stmt, ModelChangeEvent event ) {
 
             super( stmt, event );
         }
 
     }
 
-    private Map<OclStatement, Map<InternalEvent, Relevance>> stmt2Events = new Hashtable<OclStatement, Map<InternalEvent, Relevance>>( );
+    private Map<Constraint, Map<ModelChangeEvent, Relevance>> stmt2Events = new Hashtable<Constraint, Map<ModelChangeEvent, Relevance>>( );
 
     private final Set<Relevance> relevances = new HashSet<Relevance>( );
 
@@ -38,11 +39,11 @@ public class RelevanceFactory {
      * @param event the InternalEvent
      * @return the Relevance instance for <tt>stmt</tt> and <tt>event</tt>
      */
-    public Relevance getRelevance( OclStatement stmt, InternalEvent event ) {
+    public Relevance getRelevance( Constraint stmt, ModelChangeEvent event ) {
 
-        Map<InternalEvent, Relevance> relevantEvents = this.stmt2Events.get( stmt );
+        Map<ModelChangeEvent, Relevance> relevantEvents = this.stmt2Events.get( stmt );
         if ( relevantEvents == null ) {
-            relevantEvents = new Hashtable<InternalEvent, Relevance>( );
+            relevantEvents = new Hashtable<ModelChangeEvent, Relevance>( );
             this.stmt2Events.put( stmt, relevantEvents );
         }
         Relevance r = relevantEvents.get( event );

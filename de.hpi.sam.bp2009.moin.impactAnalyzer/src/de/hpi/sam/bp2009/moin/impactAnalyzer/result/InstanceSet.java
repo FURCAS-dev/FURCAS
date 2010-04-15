@@ -2,9 +2,8 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.result;
 
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.Constraint;
 
 /**
  * This class describes how to get the set of instances for which an
@@ -18,7 +17,7 @@ public interface InstanceSet {
      * 
      * @return the navigation statement
      */
-    public OclStatement getNavigationStatement( );
+    public Constraint getNavigationStatement( );
 
     /**
      * The instance form which to start the computation of the affected
@@ -26,6 +25,6 @@ public interface InstanceSet {
      * 
      * @return the starting points
      */
-    public Set<RefObject> getStartingPoints( );
+    public Set<EObject> getStartingPoints( );
 
 }

@@ -2,27 +2,13 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.analysis;
 
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndImpl;
+import org.eclipse.ocl.ecore.Constraint;
 
-import com.sap.tc.moin.ocl.ia.cache.EventCache;
-import com.sap.tc.moin.ocl.ia.events.DeleteET;
-import com.sap.tc.moin.ocl.ia.events.DeleteRT;
-import com.sap.tc.moin.ocl.ia.events.InsertET;
-import com.sap.tc.moin.ocl.ia.events.InsertRT;
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.ia.events.UpdateAttribute;
-import com.sap.tc.moin.ocl.ia.expressions.DirectSubExpression;
-import com.sap.tc.moin.ocl.ia.expressions.SubExpression;
-import com.sap.tc.moin.ocl.ia.expressions.SubExpressionTW;
-import com.sap.tc.moin.ocl.ia.relevance.Relevance;
-import com.sap.tc.moin.ocl.ia.relevance.RelevanceFactory;
-import com.sap.tc.moin.ocl.ia.tag.NodeTagFactory;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.ocl.utils.jmi.MoinJmiCreator;
-import com.sap.tc.moin.ocl.utils.localization.OclServiceExceptions;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.cache.EventCache;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.expressions.SubExpression;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.expressions.SubExpressionTW;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.RelevanceFactory;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTagFactory;
 
 /**
  * This is the second stage of the analysis. It takes an attributed AST from the
@@ -40,8 +26,6 @@ public class InstanceScopeAnalysis {
 
     private Set<SubExpression> subExprs;
 
-    private final CoreConnection connection;
-
     /**
      * Creates a new instance of the InstanceScopeAnalysis algorithm.
      * 
@@ -51,11 +35,10 @@ public class InstanceScopeAnalysis {
      * in
      * @param theJmiCreator the JmiCreator used to create OCL AST node
      */
-    public InstanceScopeAnalysis( NodeTagFactory theTagFactory, EventCache theEventCache, MoinJmiCreator theJmiCreator ) {
+    public InstanceScopeAnalysis( NodeTagFactory theTagFactory, EventCache theEventCache ) {
 
         this.tagFactory = theTagFactory;
         this.cache = theEventCache;
-        this.connection = theJmiCreator.getConnection( );
     }
 
     /**
@@ -64,11 +47,11 @@ public class InstanceScopeAnalysis {
      * @param stmt the OclStatement to analyze
      * @param jmiCreator the JmiCreator
      */
-    public void analyze( OclStatement stmt, MoinJmiCreator jmiCreator ) {
+    public void analyze( Constraint stmt ) {
 
         this.relFactory.reset( );
         // find sub-expressions in statement
-        SubExpressionTW subExpTw = new SubExpressionTW( this.connection );
+        SubExpressionTW subExpTw = new SubExpressionTW( );
         this.subExprs = subExpTw.determineSubExpressions( stmt );
 
         // determine for each tuple (OclStatemnt, InternalEvent) the

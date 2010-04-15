@@ -7,10 +7,11 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Classifier;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.ecore.Constraint;
 
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * This is the internal data structure of the ImpactAnalyzer. It stores triples of OclStatement, InternalEvent and an
@@ -25,9 +26,9 @@ public class EventCache {
     /**
      * Maps InternalEvent to Set<EventCacheEntry>
      */
-    private final Map<InternalEvent, Map<OclStatement, EventCacheEntry>> ht = new HashMap<InternalEvent, Map<OclStatement, EventCacheEntry>>( );
+    private final Map<ModelChangeEvent, Map<Constraint, EventCacheEntry>> ht = new HashMap<ModelChangeEvent, Map<Constraint, EventCacheEntry>>( );
 
-    private final Map<Classifier, Set<InternalEvent>> classifierEventmapping = new HashMap<Classifier, Set<InternalEvent>>( );
+    private final Map<EventFilter, Set<ModelChangeEvent>> classifierEventmapping = new HashMap<EventFilter, Set<ModelChangeEvent>>( );
 
     /**
      * creates a new EventCache
@@ -45,17 +46,17 @@ public class EventCache {
      * @param inst a Collection of OclStatements which evaluate to the set of
      * instances for which stmt has to be re-evaluated.
      */
-    public void add( OclStatement stmt, InternalEvent ev, Set<OclStatement> inst ) {
+    public void add( Constraint stmt, ModelChangeEvent ev, Set<Constraint> inst ) {
 
         if ( !this.ht.containsKey( ev ) ) {
-            this.ht.put( ev, new Hashtable<OclStatement, EventCacheEntry>( ) );
+            this.ht.put( ev, new Hashtable<Constraint, EventCacheEntry>( ) );
         }
         this.ht.get( ev ).put( stmt, new EventCacheEntry( stmt, inst ) );
         if ( !this.classifierEventmapping.isEmpty( ) ) {
-            Set<InternalEvent> events = this.classifierEventmapping.get( ev.getClassifier( ) );
+             Set<ModelChangeEvent> events = this.classifierEventmapping.get( ev.getFilter() );
             if ( events == null ) {
-                events = new HashSet<InternalEvent>( );
-                this.classifierEventmapping.put( ev.getClassifier( ), events );
+                events = new HashSet<ModelChangeEvent>( );
+                this.classifierEventmapping.put( ev.getFilter(), events );
             }
             events.add( ev );
         }
@@ -64,7 +65,7 @@ public class EventCache {
     /**
      * @return the set of InternalEvents stored in the cache.
      */
-    public Set<InternalEvent> events( ) {
+    public Set<ModelChangeEvent> events( ) {
 
         return this.ht.keySet( );
     }
@@ -73,27 +74,27 @@ public class EventCache {
      * @param classFilter class filter
      * @return the events relevant for one of the classifiers
      */
-    public Set<InternalEvent> events( Set<Classifier> classFilter ) {
+    public Set<ModelChangeEvent> events( Set<EventFilter> classFilter ) {
 
-        Set<InternalEvent> result = new HashSet<InternalEvent>( );
+        Set<ModelChangeEvent> result = new HashSet<ModelChangeEvent>( );
         if ( this.classifierEventmapping.isEmpty( ) ) {
             // build the index
-            for ( InternalEvent event : this.events( ) ) {
-                Classifier classifier = event.getClassifier( );
+            for ( ModelChangeEvent event : this.events( ) ) {
+            	EventFilter classifier = event.getFilter();
                 if ( classFilter.contains( classifier ) ) {
                     result.add( event );
                 }
-                if ( this.classifierEventmapping.containsKey( event.getClassifier( ) ) ) {
+                if ( this.classifierEventmapping.containsKey( event.getFilter() ) ) {
                     this.classifierEventmapping.get( classifier ).add( event );
                 } else {
-                    Set<InternalEvent> events = new HashSet<InternalEvent>( );
+                    Set<ModelChangeEvent> events = new HashSet<ModelChangeEvent>( );
                     events.add( event );
                     this.classifierEventmapping.put( classifier, events );
                 }
             }
         } else {
-            for ( Classifier classifier : classFilter ) {
-                Set<InternalEvent> events = this.classifierEventmapping.get( classifier );
+            for ( EventFilter classifier : classFilter ) {
+                Set<ModelChangeEvent> events = this.classifierEventmapping.get( classifier );
                 if ( events != null ) {
                     result.addAll( events );
                 }
@@ -108,7 +109,7 @@ public class EventCache {
      * @param ev the InternalEvent to lookup
      * @return the Set of CacheEntries for an InternalEvent <tt>ev</tt>
      */
-    public Collection<EventCacheEntry> lookup( InternalEvent ev ) {
+    public Collection<EventCacheEntry> lookup( ModelChangeEvent ev ) {
 
         if ( this.ht.containsKey( ev ) ) {
             return this.ht.get( ev ).values( );

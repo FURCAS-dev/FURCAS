@@ -2,7 +2,7 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.result;
 
 import java.util.Set;
 
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import org.eclipse.ocl.ecore.Constraint;
 
 /**
  * An EvaluationUnit is basicly a tuple of a OclStatement and a Set of descriptions of how to compute the instances for
@@ -17,7 +17,7 @@ public interface EvaluationUnit {
      * 
      * @return the affected OclStatement which has to be reevaluated.
      */
-    public OclStatement getAffectedStatement( );
+    public Constraint getAffectedStatement( );
 
     /**
      * Returns a Set of InstanceSets describing how to compute the set of affected instances

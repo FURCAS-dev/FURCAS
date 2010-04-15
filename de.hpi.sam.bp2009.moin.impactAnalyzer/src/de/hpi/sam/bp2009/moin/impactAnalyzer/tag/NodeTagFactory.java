@@ -2,6 +2,9 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.tag;
 
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.UUID;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * The NodeTagFactory keeps track of all NodeTags created and that there is at
@@ -14,7 +17,7 @@ public class NodeTagFactory {
         /**
          * @param attachedTo the object to attach this
          */
-        public NodeTagImpl( RefObject attachedTo ) {
+        public NodeTagImpl( EObject attachedTo ) {
 
             super( attachedTo );
         }
@@ -24,7 +27,7 @@ public class NodeTagFactory {
     /**
      * This hash contains the mapping form nodes to tags
      */
-    private Map<String, NodeTag> nodeToTagMapping = new Hashtable<String, NodeTag>( );
+    private Map<EObject, NodeTag> nodeToTagMapping = new Hashtable<EObject, NodeTag>( );
 
     /**
      * Creates a tag for an node or returns an existing tag.
@@ -32,13 +35,13 @@ public class NodeTagFactory {
      * @param node the node
      * @return the node tag
      */
-    public NodeTag createTag( RefObject node ) {
-
-        if ( this.nodeToTagMapping.containsKey( node.refMofId( ) ) ) {
-            return this.nodeToTagMapping.get( node.refMofId( ) );
+    public NodeTag createTag( EObject node ) {
+    	
+        if ( this.nodeToTagMapping.containsKey( node ) ) {
+            return this.nodeToTagMapping.get( node );
         }
         NodeTag tag = new NodeTagImpl( node );
-        this.nodeToTagMapping.put( node.refMofId( ), tag );
+        this.nodeToTagMapping.put( node , tag );
         return tag;
     }
 
@@ -49,15 +52,15 @@ public class NodeTagFactory {
      * @param node the node
      * @return the tag, or null
      */
-    public NodeTag getTag( RefObject node ) {
+    public NodeTag getTag( EObject node ) {
 
-        return this.nodeToTagMapping.get( node.refMofId( ) );
+        return this.nodeToTagMapping.get( node );
     }
 
     /**
      * @return Returns the expToTagMapping.
      */
-    public Map<String, NodeTag> getNodeToTagMapping( ) {
+    public Map<EObject, NodeTag> getNodeToTagMapping( ) {
 
         return this.nodeToTagMapping;
     }

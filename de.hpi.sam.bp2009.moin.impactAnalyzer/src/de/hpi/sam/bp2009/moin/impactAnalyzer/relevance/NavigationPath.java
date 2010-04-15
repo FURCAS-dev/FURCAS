@@ -4,42 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndImpl;
-import com.sap.tc.moin.repository.mmi.model.__impl.AttributeImpl;
-import com.sap.tc.moin.repository.mmi.model.__impl.MofPackageImpl;
-
-import org.omg.ocl.expressions.CollectionLiteralExp;
-import org.omg.ocl.expressions.CollectionLiteralPart;
-import org.omg.ocl.expressions.IfExp;
-import org.omg.ocl.expressions.IterateExp;
-import org.omg.ocl.expressions.IteratorExp;
-import org.omg.ocl.expressions.LetExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.OperationCallExp;
-import org.omg.ocl.expressions.TypeExp;
-import org.omg.ocl.expressions.VariableDeclaration;
-import org.omg.ocl.expressions.VariableExp;
-import org.omg.ocl.expressions.__impl.AttributeCallExpImpl;
-import org.omg.ocl.expressions.__impl.IteratorExpImpl;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-import org.omg.ocl.stdlibrary.StdLibraryPackage;
-import org.omg.ocl.types.CollectionType;
-import org.omg.ocl.types.__impl.CollectionTypeInternal;
-
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.jmi.MoinJmiCreator;
-import com.sap.tc.moin.ocl.utils.jmi.OclSemanticException;
-import com.sap.tc.moin.ocl.utils.localization.OclServiceExceptions;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.core.jmi.util.MoinMetamodelCode;
-import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.ecore.AssociationClassCallExp;
+import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.TypeExp;
 
 /**
  * This class represents a navigation path.
@@ -53,11 +24,11 @@ public class NavigationPath {
 
     private final List<ModelElement> path = new ArrayList<ModelElement>( );
 
-    private Operation and;
+    private EOperation and;
 
-    private Operation not;
+    private EOperation not;
 
-    private Operation oclIsUndefined;
+    private EOperation oclIsUndefined;
 
     /**
      * The constructor
@@ -67,17 +38,14 @@ public class NavigationPath {
         // nothing particular 
     }
 
-    private void initializeOperations( MoinJmiCreator jc ) {
+    private void initializeOperations( ) {
 
         MofPackageImpl stdLibPkg = (MofPackageImpl) jc.getPackage( StdLibraryPackage.PACKAGE_DESCRIPTOR ).refMetaObject( );
-        try {
+        
             Classifier bool = (Classifier) stdLibPkg.lookupElement( jc.getConnection( ), OclConstants.T_BOOLEANSTDLIB );
             this.and = (Operation) MoinMetamodelCode.lookupElement( jc.getConnection( ), bool, (RefObjectImpl) bool, OclConstants.OP_AND );
             this.not = (Operation) MoinMetamodelCode.lookupElement( jc.getConnection( ), bool, (RefObjectImpl) bool, OclConstants.OP_NOT );
             this.oclIsUndefined = (Operation) MoinMetamodelCode.lookupElementExtended( jc.getConnection( ), bool, (RefObjectImpl) bool, OclConstants.OP_OCLISUNDEFINED );
-        } catch ( NameNotFoundException ne ) {
-            throw new RuntimeException( ne );
-        }
     }
 
     /**
@@ -124,12 +92,10 @@ public class NavigationPath {
      * Creates an OclExpression for the reverse NaviagationPath
      * 
      * @param self {@link VariableDeclaration}
-     * @param jmiCreator {@link MoinJmiCreator}
      * @return Returns a OclExpression which evaluates to a Set of relevant
      * instances
-     * @throws OclSemanticException Exception
      */
-    public OclExpression turnIntoOcl( VariableDeclaration self, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    public OCLExpression turnIntoOcl( VariableDeclaration self ) {
 
         // store the jmiCreator in an instance variable so
         // it has not to be passed on all the time
@@ -264,15 +230,14 @@ public class NavigationPath {
      * @return the expression
      * @throws OclSemanticException
      */
-    private OclExpression createBridgingCode( OclExpression source, AssociationEnd end, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression createBridgingCode( OCLExpression source, AssociationClassCallExp end ) {
 
         // create iterate
-        CoreConnection conn = jmiCreator.getConnection( );
-        Classifier sourceType = ( (OclExpressionInternal) source ).getType( conn );
-        Classifier endType = ( (AssociationEndImpl) end ).getType( conn );
+        EClassifier sourceType = source.getType( );
+        EClassifier endType = end.getType( );
 
         // create condition of if Expression : e.oclIsKindOf(<T>)
-        Classifier sourceElmType = ( (CollectionTypeInternal) sourceType ).getElementType( conn );
+        EClassifier sourceElmType = ( (CollectionTypeInternal) sourceType ).getElementType( );
         VariableDeclaration e = jmiCreator.createVariableDeclaration( "e", sourceElmType, null ); //$NON-NLS-1$
         VariableExp eVarExp = jmiCreator.createVariableExp( e );
         TypeExp refEndType = jmiCreator.createTypeExp( endType );
@@ -306,21 +271,21 @@ public class NavigationPath {
      * @param sourceType
      * @return true if it is a subtype
      */
-    private boolean isSubType( CoreConnection connection, Classifier endType, Classifier sourceType ) {
+    private boolean isSubType( EClassifier endType, EClassifier sourceType ) {
 
-        Classifier t1 = endType;
-        Classifier t2 = sourceType;
+        EClassifier t1 = endType;
+        EClassifier t2 = sourceType;
         // if one of the types is a CollectionType we unwrap it
         if ( sourceType instanceof CollectionType || endType instanceof CollectionType ) {
             if ( endType instanceof CollectionType ) {
-                t1 = ( (CollectionTypeInternal) endType ).getElementType( connection );
+                t1 = ((org.eclipse.ocl.types.CollectionType<EClassifier, EOperation>) endType).getElementType( );
             }
             if ( sourceType instanceof CollectionType ) {
-                t2 = ( (CollectionTypeInternal) sourceType ).getElementType( connection );
+                t2 = ((org.eclipse.ocl.types.CollectionType<EClassifier, EOperation>) sourceType).getElementType( );
             }
-            return isSubType( connection, t1, t2 );
+            return isSubType( t1, t2 );
         }
-        return MoinMetamodelCode.allSupertypes( connection, endType, (RefObjectImpl) endType ).contains( sourceType );
+        return MoinMetamodelCode.allSupertypes( endType, (RefObjectImpl) endType ).contains( sourceType );
     }
 
     /**
@@ -330,7 +295,7 @@ public class NavigationPath {
      * @return the expression
      * @throws OclSemanticException
      */
-    private OclExpression createBody( OclExpression source, Attribute attr, VariableDeclaration iter, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression createBody( OCLExpression source, Attribute attr, VariableDeclaration iter ) {
 
         OclExpression body;
         // setting up the body
@@ -378,7 +343,7 @@ public class NavigationPath {
      * @return the expression
      * @throws OclSemanticException
      */
-    private OperationCallExp createAllInstances( Classifier type, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OperationCallExp createAllInstances( EClassifier type ) {
 
         TypeExp owner = jmiCreator.createTypeExp( type );
         jmiCreator.createSetType( type );
@@ -395,7 +360,7 @@ public class NavigationPath {
      * @param body the body of the select
      * @return a IteratorExp representing a select
      */
-    private IteratorExp createSelect( OclExpression source, VariableDeclaration iterator, OclExpression body, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private IteratorExp createSelect( OclExpression source, VariableDeclaration iterator, OclExpression body, MoinJmiCreator jmiCreator ) {
 
         IteratorExpImpl select = (IteratorExpImpl) jmiCreator.createIteratorExp( "select", source, iterator, null, body ); //$NON-NLS-1$
         // we know that source is of type Set(x)
@@ -446,9 +411,9 @@ public class NavigationPath {
      * @return a <tt>and</tt> OperationCallExp
      * @throws OclSemanticException
      */
-    private OclExpression and( OclExpression source, OclExpression arg, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression and( OCLExpression source, OCLExpression arg ) {
 
-        List<Classifier> args = new ArrayList<Classifier>( 2 );
+        List<EClassifier> args = new ArrayList<EClassifier>( 2 );
         args.add( jmiCreator.getBoolClass( ) );
         args.add( jmiCreator.getBoolClass( ) );
 
@@ -463,9 +428,9 @@ public class NavigationPath {
      * @return a <tt>not</tt> OperationCallExp
      * @throws OclSemanticException
      */
-    private OclExpression not( OclExpression source, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression not( OCLExpression source ) {
 
-        List<Classifier> args = new ArrayList<Classifier>( 1 );
+        List<EClassifier> args = new ArrayList<EClassifier>( 1 );
         args.add( jmiCreator.getBoolClass( ) );
         OperationCallExp notCall = jmiCreator.createOperationCallExp( this.not, source );
         return notCall;
@@ -478,7 +443,7 @@ public class NavigationPath {
      * @return a <tt>isOclUndefined</tt> OperationCallExp
      * @throws OclSemanticException
      */
-    private OclExpression oclIsUndefined( OclExpression source, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression oclIsUndefined( OCLExpression source ) {
 
         OperationCallExp isOclUndefinedCall = jmiCreator.createOperationCallExp( this.oclIsUndefined, source );
         return isOclUndefinedCall;

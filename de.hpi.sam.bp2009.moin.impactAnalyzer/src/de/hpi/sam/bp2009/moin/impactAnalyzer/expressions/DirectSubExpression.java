@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.expressions;
 
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.repository.core.CoreConnection;
+import org.eclipse.ocl.ecore.Constraint;
 
 /**
  * This class represents direct sub-expressions, i.e., sub-expressions which
@@ -13,9 +12,9 @@ public class DirectSubExpression extends SubExpression {
      * @param actconnection {@link CoreConnection}
      * @param statement {@link OclStatement}
      */
-    public DirectSubExpression( CoreConnection actconnection, OclStatement statement ) {
+    public DirectSubExpression( Constraint statement ) {
 
-        super( actconnection, statement );
+        super( statement );
     }
 
     /**
@@ -24,7 +23,7 @@ public class DirectSubExpression extends SubExpression {
     @Override
     public SubExpression copy( ) {
 
-        DirectSubExpression subExp = new DirectSubExpression( this.connection, this.getStatement( ) );
+        DirectSubExpression subExp = new DirectSubExpression( this.getStatement( ) );
         subExp.getExpressionParts( ).addAll( this.getExpressionParts( ) );
         subExp.setKind( this.getKind( ) );
         subExp.getChildSubExp( ).addAll( this.getChildSubExp( ) );

@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.VariableDeclaration;
-import org.omg.ocl.expressions.VariableExp;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.expressions.Variable;
 
-import com.sap.tc.moin.ocl.ia.tag.ExpressionKind;
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.repository.core.CoreConnection;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
 
 /**
  * This class determines sub-expressions in user-defined and derived attributes.
@@ -28,9 +28,9 @@ public class DerExpressionTW extends SubExpressionTW {
     /**
      * @param actConnection the core connection
      */
-    public DerExpressionTW( CoreConnection actConnection ) {
+    public DerExpressionTW( ) {
 
-        super( actConnection );
+        super( );
     }
 
     /**
@@ -44,7 +44,7 @@ public class DerExpressionTW extends SubExpressionTW {
      * @return the set of current sub expressions. To get the accumulated sub
      * expression call <tt>getAccumulatedSubExprs()</tt>
      */
-    public Set<SubExpression> determineSubExpressions( OclExpression derExpr, OclStatement stmt, SubExprTag tag ) {
+    public Set<SubExpression> determineSubExpressions( OCLExpression derExpr, Constraint stmt, SubExprTag tag ) {
 
         this.initialTag = tag;
         // keep the statement arround. we will need it several times
@@ -53,7 +53,7 @@ public class DerExpressionTW extends SubExpressionTW {
         // start the algorithm
         super.walk( derExpr );
         // collect the results
-        SubExprTag rootTag = getTag( stmt.getExpression( ) );
+        SubExprTag rootTag = getTag( stmt.getSpecification().getBodyExpression() );
         return rootTag.getCurrentSubExprs( );
     }
 
@@ -75,18 +75,18 @@ public class DerExpressionTW extends SubExpressionTW {
     protected void upVariableExp( VariableExp exp ) {
 
         SubExprTag tag = getTag( exp );
-        VariableDeclaration varDecl = exp.getReferredVariable( );
+         Variable<EClassifier, EParameter> varDecl = exp.getReferredVariable( );
         // order of the if statements is crucial! Someone could have defined
         // a iterator variable "self"
         if ( varDecl.getLoopExpr( ) != null ) {
             // variable is an iterator variable
             // create indirect sub expression
-            SubExpression subExp = new IndirectSubExpression( this.connection, this.statement );
+            SubExpression subExp = new IndirectSubExpression( this.statement );
             subExp.setKind( ExpressionKind.INSTANCE );
             subExp.addExpressionParts( exp );
             // pass sub expression up the tree
             tag.addToCurrent( subExp );
-        } else if ( varDecl.getVarName( ).equals( OclConstants.VAR_SELF ) && varDecl.getInitExpression( ) == null ) {
+        } else if ( varDecl.getName( ).equals( "self" ) && varDecl.getInitExpression( ) == null ) {
             // variable is self
             // continue subexpressions passed to DerExpressionTW
             // pass sub expression up the tree

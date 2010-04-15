@@ -6,22 +6,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-import org.omg.ocl.expressions.AssociationEndCallExp;
-import org.omg.ocl.expressions.AttributeCallExp;
-import org.omg.ocl.expressions.LoopExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.__impl.AssociationEndCallExpInternal;
-import org.omg.ocl.expressions.__impl.AttributeCallExpInternal;
+import org.eclipse.ocl.ecore.AssociationClassCallExp;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
-import com.sap.tc.moin.ocl.ia.relevance.Relevance;
-import com.sap.tc.moin.ocl.ia.relevance.RelevanceFactory;
-import com.sap.tc.moin.ocl.ia.tag.ExpressionKind;
-import com.sap.tc.moin.ocl.ia.tag.NodeTag;
-import com.sap.tc.moin.ocl.ia.tag.NodeTagFactory;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.repository.core.CoreConnection;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.NavigationPath;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.Relevance;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.RelevanceFactory;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTag;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTagFactory;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * Sub expressions identify parts of an OclExpression which contain navigation starting with self, an iterator variable,
@@ -43,7 +39,7 @@ public abstract class SubExpression {
     /**
      * the nodes of the OCL AST which make up this sub expression
      */
-    private List<OclExpression> expressionParts = new Vector<OclExpression>( );
+    private List<OCLExpression> expressionParts = new Vector<OCLExpression>( );
 
     /**
      * The kind of this sub expression. Can be INSTANCE or CLASS
@@ -53,9 +49,7 @@ public abstract class SubExpression {
     /**
      * the OclStatement to which this sub expression belongs to
      */
-    private final OclStatement statement;
-
-    protected CoreConnection connection;
+    private final Constraint statement;
 
     /**
      * Creates a new SubExpression
@@ -64,9 +58,8 @@ public abstract class SubExpression {
      * @param theStatement the OclStatement to which this sub expression belongs
      * to.
      */
-    public SubExpression( CoreConnection actConnection, OclStatement theStatement ) {
+    public SubExpression( Constraint theStatement ) {
 
-        this.connection = actConnection;
         this.statement = theStatement;
     }
 
@@ -81,7 +74,7 @@ public abstract class SubExpression {
     /**
      * @return Returns the expressionParts.
      */
-    public List<OclExpression> getExpressionParts( ) {
+    public List<OCLExpression> getExpressionParts( ) {
 
         return this.expressionParts;
     }
@@ -116,7 +109,7 @@ public abstract class SubExpression {
     /**
      * @return Returns the statement.
      */
-    public OclStatement getStatement( ) {
+    public Constraint getStatement( ) {
 
         return this.statement;
     }
@@ -148,12 +141,12 @@ public abstract class SubExpression {
 
         //        NavigationPath navPath = new NavigationPath();
         // go through all nodes of this sub expression
-        for ( OclExpression node : this.getExpressionParts( ) ) {
+        for ( OCLExpression node : this.getExpressionParts( ) ) {
 
             NodeTag tag = tagFactory.getTag( node );
 
             // for each node go through the set of relevant events
-            for ( InternalEvent ev : tag.getEvents( ) ) {
+            for ( ModelChangeEvent ev : tag.getEvents( ) ) {
                 addRelevance( navPaths, ev, relFactory );
             }
 
@@ -186,7 +179,7 @@ public abstract class SubExpression {
      * @param navPaths the current navigation paths
      * @param node the node to append
      */
-    private void buildUpNavigationPath( Set<NavigationPath> navPaths, OclExpression node ) {
+    private void buildUpNavigationPath( Set<NavigationPath> navPaths, OCLExpression node ) {
 
         // the navigation path is only relevant for instance sub
         // expressions.
@@ -195,10 +188,10 @@ public abstract class SubExpression {
         // add the current node to all navigation paths
         for ( Iterator<NavigationPath> i = navPaths.iterator( ); i.hasNext( ); ) {
             NavigationPath navPath = i.next( );
-            if ( node instanceof AssociationEndCallExp ) {
-                navPath.add( ( (AssociationEndCallExpInternal) node ).getReferredAssociationEnd( this.connection ) );
+            if ( node instanceof AssociationClassCallExp ) {
+                navPath.add( ( (AssociationClassCallExp) node ).getReferredAssociationClass( ) );
             } else if ( node instanceof AttributeCallExp ) {
-                navPath.add( ( (AttributeCallExpInternal) node ).getReferredAttribute( this.connection ) );
+                navPath.add( ( (AttributeCallExpInternal) node ).getReferredAttribute( ) );
             }
             //            else if (node instanceof OperationCallExp
             //                    && ((OperationCallExp) node).getReferredOperation()
@@ -266,7 +259,7 @@ public abstract class SubExpression {
      * @param ev
      * @param relFactory
      */
-    private void addRelevance( Set<NavigationPath> navPaths, InternalEvent ev, RelevanceFactory relFactory ) {
+    private void addRelevance( Set<NavigationPath> navPaths, ModelChangeEvent ev, RelevanceFactory relFactory ) {
 
         Relevance r = relFactory.getRelevance( this.getStatement( ), ev );
         // if relevance is set to CLASS it cannot be changed again.
@@ -293,7 +286,7 @@ public abstract class SubExpression {
      * 
      * @param node the node to add to the list of expression parts
      */
-    public void addExpressionParts( OclExpression node ) {
+    public void addExpressionParts( OCLExpression node ) {
 
         this.expressionParts.add( node );
     }

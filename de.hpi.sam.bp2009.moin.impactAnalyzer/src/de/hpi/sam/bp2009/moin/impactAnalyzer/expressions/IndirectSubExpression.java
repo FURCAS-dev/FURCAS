@@ -3,17 +3,13 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.expressions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.omg.ocl.expressions.IterateExp;
-import org.omg.ocl.expressions.LoopExp;
-import org.omg.ocl.expressions.VariableDeclaration;
-import org.omg.ocl.expressions.VariableExp;
-import org.omg.ocl.expressions.__impl.IterateExpInternal;
-import org.omg.ocl.expressions.__impl.LoopExpInternal;
-import org.omg.ocl.expressions.__impl.VariableExpInternal;
-
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.JmiList;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.expressions.Variable;
 
 /**
  * This class represents indirect sub-expressions, i.e., sub-expressions which
@@ -35,12 +31,11 @@ public class IndirectSubExpression extends SubExpression {
     private Set<SubExpression> parentExpressions = new HashSet<SubExpression>( );
 
     /**
-     * @param actconnection {@link CoreConnection}
-     * @param statement {@link OclStatement}
+     * @param statement {@link Constraint}
      */
-    public IndirectSubExpression( CoreConnection actconnection, OclStatement statement ) {
+    public IndirectSubExpression( Constraint statement ) {
 
-        super( actconnection, statement );
+        super( statement );
     }
 
     /**
@@ -69,12 +64,12 @@ public class IndirectSubExpression extends SubExpression {
 
         try {
             VariableExp start = (VariableExp) this.getExpressionParts( ).get( 0 );
-            VariableDeclaration varDecl = ( (VariableExpInternal) start ).getReferredVariable( this.connection );
-            if ( ( (JmiList<VariableDeclaration>) ( (LoopExpInternal) loop ).getIterators( this.connection ) ).contains( this.connection, varDecl ) ) {
+            Variable<EClassifier, EParameter> varDecl = ( start ).getReferredVariable( );
+            if ( loop.getIterator( ).contains( varDecl ) ) {
                 return true;
             }
             if ( loop instanceof IterateExp ) {
-                if ( ( (IterateExpInternal) loop ).getResult( this.connection ).equals( varDecl ) ) {
+                if ( ( (IterateExp) loop ).getResult( ).equals( varDecl ) ) {
                     return true;
                 }
             }
@@ -90,7 +85,7 @@ public class IndirectSubExpression extends SubExpression {
     @Override
     public SubExpression copy( ) {
 
-        IndirectSubExpression subExp = new IndirectSubExpression( this.connection, this.getStatement( ) );
+        IndirectSubExpression subExp = new IndirectSubExpression( this.getStatement( ) );
         subExp.getExpressionParts( ).addAll( this.getExpressionParts( ) );
         subExp.setKind( this.getKind( ) );
         subExp.getChildSubExp( ).addAll( this.getChildSubExp( ) );

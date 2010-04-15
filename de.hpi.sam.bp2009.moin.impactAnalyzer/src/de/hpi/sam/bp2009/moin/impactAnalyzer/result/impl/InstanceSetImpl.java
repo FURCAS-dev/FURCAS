@@ -2,27 +2,25 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.result.impl;
 
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
-import com.sap.tc.moin.ocl.ia.result.InstanceSet;
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.Constraint;
 
 /**
  * Implementation of InstanceSet
  * 
  * @author Thomas Hettel (D039141)
  */
-public class InstanceSetImpl implements InstanceSet {
+public class InstanceSetImpl implements de.hpi.sam.bp2009.moin.impactAnalyzer.result.InstanceSet {
 
-    private final OclStatement navigationStatement;
+    private final Constraint navigationStatement;
 
-    private final Set<RefObject> startingPoints;
+    private final Set<EObject> startingPoints;
 
     /**
      * @param theNavigationStatement {@link OclStatement}
      * @param theStartingPoints the starting points
      */
-    public InstanceSetImpl( OclStatement theNavigationStatement, Set<RefObject> theStartingPoints ) {
+    public InstanceSetImpl( Constraint theNavigationStatement, Set<EObject> theStartingPoints ) {
 
         this.navigationStatement = theNavigationStatement;
         this.startingPoints = theStartingPoints;
@@ -31,7 +29,7 @@ public class InstanceSetImpl implements InstanceSet {
     /**
      * @return Returns the navigationStatement.
      */
-    public OclStatement getNavigationStatement( ) {
+    public Constraint getNavigationStatement( ) {
 
         return this.navigationStatement;
     }
@@ -39,7 +37,7 @@ public class InstanceSetImpl implements InstanceSet {
     /**
      * @return Returns the startingPoint.
      */
-    public Set<RefObject> getStartingPoints( ) {
+    public Set<EObject> getStartingPoints( ) {
 
         return this.startingPoints;
     }

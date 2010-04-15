@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.omg.ocl.attaching.OperationBodyDefinition;
 import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
 import org.omg.ocl.expressions.AssociationEndCallExp;
@@ -45,21 +46,10 @@ import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
 import org.omg.ocl.expressions.__impl.VariableDeclarationInternal;
 import org.omg.ocl.expressions.__impl.VariableExpInternal;
 
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.ia.events.InternalEventFactory;
-import com.sap.tc.moin.ocl.ia.events.UpdateAttribute;
-import com.sap.tc.moin.ocl.ia.tag.NodeTag;
-import com.sap.tc.moin.ocl.ia.tag.NodeTagFactory;
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.treewalker.TreeWalker;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.JmiList;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTag;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTagFactory;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * ClassScopeAnalysis identifies the kind of events (InternalEvents) for which
@@ -74,12 +64,12 @@ public class ClassScopeAnalysis extends TreeWalker {
     /**
      * The set of accumulated events
      */
-    private final Set<InternalEvent> accumulatedEvents = new HashSet<InternalEvent>( );
+    private final Set<ModelChangeEvent> accumulatedEvents = new HashSet<ModelChangeEvent>( );
 
     /**
      * The event factory
      */
-    private final InternalEventFactory eventFactory;
+    private final EventManagerFactory eventFactory;
 
     /**
      * The tag factory
@@ -90,7 +80,7 @@ public class ClassScopeAnalysis extends TreeWalker {
      * Set of analyzed user defined operation bodies to protect IA to run into
      * infinite recursion when operations are defined recursively
      */
-    private Set<OclExpression> analyzedUserOps;
+    private Set<OCLExpression> analyzedUserOps;
 
     /**
      * Creates an new instance of the class scope analysis
@@ -101,9 +91,9 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @param theAnalyzedUserOps used by recursive calls
      * @see com.sap.tc.moin.ocl.utils.treewalker.TreeWalker#TreeWalker(CoreConnection)
      */
-    public ClassScopeAnalysis( CoreConnection actConnection, InternalEventFactory theEventFactory, NodeTagFactory theTagFactory, Set<OclExpression> theAnalyzedUserOps ) {
+    public ClassScopeAnalysis( EventManagerFactory theEventFactory, NodeTagFactory theTagFactory, Set<OCLExpression> theAnalyzedUserOps ) {
 
-        super( actConnection );
+        super( );
         this.eventFactory = theEventFactory;
         this.tagFactory = theTagFactory;
         this.analyzedUserOps = theAnalyzedUserOps;
@@ -116,7 +106,7 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @param root the root of the OCL AST to walk
      * @return the set of relevant Internal Events
      */
-    public Set<InternalEvent> analyze( OclExpression root ) {
+    public Set<ModelChangeEvent> analyze( OCLExpression root ) {
 
         // to avoid getting into cycles (e.g. by recursively defined operations)
         // check whether this subtree has already been visited
@@ -132,7 +122,7 @@ public class ClassScopeAnalysis extends TreeWalker {
     /**
      * @return Returns the result.
      */
-    public Set<InternalEvent> getAccumulatedEvents( ) {
+    public Set<ModelChangeEvent> getAccumulatedEvents( ) {
 
         return this.accumulatedEvents;
     }

@@ -2,7 +2,7 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.cache;
 
 import java.util.Set;
 
-import com.sap.tc.moin.ocl.utils.OclStatement;
+import org.eclipse.ocl.ecore.Constraint;
 
 /**
  * Represents a tuple of an <code>OclStatement</code> (the affected statement)
@@ -14,12 +14,12 @@ public class EventCacheEntry {
      * A <code>Set</code> of OclStatements which evaluate to the set of
      * instances for which the affected statement has to be reevaluated
      */
-    private final Set<OclStatement> myNavigationStatements;
+    private final Set<Constraint> myNavigationStatements;
 
     /**
      * The affected OclStatement
      */
-    private final OclStatement myAffectedStatement;
+    private final Constraint myAffectedStatement;
 
     /**
      * Creates a new EventCacheEntry
@@ -27,7 +27,7 @@ public class EventCacheEntry {
      * @param affectedStatement the affect OclStatement
      * @param navigationStatements a list of reverse path expressions
      */
-    EventCacheEntry( OclStatement affectedStatement, Set<OclStatement> navigationStatements ) {
+    EventCacheEntry( Constraint affectedStatement, Set<Constraint> navigationStatements ) {
 
         this.myAffectedStatement = affectedStatement;
         this.myNavigationStatements = navigationStatements;
@@ -36,7 +36,7 @@ public class EventCacheEntry {
     /**
      * @return the (potentially) affected OclStatement
      */
-    public OclStatement getStatement( ) {
+    public Constraint getStatement( ) {
 
         return this.myAffectedStatement;
     }
@@ -46,7 +46,7 @@ public class EventCacheEntry {
      * instances for which the affected statement (see {@link #getStatement()})
      * has to be reevaluated
      */
-    public Set<OclStatement> getInstances( ) {
+    public Set<Constraint> getInstances( ) {
 
         return this.myNavigationStatements;
     }
