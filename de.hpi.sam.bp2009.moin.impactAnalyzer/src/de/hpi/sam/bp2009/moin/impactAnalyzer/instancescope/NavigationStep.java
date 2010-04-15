@@ -3,13 +3,11 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
+import javax.swing.event.ChangeListener;
 
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * During instance scope analysis, starting from an event's source element, by navigation the analyzer is trying to find
@@ -33,58 +31,58 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  */
 public interface NavigationStep {
-    Set<RefObjectImpl> navigate(CoreConnection conn, Set<RefObjectImpl> from, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache);
-    
-    /**
-     * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
-     * passed to {@link #navigate(CoreConnection, Set, Map)}. Those must return <tt>true</tt> here.
-     * Examples are navigation steps returning all instances of a given type and the step always
-     * returning the empty set.
-     */
-    boolean isAbsolute();
-    
-    /**
-     * Tells if this step in all cases returns an empty set. Specific shortcuts may be taken
-     * for such steps when combining them with other steps.<p>
-     * 
-     * {@link #isAlwaysEmpty()} implies {@link #isAbsolute()}
-     */
-    boolean isAlwaysEmpty();
+	Set<EObjectImpl> navigate(Set<EObjectImpl> from, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache);
 
-    MofClass getSourceType();
+	/**
+	 * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
+	 * passed to {@link #navigate(CoreConnection, Set, Map)}. Those must return <tt>true</tt> here.
+	 * Examples are navigation steps returning all instances of a given type and the step always
+	 * returning the empty set.
+	 */
+	boolean isAbsolute();
 
-    MofClass getTargetType();
-    
-    /**
-     * Optionally, a navigation step may tell for which OCL expression it was mainly
-     * created. This can aid the impact analysis debugging process. May return <tt>null</tt>.
-     * @return
-     */
-    OclExpressionInternal getDebugInfo();
-    
-    /**
-     * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be
-     * informed by calling their {@link ChangeListener#alwaysEmptyChanged(NavigationStep)}
-     * method with this step as parameter.
-     */
-    void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener);
+	/**
+	 * Tells if this step in all cases returns an empty set. Specific shortcuts may be taken
+	 * for such steps when combining them with other steps.<p>
+	 * 
+	 * {@link #isAlwaysEmpty()} implies {@link #isAbsolute()}
+	 */
+	boolean isAlwaysEmpty();
 
-    /**
-     * Whenever the result of {@link #getSourceType()} changes, registered listeners will be
-     * informed by calling their {@link SourceTypeChangeListener#sourceTypeChanged(NavigationStep)}
-     * method with this step as parameter.
-     */
-    void addASourceTypeChangeListener(SourceTypeChangeListener listener);
+	EClass getSourceType();
 
-    /**
-     * Whenever the result of {@link #getTargetType()} changes, registered listeners will be
-     * informed by calling their {@link TargetTypeChangeListener#targetTypeChanged(NavigationStep)}
-     * method with this step as parameter.
-     */
-    void addTargetTypeChangeListener(TargetTypeChangeListener listener);
-    
-    /**
-     * Counts the number of steps in the navigation step tree of which this is the root
-     */
-    int size();
+	EClass getTargetType();
+
+	/**
+	 * Optionally, a navigation step may tell for which OCL expression it was mainly
+	 * created. This can aid the impact analysis debugging process. May return <tt>null</tt>.
+	 * @return
+	 */
+	OCLExpression getDebugInfo();
+
+	/**
+	 * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be
+	 * informed by calling their {@link ChangeListener#alwaysEmptyChanged(NavigationStep)}
+	 * method with this step as parameter.
+	 */
+	void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener);
+
+	/**
+	 * Whenever the result of {@link #getSourceType()} changes, registered listeners will be
+	 * informed by calling their {@link SourceTypeChangeListener#sourceTypeChanged(NavigationStep)}
+	 * method with this step as parameter.
+	 */
+	void addASourceTypeChangeListener(SourceTypeChangeListener listener);
+
+	/**
+	 * Whenever the result of {@link #getTargetType()} changes, registered listeners will be
+	 * informed by calling their {@link TargetTypeChangeListener#targetTypeChanged(NavigationStep)}
+	 * method with this step as parameter.
+	 */
+	void addTargetTypeChangeListener(TargetTypeChangeListener listener);
+
+	/**
+	 * Counts the number of steps in the navigation step tree of which this is the root
+	 */
+	int size();
 }

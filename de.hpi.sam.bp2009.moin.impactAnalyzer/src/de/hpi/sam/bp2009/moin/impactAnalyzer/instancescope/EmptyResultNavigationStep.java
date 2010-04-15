@@ -4,27 +4,24 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 
-    public EmptyResultNavigationStep(OclExpressionInternal debugInfo) {
-	super(null, debugInfo);
-	setAlwaysEmpty();
-    }
-    
-    @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	return Collections.emptySet();
-    }
-    
-    @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
-	return "<empty>";
-    }
+	public EmptyResultNavigationStep(OCLExpression debugInfo) {
+		super(null, debugInfo);
+		setAlwaysEmpty();
+	}
 
+	@Override
+	protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+		return "<empty>";
+	}
+
+	@Override
+	protected Set<EObjectImpl> navigate(EObjectImpl fromObject,
+			Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+		return Collections.emptySet();
+	}
 }

@@ -1,18 +1,17 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 public abstract class AbsoluteNavigationStep extends AbstractNavigationStep {
 
-    public AbsoluteNavigationStep(MofClass targetType, OclExpressionInternal debugInfo) {
-	super(null, targetType, debugInfo);
-    }
+	public AbsoluteNavigationStep(EClass targetType, OCLExpression debugInfo) {
+		super(null, targetType, debugInfo);
+	}
 
-    @Override
-    public boolean isAbsolute() {
-	return true;
-    }
+	@Override
+	public boolean isAbsolute() {
+		return true;
+	}
 
 }

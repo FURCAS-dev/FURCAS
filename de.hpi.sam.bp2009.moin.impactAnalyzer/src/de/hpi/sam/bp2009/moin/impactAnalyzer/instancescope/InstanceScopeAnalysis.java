@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import org.eclipse.emf.ecore.impl.EClassImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.omg.ocl.expressions.AssociationEndCallExp;
 import org.omg.ocl.expressions.AttributeCallExp;
 import org.omg.ocl.expressions.BooleanLiteralExp;
@@ -30,7 +33,10 @@ import org.omg.ocl.expressions.__impl.OperationCallExpInternal;
 import org.omg.ocl.expressions.__impl.PrimitiveLiteralExpInternal;
 
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+
 import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.repository.Connection;
@@ -40,11 +46,11 @@ import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
-import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.ElementLifeCycleEvent;
-import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
+//import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
+//import com.sap.tc.moin.repository.events.type.ChangeEvent;
+//import com.sap.tc.moin.repository.events.type.ElementLifeCycleEvent;
+//import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
+//import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -72,7 +78,7 @@ import com.sap.tc.moin.repository.spi.core.Wrapper;
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
-    private final Map<OclExpression, NavigationStep> expressionToStep;
+    private final Map<OCLExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
     private final ClassScopeAnalyzer classScopeAnalyzer;
 
@@ -89,12 +95,12 @@ public class InstanceScopeAnalysis {
      *            makes available the operation call relations reachable from the root expression that was analyzed by
      *            the class scope analyzer.
      */
-    public InstanceScopeAnalysis(OclExpression expression, CoreConnection conn, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public InstanceScopeAnalysis(OCLExpression expression, CoreConnection conn, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(conn);
-	expressionToStep = new HashMap<OclExpression, NavigationStep>();
+	expressionToStep = new HashMap<OCLExpression, NavigationStep>();
 	this.pathCache = pathCache;
 	this.classScopeAnalyzer = classScopeAnalyzer;
-	associationEndAndAttributeCallFinder.walk((OclExpressionInternal) expression);
+	associationEndAndAttributeCallFinder.walk(expression);
     }
     
     /**
@@ -105,8 +111,8 @@ public class InstanceScopeAnalysis {
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context
      *            type defines the type for <tt>self</tt> if used outside of operation bodies.
      */
-    private NavigationStep getNavigationStepsToSelfForExpression(CoreConnection conn, OclExpression exp,
-	    MofClass context) {
+    private NavigationStep getNavigationStepsToSelfForExpression(CoreConnection conn, OCLExpression exp,
+	    EClass context) {
 	NavigationStep result = expressionToStep.get(exp);
 	if (result == null) {
 	    result = getTracer(conn, exp).traceback(context, pathCache, classScopeAnalyzer);
@@ -115,15 +121,15 @@ public class InstanceScopeAnalysis {
 	return result;
     }
     
-    public Set<MRI> getAffectedElements(MofClass context, Collection<? extends ChangeEvent> changeEvents) {
-	return getAffectedElements((MofClassImpl) ((RefObjectWrapperImpl<?>) context).unwrap(),
+    public Set<MRI> getAffectedElements(EClass context, Collection<? extends ModelChangeEvent> changeEvents) {
+	return getAffectedElements((EClassImpl) ((RefObjectWrapperImpl<?>) context).unwrap(),
 		changeEvents);
     }
 
-    public Set<MRI> getAffectedElements(MofClassImpl context, Collection<? extends ChangeEvent> changeEvents) {
-	Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache = new HashMap<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>>();
+    public Set<MRI> getAffectedElements(EClassImpl context, Collection<? extends ModelChangeEvent> changeEvents) {
+	Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache = new HashMap<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>>();
 	Set<MRI> result = new HashSet<MRI>();
-	for (ChangeEvent ce : changeEvents) {
+	for (ModelChangeEvent ce : changeEvents) {
 	    if (ce instanceof ModelChangeEvent) {
 		result.addAll(getAffectedElements(context, (ModelChangeEvent) ce, cache));
 	    }
@@ -135,16 +141,16 @@ public class InstanceScopeAnalysis {
      * Tells the context model elements on which <tt>expression</tt> may now return a result different from
      * before the <tt>changeEvent</tt> occurred.
      */
-    public Set<MRI> getAffectedElements(MofClassImpl context, ModelChangeEvent changeEvent,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+    public Set<MRI> getAffectedElements(EClassImpl context, ModelChangeEvent changeEvent,
+	    Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
 	if (changeEvent instanceof ElementLifeCycleEvent) {
 	    // create and delete of elements only affects the allInstances expressions;
 	    // for those, however, no "self" context can easily be determined and therefore
 	    // the expression may change value on all possible context instances:
-	    RefObject metaObject = ((ElementLifeCycleEvent) changeEvent).getMetaObject(changeEvent.getEventTriggerConnection());
+	    EObject metaObject = ((ElementLifeCycleEvent) changeEvent).getMetaObject(changeEvent.getEventTriggerConnection());
 	    // If package extents are created (RefPackage), those may also trigger ElementLifeCycleEvents.
 	    // However, their meta object would not be a Classifier but rather a package. Filter this case:
-	    if (metaObject instanceof Classifier && expressionContainsAllInstancesCallForType((ClassifierInternal) ((Wrapper<?>) metaObject).unwrap())) {
+	    if (metaObject instanceof EClassifier && expressionContainsAllInstancesCallForType((EClassifier) ((Wrapper<?>) metaObject).unwrap())) {
 		return getAllPossibleContextInstancesMris(((ConnectionWrapper) changeEvent.getEventTriggerConnection())
 			.unwrap(), context);
 	    } else {
@@ -190,12 +196,12 @@ public class InstanceScopeAnalysis {
      *            special "__TEMP__" constant but with the parameter value instead in case the comparison argument is a
      *            string literal with value "__TEMP__".
      */
-    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events,
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ModelChangeEvent> events,
 	    String replacementFor__TEMP__) {
-	for (ChangeEvent ce : events) {
+	for (ModelChangeEvent ce : events) {
 	    if (ce instanceof ModelChangeEvent) {
 		ModelChangeEvent changeEvent = (ModelChangeEvent) ce;
-		Set<? extends ModelPropertyCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
+		Set<? extends org.eclipse.ocl.ecore.PropertyCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
 		if (calls.size() == 0) {
 		    return false; // probably an allInstances-triggered element creation/deletion event
 		}

@@ -1,13 +1,8 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
-import java.util.Map;
-import java.util.Set;
+import org.eclipse.emf.ecore.EClass;
 
-import org.omg.ocl.expressions.OclExpression;
-
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 
 /**
  * All implementations must offer a constructor that takes a {@link CoreConnection} and a {@link OclExpression} impl
@@ -34,7 +29,7 @@ public interface Tracer {
      *            retains the results of traversing the outermost expression's tree, a sub-expression of which this
      *            tracer will analyze in this method. The class scope analyzer in particular remembers the operation
      *            calls it found and thereby makes it possible to limit the analysis of operation bodies by the scope of
-     *            those calls acually invoking the operation in the context of the outermost expression.
+     *            those calls actually invoking the operation in the context of the outermost expression.
      */
-    NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer);
+    NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer);
 }

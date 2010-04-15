@@ -3,12 +3,9 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
     private final boolean absolute;
@@ -20,7 +17,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
      * its direct and indirect subtypes.
      * @param debugInfo TODO
      */
-    public AllInstancesNavigationStep(MofClass targetType, OclExpressionInternal debugInfo) {
+    public AllInstancesNavigationStep(EClass targetType, OCLExpression debugInfo) {
 	super(null, targetType, debugInfo);
 	absolute = true;
     }
@@ -34,7 +31,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
      * constructor an object of this class is not absolute.
      * @param debugInfo TODO
      */
-    public AllInstancesNavigationStep(MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo) {
+    public AllInstancesNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
 	super(sourceType, targetType, debugInfo);
 	absolute = false;
     }
@@ -45,8 +42,8 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	return InstanceScopeAnalysis.getAllPossibleContextInstances(conn, getTargetType());
+    protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+	return InstanceScopeAnalysis.getAllPossibleContextInstances(getTargetType());
     }
 
     @Override
