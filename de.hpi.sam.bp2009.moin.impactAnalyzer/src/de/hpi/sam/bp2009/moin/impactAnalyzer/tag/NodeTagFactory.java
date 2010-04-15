@@ -3,8 +3,6 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.tag;
 import java.util.Hashtable;
 import java.util.Map;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 /**
  * The NodeTagFactory keeps track of all NodeTags created and that there is at
  * most one NodeTag per OCL AST node.

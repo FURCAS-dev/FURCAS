@@ -7,49 +7,25 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.expressions.OclExpression;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.Constraint;
 
-import com.sap.tc.moin.ocl.ia.analysis.ClassScopeAnalysis;
-import com.sap.tc.moin.ocl.ia.analysis.InstanceScopeAnalysis;
-import com.sap.tc.moin.ocl.ia.cache.EventCache;
-import com.sap.tc.moin.ocl.ia.cache.EventCacheEntry;
-import com.sap.tc.moin.ocl.ia.events.DeleteET;
-import com.sap.tc.moin.ocl.ia.events.DeleteRT;
-import com.sap.tc.moin.ocl.ia.events.InsertET;
-import com.sap.tc.moin.ocl.ia.events.InsertRT;
-import com.sap.tc.moin.ocl.ia.events.InternalEvent;
-import com.sap.tc.moin.ocl.ia.events.InternalEventFactory;
-import com.sap.tc.moin.ocl.ia.events.UpdateAttribute;
-import com.sap.tc.moin.ocl.ia.exceptions.ImpactAnalyzerTraces;
-import com.sap.tc.moin.ocl.ia.relevance.Relevance;
-import com.sap.tc.moin.ocl.ia.result.EvaluationUnit;
-import com.sap.tc.moin.ocl.ia.result.InstanceSet;
-import com.sap.tc.moin.ocl.ia.result.impl.EvaluationUnitImpl;
-import com.sap.tc.moin.ocl.ia.result.impl.InstanceSetImpl;
-import com.sap.tc.moin.ocl.ia.tag.NodeTagFactory;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.ocl.utils.jmi.MoinJmiCreator;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.events.filter.AndFilter;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.filter.EventTypeFilter;
-import com.sap.tc.moin.repository.events.filter.LogicalOperationFilter;
-import com.sap.tc.moin.repository.events.filter.NotFilter;
-import com.sap.tc.moin.repository.events.filter.OrFilter;
-import com.sap.tc.moin.repository.events.type.AttributeValueEvent;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.ElementCreateEvent;
-import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
-import com.sap.tc.moin.repository.events.type.LinkAddEvent;
-import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.logger.MoinCategoryEnum;
-import com.sap.tc.moin.repository.shared.logger.MoinLocationEnum;
-import com.sap.tc.moin.repository.shared.logger.MoinLogger;
-import com.sap.tc.moin.repository.shared.logger.MoinLoggerFactory;
-import com.sap.tc.moin.repository.shared.logger.MoinSeverity;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.cache.EventCache;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.cache.EventCacheEntry;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.Relevance;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.result.EvaluationUnit;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.result.InstanceSet;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.result.impl.EvaluationUnitImpl;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.result.impl.InstanceSetImpl;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTagFactory;
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+
+
 
 /**
  * The Impact Analyzer (IA) analyzes the impact of {@link ModelChangeEvent}s on
@@ -78,9 +54,9 @@ import com.sap.tc.moin.repository.shared.logger.MoinSeverity;
  */
 public class ImpactAnalyzer {
 
-    private final static MoinLogger LOGGER = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_CORE_OCL_IA, ImpactAnalyzer.class );
+//    private final static MoinLogger LOGGER = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_CORE_OCL_IA, ImpactAnalyzer.class );
 
-    private final InternalEventFactory eventFactory;
+    private final EventManagerFactory eventFactory;
 
     private final NodeTagFactory tagFactory = new NodeTagFactory( );
 
@@ -104,7 +80,7 @@ public class ImpactAnalyzer {
     public ImpactAnalyzer( boolean classScopeOnly ) {
 
         this.doClassScopeOnly = classScopeOnly;
-        this.eventFactory = new InternalEventFactory( );
+        this.eventFactory = EventManagerFactory.eINSTANCE;
     }
 
     /**
@@ -124,45 +100,42 @@ public class ImpactAnalyzer {
      * @return a filter matching all events relevant to the
      * <code>OclStatemtent</code>s passed to the ImplactAnalyzer
      */
-    public EventFilter analyze( Set<OclStatement> oclStatements, MoinJmiCreator jmiCreator ) {
+    public EventFilter createFilterForQuery(EList<Constraint> oclStatements) {
 
         long cstime = 0l;
         long istime = 0l;
         long fctime = 0l;
 
-        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
-            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.ANALYZESTART, oclStatements.size( ) );
-        }
         // analyze each OclStatement
-        for ( OclStatement stmt : oclStatements ) {
+        for ( Constraint stmt : oclStatements ) {
             // execute the Class Scope Analysis
-            long start = System.nanoTime( );
-            applyClassScopeAnalysis( stmt, jmiCreator );
-            cstime = cstime + System.nanoTime( ) - start;
+          //  long start = System.nanoTime( );
+            applyClassScopeAnalysis( stmt);
+          //  cstime = cstime + System.nanoTime( ) - start;
             if ( !this.doClassScopeOnly ) {
                 // execute the Instance Scope Analysis
-                start = System.nanoTime( );
-                applyInstanceScopeAnalysis( stmt, jmiCreator );
-                istime = istime + System.nanoTime( ) - start;
+              //  start = System.nanoTime( );
+                applyInstanceScopeAnalysis( stmt);
+              //  istime = istime + System.nanoTime( ) - start;
             }
         }
         // create the MoinEventFilter for the set of relevant InternalEvents
-        Set<InternalEvent> accumulatedEvents = this.eventCache.events( );
+        Set<ModelChangeEvent> accumulatedEvents = this.eventCache.events( );
 
-        long start = System.nanoTime( );
-        EventFilter filter = this.createFilter( jmiCreator.getConnection( ), accumulatedEvents );
-        fctime = System.nanoTime( ) - start;
+     //   long start = System.nanoTime( );
+        EventFilter filter = this.createFilter( accumulatedEvents );
+      //  fctime = System.nanoTime( ) - start;
         // milliseconds from nanoseconds
-
-        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
-
-            cstime = cstime / 1000000;
-            istime = istime / 1000000;
-            fctime = fctime / 1000000;
-
-            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.ANALYZEOUTPUT, oclStatements.size( ), accumulatedEvents.size( ), cstime, istime, fctime );
-
-        }
+//
+//        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
+//
+//            cstime = cstime / 1000000;
+//            istime = istime / 1000000;
+//            fctime = fctime / 1000000;
+//
+//            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.ANALYZEOUTPUT, oclStatements.size( ), accumulatedEvents.size( ), cstime, istime, fctime );
+//
+//        }
         return filter;
 
     }
@@ -172,7 +145,7 @@ public class ImpactAnalyzer {
      * 
      * @return the set of InternalEvents
      */
-    public Set<InternalEvent> testingGetInternalEvents( ) {
+    public Set<ModelChangeEvent> testingGetInternalEvents( ) {
 
         return this.eventCache.events( );
     }
@@ -195,30 +168,33 @@ public class ImpactAnalyzer {
      * @param event {@link ModelChangeEvent}
      * @return the {@link EvaluationUnit}s for this event
      */
-    public Set<EvaluationUnit> filter( CoreConnection connection, ModelChangeEvent event ) {
+    public Set<EvaluationUnit> filter( ModelChangeEvent event ) {
 
-        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
-            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERSTART, event );
-        }
+//        if ( LOGGER.isTraced( MoinSeverity.DEBUG ) ) {
+//            LOGGER.trace( MoinSeverity.DEBUG, ImpactAnalyzerTraces.FILTERSTART, event );
+//        }
 
         Set<EvaluationUnit> evalSet = new HashSet<EvaluationUnit>( );
-        long starttime = System.nanoTime( );
+//        long starttime = System.nanoTime( );
         try {
             // map from MoinEvents to InternalEvents
-            InternalEvent[] intEvents = this.eventFactory.createEvents( connection, event );
+        /*
+         *  events don't have to be mapped any more
+         */
+        //     InternalEvent[] intEvents = this.eventFactory.createEvents( connection, event );
             // get the affected OclStatements
             // the cache stores tuple of (affectedStatement,
             // navigationStatement)
             // which are associated to an InternalEvent.
             // we have to bring that into the result structure
 
-            for ( int eventIndex = 0; eventIndex < intEvents.length; eventIndex++ ) {
+           
                 // there is only one unit for each affected statement
                 // we bring them together in a hash
-                Map<OclStatement, EvaluationUnitImpl> stmt2EvalUnit = new HashMap<OclStatement, EvaluationUnitImpl>( );
+                Map<Constraint, EvaluationUnitImpl> stmt2EvalUnit = new HashMap<Constraint, EvaluationUnitImpl>( );
                 // go through all cache entries
-                for ( EventCacheEntry cacheEntry : this.eventCache.lookup( intEvents[eventIndex] ) ) {
-                    OclStatement cacheStatement = cacheEntry.getStatement( );
+                for ( EventCacheEntry cacheEntry : this.eventCache.lookup( event ) ) {
+                    Constraint cacheStatement = cacheEntry.getStatement( );
                     EvaluationUnitImpl unit;
                     // create a new Unit or get an existing one
                     if ( stmt2EvalUnit.containsKey( cacheStatement ) ) {
@@ -228,14 +204,14 @@ public class ImpactAnalyzer {
                         stmt2EvalUnit.put( cacheStatement, unit );
                     }
                     // add a new instance set to it; the affected elements are determined from the element
-                    for ( OclStatement revPath : cacheEntry.getInstances( ) ) {
-                        Set<RefObject> startingPoints = this.eventFactory.getAffectedElements( event, (Classifier) revPath.getContext( ) );
+                    for ( Constraint revPath : cacheEntry.getInstances( ) ) {
+                        Set<EObject> startingPoints = this.eventFactory.getAffectedElements( event, (EClassifier) revPath.getContext( ) );
                         if ( startingPoints != null ) {
                             InstanceSet is = new InstanceSetImpl( revPath, startingPoints );
                             unit.addInstanceSet( is );
                         }
                     }
-                }
+                
                 // return the set of EvaluationUnits with non-empty instance
                 // sets
                 for ( EvaluationUnit unit : stmt2EvalUnit.values( ) ) {
