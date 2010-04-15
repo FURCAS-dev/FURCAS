@@ -9,12 +9,9 @@
 -->
 
 <plugin>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://de.hpi.sam.bp2009.solution.oclToAst"
-            class="de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage"
-            genModel="model/ostToAst.genmodel"/>
-   </extension>
+    <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://de.hpi.sam.bp2009.OCL"
+       class = "de.hpi.sam.bp2009.solution.oclToAst.impl.OCLValidationDelegateFactory$Global" />
+  </extension>
 
 </plugin>

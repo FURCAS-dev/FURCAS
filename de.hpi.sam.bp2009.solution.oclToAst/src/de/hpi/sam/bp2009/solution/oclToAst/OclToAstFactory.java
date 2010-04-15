@@ -6,7 +6,6 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst;
 
-import org.eclipse.emf.ecore.EFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +15,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage
  * @generated
  */
-public interface OclToAstFactory extends EFactory {
+public interface OclToAstFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -34,13 +33,5 @@ public interface OclToAstFactory extends EFactory {
 	 */
 	EAnnotationOCLParser createEAnnotationOCLParser();
 
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	OclToAstPackage getOclToAstPackage();
 
 } //OclToAstFactory

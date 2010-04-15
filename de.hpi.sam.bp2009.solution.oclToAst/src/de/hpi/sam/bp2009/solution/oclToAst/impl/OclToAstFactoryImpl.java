@@ -6,15 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
-import de.hpi.sam.bp2009.solution.oclToAst.*;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,24 +15,18 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OclToAstFactoryImpl extends EFactoryImpl implements OclToAstFactory {
+public class OclToAstFactoryImpl implements OclToAstFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public static OclToAstFactory instance=null;
 	public static OclToAstFactory init() {
-		try {
-			OclToAstFactory theOclToAstFactory = (OclToAstFactory)EPackage.Registry.INSTANCE.getEFactory("http://de.hpi.sam.bp2009.solution.oclToAst"); 
-			if (theOclToAstFactory != null) {
-				return theOclToAstFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new OclToAstFactoryImpl();
+		if(instance ==null)
+			instance= new OclToAstFactoryImpl();
+		return instance;
 	}
 
 	/**
@@ -52,19 +39,7 @@ public class OclToAstFactoryImpl extends EFactoryImpl implements OclToAstFactory
 		super();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case OclToAstPackage.EANNOTATION_OCL_PARSER: return createEAnnotationOCLParser();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,24 +51,5 @@ public class OclToAstFactoryImpl extends EFactoryImpl implements OclToAstFactory
 		return eAnnotationOCLParser;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclToAstPackage getOclToAstPackage() {
-		return (OclToAstPackage)getEPackage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
-	@Deprecated
-	public static OclToAstPackage getPackage() {
-		return OclToAstPackage.eINSTANCE;
-	}
-
+	
 } //OclToAstFactoryImpl
