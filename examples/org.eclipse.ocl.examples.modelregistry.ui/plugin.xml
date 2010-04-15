@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2010/03/11 14:18:53 ewillink Exp $
+ $Id: plugin.xml,v 1.2 2010/04/15 16:55:34 ewillink Exp $
 -->
 
 <plugin>
@@ -20,9 +20,9 @@
 
    <extension point="org.eclipse.ui.views">
       <category id="org.eclipse.ocl.modelregistry.ui.registrations"
-      		name="OCL"/>
+      		name="%MF_OCL"/>
       <view id="org.eclipse.ocl.modelregistry.registrations"
-            name="Registrations View"
+            name="%MF_RegistrationsView"
             icon="icons/sample.gif"
             category="org.eclipse.ocl.modelregistry.ui.registrations"
             class="org.eclipse.ocl.examples.modelregistry.ui.registrations.RegistrationsView"/>
