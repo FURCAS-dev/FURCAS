@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AttributeRefImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: AttributeRefImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPack
  *
  * @generated
  */
-public abstract class AttributeRefImpl extends MinimalEObjectImpl.Container implements AttributeRef {
+public abstract class AttributeRefImpl extends ObjectRefImpl implements AttributeRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

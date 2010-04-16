@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTFactoryImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: OCLinEcoreCSTFactoryImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.*;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCSRef;
@@ -108,6 +109,7 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 			case OCLinEcoreCSTPackage.DATA_TYPE_CS_REF: return createDataTypeCSRef();
 			case OCLinEcoreCSTPackage.DETAIL_CS: return createDetailCS();
 			case OCLinEcoreCSTPackage.DOCUMENT_CS: return createDocumentCS();
+			case OCLinEcoreCSTPackage.DOCUMENTATION_CS: return createDocumentationCS();
 			case OCLinEcoreCSTPackage.EATTRIBUTE_REF: return createEAttributeRef();
 			case OCLinEcoreCSTPackage.ECLASS_REF: return createEClassRef();
 			case OCLinEcoreCSTPackage.ECLASSIFIER_CS_REF: return createEClassifierCSRef();
@@ -191,6 +193,16 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	public DocumentCS createDocumentCS() {
 		DocumentCSImpl documentCS = new DocumentCSImpl();
 		return documentCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DocumentationCS createDocumentationCS() {
+		DocumentationCSImpl documentationCS = new DocumentationCSImpl();
+		return documentationCS;
 	}
 
 	/**

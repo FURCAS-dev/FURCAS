@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: PackageCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
@@ -43,6 +44,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PackageCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PackageCSImpl#getClassifiers <em>Classifiers</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PackageCSImpl#getSubpackages <em>Subpackages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PackageCSImpl#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PackageCSImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,7 +60,7 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnotationCS> annotations;
+	protected EList<AnnotationElementCS> annotations;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -100,6 +103,46 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 	protected EList<PackageCS> subpackages;
 
 	/**
+	 * The default value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PREFIX_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected String prefix = PREFIX_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uri = URI_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,9 +166,9 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AnnotationCS> getAnnotations() {
+	public EList<AnnotationElementCS> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationCS>(AnnotationCS.class, this, OCLinEcoreCSTPackage.PACKAGE_CS__ANNOTATIONS);
+			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.PACKAGE_CS__ANNOTATIONS);
 		}
 		return annotations;
 	}
@@ -180,6 +223,48 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPrefix() {
+		return prefix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrefix(String newPrefix) {
+		String oldPrefix = prefix;
+		prefix = newPrefix;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.PACKAGE_CS__PREFIX, oldPrefix, prefix));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUri() {
+		return uri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUri(String newUri) {
+		String oldUri = uri;
+		uri = newUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.PACKAGE_CS__URI, oldUri, uri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -209,6 +294,10 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 				return getClassifiers();
 			case OCLinEcoreCSTPackage.PACKAGE_CS__SUBPACKAGES:
 				return getSubpackages();
+			case OCLinEcoreCSTPackage.PACKAGE_CS__PREFIX:
+				return getPrefix();
+			case OCLinEcoreCSTPackage.PACKAGE_CS__URI:
+				return getUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,7 +313,7 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 		switch (featureID) {
 			case OCLinEcoreCSTPackage.PACKAGE_CS__ANNOTATIONS:
 				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends AnnotationCS>)newValue);
+				getAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
 			case OCLinEcoreCSTPackage.PACKAGE_CS__NAME:
 				setName((String)newValue);
@@ -236,6 +325,12 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 			case OCLinEcoreCSTPackage.PACKAGE_CS__SUBPACKAGES:
 				getSubpackages().clear();
 				getSubpackages().addAll((Collection<? extends PackageCS>)newValue);
+				return;
+			case OCLinEcoreCSTPackage.PACKAGE_CS__PREFIX:
+				setPrefix((String)newValue);
+				return;
+			case OCLinEcoreCSTPackage.PACKAGE_CS__URI:
+				setUri((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -261,6 +356,12 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 			case OCLinEcoreCSTPackage.PACKAGE_CS__SUBPACKAGES:
 				getSubpackages().clear();
 				return;
+			case OCLinEcoreCSTPackage.PACKAGE_CS__PREFIX:
+				setPrefix(PREFIX_EDEFAULT);
+				return;
+			case OCLinEcoreCSTPackage.PACKAGE_CS__URI:
+				setUri(URI_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -281,6 +382,10 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 				return classifiers != null && !classifiers.isEmpty();
 			case OCLinEcoreCSTPackage.PACKAGE_CS__SUBPACKAGES:
 				return subpackages != null && !subpackages.isEmpty();
+			case OCLinEcoreCSTPackage.PACKAGE_CS__PREFIX:
+				return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
+			case OCLinEcoreCSTPackage.PACKAGE_CS__URI:
+				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -297,6 +402,10 @@ public class PackageCSImpl extends MinimalEObjectImpl.Container implements Packa
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", prefix: ");
+		result.append(prefix);
+		result.append(", uri: ");
+		result.append(uri);
 		result.append(')');
 		return result.toString();
 	}

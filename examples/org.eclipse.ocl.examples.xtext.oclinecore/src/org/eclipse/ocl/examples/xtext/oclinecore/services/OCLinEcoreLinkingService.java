@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.1 2010/04/13 06:44:12 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -37,6 +37,7 @@ import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
 import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 
 import com.google.inject.Inject;
@@ -75,7 +76,7 @@ public class OCLinEcoreLinkingService extends DefaultLinkingService
 		if ((ref == OCLinEcoreCSTPackage.Literals.IMPORT_CS__EPACKAGE) && (context instanceof ImportCS))
 			return getPackage((ImportCS)context, (LeafNode) node);
 		if ((ref == OCLinEcoreCSTPackage.Literals.ECLASSIFIER_CS_REF__REF) && (context instanceof EClassifierCSRef))
-			return getLinkedClassifier((EClassifierCSRef)context, ref, (LeafNode) node);
+			return getLinkedClassifier((EClassifierCSRef)context, ref, (LeafNode) ((CompositeNode) node).getChildren().get(0));
 		return super.getLinkedObjects(context, ref, node);
 	}
 

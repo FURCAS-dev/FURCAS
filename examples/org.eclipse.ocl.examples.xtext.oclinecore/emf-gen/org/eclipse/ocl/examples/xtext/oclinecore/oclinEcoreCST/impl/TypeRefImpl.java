@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeRefImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: TypeRefImpl.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeRef;
  *
  * @generated
  */
-public abstract class TypeRefImpl extends MinimalEObjectImpl.Container implements TypeRef {
+public abstract class TypeRefImpl extends ObjectRefImpl implements TypeRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

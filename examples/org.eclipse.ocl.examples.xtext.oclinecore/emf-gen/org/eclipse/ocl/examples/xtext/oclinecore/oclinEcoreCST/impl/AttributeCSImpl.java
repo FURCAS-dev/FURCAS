@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AttributeCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: AttributeCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
@@ -64,7 +65,7 @@ public class AttributeCSImpl extends MinimalEObjectImpl.Container implements Att
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnotationCS> annotations;
+	protected EList<AnnotationElementCS> annotations;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -154,7 +155,7 @@ public class AttributeCSImpl extends MinimalEObjectImpl.Container implements Att
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int UPPER_EDEFAULT = 0;
+	protected static final int UPPER_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' attribute.
@@ -220,9 +221,9 @@ public class AttributeCSImpl extends MinimalEObjectImpl.Container implements Att
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AnnotationCS> getAnnotations() {
+	public EList<AnnotationElementCS> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationCS>(AnnotationCS.class, this, OCLinEcoreCSTPackage.ATTRIBUTE_CS__ANNOTATIONS);
+			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.ATTRIBUTE_CS__ANNOTATIONS);
 		}
 		return annotations;
 	}
@@ -458,7 +459,7 @@ public class AttributeCSImpl extends MinimalEObjectImpl.Container implements Att
 		switch (featureID) {
 			case OCLinEcoreCSTPackage.ATTRIBUTE_CS__ANNOTATIONS:
 				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends AnnotationCS>)newValue);
+				getAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
 			case OCLinEcoreCSTPackage.ATTRIBUTE_CS__NAME:
 				setName((String)newValue);

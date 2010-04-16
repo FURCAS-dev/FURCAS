@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTSwitch.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreCSTSwitch.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 
@@ -141,7 +141,15 @@ public class OCLinEcoreCSTSwitch<T> {
 			case OCLinEcoreCSTPackage.ANNOTATION_CS: {
 				AnnotationCS annotationCS = (AnnotationCS)theEObject;
 				T result = caseAnnotationCS(annotationCS);
+				if (result == null) result = caseAnnotationElementCS(annotationCS);
 				if (result == null) result = caseModelElementCS(annotationCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS: {
+				AnnotationElementCS annotationElementCS = (AnnotationElementCS)theEObject;
+				T result = caseAnnotationElementCS(annotationElementCS);
+				if (result == null) result = caseModelElementCS(annotationElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -159,12 +167,14 @@ public class OCLinEcoreCSTSwitch<T> {
 				AttributeCSRef attributeCSRef = (AttributeCSRef)theEObject;
 				T result = caseAttributeCSRef(attributeCSRef);
 				if (result == null) result = caseAttributeRef(attributeCSRef);
+				if (result == null) result = caseObjectRef(attributeCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case OCLinEcoreCSTPackage.ATTRIBUTE_REF: {
 				AttributeRef attributeRef = (AttributeRef)theEObject;
 				T result = caseAttributeRef(attributeRef);
+				if (result == null) result = caseObjectRef(attributeRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -183,6 +193,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				T result = caseClassCSRef(classCSRef);
 				if (result == null) result = caseClassRef(classCSRef);
 				if (result == null) result = caseTypeRef(classCSRef);
+				if (result == null) result = caseObjectRef(classCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -190,6 +201,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				ClassRef classRef = (ClassRef)theEObject;
 				T result = caseClassRef(classRef);
 				if (result == null) result = caseTypeRef(classRef);
+				if (result == null) result = caseObjectRef(classRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -214,6 +226,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				DataTypeRef dataTypeRef = (DataTypeRef)theEObject;
 				T result = caseDataTypeRef(dataTypeRef);
 				if (result == null) result = caseTypeRef(dataTypeRef);
+				if (result == null) result = caseObjectRef(dataTypeRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -243,6 +256,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				T result = caseDataTypeCSRef(dataTypeCSRef);
 				if (result == null) result = caseDataTypeRef(dataTypeCSRef);
 				if (result == null) result = caseTypeRef(dataTypeCSRef);
+				if (result == null) result = caseObjectRef(dataTypeCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -258,10 +272,19 @@ public class OCLinEcoreCSTSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OCLinEcoreCSTPackage.DOCUMENTATION_CS: {
+				DocumentationCS documentationCS = (DocumentationCS)theEObject;
+				T result = caseDocumentationCS(documentationCS);
+				if (result == null) result = caseAnnotationElementCS(documentationCS);
+				if (result == null) result = caseModelElementCS(documentationCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OCLinEcoreCSTPackage.EATTRIBUTE_REF: {
 				EAttributeRef eAttributeRef = (EAttributeRef)theEObject;
 				T result = caseEAttributeRef(eAttributeRef);
 				if (result == null) result = caseAttributeRef(eAttributeRef);
+				if (result == null) result = caseObjectRef(eAttributeRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -270,6 +293,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				T result = caseEClassRef(eClassRef);
 				if (result == null) result = caseClassRef(eClassRef);
 				if (result == null) result = caseTypeRef(eClassRef);
+				if (result == null) result = caseObjectRef(eClassRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -277,6 +301,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				EClassifierCSRef eClassifierCSRef = (EClassifierCSRef)theEObject;
 				T result = caseEClassifierCSRef(eClassifierCSRef);
 				if (result == null) result = caseTypeRef(eClassifierCSRef);
+				if (result == null) result = caseObjectRef(eClassifierCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -284,6 +309,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				EClassifierRef eClassifierRef = (EClassifierRef)theEObject;
 				T result = caseEClassifierRef(eClassifierRef);
 				if (result == null) result = caseTypeRef(eClassifierRef);
+				if (result == null) result = caseObjectRef(eClassifierRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -292,6 +318,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				T result = caseEDataTypeRef(eDataTypeRef);
 				if (result == null) result = caseDataTypeRef(eDataTypeRef);
 				if (result == null) result = caseTypeRef(eDataTypeRef);
+				if (result == null) result = caseObjectRef(eDataTypeRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -306,6 +333,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				EReferenceRef eReferenceRef = (EReferenceRef)theEObject;
 				T result = caseEReferenceRef(eReferenceRef);
 				if (result == null) result = caseReferenceRef(eReferenceRef);
+				if (result == null) result = caseObjectRef(eReferenceRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -400,12 +428,14 @@ public class OCLinEcoreCSTSwitch<T> {
 				ReferenceCSRef referenceCSRef = (ReferenceCSRef)theEObject;
 				T result = caseReferenceCSRef(referenceCSRef);
 				if (result == null) result = caseReferenceRef(referenceCSRef);
+				if (result == null) result = caseObjectRef(referenceCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case OCLinEcoreCSTPackage.REFERENCE_REF: {
 				ReferenceRef referenceRef = (ReferenceRef)theEObject;
 				T result = caseReferenceRef(referenceRef);
+				if (result == null) result = caseObjectRef(referenceRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -430,6 +460,7 @@ public class OCLinEcoreCSTSwitch<T> {
 				TypeCSRef typeCSRef = (TypeCSRef)theEObject;
 				T result = caseTypeCSRef(typeCSRef);
 				if (result == null) result = caseTypeRef(typeCSRef);
+				if (result == null) result = caseObjectRef(typeCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -445,6 +476,7 @@ public class OCLinEcoreCSTSwitch<T> {
 			case OCLinEcoreCSTPackage.TYPE_REF: {
 				TypeRef typeRef = (TypeRef)theEObject;
 				T result = caseTypeRef(typeRef);
+				if (result == null) result = caseObjectRef(typeRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -495,6 +527,21 @@ public class OCLinEcoreCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseAnnotationCS(AnnotationCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotationElementCS(AnnotationElementCS object) {
 		return null;
 	}
 
@@ -615,6 +662,21 @@ public class OCLinEcoreCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseDocumentCS(DocumentCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Documentation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Documentation CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDocumentationCS(DocumentationCS object) {
 		return null;
 	}
 

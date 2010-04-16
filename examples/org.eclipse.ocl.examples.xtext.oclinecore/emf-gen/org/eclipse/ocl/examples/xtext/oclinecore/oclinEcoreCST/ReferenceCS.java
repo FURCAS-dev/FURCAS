@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: ReferenceCS.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#isContainment <em>Containment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#getKeys <em>Keys</em>}</li>
  * </ul>
@@ -38,32 +37,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ReferenceCS extends StructuralFeatureCS {
-	/**
-	 * Returns the value of the '<em><b>Containment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Containment</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containment</em>' attribute.
-	 * @see #setContainment(boolean)
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getReferenceCS_Containment()
-	 * @model
-	 * @generated
-	 */
-	boolean isContainment();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#isContainment <em>Containment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Containment</em>' attribute.
-	 * @see #isContainment()
-	 * @generated
-	 */
-	void setContainment(boolean value);
-
 	/**
 	 * Returns the value of the '<em><b>Opposite</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

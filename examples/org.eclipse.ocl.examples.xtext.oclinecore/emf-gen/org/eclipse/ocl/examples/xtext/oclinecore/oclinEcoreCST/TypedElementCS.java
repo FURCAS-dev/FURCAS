@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: TypedElementCS.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -41,6 +41,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TypedElementCS extends NamedElementCS {
 	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower</em>' attribute isn't clear,
@@ -50,7 +51,7 @@ public interface TypedElementCS extends NamedElementCS {
 	 * @return the value of the '<em>Lower</em>' attribute.
 	 * @see #setLower(int)
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getTypedElementCS_Lower()
-	 * @model
+	 * @model default="0"
 	 * @generated
 	 */
 	int getLower();
@@ -135,6 +136,7 @@ public interface TypedElementCS extends NamedElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Upper</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper</em>' attribute isn't clear,
@@ -144,7 +146,7 @@ public interface TypedElementCS extends NamedElementCS {
 	 * @return the value of the '<em>Upper</em>' attribute.
 	 * @see #setUpper(int)
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getTypedElementCS_Upper()
-	 * @model
+	 * @model default="1"
 	 * @generated
 	 */
 	int getUpper();

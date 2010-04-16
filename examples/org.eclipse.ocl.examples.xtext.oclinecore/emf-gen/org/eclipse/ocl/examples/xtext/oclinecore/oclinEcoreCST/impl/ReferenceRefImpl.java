@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ReferenceRefImpl.java,v 1.1 2010/04/13 06:44:12 ewillink Exp $
+ * $Id: ReferenceRefImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceRef;
  *
  * @generated
  */
-public abstract class ReferenceRefImpl extends MinimalEObjectImpl.Container implements ReferenceRef {
+public abstract class ReferenceRefImpl extends ObjectRefImpl implements ReferenceRef {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

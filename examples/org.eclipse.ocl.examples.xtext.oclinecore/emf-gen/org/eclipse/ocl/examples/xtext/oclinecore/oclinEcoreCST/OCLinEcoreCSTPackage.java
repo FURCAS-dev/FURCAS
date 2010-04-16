@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -85,7 +85,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getModelElementCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS = 25;
+	int MODEL_ELEMENT_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -106,6 +106,43 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int MODEL_ELEMENT_CS_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationElementCSImpl <em>Annotation Element CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationElementCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getAnnotationElementCS()
+	 * @generated
+	 */
+	int ANNOTATION_ELEMENT_CS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_ELEMENT_CS__ANNOTATIONS = MODEL_ELEMENT_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Details</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_ELEMENT_CS__DETAILS = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Annotation Element CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_ELEMENT_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl <em>Annotation CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,25 +159,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__ANNOTATIONS = MODEL_ELEMENT_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Id Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_CS__ID_SOURCE = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>String Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_CS__STRING_SOURCE = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int ANNOTATION_CS__ANNOTATIONS = ANNOTATION_ELEMENT_CS__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Details</b></em>' containment reference list.
@@ -149,7 +168,25 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__DETAILS = MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+	int ANNOTATION_CS__DETAILS = ANNOTATION_ELEMENT_CS__DETAILS;
+
+	/**
+	 * The feature id for the '<em><b>Id Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_CS__ID_SOURCE = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>String Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_CS__STRING_SOURCE = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -158,7 +195,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__CONTENTS = MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+	int ANNOTATION_CS__CONTENTS = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -167,7 +204,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__REFERENCES = MODEL_ELEMENT_CS_FEATURE_COUNT + 4;
+	int ANNOTATION_CS__REFERENCES = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Annotation CS</em>' class.
@@ -176,7 +213,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 5;
+	int ANNOTATION_CS_FEATURE_COUNT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.NamedElementCS <em>Named Element CS</em>}' class.
@@ -186,7 +223,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getNamedElementCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_CS = 27;
+	int NAMED_ELEMENT_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -223,7 +260,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 41;
+	int TYPED_ELEMENT_CS = 43;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -305,7 +342,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 35;
+	int STRUCTURAL_FEATURE_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -405,7 +442,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getAttributeCS()
 	 * @generated
 	 */
-	int ATTRIBUTE_CS = 1;
+	int ATTRIBUTE_CS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -505,16 +542,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getAttributeRef()
 	 * @generated
 	 */
-	int ATTRIBUTE_REF = 3;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_REF_FEATURE_COUNT = 0;
+	int ATTRIBUTE_REF = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AttributeCSRefImpl <em>Attribute CS Ref</em>}' class.
@@ -524,25 +552,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getAttributeCSRef()
 	 * @generated
 	 */
-	int ATTRIBUTE_CS_REF = 2;
-
-	/**
-	 * The feature id for the '<em><b>Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS_REF__REF = ATTRIBUTE_REF_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Attribute CS Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS_REF_FEATURE_COUNT = ATTRIBUTE_REF_FEATURE_COUNT + 1;
+	int ATTRIBUTE_CS_REF = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.TypeCSImpl <em>Type CS</em>}' class.
@@ -552,34 +562,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 36;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CS__ANNOTATIONS = NAMED_ELEMENT_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CS__NAME = NAMED_ELEMENT_CS__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Type CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TYPE_CS = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassifierCS <em>Classifier CS</em>}' class.
@@ -589,70 +572,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getClassifierCS()
 	 * @generated
 	 */
-	int CLASSIFIER_CS = 7;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__ANNOTATIONS = TYPE_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__NAME = TYPE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__CONSTRAINTS = TYPE_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__INSTANCE_CLASS_NAME = TYPE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__QUALIFIERS = TYPE_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__TYPE_PARAMETERS = TYPE_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Classifier CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 4;
+	int CLASSIFIER_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl <em>Class CS</em>}' class.
@@ -662,97 +582,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getClassCS()
 	 * @generated
 	 */
-	int CLASS_CS = 4;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__ANNOTATIONS = CLASSIFIER_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__NAME = CLASSIFIER_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__CONSTRAINTS = CLASSIFIER_CS__CONSTRAINTS;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__INSTANCE_CLASS_NAME = CLASSIFIER_CS__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__QUALIFIERS = CLASSIFIER_CS__QUALIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__TYPE_PARAMETERS = CLASSIFIER_CS__TYPE_PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__SUPER_TYPES = CLASSIFIER_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OPERATIONS = CLASSIFIER_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__STRUCTURAL_FEATURES = CLASSIFIER_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Class CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 3;
+	int CLASS_CS = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.TypeRefImpl <em>Type Ref</em>}' class.
@@ -762,16 +592,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypeRef()
 	 * @generated
 	 */
-	int TYPE_REF = 39;
-
-	/**
-	 * The number of structural features of the '<em>Type Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_REF_FEATURE_COUNT = 0;
+	int TYPE_REF = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassRefImpl <em>Class Ref</em>}' class.
@@ -781,16 +602,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getClassRef()
 	 * @generated
 	 */
-	int CLASS_REF = 6;
-
-	/**
-	 * The number of structural features of the '<em>Class Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 0;
+	int CLASS_REF = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSRefImpl <em>Class CS Ref</em>}' class.
@@ -800,25 +612,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getClassCSRef()
 	 * @generated
 	 */
-	int CLASS_CS_REF = 5;
-
-	/**
-	 * The feature id for the '<em><b>Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS_REF__REF = CLASS_REF_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Class CS Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS_REF_FEATURE_COUNT = CLASS_REF_FEATURE_COUNT + 1;
+	int CLASS_CS_REF = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DocumentCSImpl <em>Document CS</em>}' class.
@@ -828,7 +622,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDocumentCS()
 	 * @generated
 	 */
-	int DOCUMENT_CS = 14;
+	int DOCUMENT_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EClassRefImpl <em>EClass Ref</em>}' class.
@@ -838,7 +632,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEClassRef()
 	 * @generated
 	 */
-	int ECLASS_REF = 16;
+	int ECLASS_REF = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EClassifierRefImpl <em>EClassifier Ref</em>}' class.
@@ -848,7 +642,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEClassifierRef()
 	 * @generated
 	 */
-	int ECLASSIFIER_REF = 18;
+	int ECLASSIFIER_REF = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EDataTypeRefImpl <em>EData Type Ref</em>}' class.
@@ -858,7 +652,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEDataTypeRef()
 	 * @generated
 	 */
-	int EDATA_TYPE_REF = 19;
+	int EDATA_TYPE_REF = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceRefImpl <em>Reference Ref</em>}' class.
@@ -868,7 +662,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getReferenceRef()
 	 * @generated
 	 */
-	int REFERENCE_REF = 34;
+	int REFERENCE_REF = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EReferenceRefImpl <em>EReference Ref</em>}' class.
@@ -878,7 +672,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEReferenceRef()
 	 * @generated
 	 */
-	int EREFERENCE_REF = 21;
+	int EREFERENCE_REF = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EnumCSImpl <em>Enum CS</em>}' class.
@@ -888,7 +682,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEnumCS()
 	 * @generated
 	 */
-	int ENUM_CS = 22;
+	int ENUM_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EnumLiteralCSImpl <em>Enum Literal CS</em>}' class.
@@ -898,7 +692,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEnumLiteralCS()
 	 * @generated
 	 */
-	int ENUM_LITERAL_CS = 23;
+	int ENUM_LITERAL_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ImportCSImpl <em>Import CS</em>}' class.
@@ -908,7 +702,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getImportCS()
 	 * @generated
 	 */
-	int IMPORT_CS = 24;
+	int IMPORT_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OperationCSImpl <em>Operation CS</em>}' class.
@@ -918,7 +712,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getOperationCS()
 	 * @generated
 	 */
-	int OPERATION_CS = 29;
+	int OPERATION_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -928,7 +722,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getPackageCS()
 	 * @generated
 	 */
-	int PACKAGE_CS = 30;
+	int PACKAGE_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -938,7 +732,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getParameterCS()
 	 * @generated
 	 */
-	int PARAMETER_CS = 31;
+	int PARAMETER_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -948,7 +742,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 32;
+	int REFERENCE_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSRefImpl <em>Reference CS Ref</em>}' class.
@@ -958,7 +752,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getReferenceCSRef()
 	 * @generated
 	 */
-	int REFERENCE_CS_REF = 33;
+	int REFERENCE_CS_REF = 35;
 
 
 	/**
@@ -994,17 +788,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	EAttribute getAnnotationCS_StringSource();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getDetails <em>Details</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Details</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getDetails()
-	 * @see #getAnnotationCS()
-	 * @generated
-	 */
-	EReference getAnnotationCS_Details();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getContents <em>Contents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1025,6 +808,27 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAnnotationCS_References();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS <em>Annotation Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annotation Element CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS
+	 * @generated
+	 */
+	EClass getAnnotationElementCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS#getDetails <em>Details</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Details</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS#getDetails()
+	 * @see #getAnnotationElementCS()
+	 * @generated
+	 */
+	EReference getAnnotationElementCS_Details();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS <em>Attribute CS</em>}'.
@@ -1203,7 +1007,339 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getConstraintCS()
 	 * @generated
 	 */
-	int CONSTRAINT_CS = 8;
+	int CONSTRAINT_CS = 9;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeRefImpl <em>Data Type Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeRefImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeRef()
+	 * @generated
+	 */
+	int DATA_TYPE_REF = 10;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl <em>Data Type Or Enum CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeOrEnumCS()
+	 * @generated
+	 */
+	int DATA_TYPE_OR_ENUM_CS = 12;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSImpl <em>Data Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeCS()
+	 * @generated
+	 */
+	int DATA_TYPE_CS = 11;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSRefImpl <em>Data Type CS Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSRefImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeCSRef()
+	 * @generated
+	 */
+	int DATA_TYPE_CS_REF = 13;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DetailCSImpl <em>Detail CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DetailCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDetailCS()
+	 * @generated
+	 */
+	int DETAIL_CS = 14;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EAttributeRefImpl <em>EAttribute Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EAttributeRefImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEAttributeRef()
+	 * @generated
+	 */
+	int EATTRIBUTE_REF = 17;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EClassifierCSRefImpl <em>EClassifier CS Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EClassifierCSRefImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEClassifierCSRef()
+	 * @generated
+	 */
+	int ECLASSIFIER_CS_REF = 19;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ObjectRefImpl <em>Object Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ObjectRefImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getObjectRef()
+	 * @generated
+	 */
+	int OBJECT_REF = 30;
+
+	/**
+	 * The number of structural features of the '<em>Object Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_REF_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_REF_FEATURE_COUNT = OBJECT_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS_REF__REF = ATTRIBUTE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Attribute CS Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS_REF_FEATURE_COUNT = ATTRIBUTE_REF_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_CS__ANNOTATIONS = NAMED_ELEMENT_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_CS__NAME = NAMED_ELEMENT_CS__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Type CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__ANNOTATIONS = TYPE_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__NAME = TYPE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__CONSTRAINTS = TYPE_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__INSTANCE_CLASS_NAME = TYPE_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__QUALIFIERS = TYPE_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__TYPE_PARAMETERS = TYPE_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Classifier CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__ANNOTATIONS = CLASSIFIER_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__NAME = CLASSIFIER_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__CONSTRAINTS = CLASSIFIER_CS__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__INSTANCE_CLASS_NAME = CLASSIFIER_CS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__QUALIFIERS = CLASSIFIER_CS__QUALIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__TYPE_PARAMETERS = CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__SUPER_TYPES = CLASSIFIER_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__OPERATIONS = CLASSIFIER_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__STRUCTURAL_FEATURES = CLASSIFIER_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Type Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_REF_FEATURE_COUNT = OBJECT_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Class Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS_REF__REF = CLASS_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Class CS Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS_REF_FEATURE_COUNT = CLASS_REF_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1260,16 +1396,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int CONSTRAINT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeRefImpl <em>Data Type Ref</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeRefImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeRef()
-	 * @generated
-	 */
-	int DATA_TYPE_REF = 9;
-
-	/**
 	 * The number of structural features of the '<em>Data Type Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1277,16 +1403,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl <em>Data Type Or Enum CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeOrEnumCS()
-	 * @generated
-	 */
-	int DATA_TYPE_OR_ENUM_CS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1352,16 +1468,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int DATA_TYPE_OR_ENUM_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSImpl <em>Data Type CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeCS()
-	 * @generated
-	 */
-	int DATA_TYPE_CS = 10;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1425,16 +1531,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int DATA_TYPE_CS_FEATURE_COUNT = DATA_TYPE_OR_ENUM_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSRefImpl <em>Data Type CS Ref</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeCSRefImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDataTypeCSRef()
-	 * @generated
-	 */
-	int DATA_TYPE_CS_REF = 12;
-
-	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1451,16 +1547,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE_CS_REF_FEATURE_COUNT = DATA_TYPE_REF_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DetailCSImpl <em>Detail CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DetailCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDetailCS()
-	 * @generated
-	 */
-	int DETAIL_CS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Id Name</b></em>' attribute.
@@ -1526,14 +1612,50 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int DOCUMENT_CS_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EAttributeRefImpl <em>EAttribute Ref</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DocumentationCSImpl <em>Documentation CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EAttributeRefImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEAttributeRef()
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DocumentationCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDocumentationCS()
 	 * @generated
 	 */
-	int EATTRIBUTE_REF = 15;
+	int DOCUMENTATION_CS = 16;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTATION_CS__ANNOTATIONS = ANNOTATION_ELEMENT_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Details</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTATION_CS__DETAILS = ANNOTATION_ELEMENT_CS__DETAILS;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTATION_CS__VALUE = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Documentation CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTATION_CS_FEATURE_COUNT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -1570,16 +1692,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ECLASS_REF_FEATURE_COUNT = CLASS_REF_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EClassifierCSRefImpl <em>EClassifier CS Ref</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EClassifierCSRefImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEClassifierCSRef()
-	 * @generated
-	 */
-	int ECLASSIFIER_CS_REF = 17;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -1645,25 +1757,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int EDATA_TYPE_REF_FEATURE_COUNT = DATA_TYPE_REF_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ObjectRefImpl <em>Object Ref</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ObjectRefImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getObjectRef()
-	 * @generated
-	 */
-	int OBJECT_REF = 28;
-
-	/**
-	 * The number of structural features of the '<em>Object Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REF_FEATURE_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EObjectRefImpl <em>EObject Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1671,7 +1764,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getEObjectRef()
 	 * @generated
 	 */
-	int EOBJECT_REF = 20;
+	int EOBJECT_REF = 22;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -1698,7 +1791,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_REF_FEATURE_COUNT = 0;
+	int REFERENCE_REF_FEATURE_COUNT = OBJECT_REF_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -1861,7 +1954,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getModelElementCSRef()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS_REF = 26;
+	int MODEL_ELEMENT_CS_REF = 28;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -2026,13 +2119,31 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int PACKAGE_CS__SUBPACKAGES = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__PREFIX = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__URI = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Package CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int PACKAGE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2188,22 +2299,13 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int REFERENCE_CS__DEFAULT_VALUE_LITERAL = STRUCTURAL_FEATURE_CS__DEFAULT_VALUE_LITERAL;
 
 	/**
-	 * The feature id for the '<em><b>Containment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__CONTAINMENT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Opposite</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
+	int REFERENCE_CS__OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Keys</b></em>' containment reference list.
@@ -2212,7 +2314,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__KEYS = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 2;
+	int REFERENCE_CS__KEYS = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Reference CS</em>' class.
@@ -2221,7 +2323,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 3;
+	int REFERENCE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -2249,7 +2351,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypeCSRef()
 	 * @generated
 	 */
-	int TYPE_CS_REF = 37;
+	int TYPE_CS_REF = 39;
 
 	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -2277,7 +2379,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 38;
+	int TYPE_PARAMETER_CS = 40;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2333,7 +2435,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 40;
+	int TYPE_REF_CS = 42;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2362,7 +2464,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getTypedTypeRefCS()
 	 * @generated
 	 */
-	int TYPED_TYPE_REF_CS = 42;
+	int TYPED_TYPE_REF_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2408,7 +2510,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getWildcardTypeRefCS()
 	 * @generated
 	 */
-	int WILDCARD_TYPE_REF_CS = 43;
+	int WILDCARD_TYPE_REF_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2478,6 +2580,27 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDocumentCS_Packages();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS <em>Documentation CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Documentation CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS
+	 * @generated
+	 */
+	EClass getDocumentationCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS#getValue()
+	 * @see #getDocumentationCS()
+	 * @generated
+	 */
+	EAttribute getDocumentationCS_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EAttributeRef <em>EAttribute Ref</em>}'.
@@ -2871,6 +2994,28 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	EReference getPackageCS_Subpackages();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS#getPrefix <em>Prefix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Prefix</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS#getPrefix()
+	 * @see #getPackageCS()
+	 * @generated
+	 */
+	EAttribute getPackageCS_Prefix();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS#getUri <em>Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uri</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS#getUri()
+	 * @see #getPackageCS()
+	 * @generated
+	 */
+	EAttribute getPackageCS_Uri();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ParameterCS <em>Parameter CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2889,17 +3034,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getReferenceCS();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#isContainment <em>Containment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Containment</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#isContainment()
-	 * @see #getReferenceCS()
-	 * @generated
-	 */
-	EAttribute getReferenceCS_Containment();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS#getOpposite <em>Opposite</em>}'.
@@ -3384,14 +3518,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		EAttribute ANNOTATION_CS__STRING_SOURCE = eINSTANCE.getAnnotationCS_StringSource();
 
 		/**
-		 * The meta object literal for the '<em><b>Details</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ANNOTATION_CS__DETAILS = eINSTANCE.getAnnotationCS_Details();
-
-		/**
 		 * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3406,6 +3532,24 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ANNOTATION_CS__REFERENCES = eINSTANCE.getAnnotationCS_References();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationElementCSImpl <em>Annotation Element CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationElementCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getAnnotationElementCS()
+		 * @generated
+		 */
+		EClass ANNOTATION_ELEMENT_CS = eINSTANCE.getAnnotationElementCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Details</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION_ELEMENT_CS__DETAILS = eINSTANCE.getAnnotationElementCS_Details();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -3574,6 +3718,24 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOCUMENT_CS__PACKAGES = eINSTANCE.getDocumentCS_Packages();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DocumentationCSImpl <em>Documentation CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DocumentationCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getDocumentationCS()
+		 * @generated
+		 */
+		EClass DOCUMENTATION_CS = eINSTANCE.getDocumentationCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENTATION_CS__VALUE = eINSTANCE.getDocumentationCS_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.EAttributeRefImpl <em>EAttribute Ref</em>}' class.
@@ -3904,6 +4066,22 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		EReference PACKAGE_CS__SUBPACKAGES = eINSTANCE.getPackageCS_Subpackages();
 
 		/**
+		 * The meta object literal for the '<em><b>Prefix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_CS__PREFIX = eINSTANCE.getPackageCS_Prefix();
+
+		/**
+		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PACKAGE_CS__URI = eINSTANCE.getPackageCS_Uri();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3922,14 +4100,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass REFERENCE_CS = eINSTANCE.getReferenceCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Containment</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERENCE_CS__CONTAINMENT = eINSTANCE.getReferenceCS_Containment();
 
 		/**
 		 * The meta object literal for the '<em><b>Opposite</b></em>' containment reference feature.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTFactory.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreCSTFactory.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -88,6 +88,15 @@ public interface OCLinEcoreCSTFactory extends EFactory {
 	 * @generated
 	 */
 	DocumentCS createDocumentCS();
+
+	/**
+	 * Returns a new object of class '<em>Documentation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Documentation CS</em>'.
+	 * @generated
+	 */
+	DocumentationCS createDocumentationCS();
 
 	/**
 	 * Returns a new object of class '<em>EAttribute Ref</em>'.

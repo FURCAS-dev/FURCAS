@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: ReferenceCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
@@ -52,7 +53,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeRefCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl#getDefaultValueLiteral <em>Default Value Literal</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl#isContainment <em>Containment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ReferenceCSImpl#getKeys <em>Keys</em>}</li>
  * </ul>
@@ -69,7 +69,7 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnotationCS> annotations;
+	protected EList<AnnotationElementCS> annotations;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -159,7 +159,7 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int UPPER_EDEFAULT = 0;
+	protected static final int UPPER_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' attribute.
@@ -200,26 +200,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 	 * @ordered
 	 */
 	protected String defaultValueLiteral = DEFAULT_VALUE_LITERAL_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isContainment() <em>Containment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isContainment()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CONTAINMENT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isContainment() <em>Containment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isContainment()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean containment = CONTAINMENT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOpposite() <em>Opposite</em>}' containment reference.
@@ -265,9 +245,9 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AnnotationCS> getAnnotations() {
+	public EList<AnnotationElementCS> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationCS>(AnnotationCS.class, this, OCLinEcoreCSTPackage.REFERENCE_CS__ANNOTATIONS);
+			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.REFERENCE_CS__ANNOTATIONS);
 		}
 		return annotations;
 	}
@@ -449,27 +429,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isContainment() {
-		return containment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainment(boolean newContainment) {
-		boolean oldContainment = containment;
-		containment = newContainment;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.REFERENCE_CS__CONTAINMENT, oldContainment, containment));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ReferenceRef getOpposite() {
 		return opposite;
 	}
@@ -568,8 +527,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 				return getConstraints();
 			case OCLinEcoreCSTPackage.REFERENCE_CS__DEFAULT_VALUE_LITERAL:
 				return getDefaultValueLiteral();
-			case OCLinEcoreCSTPackage.REFERENCE_CS__CONTAINMENT:
-				return isContainment();
 			case OCLinEcoreCSTPackage.REFERENCE_CS__OPPOSITE:
 				return getOpposite();
 			case OCLinEcoreCSTPackage.REFERENCE_CS__KEYS:
@@ -589,7 +546,7 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 		switch (featureID) {
 			case OCLinEcoreCSTPackage.REFERENCE_CS__ANNOTATIONS:
 				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends AnnotationCS>)newValue);
+				getAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
 			case OCLinEcoreCSTPackage.REFERENCE_CS__NAME:
 				setName((String)newValue);
@@ -616,9 +573,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 				return;
 			case OCLinEcoreCSTPackage.REFERENCE_CS__DEFAULT_VALUE_LITERAL:
 				setDefaultValueLiteral((String)newValue);
-				return;
-			case OCLinEcoreCSTPackage.REFERENCE_CS__CONTAINMENT:
-				setContainment((Boolean)newValue);
 				return;
 			case OCLinEcoreCSTPackage.REFERENCE_CS__OPPOSITE:
 				setOpposite((ReferenceRef)newValue);
@@ -666,9 +620,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 			case OCLinEcoreCSTPackage.REFERENCE_CS__DEFAULT_VALUE_LITERAL:
 				setDefaultValueLiteral(DEFAULT_VALUE_LITERAL_EDEFAULT);
 				return;
-			case OCLinEcoreCSTPackage.REFERENCE_CS__CONTAINMENT:
-				setContainment(CONTAINMENT_EDEFAULT);
-				return;
 			case OCLinEcoreCSTPackage.REFERENCE_CS__OPPOSITE:
 				setOpposite((ReferenceRef)null);
 				return;
@@ -705,8 +656,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 				return constraints != null && !constraints.isEmpty();
 			case OCLinEcoreCSTPackage.REFERENCE_CS__DEFAULT_VALUE_LITERAL:
 				return DEFAULT_VALUE_LITERAL_EDEFAULT == null ? defaultValueLiteral != null : !DEFAULT_VALUE_LITERAL_EDEFAULT.equals(defaultValueLiteral);
-			case OCLinEcoreCSTPackage.REFERENCE_CS__CONTAINMENT:
-				return containment != CONTAINMENT_EDEFAULT;
 			case OCLinEcoreCSTPackage.REFERENCE_CS__OPPOSITE:
 				return opposite != null;
 			case OCLinEcoreCSTPackage.REFERENCE_CS__KEYS:
@@ -737,8 +686,6 @@ public class ReferenceCSImpl extends MinimalEObjectImpl.Container implements Ref
 		result.append(upper);
 		result.append(", defaultValueLiteral: ");
 		result.append(defaultValueLiteral);
-		result.append(", containment: ");
-		result.append(containment);
 		result.append(')');
 		return result.toString();
 	}

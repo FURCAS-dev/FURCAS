@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: ModelElementCS.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ModelElementCS extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
@@ -50,6 +50,6 @@ public interface ModelElementCS extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AnnotationCS> getAnnotations();
+	EList<AnnotationElementCS> getAnnotations();
 
 } // ModelElementCS

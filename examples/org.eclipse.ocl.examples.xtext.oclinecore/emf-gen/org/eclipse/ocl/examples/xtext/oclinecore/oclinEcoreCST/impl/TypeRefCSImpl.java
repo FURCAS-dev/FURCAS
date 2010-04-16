@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeRefCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: TypeRefCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeRefCS;
@@ -51,7 +52,7 @@ public abstract class TypeRefCSImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AnnotationCS> annotations;
+	protected EList<AnnotationElementCS> annotations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,9 +78,9 @@ public abstract class TypeRefCSImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AnnotationCS> getAnnotations() {
+	public EList<AnnotationElementCS> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationCS>(AnnotationCS.class, this, OCLinEcoreCSTPackage.TYPE_REF_CS__ANNOTATIONS);
+			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.TYPE_REF_CS__ANNOTATIONS);
 		}
 		return annotations;
 	}
@@ -123,7 +124,7 @@ public abstract class TypeRefCSImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 			case OCLinEcoreCSTPackage.TYPE_REF_CS__ANNOTATIONS:
 				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends AnnotationCS>)newValue);
+				getAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
