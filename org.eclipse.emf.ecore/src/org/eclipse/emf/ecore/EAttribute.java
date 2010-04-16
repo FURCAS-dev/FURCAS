@@ -38,8 +38,8 @@ package org.eclipse.emf.ecore;
 public interface EAttribute extends EStructuralFeature
 {
   /**
-   * Returns the value of the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <p>
    * An ID attribute explicitly models 
    * the one unique {@link org.eclipse.emf.ecore.EClass#getEIDAttribute ID} of an object.
@@ -47,36 +47,36 @@ public interface EAttribute extends EStructuralFeature
    * @see org.eclipse.emf.ecore.EClass#getEIDAttribute()
    * @ignore
    * <!-- end-user-doc -->
-   * @return the value of the '<em>ID</em>' attribute.
-   * @see #setID(boolean)
-   * @see org.eclipse.emf.ecore.EcorePackage#getEAttribute_ID()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>ID</em>' attribute.
+	 * @see #setID(boolean)
+	 * @see org.eclipse.emf.ecore.EcorePackage#getEAttribute_ID()
+	 * @model
+	 * @generated
+	 */
   boolean isID();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EAttribute#isID <em>ID</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.ecore.EAttribute#isID <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>ID</em>' attribute.
-   * @see #isID()
-   * @generated
-   */
+	 * @param value the new value of the '<em>ID</em>' attribute.
+	 * @see #isID()
+	 * @generated
+	 */
   void setID(boolean value);
 
   /**
-   * Returns the value of the '<em><b>EAttribute Type</b></em>' reference.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>EAttribute Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
    * <p>
    * The {@link #getEType() type} of an attribute must always be a data type; this method provides access to it.
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>EAttribute Type</em>' reference.
-   * @see org.eclipse.emf.ecore.EcorePackage#getEAttribute_EAttributeType()
-   * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-   * @generated
-   */
+	 * @return the value of the '<em>EAttribute Type</em>' reference.
+	 * @see org.eclipse.emf.ecore.EcorePackage#getEAttribute_EAttributeType()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
   EDataType getEAttributeType();
 
 }

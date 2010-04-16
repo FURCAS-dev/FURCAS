@@ -72,54 +72,54 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation, EOp
   protected int operationID = -1;
 
   /**
-   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getETypeParameters()
-   * @generated
-   * @ordered
-   */
+	 * @see #getETypeParameters()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<ETypeParameter> eTypeParameters;
 
   /**
-   * The cached value of the '{@link #getEParameters() <em>EParameters</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEParameters() <em>EParameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEParameters()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEParameters()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<EParameter> eParameters;
 
   /**
-   * The cached value of the '{@link #getEExceptions() <em>EExceptions</em>}' reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEExceptions() <em>EExceptions</em>}' reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEExceptions()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEExceptions()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<EClassifier> eExceptions;
 
   /**
-   * The cached value of the '{@link #getEGenericExceptions() <em>EGeneric Exceptions</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEGenericExceptions() <em>EGeneric Exceptions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEGenericExceptions()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEGenericExceptions()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<EGenericType> eGenericExceptions;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected EOperationImpl()
   {
-    super();
-  }
+		super();
+	}
 
   @Override
   protected void freeze()
@@ -135,15 +135,15 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation, EOp
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.EOPERATION;
-  }
+		return EcorePackage.Literals.EOPERATION;
+	}
 
   /**
    * <!-- begin-user-doc -->
@@ -156,18 +156,17 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation, EOp
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<EParameter> getEParameters()
   {
-    if (eParameters == null)
-    {
-      eParameters = new EObjectContainmentWithInverseEList<EParameter>(EParameter.class, this, EcorePackage.EOPERATION__EPARAMETERS, EcorePackage.EPARAMETER__EOPERATION);
-    }
-    return eParameters;
-  }
+		if (eParameters == null) {
+			eParameters = new EObjectContainmentWithInverseEList<EParameter>(EParameter.class, this, EcorePackage.EOPERATION__EPARAMETERS, EcorePackage.EPARAMETER__EOPERATION);
+		}
+		return eParameters;
+	}
 
   public EList<EClassifier> getEExceptions()
   {
@@ -546,14 +545,14 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation, EOp
   }
   
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void unsetEExceptions()
   {
-    if (eExceptions != null) ((InternalEList.Unsettable<?>)eExceptions).unset();
-  }
+		if (eExceptions != null) ((InternalEList.Unsettable<?>)eExceptions).unset();
+	}
 
   /**
    * <!-- begin-user-doc -->
@@ -721,24 +720,24 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation, EOp
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void unsetEGenericExceptions()
   {
-    if (eGenericExceptions != null) ((InternalEList.Unsettable<?>)eGenericExceptions).unset();
-  }
+		if (eGenericExceptions != null) ((InternalEList.Unsettable<?>)eGenericExceptions).unset();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isSetEGenericExceptions()
   {
-    return eGenericExceptions != null && ((InternalEList.Unsettable<?>)eGenericExceptions).isSet();
-  }
+		return eGenericExceptions != null && ((InternalEList.Unsettable<?>)eGenericExceptions).isSet();
+	}
 
   /**
    * <!-- begin-user-doc -->
@@ -784,298 +783,289 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation, EOp
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<ETypeParameter> getETypeParameters()
   {
-    if (eTypeParameters == null)
-    {
-      eTypeParameters = new EObjectContainmentEList.Resolving<ETypeParameter>(ETypeParameter.class, this, EcorePackage.EOPERATION__ETYPE_PARAMETERS);
-    }
-    return eTypeParameters;
-  }
+		if (eTypeParameters == null) {
+			eTypeParameters = new EObjectContainmentEList.Resolving<ETypeParameter>(ETypeParameter.class, this, EcorePackage.EOPERATION__ETYPE_PARAMETERS);
+		}
+		return eTypeParameters;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EOPERATION__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EOPERATION__ECONTAINING_CLASS:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.EOPERATION__ECONTAINING_CLASS, msgs);
-      case EcorePackage.EOPERATION__EPARAMETERS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEParameters()).basicAdd(otherEnd, msgs);
-    }
-    return eDynamicInverseAdd(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case EcorePackage.EOPERATION__EANNOTATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+			case EcorePackage.EOPERATION__ECONTAINING_CLASS:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, EcorePackage.EOPERATION__ECONTAINING_CLASS, msgs);
+			case EcorePackage.EOPERATION__EPARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEParameters()).basicAdd(otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EOPERATION__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EOPERATION__EGENERIC_TYPE:
-        return basicUnsetEGenericType(msgs);
-      case EcorePackage.EOPERATION__ECONTAINING_CLASS:
-        return eBasicSetContainer(null, EcorePackage.EOPERATION__ECONTAINING_CLASS, msgs);
-      case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
-        return ((InternalEList<?>)getETypeParameters()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EOPERATION__EPARAMETERS:
-        return ((InternalEList<?>)getEParameters()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
-        return ((InternalEList<?>)getEGenericExceptions()).basicRemove(otherEnd, msgs);
-    }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case EcorePackage.EOPERATION__EANNOTATIONS:
+				return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+			case EcorePackage.EOPERATION__EGENERIC_TYPE:
+				return basicUnsetEGenericType(msgs);
+			case EcorePackage.EOPERATION__ECONTAINING_CLASS:
+				return eBasicSetContainer(null, EcorePackage.EOPERATION__ECONTAINING_CLASS, msgs);
+			case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
+				return ((InternalEList<?>)getETypeParameters()).basicRemove(otherEnd, msgs);
+			case EcorePackage.EOPERATION__EPARAMETERS:
+				return ((InternalEList<?>)getEParameters()).basicRemove(otherEnd, msgs);
+			case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
+				return ((InternalEList<?>)getEGenericExceptions()).basicRemove(otherEnd, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    switch (eContainerFeatureID())
-    {
-      case EcorePackage.EOPERATION__ECONTAINING_CLASS:
-        return eInternalContainer().eInverseRemove(this, EcorePackage.ECLASS__EOPERATIONS, EClass.class, msgs);
-    }
-    return eDynamicBasicRemoveFromContainer(msgs);
-  }
+		switch (eContainerFeatureID()) {
+			case EcorePackage.EOPERATION__ECONTAINING_CLASS:
+				return eInternalContainer().eInverseRemove(this, EcorePackage.ECLASS__EOPERATIONS, EClass.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EOPERATION__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EOPERATION__NAME:
-        return getName();
-      case EcorePackage.EOPERATION__ORDERED:
-        return isOrdered();
-      case EcorePackage.EOPERATION__UNIQUE:
-        return isUnique();
-      case EcorePackage.EOPERATION__LOWER_BOUND:
-        return getLowerBound();
-      case EcorePackage.EOPERATION__UPPER_BOUND:
-        return getUpperBound();
-      case EcorePackage.EOPERATION__MANY:
-        return isMany();
-      case EcorePackage.EOPERATION__REQUIRED:
-        return isRequired();
-      case EcorePackage.EOPERATION__ETYPE:
-        if (resolve) return getEType();
-        return basicGetEType();
-      case EcorePackage.EOPERATION__EGENERIC_TYPE:
-        return getEGenericType();
-      case EcorePackage.EOPERATION__ECONTAINING_CLASS:
-        return getEContainingClass();
-      case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
-        return getETypeParameters();
-      case EcorePackage.EOPERATION__EPARAMETERS:
-        return getEParameters();
-      case EcorePackage.EOPERATION__EEXCEPTIONS:
-        return getEExceptions();
-      case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
-        return getEGenericExceptions();
-    }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case EcorePackage.EOPERATION__EANNOTATIONS:
+				return getEAnnotations();
+			case EcorePackage.EOPERATION__NAME:
+				return getName();
+			case EcorePackage.EOPERATION__ORDERED:
+				return isOrdered();
+			case EcorePackage.EOPERATION__UNIQUE:
+				return isUnique();
+			case EcorePackage.EOPERATION__LOWER_BOUND:
+				return getLowerBound();
+			case EcorePackage.EOPERATION__UPPER_BOUND:
+				return getUpperBound();
+			case EcorePackage.EOPERATION__MANY:
+				return isMany();
+			case EcorePackage.EOPERATION__REQUIRED:
+				return isRequired();
+			case EcorePackage.EOPERATION__ETYPE:
+				if (resolve) return getEType();
+				return basicGetEType();
+			case EcorePackage.EOPERATION__EGENERIC_TYPE:
+				return getEGenericType();
+			case EcorePackage.EOPERATION__ECONTAINING_CLASS:
+				return getEContainingClass();
+			case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
+				return getETypeParameters();
+			case EcorePackage.EOPERATION__EPARAMETERS:
+				return getEParameters();
+			case EcorePackage.EOPERATION__EEXCEPTIONS:
+				return getEExceptions();
+			case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
+				return getEGenericExceptions();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EOPERATION__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.EOPERATION__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.EOPERATION__ORDERED:
-        setOrdered((Boolean)newValue);
-        return;
-      case EcorePackage.EOPERATION__UNIQUE:
-        setUnique((Boolean)newValue);
-        return;
-      case EcorePackage.EOPERATION__LOWER_BOUND:
-        setLowerBound((Integer)newValue);
-        return;
-      case EcorePackage.EOPERATION__UPPER_BOUND:
-        setUpperBound((Integer)newValue);
-        return;
-      case EcorePackage.EOPERATION__ETYPE:
-        setEType((EClassifier)newValue);
-        return;
-      case EcorePackage.EOPERATION__EGENERIC_TYPE:
-        setEGenericType((EGenericType)newValue);
-        return;
-      case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
-        getETypeParameters().clear();
-        getETypeParameters().addAll((Collection<? extends ETypeParameter>)newValue);
-        return;
-      case EcorePackage.EOPERATION__EPARAMETERS:
-        getEParameters().clear();
-        getEParameters().addAll((Collection<? extends EParameter>)newValue);
-        return;
-      case EcorePackage.EOPERATION__EEXCEPTIONS:
-        getEExceptions().clear();
-        getEExceptions().addAll((Collection<? extends EClassifier>)newValue);
-        return;
-      case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
-        getEGenericExceptions().clear();
-        getEGenericExceptions().addAll((Collection<? extends EGenericType>)newValue);
-        return;
-    }
-    eDynamicSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case EcorePackage.EOPERATION__EANNOTATIONS:
+				getEAnnotations().clear();
+				getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+				return;
+			case EcorePackage.EOPERATION__NAME:
+				setName((String)newValue);
+				return;
+			case EcorePackage.EOPERATION__ORDERED:
+				setOrdered((Boolean)newValue);
+				return;
+			case EcorePackage.EOPERATION__UNIQUE:
+				setUnique((Boolean)newValue);
+				return;
+			case EcorePackage.EOPERATION__LOWER_BOUND:
+				setLowerBound((Integer)newValue);
+				return;
+			case EcorePackage.EOPERATION__UPPER_BOUND:
+				setUpperBound((Integer)newValue);
+				return;
+			case EcorePackage.EOPERATION__ETYPE:
+				setEType((EClassifier)newValue);
+				return;
+			case EcorePackage.EOPERATION__EGENERIC_TYPE:
+				setEGenericType((EGenericType)newValue);
+				return;
+			case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
+				getETypeParameters().clear();
+				getETypeParameters().addAll((Collection<? extends ETypeParameter>)newValue);
+				return;
+			case EcorePackage.EOPERATION__EPARAMETERS:
+				getEParameters().clear();
+				getEParameters().addAll((Collection<? extends EParameter>)newValue);
+				return;
+			case EcorePackage.EOPERATION__EEXCEPTIONS:
+				getEExceptions().clear();
+				getEExceptions().addAll((Collection<? extends EClassifier>)newValue);
+				return;
+			case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
+				getEGenericExceptions().clear();
+				getEGenericExceptions().addAll((Collection<? extends EGenericType>)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EOPERATION__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.EOPERATION__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.EOPERATION__ORDERED:
-        setOrdered(ORDERED_EDEFAULT);
-        return;
-      case EcorePackage.EOPERATION__UNIQUE:
-        setUnique(UNIQUE_EDEFAULT);
-        return;
-      case EcorePackage.EOPERATION__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
-        return;
-      case EcorePackage.EOPERATION__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
-        return;
-      case EcorePackage.EOPERATION__ETYPE:
-        unsetEType();
-        return;
-      case EcorePackage.EOPERATION__EGENERIC_TYPE:
-        unsetEGenericType();
-        return;
-      case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
-        getETypeParameters().clear();
-        return;
-      case EcorePackage.EOPERATION__EPARAMETERS:
-        getEParameters().clear();
-        return;
-      case EcorePackage.EOPERATION__EEXCEPTIONS:
-        unsetEExceptions();
-        return;
-      case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
-        unsetEGenericExceptions();
-        return;
-    }
-    eDynamicUnset(featureID);
-  }
+		switch (featureID) {
+			case EcorePackage.EOPERATION__EANNOTATIONS:
+				getEAnnotations().clear();
+				return;
+			case EcorePackage.EOPERATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case EcorePackage.EOPERATION__ORDERED:
+				setOrdered(ORDERED_EDEFAULT);
+				return;
+			case EcorePackage.EOPERATION__UNIQUE:
+				setUnique(UNIQUE_EDEFAULT);
+				return;
+			case EcorePackage.EOPERATION__LOWER_BOUND:
+				setLowerBound(LOWER_BOUND_EDEFAULT);
+				return;
+			case EcorePackage.EOPERATION__UPPER_BOUND:
+				setUpperBound(UPPER_BOUND_EDEFAULT);
+				return;
+			case EcorePackage.EOPERATION__ETYPE:
+				unsetEType();
+				return;
+			case EcorePackage.EOPERATION__EGENERIC_TYPE:
+				unsetEGenericType();
+				return;
+			case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
+				getETypeParameters().clear();
+				return;
+			case EcorePackage.EOPERATION__EPARAMETERS:
+				getEParameters().clear();
+				return;
+			case EcorePackage.EOPERATION__EEXCEPTIONS:
+				unsetEExceptions();
+				return;
+			case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
+				unsetEGenericExceptions();
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EOPERATION__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EOPERATION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.EOPERATION__ORDERED:
-        return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
-      case EcorePackage.EOPERATION__UNIQUE:
-        return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
-      case EcorePackage.EOPERATION__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
-      case EcorePackage.EOPERATION__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
-      case EcorePackage.EOPERATION__MANY:
-        return isMany() != MANY_EDEFAULT;
-      case EcorePackage.EOPERATION__REQUIRED:
-        return isRequired() != REQUIRED_EDEFAULT;
-      case EcorePackage.EOPERATION__ETYPE:
-        return isSetEType();
-      case EcorePackage.EOPERATION__EGENERIC_TYPE:
-        return isSetEGenericType();
-      case EcorePackage.EOPERATION__ECONTAINING_CLASS:
-        return getEContainingClass() != null;
-      case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
-        return eTypeParameters != null && !eTypeParameters.isEmpty();
-      case EcorePackage.EOPERATION__EPARAMETERS:
-        return eParameters != null && !eParameters.isEmpty();
-      case EcorePackage.EOPERATION__EEXCEPTIONS:
-        return isSetEExceptions();
-      case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
-        return isSetEGenericExceptions();
-    }
-    return eDynamicIsSet(featureID);
-  }
+		switch (featureID) {
+			case EcorePackage.EOPERATION__EANNOTATIONS:
+				return eAnnotations != null && !eAnnotations.isEmpty();
+			case EcorePackage.EOPERATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EcorePackage.EOPERATION__ORDERED:
+				return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+			case EcorePackage.EOPERATION__UNIQUE:
+				return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+			case EcorePackage.EOPERATION__LOWER_BOUND:
+				return lowerBound != LOWER_BOUND_EDEFAULT;
+			case EcorePackage.EOPERATION__UPPER_BOUND:
+				return upperBound != UPPER_BOUND_EDEFAULT;
+			case EcorePackage.EOPERATION__MANY:
+				return isMany() != MANY_EDEFAULT;
+			case EcorePackage.EOPERATION__REQUIRED:
+				return isRequired() != REQUIRED_EDEFAULT;
+			case EcorePackage.EOPERATION__ETYPE:
+				return isSetEType();
+			case EcorePackage.EOPERATION__EGENERIC_TYPE:
+				return isSetEGenericType();
+			case EcorePackage.EOPERATION__ECONTAINING_CLASS:
+				return getEContainingClass() != null;
+			case EcorePackage.EOPERATION__ETYPE_PARAMETERS:
+				return eTypeParameters != null && !eTypeParameters.isEmpty();
+			case EcorePackage.EOPERATION__EPARAMETERS:
+				return eParameters != null && !eParameters.isEmpty();
+			case EcorePackage.EOPERATION__EEXCEPTIONS:
+				return isSetEExceptions();
+			case EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS:
+				return isSetEGenericExceptions();
+		}
+		return eDynamicIsSet(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
   {
-    switch (operationID)
-    {
-      case EcorePackage.EOPERATION___GET_EANNOTATION__STRING:
-        return getEAnnotation((String)arguments.get(0));
-      case EcorePackage.EOPERATION___GET_OPERATION_ID:
-        return getOperationID();
-      case EcorePackage.EOPERATION___IS_OVERRIDE_OF__EOPERATION:
-        return isOverrideOf((EOperation)arguments.get(0));
-    }
-    return eDynamicInvoke(operationID, arguments);
-  }
+		switch (operationID) {
+			case EcorePackage.EOPERATION___GET_EANNOTATION__STRING:
+				return getEAnnotation((String)arguments.get(0));
+			case EcorePackage.EOPERATION___GET_OPERATION_ID:
+				return getOperationID();
+			case EcorePackage.EOPERATION___IS_OVERRIDE_OF__EOPERATION:
+				return isOverrideOf((EOperation)arguments.get(0));
+		}
+		return eDynamicInvoke(operationID, arguments);
+	}
 
   protected EOperation.Internal.InvocationDelegate invocationDelegate;
   

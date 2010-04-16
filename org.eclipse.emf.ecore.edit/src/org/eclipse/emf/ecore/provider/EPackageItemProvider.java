@@ -50,152 +50,150 @@ public class EPackageItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EPackageItemProvider(AdapterFactory adapterFactory)
   {
-    super(adapterFactory);
-  }
+		super(adapterFactory);
+	}
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-    if (itemPropertyDescriptors == null)
-    {
-      super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-      addNsURIPropertyDescriptor(object);
-      addNsPrefixPropertyDescriptor(object);
-      addEFactoryInstancePropertyDescriptor(object);
-    }
-    return itemPropertyDescriptors;
-  }
+			addNsURIPropertyDescriptor(object);
+			addNsPrefixPropertyDescriptor(object);
+			addEFactoryInstancePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
   /**
-   * This adds a property descriptor for the Ns URI feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Ns URI feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addNsURIPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_EPackage_nsURI_feature"),
-         getString("_UI_EPackage_nsURI_description"),
-         EcorePackage.Literals.EPACKAGE__NS_URI,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EPackage_nsURI_feature"),
+				 getString("_UI_EPackage_nsURI_description"),
+				 EcorePackage.Literals.EPACKAGE__NS_URI,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Ns Prefix feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Ns Prefix feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addNsPrefixPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_EPackage_nsPrefix_feature"),
-         getString("_UI_EPackage_nsPrefix_description"),
-         EcorePackage.Literals.EPACKAGE__NS_PREFIX,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EPackage_nsPrefix_feature"),
+				 getString("_UI_EPackage_nsPrefix_description"),
+				 EcorePackage.Literals.EPACKAGE__NS_PREFIX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the EFactory Instance feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the EFactory Instance feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addEFactoryInstancePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_EPackage_eFactoryInstance_feature"),
-         getString("_UI_EPackage_eFactoryInstance_description"),
-         EcorePackage.Literals.EPACKAGE__EFACTORY_INSTANCE,
-         false,
-         false,
-         false,
-         null,
-         null,
-         new String[] {
-          "org.eclipse.ui.views.properties.expert"
-         }));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EPackage_eFactoryInstance_feature"),
+				 getString("_UI_EPackage_eFactoryInstance_description"),
+				 EcorePackage.Literals.EPACKAGE__EFACTORY_INSTANCE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 new String[] {
+					"org.eclipse.ui.views.properties.expert"
+				 }));
+	}
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
   {
-    if (childrenFeatures == null)
-    {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(EcorePackage.Literals.EPACKAGE__ECLASSIFIERS);
-      childrenFeatures.add(EcorePackage.Literals.EPACKAGE__ESUBPACKAGES);
-    }
-    return childrenFeatures;
-  }
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(EcorePackage.Literals.EPACKAGE__ECLASSIFIERS);
+			childrenFeatures.add(EcorePackage.Literals.EPACKAGE__ESUBPACKAGES);
+		}
+		return childrenFeatures;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EStructuralFeature getChildFeature(Object object, Object child)
   {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-    return super.getChildFeature(object, child);
-  }
+		return super.getChildFeature(object, child);
+	}
 
   /**
-   * This returns EPackage.gif.
-   * <!-- begin-user-doc -->
+	 * This returns EPackage.gif.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/EPackage"));
-  }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EPackage"));
+	}
 
   /**
    * This returns the label text for the adapted class.
@@ -213,63 +211,62 @@ public class EPackageItemProvider
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void notifyChanged(Notification notification)
   {
-    updateChildren(notification);
+		updateChildren(notification);
 
-    switch (notification.getFeatureID(EPackage.class))
-    {
-      case EcorePackage.EPACKAGE__NS_URI:
-      case EcorePackage.EPACKAGE__NS_PREFIX:
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-        return;
-    }
-    super.notifyChanged(notification);
-  }
+		switch (notification.getFeatureID(EPackage.class)) {
+			case EcorePackage.EPACKAGE__NS_URI:
+			case EcorePackage.EPACKAGE__NS_PREFIX:
+			case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case EcorePackage.EPACKAGE__ECLASSIFIERS:
+			case EcorePackage.EPACKAGE__ESUBPACKAGES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
   {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
-         EcoreFactory.eINSTANCE.createEClass()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
+				 EcoreFactory.eINSTANCE.createEClass()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
-         EcoreFactory.eINSTANCE.createEDataType()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
+				 EcoreFactory.eINSTANCE.createEDataType()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
-         EcoreFactory.eINSTANCE.createEEnum()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EPACKAGE__ECLASSIFIERS,
+				 EcoreFactory.eINSTANCE.createEEnum()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EPACKAGE__ESUBPACKAGES,
-         EcoreFactory.eINSTANCE.createEPackage()));
-  }
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EPACKAGE__ESUBPACKAGES,
+				 EcoreFactory.eINSTANCE.createEPackage()));
+	}
 
 }

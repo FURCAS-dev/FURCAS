@@ -305,6 +305,8 @@
         eType="#//EClass" changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eKeys" upperBound="-1"
         eType="#//EAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOpposite" eType="#//EReference"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStructuralFeature" abstract="true"
       eSuperTypes="#//ETypedElement">

@@ -54,13 +54,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public abstract class EModelElementImpl extends MinimalEObjectImpl.Container implements EModelElement
 {
   /**
-   * The cached value of the '{@link #getEAnnotations() <em>EAnnotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEAnnotations() <em>EAnnotations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEAnnotations()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEAnnotations()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<EAnnotation> eAnnotations;
 
   /**
@@ -69,14 +69,14 @@ public abstract class EModelElementImpl extends MinimalEObjectImpl.Container imp
   protected int eFlags;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected EModelElementImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
    * The bit of {@link #eFlags} that is used to represent being {@link #freeze() frozen}.
@@ -119,29 +119,28 @@ public abstract class EModelElementImpl extends MinimalEObjectImpl.Container imp
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.EMODEL_ELEMENT;
-  }
+		return EcorePackage.Literals.EMODEL_ELEMENT;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<EAnnotation> getEAnnotations()
   {
-    if (eAnnotations == null)
-    {
-      eAnnotations = new EObjectContainmentWithInverseEList<EAnnotation>(EAnnotation.class, this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
-    }
-    return eAnnotations;
-  }
+		if (eAnnotations == null) {
+			eAnnotations = new EObjectContainmentWithInverseEList<EAnnotation>(EAnnotation.class, this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
+		}
+		return eAnnotations;
+	}
 
   /**
    * <!-- begin-user-doc -->
@@ -211,121 +210,114 @@ public abstract class EModelElementImpl extends MinimalEObjectImpl.Container imp
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-    }
-    return eDynamicInverseAdd(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-    }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+				return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return getEAnnotations();
-    }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+				return getEAnnotations();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-    }
-    eDynamicSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+				getEAnnotations().clear();
+				getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-    }
-    eDynamicUnset(featureID);
-  }
+		switch (featureID) {
+			case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+				getEAnnotations().clear();
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-    }
-    return eDynamicIsSet(featureID);
-  }
+		switch (featureID) {
+			case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+				return eAnnotations != null && !eAnnotations.isEmpty();
+		}
+		return eDynamicIsSet(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
   {
-    switch (operationID)
-    {
-      case EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING:
-        return getEAnnotation((String)arguments.get(0));
-    }
-    return eDynamicInvoke(operationID, arguments);
-  }
+		switch (operationID) {
+			case EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING:
+				return getEAnnotation((String)arguments.get(0));
+		}
+		return eDynamicInvoke(operationID, arguments);
+	}
 
   @Override
   public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject)

@@ -58,33 +58,32 @@ public class EOperationItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EOperationItemProvider(AdapterFactory adapterFactory)
   {
-    super(adapterFactory);
-  }
+		super(adapterFactory);
+	}
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-    if (itemPropertyDescriptors == null)
-    {
-      super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-      addEExceptionsPropertyDescriptor(object);
-    }
-    return itemPropertyDescriptors;
-  }
+			addEExceptionsPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
   /**
    * This adds a property descriptor for the EExceptions feature.
@@ -310,32 +309,32 @@ public class EOperationItemProvider
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
   {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EOPERATION__ETYPE_PARAMETERS,
-         EcoreFactory.eINSTANCE.createETypeParameter()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EOPERATION__ETYPE_PARAMETERS,
+				 EcoreFactory.eINSTANCE.createETypeParameter()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EOPERATION__EPARAMETERS,
-         EcoreFactory.eINSTANCE.createEParameter()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EOPERATION__EPARAMETERS,
+				 EcoreFactory.eINSTANCE.createEParameter()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (EcorePackage.Literals.EOPERATION__EGENERIC_EXCEPTIONS,
-         EcoreFactory.eINSTANCE.createEGenericType()));
-  }
+		newChildDescriptors.add
+			(createChildParameter
+				(EcorePackage.Literals.EOPERATION__EGENERIC_EXCEPTIONS,
+				 EcoreFactory.eINSTANCE.createEGenericType()));
+	}
 
   /**
    * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
