@@ -119,6 +119,88 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getINTTerminalRuleCall() { return cINTTerminalRuleCall; }
 	}
 
+	public class IdentifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cID_TERMINALTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cEKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cEKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		
+		//Identifier returns ecore::EString:
+		//  ID_TERMINAL|"e"|"E"; 
+		//
+		//
+		//	
+		//	 
+		//	 
+		//
+		//
+		////---------------------------------------------------------------------
+		////  Names
+		////---------------------------------------------------------------------
+		/// *  Temporary backward compatibility support for 7.4.8 conceptual usage 
+		//conceptualOperationName returns SimpleNameCS:
+		//	value='and'
+		//	| value='implies'
+		//	| value='not'
+		//	| value='or'
+		//	| value='xor'
+		//	| value='<'
+		//	| value='<='
+		//	| value='>='
+		//	| value='>'
+		//	| value='='
+		//	| value='<>'
+		//	| value='+'
+		//	| value='-'
+		//	| value='*'
+		//	| value='/';
+		//conceptualOperationNameCS returns SimpleNameCS:
+		//	conceptualOperationName; * /
+		public ParserRule getRule() { return rule; }
+
+		//ID_TERMINAL|"e"|"E" 
+		//
+		//
+		//	
+		//	 
+		//	 
+		//
+		//
+		////---------------------------------------------------------------------
+		////  Names
+		////---------------------------------------------------------------------
+		/// *  Temporary backward compatibility support for 7.4.8 conceptual usage 
+		//conceptualOperationName returns SimpleNameCS:
+		//	value='and'
+		//	| value='implies'
+		//	| value='not'
+		//	| value='or'
+		//	| value='xor'
+		//	| value='<'
+		//	| value='<='
+		//	| value='>='
+		//	| value='>'
+		//	| value='='
+		//	| value='<>'
+		//	| value='+'
+		//	| value='-'
+		//	| value='*'
+		//	| value='/';
+		//conceptualOperationNameCS returns SimpleNameCS:
+		//	conceptualOperationName; * /
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ID_TERMINAL
+		public RuleCall getID_TERMINALTerminalRuleCall_0() { return cID_TERMINALTerminalRuleCall_0; }
+
+		//"e"
+		public Keyword getEKeyword_1() { return cEKeyword_1; }
+
+		//"E"
+		public Keyword getEKeyword_2() { return cEKeyword_2; }
+	}
+
 	public class ReservedKeywordCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "reservedKeywordCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -148,7 +230,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//reservedKeywordCS returns SimpleNameCS:
 		//  value="and"|value="else"|value="endif"|value="if"|value="implies"|value="in"|
 		//  value="let"|value="not"|value="or"|value="then"|value="xor"; 
-		//	
+		//
 		////---------------------------------------------------------------------
 		////  Names
 		////---------------------------------------------------------------------
@@ -175,7 +257,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//value="and"|value="else"|value="endif"|value="if"|value="implies"|value="in"|
 		//value="let"|value="not"|value="or"|value="then"|value="xor" 
-		//	
+		//
 		////---------------------------------------------------------------------
 		////  Names
 		////---------------------------------------------------------------------
@@ -345,17 +427,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class SimpleNameCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "simpleNameCS");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueIDTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueIdentifierParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//simpleNameCS returns SimpleNameCS:
-		//  value=ID;
+		//  value=Identifier;
 		public ParserRule getRule() { return rule; }
 
-		//value=ID
+		//value=Identifier
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//ID
-		public RuleCall getValueIDTerminalRuleCall_0() { return cValueIDTerminalRuleCall_0; }
+		//Identifier
+		public RuleCall getValueIdentifierParserRuleCall_0() { return cValueIdentifierParserRuleCall_0; }
 	}
 
 	public class UnreservedSimpleNameCSElements extends AbstractParserRuleElementFinder {
@@ -2283,7 +2365,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private ModelElements pModel;
 	private TerminalRule tSTRING_LITERAL;
-	private TerminalRule tID;
+	private TerminalRule tID_TERMINAL;
 	private TerminalRule tINT;
 	private REAL_LITERALElements pREAL_LITERAL;
 	private INTEGER_LITERALElements pINTEGER_LITERAL;
@@ -2291,6 +2373,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
 	private TerminalRule tANY_OTHER;
+	private IdentifierElements pIdentifier;
 	private ReservedKeywordCSElements pReservedKeywordCS;
 	private TupleKeywordCSElements pTupleKeywordCS;
 	private RestrictedKeywordCSElements pRestrictedKeywordCS;
@@ -2370,14 +2453,14 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return (tSTRING_LITERAL != null) ? tSTRING_LITERAL : (tSTRING_LITERAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_LITERAL"));
 	} 
 
-	//terminal ID:
+	//terminal ID_TERMINAL:
 	//  ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" STRING_LITERAL;  
 	//	
-	//    		 
-	//	  
+	//    		 // NB not "ID" to ensure implicit use of ID is an error
+	//	   
 	////| 	("_'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'")
-	public TerminalRule getIDRule() {
-		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
+	public TerminalRule getID_TERMINALRule() {
+		return (tID_TERMINAL != null) ? tID_TERMINAL : (tID_TERMINAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID_TERMINAL"));
 	} 
 
 	//terminal INT:
@@ -2429,10 +2512,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ANY_OTHER:
-	//  .; 
+	//  .;
+	public TerminalRule getANY_OTHERRule() {
+		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
+	} 
+
+	//Identifier returns ecore::EString:
+	//  ID_TERMINAL|"e"|"E"; 
 	//
-	//    
+	//
 	//	
+	//	 
+	//	 
+	//
+	//
 	////---------------------------------------------------------------------
 	////  Names
 	////---------------------------------------------------------------------
@@ -2455,14 +2548,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//	| value='/';
 	//conceptualOperationNameCS returns SimpleNameCS:
 	//	conceptualOperationName; * /
-	public TerminalRule getANY_OTHERRule() {
-		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
-	} 
+	public IdentifierElements getIdentifierAccess() {
+		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
+	}
+	
+	public ParserRule getIdentifierRule() {
+		return getIdentifierAccess().getRule();
+	}
 
 	//reservedKeywordCS returns SimpleNameCS:
 	//  value="and"|value="else"|value="endif"|value="if"|value="implies"|value="in"|
 	//  value="let"|value="not"|value="or"|value="then"|value="xor"; 
-	//	
+	//
 	////---------------------------------------------------------------------
 	////  Names
 	////---------------------------------------------------------------------
@@ -2531,7 +2628,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//simpleNameCS returns SimpleNameCS:
-	//  value=ID;
+	//  value=Identifier;
 	public SimpleNameCSElements getSimpleNameCSAccess() {
 		return (pSimpleNameCS != null) ? pSimpleNameCS : (pSimpleNameCS = new SimpleNameCSElements());
 	}

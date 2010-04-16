@@ -11,7 +11,7 @@ terminal STRING_LITERAL	:
 	"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
 ; 
 	
-terminal ID  		:
+terminal ID_TERMINAL :		// NB not "ID" to ensure implicit use of ID is an error
 	(('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*)
 //| 	("_'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'")
 | 	("_" STRING_LITERAL)
@@ -34,7 +34,13 @@ terminal SL_COMMENT : '--' !('\n'|'\r')* ('\r'? '\n')?;
 terminal WS			: (' '|'\t'|'\r'|'\n')+;
 
 terminal ANY_OTHER: .;
-	
+
+Identifier:
+	ID_TERMINAL
+|	'e'
+|	'E'
+;
+
 //---------------------------------------------------------------------
 //  Names
 //---------------------------------------------------------------------
@@ -87,7 +93,7 @@ selfKeywordCS returns SimpleNameCS:
 	value='self';
     
 simpleNameCS returns SimpleNameCS:
-	value=ID;
+	value=Identifier;
 
 unreservedSimpleNameCS returns SimpleNameCS:
 	simpleNameCS | restrictedKeywordCS;
