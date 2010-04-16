@@ -234,6 +234,50 @@ ruleINTEGER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 
 
 
+// Entry rule entryRuleIdentifier
+entryRuleIdentifier returns [String current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getIdentifierRule(), currentNode); } 
+	 iv_ruleIdentifier=ruleIdentifier 
+	 { $current=$iv_ruleIdentifier.current.getText(); }  
+	 EOF 
+;
+
+// Rule Identifier
+ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+	    lastConsumedNode = currentNode;
+    }:
+(    this_ID_TERMINAL_0=RULE_ID_TERMINAL    {
+		$current.merge(this_ID_TERMINAL_0);
+    }
+
+    { 
+    createLeafNode(grammarAccess.getIdentifierAccess().getID_TERMINALTerminalRuleCall_0(), null); 
+    }
+
+    |
+	kw='e' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getIdentifierAccess().getEKeyword_1(), null); 
+    }
+
+    |
+	kw='E' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getIdentifierAccess().getEKeyword_2(), null); 
+    }
+)
+    ;
+
+
+
+
+
 
 
 // Entry rule entryRuletupleKeywordCS
@@ -403,25 +447,25 @@ rulesimpleNameCS returns [EObject current=null]
     }:
 (
 (
-		lv_value_0_0=RULE_ID
-		{
-			createLeafNode(grammarAccess.getSimpleNameCSAccess().getValueIDTerminalRuleCall_0(), "value"); 
-		}
-		{
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getSimpleNameCSAccess().getValueIdentifierParserRuleCall_0(), currentNode); 
+	    }
+		lv_value_0_0=ruleIdentifier		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getSimpleNameCSRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        try {
 	       		set(
 	       			$current, 
 	       			"value",
 	        		lv_value_0_0, 
-	        		"ID", 
-	        		lastConsumedNode);
+	        		"Identifier", 
+	        		currentNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	        currentNode = currentNode.getParent();
 	    }
 
 )
@@ -4523,7 +4567,7 @@ ruleLetVariableCS returns [EObject current=null]
 
 RULE_STRING_LITERAL : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
-RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
+RULE_ID_TERMINAL : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
 
 RULE_INT : ('0'..'9')+;
 

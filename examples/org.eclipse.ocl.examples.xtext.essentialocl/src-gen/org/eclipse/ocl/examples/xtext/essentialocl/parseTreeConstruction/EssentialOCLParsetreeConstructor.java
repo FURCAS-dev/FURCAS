@@ -143,12 +143,13 @@ protected class Model_OclExpressionCSParserRuleCall extends RuleCallToken {
 
 
 
+
 /************ begin Rule reservedKeywordCS ****************
  *
  * reservedKeywordCS returns SimpleNameCS:
  *   value="and"|value="else"|value="endif"|value="if"|value="implies"|value="in"|
  *   value="let"|value="not"|value="or"|value="then"|value="xor"; 
- * 	
+ * 
  * //---------------------------------------------------------------------
  * //  Names
  * //---------------------------------------------------------------------
@@ -176,7 +177,7 @@ protected class Model_OclExpressionCSParserRuleCall extends RuleCallToken {
 
 // value="and"|value="else"|value="endif"|value="if"|value="implies"|value="in"|
 // value="let"|value="not"|value="or"|value="then"|value="xor" 
-// 	
+// 
 // //---------------------------------------------------------------------
 // //  Names
 // //---------------------------------------------------------------------
@@ -865,11 +866,11 @@ protected class SelfKeywordCS_ValueAssignment extends AssignmentToken  {
 /************ begin Rule simpleNameCS ****************
  *
  * simpleNameCS returns SimpleNameCS:
- *   value=ID;
+ *   value=Identifier;
  *
  **/
 
-// value=ID
+// value=Identifier
 protected class SimpleNameCS_ValueAssignment extends AssignmentToken  {
 	
 	public SimpleNameCS_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -898,8 +899,8 @@ protected class SimpleNameCS_ValueAssignment extends AssignmentToken  {
 		if((value = current.getConsumable("value",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(Boolean.TRUE.booleanValue()) { 
-			type = AssignmentType.LRC;
-			element = grammarAccess.getSimpleNameCSAccess().getValueIDTerminalRuleCall_0();
+			type = AssignmentType.DRC;
+			element = grammarAccess.getSimpleNameCSAccess().getValueIdentifierParserRuleCall_0();
 			return obj;
 		}
 		return null;
