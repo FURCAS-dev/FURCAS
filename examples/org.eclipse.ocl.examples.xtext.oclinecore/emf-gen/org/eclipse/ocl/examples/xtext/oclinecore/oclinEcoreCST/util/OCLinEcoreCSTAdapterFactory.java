@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTAdapterFactory.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreCSTAdapterFactory.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 
@@ -125,6 +125,10 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl {
 				return createAnnotationCSAdapter();
 			}
 			@Override
+			public Adapter caseAnnotationElementCS(AnnotationElementCS object) {
+				return createAnnotationElementCSAdapter();
+			}
+			@Override
 			public Adapter caseAttributeCS(AttributeCS object) {
 				return createAttributeCSAdapter();
 			}
@@ -179,6 +183,10 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDocumentCS(DocumentCS object) {
 				return createDocumentCSAdapter();
+			}
+			@Override
+			public Adapter caseDocumentationCS(DocumentationCS object) {
+				return createDocumentationCSAdapter();
 			}
 			@Override
 			public Adapter caseEAttributeRef(EAttributeRef object) {
@@ -331,6 +339,20 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS <em>Annotation Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS
+	 * @generated
+	 */
+	public Adapter createAnnotationElementCSAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS <em>Attribute CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -439,6 +461,20 @@ public class OCLinEcoreCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDocumentCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS <em>Documentation CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS
+	 * @generated
+	 */
+	public Adapter createDocumentationCSAdapter() {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AttributeRef.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: AttributeRef.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -28,5 +28,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface AttributeRef extends EObject {
+public interface AttributeRef extends ObjectRef {
 } // AttributeRef

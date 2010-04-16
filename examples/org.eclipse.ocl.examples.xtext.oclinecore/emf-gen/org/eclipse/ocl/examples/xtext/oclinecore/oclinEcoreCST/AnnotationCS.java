@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: AnnotationCS.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getIdSource <em>Id Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getStringSource <em>String Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getDetails <em>Details</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS#getReferences <em>References</em>}</li>
  * </ul>
@@ -38,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AnnotationCS extends ModelElementCS {
+public interface AnnotationCS extends AnnotationElementCS {
 	/**
 	 * Returns the value of the '<em><b>Id Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,22 +89,6 @@ public interface AnnotationCS extends ModelElementCS {
 	 * @generated
 	 */
 	void setStringSource(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Details</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DetailCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Details</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Details</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getAnnotationCS_Details()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<DetailCS> getDetails();
 
 	/**
 	 * Returns the value of the '<em><b>Contents</b></em>' containment reference list.

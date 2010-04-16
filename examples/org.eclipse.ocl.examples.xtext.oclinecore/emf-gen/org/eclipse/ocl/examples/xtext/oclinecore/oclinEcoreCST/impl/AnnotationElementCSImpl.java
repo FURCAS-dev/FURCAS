@@ -12,41 +12,43 @@
  *
  * </copyright>
  *
- * $Id: TypeCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: AnnotationElementCSImpl.java,v 1.1 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Def CS</b></em>'.
+ * An implementation of the model object '<em><b>Annotation Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.TypeCSImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.TypeCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationElementCSImpl#getAnnotations <em>Annotations</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationElementCSImpl#getDetails <em>Details</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements TypeCS {
+public abstract class AnnotationElementCSImpl extends MinimalEObjectImpl.Container implements AnnotationElementCS {
 	/**
 	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -58,31 +60,21 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	protected EList<AnnotationElementCS> annotations;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getDetails() <em>Details</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getDetails()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
+	protected EList<DetailCS> details;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeCSImpl() {
+	protected AnnotationElementCSImpl() {
 		super();
 	}
 
@@ -93,7 +85,7 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCLinEcoreCSTPackage.Literals.TYPE_CS;
+		return OCLinEcoreCSTPackage.Literals.ANNOTATION_ELEMENT_CS;
 	}
 
 	/**
@@ -103,7 +95,7 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EList<AnnotationElementCS> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.TYPE_CS__ANNOTATIONS);
+			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__ANNOTATIONS);
 		}
 		return annotations;
 	}
@@ -113,20 +105,11 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.TYPE_CS__NAME, oldName, name));
+	public EList<DetailCS> getDetails() {
+		if (details == null) {
+			details = new EObjectContainmentEList<DetailCS>(DetailCS.class, this, OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS);
+		}
+		return details;
 	}
 
 	/**
@@ -137,8 +120,10 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.TYPE_CS__ANNOTATIONS:
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__ANNOTATIONS:
 				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
+				return ((InternalEList<?>)getDetails()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -151,10 +136,10 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.TYPE_CS__ANNOTATIONS:
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__ANNOTATIONS:
 				return getAnnotations();
-			case OCLinEcoreCSTPackage.TYPE_CS__NAME:
-				return getName();
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
+				return getDetails();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,12 +153,13 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.TYPE_CS__ANNOTATIONS:
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__ANNOTATIONS:
 				getAnnotations().clear();
 				getAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
-			case OCLinEcoreCSTPackage.TYPE_CS__NAME:
-				setName((String)newValue);
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
+				getDetails().clear();
+				getDetails().addAll((Collection<? extends DetailCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,11 +173,11 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.TYPE_CS__ANNOTATIONS:
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__ANNOTATIONS:
 				getAnnotations().clear();
 				return;
-			case OCLinEcoreCSTPackage.TYPE_CS__NAME:
-				setName(NAME_EDEFAULT);
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
+				getDetails().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -205,28 +191,12 @@ public abstract class TypeCSImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.TYPE_CS__ANNOTATIONS:
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__ANNOTATIONS:
 				return annotations != null && !annotations.isEmpty();
-			case OCLinEcoreCSTPackage.TYPE_CS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case OCLinEcoreCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
+				return details != null && !details.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
-
-} //TypeDefCSImpl
+} //AnnotationElementCSImpl

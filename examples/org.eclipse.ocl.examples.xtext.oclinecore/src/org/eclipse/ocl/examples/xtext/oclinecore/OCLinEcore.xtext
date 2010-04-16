@@ -14,12 +14,8 @@ terminal URL	:
 	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"'
 ; 
 
-terminal OCL	:
-	'£' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '£'
-; 
-
 FQN:
-	ID ('.' ID)*
+	Identifier ('.' Identifier)*
 ;
 
 INTEGER returns ecore::EInt:
@@ -34,81 +30,126 @@ UPPER returns ecore::EInt:
 	INT | '*'
 ;
 
+RestrictedKeywords returns ecore::EString:			// For extension by derived grammars
+	'abstract'
+//|	'annotation'
+//|	'api'
+|	'attribute'
+|	'body'
+|	'class'
+//|	'composes'
+//|	'datatype'
+//|	'derivation'
+//|	'derived'
+//|	'documentation'
+|	'enum'
+|	'extends'
+|	'id'
+|	'import'
+//|	'initial'
+|	'interface'
+|	'invariant'
+|	'operation'
+|	'ordered'
+|	'package'
+//|	'postcondition'
+//|	'precondition'
+|	'property'
+//|	'readonly'
+//|	'resolve'
+|	'serializable'
+//|	'super'
+//|	'throws'
+|	'transient'
+|	'unique'
+//|	'unsettable'
+|	'volatile'
+;
+
+Identifier returns ecore::EString:			// For extension by derived grammars
+	ID_TERMINAL
+|	'e'
+|	'E'
+|	RestrictedKeywords
+;
+
 BodyConstraintCS returns ConstraintCS:
-	stereotype='body' name=ID? ':' (exprValue=OclExpressionCS|exprString=OCL) ';'
+	stereotype='body' name=Identifier? ':' (exprValue=OclExpressionCS|exprString=URL)? ';'
 ;
 
 DerivedConstraintCS returns ConstraintCS:
-	stereotype='derivation' ':' (exprValue=OclExpressionCS|exprString=OCL) ';'
+	stereotype='derivation' ':' (exprValue=OclExpressionCS|exprString=URL)? ';'
 ;
 
 InitialConstraintCS returns ConstraintCS:
-	stereotype='initial' ':' (exprValue=OclExpressionCS|exprString=OCL) ';'
+	stereotype='initial' ':' (exprValue=OclExpressionCS|exprString=URL)? ';'
 ;
 
 InvariantConstraintCS returns ConstraintCS:
-	stereotype='invariant' name=ID? ':' (exprValue=OclExpressionCS|exprString=OCL) ';'
+	stereotype='invariant' name=Identifier? ':' (exprValue=OclExpressionCS|exprString=URL)? ';'
 ;
 
 PostconditionConstraintCS returns ConstraintCS:
-	stereotype='postcondition' name=ID? ':' (exprValue=OclExpressionCS|exprString=OCL) ';'
+	stereotype='postcondition' name=Identifier? ':' (exprValue=OclExpressionCS|exprString=URL)? ';'
 ;
 
 PreconditionConstraintCS returns ConstraintCS:
-	stereotype='precondition' name=ID? ':' (exprValue=OclExpressionCS|exprString=OCL) ';'
+	stereotype='precondition' name=Identifier? ':' (exprValue=OclExpressionCS|exprString=URL)? ';'
 ;
 
 EClassRef returns EClassRef:
-	ref=[ecore::EClass]
+	ref=[ecore::EClass|Identifier]
 ; 
 
 EClassifierRef returns EClassifierRef:
-	ref=[ecore::EClassifier]
+	ref=[ecore::EClassifier|Identifier]
 ; 
 
 EDataTypeRef returns EDataTypeRef:
-	ref=[ecore::EDataType]
+	ref=[ecore::EDataType|Identifier]
 ; 
 
 EReferenceRef returns EReferenceRef:
-	ref=[ecore::EReference]
+	ref=[ecore::EReference|Identifier]
 ; 
 
 AnnotationCS returns AnnotationCS:
-	'@'
-//	(annotations+=AnnotationCS)*
-	(idSource=ID|stringSource=URL)
+	'annotation' (idSource=Identifier|stringSource=URL)
 	('(' details+=DetailCS (',' details+=DetailCS)* ')')?
+	(('{' (annotations+=AnnotationElementCS
+	     | contents+=ModelElementCS
+	     | references+=ObjectRef)+
+	  '}')
+	|';'
+	)
+;
+
+AnnotationElementCS returns AnnotationElementCS:
+	AnnotationCS | DocumentationCS
 ;
 
 AttributeCS returns AttributeCS:
-	(annotations+=AnnotationCS)*
-	(qualifiers+='derived'|qualifiers+='!derived'
-	|qualifiers+='id'|qualifiers+='!id'
-	|qualifiers+='ordered'|qualifiers+='!ordered'
-	|qualifiers+='readonly'|qualifiers+='!readonly'
-	|qualifiers+='transient'|qualifiers+='!transient'
-	|qualifiers+='unique'|qualifiers+='!unique'
-	|qualifiers+='unsettable'|qualifiers+='!unsettable'
-	|qualifiers+='volatile'|qualifiers+='!volatile')*
-	'attribute' name=ID
+	'attribute' name=Identifier
 	(':' type=TypeRefCS
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
 	('=' defaultValueLiteral=URL)?
-	(	('{' (constraints+=(InitialConstraintCS|DerivedConstraintCS))* '}')
+	('{' qualifiers+=('api'|'!api'|'derived'|'!derived'|'id'|'!id'|'ordered'|'!ordered'|'readonly'|'!readonly'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile')
+	 (',' qualifiers+=('api'|'!api'|'derived'|'!derived'|'id'|'!id'|'ordered'|'!ordered'|'readonly'|'!readonly'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS  | constraints+=(InitialConstraintCS|DerivedConstraintCS))* '}')
 	|	';'
 	)
 ;
 
 ClassCS returns ClassCS:
-	(annotations+=AnnotationCS)*
-	(qualifiers+='abstract'|qualifiers+='!abstract'
-	|qualifiers+='interface'|qualifiers+='!interface')*
-	'class' name=ID
+	'class' name=Identifier
 	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?
 	('extends' superTypes+=TypeRefCS (',' superTypes+=TypeRefCS)*)?
-	(':' instanceClassName=FQN)?
-	(	('{' (operations+=OperationCS | structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* '}')
+	(':' instanceClassName=URL)?
+	('{' qualifiers+=('abstract'|'!abstract'|'interface'|'!interface')
+	 (',' qualifiers+=('abstract'|'!abstract'|'interface'|'!interface'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* '}')
 	|	';'
 	)
 ;
@@ -118,7 +159,7 @@ ClassRef returns ClassRef:
 ; 
 
 ClassCSRef returns ClassCSRef:
-	ref=[ClassCS]
+	ref=[ClassCS|Identifier]
 ; 
 
 ClassifierCS returns ClassifierCS:
@@ -126,12 +167,11 @@ ClassifierCS returns ClassifierCS:
 ;
 
 DataTypeCS returns DataTypeCS:
-	(annotations+=AnnotationCS)*
-	(qualifiers+='transient'|qualifiers+='!transient')*
-	'datatype' name=ID
+	'datatype' name=Identifier
 	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?	
-	(':' instanceClassName=FQN)?
-	(	('{' constraints+=InvariantConstraintCS* '}')
+	(':' instanceClassName=URL)?
+	('{' qualifiers+=('serializable'|'!serializable') '}')?
+	(	('{' (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* '}')
 	|	';'
 	)
 ;
@@ -141,84 +181,100 @@ DataTypeRef returns DataTypeRef:
 ; 
 
 DataTypeCSRef returns DataTypeCSRef:
-	ref=[DataTypeOrEnumCS]
+	ref=[DataTypeOrEnumCS|Identifier]
 ; 
 
 DetailCS returns DetailCS:
-	(idName=ID|stringName=URL) '=' value=STRING_LITERAL
+	(idName=Identifier|stringName=URL) '=' value=STRING_LITERAL
+;
+
+DocumentationCS returns DocumentationCS:
+	{DocumentationCS} 'documentation' value=URL?
+	('(' details+=DetailCS (',' details+=DetailCS)* ')')?
+	 ';'
 ;
 
 EClassifierCSRef returns EClassifierCSRef:
-	modelName=ID "::" ref=[ecore::EClassifier|ID]
+	modelName=Identifier "::" ref=[ecore::EClassifier|Identifier]
 ; 
 
 EnumCS returns EnumCS:
-	(annotations+=AnnotationCS)*
-	'enum' name=ID
+	'enum' name=Identifier
 	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?	
-	(':' instanceClassName=FQN)?
-	(	('{' (literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* '}')
+	(':' instanceClassName=URL)?
+	(	('{' (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* '}')
 	| 	';'
 	)
 ;
 
 EnumLiteralCS returns EnumLiteralCS:
-	(annotations+=AnnotationCS)*
-	name=ID ('=' value=INTEGER)? ';'
+	name=Identifier ('=' value=INTEGER)?
+	(('{' annotations+=AnnotationElementCS* '}')
+	|';'
+	)
 ;
 
 ImportCS returns ImportCS:
-	'import' (alias=ID '=') ePackage=[ecore::EPackage|URL] ';'
+	'import' (alias=Identifier ':') ePackage=[ecore::EPackage|URL] ';'
 ;
 
+ModelElementCS returns ModelElementCS:
+	ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
+;
+
+ModelElementCSRef returns ModelElementCSRef:
+	ref=[ModelElementCS|Identifier]
+; 
+
+ObjectRef returns ObjectRef:
+	ModelElementCSRef
+; 
+
 OperationCS returns OperationCS:
-	(annotations+=AnnotationCS)*
-	(qualifiers+='derived'|qualifiers+='!derived'
-	|qualifiers+='ordered'|qualifiers+='!ordered'
-	|qualifiers+='unique'|qualifiers+='!unique')*
-	'operation' name=ID
+	'operation' name=Identifier
 	('<' typeParameters+=TypeParameterCS (',' typeParameters+=TypeParameterCS)*'>')?	
 	'(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')'
-	(':' type=TypeRefCS
+	(':' type=TypeRefCS?
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
-	(	('{' (constraints+=(PreconditionConstraintCS | BodyConstraintCS | PostconditionConstraintCS))* '}')
+	('throws' exceptions+=TypeRefCS (',' exceptions+=TypeRefCS)*)?
+	('{' qualifiers+=('api'|'!api'|'derived'|'!derived'|'ordered'|'!ordered'|'unique'|'!unique')
+	 (',' qualifiers+=('api'|'!api'|'derived'|'!derived'|'ordered'|'!ordered'|'unique'|'!unique'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS | PostconditionConstraintCS))* '}')
 	|	';'
 	)
 ;
 	
 PackageCS returns PackageCS:
-	(annotations+=AnnotationCS)*
-	'package' name=ID
-	'{'
-	(subpackages+=PackageCS | classifiers+=ClassifierCS)*
-	'}'
+	'package' name=Identifier
+	(':' prefix=Identifier '=' uri=URL)?
+	(('{'
+		(annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)*
+		'}')
+	|';'
+	)
 ;
 
 ParameterCS returns ParameterCS:
-	(annotations+=AnnotationCS)*
-	(qualifiers+='ordered'|qualifiers+='!ordered'
-	|qualifiers+='unique'|qualifiers+='!unique')*
-	name=ID
+	name=Identifier
 	(':' type=TypeRefCS
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	('{' qualifiers+=('ordered'|'!ordered'|'unique'|'!unique')
+	 (',' qualifiers+=('ordered'|'!ordered'|'unique'|'!unique'))*
+	 '}')?
+	('{' annotations+=AnnotationElementCS* '}')?
 ;
 
 ReferenceCS returns ReferenceCS:
-	(annotations+=AnnotationCS)*
-	(qualifiers+='derived'|qualifiers+='!derived'
-	|qualifiers+='ordered'|qualifiers+='!ordered'
-	|qualifiers+='readonly'|qualifiers+='!readonly'
-	|qualifiers+='resolve'|qualifiers+='!resolve'
-	|qualifiers+='transient'|qualifiers+='!transient'
-	|qualifiers+='unique'|qualifiers+='!unique'
-	|qualifiers+='unsettable'|qualifiers+='!unsettable'
-	|qualifiers+='volatile'|qualifiers+='!volatile')*
-	('reference'|containment?='property') name=ID
+	'property' name=Identifier
 	('#' opposite=ReferenceRef)?	
 	(':' type=TypeRefCS
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
 	('=' defaultValueLiteral=URL)?
-	(	('{' (constraints+=(InitialConstraintCS|DerivedConstraintCS))* '}')
+	('{' qualifiers+=('api'|'!api'|'composes'|'!composes'|'derived'|'!derived'|'ordered'|'!ordered'|'readonly'|'!readonly'|'resolve'|'!resolve'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile')
+	 (',' qualifiers+=('api'|'!api'|'composes'|'!composes'|'derived'|'!derived'|'ordered'|'!ordered'|'readonly'|'!readonly'|'resolve'|'!resolve'|'transient'|'!transient'|'unique'|'!unique'|'unsettable'|'!unsettable'|'volatile'|'!volatile'))*
+	 '}')?
+	(	('{' (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS|DerivedConstraintCS))* '}')
 	|	';'
 	)
 ;
@@ -228,7 +284,7 @@ ReferenceRef returns ReferenceRef:
 ; 
 
 ReferenceCSRef returns ReferenceCSRef:
-	ref=[ReferenceCS]
+	ref=[ReferenceCS|Identifier]
 ; 
 
 StructuralFeatureCS returns StructuralFeatureCS:
@@ -236,11 +292,11 @@ StructuralFeatureCS returns StructuralFeatureCS:
 ;
 
 TypeCSRef returns TypeCSRef:
-	ref=[TypeCS]
+	ref=[TypeCS|Identifier]
 ; 
 
 TypeParameterCS returns TypeParameterCS:
-	name=ID
+	name=Identifier
 	( ('extends' extends+=TypeRefCS ('&&' extends+=TypeRefCS)*)
 	| ('super' super=TypeRefCS)
 	)?

@@ -7,131 +7,135 @@ package org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.internal;
 import org.eclipse.xtext.parser.antlr.Lexer;
 }
 
-T13 : '.' ;
-T14 : '*' ;
+T12 : '*' ;
+T13 : 'abstract' ;
+T14 : 'attribute' ;
 T15 : 'body' ;
-T16 : ':' ;
-T17 : ';' ;
-T18 : 'derivation' ;
-T19 : 'initial' ;
-T20 : 'invariant' ;
-T21 : 'postcondition' ;
-T22 : 'precondition' ;
-T23 : '@' ;
-T24 : '(' ;
-T25 : ',' ;
-T26 : ')' ;
-T27 : 'derived' ;
-T28 : '!derived' ;
-T29 : 'id' ;
-T30 : '!id' ;
-T31 : 'ordered' ;
-T32 : '!ordered' ;
-T33 : 'readonly' ;
-T34 : '!readonly' ;
-T35 : 'transient' ;
-T36 : '!transient' ;
-T37 : 'unique' ;
-T38 : '!unique' ;
-T39 : 'unsettable' ;
-T40 : '!unsettable' ;
-T41 : 'volatile' ;
-T42 : '!volatile' ;
-T43 : 'attribute' ;
-T44 : '[' ;
-T45 : '..' ;
-T46 : '+' ;
-T47 : '?' ;
-T48 : ']' ;
-T49 : '=' ;
-T50 : '{' ;
-T51 : '}' ;
-T52 : 'abstract' ;
-T53 : '!abstract' ;
-T54 : 'interface' ;
-T55 : '!interface' ;
-T56 : 'class' ;
-T57 : '<' ;
-T58 : '>' ;
-T59 : 'extends' ;
-T60 : 'datatype' ;
-T61 : '::' ;
-T62 : 'enum' ;
-T63 : 'import' ;
-T64 : 'operation' ;
-T65 : 'package' ;
-T66 : 'resolve' ;
-T67 : '!resolve' ;
-T68 : 'reference' ;
-T69 : 'property' ;
-T70 : '#' ;
-T71 : '&&' ;
-T72 : 'super' ;
-T73 : 'e' ;
-T74 : 'E' ;
-T75 : '-' ;
-T76 : 'Tuple' ;
-T77 : 'self' ;
-T78 : 'Boolean' ;
-T79 : 'Integer' ;
-T80 : 'Real' ;
-T81 : 'String' ;
-T82 : 'UnlimitedNatural' ;
-T83 : 'OclAny' ;
-T84 : 'OclInvalid' ;
-T85 : 'OclVoid' ;
-T86 : 'Set' ;
-T87 : 'Bag' ;
-T88 : 'Sequence' ;
-T89 : 'Collection' ;
-T90 : 'OrderedSet' ;
-T91 : 'true' ;
-T92 : 'false' ;
-T93 : 'invalid' ;
-T94 : 'null' ;
-T95 : 'implies' ;
-T96 : 'xor' ;
-T97 : 'or' ;
-T98 : 'and' ;
-T99 : '<>' ;
-T100 : '>=' ;
-T101 : '<=' ;
-T102 : '/' ;
-T103 : 'not' ;
-T104 : '->' ;
-T105 : '|' ;
-T106 : 'if' ;
-T107 : 'then' ;
-T108 : 'else' ;
-T109 : 'endif' ;
-T110 : 'let' ;
-T111 : 'in' ;
+T16 : 'class' ;
+T17 : 'enum' ;
+T18 : 'extends' ;
+T19 : 'id' ;
+T20 : 'import' ;
+T21 : 'interface' ;
+T22 : 'invariant' ;
+T23 : 'operation' ;
+T24 : 'ordered' ;
+T25 : 'package' ;
+T26 : 'property' ;
+T27 : 'serializable' ;
+T28 : 'transient' ;
+T29 : 'unique' ;
+T30 : 'volatile' ;
+T31 : 'e' ;
+T32 : 'E' ;
+T33 : ':' ;
+T34 : ';' ;
+T35 : 'derivation' ;
+T36 : 'initial' ;
+T37 : 'postcondition' ;
+T38 : 'precondition' ;
+T39 : 'annotation' ;
+T40 : '(' ;
+T41 : ',' ;
+T42 : ')' ;
+T43 : '{' ;
+T44 : '}' ;
+T45 : '[' ;
+T46 : '..' ;
+T47 : '+' ;
+T48 : '?' ;
+T49 : ']' ;
+T50 : '=' ;
+T51 : 'api' ;
+T52 : '!api' ;
+T53 : 'derived' ;
+T54 : '!derived' ;
+T55 : '!id' ;
+T56 : '!ordered' ;
+T57 : 'readonly' ;
+T58 : '!readonly' ;
+T59 : '!transient' ;
+T60 : '!unique' ;
+T61 : 'unsettable' ;
+T62 : '!unsettable' ;
+T63 : '!volatile' ;
+T64 : '<' ;
+T65 : '>' ;
+T66 : '!abstract' ;
+T67 : '!interface' ;
+T68 : 'datatype' ;
+T69 : '!serializable' ;
+T70 : 'documentation' ;
+T71 : '::' ;
+T72 : 'throws' ;
+T73 : '#' ;
+T74 : 'composes' ;
+T75 : '!composes' ;
+T76 : 'resolve' ;
+T77 : '!resolve' ;
+T78 : '&&' ;
+T79 : 'super' ;
+T80 : '.' ;
+T81 : '-' ;
+T82 : 'Tuple' ;
+T83 : 'self' ;
+T84 : 'Boolean' ;
+T85 : 'Integer' ;
+T86 : 'Real' ;
+T87 : 'String' ;
+T88 : 'UnlimitedNatural' ;
+T89 : 'OclAny' ;
+T90 : 'OclInvalid' ;
+T91 : 'OclVoid' ;
+T92 : 'Set' ;
+T93 : 'Bag' ;
+T94 : 'Sequence' ;
+T95 : 'Collection' ;
+T96 : 'OrderedSet' ;
+T97 : 'true' ;
+T98 : 'false' ;
+T99 : 'invalid' ;
+T100 : 'null' ;
+T101 : 'implies' ;
+T102 : 'xor' ;
+T103 : 'or' ;
+T104 : 'and' ;
+T105 : '<>' ;
+T106 : '>=' ;
+T107 : '<=' ;
+T108 : '/' ;
+T109 : 'not' ;
+T110 : '->' ;
+T111 : '|' ;
+T112 : 'if' ;
+T113 : 'then' ;
+T114 : 'else' ;
+T115 : 'endif' ;
+T116 : 'let' ;
+T117 : 'in' ;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10049
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11841
 RULE_URL : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10051
-RULE_OCL : '\u00A3' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '\u00A3';
-
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10053
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11843
 RULE_STRING_LITERAL : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10055
-RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11845
+RULE_ID_TERMINAL : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10057
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11847
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10059
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11849
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10061
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11851
 RULE_SL_COMMENT : '--' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10063
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11853
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 10065
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g" 11855
 RULE_ANY_OTHER : .;
 
 

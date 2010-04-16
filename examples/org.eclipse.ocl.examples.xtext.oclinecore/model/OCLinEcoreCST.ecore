@@ -3,21 +3,24 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclinEcoreCST"
     nsURI="http://www.eclipse.org/ocl/3.0.0/OCLinEcoreCST" nsPrefix="oclinEcoreCST">
-  <eClassifiers xsi:type="ecore:EClass" name="AnnotationCS" eSuperTypes="#//ModelElementCS">
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationCS" eSuperTypes="#//AnnotationElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="idSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="details" upperBound="-1"
-        eType="#//DetailCS" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="#//ModelElementCS" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
         eType="#//ObjectRef" containment="true" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationElementCS" abstract="true"
+      eSuperTypes="#//ModelElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="details" upperBound="-1"
+        eType="#//DetailCS" containment="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCS" eSuperTypes="#//StructuralFeatureCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCSRef" eSuperTypes="#//AttributeRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//AttributeCS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeRef" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeRef" abstract="true" eSuperTypes="#//ObjectRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="ClassCS" eSuperTypes="#//ClassifierCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
         eType="#//TypeRefCS" unsettable="true" containment="true">
@@ -74,6 +77,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
         eType="#//PackageCS" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentationCS" eSuperTypes="#//AnnotationElementCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EAttributeRef" eSuperTypes="#//AttributeRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
   </eClassifiers>
@@ -109,7 +115,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementCS" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
-        eType="#//AnnotationCS" containment="true" resolveProxies="false"/>
+        eType="#//AnnotationElementCS" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementCSRef" eSuperTypes="#//ObjectRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ModelElementCS"/>
@@ -134,10 +140,11 @@
         eType="#//ClassifierCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpackages" upperBound="-1"
         eType="#//PackageCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterCS" eSuperTypes="#//TypedElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceCS" eSuperTypes="#//StructuralFeatureCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="#//ReferenceRef"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="#//AttributeRef"
@@ -146,7 +153,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceCSRef" eSuperTypes="#//ReferenceRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ReferenceCS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceRef" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceRef" abstract="true" eSuperTypes="#//ObjectRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="StructuralFeatureCS" abstract="true"
       interface="true" eSuperTypes="#//TypedElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
@@ -163,17 +170,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="super" eType="#//TypeRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeRef" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRef" abstract="true" eSuperTypes="#//ObjectRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//ModelElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementCS" abstract="true" interface="true"
       eSuperTypes="#//NamedElementCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiers" ordered="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRefCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedTypeRefCS" eSuperTypes="#//TypeRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRef"

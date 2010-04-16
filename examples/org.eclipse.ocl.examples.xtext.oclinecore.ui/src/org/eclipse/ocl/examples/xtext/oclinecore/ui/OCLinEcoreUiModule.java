@@ -12,16 +12,22 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.1 2010/04/13 06:41:28 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.2 2010/04/16 18:09:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.syntaxcoloring.OCLinEcoreAntlrTokenToAttributeIdMapper;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.syntaxcoloring.OCLinEcoreHighlightingConfiguration;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
+import org.eclipse.xtext.ui.editor.outline.actions.IContentOutlineNodeAdapterFactory;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingHelper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -38,6 +44,14 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 
 	public Class<? extends XtextDocumentProvider> bindXtextDocumentProvider() {
 		return OCLinEcoreDocumentProvider.class;
+	}
+
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return OCLinEcoreHighlightingConfiguration.class;
+	}
+
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return OCLinEcoreAntlrTokenToAttributeIdMapper.class;
 	}
 
 	public Class<? extends IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {

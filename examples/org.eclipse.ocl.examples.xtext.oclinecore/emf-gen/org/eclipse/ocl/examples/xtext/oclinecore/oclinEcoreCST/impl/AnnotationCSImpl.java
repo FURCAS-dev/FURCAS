@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCSImpl.java,v 1.1 2010/04/13 06:44:12 ewillink Exp $
+ * $Id: AnnotationCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -40,10 +40,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ObjectRef;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl#getIdSource <em>Id Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl#getStringSource <em>String Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl#getDetails <em>Details</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.AnnotationCSImpl#getReferences <em>References</em>}</li>
  * </ul>
@@ -51,17 +49,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ObjectRef;
  *
  * @generated
  */
-public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements AnnotationCS {
-	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnotations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AnnotationCS> annotations;
-
+public class AnnotationCSImpl extends AnnotationElementCSImpl implements AnnotationCS {
 	/**
 	 * The default value of the '{@link #getIdSource() <em>Id Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -103,16 +91,6 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	protected String stringSource = STRING_SOURCE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDetails() <em>Details</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDetails()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DetailCS> details;
-
-	/**
 	 * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,18 +127,6 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	@Override
 	protected EClass eStaticClass() {
 		return OCLinEcoreCSTPackage.Literals.ANNOTATION_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AnnotationCS> getAnnotations() {
-		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationCS>(AnnotationCS.class, this, OCLinEcoreCSTPackage.ANNOTATION_CS__ANNOTATIONS);
-		}
-		return annotations;
 	}
 
 	/**
@@ -210,18 +176,6 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DetailCS> getDetails() {
-		if (details == null) {
-			details = new EObjectContainmentEList<DetailCS>(DetailCS.class, this, OCLinEcoreCSTPackage.ANNOTATION_CS__DETAILS);
-		}
-		return details;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ModelElementCS> getContents() {
 		if (contents == null) {
 			contents = new EObjectContainmentEList<ModelElementCS>(ModelElementCS.class, this, OCLinEcoreCSTPackage.ANNOTATION_CS__CONTENTS);
@@ -249,10 +203,6 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__ANNOTATIONS:
-				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__DETAILS:
-				return ((InternalEList<?>)getDetails()).basicRemove(otherEnd, msgs);
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__CONTENTS:
 				return ((InternalEList<?>)getContents()).basicRemove(otherEnd, msgs);
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__REFERENCES:
@@ -269,14 +219,10 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__ANNOTATIONS:
-				return getAnnotations();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__ID_SOURCE:
 				return getIdSource();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__STRING_SOURCE:
 				return getStringSource();
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__DETAILS:
-				return getDetails();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__CONTENTS:
 				return getContents();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__REFERENCES:
@@ -294,19 +240,11 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__ANNOTATIONS:
-				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends AnnotationCS>)newValue);
-				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__ID_SOURCE:
 				setIdSource((String)newValue);
 				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__STRING_SOURCE:
 				setStringSource((String)newValue);
-				return;
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__DETAILS:
-				getDetails().clear();
-				getDetails().addAll((Collection<? extends DetailCS>)newValue);
 				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__CONTENTS:
 				getContents().clear();
@@ -328,17 +266,11 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__ANNOTATIONS:
-				getAnnotations().clear();
-				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__ID_SOURCE:
 				setIdSource(ID_SOURCE_EDEFAULT);
 				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__STRING_SOURCE:
 				setStringSource(STRING_SOURCE_EDEFAULT);
-				return;
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__DETAILS:
-				getDetails().clear();
 				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__CONTENTS:
 				getContents().clear();
@@ -358,14 +290,10 @@ public class AnnotationCSImpl extends MinimalEObjectImpl.Container implements An
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__ANNOTATIONS:
-				return annotations != null && !annotations.isEmpty();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__ID_SOURCE:
 				return ID_SOURCE_EDEFAULT == null ? idSource != null : !ID_SOURCE_EDEFAULT.equals(idSource);
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__STRING_SOURCE:
 				return STRING_SOURCE_EDEFAULT == null ? stringSource != null : !STRING_SOURCE_EDEFAULT.equals(stringSource);
-			case OCLinEcoreCSTPackage.ANNOTATION_CS__DETAILS:
-				return details != null && !details.isEmpty();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__CONTENTS:
 				return contents != null && !contents.isEmpty();
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__REFERENCES:

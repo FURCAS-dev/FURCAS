@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
+import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreGlobalScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.parsetree.reconstr.ICrossReferenceSerializer;
+import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -41,6 +43,11 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 	  return OCLinEcoreValueConverterService.class;
+	}
+
+	@Override
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return OCLinEcoreGlobalScopeProvider.class;
 	}
 
 //	@Override

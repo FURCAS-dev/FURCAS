@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.1 2010/04/13 06:44:12 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -47,8 +49,10 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeRef;
@@ -59,6 +63,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EAttributeRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassifierCSRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EObjectRef;
@@ -70,6 +75,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ObjectRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
@@ -87,14 +93,22 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
 
-@SuppressWarnings("serial")
-public class Ecore2OCLinEcore
+public class Ecore2OCLinEcore extends AbstractConversion
 {
+	/**
+	 * Convert an (annotated) Ecore resource to an Xtext CST document, reporting
+	 * any errors to returnedErrors.
+	 * 
+	 * @param ecoreResource the annotated Ecore resource
+	 * @param returnedErrors list to which errors are added
+	 * 
+	 * @return the Xtext CST document
+	 */
 	public static DocumentCS importAsDocumentCS(Resource ecoreResource, List<String> returnedErrors) {
 		Ecore2OCLinEcore converter = new Ecore2OCLinEcore();
 		List<EObject> csObjects = converter.convertAll(ecoreResource.getContents());
 		List<String> conversionErrors = converter.getErrors();
-		if (conversionErrors != null) {
+		if ((conversionErrors != null) && (returnedErrors != null)) {
 			returnedErrors.addAll(conversionErrors);
 		}
 		DocumentCS documentCS = OCLinEcoreCSTFactory.eINSTANCE.createDocumentCS();
@@ -114,20 +128,6 @@ public class Ecore2OCLinEcore
 		return documentCS;
 	}
 
-	public static boolean isId(String name) {
-		int n = name.length();
-		if (n == 0)
-			return false;
-		if (!Character.isJavaIdentifierStart(name.charAt(0)))
-			return false;
-		for (int i = 1; i < n; i++)
-			if (!Character.isJavaIdentifierPart(name.charAt(i)))
-				return false;
-		return true;
-	}
-	
-	private List<String> errors = null;
-
 	/**
 	 * Mapping of all created E elements to the resulting CS elements.
 	 */
@@ -146,38 +146,25 @@ public class Ecore2OCLinEcore
 	
 	protected final EcoreSwitch<ModelElementCS> pass1 = new EcoreSwitch<ModelElementCS>()
 	{
-		protected <T> T basicGet(EObject eObject, EAttribute eFeature, Class<T> resultClass) {
-			if (!eObject.eIsSet(eFeature)) {
-				return null;
-			}
-			@SuppressWarnings("unchecked")
-			T result = (T) eObject.eGet(eFeature);
-			return result;
-		}
-
 		@Override
-		public AnnotationCS caseEAnnotation(EAnnotation eAnnotation) {
-			AnnotationCS csAnnotation = OCLinEcoreCSTFactory.eINSTANCE.createAnnotationCS();
-			copyModelElement(csAnnotation, eAnnotation, null);
+		public AnnotationElementCS caseEAnnotation(EAnnotation eAnnotation) {
 			String source = eAnnotation.getSource();
+			if (source.equals(GEN_MODEL_PACKAGE_NS_URI)) {
+				DocumentationCS csDocumentation = OCLinEcoreCSTFactory.eINSTANCE.createDocumentationCS();
+				copyDetails(csDocumentation, eAnnotation, Collections.singletonList("documentation"));
+				String documentation = eAnnotation.getDetails().get("documentation");
+				if (documentation != null) {
+					csDocumentation.setValue(documentation);
+				}
+				return csDocumentation;
+			}
+			AnnotationCS csAnnotation = OCLinEcoreCSTFactory.eINSTANCE.createAnnotationCS();
+			copyDetails(csAnnotation, eAnnotation, null);
 			if (isId(source)) {
 				csAnnotation.setIdSource(source);
 			}
 			else {
 				csAnnotation.setStringSource(source);
-			}
-			for (ListIterator<Map.Entry<String,String>> it = eAnnotation.getDetails().listIterator(); it.hasNext(); ) {
-				Map.Entry<String,String> eDetail = it.next();
-				DetailCS csDetail = OCLinEcoreCSTFactory.eINSTANCE.createDetailCS();
-				String name = eDetail.getKey();
-				if (isId(name)) {
-					csDetail.setIdName(name);
-				}
-				else {
-					csDetail.setStringName(name);
-				}
-				csDetail.setValue(eDetail.getValue());
-				csAnnotation.getDetails().add(csDetail);
 			}
 			doSwitchAll(csAnnotation.getContents(), eAnnotation.getContents());
 			if (!eAnnotation.getReferences().isEmpty()) {
@@ -329,25 +316,14 @@ public class Ecore2OCLinEcore
 		@Override
 		public PackageCS caseEPackage(EPackage ePackage) {
 			PackageCS csPackage = OCLinEcoreCSTFactory.eINSTANCE.createPackageCS();
-			copyNamedElement(csPackage, ePackage, null);
-			String nsPrefix = ePackage.getNsPrefix();
-			String nsURI = ePackage.getNsURI();
-			if ((nsPrefix != null) || (nsURI != null)) {
-				AnnotationCS csAnnotation = OCLinEcoreCSTFactory.eINSTANCE.createAnnotationCS();
-				csAnnotation.setIdSource("namespace");
-				if (nsURI != null) {
-					DetailCS csDetail = OCLinEcoreCSTFactory.eINSTANCE.createDetailCS();
-					csDetail.setIdName("uri");
-					csDetail.setValue(nsURI);
-					csAnnotation.getDetails().add(csDetail);
-				}
-				if (nsPrefix != null) {
-					DetailCS csDetail = OCLinEcoreCSTFactory.eINSTANCE.createDetailCS();
-					csDetail.setIdName("prefix");
-					csDetail.setValue(nsPrefix);
-					csAnnotation.getDetails().add(csDetail);
-				}
-				csPackage.getAnnotations().add(csAnnotation);
+			EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
+			List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
+			copyNamedElement(csPackage, ePackage, exclusions);
+			String prefix = basicGet(ePackage, EcorePackage.Literals.EPACKAGE__NS_PREFIX, String.class);
+			String uri = basicGet(ePackage, EcorePackage.Literals.EPACKAGE__NS_URI, String.class);
+			if ((prefix != null) && (uri != null)) {
+				csPackage.setPrefix(prefix);
+				csPackage.setUri(uri);
 			}
 			doSwitchAll(csPackage.getSubpackages(), ePackage.getESubpackages());
 			doSwitchAll(csPackage.getClassifiers(), ePackage.getEClassifiers());
@@ -365,11 +341,11 @@ public class Ecore2OCLinEcore
 		public ReferenceCS caseEReference(EReference eReference) {
 			ReferenceCS csReference = OCLinEcoreCSTFactory.eINSTANCE.createReferenceCS();
 			copyStructuralFeature(csReference, eReference);
-			csReference.setContainment(eReference.isContainment());
 			if ((eReference.getEOpposite() != null) || !eReference.getEKeys().isEmpty()) {
 				deferMap.put(csReference, eReference);	// Defer
 			}
 			EList<String> qualifiers = csReference.getQualifiers();
+			setAttribute(qualifiers, "composes", "!composes", eReference, EcorePackage.Literals.EREFERENCE__CONTAINMENT);
 			setAttribute(qualifiers, "resolve", "!resolve", eReference, EcorePackage.Literals.EREFERENCE__RESOLVE_PROXIES);
 			return csReference;
 		}
@@ -385,25 +361,40 @@ public class Ecore2OCLinEcore
 
 		protected void copyClassifier(ClassifierCS csClassifier, EClassifier eClassifier) {
 			List<EAnnotation> excludedAnnotations =  null;
-			EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
-			if (ecoreAnnotation != null) {
-				excludedAnnotations = new ArrayList<EAnnotation>();
-				excludedAnnotations.add(ecoreAnnotation);
-			}
+			EMap<String, String> oclAnnotationDetails = null;
 			EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (oclAnnotation != null) {
-				if (excludedAnnotations == null) {
-					excludedAnnotations = new ArrayList<EAnnotation>();
-				}
+				excludedAnnotations = new ArrayList<EAnnotation>();
 				excludedAnnotations.add(oclAnnotation);
 				List<ConstraintCS> csConstraints = csClassifier.getConstraints();
-				for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
+				oclAnnotationDetails = oclAnnotation.getDetails();
+				for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
 					ConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createConstraintCS();
 					csConstraint.setStereotype("invariant");
 					csConstraint.setName(entry.getKey());
 					csConstraint.setExprString(entry.getValue());
 					csConstraints.add(csConstraint);
 				}				
+			}
+			EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
+			if (ecoreAnnotation != null) {
+				if (excludedAnnotations == null) {
+					excludedAnnotations = new ArrayList<EAnnotation>();
+				}
+				excludedAnnotations.add(ecoreAnnotation);
+				String constraintNameList = ecoreAnnotation.getDetails().get("constraints");
+				if (constraintNameList != null) {
+					List<ConstraintCS> csConstraints = csClassifier.getConstraints();
+					String[] constraintNames = constraintNameList.split(" ");
+					for (String constraintName : constraintNames) {
+						if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
+							ConstraintCS csConstraint = OCLinEcoreCSTFactory.eINSTANCE.createConstraintCS();
+							csConstraint.setStereotype("invariant");
+							csConstraint.setName(constraintName);
+							csConstraints.add(csConstraint);
+						}
+					}
+				}
 			}
 			copyNamedElement(csClassifier, eClassifier, excludedAnnotations);
 			String instanceClassName = basicGet(eClassifier, EcorePackage.Literals.ECLASSIFIER__INSTANCE_CLASS_NAME, String.class);
@@ -415,15 +406,34 @@ public class Ecore2OCLinEcore
 		protected void copyDataTypeOrEnum(DataTypeOrEnumCS csDataType, EDataType eDataType) {
 			copyClassifier(csDataType, eDataType);
 			EList<String> qualifiers = csDataType.getQualifiers();
-			setAttribute(qualifiers, "!transient", "transient", eDataType, EcorePackage.Literals.EDATA_TYPE__SERIALIZABLE);
+			setAttribute(qualifiers, "serializable", "!serializable", eDataType, EcorePackage.Literals.EDATA_TYPE__SERIALIZABLE);
+		}
+
+		protected void copyDetails(AnnotationElementCS csAnnotation, EAnnotation eAnnotation, List<String> excludedKeys) {
+			copyModelElement(csAnnotation, eAnnotation, null);
+			for (ListIterator<Map.Entry<String,String>> it = eAnnotation.getDetails().listIterator(); it.hasNext(); ) {
+				Map.Entry<String,String> eDetail = it.next();
+				String name = eDetail.getKey();
+				if ((excludedKeys == null) || !excludedKeys.contains(name)) {
+					DetailCS csDetail = OCLinEcoreCSTFactory.eINSTANCE.createDetailCS();
+					if (isId(name)) {
+						csDetail.setIdName(name);
+					}
+					else {
+						csDetail.setStringName(name);
+					}
+					csDetail.setValue(eDetail.getValue());
+					csAnnotation.getDetails().add(csDetail);
+				}
+			}
 		}
 
 		protected void copyModelElement(ModelElementCS csModelElement, EModelElement eModelElement, List<EAnnotation> excludedAnnotations) {
 			createMap.put(eModelElement, csModelElement);
-			List<AnnotationCS> csAnnotations = csModelElement.getAnnotations();
+			List<AnnotationElementCS> csAnnotations = csModelElement.getAnnotations();
 			for (EAnnotation eAnnotation : eModelElement.getEAnnotations()) {
 				if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
-					AnnotationCS csAnnotation = (AnnotationCS) doSwitch(eAnnotation);
+					AnnotationElementCS csAnnotation = (AnnotationElementCS) doSwitch(eAnnotation);
 					csAnnotations.add(csAnnotation);
 				}
 			}
@@ -496,7 +506,9 @@ public class Ecore2OCLinEcore
 				}
 			}
 			else if ((lower == 0) && (upper == 1)) {
-				csTypedElement.setMultiplicity("?");
+				csTypedElement.setMultiplicity("?");	// Doesn't seem possible to leave this as default
+//				csTypedElement.setLower(0);
+//				csTypedElement.setUpper(1);
 			}
 			else {
 				csTypedElement.setLower(lower);
@@ -675,17 +687,6 @@ public class Ecore2OCLinEcore
 			pass2.doSwitch(csKey);
 		}
 		return csObjects;
-	}
-
-	protected void error(String string) {
-		if (errors == null) {
-			errors = new ArrayList<String>();
-		}
-		errors.add(string);
-	}
-
-	public List<String> getErrors() {
-		return errors;
 	}
 	
 	public Collection<EPackage> getReferencedEPackages() {

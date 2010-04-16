@@ -12,13 +12,20 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.1 2010/04/13 06:47:03 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.2 2010/04/16 18:09:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.Collection;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -30,22 +37,37 @@ import org.eclipse.xtext.ui.editor.model.XtextDocument;
 
 public class OCLinEcoreDocument extends XtextDocument
 {
+	private static final Logger log = Logger.getLogger(OCLinEcoreDocument.class);
+
 	protected XtextResource resource2;
 	
-	public void saveAsEcore() throws IOException {
-//		URI ecoreURI = resource2.getURI().appendFileExtension("ecore");
-		URI ecoreURI = URI.createFileURI("C:/Temp/temp.ecore");
+	public void saveAsEcore(OutputStream outputStream) throws IOException {
+		URI ecoreURI = URI.createFileURI("$ecore$.ecore");
 		Resource ecoreResource = new EcoreResourceFactoryImpl().createResource(ecoreURI);
 		OCLinEcore2Ecore copier = new OCLinEcore2Ecore();
 		DocumentCS document = (DocumentCS) resource2.getContents().get(0);
 		Collection<? extends EObject> ecoreContents = copier.convertAll(document.getPackages());
 		ecoreResource.getContents().addAll(ecoreContents);
-		ecoreResource.save(null);
+		ecoreResource.save(outputStream, null);
 	}
 
 	@Override
 	public void setInput(XtextResource resource) {
+		// Works around Bug 309383 to avoid second untranslated read
 		this.resource2 = resource;
+		String contents = get();
+		if (contents != null) {
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			Writer writer = new OutputStreamWriter(outputStream);
+			try {
+				writer.write(contents);
+				writer.close();
+				InputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+				resource.load(inputStream, null);
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+			}
+		}
 		super.setInput(resource);
 	}
 }
