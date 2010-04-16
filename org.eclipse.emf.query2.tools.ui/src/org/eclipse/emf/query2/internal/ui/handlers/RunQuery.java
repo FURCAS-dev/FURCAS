@@ -43,7 +43,7 @@ import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.parsetree.ParseTreeUtil;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.core.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 
 public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 

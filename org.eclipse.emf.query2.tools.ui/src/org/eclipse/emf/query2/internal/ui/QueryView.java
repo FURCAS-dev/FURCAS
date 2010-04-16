@@ -43,7 +43,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.xtext.concurrent.IUnitOfWork;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.core.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 
 public class QueryView extends ViewPart implements ISelectionProvider {
 

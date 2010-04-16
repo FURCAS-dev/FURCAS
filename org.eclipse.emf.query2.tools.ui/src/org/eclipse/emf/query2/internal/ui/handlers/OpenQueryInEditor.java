@@ -28,12 +28,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.xtext.concurrent.IUnitOfWork;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.core.DefaultLocationInFileProvider;
-import org.eclipse.xtext.ui.core.ILocationInFileProvider;
-import org.eclipse.xtext.ui.core.editor.ReadonlyArchiveStorage;
-import org.eclipse.xtext.ui.core.editor.ReadonlyFileStorage;
-import org.eclipse.xtext.ui.core.editor.XtextEditor;
-import org.eclipse.xtext.ui.core.editor.XtextReadonlyEditorInput;
+import org.eclipse.xtext.ui.DefaultLocationInFileProvider;
+import org.eclipse.xtext.ui.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.XtextReadonlyEditorInput;
 
 public class OpenQueryInEditor extends AbstractHandler {
 
@@ -62,29 +60,31 @@ public class OpenQueryInEditor extends AbstractHandler {
 		try {
 			if (file != null) {
 				openEditor = IDE.openEditor(page, file);
-			} else if (uri.isArchive()) {
-				// TODO don't fall back to java.io
-				IEditorInput input = new XtextReadonlyEditorInput(new ReadonlyArchiveStorage(uri));
-				openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(uri.lastSegment())
-						.getId());
-			} else {
-				// fall back: URI is bundle resource uri and has to converted,
-				// or http uri
-				URL url = FileLocator.toFileURL(new URL(uri.scheme() + ":" + uri.devicePath()));
-				URI urlAsUri = URI.createURI(url.toString());
-				String path = urlAsUri.toFileString();
-				if (path != null) {
-					File ioFile = new File(path);
-					// TODO don't fall back to java.io
-					IEditorInput input = new XtextReadonlyEditorInput(new ReadonlyFileStorage(ioFile, uri));
-					openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(
-							uri.lastSegment()).getId());
-				}
 			}
+			// TODO handle files in archives
+//			else if (uri.isArchive()) {
+//				// TODO don't fall back to java.io
+//				IEditorInput input = new XtextReadonlyEditorInput(new ReadonlyArchiveStorage(uri));
+//				openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(uri.lastSegment())
+//						.getId());
+//			} else {
+//				// fall back: URI is bundle resource uri and has to converted,
+//				// or http uri
+//				URL url = FileLocator.toFileURL(new URL(uri.scheme() + ":" + uri.devicePath()));
+//				URI urlAsUri = URI.createURI(url.toString());
+//				String path = urlAsUri.toFileString();
+//				if (path != null) {
+//					File ioFile = new File(path);
+//					// TODO don't fall back to java.io
+//					IEditorInput input = new XtextReadonlyEditorInput(new ReadonlyFileStorage(ioFile, uri));
+//					openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(
+//							uri.lastSegment()).getId());
+//				}
+//			}
 		} catch (PartInitException partInitException) {
 			partInitException.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
 		}
 		if (openEditor != null && openEditor instanceof XtextEditor) {
 			final XtextEditor edit = (XtextEditor) openEditor;
