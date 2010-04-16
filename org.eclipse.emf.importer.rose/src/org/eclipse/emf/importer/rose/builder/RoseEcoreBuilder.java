@@ -336,6 +336,13 @@ public class RoseEcoreBuilder implements RoseVisitor
         eClass.setInstanceClassName("java.util.Map$Entry");
         build(roseNode, parent, eClass);
       }
+      else if (stereoTypeValue.equalsIgnoreCase("constraint"))
+      {
+        // look for an "OCL" operation and if found, extract OCL expression from Semantics node
+        // first, find owning class
+        String x=objectName;
+        x = x+"";
+      }
       else
       {
         warning(RoseImporterPlugin.INSTANCE.getString("_UI_UnrecognizedStereotype_message", new Object []{ stereoTypeValue, objectName }));
@@ -615,57 +622,41 @@ public class RoseEcoreBuilder implements RoseVisitor
       }
       boolean ref1Navigable = role1.isNavigable();
       boolean ref2Navigable = role2.isNavigable();
-      if (ref1Navigable)
+      if (!ref1Navigable)
       {
-        ref2.setEOpposite(ref1);
-        setEReferenceIsContainment(ref1, role1, role2);
-        roseUtil.refTable.put(ref1, ref2Quidu);
-        TableObject obj = (TableObject)roseUtil.quidTable.get(ref1Quidu);
-        if (obj != null)
-        {
-          roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1, obj.getName());
-        }
-        else
-        {
-          warning(RoseImporterPlugin.INSTANCE.getString("_UI_UnresolvedTypeNameFor_message", new Object []{
-            role1.getRoseSupplier(),
-            ref1.getName() }));
-          roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1, "EObject");
-        }
-      } else {
-    	  EcoreUtil.setOppositePropertyName(ref2, ref1.getName());
-    	  EcoreUtil.setOppositePropertyOrdered(ref2, ref1.isOrdered());
-    	  EcoreUtil.setOppositePropertyUnique(ref2, ref1.isUnique());
-    	  EcoreUtil.setOppositePropertyContainment(ref2, ref1.isContainment());
-    	  EcoreUtil.setOppositePropertyChangeable(ref2, ref1.isChangeable());
-    	  EcoreUtil.setOppositePropertyLowerBound(ref2, ref1.getLowerBound());
-    	  EcoreUtil.setOppositePropertyUpperBound(ref2, ref1.getUpperBound());
+        ref2.setOwnedOpposite(ref1);
       }
-      if (ref2Navigable)
-      {
-        ref1.setEOpposite(ref2);
-        setEReferenceIsContainment(ref2, role2, role1);
-        roseUtil.refTable.put(ref2, ref1Quidu);
-        TableObject obj = (TableObject)roseUtil.quidTable.get(ref2Quidu);
-        if (obj != null)
-        {
-          roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2, obj.getName());
-        }
-        else
-        {
-          warning(RoseImporterPlugin.INSTANCE.getString("_UI_UnresolvedTypeNameFor_message", new Object []{
-            role2.getRoseSupplier(),
-            ref2.getName() }));
-          roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2, "EObject");
-        }
+      ref2.setEOpposite(ref1);
+      setEReferenceIsContainment(ref1, role1, role2);
+      roseUtil.refTable.put(ref1, ref2Quidu);
+      TableObject obj = (TableObject) roseUtil.quidTable.get(ref1Quidu);
+      if (obj != null) {
+        roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1,
+            obj.getName());
       } else {
-    	  EcoreUtil.setOppositePropertyName(ref1, ref2.getName());
-    	  EcoreUtil.setOppositePropertyOrdered(ref1, ref2.isOrdered());
-    	  EcoreUtil.setOppositePropertyUnique(ref1, ref2.isUnique());
-    	  EcoreUtil.setOppositePropertyContainment(ref1, ref2.isContainment());
-    	  EcoreUtil.setOppositePropertyChangeable(ref1, ref2.isChangeable());
-    	  EcoreUtil.setOppositePropertyLowerBound(ref1, ref2.getLowerBound());
-    	  EcoreUtil.setOppositePropertyUpperBound(ref1, ref2.getUpperBound());
+        warning(RoseImporterPlugin.INSTANCE.getString(
+            "_UI_UnresolvedTypeNameFor_message", new Object[] {
+                role1.getRoseSupplier(), ref1.getName() }));
+        roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1,
+            "EObject");
+      }
+      if (!ref2Navigable)
+      {
+        ref1.setOwnedOpposite(ref2);
+      }
+      ref1.setEOpposite(ref2);
+      setEReferenceIsContainment(ref2, role2, role1);
+      roseUtil.refTable.put(ref2, ref1Quidu);
+      obj = (TableObject) roseUtil.quidTable.get(ref2Quidu);
+      if (obj != null) {
+        roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2,
+            obj.getName());
+      } else {
+        warning(RoseImporterPlugin.INSTANCE.getString(
+            "_UI_UnresolvedTypeNameFor_message", new Object[] {
+                role2.getRoseSupplier(), ref2.getName() }));
+        roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2,
+            "EObject");
       }
     }
 
@@ -2085,22 +2076,26 @@ public class RoseEcoreBuilder implements RoseVisitor
     //
     for (EReference eReference : roseUtil.refTable.keySet())
     {
-      String quid = roseUtil.refTable.get(eReference);
-      TableObject tableObject = (TableObject)roseUtil.quidTable.get(quid);
-      if (tableObject != null)
+      if (!(eReference.eContainer() instanceof EReference))
       {
-        Object struct = tableObject.getObject();
-        if (struct instanceof EClass)
+        String quid = roseUtil.refTable.get(eReference);
+        TableObject tableObject = (TableObject) roseUtil.quidTable.get(quid);
+        if (tableObject != null)
         {
-          ((EClass)struct).getEStructuralFeatures().add(
-            -1 - Collections.binarySearch(((EClass)struct).getEStructuralFeatures(), eReference, eStructuralFeatureComparator),
-            eReference);
-        }
-        else
-        {
-          warning(RoseImporterPlugin.INSTANCE.getString("_UI_CannotAddReference_message", new Object []{
-            eReference.getName(),
-            tableObject.getName() }));
+          Object struct = tableObject.getObject();
+          if (struct instanceof EClass)
+          {
+            ((EClass) struct).getEStructuralFeatures()
+                .add(
+                    -1
+                        - Collections.binarySearch(((EClass) struct).getEStructuralFeatures(), eReference,
+                            eStructuralFeatureComparator), eReference);
+          }
+          else
+          {
+            warning(RoseImporterPlugin.INSTANCE.getString("_UI_CannotAddReference_message", new Object[]
+            { eReference.getName(), tableObject.getName() }));
+          }
         }
       }
     }
