@@ -58,32 +58,130 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getContextsContextDeclCSParserRuleCall_1_1_0() { return cContextsContextDeclCSParserRuleCall_1_1_0; }
 	}
 
+	public class RestrictedKeywordsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RestrictedKeywords");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cBodyKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cContextKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cDefKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cDeriveKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cEndpackageKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cImportKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cInitKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cInvKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cPackageKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cPostKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cPreKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cStaticKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		
+		//RestrictedKeywords returns ecore::EString:
+		//  "body"|"context"|"def"|"derive"|"endpackage"|"import"|"init"|"inv"|"package"|
+		//  "post"|"pre"|"static"; 
+		//
+		//    			 // For extension by derived grammars
+		public ParserRule getRule() { return rule; }
+
+		//"body"|"context"|"def"|"derive"|"endpackage"|"import"|"init"|"inv"|"package"|
+		//"post"|"pre"|"static" 
+		//
+		//    			 // For extension by derived grammars
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//"body" 			 // For extension by derived grammars
+		public Keyword getBodyKeyword_0() { return cBodyKeyword_0; }
+
+		//"context"
+		public Keyword getContextKeyword_1() { return cContextKeyword_1; }
+
+		//"def"
+		public Keyword getDefKeyword_2() { return cDefKeyword_2; }
+
+		//"derive"
+		public Keyword getDeriveKeyword_3() { return cDeriveKeyword_3; }
+
+		//"endpackage"
+		public Keyword getEndpackageKeyword_4() { return cEndpackageKeyword_4; }
+
+		//"import"
+		public Keyword getImportKeyword_5() { return cImportKeyword_5; }
+
+		//"init"
+		public Keyword getInitKeyword_6() { return cInitKeyword_6; }
+
+		//"inv"
+		public Keyword getInvKeyword_7() { return cInvKeyword_7; }
+
+		//"package"
+		public Keyword getPackageKeyword_8() { return cPackageKeyword_8; }
+
+		//"post"
+		public Keyword getPostKeyword_9() { return cPostKeyword_9; }
+
+		//"pre"
+		public Keyword getPreKeyword_10() { return cPreKeyword_10; }
+
+		//"static"
+		public Keyword getStaticKeyword_11() { return cStaticKeyword_11; }
+	}
+
+	public class IdentifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cID_TERMINALTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cEKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cEKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final RuleCall cRestrictedKeywordsParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		//Identifier returns ecore::EString:
+		//  ID_TERMINAL|"e"|"E"|RestrictedKeywords; 
+		//
+		//    			 // For extension by derived grammars
+		public ParserRule getRule() { return rule; }
+
+		//ID_TERMINAL|"e"|"E"|RestrictedKeywords 
+		//
+		//    			 // For extension by derived grammars
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ID_TERMINAL 			 // For extension by derived grammars
+		public RuleCall getID_TERMINALTerminalRuleCall_0() { return cID_TERMINALTerminalRuleCall_0; }
+
+		//"e"
+		public Keyword getEKeyword_1() { return cEKeyword_1; }
+
+		//"E"
+		public Keyword getEKeyword_2() { return cEKeyword_2; }
+
+		//RestrictedKeywords
+		public RuleCall getRestrictedKeywordsParserRuleCall_3() { return cRestrictedKeywordsParserRuleCall_3; }
+	}
+
 	public class FQNElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FQN");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cIdentifierParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final RuleCall cIdentifierParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//FQN returns ecore::EString:
-		//  ID ("." ID)*;
+		//  Identifier ("." Identifier)*;
 		public ParserRule getRule() { return rule; }
 
-		//ID ("." ID)*
+		//Identifier ("." Identifier)*
 		public Group getGroup() { return cGroup; }
 
-		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		//Identifier
+		public RuleCall getIdentifierParserRuleCall_0() { return cIdentifierParserRuleCall_0; }
 
-		//("." ID)*
+		//("." Identifier)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"."
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
-		//ID
-		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
+		//Identifier
+		public RuleCall getIdentifierParserRuleCall_1_1() { return cIdentifierParserRuleCall_1_1; }
 	}
 
 	public class ImportCSElements extends AbstractParserRuleElementFinder {
@@ -1028,6 +1126,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private ModelElements pModel;
+	private RestrictedKeywordsElements pRestrictedKeywords;
+	private IdentifierElements pIdentifier;
 	private FQNElements pFQN;
 	private ImportCSElements pImportCS;
 	private PackageDeclarationCSElements pPackageDeclarationCS;
@@ -1082,8 +1182,33 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 
+	//RestrictedKeywords returns ecore::EString:
+	//  "body"|"context"|"def"|"derive"|"endpackage"|"import"|"init"|"inv"|"package"|
+	//  "post"|"pre"|"static"; 
+	//
+	//    			 // For extension by derived grammars
+	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
+		return (pRestrictedKeywords != null) ? pRestrictedKeywords : (pRestrictedKeywords = new RestrictedKeywordsElements());
+	}
+	
+	public ParserRule getRestrictedKeywordsRule() {
+		return getRestrictedKeywordsAccess().getRule();
+	}
+
+	//Identifier returns ecore::EString:
+	//  ID_TERMINAL|"e"|"E"|RestrictedKeywords; 
+	//
+	//    			 // For extension by derived grammars
+	public IdentifierElements getIdentifierAccess() {
+		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
+	}
+	
+	public ParserRule getIdentifierRule() {
+		return getIdentifierAccess().getRule();
+	}
+
 	//FQN returns ecore::EString:
-	//  ID ("." ID)*;
+	//  Identifier ("." Identifier)*;
 	public FQNElements getFQNAccess() {
 		return (pFQN != null) ? pFQN : (pFQN = new FQNElements());
 	}
@@ -1308,14 +1433,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getSTRING_LITERALRule();
 	} 
 
-	//terminal ID:
+	//terminal ID_TERMINAL:
 	//  ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" STRING_LITERAL;  
 	//	
-	//    		 
-	//	  
+	//    		 // NB not "ID" to ensure implicit use of ID is an error
+	//	   
 	////| 	("_'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'")
-	public TerminalRule getIDRule() {
-		return gaEssentialOCL.getIDRule();
+	public TerminalRule getID_TERMINALRule() {
+		return gaEssentialOCL.getID_TERMINALRule();
 	} 
 
 	//terminal INT:
@@ -1367,32 +1492,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ANY_OTHER:
-	//  .; 
-	//
-	//    
-	//	
-	////---------------------------------------------------------------------
-	////  Names
-	////---------------------------------------------------------------------
-	/// *  Temporary backward compatibility support for 7.4.8 conceptual usage 
-	//conceptualOperationName returns SimpleNameCS:
-	//	value='and'
-	//	| value='implies'
-	//	| value='not'
-	//	| value='or'
-	//	| value='xor'
-	//	| value='<'
-	//	| value='<='
-	//	| value='>='
-	//	| value='>'
-	//	| value='='
-	//	| value='<>'
-	//	| value='+'
-	//	| value='-'
-	//	| value='*'
-	//	| value='/';
-	//conceptualOperationNameCS returns SimpleNameCS:
-	//	conceptualOperationName; * /
+	//  .;
 	public TerminalRule getANY_OTHERRule() {
 		return gaEssentialOCL.getANY_OTHERRule();
 	} 
@@ -1400,7 +1500,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//reservedKeywordCS returns SimpleNameCS:
 	//  value="and"|value="else"|value="endif"|value="if"|value="implies"|value="in"|
 	//  value="let"|value="not"|value="or"|value="then"|value="xor"; 
-	//	
+	//
 	////---------------------------------------------------------------------
 	////  Names
 	////---------------------------------------------------------------------
@@ -1469,7 +1569,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//simpleNameCS returns SimpleNameCS:
-	//  value=ID;
+	//  value=Identifier;
 	public EssentialOCLGrammarAccess.SimpleNameCSElements getSimpleNameCSAccess() {
 		return gaEssentialOCL.getSimpleNameCSAccess();
 	}

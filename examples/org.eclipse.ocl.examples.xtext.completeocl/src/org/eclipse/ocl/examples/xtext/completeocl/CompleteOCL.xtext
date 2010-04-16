@@ -9,8 +9,30 @@ Model returns DocumentCS:
 	(imports+=importCS)*
 	(packages+=packageDeclarationCS | contexts+=contextDeclCS)*;
 
+RestrictedKeywords returns ecore::EString:			// For extension by derived grammars
+	'body'
+|	'context'
+|	'def'
+|	'derive'
+|	'endpackage'
+|	'import'
+|	'init'
+|	'inv'
+|	'package'
+|	'post'
+|	'pre'
+|	'static'
+;
+
+Identifier returns ecore::EString:			// For extension by derived grammars
+	ID_TERMINAL
+|	'e'
+|	'E'
+|	RestrictedKeywords
+;
+
 FQN:
-	ID ('.' ID)*;
+	Identifier ('.' Identifier)*;
 
 importCS returns ImportCS :
 	'import' importedNamespace=FQN
