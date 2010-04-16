@@ -7,30 +7,30 @@ package org.eclipse.ocl.examples.xtext.completeocl.parser.antlr.internal;
 import org.eclipse.xtext.parser.antlr.Lexer;
 }
 
-T11 : '.' ;
-T12 : 'import' ;
-T13 : 'package' ;
-T14 : 'endpackage' ;
-T15 : 'context' ;
-T16 : ':' ;
+T11 : 'body' ;
+T12 : 'context' ;
+T13 : 'def' ;
+T14 : 'derive' ;
+T15 : 'endpackage' ;
+T16 : 'import' ;
 T17 : 'init' ;
-T18 : 'derive' ;
-T19 : 'inv' ;
-T20 : 'static' ;
-T21 : 'def' ;
-T22 : '(' ;
-T23 : ',' ;
-T24 : ')' ;
-T25 : '=' ;
-T26 : 'pre' ;
-T27 : 'post' ;
-T28 : 'body' ;
-T29 : '@' ;
-T30 : '^^' ;
-T31 : '^' ;
-T32 : '?' ;
-T33 : 'e' ;
-T34 : 'E' ;
+T18 : 'inv' ;
+T19 : 'package' ;
+T20 : 'post' ;
+T21 : 'pre' ;
+T22 : 'static' ;
+T23 : 'e' ;
+T24 : 'E' ;
+T25 : '.' ;
+T26 : ':' ;
+T27 : '(' ;
+T28 : ',' ;
+T29 : ')' ;
+T30 : '=' ;
+T31 : '@' ;
+T32 : '^^' ;
+T33 : '^' ;
+T34 : '?' ;
 T35 : '+' ;
 T36 : '-' ;
 T37 : 'Tuple' ;
@@ -80,25 +80,25 @@ T80 : 'endif' ;
 T81 : 'let' ;
 T82 : 'in' ;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6482
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6652
 RULE_STRING_LITERAL : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6484
-RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6654
+RULE_ID_TERMINAL : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6486
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6656
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6488
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6658
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6490
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6660
 RULE_SL_COMMENT : '--' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6492
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6662
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6494
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g" 6664
 RULE_ANY_OTHER : .;
 
 
