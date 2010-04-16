@@ -11,7 +11,7 @@ import org.eclipse.xtext.validation.ComposedChecks;
 public class AbstractQueryJavaValidator extends AbstractDeclarativeValidator {
 
     @Override
-    protected List<? extends EPackage> getEPackages() {
+    protected List<EPackage> getEPackages() {
         List<EPackage> result = new ArrayList<EPackage>();
         result.add(org.eclipse.emf.query2.query.QueryPackage.eINSTANCE);
         return result;

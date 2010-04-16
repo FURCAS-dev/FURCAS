@@ -4,12 +4,15 @@
 
 package org.eclipse.emf.query2.services;
 
+import java.util.List;
+
 import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
 import org.eclipse.xtext.*;
 
 import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.util.Pair;
 
 
 @Singleton
@@ -1264,5 +1267,12 @@ public class QueryGrammarAccess implements IGrammarAccess {
 	//  (" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
-	} 
+	}
+
+  @Override
+  public List<Pair<Keyword, Keyword>> findKeywordPairs(String leftKw, String rightKw)
+  {
+    // TODO Auto-generated method stub
+    return null;
+  } 
 }

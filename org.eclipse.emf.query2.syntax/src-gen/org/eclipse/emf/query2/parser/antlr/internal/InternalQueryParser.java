@@ -3868,4 +3868,11 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_41_in_ruleOperator3632 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_23_in_ruleOperator3647 = new BitSet(new long[]{0x0000000000000002L});
 
+    @Override
+    protected IGrammarAccess getGrammarAccess()
+    {
+      // TODO Auto-generated method stub
+      return null;
+    }
+
 }

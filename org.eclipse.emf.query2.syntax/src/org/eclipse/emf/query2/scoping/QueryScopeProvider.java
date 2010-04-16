@@ -22,10 +22,8 @@ import org.eclipse.emf.query2.query.Model;
 import org.eclipse.emf.query2.query.SelectEntry;
 import org.eclipse.xtext.linking.impl.SimpleAttributeResolver;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.IScopedElement;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.ImportUriUtil;
-import org.eclipse.xtext.scoping.impl.ScopedElement;
 import org.eclipse.xtext.scoping.impl.ScopedElements;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 
@@ -39,74 +37,74 @@ import com.google.common.base.Function;
  * 
  */
 public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
-
-	private static final Function<ENamedElement, IScopedElement> NAME_2_STRUCTURAL_FEATURE = new Function<ENamedElement, IScopedElement>() {
-
-		public IScopedElement apply(ENamedElement feature) {
-			return ScopedElement.create(feature.getName(), feature);
-		}
-	};
-	private IScope importScope;
-
-	IScope scope_FromEntry(MQLquery _this, EClass type) {
-		Iterable<IScopedElement> transformed = transform(_this.getFromEntries(), new Function<FromEntry, IScopedElement>() {
-
-			public IScopedElement apply(FromEntry from) {
-				return ScopedElement.create(from.getAlias(), from);
-			}
-		});
-		return new SimpleScope(IScope.NULLSCOPE, transformed);
-	}
-	
-	IScope scope_SelectEntry_attribute(SelectEntry _this, EReference ref) {
-		Iterable<IScopedElement> transformed = transform(_this.getSelect().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
-		return new SimpleScope(IScope.NULLSCOPE, transformed);
-
-	}
-
-	IScope scope_AliasAttributeExpression_attribute(AliasAttributeExpression _this, EReference ref) {
-		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllStructuralFeatures(), NAME_2_STRUCTURAL_FEATURE);
-		return new SimpleScope(IScope.NULLSCOPE, transformed);
-
-	}
-
-	IScope scope_EClass(Model _this, EClass type) {
-		if(importScope==null){
-			importScope = new DefaultScope(_this.eResource(), _this.getImports(), type); 
-		}
-		return importScope;
-	}
-	
-	private static class DefaultScope extends SimpleScope {
-
-		public DefaultScope(Resource resource, EList<Import> imports, EClass type) {
-			this(resource, imports, type, SimpleAttributeResolver.NAME_RESOLVER);
-		}
-		
-		public DefaultScope(Resource resource, List<Import> imports, EClass type, Function<EObject, String> nameResolver) {
-			super(createParent(imports, type, resource, nameResolver), ScopedElements.allInResource(resource,type,nameResolver));
-		}
-
-
-		private static IScope createParent(List<Import> imports, EClass type, Resource resource, Function<EObject, String> nameResolver) {
-			final List<String> orderedImportURIs = new ArrayList<String>(10);
-			for (Import imp : imports) {
-				orderedImportURIs.add(imp.getImpURI());
-			}
-			IScope result = IScope.NULLSCOPE;
-			for(int i = orderedImportURIs.size() - 1; i >= 0; i--) {
-				result = new LazyReferencedResourceScope(result, type, resource, orderedImportURIs.get(i), nameResolver);
-			}
-			return result;
-		}
-		
-		static class LazyReferencedResourceScope extends SimpleScope {
-
-			public LazyReferencedResourceScope(IScope parent, EClass type, Resource context, String uri, Function<EObject, String> nameFunc) {
-				super(parent, ScopedElements.allInResource(ImportUriUtil.getResource(context, uri), type, nameFunc));
-			}
-
-		}
-	}
+  // TODO convert to new Xtext scoping
+//	private static final Function<ENamedElement, IScopedElement> NAME_2_STRUCTURAL_FEATURE = new Function<ENamedElement, IScopedElement>() {
+//
+//		public IScopedElement apply(ENamedElement feature) {
+//			return ScopedElement.create(feature.getName(), feature);
+//		}
+//	};
+//	private IScope importScope;
+//
+//	IScope scope_FromEntry(MQLquery _this, EClass type) {
+//		Iterable<IScopedElement> transformed = transform(_this.getFromEntries(), new Function<FromEntry, IScopedElement>() {
+//
+//			public IScopedElement apply(FromEntry from) {
+//				return ScopedElement.create(from.getAlias(), from);
+//			}
+//		});
+//		return new SimpleScope(IScope.NULLSCOPE, transformed);
+//	}
+//	
+//	IScope scope_SelectEntry_attribute(SelectEntry _this, EReference ref) {
+//		Iterable<IScopedElement> transformed = transform(_this.getSelect().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
+//		return new SimpleScope(IScope.NULLSCOPE, transformed);
+//
+//	}
+//
+//	IScope scope_AliasAttributeExpression_attribute(AliasAttributeExpression _this, EReference ref) {
+//		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllStructuralFeatures(), NAME_2_STRUCTURAL_FEATURE);
+//		return new SimpleScope(IScope.NULLSCOPE, transformed);
+//
+//	}
+//
+//	IScope scope_EClass(Model _this, EClass type) {
+//		if(importScope==null){
+//			importScope = new DefaultScope(_this.eResource(), _this.getImports(), type); 
+//		}
+//		return importScope;
+//	}
+//	
+//	private static class DefaultScope extends SimpleScope {
+//
+//		public DefaultScope(Resource resource, EList<Import> imports, EClass type) {
+//			this(resource, imports, type, SimpleAttributeResolver.NAME_RESOLVER);
+//		}
+//		
+//		public DefaultScope(Resource resource, List<Import> imports, EClass type, Function<EObject, String> nameResolver) {
+//			super(createParent(imports, type, resource, nameResolver), ScopedElements.allInResource(resource,type,nameResolver));
+//		}
+//
+//
+//		private static IScope createParent(List<Import> imports, EClass type, Resource resource, Function<EObject, String> nameResolver) {
+//			final List<String> orderedImportURIs = new ArrayList<String>(10);
+//			for (Import imp : imports) {
+//				orderedImportURIs.add(imp.getImpURI());
+//			}
+//			IScope result = IScope.NULLSCOPE;
+//			for(int i = orderedImportURIs.size() - 1; i >= 0; i--) {
+//				result = new LazyReferencedResourceScope(result, type, resource, orderedImportURIs.get(i), nameResolver);
+//			}
+//			return result;
+//		}
+//		
+//		static class LazyReferencedResourceScope extends SimpleScope {
+//
+//			public LazyReferencedResourceScope(IScope parent, EClass type, Resource context, String uri, Function<EObject, String> nameFunc) {
+//				super(parent, ScopedElements.allInResource(ImportUriUtil.getResource(context, uri), type, nameFunc));
+//			}
+//
+//		}
+//	}
 
 }
