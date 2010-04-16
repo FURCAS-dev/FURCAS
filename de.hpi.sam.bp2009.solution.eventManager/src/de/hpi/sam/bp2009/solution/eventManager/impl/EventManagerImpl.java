@@ -28,7 +28,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventListener;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
+import de.hpi.sam.bp2009.solution.eventManager.EventMapper;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
@@ -61,7 +61,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * @ordered
 	 */
 	
-	protected EventMappper eventMapper;
+	protected EventMapper eventMapper;
 	private Map<EventFilter, EventListener> rootFilterToListenerMap = new HashMap<EventFilter, EventListener>();
 	private EventAdapter adapter = new EventAdapter();
 	
@@ -71,7 +71,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 */
 	protected EventManagerImpl() {
 		super();
-		this.setEventMapper(EventManagerFactory.eINSTANCE.createEventMappper());
+		this.setEventMapper(EventManagerFactory.eINSTANCE.createEventMapper());
 		this.adapter= new EventAdapter();
 	}
 	/**
@@ -79,10 +79,21 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventMappper basicGetEventMapper() {
+	public EventMapper basicGetEventMapper() {
 		return eventMapper;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventMapper(EventMapper newEventMapper) {
+		EventMapper oldEventMapper = eventMapper;
+		eventMapper = newEventMapper;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,7 +132,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER:
-				setEventMapper((EventMappper)newValue);
+				setEventMapper((EventMapper)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -146,7 +157,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER:
-				setEventMapper((EventMappper)null);
+				setEventMapper((EventMapper)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,10 +168,10 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventMappper getEventMapper() {
+	public EventMapper getEventMapper() {
 		if (eventMapper != null && eventMapper.eIsProxy()) {
 			InternalEObject oldEventMapper = (InternalEObject)eventMapper;
-			eventMapper = (EventMappper)eResolveProxy(oldEventMapper);
+			eventMapper = (EventMapper)eResolveProxy(oldEventMapper);
 			if (eventMapper != oldEventMapper) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
@@ -208,19 +219,6 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	public void notifyApplication(EventListener application, ModelChangeEvent event, EventFilter matchingFilter) {
 		application.handleEvent(event, matchingFilter);
 	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventMapper(EventMappper newEventMapper) {
-		EventMappper oldEventMapper = eventMapper;
-		eventMapper = newEventMapper;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_MANAGER__EVENT_MAPPER, oldEventMapper, eventMapper));
-	}
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

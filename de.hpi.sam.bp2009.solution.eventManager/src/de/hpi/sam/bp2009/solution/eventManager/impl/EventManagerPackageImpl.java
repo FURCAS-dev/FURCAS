@@ -35,7 +35,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventListener;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
+import de.hpi.sam.bp2009.solution.eventManager.EventMapper;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
 import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
@@ -212,7 +212,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eventMappperEClass = null;
+	private EClass eventMapperEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -696,8 +696,8 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventMappper() {
-		return eventMappperEClass;
+	public EClass getEventMapper() {
+		return eventMapperEClass;
 	}
 
 	/**
@@ -846,7 +846,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		associationFilterEClass = createEClass(ASSOCIATION_FILTER);
 		createEReference(associationFilterEClass, ASSOCIATION_FILTER__REFERENCE);
 
-		eventMappperEClass = createEClass(EVENT_MAPPPER);
+		eventMapperEClass = createEClass(EVENT_MAPPER);
 
 		eventListenerEClass = createEClass(EVENT_LISTENER);
 
@@ -913,7 +913,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventManagerEClass, EventManager.class, "EventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventManager_EventMapper(), this.getEventMappper(), null, "eventMapper", null, 1, 1, EventManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventManager_EventMapper(), this.getEventMapper(), null, "eventMapper", null, 1, 1, EventManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
@@ -1002,9 +1002,9 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		initEClass(associationFilterEClass, AssociationFilter.class, "AssociationFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociationFilter_Reference(), theEcorePackage.getEReference(), null, "reference", null, 0, 1, AssociationFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eventMappperEClass, EventMappper.class, "EventMappper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(eventMapperEClass, EventMapper.class, "EventMapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(eventMappperEClass, this.getModelChangeEvent(), "mapNotificationToEvent", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(eventMapperEClass, this.getModelChangeEvent(), "mapNotificationToEvent", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotification(), "notification", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventListenerEClass, EventListener.class, "EventListener", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

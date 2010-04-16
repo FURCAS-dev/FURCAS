@@ -179,13 +179,13 @@ public interface EventManagerFactory extends EFactory {
 	AssociationFilter createAssociationFilter();
 
 	/**
-	 * Returns a new object of class '<em>Event Mappper</em>'.
+	 * Returns a new object of class '<em>Event Mapper</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event Mappper</em>'.
+	 * @return a new object of class '<em>Event Mapper</em>'.
 	 * @generated
 	 */
-	EventMappper createEventMappper();
+	EventMapper createEventMapper();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Multi Value Change Event</em>'.

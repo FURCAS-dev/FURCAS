@@ -37,12 +37,12 @@ public interface EventManager extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Event Mapper</em>' reference.
-	 * @see #setEventMapper(EventMappper)
+	 * @see #setEventMapper(EventMapper)
 	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventManager_EventMapper()
 	 * @model required="true"
 	 * @generated
 	 */
-	EventMappper getEventMapper();
+	EventMapper getEventMapper();
 
 	/**
 	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#getEventMapper <em>Event Mapper</em>}' reference.
@@ -52,7 +52,7 @@ public interface EventManager extends EObject {
 	 * @see #getEventMapper()
 	 * @generated
 	 */
-	void setEventMapper(EventMappper value);
+	void setEventMapper(EventMapper value);
 
 	/**
 	 * <!-- begin-user-doc -->

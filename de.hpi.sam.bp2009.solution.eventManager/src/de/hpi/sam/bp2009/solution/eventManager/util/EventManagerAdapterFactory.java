@@ -26,8 +26,6 @@ import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
 import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
@@ -183,8 +181,8 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createAssociationFilterAdapter();
 			}
 			@Override
-			public Adapter caseEventMappper(EventMappper object) {
-				return createEventMappperAdapter();
+			public Adapter caseEventMapper(EventMapper object) {
+				return createEventMapperAdapter();
 			}
 			@Override
 			public Adapter caseEventListener(EventListener object) {
@@ -523,16 +521,16 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMappper <em>Event Mappper</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMapper <em>Event Mapper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventMappper
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventMapper
 	 * @generated
 	 */
-	public Adapter createEventMappperAdapter() {
+	public Adapter createEventMapperAdapter() {
 		return null;
 	}
 

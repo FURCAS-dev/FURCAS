@@ -848,23 +848,23 @@ public interface EventManagerPackage extends EPackage {
 	int ASSOCIATION_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventMappperImpl <em>Event Mappper</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventMapperImpl <em>Event Mapper</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventMappperImpl
-	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventMappper()
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventMapperImpl
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventMapper()
 	 * @generated
 	 */
-	int EVENT_MAPPPER = 22;
+	int EVENT_MAPPER = 22;
 
 	/**
-	 * The number of structural features of the '<em>Event Mappper</em>' class.
+	 * The number of structural features of the '<em>Event Mapper</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_MAPPPER_FEATURE_COUNT = 0;
+	int EVENT_MAPPER_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl <em>Event Listener</em>}' class.
@@ -1432,14 +1432,14 @@ public interface EventManagerPackage extends EPackage {
 	EReference getAssociationFilter_Reference();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMappper <em>Event Mappper</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMapper <em>Event Mapper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event Mappper</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventMappper
+	 * @return the meta object for class '<em>Event Mapper</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventMapper
 	 * @generated
 	 */
-	EClass getEventMappper();
+	EClass getEventMapper();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventListener <em>Event Listener</em>}'.
@@ -1908,14 +1908,14 @@ public interface EventManagerPackage extends EPackage {
 		EReference ASSOCIATION_FILTER__REFERENCE = eINSTANCE.getAssociationFilter_Reference();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventMappperImpl <em>Event Mappper</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventMapperImpl <em>Event Mapper</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventMappperImpl
-		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventMappper()
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventMapperImpl
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventMapper()
 		 * @generated
 		 */
-		EClass EVENT_MAPPPER = eINSTANCE.getEventMappper();
+		EClass EVENT_MAPPER = eINSTANCE.getEventMapper();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventListenerImpl <em>Event Listener</em>}' class.

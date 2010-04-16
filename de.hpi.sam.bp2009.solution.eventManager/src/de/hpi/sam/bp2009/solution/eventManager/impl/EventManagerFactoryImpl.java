@@ -82,7 +82,7 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 			case EventManagerPackage.COMPOSITION_HIERARCHY_FILTER: return createCompositionHierarchyFilter();
 			case EventManagerPackage.PACKAGE_FILTER: return createPackageFilter();
 			case EventManagerPackage.ASSOCIATION_FILTER: return createAssociationFilter();
-			case EventManagerPackage.EVENT_MAPPPER: return createEventMappper();
+			case EventManagerPackage.EVENT_MAPPER: return createEventMapper();
 			case EventManagerPackage.ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT: return createAttributeMultiValueChangeEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -302,9 +302,9 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventMappper createEventMappper() {
-		EventMappperImpl eventMappper = new EventMappperImpl();
-		return eventMappper;
+	public EventMapper createEventMapper() {
+		EventMapperImpl eventMapper = new EventMapperImpl();
+		return eventMapper;
 	}
 
 	/**

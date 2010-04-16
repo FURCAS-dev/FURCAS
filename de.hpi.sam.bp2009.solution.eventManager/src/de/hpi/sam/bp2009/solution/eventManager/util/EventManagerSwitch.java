@@ -26,8 +26,6 @@ import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
 import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
@@ -273,9 +271,9 @@ public class EventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.EVENT_MAPPPER: {
-				EventMappper eventMappper = (EventMappper)theEObject;
-				T result = caseEventMappper(eventMappper);
+			case EventManagerPackage.EVENT_MAPPER: {
+				EventMapper eventMapper = (EventMapper)theEObject;
+				T result = caseEventMapper(eventMapper);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -629,17 +627,17 @@ public class EventManagerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Mappper</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Event Mapper</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Mappper</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Event Mapper</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEventMappper(EventMappper object) {
+	public T caseEventMapper(EventMapper object) {
 		return null;
 	}
 
