@@ -175,7 +175,6 @@ public class ProjectBasedScopeProviderTest extends TestCase {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	private Container serializeModelToProject(String projectName, EPackage metaModel){
 		IProject p1 = new ProjectCreator(ResourcesPlugin.getWorkspace()).createProject(projectName);
 		IFolder folder3 = p1.getFolder("model");
@@ -198,7 +197,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
 		 * Save the resource using OPTION_SCHEMA_LOCATION save option toproduce 
 		 * xsi:schemaLocation attribute in the document
 		 */
-		Map options = new HashMap();
+		Map<String, Boolean> options = new HashMap<String, Boolean>();
 		options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 		try{
 			resource.save(options);
@@ -213,7 +212,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
 		 * Save the resource using OPTION_SCHEMA_LOCATION save option toproduce 
 		 * xsi:schemaLocation attribute in the document
 		 */
-		Map options1 = new HashMap();
+		Map<String, Boolean> options1 = new HashMap<String, Boolean>();
 		options1.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 		try{
 			resource1.save(options1);
