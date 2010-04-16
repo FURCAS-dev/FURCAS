@@ -118,13 +118,13 @@ public class EAnnotationOCLParserTest extends TestCase {
 		placeC.getEStructuralFeatures().add(placeTokens);
 		
 		EAnnotation anno= EcoreFactory.eINSTANCE.createEAnnotation();
-		anno.setSource(getFixture().getSOURCE());
-		anno.getDetails().put(getFixture().getEXPRESSION(), "self.noTokens>4");
-		anno.getDetails().put(getFixture().getKIND(), org.eclipse.ocl.helper.ConstraintKind.INVARIANT.name());
+		getFixture();
+                anno.setSource(EAnnotationOCLParser.ANNOTATION_SOURCE);
+		anno.getDetails().put("someKey", "self.noTokens>4");
 		placeC.getEAnnotations().add(anno);
 		
 		getFixture().convertOclAnnotation(placeC);
-		assertTrue(placeC.getEAnnotation(getFixture().getSOURCE()).getContents().get(0) instanceof OCLExpression<?>);
+		assertTrue(placeC.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE).getContents().get(0) instanceof OCLExpression<?>);
 	}
 
 } //EAnnotationOCLParserTest

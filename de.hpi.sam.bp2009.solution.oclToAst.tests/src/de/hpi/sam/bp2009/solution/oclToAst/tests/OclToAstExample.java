@@ -6,25 +6,15 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.tests;
 
-import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage;
-
 import java.io.File;
-import java.io.IOException;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.util.Diagnostician;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
@@ -52,25 +42,10 @@ public class OclToAstExample {
 			(Resource.Factory.Registry.DEFAULT_EXTENSION, 
 			 new XMIResourceFactoryImpl());
 
-		// Register the package to ensure it is available during loading.
-		//
-		resourceSet.getPackageRegistry().put
-			(OclToAstPackage.eNS_URI, 
-			 OclToAstPackage.eINSTANCE);
-        
 		// If there are no arguments, emit an appropriate usage message.
 		//
 		if (args.length == 0) {
 			System.out.println("Enter a list of file paths or URIs that have content like this:");
-			try {
-				Resource resource = resourceSet.createResource(URI.createURI("http:///My.ocltoast"));
-				EAnnotationOCLParser root = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-				resource.getContents().add(root);
-				resource.save(System.out, null);
-			}
-			catch (IOException exception) {
-				exception.printStackTrace();
-			}
 		}
 		else {
 			// Iterate over all the arguments.
