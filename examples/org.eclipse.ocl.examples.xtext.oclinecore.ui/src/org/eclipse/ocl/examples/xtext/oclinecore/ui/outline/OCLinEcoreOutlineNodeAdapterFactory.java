@@ -12,18 +12,21 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreOutlineNodeAdapterFactory.java,v 1.1 2010/04/13 06:41:29 ewillink Exp $
+ * $Id: OCLinEcoreOutlineNodeAdapterFactory.java,v 1.2 2010/04/16 18:09:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.outline;
 
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
 import org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
 
 public class OCLinEcoreOutlineNodeAdapterFactory extends DefaultContentOutlineNodeAdapterFactory {
 
 	private static final Class<?>[] types = { 
-		// provide list of classes to adapt to, e.g.:
-		// Entity.class
-		// Service.class
+		DocumentCS.class,
+		PackageCS.class,
+		ClassCS.class
 	};
 
 	@Override

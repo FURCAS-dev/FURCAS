@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.1 2010/04/13 06:47:03 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.2 2010/04/16 18:09:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -22,8 +22,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
@@ -37,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFact
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
@@ -48,6 +53,10 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 {
 	@Inject
 	private IResourceSetProvider resourceSetProvider;
+	
+	private Map<IDocument,Boolean> loadedAsEcoreMap = new HashMap<IDocument,Boolean>();
+	
+	private Map<IDocument,Boolean> saveAsEcoreMap = new HashMap<IDocument,Boolean>();
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -60,18 +69,71 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	}
 
 	@Override
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
+		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && (saveAsEcoreMap.get(document) == Boolean.TRUE)) {
+			ByteArrayOutputStream ecoreStream = new ByteArrayOutputStream();
+			String savedContent = document.get();
+			try {
+				((OCLinEcoreDocument) document).saveAsEcore(ecoreStream);
+				document.set(ecoreStream.toString());
+				super.doSaveDocument(monitor, element, document, overwrite);
+				loadedAsEcoreMap.put(document, Boolean.TRUE);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				document.set(savedContent);
+			}
+		}
+		else {
+			super.doSaveDocument(monitor, element, document, overwrite);
+		}
+	}
+
+	public DocumentCS importAsDocumentCS(Resource ecoreResource) {
+		Ecore2OCLinEcore converter = new Ecore2OCLinEcore();
+		List<EObject> csObjects = converter.convertAll(ecoreResource.getContents());
+		DocumentCS documentCS = OCLinEcoreCSTFactory.eINSTANCE.createDocumentCS();
+		List<PackageCS> packages = documentCS.getPackages();
+		for (EObject csObject : csObjects) {
+			packages.add((PackageCS) csObject);
+		}
+		return documentCS;
+	}
+
+	@Override
+	public boolean isDeleted(Object element) {
+		IDocument document = getDocument(element);
+		Boolean loadIsEcore = loadedAsEcoreMap.get(document);
+		Boolean saveIsEcore = saveAsEcoreMap.get(document);
+		if (loadIsEcore != saveIsEcore) {
+			return true;		// Causes Save to do SaveAs
+		}
+		return super.isDeleted(element);
+	}
+
+	protected boolean isXML(InputStream inputStream) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+		String line = reader.readLine();
+		inputStream.reset();
+		return (line != null) && line.startsWith("<?xml");
+	}
+
+	@Override
 	protected void setDocumentContent(IDocument document, InputStream inputStream, String encoding) throws CoreException {
 		try {
 			if (!inputStream.markSupported()) {
 				inputStream = createResettableInputStream(inputStream);
 			}
-			if (isXML(inputStream)) {
+			boolean asEcore = isXML(inputStream);
+			loadedAsEcoreMap.put(document, asEcore);
+			saveAsEcoreMap.put(document, asEcore);
+			if (asEcore) {
 				ResourceSet resourceSet = resourceSetProvider.get(null);
 				Resource ecoreResource = resourceSet.createResource(URI.createFileURI("$ecore$.ecore"), EcorePackage.eCONTENT_TYPE);
 				ecoreResource.load(inputStream, null);
 				DocumentCS documentCS = importAsDocumentCS(ecoreResource);
-				// FIXME needs to exist in workspace
-				Resource xtextResource = resourceSet.createResource(URI.createFileURI("xtext.oclinecore"), OCLinEcoreCSTPackage.eCONTENT_TYPE);
+				Resource xtextResource = resourceSet.createResource(URI.createFileURI("$xtext$.oclinecore"), OCLinEcoreCSTPackage.eCONTENT_TYPE);
 				xtextResource.getContents().add(documentCS);		
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				xtextResource.save(outputStream, null);
@@ -90,42 +152,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		super.setDocumentContent(document, inputStream, encoding);		// FIXME encoding
 	}
 
-	public DocumentCS importAsDocumentCS(Resource ecoreResource) {
-		Ecore2OCLinEcore converter = new Ecore2OCLinEcore();
-		List<EObject> csObjects = converter.convertAll(ecoreResource.getContents());
-		DocumentCS documentCS = OCLinEcoreCSTFactory.eINSTANCE.createDocumentCS();
-		List<PackageCS> packages = documentCS.getPackages();
-		for (EObject csObject : csObjects) {
-			packages.add((PackageCS) csObject);
-		}
-		return documentCS;
+	public void setPersistAsEcore(Object element, Boolean asEcore) {
+		saveAsEcoreMap.put(getDocument(element), asEcore);
+		setCanSaveDocument(element);
 	}
-
-	public boolean isXML(InputStream inputStream) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		String line = reader.readLine();
-		inputStream.reset();
-		return line.startsWith("<?xml");
-	}
-
-//	@Override
-//	protected void setupDocument(Object element, IDocument document) {
-//		String s1 = document.get();
-//		super.setupDocument(element, document);
-//		String s2 = document.get();
-//	}
-
-	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
-		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument)) {
-			try {
-				((OCLinEcoreDocument) document).saveAsEcore();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		super.doSaveDocument(monitor, element, document, overwrite);
-	}
-
 }

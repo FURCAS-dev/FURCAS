@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.1 2010/04/13 06:41:29 ewillink Exp $
+ * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.2 2010/04/16 18:09:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
@@ -60,6 +60,7 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 	}
 
 	private Resource createResourceFor(IFile storage) {
+		// Modified so that an XtextResource is creatred for an ecore file
 		ResourceSet resourceSet = getResourceSet(storage);
 		URI uri = URI.createPlatformResourceURI(storage.getFullPath().toString(), true);
 		configureResourceSet(resourceSet, uri);
@@ -73,6 +74,7 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 	}
 
 	private Resource createResourceFor(IJarEntryResource storage) {
+		// Modified so that an XtextResource is creatred for an ecore file
 		ResourceSet resourceSet = getResourceSet(storage);
 		URI uri = storageToUriMapper.getUri(storage);
 		configureResourceSet(resourceSet, uri);
@@ -84,15 +86,4 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 		resource.setValidationDisabled(true);
 		return resource;
 	}
-
-/*	private XtextResource getResource(ResourceSet resourceSet, URI uri) {
-	    Resource.Factory resourceFactory = resourceSet.getResourceFactoryRegistry().getFactory(uri, ContentHandler.UNSPECIFIED_CONTENT_TYPE);
-//		Resource aResource = resourceSet.getResourceFactory(uri, ContentHandler.UNSPECIFIED_CONTENT_TYPE);
-		Resource aResource = resourceSet.createResource(uri, ContentHandler.UNSPECIFIED_CONTENT_TYPE);
-		if (!(aResource instanceof XtextResource))
-			throw new IllegalStateException("The resource factory registered for " + uri
-					+ " does not yield an XtextResource. Make sure the right resource factory has been registered.");
-		return (XtextResource) aResource;
-	} */
-
 }

@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreTransformer.java,v 1.1 2010/04/13 06:41:29 ewillink Exp $
+ * $Id: OCLinEcoreTransformer.java,v 1.2 2010/04/16 18:09:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.outline;
 
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassifierCS;
+import org.eclipse.xtext.ui.editor.outline.ContentOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
 
 /**
@@ -23,5 +25,17 @@ import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemant
  * 
  */
 public class OCLinEcoreTransformer extends AbstractDeclarativeSemanticModelTransformer {
+	  /**
+	   * This method will be called by naming convention:
+	   * - method name must be createNode
+	   * - first param: subclass of EObject
+	   * - second param: ContentOutlineNode 
+	   *
+	  public ContentOutlineNode createNode(
+	      ClassifierCS semanticNode, ContentOutlineNode parentNode) {
+	    ContentOutlineNode node = super.newOutlineNode(semanticNode, parentNode);
+	    node.setLabel("special " + node.getLabel() + " " + semanticNode.eClass().getName());
+	    return node;
+	  } */
 	
 }
