@@ -32,33 +32,41 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.ui" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.ide" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ui.console" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.emf.edit.ui" version="2.3.0" match="compatible"/>
       <import plugin="org.eclipse.core.runtime" version="3.6.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.edit" version="2.6.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.editor" version="2.6.0" match="compatible"/>
-      <import plugin="org.eclipse.jdt.core" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.jdt.ui" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.jface.text" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.views.properties.tabbed" version="3.5.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.workbench.texteditor" version="3.6.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.6.0" match="compatible"/>
-      <import plugin="org.eclipse.core.resources" version="3.2.0" match="compatible"/>
-      <import plugin="com.ibm.icu"/>
-      <import plugin="lpg.runtime.java" version="2.0.17" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.compare"/>
-      <import plugin="org.eclipse.core.filesystem"/>
-      <import plugin="org.eclipse.debug.ui"/>
-      <import plugin="org.eclipse.debug.core"/>
-      <import plugin="org.eclipse.help"/>
-      <import plugin="org.eclipse.ltk.core.refactoring"/>
-      <import plugin="org.eclipse.ltk.ui.refactoring"/>
-      <import plugin="org.eclipse.ui.navigator"/>
-      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.jdt.core" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.jface.text" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.ecore" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.editor.model" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.core.resources" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.common" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.editor.model.edit" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.modelregistry" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.modelregistry.edit" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.modelregistry.editor" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.parser.unresolved" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.parser" version="3.0.0" match="compatible"/>
+      <import plugin="org.antlr.runtime"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.essentialocl" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.util"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.apache.log4j"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.completeocl" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.essentialocl.ui" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.builder" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui.shared" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.common" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.oclinecore" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
    </requires>
 
    <plugin
@@ -147,6 +155,48 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.ocl.examples.parser.unresolved"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.completeocl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.completeocl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.essentialocl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.essentialocl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.oclinecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.oclinecore.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
