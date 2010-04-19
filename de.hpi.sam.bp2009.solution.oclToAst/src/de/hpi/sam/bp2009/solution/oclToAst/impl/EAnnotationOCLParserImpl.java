@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -15,18 +17,20 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
-import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
-
-
+	private List<Exception> exceptions;
+	public List<Exception> getExceptions(){
+		return exceptions;
+	}
 	public void convertOclAnnotation(EModelElement modelElement) {
+		exceptions= new ArrayList<Exception>();
 		EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
 		if(a==null)
 			return;
@@ -36,7 +40,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 			String e = detail.getValue();
 			if(e ==null)
 				return;
-			ConstraintKind kind= null;
 			OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
 			Helper helper = ocl.createOCLHelper();
 
@@ -45,30 +48,29 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 			case EcorePackage.ECLASS:
 			case EcorePackage.EDATA_TYPE:
 				helper.setContext((EClassifier)modelElement);
-				kind=ConstraintKind.INVARIANT;
 				break;
 			case EcorePackage.EATTRIBUTE:
 				helper.setAttributeContext(((EAttribute)modelElement).getEContainingClass(), (EAttribute)modelElement);
 				break;
 			case EcorePackage.EOPERATION:
-				kind=ConstraintKind.BODYCONDITION;
 				helper.setOperationContext(((EOperation)modelElement).getEContainingClass(), (EOperation)modelElement);
 				break;
 			default:
 				helper.setInstanceContext(modelElement);
 				break;
 			}
-			Constraint c=null;
+		
+			OCLExpression expr=null;
 			try {
-				c= helper.createConstraint(kind, e);
+				expr = helper.createQuery(e);
 			} catch (ParserException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				exceptions.add(e1);
 			}
-			if(c==null)
+
+			if(expr==null)
 				return;
 
-			a.getContents().add(c.getSpecification().getBodyExpression());
+			a.getContents().add(expr);
 
 		}		
 	}

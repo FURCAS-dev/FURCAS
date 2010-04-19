@@ -13,5 +13,4 @@
     <delegate uri = "http://de.hpi.sam.bp2009.OCL"
        class = "de.hpi.sam.bp2009.solution.oclToAst.impl.OCLValidationDelegateFactory$Global" />
   </extension>
-
 </plugin>
