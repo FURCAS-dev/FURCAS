@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.query2.QueryContext;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +35,22 @@ public interface ScopeProvider extends EObject {
 	 * @generated
 	 */
 	EList<Resource> getInMemoryResources();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.QueryContext"
+	 * @generated
+	 */
+	QueryContext getForwardScopeAsQueryContext();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.QueryContext"
+	 * @generated
+	 */
+	QueryContext getBackwardScopeAsQueryContext();
 
 	/**
 	 * <!-- begin-user-doc -->

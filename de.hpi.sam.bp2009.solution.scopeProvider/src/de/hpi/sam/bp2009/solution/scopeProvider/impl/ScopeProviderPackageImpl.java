@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.query2.QueryContext;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,6 +55,13 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 	 * @generated
 	 */
 	private EDataType iProjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType queryContextEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -166,6 +174,15 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getQueryContext() {
+		return queryContextEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ScopeProviderFactory getScopeProviderFactory() {
 		return (ScopeProviderFactory)getEFactoryInstance();
 	}
@@ -197,6 +214,7 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 		// Create data types
 		uriEDataType = createEDataType(URI);
 		iProjectEDataType = createEDataType(IPROJECT);
+		queryContextEDataType = createEDataType(QUERY_CONTEXT);
 	}
 
 	/**
@@ -282,9 +300,14 @@ public class ScopeProviderPackageImpl extends EPackageImpl implements ScopeProvi
 
 		addEOperation(scopeProviderEClass, ecorePackage.getEResource(), "getInMemoryResources", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+		addEOperation(scopeProviderEClass, this.getQueryContext(), "getForwardScopeAsQueryContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(scopeProviderEClass, this.getQueryContext(), "getBackwardScopeAsQueryContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		// Initialize data types
 		initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEDataType(iProjectEDataType, IProject.class, "IProject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(queryContextEDataType, QueryContext.class, "QueryContext", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

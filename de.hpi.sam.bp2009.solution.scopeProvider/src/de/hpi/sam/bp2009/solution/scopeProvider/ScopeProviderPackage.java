@@ -129,6 +129,17 @@ public interface ScopeProviderPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Query Context</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.query2.QueryContext
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getQueryContext()
+	 * @generated
+	 */
+	int QUERY_CONTEXT = 4;
+
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider <em>Project Based Scope Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,6 +191,17 @@ public interface ScopeProviderPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getIProject();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.emf.query2.QueryContext <em>Query Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Query Context</em>'.
+	 * @see org.eclipse.emf.query2.QueryContext
+	 * @model instanceClass="org.eclipse.emf.query2.QueryContext" serializeable="false"
+	 * @generated
+	 */
+	EDataType getQueryContext();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -250,6 +272,16 @@ public interface ScopeProviderPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType IPROJECT = eINSTANCE.getIProject();
+
+		/**
+		 * The meta object literal for the '<em>Query Context</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.query2.QueryContext
+		 * @see de.hpi.sam.bp2009.solution.scopeProvider.impl.ScopeProviderPackageImpl#getQueryContext()
+		 * @generated
+		 */
+		EDataType QUERY_CONTEXT = eINSTANCE.getQueryContext();
 
 	}
 

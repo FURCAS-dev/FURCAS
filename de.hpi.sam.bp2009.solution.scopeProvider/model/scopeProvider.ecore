@@ -64,5 +64,9 @@
       <eParameters name="resources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
     </eOperations>
     <eOperations name="getInMemoryResources" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    <eOperations name="getForwardScopeAsQueryContext" eType="#//QueryContext"/>
+    <eOperations name="getBackwardScopeAsQueryContext" eType="#//QueryContext"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="QueryContext" instanceClassName="org.eclipse.emf.query2.QueryContext"
+      serializable="false"/>
 </ecore:EPackage>

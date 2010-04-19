@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
@@ -93,6 +94,54 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			result.add(ref.get());
 		}
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public QueryContext getForwardScopeAsQueryContext() {
+		return new QueryContext() {
+			
+			@Override
+			public ResourceSet getResourceSet() {
+				ResourceSet set = new ResourceSetImpl();
+				set.getResources().addAll(getForwardScopeAsResources());
+				return set;
+				
+			}
+			
+			@Override
+			public URI[] getResourceScope() {
+			 return (URI[]) getForwardScopeAsURIs().toArray();
+				
+			}
+		};
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public QueryContext getBackwardScopeAsQueryContext() {
+		return new QueryContext() {
+			
+			@Override
+			public ResourceSet getResourceSet() {
+				ResourceSet set = new ResourceSetImpl();
+				set.getResources().addAll(getBackwardScopeAsResources());
+				return set;
+				
+			}
+			
+			@Override
+			public URI[] getResourceScope() {
+			 return (URI[]) getBackwardScopeAsURIs().toArray();
+				
+			}
+		};
 	}
 
 	/**
