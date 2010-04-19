@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.solution.scopeProvider.tests;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import org.eclipse.emf.query2.QueryContext;
 
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
@@ -55,6 +57,8 @@ import de.hpi.sam.petriNet.PetriNetPackage;
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider#getBackwardScopeAsURIs() <em>Get Backward Scope As UR Is</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#setInMemoryResources(org.eclipse.emf.common.util.EList) <em>Set In Memory Resources</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources() <em>Get In Memory Resources</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsQueryContext() <em>Get Forward Scope As Query Context</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsQueryContext() <em>Get Backward Scope As Query Context</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -723,6 +727,62 @@ public class ProjectBasedScopeProviderTest extends TestCase {
 		getFixture().setInMemoryResources(new BasicEList<Resource>());
 		getFixture().getInMemoryResources().add(c1.r1);
 		assert(getFixture().getInMemoryResources().size() == 0);
+	}
+
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsQueryContext() <em>Get Forward Scope As Query Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsQueryContext()
+	 * @generated NOT
+	 */
+	public void testGetForwardScopeAsQueryContext() {
+		BasicEList<Resource> list= new BasicEList<Resource>();
+		list.add(c1.r1);
+		getFixture().setupForResources(list);
+		QueryContext context= getFixture().getForwardScopeAsQueryContext();
+		
+		BasicEList<URI> result= new BasicEList<URI>();
+		result.add(c1.r1.getURI());
+		result.add(c1.r2.getURI());
+		result.add(c2.r1.getURI());
+		result.add(c2.r2.getURI());
+		
+		BasicEList<Resource> resultAsRs= new BasicEList<Resource>();
+		resultAsRs.add(c1.r1);
+		resultAsRs.add(c1.r2);
+		resultAsRs.add(c2.r1);
+		resultAsRs.add(c2.r2);
+
+		URI[] scope = context.getResourceScope();
+		assertTrue(Arrays.asList(scope).containsAll(result) && result.containsAll(Arrays.asList(scope)));
+		assertTrue(context.getResourceSet().getResources().contains(resultAsRs));
+	}
+
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsQueryContext() <em>Get Backward Scope As Query Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsQueryContext()
+	 * @generated NOT
+	 */
+	public void testGetBackwardScopeAsQueryContext() {
+		BasicEList<Resource> list= new BasicEList<Resource>();
+		list.add(c1.r1);
+		getFixture().setupForResources(list);
+		QueryContext context= getFixture().getBackwardScopeAsQueryContext();
+		
+		BasicEList<URI> result= new BasicEList<URI>();
+		result.add(c1.r1.getURI());
+		result.add(c1.r2.getURI());
+		
+		BasicEList<Resource> resultAsRs= new BasicEList<Resource>();
+		resultAsRs.add(c1.r1);
+		resultAsRs.add(c1.r2);
+
+		URI[] scope = context.getResourceScope();
+		assertTrue(Arrays.asList(scope).containsAll(result) && result.containsAll(Arrays.asList(scope)));
+		assertTrue(context.getResourceSet().getResources().contains(resultAsRs));
 	}
 
 	/**

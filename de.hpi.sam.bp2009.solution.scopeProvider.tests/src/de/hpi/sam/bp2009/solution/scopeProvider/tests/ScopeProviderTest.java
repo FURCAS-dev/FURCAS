@@ -20,6 +20,8 @@ import junit.framework.TestCase;
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsURIs() <em>Get Backward Scope As UR Is</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#setInMemoryResources(org.eclipse.emf.common.util.EList) <em>Set In Memory Resources</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getInMemoryResources() <em>Get In Memory Resources</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsQueryContext() <em>Get Forward Scope As Query Context</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsQueryContext() <em>Get Backward Scope As Query Context</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -176,6 +178,32 @@ public abstract class ScopeProviderTest extends TestCase {
 	 * @generated
 	 */
 	public void testGetInMemoryResources() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsQueryContext() <em>Get Forward Scope As Query Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getForwardScopeAsQueryContext()
+	 * @generated
+	 */
+	public void testGetForwardScopeAsQueryContext() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsQueryContext() <em>Get Backward Scope As Query Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider#getBackwardScopeAsQueryContext()
+	 * @generated
+	 */
+	public void testGetBackwardScopeAsQueryContext() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
