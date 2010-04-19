@@ -17,7 +17,7 @@ Export-Package: org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST,
  org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr,
  org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr.internal,
  org.eclipse.ocl.examples.xtext.essentialocl.validation
-Require-Bundle: org.eclipse.xtext;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.generator;resolution:=optional,
  de.itemis.xtext.antlr;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
