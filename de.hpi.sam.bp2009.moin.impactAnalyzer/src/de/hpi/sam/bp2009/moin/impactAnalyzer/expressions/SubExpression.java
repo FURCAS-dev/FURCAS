@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.impl.PropertyCallExpImpl;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.NavigationPath;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.Relevance;
@@ -188,10 +190,10 @@ public abstract class SubExpression {
         // add the current node to all navigation paths
         for ( Iterator<NavigationPath> i = navPaths.iterator( ); i.hasNext( ); ) {
             NavigationPath navPath = i.next( );
-            if ( node instanceof AssociationClassCallExp ) {
-                navPath.add( ( (AssociationClassCallExp) node ).getReferredAssociationClass( ) );
-            } else if ( node instanceof AttributeCallExp ) {
-                navPath.add( ( (AttributeCallExpInternal) node ).getReferredAttribute( ) );
+            if ( node instanceof NavigationCallExp ) {
+                navPath.add( ( (NavigationCallExp) node ).getNavigationSource() );
+            } else if ( node instanceof PropertyCallExp ) {
+                navPath.add( ( (PropertyCallExp) node ).getReferredProperty() );
             }
             //            else if (node instanceof OperationCallExp
             //                    && ((OperationCallExp) node).getReferredOperation()

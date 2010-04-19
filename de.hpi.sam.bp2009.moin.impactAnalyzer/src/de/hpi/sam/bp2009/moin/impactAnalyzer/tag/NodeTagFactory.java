@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.tag;
 
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.UUID;
 
 import org.eclipse.emf.ecore.EObject;
 

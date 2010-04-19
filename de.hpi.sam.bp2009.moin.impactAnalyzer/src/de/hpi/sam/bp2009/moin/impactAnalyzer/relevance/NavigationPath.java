@@ -4,13 +4,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EAttributeImpl;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.impl.IteratorExpImpl;
+import org.eclipse.ocl.ecore.impl.OperationCallExpImpl;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
+import org.eclipse.ocl.utilities.OCLFactory;
 
 /**
  * This class represents a navigation path.
@@ -22,7 +33,7 @@ import org.eclipse.ocl.ecore.TypeExp;
  */
 public class NavigationPath {
 
-    private final List<ModelElement> path = new ArrayList<ModelElement>( );
+    private final List<EModelElement> path = new ArrayList<EModelElement>( );
 
     private EOperation and;
 
@@ -53,7 +64,7 @@ public class NavigationPath {
      * 
      * @param me the ModelElement to add to the path.
      */
-    public void add( ModelElement me ) {
+    public void add( EModelElement me ) {
 
         this.path.add( me );
     }
@@ -61,9 +72,9 @@ public class NavigationPath {
     /**
      * @param mes model elements
      */
-    public void addAll( List<ModelElement> mes ) {
+    public void addAll( List<EModelElement> mes ) {
 
-        for ( ModelElement me : mes ) {
+        for ( EModelElement me : mes ) {
             this.path.add( me );
         }
     }
@@ -71,7 +82,7 @@ public class NavigationPath {
     /**
      * @return the path
      */
-    public List<ModelElement> getPath( ) {
+    public List<EModelElement> getPath( ) {
 
         return this.path;
     }
@@ -95,29 +106,30 @@ public class NavigationPath {
      * @return Returns a OclExpression which evaluates to a Set of relevant
      * instances
      */
-    public OCLExpression turnIntoOcl( VariableDeclaration self ) {
+    public OCLExpression turnIntoOcl( VariableExp self ) {
 
         // store the jmiCreator in an instance variable so
         // it has not to be passed on all the time
         // the reverse navigation path starts with self
-        initializeOperations( jmiCreator );
-        OclExpression revNavPath = jmiCreator.createVariableExp( self );
+        initializeOperations( );
+        OCLExpression revNavPath = self;
         // reverse the path and create its representation in OCL
         for ( int i = this.path.size( ) - 1; i >= 0; i-- ) {
-            ModelElement me = this.path.get( i );
-            if ( me instanceof AssociationEnd ) {
+            EModelElement me = this.path.get( i );
+            if ( me instanceof EReference ) {
                 // reverse the association end
-                AssociationEnd assocEnd = (AssociationEnd) me;
-                revNavPath = reverseAssociationEndCall( revNavPath, assocEnd, jmiCreator );
+            	EReference assocEnd = (EReference) me;
+                revNavPath = reverseAssociationEndCall( revNavPath, assocEnd);
                 // revNavPath =
                 // jmiCreator.createAssociationCallExpExt(revNavPath,
                 // assocEnd.otherEnd());
-            } else if ( me instanceof Attribute ) {
+            } else if ( me instanceof EAttribute ) {
                 // an attribute call is not so easy to be reversed.
-                Attribute attr = (Attribute) me;
-                revNavPath = reverseAttributeCall( revNavPath, attr, jmiCreator );
+                EAttribute attr = (EAttribute) me;
+                revNavPath = reverseAttributeCall( revNavPath, attr );
             } else {
-                throw new MoinLocalizedBaseRuntimeException( OclServiceExceptions.REVNAVNOTSUPPORTED, me.getClass( ).getName( ) );
+            	throw new RuntimeException("Reverse navigation not supported");
+                //throw new MoinLocalizedBaseRuntimeException( OclServiceExceptions.REVNAVNOTSUPPORTED, me.getClass( ).getName( ) );
             }
         }
 
@@ -144,18 +156,18 @@ public class NavigationPath {
      * attribute.
      * @throws OclSemanticException
      */
-    private OclExpression reverseAttributeCall( OclExpression source, Attribute attr, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression reverseAttributeCall( OCLExpression source, EAttribute attr ) {
 
         // get the attribute's owner's type
-        Classifier attrOwnerType = (Classifier) ( (AttributeImpl) attr ).refImmediateComposite( jmiCreator.getSession( ) );
+        EClassifier attrOwnerType = (EClassifier) ( (EAttributeImpl) attr ).refImmediateComposite( );
         // create the allInstances call
-        OperationCallExp allInstances = createAllInstances( attrOwnerType, jmiCreator );
+        OperationCallExp allInstances = createAllInstances( attrOwnerType );
         // the iterator variable
-        VariableDeclaration iter = jmiCreator.createVariableDeclaration( "iter", attrOwnerType, null ); //$NON-NLS-1$
+        VariableExp iter = jmiCreator.createVariableDeclaration( "iter", attrOwnerType, null ); //$NON-NLS-1$
 
-        OclExpression body = createBody( source, attr, iter, jmiCreator );
+        OCLExpression body = createBody( source, attr, iter);
         // create the select LoopExp
-        IteratorExp select = createSelect( allInstances, iter, body, jmiCreator );
+        IteratorExp select = createSelect( allInstances, iter, body );
         return select;
     }
 
@@ -178,9 +190,8 @@ public class NavigationPath {
      * @return an OclExpression for reverse navigation of <tt>end</tt>
      * @throws OclSemanticException
      */
-    private OclExpression reverseAssociationEndCall( OclExpression source, AssociationEnd end, MoinJmiCreator jmiCreator ) throws OclSemanticException {
+    private OCLExpression reverseAssociationEndCall( OCLExpression source, EReference end ) {
 
-        CoreConnection conn = jmiCreator.getConnection( );
         Classifier sourceType = ( (OclExpressionInternal) source ).getType( conn );
         Classifier endType = ( (AssociationEndImpl) end ).getType( conn );
         OclExpression revNavPath;
@@ -295,9 +306,9 @@ public class NavigationPath {
      * @return the expression
      * @throws OclSemanticException
      */
-    private OCLExpression createBody( OCLExpression source, Attribute attr, VariableDeclaration iter ) {
+    private OCLExpression createBody( OCLExpression source, EAttribute attr, VariableExp iter ) {
 
-        OclExpression body;
+        OCLExpression body;
         // setting up the body
 
         /*
@@ -307,7 +318,6 @@ public class NavigationPath {
          * ".includes("> s2 <|")">
          */
 
-        CoreConnection conn = jmiCreator.getConnection( );
         Classifier sourceType = ( (OclExpressionInternal) source ).getType( conn );
         VariableDeclaration var1 = jmiCreator.createVariableDeclaration( "s1", sourceType, source ); //$NON-NLS-1$
         VariableExp iterVarExp = jmiCreator.createVariableExp( iter );
@@ -360,7 +370,7 @@ public class NavigationPath {
      * @param body the body of the select
      * @return a IteratorExp representing a select
      */
-    private IteratorExp createSelect( OclExpression source, VariableDeclaration iterator, OclExpression body, MoinJmiCreator jmiCreator ) {
+    private IteratorExp createSelect( OCLExpression source, VariableExp iterator, OCLExpression body ) {
 
         IteratorExpImpl select = (IteratorExpImpl) jmiCreator.createIteratorExp( "select", source, iterator, null, body ); //$NON-NLS-1$
         // we know that source is of type Set(x)
@@ -372,8 +382,8 @@ public class NavigationPath {
     public String toString( ) {
 
         String s = "< self"; //$NON-NLS-1$
-        for ( ModelElement me : this.path ) {
-            s += ", " + me.getName( ); //$NON-NLS-1$
+        for ( EModelElement me : this.path ) {
+            s += ", " + me.toString(); //$NON-NLS-1$
         }
         return s + " >"; //$NON-NLS-1$
     }
@@ -397,7 +407,7 @@ public class NavigationPath {
     public int hashCode( ) {
 
         int code = Integer.MAX_VALUE;
-        for ( Iterator<ModelElement> i = this.path.iterator( ); i.hasNext( ); ) {
+        for ( Iterator<EModelElement> i = this.path.iterator( ); i.hasNext( ); ) {
             code = code ^ i.next( ).hashCode( );
         }
         return code;
@@ -409,15 +419,20 @@ public class NavigationPath {
      * @param source the source for <tt>and</tt>
      * @param arg the argument
      * @return a <tt>and</tt> OperationCallExp
-     * @throws OclSemanticException
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
      */
-    private OCLExpression and( OCLExpression source, OCLExpression arg ) {
+    private OCLExpression and( OCLExpression source, OCLExpression arg ) throws InstantiationException, IllegalAccessException {
 
-        List<EClassifier> args = new ArrayList<EClassifier>( 2 );
-        args.add( jmiCreator.getBoolClass( ) );
-        args.add( jmiCreator.getBoolClass( ) );
+//        List<EClassifier> args = new ArrayList<EClassifier>( 2 );
+//        args.add( jmiCreator.getBoolClass( ) );
+//        args.add( jmiCreator.getBoolClass( ) );
 
-        OperationCallExp andCall = jmiCreator.createOperationCallExp( this.and, source, arg );
+//        OperationCallExp andCall = jmiCreator.createOperationCallExp( this.and, source, arg );
+    	// TODO add second OCLExpression
+    	OperationCallExp andCall = OperationCallExp.class.newInstance();
+    	andCall.setSource(source);
+    	andCall.setReferredOperation(this.and);
         return andCall;
     }
 
@@ -426,13 +441,16 @@ public class NavigationPath {
      * 
      * @param source the source for <tt>not</tt>
      * @return a <tt>not</tt> OperationCallExp
-     * @throws OclSemanticException
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
      */
-    private OCLExpression not( OCLExpression source ) {
+    private OCLExpression not( OCLExpression source ) throws InstantiationException, IllegalAccessException {
 
-        List<EClassifier> args = new ArrayList<EClassifier>( 1 );
-        args.add( jmiCreator.getBoolClass( ) );
-        OperationCallExp notCall = jmiCreator.createOperationCallExp( this.not, source );
+        //List<EClassifier> args = new ArrayList<EClassifier>( 1 );
+        //args.add( jmiCreator.getBoolClass( ) );
+        OperationCallExp notCall = OperationCallExp.class.newInstance();
+        notCall.setSource(source);
+        notCall.setReferredOperation(this.not);
         return notCall;
     }
 
@@ -441,11 +459,14 @@ public class NavigationPath {
      * 
      * @param source the source for <tt>isOclUndefined</tt>
      * @return a <tt>isOclUndefined</tt> OperationCallExp
-     * @throws OclSemanticException
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
      */
-    private OCLExpression oclIsUndefined( OCLExpression source ) {
+    private OCLExpression oclIsUndefined( OCLExpression source ) throws InstantiationException, IllegalAccessException {
 
-        OperationCallExp isOclUndefinedCall = jmiCreator.createOperationCallExp( this.oclIsUndefined, source );
+        OperationCallExp isOclUndefinedCall = OperationCallExp.class.newInstance();
+        isOclUndefinedCall.setSource(source);
+        isOclUndefinedCall.setReferredOperation(this.oclIsUndefined);
         return isOclUndefinedCall;
     }
 }

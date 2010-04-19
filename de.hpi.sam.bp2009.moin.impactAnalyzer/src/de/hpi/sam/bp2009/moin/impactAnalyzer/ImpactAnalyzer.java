@@ -67,10 +67,10 @@ import de.hpi.sam.bp2009.solution.eventManager.impl.AndFilterImpl;
  * {@link #filter(CoreConnection, Set)} is much faster and does not depend on
  * the number of <code>OclStatements</code> supplied to IA.
  */
+
 public class ImpactAnalyzer {
 
 //    private final static MoinLogger LOGGER = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_CORE_OCL_IA, ImpactAnalyzer.class );
-
     private final EventManagerFactory eventFactory;
 
     private final NodeTagFactory tagFactory = new NodeTagFactory( );
@@ -111,7 +111,6 @@ public class ImpactAnalyzer {
      * structure. Use {@link #reset()} to reset the internal data structures.
      * 
      * @param oclStatements a Set of <code>OclStatemtent</code>s
-     * @param jmiCreator the JMI Creator
      * @return a filter matching all events relevant to the
      * <code>OclStatemtent</code>s passed to the ImplactAnalyzer
      */
@@ -316,7 +315,6 @@ public class ImpactAnalyzer {
      * Returns the <code>EvaluationUnit</code>s affected by one of the events
      * provided.
      * 
-     * @param connection {@link CoreConnection}
      * @param modelChangeEvents the set of <code>ModelChangeEvent</code>s to
      * filter.
      * @return the <code>EvaluationUnit</code>s

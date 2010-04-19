@@ -5,50 +5,56 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EClassImpl;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
+import org.eclipse.ocl.ecore.CollectionRange;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.IntegerLiteralExp;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.omg.ocl.attaching.OperationBodyDefinition;
-import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
-import org.omg.ocl.expressions.AssociationEndCallExp;
-import org.omg.ocl.expressions.AttributeCallExp;
-import org.omg.ocl.expressions.BooleanLiteralExp;
-import org.omg.ocl.expressions.CollectionItem;
-import org.omg.ocl.expressions.CollectionLiteralExp;
-import org.omg.ocl.expressions.CollectionLiteralPart;
-import org.omg.ocl.expressions.CollectionRange;
-import org.omg.ocl.expressions.EnumLiteralExp;
-import org.omg.ocl.expressions.IfExp;
-import org.omg.ocl.expressions.IntegerLiteralExp;
-import org.omg.ocl.expressions.IterateExp;
-import org.omg.ocl.expressions.IteratorExp;
-import org.omg.ocl.expressions.LetExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.OperationCallExp;
-import org.omg.ocl.expressions.RealLiteralExp;
-import org.omg.ocl.expressions.StringLiteralExp;
-import org.omg.ocl.expressions.TupleLiteralExp;
-import org.omg.ocl.expressions.TypeExp;
-import org.omg.ocl.expressions.VariableDeclaration;
-import org.omg.ocl.expressions.VariableExp;
-import org.omg.ocl.expressions.__impl.AssociationEndCallExpImpl;
-import org.omg.ocl.expressions.__impl.AttributeCallExpImpl;
-import org.omg.ocl.expressions.__impl.CollectionItemImpl;
-import org.omg.ocl.expressions.__impl.CollectionLiteralExpImpl;
-import org.omg.ocl.expressions.__impl.CollectionRangeImpl;
-import org.omg.ocl.expressions.__impl.IfExpImpl;
-import org.omg.ocl.expressions.__impl.IterateExpImpl;
-import org.omg.ocl.expressions.__impl.IteratorExpImpl;
-import org.omg.ocl.expressions.__impl.LetExpImpl;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
-import org.omg.ocl.expressions.__impl.TupleLiteralExpImpl;
-import org.omg.ocl.expressions.__impl.TypeExpImpl;
-import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
-import org.omg.ocl.expressions.__impl.VariableDeclarationInternal;
-import org.omg.ocl.expressions.__impl.VariableExpInternal;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.RealLiteralExp;
+import org.eclipse.ocl.ecore.StringLiteralExp;
+import org.eclipse.ocl.ecore.TupleLiteralExp;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.impl.CollectionItemImpl;
+import org.eclipse.ocl.ecore.impl.CollectionRangeImpl;
+import org.eclipse.ocl.ecore.impl.IfExpImpl;
+import org.eclipse.ocl.ecore.impl.IterateExpImpl;
+import org.eclipse.ocl.ecore.impl.IteratorExpImpl;
+import org.eclipse.ocl.ecore.impl.LetExpImpl;
+import org.eclipse.ocl.ecore.impl.NavigationCallExpImpl;
+import org.eclipse.ocl.ecore.impl.OperationCallExpImpl;
+import org.eclipse.ocl.ecore.impl.TypeExpImpl;
+import org.eclipse.ocl.expressions.CollectionLiteralPart;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.parser.OCLParsersym;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTag;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.NodeTagFactory;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.treewalker.TreeWalker;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
@@ -138,16 +144,30 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @see com.sap.tc.moin.ocl.utils.treewalker.TreeWalker#upAssociationEndCallExp(org.omg.ocl.expressions.AssociationEndCallExp)
      */
     @Override
-    protected void upAssociationEndCallExp( AssociationEndCallExp exp ) {
+    protected void upAssociationEndCallExp( NavigationCallExp exp ) {
 
         NodeTag tag = this.tagFactory.createTag( exp );
 
-        AssociationEnd assocEnd = ( (AssociationEndCallExpImpl) exp ).getReferredAssociationEnd( this.connection );
-        tag.getEvents( ).add( this.eventFactory.createInsertRT( this.connection, assocEnd, (MofClassImpl) ((OclExpressionInternal) ( (AssociationEndCallExpImpl) exp ).getSource(this.connection)).getType(this.connection) ) );
-        tag.getEvents( ).add( this.eventFactory.createDeleteRT( this.connection, assocEnd, (MofClassImpl) ((OclExpressionInternal) ( (AssociationEndCallExpImpl) exp ).getSource(this.connection)).getType(this.connection) ) );
+        //FIXME check correctness
+        EReference assoc =  ((EReference)exp.getNavigationSource());
+        //AssociationEnd assocEnd = ( (AssociationEndCallExpImpl) exp ).getReferredAssociationEnd( this.connection );
+        //tag.getEvents( ).add( this.eventFactory.createInsertRT( assocEnd, exp.getSource().getType() ) );
+        //tag.getEvents( ).add( this.eventFactory.createDeleteRT( assocEnd, exp.getSource().getType() ) );
+        LinkCreateEvent linkCreate = EventManagerFactory.eINSTANCE.createLinkCreateEvent();
+        linkCreate.setChangedClass(exp.getSource().eClass());
+        linkCreate.setChangedReference(assoc);
+        linkCreate.setCorrespondingObject(assoc.getEReferenceType());
+        linkCreate.setSourceObject(exp);
+        LinkDeleteEvent linkDelete = EventManagerFactory.eINSTANCE.createLinkDeleteEvent();
+        linkDelete.setChangedClass(exp.getSource().eClass());
+        linkDelete.setChangedReference(assoc);
+        linkDelete.setCorrespondingObject(assoc.getEReferenceType());
+        linkDelete.setSourceObject(exp);
+        tag.getEvents().add(linkCreate);
+        tag.getEvents().add(linkDelete);
         tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
         // add the child node's events
-        NodeTag sourceTag = getTag( ( (AssociationEndCallExpImpl) exp ).getSource( this.connection ) );
+        NodeTag sourceTag = getTag( exp.getSource( ) );
         if ( sourceTag != null ) {
             tag.getAccumulatedEvents( ).addAll( sourceTag.getAccumulatedEvents( ) );
         }
@@ -165,23 +185,27 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @see com.sap.tc.moin.ocl.utils.treewalker.TreeWalker#upAttributeCallExp(org.omg.ocl.expressions.AttributeCallExp)
      */
     @Override
-    protected void upAttributeCallExp( AttributeCallExp exp ) {
+    protected void upAttributeCallExp( PropertyCallExp exp ) {
 
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the relevant events for this node
-        Classifier sourceType = ((AttributeCallExpImpl) exp).getSource(this.connection).getType(); // may be a tuple / structure type or a class
-        UpdateAttribute upd;
-	if (sourceType instanceof MofClassImpl) {
-	    upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)
-		    .getReferredAttribute(this.connection), (MofClassImpl) sourceType);
-	} else {
-	    upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)
-		    .getReferredAttribute( this.connection ));
-        }
-        tag.getEvents( ).add( upd );
+        EClassifier sourceType = exp.getSource().getType(); // may be a tuple / structure type or a class
+
+//        if (sourceType instanceof EClassImpl) {	
+//	     upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)
+//		    .getReferredAttribute(this.connection), (MofClassImpl) sourceType);
+//	} else {
+//	    upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)
+//		    .getReferredAttribute( this.connection ));
+//        }
+        AttributeValueChangeEvent updateAttrEvent = EventManagerFactory.eINSTANCE.createAttributeValueChangeEvent();
+		updateAttrEvent.setChangedAttribute((EAttribute) exp.getReferredProperty());
+		updateAttrEvent.setChangedClass(exp.eClass());
+		updateAttrEvent.setSourceObject(sourceType);
+        tag.getEvents( ).add( updateAttrEvent );
         tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
         // add the child node's events
-        NodeTag sourceTag = getTag( ( (AttributeCallExpImpl) exp ).getSource( this.connection ) );
+        NodeTag sourceTag = getTag( exp.getSource( ) );
         if ( sourceTag != null ) {
             tag.getAccumulatedEvents( ).addAll( sourceTag.getAccumulatedEvents( ) );
         }
@@ -221,7 +245,7 @@ public class ClassScopeAnalysis extends TreeWalker {
         // forward attributes
         NodeTag tag = this.tagFactory.createTag( item );
         // add the child node's events
-        NodeTag itemTag = getTag( ( (CollectionItemImpl) item ).getItem( this.connection ) );
+        NodeTag itemTag = getTag( ( (CollectionItemImpl) item ).getItem( ) );
         if ( itemTag != null ) {
             tag.getAccumulatedEvents( ).addAll( itemTag.getAccumulatedEvents( ) );
         }
@@ -244,10 +268,10 @@ public class ClassScopeAnalysis extends TreeWalker {
         // forward attributes
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
-        JmiList<CollectionLiteralPart> parts = (JmiList<CollectionLiteralPart>) ( (CollectionLiteralExpImpl) exp ).getParts( this.connection );
-        for ( int i = 0, n = parts.size( this.connection.getSession( ) ); i < n; i++ ) {
-            Object ob = parts.get( this.connection.getSession( ), i );
-            NodeTag partTag = getTag( (RefObject) ob );
+        EList<CollectionLiteralPart<EClassifier>> parts = exp.getPart( );
+        for ( int i = 0, n = parts.size( ); i < n; i++ ) {
+            CollectionLiteralPart<EClassifier> ob = parts.get( i );
+            NodeTag partTag = getTag( ob );
             if ( partTag != null ) {
                 tag.getAccumulatedEvents( ).addAll( partTag.getAccumulatedEvents( ) );
             }
@@ -272,12 +296,12 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( range );
         // add the child node's events
         // get first's attribute
-        NodeTag firstTag = getTag( ( (CollectionRangeImpl) range ).getFirst( this.connection ) );
+        NodeTag firstTag = getTag( ( (CollectionRangeImpl) range ).getFirst( ) );
         if ( firstTag != null ) {
             tag.getAccumulatedEvents( ).addAll( firstTag.getAccumulatedEvents( ) );
         }
         // get last's attribute
-        NodeTag lastTag = getTag( ( (CollectionRangeImpl) range ).getLast( this.connection ) );
+        NodeTag lastTag = getTag( ( (CollectionRangeImpl) range ).getLast( ) );
         if ( lastTag != null ) {
             tag.getAccumulatedEvents( ).addAll( lastTag.getAccumulatedEvents( ) );
         }
@@ -318,19 +342,19 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
         // get condition's attribute
-        NodeTag conditionTag = getTag( ( (IfExpImpl) exp ).getCondition( this.connection ) );
+        NodeTag conditionTag = getTag( ( (IfExpImpl) exp ).getCondition( ) );
         if ( conditionTag != null ) {
             tag.getAccumulatedEvents( ).addAll( conditionTag.getAccumulatedEvents( ) );
         }
 
         // get thenExpression's attribute
-        NodeTag thenExpTag = getTag( ( (IfExpImpl) exp ).getThenExpression( this.connection ) );
+        NodeTag thenExpTag = getTag( ( (IfExpImpl) exp ).getThenExpression( ) );
         if ( thenExpTag != null ) {
             tag.getAccumulatedEvents( ).addAll( thenExpTag.getAccumulatedEvents( ) );
         }
 
         // get elseExpression's attribute
-        NodeTag elseExpTag = getTag( ( (IfExpImpl) exp ).getElseExpression( this.connection ) );
+        NodeTag elseExpTag = getTag( ( (IfExpImpl) exp ).getElseExpression( ) );
         if ( elseExpTag != null ) {
             tag.getAccumulatedEvents( ).addAll( elseExpTag.getAccumulatedEvents( ) );
         }
@@ -371,19 +395,19 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
         // get the source's attribute
-        NodeTag sourceTag = getTag( ( (IterateExpImpl) exp ).getSource( this.connection ) );
+        NodeTag sourceTag = getTag( ( (IterateExpImpl) exp ).getSource( ) );
         if ( sourceTag != null ) {
             tag.getAccumulatedEvents( ).addAll( sourceTag.getAccumulatedEvents( ) );
         }
 
         // get the body's attribute
-        NodeTag bodyTag = getTag( ( (IterateExpImpl) exp ).getBody( this.connection ) );
+        NodeTag bodyTag = getTag( ( (IterateExpImpl) exp ).getBody( ) );
         if ( bodyTag != null ) {
             tag.getAccumulatedEvents( ).addAll( bodyTag.getAccumulatedEvents( ) );
         }
 
         // get result's attribute
-        NodeTag resultTag = getTag( ( (IterateExpImpl) exp ).getResult( this.connection ) );
+        NodeTag resultTag = getTag( ( (IterateExpImpl) exp ).getResult( ) );
         if ( resultTag != null ) {
             tag.getAccumulatedEvents( ).addAll( resultTag.getAccumulatedEvents( ) );
         }
@@ -408,13 +432,13 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
         // get the source's attribute
-        NodeTag sourceTag = getTag( ( (IteratorExpImpl) exp ).getSource( this.connection ) );
+        NodeTag sourceTag = getTag( ( (IteratorExpImpl) exp ).getSource( ) );
         if ( sourceTag != null ) {
             tag.getAccumulatedEvents( ).addAll( sourceTag.getAccumulatedEvents( ) );
         }
 
         // get body's attribute
-        NodeTag bodyTag = getTag( ( (IteratorExpImpl) exp ).getBody( this.connection ) );
+        NodeTag bodyTag = getTag( ( (IteratorExpImpl) exp ).getBody( ) );
         if ( bodyTag != null ) {
             tag.getAccumulatedEvents( ).addAll( bodyTag.getAccumulatedEvents( ) );
         }
@@ -439,13 +463,13 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
         // get in's attribute
-        NodeTag inTag = getTag( ( (LetExpImpl) exp ).getIn( this.connection ) );
+        NodeTag inTag = getTag( ( (LetExpImpl) exp ).getIn( ) );
         if ( inTag != null ) {
             tag.getAccumulatedEvents( ).addAll( inTag.getAccumulatedEvents( ) );
         }
 
         // get the variable's attribute
-        NodeTag variableTag = getTag( ( (LetExpImpl) exp ).getVariable( this.connection ) );
+        NodeTag variableTag = getTag( ( (LetExpImpl) exp ).getVariable( ) );
         if ( variableTag != null ) {
             tag.getAccumulatedEvents( ).addAll( variableTag.getAccumulatedEvents( ) );
         }
@@ -471,35 +495,62 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
         // get source's attribute
-        NodeTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( this.connection ) );
+        NodeTag sourceTag = getTag( ( (OperationCallExpImpl) exp ).getSource( ) );
         if ( sourceTag != null ) {
             tag.getAccumulatedEvents( ).addAll( sourceTag.getAccumulatedEvents( ) );
         }
 
         // if this is an allInstances() call we have to add some events
-        if ( ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection ).getName( ).equals( OclConstants.OP_ALLINSTANCES ) ) {
-            OclExpression source = ( (OperationCallExpImpl) exp ).getSource( this.connection );
-            Classifier type = null;
+        if ( ( (OperationCallExpImpl) exp ).getReferredOperation( ).getName( ).equals( "allInstances" ) ) {
+            OCLExpression source = (OCLExpression) exp.getSource( );
+            EClassifier type = null;
             if ( source instanceof TypeExp ) {
-                type = ( (TypeExpImpl) source ).getReferredType( this.connection );
+                type = ( (TypeExpImpl) source ).getReferredType( );
             } else {
-                type = ( (OclExpressionInternal) source ).getType( this.connection );
+                type = ( (OCLExpression) source ).getType( );
             }
-            tag.getEvents( ).addAll( this.eventFactory.createAllInsertET( this.connection, (MofClass) type ) );
-            tag.getEvents( ).addAll( this.eventFactory.createAllDeleteET( this.connection, (MofClass) type ) );
+            //tag.getEvents( ).addAll( this.eventFactory.createAllInsertET( this.connection, (MofClass) type ) );          
+            ElementCreateEvent createEvent = EventManagerFactory.eINSTANCE.createElementCreateEvent();
+            createEvent.setChangedClass(exp.eClass());
+            createEvent.setSourceObject(type);
+            createEvent.setContainingElement(type.eContainer());
+            tag.getEvents().add(createEvent);
+            
+            EList<EObject> containedElements = type.eContents();
+            for( Iterator<EObject> i = containedElements.iterator(); i.hasNext();){
+                ElementCreateEvent crEvent = EventManagerFactory.eINSTANCE.createElementCreateEvent();
+                crEvent.setChangedClass(exp.eClass());
+                crEvent.setSourceObject(type);
+                crEvent.setContainingElement(type.eContainer());
+                tag.getEvents().add(crEvent);
+            }
+            //tag.getEvents( ).addAll( this.eventFactory.createAllDeleteET( this.connection, (MofClass) type ) );
+            ElementDeleteEvent deleteEvent = EventManagerFactory.eINSTANCE.createElementDeleteEvent();
+            deleteEvent.setChangedClass(exp.eClass());
+            deleteEvent.setSourceObject(type);
+            deleteEvent.setContainingElement(type.eContainer());
+            tag.getEvents().add(deleteEvent);
+            
+            containedElements = type.eContents();
+            for( Iterator<EObject> i = containedElements.iterator(); i.hasNext();){
+                ElementDeleteEvent dlEvent = EventManagerFactory.eINSTANCE.createElementDeleteEvent();
+                dlEvent.setChangedClass(exp.eClass());
+                dlEvent.setSourceObject(type);
+                dlEvent.setContainingElement(type.eContainer());
+                tag.getEvents().add(dlEvent);
+            }
             tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
         } else {
-            // this will check if it's a user defined operation and analyze the
-            // body
-            Set<InternalEvent> events = analyzeOperationBody( exp );
+            // this will check if it's a user defined operation and analyze the body
+            Set<ModelChangeEvent> events = analyzeOperationBody( exp );
             tag.getEvents( ).addAll( events );
             tag.getAccumulatedEvents( ).addAll( events );
         }
         // get the the parameter's attributes
-        JmiList<OclExpression> args = (JmiList<OclExpression>) ( (OperationCallExpImpl) exp ).getArguments( this.connection );
-        for ( int i = 0, n = args.size( this.connection.getSession( ) ); i < n; i++ ) {
-            Object ob = args.get( this.connection.getSession( ), i );
-            NodeTag argTag = getTag( (RefObject) ob );
+        EList<org.eclipse.ocl.expressions.OCLExpression<EClassifier>> args = exp.getArgument( );
+        for ( int i = 0, n = args.size( ); i < n; i++ ) {
+            OCLExpression ob = (OCLExpression)args.get( i );
+            NodeTag argTag = getTag( ob );
             if ( argTag != null ) {
                 tag.getAccumulatedEvents( ).addAll( argTag.getAccumulatedEvents( ) );
             }
@@ -555,9 +606,9 @@ public class ClassScopeAnalysis extends TreeWalker {
         // forward attributes
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the tupleParts' events
-        JmiList<VariableDeclaration> tuplePart = (JmiList<VariableDeclaration>) ( (TupleLiteralExpImpl) exp ).getTuplePart( this.connection );
-        for ( Iterator<VariableDeclaration> it = tuplePart.iterator( this.connection ); it.hasNext( ); ) {
-            VariableDeclaration ob = it.next( );
+        EList<TupleLiteralPart<EClassifier, EStructuralFeature>> tuplePart = exp.getPart( );
+        for ( Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> it = tuplePart.iterator( ); it.hasNext( ); ) {
+            TupleLiteralPart<EClassifier, EStructuralFeature> ob = it.next( );
             NodeTag tuplePartTag = getTag( ob );
             if ( tuplePartTag != null ) {
                 tag.getAccumulatedEvents( ).addAll( tuplePartTag.getAccumulatedEvents( ) );
@@ -601,7 +652,7 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( decl );
         // add the child node's events
         // get initExpression's attribute
-        NodeTag initTag = getTag( ( (VariableDeclarationImpl) decl ).getInitExpression( this.connection ) );
+        NodeTag initTag = getTag( decl.getInitExpression( ) );
         if ( initTag != null ) {
             tag.getAccumulatedEvents( ).addAll( initTag.getAccumulatedEvents( ) );
         }
@@ -619,23 +670,37 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @see com.sap.tc.moin.ocl.utils.treewalker.TreeWalker#upVariableExp(org.omg.ocl.expressions.VariableExp)
      */
     @Override
-    protected void upVariableExp( VariableExp _exp ) {
+    protected void upVariableExp( VariableExp exp ) {
 
         // we just forward the events
-        VariableExpInternal exp = (VariableExpInternal) _exp;
 
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the child node's events
-        NodeTag varDeclTag = getTag( exp.getReferredVariable( this.connection ) );
+        NodeTag varDeclTag = getTag( exp.getReferredVariable( ) );
         // if this is a reference to "self"
         // insertET<Type of self> is relevant
-        if ( exp.getReferredVariable( this.connection ).getVarName( ).equals( OclConstants.VAR_SELF ) ) {
+        if ( exp.getReferredVariable( ).getName( ).equals( OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self] ) ) {
             // the type can be a TupleType if the underlying variable was a StructureField
             // since structures are not relevant for the impact analysis, they can be ignored
-            Classifier type = ( (VariableDeclarationInternal) exp.getReferredVariable( this.connection ) ).getType( this.connection );
-            if ( type instanceof MofClass ) {
-                MofClass clazz = (MofClass) type;
-                tag.getEvents( ).addAll( this.eventFactory.createAllInsertET( this.connection, clazz ) );
+            EClassifier type = exp.getReferredVariable( ).getType( );
+            if ( type instanceof EClass ) {
+                EClass clazz = (EClass) type;
+                //tag.getEvents( ).addAll( this.eventFactory.createAllInsertET( this.connection, clazz ) );
+                
+                ElementCreateEvent createEvent = EventManagerFactory.eINSTANCE.createElementCreateEvent();
+                createEvent.setChangedClass(exp.eClass());
+                createEvent.setSourceObject(clazz);
+                createEvent.setContainingElement(clazz.eContainer());
+                tag.getEvents().add(createEvent);
+                
+                EList<EObject> containedElements = clazz.eContents();
+                for( Iterator<EObject> i = containedElements.iterator(); i.hasNext();){
+                    ElementCreateEvent crEvent = EventManagerFactory.eINSTANCE.createElementCreateEvent();
+                    crEvent.setChangedClass(exp.eClass());
+                    crEvent.setSourceObject(clazz);
+                    crEvent.setContainingElement(clazz.eContainer());
+                    tag.getEvents().add(crEvent);
+                }
                 tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
             }
         }
@@ -653,11 +718,11 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @param exp The OperationCallExp to check
      * @return the set of relevant InternalEvents or an empty <code>Set</code>
      */
-    private Set<InternalEvent> analyzeOperationBody( OperationCallExp exp ) {
+    private Set<ModelChangeEvent> analyzeOperationBody( OperationCallExp exp ) {
 
-        Operation op = ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection );
+        EOperation op = exp.getReferredOperation( );
         OperationBodyDefinitionImpl assoc = (OperationBodyDefinitionImpl) this.connection.getAssociation( OperationBodyDefinition.ASSOCIATION_DESCRIPTOR );
-        OclExpression bodyExpr = assoc.getBody( this.connection, op );
+        OCLExpression bodyExpr = assoc.getBody( op );
         if ( bodyExpr == null ) {
             return Collections.emptySet( );
         }
@@ -669,7 +734,7 @@ public class ClassScopeAnalysis extends TreeWalker {
         // add this operation's body to the set of analyzed operations
         // to prevent endless recursion.
         this.analyzedUserOps.add( bodyExpr );
-        ClassScopeAnalysis csa = new ClassScopeAnalysis( this.connection, this.eventFactory, this.tagFactory, this.analyzedUserOps );
+        ClassScopeAnalysis csa = new ClassScopeAnalysis( this.eventFactory, this.tagFactory, this.analyzedUserOps );
         // apply ClassScopeAnalysis to the body
         return csa.analyze( bodyExpr );
     }
@@ -681,7 +746,7 @@ public class ClassScopeAnalysis extends TreeWalker {
      * @return the UpAttribute of node <tt>node</tt> or <tt>null</tt> if no
      * attribute has been attached.
      */
-    private NodeTag getTag( RefObject node ) {
+    private NodeTag getTag( EObject node ) {
 
         if ( node == null ) {
             return null;

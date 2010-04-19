@@ -9,13 +9,18 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.Vector;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.impl.EOperationImpl;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.impl.VariableExpImpl;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.parser.OCLParsersym;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
 
@@ -57,7 +62,7 @@ class BodyExpressionTW extends SubExpressionTW {
             subExp.addExpressionParts( exp );
             // pass sub expression up the tree
             tag.addToCurrent( subExp );
-        } else if ( varDecl.getName( ).equals( "self" ) && varDecl.getInitExpression( ) == null ) {
+        } else if ( varDecl.getName( ).equals( OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self]) && varDecl.getInitExpression( ) == null ) {
             // variable is self
             // // create direct sub expression
             // SubExpression subExp = new DirectSubExpression(statement);
@@ -144,19 +149,20 @@ class BodyExpressionTW extends SubExpressionTW {
         }
         // add this operation to the stack of visited features
         this.visitedFeatures.add( op );
-        List<Parameter> parameters = new Vector<Parameter>( );
+        List<EParameter> parameters = new Vector<EParameter>( );
         int index = 0;
         // build up hashtable to map from parameter name to
-        JmiList<ModelElement> contents = (JmiList<ModelElement>) ( (OperationImpl) op ).getContents( this.connection );
-        for ( int i = 0, n = contents.size( this.connection.getSession( ) ); i < n; i++ ) {
-            Object ob = contents.get( this.connection.getSession( ), i );
-            if ( ob instanceof Parameter ) {
-                Parameter p = (Parameter) ob;
-                if ( p.getDirection( ) == DirectionKindEnum.IN_DIR ) {
+        EList<EObject> contents = ( (EOperationImpl) op ).eContents( );
+        for ( int i = 0, n = contents.size( ); i < n; i++ ) {
+            Object ob = contents.get( i );
+            if ( ob instanceof EParameter ) {
+                EParameter p = (EParameter) ob;
+                // TODO check
+                //if ( p.getDirection( ) == DirectionKindEnum.IN_DIR ) {
                     parameters.add( p );
                     this.parName2Tag.put( p.getName( ), argTags.get( index ) );
                     index++;
-                }
+                //}
             }
         }
         // start the algorithm

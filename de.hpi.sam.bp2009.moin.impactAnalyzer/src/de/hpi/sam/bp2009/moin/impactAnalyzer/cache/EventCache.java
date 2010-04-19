@@ -7,9 +7,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.Constraint;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 

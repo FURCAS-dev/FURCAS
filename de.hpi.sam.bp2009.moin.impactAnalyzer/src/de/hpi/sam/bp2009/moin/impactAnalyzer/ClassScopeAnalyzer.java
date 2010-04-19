@@ -6,45 +6,32 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.attaching.OperationBodyDefinition;
-import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
-import org.omg.ocl.expressions.AssociationEndCallExp;
-import org.omg.ocl.expressions.AttributeCallExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.OperationCallExp;
-import org.omg.ocl.expressions.VariableExp;
-import org.omg.ocl.expressions.__impl.AssociationEndCallExpInternal;
-import org.omg.ocl.expressions.__impl.AttributeCallExpInternal;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-import org.omg.ocl.expressions.__impl.OperationCallExpInternal;
-import org.omg.ocl.expressions.__impl.TypeExpInternal;
-import org.omg.ocl.expressions.__impl.VariableExpInternal;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EAttributeImpl;
+import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.parser.OCLParsersym;
 
-import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.ocl.utils.treewalker.TreeWalker;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.core.ConnectionWrapper;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.events.filter.AndFilter;
-import com.sap.tc.moin.repository.events.filter.AssociationFilter;
-import com.sap.tc.moin.repository.events.filter.AttributeFilter;
-import com.sap.tc.moin.repository.events.filter.ClassFilter;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.filter.EventTypeFilter;
-import com.sap.tc.moin.repository.events.filter.OrFilter;
-import com.sap.tc.moin.repository.events.type.ElementCreateEvent;
-import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndInternal;
-import com.sap.tc.moin.repository.mmi.model.__impl.AssociationImpl;
-import com.sap.tc.moin.repository.mmi.model.__impl.AttributeImpl;
-import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
-import com.sap.tc.moin.repository.spi.core.Wrapper;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.treewalker.TreeWalker;
+import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.impl.ElementCreateEventImpl;
+import de.hpi.sam.bp2009.solution.eventManager.impl.OrFilterImpl;
 
 /**
  * Collects the events for a single {@link OclExpression} recursively. The analyzer can be parameterized during
@@ -66,7 +53,7 @@ public class ClassScopeAnalyzer extends TreeWalker {
     /**
      * For each operation body analyzed, stores the calls to the operation that were visited
      */
-    final private Map<OclExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OclExpression, Set<OperationCallExp>>();
+    final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression, Set<OperationCallExp>>();
     
     // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
     // redundant/duplicate filters
@@ -85,23 +72,23 @@ public class ClassScopeAnalyzer extends TreeWalker {
      *            be responsible for the initial evaluation of those OCL expressions on new elementt, and therefore,
      *            context element creation events are not of interest.
      */
-    public ClassScopeAnalyzer(CoreConnection actConnection, OclExpressionInternal exp, boolean notifyNewContextElements) {
-	super(actConnection);
+    public ClassScopeAnalyzer(OCLExpression exp, boolean notifyNewContextElements) {
+	super();
 	this.notifyNewContextElements = notifyNewContextElements;
-	walk((OclExpression) exp);
+	walk((OCLExpression) exp);
     }
     
-    /**
-     * Use this constructor when invoking from outside the core. This means you have a client's connection
-     * at hand, and the OCL expression object is actually a wrapper 
-     * @param conn
-     * @param exp
-     * @param notifyNewContextElements
-     */
-    public ClassScopeAnalyzer(Connection conn, OclExpression exp, boolean notifyNewContextElements) {
-	this(((ConnectionWrapper) conn).unwrap(), (OclExpressionInternal) ((Wrapper<?>) exp).unwrap(),
-		notifyNewContextElements);
-    }
+//    /**
+//     * Use this constructor when invoking from outside the core. This means you have a client's connection
+//     * at hand, and the OCL expression object is actually a wrapper 
+//     * @param conn
+//     * @param exp
+//     * @param notifyNewContextElements
+//     */
+//    public ClassScopeAnalyzer(Connection conn, OclExpression exp, boolean notifyNewContextElements) {
+//	this(((ConnectionWrapper) conn).unwrap(), (OclExpressionInternal) ((Wrapper<?>) exp).unwrap(),
+//		notifyNewContextElements);
+//    }
 
     /**
      * Obtains the event filter for the expression passed to the constructor. When an event matches the filter, the
@@ -111,7 +98,9 @@ public class ClassScopeAnalyzer extends TreeWalker {
      * {@link InstanceScopeAnalysis#getAffectedElements(com.sap.tc.moin.ocl.utils.OclStatement, com.sap.tc.moin.repository.events.type.ModelChangeEvent, Map)}.
      */
     public EventFilter getEventFilter() {
-	return new OrFilter(filters);
+    	OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
+    	orFilter.getFilters().addAll(filters);
+	return orFilter;
     }
     
     /**
@@ -124,44 +113,59 @@ public class ClassScopeAnalyzer extends TreeWalker {
     }
 
     @Override
-    protected void upAssociationEndCallExp(AssociationEndCallExp exp) {
-	addFilter(new AndFilter(new AssociationFilter(
-		(Association) ((AssociationImpl) ((AssociationEndInternal) ((AssociationEndCallExpInternal) exp)
-			.getReferredAssociationEnd(connection)).getContainer(connection)).createWrapper(connection,
-				/* synchronize */ true)), new ClassFilter(
-		(MofClass) ((MofClassImpl) ((OclExpressionInternal) ((AssociationEndCallExpInternal) exp).getSource(connection))
-			.getType(connection)).createWrapper(connection, /* synchronize */ true), /* includeSubclasses */ true)));
+    protected void upAssociationEndCallExp(NavigationCallExp exp) {
+    	AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+    	AssociationFilter assocFilter = EventManagerFactory.eINSTANCE.createAssociationFilter();
+    	assocFilter.setReference(exp.getNavigationSource().eContainmentFeature());
+    	ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
+    	classFilter.setWantedClass(exp.getSource().getType().eClass());
+    	andFilter.getFilters().add(assocFilter);
+    	andFilter.getFilters().add(classFilter);
+    	addFilter(andFilter);
     }
 
     @Override
-    protected void upAttributeCallExp(AttributeCallExp exp) {
-	AttributeCallExpInternal attributeCall = (AttributeCallExpInternal) exp;
-	Classifier sourceType = ((OclExpressionInternal) attributeCall.getSource(connection)).getType(connection);
-	AttributeImpl attribute = (AttributeImpl) attributeCall.getReferredAttribute(connection);
-	if (sourceType instanceof MofClass) { // and not a TupleType, which is the other possible source type
-	    addFilter(new AndFilter(new AttributeFilter((Attribute) attribute.createWrapper(connection, /* synchronize */
-	    true)), new ClassFilter((MofClass) ((MofClassImpl) sourceType).createWrapper(connection, /* synchronize */
-		    true),
-	    /* includeSubclasses */true)));
+    protected void upAttributeCallExp(PropertyCallExp exp) {
+	
+	EClassifier sourceType = exp.getSource().getType();
+	EStructuralFeature attribute = exp.getReferredProperty();
+	if (sourceType instanceof EClass) { // and not a TupleType, which is the other possible source type
+		AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+		AttributeFilter attrFilter = EventManagerFactory.eINSTANCE.createAttributeFilter();
+		attrFilter.setAttribute((EAttribute) attribute);
+		ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
+		classFilter.setWantedClass(sourceType.eClass());
+		andFilter.getFilters().add(attrFilter);
+		andFilter.getFilters().add(classFilter);
+	    addFilter(andFilter);
 	}
     }
 
     @Override
     protected void upOperationCallExp(OperationCallExp exp) {
-	OperationCallExpInternal expInt = (OperationCallExpInternal) exp;
-	if (expInt.getReferredOperation(connection).getName().equals(
-		OclConstants.OP_ALLINSTANCES)) {
-	    TypeExpInternal typeExp = (TypeExpInternal) expInt.getSource(connection);
-	    addFilter(new AndFilter(
-		    new OrFilter(new EventTypeFilter(ElementCreateEvent.class),
-			         new EventTypeFilter(ElementDeleteEvent.class)),
-		    new ClassFilter((MofClass) ((MofClassImpl) typeExp.getReferredType(connection)).createWrapper(
-			    connection, /* synchronize */true),
-			    /* includeSubclasses */ true /* because we understand the allInstances() as returning subclass instances too */)));
+
+	if (exp.getReferredOperation().getName().equals("allInstances") ) {
+	    OCLExpression typeExp = (OCLExpression) exp.getSource();
+	    AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+	    OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
+	    EventTypeFilter evCreateFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
+	    EventTypeFilter evDeleteFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
+	    ElementCreateEvent createEvent = EventManagerFactory.eINSTANCE.createElementCreateEvent();
+	    ElementDeleteEvent deleteEvent = EventManagerFactory.eINSTANCE.createElementDeleteEvent();
+	    evCreateFilter.setEventEClass(createEvent.eClass());
+	    evDeleteFilter.setEventEClass(deleteEvent.eClass());
+	    orFilter.getFilters().add(evCreateFilter);
+	    orFilter.getFilters().add(evDeleteFilter);
+	    ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
+	    classFilter.setWantedClass(typeExp.getEType().eClass());
+	    andFilter.getFilters().add(orFilter);
+	    andFilter.getFilters().add(classFilter);
+	    
+	    addFilter(andFilter);
 	} else {
 	    OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) connection
 		    .getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
-	    OclExpression body = a.getBody(connection, expInt.getReferredOperation(connection));
+	    OCLExpression body = a.getBody(exp.getReferredOperation());
 	    if (body != null) {
 		Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
 		if (analyzedCallsToBody == null) {
@@ -180,7 +184,7 @@ public class ClassScopeAnalyzer extends TreeWalker {
      * from the root expression analyzed by this {@link ClassScopeAnalyzer}. If no such calls exist,
      * an empty set is returned.
      */
-    public Set<OperationCallExp> getCallsOf(OclExpressionInternal operationBody) {
+    public Set<OperationCallExp> getCallsOf(OCLExpression operationBody) {
 	Set<OperationCallExp> result = visitedOperationBodies.get(operationBody);
 	if (result == null) {
 	    result = Collections.emptySet();
@@ -190,15 +194,16 @@ public class ClassScopeAnalyzer extends TreeWalker {
 
     @Override
     protected void upVariableExp(VariableExp exp) {
-	if (((VariableExpInternal) exp).getReferredVariable(connection).getVarName().equals(OclConstants.VAR_SELF)
+	if ( exp.getReferredVariable().getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
 		&& notifyNewContextElements) {
-	    addFilter(new AndFilter(new EventTypeFilter(ElementCreateEvent.class), new ClassFilter(
-		    (MofClass) ((MofClassImpl) ((VariableExpInternal) exp).getType(connection)).createWrapper(
-			    connection, /* synchronize */true),
-		    /* includeSubclasses */true /*
-						 * because we understand the allInstances() as returning subclass
-						 * instances too
-						 */)));
+		AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+		EventTypeFilter evTypeFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
+		ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
+		classFilter.setWantedClass(exp.getEType().eClass());
+		evTypeFilter.setEventEClass(EventManagerFactory.eINSTANCE.createElementCreateEvent().eClass());
+		andFilter.getFilters().add(evTypeFilter);
+		andFilter.getFilters().add(classFilter);
+		addFilter(andFilter);
 	}
     }
 }

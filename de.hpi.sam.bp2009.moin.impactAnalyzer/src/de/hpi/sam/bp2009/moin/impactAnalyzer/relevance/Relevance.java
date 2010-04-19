@@ -1,22 +1,19 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.relevance;
 
+import impl.OclStatementImpl;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.OCL.Helper;
-import org.eclipse.ocl.ecore.impl.ConstraintImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.helper.ConstraintKind;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.tag.ExpressionKind;
@@ -123,19 +120,19 @@ public abstract class Relevance {
      * which statement must be evaluated.
      * 
      * @param context context
-     * @param jmiCreator {@link MoinJmiCreator}
      * @return Collection of OclStatements which evaluate to the set of
      * instances for which statement must be evaluated.
      */
-    public Set<Constraint> turnIntoOcl( EObject context ) {
+
+	public Set<Constraint> turnIntoOcl( EObject context ) {
 
         Set<Constraint> navPaths = new HashSet<Constraint>( );
 
         if ( this.kind == ExpressionKind.CLASS ) {
             // return allInstances()
         	//TODO check that resContext only includes the context instances
-            EList<ENamedElement> resContext = this.stmt.getConstrainedElements();
-            ENamedElement classifierContext = resContext.get(0);
+            EList<EModelElement> resContext = this.stmt.getConstrainedElements();
+            EModelElement classifierContext = resContext.get(0);
             // make sure we get the Classifier and not just the class proxy
             if ( !( classifierContext instanceof EClassifier ) ) {
                 classifierContext = classifierContext.eClass();
@@ -143,13 +140,18 @@ public abstract class Relevance {
           	OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
         	Helper helper = ocl.createOCLHelper();
         	helper.setContext((EClassifier) classifierContext);
-        	Constraint expr = helper.createConstraint(ConstraintKind.BODYCONDITION, ((EClassifier) classifierContext).getInstanceClassName() + ".allInstances()");           	
+        	Constraint expr = null;
+			try {
+				expr = helper.createConstraint(ConstraintKind.BODYCONDITION, ((EClassifier) classifierContext).getInstanceClassName() + ".allInstances()");
+			} catch (ParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}           	
             
             navPaths.add( expr);
 
         } else if ( this.kind == ExpressionKind.INSTANCE ) {
                 // create a union of the collections returned by each path
-                EObject resContext = context;
                 // make sure we get the Classifier and not just the proxy
                 EObject stmtContext = this.stmt.getConstrainedElements().get(0);
                 if ( !( stmtContext instanceof EClassifier ) ) {
@@ -158,11 +160,18 @@ public abstract class Relevance {
 
                 OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
             	Helper helper = ocl.createOCLHelper();
+            	
+            	//FIXME correct constraint
+                //self = jmiCreator.createVariableDeclaration( OclConstants.VAR_SELF, (Classifier) context, null );
             	helper.setContext((EClassifier) context);
-               self = jmiCreator.createVariableDeclaration( OclConstants.VAR_SELF, (Classifier) context, null );
-
                 for ( NavigationPath navPath : this.navigationPaths ) {
-                    navPaths.add( new OclStatementImpl( resContext, navPath.turnIntoOcl( self, jmiCreator ), OclStatement.EXPRESSION, "instance" ) ); //$NON-NLS-1$
+                    //navPaths.add( new OclStatementImpl( resContext, navPath.turnIntoOcl( self, jmiCreator ), OclStatement.EXPRESSION, "instance" ) ); //$NON-NLS-1$
+                	try {
+						navPaths.add(helper.createConstraint(ConstraintKind.BODYCONDITION, ((EClassifier) context).getInstanceClassName()));
+					} catch (ParserException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
         }
         return navPaths;
