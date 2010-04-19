@@ -12,6 +12,8 @@ import junit.textui.TestRunner;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -116,15 +118,41 @@ public class EAnnotationOCLParserTest extends TestCase {
 		placeTokens.setName("noTokens");
 		placeTokens.setEType(EcorePackage.eINSTANCE.getEInt());
 		placeC.getEStructuralFeatures().add(placeTokens);
-		
+
 		EAnnotation anno= EcoreFactory.eINSTANCE.createEAnnotation();
-		getFixture();
-                anno.setSource(EAnnotationOCLParser.ANNOTATION_SOURCE);
+		anno.setSource(EAnnotationOCLParser.ANNOTATION_SOURCE);
 		anno.getDetails().put("someKey", "self.noTokens>4");
 		placeC.getEAnnotations().add(anno);
-		
+
 		getFixture().convertOclAnnotation(placeC);
 		assertTrue(placeC.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE).getContents().get(0) instanceof OCLExpression<?>);
+	}
+	/**
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement) <em>Convert Ocl Annotation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
+	 * @generated NOT
+	 */
+	public void testConvertOclAnnotation__EOperation() {
+		EClass aClass= EcoreFactory.eINSTANCE.createEClass();
+		aClass.setName("aClass");
+		
+		EOperation operation = EcoreFactory.eINSTANCE.createEOperation();
+		operation.setName("doSomething");	
+		EParameter parameter = EcoreFactory.eINSTANCE.createEParameter();
+		parameter.setName("noTokens");
+		parameter.setEType(EcorePackage.eINSTANCE.getEInt());
+		operation.getEParameters().add(parameter);
+
+		aClass.getEOperations().add(operation);
+		EAnnotation anno= EcoreFactory.eINSTANCE.createEAnnotation();
+		anno.setSource(EAnnotationOCLParser.ANNOTATION_SOURCE);
+		anno.getDetails().put("body", "4");
+		operation.getEAnnotations().add(anno);
+
+		getFixture().convertOclAnnotation(operation);
+		assertTrue(operation.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE).getContents().get(0) instanceof OCLExpression<?>);
 	}
 
 } //EAnnotationOCLParserTest
