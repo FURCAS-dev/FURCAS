@@ -1,21 +1,24 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.omg.ocl.expressions.__impl.AssociationEndCallExpImpl;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndInternal;
 
-public class AssociationEndCallExpTracer extends AbstractTracer<AssociationEndCallExpImpl> {
-    public AssociationEndCallExpTracer(CoreConnection conn, AssociationEndCallExpImpl expression) {
+public class AssociationEndCallExpTracer extends AbstractTracer<NavigationCallExp> {
+    public AssociationEndCallExpTracer(NavigationCallExp expression) {
 	super(conn, expression);
     }
 
     @Override
-    public NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	/*
 	 * It can happen that an expression contains multiple AssociationEndCallExp for the same association end
 	 * but with different source expressions with different types. Example:
@@ -61,10 +64,8 @@ public class AssociationEndCallExpTracer extends AbstractTracer<AssociationEndCa
 	 * the X association would fail with an exception.
 	 * 
 	 */
-	    Classifier sourceType = ((OclExpressionInternal) getExpression().getSource(getConnection()))
-		    .getType(getConnection());
-	    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(getConnection(), getExpression().getSource(
-		getConnection()), context, classScopeAnalyzer);
+	    EClassifier sourceType = ((OCLExpression) getExpression().getSource()).getEType();
+	    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath((OCL)getExpression().getSource(), context, classScopeAnalyzer);
 	    NavigationStep reverseTraversal = new AssociationNavigationStep(getInnermostElementType(getExpression()
 		.getType(getConnection())), getInnermostElementType(sourceType),
 		((AssociationEndInternal) getExpression().getReferredAssociationEnd(getConnection()))

@@ -8,10 +8,33 @@ import java.util.Set;
 
 import org.omg.ocl.attaching.OperationBodyDefinition;
 import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
-import org.omg.ocl.expressions.AssociationEndCallExp;
-import org.omg.ocl.expressions.AttributeCallExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.OperationCallExp;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EClassifierImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.OCLInput;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.impl.OperationCallExpImpl;
+import org.eclipse.ocl.ecore.impl.TypeExpImpl;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
+import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
+import org.eclipse.ocl.expressions.operations.OCLExpressionOperations;
+import org.eclipse.ocl.parser.OCLLexer;
+import org.eclipse.ocl.parser.OCLLexerprs;
+import org.eclipse.ocl.parser.OCLParser;
+import org.eclipse.ocl.parser.OCLParserprs;
+import org.eclipse.ocl.parser.OCLParsersym;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
 import org.omg.ocl.expressions.__impl.OperationCallExpInternal;
@@ -39,117 +62,125 @@ import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
  * 
  */
 public class AssociationEndAndAttributeCallFinder extends TreeWalker {
-    private Map<Attribute, Set<AttributeCallExp>> attributeCallExpressions = new HashMap<Attribute, Set<AttributeCallExp>>();
-    private Map<AssociationEnd, Set<AssociationEndCallExp>> associationEndCallExpressions = new HashMap<AssociationEnd, Set<AssociationEndCallExp>>();
-    private Set<OclExpressionInternal> visitedExpressions = new HashSet<OclExpressionInternal>();
-    private Map<ClassifierInternal, Set<OperationCallExp>> allInstancesCalls = new HashMap<ClassifierInternal, Set<OperationCallExp>>();
+	private Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = new HashMap<EAttribute, Set<PropertyCallExp>>();
+	private Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
+	private Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
+	private Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
 
-    public AssociationEndAndAttributeCallFinder(CoreConnection actConnection) {
-	super(actConnection);
-    }
-
-    @Override
-    protected void upAttributeCallExp(AttributeCallExp ace) {
-	Set<AttributeCallExp> set = attributeCallExpressions.get(ace.getReferredAttribute());
-	if (set==null) {
-	    set = new HashSet<AttributeCallExp>();
-	    attributeCallExpressions.put(ace.getReferredAttribute(), set);
+	public AssociationEndAndAttributeCallFinder() {
+		super();
 	}
-	set.add(ace);
-    }
 
-    @Override
-    protected void upAssociationEndCallExp(AssociationEndCallExp ace) {
-	Set<AssociationEndCallExp> set = associationEndCallExpressions.get(ace.getReferredAssociationEnd());
-	if (set==null) {
-	    set = new HashSet<AssociationEndCallExp>();
-	    associationEndCallExpressions.put(ace.getReferredAssociationEnd(), set);
-	}
-	set.add(ace);
-    }
-    
-    /**
-     * If an operation is defined by an OCL body, walk that body too and collect all attribute
-     * and association end calls from it recursively.
-     */
-    @Override
-    protected void upOperationCallExp(OperationCallExp oce) {
-	Operation referredOperation = ((OperationCallExpImpl) oce).getReferredOperation(connection);
-	OperationBodyDefinitionImpl assoc = (OperationBodyDefinitionImpl) connection
-		.getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
-	OclExpressionInternal bodyExpr = (OclExpressionInternal) assoc.getBody(connection, referredOperation);
-	if (bodyExpr != null) {
-	    walk(bodyExpr);
-	} else if (referredOperation.getName().equals(OclConstants.OP_ALLINSTANCES)) {
-	    Classifier classifier = ((TypeExpInternal) ((OperationCallExpInternal) oce).getSource(connection)).getReferredType(connection);
-	    for (ClassifierInternal specialization : getAllSpecializationsIncludingSelf((ClassifierInternal) classifier)) {
-		Set<OperationCallExp> set = allInstancesCalls.get(specialization);
-		if (set == null) {
-		    set = new HashSet<OperationCallExp>();
-		    allInstancesCalls.put(specialization, set);
+	protected void upAttributeCallExp(PropertyCallExp ace) {
+		Set<PropertyCallExp> set = attributeCallExpressions.get(ace.getReferredProperty());
+		if (set==null) {
+			set = new HashSet<PropertyCallExp>();
+			attributeCallExpressions.put((EAttribute) ace.getReferredProperty(), set);
 		}
-		set.add(oce);
-	    }
+		set.add(ace);
 	}
-    }
-    
-    private Set<ClassifierInternal> getAllSpecializationsIncludingSelf(ClassifierInternal classifier) {
-	Set<ClassifierInternal> result = new HashSet<ClassifierInternal>();
-	SpiJmiHelper jmiHelper = connection.getCoreJmiHelper();
-	for (GeneralizableElement ge : jmiHelper.getAllSubtypes(connection, (GeneralizableElement) classifier)) {
-	    result.add((ClassifierInternal) ge);
-	}
-	result.add(classifier);
-	return result;
-    }
 
-    /**
-     * Always returns a non-<tt>null</tt> set
-     */
-    public Set<AttributeCallExp> getAttributeCallExpressions(Attribute a) {
-	Set<AttributeCallExp> result;
-	Set<AttributeCallExp> lookup = attributeCallExpressions.get(a);
-	if (lookup == null) {
-	    result = Collections.emptySet();
-	} else {
-	    result = Collections.unmodifiableSet(attributeCallExpressions.get(a));
+	protected void upAssociationEndCallExp(NavigationCallExp ace) {
+		Set<NavigationCallExp> set = associationEndCallExpressions.get((EReference) ace.getNavigationSource());
+		if (set==null) {
+			set = new HashSet<NavigationCallExp>();
+			associationEndCallExpressions.put((EReference) ace.getNavigationSource(), set);
+		}
+		set.add(ace);
 	}
-	return result;
-    }
 
-    /**
-     * Always returns a non-<tt>null</tt> set
-     */
-    public Set<AssociationEndCallExp> getAssociationEndCallExpressions(AssociationEnd a) {
-	Set<AssociationEndCallExp> result;
-	Set<AssociationEndCallExp> lookup = associationEndCallExpressions.get(a);
-	if (lookup == null) {
-	    result = Collections.emptySet();
-	} else {
-	    result = Collections.unmodifiableSet(associationEndCallExpressions.get(a));
+	/**
+	 * If an operation is defined by an OCL body, walk that body too and collect all attribute
+	 * and association end calls from it recursively.
+	 */
+	protected void upOperationCallExp(OperationCallExp oce) {
+		EOperation referredOperation = ((OperationCallExpImpl) oce).getReferredOperation();
+		
+//		OperationBodyDefinitionImpl assoc = (OperationBodyDefinitionImpl) connection
+//		.getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
+		//FIXME: don't know how to get the operation definition to walk it recursively
+		OCLExpression bodyExpr = null;
+		if (bodyExpr != null) {
+			walk(bodyExpr);
+		} else if (referredOperation.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_allInstances])) {
+//			EClassifier classifier = ((TypeExpImpl) ((OperationCallExpImpl) oce).getSource()).getReferredType();
+			EClassifier classifier = ((TypeExp)oce.getSource()).getReferredType();
+			for (EClassifierImpl specialization : getAllSpecializationsIncludingSelf((EClassifierImpl) classifier)) {
+				Set<OperationCallExp> set = allInstancesCalls.get(specialization);
+				if (set == null) {
+					set = new HashSet<OperationCallExp>();
+					allInstancesCalls.put(specialization, set);
+				}
+				set.add(oce);
+			}
+		}
 	}
-	return result;
-    }
 
-    /**
-     * Always returns a non-<tt>null</tt> set. Finds all occurrences of an <tt>allInstances</tt> call on a type
-     * expression for the classifier <tt>c</tt> or its generalizations in the expression analyzed by this visitor.
-     */
-    public Set<OperationCallExp> getAllInstancesCallsFor(ClassifierInternal c) {
-	Set<OperationCallExp> result = allInstancesCalls.get(c);
-	if (result == null) {
-	    result = Collections.emptySet();
+	private Set<EClassifierImpl> getAllSpecializationsIncludingSelf(EClassifierImpl classifier) {
+		Set<EClassifierImpl> result = new HashSet<EClassifierImpl>();
+		if (classifier instanceof EClass){
+			EClass cls = (EClass) classifier;
+			for (EClassifier anotherCls : cls.getEPackage().getEClassifiers()){
+				//FIXME: if the class hierarchy spans over more than one Package this won't work
+				if (anotherCls instanceof EClass && cls.isSuperTypeOf((EClass) anotherCls)){
+					result.add((EClassifierImpl)anotherCls);
+				}
+			}
+			result.add(classifier);
+		} else {
+			// classifier is a datatype
+			result.add((EClassifierImpl)classifier);
+		}
+		return result;
 	}
-	return result;
-    }
-    
-    public void walk(OclExpressionInternal expression) {
-	if (!connection.isAlive()) {
-	    throw new RuntimeException("Can't walk OCL expression with dead connection "+connection);
+
+	/**
+	 * Always returns a non-<tt>null</tt> set
+	 */
+	public Set<PropertyCallExp> getAttributeCallExpressions(EAttribute a) {
+		Set<PropertyCallExp> result;
+		Set<PropertyCallExp> lookup = attributeCallExpressions.get(a);
+		if (lookup == null) {
+			result = Collections.emptySet();
+		} else {
+			result = Collections.unmodifiableSet(attributeCallExpressions.get(a));
+		}
+		return result;
 	}
-	if (!visitedExpressions.contains(expression)) {
-	    visitedExpressions.add(expression);
-	    super.walk((OclExpression) expression);
+
+	/**
+	 * Always returns a non-<tt>null</tt> set
+	 */
+	public Set<NavigationCallExp> getAssociationEndCallExpressions(EReference a) {
+		Set<NavigationCallExp> result;
+		Set<NavigationCallExp> lookup = associationEndCallExpressions.get(a);
+		if (lookup == null) {
+			result = Collections.emptySet();
+		} else {
+			result = Collections.unmodifiableSet(associationEndCallExpressions.get(a));
+		}
+		return result;
 	}
-    }
+
+	/**
+	 * Always returns a non-<tt>null</tt> set. Finds all occurrences of an <tt>allInstances</tt> call on a type
+	 * expression for the classifier <tt>c</tt> or its generalizations in the expression analyzed by this visitor.
+	 */
+	public Set<OperationCallExp> getAllInstancesCallsFor(EClassifier c) {
+		Set<OperationCallExp> result = allInstancesCalls.get(c);
+		if (result == null) {
+			result = Collections.emptySet();
+		}
+		return result;
+	}
+
+	public void walk(OCLExpression expression) {
+//		if (!connection.isAlive()) {
+//			throw new RuntimeException("Can't walk OCL expression with dead connection "+connection);
+//		}
+		if (!visitedExpressions.contains(expression)) {
+			visitedExpressions.add(expression);
+			super.walk(expression);
+		}
+	}
 }

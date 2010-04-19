@@ -3,12 +3,14 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.omg.ocl.expressions.AssociationEndCallExp;
 import org.omg.ocl.expressions.AttributeCallExp;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -46,10 +48,10 @@ public class PathCache {
 	subexpressionToPath.put(subexpression, path);
     }
 
-    NavigationStep getOrCreateNavigationPath(CoreConnection conn, OclExpression sourceExpression, MofClass context, ClassScopeAnalyzer classScopeAnalyzer) {
+    NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context, ClassScopeAnalyzer classScopeAnalyzer) {
 	NavigationStep result = getPathForNode(sourceExpression);
 	if (result == null) {
-	    result = InstanceScopeAnalysis.getTracer(conn, sourceExpression).traceback(context, this, classScopeAnalyzer);
+	    result = InstanceScopeAnalysis.getTracer(sourceExpression).traceback(context, this, classScopeAnalyzer);
 	    put(sourceExpression, result);
 	}
 	return result;
