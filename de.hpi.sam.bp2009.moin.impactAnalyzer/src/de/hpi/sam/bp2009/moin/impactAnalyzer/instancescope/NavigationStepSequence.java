@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
@@ -36,8 +39,8 @@ public class NavigationStepSequence extends CompositeNavigationStep {
      * {@link #getSourceType()} and {@link #getTargetType()} and dynamically fetches them
      * from the underlying step sequence.
      */
-    public NavigationStepSequence(final CoreConnection connection, OclExpressionInternal debugInfo, NavigationStep... steps) {
-	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(connection, steps, debugInfo));
+    public NavigationStepSequence(OCLExpression debugInfo, NavigationStep... steps) {
+	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(steps, debugInfo));
 	setSourceType(getSteps()[0].getSourceType());
 	getSteps()[0].addASourceTypeChangeListener(new SourceTypeChangeListener() {
 	    @Override
@@ -73,8 +76,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 		    @Override
 		    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 			assert stepForWhichSourceTypeChanged == step;
-			if (!AbstractNavigationStep.haveIntersectingSubclassTree(connection,
-				getSteps()[pos-1].getTargetType(), step.getSourceType())) {
+			if (!AbstractNavigationStep.haveIntersectingSubclassTree(getSteps()[pos-1].getTargetType(), step.getSourceType())) {
 			    setAlwaysEmpty();
 			}
 		    }
@@ -86,8 +88,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 		    @Override
 		    public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
 			assert stepForWhichTargetTypeChanged == step;
-			if (!AbstractNavigationStep.haveIntersectingSubclassTree(connection,
-				getSteps()[pos-1].getTargetType(), step.getTargetType())) {
+			if (!AbstractNavigationStep.haveIntersectingSubclassTree(getSteps()[pos-1].getTargetType(), step.getTargetType())) {
 			    setAlwaysEmpty();
 			}
 		    }
@@ -105,8 +106,8 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	return false;
     }
 
-    private static boolean conformsTo(MofClass sub, MofClass sup) {
-	return (sub.equals(sup) || sub.allSupertypes().contains(sup));
+    private static boolean conformsTo(EClass sub, EClass sup) {
+	return (sub.equals(sup) || sub.getEAllSuperTypes().contains(sup));
     }
 
     /**
@@ -119,7 +120,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
      * @param debugInfo
      *            used in case a simplifying {@link EmptyResultNavigationStep} is created for the sequence
      */
-    private static NavigationStep[] compactSteps(CoreConnection connection, NavigationStep[] steps, OclExpressionInternal debugInfo) {
+    private static NavigationStep[] compactSteps(NavigationStep[] steps, OCLExpression debugInfo) {
 	if (steps.length==0) {
 	    throw new RuntimeException("NavigationStepSequence must at least have one element");
 	}
@@ -133,7 +134,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    boolean alwaysEmptyBecauseOfTypeMismatch = false;
 	    NavigationStep firstRedundantIdentityNavigationStep = null;
 	    for (int i=0; i<steps.length && !alwaysEmptyBecauseOfTypeMismatch; i++) {
-		if (i>0 && !AbstractNavigationStep.haveIntersectingSubclassTree(connection, steps[i-1].getTargetType(), steps[i].getSourceType())) {
+		if (i>0 && !AbstractNavigationStep.haveIntersectingSubclassTree(steps[i-1].getTargetType(), steps[i].getSourceType())) {
 		    alwaysEmptyBecauseOfTypeMismatch = true;
 		} else {
 		    // eliminiate unnecessary IdentityNavigationSteps where the type constraints don't further constrain
@@ -168,15 +169,15 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result = Collections.singleton(fromObject);
+    protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+	Set<EObjectImpl> result = Collections.singleton(fromObject);
 	if (isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    // If the navigation along the sequence produces an empty set, we can abort
 	    // the navigation.
 	    for (int i=0; !result.isEmpty() && i<getSteps().length; i++) {
-		result = getSteps()[i].navigate(conn, result, cache);
+		result = getSteps()[i].navigate(result, cache);
 	    }
 	}
 	return result;

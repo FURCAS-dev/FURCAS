@@ -5,15 +5,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.omg.ocl.expressions.AssociationEndCallExp;
-import org.omg.ocl.expressions.AttributeCallExp;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
-import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.relevance.NavigationPath;
 
 /**
  * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each
@@ -38,13 +32,13 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
  *
  */
 public class PathCache {
-    private Map<OclExpression, NavigationStep> subexpressionToPath = new HashMap<OclExpression, NavigationStep>();
+    private Map<OCLExpression, NavigationStep> subexpressionToPath = new HashMap<OCLExpression, NavigationStep>();
     
-    public NavigationStep getPathForNode(OclExpression subexpression) {
+    public NavigationStep getPathForNode(OCLExpression subexpression) {
 	return subexpressionToPath.get(subexpression);
     }
     
-    private void put(OclExpression subexpression, NavigationStep path) {
+    private void put(OCLExpression subexpression, NavigationStep path) {
 	subexpressionToPath.put(subexpression, path);
     }
 
@@ -65,12 +59,12 @@ public class PathCache {
      *            may be <tt>null</tt>; optionally, use this to tell a debugging user to which OCL (sub-)expression the
      *            navigation step to create belongs
      */
-    protected NavigationStep navigationStepFromSequence(CoreConnection connection, OclExpressionInternal debugInfo, NavigationStep... steps) {
+    protected NavigationStep navigationStepFromSequence(OCLExpression debugInfo, NavigationStep... steps) {
 	NavigationStep result;
 	if (steps[steps.length-1].isAbsolute()) {
 	    result = steps[steps.length-1];
 	} else {
-	    result = new NavigationStepSequence(connection, debugInfo, steps);
+	    result = new NavigationStepSequence(debugInfo, steps);
 	}
 	return result;
     }
@@ -83,8 +77,8 @@ public class PathCache {
      * method will be found in this cache and therefore will not lead to an endless-recursive
      * step creation procedure.
      */
-    public IndirectingStep createIndirectingStepFor(OclExpression expr) {
-	IndirectingStep result = new IndirectingStep((OclExpressionInternal) expr);
+    public IndirectingStep createIndirectingStepFor(OCLExpression expr) {
+	IndirectingStep result = new IndirectingStep(expr);
 	put(expr, result);
 	return result;
     }

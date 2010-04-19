@@ -1,12 +1,10 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
-import org.omg.ocl.expressions.__impl.StringLiteralExpImpl;
+import org.eclipse.ocl.ecore.StringLiteralExp;
 
-import com.sap.tc.moin.repository.core.CoreConnection;
-
-public class StringLiteralExpTracer extends AbstractTracer<StringLiteralExpImpl> {
-    public StringLiteralExpTracer(CoreConnection conn, StringLiteralExpImpl expression) {
-	super(conn, expression);
-    }
+public class StringLiteralExpTracer extends AbstractTracer<StringLiteralExp> {
+	public StringLiteralExpTracer(StringLiteralExp expression) {
+		super(expression);
+	}
 
 }

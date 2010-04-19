@@ -1,19 +1,19 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
-import org.omg.ocl.expressions.__impl.IteratorExpImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 
-public class IterateExpTracer extends AbstractTracer<IteratorExpImpl> {
-    public IterateExpTracer(CoreConnection conn, IteratorExpImpl expression) {
-	super(conn, expression);
-    }
+public class IterateExpTracer extends AbstractTracer<IterateExp> {
+	public IterateExpTracer(IterateExp expression) {
+		super(expression);
+	}
 
-    @Override
-    public NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
-	return pathCache.getOrCreateNavigationPath(getConnection(), getExpression().getBody(getConnection()), context, classScopeAnalyzer);
-    }
+	@Override
+	public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+		return pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getBody(), context, classScopeAnalyzer);
+	}
 
 }

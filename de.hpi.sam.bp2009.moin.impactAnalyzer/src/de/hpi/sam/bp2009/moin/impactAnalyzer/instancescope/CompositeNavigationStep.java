@@ -2,9 +2,8 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import java.util.Set;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
@@ -15,7 +14,7 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
 public abstract class CompositeNavigationStep extends AbstractNavigationStep {
     private final NavigationStep[] steps;
 
-    public CompositeNavigationStep(MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo, NavigationStep... steps) {
+    public CompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... steps) {
 	super(sourceType, targetType, debugInfo);
 	this.steps = steps;
     }

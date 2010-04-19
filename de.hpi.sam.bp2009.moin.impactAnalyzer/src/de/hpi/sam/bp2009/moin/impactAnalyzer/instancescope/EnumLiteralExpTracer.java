@@ -1,12 +1,10 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
-import org.omg.ocl.expressions.__impl.EnumLiteralExpImpl;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
 
-import com.sap.tc.moin.repository.core.CoreConnection;
-
-public class EnumLiteralExpTracer extends AbstractTracer<EnumLiteralExpImpl> {
-    public EnumLiteralExpTracer(CoreConnection conn, EnumLiteralExpImpl expression) {
-	super(conn, expression);
+public class EnumLiteralExpTracer extends AbstractTracer<EnumLiteralExp> {
+    public EnumLiteralExpTracer(EnumLiteralExp expression) {
+	super(expression);
     }
 
 }

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.util.Tuple;
 
 public abstract class AbstractNavigationStep implements NavigationStep {
 	private static int idCounter;

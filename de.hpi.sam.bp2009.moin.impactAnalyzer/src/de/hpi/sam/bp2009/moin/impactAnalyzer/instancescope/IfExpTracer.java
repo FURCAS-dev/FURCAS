@@ -1,22 +1,21 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
-import org.omg.ocl.expressions.__impl.IfExpImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 
-public class IfExpTracer extends AbstractTracer<IfExpImpl> {
-    public IfExpTracer(CoreConnection conn, IfExpImpl expression) {
-	super(conn, expression);
-    }
+public class IfExpTracer extends AbstractTracer<IfExp> {
+	public IfExpTracer(IfExp expression) {
+		super(expression);
+	}
 
-    @Override
-    public NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
-	NavigationStep thenPath = pathCache.getOrCreateNavigationPath(getConnection(), getExpression().getThenExpression(getConnection()), context, classScopeAnalyzer);
-	NavigationStep elsePath = pathCache.getOrCreateNavigationPath(getConnection(), getExpression().getElseExpression(getConnection()), context, classScopeAnalyzer);
-	return new BranchingNavigationStep(getConnection(),
-		getInnermostElementType(getExpression().getType(getConnection())), context, getExpression(), thenPath, elsePath);
-    }
+	@Override
+	public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+		NavigationStep thenPath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getThenExpression(), context, classScopeAnalyzer);
+		NavigationStep elsePath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getElseExpression(), context, classScopeAnalyzer);
+		return new BranchingNavigationStep(getInnermostElementType(getExpression().getType()), context, getExpression(), thenPath, elsePath);
+	}
 
 }

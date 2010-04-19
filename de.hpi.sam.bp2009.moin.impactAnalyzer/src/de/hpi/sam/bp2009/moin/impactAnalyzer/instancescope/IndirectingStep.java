@@ -5,11 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * Steps of this type can be an empty placeholder during the analysis phase and can
@@ -30,14 +27,14 @@ public class IndirectingStep extends AbstractNavigationStep {
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
      */
-    private ThreadLocal<Set<RefObjectImpl>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<RefObjectImpl>>() {
+    private ThreadLocal<Set<EObjectImpl>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<EObjectImpl>>() {
 	@Override
-	protected Set<RefObjectImpl> initialValue() {
-	    return new HashSet<RefObjectImpl>();
+	protected Set<EObjectImpl> initialValue() {
+	    return new HashSet<EObjectImpl>();
 	}
     };
 
-    public IndirectingStep(OclExpressionInternal debugInfo) {
+    public IndirectingStep(OCLExpression debugInfo) {
 	super(null, null, debugInfo);
     }
     
@@ -92,14 +89,14 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result;
+    protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+	Set<EObjectImpl> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject);
-	    Set<RefObjectImpl> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(conn, set, cache);
+	    Set<EObjectImpl> set = Collections.singleton(fromObject);
+	    result = actualStep.navigate(set, cache);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
 	}
 	return result;
@@ -109,10 +106,10 @@ public class IndirectingStep extends AbstractNavigationStep {
      * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion 
      */
     @Override
-    protected void incrementNavigateCounter(CoreConnection conn, Set<RefObjectImpl> from) {
+    protected void incrementNavigateCounter(Set<EObjectImpl> from) {
 	boolean oneFromObjectIsEvaluating = false;
 	
-	for(RefObjectImpl obj : from){
+	for(EObjectImpl obj : from){
 	    if( currentlyEvaluatingNavigateFor.get().contains(obj) ){
 		oneFromObjectIsEvaluating = true;
 		return;
@@ -120,7 +117,7 @@ public class IndirectingStep extends AbstractNavigationStep {
 	}
 	
 	if(!oneFromObjectIsEvaluating){
-            super.incrementNavigateCounter(conn, from);
+            super.incrementNavigateCounter(from);
         }
     }
     

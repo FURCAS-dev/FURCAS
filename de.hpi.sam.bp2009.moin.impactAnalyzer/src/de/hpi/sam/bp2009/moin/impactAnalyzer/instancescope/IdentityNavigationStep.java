@@ -4,12 +4,9 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * Performs a trivial "identity" navigation, returning the <tt>fromObject</tt> again. This is useful when only the type
@@ -25,27 +22,27 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  */
 public class IdentityNavigationStep extends AbstractNavigationStep {
-    public IdentityNavigationStep(CoreConnection connection, MofClass sourceType, MofClass targetType, OclExpressionInternal debugInfo) {
-	super(sourceType, targetType, debugInfo);
-	if (!AbstractNavigationStep.haveIntersectingSubclassTree(connection, sourceType, targetType)) {
-	    setAlwaysEmpty();
+	public IdentityNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
+		super(sourceType, targetType, debugInfo);
+		if (!AbstractNavigationStep.haveIntersectingSubclassTree(sourceType, targetType)) {
+			setAlwaysEmpty();
+		}
 	}
-    }
 
-    @Override
-    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-	Set<RefObjectImpl> result = new LinkedHashSet<RefObjectImpl>(1);
-	result.add(fromObject);
-	return result;
-    }
-    
-    @Override
-    public boolean isAbsolute() {
-	return isAlwaysEmpty();
-    }
-    
-    @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
-	return "this";
-    }
+	@Override
+	protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+		Set<EObjectImpl> result = new LinkedHashSet<EObjectImpl>(1);
+		result.add(fromObject);
+		return result;
+	}
+
+	@Override
+	public boolean isAbsolute() {
+		return isAlwaysEmpty();
+	}
+
+	@Override
+	protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+		return "this";
+	}
 }
