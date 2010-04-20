@@ -23,6 +23,7 @@ import org.eclipse.ocl.ecore.RealLiteralExp;
 import org.eclipse.ocl.ecore.StringLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.impl.CollectionLiteralExpImpl;
 import org.eclipse.ocl.ecore.impl.CollectionRangeImpl;
@@ -35,7 +36,6 @@ import org.eclipse.ocl.ecore.impl.OperationCallExpImpl;
 import org.eclipse.ocl.ecore.impl.PropertyCallExpImpl;
 import org.eclipse.ocl.ecore.impl.TupleLiteralExpImpl;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
-import org.eclipse.ocl.expressions.Variable;
 
 /**
  * This class is an abstract TreeWalker for an OCL-Tree.
@@ -342,11 +342,11 @@ public abstract class TreeWalker {
         }
         downIterateExp( exp );
         visitOclExpression( (OCLExpression) ( (IterateExpImpl) exp ).getSource(  ) );
-        EList<Variable<EClassifier, EParameter>> iterator = ( (IterateExpImpl) exp ).getIterator( );
+        EList<org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>> iterator = ( (IterateExpImpl) exp ).getIterator( );
         for (int i = 0; i < iterator.size(); i++ ) {
-            visitVariableDeclaration( (VariableExp) iterator.get(i) );
+            visitVariableDeclaration( (Variable) iterator.get(i) );
         }
-        visitVariableDeclaration( (VariableExp) ( (IterateExpImpl) exp ).getResult(  ) );
+        visitVariableDeclaration( exp.getResult(  ) );
         visitOclExpression( (OCLExpression) ( (IterateExpImpl) exp ).getBody(  ) );
         upIterateExp( exp );
     }
@@ -370,9 +370,9 @@ public abstract class TreeWalker {
         }
         downIteratorExp( exp );
         visitOclExpression( (OCLExpression) ( (IteratorExpImpl) exp ).getSource( ) );
-        EList<Variable<EClassifier, EParameter>> iterator = ( (IteratorExpImpl) exp ).getIterator(  );
+        EList<org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>> iterator = ( (IteratorExpImpl) exp ).getIterator(  );
         for ( int i = 0; i < iterator.size(); i++ ) {
-            visitVariableDeclaration( (VariableExp) iterator.get(i) );
+            visitVariableDeclaration( iterator.get(i) );
         }
         visitOclExpression( (OCLExpression) ( (IteratorExpImpl) exp ).getBody( ) );
         upIteratorExp( exp );
@@ -395,7 +395,7 @@ public abstract class TreeWalker {
             return;
         }
         downLetExp( exp );
-        visitVariableDeclaration( (VariableExp) ( (LetExpImpl) exp ).getVariable( ) );
+        visitVariableDeclaration( exp.getVariable( ) );
         visitOclExpression( (OCLExpression) ( (LetExpImpl) exp ).getIn( ) );
         upLetExp( exp );
     }
@@ -467,7 +467,8 @@ public abstract class TreeWalker {
      * 
      * @param exp the <code>TupleLiteralExp</code> to visit
      */
-    private void visitTupleLiteralExp( TupleLiteralExp exp ) {
+    @SuppressWarnings("unchecked")
+	private void visitTupleLiteralExp( TupleLiteralExp exp ) {
 
         if ( exp == null ) {
             return;
@@ -475,7 +476,7 @@ public abstract class TreeWalker {
         downTupleLiteralExp( exp );
         EList<TupleLiteralPart<EClassifier, EStructuralFeature>> tuplePart = ( (TupleLiteralExpImpl) exp ).getPart( ) ;
         for ( int  i = 0; i < tuplePart.size(); i++ ) {
-            visitVariableDeclaration( (VariableExp) tuplePart.get(i) );
+            visitVariableDeclaration(  (org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>) tuplePart.get(i) );
         }
         upTupleLiteralExp( exp );
     }
@@ -506,14 +507,15 @@ public abstract class TreeWalker {
      * 
      * @param decl the <code>VariableDeclaration</code> to visit
      */
-    @SuppressWarnings("unchecked")
-	private void visitVariableDeclaration( VariableExp decl ) {
+   
+	@SuppressWarnings("rawtypes")
+	private void visitVariableDeclaration( org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> decl ) {
 
         if ( decl == null ) {
             return;
         }
         downVariableDeclaration( decl );
-        visitOclExpression( (OCLExpression) (  (Variable<EClassifier, EParameter>) decl ).getInitExpression(  ) );
+        visitOclExpression( (OCLExpression) (  (Variable) decl ).getInitExpression(  ) );
         upVariableDeclaration( decl );
     }
 
@@ -685,7 +687,7 @@ public abstract class TreeWalker {
     /**
      * @param decl
      */
-    protected void downVariableDeclaration( VariableExp decl ) {
+    protected void downVariableDeclaration( org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> decl ) {
 
         // to be implemented by subclasses
     }
@@ -849,7 +851,7 @@ public abstract class TreeWalker {
     /**
      * @param decl
      */
-    protected void upVariableDeclaration( VariableExp decl ) {
+	protected void upVariableDeclaration( org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> decl ) {
 
         // to be implemented by subclasses
     }

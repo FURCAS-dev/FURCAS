@@ -17,6 +17,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.parser.OCLParsersym;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.treewalker.TreeWalker;
@@ -163,9 +164,10 @@ public class ClassScopeAnalyzer extends TreeWalker {
 	    
 	    addFilter(andFilter);
 	} else {
-	    OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) connection
-		    .getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
-	    OCLExpression body = a.getBody(exp.getReferredOperation());
+//	    OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) connection
+//		    .getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
+	    OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
+	    //a.getBody(exp.getReferredOperation());
 	    if (body != null) {
 		Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
 		if (analyzedCallsToBody == null) {
