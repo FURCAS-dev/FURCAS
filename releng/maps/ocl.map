@@ -77,3 +77,7 @@ plugin@lpg.runtime.java,2.0.17=v200912221855,:pserver:anonymous@dev.eclipse.org:
 plugin@lpg.runtime.java.source,2.0.17=v200912221855,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/lpg.runtime.java/source-bundle
 !*** plugin@net.sourceforge.lpg.lpgjavaruntime,1.1.0=v200803061910,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime
 !*** plugin@net.sourceforge.lpg.lpgjavaruntime.source,1.1.0=v200803061910,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime/source-bundle
+
+!*** 3rd Party
+plugin@com.google.guice=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.tmf/org.eclipse.xtext/plugins/com.google.guice
+plugin@com.google.collect=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.tmf/org.eclipse.xtext/plugins/com.google.collect
