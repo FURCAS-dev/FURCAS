@@ -131,13 +131,13 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public abstract class GenBaseImpl extends EObjectImpl implements GenBase
 {
   /**
-   * The cached value of the '{@link #getGenAnnotations() <em>Gen Annotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getGenAnnotations() <em>Gen Annotations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGenAnnotations()
-   * @generated
-   * @ordered
-   */
+	 * @see #getGenAnnotations()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<GenAnnotation> genAnnotations;
 
   /**
@@ -151,29 +151,28 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return GenModelPackage.Literals.GEN_BASE;
-  }
+		return GenModelPackage.Literals.GEN_BASE;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<GenAnnotation> getGenAnnotations()
   {
-    if (genAnnotations == null)
-    {
-      genAnnotations = new EObjectContainmentWithInverseEList<GenAnnotation>(GenAnnotation.class, this, GenModelPackage.GEN_BASE__GEN_ANNOTATIONS, GenModelPackage.GEN_ANNOTATION__GEN_BASE);
-    }
-    return genAnnotations;
-  }
+		if (genAnnotations == null) {
+			genAnnotations = new EObjectContainmentWithInverseEList<GenAnnotation>(GenAnnotation.class, this, GenModelPackage.GEN_BASE__GEN_ANNOTATIONS, GenModelPackage.GEN_ANNOTATION__GEN_BASE);
+		}
+		return genAnnotations;
+	}
 
   /**
    * <!-- begin-user-doc -->
@@ -207,105 +206,99 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenAnnotations()).basicAdd(otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenAnnotations()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
-        return ((InternalEList<?>)getGenAnnotations()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
+				return ((InternalEList<?>)getGenAnnotations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
-        return getGenAnnotations();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
+				return getGenAnnotations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
-        getGenAnnotations().clear();
-        getGenAnnotations().addAll((Collection<? extends GenAnnotation>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
+				getGenAnnotations().clear();
+				getGenAnnotations().addAll((Collection<? extends GenAnnotation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
-        getGenAnnotations().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
+				getGenAnnotations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
-        return genAnnotations != null && !genAnnotations.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_BASE__GEN_ANNOTATIONS:
+				return genAnnotations != null && !genAnnotations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
   public GenModel getGenModel()
   {

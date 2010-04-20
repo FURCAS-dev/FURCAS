@@ -60,13 +60,13 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class GenDataTypeImpl extends GenClassifierImpl implements GenDataType
 {
   /**
-   * The cached value of the '{@link #getEcoreDataType() <em>Ecore Data Type</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEcoreDataType() <em>Ecore Data Type</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEcoreDataType()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEcoreDataType()
+	 * @generated
+	 * @ordered
+	 */
   protected EDataType ecoreDataType;
 
   protected GenDataTypeImpl()
@@ -75,125 +75,119 @@ public class GenDataTypeImpl extends GenClassifierImpl implements GenDataType
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return GenModelPackage.Literals.GEN_DATA_TYPE;
-  }
+		return GenModelPackage.Literals.GEN_DATA_TYPE;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EDataType getEcoreDataType()
   {
-    if (ecoreDataType != null && ecoreDataType.eIsProxy())
-    {
-      InternalEObject oldEcoreDataType = (InternalEObject)ecoreDataType;
-      ecoreDataType = (EDataType)eResolveProxy(oldEcoreDataType);
-      if (ecoreDataType != oldEcoreDataType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE, oldEcoreDataType, ecoreDataType));
-      }
-    }
-    return ecoreDataType;
-  }
+		if (ecoreDataType != null && ecoreDataType.eIsProxy()) {
+			InternalEObject oldEcoreDataType = (InternalEObject)ecoreDataType;
+			ecoreDataType = (EDataType)eResolveProxy(oldEcoreDataType);
+			if (ecoreDataType != oldEcoreDataType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE, oldEcoreDataType, ecoreDataType));
+			}
+		}
+		return ecoreDataType;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EDataType basicGetEcoreDataType()
   {
-    return ecoreDataType;
-  }
+		return ecoreDataType;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setEcoreDataType(EDataType newEcoreDataType)
   {
-    EDataType oldEcoreDataType = ecoreDataType;
-    ecoreDataType = newEcoreDataType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE, oldEcoreDataType, ecoreDataType));
-  }
+		EDataType oldEcoreDataType = ecoreDataType;
+		ecoreDataType = newEcoreDataType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE, oldEcoreDataType, ecoreDataType));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
-        if (resolve) return getEcoreDataType();
-        return basicGetEcoreDataType();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
+				if (resolve) return getEcoreDataType();
+				return basicGetEcoreDataType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
-        setEcoreDataType((EDataType)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
+				setEcoreDataType((EDataType)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
-        setEcoreDataType((EDataType)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
+				setEcoreDataType((EDataType)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
-        return ecoreDataType != null;
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_DATA_TYPE__ECORE_DATA_TYPE:
+				return ecoreDataType != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
   @Override
   public EClassifier getEcoreClassifier()

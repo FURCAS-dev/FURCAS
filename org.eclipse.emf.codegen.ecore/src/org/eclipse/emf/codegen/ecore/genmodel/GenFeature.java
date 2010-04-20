@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isPropertySortChoices <em>Property Sort Choices</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getGenClass <em>Gen Class</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getEcoreFeature <em>Ecore Feature</em>}</li>
+ *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getOwnedOpposite <em>Owned Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,78 +53,78 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public interface GenFeature extends GenTypedElement
 {
   /**
-   * Returns the value of the '<em><b>Property</b></em>' attribute.
-   * The literals are from the enumeration {@link org.eclipse.emf.codegen.ecore.genmodel.GenPropertyKind}.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.emf.codegen.ecore.genmodel.GenPropertyKind}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Property</em>' attribute.
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenPropertyKind
-   * @see #setProperty(GenPropertyKind)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_Property()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Property</em>' attribute.
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenPropertyKind
+	 * @see #setProperty(GenPropertyKind)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_Property()
+	 * @model
+	 * @generated
+	 */
   GenPropertyKind getProperty();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getProperty <em>Property</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getProperty <em>Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Property</em>' attribute.
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenPropertyKind
-   * @see #getProperty()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Property</em>' attribute.
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenPropertyKind
+	 * @see #getProperty()
+	 * @generated
+	 */
   void setProperty(GenPropertyKind value);
 
   /**
-   * Returns the value of the '<em><b>Notify</b></em>' attribute.
-   * The default value is <code>"true"</code>.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Notify</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Notify</em>' attribute.
-   * @see #setNotify(boolean)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_Notify()
-   * @model default="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Notify</em>' attribute.
+	 * @see #setNotify(boolean)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_Notify()
+	 * @model default="true"
+	 * @generated
+	 */
   boolean isNotify();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isNotify <em>Notify</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isNotify <em>Notify</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Notify</em>' attribute.
-   * @see #isNotify()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Notify</em>' attribute.
+	 * @see #isNotify()
+	 * @generated
+	 */
   void setNotify(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Children</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Children</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Children</em>' attribute.
-   * @see #setChildren(boolean)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_Children()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Children</em>' attribute.
+	 * @see #setChildren(boolean)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_Children()
+	 * @model
+	 * @generated
+	 */
   boolean isChildren();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isChildren <em>Children</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isChildren <em>Children</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Children</em>' attribute.
-   * @see #isChildren()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Children</em>' attribute.
+	 * @see #isChildren()
+	 * @generated
+	 */
   void setChildren(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Create Child</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Create Child</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <p>
    * This attribute determines whether child objects can be created via this feature. It is temporarily unsettable to
    * ease migration from pre-2.0 versions of EMF, in which the {@link #isChildren children} feature did this as a
@@ -135,202 +136,228 @@ public interface GenFeature extends GenTypedElement
    * work as before.
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Create Child</em>' attribute.
-   * @see #isSetCreateChild()
-   * @see #unsetCreateChild()
-   * @see #setCreateChild(boolean)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_CreateChild()
-   * @model unsettable="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Create Child</em>' attribute.
+	 * @see #isSetCreateChild()
+	 * @see #unsetCreateChild()
+	 * @see #setCreateChild(boolean)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_CreateChild()
+	 * @model unsettable="true"
+	 * @generated
+	 */
   boolean isCreateChild();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isCreateChild <em>Create Child</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isCreateChild <em>Create Child</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Create Child</em>' attribute.
-   * @see #isSetCreateChild()
-   * @see #unsetCreateChild()
-   * @see #isCreateChild()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Create Child</em>' attribute.
+	 * @see #isSetCreateChild()
+	 * @see #unsetCreateChild()
+	 * @see #isCreateChild()
+	 * @generated
+	 */
   void setCreateChild(boolean value);
 
   /**
-   * Unsets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isCreateChild <em>Create Child</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Unsets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isCreateChild <em>Create Child</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isSetCreateChild()
-   * @see #isCreateChild()
-   * @see #setCreateChild(boolean)
-   * @generated
-   */
+	 * @see #isSetCreateChild()
+	 * @see #isCreateChild()
+	 * @see #setCreateChild(boolean)
+	 * @generated
+	 */
   void unsetCreateChild();
 
   /**
-   * Returns whether the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isCreateChild <em>Create Child</em>}' attribute is set.
-   * <!-- begin-user-doc -->
+	 * Returns whether the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isCreateChild <em>Create Child</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
    * <p>
    * This always returns true.  If the feature is unset, it will first be set based on the value of {@link #isChildren
    * children}. This ensures that pre-2.0 models will upgrade themselves, and continue to behave as before
    * </p>
    * <!-- end-user-doc -->
-   * @return whether the value of the '<em>Create Child</em>' attribute is set.
-   * @see #unsetCreateChild()
-   * @see #isCreateChild()
-   * @see #setCreateChild(boolean)
-   * @generated
-   */
+	 * @return whether the value of the '<em>Create Child</em>' attribute is set.
+	 * @see #unsetCreateChild()
+	 * @see #isCreateChild()
+	 * @see #setCreateChild(boolean)
+	 * @generated
+	 */
   boolean isSetCreateChild();
 
   /**
-   * Returns the value of the '<em><b>Property Category</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Property Category</em>' attribute.
-   * @see #setPropertyCategory(String)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyCategory()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Property Category</em>' attribute.
+	 * @see #setPropertyCategory(String)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyCategory()
+	 * @model
+	 * @generated
+	 */
   String getPropertyCategory();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getPropertyCategory <em>Property Category</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getPropertyCategory <em>Property Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Property Category</em>' attribute.
-   * @see #getPropertyCategory()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Property Category</em>' attribute.
+	 * @see #getPropertyCategory()
+	 * @generated
+	 */
   void setPropertyCategory(String value);
 
   /**
-   * Returns the value of the '<em><b>Property Filter Flags</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Filter Flags</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Property Filter Flags</em>' attribute list.
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyFilterFlags()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Property Filter Flags</em>' attribute list.
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyFilterFlags()
+	 * @model
+	 * @generated
+	 */
   EList<String> getPropertyFilterFlags();
 
   /**
-   * Returns the value of the '<em><b>Property Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Property Description</em>' attribute.
-   * @see #setPropertyDescription(String)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyDescription()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Property Description</em>' attribute.
+	 * @see #setPropertyDescription(String)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyDescription()
+	 * @model
+	 * @generated
+	 */
   String getPropertyDescription();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getPropertyDescription <em>Property Description</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getPropertyDescription <em>Property Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Property Description</em>' attribute.
-   * @see #getPropertyDescription()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Property Description</em>' attribute.
+	 * @see #getPropertyDescription()
+	 * @generated
+	 */
   void setPropertyDescription(String value);
 
   /**
-   * Returns the value of the '<em><b>Property Multi Line</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Multi Line</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Property Multi Line</em>' attribute.
-   * @see #setPropertyMultiLine(boolean)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyMultiLine()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Property Multi Line</em>' attribute.
+	 * @see #setPropertyMultiLine(boolean)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertyMultiLine()
+	 * @model
+	 * @generated
+	 */
   boolean isPropertyMultiLine();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isPropertyMultiLine <em>Property Multi Line</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isPropertyMultiLine <em>Property Multi Line</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Property Multi Line</em>' attribute.
-   * @see #isPropertyMultiLine()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Property Multi Line</em>' attribute.
+	 * @see #isPropertyMultiLine()
+	 * @generated
+	 */
   void setPropertyMultiLine(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Property Sort Choices</b></em>' attribute.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Sort Choices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Property Sort Choices</em>' attribute.
-   * @see #setPropertySortChoices(boolean)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertySortChoices()
-   * @model
-   * @generated
-   */
+	 * @return the value of the '<em>Property Sort Choices</em>' attribute.
+	 * @see #setPropertySortChoices(boolean)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_PropertySortChoices()
+	 * @model
+	 * @generated
+	 */
   boolean isPropertySortChoices();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isPropertySortChoices <em>Property Sort Choices</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isPropertySortChoices <em>Property Sort Choices</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Property Sort Choices</em>' attribute.
-   * @see #isPropertySortChoices()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Property Sort Choices</em>' attribute.
+	 * @see #isPropertySortChoices()
+	 * @generated
+	 */
   void setPropertySortChoices(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Gen Class</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenFeatures <em>Gen Features</em>}'.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Gen Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenFeatures <em>Gen Features</em>}'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Gen Class</em>' container reference.
-   * @see #setGenClass(GenClass)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_GenClass()
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenFeatures
-   * @model opposite="genFeatures" required="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Gen Class</em>' container reference.
+	 * @see #setGenClass(GenClass)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_GenClass()
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenFeatures
+	 * @model opposite="genFeatures" required="true"
+	 * @generated
+	 */
   GenClass getGenClass();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getGenClass <em>Gen Class</em>}' container reference.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getGenClass <em>Gen Class</em>}' container reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Gen Class</em>' container reference.
-   * @see #getGenClass()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Gen Class</em>' container reference.
+	 * @see #getGenClass()
+	 * @generated
+	 */
   void setGenClass(GenClass value);
 
   /**
-   * Returns the value of the '<em><b>Ecore Feature</b></em>' reference.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Ecore Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ecore Feature</em>' reference.
-   * @see #setEcoreFeature(EStructuralFeature)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_EcoreFeature()
-   * @model required="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Ecore Feature</em>' reference.
+	 * @see #setEcoreFeature(EStructuralFeature)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_EcoreFeature()
+	 * @model required="true"
+	 * @generated
+	 */
   EStructuralFeature getEcoreFeature();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getEcoreFeature <em>Ecore Feature</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getEcoreFeature <em>Ecore Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ecore Feature</em>' reference.
-   * @see #getEcoreFeature()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Ecore Feature</em>' reference.
+	 * @see #getEcoreFeature()
+	 * @generated
+	 */
   void setEcoreFeature(EStructuralFeature value);
 
-  String getName(); // callers that plan to use this name without appending a suffix should call f.safeName(f.getName()) to make sure its not a keyword
+  /**
+	 * Returns the value of the '<em><b>Owned Opposite</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Opposite</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Opposite</em>' containment reference.
+	 * @see #setOwnedOpposite(GenFeature)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_OwnedOpposite()
+	 * @model containment="true"
+	 * @generated
+	 */
+	GenFeature getOwnedOpposite();
+
+		/**
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getOwnedOpposite <em>Owned Opposite</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Opposite</em>' containment reference.
+	 * @see #getOwnedOpposite()
+	 * @generated
+	 */
+	void setOwnedOpposite(GenFeature value);
+
+		String getName(); // callers that plan to use this name without appending a suffix should call f.safeName(f.getName()) to make sure its not a keyword
   String getSafeName(); // this is a safe guaranteed uncapitalized form of the name
   String getSafeNameAsEObject(); // the safe name and cast to EObject, if necessary.
   String getCapName();
@@ -370,6 +397,7 @@ public interface GenFeature extends GenTypedElement
   boolean isEffectiveContains();
   boolean isBidirectional();
   GenFeature getReverse();
+  GenFeature getReverseIncludingHidden();
   
   List<GenFeature> getKeys();
 

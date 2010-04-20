@@ -44,144 +44,138 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class GenTypeParameterImpl extends GenBaseImpl implements GenTypeParameter
 {
   /**
-   * The cached value of the '{@link #getEcoreTypeParameter() <em>Ecore Type Parameter</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEcoreTypeParameter() <em>Ecore Type Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEcoreTypeParameter()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEcoreTypeParameter()
+	 * @generated
+	 * @ordered
+	 */
   protected ETypeParameter ecoreTypeParameter;
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenTypeParameterImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return GenModelPackage.Literals.GEN_TYPE_PARAMETER;
-  }
+		return GenModelPackage.Literals.GEN_TYPE_PARAMETER;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public ETypeParameter getEcoreTypeParameter()
   {
-    if (ecoreTypeParameter != null && ecoreTypeParameter.eIsProxy())
-    {
-      InternalEObject oldEcoreTypeParameter = (InternalEObject)ecoreTypeParameter;
-      ecoreTypeParameter = (ETypeParameter)eResolveProxy(oldEcoreTypeParameter);
-      if (ecoreTypeParameter != oldEcoreTypeParameter)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER, oldEcoreTypeParameter, ecoreTypeParameter));
-      }
-    }
-    return ecoreTypeParameter;
-  }
+		if (ecoreTypeParameter != null && ecoreTypeParameter.eIsProxy()) {
+			InternalEObject oldEcoreTypeParameter = (InternalEObject)ecoreTypeParameter;
+			ecoreTypeParameter = (ETypeParameter)eResolveProxy(oldEcoreTypeParameter);
+			if (ecoreTypeParameter != oldEcoreTypeParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER, oldEcoreTypeParameter, ecoreTypeParameter));
+			}
+		}
+		return ecoreTypeParameter;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public ETypeParameter basicGetEcoreTypeParameter()
   {
-    return ecoreTypeParameter;
-  }
+		return ecoreTypeParameter;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setEcoreTypeParameter(ETypeParameter newEcoreTypeParameter)
   {
-    ETypeParameter oldEcoreTypeParameter = ecoreTypeParameter;
-    ecoreTypeParameter = newEcoreTypeParameter;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER, oldEcoreTypeParameter, ecoreTypeParameter));
-  }
+		ETypeParameter oldEcoreTypeParameter = ecoreTypeParameter;
+		ecoreTypeParameter = newEcoreTypeParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER, oldEcoreTypeParameter, ecoreTypeParameter));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
-        if (resolve) return getEcoreTypeParameter();
-        return basicGetEcoreTypeParameter();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
+				if (resolve) return getEcoreTypeParameter();
+				return basicGetEcoreTypeParameter();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
-        setEcoreTypeParameter((ETypeParameter)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
+				setEcoreTypeParameter((ETypeParameter)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
-        setEcoreTypeParameter((ETypeParameter)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
+				setEcoreTypeParameter((ETypeParameter)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
-        return ecoreTypeParameter != null;
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER:
+				return ecoreTypeParameter != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
   @Override
   public String getName()

@@ -41,25 +41,25 @@ import org.eclipse.emf.ecore.EDataType;
 public interface GenDataType extends GenClassifier
 {
   /**
-   * Returns the value of the '<em><b>Ecore Data Type</b></em>' reference.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Ecore Data Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ecore Data Type</em>' reference.
-   * @see #setEcoreDataType(EDataType)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenDataType_EcoreDataType()
-   * @model required="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Ecore Data Type</em>' reference.
+	 * @see #setEcoreDataType(EDataType)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenDataType_EcoreDataType()
+	 * @model required="true"
+	 * @generated
+	 */
   EDataType getEcoreDataType();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType#getEcoreDataType <em>Ecore Data Type</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType#getEcoreDataType <em>Ecore Data Type</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ecore Data Type</em>' reference.
-   * @see #getEcoreDataType()
-   * @generated
-   */
+	 * @param value the new value of the '<em>Ecore Data Type</em>' reference.
+	 * @see #getEcoreDataType()
+	 * @generated
+	 */
   void setEcoreDataType(EDataType value);
 
   String getQualifiedInstanceClassName();

@@ -47,389 +47,377 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 public class GenModelItemProviderAdapterFactory extends GenModelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
 {
   /**
-   * This keeps track of the root adapter factory that delegates to this adapter factory.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected ComposedAdapterFactory parentAdapterFactory;
 
   /**
-   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-   * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
   /**
-   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-   * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
   /**
-   * This constructs an instance.
-   * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenModelItemProviderAdapterFactory()
   {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
-  }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenModel} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenModel} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenModelItemProvider genModelItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenModel}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenModel}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenModelAdapter()
   {
-    if (genModelItemProvider == null)
-    {
-      genModelItemProvider = new GenModelItemProvider(this);
-    }
+		if (genModelItemProvider == null) {
+			genModelItemProvider = new GenModelItemProvider(this);
+		}
 
-    return genModelItemProvider;
-  }
+		return genModelItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenPackageItemProvider genPackageItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenPackageAdapter()
   {
-    if (genPackageItemProvider == null)
-    {
-      genPackageItemProvider = new GenPackageItemProvider(this);
-    }
+		if (genPackageItemProvider == null) {
+			genPackageItemProvider = new GenPackageItemProvider(this);
+		}
 
-    return genPackageItemProvider;
-  }
+		return genPackageItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenClass} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenClass} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenClassItemProvider genClassItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenClass}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenClass}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenClassAdapter()
   {
-    if (genClassItemProvider == null)
-    {
-      genClassItemProvider = new GenClassItemProvider(this);
-    }
+		if (genClassItemProvider == null) {
+			genClassItemProvider = new GenClassItemProvider(this);
+		}
 
-    return genClassItemProvider;
-  }
+		return genClassItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenFeatureItemProvider genFeatureItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenFeatureAdapter()
   {
-    if (genFeatureItemProvider == null)
-    {
-      genFeatureItemProvider = new GenFeatureItemProvider(this);
-    }
+		if (genFeatureItemProvider == null) {
+			genFeatureItemProvider = new GenFeatureItemProvider(this);
+		}
 
-    return genFeatureItemProvider;
-  }
+		return genFeatureItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnum} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnum} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenEnumItemProvider genEnumItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnum}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnum}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenEnumAdapter()
   {
-    if (genEnumItemProvider == null)
-    {
-      genEnumItemProvider = new GenEnumItemProvider(this);
-    }
+		if (genEnumItemProvider == null) {
+			genEnumItemProvider = new GenEnumItemProvider(this);
+		}
 
-    return genEnumItemProvider;
-  }
+		return genEnumItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnumLiteral} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnumLiteral} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenEnumLiteralItemProvider genEnumLiteralItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnumLiteral}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnumLiteral}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenEnumLiteralAdapter()
   {
-    if (genEnumLiteralItemProvider == null)
-    {
-      genEnumLiteralItemProvider = new GenEnumLiteralItemProvider(this);
-    }
+		if (genEnumLiteralItemProvider == null) {
+			genEnumLiteralItemProvider = new GenEnumLiteralItemProvider(this);
+		}
 
-    return genEnumLiteralItemProvider;
-  }
+		return genEnumLiteralItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenDataTypeItemProvider genDataTypeItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenDataTypeAdapter()
   {
-    if (genDataTypeItemProvider == null)
-    {
-      genDataTypeItemProvider = new GenDataTypeItemProvider(this);
-    }
+		if (genDataTypeItemProvider == null) {
+			genDataTypeItemProvider = new GenDataTypeItemProvider(this);
+		}
 
-    return genDataTypeItemProvider;
-  }
+		return genDataTypeItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenOperationItemProvider genOperationItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenOperationAdapter()
   {
-    if (genOperationItemProvider == null)
-    {
-      genOperationItemProvider = new GenOperationItemProvider(this);
-    }
+		if (genOperationItemProvider == null) {
+			genOperationItemProvider = new GenOperationItemProvider(this);
+		}
 
-    return genOperationItemProvider;
-  }
+		return genOperationItemProvider;
+	}
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation} instances.
-   * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenAnnotationItemProvider genAnnotationItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation}.
-   * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter createGenAnnotationAdapter()
   {
-    if (genAnnotationItemProvider == null)
-    {
-      genAnnotationItemProvider = new GenAnnotationItemProvider(this);
-    }
+		if (genAnnotationItemProvider == null) {
+			genAnnotationItemProvider = new GenAnnotationItemProvider(this);
+		}
 
-    return genAnnotationItemProvider;
-  }
+		return genAnnotationItemProvider;
+	}
 
   /**
-   * This returns the root adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public ComposeableAdapterFactory getRootAdapterFactory()
   {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-  }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
   /**
-   * This sets the composed adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
   {
-    this.parentAdapterFactory = parentAdapterFactory;
-  }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean isFactoryForType(Object type)
   {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
-  }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
   /**
-   * This implementation substitutes the factory itself as the key for the adapter.
-   * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Adapter adapt(Notifier notifier, Object type)
   {
-    return super.adapt(notifier, this);
-  }
+		return super.adapt(notifier, this);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object adapt(Object object, Object type)
   {
-    if (isFactoryForType(type))
-    {
-      Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
-      {
-        return adapter;
-      }
-    }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-    return null;
-  }
+		return null;
+	}
 
   /**
-   * This adds a listener.
-   * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void addListener(INotifyChangedListener notifyChangedListener)
   {
-    changeNotifier.addListener(notifyChangedListener);
-  }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
   /**
-   * This removes a listener.
-   * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void removeListener(INotifyChangedListener notifyChangedListener)
   {
-    changeNotifier.removeListener(notifyChangedListener);
-  }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
   /**
-   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-   * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void fireNotifyChanged(Notification notification)
   {
-    changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null)
-    {
-      parentAdapterFactory.fireNotifyChanged(notification);
-    }
-  }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
   /**
-   * This disposes all of the item providers created by this factory. 
-   * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void dispose()
   {
-    if (genModelItemProvider != null) genModelItemProvider.dispose();
-    if (genPackageItemProvider != null) genPackageItemProvider.dispose();
-    if (genClassItemProvider != null) genClassItemProvider.dispose();
-    if (genFeatureItemProvider != null) genFeatureItemProvider.dispose();
-    if (genEnumItemProvider != null) genEnumItemProvider.dispose();
-    if (genEnumLiteralItemProvider != null) genEnumLiteralItemProvider.dispose();
-    if (genDataTypeItemProvider != null) genDataTypeItemProvider.dispose();
-    if (genOperationItemProvider != null) genOperationItemProvider.dispose();
-    if (genAnnotationItemProvider != null) genAnnotationItemProvider.dispose();
-  }
+		if (genModelItemProvider != null) genModelItemProvider.dispose();
+		if (genPackageItemProvider != null) genPackageItemProvider.dispose();
+		if (genClassItemProvider != null) genClassItemProvider.dispose();
+		if (genFeatureItemProvider != null) genFeatureItemProvider.dispose();
+		if (genEnumItemProvider != null) genEnumItemProvider.dispose();
+		if (genEnumLiteralItemProvider != null) genEnumLiteralItemProvider.dispose();
+		if (genDataTypeItemProvider != null) genDataTypeItemProvider.dispose();
+		if (genOperationItemProvider != null) genOperationItemProvider.dispose();
+		if (genAnnotationItemProvider != null) genAnnotationItemProvider.dispose();
+	}
 
 }

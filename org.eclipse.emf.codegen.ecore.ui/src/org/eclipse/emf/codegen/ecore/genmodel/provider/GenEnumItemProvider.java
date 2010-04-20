@@ -49,113 +49,111 @@ public class GenEnumItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenEnumItemProvider(AdapterFactory adapterFactory)
   {
-    super(adapterFactory);
-  }
+		super(adapterFactory);
+	}
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-    if (itemPropertyDescriptors == null)
-    {
-      super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-      addTypeSafeEnumCompatiblePropertyDescriptor(object);
-      addEcoreEnumPropertyDescriptor(object);
-    }
-    return itemPropertyDescriptors;
-  }
+			addTypeSafeEnumCompatiblePropertyDescriptor(object);
+			addEcoreEnumPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
   /**
-   * This adds a property descriptor for the Type Safe Enum Compatible feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Type Safe Enum Compatible feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addTypeSafeEnumCompatiblePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenEnum_typeSafeEnumCompatible_feature"),
-         getString("_UI_GenEnum_typeSafeEnumCompatible_description"),
-         GenModelPackage.Literals.GEN_ENUM__TYPE_SAFE_ENUM_COMPATIBLE,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_ModelPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenEnum_typeSafeEnumCompatible_feature"),
+				 getString("_UI_GenEnum_typeSafeEnumCompatible_description"),
+				 GenModelPackage.Literals.GEN_ENUM__TYPE_SAFE_ENUM_COMPATIBLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_ModelPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Ecore Enum feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Ecore Enum feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addEcoreEnumPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenEnum_ecoreEnum_feature"),
-         getString("_UI_GenEnum_ecoreEnum_description"),
-         GenModelPackage.Literals.GEN_ENUM__ECORE_ENUM,
-         false,
-         false,
-         false,
-         null,
-         getString("_UI_EcorePropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenEnum_ecoreEnum_feature"),
+				 getString("_UI_GenEnum_ecoreEnum_description"),
+				 GenModelPackage.Literals.GEN_ENUM__ECORE_ENUM,
+				 false,
+				 false,
+				 false,
+				 null,
+				 getString("_UI_EcorePropertyCategory"),
+				 null));
+	}
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
   {
-    if (childrenFeatures == null)
-    {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(GenModelPackage.Literals.GEN_ENUM__GEN_ENUM_LITERALS);
-    }
-    return childrenFeatures;
-  }
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(GenModelPackage.Literals.GEN_ENUM__GEN_ENUM_LITERALS);
+		}
+		return childrenFeatures;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EStructuralFeature getChildFeature(Object object, Object child)
   {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-    return super.getChildFeature(object, child);
-  }
+		return super.getChildFeature(object, child);
+	}
 
   /**
    */
@@ -176,28 +174,27 @@ public class GenEnumItemProvider
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void notifyChanged(Notification notification)
   {
-    updateChildren(notification);
+		updateChildren(notification);
 
-    switch (notification.getFeatureID(GenEnum.class))
-    {
-      case GenModelPackage.GEN_ENUM__TYPE_SAFE_ENUM_COMPATIBLE:
-      case GenModelPackage.GEN_ENUM__ECORE_ENUM:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-      case GenModelPackage.GEN_ENUM__GEN_ENUM_LITERALS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-        return;
-    }
-    super.notifyChanged(notification);
-  }
+		switch (notification.getFeatureID(GenEnum.class)) {
+			case GenModelPackage.GEN_ENUM__TYPE_SAFE_ENUM_COMPATIBLE:
+			case GenModelPackage.GEN_ENUM__ECORE_ENUM:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GenModelPackage.GEN_ENUM__GEN_ENUM_LITERALS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
 }

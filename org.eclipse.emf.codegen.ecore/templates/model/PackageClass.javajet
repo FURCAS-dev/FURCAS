@@ -553,6 +553,9 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 		<%=genClass.getClassifierInstanceName()%> = create<%=genClass.getMetaType()%>(<%=genClass.getClassifierID()%>);
         <%for (GenFeature genFeature : genClass.getGenFeatures()) {%>
 		create<%=genFeature.getMetaType()%>(<%=genClass.getClassifierInstanceName()%>, <%=genClass.getFeatureID(genFeature)%>);
+		  <%if (genFeature.getOwnedOpposite() != null) {%>
+		((EReference) <%=genClass.getClassifierInstanceName()%>.getEStructuralFeatures().get(<%=genClass.getClassifierInstanceName()%>.getEStructuralFeatures().size()-1)).setOwnedOpposite(ecoreFactory.createEReference());
+          <%}%>
         <%}%>
         <%if (genModel.isOperationReflection()) {%>
           <%for (GenOperation genOperation : genClass.getGenOperations()) {%>
@@ -750,9 +753,12 @@ int maxGenericTypeAssignment = 0;
               <%}%>
             <%}%>
           <%}%>
-          <%if (genFeature.isReferenceType()) { GenFeature reverseGenFeature = genFeature.getReverse();%>
-          <%String reverse = reverseGenFeature == null ? "null" : genPackage.getPackageInstanceVariable(reverseGenFeature.getGenPackage()) + ".get" + reverseGenFeature.getFeatureAccessorName() + "()";%>
+          <%if (genFeature.isReferenceType()) { GenFeature reverseGenFeature = genFeature.getReverseIncludingHidden();%>
+          <%String reverse = reverseGenFeature == null ? "null" : (reverseGenFeature.eContainer() instanceof GenFeature ? "get"+genFeature.getFeatureAccessorName()+"().getOwnedOpposite()" : genPackage.getPackageInstanceVariable(reverseGenFeature.getGenPackage()) + ".get" + reverseGenFeature.getFeatureAccessorName() + "()");%>
 		initEReference(get<%=genFeature.getFeatureAccessorName()%>(), <%if (genFeature.hasGenericType()) {%>g1<%} else {%><%=genPackage.getPackageInstanceVariable(genFeature.getTypeGenPackage())%>.get<%=genFeature.getTypeClassifierAccessorName()%>()<%}%>, <%=reverse%>, "<%=genFeature.getName()%>", <%=genFeature.getDefaultValue()%>, <%=genFeature.getLowerBound()%>, <%=genFeature.getUpperBound()%>, <%=genFeature.getContainerClass()%>, <%=genFeature.getTransientFlag()%>, <%=genFeature.getVolatileFlag()%>, <%=genFeature.getChangeableFlag()%>, <%=genFeature.getContainmentFlag()%>, <%=genFeature.getResolveProxiesFlag()%>, <%=genFeature.getUnsettableFlag()%>, <%=genFeature.getUniqueFlag()%>, <%=genFeature.getDerivedFlag()%>, <%=genFeature.getOrderedFlag()%>);<%=genModel.getNonNLS()%><%=genModel.getNonNLS(genFeature.getDefaultValue(), 2)%>
+		    <%if (genFeature.getOwnedOpposite() != null) {%>
+		initEReference(get<%=genFeature.getFeatureAccessorName()%>().getOwnedOpposite(), <%if (genFeature.getOwnedOpposite().hasGenericType()) {%>g1<%} else {%><%=genPackage.getPackageInstanceVariable(genFeature.getOwnedOpposite().getTypeGenPackage())%>.get<%=genFeature.getOwnedOpposite().getTypeClassifierAccessorName()%>()<%}%>, get<%=genFeature.getFeatureAccessorName()%>(), "<%=genFeature.getOwnedOpposite().getName()%>", <%=genFeature.getOwnedOpposite().getDefaultValue()%>, <%=genFeature.getOwnedOpposite().getLowerBound()%>, <%=genFeature.getOwnedOpposite().getUpperBound()%>, <%=genFeature.getOwnedOpposite().getContainerClass()%>, <%=genFeature.getOwnedOpposite().getTransientFlag()%>, <%=genFeature.getOwnedOpposite().getVolatileFlag()%>, <%=genFeature.getOwnedOpposite().getChangeableFlag()%>, <%=genFeature.getOwnedOpposite().getContainmentFlag()%>, <%=genFeature.getOwnedOpposite().getResolveProxiesFlag()%>, <%=genFeature.getOwnedOpposite().getUnsettableFlag()%>, <%=genFeature.getOwnedOpposite().getUniqueFlag()%>, <%=genFeature.getOwnedOpposite().getDerivedFlag()%>, <%=genFeature.getOwnedOpposite().getOrderedFlag()%>);<%=genModel.getNonNLS()%><%=genModel.getNonNLS(genFeature.getOwnedOpposite().getDefaultValue(), 2)%>
+		    <%}%>
             <%for (GenFeature keyFeature : genFeature.getKeys()) {%>
 		get<%=genFeature.getFeatureAccessorName()%>().getEKeys().add(<%=genPackage.getPackageInstanceVariable(keyFeature.getGenPackage())%>.get<%=keyFeature.getFeatureAccessorName()%>());
             <%}%>

@@ -18,12 +18,14 @@
 
 package org.eclipse.ocl.ecore;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -32,11 +34,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.query.IndexQueryFactory;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessorFactory;
+import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
@@ -679,5 +693,53 @@ public class EcoreEnvironment
 		return (constraint != null)
 				&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
 	}
-}
 
+	@Override
+    protected void findNonNavigableAssociationEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
+		final ResourceSet rs = new ResourceSetImpl();
+		StringBuilder allClassifierSupertypeUris = new StringBuilder();
+		allClassifierSupertypeUris.append('[');
+		allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
+		allClassifierSupertypeUris.append("]"); //$NON-NLS-1$
+		for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
+			allClassifierSupertypeUris.append(',');
+			allClassifierSupertypeUris.append('[');
+			allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
+			allClassifierSupertypeUris.append(']');
+		}
+		final ResultSet result = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).
+			execute("select hiddenOpposite from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, "+ //$NON-NLS-1$
+				"[http://www.eclipse.org/emf/2002/Ecore#//EReference] as hiddenOpposite, "+ //$NON-NLS-1$
+				"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {"+ //$NON-NLS-1$
+				allClassifierSupertypeUris + "} "+ //$NON-NLS-1$
+				"where hiddenOpposite.ownedOpposite = oppositeParent "+ //$NON-NLS-1$
+// 				"where oppositeParent.ownedOpposite = hiddenOpposite "+ //$NON-NLS-1$ // TODO this would be right after the query2 bugs have been fixed
+				"where hiddenOpposite.name = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
+				"where oppositeParent.eType = classifier", getQueryContext(rs)); //$NON-NLS-1$
+		for (int i=0; i<result.getSize(); i++) {
+			ends.add((EReference) rs.getEObject(result.getUri(i, "hiddenOpposite"), /* loadOnDemand */ true)); //$NON-NLS-1$
+		}
+    }
+
+	private QueryContext getQueryContext(final ResourceSet rs) {
+		return new QueryContext() {
+			public URI[] getResourceScope() {
+				final List<URI> result = new ArrayList<URI>();
+				IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
+					public void execute(QueryExecutor queryExecutor) {
+						ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
+						for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
+							result.add(desc.getURI());
+						}
+					}
+				});
+				return result.toArray(new URI[0]);
+			}
+
+			public ResourceSet getResourceSet() {
+				return rs;
+			}
+		};
+	}
+
+}

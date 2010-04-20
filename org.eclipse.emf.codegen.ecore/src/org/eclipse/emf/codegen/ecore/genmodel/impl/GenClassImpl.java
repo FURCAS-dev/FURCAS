@@ -87,103 +87,103 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class GenClassImpl extends GenClassifierImpl implements GenClass
 {
   /**
-   * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProvider()
-   * @generated
-   * @ordered
-   */
+	 * @see #getProvider()
+	 * @generated
+	 * @ordered
+	 */
   protected static final GenProviderKind PROVIDER_EDEFAULT = GenProviderKind.SINGLETON_LITERAL;
 
   /**
-   * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProvider()
-   * @generated
-   * @ordered
-   */
+	 * @see #getProvider()
+	 * @generated
+	 * @ordered
+	 */
   protected GenProviderKind provider = PROVIDER_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isImage() <em>Image</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isImage() <em>Image</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isImage()
-   * @generated
-   * @ordered
-   */
+	 * @see #isImage()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean IMAGE_EDEFAULT = true;
 
   /**
-   * The cached value of the '{@link #isImage() <em>Image</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isImage() <em>Image</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isImage()
-   * @generated
-   * @ordered
-   */
+	 * @see #isImage()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean image = IMAGE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isDynamic()
-   * @generated
-   * @ordered
-   */
+	 * @see #isDynamic()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean DYNAMIC_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isDynamic() <em>Dynamic</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isDynamic()
-   * @generated
-   * @ordered
-   */
+	 * @see #isDynamic()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean dynamic = DYNAMIC_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEcoreClass() <em>Ecore Class</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEcoreClass() <em>Ecore Class</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEcoreClass()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEcoreClass()
+	 * @generated
+	 * @ordered
+	 */
   protected EClass ecoreClass;
 
   /**
-   * The cached value of the '{@link #getGenFeatures() <em>Gen Features</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getGenFeatures() <em>Gen Features</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGenFeatures()
-   * @generated
-   * @ordered
-   */
+	 * @see #getGenFeatures()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<GenFeature> genFeatures;
 
   /**
-   * The cached value of the '{@link #getGenOperations() <em>Gen Operations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getGenOperations() <em>Gen Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGenOperations()
-   * @generated
-   * @ordered
-   */
+	 * @see #getGenOperations()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<GenOperation> genOperations;
 
   /**
-   * The cached value of the '{@link #getLabelFeature() <em>Label Feature</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getLabelFeature() <em>Label Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLabelFeature()
-   * @generated
-   * @ordered
-   */
+	 * @see #getLabelFeature()
+	 * @generated
+	 * @ordered
+	 */
   protected GenFeature labelFeature;
 
   /**
@@ -197,25 +197,25 @@ public class GenClassImpl extends GenClassifierImpl implements GenClass
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return GenModelPackage.Literals.GEN_CLASS;
-  }
+		return GenModelPackage.Literals.GEN_CLASS;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenProviderKind getProvider()
   {
-    return provider;
-  }
+		return provider;
+	}
 
   public boolean isProviderSingleton()
   {
@@ -223,134 +223,130 @@ public class GenClassImpl extends GenClassifierImpl implements GenClass
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setProvider(GenProviderKind newProvider)
   {
-    GenProviderKind oldProvider = provider;
-    provider = newProvider == null ? PROVIDER_EDEFAULT : newProvider;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__PROVIDER, oldProvider, provider));
-  }
+		GenProviderKind oldProvider = provider;
+		provider = newProvider == null ? PROVIDER_EDEFAULT : newProvider;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__PROVIDER, oldProvider, provider));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isImage()
   {
-    return image;
-  }
+		return image;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setImage(boolean newImage)
   {
-    boolean oldImage = image;
-    image = newImage;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__IMAGE, oldImage, image));
-  }
+		boolean oldImage = image;
+		image = newImage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__IMAGE, oldImage, image));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isDynamic()
   {
-    return dynamic;
-  }
+		return dynamic;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setDynamic(boolean newDynamic)
   {
-    boolean oldDynamic = dynamic;
-    dynamic = newDynamic;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__DYNAMIC, oldDynamic, dynamic));
-  }
+		boolean oldDynamic = dynamic;
+		dynamic = newDynamic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__DYNAMIC, oldDynamic, dynamic));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EClass getEcoreClass()
   {
-    if (ecoreClass != null && ecoreClass.eIsProxy())
-    {
-      InternalEObject oldEcoreClass = (InternalEObject)ecoreClass;
-      ecoreClass = (EClass)eResolveProxy(oldEcoreClass);
-      if (ecoreClass != oldEcoreClass)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_CLASS__ECORE_CLASS, oldEcoreClass, ecoreClass));
-      }
-    }
-    return ecoreClass;
-  }
+		if (ecoreClass != null && ecoreClass.eIsProxy()) {
+			InternalEObject oldEcoreClass = (InternalEObject)ecoreClass;
+			ecoreClass = (EClass)eResolveProxy(oldEcoreClass);
+			if (ecoreClass != oldEcoreClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_CLASS__ECORE_CLASS, oldEcoreClass, ecoreClass));
+			}
+		}
+		return ecoreClass;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EClass basicGetEcoreClass()
   {
-    return ecoreClass;
-  }
+		return ecoreClass;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setEcoreClass(EClass newEcoreClass)
   {
-    EClass oldEcoreClass = ecoreClass;
-    ecoreClass = newEcoreClass;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__ECORE_CLASS, oldEcoreClass, ecoreClass));
-  }
+		EClass oldEcoreClass = ecoreClass;
+		ecoreClass = newEcoreClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__ECORE_CLASS, oldEcoreClass, ecoreClass));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<GenFeature> getGenFeatures()
   {
-    if (genFeatures == null)
-    {
-      genFeatures = new EObjectContainmentWithInverseEList<GenFeature>(GenFeature.class, this, GenModelPackage.GEN_CLASS__GEN_FEATURES, GenModelPackage.GEN_FEATURE__GEN_CLASS);
-    }
-    return genFeatures;
-  }
+		if (genFeatures == null) {
+			genFeatures = new EObjectContainmentWithInverseEList<GenFeature>(GenFeature.class, this, GenModelPackage.GEN_CLASS__GEN_FEATURES, GenModelPackage.GEN_FEATURE__GEN_CLASS);
+		}
+		return genFeatures;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<GenOperation> getGenOperations()
   {
-    if (genOperations == null)
-    {
-      genOperations = new EObjectContainmentWithInverseEList<GenOperation>(GenOperation.class, this, GenModelPackage.GEN_CLASS__GEN_OPERATIONS, GenModelPackage.GEN_OPERATION__GEN_CLASS);
-    }
-    return genOperations;
-  }
+		if (genOperations == null) {
+			genOperations = new EObjectContainmentWithInverseEList<GenOperation>(GenOperation.class, this, GenModelPackage.GEN_CLASS__GEN_OPERATIONS, GenModelPackage.GEN_OPERATION__GEN_CLASS);
+		}
+		return genOperations;
+	}
 
   @Override
   public EClassifier getEcoreClassifier()
@@ -1748,6 +1744,12 @@ public class GenClassImpl extends GenClassifierImpl implements GenClass
         GenFeature genFeature = getGenModel().createGenFeature();
         getGenFeatures().add(localFeatureIndex++, genFeature);
         genFeature.initialize(reference);
+        if (reference.getOwnedOpposite() != null)
+        {
+          GenFeature genFeatureHiddenOpposite = getGenModel().createGenFeature();
+          genFeatureHiddenOpposite.initialize(reference.getOwnedOpposite());
+          genFeature.setOwnedOpposite(genFeatureHiddenOpposite);
+        }
       }
     }
     
@@ -2358,24 +2360,22 @@ public class GenClassImpl extends GenClassifierImpl implements GenClass
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenFeature getLabelFeatureGen()
   {
-    if (labelFeature != null && labelFeature.eIsProxy())
-    {
-      InternalEObject oldLabelFeature = (InternalEObject)labelFeature;
-      labelFeature = (GenFeature)eResolveProxy(oldLabelFeature);
-      if (labelFeature != oldLabelFeature)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_CLASS__LABEL_FEATURE, oldLabelFeature, labelFeature));
-      }
-    }
-    return labelFeature;
-  }
+		if (labelFeature != null && labelFeature.eIsProxy()) {
+			InternalEObject oldLabelFeature = (InternalEObject)labelFeature;
+			labelFeature = (GenFeature)eResolveProxy(oldLabelFeature);
+			if (labelFeature != oldLabelFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_CLASS__LABEL_FEATURE, oldLabelFeature, labelFeature));
+			}
+		}
+		return labelFeature;
+	}
 
   public GenFeature getLabelFeature()
   {
@@ -2431,216 +2431,210 @@ public class GenClassImpl extends GenClassifierImpl implements GenClass
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenFeature basicGetLabelFeature()
   {
-    return labelFeature;
-  }
+		return labelFeature;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setLabelFeature(GenFeature newLabelFeature)
   {
-    GenFeature oldLabelFeature = labelFeature;
-    labelFeature = newLabelFeature;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__LABEL_FEATURE, oldLabelFeature, labelFeature));
-  }
+		GenFeature oldLabelFeature = labelFeature;
+		labelFeature = newLabelFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_CLASS__LABEL_FEATURE, oldLabelFeature, labelFeature));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenFeatures()).basicAdd(otherEnd, msgs);
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenOperations()).basicAdd(otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenFeatures()).basicAdd(otherEnd, msgs);
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenOperations()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-        return ((InternalEList<?>)getGenFeatures()).basicRemove(otherEnd, msgs);
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        return ((InternalEList<?>)getGenOperations()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+				return ((InternalEList<?>)getGenFeatures()).basicRemove(otherEnd, msgs);
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				return ((InternalEList<?>)getGenOperations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_CLASS__PROVIDER:
-        return getProvider();
-      case GenModelPackage.GEN_CLASS__IMAGE:
-        return isImage();
-      case GenModelPackage.GEN_CLASS__DYNAMIC:
-        return isDynamic();
-      case GenModelPackage.GEN_CLASS__ECORE_CLASS:
-        if (resolve) return getEcoreClass();
-        return basicGetEcoreClass();
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-        return getGenFeatures();
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        return getGenOperations();
-      case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
-        if (resolve) return getLabelFeature();
-        return basicGetLabelFeature();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_CLASS__PROVIDER:
+				return getProvider();
+			case GenModelPackage.GEN_CLASS__IMAGE:
+				return isImage();
+			case GenModelPackage.GEN_CLASS__DYNAMIC:
+				return isDynamic();
+			case GenModelPackage.GEN_CLASS__ECORE_CLASS:
+				if (resolve) return getEcoreClass();
+				return basicGetEcoreClass();
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+				return getGenFeatures();
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				return getGenOperations();
+			case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
+				if (resolve) return getLabelFeature();
+				return basicGetLabelFeature();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_CLASS__PROVIDER:
-        setProvider((GenProviderKind)newValue);
-        return;
-      case GenModelPackage.GEN_CLASS__IMAGE:
-        setImage((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_CLASS__DYNAMIC:
-        setDynamic((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_CLASS__ECORE_CLASS:
-        setEcoreClass((EClass)newValue);
-        return;
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-        getGenFeatures().clear();
-        getGenFeatures().addAll((Collection<? extends GenFeature>)newValue);
-        return;
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        getGenOperations().clear();
-        getGenOperations().addAll((Collection<? extends GenOperation>)newValue);
-        return;
-      case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
-        setLabelFeature((GenFeature)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_CLASS__PROVIDER:
+				setProvider((GenProviderKind)newValue);
+				return;
+			case GenModelPackage.GEN_CLASS__IMAGE:
+				setImage((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_CLASS__DYNAMIC:
+				setDynamic((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_CLASS__ECORE_CLASS:
+				setEcoreClass((EClass)newValue);
+				return;
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+				getGenFeatures().clear();
+				getGenFeatures().addAll((Collection<? extends GenFeature>)newValue);
+				return;
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				getGenOperations().clear();
+				getGenOperations().addAll((Collection<? extends GenOperation>)newValue);
+				return;
+			case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
+				setLabelFeature((GenFeature)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_CLASS__PROVIDER:
-        setProvider(PROVIDER_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_CLASS__IMAGE:
-        setImage(IMAGE_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_CLASS__DYNAMIC:
-        setDynamic(DYNAMIC_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_CLASS__ECORE_CLASS:
-        setEcoreClass((EClass)null);
-        return;
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-        getGenFeatures().clear();
-        return;
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        getGenOperations().clear();
-        return;
-      case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
-        setLabelFeature((GenFeature)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_CLASS__PROVIDER:
+				setProvider(PROVIDER_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_CLASS__IMAGE:
+				setImage(IMAGE_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_CLASS__DYNAMIC:
+				setDynamic(DYNAMIC_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_CLASS__ECORE_CLASS:
+				setEcoreClass((EClass)null);
+				return;
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+				getGenFeatures().clear();
+				return;
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				getGenOperations().clear();
+				return;
+			case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
+				setLabelFeature((GenFeature)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_CLASS__PROVIDER:
-        return provider != PROVIDER_EDEFAULT;
-      case GenModelPackage.GEN_CLASS__IMAGE:
-        return image != IMAGE_EDEFAULT;
-      case GenModelPackage.GEN_CLASS__DYNAMIC:
-        return dynamic != DYNAMIC_EDEFAULT;
-      case GenModelPackage.GEN_CLASS__ECORE_CLASS:
-        return ecoreClass != null;
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-        return genFeatures != null && !genFeatures.isEmpty();
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        return genOperations != null && !genOperations.isEmpty();
-      case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
-        return labelFeature != null;
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_CLASS__PROVIDER:
+				return provider != PROVIDER_EDEFAULT;
+			case GenModelPackage.GEN_CLASS__IMAGE:
+				return image != IMAGE_EDEFAULT;
+			case GenModelPackage.GEN_CLASS__DYNAMIC:
+				return dynamic != DYNAMIC_EDEFAULT;
+			case GenModelPackage.GEN_CLASS__ECORE_CLASS:
+				return ecoreClass != null;
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+				return genFeatures != null && !genFeatures.isEmpty();
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				return genOperations != null && !genOperations.isEmpty();
+			case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
+				return labelFeature != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (provider: ");
-    result.append(provider);
-    result.append(", image: ");
-    result.append(image);
-    result.append(", dynamic: ");
-    result.append(dynamic);
-    result.append(')');
-    return result.toString();
-  }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (provider: ");
+		result.append(provider);
+		result.append(", image: ");
+		result.append(image);
+		result.append(", dynamic: ");
+		result.append(dynamic);
+		result.append(')');
+		return result.toString();
+	}
 
   public String getItemProviderAdapterFactoryClassName()
   {

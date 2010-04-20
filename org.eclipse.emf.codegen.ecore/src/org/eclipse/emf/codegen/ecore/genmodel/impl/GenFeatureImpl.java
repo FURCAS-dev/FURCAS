@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
@@ -73,6 +74,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#isPropertySortChoices <em>Property Sort Choices</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#getGenClass <em>Gen Class</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#getEcoreFeature <em>Ecore Feature</em>}</li>
+ *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#getOwnedOpposite <em>Owned Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,195 +83,205 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
 {
   /**
-   * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getProperty() <em>Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProperty()
-   * @generated
-   * @ordered
-   */
+	 * @see #getProperty()
+	 * @generated
+	 * @ordered
+	 */
   protected static final GenPropertyKind PROPERTY_EDEFAULT = GenPropertyKind.EDITABLE_LITERAL;
 
   /**
-   * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProperty()
-   * @generated
-   * @ordered
-   */
+	 * @see #getProperty()
+	 * @generated
+	 * @ordered
+	 */
   protected GenPropertyKind property = PROPERTY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isNotify() <em>Notify</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isNotify() <em>Notify</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isNotify()
-   * @generated
-   * @ordered
-   */
+	 * @see #isNotify()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean NOTIFY_EDEFAULT = true;
 
   /**
-   * The cached value of the '{@link #isNotify() <em>Notify</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isNotify() <em>Notify</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isNotify()
-   * @generated
-   * @ordered
-   */
+	 * @see #isNotify()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean notify = NOTIFY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isChildren() <em>Children</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isChildren() <em>Children</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isChildren()
-   * @generated
-   * @ordered
-   */
+	 * @see #isChildren()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean CHILDREN_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isChildren() <em>Children</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isChildren() <em>Children</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isChildren()
-   * @generated
-   * @ordered
-   */
+	 * @see #isChildren()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean children = CHILDREN_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isCreateChild() <em>Create Child</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isCreateChild() <em>Create Child</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isCreateChild()
-   * @generated
-   * @ordered
-   */
+	 * @see #isCreateChild()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean CREATE_CHILD_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isCreateChild() <em>Create Child</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isCreateChild() <em>Create Child</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isCreateChild()
-   * @generated
-   * @ordered
-   */
+	 * @see #isCreateChild()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean createChild = CREATE_CHILD_EDEFAULT;
 
   /**
-   * This is true if the Create Child attribute has been set.
-   * <!-- begin-user-doc -->
+	 * This is true if the Create Child attribute has been set.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
+	 * @generated
+	 * @ordered
+	 */
   protected boolean createChildESet;
 
   /**
-   * The default value of the '{@link #getPropertyCategory() <em>Property Category</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPropertyCategory() <em>Property Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPropertyCategory()
-   * @generated
-   * @ordered
-   */
+	 * @see #getPropertyCategory()
+	 * @generated
+	 * @ordered
+	 */
   protected static final String PROPERTY_CATEGORY_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getPropertyCategory() <em>Property Category</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPropertyCategory() <em>Property Category</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPropertyCategory()
-   * @generated
-   * @ordered
-   */
+	 * @see #getPropertyCategory()
+	 * @generated
+	 * @ordered
+	 */
   protected String propertyCategory = PROPERTY_CATEGORY_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPropertyFilterFlags() <em>Property Filter Flags</em>}' attribute list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPropertyFilterFlags() <em>Property Filter Flags</em>}' attribute list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPropertyFilterFlags()
-   * @generated
-   * @ordered
-   */
+	 * @see #getPropertyFilterFlags()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<String> propertyFilterFlags;
 
   /**
-   * The default value of the '{@link #getPropertyDescription() <em>Property Description</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPropertyDescription() <em>Property Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPropertyDescription()
-   * @generated
-   * @ordered
-   */
+	 * @see #getPropertyDescription()
+	 * @generated
+	 * @ordered
+	 */
   protected static final String PROPERTY_DESCRIPTION_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getPropertyDescription() <em>Property Description</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPropertyDescription() <em>Property Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPropertyDescription()
-   * @generated
-   * @ordered
-   */
+	 * @see #getPropertyDescription()
+	 * @generated
+	 * @ordered
+	 */
   protected String propertyDescription = PROPERTY_DESCRIPTION_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isPropertyMultiLine() <em>Property Multi Line</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isPropertyMultiLine() <em>Property Multi Line</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isPropertyMultiLine()
-   * @generated
-   * @ordered
-   */
+	 * @see #isPropertyMultiLine()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean PROPERTY_MULTI_LINE_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isPropertyMultiLine() <em>Property Multi Line</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isPropertyMultiLine() <em>Property Multi Line</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isPropertyMultiLine()
-   * @generated
-   * @ordered
-   */
+	 * @see #isPropertyMultiLine()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean propertyMultiLine = PROPERTY_MULTI_LINE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isPropertySortChoices() <em>Property Sort Choices</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isPropertySortChoices() <em>Property Sort Choices</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isPropertySortChoices()
-   * @generated
-   * @ordered
-   */
+	 * @see #isPropertySortChoices()
+	 * @generated
+	 * @ordered
+	 */
   protected static final boolean PROPERTY_SORT_CHOICES_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isPropertySortChoices() <em>Property Sort Choices</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isPropertySortChoices() <em>Property Sort Choices</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isPropertySortChoices()
-   * @generated
-   * @ordered
-   */
+	 * @see #isPropertySortChoices()
+	 * @generated
+	 * @ordered
+	 */
   protected boolean propertySortChoices = PROPERTY_SORT_CHOICES_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEcoreFeature() <em>Ecore Feature</em>}' reference.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEcoreFeature() <em>Ecore Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEcoreFeature()
-   * @generated
-   * @ordered
-   */
+	 * @see #getEcoreFeature()
+	 * @generated
+	 * @ordered
+	 */
   protected EStructuralFeature ecoreFeature;
 
   /**
+	 * The cached value of the '{@link #getOwnedOpposite() <em>Owned Opposite</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedOpposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenFeature ownedOpposite;
+
+		/**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated modifiable
@@ -280,25 +292,25 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return GenModelPackage.Literals.GEN_FEATURE;
-  }
+		return GenModelPackage.Literals.GEN_FEATURE;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenPropertyKind getProperty()
   {
-    return property;
-  }
+		return property;
+	}
 
   public boolean isProperty()
   {
@@ -306,63 +318,63 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setProperty(GenPropertyKind newProperty)
   {
-    GenPropertyKind oldProperty = property;
-    property = newProperty == null ? PROPERTY_EDEFAULT : newProperty;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY, oldProperty, property));
-  }
+		GenPropertyKind oldProperty = property;
+		property = newProperty == null ? PROPERTY_EDEFAULT : newProperty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY, oldProperty, property));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isNotify()
   {
-    return notify;
-  }
+		return notify;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setNotify(boolean newNotify)
   {
-    boolean oldNotify = notify;
-    notify = newNotify;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__NOTIFY, oldNotify, notify));
-  }
+		boolean oldNotify = notify;
+		notify = newNotify;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__NOTIFY, oldNotify, notify));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isChildren()
   {
-    return children;
-  }
+		return children;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setChildren(boolean newChildren)
   {
-    boolean oldChildren = children;
-    children = newChildren;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__CHILDREN, oldChildren, children));
-  }
+		boolean oldChildren = children;
+		children = newChildren;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__CHILDREN, oldChildren, children));
+	}
 
   /*
    * Set from {@link #isChildren children} if unset, and return value.
@@ -374,44 +386,44 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isCreateChildGen()
   {
-    return createChild;
-  }
+		return createChild;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setCreateChild(boolean newCreateChild)
   {
-    boolean oldCreateChild = createChild;
-    createChild = newCreateChild;
-    boolean oldCreateChildESet = createChildESet;
-    createChildESet = true;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__CREATE_CHILD, oldCreateChild, createChild, !oldCreateChildESet));
-  }
+		boolean oldCreateChild = createChild;
+		createChild = newCreateChild;
+		boolean oldCreateChildESet = createChildESet;
+		createChildESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__CREATE_CHILD, oldCreateChild, createChild, !oldCreateChildESet));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void unsetCreateChild()
   {
-    boolean oldCreateChild = createChild;
-    boolean oldCreateChildESet = createChildESet;
-    createChild = CREATE_CHILD_EDEFAULT;
-    createChildESet = false;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_FEATURE__CREATE_CHILD, oldCreateChild, CREATE_CHILD_EDEFAULT, oldCreateChildESet));
-  }
+		boolean oldCreateChild = createChild;
+		boolean oldCreateChildESet = createChildESet;
+		createChild = CREATE_CHILD_EDEFAULT;
+		createChildESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_FEATURE__CREATE_CHILD, oldCreateChild, CREATE_CHILD_EDEFAULT, oldCreateChildESet));
+	}
 
   /**
    * Set from {@link #isChildren children} if necessary, and return true.
@@ -423,120 +435,119 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isSetCreateChildGen()
   {
-    return createChildESet;
-  }
+		return createChildESet;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getPropertyCategory()
   {
-    return propertyCategory;
-  }
+		return propertyCategory;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setPropertyCategory(String newPropertyCategory)
   {
-    String oldPropertyCategory = propertyCategory;
-    propertyCategory = newPropertyCategory;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY, oldPropertyCategory, propertyCategory));
-  }
+		String oldPropertyCategory = propertyCategory;
+		propertyCategory = newPropertyCategory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY, oldPropertyCategory, propertyCategory));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<String> getPropertyFilterFlags()
   {
-    if (propertyFilterFlags == null)
-    {
-      propertyFilterFlags = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS);
-    }
-    return propertyFilterFlags;
-  }
+		if (propertyFilterFlags == null) {
+			propertyFilterFlags = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS);
+		}
+		return propertyFilterFlags;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getPropertyDescription()
   {
-    return propertyDescription;
-  }
+		return propertyDescription;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setPropertyDescription(String newPropertyDescription)
   {
-    String oldPropertyDescription = propertyDescription;
-    propertyDescription = newPropertyDescription;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION, oldPropertyDescription, propertyDescription));
-  }
+		String oldPropertyDescription = propertyDescription;
+		propertyDescription = newPropertyDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION, oldPropertyDescription, propertyDescription));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isPropertyMultiLine()
   {
-    return propertyMultiLine;
-  }
+		return propertyMultiLine;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setPropertyMultiLine(boolean newPropertyMultiLine)
   {
-    boolean oldPropertyMultiLine = propertyMultiLine;
-    propertyMultiLine = newPropertyMultiLine;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE, oldPropertyMultiLine, propertyMultiLine));
-  }
+		boolean oldPropertyMultiLine = propertyMultiLine;
+		propertyMultiLine = newPropertyMultiLine;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE, oldPropertyMultiLine, propertyMultiLine));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public boolean isPropertySortChoices()
   {
-    return propertySortChoices;
-  }
+		return propertySortChoices;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setPropertySortChoices(boolean newPropertySortChoices)
   {
-    boolean oldPropertySortChoices = propertySortChoices;
-    propertySortChoices = newPropertySortChoices;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES, oldPropertySortChoices, propertySortChoices));
-  }
+		boolean oldPropertySortChoices = propertySortChoices;
+		propertySortChoices = newPropertySortChoices;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES, oldPropertySortChoices, propertySortChoices));
+	}
 
   protected void autoSetCreateChild()
   {
@@ -547,344 +558,389 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   }
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenClass getGenClass()
   {
-    if (eContainerFeatureID() != GenModelPackage.GEN_FEATURE__GEN_CLASS) return null;
-    return (GenClass)eContainer();
-  }
+		if (eContainerFeatureID() != GenModelPackage.GEN_FEATURE__GEN_CLASS) return null;
+		return (GenClass)eContainer();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public NotificationChain basicSetGenClass(GenClass newGenClass, NotificationChain msgs)
   {
-    msgs = eBasicSetContainer((InternalEObject)newGenClass, GenModelPackage.GEN_FEATURE__GEN_CLASS, msgs);
-    return msgs;
-  }
+		msgs = eBasicSetContainer((InternalEObject)newGenClass, GenModelPackage.GEN_FEATURE__GEN_CLASS, msgs);
+		return msgs;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setGenClass(GenClass newGenClass)
   {
-    if (newGenClass != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_FEATURE__GEN_CLASS && newGenClass != null))
-    {
-      if (EcoreUtil.isAncestor(this, newGenClass))
-        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-      NotificationChain msgs = null;
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
-      if (newGenClass != null)
-        msgs = ((InternalEObject)newGenClass).eInverseAdd(this, GenModelPackage.GEN_CLASS__GEN_FEATURES, GenClass.class, msgs);
-      msgs = basicSetGenClass(newGenClass, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__GEN_CLASS, newGenClass, newGenClass));
-  }
+		if (newGenClass != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_FEATURE__GEN_CLASS && newGenClass != null)) {
+			if (EcoreUtil.isAncestor(this, newGenClass))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGenClass != null)
+				msgs = ((InternalEObject)newGenClass).eInverseAdd(this, GenModelPackage.GEN_CLASS__GEN_FEATURES, GenClass.class, msgs);
+			msgs = basicSetGenClass(newGenClass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__GEN_CLASS, newGenClass, newGenClass));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EStructuralFeature getEcoreFeature()
   {
-    if (ecoreFeature != null && ecoreFeature.eIsProxy())
-    {
-      InternalEObject oldEcoreFeature = (InternalEObject)ecoreFeature;
-      ecoreFeature = (EStructuralFeature)eResolveProxy(oldEcoreFeature);
-      if (ecoreFeature != oldEcoreFeature)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_FEATURE__ECORE_FEATURE, oldEcoreFeature, ecoreFeature));
-      }
-    }
-    return ecoreFeature;
-  }
+		if (ecoreFeature != null && ecoreFeature.eIsProxy()) {
+			InternalEObject oldEcoreFeature = (InternalEObject)ecoreFeature;
+			ecoreFeature = (EStructuralFeature)eResolveProxy(oldEcoreFeature);
+			if (ecoreFeature != oldEcoreFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_FEATURE__ECORE_FEATURE, oldEcoreFeature, ecoreFeature));
+			}
+		}
+		return ecoreFeature;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EStructuralFeature basicGetEcoreFeature()
   {
-    return ecoreFeature;
-  }
+		return ecoreFeature;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setEcoreFeature(EStructuralFeature newEcoreFeature)
   {
-    EStructuralFeature oldEcoreFeature = ecoreFeature;
-    ecoreFeature = newEcoreFeature;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__ECORE_FEATURE, oldEcoreFeature, ecoreFeature));
-  }
+		EStructuralFeature oldEcoreFeature = ecoreFeature;
+		ecoreFeature = newEcoreFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__ECORE_FEATURE, oldEcoreFeature, ecoreFeature));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenFeature getOwnedOpposite() {
+		return ownedOpposite;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedOpposite(GenFeature newOwnedOpposite, NotificationChain msgs) {
+		GenFeature oldOwnedOpposite = ownedOpposite;
+		ownedOpposite = newOwnedOpposite;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, oldOwnedOpposite, newOwnedOpposite);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedOpposite(GenFeature newOwnedOpposite) {
+		if (newOwnedOpposite != ownedOpposite) {
+			NotificationChain msgs = null;
+			if (ownedOpposite != null)
+				msgs = ((InternalEObject)ownedOpposite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, null, msgs);
+			if (newOwnedOpposite != null)
+				msgs = ((InternalEObject)newOwnedOpposite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, null, msgs);
+			msgs = basicSetOwnedOpposite(newOwnedOpposite, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, newOwnedOpposite, newOwnedOpposite));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetGenClass((GenClass)otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGenClass((GenClass)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        return basicSetGenClass(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				return basicSetGenClass(null, msgs);
+			case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
+				return basicSetOwnedOpposite(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    switch (eContainerFeatureID())
-    {
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_CLASS__GEN_FEATURES, GenClass.class, msgs);
-    }
-    return super.eBasicRemoveFromContainerFeature(msgs);
-  }
+		switch (eContainerFeatureID()) {
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_CLASS__GEN_FEATURES, GenClass.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_FEATURE__PROPERTY:
-        return getProperty();
-      case GenModelPackage.GEN_FEATURE__NOTIFY:
-        return isNotify();
-      case GenModelPackage.GEN_FEATURE__CHILDREN:
-        return isChildren();
-      case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
-        return isCreateChild();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
-        return getPropertyCategory();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
-        return getPropertyFilterFlags();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
-        return getPropertyDescription();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
-        return isPropertyMultiLine();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
-        return isPropertySortChoices();
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        return getGenClass();
-      case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
-        if (resolve) return getEcoreFeature();
-        return basicGetEcoreFeature();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_FEATURE__PROPERTY:
+				return getProperty();
+			case GenModelPackage.GEN_FEATURE__NOTIFY:
+				return isNotify();
+			case GenModelPackage.GEN_FEATURE__CHILDREN:
+				return isChildren();
+			case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
+				return isCreateChild();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
+				return getPropertyCategory();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
+				return getPropertyFilterFlags();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
+				return getPropertyDescription();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
+				return isPropertyMultiLine();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
+				return isPropertySortChoices();
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				return getGenClass();
+			case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
+				if (resolve) return getEcoreFeature();
+				return basicGetEcoreFeature();
+			case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
+				return getOwnedOpposite();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_FEATURE__PROPERTY:
-        setProperty((GenPropertyKind)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__NOTIFY:
-        setNotify((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__CHILDREN:
-        setChildren((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
-        setCreateChild((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
-        setPropertyCategory((String)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
-        getPropertyFilterFlags().clear();
-        getPropertyFilterFlags().addAll((Collection<? extends String>)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
-        setPropertyDescription((String)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
-        setPropertyMultiLine((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
-        setPropertySortChoices((Boolean)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        setGenClass((GenClass)newValue);
-        return;
-      case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
-        setEcoreFeature((EStructuralFeature)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_FEATURE__PROPERTY:
+				setProperty((GenPropertyKind)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__NOTIFY:
+				setNotify((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__CHILDREN:
+				setChildren((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
+				setCreateChild((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
+				setPropertyCategory((String)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
+				getPropertyFilterFlags().clear();
+				getPropertyFilterFlags().addAll((Collection<? extends String>)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
+				setPropertyDescription((String)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
+				setPropertyMultiLine((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
+				setPropertySortChoices((Boolean)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				setGenClass((GenClass)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
+				setEcoreFeature((EStructuralFeature)newValue);
+				return;
+			case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
+				setOwnedOpposite((GenFeature)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_FEATURE__PROPERTY:
-        setProperty(PROPERTY_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__NOTIFY:
-        setNotify(NOTIFY_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__CHILDREN:
-        setChildren(CHILDREN_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
-        unsetCreateChild();
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
-        setPropertyCategory(PROPERTY_CATEGORY_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
-        getPropertyFilterFlags().clear();
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
-        setPropertyDescription(PROPERTY_DESCRIPTION_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
-        setPropertyMultiLine(PROPERTY_MULTI_LINE_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
-        setPropertySortChoices(PROPERTY_SORT_CHOICES_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        setGenClass((GenClass)null);
-        return;
-      case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
-        setEcoreFeature((EStructuralFeature)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_FEATURE__PROPERTY:
+				setProperty(PROPERTY_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__NOTIFY:
+				setNotify(NOTIFY_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__CHILDREN:
+				setChildren(CHILDREN_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
+				unsetCreateChild();
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
+				setPropertyCategory(PROPERTY_CATEGORY_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
+				getPropertyFilterFlags().clear();
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
+				setPropertyDescription(PROPERTY_DESCRIPTION_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
+				setPropertyMultiLine(PROPERTY_MULTI_LINE_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
+				setPropertySortChoices(PROPERTY_SORT_CHOICES_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				setGenClass((GenClass)null);
+				return;
+			case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
+				setEcoreFeature((EStructuralFeature)null);
+				return;
+			case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
+				setOwnedOpposite((GenFeature)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_FEATURE__PROPERTY:
-        return property != PROPERTY_EDEFAULT;
-      case GenModelPackage.GEN_FEATURE__NOTIFY:
-        return notify != NOTIFY_EDEFAULT;
-      case GenModelPackage.GEN_FEATURE__CHILDREN:
-        return children != CHILDREN_EDEFAULT;
-      case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
-        return isSetCreateChild();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
-        return PROPERTY_CATEGORY_EDEFAULT == null ? propertyCategory != null : !PROPERTY_CATEGORY_EDEFAULT.equals(propertyCategory);
-      case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
-        return propertyFilterFlags != null && !propertyFilterFlags.isEmpty();
-      case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
-        return PROPERTY_DESCRIPTION_EDEFAULT == null ? propertyDescription != null : !PROPERTY_DESCRIPTION_EDEFAULT.equals(propertyDescription);
-      case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
-        return propertyMultiLine != PROPERTY_MULTI_LINE_EDEFAULT;
-      case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
-        return propertySortChoices != PROPERTY_SORT_CHOICES_EDEFAULT;
-      case GenModelPackage.GEN_FEATURE__GEN_CLASS:
-        return getGenClass() != null;
-      case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
-        return ecoreFeature != null;
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_FEATURE__PROPERTY:
+				return property != PROPERTY_EDEFAULT;
+			case GenModelPackage.GEN_FEATURE__NOTIFY:
+				return notify != NOTIFY_EDEFAULT;
+			case GenModelPackage.GEN_FEATURE__CHILDREN:
+				return children != CHILDREN_EDEFAULT;
+			case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
+				return isSetCreateChild();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
+				return PROPERTY_CATEGORY_EDEFAULT == null ? propertyCategory != null : !PROPERTY_CATEGORY_EDEFAULT.equals(propertyCategory);
+			case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
+				return propertyFilterFlags != null && !propertyFilterFlags.isEmpty();
+			case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
+				return PROPERTY_DESCRIPTION_EDEFAULT == null ? propertyDescription != null : !PROPERTY_DESCRIPTION_EDEFAULT.equals(propertyDescription);
+			case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
+				return propertyMultiLine != PROPERTY_MULTI_LINE_EDEFAULT;
+			case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
+				return propertySortChoices != PROPERTY_SORT_CHOICES_EDEFAULT;
+			case GenModelPackage.GEN_FEATURE__GEN_CLASS:
+				return getGenClass() != null;
+			case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
+				return ecoreFeature != null;
+			case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
+				return ownedOpposite != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (property: ");
-    result.append(property);
-    result.append(", notify: ");
-    result.append(notify);
-    result.append(", children: ");
-    result.append(children);
-    result.append(", createChild: ");
-    if (createChildESet) result.append(createChild); else result.append("<unset>");
-    result.append(", propertyCategory: ");
-    result.append(propertyCategory);
-    result.append(", propertyFilterFlags: ");
-    result.append(propertyFilterFlags);
-    result.append(", propertyDescription: ");
-    result.append(propertyDescription);
-    result.append(", propertyMultiLine: ");
-    result.append(propertyMultiLine);
-    result.append(", propertySortChoices: ");
-    result.append(propertySortChoices);
-    result.append(')');
-    return result.toString();
-  }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (property: ");
+		result.append(property);
+		result.append(", notify: ");
+		result.append(notify);
+		result.append(", children: ");
+		result.append(children);
+		result.append(", createChild: ");
+		if (createChildESet) result.append(createChild); else result.append("<unset>");
+		result.append(", propertyCategory: ");
+		result.append(propertyCategory);
+		result.append(", propertyFilterFlags: ");
+		result.append(propertyFilterFlags);
+		result.append(", propertyDescription: ");
+		result.append(propertyDescription);
+		result.append(", propertyMultiLine: ");
+		result.append(propertyMultiLine);
+		result.append(", propertySortChoices: ");
+		result.append(propertySortChoices);
+		result.append(')');
+		return result.toString();
+	}
 
   @Override
   public ETypedElement getEcoreTypedElement()
@@ -993,12 +1049,28 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
 
   public GenPackage getGenPackage()
   {
-    return getGenClass().getGenPackage();
+    if (getGenClass() != null)
+    {
+      return getGenClass().getGenPackage();
+    }
+    else
+    {
+      // hidden opposite's package can be determined by retrieving the owning forward reference
+      // and determining its eType and for that the genClass, then from there the genPackage.
+      return getGenModel().findGenClassifier(getEcoreFeature().getEType()).getGenPackage();
+    }
   }
 
   public String getFeatureAccessorName()
   {
-    return getGenClass().getName() + "_" + getCapName();
+    GenClass genClass = getGenClass();
+    if (genClass == null)
+    {
+      // hidden opposite's package can be determined by retrieving the owning forward reference
+      // and determining its eType and for that the genClass, then from there the genPackage.
+      genClass = (GenClass) getGenModel().findGenClassifier(getEcoreFeature().getEType());
+    }
+    return genClass.getName() + "_" + getCapName();
   }
 
   public String getQualifiedFeatureAccessorName()
@@ -1124,7 +1196,9 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
     if (isReferenceType())
     {
       EReference eReverseFeature = ((EReference)getEcoreFeature()).getEOpposite();
-      return eReverseFeature != null; //  && eReverseFeature.isNavigable();
+      return eReverseFeature != null &&
+            eReverseFeature.getOwnedOpposite() != getEcoreFeature() &&
+            ((EReference) getEcoreFeature()).getOwnedOpposite() != eReverseFeature; //  && eReverseFeature.isNavigable();
     }
     return false;
   }
@@ -1136,15 +1210,56 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
       EReference eReverseFeature = ((EReference)getEcoreFeature()).getEOpposite();
       if (eReverseFeature != null)
       {
-        EClass eReverseClass = (EClass)eReverseFeature.eContainer();
-        GenClass genClass = findGenClass(eReverseClass);
-        if (genClass != null)
+        EObject reverseContainer = eReverseFeature.eContainer();
+        if (reverseContainer instanceof EClass)
         {
-          for (GenFeature genFeature : genClass.getGenFeatures())
+          EClass eReverseClass = (EClass) eReverseFeature.eContainer();
+          GenClass genClass = findGenClass(eReverseClass);
+          if (genClass != null)
           {
-            if (genFeature.getEcoreFeature() == eReverseFeature)
+            for (GenFeature genFeature : genClass.getGenFeatures())
             {
-              return genFeature;
+              if (genFeature.getEcoreFeature() == eReverseFeature)
+              {
+                return genFeature;
+              }
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  public GenFeature getReverseIncludingHidden()
+  {
+    GenFeature oppositeGenFeature = getOwnedOpposite();
+    if (oppositeGenFeature != null)
+    {
+      return oppositeGenFeature;
+    }
+    else
+    {
+      if (isBidirectional())
+      {
+        EReference eReverseFeature = ((EReference) getEcoreFeature()).getEOpposite();
+        if (eReverseFeature != null)
+        {
+          EObject reverseContainer = eReverseFeature.eContainer();
+          GenClass genClass;
+          if (reverseContainer instanceof EClass)
+          {
+            EClass eReverseClass = (EClass) eReverseFeature.eContainer();
+            genClass = findGenClass(eReverseClass);
+            if (genClass != null)
+            {
+              for (GenFeature genFeature : genClass.getGenFeatures())
+              {
+                if (genFeature.getEcoreFeature() == eReverseFeature)
+                {
+                  return genFeature;
+                }
+              }
             }
           }
         }
@@ -1173,7 +1288,7 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   public String getContainerClass()
   {
     GenClass genClass = getGenClass();
-    return genClass.isDocumentRoot() || genClass.isDynamic() ? "null" : genClass.getImportedInterfaceName() + ".class";
+    return genClass == null || genClass.isDocumentRoot() || genClass.isDynamic() ? "null" : genClass.getImportedInterfaceName() + ".class";
   }
 
   public String getDerivedFlag()

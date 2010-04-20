@@ -34,237 +34,231 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum GenResourceKind implements Enumerator
 {
   /**
-   * The '<em><b>None</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>None</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #NONE
-   * @generated
-   * @ordered
-   */
+	 * @see #NONE
+	 * @generated
+	 * @ordered
+	 */
   NONE_LITERAL(0, "None", "None"),
   /**
-   * The '<em><b>Basic</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>Basic</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #BASIC
-   * @generated
-   * @ordered
-   */
+	 * @see #BASIC
+	 * @generated
+	 * @ordered
+	 */
   BASIC_LITERAL(1, "Basic", "Basic"),
   /**
-   * The '<em><b>XMI</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>XMI</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #XMI
-   * @generated
-   * @ordered
-   */
+	 * @see #XMI
+	 * @generated
+	 * @ordered
+	 */
   XMI_LITERAL(2, "XMI", "XMI"),
   /**
-   * The '<em><b>XML</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>XML</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #XML
-   * @generated
-   * @ordered
-   */
+	 * @see #XML
+	 * @generated
+	 * @ordered
+	 */
   XML_LITERAL(3, "XML", "XML");
   /**
-   * The '<em><b>None</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>None</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #NONE_LITERAL
-   * @model name="None"
-   * @generated
-   * @ordered
-   */
+	 * @see #NONE_LITERAL
+	 * @model name="None"
+	 * @generated
+	 * @ordered
+	 */
   public static final int NONE = 0;
 
   /**
-   * The '<em><b>Basic</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>Basic</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #BASIC_LITERAL
-   * @model name="Basic"
-   * @generated
-   * @ordered
-   */
+	 * @see #BASIC_LITERAL
+	 * @model name="Basic"
+	 * @generated
+	 * @ordered
+	 */
   public static final int BASIC = 1;
 
   /**
-   * The '<em><b>XMI</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>XMI</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #XMI_LITERAL
-   * @model
-   * @generated
-   * @ordered
-   */
+	 * @see #XMI_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
   public static final int XMI = 2;
 
   /**
-   * The '<em><b>XML</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>XML</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #XML_LITERAL
-   * @model
-   * @generated
-   * @ordered
-   */
+	 * @see #XML_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
   public static final int XML = 3;
 
   /**
-   * An array of all the '<em><b>Gen Resource Kind</b></em>' enumerators.
-   * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Gen Resource Kind</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private static final GenResourceKind[] VALUES_ARRAY =
-    new GenResourceKind[]
-    {
-      NONE_LITERAL,
-      BASIC_LITERAL,
-      XMI_LITERAL,
-      XML_LITERAL,
-    };
+    new GenResourceKind[] {
+			NONE_LITERAL,
+			BASIC_LITERAL,
+			XMI_LITERAL,
+			XML_LITERAL,
+		};
 
   /**
-   * A public read-only list of all the '<em><b>Gen Resource Kind</b></em>' enumerators.
-   * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Gen Resource Kind</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static final List<GenResourceKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Gen Resource Kind</b></em>' literal with the specified literal value.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Gen Resource Kind</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static GenResourceKind get(String literal)
   {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i)
-    {
-      GenResourceKind result = VALUES_ARRAY[i];
-      if (result.toString().equals(literal))
-      {
-        return result;
-      }
-    }
-    return null;
-  }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			GenResourceKind result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
   /**
-   * Returns the '<em><b>Gen Resource Kind</b></em>' literal with the specified name.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Gen Resource Kind</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static GenResourceKind getByName(String name)
   {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i)
-    {
-      GenResourceKind result = VALUES_ARRAY[i];
-      if (result.getName().equals(name))
-      {
-        return result;
-      }
-    }
-    return null;
-  }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			GenResourceKind result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
   /**
-   * Returns the '<em><b>Gen Resource Kind</b></em>' literal with the specified integer value.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Gen Resource Kind</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static GenResourceKind get(int value)
   {
-    switch (value)
-    {
-      case NONE: return NONE_LITERAL;
-      case BASIC: return BASIC_LITERAL;
-      case XMI: return XMI_LITERAL;
-      case XML: return XML_LITERAL;
-    }
-    return null;
-  }
+		switch (value) {
+			case NONE: return NONE_LITERAL;
+			case BASIC: return BASIC_LITERAL;
+			case XMI: return XMI_LITERAL;
+			case XML: return XML_LITERAL;
+		}
+		return null;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final int value;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final String name;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final String literal;
 
   /**
-   * Only this class can construct instances.
-   * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private GenResourceKind(int value, String name, String literal)
   {
-    this.value = value;
-    this.name = name;
-    this.literal = literal;
-  }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public int getValue()
   {
-    return value;
-  }
+	  return value;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getName()
   {
-    return name;
-  }
+	  return name;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getLiteral()
   {
-    return literal;
-  }
+	  return literal;
+	}
 
   /**
-   * Returns the literal value of the enumerator, which is its string representation.
-   * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString()
   {
-    return literal;
-  }
+		return literal;
+	}
 }

@@ -188,9 +188,15 @@ public class EcoreEvaluationEnvironment
 
         if (target instanceof EObject) {
             EObject etarget = (EObject) target;
-
             if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
                 return coerceValue(property, etarget.eGet(property), true);
+            } else {
+            	if (property instanceof EReference &&
+            				((EReference) property).getEOpposite().getOwnedOpposite() == property &&
+            				((EClass) ((EReference) property).getEOpposite().getEType()).isSuperTypeOf(etarget.eClass())) {
+            		// TODO it's a hidden opposite; use query2 to query it
+            		return null;
+            	}
             }
         }
 

@@ -35,215 +35,209 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum GenJDKLevel implements Enumerator
 {
   /**
-   * The '<em><b>JDK14</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>JDK14</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #JDK14
-   * @generated
-   * @ordered
-   */
+	 * @see #JDK14
+	 * @generated
+	 * @ordered
+	 */
   JDK14_LITERAL(0, "JDK14", "1.4"),
   /**
-   * The '<em><b>JDK50</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>JDK50</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #JDK50
-   * @generated
-   * @ordered
-   */
+	 * @see #JDK50
+	 * @generated
+	 * @ordered
+	 */
   JDK50_LITERAL(1, "JDK50", "5.0"),
   /**
-   * The '<em><b>JDK60</b></em>' literal object.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>JDK60</b></em>' literal object.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #JDK60
-   * @generated
-   * @ordered
-   */
+	 * @see #JDK60
+	 * @generated
+	 * @ordered
+	 */
   JDK60_LITERAL(2, "JDK60", "6.0");
   /**
-   * The '<em><b>JDK14</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>JDK14</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #JDK14_LITERAL
-   * @model literal="1.4"
-   * @generated
-   * @ordered
-   */
+	 * @see #JDK14_LITERAL
+	 * @model literal="1.4"
+	 * @generated
+	 * @ordered
+	 */
   public static final int JDK14 = 0;
 
   /**
-   * The '<em><b>JDK50</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>JDK50</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #JDK50_LITERAL
-   * @model literal="5.0"
-   * @generated
-   * @ordered
-   */
+	 * @see #JDK50_LITERAL
+	 * @model literal="5.0"
+	 * @generated
+	 * @ordered
+	 */
   public static final int JDK50 = 1;
 
   /**
-   * The '<em><b>JDK60</b></em>' literal value.
-   * <!-- begin-user-doc -->
+	 * The '<em><b>JDK60</b></em>' literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #JDK60_LITERAL
-   * @model literal="6.0"
-   * @generated
-   * @ordered
-   */
+	 * @see #JDK60_LITERAL
+	 * @model literal="6.0"
+	 * @generated
+	 * @ordered
+	 */
   public static final int JDK60 = 2;
 
   /**
-   * An array of all the '<em><b>Gen JDK Level</b></em>' enumerators.
-   * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Gen JDK Level</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private static final GenJDKLevel[] VALUES_ARRAY =
-    new GenJDKLevel[]
-    {
-      JDK14_LITERAL,
-      JDK50_LITERAL,
-      JDK60_LITERAL,
-    };
+    new GenJDKLevel[] {
+			JDK14_LITERAL,
+			JDK50_LITERAL,
+			JDK60_LITERAL,
+		};
 
   /**
-   * A public read-only list of all the '<em><b>Gen JDK Level</b></em>' enumerators.
-   * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Gen JDK Level</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static final List<GenJDKLevel> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Gen JDK Level</b></em>' literal with the specified literal value.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Gen JDK Level</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static GenJDKLevel get(String literal)
   {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i)
-    {
-      GenJDKLevel result = VALUES_ARRAY[i];
-      if (result.toString().equals(literal))
-      {
-        return result;
-      }
-    }
-    return null;
-  }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			GenJDKLevel result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
   /**
-   * Returns the '<em><b>Gen JDK Level</b></em>' literal with the specified name.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Gen JDK Level</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static GenJDKLevel getByName(String name)
   {
-    for (int i = 0; i < VALUES_ARRAY.length; ++i)
-    {
-      GenJDKLevel result = VALUES_ARRAY[i];
-      if (result.getName().equals(name))
-      {
-        return result;
-      }
-    }
-    return null;
-  }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			GenJDKLevel result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
   /**
-   * Returns the '<em><b>Gen JDK Level</b></em>' literal with the specified integer value.
-   * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Gen JDK Level</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static GenJDKLevel get(int value)
   {
-    switch (value)
-    {
-      case JDK14: return JDK14_LITERAL;
-      case JDK50: return JDK50_LITERAL;
-      case JDK60: return JDK60_LITERAL;
-    }
-    return null;
-  }
+		switch (value) {
+			case JDK14: return JDK14_LITERAL;
+			case JDK50: return JDK50_LITERAL;
+			case JDK60: return JDK60_LITERAL;
+		}
+		return null;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final int value;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final String name;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private final String literal;
 
   /**
-   * Only this class can construct instances.
-   * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   private GenJDKLevel(int value, String name, String literal)
   {
-    this.value = value;
-    this.name = name;
-    this.literal = literal;
-  }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public int getValue()
   {
-    return value;
-  }
+	  return value;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getName()
   {
-    return name;
-  }
+	  return name;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getLiteral()
   {
-    return literal;
-  }
+	  return literal;
+	}
 
   /**
-   * Returns the literal value of the enumerator, which is its string representation.
-   * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString()
   {
-    return literal;
-  }
+		return literal;
+	}
 }

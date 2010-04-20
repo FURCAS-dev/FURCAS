@@ -51,274 +51,296 @@ public class GenFeatureItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenFeatureItemProvider(AdapterFactory adapterFactory)
   {
-    super(adapterFactory);
-  }
+		super(adapterFactory);
+	}
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-    if (itemPropertyDescriptors == null)
-    {
-      super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-      addPropertyPropertyDescriptor(object);
-      addNotifyPropertyDescriptor(object);
-      addChildrenPropertyDescriptor(object);
-      addCreateChildPropertyDescriptor(object);
-      addPropertyCategoryPropertyDescriptor(object);
-      addPropertyFilterFlagsPropertyDescriptor(object);
-      addPropertyDescriptionPropertyDescriptor(object);
-      addPropertyMultiLinePropertyDescriptor(object);
-      addPropertySortChoicesPropertyDescriptor(object);
-      addEcoreFeaturePropertyDescriptor(object);
-    }
-    return itemPropertyDescriptors;
-  }
+			addPropertyPropertyDescriptor(object);
+			addNotifyPropertyDescriptor(object);
+			addChildrenPropertyDescriptor(object);
+			addCreateChildPropertyDescriptor(object);
+			addPropertyCategoryPropertyDescriptor(object);
+			addPropertyFilterFlagsPropertyDescriptor(object);
+			addPropertyDescriptionPropertyDescriptor(object);
+			addPropertyMultiLinePropertyDescriptor(object);
+			addPropertySortChoicesPropertyDescriptor(object);
+			addEcoreFeaturePropertyDescriptor(object);
+			addOwnedOppositePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
   /**
-   * This adds a property descriptor for the Property feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Property feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addPropertyPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_property_feature"),
-         getString("_UI_GenFeature_property_description"),
-         GenModelPackage.Literals.GEN_FEATURE__PROPERTY,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_property_feature"),
+				 getString("_UI_GenFeature_property_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__PROPERTY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Notify feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Notify feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addNotifyPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_notify_feature"),
-         getString("_UI_GenFeature_notify_description"),
-         GenModelPackage.Literals.GEN_FEATURE__NOTIFY,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_notify_feature"),
+				 getString("_UI_GenFeature_notify_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__NOTIFY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Children feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Children feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addChildrenPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_children_feature"),
-         getString("_UI_GenFeature_children_description"),
-         GenModelPackage.Literals.GEN_FEATURE__CHILDREN,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_children_feature"),
+				 getString("_UI_GenFeature_children_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__CHILDREN,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Create Child feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Create Child feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addCreateChildPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_createChild_feature"),
-         getString("_UI_GenFeature_createChild_description"),
-         GenModelPackage.Literals.GEN_FEATURE__CREATE_CHILD,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_createChild_feature"),
+				 getString("_UI_GenFeature_createChild_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__CREATE_CHILD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Property Category feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Property Category feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addPropertyCategoryPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_propertyCategory_feature"),
-         getString("_UI_GenFeature_propertyCategory_description"),
-         GenModelPackage.Literals.GEN_FEATURE__PROPERTY_CATEGORY,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_propertyCategory_feature"),
+				 getString("_UI_GenFeature_propertyCategory_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__PROPERTY_CATEGORY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Property Filter Flags feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Property Filter Flags feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addPropertyFilterFlagsPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_propertyFilterFlags_feature"),
-         getString("_UI_GenFeature_propertyFilterFlags_description"),
-         GenModelPackage.Literals.GEN_FEATURE__PROPERTY_FILTER_FLAGS,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_propertyFilterFlags_feature"),
+				 getString("_UI_GenFeature_propertyFilterFlags_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__PROPERTY_FILTER_FLAGS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Property Description feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Property Description feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addPropertyDescriptionPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_propertyDescription_feature"),
-         getString("_UI_GenFeature_propertyDescription_description"),
-         GenModelPackage.Literals.GEN_FEATURE__PROPERTY_DESCRIPTION,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_propertyDescription_feature"),
+				 getString("_UI_GenFeature_propertyDescription_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__PROPERTY_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Property Multi Line feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Property Multi Line feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addPropertyMultiLinePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_propertyMultiLine_feature"),
-         getString("_UI_GenFeature_propertyMultiLine_description"),
-         GenModelPackage.Literals.GEN_FEATURE__PROPERTY_MULTI_LINE,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_propertyMultiLine_feature"),
+				 getString("_UI_GenFeature_propertyMultiLine_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__PROPERTY_MULTI_LINE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Property Sort Choices feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Property Sort Choices feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addPropertySortChoicesPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_propertySortChoices_feature"),
-         getString("_UI_GenFeature_propertySortChoices_description"),
-         GenModelPackage.Literals.GEN_FEATURE__PROPERTY_SORT_CHOICES,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_propertySortChoices_feature"),
+				 getString("_UI_GenFeature_propertySortChoices_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__PROPERTY_SORT_CHOICES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Ecore Feature feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Ecore Feature feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addEcoreFeaturePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenFeature_ecoreFeature_feature"),
-         getString("_UI_GenFeature_ecoreFeature_description"),
-         GenModelPackage.Literals.GEN_FEATURE__ECORE_FEATURE,
-         false,
-         false,
-         false,
-         null,
-         getString("_UI_EcorePropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_ecoreFeature_feature"),
+				 getString("_UI_GenFeature_ecoreFeature_description"),
+				 GenModelPackage.Literals.GEN_FEATURE__ECORE_FEATURE,
+				 false,
+				 false,
+				 false,
+				 null,
+				 getString("_UI_EcorePropertyCategory"),
+				 null));
+	}
 
   /**
+	 * This adds a property descriptor for the Owned Opposite feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwnedOppositePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenFeature_ownedOpposite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenFeature_ownedOpposite_feature", "_UI_GenFeature_type"),
+				 GenModelPackage.Literals.GEN_FEATURE__OWNED_OPPOSITE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+		/**
    */
   @Override
   public Object getImage(Object object)
@@ -412,33 +434,32 @@ public class GenFeatureItemProvider
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void notifyChanged(Notification notification)
   {
-    updateChildren(notification);
+		updateChildren(notification);
 
-    switch (notification.getFeatureID(GenFeature.class))
-    {
-      case GenModelPackage.GEN_FEATURE__PROPERTY:
-      case GenModelPackage.GEN_FEATURE__NOTIFY:
-      case GenModelPackage.GEN_FEATURE__CHILDREN:
-      case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
-      case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
-      case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
-      case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
-      case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
-      case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
-      case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-    }
-    super.notifyChanged(notification);
-  }
+		switch (notification.getFeatureID(GenFeature.class)) {
+			case GenModelPackage.GEN_FEATURE__PROPERTY:
+			case GenModelPackage.GEN_FEATURE__NOTIFY:
+			case GenModelPackage.GEN_FEATURE__CHILDREN:
+			case GenModelPackage.GEN_FEATURE__CREATE_CHILD:
+			case GenModelPackage.GEN_FEATURE__PROPERTY_CATEGORY:
+			case GenModelPackage.GEN_FEATURE__PROPERTY_FILTER_FLAGS:
+			case GenModelPackage.GEN_FEATURE__PROPERTY_DESCRIPTION:
+			case GenModelPackage.GEN_FEATURE__PROPERTY_MULTI_LINE:
+			case GenModelPackage.GEN_FEATURE__PROPERTY_SORT_CHOICES:
+			case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
 }

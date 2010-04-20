@@ -54,129 +54,128 @@ public class GenClassItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenClassItemProvider(AdapterFactory adapterFactory)
   {
-    super(adapterFactory);
-  }
+		super(adapterFactory);
+	}
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-    if (itemPropertyDescriptors == null)
-    {
-      super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-      addProviderPropertyDescriptor(object);
-      addImagePropertyDescriptor(object);
-      addDynamicPropertyDescriptor(object);
-      addEcoreClassPropertyDescriptor(object);
-      addLabelFeaturePropertyDescriptor(object);
-    }
-    return itemPropertyDescriptors;
-  }
+			addProviderPropertyDescriptor(object);
+			addImagePropertyDescriptor(object);
+			addDynamicPropertyDescriptor(object);
+			addEcoreClassPropertyDescriptor(object);
+			addLabelFeaturePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
   /**
-   * This adds a property descriptor for the Provider feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Provider feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addProviderPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenClass_provider_feature"),
-         getString("_UI_GenClass_provider_description"),
-         GenModelPackage.Literals.GEN_CLASS__PROVIDER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenClass_provider_feature"),
+				 getString("_UI_GenClass_provider_description"),
+				 GenModelPackage.Literals.GEN_CLASS__PROVIDER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Image feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Image feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addImagePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenClass_image_feature"),
-         getString("_UI_GenClass_image_description"),
-         GenModelPackage.Literals.GEN_CLASS__IMAGE,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_EditPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenClass_image_feature"),
+				 getString("_UI_GenClass_image_description"),
+				 GenModelPackage.Literals.GEN_CLASS__IMAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_EditPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Dynamic feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Dynamic feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addDynamicPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenClass_dynamic_feature"),
-         getString("_UI_GenClass_dynamic_description"),
-         GenModelPackage.Literals.GEN_CLASS__DYNAMIC,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         getString("_UI_ModelPropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenClass_dynamic_feature"),
+				 getString("_UI_GenClass_dynamic_description"),
+				 GenModelPackage.Literals.GEN_CLASS__DYNAMIC,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 getString("_UI_ModelPropertyCategory"),
+				 null));
+	}
 
   /**
-   * This adds a property descriptor for the Ecore Class feature.
-   * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Ecore Class feature.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected void addEcoreClassPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_GenClass_ecoreClass_feature"),
-         getString("_UI_GenClass_ecoreClass_description"),
-         GenModelPackage.Literals.GEN_CLASS__ECORE_CLASS,
-         false,
-         false,
-         false,
-         null,
-         getString("_UI_EcorePropertyCategory"),
-         null));
-  }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenClass_ecoreClass_feature"),
+				 getString("_UI_GenClass_ecoreClass_description"),
+				 GenModelPackage.Literals.GEN_CLASS__ECORE_CLASS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 getString("_UI_EcorePropertyCategory"),
+				 null));
+	}
 
   /**
    * This adds a property descriptor for the Label Feature feature.
@@ -202,38 +201,37 @@ public class GenClassItemProvider
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
   {
-    if (childrenFeatures == null)
-    {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(GenModelPackage.Literals.GEN_CLASS__GEN_FEATURES);
-      childrenFeatures.add(GenModelPackage.Literals.GEN_CLASS__GEN_OPERATIONS);
-    }
-    return childrenFeatures;
-  }
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(GenModelPackage.Literals.GEN_CLASS__GEN_FEATURES);
+			childrenFeatures.add(GenModelPackage.Literals.GEN_CLASS__GEN_OPERATIONS);
+		}
+		return childrenFeatures;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EStructuralFeature getChildFeature(Object object, Object child)
   {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-    return super.getChildFeature(object, child);
-  }
+		return super.getChildFeature(object, child);
+	}
 
   /**
    */
@@ -280,34 +278,33 @@ public class GenClassItemProvider
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void notifyChanged(Notification notification)
   {
-    updateChildren(notification);
+		updateChildren(notification);
 
-    switch (notification.getFeatureID(GenClass.class))
-    {
-      case GenModelPackage.GEN_CLASS__GEN_PACKAGE:
-      case GenModelPackage.GEN_CLASS__GEN_TYPE_PARAMETERS:
-      case GenModelPackage.GEN_CLASS__PROVIDER:
-      case GenModelPackage.GEN_CLASS__IMAGE:
-      case GenModelPackage.GEN_CLASS__DYNAMIC:
-      case GenModelPackage.GEN_CLASS__ECORE_CLASS:
-      case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-      case GenModelPackage.GEN_CLASS__GEN_FEATURES:
-      case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-        return;
-    }
-    super.notifyChanged(notification);
-  }
+		switch (notification.getFeatureID(GenClass.class)) {
+			case GenModelPackage.GEN_CLASS__GEN_PACKAGE:
+			case GenModelPackage.GEN_CLASS__GEN_TYPE_PARAMETERS:
+			case GenModelPackage.GEN_CLASS__PROVIDER:
+			case GenModelPackage.GEN_CLASS__IMAGE:
+			case GenModelPackage.GEN_CLASS__DYNAMIC:
+			case GenModelPackage.GEN_CLASS__ECORE_CLASS:
+			case GenModelPackage.GEN_CLASS__LABEL_FEATURE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GenModelPackage.GEN_CLASS__GEN_FEATURES:
+			case GenModelPackage.GEN_CLASS__GEN_OPERATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
 }

@@ -45,25 +45,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface GenBase extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Gen Annotations</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation#getGenBase <em>Gen Base</em>}'.
-   * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Gen Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation#getGenBase <em>Gen Base</em>}'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Gen Annotations</em>' containment reference list.
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenBase_GenAnnotations()
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation#getGenBase
-   * @model opposite="genBase" containment="true"
-   * @generated
-   */
+	 * @return the value of the '<em>Gen Annotations</em>' containment reference list.
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenBase_GenAnnotations()
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation#getGenBase
+	 * @model opposite="genBase" containment="true"
+	 * @generated
+	 */
   EList<GenAnnotation> getGenAnnotations();
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
+	 * @model
+	 * @generated
+	 */
   GenAnnotation getGenAnnotation(String source);
 
   GenModel getGenModel();

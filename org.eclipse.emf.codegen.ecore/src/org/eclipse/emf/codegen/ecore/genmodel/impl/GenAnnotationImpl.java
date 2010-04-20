@@ -48,366 +48,355 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class GenAnnotationImpl extends GenBaseImpl implements GenAnnotation
 {
   /**
-   * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSource()
-   * @generated
-   * @ordered
-   */
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
   protected static final String SOURCE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSource()
-   * @generated
-   * @ordered
-   */
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
   protected String source = SOURCE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getDetails() <em>Details</em>}' map.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDetails() <em>Details</em>}' map.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDetails()
-   * @generated
-   * @ordered
-   */
+	 * @see #getDetails()
+	 * @generated
+	 * @ordered
+	 */
   protected EMap<String, String> details;
 
   /**
-   * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getReferences()
-   * @generated
-   * @ordered
-   */
+	 * @see #getReferences()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<EObject> references;
 
   /**
-   * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getContents()
-   * @generated
-   * @ordered
-   */
+	 * @see #getContents()
+	 * @generated
+	 * @ordered
+	 */
   protected EList<EObject> contents;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected GenAnnotationImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass()
   {
-    return GenModelPackage.Literals.GEN_ANNOTATION;
-  }
+		return GenModelPackage.Literals.GEN_ANNOTATION;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public String getSource()
   {
-    return source;
-  }
+		return source;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setSource(String newSource)
   {
-    String oldSource = source;
-    source = newSource;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ANNOTATION__SOURCE, oldSource, source));
-  }
+		String oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ANNOTATION__SOURCE, oldSource, source));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EMap<String, String> getDetails()
   {
-    if (details == null)
-    {
-      details = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, GenModelPackage.GEN_ANNOTATION__DETAILS);
-    }
-    return details;
-  }
+		if (details == null) {
+			details = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, GenModelPackage.GEN_ANNOTATION__DETAILS);
+		}
+		return details;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public GenBase getGenBase()
   {
-    if (eContainerFeatureID() != GenModelPackage.GEN_ANNOTATION__GEN_BASE) return null;
-    return (GenBase)eContainer();
-  }
+		if (eContainerFeatureID() != GenModelPackage.GEN_ANNOTATION__GEN_BASE) return null;
+		return (GenBase)eContainer();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public NotificationChain basicSetGenBase(GenBase newGenBase, NotificationChain msgs)
   {
-    msgs = eBasicSetContainer((InternalEObject)newGenBase, GenModelPackage.GEN_ANNOTATION__GEN_BASE, msgs);
-    return msgs;
-  }
+		msgs = eBasicSetContainer((InternalEObject)newGenBase, GenModelPackage.GEN_ANNOTATION__GEN_BASE, msgs);
+		return msgs;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public void setGenBase(GenBase newGenBase)
   {
-    if (newGenBase != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_ANNOTATION__GEN_BASE && newGenBase != null))
-    {
-      if (EcoreUtil.isAncestor(this, newGenBase))
-        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-      NotificationChain msgs = null;
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
-      if (newGenBase != null)
-        msgs = ((InternalEObject)newGenBase).eInverseAdd(this, GenModelPackage.GEN_BASE__GEN_ANNOTATIONS, GenBase.class, msgs);
-      msgs = basicSetGenBase(newGenBase, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ANNOTATION__GEN_BASE, newGenBase, newGenBase));
-  }
+		if (newGenBase != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_ANNOTATION__GEN_BASE && newGenBase != null)) {
+			if (EcoreUtil.isAncestor(this, newGenBase))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGenBase != null)
+				msgs = ((InternalEObject)newGenBase).eInverseAdd(this, GenModelPackage.GEN_BASE__GEN_ANNOTATIONS, GenBase.class, msgs);
+			msgs = basicSetGenBase(newGenBase, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ANNOTATION__GEN_BASE, newGenBase, newGenBase));
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<EObject> getReferences()
   {
-    if (references == null)
-    {
-      references = new EObjectResolvingEList<EObject>(EObject.class, this, GenModelPackage.GEN_ANNOTATION__REFERENCES);
-    }
-    return references;
-  }
+		if (references == null) {
+			references = new EObjectResolvingEList<EObject>(EObject.class, this, GenModelPackage.GEN_ANNOTATION__REFERENCES);
+		}
+		return references;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public EList<EObject> getContents()
   {
-    if (contents == null)
-    {
-      contents = new EObjectContainmentEList<EObject>(EObject.class, this, GenModelPackage.GEN_ANNOTATION__CONTENTS);
-    }
-    return contents;
-  }
+		if (contents == null) {
+			contents = new EObjectContainmentEList<EObject>(EObject.class, this, GenModelPackage.GEN_ANNOTATION__CONTENTS);
+		}
+		return contents;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetGenBase((GenBase)otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGenBase((GenBase)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_ANNOTATION__DETAILS:
-        return ((InternalEList<?>)getDetails()).basicRemove(otherEnd, msgs);
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        return basicSetGenBase(null, msgs);
-      case GenModelPackage.GEN_ANNOTATION__CONTENTS:
-        return ((InternalEList<?>)getContents()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_ANNOTATION__DETAILS:
+				return ((InternalEList<?>)getDetails()).basicRemove(otherEnd, msgs);
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				return basicSetGenBase(null, msgs);
+			case GenModelPackage.GEN_ANNOTATION__CONTENTS:
+				return ((InternalEList<?>)getContents()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    switch (eContainerFeatureID())
-    {
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_BASE__GEN_ANNOTATIONS, GenBase.class, msgs);
-    }
-    return super.eBasicRemoveFromContainerFeature(msgs);
-  }
+		switch (eContainerFeatureID()) {
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_BASE__GEN_ANNOTATIONS, GenBase.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_ANNOTATION__SOURCE:
-        return getSource();
-      case GenModelPackage.GEN_ANNOTATION__DETAILS:
-        if (coreType) return getDetails();
-        else return getDetails().map();
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        return getGenBase();
-      case GenModelPackage.GEN_ANNOTATION__REFERENCES:
-        return getReferences();
-      case GenModelPackage.GEN_ANNOTATION__CONTENTS:
-        return getContents();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_ANNOTATION__SOURCE:
+				return getSource();
+			case GenModelPackage.GEN_ANNOTATION__DETAILS:
+				if (coreType) return getDetails();
+				else return getDetails().map();
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				return getGenBase();
+			case GenModelPackage.GEN_ANNOTATION__REFERENCES:
+				return getReferences();
+			case GenModelPackage.GEN_ANNOTATION__CONTENTS:
+				return getContents();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_ANNOTATION__SOURCE:
-        setSource((String)newValue);
-        return;
-      case GenModelPackage.GEN_ANNOTATION__DETAILS:
-        ((EStructuralFeature.Setting)getDetails()).set(newValue);
-        return;
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        setGenBase((GenBase)newValue);
-        return;
-      case GenModelPackage.GEN_ANNOTATION__REFERENCES:
-        getReferences().clear();
-        getReferences().addAll((Collection<? extends EObject>)newValue);
-        return;
-      case GenModelPackage.GEN_ANNOTATION__CONTENTS:
-        getContents().clear();
-        getContents().addAll((Collection<? extends EObject>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_ANNOTATION__SOURCE:
+				setSource((String)newValue);
+				return;
+			case GenModelPackage.GEN_ANNOTATION__DETAILS:
+				((EStructuralFeature.Setting)getDetails()).set(newValue);
+				return;
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				setGenBase((GenBase)newValue);
+				return;
+			case GenModelPackage.GEN_ANNOTATION__REFERENCES:
+				getReferences().clear();
+				getReferences().addAll((Collection<? extends EObject>)newValue);
+				return;
+			case GenModelPackage.GEN_ANNOTATION__CONTENTS:
+				getContents().clear();
+				getContents().addAll((Collection<? extends EObject>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_ANNOTATION__SOURCE:
-        setSource(SOURCE_EDEFAULT);
-        return;
-      case GenModelPackage.GEN_ANNOTATION__DETAILS:
-        getDetails().clear();
-        return;
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        setGenBase((GenBase)null);
-        return;
-      case GenModelPackage.GEN_ANNOTATION__REFERENCES:
-        getReferences().clear();
-        return;
-      case GenModelPackage.GEN_ANNOTATION__CONTENTS:
-        getContents().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_ANNOTATION__SOURCE:
+				setSource(SOURCE_EDEFAULT);
+				return;
+			case GenModelPackage.GEN_ANNOTATION__DETAILS:
+				getDetails().clear();
+				return;
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				setGenBase((GenBase)null);
+				return;
+			case GenModelPackage.GEN_ANNOTATION__REFERENCES:
+				getReferences().clear();
+				return;
+			case GenModelPackage.GEN_ANNOTATION__CONTENTS:
+				getContents().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case GenModelPackage.GEN_ANNOTATION__SOURCE:
-        return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
-      case GenModelPackage.GEN_ANNOTATION__DETAILS:
-        return details != null && !details.isEmpty();
-      case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
-        return getGenBase() != null;
-      case GenModelPackage.GEN_ANNOTATION__REFERENCES:
-        return references != null && !references.isEmpty();
-      case GenModelPackage.GEN_ANNOTATION__CONTENTS:
-        return contents != null && !contents.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+		switch (featureID) {
+			case GenModelPackage.GEN_ANNOTATION__SOURCE:
+				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
+			case GenModelPackage.GEN_ANNOTATION__DETAILS:
+				return details != null && !details.isEmpty();
+			case GenModelPackage.GEN_ANNOTATION__GEN_BASE:
+				return getGenBase() != null;
+			case GenModelPackage.GEN_ANNOTATION__REFERENCES:
+				return references != null && !references.isEmpty();
+			case GenModelPackage.GEN_ANNOTATION__CONTENTS:
+				return contents != null && !contents.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (source: ");
-    result.append(source);
-    result.append(')');
-    return result.toString();
-  }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (source: ");
+		result.append(source);
+		result.append(')');
+		return result.toString();
+	}
 
   public boolean reconcile()
   {
