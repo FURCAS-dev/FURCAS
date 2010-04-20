@@ -59,6 +59,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ltk.ui.refactoring"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.views"/>
+      <import plugin="com.google.guice"/>
    </requires>
 
    <plugin
