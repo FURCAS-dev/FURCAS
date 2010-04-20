@@ -9,18 +9,24 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EAttributeImpl;
-import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.PropertyCallExp;
-import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.parser.OCLParsersym;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 
-import de.hpi.sam.bp2009.moin.impactAnalyzer.treewalker.TreeWalker;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
@@ -31,8 +37,6 @@ import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.impl.ElementCreateEventImpl;
-import de.hpi.sam.bp2009.solution.eventManager.impl.OrFilterImpl;
 
 /**
  * Collects the events for a single {@link OclExpression} recursively. The analyzer can be parameterized during
@@ -47,8 +51,10 @@ import de.hpi.sam.bp2009.solution.eventManager.impl.OrFilterImpl;
  * @author Axel Uhl D043530
  * 
  */
-public class ClassScopeAnalyzer extends TreeWalker {
-    final private boolean notifyNewContextElements;
+public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
+	EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
+    
+	final private boolean notifyNewContextElements;
     final private Set<EventFilter> filters = new HashSet<EventFilter>();
     
     /**
@@ -76,20 +82,8 @@ public class ClassScopeAnalyzer extends TreeWalker {
     public ClassScopeAnalyzer(OCLExpression exp, boolean notifyNewContextElements) {
 	super();
 	this.notifyNewContextElements = notifyNewContextElements;
-	walk((OCLExpression) exp);
+	safeVisit(exp);
     }
-    
-//    /**
-//     * Use this constructor when invoking from outside the core. This means you have a client's connection
-//     * at hand, and the OCL expression object is actually a wrapper 
-//     * @param conn
-//     * @param exp
-//     * @param notifyNewContextElements
-//     */
-//    public ClassScopeAnalyzer(Connection conn, OclExpression exp, boolean notifyNewContextElements) {
-//	this(((ConnectionWrapper) conn).unwrap(), (OclExpressionInternal) ((Wrapper<?>) exp).unwrap(),
-//		notifyNewContextElements);
-//    }
 
     /**
      * Obtains the event filter for the expression passed to the constructor. When an event matches the filter, the
@@ -113,37 +107,37 @@ public class ClassScopeAnalyzer extends TreeWalker {
 	filters.add(filter);
     }
 
-    @Override
-    protected void upAssociationEndCallExp(NavigationCallExp exp) {
-    	AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
-    	AssociationFilter assocFilter = EventManagerFactory.eINSTANCE.createAssociationFilter();
-    	assocFilter.setReference(exp.getNavigationSource().eContainmentFeature());
-    	ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
-    	classFilter.setWantedClass(exp.getSource().getType().eClass());
-    	andFilter.getFilters().add(assocFilter);
-    	andFilter.getFilters().add(classFilter);
-    	addFilter(andFilter);
-    }
-
-    @Override
-    protected void upAttributeCallExp(PropertyCallExp exp) {
-	
-	EClassifier sourceType = exp.getSource().getType();
-	EStructuralFeature attribute = exp.getReferredProperty();
-	if (sourceType instanceof EClass) { // and not a TupleType, which is the other possible source type
-		AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
-		AttributeFilter attrFilter = EventManagerFactory.eINSTANCE.createAttributeFilter();
-		attrFilter.setAttribute((EAttribute) attribute);
-		ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
-		classFilter.setWantedClass(sourceType.eClass());
-		andFilter.getFilters().add(attrFilter);
-		andFilter.getFilters().add(classFilter);
-	    addFilter(andFilter);
+	@Override
+	public EPackage visitPropertyCallExp(org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> exp) {
+		// TODO will this case distinction still be required once the event manager switches back to EMF notifications?
+		if (exp.getReferredProperty() instanceof EReference) {
+			AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+			AssociationFilter assocFilter = EventManagerFactory.eINSTANCE.createAssociationFilter();
+			assocFilter.setReference(exp.getNavigationSource().eContainmentFeature());
+			ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
+			classFilter.setWantedClass(exp.getSource().getType().eClass());
+			andFilter.getFilters().add(assocFilter);
+			andFilter.getFilters().add(classFilter);
+			addFilter(andFilter);
+		} else {
+			EClassifier sourceType = exp.getSource().getType();
+			EStructuralFeature attribute = exp.getReferredProperty();
+			if (sourceType instanceof EClass) { // and not a TupleType, which is the other possible source type
+				AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
+				AttributeFilter attrFilter = EventManagerFactory.eINSTANCE.createAttributeFilter();
+				attrFilter.setAttribute((EAttribute) attribute);
+				ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
+				classFilter.setWantedClass(sourceType.eClass());
+				andFilter.getFilters().add(attrFilter);
+				andFilter.getFilters().add(classFilter);
+				addFilter(andFilter);
+			}
+		}
+		return result;
 	}
-    }
 
     @Override
-    protected void upOperationCallExp(OperationCallExp exp) {
+    public EPackage visitOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> exp) {
 
 	if (exp.getReferredOperation().getName().equals("allInstances") ) {
 	    OCLExpression typeExp = (OCLExpression) exp.getSource();
@@ -164,21 +158,19 @@ public class ClassScopeAnalyzer extends TreeWalker {
 	    
 	    addFilter(andFilter);
 	} else {
-//	    OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) connection
-//		    .getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
 	    OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
-	    //a.getBody(exp.getReferredOperation());
 	    if (body != null) {
 		Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
 		if (analyzedCallsToBody == null) {
 		    analyzedCallsToBody = new HashSet<OperationCallExp>();
 		    // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
 		    visitedOperationBodies.put(body, analyzedCallsToBody);
-		    walk(body);
+		    safeVisit(body);
 		}
-		analyzedCallsToBody.add(exp);
+		analyzedCallsToBody.add((OperationCallExp) exp);
 	    }
 	}
+	return result;
     }
     
     /**
@@ -195,17 +187,18 @@ public class ClassScopeAnalyzer extends TreeWalker {
     }
 
     @Override
-    protected void upVariableExp(VariableExp exp) {
+    public EPackage visitVariableExp(org.eclipse.ocl.expressions.VariableExp<EClassifier, EParameter> exp) {
 	if ( exp.getReferredVariable().getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
 		&& notifyNewContextElements) {
 		AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
 		EventTypeFilter evTypeFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
 		ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
-		classFilter.setWantedClass(exp.getEType().eClass());
+		classFilter.setWantedClass(exp.getType().eClass());
 		evTypeFilter.setEventEClass(EventManagerFactory.eINSTANCE.createElementCreateEvent().eClass());
 		andFilter.getFilters().add(evTypeFilter);
 		andFilter.getFilters().add(classFilter);
 		addFilter(andFilter);
 	}
+	return result;
     }
 }
