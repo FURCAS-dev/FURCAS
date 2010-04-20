@@ -74,7 +74,7 @@ plugin@org.eclipse.emf.examples.library.editor=R2_5_0,:pserver:anonymous@dev.ecl
 
 !*** 3rd Party
 plugin@com.google.guice=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.tmf/org.eclipse.xtext/plugins/com.google.guice
-plugin@com.google.collect=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.tmf/org.eclipse.xtext/plugins/com.google.collect
+plugin@org.eclipse.emf.mwe2.runtime=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe2.runtime
 
 !*** LPG Distribution
 plugin@lpg.runtime.java,2.0.17=v200912221855,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/lpg.runtime.java
