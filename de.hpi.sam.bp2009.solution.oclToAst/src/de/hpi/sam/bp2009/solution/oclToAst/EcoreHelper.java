@@ -53,9 +53,9 @@ public class EcoreHelper {
         }
     }
     
-    private EList<EObject> createEList(EReference ref) {
+    private EList<EObject> createEList(boolean unique) {
         EList<EObject> result;
-        if (ref.isUnique()) {
+        if (unique) {
             result = new UniqueEList<EObject>();
         } else {
             result = new BasicEList<EObject>();
@@ -65,10 +65,34 @@ public class EcoreHelper {
     
     /**
      * Traverses <tt>forwardReference</tt> in reverse, that is, looks for objects that, when starting
-     * from them and navigating <tt>forwardReference</tt>, it results in <tt>from</tt>.
+     * from them and navigating <tt>forwardReference</tt>, it results in <tt>from</tt>.<p>
+     * 
+     * Precondition: <tt>forwardReference.getEOpposite() != null</tt>
      */
     public Collection<EObject> reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs) {
-        Collection<EObject> result = createEList(forwardReference.getEOpposite());
+        Collection<EObject> result = createEList(forwardReference.getEOpposite().isUnique());
+        reverseNavigate(from, forwardReference, scope, rs);
+        return result;
+    }
+
+    /**
+     * Same as {@link #reverseNavigate(EObject, EReference, QueryContext, ResourceSet)}, but <tt>forwardReference</tt>
+     * does not have to have an opposite. Instead, uniqueness of the result collection is determined by the
+     * <tt>unique</tt> parameter.
+     */
+    public Collection<EObject> reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs, boolean unique) {
+        Collection<EObject> result = createEList(unique);
+        reverseNavigate(from, forwardReference, scope, rs);
+        return result;
+    }
+    
+    /**
+     * Same as {@link #reverseNavigate(EObject, EReference, QueryContext, ResourceSet)}, only that
+     * <tt>forwardReference</tt> does not have to have an {@link EReference#getEOpposite() opposite}.
+     * Instead, a collection is passed in to which the result are added. Therefore, the opposite
+     * reference is not required, as no uniqueness attribute needs to be determined.
+     */
+    public void reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs, Collection<EObject> result) {
         EClass owningType = getOwningType(forwardReference);
         final ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(
                 "select target from [" + EcoreUtil.getURI(from.eClass()) + "] as source in elements {[" + //$NON-NLS-1$
@@ -77,7 +101,6 @@ public class EcoreHelper {
         for (int i = 0; i < resultSet.getSize(); i++) {
             result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
         }
-        return result;
     }
 
     public QueryContext getQueryContext(final ResourceSet rs) {
