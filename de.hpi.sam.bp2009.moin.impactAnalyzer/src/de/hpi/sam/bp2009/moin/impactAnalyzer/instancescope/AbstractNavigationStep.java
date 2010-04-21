@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.expressions.OCLExpression;
 
@@ -100,7 +100,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	 * must be able to suppress incrementing under special circumstances
 	 * (e.g. suppress count of additional recursive round trip in IndirectingStep)
 	 */
-	protected void incrementNavigateCounter(Set<EObjectImpl> from){
+	protected void incrementNavigateCounter(Set<EObject> from){
 		navigateCounter++;
 	}
 
@@ -109,18 +109,18 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	 * manages the type checks.
 	 */
 	@Override
-	public Set<EObjectImpl> navigate(Set<EObjectImpl> from, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+	public Set<EObject> navigate(Set<EObject> from, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
 		incrementNavigateCounter(from);
 
-		Set<EObjectImpl> result = new HashSet<EObjectImpl>();
+		Set<EObject> result = new HashSet<EObject>();
 		if (isAbsolute()) {
 			from = Collections.singleton(null);
 		}
 		if (!isAlwaysEmpty()) { // don't do anything for empty steps
-			for (EObjectImpl fromObject : from) {
+			for (EObject fromObject : from) {
 				// for absolute steps, don't do the source type check and invoke just once, passing null for "from"
 				if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
-					for (EObjectImpl singleResult : getFromCacheOrNavigate(fromObject, cache)) {
+					for (EObject singleResult : getFromCacheOrNavigate(fromObject, cache)) {
 						if (AbstractTracer.doesTypeMatch(getTargetType(), singleResult)) {
 							result.add(singleResult);
 						}
@@ -132,14 +132,14 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 		return result;
 	}
 
-	private Collection<EObjectImpl> getFromCacheOrNavigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
-		Set<EObjectImpl> result;
-		Map<NavigationStep, EObjectImpl> cacheKey = new HashMap<NavigationStep, EObjectImpl>();
+	private Collection<EObject> getFromCacheOrNavigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+		Set<EObject> result;
+		Map<NavigationStep, EObject> cacheKey = new HashMap<NavigationStep, EObject>();
 		cacheKey.put(this, fromObject);
 		result = cache.get(cacheKey);
 		if (result == null) {
 			cacheMisses++;
-			Set<EObjectImpl> from = new HashSet<EObjectImpl>();
+			Set<EObject> from = new HashSet<EObject>();
 			from.add(fromObject);
 			result = navigate(from , cache); 
 			cache.put(cacheKey, result);
@@ -175,8 +175,8 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 		}
 	}
 
-	protected abstract Set<EObjectImpl> navigate(EObjectImpl fromObject,
-			Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache);
+	protected abstract Set<EObject> navigate(EObject fromObject,
+			Map<Map<NavigationStep, EObject>, Set<EObject>> cache);
 
 	public String toString() {
 		Map<NavigationStep, Integer> visited = new HashMap<NavigationStep, Integer>();

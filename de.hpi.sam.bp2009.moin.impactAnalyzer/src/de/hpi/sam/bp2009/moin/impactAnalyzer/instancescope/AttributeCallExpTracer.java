@@ -2,14 +2,15 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleType;
-import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 
@@ -21,18 +22,19 @@ public class AttributeCallExpTracer extends AbstractTracer<PropertyCallExp> {
 	@Override
 	public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 		NavigationStep result;
-		OCLExpression source = (OCLExpression) getExpression().getSource();
-		EClassifier type = source.getType();
-		OCLExpression sourceExpression = null;
-		if (type instanceof TupleType) {
+		OCLExpression<EClassifier> source = getExpression().getSource();
+		EClassifier sourcetype = source.getType();
+		OCLExpression<EClassifier> sourceExpression = null;
+		if (sourcetype instanceof TupleType) {
 			String referredAttributeName = getExpression().getReferredProperty().getName();
-			BasicEList<Variable> tupleParts = (BasicEList<Variable>) ((TupleLiteralExp) ((BasicEList<OCLExpression>) ((ATypeOclExpressionImpl) getConnection()
-					.getAssociation(ATypeOclExpression.ASSOCIATION_DESCRIPTOR)).getOclExpression(type))
-					.iterator().next()).getTuplePart();
-			for (Iterator<Variable> i = tupleParts.iterator(); i.hasNext();) {
-				Variable tuplePart = i.next();
+//			EList<Variable> tupleParts = (EList<Variable>) ((TupleLiteralExp) ((BasicEList<OCLExpression>) ((ATypeOclExpressionImpl) getConnection()
+//					.getAssociation(ATypeOclExpression.ASSOCIATION_DESCRIPTOR)).getOclExpression(type))
+//					.iterator().next()).getTuplePart();
+			EList<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)source).getPart();
+			for (Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator(); i.hasNext();) {
+				TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next();
 				if (tuplePart.getName().equals(referredAttributeName)) {
-					sourceExpression = (OCLExpression) tuplePart.getInitExpression();
+					sourceExpression = tuplePart.getValue();
 					break;
 				}
 			}
@@ -41,11 +43,13 @@ public class AttributeCallExpTracer extends AbstractTracer<PropertyCallExp> {
 			}
 			result = pathCache.getOrCreateNavigationPath(sourceExpression, context, classScopeAnalyzer);
 		} else {
-			sourceExpression = (OCLExpression) getExpression().getSource();
+			sourceExpression = getExpression().getSource();
 			result = pathCache.navigationStepFromSequence(
+			                sourceExpression,
 					new RefImmediateCompositeNavigationStep(
 							(EClass) getExpression().getType(),
-							(EClass) type, (OCLExpression)getExpression()),
+							(EClass) sourcetype,
+							getExpression()),
 					pathCache.getOrCreateNavigationPath(sourceExpression, context, classScopeAnalyzer));
 		}
 		return result;

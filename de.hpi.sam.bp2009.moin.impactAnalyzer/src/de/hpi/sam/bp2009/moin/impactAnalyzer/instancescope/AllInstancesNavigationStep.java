@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
@@ -25,7 +25,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	/**
 	 * Constructs a non-{@link NavigationStep#isAbsolute() absolute} navigation step that
 	 * computes all instances of <tt>targetType</tt> and all its direct and indirect subtypes,
-	 * if the <tt>fromObject</tt> passed to {@link #navigate(CoreConnection, RefObjectImpl, Map)}
+	 * if the <tt>fromObject</tt> passed to {@link #navigate(Set, Map)}
 	 * conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The
 	 * consideration of the <tt>fromObject</tt> is the reason why if constructed with this
 	 * constructor an object of this class is not absolute.
@@ -42,7 +42,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	}
 
 	@Override
-	protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+	protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
 		//FIXME: atm the ported impact analyzer has no knowledge about the meta model instance. Actually getting all instances therefore is impossible
 		return InstanceScopeAnalysis.getAllPossibleContextInstances(getTargetType());
 	}

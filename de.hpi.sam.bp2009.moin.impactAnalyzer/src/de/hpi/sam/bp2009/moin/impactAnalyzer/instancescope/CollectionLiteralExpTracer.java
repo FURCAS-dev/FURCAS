@@ -4,35 +4,35 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.omg.ocl.expressions.CollectionItem;
-import org.omg.ocl.expressions.CollectionLiteralPart;
-import org.omg.ocl.expressions.__impl.CollectionItemImpl;
-import org.omg.ocl.expressions.__impl.CollectionLiteralExpImpl;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
+import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.links.JmiListImpl;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 
-public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExpImpl> {
-    public CollectionLiteralExpTracer(CoreConnection conn, CollectionLiteralExpImpl expression) {
-	super(conn, expression);
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
+
+
+public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
+    public CollectionLiteralExpTracer(CollectionLiteralExp expression) {
+        super(expression);
     }
 
     @Override
-    public NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
-	JmiListImpl<CollectionLiteralPart> parts = (JmiListImpl<CollectionLiteralPart>) getExpression().getParts(
-		getConnection());
-	Set<NavigationStep> steps = new HashSet<NavigationStep>();
-	for (Iterator<CollectionLiteralPart> i = parts.iterator(getConnection()); i.hasNext();) {
-	    CollectionLiteralPart part = i.next();
-	    if (part instanceof CollectionItem) {
-		steps.add(pathCache.getOrCreateNavigationPath(((CollectionItemImpl) part)
-			.getItem(getConnection()), context, classScopeAnalyzer));
-	    }
-	}
-	MofClass innermostType = getInnermostElementType(getExpression().getType(getConnection()));
-	return new BranchingNavigationStep(getConnection(), innermostType, innermostType, getExpression(), steps.toArray(new NavigationStep[0]));
+    public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+        EList<CollectionLiteralPart<EClassifier>> parts = (EList<CollectionLiteralPart<EClassifier>>) getExpression().getPart();
+        Set<NavigationStep> steps = new HashSet<NavigationStep>();
+        for (Iterator<CollectionLiteralPart<EClassifier>> i = parts.iterator(); i.hasNext();) {
+            CollectionLiteralPart<EClassifier> part = i.next();
+            if (part instanceof CollectionItem) {
+                steps.add(pathCache.getOrCreateNavigationPath(((CollectionItem) part)
+                        .getItem(), context, classScopeAnalyzer));
+            }
+        }
+        EClass innermostType = getInnermostElementType(getExpression().getType());
+        return new BranchingNavigationStep(innermostType, innermostType, getExpression(), steps.toArray(new NavigationStep[0]));
     }
 
 }

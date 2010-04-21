@@ -13,12 +13,14 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.ecore.LiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.types.TypeType;
+import org.eclipse.ocl.utilities.PredefinedType;
 import org.omg.ocl.expressions.AssociationEndCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
@@ -34,6 +36,7 @@ import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent;
 
 import com.sap.tc.moin.ocl.ia.relevance.NavigationPath;
 import com.sap.tc.moin.ocl.utils.OclConstants;
@@ -118,28 +121,27 @@ public class InstanceScopeAnalysis {
         return result;
     }
 
-    public Set<MRI> getAffectedElements(EClass context, Collection<? extends ModelChangeEvent> changeEvents) {
-        return getAffectedElements((EClassImpl) ((RefObjectWrapperImpl<?>) context).unwrap(),
-                changeEvents);
-    }
+//    public Set<MRI> getAffectedElements(EClass context, Collection<? extends ModelChangeEvent> changeEvents) {
+//        return getAffectedElements((EClassImpl) ((RefObjectWrapperImpl<?>) context).unwrap(),
+//                changeEvents);
+//    }
 
-    public Set<MRI> getAffectedElements(EClassImpl context, Collection<? extends ModelChangeEvent> changeEvents) {
-        Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache = new HashMap<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>>();
-        Set<MRI> result = new HashSet<MRI>();
-        for (ModelChangeEvent ce : changeEvents) {
-            if (ce instanceof ModelChangeEvent) {
-                result.addAll(getAffectedElements(context, (ModelChangeEvent) ce, cache));
-            }
-        }
-        return result;
-    }
+//    public Set<EObject> getAffectedElements(EClassifier context, Collection<? extends ModelChangeEvent> changeEvents) {
+//        Map<Map<NavigationStep, EObject>, Set<EObject>> cache = new HashMap<Map<NavigationStep, EObject>, Set<EObject>>();
+//        Set<MRI> result = new HashSet<MRI>();
+//        for (ModelChangeEvent ce : changeEvents) {
+//            if (ce instanceof ModelChangeEvent) {
+//                result.addAll(getAffectedElements(context, (ModelChangeEvent) ce, cache));
+//            }
+//        }
+//        return result;
+//    }
 
     /**
      * Tells the context model elements on which <tt>expression</tt> may now return a result different from
      * before the <tt>changeEvent</tt> occurred.
      */
-    public Set<MRI> getAffectedElements(EClassImpl context, ModelChangeEvent changeEvent,
-            Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+    public Set<MRI> getAffectedElements(EClass context, ModelChangeEvent changeEvent, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
         if (changeEvent instanceof ElementLifeCycleEvent) {
             // create and delete of elements only affects the allInstances expressions;
             // for those, however, no "self" context can easily be determined and therefore
@@ -155,14 +157,13 @@ public class InstanceScopeAnalysis {
             }
         } else {
             Set<MRI> result = new LinkedHashSet<MRI>();
-            for (ModelPropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(changeEvent)) {
-                RefObjectImpl sourceElement = getSourceElement(changeEvent,
-                        (ModelPropertyCallExpInternal) attributeOrAssociationEndCall);
+            for (PropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(changeEvent)) {
+                EObject sourceElement = getSourceElement(changeEvent, attributeOrAssociationEndCall);
                 if (sourceElement != null) {
                     // the source element may have been deleted already by subsequent events; at this point,
                     // this makes it impossible to trace the change event back to a context; all we have is
                     // the LRI of a no longer existing model element...
-                    for (RefObjectImpl roi : self(attributeOrAssociationEndCall, sourceElement, context,
+                    for (EObject roi : self(attributeOrAssociationEndCall, sourceElement, context,
                             ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap(), cache)) {
                         result.add(roi.get___Mri());
                     }
@@ -202,37 +203,35 @@ public class InstanceScopeAnalysis {
                 if (calls.size() == 0) {
                     return false; // probably an allInstances-triggered element creation/deletion event
                 }
-                for (ModelPropertyCallExp attributeOrAssociationEndCall : calls) {
+                for (PropertyCallExp attributeOrAssociationEndCall : calls) {
                     if (changeEvent instanceof AttributeValueChangeEvent) {
                         AttributeValueChangeEvent avce = (AttributeValueChangeEvent) changeEvent;
-                        if (attributeOrAssociationEndCall instanceof AttributeCallExp) {
-                            AttributeCallExpInternal ace = (AttributeCallExpInternal) attributeOrAssociationEndCall;
-                            CoreConnection conn = ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap();
-                            if (ace.getType(conn) instanceof PrimitiveType) {
-                                if (ace.getReferredAttribute(conn).get___Mri().equals(avce.getAffectedMetaObjectMri())) {
+                        if (attributeOrAssociationEndCall instanceof PropertyCallExp) {
+                            PropertyCallExp ace = attributeOrAssociationEndCall;
+                         
+                            if (ace.getType() instanceof PrimitiveType) {
+                                if (ace.getReferredAttribute().get___Mri().equals(avce.getAffectedMetaObjectMri())) {
                                     OCLExpression<EClassifier> otherArgument = null;
-                                    OperationCallExpInternal op;
+                                    OperationCallExp op;
                                     boolean attributeIsParameter = false;
-                                    op = (OperationCallExpInternal) ace.getParentOperation(conn); // argument of a comparison operation?
-                                    if (op != null && isComparisonOperation(op, conn)) {
-                                        otherArgument = (OCLExpression<EClassifier>) op.getSource(conn);
+                                    op = (OperationCallExp) ace.getParentOperation(); // argument of a comparison operation?
+                                    if (op != null && isComparisonOperation(op)) {
+                                        otherArgument = (OCLExpression<EClassifier>) op.getSource();
                                         attributeIsParameter = true;
                                     } else {
-                                        PropertyCallExp propertyCallExp = ace.getAppliedProperty(conn); // source of a comparison operation?
+                                        PropertyCallExp propertyCallExp = ace.getAppliedProperty(); // source of a comparison operation?
                                         if (propertyCallExp != null
                                                 && propertyCallExp instanceof OperationCallExp
-                                                && isComparisonOperation(((OperationCallExpInternal) propertyCallExp),
-                                                        conn)) {
-                                            op = ((OperationCallExpInternal) propertyCallExp);
-                                            otherArgument = (OCLExpression<EClassifier>) ((JmiListImpl<?>) op
-                                                    .getArguments(conn)).iterator(conn).next();
+                                                && isComparisonOperation(((OperationCallExp) propertyCallExp))) {
+                                            op = ((OperationCallExp) propertyCallExp);
+                                            otherArgument = (OCLExpression<EClassifier>) op.getArgument().iterator().next();
                                             attributeIsParameter = false;
                                         }
                                     }
                                     if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
                                         if (doesComparisonResultChange(
-                                                avce, (PrimitiveLiteralExpInternal) otherArgument,
-                                                replacementFor__TEMP__, op.getReferredOperation(conn).getName(), attributeIsParameter)) {
+                                                avce, (PrimitiveLiteralExp) otherArgument,
+                                                replacementFor__TEMP__, op.getReferredOperation().getName(), attributeIsParameter)) {
                                             return false;
                                         }
                                     } else {
@@ -282,17 +281,17 @@ public class InstanceScopeAnalysis {
                     : ((Comparable<Object>) avce.getOldValue()).compareTo(value));
             int newComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getNewValue())
                     : ((Comparable<Object>) avce.getNewValue()).compareTo(value));
-            if (operationName.equals(OclConstants.OP_EQSTDLIB)) {
+            if (operationName.equals(PredefinedType.EQUAL_NAME)) {
                 result = (oldComparison == 0) != (newComparison == 0);
-            } else if (operationName.equals(OclConstants.OP_NOTEQSTDLIB)) {
+            } else if (operationName.equals(PredefinedType.NOT_EQUAL_NAME)) {
                 result = (oldComparison != 0) != (newComparison != 0);
-            } else if (operationName.equals(OclConstants.OP_LTSTDLIB)) {
+            } else if (operationName.equals(PredefinedType.LESS_THAN_NAME)) {
                 result = oldComparison < 0 != newComparison < 0;
-            } else if (operationName.equals(OclConstants.OP_LTEQSTDLIB)) {
+            } else if (operationName.equals(PredefinedType.LESS_THAN_EQUAL_NAME)) {
                 result = oldComparison <= 0 != newComparison <= 0;
-            } else if (operationName.equals(OclConstants.OP_GTSTDLIB)) {
+            } else if (operationName.equals(PredefinedType.GREATER_THAN_NAME)) {
                 result = oldComparison > 0 != newComparison > 0;
-            } else if (operationName.equals(OclConstants.OP_GTEQSTDLIB)) {
+            } else if (operationName.equals(PredefinedType.GREATER_THAN_EQUAL_NAME)) {
                 result = oldComparison >= 0 != newComparison >= 0;
             } else {
                 logger.info("operator " + operationName
@@ -303,11 +302,16 @@ public class InstanceScopeAnalysis {
         return result;
     } 
 
-    private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(
-            new String[] { OclConstants.OP_EQSTDLIB, OclConstants.OP_LTSTDLIB, OclConstants.OP_LTEQSTDLIB,
-                    OclConstants.OP_GTSTDLIB, OclConstants.OP_GTEQSTDLIB, OclConstants.OP_NOTEQSTDLIB }));
-    private boolean isComparisonOperation(OperationCallExpInternal op, CoreConnection conn) {
-        return comparisonOpNames.contains(op.getReferredOperation(conn).getName());
+    private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] { 
+            PredefinedType.EQUAL_NAME,
+            PredefinedType.LESS_THAN_NAME,
+            PredefinedType.LESS_THAN_EQUAL_NAME,
+            PredefinedType.GREATER_THAN_NAME,
+            PredefinedType.GREATER_THAN_EQUAL_NAME,
+            PredefinedType.NOT_EQUAL_NAME }));
+    
+    private boolean isComparisonOperation(OperationCallExp op) {
+        return comparisonOpNames.contains(op.getReferredOperation().getName());
     }
 
     private boolean expressionContainsAllInstancesCallForType(EClassifier classifier) {
@@ -319,7 +323,7 @@ public class InstanceScopeAnalysis {
         return OclTypeImpl.getAllInstancesMris(context.getQualifiedName());
     }
 
-    protected static Set<EObjectImpl> getAllPossibleContextInstances(EClass context) {
+    protected static Set<EObject> getAllPossibleContextInstances(EClass context) {
         //FIXME: atm the ported impact analyzer has no knowledge about the meta model instance. Actually getting all instances therefore is impossible
         return OclTypeImpl.getAllInstances(context.getQualifiedName());
     }
@@ -336,12 +340,12 @@ public class InstanceScopeAnalysis {
      * <tt>sourceElement</tt> are guaranteed to be found.
      * @param cache TODO
      */
-    private Set<RefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement,
-            MofClass context, CoreConnection connection, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
-        NavigationStep step = getNavigationStepsToSelfForExpression(connection, attributeOrAssociationEndCall
+    private Set<EObject> self(PropertyCallExp attributeOrAssociationEndCall, EObject sourceElement,
+            EClass context, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+        NavigationStep step = getNavigationStepsToSelfForExpression(attributeOrAssociationEndCall
                 .getSource(), context);
-        Set<RefObjectImpl> sourceElementAsSet = Collections.singleton(sourceElement);
-        Set<RefObjectImpl> result = step.navigate(connection, sourceElementAsSet, cache);
+        Set<EObject> sourceElementAsSet = Collections.singleton(sourceElement);
+        Set<EObject> result = step.navigate(sourceElementAsSet, cache);
         return result;
     }
 
@@ -353,9 +357,9 @@ public class InstanceScopeAnalysis {
         try {
             Class<?> tracerClass = InstanceScopeAnalysis.class.getClassLoader().loadClass(
                     InstanceScopeAnalysis.class.getPackage().getName() + "." +
-                    ((MofClass) expression.refMetaObject()).getName() + "Tracer");
+                    ((EClass) expression.refMetaObject()).getName() + "Tracer");
             return (Tracer) tracerClass.getConstructor(CoreConnection.class,
-                    expression.getClass()).newInstance(conn, expression);
+                    expression.getClass()).newInstance(expression);
         } catch (Exception e) {
             throw new RuntimeException("Internal error; probably the Tracer implementation class for OCL expression type "+
                     expression.getClass().getName()+" was not found", e);
@@ -378,39 +382,36 @@ public class InstanceScopeAnalysis {
      *         indicated by the event cannot be resolved (anymore). This is still an open issue. See the to-do marker
      *         below. In all other cases, the source element on which the event occured, is returned.
      */
-    private RefObjectImpl getSourceElement(ModelChangeEvent changeEvent, ModelPropertyCallExpInternal attributeOrAssociationEndCall) {
-        Connection conn = changeEvent.getEventTriggerConnection();
-        CoreConnection coreConn = ((ConnectionWrapper) conn).unwrap();
-        assert changeEvent instanceof AttributeValueChangeEvent || changeEvent instanceof LinkChangeEvent;
-        RefObjectImpl result;
+    private EObject getSourceElement(ModelChangeEvent changeEvent, PropertyCallExp attributeOrAssociationEndCall) {
+        
+        assert changeEvent instanceof AttributeValueChangeEvent || changeEvent instanceof LinkLifeCycleEvent;
+        EObject result;
         if (changeEvent instanceof AttributeValueChangeEvent) {
-            Wrapper<?> sourceElement = (Wrapper<?>) ((AttributeValueChangeEvent) changeEvent).getAffectedElement(conn);
+            Wrapper<?> sourceElement = (Wrapper<?>) ((AttributeValueChangeEvent) changeEvent).getAffectedElement();
             if (sourceElement != null) {
-                result = (RefObjectImpl) sourceElement.unwrap();
+                result = (EObject) sourceElement.unwrap();
             } else {
                 result = null;
             }
         } else {
             AssociationEndCallExpInternal aece = (AssociationEndCallExpInternal) attributeOrAssociationEndCall;
-            SpiJmiHelper jmiHelper = coreConn.getCoreJmiHelper();
-            int aeceEndNumber = jmiHelper.getAssociationEndNumber(coreConn.getSession(), aece.getReferredAssociationEnd(coreConn));
-            LinkChangeEvent lce = (LinkChangeEvent) changeEvent;
-            RefObject refObjectResult;
+            int aeceEndNumber = jmiHelper.getAssociationEndNumber(aece.getReferredAssociationEnd());
+            LinkLifeCycleEvent lce = (LinkLifeCycleEvent) changeEvent;
+            EObject refObjectResult;
             if (aeceEndNumber == 0) {
-                refObjectResult = lce.getSecondLinkEnd(conn);
+                refObjectResult = lce.getSecondLinkEnd();
             } else {
-                refObjectResult = lce.getFirstLinkEnd(conn);
+                refObjectResult = lce.getFirstLinkEnd();
             }
             if (refObjectResult != null) {
-                result = (RefObjectImpl) ((Wrapper<?>) refObjectResult).unwrap();
+                result = (EObject) ((Wrapper<?>) refObjectResult).unwrap();
             } else {
                 // TODO clarify if this is a severe problem; deletes may have occurred; how does this impact the impact analysis?
                 result = null;
             }
         }
         if (result != null
-                && !result.refIsInstanceOf(coreConn.getSession(),
-                        ((OCLExpression<EClassifier>) attributeOrAssociationEndCall.getSource(coreConn)).getType(coreConn),
+                && !result.refIsInstanceOf(((OCLExpression<EClassifier>) attributeOrAssociationEndCall.getSource()).getType(),
                         /* considerSubtypes */ true)) {
             result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
             // also see the ASCII arts in AssociationEndCallExpTracer.traceback
@@ -421,17 +422,15 @@ public class InstanceScopeAnalysis {
      * Finds all attribute and association end call expressions in <tt>expression</tt> that are affected by the
      * <tt>changeEvent</tt>. The result is always non-<tt>null</tt> but may be empty.
      */
-    private Set<? extends ModelPropertyCallExp> getAttributeOrAssociationEndCalls(ModelChangeEvent changeEvent) {
-        CoreConnection conn = ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap();
-        Set<? extends ModelPropertyCallExp> result;
+    private Set<? extends PropertyCallExp> getAttributeOrAssociationEndCalls(ModelChangeEvent changeEvent) {
+        Set<? extends PropertyCallExp> result;
         if (changeEvent instanceof AttributeValueChangeEvent) {
             result = associationEndAndAttributeCallFinder.getAttributeCallExpressions(
-                    ((AttributeValueChangeEvent) changeEvent).getAffectedMetaObject(conn));
-        } else if (changeEvent instanceof LinkChangeEvent) {
+                    ((AttributeValueChangeEvent) changeEvent).getAffectedMetaObject());
+        } else if (changeEvent instanceof LinkLifeCycleEvent) {
             Set<AssociationEndCallExp> localResult = new HashSet<AssociationEndCallExp>();
-            AssociationWrapper assoc = (AssociationWrapper) ((LinkChangeEvent) changeEvent).getAffectedMetaObject(conn.getWrapper());
-            SpiJmiHelper jmiHelper = conn.getCoreJmiHelper();
-            List<AssociationEnd> ends = jmiHelper.getAssociationEnds(conn.getSession(), assoc.unwrap());
+            AssociationWrapper assoc = (AssociationWrapper) ((LinkLifeCycleEvent) changeEvent).getAffectedMetaObject();
+            List<AssociationEnd> ends = jmiHelper.getAssociationEnds(assoc.unwrap());
             localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ends.get(0)));
             localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ends.get(1)));
             result = localResult;
@@ -450,15 +449,14 @@ public class InstanceScopeAnalysis {
      */
     protected static EOperation getDefines(OCLExpression<EClassifier> expression) {
         //FIXME: use Query2 here to search operations annotated with a body entry that contains the given expression
-//        JmiListImpl<?> operationList = (JmiListImpl<?>) ((OCLExpression<EClassifier>) expression).getDefines(conn);
-//        EOperation result;
-//        if (operationList.size(conn.getSession()) > 0) {
-//            result = (EOperation) operationList.iterator().next();
-//        } else {
-//            result = null;
-//        }
-//        return result;
-        return null;
+        //        JmiListImpl<?> operationList = (JmiListImpl<?>) ((OCLExpression<EClassifier>) expression).getDefines(conn);
+        //        EOperation result;
+        //        if (operationList.size(conn.getSession()) > 0) {
+        //            result = (EOperation) operationList.iterator().next();
+        //        } else {
+        //            result = null;
+        //        }
+        //        return result;
     }
 
 }

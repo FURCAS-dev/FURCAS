@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -23,15 +23,15 @@ public class IndirectingStep extends AbstractNavigationStep {
     private boolean equalsOrHashCodeCalledBeforeActualStepSet = false;
 
     /**
-     * The set of objects for which {@link #navigate(CoreConnection, RefObjectImpl, Map)} is currently being evaluated on
+     * The set of objects for which {@link #navigate(Set, Map)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
      */
-    private ThreadLocal<Set<EObjectImpl>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<EObjectImpl>>() {
+    private ThreadLocal<Set<EObject>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<EObject>>() {
 	@Override
-	protected Set<EObjectImpl> initialValue() {
-	    return new HashSet<EObjectImpl>();
+	protected Set<EObject> initialValue() {
+	    return new HashSet<EObject>();
 	}
     };
 
@@ -90,13 +90,13 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
-	Set<EObjectImpl> result;
+    protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+	Set<EObject> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject);
-	    Set<EObjectImpl> set = Collections.singleton(fromObject);
+	    Set<EObject> set = Collections.singleton(fromObject);
 	    result = actualStep.navigate(set, cache);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
 	}
@@ -107,10 +107,10 @@ public class IndirectingStep extends AbstractNavigationStep {
      * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion 
      */
     @Override
-    protected void incrementNavigateCounter(Set<EObjectImpl> from) {
+    protected void incrementNavigateCounter(Set<EObject> from) {
 	boolean oneFromObjectIsEvaluating = false;
 	
-	for(EObjectImpl obj : from){
+	for(EObject obj : from){
 	    if( currentlyEvaluatingNavigateFor.get().contains(obj) ){
 		oneFromObjectIsEvaluating = true;
 		return;

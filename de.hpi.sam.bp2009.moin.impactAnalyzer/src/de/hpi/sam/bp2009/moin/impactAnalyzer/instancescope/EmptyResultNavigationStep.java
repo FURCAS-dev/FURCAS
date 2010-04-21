@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
@@ -21,8 +21,8 @@ public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 	}
 
 	@Override
-	protected Set<EObjectImpl> navigate(EObjectImpl fromObject,
-			Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+	protected Set<EObject> navigate(EObject fromObject,
+			Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
 		return Collections.emptySet();
 	}
 }

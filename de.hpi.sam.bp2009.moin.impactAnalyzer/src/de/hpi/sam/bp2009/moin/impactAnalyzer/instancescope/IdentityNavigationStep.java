@@ -5,12 +5,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * Performs a trivial "identity" navigation, returning the <tt>fromObject</tt> again. This is useful when only the type
- * checking that is performed by {@link AbstractNavigationStep#navigate(CoreConnection, java.util.Set, Map)} shall be
+ * checking that is performed by {@link AbstractNavigationStep#navigate(Set, Map)} shall be
  * employed, such as for an <tt>oclAsType</tt> method call.<p>
  * 
  * When the source and target type have no common elements in the reflexive subclass inheritance trees,
@@ -22,16 +23,16 @@ import org.eclipse.ocl.ecore.OCLExpression;
  * 
  */
 public class IdentityNavigationStep extends AbstractNavigationStep {
-	public IdentityNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
-		super(sourceType, targetType, debugInfo);
+	public IdentityNavigationStep(EClass sourceType, EClass targetType, OCLExpression<EClassifier> oclExpression) {
+		super(sourceType, targetType, oclExpression);
 		if (!AbstractNavigationStep.haveIntersectingSubclassTree(sourceType, targetType)) {
 			setAlwaysEmpty();
 		}
 	}
 
 	@Override
-	protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
-		Set<EObjectImpl> result = new LinkedHashSet<EObjectImpl>(1);
+	protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+		Set<EObject> result = new LinkedHashSet<EObject>(1);
 		result.add(fromObject);
 		return result;
 	}

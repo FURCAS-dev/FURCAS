@@ -3,7 +3,6 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
@@ -76,7 +75,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	}
 	
 	public static boolean doesTypeMatch(EClass sourceType,
-			EObjectImpl fromObject) {
+			EObject fromObject) {
 		return sourceType.isInstance(fromObject);
 	}
 

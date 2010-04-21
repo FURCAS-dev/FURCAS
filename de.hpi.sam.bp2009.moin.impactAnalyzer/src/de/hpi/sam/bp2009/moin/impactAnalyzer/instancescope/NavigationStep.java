@@ -7,7 +7,7 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -32,11 +32,11 @@ import org.eclipse.ocl.expressions.OCLExpression;
  * 
  */
 public interface NavigationStep {
-	Set<EObjectImpl> navigate(Set<EObjectImpl> from, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache);
+	Set<EObject> navigate(Set<EObject> from, Map<Map<NavigationStep, EObject>, Set<EObject>> cache);
 
 	/**
 	 * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
-	 * passed to {@link #navigate(CoreConnection, Set, Map)}. Those must return <tt>true</tt> here.
+	 * passed to {@link #navigate(Set, Map)}. Those must return <tt>true</tt> here.
 	 * Examples are navigation steps returning all instances of a given type and the step always
 	 * returning the empty set.
 	 */

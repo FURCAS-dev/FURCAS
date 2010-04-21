@@ -1,20 +1,14 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.NavigationCallExp;
-import org.eclipse.ocl.ecore.OCLExpression;
-import org.omg.ocl.expressions.__impl.AssociationEndCallExpImpl;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndInternal;
 
 public class AssociationEndCallExpTracer extends AbstractTracer<NavigationCallExp> {
     public AssociationEndCallExpTracer(NavigationCallExp expression) {
-	super(conn, expression);
+	super(expression);
     }
 
     @Override
@@ -64,13 +58,14 @@ public class AssociationEndCallExpTracer extends AbstractTracer<NavigationCallEx
 	 * the X association would fail with an exception.
 	 * 
 	 */
-	    EClassifier sourceType = ((OCLExpression) getExpression().getSource()).getEType();
-	    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath((OCL)getExpression().getSource(), context, classScopeAnalyzer);
-	    NavigationStep reverseTraversal = new AssociationNavigationStep(getInnermostElementType(getExpression()
-		.getType(getConnection())), getInnermostElementType(sourceType),
-		((AssociationEndInternal) getExpression().getReferredAssociationEnd(getConnection()))
-			.otherEnd(getConnection()), getExpression());
-	return pathCache.navigationStepFromSequence(getConnection(), getExpression(), reverseTraversal, sourceStep);
+	    EClassifier sourceType = getExpression().getSource().getType();
+	    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(getExpression().getSource(), context, classScopeAnalyzer);
+	    NavigationStep reverseTraversal = new AssociationNavigationStep(
+	            getInnermostElementType(getExpression().getType()),
+	            getInnermostElementType(sourceType),
+	            ((AssociationEndInternal) getExpression().getReferredAssociationEnd()).otherEnd(),
+	            getExpression());
+	return pathCache.navigationStepFromSequence(getExpression(), reverseTraversal, sourceStep);
     }
 
 }

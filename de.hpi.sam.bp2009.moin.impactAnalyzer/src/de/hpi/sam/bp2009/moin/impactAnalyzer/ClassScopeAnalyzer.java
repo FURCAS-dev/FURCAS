@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
@@ -61,7 +61,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     /**
      * For each operation body analyzed, stores the calls to the operation that were visited
      */
-    final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression, Set<OperationCallExp>>();
+    final private HashMap<OCLExpression<EClassifier>, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression<EClassifier>, Set<OperationCallExp>>();
 
     // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
     // redundant/duplicate filters
@@ -80,7 +80,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      *            be responsible for the initial evaluation of those OCL expressions on new elementt, and therefore,
      *            context element creation events are not of interest.
      */
-    public ClassScopeAnalyzer(OCLExpression exp, boolean notifyNewContextElements) {
+    public ClassScopeAnalyzer(OCLExpression<EClassifier> exp, boolean notifyNewContextElements) {
         super();
         this.notifyNewContextElements = notifyNewContextElements;
         safeVisit(exp);
@@ -141,7 +141,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     public EPackage visitOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> exp) {
 
         if (exp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES_NAME) ) {
-            OCLExpression typeExp = (OCLExpression) exp.getSource();
+            OCLExpression<EClassifier> typeExp = exp.getSource();
             AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
             OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
             EventTypeFilter evCreateFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
@@ -153,14 +153,14 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             orFilter.getFilters().add(evCreateFilter);
             orFilter.getFilters().add(evDeleteFilter);
             ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
-            classFilter.setWantedClass(typeExp.getEType().eClass());
+            classFilter.setWantedClass(typeExp.getType().eClass());
             andFilter.getFilters().add(orFilter);
             andFilter.getFilters().add(classFilter);
 
             addFilter(andFilter);
         } else {
             
-            OCLExpression body = getOperationBody(exp.getReferredOperation());
+            OCLExpression<EClassifier> body = getOperationBody(exp.getReferredOperation());
             if (body != null) {
                 Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
                 if (analyzedCallsToBody == null) {
@@ -182,8 +182,8 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      * from the root expression analyzed by this {@link ClassScopeAnalyzer}. If no such calls exist,
      * an empty set is returned.
      */
-    public Set<OperationCallExp> getCallsOf(OCLExpression operationBody) {
-        Set<OperationCallExp> result = visitedOperationBodies.get(operationBody);
+    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression) {
+        Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
         if (result == null) {
             result = Collections.emptySet();
         }
@@ -206,9 +206,9 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         return result;
     }
     
-    public OCLExpression getOperationBody(EOperation op) {
+    public OCLExpression<EClassifier> getOperationBody(EOperation op) {
         //TODO: get the correct invocation behavior via OCLDelegator URIs (see InvocationBehaviorForAnnotations)
-        OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), op);
+        OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), op);
         return body;
     }
 }
