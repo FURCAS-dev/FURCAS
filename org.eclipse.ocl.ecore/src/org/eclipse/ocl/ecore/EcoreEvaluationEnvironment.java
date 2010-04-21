@@ -39,6 +39,8 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
@@ -195,6 +197,8 @@ public class EcoreEvaluationEnvironment
             				((EReference) property).getEOpposite().getOwnedOpposite() == property &&
             				((EClass) ((EReference) property).getEOpposite().getEType()).isSuperTypeOf(etarget.eClass())) {
             		// TODO it's a hidden opposite; use query2 to query it
+            		Resource r = etarget.eResource();
+            		ResourceSet rs = r.getResourceSet();
             		return null;
             	}
             }
