@@ -9,12 +9,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Performs a sequence of navigation steps where the subsequent step uses as its input

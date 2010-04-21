@@ -6,50 +6,28 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.ocl.attaching.OperationBodyDefinition;
-import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.OCLInput;
-import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.NavigationCallExp;
-import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.TypeType;
 import org.eclipse.ocl.ecore.impl.OperationCallExpImpl;
-import org.eclipse.ocl.ecore.impl.TypeExpImpl;
-import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
-import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
-import org.eclipse.ocl.expressions.operations.OCLExpressionOperations;
-import org.eclipse.ocl.parser.OCLLexer;
-import org.eclipse.ocl.parser.OCLLexerprs;
-import org.eclipse.ocl.parser.OCLParser;
-import org.eclipse.ocl.parser.OCLParserprs;
-import org.eclipse.ocl.parser.OCLParsersym;
-import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.utilities.OCLFactory;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
-import org.omg.ocl.expressions.__impl.OperationCallExpInternal;
-import org.omg.ocl.expressions.__impl.TypeExpInternal;
-
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.treewalker.TreeWalker;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.model.__impl.ClassifierInternal;
-import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
+import org.eclipse.ocl.utilities.AbstractVisitor;
 
 /**
  * A tree walker that finds and remembers all expressions of type {@link AttributeCallExp} and
@@ -61,7 +39,8 @@ import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
  * @author Axel Uhl D043530
  * 
  */
-public class AssociationEndAndAttributeCallFinder extends TreeWalker {
+public class AssociationEndAndAttributeCallFinder extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
+EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
 	private Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = new HashMap<EAttribute, Set<PropertyCallExp>>();
 	private Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
 	private Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
@@ -102,7 +81,7 @@ public class AssociationEndAndAttributeCallFinder extends TreeWalker {
 		OCLExpression bodyExpr = null;
 		if (bodyExpr != null) {
 			walk(bodyExpr);
-		} else if (referredOperation.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_allInstances])) {
+		} else if (referredOperation.getName().equals(TypeType.ALL_INSTANCES_NAME)) {
 //			EClassifier classifier = ((TypeExpImpl) ((OperationCallExpImpl) oce).getSource()).getReferredType();
 			EClassifier classifier = ((TypeExp)oce.getSource()).getReferredType();
 			for (EClassifierImpl specialization : getAllSpecializationsIncludingSelf((EClassifierImpl) classifier)) {
@@ -180,7 +159,7 @@ public class AssociationEndAndAttributeCallFinder extends TreeWalker {
 //		}
 		if (!visitedExpressions.contains(expression)) {
 			visitedExpressions.add(expression);
-			super.walk(expression);
+			super.safeVisit(expression);
 		}
 	}
 }

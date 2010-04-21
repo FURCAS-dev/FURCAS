@@ -8,21 +8,10 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
-import org.omg.ocl.expressions.ATypeOclExpression;
-import org.omg.ocl.expressions.OclExpression;
-import org.omg.ocl.expressions.VariableDeclaration;
-import org.omg.ocl.expressions.__impl.ATypeOclExpressionImpl;
-import org.omg.ocl.expressions.__impl.AttributeCallExpImpl;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
-import org.omg.ocl.expressions.__impl.TupleLiteralExpImpl;
-import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
 import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.Variable;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.links.JmiListImpl;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 public class AttributeCallExpTracer extends AbstractTracer<PropertyCallExp> {
 	public AttributeCallExpTracer(PropertyCallExp expression) {
@@ -37,13 +26,13 @@ public class AttributeCallExpTracer extends AbstractTracer<PropertyCallExp> {
 		OCLExpression sourceExpression = null;
 		if (type instanceof TupleType) {
 			String referredAttributeName = getExpression().getReferredProperty().getName();
-			BasicEList<VariableDeclaration> tupleParts = (BasicEList<VariableDeclaration>) ((TupleLiteralExp) ((BasicEList<OCLExpression>) ((ATypeOclExpressionImpl) getConnection()
+			BasicEList<Variable> tupleParts = (BasicEList<Variable>) ((TupleLiteralExp) ((BasicEList<OCLExpression>) ((ATypeOclExpressionImpl) getConnection()
 					.getAssociation(ATypeOclExpression.ASSOCIATION_DESCRIPTOR)).getOclExpression(type))
 					.iterator().next()).getTuplePart();
-			for (Iterator<VariableDeclaration> i = tupleParts.iterator(); i.hasNext();) {
-				VariableDeclaration tuplePart = i.next();
+			for (Iterator<Variable> i = tupleParts.iterator(); i.hasNext();) {
+				Variable tuplePart = i.next();
 				if (tuplePart.getName().equals(referredAttributeName)) {
-					sourceExpression = ((VariableDeclarationImpl) tuplePart).getInitExpression();
+					sourceExpression = (OCLExpression) tuplePart.getInitExpression();
 					break;
 				}
 			}

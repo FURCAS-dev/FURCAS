@@ -3,6 +3,11 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.EcoreOCLStandardLibrary;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.utilities.PredefinedType;
 import org.omg.ocl.attaching.OperationBodyDefinition;
 import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
 import org.omg.ocl.expressions.OclExpression;
@@ -12,53 +17,53 @@ import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
 import org.omg.ocl.expressions.__impl.TypeExpImpl;
 import org.omg.ocl.expressions.__impl.TypeExpInternal;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 
-public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl> {
+public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     private static final Set<String> sourcePassThroughStdLibOpNames;
     private static final Set<String> argumentPassThroughStdLibOpNames;
     static {
 	 sourcePassThroughStdLibOpNames = new HashSet<String>();
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_ANY);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_ASBAG);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_ASSET);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_ASORDEREDSET);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_ASSEQUENCE);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_AT);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_ATRPRE);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_EXCLUDING);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_FIRST);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_FLATTEN);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_INCLUDING);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_INSERTAT);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_APPEND);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_INTERSECTION);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_OCLASTYPE);
-	 sourcePassThroughStdLibOpNames.add(OclConstants.OP_UNION);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.ANY_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.AS_BAG_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.AS_SET_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.AS_ORDERED_SET_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.AS_SEQUENCE_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.AT_NAME);
+//	 sourcePassThroughStdLibOpNames.add(PredefinedType.ATRPRE_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.EXCLUDING_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.FIRST_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.FLATTEN_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.INCLUDING_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.INSERT_AT_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.APPEND_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.INTERSECTION_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.OCL_AS_TYPE_NAME);
+	 sourcePassThroughStdLibOpNames.add(PredefinedType.UNION_NAME);
 
 	 argumentPassThroughStdLibOpNames = new HashSet<String>();
-	 argumentPassThroughStdLibOpNames.add(OclConstants.OP_INCLUDING);
-	 argumentPassThroughStdLibOpNames.add(OclConstants.OP_INSERTAT);
-	 argumentPassThroughStdLibOpNames.add(OclConstants.OP_APPEND);
-	 argumentPassThroughStdLibOpNames.add(OclConstants.OP_UNION);
+	 argumentPassThroughStdLibOpNames.add(PredefinedType.INCLUDING_NAME);
+	 argumentPassThroughStdLibOpNames.add(PredefinedType.INSERT_AT_NAME);
+	 argumentPassThroughStdLibOpNames.add(PredefinedType.APPEND_NAME);
+	 argumentPassThroughStdLibOpNames.add(PredefinedType.UNION_NAME);
 	 // TODO what about "product"?
     }
     
-    public OperationCallExpTracer(CoreConnection conn, OperationCallExpImpl expression) {
-	super(conn, expression);
+    public OperationCallExpTracer(OperationCallExp expression) {
+    	super(expression);
     }
 
     @Override
-    public NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	NavigationStep result;
 	OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) getConnection().getAssociation(
 		OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
-	OclExpression body = a.getBody(getConnection(), getExpression().getReferredOperation(getConnection()));
+	OCLExpression body = a.getBody(getConnection(), getExpression().getReferredOperation(getConnection()));
 	if (body != null) {
 	    // an OCL-specified operation; trace back using the body expression
 	    result = pathCache.getPathForNode(body);
@@ -71,7 +76,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 	    }
 	} else {
 	    String opName = getExpression().getReferredOperation(getConnection()).getName();
-	    if (opName.equals(OclConstants.OP_OCLASTYPE)) {
+	    if (opName.equals(PredefinedType.OCL_AS_TYPE_NAME)) {
 		OclExpression argument = ((JmiListImpl<OclExpression>) getExpression().getArguments(getConnection()))
 			.get(getConnection().getSession(), 0);
 		if (argument instanceof TypeExp) {
@@ -98,7 +103,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 		} else {
 		    result = sourcePath;
 		}
-	    } else if (opName.equals(OclConstants.OP_ALLINSTANCES)) {
+	    } else if (opName.equals(PredefinedType.ALL_INSTANCES_NAME)) {
 		// the object from where to trace back later in the navigate method may not
 		// conform to the type on which allInstances() is invoked here; for example, the
 		// expression may navigate from the result of allInstances() across an association

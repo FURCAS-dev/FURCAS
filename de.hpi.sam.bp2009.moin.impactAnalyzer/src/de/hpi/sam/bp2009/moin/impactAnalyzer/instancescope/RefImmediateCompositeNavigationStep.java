@@ -16,14 +16,14 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 public class RefImmediateCompositeNavigationStep extends AbstractNavigationStep {
 
-    public RefImmediateCompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
-	super(sourceType, targetType, debugInfo);
-    }
+	public RefImmediateCompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
+		super(sourceType, targetType, debugInfo);
+	}
 
-    @Override
-    protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
-	Set<EObjectImpl> result = Collections.singleton((EObjectImpl) fromObject.refImmediateComposite());
-	return result;
-    }
+	@Override
+	protected Set<EObjectImpl> navigate(EObjectImpl fromObject, Map<Map<NavigationStep, EObjectImpl>, Set<EObjectImpl>> cache) {
+		Set<EObjectImpl> result = Collections.singleton((EObjectImpl) fromObject.refImmediateComposite());
+		return result;
+	}
 
 }
