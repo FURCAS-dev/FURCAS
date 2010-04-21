@@ -70,9 +70,16 @@ import org.eclipse.emf.importer.rose.parser.Util;
  */
 public class RoseEcoreBuilder implements RoseVisitor
 {
+    private static final String ROSE2MOF_CONSTRAINED_ELEMENTS = "\"rose2mof.constrainedElements\"";
+    private static final String MOF = "\"MOF\"";
     private static final String VALIDATION_DELEGATES = "validationDelegates";
     private static final String SETTING_DELEGATES = "settingDelegates";
     private static final String INVOCATION_DELEGATES = "invocationDelegates";
+    private static final String INV = "inv";
+    private static final String COLON = ":";
+    private static final String DELEGATE_URI = "http://de.hpi.sam.bp2009.OCL";
+    private static final String ECORE_NS_URI = "http://www.eclipse.org/emf/2002/Ecore";
+    private static final String CONSTRAINTS = "constraints";
 
     class DeferredConstraintAnnotation{
         public DeferredConstraintAnnotation(String constraintName, String constraintExpr, String clsName2) {
@@ -84,10 +91,8 @@ public class RoseEcoreBuilder implements RoseVisitor
         String expr;
         String clsName;
     }
-  private static final String DELEGATE_URI = "http://de.hpi.sam.bp.2009.OCL";
-private static final String ECORE_NS_URI = "http://www.eclipse.org/emf/2002/Ecore";
-private static final String CONSTRAINTS = "constraints";
-public boolean noQualify = false;
+
+  public boolean noQualify = false;
   public boolean unsettablePrimitive = "true".equals(System.getProperty("EMF_UNSETTABLE_PRIMITIVE"));
 
   protected RoseUtil roseUtil;
@@ -232,12 +237,10 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
             for(RoseNode op: n.getNodes()){
                 if(RoseStrings.OPERATION.equals(Util.getType(op.getValue())) && RoseStrings.OCL_OPERATION.equals(Util.getName(op.getValue()))){
                     String fullOCLStatement = op.getSemantics();
-                    String invKeyWord="inv";
-                    String colonKey=":";
-                    int invStart= fullOCLStatement.indexOf(invKeyWord);
+                    int invStart= fullOCLStatement.indexOf(INV);
                     if(invStart!=-1){
-                        int colonStart=fullOCLStatement.indexOf(colonKey);
-                        String newConstraintName=fullOCLStatement.substring(invStart+invKeyWord.length(),colonStart).trim();
+                        int colonStart=fullOCLStatement.indexOf(COLON);
+                        String newConstraintName=fullOCLStatement.substring(invStart+INV.length(),colonStart).trim();
                         if(!newConstraintName.isEmpty())
                             constraintName=newConstraintName;
                             
@@ -264,11 +267,11 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
                             // first column MOF
                             String firstAttrValue= attr.getNodes().get(0).getValue();
                             
-                            if(!"\"MOF\"".equals(firstAttrValue))
+                            if(!MOF.equals(firstAttrValue))
                                 continue;
                             //second column should define the key rose2mof.constrainedElements"
                             String secondAttrValue= attr.getNodes().get(1).getValue();
-                            if(!"\"rose2mof.constrainedElements\"".equals(secondAttrValue))
+                            if(!ROSE2MOF_CONSTRAINED_ELEMENTS.equals(secondAttrValue))
                                 continue;
                             String thirdAttrValue= Util.getName(attr.getNodes().get(2).getNodes().get(0).getValue());
                             String[] clsNames= thirdAttrValue.split(",");
@@ -302,12 +305,14 @@ public void processDefferendConstraints(){
  * @param clazz
  */
 private void addConstraintToClass(String constraintName, String constraintExpr, EClassifier clazz) {
+    //replaces all line breaks with spaces
+    constraintExpr = constraintExpr.replaceAll("(\r\n|\n)", " ");
     EcoreUtil.setAnnotation(clazz, DELEGATE_URI, constraintName, constraintExpr);
     String csString=EcoreUtil.getAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS);
     if(csString==null)
         EcoreUtil.setAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS, constraintName);
     else
-        EcoreUtil.setAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS, csString+","+constraintName);
+        EcoreUtil.setAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS, csString+" "+constraintName);
 }
 
   protected void visitClass(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
