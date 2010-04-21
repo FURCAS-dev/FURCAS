@@ -7,11 +7,11 @@
 package de.hpi.sam.bp2009.solution.oclToAst;
 
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
- * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EAnnotation OCL Parser</b></em>'.
- * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -24,11 +24,10 @@ import org.eclipse.emf.ecore.EModelElement;
  * </p>
  *
  * @see de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage#getEAnnotationOCLParser()
- * @model
- * @generated
  */
 public interface EAnnotationOCLParser {
 	public static final String ANNOTATION_SOURCE = "http://de.hpi.sam.bp2009.OCL";
-	void convertOclAnnotation(EModelElement modelElement);
-
+	public void convertOclAnnotation(EModelElement modelElement);
+	public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element,
+			String constraintName);
 } // EAnnotationOCLParser

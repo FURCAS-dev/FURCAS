@@ -31,32 +31,20 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  *   <li>{@link de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement) <em>Convert Ocl Annotation</em>}</li>
  * </ul>
  * </p>
- * @generated
  */
 public class EAnnotationOCLParserTest extends TestCase {
 
 	/**
 	 * The fixture for this EAnnotation OCL Parser test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected EAnnotationOCLParser fixture = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public static void main(String[] args) {
 		TestRunner.run(EAnnotationOCLParserTest.class);
 	}
 
 	/**
 	 * Constructs a new EAnnotation OCL Parser test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public EAnnotationOCLParserTest(String name) {
 		super(name);
@@ -64,9 +52,6 @@ public class EAnnotationOCLParserTest extends TestCase {
 
 	/**
 	 * Sets the fixture for this EAnnotation OCL Parser test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected void setFixture(EAnnotationOCLParser fixture) {
 		this.fixture = fixture;
@@ -74,8 +59,6 @@ public class EAnnotationOCLParserTest extends TestCase {
 
 	/**
 	 * Returns the fixture for this EAnnotation OCL Parser test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EAnnotationOCLParser getFixture() {
@@ -83,10 +66,8 @@ public class EAnnotationOCLParserTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+
 	 * @see junit.framework.TestCase#setUp()
-	 * @generated
 	 */
 	@Override
 	protected void setUp() throws Exception {
@@ -94,10 +75,7 @@ public class EAnnotationOCLParserTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
 	 */
 	@Override
 	protected void tearDown() throws Exception {
@@ -106,10 +84,7 @@ public class EAnnotationOCLParserTest extends TestCase {
 
 	/**
 	 * Tests the '{@link de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement) <em>Convert Ocl Annotation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
-	 * @generated NOT
 	 */
 	public void testConvertOclAnnotation__EModelElement() {
 		EClass placeC = EcoreFactory.eINSTANCE.createEClass();
@@ -129,10 +104,7 @@ public class EAnnotationOCLParserTest extends TestCase {
 	}
 	/**
 	 * Tests the '{@link de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement) <em>Convert Ocl Annotation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
-	 * @generated NOT
 	 */
 	public void testConvertOclAnnotation__EOperation() {
 		EClass aClass= EcoreFactory.eINSTANCE.createEClass();

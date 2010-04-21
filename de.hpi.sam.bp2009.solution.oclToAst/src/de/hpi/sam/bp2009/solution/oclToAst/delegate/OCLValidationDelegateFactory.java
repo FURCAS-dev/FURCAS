@@ -14,7 +14,7 @@
  *
  * $Id: OCLValidationDelegateFactory.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
  */
-package de.hpi.sam.bp2009.solution.oclToAst.impl;
+package de.hpi.sam.bp2009.solution.oclToAst.delegate;
 
 import java.util.Map;
 

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
@@ -73,6 +74,25 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 			a.getContents().add(expr);
 
 		}		
+	}
+	public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element,
+			String constraintName) {
+		OCLExpression query = null;
+		EAnnotation anno=element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
+		int pos=-1;
+		int count=0;
+		for(String constraint1:anno.getDetails().values()){
+			if(constraint1.equals(constraintName)){
+				pos=count;
+				break;
+			}
+			count++;
+		}
+		if(pos!=-1)
+			if(anno.eContents().size()>pos)
+				query= (OCLExpression)anno.eContents().get(pos);
+
+		return query;
 	}
 
 } //EAnnotationOCLParserImpl
