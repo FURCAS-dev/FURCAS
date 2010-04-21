@@ -87,6 +87,16 @@ public class EcoreHelper {
     }
     
     /**
+     * Navigates along the <tt>to</tt> reference, starting at object <tt>from</tt>. The reference
+     * can (and usually will) be a "hidden opposite" which is owned by another {@link EReference}
+     * (see also {@link EReference#getOwnedOpposite()}). The <tt>to</tt> reference has to have
+     * a valid {@link EReference#getEOpposite() opposite}.
+     */
+    public Collection<EObject> navigateByQuery(EObject from, EReference to, QueryContext scope, ResourceSet rs) {
+        return reverseNavigate(from, to.getEOpposite(), scope, rs);
+    }
+    
+    /**
      * Same as {@link #reverseNavigate(EObject, EReference, QueryContext, ResourceSet)}, only that
      * <tt>forwardReference</tt> does not have to have an {@link EReference#getEOpposite() opposite}.
      * Instead, a collection is passed in to which the result are added. Therefore, the opposite
