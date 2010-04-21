@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.petriNet.impl;
 
+import de.hpi.sam.petriNet.Node;
 import de.hpi.sam.petriNet.PetriNetPackage;
 import de.hpi.sam.petriNet.Place;
 
@@ -13,6 +14,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.hpi.sam.petriNet.impl.PlaceImpl#getNoTokens <em>No Tokens</em>}</li>
+ *   <li>{@link de.hpi.sam.petriNet.impl.PlaceImpl#getTestHiddenOpposite <em>Test Hidden Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,6 +51,16 @@ public class PlaceImpl extends NodeImpl implements Place {
 	 * @ordered
 	 */
 	protected int noTokens = NO_TOKENS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTestHiddenOpposite() <em>Test Hidden Opposite</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestHiddenOpposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected Node testHiddenOpposite;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,11 +107,52 @@ public class PlaceImpl extends NodeImpl implements Place {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Node getTestHiddenOpposite() {
+		if (testHiddenOpposite != null && testHiddenOpposite.eIsProxy()) {
+			InternalEObject oldTestHiddenOpposite = (InternalEObject)testHiddenOpposite;
+			testHiddenOpposite = (Node)eResolveProxy(oldTestHiddenOpposite);
+			if (testHiddenOpposite != oldTestHiddenOpposite) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
+			}
+		}
+		return testHiddenOpposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Node basicGetTestHiddenOpposite() {
+		return testHiddenOpposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestHiddenOpposite(Node newTestHiddenOpposite) {
+		Node oldTestHiddenOpposite = testHiddenOpposite;
+		testHiddenOpposite = newTestHiddenOpposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PetriNetPackage.PLACE__NO_TOKENS:
 				return getNoTokens();
+			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+				if (resolve) return getTestHiddenOpposite();
+				return basicGetTestHiddenOpposite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,6 +167,9 @@ public class PlaceImpl extends NodeImpl implements Place {
 		switch (featureID) {
 			case PetriNetPackage.PLACE__NO_TOKENS:
 				setNoTokens((Integer)newValue);
+				return;
+			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+				setTestHiddenOpposite((Node)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,6 +186,9 @@ public class PlaceImpl extends NodeImpl implements Place {
 			case PetriNetPackage.PLACE__NO_TOKENS:
 				setNoTokens(NO_TOKENS_EDEFAULT);
 				return;
+			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+				setTestHiddenOpposite((Node)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,6 +203,8 @@ public class PlaceImpl extends NodeImpl implements Place {
 		switch (featureID) {
 			case PetriNetPackage.PLACE__NO_TOKENS:
 				return noTokens != NO_TOKENS_EDEFAULT;
+			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+				return testHiddenOpposite != null;
 		}
 		return super.eIsSet(featureID);
 	}

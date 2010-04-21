@@ -217,13 +217,22 @@ public interface PetriNetPackage extends EPackage {
 	int PLACE__NO_TOKENS = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Test Hidden Opposite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACE__TEST_HIDDEN_OPPOSITE = NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+	int PLACE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.petriNet.impl.TransitionImpl <em>Transition</em>}' class.
@@ -393,6 +402,17 @@ public interface PetriNetPackage extends EPackage {
 	EAttribute getPlace_NoTokens();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.petriNet.Place#getTestHiddenOpposite <em>Test Hidden Opposite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Test Hidden Opposite</em>'.
+	 * @see de.hpi.sam.petriNet.Place#getTestHiddenOpposite()
+	 * @see #getPlace()
+	 * @generated
+	 */
+	EReference getPlace_TestHiddenOpposite();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.petriNet.Transition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -549,6 +569,14 @@ public interface PetriNetPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLACE__NO_TOKENS = eINSTANCE.getPlace_NoTokens();
+
+		/**
+		 * The meta object literal for the '<em><b>Test Hidden Opposite</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLACE__TEST_HIDDEN_OPPOSITE = eINSTANCE.getPlace_TestHiddenOpposite();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.petriNet.impl.TransitionImpl <em>Transition</em>}' class.

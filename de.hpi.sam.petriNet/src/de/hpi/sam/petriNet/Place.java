@@ -16,6 +16,7 @@ package de.hpi.sam.petriNet;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.petriNet.Place#getNoTokens <em>No Tokens</em>}</li>
+ *   <li>{@link de.hpi.sam.petriNet.Place#getTestHiddenOpposite <em>Test Hidden Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +50,31 @@ public interface Place extends Node {
 	 * @generated
 	 */
 	void setNoTokens(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Hidden Opposite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Hidden Opposite</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Hidden Opposite</em>' reference.
+	 * @see #setTestHiddenOpposite(Node)
+	 * @see de.hpi.sam.petriNet.PetriNetPackage#getPlace_TestHiddenOpposite()
+	 * @model opposite="hiddenOpposite"
+	 * @generated
+	 */
+	Node getTestHiddenOpposite();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.petriNet.Place#getTestHiddenOpposite <em>Test Hidden Opposite</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Hidden Opposite</em>' reference.
+	 * @see #getTestHiddenOpposite()
+	 * @generated
+	 */
+	void setTestHiddenOpposite(Node value);
 
 } // Place
