@@ -142,6 +142,7 @@ public class InstanceScopeAnalysis {
      * before the <tt>changeEvent</tt> occurred.
      */
     public Set<MRI> getAffectedElements(EClass context, ModelChangeEvent changeEvent, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+        //FIXME: create the empty cache here
         if (changeEvent instanceof ElementLifeCycleEvent) {
             // create and delete of elements only affects the allInstances expressions;
             // for those, however, no "self" context can easily be determined and therefore
@@ -345,7 +346,7 @@ public class InstanceScopeAnalysis {
         NavigationStep step = getNavigationStepsToSelfForExpression(attributeOrAssociationEndCall
                 .getSource(), context);
         Set<EObject> sourceElementAsSet = Collections.singleton(sourceElement);
-        Set<EObject> result = step.navigate(sourceElementAsSet, cache);
+        Set<EObject> result = step.navigate(sourceElementAsSet, cache, tupleLiteralIdentifierStack);
         return result;
     }
 

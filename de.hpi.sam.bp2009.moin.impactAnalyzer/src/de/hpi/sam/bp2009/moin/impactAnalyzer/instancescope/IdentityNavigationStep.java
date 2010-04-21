@@ -1,17 +1,20 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * Performs a trivial "identity" navigation, returning the <tt>fromObject</tt> again. This is useful when only the type
- * checking that is performed by {@link AbstractNavigationStep#navigate(Set, Map)} shall be
+ * checking that is performed by {@link AbstractNavigationStep#navigate(Set, Map, Stack)} shall be
  * employed, such as for an <tt>oclAsType</tt> method call.<p>
  * 
  * When the source and target type have no common elements in the reflexive subclass inheritance trees,
@@ -31,7 +34,7 @@ public class IdentityNavigationStep extends AbstractNavigationStep {
 	}
 
 	@Override
-	protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+	protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
 		Set<EObject> result = new LinkedHashSet<EObject>(1);
 		result.add(fromObject);
 		return result;

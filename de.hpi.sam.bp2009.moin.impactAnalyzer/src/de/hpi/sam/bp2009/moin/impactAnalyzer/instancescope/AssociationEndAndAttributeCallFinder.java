@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,6 +55,15 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         this.classScopeAnalyzer = classScopeAnalyzer;
     }
 
+    @Override
+    protected EPackage handlePropertyCallExp(
+            org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> callExp, EPackage sourceResult,
+            List<EPackage> qualifierResults) {
+        // TODO Auto-generated method stub
+        return super.handlePropertyCallExp(callExp, sourceResult, qualifierResults);
+    }
+    
+    @Override
     protected void upAttributeCallExp(PropertyCallExp ace) {
         Set<PropertyCallExp> set = attributeCallExpressions.get(ace.getReferredProperty());
         if (set==null) {
@@ -63,6 +73,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         set.add(ace);
     }
 
+    @Override
     protected void upAssociationEndCallExp(NavigationCallExp ace) {
         Set<NavigationCallExp> set = associationEndCallExpressions.get((EReference) ace.getNavigationSource());
         if (set==null) {
@@ -71,7 +82,8 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         }
         set.add(ace);
     }
-
+    
+    @Override
     /**
      * If an operation is defined by an OCL body, walk that body too and collect all attribute
      * and association end calls from it recursively.

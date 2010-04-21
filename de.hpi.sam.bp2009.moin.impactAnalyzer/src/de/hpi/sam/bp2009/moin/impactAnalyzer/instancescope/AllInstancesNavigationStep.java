@@ -1,10 +1,13 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
@@ -25,7 +28,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	/**
 	 * Constructs a non-{@link NavigationStep#isAbsolute() absolute} navigation step that
 	 * computes all instances of <tt>targetType</tt> and all its direct and indirect subtypes,
-	 * if the <tt>fromObject</tt> passed to {@link #navigate(Set, Map)}
+	 * if the <tt>fromObject</tt> passed to {@link #navigate(Set, Map, Stack)}
 	 * conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The
 	 * consideration of the <tt>fromObject</tt> is the reason why if constructed with this
 	 * constructor an object of this class is not absolute.
@@ -42,7 +45,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	}
 
 	@Override
-	protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+	protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
 		//FIXME: atm the ported impact analyzer has no knowledge about the meta model instance. Actually getting all instances therefore is impossible
 		return InstanceScopeAnalysis.getAllPossibleContextInstances(getTargetType());
 	}

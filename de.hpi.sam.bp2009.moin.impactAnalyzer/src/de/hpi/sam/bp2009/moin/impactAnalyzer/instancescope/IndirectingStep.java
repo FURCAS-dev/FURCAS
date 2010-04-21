@@ -2,11 +2,14 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -90,14 +93,14 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+    protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
 	Set<EObject> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject);
 	    Set<EObject> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(set, cache);
+	    result = actualStep.navigate(set, cache, tuplePartIdentifierStack);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
 	}
 	return result;

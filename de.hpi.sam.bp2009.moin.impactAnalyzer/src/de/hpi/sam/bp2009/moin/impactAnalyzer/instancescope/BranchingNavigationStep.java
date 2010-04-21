@@ -2,11 +2,14 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
@@ -104,11 +107,11 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<EObject> navigate(EObject fromObject, Map<Map<NavigationStep, EObject>, Set<EObject>> cache) {
+    protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
         Set<EObject> result = new HashSet<EObject>();
         for (NavigationStep singleStep : getSteps()) {
             Set<EObject> fromSet = Collections.singleton(fromObject);
-            result.addAll(singleStep.navigate(fromSet, cache));
+            result.addAll(singleStep.navigate(fromSet, cache, tuplePartIdentifierStack));
         }
         return result;
     }
