@@ -43,7 +43,6 @@ public class AttributeCallExpTracer extends AbstractTracer<PropertyCallExp> {
 		} else {
 			sourceExpression = (OCLExpression) getExpression().getSource();
 			result = pathCache.navigationStepFromSequence(
-					getExpression(),
 					new RefImmediateCompositeNavigationStep(
 							(EClass) getExpression().getType(),
 							(EClass) type, (OCLExpression)getExpression()),

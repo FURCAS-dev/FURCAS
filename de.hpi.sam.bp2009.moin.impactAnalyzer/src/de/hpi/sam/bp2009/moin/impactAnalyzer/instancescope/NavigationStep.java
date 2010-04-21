@@ -6,8 +6,9 @@ import java.util.Set;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * During instance scope analysis, starting from an event's source element, by navigation the analyzer is trying to find
@@ -58,7 +59,7 @@ public interface NavigationStep {
 	 * created. This can aid the impact analysis debugging process. May return <tt>null</tt>.
 	 * @return
 	 */
-	OCLExpression getDebugInfo();
+	OCLExpression<EClassifier> getDebugInfo();
 
 	/**
 	 * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be

@@ -11,14 +11,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 public abstract class AbstractNavigationStep implements NavigationStep {
 	private static int idCounter;
 	private final int id;
 	private EClass sourceType;
 	private EClass targetType;
-	private OCLExpression debugInfo;
+	private OCLExpression<EClassifier> debugInfo;
 	private int navigateCounter;
 	private int cacheMisses;
 	private int resultObjectsCounter;
@@ -27,10 +27,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	private Set<TargetTypeChangeListener> targetTypeChangeListeners;
 	private boolean alwaysEmpty;
 
-	public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
+	public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression<EClassifier> debugInfo2) {
 		this.sourceType = sourceType;
 		this.targetType = targetType;
-		this.debugInfo = debugInfo;
+		this.debugInfo = debugInfo2;
 		this.alwaysEmptyChangeListeners = new HashSet<AlwaysEmptyChangeListener>();
 		this.sourceTypeChangeListeners = new HashSet<SourceTypeChangeListener>();
 		this.targetTypeChangeListeners = new HashSet<TargetTypeChangeListener>();
@@ -91,7 +91,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	}
 
 	@Override
-	public OCLExpression getDebugInfo() {
+	public OCLExpression<EClassifier> getDebugInfo() {
 		return debugInfo;
 	}
 

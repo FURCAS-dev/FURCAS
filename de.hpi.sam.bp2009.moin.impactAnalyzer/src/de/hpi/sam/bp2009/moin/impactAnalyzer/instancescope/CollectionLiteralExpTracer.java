@@ -27,7 +27,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
 	for (Iterator<CollectionLiteralPart> i = parts.iterator(getConnection()); i.hasNext();) {
 	    CollectionLiteralPart part = i.next();
 	    if (part instanceof CollectionItem) {
-		steps.add(pathCache.getOrCreateNavigationPath(getConnection(), ((CollectionItemImpl) part)
+		steps.add(pathCache.getOrCreateNavigationPath(((CollectionItemImpl) part)
 			.getItem(getConnection()), context, classScopeAnalyzer));
 	    }
 	}

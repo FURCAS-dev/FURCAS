@@ -3,7 +3,8 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
@@ -14,7 +15,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 public abstract class CompositeNavigationStep extends AbstractNavigationStep {
     private final NavigationStep[] steps;
 
-    public CompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... steps) {
+    public CompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression<EClassifier> debugInfo, NavigationStep... steps) {
 	super(sourceType, targetType, debugInfo);
 	this.steps = steps;
     }

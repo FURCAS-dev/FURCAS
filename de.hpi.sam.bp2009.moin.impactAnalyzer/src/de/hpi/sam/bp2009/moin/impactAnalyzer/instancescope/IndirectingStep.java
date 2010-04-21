@@ -5,8 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * Steps of this type can be an empty placeholder during the analysis phase and can
@@ -34,8 +35,8 @@ public class IndirectingStep extends AbstractNavigationStep {
 	}
     };
 
-    public IndirectingStep(OCLExpression debugInfo) {
-	super(null, null, debugInfo);
+    public IndirectingStep(OCLExpression<EClassifier> expr) {
+	super(null, null, expr);
     }
     
     public boolean equals(Object o) {

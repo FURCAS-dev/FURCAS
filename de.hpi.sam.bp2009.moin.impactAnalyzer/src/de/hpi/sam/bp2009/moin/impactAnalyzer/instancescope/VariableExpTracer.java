@@ -5,6 +5,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.impl.VariableImpl;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.omg.ocl.expressions.AVariableLetExp;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.OperationCallExp;
@@ -16,23 +21,23 @@ import org.omg.ocl.expressions.__impl.PropertyCallExpInternal;
 import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
 import org.omg.ocl.expressions.__impl.VariableExpImpl;
 
-import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
 import com.sap.tc.moin.repository.mmi.model.DirectionKindEnum;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.EClass;
 import com.sap.tc.moin.repository.mmi.model.Parameter;
 import com.sap.tc.moin.repository.mmi.model.__impl.OperationImpl;
 
-public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
-    public VariableExpTracer(CoreConnection conn, VariableExpImpl expression) {
-	super(conn, expression);
+public class VariableExpTracer extends AbstractTracer<VariableExp> {
+    public VariableExpTracer(VariableExp expression) {
+	super(expression);
     }
 
-    private VariableDeclarationImpl getVariableDeclaration() {
-	return (VariableDeclarationImpl) getExpression().getReferredVariable(getConnection());
+    private Variable getVariableDeclaration() {
+	return (Variable) getExpression().getReferredVariable();
     }
 
     private boolean isNull() {
@@ -45,8 +50,8 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
     }
 
     private boolean isOperationParameter() {
-	OclExpression rootExpression = getRootExpression();
-	OperationImpl op = InstanceScopeAnalysis.getDefines(getConnection(), rootExpression);
+	OCLExpression rootExpression = getRootExpression();
+	EOperation op = InstanceScopeAnalysis.getDefines(rootExpression);
 	String variableName = getVariableDeclaration().getName();
 	JmiListImpl<ModelElement> pList = (JmiListImpl<ModelElement>) op.getContents(getConnection());
 	for (Iterator<ModelElement> i=pList.iterator(getConnection()); i.hasNext(); ) {
@@ -72,7 +77,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
     }
 
     @Override
-    public NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	NavigationStep result;
 	if (isSelf()) {
 	    result = tracebackSelf(context, pathCache, classScopeAnalyzer);
@@ -94,9 +99,9 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	return result;
     }
 
-    private NavigationStep tracebackOperationParameter(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	OclExpression rootExpression = getRootExpression();
-	OperationImpl op = InstanceScopeAnalysis.getDefines(getConnection(), rootExpression);
+	OperationImpl op = InstanceScopeAnalysis.getDefines(rootExpression);
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
 	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression());
@@ -108,10 +113,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	for (OperationCallExp call : classScopeAnalyzer.getCallsOf((OclExpressionInternal) rootExpression)) {
 	    OclExpression argumentExpression = ((JmiListImpl<OclExpression>) ((OperationCallExpImpl) call).getArguments(getConnection())).
 	    	get(getConnection().getSession(), pos);
-	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(getConnection(), argumentExpression, context, classScopeAnalyzer));
+	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, classScopeAnalyzer));
 	}
 	indirectingStep.setActualStep(new BranchingNavigationStep(getConnection(),
-		(MofClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepsPerCall.toArray(new NavigationStep[0])));
+		(EClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepsPerCall.toArray(new NavigationStep[0])));
 	return indirectingStep;
     }
 
@@ -137,28 +142,28 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	return pos;
     }
 
-    private NavigationStep tracebackLetVariable(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
-	return pathCache.getOrCreateNavigationPath(getConnection(), getVariableDeclaration()
+    private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+	return pathCache.getOrCreateNavigationPath(getVariableDeclaration()
 		.getInitExpression(getConnection()), context, classScopeAnalyzer);
     }
 
-    private NavigationStep tracebackIterateResultVariable(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
-	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(getConnection(), getVariableDeclaration()
+    private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(getVariableDeclaration()
 		.getInitExpression(getConnection()), context, classScopeAnalyzer);
-	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(getConnection(), ((IterateExpImpl) getVariableDeclaration()
+	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(((IterateExpImpl) getVariableDeclaration()
 		.getBaseExp(getConnection())).getBody(getConnection()), context, classScopeAnalyzer);
 	return new BranchingNavigationStep(getConnection(),
-		(MofClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepForInitExpression, stepForBodyExpression);
+		(EClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepForInitExpression, stepForBodyExpression);
     }
 
-    private NavigationStep tracebackIteratorVariable(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
-	return pathCache.getOrCreateNavigationPath(getConnection(), ((PropertyCallExpInternal) getVariableDeclaration()
+    private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+	return pathCache.getOrCreateNavigationPath(((PropertyCallExpInternal) getVariableDeclaration()
 		.getLoopExpr(getConnection())).getSource(getConnection()), context, classScopeAnalyzer);
     }
 
-    private NavigationStep tracebackSelf(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    private NavigationStep tracebackSelf(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	NavigationStep result;
-	OperationImpl op = InstanceScopeAnalysis.getDefines(getConnection(), getRootExpression());
+	OperationImpl op = InstanceScopeAnalysis.getDefines(getRootExpression());
 	if (op != null) {
 	    // in an operation, self needs to be traced back to all source expressions of
 	    // calls to that operation
@@ -167,16 +172,16 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	    List<NavigationStep> stepsForCalls = new ArrayList<NavigationStep>();
 	    for (OperationCallExp call : calls) {
 		OclExpression callSource = ((OperationCallExpImpl) call).getSource(getConnection());
-		stepsForCalls.add(pathCache.getOrCreateNavigationPath(getConnection(), callSource, context, classScopeAnalyzer));
+		stepsForCalls.add(pathCache.getOrCreateNavigationPath(callSource, context, classScopeAnalyzer));
 	    }
 	    indirectingStep.setActualStep(new BranchingNavigationStep(
 		    getConnection(),
-		    (MofClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepsForCalls.toArray(new NavigationStep[0])));
+		    (EClass) getExpression().getType(getConnection()), context, (OclExpressionInternal) getExpression(), stepsForCalls.toArray(new NavigationStep[0])));
 	    result = indirectingStep;
 	} else {
 	    // self occurred outside of an operation; it evaluates to s for s being the context
-	    result = new IdentityNavigationStep(getConnection(), (MofClass) getExpression().getType(getConnection()),
-		    (MofClass) getExpression().getType(getConnection()), (OclExpressionInternal) getExpression());
+	    result = new IdentityNavigationStep((EClass) getExpression().getType(getConnection()), (EClass) getExpression().getType(getConnection()),
+		    (OclExpressionInternal) getExpression());
 	}
 	return result;
     }
