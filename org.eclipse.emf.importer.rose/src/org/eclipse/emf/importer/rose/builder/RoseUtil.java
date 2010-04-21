@@ -305,6 +305,7 @@ public class RoseUtil
       roseEcoreBuilder.setEReferences();
       roseEcoreBuilder.setSuper();
       roseEcoreBuilder.setETypeClassifier();
+      roseEcoreBuilder.processDefferendConstraints();
       setIDs(unitTree);
       validate(unitTree);
     }
