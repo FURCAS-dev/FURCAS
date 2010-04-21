@@ -3,6 +3,7 @@ package org.eclipse.emf.codegen.ecore.templates.model;
 import java.util.*;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
+import org.eclipse.emf.codegen.ecore.genmodel.impl.Literals;;
 
 public class ValidatorClass
 {
@@ -177,8 +178,8 @@ public class ValidatorClass
   protected final String TEXT_159 = "</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final ";
   protected final String TEXT_160 = " ";
   protected final String TEXT_161 = "__";
-  protected final String TEXT_162 = "__EEXPRESSION = \"";
-  protected final String TEXT_163 = "\";";
+  protected final String TEXT_162 = "__EEXPRESSION = ";
+  protected final String TEXT_163 = ";";
   protected final String TEXT_164 = NL;
   protected final String TEXT_165 = NL + "\t/**" + NL + "\t * Validates the ";
   protected final String TEXT_166 = " constraint of '<em>";
@@ -1017,7 +1018,7 @@ public class ValidatorClass
     stringBuffer.append(TEXT_161);
     stringBuffer.append(CodeGenUtil.upperName(constraint));
     stringBuffer.append(TEXT_162);
-    stringBuffer.append(genClassifier.getConstraintExpression(constraint, genModel.getIndentation(stringBuffer)));
+    stringBuffer.append(Literals.toStringLiteral(genClassifier.getConstraintExpression(constraint, ""), genModel));
     stringBuffer.append(TEXT_163);
     stringBuffer.append(genModel.getNonNLS());
     stringBuffer.append(TEXT_164);

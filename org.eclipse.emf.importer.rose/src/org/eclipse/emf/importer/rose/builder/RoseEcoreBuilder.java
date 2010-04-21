@@ -305,8 +305,6 @@ public void processDefferendConstraints(){
  * @param clazz
  */
 private void addConstraintToClass(String constraintName, String constraintExpr, EClassifier clazz) {
-    //replaces all line breaks with spaces
-    constraintExpr = constraintExpr.replaceAll("(\r\n|\n)", " ");
     EcoreUtil.setAnnotation(clazz, DELEGATE_URI, constraintName, constraintExpr);
     String csString=EcoreUtil.getAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS);
     if(csString==null)
