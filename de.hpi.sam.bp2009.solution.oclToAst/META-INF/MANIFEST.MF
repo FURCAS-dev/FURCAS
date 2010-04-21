@@ -12,5 +12,8 @@ Export-Package: de.hpi.sam.bp2009.solution.oclToAst,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.ocl,
- org.eclipse.ocl.ecore
+ org.eclipse.ocl.ecore,
+ org.eclipse.emf.query2,
+ org.eclipse.emf.query.index.ui,
+ org.eclipse.emf.query.index
 Bundle-ActivationPolicy: lazy
