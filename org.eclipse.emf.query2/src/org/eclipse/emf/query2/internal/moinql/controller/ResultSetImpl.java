@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query2.ColumnType;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.QueryResultException;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
@@ -31,7 +32,6 @@ import org.eclipse.emf.query2.internal.logger.QueryLogger;
 import org.eclipse.emf.query2.internal.messages.ApiMessages;
 import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.moinql.ast.SelectEntry;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 
 /**

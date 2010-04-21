@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.internal.bql.api.SpiAbstractBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiAttributeExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiSelectExpression;
@@ -40,7 +41,6 @@ import org.eclipse.emf.query2.internal.logger.QueryLogger;
 import org.eclipse.emf.query2.internal.messages.BugMessages;
 import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * This implementation of

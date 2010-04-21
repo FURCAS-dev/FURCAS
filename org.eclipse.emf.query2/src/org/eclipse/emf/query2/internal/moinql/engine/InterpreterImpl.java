@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.QueryExecutionException;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.bql.api.SpiBasicQueryProcessor;
@@ -60,7 +61,6 @@ import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.internal.moinql.controller.ResultSetImpl;
 import org.eclipse.emf.query2.internal.shared.AuxServices;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * This service interpretes the {@link org.eclipse.emf.query2.internal.moinql.ast.InternalQuery} structure. It uses the FQL services,

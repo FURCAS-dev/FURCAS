@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.FromFixedSet;
 import org.eclipse.emf.query2.FromType;
 import org.eclipse.emf.query2.Operation;
@@ -117,7 +118,6 @@ import org.eclipse.emf.query2.internal.moinql.parser.gen.mqlAst.WhereClause;
 import org.eclipse.emf.query2.internal.moinql.parser.gen.mqlAst.WhereClauseN;
 import org.eclipse.emf.query2.internal.moinql.parser.gen.mqlAst.Withoutsubtypes;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 import org.eclipse.emf.query2.internal.shared.UsageException;
 import org.eclipse.emf.query2.report.ProcessMessage;
 import org.eclipse.emf.query2.report.ProcessReport;

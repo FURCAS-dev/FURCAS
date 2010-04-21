@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.emf.query2.internal.bql.api;
 
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.internal.fql.SpiFacilityQueryLanguage;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryClientScope;
 import org.eclipse.emf.query2.internal.index.SpiMQLQueryService;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * @author D045917

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query2.internal.shared;
+package org.eclipse.emf.query2;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +41,6 @@ import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.internal.index.IndexQueryService;
 
 public class EmfHelper {
