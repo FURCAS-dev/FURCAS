@@ -8,10 +8,11 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.emf.query2;bundle-version="1.0.0",
- org.eclipse.emf.query.index;bundle-version="1.0.0",
- org.eclipse.emf.query.index.ui;bundle-version="1.0.0",
- org.eclipse.emf.query2.syntax;bundle-version="1.0.0"
+ org.eclipse.emf.query2,
+ org.eclipse.emf.query.index,
+ org.eclipse.emf.query.index.ui,
+ org.eclipse.emf.query2.syntax,
+ de.hpi.sam.bp2009.solution.scopeProvider
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.ocl.ecore,

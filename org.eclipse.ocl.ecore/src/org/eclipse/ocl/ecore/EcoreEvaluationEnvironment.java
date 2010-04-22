@@ -39,8 +39,10 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query2.EcoreHelper;
+import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
@@ -55,6 +57,9 @@ import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
+
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderFactory;
 
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
@@ -193,14 +198,31 @@ public class EcoreEvaluationEnvironment
             if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
                 return coerceValue(property, etarget.eGet(property), true);
             } else {
+				Object result = null;
             	if (property instanceof EReference &&
             				((EReference) property).getEOpposite().getOwnedOpposite() == property &&
             				((EClass) ((EReference) property).getEOpposite().getEType()).isSuperTypeOf(etarget.eClass())) {
-            		// TODO it's a hidden opposite; use query2 to query it
-            		Resource r = etarget.eResource();
-            		ResourceSet rs = r.getResourceSet();
-            		return null;
-            	}
+            		ScopeProvider sp = ScopeProviderFactory.eINSTANCE.createProjectBasedScopeProvider();
+            		EList<EObject> list = new BasicEList<EObject>();
+            		list.add(etarget);
+            		sp.setupForEObjects(list);
+            		QueryContext queryContext = sp.getForwardScopeAsQueryContext();
+            		ResourceSet rs = etarget.eResource().getResourceSet();
+            		if (rs == null) {
+            			rs = new ResourceSetImpl();
+            		}
+					Collection<EObject> resultCollection = EcoreHelper
+						.getInstance().navigateByQuery(etarget,
+							(EReference) property, queryContext, rs);
+					if (property.getUpperBound() == 1) {
+						if (!resultCollection.isEmpty()) {
+							result = resultCollection.iterator().next();
+						}
+					} else {
+						result = resultCollection;
+					}
+				}
+            	return result;
             }
         }
 
