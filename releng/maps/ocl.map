@@ -7,19 +7,19 @@ fragment@org.eclipse.ant.optional.junit=R3_5_1,:pserver:anonymous@dev.eclipse.or
 
 !*** Orbit (excluding platform entries)
 
-plugin@org.eclipse.emf.mwe2.runtime=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe2.runtime
+!***plugin@org.eclipse.emf.mwe2.runtime=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe2.runtime
 
-plugin@com.google.collect,1.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/com.google.collect_1.0.0.v201003051000.jar
-plugin@com.google.inject,2.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/com.google.inject_2.0.0.v201003051000.jar
+!***plugin@com.google.collect,1.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/com.google.collect_1.0.0.v201003051000.jar
+!***plugin@com.google.inject,2.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/com.google.inject_2.0.0.v201003051000.jar
 !***plugin@javax.servlet,2.5.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/javax.servlet_2.5.0.v200910301333.jar
 plugin@lpg.runtime.java,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/lpg.runtime.java_2.0.17.v200912221855.jar
 plugin@lpg.runtime.java.source,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/lpg.runtime.java.source_2.0.17.v200912221855.jar
-plugin@org.antlr.runtime,3.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.antlr.runtime_3.0.0.v200803061811.jar
-plugin@org.apache.ant,1.7.1=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.ant_1.7.1.v20090120-1145.zip,unpack=true
-plugin@org.apache.commons.cli,1.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.commons.cli_1.0.0.v20080604-1500.jar
-plugin@org.apache.commons.lang,2.4.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.commons.lang_2.4.0.v20081016-1030.jar
+!***plugin@org.antlr.runtime,3.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.antlr.runtime_3.0.0.v200803061811.jar
+!***plugin@org.apache.ant,1.7.1=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.ant_1.7.1.v20090120-1145.zip,unpack=true
+!***plugin@org.apache.commons.cli,1.0.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.commons.cli_1.0.0.v20080604-1500.jar
+!***plugin@org.apache.commons.lang,2.4.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.commons.lang_2.4.0.v20081016-1030.jar
 !***plugin@org.apache.commons.logging,1.1.1=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.commons.logging_1.1.1.v200904062255.jar
-plugin@org.apache.log4j,1.2.15=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.log4j_1.2.15.v200910021404.jar
+!***plugin@org.apache.log4j,1.2.15=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.apache.log4j_1.2.15.v200910021404.jar
 !***plugin@org.hamcrest.core,1.1.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.hamcrest.core_1.1.0.v20090501071000.jar
 !***plugin@org.junit,4.8.1=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100308015149/bundles/org.junit_4.8.1.v4_8_1_v20100114-1600.zip,unpack=true
 
