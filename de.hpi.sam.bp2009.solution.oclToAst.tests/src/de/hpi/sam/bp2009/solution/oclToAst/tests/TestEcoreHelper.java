@@ -19,7 +19,6 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.junit.Ignore;
 
 import de.hpi.sam.petriNet.PetriNet;
 import de.hpi.sam.petriNet.PetriNetFactory;
@@ -69,8 +68,7 @@ public class TestEcoreHelper extends TestCase {
         assertEquals(place, result.iterator().next());
     }
     
-    @Ignore // this test pending 
-    public void dontTestHiddenOppositeOclTraversal() throws ParserException {
+    public void testHiddenOppositeOclTraversal() throws ParserException {
         Transition transition = PetriNetFactory.eINSTANCE.createTransition();
         Place place = PetriNetFactory.eINSTANCE.createPlace();
         place.setTestHiddenOpposite(transition);
