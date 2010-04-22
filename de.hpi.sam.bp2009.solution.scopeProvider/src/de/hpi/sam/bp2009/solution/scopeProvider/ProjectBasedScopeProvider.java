@@ -6,35 +6,18 @@
  */
 package de.hpi.sam.bp2009.solution.scopeProvider;
 
+import java.util.Collection;
+
 import org.eclipse.core.resources.IProject;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Project Based Scope Provider</b></em>'.
- * <!-- end-user-doc -->
- *
- * <!-- begin-model-doc -->
  * Implementation of the ScopeProvider, identifies Forward and BackwardScope via EclipseProject references
- * <!-- end-model-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider#getInitialProjects <em>Initial Projects</em>}</li>
- * </ul>
- * </p>
- *
- * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getProjectBasedScopeProvider()
- * @model
- * @generated
  */
 public interface ProjectBasedScopeProvider extends ScopeProvider {
 	/**
@@ -47,115 +30,19 @@ public interface ProjectBasedScopeProvider extends ScopeProvider {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initial Projects</em>' attribute list.
-	 * @see de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage#getProjectBasedScopeProvider_InitialProjects()
-	 * @model dataType="de.hpi.sam.bp2009.solution.scopeProvider.IProject" required="true" ordered="false"
-	 * @generated
 	 */
-	EList<IProject> getInitialProjects();
-
+	Collection<IProject> getInitialProjects();
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Set the initialprojects based on eObjects
-	 * <!-- end-model-doc -->
-	 * @model initialObjectsRequired="true" initialObjectsMany="true"
-	 * @generated
-	 */
-	void setupForEObjects(EList<EObject> initialObjects);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Set the initialprojects based on resources
-	 * <!-- end-model-doc -->
-	 * @model initialResourcesRequired="true" initialResourcesMany="true"
-	 * @generated
-	 */
-	void setupForResources(EList<Resource> initialResources);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Set the initialprojects based on resourceset, iterating overall resources
-	 * <!-- end-model-doc -->
-	 * @model initialResourceSetsRequired="true" initialResourceSetsMany="true"
-	 * @generated
-	 */
-	void setupForResourceSets(EList<ResourceSet> initialResourceSets);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
 	 * ScopeProvider tries to load all resources from the referenced projects with an XMIResourceImpl.
 	 * Attention: No instance equality provided, when resources are not in the inMemory list.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation"
-	 * @generated
 	 */
-	EList<EObject> getForwardScopeAsEObjects();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.IProject"
-	 * @generated
-	 */
-	EList<IProject> getForwardScopeAsProjects();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	EList<Resource> getForwardScopeAsResources();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.URI"
-	 * @generated
-	 */
-	EList<URI> getForwardScopeAsURIs();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * ScopeProvider tries to load all resources from the referenced projects with an XMIResourceImpl.
-	 * Attention: No instance equality provided, when resources are not in the inMemory list.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	EList<EObject> getBackwardScopeAsEObjects();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.IProject"
-	 * @generated
-	 */
-	EList<IProject> getBackwardScopeAsProjects();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	EList<Resource> getBackwardScopeAsResources();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.solution.scopeProvider.URI"
-	 * @generated
-	 */
-	EList<URI> getBackwardScopeAsURIs();
+	Collection<EObject> getForwardScopeAsEObjects();
+	Collection<IProject> getForwardScopeAsProjects();
+	Collection<Resource> getForwardScopeAsResources();
+	Collection<URI> getForwardScopeAsURIs();
+	Collection<EObject> getBackwardScopeAsEObjects();
+	Collection<IProject> getBackwardScopeAsProjects();
+	Collection<Resource> getBackwardScopeAsResources();
+	Collection<URI> getBackwardScopeAsURIs();
 
 } // ProjectBasedScopeProvider

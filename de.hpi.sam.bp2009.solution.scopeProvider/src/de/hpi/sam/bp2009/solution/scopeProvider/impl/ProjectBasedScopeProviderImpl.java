@@ -24,22 +24,17 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import org.eclipse.emf.query2.QueryContext;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,39 +49,31 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderPackage;
  *
  * @generated
  */
-public class ProjectBasedScopeProviderImpl extends EObjectImpl implements ProjectBasedScopeProvider {
-	/**
-	 * The cached value of the '{@link #getInitialProjects() <em>Initial Projects</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInitialProjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<IProject> initialProjects;
+public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider {
+
+	protected Collection<IProject> initialProjects = new HashSet<IProject>();
 	protected List<WeakReference<Resource>> inMemoryResourceList;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+
 	protected ProjectBasedScopeProviderImpl() {
 		super();
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return ScopeProviderPackage.Literals.PROJECT_BASED_SCOPE_PROVIDER;
+	public ProjectBasedScopeProviderImpl (EObject...eObjects ){
+		super();
+		setupForEObjects(Arrays.asList(eObjects));
+	}
+	public ProjectBasedScopeProviderImpl (Resource...resources){
+		super();
+		setupForResources(Arrays.asList(resources));
+	}
+	public ProjectBasedScopeProviderImpl (ResourceSet... resourceSets){
+		super();
+		setupForResourceSets(Arrays.asList(resourceSets));
 	}
 
 
-	public EList<Resource> getInMemoryResources() {
-		EList<Resource> result= new BasicEList<Resource>();
+
+	public Collection<Resource> getInMemoryResources() {
+		Collection<Resource> result= new BasicEList<Resource>();
 		if (inMemoryResourceList == null) {
 			return result;
 		}
@@ -96,11 +83,7 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		return result;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+
 	public QueryContext getForwardScopeAsQueryContext() {
 		return new QueryContext() {
 			
@@ -114,17 +97,14 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			
 			@Override
 			public URI[] getResourceScope() {
-			 return (URI[]) getForwardScopeAsURIs().toArray();
+				Collection<URI> list = getForwardScopeAsURIs();
+			 return (URI[]) list.toArray(new URI[list.size()]);
 				
 			}
 		};
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+
 	public QueryContext getBackwardScopeAsQueryContext() {
 		return new QueryContext() {
 			
@@ -138,236 +118,110 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			
 			@Override
 			public URI[] getResourceScope() {
-			 return (URI[]) getBackwardScopeAsURIs().toArray();
-				
+				Collection<URI> list =getBackwardScopeAsURIs();
+			 return (URI[]) list.toArray(new URI[list.size()]);
 			}
 		};
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<IProject> getInitialProjects() {
-		if (initialProjects == null) {
-			initialProjects = new EDataTypeUniqueEList<IProject>(IProject.class, this, ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS);
-		}
+
+	public Collection<IProject> getInitialProjects() {
+
 		return initialProjects;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setupForEObjects(EList<EObject> initialObjects) {
+
+	private void setupForEObjects(List<EObject> list) {
 		Set<Resource> initialResources = new HashSet<Resource>();
-		for(EObject eObject: initialObjects){
+		for(EObject eObject: list){
 			Resource r = eObject.eResource();
 			if(r!=null){
 				initialResources.add(r);
 			}
 		}
-		setupForResources(convertSetToEList(initialResources));
+		setupForResources(initialResources);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setupForResources(EList<Resource> initialResources) {
-		for(Resource res: initialResources){
+	private void setupForResources(Collection<Resource> list) {
+		for(Resource res: list){
 			ResourceSet set=res.getResourceSet();
 			URIConverter converter=set.getURIConverter();
 			if(converter==null){
 				converter= URIConverter.INSTANCE;
 			}
-			EList<Resource> inmem=getInMemoryResources();
+			/*
+			 * update inMemory Resources
+			 */
+			Collection<Resource> inmem=getInMemoryResources();
 			inmem.add(res);
 			setInMemoryResources(inmem);
+			
 			IProject project = getProjectForResource(res, converter);
-			getInitialProjects().add(project);
+			if(project!=null)
+				initialProjects.add(project);
 		}
 
 
 
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setupForResourceSets(EList<ResourceSet> initialResourceSets) {
+	private void setupForResourceSets(List<ResourceSet> list) {
 		Set<Resource> initialResources= new HashSet<Resource>();
-		for(ResourceSet set: initialResourceSets)
+		for(ResourceSet set: list)
 			for(Resource r: set.getResources())
 				initialResources.add(r);
-		setupForResources(convertSetToEList(initialResources));
+		setupForResources(initialResources);
 
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<EObject> getForwardScopeAsEObjects() {
+	public Collection<EObject> getForwardScopeAsEObjects() {
 		return scopeAsEObjects(getForwardScopeAsResources());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<IProject> getForwardScopeAsProjects() {
+
+	public Collection<IProject> getForwardScopeAsProjects() {
 		return scopeAsProjects(true);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Resource> getForwardScopeAsResources() {
+	public Collection<Resource> getForwardScopeAsResources() {
 		return scopeAsResources(getForwardScopeAsProjects());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<URI> getForwardScopeAsURIs() {
+
+	public Collection<URI> getForwardScopeAsURIs() {
 		return scopeAsUris(getForwardScopeAsResources());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<EObject> getBackwardScopeAsEObjects() {
+
+	public Collection<EObject> getBackwardScopeAsEObjects() {
 		return scopeAsEObjects(getBackwardScopeAsResources());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<IProject> getBackwardScopeAsProjects() {
+
+	public Collection<IProject> getBackwardScopeAsProjects() {
 		return scopeAsProjects(false);
 
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Resource> getBackwardScopeAsResources() {
+
+	public Collection<Resource> getBackwardScopeAsResources() {
 		return scopeAsResources(getBackwardScopeAsProjects());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<URI> getBackwardScopeAsURIs() {
+
+	public Collection<URI> getBackwardScopeAsURIs() {
 		return scopeAsUris(getBackwardScopeAsResources());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setInMemoryResources(EList<Resource> resources) {
+
+	public void setInMemoryResources(Collection<Resource> resources) {
 		inMemoryResourceList= new ArrayList<WeakReference<Resource>>();
 		for(Resource r: resources)
 			inMemoryResourceList.add(new WeakReference<Resource>(r));
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
-				return getInitialProjects();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
-				getInitialProjects().clear();
-				getInitialProjects().addAll((Collection<? extends IProject>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
-				getInitialProjects().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScopeProviderPackage.PROJECT_BASED_SCOPE_PROVIDER__INITIAL_PROJECTS:
-				return initialProjects != null && !initialProjects.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (initialProjects: "); //$NON-NLS-1$
-		result.append(initialProjects);
-		result.append(')');
-		return result.toString();
-	}
 
 	/**
 	 * Add a resource with the given URI to the given Set of resources
@@ -420,16 +274,6 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		return successful;
 	}
 
-	/**
-	 * Creates a new EList containing all Elements of the given set
-	 * @param initialResources given Set
-	 * @return new EList
-	 */
-	private EList<Resource> convertSetToEList(Set<Resource> initialResources) {
-		EList<Resource> list= new BasicEList<Resource>();
-		list.addAll(initialResources);
-		return list;
-	}
 
 	private IProject getProjectForResource(Resource res, URIConverter converter)
 	throws IllegalArgumentException {
@@ -444,10 +288,10 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			if(c instanceof IProject)
 				project=(IProject) c;
 		/*
-		 * Think about a better way for resource without projects
+		 * TODO Think about a better way for resource without projects
 		 */
-		if(project==null)
-			throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+//		if(project==null)
+//			throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
 		return project;
 	}
 	
@@ -498,8 +342,8 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		return (IFolder)member;
 	}
 
-	private EList<EObject> iteratorToEList(Iterator<?> treeIterator) {
-		EList<EObject> treeAsList= new BasicEList<EObject>();
+	private Collection<EObject> iteratorToCollection(Iterator<?> treeIterator) {
+		Collection<EObject> treeAsList= new BasicEList<EObject>();
 		while(treeIterator.hasNext()){
 			Object next=treeIterator.next();
 			if(next instanceof EObject)
@@ -517,7 +361,7 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 	 * @return the List of all references
 	 * @throws CoreException
 	 */
-	private EList<IProject> recursiveGetReferenceProjectsForEList(IProject project,EList<IProject> referencedProjects, Collection<IProject> pool, Boolean forward) throws CoreException{
+	private Collection<IProject> recursiveGetReferenceProjectsForProjects(IProject project,Collection<IProject> referencedProjects, Collection<IProject> pool, Boolean forward) throws CoreException{
 		/*
 		 * referencing in both directions is reflexive
 		 */
@@ -536,13 +380,13 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 			if(!pool.contains(referenced))
 				continue;
 			referencedProjects.add(referenced);
-			recursiveGetReferenceProjectsForEList(referenced, referencedProjects, pool, forward);
+			recursiveGetReferenceProjectsForProjects(referenced, referencedProjects, pool, forward);
 		}
 		return referencedProjects;		
 	}
 
-	private EList<EObject> scopeAsEObjects(EList<Resource> resources) {
-		EList<EObject> result= new BasicEList<EObject>();
+	private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
+		Collection<EObject> result= new HashSet<EObject>();
 		for(Resource resource: resources){
 			/*
 			 * FIXME unfortunately a memory leak
@@ -554,18 +398,18 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 					// TODO Add Exception to an intern array of errors
 					e.printStackTrace();
 				}
-			result.addAll(iteratorToEList(resource.getAllContents()));
+			result.addAll(iteratorToCollection(resource.getAllContents()));
 		}
 		return result;
 	}
 
-	private EList<IProject> scopeAsProjects(Boolean forward) {
-		EList<IProject> result= new BasicEList<IProject>();
+	private Collection<IProject> scopeAsProjects(Boolean forward) {
+		Collection<IProject> result= new BasicEList<IProject>();
 		Collection<IProject> pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
 
 		for(IProject project: getInitialProjects()){
 			try {
-				result = recursiveGetReferenceProjectsForEList(project, result, pool, forward);
+				result = recursiveGetReferenceProjectsForProjects(project, result, pool, forward);
 			} catch (CoreException e) {
 				// TODO Add Exception to an intern array of errors
 				e.printStackTrace();
@@ -574,9 +418,9 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 		return result;
 	}
 
-	private EList<Resource> scopeAsResources(EList<IProject> projects)
+	private Collection<Resource> scopeAsResources(Collection<IProject> projects)
 	throws IllegalArgumentException {
-		EList<Resource> result= new BasicEList<Resource>();
+		Collection<Resource> result= new HashSet<Resource>();
 		for(IProject project: projects){
 			IFolder modelDir = getModelDirectoryFromProject(project);
 			try {
@@ -586,13 +430,16 @@ public class ProjectBasedScopeProviderImpl extends EObjectImpl implements Projec
 				e.printStackTrace();
 			}
 		}
+		result.addAll(getInMemoryResources());
+
 		return result;
 	}
 
-	private EList<URI> scopeAsUris(EList<Resource> resources) {
-		EList<URI> result= new BasicEList<URI>();
+	private Collection<URI> scopeAsUris(Collection<Resource> resources) {
+		Collection<URI> result= new BasicEList<URI>();
 		for(Resource res: resources){
-			result.add(res.getURI());
+			if(res.getURI()!=null)
+				result.add(res.getURI());
 		}
 		return result;
 	}
