@@ -59,7 +59,7 @@ import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProviderFactory;
+import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
@@ -202,10 +202,7 @@ public class EcoreEvaluationEnvironment
             	if (property instanceof EReference &&
             				((EReference) property).getEOpposite().getOwnedOpposite() == property &&
             				((EClass) ((EReference) property).getEOpposite().getEType()).isSuperTypeOf(etarget.eClass())) {
-            		ScopeProvider sp = ScopeProviderFactory.eINSTANCE.createProjectBasedScopeProvider();
-            		EList<EObject> list = new BasicEList<EObject>();
-            		list.add(etarget);
-            		sp.setupForEObjects(list);
+            		ScopeProvider sp = new ProjectBasedScopeProviderImpl(etarget);
             		QueryContext queryContext = sp.getForwardScopeAsQueryContext();
             		ResourceSet rs = etarget.eResource().getResourceSet();
             		if (rs == null) {
