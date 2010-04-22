@@ -70,6 +70,7 @@ import org.eclipse.emf.importer.rose.parser.Util;
  */
 public class RoseEcoreBuilder implements RoseVisitor
 {
+    private static final String UML2MOF_CLUSTERED_IMPORT = "\"uml2mof.clusteredImport\"";
     private static final String ROSE2MOF_CONSTRAINED_ELEMENTS = "\"rose2mof.constrainedElements\"";
     private static final String MOF = "\"MOF\"";
     private static final String VALIDATION_DELEGATES = "validationDelegates";
@@ -219,6 +220,8 @@ protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, Strin
         EList<Object> list = (EList<Object>)parent;
         list.add(ePackage);
       }
+      // add clustered imports
+      addPackagesFromClusteredImports(roseNode, ePackage, UML2MOF_CLUSTERED_IMPORT);
       setEPackageProperties(roseNode, ePackage, objectName.toLowerCase());
     }
     else
@@ -226,6 +229,31 @@ protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, Strin
       idToParentMap.put(roseNode.getRoseId(), parent);
     }
   }
+
+/**
+ * @param roseNode
+ * @param ePackage
+ * @param property
+ */
+private void addPackagesFromClusteredImports(RoseNode roseNode, EPackage ePackage, String property) {
+    for(RoseNode n: roseNode.getNodes()){
+          if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
+              
+              for(RoseNode attr: n.getNodes()){
+                  if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){
+                      String[] pkgNames = parseAttributesFromNode(attr, property);
+                      if(pkgNames == null)
+                          continue;
+                      for(String pkgName: pkgNames){ 
+                          EPackage pkg = EcoreFactory.eINSTANCE.createEPackage();
+                          ePackage.getESubpackages().add(pkg);
+                          setEPackageProperties(roseNode, pkg, pkgName);
+                      }                             
+                  }
+              }
+          }
+      }
+}
 
 protected void visitConstraintClass(RoseNode constraintClassRoseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
   {
@@ -255,26 +283,15 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
     }
     if(!(parent instanceof EClassifier)){
         if(parent instanceof EPackage){
-        
+          
             for(RoseNode n: constraintClassRoseNode.getNodes()){
                 if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
                     
                     for(RoseNode attr: n.getNodes()){
-                        if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){
-                            // there should be exactly 3 columns
-                            if(attr.getNodes().size()!=3)
+                        if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
+                            String[] clsNames = parseAttributesFromNode(attr, ROSE2MOF_CONSTRAINED_ELEMENTS);
+                            if(clsNames == null)
                                 continue;
-                            // first column MOF
-                            String firstAttrValue= attr.getNodes().get(0).getValue();
-                            
-                            if(!MOF.equals(firstAttrValue))
-                                continue;
-                            //second column should define the key rose2mof.constrainedElements"
-                            String secondAttrValue= attr.getNodes().get(1).getValue();
-                            if(!ROSE2MOF_CONSTRAINED_ELEMENTS.equals(secondAttrValue))
-                                continue;
-                            String thirdAttrValue= Util.getName(attr.getNodes().get(2).getNodes().get(0).getValue());
-                            String[] clsNames= thirdAttrValue.split(",");
                             for(String clsName: clsNames){                               
                                 this.deferredConstraints.add(new DeferredConstraintAnnotation(constraintName, constraintExpr, clsName));
                             }                             
@@ -288,6 +305,22 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
     EClassifier clazz = (EClassifier) parent;
     addConstraintToClass(constraintName, constraintExpr, clazz);
     
+}
+private String[] parseAttributesFromNode(RoseNode node, String property){
+    // there should be exactly 3 columns
+    if(node.getNodes().size()!=3)
+        return null;
+    // first column MOF
+    String firstAttrValue= node.getNodes().get(0).getValue();
+    
+    if(!MOF.equals(firstAttrValue))
+        return null;
+    //second column should define the key rose2mof.constrainedElements"
+    String secondAttrValue= node.getNodes().get(1).getValue();
+    if(!property.equals(secondAttrValue))
+        return null;
+    String thirdAttrValue= Util.getName(node.getNodes().get(2).getNodes().get(0).getValue());
+    return thirdAttrValue.split(",");
 }
 public void processDefferendConstraints(){   
     for(EClassifier cls: this.allClasses){
@@ -2555,6 +2588,7 @@ private void addConstraintToClass(String constraintName, String constraintExpr, 
 
   public void createEPackageForRootClasses(EList<EObject> extent, RoseNode roseNode, String packageName)
   {
+      
     ArrayList<EObject> list = new ArrayList<EObject>();
     for (EObject eObject : extent)
     {
