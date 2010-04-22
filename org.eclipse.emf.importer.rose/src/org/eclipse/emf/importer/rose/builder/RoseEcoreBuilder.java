@@ -70,6 +70,7 @@ import org.eclipse.emf.importer.rose.parser.Util;
  */
 public class RoseEcoreBuilder implements RoseVisitor
 {
+    private static final String SAP2MOF_OPERATION_CODE_OCL = "\"sap2mof.OperationCodeOcl\"";
     private static final String UML2MOF_CLUSTERED_IMPORT = "\"uml2mof.clusteredImport\"";
     private static final String ROSE2MOF_CONSTRAINED_ELEMENTS = "\"rose2mof.constrainedElements\"";
     private static final String MOF = "\"MOF\"";
@@ -81,6 +82,8 @@ public class RoseEcoreBuilder implements RoseVisitor
     private static final String DELEGATE_URI = "http://de.hpi.sam.bp2009.OCL";
     private static final String ECORE_NS_URI = "http://www.eclipse.org/emf/2002/Ecore";
     private static final String CONSTRAINTS = "constraints";
+    //do you want to parse the semantic tab infos?
+    public boolean activateSemanticsTab = false;
 
     class DeferredConstraintAnnotation{
         public DeferredConstraintAnnotation(String constraintName, String constraintExpr, String clsName2) {
@@ -120,6 +123,7 @@ public class RoseEcoreBuilder implements RoseVisitor
   protected Map<EModelElement, RoseNode> eModelElementToRoseNodeMap = new HashMap<EModelElement, RoseNode>();
   private List<DeferredConstraintAnnotation> deferredConstraints = new ArrayList<RoseEcoreBuilder.DeferredConstraintAnnotation>();
   private List<EClassifier> allClasses = new ArrayList<EClassifier>();
+
 
   public RoseEcoreBuilder(RoseUtil roseUtil)
   {
@@ -303,7 +307,7 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
         return;
     }
     EClassifier clazz = (EClassifier) parent;
-    addConstraintToClass(constraintName, constraintExpr, clazz);
+    addConstraintToNamedElement(constraintName, constraintExpr, clazz);
     
 }
 private String[] parseAttributesFromNode(RoseNode node, String property){
@@ -315,18 +319,31 @@ private String[] parseAttributesFromNode(RoseNode node, String property){
     
     if(!MOF.equals(firstAttrValue))
         return null;
-    //second column should define the key rose2mof.constrainedElements"
+    //second column should define the given property"
     String secondAttrValue= node.getNodes().get(1).getValue();
     if(!property.equals(secondAttrValue))
         return null;
     String thirdAttrValue= Util.getName(node.getNodes().get(2).getNodes().get(0).getValue());
+     
+    // we have found a constraint
+    if(thirdAttrValue == null && SAP2MOF_OPERATION_CODE_OCL.equals(property)){
+        List<RoseNode> nodes = node.getNodes().get(2).getNodes().get(0).getNodes();
+        String[] forthAttrValue = new String[nodes.size()];
+        
+        int i = 0;
+        for(RoseNode n: nodes){
+            forthAttrValue[i] = n.getValue();
+            i++;
+        }  
+        return forthAttrValue;
+    }
     return thirdAttrValue.split(",");
 }
 public void processDefferendConstraints(){   
     for(EClassifier cls: this.allClasses){
         for(DeferredConstraintAnnotation anno: deferredConstraints){
             if(cls.getName().equals(anno.clsName)){
-                addConstraintToClass(anno.name, anno.expr, cls);
+                addConstraintToNamedElement(anno.name, anno.expr, cls);
             }
         }
         
@@ -335,15 +352,15 @@ public void processDefferendConstraints(){
 /**
  * @param constraintName
  * @param constraintExpr
- * @param clazz
+ * @param element
  */
-private void addConstraintToClass(String constraintName, String constraintExpr, EClassifier clazz) {
-    EcoreUtil.setAnnotation(clazz, DELEGATE_URI, constraintName, constraintExpr);
-    String csString=EcoreUtil.getAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS);
+private void addConstraintToNamedElement(String constraintName, String constraintExpr, ENamedElement element) {
+    EcoreUtil.setAnnotation(element, DELEGATE_URI, constraintName, constraintExpr);
+    String csString=EcoreUtil.getAnnotation(element, ECORE_NS_URI, CONSTRAINTS);
     if(csString==null)
-        EcoreUtil.setAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS, constraintName);
+        EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, constraintName);
     else
-        EcoreUtil.setAnnotation(clazz, ECORE_NS_URI, CONSTRAINTS, csString+" "+constraintName);
+        EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, csString+" "+constraintName);
 }
 
   protected void visitClass(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
@@ -539,6 +556,9 @@ private void addConstraintToClass(String constraintName, String constraintExpr, 
             return;
     EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
     String operationName = roseNode.getOperationName();
+    
+    addConstraintsForOperation(roseNode, eOperation);
+       
     String rawName = operationName;
     if (operationName == null || operationName.length() == 0)
     {
@@ -572,6 +592,32 @@ private void addConstraintToClass(String constraintName, String constraintExpr, 
       ((EClass)parent).getEOperations().add(eOperation);
     }
   }
+
+/**
+ * @param roseNode the node, containing the rose operation
+ * @param eOperation the operation the constraint should be added to
+ */
+private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation) {
+    for(RoseNode n: roseNode.getNodes()){
+        if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
+           
+            for(RoseNode attr: n.getNodes()){
+                if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
+                    String[] constraints = parseAttributesFromNode(attr, SAP2MOF_OPERATION_CODE_OCL);
+                    if(constraints == null)
+                        continue;
+                    String result = "";
+                    for(String clsName: constraints){
+                        result = result.concat(clsName);                                                                       
+                    } 
+                    String expr = result.substring(result.indexOf("body:") + 5).trim();
+                    //TODO ensure that the constrained name is always body and not pre/post/...
+                    addConstraintToNamedElement("body", expr, eOperation);
+                }
+            }
+        }
+    }
+}
 
   protected void visitParameter(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
   {
@@ -1100,7 +1146,7 @@ private void addConstraintToClass(String constraintName, String constraintExpr, 
     eOperation.setUnique(roseNode.isUnique());
     
     String semantics = roseNode.getSemantics();
-    if (semantics != null)
+    if (semantics != null && activateSemanticsTab)
     {
       EAnnotation eAnnotation = eOperation.getEAnnotation(GenModelPackage.eNS_URI);
       if (eAnnotation == null)
