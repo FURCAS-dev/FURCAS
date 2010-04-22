@@ -12,10 +12,12 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
@@ -31,13 +33,10 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 		return exceptions;
 	}
 	public void convertOclAnnotation(EModelElement modelElement) {
-		exceptions= new ArrayList<Exception>();
 		EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
 		if(a==null)
 			return;
 		for( Entry<String, String> detail: a.getDetails()){
-
-
 			String e = detail.getValue();
 			if(e ==null)
 				return;
@@ -79,6 +78,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 			String constraintName) {
 		OCLExpression query = null;
 		EAnnotation anno=element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
+		if(anno==null)
+			return null;
 		int pos=-1;
 		int count=0;
 		for(String constraint1:anno.getDetails().values()){
@@ -93,6 +94,24 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 				query= (OCLExpression)anno.eContents().get(pos);
 
 		return query;
+	}
+	@Override
+	public void traversalConvertOclAnnotations(EPackage pkg) {
+		exceptions = new ArrayList<Exception>();
+		
+		for(EClassifier cls:pkg.getEClassifiers()){
+			convertOclAnnotation(cls);
+			if(cls instanceof EClass){
+				for(EOperation op:((EClass)cls).getEOperations())
+					convertOclAnnotation(op);
+				for(EAttribute at: ((EClass)cls).getEAttributes())
+					convertOclAnnotation(at);
+			}
+		}
+		
+		for(EPackage p:pkg.getESubpackages())
+			traversalConvertOclAnnotations(p);
+	
 	}
 
 } //EAnnotationOCLParserImpl

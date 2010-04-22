@@ -31,6 +31,8 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
 import org.eclipse.osgi.util.NLS;
 
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+
 /**
  * An implementation of an operation-invocation delegate for OCL body
  * expressions.
@@ -63,7 +65,8 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
 		 * 
 		 */
 		if(body == null)
-			return super.dynamicInvoke(target, arguments);
+			throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+
 		
 		OCL.Query query = ocl.createQuery(body);
 		EList<EParameter> parms = eOperation.getEParameters();

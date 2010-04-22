@@ -50,7 +50,8 @@ public class OCLValidationDelegateForAnnotations extends OCLValidationDelegate
 		OCLExpression query = parser.getExpressionFromAnnotationsOf(eClass,invariant.getName());
 		if(query!=null)
 			return check(eObject, invariant.getName(), query);
-		return super.validate(eClass, eObject, context, invariant, expression);
+		
+		throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
 	}
 	
 
@@ -60,7 +61,7 @@ public class OCLValidationDelegateForAnnotations extends OCLValidationDelegate
 		OCLExpression query = parser.getExpressionFromAnnotationsOf(eClass,constraint);
 		if(query!=null)
 			return check(eObject, constraint, query);
-		return validate(eClass, eObject,context, constraint, expression);
+		throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
@@ -69,6 +70,6 @@ public class OCLValidationDelegateForAnnotations extends OCLValidationDelegate
 		OCLExpression query =  parser.getExpressionFromAnnotationsOf(eDataType,constraint);
 		if(query!=null)
 			return check(value, constraint, query);
-		return super.validate(eDataType, value, context, constraint, expression);
+		throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
 	}
 }
