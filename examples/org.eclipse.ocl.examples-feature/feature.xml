@@ -57,7 +57,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ocl.examples.parser.unresolved" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.parser" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.6.0" match="compatible"/>
-      <import plugin="org.apache.log4j"/>
       <import plugin="org.eclipse.xtext" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.util" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtend" version="1.0.0" match="greaterOrEqual"/>
@@ -66,6 +65,15 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.apache.commons.logging" version="1.1.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.mwe.core" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.apache.ant" version="1.7.1" match="greaterOrEqual"/>
+      <import plugin="org.apache.log4j"/>
+      <import plugin="org.eclipse.ui" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.editors" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.6.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.builder" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.xtext.ui.shared" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.common" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core"/>
    </requires>
 
    <plugin
@@ -161,6 +169,41 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.ocl.examples.xtext.essentialocl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.completeocl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.completeocl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.essentialocl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.oclinecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.ocl.examples.xtext.oclinecore.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
