@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.query2,
  org.eclipse.emf.query.index,
  org.eclipse.emf.query.index.ui,
- org.eclipse.emf.query2.syntax,
  de.hpi.sam.bp2009.solution.scopeProvider
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
