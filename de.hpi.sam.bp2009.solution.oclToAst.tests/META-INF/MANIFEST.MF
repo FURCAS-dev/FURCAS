@@ -14,5 +14,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit;visibility:=reexport,
  org.eclipse.ocl,
  de.hpi.sam.petriNet,
- org.eclipse.emf.query2
+ org.eclipse.emf.query2,
+ org.eclipse.ocl.ecore
 Bundle-ActivationPolicy: lazy

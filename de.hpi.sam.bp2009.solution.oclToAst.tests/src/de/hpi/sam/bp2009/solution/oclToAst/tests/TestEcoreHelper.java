@@ -14,8 +14,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query2.EcoreHelper;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.junit.Ignore;
 
-import de.hpi.sam.bp2009.solution.oclToAst.EcoreHelper;
 import de.hpi.sam.petriNet.PetriNet;
 import de.hpi.sam.petriNet.PetriNetFactory;
 import de.hpi.sam.petriNet.PetriNetPackage;
@@ -62,5 +67,22 @@ public class TestEcoreHelper extends TestCase {
         Collection<EObject> result = helper.reverseNavigate(transition, (EReference) place.eClass().getEStructuralFeature(
                 PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE), helper.getQueryContext(rs), rs);
         assertEquals(place, result.iterator().next());
+    }
+    
+    @Ignore // this test pending 
+    public void dontTestHiddenOppositeOclTraversal() throws ParserException {
+        Transition transition = PetriNetFactory.eINSTANCE.createTransition();
+        Place place = PetriNetFactory.eINSTANCE.createPlace();
+        place.setTestHiddenOpposite(transition);
+        ResourceSet rs = new ResourceSetImpl();
+        Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
+        e.getContents().add(place);
+        e.getContents().add(transition);
+        OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+        Helper oclHelper = ocl.createOCLHelper();
+        oclHelper.setContext(transition.eClass());
+        OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
+        Object result = ocl.evaluate(transition, expr);
+        assertEquals(place, result);
     }
 }
