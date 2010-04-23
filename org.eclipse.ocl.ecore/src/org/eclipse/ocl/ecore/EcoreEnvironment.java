@@ -696,7 +696,10 @@ public class EcoreEnvironment
 
 	@Override
     protected void findNonNavigableAssociationEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
-		final ResourceSet rs = new ResourceSetImpl();
+		ResourceSet rs = classifier.eResource().getResourceSet();
+		if (rs == null) {
+			rs = new ResourceSetImpl();
+		}
 		StringBuilder allClassifierSupertypeUris = new StringBuilder();
 		allClassifierSupertypeUris.append('[');
 		allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
