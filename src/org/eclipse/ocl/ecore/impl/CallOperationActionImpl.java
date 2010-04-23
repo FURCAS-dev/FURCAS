@@ -12,19 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: CallOperationActionImpl.java,v 1.7 2008/11/24 00:39:31 cdamus Exp $
+ * $Id: CallOperationActionImpl.java,v 1.8 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.EcorePackage;
 

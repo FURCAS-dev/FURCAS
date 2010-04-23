@@ -13,12 +13,11 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.4 2008/11/24 00:38:18 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.5 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 

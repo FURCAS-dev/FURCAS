@@ -13,25 +13,74 @@
  * 
  * </copyright>
  *
- * $Id: EcoreAdapterFactory.java,v 1.9 2009/12/06 18:16:10 ewillink Exp $
+ * $Id: EcoreAdapterFactory.java,v 1.10 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.ocl.ecore.*;
-
+import org.eclipse.ocl.ecore.AnyType;
+import org.eclipse.ocl.ecore.AssociationClassCallExp;
+import org.eclipse.ocl.ecore.BagType;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.CallExp;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
+import org.eclipse.ocl.ecore.CollectionLiteralPart;
+import org.eclipse.ocl.ecore.CollectionRange;
+import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.ElementType;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.FeatureCallExp;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.IntegerLiteralExp;
+import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.ocl.ecore.InvalidType;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LiteralExp;
+import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.MessageExp;
+import org.eclipse.ocl.ecore.MessageType;
+import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.NullLiteralExp;
+import org.eclipse.ocl.ecore.NumericLiteralExp;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OrderedSetType;
+import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
+import org.eclipse.ocl.ecore.PrimitiveType;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.RealLiteralExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.SequenceType;
+import org.eclipse.ocl.ecore.SetType;
+import org.eclipse.ocl.ecore.StateExp;
+import org.eclipse.ocl.ecore.StringLiteralExp;
+import org.eclipse.ocl.ecore.TemplateParameterType;
+import org.eclipse.ocl.ecore.TupleLiteralExp;
+import org.eclipse.ocl.ecore.TupleLiteralPart;
+import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.TypeType;
+import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.ecore.UnspecifiedValueExp;
+import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;
