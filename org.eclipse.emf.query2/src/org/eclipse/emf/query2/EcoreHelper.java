@@ -127,6 +127,10 @@ public class EcoreHelper {
         reverseNavigate(from, forwardReference, scope, from.eResource().getResourceSet(), result);
     }
     
+    /**
+     * Constructs a query context that contains all of <tt>rs</tt>'s resources and all
+     * metamodel resources
+     */
     public QueryContext getQueryContext(final ResourceSet rs) {
         return new QueryContext() {
                 public URI[] getResourceScope() {
