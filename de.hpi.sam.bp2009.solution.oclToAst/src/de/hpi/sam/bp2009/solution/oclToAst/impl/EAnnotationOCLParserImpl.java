@@ -6,10 +6,12 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,6 +21,10 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -31,6 +37,37 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 	private List<Exception> exceptions;
 	public List<Exception> getExceptions(){
 		return exceptions;
+	}
+	public static void main(String[] args) {
+		String uri="file://c:/eclipse/workspace/de.hpi.sam.petriNet/model/petriNet.ecore";
+
+		if(args.length>1)
+			uri=args[1];
+        ResourceSet load_resourceSet = new ResourceSetImpl();
+
+        /*
+         * Register XML Factory implementation using DEFAULT_EXTENSION
+         */
+        load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
+        /*
+         * Load the resource using the URI
+         */
+        Resource r = load_resourceSet.getResource(URI.createURI(uri), true);
+        try {
+			r.load(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(r.getContents().get(0));
+		new EAnnotationOCLParserImpl().traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
+		try {
+			r.save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 	}
 	public void convertOclAnnotation(EModelElement modelElement) {
 		EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
