@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.7 2009/01/22 00:20:02 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.8 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.ocl.ecore.CollectionLiteralPart;
 import org.eclipse.ocl.ecore.EcorePackage;
-import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.ocl.util.ToStringVisitor;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
