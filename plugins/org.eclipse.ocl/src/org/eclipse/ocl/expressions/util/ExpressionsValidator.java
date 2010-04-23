@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsValidator.java,v 1.2 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: ExpressionsValidator.java,v 1.3 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.util;
 
@@ -21,12 +21,45 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
-import org.eclipse.ocl.expressions.*;
+import org.eclipse.ocl.expressions.AssociationClassCallExp;
+import org.eclipse.ocl.expressions.BooleanLiteralExp;
+import org.eclipse.ocl.expressions.CallExp;
+import org.eclipse.ocl.expressions.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.CollectionLiteralExp;
+import org.eclipse.ocl.expressions.CollectionLiteralPart;
+import org.eclipse.ocl.expressions.CollectionRange;
+import org.eclipse.ocl.expressions.EnumLiteralExp;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.FeatureCallExp;
+import org.eclipse.ocl.expressions.IfExp;
+import org.eclipse.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.IterateExp;
+import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.LetExp;
+import org.eclipse.ocl.expressions.LiteralExp;
+import org.eclipse.ocl.expressions.LoopExp;
+import org.eclipse.ocl.expressions.MessageExp;
+import org.eclipse.ocl.expressions.NavigationCallExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
+import org.eclipse.ocl.expressions.NumericLiteralExp;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PrimitiveLiteralExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.RealLiteralExp;
+import org.eclipse.ocl.expressions.StateExp;
+import org.eclipse.ocl.expressions.StringLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.TypeExp;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.expressions.UnspecifiedValueExp;
+import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 
 /**
@@ -590,6 +623,9 @@ public class ExpressionsValidator
 	public boolean validateBooleanLiteralExp(
 			BooleanLiteralExp<?> booleanLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(booleanLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(booleanLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -598,6 +634,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(booleanLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(booleanLiteralExp,
 				diagnostics, context);
@@ -656,6 +695,9 @@ public class ExpressionsValidator
 	 */
 	public boolean validateCollectionItem(CollectionItem<?> collectionItem,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionItem, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(collectionItem,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -664,6 +706,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionItem,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionItem, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionItem, diagnostics,
 				context);
@@ -713,6 +758,9 @@ public class ExpressionsValidator
 	public boolean validateCollectionLiteralExp(
 			CollectionLiteralExp<?> collectionLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -721,6 +769,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionLiteralExp,
 				diagnostics, context);
@@ -819,6 +870,9 @@ public class ExpressionsValidator
 	 */
 	public boolean validateCollectionRange(CollectionRange<?> collectionRange,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionRange, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(collectionRange,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -827,6 +881,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionRange,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionRange, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionRange, diagnostics,
 				context);
@@ -863,6 +920,9 @@ public class ExpressionsValidator
 	 */
 	public boolean validateEnumLiteralExp(EnumLiteralExp<?, ?> enumLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(enumLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(enumLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -871,6 +931,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(enumLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(enumLiteralExp, diagnostics,
 				context);
@@ -907,6 +970,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateIfExp(IfExp<?> ifExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(ifExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(ifExp, diagnostics,
 			context);
 		if (result || diagnostics != null)
@@ -915,6 +980,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(ifExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(ifExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(ifExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -961,6 +1029,9 @@ public class ExpressionsValidator
 	public boolean validateIntegerLiteralExp(
 			IntegerLiteralExp<?> integerLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(integerLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(integerLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -969,6 +1040,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(integerLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(integerLiteralExp,
 				diagnostics, context);
@@ -1018,6 +1092,9 @@ public class ExpressionsValidator
 	public boolean validateUnlimitedNaturalLiteralExp(
 			UnlimitedNaturalLiteralExp<?> unlimitedNaturalLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(unlimitedNaturalLiteralExp,
+			diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1025,6 +1102,9 @@ public class ExpressionsValidator
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(
+				unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(unlimitedNaturalLiteralExp,
@@ -1076,6 +1156,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateIterateExp(IterateExp<?, ?> iterateExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(iterateExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(iterateExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1083,6 +1165,9 @@ public class ExpressionsValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(iterateExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(iterateExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(iterateExp, diagnostics,
@@ -1158,6 +1243,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateLoopExp(LoopExp<?, ?> loopExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(loopExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(loopExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1166,6 +1253,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(loopExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(loopExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1227,6 +1317,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateVariable(Variable<?, ?> variable,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(variable, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(variable,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1235,6 +1327,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(variable, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(variable,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(variable, diagnostics,
 				context);
@@ -1269,6 +1364,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateIteratorExp(IteratorExp<?, ?> iteratorExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(iteratorExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(iteratorExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1276,6 +1373,9 @@ public class ExpressionsValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(iteratorExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(iteratorExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(iteratorExp, diagnostics,
@@ -1366,6 +1466,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateLetExp(LetExp<?, ?> letExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(letExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(letExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1374,6 +1476,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(letExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(letExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(letExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1405,6 +1510,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateMessageExp(MessageExp<?, ?, ?> messageExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(messageExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(messageExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1412,6 +1519,9 @@ public class ExpressionsValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(messageExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(messageExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(messageExp, diagnostics,
@@ -1520,6 +1630,9 @@ public class ExpressionsValidator
 	public boolean validateOperationCallExp(
 			OperationCallExp<?, ?> operationCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(operationCallExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(operationCallExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1528,6 +1641,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(operationCallExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(operationCallExp,
 				diagnostics, context);
@@ -1580,6 +1696,9 @@ public class ExpressionsValidator
 	public boolean validatePropertyCallExp(
 			PropertyCallExp<?, ?> propertyCallExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(propertyCallExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(propertyCallExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1588,6 +1707,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(propertyCallExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(propertyCallExp, diagnostics,
 				context);
@@ -1624,6 +1746,9 @@ public class ExpressionsValidator
 	 */
 	public boolean validateRealLiteralExp(RealLiteralExp<?> realLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(realLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(realLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1632,6 +1757,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(realLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				realLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(realLiteralExp, diagnostics,
 				context);
@@ -1679,6 +1807,9 @@ public class ExpressionsValidator
 	public boolean validateStringLiteralExp(
 			StringLiteralExp<?> stringLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(stringLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(stringLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1687,6 +1818,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(stringLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(stringLiteralExp,
 				diagnostics, context);
@@ -1724,6 +1858,9 @@ public class ExpressionsValidator
 	public boolean validateTupleLiteralExp(
 			TupleLiteralExp<?, ?> tupleLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(tupleLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(tupleLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1732,6 +1869,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				tupleLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleLiteralExp, diagnostics,
 				context);
@@ -1784,6 +1924,9 @@ public class ExpressionsValidator
 	public boolean validateTupleLiteralPart(
 			TupleLiteralPart<?, ?> tupleLiteralPart,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(tupleLiteralPart, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(tupleLiteralPart,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1792,6 +1935,9 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleLiteralPart,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleLiteralPart,
 				diagnostics, context);
@@ -1850,6 +1996,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateVariableExp(VariableExp<?, ?> variableExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(variableExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(variableExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1857,6 +2005,9 @@ public class ExpressionsValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(variableExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(variableExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(variableExp, diagnostics,
