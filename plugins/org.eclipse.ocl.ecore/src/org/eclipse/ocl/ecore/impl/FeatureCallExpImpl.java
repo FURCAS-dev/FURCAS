@@ -13,19 +13,15 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.6 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.7 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.FeatureCallExp;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;

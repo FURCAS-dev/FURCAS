@@ -13,17 +13,14 @@
  * 
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.6 2008/11/24 00:38:46 cdamus Exp $
+ * $Id: VoidTypeImpl.java,v 1.7 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;

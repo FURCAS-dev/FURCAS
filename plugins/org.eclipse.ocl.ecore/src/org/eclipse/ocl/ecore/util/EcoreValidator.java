@@ -13,25 +13,72 @@
  * 
  * </copyright>
  *
- * $Id: EcoreValidator.java,v 1.5 2009/12/06 18:16:10 ewillink Exp $
+ * $Id: EcoreValidator.java,v 1.6 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
 import java.util.Map;
 
-//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
-import org.eclipse.ocl.ecore.*;
-
+import org.eclipse.ocl.ecore.AnyType;
+import org.eclipse.ocl.ecore.AssociationClassCallExp;
+import org.eclipse.ocl.ecore.BagType;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.CallExp;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
+import org.eclipse.ocl.ecore.CollectionLiteralPart;
+import org.eclipse.ocl.ecore.CollectionRange;
+import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.ElementType;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.FeatureCallExp;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.IntegerLiteralExp;
+import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.ocl.ecore.InvalidType;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LiteralExp;
+import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.MessageExp;
+import org.eclipse.ocl.ecore.MessageType;
+import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.NullLiteralExp;
+import org.eclipse.ocl.ecore.NumericLiteralExp;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OrderedSetType;
+import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
+import org.eclipse.ocl.ecore.PrimitiveType;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.RealLiteralExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.SequenceType;
+import org.eclipse.ocl.ecore.SetType;
+import org.eclipse.ocl.ecore.StateExp;
+import org.eclipse.ocl.ecore.StringLiteralExp;
+import org.eclipse.ocl.ecore.TemplateParameterType;
+import org.eclipse.ocl.ecore.TupleLiteralExp;
+import org.eclipse.ocl.ecore.TupleLiteralPart;
+import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.TypeType;
+import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.ecore.UnspecifiedValueExp;
+import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
-
 import org.eclipse.ocl.types.util.TypesValidator;
 
 /**
@@ -295,6 +342,8 @@ public class EcoreValidator
 	 */
 	public boolean validateAnyType(AnyType anyType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(anyType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(anyType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -303,6 +352,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(anyType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(anyType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(anyType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -357,6 +409,8 @@ public class EcoreValidator
 	 */
 	public boolean validateBagType(BagType bagType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(bagType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(bagType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -365,6 +419,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(bagType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(bagType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -402,6 +459,9 @@ public class EcoreValidator
 	 */
 	public boolean validateCollectionType(CollectionType collectionType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionType, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(collectionType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -410,6 +470,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionType, diagnostics,
 				context);
@@ -476,6 +539,8 @@ public class EcoreValidator
 	 */
 	public boolean validateElementType(ElementType elementType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(elementType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(elementType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -483,6 +548,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(elementType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(elementType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(elementType, diagnostics,
@@ -565,6 +633,8 @@ public class EcoreValidator
 	 */
 	public boolean validateInvalidType(InvalidType invalidType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(invalidType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(invalidType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -572,6 +642,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(invalidType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(invalidType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(invalidType, diagnostics,
@@ -629,6 +702,8 @@ public class EcoreValidator
 	 */
 	public boolean validateMessageType(MessageType messageType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(messageType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(messageType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -636,6 +711,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(messageType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(messageType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(messageType, diagnostics,
@@ -729,6 +807,9 @@ public class EcoreValidator
 	 */
 	public boolean validateOrderedSetType(OrderedSetType orderedSetType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(orderedSetType, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(orderedSetType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -737,6 +818,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(orderedSetType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(orderedSetType, diagnostics,
 				context);
@@ -776,6 +860,8 @@ public class EcoreValidator
 	 */
 	public boolean validatePrimitiveType(PrimitiveType primitiveType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(primitiveType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(primitiveType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -784,6 +870,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(primitiveType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(primitiveType, diagnostics,
 				context);
@@ -842,6 +931,8 @@ public class EcoreValidator
 	 */
 	public boolean validateSequenceType(SequenceType sequenceType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sequenceType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(sequenceType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -850,6 +941,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(sequenceType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(sequenceType, diagnostics,
 				context);
@@ -889,6 +983,8 @@ public class EcoreValidator
 	 */
 	public boolean validateSetType(SetType setType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(setType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(setType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -897,6 +993,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(setType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(setType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -936,6 +1035,9 @@ public class EcoreValidator
 	public boolean validateTemplateParameterType(
 			TemplateParameterType templateParameterType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(templateParameterType, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -944,6 +1046,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(templateParameterType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(templateParameterType,
 				diagnostics, context);
@@ -1004,6 +1109,8 @@ public class EcoreValidator
 	 */
 	public boolean validateTupleType(TupleType tupleType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(tupleType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(tupleType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1011,6 +1118,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleType, diagnostics,
@@ -1103,6 +1213,8 @@ public class EcoreValidator
 	 */
 	public boolean validateTypeType(TypeType typeType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(typeType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(typeType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1111,6 +1223,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(typeType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(typeType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(typeType, diagnostics,
 				context);
@@ -1167,6 +1282,8 @@ public class EcoreValidator
 	 */
 	public boolean validateVoidType(VoidType voidType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(voidType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(voidType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1175,6 +1292,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(voidType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(voidType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(voidType, diagnostics,
 				context);
@@ -1243,6 +1363,8 @@ public class EcoreValidator
 	 */
 	public boolean validateConstraint(Constraint constraint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(constraint, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(constraint,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1250,6 +1372,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(constraint,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(constraint,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(constraint, diagnostics,
@@ -1309,6 +1434,9 @@ public class EcoreValidator
 	public boolean validateAssociationClassCallExp(
 			AssociationClassCallExp associationClassCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(associationClassCallExp,
+			diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1316,6 +1444,9 @@ public class EcoreValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(
+				associationClassCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
 				associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(associationClassCallExp,
@@ -1355,6 +1486,9 @@ public class EcoreValidator
 	public boolean validateBooleanLiteralExp(
 			BooleanLiteralExp booleanLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(booleanLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(booleanLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1363,6 +1497,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(booleanLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(booleanLiteralExp,
 				diagnostics, context);
@@ -1403,6 +1540,8 @@ public class EcoreValidator
 	 */
 	public boolean validateCallExp(CallExp callExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(callExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(callExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1411,6 +1550,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(callExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(callExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(callExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1445,6 +1587,9 @@ public class EcoreValidator
 	 */
 	public boolean validateCollectionItem(CollectionItem collectionItem,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionItem, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(collectionItem,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1453,6 +1598,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionItem,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionItem, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionItem, diagnostics,
 				context);
@@ -1494,6 +1642,9 @@ public class EcoreValidator
 	public boolean validateCollectionLiteralExp(
 			CollectionLiteralExp collectionLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1502,6 +1653,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionLiteralExp,
 				diagnostics, context);
@@ -1560,6 +1714,9 @@ public class EcoreValidator
 	public boolean validateCollectionLiteralPart(
 			CollectionLiteralPart collectionLiteralPart,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionLiteralPart, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1568,6 +1725,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionLiteralPart,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionLiteralPart,
 				diagnostics, context);
@@ -1618,6 +1778,9 @@ public class EcoreValidator
 	 */
 	public boolean validateCollectionRange(CollectionRange collectionRange,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionRange, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(collectionRange,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1626,6 +1789,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionRange,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionRange, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionRange, diagnostics,
 				context);
@@ -1666,6 +1832,9 @@ public class EcoreValidator
 	 */
 	public boolean validateEnumLiteralExp(EnumLiteralExp enumLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(enumLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(enumLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1674,6 +1843,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(enumLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(enumLiteralExp, diagnostics,
 				context);
@@ -1714,6 +1886,9 @@ public class EcoreValidator
 	 */
 	public boolean validateFeatureCallExp(FeatureCallExp featureCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(featureCallExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(featureCallExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1722,6 +1897,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(featureCallExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				featureCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(featureCallExp, diagnostics,
 				context);
@@ -1758,6 +1936,8 @@ public class EcoreValidator
 	 */
 	public boolean validateIfExp(IfExp ifExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(ifExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(ifExp, diagnostics,
 			context);
 		if (result || diagnostics != null)
@@ -1766,6 +1946,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(ifExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(ifExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(ifExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1806,6 +1989,9 @@ public class EcoreValidator
 	public boolean validateIntegerLiteralExp(
 			IntegerLiteralExp integerLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(integerLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(integerLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1814,6 +2000,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(integerLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(integerLiteralExp,
 				diagnostics, context);
@@ -1855,6 +2044,9 @@ public class EcoreValidator
 	public boolean validateUnlimitedNaturalLiteralExp(
 			UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(unlimitedNaturalLiteralExp,
+			diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1862,6 +2054,9 @@ public class EcoreValidator
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(
+				unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(unlimitedNaturalLiteralExp,
@@ -1905,6 +2100,9 @@ public class EcoreValidator
 	public boolean validateInvalidLiteralExp(
 			InvalidLiteralExp invalidLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(invalidLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(invalidLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1913,6 +2111,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(invalidLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				invalidLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(invalidLiteralExp,
 				diagnostics, context);
@@ -1949,6 +2150,8 @@ public class EcoreValidator
 	 */
 	public boolean validateIterateExp(IterateExp iterateExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(iterateExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(iterateExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -1956,6 +2159,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(iterateExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(iterateExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(iterateExp, diagnostics,
@@ -2013,6 +2219,8 @@ public class EcoreValidator
 	 */
 	public boolean validateIteratorExp(IteratorExp iteratorExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(iteratorExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(iteratorExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2020,6 +2228,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(iteratorExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(iteratorExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(iteratorExp, diagnostics,
@@ -2084,6 +2295,8 @@ public class EcoreValidator
 	 */
 	public boolean validateLetExp(LetExp letExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(letExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(letExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2092,6 +2305,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(letExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(letExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(letExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2128,6 +2344,8 @@ public class EcoreValidator
 	 */
 	public boolean validateLiteralExp(LiteralExp literalExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(literalExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(literalExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2135,6 +2353,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(literalExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(literalExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(literalExp, diagnostics,
@@ -2171,6 +2392,8 @@ public class EcoreValidator
 	 */
 	public boolean validateLoopExp(LoopExp loopExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(loopExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(loopExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2179,6 +2402,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(loopExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(loopExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2225,6 +2451,8 @@ public class EcoreValidator
 	 */
 	public boolean validateMessageExp(MessageExp messageExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(messageExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(messageExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2232,6 +2460,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(messageExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(messageExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(messageExp, diagnostics,
@@ -2289,6 +2520,9 @@ public class EcoreValidator
 	public boolean validateNavigationCallExp(
 			NavigationCallExp navigationCallExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(navigationCallExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(navigationCallExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2297,6 +2531,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(navigationCallExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(navigationCallExp,
 				diagnostics, context);
@@ -2333,6 +2570,9 @@ public class EcoreValidator
 	 */
 	public boolean validateNullLiteralExp(NullLiteralExp nullLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(nullLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(nullLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2341,6 +2581,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(nullLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				nullLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(nullLiteralExp, diagnostics,
 				context);
@@ -2378,6 +2621,9 @@ public class EcoreValidator
 	public boolean validateNumericLiteralExp(
 			NumericLiteralExp numericLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(numericLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(numericLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2386,6 +2632,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(numericLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				numericLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(numericLiteralExp,
 				diagnostics, context);
@@ -2422,6 +2671,8 @@ public class EcoreValidator
 	 */
 	public boolean validateOCLExpression(OCLExpression oclExpression,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(oclExpression, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(oclExpression,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2430,6 +2681,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(oclExpression,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				oclExpression, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(oclExpression, diagnostics,
 				context);
@@ -2479,6 +2733,9 @@ public class EcoreValidator
 	 */
 	public boolean validateOperationCallExp(OperationCallExp operationCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(operationCallExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(operationCallExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2487,6 +2744,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(operationCallExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(operationCallExp,
 				diagnostics, context);
@@ -2532,6 +2792,9 @@ public class EcoreValidator
 	public boolean validatePrimitiveLiteralExp(
 			PrimitiveLiteralExp primitiveLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(primitiveLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			primitiveLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2540,6 +2803,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(primitiveLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				primitiveLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(primitiveLiteralExp,
 				diagnostics, context);
@@ -2577,6 +2843,9 @@ public class EcoreValidator
 	 */
 	public boolean validatePropertyCallExp(PropertyCallExp propertyCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(propertyCallExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(propertyCallExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2585,6 +2854,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(propertyCallExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(propertyCallExp, diagnostics,
 				context);
@@ -2625,6 +2897,9 @@ public class EcoreValidator
 	 */
 	public boolean validateRealLiteralExp(RealLiteralExp realLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(realLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(realLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2633,6 +2908,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(realLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				realLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(realLiteralExp, diagnostics,
 				context);
@@ -2673,6 +2951,8 @@ public class EcoreValidator
 	 */
 	public boolean validateStateExp(StateExp stateExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(stateExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(stateExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2681,6 +2961,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(stateExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(stateExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(stateExp, diagnostics,
 				context);
@@ -2716,6 +2999,9 @@ public class EcoreValidator
 	 */
 	public boolean validateStringLiteralExp(StringLiteralExp stringLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(stringLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(stringLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2724,6 +3010,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(stringLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(stringLiteralExp,
 				diagnostics, context);
@@ -2764,6 +3053,9 @@ public class EcoreValidator
 	 */
 	public boolean validateTupleLiteralExp(TupleLiteralExp tupleLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(tupleLiteralExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(tupleLiteralExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2772,6 +3064,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleLiteralExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				tupleLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleLiteralExp, diagnostics,
 				context);
@@ -2816,6 +3111,9 @@ public class EcoreValidator
 	 */
 	public boolean validateTupleLiteralPart(TupleLiteralPart tupleLiteralPart,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(tupleLiteralPart, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(tupleLiteralPart,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2824,6 +3122,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleLiteralPart,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleLiteralPart,
 				diagnostics, context);
@@ -2877,6 +3178,8 @@ public class EcoreValidator
 	 */
 	public boolean validateTypeExp(TypeExp typeExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(typeExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(typeExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2885,6 +3188,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(typeExp, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(typeExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(typeExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2920,6 +3226,9 @@ public class EcoreValidator
 	public boolean validateUnspecifiedValueExp(
 			UnspecifiedValueExp unspecifiedValueExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(unspecifiedValueExp, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(
 			unspecifiedValueExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2928,6 +3237,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(unspecifiedValueExp,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				unspecifiedValueExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(unspecifiedValueExp,
 				diagnostics, context);
@@ -2965,6 +3277,8 @@ public class EcoreValidator
 	 */
 	public boolean validateVariable(Variable variable,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(variable, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(variable,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -2973,6 +3287,9 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(variable, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(variable,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(variable, diagnostics,
 				context);
@@ -3023,6 +3340,8 @@ public class EcoreValidator
 	 */
 	public boolean validateVariableExp(VariableExp variableExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(variableExp, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(variableExp,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -3030,6 +3349,9 @@ public class EcoreValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(variableExp,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(variableExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(variableExp, diagnostics,

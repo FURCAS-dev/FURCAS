@@ -13,14 +13,15 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.8 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: MessageTypeImpl.java,v 1.9 2010/04/23 05:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;

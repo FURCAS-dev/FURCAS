@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.11 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.12 2010/04/23 05:52:15 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -30,8 +30,6 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.Variable;
-
-//import org.eclipse.ocl.uml.internal.operations.VariableOperations;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;

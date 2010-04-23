@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.11 2008/11/24 00:25:09 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.12 2010/04/23 05:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -38,8 +38,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.uml.MessageType;
 import org.eclipse.ocl.uml.UMLPackage;
-
-//import org.eclipse.ocl.uml.internal.operations.MessageTypeOperations;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.TypeUtil;

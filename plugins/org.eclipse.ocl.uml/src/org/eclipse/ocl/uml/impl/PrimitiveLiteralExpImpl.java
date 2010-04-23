@@ -13,12 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.4 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.5 2010/04/23 05:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.uml.PrimitiveLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 

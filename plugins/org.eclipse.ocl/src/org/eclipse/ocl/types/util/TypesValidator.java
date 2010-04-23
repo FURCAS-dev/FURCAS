@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesValidator.java,v 1.4 2009/12/06 18:13:20 ewillink Exp $
+ * $Id: TypesValidator.java,v 1.5 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 
@@ -274,6 +274,8 @@ public class TypesValidator
 	 */
 	public boolean validateBagType(BagType<?, ?> bagType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(bagType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(bagType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -282,6 +284,9 @@ public class TypesValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(bagType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(bagType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -320,6 +325,9 @@ public class TypesValidator
 	 */
 	public boolean validateCollectionType(CollectionType<?, ?> collectionType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(collectionType, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(collectionType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -328,6 +336,9 @@ public class TypesValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionType, diagnostics,
 				context);
@@ -401,6 +412,8 @@ public class TypesValidator
 	 */
 	public boolean validateMessageType(MessageType<?, ?, ?> messageType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(messageType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(messageType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -408,6 +421,9 @@ public class TypesValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(messageType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(messageType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(messageType, diagnostics,
@@ -474,6 +490,9 @@ public class TypesValidator
 	 */
 	public boolean validateOrderedSetType(OrderedSetType<?, ?> orderedSetType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(orderedSetType, diagnostics,
+			context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(orderedSetType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -482,6 +501,9 @@ public class TypesValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(orderedSetType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(orderedSetType, diagnostics,
 				context);
@@ -533,6 +555,8 @@ public class TypesValidator
 	 */
 	public boolean validateSequenceType(SequenceType<?, ?> sequenceType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sequenceType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(sequenceType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -541,6 +565,9 @@ public class TypesValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(sequenceType,
 				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(
+				sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(sequenceType, diagnostics,
 				context);
@@ -581,6 +608,8 @@ public class TypesValidator
 	 */
 	public boolean validateSetType(SetType<?, ?> setType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(setType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(setType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -589,6 +618,9 @@ public class TypesValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(setType, diagnostics,
 				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(setType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -627,6 +659,8 @@ public class TypesValidator
 	 */
 	public boolean validateTupleType(TupleType<?, ?> tupleType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(tupleType, diagnostics, context))
+			return false;
 		boolean result = validate_EveryMultiplicityConforms(tupleType,
 			diagnostics, context);
 		if (result || diagnostics != null)
@@ -634,6 +668,9 @@ public class TypesValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleType, diagnostics,
