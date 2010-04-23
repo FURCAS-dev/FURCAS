@@ -13,16 +13,16 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.8 2010/04/23 05:52:15 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.ocl.types.operations.BagTypeOperations;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.types.operations.BagTypeOperations;
 import org.eclipse.ocl.uml.BagType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.uml2.uml.Classifier;

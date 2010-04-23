@@ -13,11 +13,12 @@
  * 
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.7 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.8 2010/04/23 05:52:15 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
