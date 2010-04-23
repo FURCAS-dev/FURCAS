@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.42 2010/02/08 20:57:24 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.43 2010/04/23 06:20:28 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -4951,17 +4951,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Object fromAstNode, CSTNode cstNode, Object toAstNode) {
 		OCLUtil.getAdapter(env, BasicEnvironment2.class).initASTMapping(
 			fromAstNode, cstNode, toAstNode);
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	@Deprecated  // Temporary compatibility with 3.0.0M1
-	public static EList<String> createSequenceOfNames(List<SimpleNameCS> simpleNames) {
-		EList<String> sequenceOfNames = new BasicEList<String>();
-		for (SimpleNameCS simpleName : simpleNames)
-			sequenceOfNames.add(simpleName.getValue());
-		return sequenceOfNames;
 	}
 
 	/**
