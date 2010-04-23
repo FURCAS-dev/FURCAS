@@ -32,17 +32,18 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
-
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
-	private List<Exception> exceptions;
-	public List<Exception> getExceptions(){
-		return exceptions;
-	}
-	public static void main(String[] args) {
-		String uri="file://c:/eclipse/workspace/de.hpi.sam.petriNet/model/petriNet.ecore";
+    private List<Exception> exceptions;
 
-		if(args.length>1)
-			uri=args[1];
+    public List<Exception> getExceptions() {
+        return exceptions;
+    }
+
+    public static void main(String[] args) {
+        String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
+
+        if (args.length > 1)
+            uri = args[1];
         ResourceSet load_resourceSet = new ResourceSetImpl();
 
         /*
@@ -54,101 +55,105 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
          */
         Resource r = load_resourceSet.getResource(URI.createURI(uri), true);
         try {
-			r.load(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(r.getContents().get(0));
-		new EAnnotationOCLParserImpl().traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
-		try {
-			r.save(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-	}
-	public void convertOclAnnotation(EModelElement modelElement) {
-		EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
-		if(a==null)
-			return;
-		for( Entry<String, String> detail: a.getDetails()){
-			String e = detail.getValue();
-			if(e ==null)
-				return;
-			OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
-			Helper helper = ocl.createOCLHelper();
+            r.load(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(r.getContents().get(0));
+        EAnnotationOCLParserImpl parser = new EAnnotationOCLParserImpl();
+        parser.traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
+        System.err.println(parser.getExceptions());
+        try {
+            r.save(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-			switch (modelElement.eClass().getClassifierID()){
-			case EcorePackage.ECLASSIFIER:
-			case EcorePackage.ECLASS:
-			case EcorePackage.EDATA_TYPE:
-				helper.setContext((EClassifier)modelElement);
-				break;
-			case EcorePackage.EATTRIBUTE:
-				helper.setAttributeContext(((EAttribute)modelElement).getEContainingClass(), (EAttribute)modelElement);
-				break;
-			case EcorePackage.EOPERATION:
-				helper.setOperationContext(((EOperation)modelElement).getEContainingClass(), (EOperation)modelElement);
-				break;
-			default:
-				helper.setInstanceContext(modelElement);
-				break;
-			}
-		
-			OCLExpression expr=null;
-			try {
-				expr = helper.createQuery(e);
-			} catch (ParserException e1) {
-				exceptions.add(e1);
-			}
+    }
 
-			if(expr==null)
-				return;
+    public void convertOclAnnotation(EModelElement modelElement) {
+        EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
+        if (a == null)
+            return;
+        for (Entry<String, String> detail : a.getDetails()) {
+            String e = detail.getValue();
+            if (e == null)
+                return;
+            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+            Helper helper = ocl.createOCLHelper();
 
-			a.getContents().add(expr);
+            switch (modelElement.eClass().getClassifierID()) {
+            case EcorePackage.ECLASSIFIER:
+            case EcorePackage.ECLASS:
+            case EcorePackage.EDATA_TYPE:
+                helper.setContext((EClassifier) modelElement);
+                break;
+            case EcorePackage.EATTRIBUTE:
+                helper.setAttributeContext(((EAttribute) modelElement).getEContainingClass(), (EAttribute) modelElement);
+                break;
+            case EcorePackage.EOPERATION:
+                helper.setOperationContext(((EOperation) modelElement).getEContainingClass(), (EOperation) modelElement);
+                break;
+            default:
+                helper.setInstanceContext(modelElement);
+                break;
+            }
 
-		}		
-	}
-	public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element,
-			String constraintName) {
-		OCLExpression query = null;
-		EAnnotation anno=element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
-		if(anno==null)
-			return null;
-		int pos=-1;
-		int count=0;
-		for(String constraint1:anno.getDetails().values()){
-			if(constraint1.equals(constraintName)){
-				pos=count;
-				break;
-			}
-			count++;
-		}
-		if(pos!=-1)
-			if(anno.eContents().size()>pos)
-				query= (OCLExpression)anno.eContents().get(pos);
+            OCLExpression expr = null;
+            try {
+                expr = helper.createQuery(e);
+            } catch (ParserException e1) {
+                exceptions.add(e1);
+            }
 
-		return query;
-	}
-	@Override
-	public void traversalConvertOclAnnotations(EPackage pkg) {
-		exceptions = new ArrayList<Exception>();
-		
-		for(EClassifier cls:pkg.getEClassifiers()){
-			convertOclAnnotation(cls);
-			if(cls instanceof EClass){
-				for(EOperation op:((EClass)cls).getEOperations())
-					convertOclAnnotation(op);
-				for(EAttribute at: ((EClass)cls).getEAttributes())
-					convertOclAnnotation(at);
-			}
-		}
-		
-		for(EPackage p:pkg.getESubpackages())
-			traversalConvertOclAnnotations(p);
-	
-	}
+            if (expr == null)
+                return;
 
-} //EAnnotationOCLParserImpl
+            a.getContents().add(expr);
+
+        }
+    }
+
+    public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
+        OCLExpression query = null;
+        EAnnotation anno = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
+        if (anno == null)
+            return null;
+        int pos = -1;
+        int count = 0;
+        for (String constraint1 : anno.getDetails().values()) {
+            if (constraint1.equals(constraintName)) {
+                pos = count;
+                break;
+            }
+            count++;
+        }
+        if (pos != -1)
+            if (anno.eContents().size() > pos)
+                query = (OCLExpression) anno.eContents().get(pos);
+
+        return query;
+    }
+
+    @Override
+    public void traversalConvertOclAnnotations(EPackage pkg) {
+        exceptions = new ArrayList<Exception>();
+
+        for (EClassifier cls : pkg.getEClassifiers()) {
+            convertOclAnnotation(cls);
+            if (cls instanceof EClass) {
+                for (EOperation op : ((EClass) cls).getEOperations())
+                    convertOclAnnotation(op);
+                for (EAttribute at : ((EClass) cls).getEAttributes())
+                    convertOclAnnotation(at);
+            }
+        }
+
+        for (EPackage p : pkg.getESubpackages())
+            traversalConvertOclAnnotations(p);
+
+    }
+
+} // EAnnotationOCLParserImpl
