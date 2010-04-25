@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010 Eclipse Modeling Project and others.
+ * Copyright (c) 2010 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CompanyValidator.java,v 1.2 2010/03/22 20:03:22 ewillink Exp $
+ * $Id: CompanyValidator.java,v 1.3 2010/04/25 06:50:16 ewillink Exp $
  */
 package company.util;
 
