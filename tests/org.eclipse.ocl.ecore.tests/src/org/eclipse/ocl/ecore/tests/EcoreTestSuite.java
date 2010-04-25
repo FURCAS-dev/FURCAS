@@ -13,13 +13,13 @@
  *
  * </copyright>
  *
- * $Id: EcoreTestSuite.java,v 1.1 2009/11/26 20:45:48 ewillink Exp $
+ * $Id: EcoreTestSuite.java,v 1.2 2010/04/25 06:50:15 ewillink Exp $
  */
 
 /**
  * <copyright>
  * 
- * Copyright (c) 2009 Eclipse Modeling Project and others.
+ * Copyright (c) 2009 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -30,7 +30,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreTestSuite.java,v 1.1 2009/11/26 20:45:48 ewillink Exp $
+ * $Id: EcoreTestSuite.java,v 1.2 2010/04/25 06:50:15 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010 Eclipse Modeling Project and others.
+ * Copyright (c) 2010 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AllEditorTests.java,v 1.3 2010/04/02 05:38:44 ewillink Exp $
+ * $Id: AllEditorTests.java,v 1.4 2010/04/25 06:50:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.editor;
 
