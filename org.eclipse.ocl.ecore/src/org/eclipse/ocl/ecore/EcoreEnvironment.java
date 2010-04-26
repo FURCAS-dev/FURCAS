@@ -779,7 +779,8 @@ public class EcoreEnvironment
 
 	public EClassifier getOppositePropertyType(EClassifier owner,
 			EStructuralFeature property) {
-		return (EClassifier) property.eContainer();
+		return ((UMLReflectionImpl) getUMLReflection()).getOCLCollectionType((EClassifier) property.eContainer(),
+			/* ordered */ false, /* unique */ false);
 	}
 
 }
