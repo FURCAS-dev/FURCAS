@@ -21,6 +21,9 @@ import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.update.IndexUpdater;
+import org.eclipse.emf.query.index.update.ResourceIndexer;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 
 public class EcoreHelper {
     private static EcoreHelper instance;
@@ -153,5 +156,19 @@ public class EcoreHelper {
                         return rs;
                 }
         };
+    }
+    
+    public void addResourceToDefaultIndex(final Resource... resources) {
+        IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
+            @Override
+            public void execute(IndexUpdater updater) {
+                ResourceIndexer rd = new ResourceIndexer();
+                for (Resource r : resources) {
+                    if (r.isLoaded()) {
+                        rd.resourceChanged(updater, r);
+                    }
+                }
+            }
+        });
     }
 }
