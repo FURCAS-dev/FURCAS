@@ -77,6 +77,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
         if (a == null)
             return;
+        a.getContents().clear();
         for (Entry<String, String> detail : a.getDetails()) {
             String e = detail.getValue();
             if (e == null)
