@@ -3,6 +3,11 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="petriNet"
     nsURI="http://petriNet/1.0" nsPrefix="petriNet">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="settingDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="PetriNet">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="10"
         upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
@@ -28,6 +33,12 @@
         eType="#//Node" eOpposite="#//Node/incomingArcs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true" eSuperTypes="#//Element">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="mustNotHaveHiddenOpposite"/>
+    </eAnnotations>
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="mustNotHaveHiddenOpposite" value="self.hiddenOpposite->isEmpty()"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingArcs" eType="#//Arc"
         eOpposite="#//Arc/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingArcs" eType="#//Arc"
