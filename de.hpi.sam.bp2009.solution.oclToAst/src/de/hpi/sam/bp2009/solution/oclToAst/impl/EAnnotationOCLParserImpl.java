@@ -44,7 +44,18 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         if (args.length > 1)
             uri = args[1];
-        ResourceSet load_resourceSet = new ResourceSetImpl();
+        EAnnotationOCLParserImpl parser = new EAnnotationOCLParserImpl();
+        parser.convertAnnotations(URI.createURI(uri));
+
+    }
+
+	/**
+	 * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
+	 * @param fileUri
+	 */
+	@Override
+	public  void convertAnnotations(URI fileUri) {
+		ResourceSet load_resourceSet = new ResourceSetImpl();
 
         /*
          * Register XML Factory implementation using DEFAULT_EXTENSION
@@ -53,7 +64,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         /*
          * Load the resource using the URI
          */
-        Resource r = load_resourceSet.getResource(URI.createURI(uri), true);
+        Resource r = load_resourceSet.getResource(fileUri, true);
         try {
             r.load(null);
         } catch (IOException e) {
@@ -61,17 +72,18 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             e.printStackTrace();
         }
         System.out.println(r.getContents().get(0));
-        EAnnotationOCLParserImpl parser = new EAnnotationOCLParserImpl();
-        parser.traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
-        System.err.println(parser.getExceptions());
+        /*
+         * by convention is the first content of an *.ecore file one package
+         */
+        traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
+        System.err.println(getExceptions());
         try {
             r.save(null);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-    }
+	}
 
     public void convertOclAnnotation(EModelElement modelElement) {
         EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);

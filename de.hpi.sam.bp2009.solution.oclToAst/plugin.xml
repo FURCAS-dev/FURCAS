@@ -23,4 +23,16 @@
     <factory uri = "http://de.hpi.sam.bp2009.OCL"
        class = "de.hpi.sam.bp2009.solution.oclToAst.delegate.OCLInvocationDelegateFactory$Global" />
   </extension>
+   <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.ecore"
+            id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser">
+         <action label="Parse Annotations"
+               class="de.hpi.sam.bp2009.solution.oclToAst.ui.OclToAstAction"
+               menubarPath="additions" 
+               enablesFor="1"
+               id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser"/>
+      </objectContribution>
+   </extension>
 </plugin>

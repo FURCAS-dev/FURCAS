@@ -6,12 +6,14 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
@@ -36,6 +38,13 @@ public interface EAnnotationOCLParser {
 	
 	public static final String EXPRESSION_NOT_FOUND= "Not compiled expression found, please use the OclToAst conversion to attach the compile expression to youe modelelement ";
 	public static final String MISSING_BODY_FOR_INVOCATION_DELEGATE = "Missing or invalid body constraint for ";
+	
+	/**
+	 * Loads the resource specified by the given {@link URI} with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
+	 * @param fileUri
+	 */
+	public abstract void convertAnnotations(URI fileUri);
+
 	/**
 	 * Searches in the Annotation of an {@link EModelElement} for the source specified in {@link OCLDelegateDomain}.
 	 * If it matches an annotation it looks for the keys specified in {@link OCLDelegateDomain}. For any key pattern matching it parse the value to an {@link OCLExpression} and add it to the contents of the {@link EAnnotation}.
