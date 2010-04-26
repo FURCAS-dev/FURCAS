@@ -20,9 +20,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Place" eSuperTypes="#//Node">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="noTokens" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="testHiddenOpposite" eType="#//Node"
-        eOpposite="#//Place/testHiddenOpposite/hiddenOpposite">
-      <ownedOpposite name="hiddenOpposite" eType="#//Place" eOpposite="#//Place/testHiddenOpposite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testHiddenOpposite" eType="#//Node">
+      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+        <details key="Property.oppositeRoleName" value="hiddenOpposite"/>
+      </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//Node"/>
