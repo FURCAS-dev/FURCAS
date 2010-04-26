@@ -60,6 +60,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.emf.importer.rose.RoseImporterPlugin;
 import org.eclipse.emf.importer.rose.parser.RoseNode;
 import org.eclipse.emf.importer.rose.parser.Util;
@@ -827,6 +828,15 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       if (!ref1Navigable)
       {
         ref2.setOwnedOpposite(ref1);
+        EAnnotation oppositeRoleNameAnnotation = ref2.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
+        if (oppositeRoleNameAnnotation == null) {
+            oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+            oppositeRoleNameAnnotation.setSource(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
+            ref2.getEAnnotations().add(oppositeRoleNameAnnotation);
+        } else {
+            oppositeRoleNameAnnotation.getDetails().clear();
+        }
+        oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref1.getName());
       }
       ref2.setEOpposite(ref1);
       setEReferenceIsContainment(ref1, role1, role2);
@@ -845,6 +855,15 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       if (!ref2Navigable)
       {
         ref1.setOwnedOpposite(ref2);
+        EAnnotation oppositeRoleNameAnnotation = ref1.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
+        if (oppositeRoleNameAnnotation == null) {
+            oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+            oppositeRoleNameAnnotation.setSource(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
+            ref1.getEAnnotations().add(oppositeRoleNameAnnotation);
+        } else {
+            oppositeRoleNameAnnotation.getDetails().clear();
+        }
+        oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref2.getName());
       }
       ref1.setEOpposite(ref2);
       setEReferenceIsContainment(ref2, role2, role1);

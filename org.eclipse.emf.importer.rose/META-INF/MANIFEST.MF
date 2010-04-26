@@ -18,6 +18,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.importer,
  org.eclipse.emf.codegen.ecore.ui;resolution:=optional,
  org.apache.ant;resolution:=optional,
- org.eclipse.emf.ant;resolution:=optional
+ org.eclipse.emf.ant;resolution:=optional,
+ org.eclipse.emf.ecore.xmi
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
