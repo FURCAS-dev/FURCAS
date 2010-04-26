@@ -863,6 +863,18 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
+		op = addEOperation(visitorEClass, null,
+			"visitOppositePropertyCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(theExpressionsPackage
+			.getOppositePropertyCallExp());
+		g2 = createEGenericType(visitorEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(visitorEClass_P);
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "callExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(visitorEClass_T);
+		initEOperation(op, g1);
+
 		initEClass(
 			typedElementEClass,
 			TypedElement.class,

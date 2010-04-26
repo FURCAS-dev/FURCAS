@@ -659,6 +659,15 @@
           <eGenericType eTypeParameter="#//utilities/Visitor/CT"/>
         </eParameters>
       </eOperations>
+      <eOperations name="visitOppositePropertyCallExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/OppositePropertyCallExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
       <eTypeParameters name="C"/>

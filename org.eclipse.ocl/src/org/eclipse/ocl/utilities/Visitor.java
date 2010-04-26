@@ -286,5 +286,5 @@ public interface Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> {
 	 * @model callExpRequired="true"
 	 * @generated
 	 */
-	T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> oppositePropertyCallExp);
+	T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp);
 }
