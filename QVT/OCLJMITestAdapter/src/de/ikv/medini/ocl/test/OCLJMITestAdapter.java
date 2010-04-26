@@ -37,6 +37,7 @@ import com.sap.tc.moin.repository.mmi.model.Association;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.Import;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
@@ -273,8 +274,14 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		for (Object metamodel : this.getProcessor().getMetaModels()) {
 			MofPackage mmPack = (MofPackage)metamodel;
 			List<String> nameAsList = Arrays.asList(nsPrefix.split("::"));
-            MofPackage innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
+			RefObject innerObject = (RefObject) connection.getJmiHelper().findElementByQualifiedName(
 					nameAsList, mmPack);
+			MofPackage innerPack = null;
+			if(innerObject instanceof Import) {
+			    innerPack = (MofPackage) ((Import) innerObject).getImportedNamespace();
+			} else {
+			    innerPack = (MofPackage) innerObject;
+			}
 			if(innerPack == null) {
 			    innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
                                     nameAsList.subList(1, nameAsList.size()), mmPack);

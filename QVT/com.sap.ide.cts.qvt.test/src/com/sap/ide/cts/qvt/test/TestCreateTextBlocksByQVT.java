@@ -8,20 +8,48 @@ import java.util.List;
 
 import textblocks.Bostoken;
 import textblocks.Eostoken;
+import textblocks.LexedToken;
 import textblocks.TextBlock;
+import uk.ac.kent.cs.kmf.util.ILog;
 
 import junit.framework.Assert;
 
+import data.classes.SapClass;
 import de.ikv.medini.ocl.test.util.Utilities;
+import de.ikv.medini.qvt.QVTProcessorConsts;
+import de.ikv.medini.qvt.QvtProcessorImpl;
 import de.ikv.medini.qvt.test.QVTTestCase;
 
 public class TestCreateTextBlocksByQVT extends QVTTestCase {
     
     private Object sapClass;
 
+    public void testSimpleCreateTbInverse() throws FileNotFoundException {
+        TextBlock testBlock = (TextBlock) this.adapter.createModelElement("TCS::textblocks::TextBlock");
+        LexedToken testToken = (LexedToken) this.adapter.createModelElement("TCS::textblocks::LexedToken");
+        testToken.setValue("TestClass2");
+        this.adapter.setValueForFeature(testBlock, "tokens", testToken);
+        
+        this.checkTraces("testCreateTb.qvt", "testCreateTb", "source", "target", 1);
+        
+        ILog log = ((QvtProcessorImpl)this.adapter.getQvtProcessor()).getLog();
+        log.finalReport();
+        assertEquals(0, log.getErrors());
+        
+        Collection sapClasses = this.findElementsByType(true, "ngpm::data::classes::SapClass");
+        assertEquals(2, sapClasses.size());
+        boolean found = false;
+        for (Object object : sapClasses) {
+           if("TestClass2".equals(((SapClass) object).getName())) {
+               found = true;
+           }
+        }
+        assertEquals(true, found);
+    }
+    
     public void testSimpleCreateTb() throws FileNotFoundException {
         this.checkTraces("testCreateTb.qvt", "testCreateTb", "target", "source", 1);
-
+        
         assertEquals(1, this.findElementsByType(true, "TCS::textblocks::TextBlock").size());
         assertEquals(1, this.findElementsByType(true, "TCS::textblocks::LexedToken").size());
     }
@@ -45,6 +73,7 @@ public class TestCreateTextBlocksByQVT extends QVTTestCase {
     protected void setUp() throws Exception {
             metamodelIDs = new String[]{"ngpm","TCS","Reflect"};
             super.setUp();
+            ((QvtProcessorImpl)this.adapter.getQvtProcessor()).setProperty(QVTProcessorConsts.PROP_DEBUG, "true");
             // topPackage
             this.sapClass = this.createModelElement("ngpm::data::classes::SapClass");
             this.adapter.setValueForFeature(this.sapClass, "name", "TestClass");
