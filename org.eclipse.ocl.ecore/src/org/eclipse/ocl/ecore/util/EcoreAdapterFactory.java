@@ -365,6 +365,12 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
+		public Adapter caseOppositePropertyCallExp(
+				OppositePropertyCallExp object) {
+			return createOppositePropertyCallExpAdapter();
+		}
+
+		@Override
 		public Adapter caseEModelElement(EModelElement object) {
 			return createEModelElementAdapter();
 		}
@@ -722,6 +728,12 @@ public class EcoreAdapterFactory
 		public <C, PM> Adapter caseExpressions_VariableExp(
 				org.eclipse.ocl.expressions.VariableExp<C, PM> object) {
 			return createExpressions_VariableExpAdapter();
+		}
+
+		@Override
+		public <C, P> Adapter caseExpressions_OppositePropertyCallExp(
+				org.eclipse.ocl.expressions.OppositePropertyCallExp<C, P> object) {
+			return createExpressions_OppositePropertyCallExpAdapter();
 		}
 
 		@Override
@@ -1483,6 +1495,20 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVariableExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.ecore.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.ecore.OppositePropertyCallExp
+	 * @generated
+	 */
+	public Adapter createOppositePropertyCallExpAdapter() {
 		return null;
 	}
 
@@ -2399,6 +2425,20 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_VariableExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.expressions.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.expressions.OppositePropertyCallExp
+	 * @generated
+	 */
+	public Adapter createExpressions_OppositePropertyCallExpAdapter() {
 		return null;
 	}
 

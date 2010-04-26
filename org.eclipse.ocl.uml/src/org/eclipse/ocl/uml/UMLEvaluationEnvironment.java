@@ -437,6 +437,12 @@ public class UMLEvaluationEnvironment
             "no such property: " + property.getName()); //$NON-NLS-1$
     }
 
+    public Object navigateOppositeProperty(Property property, List<?> qualifiers,
+            Object source)
+        throws IllegalArgumentException {
+    	return navigateProperty(property.getOpposite(), qualifiers, source);
+    }
+    
     /**
      * Gets the name of the specified attribute, accounting for the possibility
      * that it is aliased using an Ecore stereotype.  The resulting name is

@@ -58,6 +58,7 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -367,6 +368,10 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 		public List<Choice> visitPropertyCallExp(PropertyCallExp<C, P> propertycallexp) {
 			return getChoices(propertycallexp, constraintType);
+		}
+
+		public List<Choice> visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> oppositepropertycallexp) {
+			return getChoices(oppositepropertycallexp, constraintType);
 		}
 
 		public List<Choice> visitAssociationClassCallExp(AssociationClassCallExp<C, P> exp) {

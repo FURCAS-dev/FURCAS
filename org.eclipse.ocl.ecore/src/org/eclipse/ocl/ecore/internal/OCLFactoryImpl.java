@@ -48,6 +48,7 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -247,6 +248,11 @@ public class OCLFactoryImpl implements OCLFactory {
     public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {
         return (PropertyCallExp<C, P>)
             EcoreFactory.eINSTANCE.createPropertyCallExp();
+    }
+
+    public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
+        return (OppositePropertyCallExp<C, P>)
+            EcoreFactory.eINSTANCE.createOppositePropertyCallExp();
     }
 
     public <C> RealLiteralExp<C> createRealLiteralExp() {

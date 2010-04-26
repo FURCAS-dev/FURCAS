@@ -139,7 +139,15 @@ public final class OCLUtil {
                         return _env.lookupProperty(owner, name);
                     }
 
-                    public Object tryLookupAssociationClassReference(Object owner,
+
+					public Object tryLookupOppositeProperty(Object owner,
+							String name)
+							throws LookupException {
+
+						return _env.lookupOppositeProperty(owner, name);
+					}
+					
+					public Object tryLookupAssociationClassReference(Object owner,
                             String name)
                         throws LookupException {
                         

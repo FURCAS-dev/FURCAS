@@ -711,16 +711,48 @@ public class EcoreEnvironment
 			allClassifierSupertypeUris.append(']');
 		}
 		final ResultSet result = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).
-			execute("select hiddenOpposite from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, "+ //$NON-NLS-1$
-				"[http://www.eclipse.org/emf/2002/Ecore#//EReference] as hiddenOpposite, "+ //$NON-NLS-1$
-				"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {"+ //$NON-NLS-1$
-				allClassifierSupertypeUris + "} "+ //$NON-NLS-1$
-				"where hiddenOpposite.ownedOpposite = oppositeParent "+ //$NON-NLS-1$
-// 				"where oppositeParent.ownedOpposite = hiddenOpposite "+ //$NON-NLS-1$ // TODO this would be right after the query2 bugs have been fixed
-				"where hiddenOpposite.name = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
-				"where oppositeParent.eType = classifier", getQueryContext(rs)); //$NON-NLS-1$
+		execute("select hiddenOpposite from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, "+ //$NON-NLS-1$
+			"[http://www.eclipse.org/emf/2002/Ecore#//EReference] as hiddenOpposite, "+ //$NON-NLS-1$
+			"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {"+ //$NON-NLS-1$
+			allClassifierSupertypeUris + "} "+ //$NON-NLS-1$
+			"where hiddenOpposite.ownedOpposite = oppositeParent "+ //$NON-NLS-1$
+//				"where oppositeParent.ownedOpposite = hiddenOpposite "+ //$NON-NLS-1$ // TODO this would be right after the query2 bugs have been fixed
+			"where hiddenOpposite.name = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
+			"where oppositeParent.eType = classifier", getQueryContext(rs)); //$NON-NLS-1$
 		for (int i=0; i<result.getSize(); i++) {
 			ends.add((EReference) rs.getEObject(result.getUri(i, "hiddenOpposite"), /* loadOnDemand */ true)); //$NON-NLS-1$
+		}
+    }
+
+	@Override
+    protected void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
+		ResourceSet rs = classifier.eResource().getResourceSet();
+		if (rs == null) {
+			rs = new ResourceSetImpl();
+		}
+		StringBuilder allClassifierSupertypeUris = new StringBuilder();
+		allClassifierSupertypeUris.append('[');
+		allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
+		allClassifierSupertypeUris.append("]"); //$NON-NLS-1$
+		for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
+			allClassifierSupertypeUris.append(',');
+			allClassifierSupertypeUris.append('[');
+			allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
+			allClassifierSupertypeUris.append(']');
+		}
+		final ResultSet result = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).
+			execute("select oppositeParent from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, "+ //$NON-NLS-1$
+				"[http://www.eclipse.org/emf/2002/Ecore#//EAnnotation] as annotation, "+ //$NON-NLS-1$
+				"[http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry] as detail, "+ //$NON-NLS-1$
+				"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {"+ //$NON-NLS-1$
+				allClassifierSupertypeUris + "} "+ //$NON-NLS-1$
+				"where oppositeParent.eAnnotations = annotation "+ //$NON-NLS-1$
+				"where annotation.details = detail "+ //$NON-NLS-1$
+				"where detail.key = 'Property.oppositeRoleName' "+ //$NON-NLS-1$
+				"where detail.value = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
+				"where oppositeParent.eType = classifier", getQueryContext(rs)); //$NON-NLS-1$
+		for (int i=0; i<result.getSize(); i++) {
+			ends.add((EReference) rs.getEObject(result.getUri(i, "oppositeParent"), /* loadOnDemand */ true)); //$NON-NLS-1$
 		}
     }
 
@@ -743,6 +775,11 @@ public class EcoreEnvironment
 				return rs;
 			}
 		};
+	}
+
+	public EClassifier getOppositePropertyType(EClassifier owner,
+			EStructuralFeature property) {
+		return (EClassifier) property.eContainer();
 	}
 
 }

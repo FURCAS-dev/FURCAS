@@ -262,6 +262,25 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	P lookupProperty(C owner, String name);
 	
 	/**
+	 * Finds a property defined or inherited by the specified classifier, based
+	 * on a hidden opposite's name which is specified in an annotation on the property.
+	 * 
+	 * @param owner the owner of the "hidden" (non-existing) property that we are looking for, or
+	 *     <code>null</code> to find an implicit owner type (in iteration
+     *     expressions)
+	 * @param name the property name
+	 * 
+	 * @return the opposite property, or <code>null</code> if it could not be found
+	 */ 	
+	P lookupOppositeProperty(C owner, String name) throws LookupException;
+	
+	/**
+	 * Determines a property's (hidden) opposite's type, assuming that there is not real opposite
+	 * but that the opposite's type implicitly defaults to the property's owning class.
+	 */
+	C getOppositePropertyType(C owner, P property);
+	
+	/**
 	 * Finds a reference in the specified class to the named association class.
 	 * 
 	 * @param owner the referencing class to search, or
@@ -703,6 +722,23 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
          * @throws LookupException if lookup fails due to an error such as an ambiguity
 	     */     
 	    P tryLookupProperty(C owner, String name) throws LookupException;
+	    
+	    /**
+	     * Finds a hidden opposite property defined or inherited by the specified classifier.
+	     * Such an opposite is expected to be defined as a comment/annotation on the forward-directed
+	     * property/reference.
+	     * 
+	     * @param owner the owner of the "hidden" property that we are looking for, or
+	     *     <code>null</code> to find an implicit owner type (in iteration
+	     *     expressions). Note, that for such hidden properties the property that
+	     *     may be found is owned by the class at the other end. 
+	     * @param name the property name
+	     * 
+	     * @return the forward property, or <code>null</code> if it could not be found. If a property
+	     * is found, note that its name is not (at best coincidentally) equal to <code>name</code>.
+         * @throws LookupException if lookup fails due to an error such as an ambiguity
+	     */     
+	    P tryLookupOppositeProperty(C owner, String name) throws LookupException;
 	    
 	    /**
 	     * Finds a reference in the specified class to the named association class.

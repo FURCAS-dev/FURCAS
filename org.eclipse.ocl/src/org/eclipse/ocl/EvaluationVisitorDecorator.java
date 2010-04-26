@@ -36,6 +36,7 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -274,6 +275,13 @@ public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CL
      */
     public Object visitPropertyCallExp(PropertyCallExp<C, P> callExp) {
         return getDelegate().visitPropertyCallExp(callExp);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+    public Object visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp) {
+        return getDelegate().visitOppositePropertyCallExp(callExp);
     }
 
     /**

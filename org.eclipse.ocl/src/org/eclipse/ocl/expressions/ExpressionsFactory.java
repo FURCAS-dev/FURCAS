@@ -274,6 +274,15 @@ public interface ExpressionsFactory
 	<C, PM> VariableExp<C, PM> createVariableExp();
 
 	/**
+	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Opposite Property Call Exp</em>'.
+	 * @generated
+	 */
+	<C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

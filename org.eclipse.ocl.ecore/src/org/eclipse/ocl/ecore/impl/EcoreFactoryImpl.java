@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.BagType;
@@ -203,6 +204,8 @@ public class EcoreFactoryImpl
 				return createVariable();
 			case EcorePackage.VARIABLE_EXP :
 				return createVariableExp();
+			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP :
+				return createOppositePropertyCallExp();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -648,6 +651,16 @@ public class EcoreFactoryImpl
 	public VariableExp createVariableExp() {
 		VariableExpImpl variableExp = new VariableExpImpl();
 		return variableExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OppositePropertyCallExp createOppositePropertyCallExp() {
+		OppositePropertyCallExpImpl oppositePropertyCallExp = new OppositePropertyCallExpImpl();
+		return oppositePropertyCallExp;
 	}
 
 	/**

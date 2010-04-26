@@ -35,6 +35,7 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -195,6 +196,10 @@ class OCLFactoryWithHistory implements OCLFactory {
 
     public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {
         return record(delegate.<C, P>createPropertyCallExp());
+    }
+
+    public <C, P> OppositePropertyCallExp<C, P> createOppositePropertyCallExp() {
+        return record(delegate.<C, P>createOppositePropertyCallExp());
     }
 
     public <C> RealLiteralExp<C> createRealLiteralExp() {

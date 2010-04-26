@@ -33,6 +33,7 @@ import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -278,4 +279,12 @@ public interface Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> {
 	 * @generated
 	 */
 	T visitConstraint(CT constraint);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model callExpRequired="true"
+	 * @generated
+	 */
+	T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> oppositePropertyCallExp);
 }

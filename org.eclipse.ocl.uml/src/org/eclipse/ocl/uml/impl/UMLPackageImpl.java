@@ -57,6 +57,7 @@ import org.eclipse.ocl.uml.NullLiteralExp;
 import org.eclipse.ocl.uml.NumericLiteralExp;
 import org.eclipse.ocl.uml.OCLExpression;
 import org.eclipse.ocl.uml.OperationCallExp;
+import org.eclipse.ocl.uml.OppositePropertyCallExp;
 import org.eclipse.ocl.uml.OrderedSetType;
 import org.eclipse.ocl.uml.PrimitiveLiteralExp;
 import org.eclipse.ocl.uml.PrimitiveType;
@@ -441,6 +442,13 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	private EClass templateParameterTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oppositePropertyCallExpEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1043,6 +1051,15 @@ public class UMLPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOppositePropertyCallExp() {
+		return oppositePropertyCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UMLFactory getUMLFactory() {
 		return (UMLFactory) getEFactoryInstance();
 	}
@@ -1174,6 +1191,8 @@ public class UMLPackageImpl
 		templateParameterTypeEClass = createEClass(TEMPLATE_PARAMETER_TYPE);
 		createEReference(templateParameterTypeEClass,
 			TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION);
+
+		oppositePropertyCallExpEClass = createEClass(OPPOSITE_PROPERTY_CALL_EXP);
 	}
 
 	/**
@@ -1586,6 +1605,15 @@ public class UMLPackageImpl
 		g2 = createEGenericType(theUMLPackage_1.getOperation());
 		g1.getETypeArguments().add(g2);
 		templateParameterTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNavigationCallExp());
+		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theExpressionsPackage
+			.getOppositePropertyCallExp());
+		g2 = createEGenericType(theUMLPackage_1.getClassifier());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theUMLPackage_1.getProperty());
+		g1.getETypeArguments().add(g2);
+		oppositePropertyCallExpEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class,
@@ -1856,6 +1884,11 @@ public class UMLPackageImpl
 			theUMLPackage_1.getOperation(),
 			null,
 			"ownedOperation", null, 0, -1, TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(
+			oppositePropertyCallExpEClass,
+			OppositePropertyCallExp.class,
+			"OppositePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

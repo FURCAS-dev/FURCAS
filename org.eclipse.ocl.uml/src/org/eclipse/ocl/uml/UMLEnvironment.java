@@ -789,4 +789,9 @@ public class UMLEnvironment
     public FormattingHelper getFormatter() {
         return UMLFormattingHelper.INSTANCE;
     }
+
+	public Classifier getOppositePropertyType(Classifier owner,
+			Property property) {
+		return (Classifier) property.getOpposite().getType();
+	}
 }

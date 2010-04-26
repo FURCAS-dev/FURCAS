@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.uml.*;
 import org.eclipse.ocl.uml.AnyType;
 import org.eclipse.ocl.uml.AssociationClassCallExp;
 import org.eclipse.ocl.uml.BagType;
@@ -195,6 +196,8 @@ public class UMLFactoryImpl
 				return createVariableExp();
 			case UMLPackage.TEMPLATE_PARAMETER_TYPE :
 				return createTemplateParameterType();
+			case UMLPackage.OPPOSITE_PROPERTY_CALL_EXP :
+				return createOppositePropertyCallExp();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -610,6 +613,16 @@ public class UMLFactoryImpl
 	public TemplateParameterType createTemplateParameterType() {
 		TemplateParameterTypeImpl templateParameterType = new TemplateParameterTypeImpl();
 		return templateParameterType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OppositePropertyCallExp createOppositePropertyCallExp() {
+		OppositePropertyCallExpImpl oppositePropertyCallExp = new OppositePropertyCallExpImpl();
+		return oppositePropertyCallExp;
 	}
 
 	/**

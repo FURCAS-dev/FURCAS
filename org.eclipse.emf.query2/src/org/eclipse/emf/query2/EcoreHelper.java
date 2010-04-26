@@ -69,7 +69,13 @@ public class EcoreHelper {
      * Precondition: <tt>forwardReference.getEOpposite() != null</tt>
      */
     public Collection<EObject> reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs) {
-        Collection<EObject> result = createEList(forwardReference.getEOpposite().isUnique());
+        boolean unique;
+        if (forwardReference.getEOpposite() != null) {
+            unique = forwardReference.getEOpposite().isUnique();
+        } else {
+            unique = false;
+        }
+        Collection<EObject> result = createEList(unique);
         reverseNavigate(from, forwardReference, scope, rs, result);
         return result;
     }

@@ -226,6 +226,29 @@ public class EcoreEvaluationEnvironment
         throw new IllegalArgumentException();
     }
 
+    public Object navigateOppositeProperty(EStructuralFeature property,
+            List<?> qualifiers, Object target)
+        throws IllegalArgumentException {
+		if (target instanceof EObject) {
+			EObject etarget = (EObject) target;
+			Collection<EObject> result = null;
+			if (property instanceof EReference
+				&& ((EClass) ((EReference) property).getEType()).isSuperTypeOf(etarget.eClass())) {
+				ScopeProvider sp = new ProjectBasedScopeProviderImpl(etarget);
+				QueryContext queryContext = sp.getForwardScopeAsQueryContext();
+				ResourceSet rs = etarget.eResource().getResourceSet();
+				if (rs == null) {
+					rs = new ResourceSetImpl();
+				}
+				result = EcoreHelper
+					.getInstance().reverseNavigate(etarget,
+						(EReference) property, queryContext, rs);
+			}
+			return result;
+		}
+        throw new IllegalArgumentException();
+    }
+
     /**
      * Obtains the collection kind appropriate for representing the values of
      * the specified typed element.

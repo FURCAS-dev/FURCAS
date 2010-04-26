@@ -117,6 +117,7 @@ import org.eclipse.ocl.expressions.NavigationCallExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -2427,6 +2428,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				sourceElementType, simpleName);
 		}
 		if (astNode == null) {
+			astNode = simpleOppositePropertyName(simpleNameCS, env, source,
+				sourceElementType, simpleName);
+		}
+		if (astNode == null) {
 			astNode = simpleAssociationClassName(simpleNameCS, env, source,
 				sourceElementType, simpleName);
 		}
@@ -2572,6 +2577,64 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			initASTMapping(env, result, simpleNameCS, null);
 			result.setReferredProperty(property);
 			result.setType(getPropertyType(simpleNameCS, env, owner, property));
+
+			if (source != null) {
+				result.setSource(source);
+			} else {
+				Variable<C, PM> implicitSource = env
+					.lookupImplicitSourceForProperty(simpleName);
+				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+					implicitSource);
+				result.setSource(src);
+			}
+
+			initPropertyPositions(result, simpleNameCS);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Attempts to parse a <tt>simpleNameCS</tt> as an opposite property call expression.
+	 * An opposite property call expression can be used in the EMOF case where there is no
+	 * real opposite property / reference for backward navigation. The opposite property call
+	 * then references the forward property while its meaning is to backward-navigate by a
+	 * query with a well-defined scope.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, or <code>null</code> if the
+	 *            source is implicit
+	 * @param owner
+	 *            the owner of the property to be navigated, or
+	 *            <code>null</code> if the source is implicit
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the parsed opposite property call, or <code>null</code> if the simple name
+	 *         does not resolve to an available property that shall be navigated in reverse
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 */
+	protected OppositePropertyCallExp<C, P> simpleOppositePropertyName(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName) {
+		if (simpleName == null) {
+			return null;
+		}
+		OppositePropertyCallExp<C, P> result = null;
+
+		P property = lookupOppositeProperty(simpleNameCS, env, owner, simpleName);
+		if (property != null) {
+			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+			result = oclFactory.createOppositePropertyCallExp();
+			initASTMapping(env, result, simpleNameCS, null);
+			result.setReferredOppositeProperty(property);
+			result.setType(getOppositePropertyType(simpleNameCS, env, owner, property));
 
 			if (source != null) {
 				result.setSource(source);
@@ -4570,6 +4633,35 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return propertyType;
 	}
 
+	/**
+	 * Obtains the type, in the current environment, of the specified property's
+	 * (potentially "hidden") opposite without assuming that there actually exists
+	 * an opposite property. The type is determined from the reverse property alone,
+	 * e.g., by that property's owner.<p>
+	 * 
+	 * As a side-effect, the CST node is configured with traceability to the
+	 * resulting type and the referenced property.
+	 * 
+	 * @param cstNode
+	 *            a property-call or property-context concrete syntax
+	 * @param env
+	 *            the current OCL parsing environment
+	 * @param owner
+	 *            the contextual classifier of the property reference
+	 * @param property
+	 *            the referenced property
+	 * @return the property's type
+	 * 
+	 * @since 1.3
+	 */
+	protected C getOppositePropertyType(CSTNode cstNode,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner, P property) {
+		C propertyType = TypeUtil.getOppositePropertyType(env, owner, property);
+		initASTMapping(env, propertyType, cstNode, property);
+		return propertyType;
+	}
+
 	@SuppressWarnings("unchecked")
 	protected C getElementType(C possibleCollectionType) {
 		if (possibleCollectionType instanceof CollectionType<?, ?>) {
@@ -4804,6 +4896,28 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
 				Environment.Lookup.class);
 			P property = lookup.tryLookupProperty(owner, name);
+
+			if (cstNode != null) {
+				cstNode.setAst(property);
+			}
+
+			return property;
+		} catch (LookupException e) {
+			ERROR(cstNode, null, e.getMessage());
+			return e.getAmbiguousMatches().isEmpty()
+				? null
+				: (P) e.getAmbiguousMatches().get(0);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	protected P lookupOppositeProperty(CSTNode cstNode,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner, String name) {
+		try {
+			Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
+				Environment.Lookup.class);
+			P property = lookup.tryLookupOppositeProperty(owner, name);
 
 			if (cstNode != null) {
 				cstNode.setAst(property);
