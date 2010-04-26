@@ -1980,7 +1980,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 		}
 		
-		Object result = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
+		Object result = getEvaluationEnvironment().navigateOppositeProperty(property, qualifiers, context);
 		
 		if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
 			// this was an XSD "unspecified multiplicity".  Now that we know what
