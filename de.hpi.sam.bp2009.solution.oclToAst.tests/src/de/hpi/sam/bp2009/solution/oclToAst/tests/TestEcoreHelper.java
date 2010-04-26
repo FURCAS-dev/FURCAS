@@ -81,6 +81,7 @@ public class TestEcoreHelper extends TestCase {
         oclHelper.setContext(transition.eClass());
         OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
         Object result = ocl.evaluate(transition, expr);
-        assertEquals(place, result);
+        assertTrue(result instanceof Collection<?>);
+        assertEquals(place, ((Collection<?>) result).iterator().next());
     }
 }

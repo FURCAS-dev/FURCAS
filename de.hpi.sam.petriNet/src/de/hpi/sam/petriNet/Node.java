@@ -23,6 +23,8 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see de.hpi.sam.petriNet.PetriNetPackage#getNode()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustNotHaveHiddenOpposite'"
+ *        annotation="http://de.hpi.sam.bp2009.OCL mustNotHaveHiddenOpposite='self.hiddenOpposite->isEmpty()'"
  * @generated
  */
 public interface Node extends Element {

@@ -62,7 +62,7 @@ public interface Place extends Node {
 	 * @return the value of the '<em>Test Hidden Opposite</em>' reference.
 	 * @see #setTestHiddenOpposite(Node)
 	 * @see de.hpi.sam.petriNet.PetriNetPackage#getPlace_TestHiddenOpposite()
-	 * @model opposite="hiddenOpposite"
+	 * @model annotation="http://de.hpi.sam.bp2009.OCL Property.oppositeRoleName='hiddenOpposite'"
 	 * @generated
 	 */
 	Node getTestHiddenOpposite();

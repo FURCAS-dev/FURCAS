@@ -5,7 +5,6 @@
     nsURI="http://petriNet/1.0" nsPrefix="petriNet">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
-    <details key="settingDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="PetriNet">

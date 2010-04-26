@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.hpi.sam.petriNet.PetriNetFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='http://de.hpi.sam.bp2009.OCL' invocationDelegates='http://de.hpi.sam.bp2009.OCL'"
  * @generated
  */
 public interface PetriNetPackage extends EPackage {

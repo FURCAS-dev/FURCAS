@@ -134,25 +134,32 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
         OCLExpression query = null;
         EAnnotation anno = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
-        if (anno == null)
+        if (anno == null) {
             return null;
+        }
         int pos = -1;
         int count = 0;
-        for (String constraint1 : anno.getDetails().values()) {
+        for (String constraint1 : anno.getDetails().keySet()) {
             if (constraint1.equals(constraintName)) {
                 pos = count;
                 break;
             }
             count++;
         }
-        if (pos != -1)
-            if (anno.eContents().size() > pos)
-                query = (OCLExpression) anno.eContents().get(pos);
-
+        if (pos != -1) {
+            if (anno.getContents().size() > pos) {
+                query = (OCLExpression) anno.getContents().get(pos);
+            }
+        }
+        if (query == null) {
+        	// we know the annotation exists, but it seems the OCLExpression is not present in the contents:
+        	convertOclAnnotation(element);
+        	query = getExpressionFromAnnotationsOf(element, constraintName); // try again
+        }
         return query;
     }
 
-    @Override
+	@Override
     public void traversalConvertOclAnnotations(EPackage pkg) {
         exceptions = new ArrayList<Exception>();
 
