@@ -12,31 +12,23 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 
 /**
- * Implementation of the {@link ImpactAnalyzer} 
- * @author Philipp
- *
+ * Implementation of the {@link ImpactAnalyzer}
  */
+
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
-    private class TautologyFilter extends InstanceFilterImpl{
-        @Override
-        public boolean matchesFor(ModelChangeEvent event) {
-            return true;
-        }
-    }
-
+    
     @Override
-    public EventFilter createFilterForQuery(OCLExpression query, EClass cls) {
-        //only very naive implementation
+    public EventFilter createFilterForQuery(OCLExpression query, EClass cls, boolean notifyNewContextElements) {
+        //ported MOIN implementation
+        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(query, notifyNewContextElements);
         System.out.println("createFilterForQuery");
-        return new TautologyFilter();
-
+        return filtersyn.getSynthesisedFilter();
     }
-
+    
     @Override
     public Collection<EObject> getContextObjects(ModelChangeEvent event,
             OCLExpression query, EClass cls) {
