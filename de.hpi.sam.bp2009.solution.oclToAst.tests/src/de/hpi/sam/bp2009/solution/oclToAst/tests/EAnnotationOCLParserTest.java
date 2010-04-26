@@ -6,20 +6,30 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.tests;
 
+import java.io.IOException;
+
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
+import de.hpi.sam.bp2009.solution.oclToAst.impl.EAnnotationOCLParserImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,6 +135,37 @@ public class EAnnotationOCLParserTest extends TestCase {
 
 		getFixture().convertOclAnnotation(operation);
 		assertTrue(operation.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE).getContents().get(0) instanceof OCLExpression<?>);
+	}
+	
+	public void testRunAnnotationsParserOnMdrsMetamodel() {
+	        String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
+	        final ResourceSet load_resourceSet = new ResourceSetImpl();
+	        /*
+	         * Register XML Factory implementation using DEFAULT_EXTENSION
+	         */
+	        load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
+	        /*
+	         * Load the resource using the URI
+	         */
+	        Resource r = load_resourceSet.getResource(URI.createURI(uri), true);
+	        EcoreHelper.getInstance().addResourceToDefaultIndex(r);
+	        
+	        try {
+	            r.load(null);
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        System.out.println(r.getContents().get(0));
+	        EAnnotationOCLParserImpl parser = new EAnnotationOCLParserImpl();
+	        parser.traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
+	        System.err.println(parser.getExceptions());
+	        try {
+	            r.save(null);
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
 	}
 
 } //EAnnotationOCLParserTest
