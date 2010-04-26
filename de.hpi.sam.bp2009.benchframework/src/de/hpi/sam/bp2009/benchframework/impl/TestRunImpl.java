@@ -73,8 +73,7 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 */
 	protected EList<Operator> operators;
 
-	@SuppressWarnings("unchecked")
-	private Map<Class,Object> mapClassToObject= new HashMap<Class, Object>();
+	private Map<Class<?>,Object> mapClassToObject= new HashMap<Class<?>, Object>();
 
 	/**
 	 * <!-- begin-user-doc -->
