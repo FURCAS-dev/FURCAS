@@ -3,9 +3,11 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
@@ -20,39 +22,33 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
  *
  */
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
-	private class TautologyFilter extends InstanceFilterImpl{
-		@Override
-		public boolean matchesFor(ModelChangeEvent event) {
-			return true;
-		}
-	}
+    private class TautologyFilter extends InstanceFilterImpl{
+        @Override
+        public boolean matchesFor(ModelChangeEvent event) {
+            return true;
+        }
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Collection<EObject> getContextObjects(ModelChangeEvent event, Constraint query) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public EventFilter createFilterForQuery(OCLExpression query, EClass cls) {
+        //only very naive implementation
+        System.out.println("createFilterForQuery");
+        return new TautologyFilter();
 
-	@Override
-	public EventFilter createFilterForQuery(OCLExpression query, EClass cls) {
-		// TODO Auto-generated methodcreateFilterForQuery stub
-		System.out.println("createFilterForQuery");
-		return new TautologyFilter();
-		
-	}
+    }
 
-	@Override
-	public Collection<EObject> getContextObjects(ModelChangeEvent event,
-			OCLExpression query, EClass cls) {
-		// TODO Auto-generated methodgetContextObjects stub
-		System.out.println("getContextObjects");
-		return null;
-		
-	}
+    @Override
+    public Collection<EObject> getContextObjects(ModelChangeEvent event,
+            OCLExpression query, EClass cls) {
+        //only very naive implementation
+        Resource resource = event.getSourceObject().eResource();
+        Collection<EObject> result = new BasicEList<EObject>();
+        TreeIterator<EObject> contents = resource.getAllContents();
+        while(contents.hasNext()){
+            result.add(contents.next());
+        }
+        System.out.println("getContextObjects");
+        return result;
+    }
 
 } //ImpactAnalyzerImpl
