@@ -50,13 +50,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 public class GenParameterImpl extends GenTypedElementImpl implements GenParameter
 {
   /**
-	 * The cached value of the '{@link #getEcoreParameter() <em>Ecore Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEcoreParameter() <em>Ecore Parameter</em>}' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEcoreParameter()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEcoreParameter()
+   * @generated
+   * @ordered
+   */
   protected EParameter ecoreParameter;
 
   /**
@@ -70,220 +70,230 @@ public class GenParameterImpl extends GenTypedElementImpl implements GenParamete
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return GenModelPackage.Literals.GEN_PARAMETER;
-	}
+    return GenModelPackage.Literals.GEN_PARAMETER;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public GenOperation getGenOperation()
   {
-		if (eContainerFeatureID() != GenModelPackage.GEN_PARAMETER__GEN_OPERATION) return null;
-		return (GenOperation)eContainer();
-	}
+    if (eContainerFeatureID() != GenModelPackage.GEN_PARAMETER__GEN_OPERATION) return null;
+    return (GenOperation)eContainer();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public NotificationChain basicSetGenOperation(GenOperation newGenOperation, NotificationChain msgs)
   {
-		msgs = eBasicSetContainer((InternalEObject)newGenOperation, GenModelPackage.GEN_PARAMETER__GEN_OPERATION, msgs);
-		return msgs;
-	}
+    msgs = eBasicSetContainer((InternalEObject)newGenOperation, GenModelPackage.GEN_PARAMETER__GEN_OPERATION, msgs);
+    return msgs;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setGenOperation(GenOperation newGenOperation)
   {
-		if (newGenOperation != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_PARAMETER__GEN_OPERATION && newGenOperation != null)) {
-			if (EcoreUtil.isAncestor(this, newGenOperation))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGenOperation != null)
-				msgs = ((InternalEObject)newGenOperation).eInverseAdd(this, GenModelPackage.GEN_OPERATION__GEN_PARAMETERS, GenOperation.class, msgs);
-			msgs = basicSetGenOperation(newGenOperation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_PARAMETER__GEN_OPERATION, newGenOperation, newGenOperation));
-	}
+    if (newGenOperation != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_PARAMETER__GEN_OPERATION && newGenOperation != null))
+    {
+      if (EcoreUtil.isAncestor(this, newGenOperation))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newGenOperation != null)
+        msgs = ((InternalEObject)newGenOperation).eInverseAdd(this, GenModelPackage.GEN_OPERATION__GEN_PARAMETERS, GenOperation.class, msgs);
+      msgs = basicSetGenOperation(newGenOperation, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_PARAMETER__GEN_OPERATION, newGenOperation, newGenOperation));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EParameter getEcoreParameter()
   {
-		if (ecoreParameter != null && ecoreParameter.eIsProxy()) {
-			InternalEObject oldEcoreParameter = (InternalEObject)ecoreParameter;
-			ecoreParameter = (EParameter)eResolveProxy(oldEcoreParameter);
-			if (ecoreParameter != oldEcoreParameter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER, oldEcoreParameter, ecoreParameter));
-			}
-		}
-		return ecoreParameter;
-	}
+    if (ecoreParameter != null && ecoreParameter.eIsProxy())
+    {
+      InternalEObject oldEcoreParameter = (InternalEObject)ecoreParameter;
+      ecoreParameter = (EParameter)eResolveProxy(oldEcoreParameter);
+      if (ecoreParameter != oldEcoreParameter)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER, oldEcoreParameter, ecoreParameter));
+      }
+    }
+    return ecoreParameter;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EParameter basicGetEcoreParameter()
   {
-		return ecoreParameter;
-	}
+    return ecoreParameter;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEcoreParameter(EParameter newEcoreParameter)
   {
-		EParameter oldEcoreParameter = ecoreParameter;
-		ecoreParameter = newEcoreParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER, oldEcoreParameter, ecoreParameter));
-	}
+    EParameter oldEcoreParameter = ecoreParameter;
+    ecoreParameter = newEcoreParameter;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER, oldEcoreParameter, ecoreParameter));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGenOperation((GenOperation)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        if (eInternalContainer() != null)
+          msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetGenOperation((GenOperation)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				return basicSetGenOperation(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        return basicSetGenOperation(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-		switch (eContainerFeatureID()) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_OPERATION__GEN_PARAMETERS, GenOperation.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+    switch (eContainerFeatureID())
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_OPERATION__GEN_PARAMETERS, GenOperation.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				return getGenOperation();
-			case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
-				if (resolve) return getEcoreParameter();
-				return basicGetEcoreParameter();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        return getGenOperation();
+      case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
+        if (resolve) return getEcoreParameter();
+        return basicGetEcoreParameter();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eSet(int featureID, Object newValue)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				setGenOperation((GenOperation)newValue);
-				return;
-			case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
-				setEcoreParameter((EParameter)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        setGenOperation((GenOperation)newValue);
+        return;
+      case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
+        setEcoreParameter((EParameter)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				setGenOperation((GenOperation)null);
-				return;
-			case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
-				setEcoreParameter((EParameter)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        setGenOperation((GenOperation)null);
+        return;
+      case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
+        setEcoreParameter((EParameter)null);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
-				return getGenOperation() != null;
-			case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
-				return ecoreParameter != null;
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_PARAMETER__GEN_OPERATION:
+        return getGenOperation() != null;
+      case GenModelPackage.GEN_PARAMETER__ECORE_PARAMETER:
+        return ecoreParameter != null;
+    }
+    return super.eIsSet(featureID);
+  }
 
   @Override
   public ETypedElement getEcoreTypedElement()

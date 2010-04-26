@@ -72,499 +72,499 @@ import org.eclipse.emf.ecore.EPackage;
 public interface GenPackage extends GenBase
 {
   /**
-	 * Returns the value of the '<em><b>Prefix</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Prefix</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Prefix</em>' attribute.
-	 * @see #setPrefix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_Prefix()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Prefix</em>' attribute.
+   * @see #setPrefix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_Prefix()
+   * @model
+   * @generated
+   */
   String getPrefix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getPrefix <em>Prefix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getPrefix <em>Prefix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Prefix</em>' attribute.
-	 * @see #getPrefix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Prefix</em>' attribute.
+   * @see #getPrefix()
+   * @generated
+   */
   void setPrefix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Base Package</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Base Package</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Package</em>' attribute.
-	 * @see #setBasePackage(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_BasePackage()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Base Package</em>' attribute.
+   * @see #setBasePackage(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_BasePackage()
+   * @model
+   * @generated
+   */
   String getBasePackage();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getBasePackage <em>Base Package</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getBasePackage <em>Base Package</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Package</em>' attribute.
-	 * @see #getBasePackage()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Base Package</em>' attribute.
+   * @see #getBasePackage()
+   * @generated
+   */
   void setBasePackage(String value);
 
   /**
-	 * Returns the value of the '<em><b>Resource</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Resource</b></em>' attribute.
+   * The literals are from the enumeration {@link org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Resource</em>' attribute.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind
-	 * @see #setResource(GenResourceKind)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_Resource()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Resource</em>' attribute.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind
+   * @see #setResource(GenResourceKind)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_Resource()
+   * @model
+   * @generated
+   */
   GenResourceKind getResource();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getResource <em>Resource</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getResource <em>Resource</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Resource</em>' attribute.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind
-	 * @see #getResource()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Resource</em>' attribute.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind
+   * @see #getResource()
+   * @generated
+   */
   void setResource(GenResourceKind value);
 
   /**
-	 * Returns the value of the '<em><b>Disposable Provider Factory</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Disposable Provider Factory</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Disposable Provider Factory</em>' attribute.
-	 * @see #setDisposableProviderFactory(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_DisposableProviderFactory()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Disposable Provider Factory</em>' attribute.
+   * @see #setDisposableProviderFactory(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_DisposableProviderFactory()
+   * @model
+   * @generated
+   */
   boolean isDisposableProviderFactory();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isDisposableProviderFactory <em>Disposable Provider Factory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isDisposableProviderFactory <em>Disposable Provider Factory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Disposable Provider Factory</em>' attribute.
-	 * @see #isDisposableProviderFactory()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Disposable Provider Factory</em>' attribute.
+   * @see #isDisposableProviderFactory()
+   * @generated
+   */
   void setDisposableProviderFactory(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Adapter Factory</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Adapter Factory</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Adapter Factory</em>' attribute.
-	 * @see #setAdapterFactory(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_AdapterFactory()
-	 * @model default="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Adapter Factory</em>' attribute.
+   * @see #setAdapterFactory(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_AdapterFactory()
+   * @model default="true"
+   * @generated
+   */
   boolean isAdapterFactory();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isAdapterFactory <em>Adapter Factory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isAdapterFactory <em>Adapter Factory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Adapter Factory</em>' attribute.
-	 * @see #isAdapterFactory()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Adapter Factory</em>' attribute.
+   * @see #isAdapterFactory()
+   * @generated
+   */
   void setAdapterFactory(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Load Initialization</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Load Initialization</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * If true, the package meta-data will be initialized by loading it from a resource, instead of building it up programmatically.
    * This should be used for large packasges, for which the generated code for building it would excede the 64k method limit.
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Load Initialization</em>' attribute.
-	 * @see #setLoadInitialization(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_LoadInitialization()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Load Initialization</em>' attribute.
+   * @see #setLoadInitialization(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_LoadInitialization()
+   * @model
+   * @generated
+   */
   boolean isLoadInitialization();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isLoadInitialization <em>Load Initialization</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isLoadInitialization <em>Load Initialization</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Load Initialization</em>' attribute.
-	 * @see #isLoadInitialization()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Load Initialization</em>' attribute.
+   * @see #isLoadInitialization()
+   * @generated
+   */
   void setLoadInitialization(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Interface Package Suffix</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Interface Package Suffix</b></em>' attribute.
+   * The default value is <code>""</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interface Package Suffix</em>' attribute.
-	 * @see #setInterfacePackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_InterfacePackageSuffix()
-	 * @model default=""
-	 * @generated
-	 */
+   * @return the value of the '<em>Interface Package Suffix</em>' attribute.
+   * @see #setInterfacePackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_InterfacePackageSuffix()
+   * @model default=""
+   * @generated
+   */
   String getInterfacePackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getInterfacePackageSuffix <em>Interface Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getInterfacePackageSuffix <em>Interface Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Interface Package Suffix</em>' attribute.
-	 * @see #getInterfacePackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Interface Package Suffix</em>' attribute.
+   * @see #getInterfacePackageSuffix()
+   * @generated
+   */
   void setInterfacePackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Meta Data Package Suffix</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Meta Data Package Suffix</b></em>' attribute.
+   * The default value is <code>""</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Data Package Suffix</em>' attribute.
-	 * @see #setMetaDataPackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_MetaDataPackageSuffix()
-	 * @model default=""
-	 * @generated
-	 */
+   * @return the value of the '<em>Meta Data Package Suffix</em>' attribute.
+   * @see #setMetaDataPackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_MetaDataPackageSuffix()
+   * @model default=""
+   * @generated
+   */
   String getMetaDataPackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getMetaDataPackageSuffix <em>Meta Data Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getMetaDataPackageSuffix <em>Meta Data Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Data Package Suffix</em>' attribute.
-	 * @see #getMetaDataPackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Meta Data Package Suffix</em>' attribute.
+   * @see #getMetaDataPackageSuffix()
+   * @generated
+   */
   void setMetaDataPackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Class Package Suffix</b></em>' attribute.
-	 * The default value is <code>"impl"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Class Package Suffix</b></em>' attribute.
+   * The default value is <code>"impl"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Package Suffix</em>' attribute.
-	 * @see #setClassPackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ClassPackageSuffix()
-	 * @model default="impl"
-	 * @generated
-	 */
+   * @return the value of the '<em>Class Package Suffix</em>' attribute.
+   * @see #setClassPackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ClassPackageSuffix()
+   * @model default="impl"
+   * @generated
+   */
   String getClassPackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getClassPackageSuffix <em>Class Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getClassPackageSuffix <em>Class Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Package Suffix</em>' attribute.
-	 * @see #getClassPackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Class Package Suffix</em>' attribute.
+   * @see #getClassPackageSuffix()
+   * @generated
+   */
   void setClassPackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Utility Package Suffix</b></em>' attribute.
-	 * The default value is <code>"util"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Utility Package Suffix</b></em>' attribute.
+   * The default value is <code>"util"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Utility Package Suffix</em>' attribute.
-	 * @see #setUtilityPackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_UtilityPackageSuffix()
-	 * @model default="util"
-	 * @generated
-	 */
+   * @return the value of the '<em>Utility Package Suffix</em>' attribute.
+   * @see #setUtilityPackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_UtilityPackageSuffix()
+   * @model default="util"
+   * @generated
+   */
   String getUtilityPackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getUtilityPackageSuffix <em>Utility Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getUtilityPackageSuffix <em>Utility Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Utility Package Suffix</em>' attribute.
-	 * @see #getUtilityPackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Utility Package Suffix</em>' attribute.
+   * @see #getUtilityPackageSuffix()
+   * @generated
+   */
   void setUtilityPackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Provider Package Suffix</b></em>' attribute.
-	 * The default value is <code>"provider"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Provider Package Suffix</b></em>' attribute.
+   * The default value is <code>"provider"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provider Package Suffix</em>' attribute.
-	 * @see #setProviderPackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ProviderPackageSuffix()
-	 * @model default="provider"
-	 * @generated
-	 */
+   * @return the value of the '<em>Provider Package Suffix</em>' attribute.
+   * @see #setProviderPackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ProviderPackageSuffix()
+   * @model default="provider"
+   * @generated
+   */
   String getProviderPackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getProviderPackageSuffix <em>Provider Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getProviderPackageSuffix <em>Provider Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Provider Package Suffix</em>' attribute.
-	 * @see #getProviderPackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Provider Package Suffix</em>' attribute.
+   * @see #getProviderPackageSuffix()
+   * @generated
+   */
   void setProviderPackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Presentation Package Suffix</b></em>' attribute.
-	 * The default value is <code>"presentation"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Presentation Package Suffix</b></em>' attribute.
+   * The default value is <code>"presentation"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Presentation Package Suffix</em>' attribute.
-	 * @see #setPresentationPackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_PresentationPackageSuffix()
-	 * @model default="presentation"
-	 * @generated
-	 */
+   * @return the value of the '<em>Presentation Package Suffix</em>' attribute.
+   * @see #setPresentationPackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_PresentationPackageSuffix()
+   * @model default="presentation"
+   * @generated
+   */
   String getPresentationPackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getPresentationPackageSuffix <em>Presentation Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getPresentationPackageSuffix <em>Presentation Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Presentation Package Suffix</em>' attribute.
-	 * @see #getPresentationPackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Presentation Package Suffix</em>' attribute.
+   * @see #getPresentationPackageSuffix()
+   * @generated
+   */
   void setPresentationPackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Tests Package Suffix</b></em>' attribute.
-	 * The default value is <code>"tests"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Tests Package Suffix</b></em>' attribute.
+   * The default value is <code>"tests"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tests Package Suffix</em>' attribute.
-	 * @see #setTestsPackageSuffix(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_TestsPackageSuffix()
-	 * @model default="tests"
-	 * @generated
-	 */
+   * @return the value of the '<em>Tests Package Suffix</em>' attribute.
+   * @see #setTestsPackageSuffix(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_TestsPackageSuffix()
+   * @model default="tests"
+   * @generated
+   */
   String getTestsPackageSuffix();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getTestsPackageSuffix <em>Tests Package Suffix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getTestsPackageSuffix <em>Tests Package Suffix</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tests Package Suffix</em>' attribute.
-	 * @see #getTestsPackageSuffix()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Tests Package Suffix</em>' attribute.
+   * @see #getTestsPackageSuffix()
+   * @generated
+   */
   void setTestsPackageSuffix(String value);
 
   /**
-	 * Returns the value of the '<em><b>Generate Example Class</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Generate Example Class</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Generate Example Class</em>' attribute.
-	 * @see #setGenerateExampleClass(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenerateExampleClass()
-	 * @model default="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Generate Example Class</em>' attribute.
+   * @see #setGenerateExampleClass(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenerateExampleClass()
+   * @model default="true"
+   * @generated
+   */
   boolean isGenerateExampleClass();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isGenerateExampleClass <em>Generate Example Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isGenerateExampleClass <em>Generate Example Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Generate Example Class</em>' attribute.
-	 * @see #isGenerateExampleClass()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Generate Example Class</em>' attribute.
+   * @see #isGenerateExampleClass()
+   * @generated
+   */
   void setGenerateExampleClass(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Literals Interface</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Literals Interface</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Literals Interface</em>' attribute.
-	 * @see #setLiteralsInterface(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_LiteralsInterface()
-	 * @model default="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Literals Interface</em>' attribute.
+   * @see #setLiteralsInterface(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_LiteralsInterface()
+   * @model default="true"
+   * @generated
+   */
   boolean isLiteralsInterface();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isLiteralsInterface <em>Literals Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isLiteralsInterface <em>Literals Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Literals Interface</em>' attribute.
-	 * @see #isLiteralsInterface()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Literals Interface</em>' attribute.
+   * @see #isLiteralsInterface()
+   * @generated
+   */
   void setLiteralsInterface(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Data Type Converters</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Data Type Converters</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Type Converters</em>' attribute.
-	 * @see #setDataTypeConverters(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_DataTypeConverters()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Data Type Converters</em>' attribute.
+   * @see #setDataTypeConverters(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_DataTypeConverters()
+   * @model
+   * @generated
+   */
   boolean isDataTypeConverters();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isDataTypeConverters <em>Data Type Converters</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isDataTypeConverters <em>Data Type Converters</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Type Converters</em>' attribute.
-	 * @see #isDataTypeConverters()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Data Type Converters</em>' attribute.
+   * @see #isDataTypeConverters()
+   * @generated
+   */
   void setDataTypeConverters(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Multiple Editor Pages</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Multiple Editor Pages</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiple Editor Pages</em>' attribute.
-	 * @see #setMultipleEditorPages(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_MultipleEditorPages()
-	 * @model default="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Multiple Editor Pages</em>' attribute.
+   * @see #setMultipleEditorPages(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_MultipleEditorPages()
+   * @model default="true"
+   * @generated
+   */
   boolean isMultipleEditorPages();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isMultipleEditorPages <em>Multiple Editor Pages</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isMultipleEditorPages <em>Multiple Editor Pages</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Multiple Editor Pages</em>' attribute.
-	 * @see #isMultipleEditorPages()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Multiple Editor Pages</em>' attribute.
+   * @see #isMultipleEditorPages()
+   * @generated
+   */
   void setMultipleEditorPages(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Generate Model Wizard</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Generate Model Wizard</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Generate Model Wizard</em>' attribute.
-	 * @see #setGenerateModelWizard(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenerateModelWizard()
-	 * @model default="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Generate Model Wizard</em>' attribute.
+   * @see #setGenerateModelWizard(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenerateModelWizard()
+   * @model default="true"
+   * @generated
+   */
   boolean isGenerateModelWizard();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isGenerateModelWizard <em>Generate Model Wizard</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isGenerateModelWizard <em>Generate Model Wizard</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Generate Model Wizard</em>' attribute.
-	 * @see #isGenerateModelWizard()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Generate Model Wizard</em>' attribute.
+   * @see #isGenerateModelWizard()
+   * @generated
+   */
   void setGenerateModelWizard(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Extensible Provider Factory</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Extensible Provider Factory</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * @since 2.4
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extensible Provider Factory</em>' attribute.
-	 * @see #setExtensibleProviderFactory(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ExtensibleProviderFactory()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Extensible Provider Factory</em>' attribute.
+   * @see #setExtensibleProviderFactory(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ExtensibleProviderFactory()
+   * @model
+   * @generated
+   */
   boolean isExtensibleProviderFactory();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isExtensibleProviderFactory <em>Extensible Provider Factory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isExtensibleProviderFactory <em>Extensible Provider Factory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extensible Provider Factory</em>' attribute.
-	 * @see #isExtensibleProviderFactory()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Extensible Provider Factory</em>' attribute.
+   * @see #isExtensibleProviderFactory()
+   * @generated
+   */
   void setExtensibleProviderFactory(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Child Creation Extenders</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Child Creation Extenders</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * @since 2.4
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Child Creation Extenders</em>' attribute.
-	 * @see #setChildCreationExtenders(boolean)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ChildCreationExtenders()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Child Creation Extenders</em>' attribute.
+   * @see #setChildCreationExtenders(boolean)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ChildCreationExtenders()
+   * @model
+   * @generated
+   */
   boolean isChildCreationExtenders();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isChildCreationExtenders <em>Child Creation Extenders</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#isChildCreationExtenders <em>Child Creation Extenders</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Child Creation Extenders</em>' attribute.
-	 * @see #isChildCreationExtenders()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Child Creation Extenders</em>' attribute.
+   * @see #isChildCreationExtenders()
+   * @generated
+   */
   void setChildCreationExtenders(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Content Type Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Content Type Identifier</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * A content type identifier against which to register the resource factory for this package.
    * @since 2.4
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content Type Identifier</em>' attribute.
-	 * @see #setContentTypeIdentifier(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ContentTypeIdentifier()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Content Type Identifier</em>' attribute.
+   * @see #setContentTypeIdentifier(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_ContentTypeIdentifier()
+   * @model
+   * @generated
+   */
   String getContentTypeIdentifier();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getContentTypeIdentifier <em>Content Type Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getContentTypeIdentifier <em>Content Type Identifier</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Content Type Identifier</em>' attribute.
-	 * @see #getContentTypeIdentifier()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Content Type Identifier</em>' attribute.
+   * @see #getContentTypeIdentifier()
+   * @generated
+   */
   void setContentTypeIdentifier(String value);
 
   /**
-	 * Returns the value of the '<em><b>File Extensions</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>File Extensions</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * The file extensions against which to register the resource factory for this package. Multiple extensions can be
    * specified as a comma-separated list, but only if this package defines a {@link #isContentType content type}.
@@ -573,130 +573,130 @@ public interface GenPackage extends GenBase
    * @since 2.4
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>File Extensions</em>' attribute.
-	 * @see #setFileExtensions(String)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_FileExtensions()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>File Extensions</em>' attribute.
+   * @see #setFileExtensions(String)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_FileExtensions()
+   * @model
+   * @generated
+   */
   String getFileExtensions();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getFileExtensions <em>File Extensions</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getFileExtensions <em>File Extensions</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>File Extensions</em>' attribute.
-	 * @see #getFileExtensions()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>File Extensions</em>' attribute.
+   * @see #getFileExtensions()
+   * @generated
+   */
   void setFileExtensions(String value);
 
   /**
-	 * Returns the value of the '<em><b>Ecore Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Ecore Package</b></em>' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ecore Package</em>' reference.
-	 * @see #setEcorePackage(EPackage)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_EcorePackage()
-	 * @model required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Ecore Package</em>' reference.
+   * @see #setEcorePackage(EPackage)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_EcorePackage()
+   * @model required="true"
+   * @generated
+   */
   EPackage getEcorePackage();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getEcorePackage <em>Ecore Package</em>}' reference.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getEcorePackage <em>Ecore Package</em>}' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ecore Package</em>' reference.
-	 * @see #getEcorePackage()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Ecore Package</em>' reference.
+   * @see #getEcorePackage()
+   * @generated
+   */
   void setEcorePackage(EPackage value);
 
   /**
-	 * Returns the value of the '<em><b>Gen Model</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenModel#getGenPackages <em>Gen Packages</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Model</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenModel#getGenPackages <em>Gen Packages</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Model</em>' container reference.
-	 * @see #setGenModel(GenModel)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenModel()
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModel#getGenPackages
-	 * @model opposite="genPackages" required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Model</em>' container reference.
+   * @see #setGenModel(GenModel)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenModel()
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModel#getGenPackages
+   * @model opposite="genPackages" required="true"
+   * @generated
+   */
   GenModel getGenModel();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getGenModel <em>Gen Model</em>}' container reference.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getGenModel <em>Gen Model</em>}' container reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Gen Model</em>' container reference.
-	 * @see #getGenModel()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Gen Model</em>' container reference.
+   * @see #getGenModel()
+   * @generated
+   */
   void setGenModel(GenModel value);
 
   /**
-	 * Returns the value of the '<em><b>Gen Enums</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnum}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Enums</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenEnum}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Enums</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenEnums()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Enums</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenEnums()
+   * @model containment="true"
+   * @generated
+   */
   EList<GenEnum> getGenEnums();
 
   /**
-	 * Returns the value of the '<em><b>Gen Data Types</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Data Types</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenDataType}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Data Types</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenDataTypes()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Data Types</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenDataTypes()
+   * @model containment="true"
+   * @generated
+   */
   EList<GenDataType> getGenDataTypes();
 
   /**
-	 * Returns the value of the '<em><b>Gen Classes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenClass}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Classes</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenClass}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Classes</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenClasses()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Classes</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenClasses()
+   * @model containment="true"
+   * @generated
+   */
   EList<GenClass> getGenClasses();
 
   /**
-	 * Returns the value of the '<em><b>Nested Gen Packages</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Nested Gen Packages</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nested Gen Packages</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_NestedGenPackages()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Nested Gen Packages</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_NestedGenPackages()
+   * @model containment="true"
+   * @generated
+   */
   EList<GenPackage> getNestedGenPackages();
 
   /**
-	 * Returns the value of the '<em><b>Gen Classifiers</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenClassifier}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenClassifier#getGenPackage <em>Gen Package</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Classifiers</b></em>' reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenClassifier}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenClassifier#getGenPackage <em>Gen Package</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Classifiers</em>' reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenClassifiers()
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenClassifier#getGenPackage
-	 * @model opposite="genPackage" resolveProxies="false" transient="true" changeable="false" volatile="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Classifiers</em>' reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenPackage_GenClassifiers()
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenClassifier#getGenPackage
+   * @model opposite="genPackage" resolveProxies="false" transient="true" changeable="false" volatile="true"
+   * @generated
+   */
   EList<GenClassifier> getGenClassifiers();
 
   String getInterfacePackageName();

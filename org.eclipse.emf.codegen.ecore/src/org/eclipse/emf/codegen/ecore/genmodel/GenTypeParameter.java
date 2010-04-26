@@ -37,25 +37,25 @@ import org.eclipse.emf.ecore.ETypeParameter;
 public interface GenTypeParameter extends GenBase
 {
   /**
-	 * Returns the value of the '<em><b>Ecore Type Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Ecore Type Parameter</b></em>' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ecore Type Parameter</em>' reference.
-	 * @see #setEcoreTypeParameter(ETypeParameter)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenTypeParameter_EcoreTypeParameter()
-	 * @model required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Ecore Type Parameter</em>' reference.
+   * @see #setEcoreTypeParameter(ETypeParameter)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenTypeParameter_EcoreTypeParameter()
+   * @model required="true"
+   * @generated
+   */
   ETypeParameter getEcoreTypeParameter();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenTypeParameter#getEcoreTypeParameter <em>Ecore Type Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenTypeParameter#getEcoreTypeParameter <em>Ecore Type Parameter</em>}' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ecore Type Parameter</em>' reference.
-	 * @see #getEcoreTypeParameter()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Ecore Type Parameter</em>' reference.
+   * @see #getEcoreTypeParameter()
+   * @generated
+   */
   void setEcoreTypeParameter(ETypeParameter value);
   
   String getName();

@@ -50,211 +50,218 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProvider;
 public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
 {
   /**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the root adapter factory that delegates to this adapter factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected ComposedAdapterFactory parentAdapterFactory;
 
   /**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc -->
+   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
   /**
-	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-	 * <!-- begin-user-doc -->
+   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
   /**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EcoreItemProviderAdapterFactory()
   {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-	}
+    supportedTypes.add(IEditingDomainItemProvider.class);
+    supportedTypes.add(IStructuredItemContentProvider.class);
+    supportedTypes.add(ITreeItemContentProvider.class);
+    supportedTypes.add(IItemLabelProvider.class);
+    supportedTypes.add(IItemPropertySource.class);
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EAttribute} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EAttribute} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EAttributeItemProvider eAttributeItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EAttribute}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EAttribute}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEAttributeAdapter()
   {
-		if (eAttributeItemProvider == null) {
-			eAttributeItemProvider = new EAttributeItemProvider(this);
-		}
+    if (eAttributeItemProvider == null)
+    {
+      eAttributeItemProvider = new EAttributeItemProvider(this);
+    }
 
-		return eAttributeItemProvider;
-	}
+    return eAttributeItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EAnnotation} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EAnnotation} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EAnnotationItemProvider eAnnotationItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EAnnotation}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EAnnotation}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEAnnotationAdapter()
   {
-		if (eAnnotationItemProvider == null) {
-			eAnnotationItemProvider = new EAnnotationItemProvider(this);
-		}
+    if (eAnnotationItemProvider == null)
+    {
+      eAnnotationItemProvider = new EAnnotationItemProvider(this);
+    }
 
-		return eAnnotationItemProvider;
-	}
+    return eAnnotationItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EClass} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EClass} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EClassItemProvider eClassItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EClass}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EClass}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEClassAdapter()
   {
-		if (eClassItemProvider == null) {
-			eClassItemProvider = new EClassItemProvider(this);
-		}
+    if (eClassItemProvider == null)
+    {
+      eClassItemProvider = new EClassItemProvider(this);
+    }
 
-		return eClassItemProvider;
-	}
+    return eClassItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EDataType} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EDataType} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EDataTypeItemProvider eDataTypeItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EDataType}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EDataType}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEDataTypeAdapter()
   {
-		if (eDataTypeItemProvider == null) {
-			eDataTypeItemProvider = new EDataTypeItemProvider(this);
-		}
+    if (eDataTypeItemProvider == null)
+    {
+      eDataTypeItemProvider = new EDataTypeItemProvider(this);
+    }
 
-		return eDataTypeItemProvider;
-	}
+    return eDataTypeItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EEnum} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EEnum} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EEnumItemProvider eEnumItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EEnum}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EEnum}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEEnumAdapter()
   {
-		if (eEnumItemProvider == null) {
-			eEnumItemProvider = new EEnumItemProvider(this);
-		}
+    if (eEnumItemProvider == null)
+    {
+      eEnumItemProvider = new EEnumItemProvider(this);
+    }
 
-		return eEnumItemProvider;
-	}
+    return eEnumItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EEnumLiteral} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EEnumLiteral} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EEnumLiteralItemProvider eEnumLiteralItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EEnumLiteral}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EEnumLiteral}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEEnumLiteralAdapter()
   {
-		if (eEnumLiteralItemProvider == null) {
-			eEnumLiteralItemProvider = new EEnumLiteralItemProvider(this);
-		}
+    if (eEnumLiteralItemProvider == null)
+    {
+      eEnumLiteralItemProvider = new EEnumLiteralItemProvider(this);
+    }
 
-		return eEnumLiteralItemProvider;
-	}
+    return eEnumLiteralItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EFactory} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EFactory} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EFactoryItemProvider eFactoryItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EFactory}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EFactory}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEFactoryAdapter()
   {
-		if (eFactoryItemProvider == null) {
-			eFactoryItemProvider = new EFactoryItemProvider(this);
-		}
+    if (eFactoryItemProvider == null)
+    {
+      eFactoryItemProvider = new EFactoryItemProvider(this);
+    }
 
-		return eFactoryItemProvider;
-	}
+    return eFactoryItemProvider;
+  }
 
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EObject} instances.
@@ -282,194 +289,201 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory impleme
   }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EOperation} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EOperation} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EOperationItemProvider eOperationItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EOperation}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EOperation}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEOperationAdapter()
   {
-		if (eOperationItemProvider == null) {
-			eOperationItemProvider = new EOperationItemProvider(this);
-		}
+    if (eOperationItemProvider == null)
+    {
+      eOperationItemProvider = new EOperationItemProvider(this);
+    }
 
-		return eOperationItemProvider;
-	}
+    return eOperationItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EPackage} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EPackage} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EPackageItemProvider ePackageItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EPackage}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EPackage}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEPackageAdapter()
   {
-		if (ePackageItemProvider == null) {
-			ePackageItemProvider = new EPackageItemProvider(this);
-		}
+    if (ePackageItemProvider == null)
+    {
+      ePackageItemProvider = new EPackageItemProvider(this);
+    }
 
-		return ePackageItemProvider;
-	}
+    return ePackageItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EParameter} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EParameter} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EParameterItemProvider eParameterItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EParameter}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EParameter}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEParameterAdapter()
   {
-		if (eParameterItemProvider == null) {
-			eParameterItemProvider = new EParameterItemProvider(this);
-		}
+    if (eParameterItemProvider == null)
+    {
+      eParameterItemProvider = new EParameterItemProvider(this);
+    }
 
-		return eParameterItemProvider;
-	}
+    return eParameterItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EReference} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EReference} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EReferenceItemProvider eReferenceItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EReference}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EReference}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEReferenceAdapter()
   {
-		if (eReferenceItemProvider == null) {
-			eReferenceItemProvider = new EReferenceItemProvider(this);
-		}
+    if (eReferenceItemProvider == null)
+    {
+      eReferenceItemProvider = new EReferenceItemProvider(this);
+    }
 
-		return eReferenceItemProvider;
-	}
+    return eReferenceItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EStringToStringMapEntryItemProvider eStringToStringMapEntryItemProvider;
 
   /**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link java.util.Map.Entry}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEStringToStringMapEntryAdapter()
   {
-		if (eStringToStringMapEntryItemProvider == null) {
-			eStringToStringMapEntryItemProvider = new EStringToStringMapEntryItemProvider(this);
-		}
+    if (eStringToStringMapEntryItemProvider == null)
+    {
+      eStringToStringMapEntryItemProvider = new EStringToStringMapEntryItemProvider(this);
+    }
 
-		return eStringToStringMapEntryItemProvider;
-	}
+    return eStringToStringMapEntryItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EGenericType} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.EGenericType} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected EGenericTypeItemProvider eGenericTypeItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.EGenericType}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.EGenericType}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createEGenericTypeAdapter()
   {
-		if (eGenericTypeItemProvider == null) {
-			eGenericTypeItemProvider = new EGenericTypeItemProvider(this);
-		}
+    if (eGenericTypeItemProvider == null)
+    {
+      eGenericTypeItemProvider = new EGenericTypeItemProvider(this);
+    }
 
-		return eGenericTypeItemProvider;
-	}
+    return eGenericTypeItemProvider;
+  }
 
   /**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.ETypeParameter} instances.
-	 * <!-- begin-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.ecore.ETypeParameter} instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected ETypeParameterItemProvider eTypeParameterItemProvider;
 
   /**
-	 * This creates an adapter for a {@link org.eclipse.emf.ecore.ETypeParameter}.
-	 * <!-- begin-user-doc -->
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.ETypeParameter}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter createETypeParameterAdapter()
   {
-		if (eTypeParameterItemProvider == null) {
-			eTypeParameterItemProvider = new ETypeParameterItemProvider(this);
-		}
+    if (eTypeParameterItemProvider == null)
+    {
+      eTypeParameterItemProvider = new ETypeParameterItemProvider(this);
+    }
 
-		return eTypeParameterItemProvider;
-	}
+    return eTypeParameterItemProvider;
+  }
 
   /**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+   * This returns the root adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public ComposeableAdapterFactory getRootAdapterFactory()
   {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-	}
+    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+  }
 
   /**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+   * This sets the composed adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
   {
-		this.parentAdapterFactory = parentAdapterFactory;
-	}
+    this.parentAdapterFactory = parentAdapterFactory;
+  }
 
   /**
    * <!-- begin-user-doc -->
@@ -483,95 +497,98 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory impleme
   }
 
   /**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc -->
+   * This implementation substitutes the factory itself as the key for the adapter.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Adapter adapt(Notifier notifier, Object type)
   {
-		return super.adapt(notifier, this);
-	}
+    return super.adapt(notifier, this);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object adapt(Object object, Object type)
   {
-		if (isFactoryForType(type)) {
-			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-				return adapter;
-			}
-		}
+    if (isFactoryForType(type))
+    {
+      Object adapter = super.adapt(object, type);
+      if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+      {
+        return adapter;
+      }
+    }
 
-		return null;
-	}
+    return null;
+  }
 
   /**
-	 * This adds a listener.
-	 * <!-- begin-user-doc -->
+   * This adds a listener.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void addListener(INotifyChangedListener notifyChangedListener)
   {
-		changeNotifier.addListener(notifyChangedListener);
-	}
+    changeNotifier.addListener(notifyChangedListener);
+  }
 
   /**
-	 * This removes a listener.
-	 * <!-- begin-user-doc -->
+   * This removes a listener.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void removeListener(INotifyChangedListener notifyChangedListener)
   {
-		changeNotifier.removeListener(notifyChangedListener);
-	}
+    changeNotifier.removeListener(notifyChangedListener);
+  }
 
   /**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc -->
+   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void fireNotifyChanged(Notification notification)
   {
-		changeNotifier.fireNotifyChanged(notification);
+    changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
-		}
-	}
+    if (parentAdapterFactory != null)
+    {
+      parentAdapterFactory.fireNotifyChanged(notification);
+    }
+  }
 
   /**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
+   * This disposes all of the item providers created by this factory. 
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void dispose()
   {
-		if (eAttributeItemProvider != null) eAttributeItemProvider.dispose();
-		if (eAnnotationItemProvider != null) eAnnotationItemProvider.dispose();
-		if (eClassItemProvider != null) eClassItemProvider.dispose();
-		if (eDataTypeItemProvider != null) eDataTypeItemProvider.dispose();
-		if (eEnumItemProvider != null) eEnumItemProvider.dispose();
-		if (eEnumLiteralItemProvider != null) eEnumLiteralItemProvider.dispose();
-		if (eFactoryItemProvider != null) eFactoryItemProvider.dispose();
-		if (eObjectItemProvider != null) eObjectItemProvider.dispose();
-		if (eOperationItemProvider != null) eOperationItemProvider.dispose();
-		if (ePackageItemProvider != null) ePackageItemProvider.dispose();
-		if (eParameterItemProvider != null) eParameterItemProvider.dispose();
-		if (eReferenceItemProvider != null) eReferenceItemProvider.dispose();
-		if (eStringToStringMapEntryItemProvider != null) eStringToStringMapEntryItemProvider.dispose();
-		if (eGenericTypeItemProvider != null) eGenericTypeItemProvider.dispose();
-		if (eTypeParameterItemProvider != null) eTypeParameterItemProvider.dispose();
-	}
+    if (eAttributeItemProvider != null) eAttributeItemProvider.dispose();
+    if (eAnnotationItemProvider != null) eAnnotationItemProvider.dispose();
+    if (eClassItemProvider != null) eClassItemProvider.dispose();
+    if (eDataTypeItemProvider != null) eDataTypeItemProvider.dispose();
+    if (eEnumItemProvider != null) eEnumItemProvider.dispose();
+    if (eEnumLiteralItemProvider != null) eEnumLiteralItemProvider.dispose();
+    if (eFactoryItemProvider != null) eFactoryItemProvider.dispose();
+    if (eObjectItemProvider != null) eObjectItemProvider.dispose();
+    if (eOperationItemProvider != null) eOperationItemProvider.dispose();
+    if (ePackageItemProvider != null) ePackageItemProvider.dispose();
+    if (eParameterItemProvider != null) eParameterItemProvider.dispose();
+    if (eReferenceItemProvider != null) eReferenceItemProvider.dispose();
+    if (eStringToStringMapEntryItemProvider != null) eStringToStringMapEntryItemProvider.dispose();
+    if (eGenericTypeItemProvider != null) eGenericTypeItemProvider.dispose();
+    if (eTypeParameterItemProvider != null) eTypeParameterItemProvider.dispose();
+  }
 
 }

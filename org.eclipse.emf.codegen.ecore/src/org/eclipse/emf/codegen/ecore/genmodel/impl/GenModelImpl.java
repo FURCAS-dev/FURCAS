@@ -194,1358 +194,1358 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class GenModelImpl extends GenBaseImpl implements GenModel
 {
   /**
-	 * The default value of the '{@link #getCopyrightText() <em>Copyright Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getCopyrightText() <em>Copyright Text</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getCopyrightText()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getCopyrightText()
+   * @generated
+   * @ordered
+   */
   protected static final String COPYRIGHT_TEXT_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getCopyrightText() <em>Copyright Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getCopyrightText() <em>Copyright Text</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getCopyrightText()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getCopyrightText()
+   * @generated
+   * @ordered
+   */
   protected String copyrightText = COPYRIGHT_TEXT_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getModelDirectory() <em>Model Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getModelDirectory() <em>Model Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelDirectory()
+   * @generated
+   * @ordered
+   */
   protected static final String MODEL_DIRECTORY_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getModelDirectory() <em>Model Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelDirectory() <em>Model Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelDirectory()
+   * @generated
+   * @ordered
+   */
   protected String modelDirectory = MODEL_DIRECTORY_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isCreationCommands() <em>Creation Commands</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isCreationCommands() <em>Creation Commands</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCreationCommands()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCreationCommands()
+   * @generated
+   * @ordered
+   */
   protected static final boolean CREATION_COMMANDS_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isCreationCommands() <em>Creation Commands</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isCreationCommands() <em>Creation Commands</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCreationCommands()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCreationCommands()
+   * @generated
+   * @ordered
+   */
   protected boolean creationCommands = CREATION_COMMANDS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isCreationIcons() <em>Creation Icons</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isCreationIcons() <em>Creation Icons</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCreationIcons()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCreationIcons()
+   * @generated
+   * @ordered
+   */
   protected static final boolean CREATION_ICONS_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isCreationIcons() <em>Creation Icons</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isCreationIcons() <em>Creation Icons</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCreationIcons()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCreationIcons()
+   * @generated
+   * @ordered
+   */
   protected boolean creationIcons = CREATION_ICONS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isCreationSubmenus() <em>Creation Submenus</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isCreationSubmenus() <em>Creation Submenus</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCreationSubmenus()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCreationSubmenus()
+   * @generated
+   * @ordered
+   */
   protected static final boolean CREATION_SUBMENUS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isCreationSubmenus() <em>Creation Submenus</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isCreationSubmenus() <em>Creation Submenus</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCreationSubmenus()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCreationSubmenus()
+   * @generated
+   * @ordered
+   */
   protected boolean creationSubmenus = CREATION_SUBMENUS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getEditDirectory() <em>Edit Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getEditDirectory() <em>Edit Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditDirectory()
+   * @generated
+   * @ordered
+   */
   protected static final String EDIT_DIRECTORY_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getEditDirectory() <em>Edit Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditDirectory() <em>Edit Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditDirectory()
+   * @generated
+   * @ordered
+   */
   protected String editDirectory = EDIT_DIRECTORY_EDEFAULT;
 
   /**
-	 * This is true if the Edit Directory attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Edit Directory attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean editDirectoryESet;
 
   /**
-	 * The default value of the '{@link #getEditorDirectory() <em>Editor Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getEditorDirectory() <em>Editor Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorDirectory()
+   * @generated
+   * @ordered
+   */
   protected static final String EDITOR_DIRECTORY_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getEditorDirectory() <em>Editor Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditorDirectory() <em>Editor Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorDirectory()
+   * @generated
+   * @ordered
+   */
   protected String editorDirectory = EDITOR_DIRECTORY_EDEFAULT;
 
   /**
-	 * This is true if the Editor Directory attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Editor Directory attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean editorDirectoryESet;
 
   /**
-	 * The default value of the '{@link #getModelPluginID() <em>Model Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getModelPluginID() <em>Model Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelPluginID()
+   * @generated
+   * @ordered
+   */
   protected static final String MODEL_PLUGIN_ID_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getModelPluginID() <em>Model Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelPluginID() <em>Model Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelPluginID()
+   * @generated
+   * @ordered
+   */
   protected String modelPluginID = MODEL_PLUGIN_ID_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getTemplateDirectory() <em>Template Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getTemplateDirectory() <em>Template Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTemplateDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTemplateDirectory()
+   * @generated
+   * @ordered
+   */
   protected static final String TEMPLATE_DIRECTORY_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getTemplateDirectory() <em>Template Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTemplateDirectory() <em>Template Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTemplateDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTemplateDirectory()
+   * @generated
+   * @ordered
+   */
   protected String templateDirectory = TEMPLATE_DIRECTORY_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isRuntimeJar() <em>Runtime Jar</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isRuntimeJar() <em>Runtime Jar</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRuntimeJar()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRuntimeJar()
+   * @generated
+   * @ordered
+   */
   protected static final boolean RUNTIME_JAR_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isRuntimeJar() <em>Runtime Jar</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isRuntimeJar() <em>Runtime Jar</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRuntimeJar()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRuntimeJar()
+   * @generated
+   * @ordered
+   */
   protected boolean runtimeJar = RUNTIME_JAR_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getForeignModel() <em>Foreign Model</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getForeignModel() <em>Foreign Model</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getForeignModel()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getForeignModel()
+   * @generated
+   * @ordered
+   */
   protected EList<String> foreignModel;
 
   /**
-	 * The default value of the '{@link #isDynamicTemplates() <em>Dynamic Templates</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isDynamicTemplates() <em>Dynamic Templates</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isDynamicTemplates()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isDynamicTemplates()
+   * @generated
+   * @ordered
+   */
   protected static final boolean DYNAMIC_TEMPLATES_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isDynamicTemplates() <em>Dynamic Templates</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isDynamicTemplates() <em>Dynamic Templates</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isDynamicTemplates()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isDynamicTemplates()
+   * @generated
+   * @ordered
+   */
   protected boolean dynamicTemplates = DYNAMIC_TEMPLATES_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getRedirection() <em>Redirection</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getRedirection() <em>Redirection</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRedirection()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRedirection()
+   * @generated
+   * @ordered
+   */
   protected static final String REDIRECTION_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getRedirection() <em>Redirection</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRedirection() <em>Redirection</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRedirection()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRedirection()
+   * @generated
+   * @ordered
+   */
   protected String redirection = REDIRECTION_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isForceOverwrite() <em>Force Overwrite</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isForceOverwrite() <em>Force Overwrite</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isForceOverwrite()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isForceOverwrite()
+   * @generated
+   * @ordered
+   */
   protected static final boolean FORCE_OVERWRITE_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isForceOverwrite() <em>Force Overwrite</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isForceOverwrite() <em>Force Overwrite</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isForceOverwrite()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isForceOverwrite()
+   * @generated
+   * @ordered
+   */
   protected boolean forceOverwrite = FORCE_OVERWRITE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getNonExternalizedStringTag() <em>Non Externalized String Tag</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getNonExternalizedStringTag() <em>Non Externalized String Tag</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getNonExternalizedStringTag()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getNonExternalizedStringTag()
+   * @generated
+   * @ordered
+   */
   protected static final String NON_EXTERNALIZED_STRING_TAG_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getNonExternalizedStringTag() <em>Non Externalized String Tag</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getNonExternalizedStringTag() <em>Non Externalized String Tag</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getNonExternalizedStringTag()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getNonExternalizedStringTag()
+   * @generated
+   * @ordered
+   */
   protected String nonExternalizedStringTag = NON_EXTERNALIZED_STRING_TAG_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getModelName() <em>Model Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getModelName() <em>Model Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelName()
+   * @generated
+   * @ordered
+   */
   protected static final String MODEL_NAME_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getModelName() <em>Model Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelName() <em>Model Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelName()
+   * @generated
+   * @ordered
+   */
   protected String modelName = MODEL_NAME_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getModelPluginClass() <em>Model Plugin Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getModelPluginClass() <em>Model Plugin Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelPluginClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelPluginClass()
+   * @generated
+   * @ordered
+   */
   protected static final String MODEL_PLUGIN_CLASS_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getModelPluginClass() <em>Model Plugin Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelPluginClass() <em>Model Plugin Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelPluginClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelPluginClass()
+   * @generated
+   * @ordered
+   */
   protected String modelPluginClass = MODEL_PLUGIN_CLASS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getEditPluginClass() <em>Edit Plugin Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getEditPluginClass() <em>Edit Plugin Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditPluginClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditPluginClass()
+   * @generated
+   * @ordered
+   */
   protected static final String EDIT_PLUGIN_CLASS_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getEditPluginClass() <em>Edit Plugin Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditPluginClass() <em>Edit Plugin Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditPluginClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditPluginClass()
+   * @generated
+   * @ordered
+   */
   protected String editPluginClass = EDIT_PLUGIN_CLASS_EDEFAULT;
 
   /**
-	 * This is true if the Edit Plugin Class attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Edit Plugin Class attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean editPluginClassESet;
 
   /**
-	 * The default value of the '{@link #getEditorPluginClass() <em>Editor Plugin Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getEditorPluginClass() <em>Editor Plugin Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorPluginClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorPluginClass()
+   * @generated
+   * @ordered
+   */
   protected static final String EDITOR_PLUGIN_CLASS_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getEditorPluginClass() <em>Editor Plugin Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditorPluginClass() <em>Editor Plugin Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorPluginClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorPluginClass()
+   * @generated
+   * @ordered
+   */
   protected String editorPluginClass = EDITOR_PLUGIN_CLASS_EDEFAULT;
 
   /**
-	 * This is true if the Editor Plugin Class attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Editor Plugin Class attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean editorPluginClassESet;
 
   /**
-	 * The default value of the '{@link #isUpdateClasspath() <em>Update Classpath</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isUpdateClasspath() <em>Update Classpath</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isUpdateClasspath()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isUpdateClasspath()
+   * @generated
+   * @ordered
+   */
   protected static final boolean UPDATE_CLASSPATH_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isUpdateClasspath() <em>Update Classpath</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isUpdateClasspath() <em>Update Classpath</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isUpdateClasspath()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isUpdateClasspath()
+   * @generated
+   * @ordered
+   */
   protected boolean updateClasspath = UPDATE_CLASSPATH_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isGenerateSchema() <em>Generate Schema</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isGenerateSchema() <em>Generate Schema</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isGenerateSchema()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isGenerateSchema()
+   * @generated
+   * @ordered
+   */
   protected static final boolean GENERATE_SCHEMA_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isGenerateSchema() <em>Generate Schema</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isGenerateSchema() <em>Generate Schema</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isGenerateSchema()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isGenerateSchema()
+   * @generated
+   * @ordered
+   */
   protected boolean generateSchema = GENERATE_SCHEMA_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isNonNLSMarkers() <em>Non NLS Markers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isNonNLSMarkers() <em>Non NLS Markers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isNonNLSMarkers()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isNonNLSMarkers()
+   * @generated
+   * @ordered
+   */
   protected static final boolean NON_NLS_MARKERS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isNonNLSMarkers() <em>Non NLS Markers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isNonNLSMarkers() <em>Non NLS Markers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isNonNLSMarkers()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isNonNLSMarkers()
+   * @generated
+   * @ordered
+   */
   protected boolean nonNLSMarkers = NON_NLS_MARKERS_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getStaticPackages() <em>Static Packages</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getStaticPackages() <em>Static Packages</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getStaticPackages()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getStaticPackages()
+   * @generated
+   * @ordered
+   */
   protected EList<String> staticPackages;
 
   /**
-	 * The cached value of the '{@link #getModelPluginVariables() <em>Model Plugin Variables</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelPluginVariables() <em>Model Plugin Variables</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getModelPluginVariables()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getModelPluginVariables()
+   * @generated
+   * @ordered
+   */
   protected EList<String> modelPluginVariables;
 
   /**
-	 * The default value of the '{@link #getRootExtendsInterface() <em>Root Extends Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getRootExtendsInterface() <em>Root Extends Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRootExtendsInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRootExtendsInterface()
+   * @generated
+   * @ordered
+   */
   protected static final String ROOT_EXTENDS_INTERFACE_EDEFAULT = "org.eclipse.emf.ecore.EObject";
 
   /**
-	 * The cached value of the '{@link #getRootExtendsInterface() <em>Root Extends Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRootExtendsInterface() <em>Root Extends Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRootExtendsInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRootExtendsInterface()
+   * @generated
+   * @ordered
+   */
   protected String rootExtendsInterface = ROOT_EXTENDS_INTERFACE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getRootExtendsClass() <em>Root Extends Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getRootExtendsClass() <em>Root Extends Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRootExtendsClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRootExtendsClass()
+   * @generated
+   * @ordered
+   */
   protected static final String ROOT_EXTENDS_CLASS_EDEFAULT = "org.eclipse.emf.ecore.impl.EObjectImpl";
 
   /**
-	 * The cached value of the '{@link #getRootExtendsClass() <em>Root Extends Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRootExtendsClass() <em>Root Extends Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRootExtendsClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRootExtendsClass()
+   * @generated
+   * @ordered
+   */
   protected String rootExtendsClass = ROOT_EXTENDS_CLASS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getRootImplementsInterface() <em>Root Implements Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getRootImplementsInterface() <em>Root Implements Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRootImplementsInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRootImplementsInterface()
+   * @generated
+   * @ordered
+   */
   protected static final String ROOT_IMPLEMENTS_INTERFACE_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getRootImplementsInterface() <em>Root Implements Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRootImplementsInterface() <em>Root Implements Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRootImplementsInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRootImplementsInterface()
+   * @generated
+   * @ordered
+   */
   protected String rootImplementsInterface = ROOT_IMPLEMENTS_INTERFACE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressEMFTypes() <em>Suppress EMF Types</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressEMFTypes() <em>Suppress EMF Types</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressEMFTypes()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressEMFTypes()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_EMF_TYPES_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressEMFTypes() <em>Suppress EMF Types</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressEMFTypes() <em>Suppress EMF Types</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressEMFTypes()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressEMFTypes()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressEMFTypes = SUPPRESS_EMF_TYPES_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressEMFMetaData() <em>Suppress EMF Meta Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressEMFMetaData() <em>Suppress EMF Meta Data</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressEMFMetaData()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressEMFMetaData()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_EMF_META_DATA_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressEMFMetaData() <em>Suppress EMF Meta Data</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressEMFMetaData() <em>Suppress EMF Meta Data</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressEMFMetaData()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressEMFMetaData()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressEMFMetaData = SUPPRESS_EMF_META_DATA_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressEMFModelTags() <em>Suppress EMF Model Tags</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressEMFModelTags() <em>Suppress EMF Model Tags</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressEMFModelTags()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressEMFModelTags()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_EMF_MODEL_TAGS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressEMFModelTags() <em>Suppress EMF Model Tags</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressEMFModelTags() <em>Suppress EMF Model Tags</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressEMFModelTags()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressEMFModelTags()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressEMFModelTags = SUPPRESS_EMF_MODEL_TAGS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressInterfaces() <em>Suppress Interfaces</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressInterfaces() <em>Suppress Interfaces</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressInterfaces()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressInterfaces()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_INTERFACES_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressInterfaces() <em>Suppress Interfaces</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressInterfaces() <em>Suppress Interfaces</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressInterfaces()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressInterfaces()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressInterfaces = SUPPRESS_INTERFACES_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getFeatureMapWrapperInterface() <em>Feature Map Wrapper Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFeatureMapWrapperInterface() <em>Feature Map Wrapper Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureMapWrapperInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureMapWrapperInterface()
+   * @generated
+   * @ordered
+   */
   protected static final String FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getFeatureMapWrapperInterface() <em>Feature Map Wrapper Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFeatureMapWrapperInterface() <em>Feature Map Wrapper Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureMapWrapperInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureMapWrapperInterface()
+   * @generated
+   * @ordered
+   */
   protected String featureMapWrapperInterface = FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getFeatureMapWrapperInternalInterface() <em>Feature Map Wrapper Internal Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFeatureMapWrapperInternalInterface() <em>Feature Map Wrapper Internal Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureMapWrapperInternalInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureMapWrapperInternalInterface()
+   * @generated
+   * @ordered
+   */
   protected static final String FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getFeatureMapWrapperInternalInterface() <em>Feature Map Wrapper Internal Interface</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFeatureMapWrapperInternalInterface() <em>Feature Map Wrapper Internal Interface</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureMapWrapperInternalInterface()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureMapWrapperInternalInterface()
+   * @generated
+   * @ordered
+   */
   protected String featureMapWrapperInternalInterface = FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getFeatureMapWrapperClass() <em>Feature Map Wrapper Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFeatureMapWrapperClass() <em>Feature Map Wrapper Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureMapWrapperClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureMapWrapperClass()
+   * @generated
+   * @ordered
+   */
   protected static final String FEATURE_MAP_WRAPPER_CLASS_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getFeatureMapWrapperClass() <em>Feature Map Wrapper Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFeatureMapWrapperClass() <em>Feature Map Wrapper Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureMapWrapperClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureMapWrapperClass()
+   * @generated
+   * @ordered
+   */
   protected String featureMapWrapperClass = FEATURE_MAP_WRAPPER_CLASS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isRuntimeCompatibility() <em>Runtime Compatibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isRuntimeCompatibility() <em>Runtime Compatibility</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRuntimeCompatibility()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRuntimeCompatibility()
+   * @generated
+   * @ordered
+   */
   protected static final boolean RUNTIME_COMPATIBILITY_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isRuntimeCompatibility() <em>Runtime Compatibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isRuntimeCompatibility() <em>Runtime Compatibility</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRuntimeCompatibility()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRuntimeCompatibility()
+   * @generated
+   * @ordered
+   */
   protected boolean runtimeCompatibility = RUNTIME_COMPATIBILITY_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isRichClientPlatform() <em>Rich Client Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isRichClientPlatform() <em>Rich Client Platform</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRichClientPlatform()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRichClientPlatform()
+   * @generated
+   * @ordered
+   */
   protected static final boolean RICH_CLIENT_PLATFORM_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isRichClientPlatform() <em>Rich Client Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isRichClientPlatform() <em>Rich Client Platform</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRichClientPlatform()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRichClientPlatform()
+   * @generated
+   * @ordered
+   */
   protected boolean richClientPlatform = RICH_CLIENT_PLATFORM_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isReflectiveDelegation() <em>Reflective Delegation</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isReflectiveDelegation() <em>Reflective Delegation</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isReflectiveDelegation()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isReflectiveDelegation()
+   * @generated
+   * @ordered
+   */
   protected static final boolean REFLECTIVE_DELEGATION_EDEFAULT = false;
 
   /**
-	 * The default value of the '{@link #isCodeFormatting() <em>Code Formatting</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isCodeFormatting() <em>Code Formatting</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCodeFormatting()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCodeFormatting()
+   * @generated
+   * @ordered
+   */
   protected static final boolean CODE_FORMATTING_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isCodeFormatting() <em>Code Formatting</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isCodeFormatting() <em>Code Formatting</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCodeFormatting()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCodeFormatting()
+   * @generated
+   * @ordered
+   */
   protected boolean codeFormatting = CODE_FORMATTING_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getTestsDirectory() <em>Tests Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getTestsDirectory() <em>Tests Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestsDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestsDirectory()
+   * @generated
+   * @ordered
+   */
   protected static final String TESTS_DIRECTORY_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getTestsDirectory() <em>Tests Directory</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTestsDirectory() <em>Tests Directory</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestsDirectory()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestsDirectory()
+   * @generated
+   * @ordered
+   */
   protected String testsDirectory = TESTS_DIRECTORY_EDEFAULT;
 
   /**
-	 * This is true if the Tests Directory attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Tests Directory attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean testsDirectoryESet;
 
   /**
-	 * The default value of the '{@link #getTestSuiteClass() <em>Test Suite Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getTestSuiteClass() <em>Test Suite Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestSuiteClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestSuiteClass()
+   * @generated
+   * @ordered
+   */
   protected static final String TEST_SUITE_CLASS_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getTestSuiteClass() <em>Test Suite Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTestSuiteClass() <em>Test Suite Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestSuiteClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestSuiteClass()
+   * @generated
+   * @ordered
+   */
   protected String testSuiteClass = TEST_SUITE_CLASS_EDEFAULT;
 
   /**
-	 * This is true if the Test Suite Class attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Test Suite Class attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean testSuiteClassESet;
 
   /**
-	 * The default value of the '{@link #getBooleanFlagsField() <em>Boolean Flags Field</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getBooleanFlagsField() <em>Boolean Flags Field</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBooleanFlagsField()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBooleanFlagsField()
+   * @generated
+   * @ordered
+   */
   protected static final String BOOLEAN_FLAGS_FIELD_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getBooleanFlagsField() <em>Boolean Flags Field</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBooleanFlagsField() <em>Boolean Flags Field</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBooleanFlagsField()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBooleanFlagsField()
+   * @generated
+   * @ordered
+   */
   protected String booleanFlagsField = BOOLEAN_FLAGS_FIELD_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getBooleanFlagsReservedBits() <em>Boolean Flags Reserved Bits</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getBooleanFlagsReservedBits() <em>Boolean Flags Reserved Bits</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBooleanFlagsReservedBits()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBooleanFlagsReservedBits()
+   * @generated
+   * @ordered
+   */
   protected static final int BOOLEAN_FLAGS_RESERVED_BITS_EDEFAULT = -1;
 
   /**
-	 * The cached value of the '{@link #getBooleanFlagsReservedBits() <em>Boolean Flags Reserved Bits</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBooleanFlagsReservedBits() <em>Boolean Flags Reserved Bits</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBooleanFlagsReservedBits()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBooleanFlagsReservedBits()
+   * @generated
+   * @ordered
+   */
   protected int booleanFlagsReservedBits = BOOLEAN_FLAGS_RESERVED_BITS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getImporterID() <em>Importer ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getImporterID() <em>Importer ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getImporterID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getImporterID()
+   * @generated
+   * @ordered
+   */
   protected static final String IMPORTER_ID_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getImporterID() <em>Importer ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getImporterID() <em>Importer ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getImporterID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getImporterID()
+   * @generated
+   * @ordered
+   */
   protected String importerID = IMPORTER_ID_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isBundleManifest() <em>Bundle Manifest</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isBundleManifest() <em>Bundle Manifest</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isBundleManifest()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isBundleManifest()
+   * @generated
+   * @ordered
+   */
   protected static final boolean BUNDLE_MANIFEST_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isBundleManifest() <em>Bundle Manifest</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isBundleManifest() <em>Bundle Manifest</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isBundleManifest()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isBundleManifest()
+   * @generated
+   * @ordered
+   */
   protected boolean bundleManifest = BUNDLE_MANIFEST_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getFeatureDelegation() <em>Feature Delegation</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFeatureDelegation() <em>Feature Delegation</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureDelegation()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureDelegation()
+   * @generated
+   * @ordered
+   */
   protected static final GenDelegationKind FEATURE_DELEGATION_EDEFAULT = GenDelegationKind.NONE_LITERAL;
 
   /**
-	 * The cached value of the '{@link #getFeatureDelegation() <em>Feature Delegation</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFeatureDelegation() <em>Feature Delegation</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFeatureDelegation()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFeatureDelegation()
+   * @generated
+   * @ordered
+   */
   protected GenDelegationKind featureDelegation = FEATURE_DELEGATION_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isContainmentProxies() <em>Containment Proxies</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isContainmentProxies() <em>Containment Proxies</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isContainmentProxies()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isContainmentProxies()
+   * @generated
+   * @ordered
+   */
   protected static final boolean CONTAINMENT_PROXIES_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isContainmentProxies() <em>Containment Proxies</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isContainmentProxies() <em>Containment Proxies</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isContainmentProxies()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isContainmentProxies()
+   * @generated
+   * @ordered
+   */
   protected boolean containmentProxies = CONTAINMENT_PROXIES_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isMinimalReflectiveMethods() <em>Minimal Reflective Methods</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isMinimalReflectiveMethods() <em>Minimal Reflective Methods</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isMinimalReflectiveMethods()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isMinimalReflectiveMethods()
+   * @generated
+   * @ordered
+   */
   protected static final boolean MINIMAL_REFLECTIVE_METHODS_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isMinimalReflectiveMethods() <em>Minimal Reflective Methods</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isMinimalReflectiveMethods() <em>Minimal Reflective Methods</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isMinimalReflectiveMethods()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isMinimalReflectiveMethods()
+   * @generated
+   * @ordered
+   */
   protected boolean minimalReflectiveMethods = MINIMAL_REFLECTIVE_METHODS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressContainment() <em>Suppress Containment</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressContainment() <em>Suppress Containment</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressContainment()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressContainment()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_CONTAINMENT_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressContainment() <em>Suppress Containment</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressContainment() <em>Suppress Containment</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressContainment()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressContainment()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressContainment = SUPPRESS_CONTAINMENT_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressNotification() <em>Suppress Notification</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressNotification() <em>Suppress Notification</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressNotification()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressNotification()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_NOTIFICATION_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressNotification() <em>Suppress Notification</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressNotification() <em>Suppress Notification</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressNotification()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressNotification()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressNotification = SUPPRESS_NOTIFICATION_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isArrayAccessors() <em>Array Accessors</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isArrayAccessors() <em>Array Accessors</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isArrayAccessors()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isArrayAccessors()
+   * @generated
+   * @ordered
+   */
   protected static final boolean ARRAY_ACCESSORS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isArrayAccessors() <em>Array Accessors</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isArrayAccessors() <em>Array Accessors</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isArrayAccessors()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isArrayAccessors()
+   * @generated
+   * @ordered
+   */
   protected boolean arrayAccessors = ARRAY_ACCESSORS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressUnsettable() <em>Suppress Unsettable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressUnsettable() <em>Suppress Unsettable</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressUnsettable()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressUnsettable()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_UNSETTABLE_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isSuppressUnsettable() <em>Suppress Unsettable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressUnsettable() <em>Suppress Unsettable</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressUnsettable()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressUnsettable()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressUnsettable = SUPPRESS_UNSETTABLE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getFacadeHelperClass() <em>Facade Helper Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getFacadeHelperClass() <em>Facade Helper Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * This value should be always equals to JMerger.DEFAULT_FACADE_HELPER_CLASS.
    * <!-- end-user-doc -->
-	 * @see #getFacadeHelperClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFacadeHelperClass()
+   * @generated
+   * @ordered
+   */
   protected static final String FACADE_HELPER_CLASS_EDEFAULT = "org.eclipse.emf.codegen.merge.java.facade.ast.ASTFacadeHelper";
 
   /**
-	 * The cached value of the '{@link #getFacadeHelperClass() <em>Facade Helper Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFacadeHelperClass() <em>Facade Helper Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getFacadeHelperClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getFacadeHelperClass()
+   * @generated
+   * @ordered
+   */
   protected String facadeHelperClass = FACADE_HELPER_CLASS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getComplianceLevel() <em>Compliance Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getComplianceLevel() <em>Compliance Level</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getComplianceLevel()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getComplianceLevel()
+   * @generated
+   * @ordered
+   */
   protected static final GenJDKLevel COMPLIANCE_LEVEL_EDEFAULT = GenJDKLevel.JDK14_LITERAL;
 
   /**
-	 * The cached value of the '{@link #getComplianceLevel() <em>Compliance Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getComplianceLevel() <em>Compliance Level</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getComplianceLevel()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getComplianceLevel()
+   * @generated
+   * @ordered
+   */
   protected GenJDKLevel complianceLevel = COMPLIANCE_LEVEL_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isSuppressGenModelAnnotations() <em>Suppress Gen Model Annotations</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isSuppressGenModelAnnotations() <em>Suppress Gen Model Annotations</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressGenModelAnnotations()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressGenModelAnnotations()
+   * @generated
+   * @ordered
+   */
   protected static final boolean SUPPRESS_GEN_MODEL_ANNOTATIONS_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isSuppressGenModelAnnotations() <em>Suppress Gen Model Annotations</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isSuppressGenModelAnnotations() <em>Suppress Gen Model Annotations</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isSuppressGenModelAnnotations()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isSuppressGenModelAnnotations()
+   * @generated
+   * @ordered
+   */
   protected boolean suppressGenModelAnnotations = SUPPRESS_GEN_MODEL_ANNOTATIONS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isCopyrightFields() <em>Copyright Fields</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isCopyrightFields() <em>Copyright Fields</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCopyrightFields()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCopyrightFields()
+   * @generated
+   * @ordered
+   */
   protected static final boolean COPYRIGHT_FIELDS_EDEFAULT = true;
 
   /**
-	 * The cached value of the '{@link #isCopyrightFields() <em>Copyright Fields</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isCopyrightFields() <em>Copyright Fields</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isCopyrightFields()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isCopyrightFields()
+   * @generated
+   * @ordered
+   */
   protected boolean copyrightFields = COPYRIGHT_FIELDS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isBinaryCompatibleReflectiveMethods() <em>Binary Compatible Reflective Methods</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isBinaryCompatibleReflectiveMethods() <em>Binary Compatible Reflective Methods</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isBinaryCompatibleReflectiveMethods()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isBinaryCompatibleReflectiveMethods()
+   * @generated
+   * @ordered
+   */
   protected static final boolean BINARY_COMPATIBLE_REFLECTIVE_METHODS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isBinaryCompatibleReflectiveMethods() <em>Binary Compatible Reflective Methods</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isBinaryCompatibleReflectiveMethods() <em>Binary Compatible Reflective Methods</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isBinaryCompatibleReflectiveMethods()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isBinaryCompatibleReflectiveMethods()
+   * @generated
+   * @ordered
+   */
   protected boolean binaryCompatibleReflectiveMethods = BINARY_COMPATIBLE_REFLECTIVE_METHODS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isPublicConstructors() <em>Public Constructors</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isPublicConstructors() <em>Public Constructors</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isPublicConstructors()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isPublicConstructors()
+   * @generated
+   * @ordered
+   */
   protected static final boolean PUBLIC_CONSTRUCTORS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isPublicConstructors() <em>Public Constructors</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isPublicConstructors() <em>Public Constructors</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isPublicConstructors()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isPublicConstructors()
+   * @generated
+   * @ordered
+   */
   protected boolean publicConstructors = PUBLIC_CONSTRUCTORS_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getTemplatePluginVariables() <em>Template Plugin Variables</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTemplatePluginVariables() <em>Template Plugin Variables</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTemplatePluginVariables()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTemplatePluginVariables()
+   * @generated
+   * @ordered
+   */
   protected EList<String> templatePluginVariables;
 
   /**
-	 * The default value of the '{@link #getProviderRootExtendsClass() <em>Provider Root Extends Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getProviderRootExtendsClass() <em>Provider Root Extends Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getProviderRootExtendsClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getProviderRootExtendsClass()
+   * @generated
+   * @ordered
+   */
   protected static final String PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getProviderRootExtendsClass() <em>Provider Root Extends Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getProviderRootExtendsClass() <em>Provider Root Extends Class</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getProviderRootExtendsClass()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getProviderRootExtendsClass()
+   * @generated
+   * @ordered
+   */
   protected String providerRootExtendsClass = PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getEditPluginID() <em>Edit Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getEditPluginID() <em>Edit Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditPluginID()
+   * @generated
+   * @ordered
+   */
   protected static final String EDIT_PLUGIN_ID_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getEditPluginID() <em>Edit Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditPluginID() <em>Edit Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditPluginID()
+   * @generated
+   * @ordered
+   */
   protected String editPluginID = EDIT_PLUGIN_ID_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getEditPluginVariables() <em>Edit Plugin Variables</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditPluginVariables() <em>Edit Plugin Variables</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditPluginVariables()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditPluginVariables()
+   * @generated
+   * @ordered
+   */
   protected EList<String> editPluginVariables;
 
   /**
-	 * The default value of the '{@link #getEditorPluginID() <em>Editor Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getEditorPluginID() <em>Editor Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorPluginID()
+   * @generated
+   * @ordered
+   */
   protected static final String EDITOR_PLUGIN_ID_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getEditorPluginID() <em>Editor Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditorPluginID() <em>Editor Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorPluginID()
+   * @generated
+   * @ordered
+   */
   protected String editorPluginID = EDITOR_PLUGIN_ID_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getEditorPluginVariables() <em>Editor Plugin Variables</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditorPluginVariables() <em>Editor Plugin Variables</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEditorPluginVariables()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEditorPluginVariables()
+   * @generated
+   * @ordered
+   */
   protected EList<String> editorPluginVariables;
 
   /**
-	 * The default value of the '{@link #getTestsPluginID() <em>Tests Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getTestsPluginID() <em>Tests Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestsPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestsPluginID()
+   * @generated
+   * @ordered
+   */
   protected static final String TESTS_PLUGIN_ID_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getTestsPluginID() <em>Tests Plugin ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTestsPluginID() <em>Tests Plugin ID</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestsPluginID()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestsPluginID()
+   * @generated
+   * @ordered
+   */
   protected String testsPluginID = TESTS_PLUGIN_ID_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getTestsPluginVariables() <em>Tests Plugin Variables</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTestsPluginVariables() <em>Tests Plugin Variables</em>}' attribute list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getTestsPluginVariables()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getTestsPluginVariables()
+   * @generated
+   * @ordered
+   */
   protected EList<String> testsPluginVariables;
 
   /**
-	 * The default value of the '{@link #isOptimizedHasChildren() <em>Optimized Has Children</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isOptimizedHasChildren() <em>Optimized Has Children</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isOptimizedHasChildren()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isOptimizedHasChildren()
+   * @generated
+   * @ordered
+   */
   protected static final boolean OPTIMIZED_HAS_CHILDREN_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isOptimizedHasChildren() <em>Optimized Has Children</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isOptimizedHasChildren() <em>Optimized Has Children</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isOptimizedHasChildren()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isOptimizedHasChildren()
+   * @generated
+   * @ordered
+   */
   protected boolean optimizedHasChildren = OPTIMIZED_HAS_CHILDREN_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isTableProviders() <em>Table Providers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isTableProviders() <em>Table Providers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isTableProviders()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isTableProviders()
+   * @generated
+   * @ordered
+   */
   protected static final boolean TABLE_PROVIDERS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isTableProviders() <em>Table Providers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isTableProviders() <em>Table Providers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isTableProviders()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isTableProviders()
+   * @generated
+   * @ordered
+   */
   protected boolean tableProviders = TABLE_PROVIDERS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isColorProviders() <em>Color Providers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isColorProviders() <em>Color Providers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isColorProviders()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isColorProviders()
+   * @generated
+   * @ordered
+   */
   protected static final boolean COLOR_PROVIDERS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isColorProviders() <em>Color Providers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isColorProviders() <em>Color Providers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isColorProviders()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isColorProviders()
+   * @generated
+   * @ordered
+   */
   protected boolean colorProviders = COLOR_PROVIDERS_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isFontProviders() <em>Font Providers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isFontProviders() <em>Font Providers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isFontProviders()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isFontProviders()
+   * @generated
+   * @ordered
+   */
   protected static final boolean FONT_PROVIDERS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isFontProviders() <em>Font Providers</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isFontProviders() <em>Font Providers</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isFontProviders()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isFontProviders()
+   * @generated
+   * @ordered
+   */
   protected boolean fontProviders = FONT_PROVIDERS_EDEFAULT;
 
   /**
@@ -1559,164 +1559,164 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   protected static final GenRuntimeVersion RUNTIME_VERSION_EDEFAULT = GenRuntimeVersion.VALUES.get(GenRuntimeVersion.VALUES.size() - 1);
 
   /**
-	 * The cached value of the '{@link #getRuntimeVersion() <em>Runtime Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRuntimeVersion() <em>Runtime Version</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRuntimeVersion()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRuntimeVersion()
+   * @generated
+   * @ordered
+   */
   protected GenRuntimeVersion runtimeVersion = RUNTIME_VERSION_EDEFAULT;
 
   /**
-	 * This is true if the Runtime Version attribute has been set.
-	 * <!-- begin-user-doc -->
+   * This is true if the Runtime Version attribute has been set.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
   protected boolean runtimeVersionESet;
 
   /**
-	 * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getLanguage()
+   * @generated
+   * @ordered
+   */
   protected static final String LANGUAGE_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getLanguage()
+   * @generated
+   * @ordered
+   */
   protected String language = LANGUAGE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isPackedEnums() <em>Packed Enums</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isPackedEnums() <em>Packed Enums</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isPackedEnums()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isPackedEnums()
+   * @generated
+   * @ordered
+   */
   protected static final boolean PACKED_ENUMS_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isPackedEnums() <em>Packed Enums</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isPackedEnums() <em>Packed Enums</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isPackedEnums()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isPackedEnums()
+   * @generated
+   * @ordered
+   */
   protected boolean packedEnums = PACKED_ENUMS_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getGenPackages() <em>Gen Packages</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getGenPackages() <em>Gen Packages</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getGenPackages()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getGenPackages()
+   * @generated
+   * @ordered
+   */
   protected EList<GenPackage> genPackages;
 
   protected EList<GenPackage> staticGenPackages = null;
 
   /**
-	 * The cached value of the '{@link #getUsedGenPackages() <em>Used Gen Packages</em>}' reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getUsedGenPackages() <em>Used Gen Packages</em>}' reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getUsedGenPackages()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getUsedGenPackages()
+   * @generated
+   * @ordered
+   */
   protected EList<GenPackage> usedGenPackages;
   
   /**
-	 * The default value of the '{@link #getInterfaceNamePattern() <em>Interface Name Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getInterfaceNamePattern() <em>Interface Name Pattern</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getInterfaceNamePattern()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getInterfaceNamePattern()
+   * @generated
+   * @ordered
+   */
   protected static final String INTERFACE_NAME_PATTERN_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getInterfaceNamePattern() <em>Interface Name Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getInterfaceNamePattern() <em>Interface Name Pattern</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getInterfaceNamePattern()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getInterfaceNamePattern()
+   * @generated
+   * @ordered
+   */
   protected String interfaceNamePattern = INTERFACE_NAME_PATTERN_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getClassNamePattern() <em>Class Name Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getClassNamePattern() <em>Class Name Pattern</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getClassNamePattern()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getClassNamePattern()
+   * @generated
+   * @ordered
+   */
   protected static final String CLASS_NAME_PATTERN_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getClassNamePattern() <em>Class Name Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getClassNamePattern() <em>Class Name Pattern</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getClassNamePattern()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getClassNamePattern()
+   * @generated
+   * @ordered
+   */
   protected String classNamePattern = CLASS_NAME_PATTERN_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isOperationReflection() <em>Operation Reflection</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isOperationReflection() <em>Operation Reflection</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isOperationReflection()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isOperationReflection()
+   * @generated
+   * @ordered
+   */
   protected static final boolean OPERATION_REFLECTION_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isOperationReflection() <em>Operation Reflection</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isOperationReflection() <em>Operation Reflection</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isOperationReflection()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isOperationReflection()
+   * @generated
+   * @ordered
+   */
   protected boolean operationReflection = OPERATION_REFLECTION_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #isRichAjaxPlatform() <em>Rich Ajax Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #isRichAjaxPlatform() <em>Rich Ajax Platform</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRichAjaxPlatform()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRichAjaxPlatform()
+   * @generated
+   * @ordered
+   */
   protected static final boolean RICH_AJAX_PLATFORM_EDEFAULT = false;
 
   /**
-	 * The cached value of the '{@link #isRichAjaxPlatform() <em>Rich Ajax Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isRichAjaxPlatform() <em>Rich Ajax Platform</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #isRichAjaxPlatform()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #isRichAjaxPlatform()
+   * @generated
+   * @ordered
+   */
   protected boolean richAjaxPlatform = RICH_AJAX_PLATFORM_EDEFAULT;
 
   protected boolean validateModel = false;
@@ -1945,38 +1945,38 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return GenModelPackage.Literals.GEN_MODEL;
-	}
+    return GenModelPackage.Literals.GEN_MODEL;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getCopyrightText()
   {
-		return copyrightText;
-	}
+    return copyrightText;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setCopyrightText(String newCopyrightText)
   {
-		String oldCopyrightText = copyrightText;
-		copyrightText = newCopyrightText;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT, oldCopyrightText, copyrightText));
-	}
+    String oldCopyrightText = copyrightText;
+    copyrightText = newCopyrightText;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT, oldCopyrightText, copyrightText));
+  }
 
   protected String getSourceFragmentPath()
   {
@@ -1985,83 +1985,83 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
 
   
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getModelDirectory()
   {
-		return modelDirectory;
-	}
+    return modelDirectory;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getModelDirectoryGen()
   {
-		return modelDirectory;
-	}
+    return modelDirectory;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setModelDirectory(String newModelDirectory)
   {
-		String oldModelDirectory = modelDirectory;
-		modelDirectory = newModelDirectory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_DIRECTORY, oldModelDirectory, modelDirectory));
-	}
+    String oldModelDirectory = modelDirectory;
+    modelDirectory = newModelDirectory;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_DIRECTORY, oldModelDirectory, modelDirectory));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isCreationCommands()
   {
-		return creationCommands;
-	}
+    return creationCommands;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setCreationCommands(boolean newCreationCommands)
   {
-		boolean oldCreationCommands = creationCommands;
-		creationCommands = newCreationCommands;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CREATION_COMMANDS, oldCreationCommands, creationCommands));
-	}
+    boolean oldCreationCommands = creationCommands;
+    creationCommands = newCreationCommands;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CREATION_COMMANDS, oldCreationCommands, creationCommands));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isCreationIcons()
   {
-		return creationIcons;
-	}
+    return creationIcons;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setCreationIcons(boolean newCreationIcons)
   {
-		boolean oldCreationIcons = creationIcons;
-		creationIcons = newCreationIcons;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CREATION_ICONS, oldCreationIcons, creationIcons));
-	}
+    boolean oldCreationIcons = creationIcons;
+    creationIcons = newCreationIcons;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CREATION_ICONS, oldCreationIcons, creationIcons));
+  }
 
   protected boolean canGenerate;
 
@@ -4361,77 +4361,77 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getEditDirectoryGen()
   {
-		return editDirectory;
-	}
+    return editDirectory;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEditDirectory(String newEditDirectory)
   {
-		String oldEditDirectory = editDirectory;
-		editDirectory = newEditDirectory;
-		boolean oldEditDirectoryESet = editDirectoryESet;
-		editDirectoryESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDIT_DIRECTORY, oldEditDirectory, editDirectory, !oldEditDirectoryESet));
-	}
+    String oldEditDirectory = editDirectory;
+    editDirectory = newEditDirectory;
+    boolean oldEditDirectoryESet = editDirectoryESet;
+    editDirectoryESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDIT_DIRECTORY, oldEditDirectory, editDirectory, !oldEditDirectoryESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetEditDirectory()
   {
-		String oldEditDirectory = editDirectory;
-		boolean oldEditDirectoryESet = editDirectoryESet;
-		editDirectory = EDIT_DIRECTORY_EDEFAULT;
-		editDirectoryESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDIT_DIRECTORY, oldEditDirectory, EDIT_DIRECTORY_EDEFAULT, oldEditDirectoryESet));
-	}
+    String oldEditDirectory = editDirectory;
+    boolean oldEditDirectoryESet = editDirectoryESet;
+    editDirectory = EDIT_DIRECTORY_EDEFAULT;
+    editDirectoryESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDIT_DIRECTORY, oldEditDirectory, EDIT_DIRECTORY_EDEFAULT, oldEditDirectoryESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetEditDirectory()
   {
-		return editDirectoryESet;
-	}
+    return editDirectoryESet;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isCreationSubmenus()
   {
-		return creationSubmenus;
-	}
+    return creationSubmenus;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setCreationSubmenus(boolean newCreationSubmenus)
   {
-		boolean oldCreationSubmenus = creationSubmenus;
-		creationSubmenus = newCreationSubmenus;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CREATION_SUBMENUS, oldCreationSubmenus, creationSubmenus));
-	}
+    boolean oldCreationSubmenus = creationSubmenus;
+    creationSubmenus = newCreationSubmenus;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CREATION_SUBMENUS, oldCreationSubmenus, creationSubmenus));
+  }
 
   public String getEditorDirectory()
   {
@@ -4439,228 +4439,229 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getEditorDirectoryGen()
   {
-		return editorDirectory;
-	}
+    return editorDirectory;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEditorDirectory(String newEditorDirectory)
   {
-		String oldEditorDirectory = editorDirectory;
-		editorDirectory = newEditorDirectory;
-		boolean oldEditorDirectoryESet = editorDirectoryESet;
-		editorDirectoryESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY, oldEditorDirectory, editorDirectory, !oldEditorDirectoryESet));
-	}
+    String oldEditorDirectory = editorDirectory;
+    editorDirectory = newEditorDirectory;
+    boolean oldEditorDirectoryESet = editorDirectoryESet;
+    editorDirectoryESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY, oldEditorDirectory, editorDirectory, !oldEditorDirectoryESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetEditorDirectory()
   {
-		String oldEditorDirectory = editorDirectory;
-		boolean oldEditorDirectoryESet = editorDirectoryESet;
-		editorDirectory = EDITOR_DIRECTORY_EDEFAULT;
-		editorDirectoryESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY, oldEditorDirectory, EDITOR_DIRECTORY_EDEFAULT, oldEditorDirectoryESet));
-	}
+    String oldEditorDirectory = editorDirectory;
+    boolean oldEditorDirectoryESet = editorDirectoryESet;
+    editorDirectory = EDITOR_DIRECTORY_EDEFAULT;
+    editorDirectoryESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY, oldEditorDirectory, EDITOR_DIRECTORY_EDEFAULT, oldEditorDirectoryESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetEditorDirectory()
   {
-		return editorDirectoryESet;
-	}
+    return editorDirectoryESet;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getModelPluginID()
   {
-		return modelPluginID;
-	}
+    return modelPluginID;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setModelPluginID(String newModelPluginID)
   {
-		String oldModelPluginID = modelPluginID;
-		modelPluginID = newModelPluginID;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID, oldModelPluginID, modelPluginID));
-	}
+    String oldModelPluginID = modelPluginID;
+    modelPluginID = newModelPluginID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID, oldModelPluginID, modelPluginID));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getTemplateDirectory()
   {
-		return templateDirectory;
-	}
+    return templateDirectory;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setTemplateDirectory(String newTemplateDirectory)
   {
-		String oldTemplateDirectory = templateDirectory;
-		templateDirectory = newTemplateDirectory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY, oldTemplateDirectory, templateDirectory));
-	}
+    String oldTemplateDirectory = templateDirectory;
+    templateDirectory = newTemplateDirectory;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY, oldTemplateDirectory, templateDirectory));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isRuntimeJar()
   {
-		return runtimeJar;
-	}
+    return runtimeJar;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRuntimeJar(boolean newRuntimeJar)
   {
-		boolean oldRuntimeJar = runtimeJar;
-		runtimeJar = newRuntimeJar;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RUNTIME_JAR, oldRuntimeJar, runtimeJar));
-	}
+    boolean oldRuntimeJar = runtimeJar;
+    runtimeJar = newRuntimeJar;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RUNTIME_JAR, oldRuntimeJar, runtimeJar));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<String> getForeignModel()
   {
-		if (foreignModel == null) {
-			foreignModel = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__FOREIGN_MODEL);
-		}
-		return foreignModel;
-	}
+    if (foreignModel == null)
+    {
+      foreignModel = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__FOREIGN_MODEL);
+    }
+    return foreignModel;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isDynamicTemplates()
   {
-		return dynamicTemplates;
-	}
+    return dynamicTemplates;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setDynamicTemplates(boolean newDynamicTemplates)
   {
-		boolean oldDynamicTemplates = dynamicTemplates;
-		dynamicTemplates = newDynamicTemplates;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES, oldDynamicTemplates, dynamicTemplates));
-	}
+    boolean oldDynamicTemplates = dynamicTemplates;
+    dynamicTemplates = newDynamicTemplates;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES, oldDynamicTemplates, dynamicTemplates));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getRedirection()
   {
-		return redirection;
-	}
+    return redirection;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRedirection(String newRedirection)
   {
-		String oldRedirection = redirection;
-		redirection = newRedirection;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__REDIRECTION, oldRedirection, redirection));
-	}
+    String oldRedirection = redirection;
+    redirection = newRedirection;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__REDIRECTION, oldRedirection, redirection));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isForceOverwrite()
   {
-		return forceOverwrite;
-	}
+    return forceOverwrite;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setForceOverwrite(boolean newForceOverwrite)
   {
-		boolean oldForceOverwrite = forceOverwrite;
-		forceOverwrite = newForceOverwrite;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FORCE_OVERWRITE, oldForceOverwrite, forceOverwrite));
-	}
+    boolean oldForceOverwrite = forceOverwrite;
+    forceOverwrite = newForceOverwrite;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FORCE_OVERWRITE, oldForceOverwrite, forceOverwrite));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getNonExternalizedStringTag()
   {
-		return nonExternalizedStringTag;
-	}
+    return nonExternalizedStringTag;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setNonExternalizedStringTagGen(String newNonExternalizedStringTag)
   {
-		String oldNonExternalizedStringTag = nonExternalizedStringTag;
-		nonExternalizedStringTag = newNonExternalizedStringTag;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG, oldNonExternalizedStringTag, nonExternalizedStringTag));
-	}
+    String oldNonExternalizedStringTag = nonExternalizedStringTag;
+    nonExternalizedStringTag = newNonExternalizedStringTag;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG, oldNonExternalizedStringTag, nonExternalizedStringTag));
+  }
 
   public void setNonExternalizedStringTag(String newNonExternalizedStringTag)
   {
@@ -4675,37 +4676,37 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getModelName()
   {
-		return modelName;
-	}
+    return modelName;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setModelName(String newModelName)
   {
-		String oldModelName = modelName;
-		modelName = newModelName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_NAME, oldModelName, modelName));
-	}
+    String oldModelName = modelName;
+    modelName = newModelName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_NAME, oldModelName, modelName));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getModelPluginClass()
   {
-		return modelPluginClass;
-	}
+    return modelPluginClass;
+  }
 
   // TODO deprecate (since no longer used by getEditPluginClass(), getEditorPluginClass(), getTestSuiteClass())
   //
@@ -4733,17 +4734,17 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setModelPluginClass(String newModelPluginClass)
   {
-		String oldModelPluginClass = modelPluginClass;
-		modelPluginClass = newModelPluginClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS, oldModelPluginClass, modelPluginClass));
-	}
+    String oldModelPluginClass = modelPluginClass;
+    modelPluginClass = newModelPluginClass;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS, oldModelPluginClass, modelPluginClass));
+  }
 
   // TODO factor up into GenBaseImpl?
   //
@@ -4773,14 +4774,14 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getEditPluginClassGen()
   {
-		return editPluginClass;
-	}
+    return editPluginClass;
+  }
 
   protected String getModelProject()
   {
@@ -4816,44 +4817,44 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEditPluginClass(String newEditPluginClass)
   {
-		String oldEditPluginClass = editPluginClass;
-		editPluginClass = newEditPluginClass;
-		boolean oldEditPluginClassESet = editPluginClassESet;
-		editPluginClassESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS, oldEditPluginClass, editPluginClass, !oldEditPluginClassESet));
-	}
+    String oldEditPluginClass = editPluginClass;
+    editPluginClass = newEditPluginClass;
+    boolean oldEditPluginClassESet = editPluginClassESet;
+    editPluginClassESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS, oldEditPluginClass, editPluginClass, !oldEditPluginClassESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetEditPluginClass()
   {
-		String oldEditPluginClass = editPluginClass;
-		boolean oldEditPluginClassESet = editPluginClassESet;
-		editPluginClass = EDIT_PLUGIN_CLASS_EDEFAULT;
-		editPluginClassESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS, oldEditPluginClass, EDIT_PLUGIN_CLASS_EDEFAULT, oldEditPluginClassESet));
-	}
+    String oldEditPluginClass = editPluginClass;
+    boolean oldEditPluginClassESet = editPluginClassESet;
+    editPluginClass = EDIT_PLUGIN_CLASS_EDEFAULT;
+    editPluginClassESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS, oldEditPluginClass, EDIT_PLUGIN_CLASS_EDEFAULT, oldEditPluginClassESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetEditPluginClass()
   {
-		return editPluginClassESet;
-	}
+    return editPluginClassESet;
+  }
 
   // If we change to pattern defaults, will have to specify plain suffix in no main package case.
   //
@@ -4876,123 +4877,123 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getEditorPluginClassGen()
   {
-		return editorPluginClass;
-	}
+    return editorPluginClass;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEditorPluginClass(String newEditorPluginClass)
   {
-		String oldEditorPluginClass = editorPluginClass;
-		editorPluginClass = newEditorPluginClass;
-		boolean oldEditorPluginClassESet = editorPluginClassESet;
-		editorPluginClassESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS, oldEditorPluginClass, editorPluginClass, !oldEditorPluginClassESet));
-	}
+    String oldEditorPluginClass = editorPluginClass;
+    editorPluginClass = newEditorPluginClass;
+    boolean oldEditorPluginClassESet = editorPluginClassESet;
+    editorPluginClassESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS, oldEditorPluginClass, editorPluginClass, !oldEditorPluginClassESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetEditorPluginClass()
   {
-		String oldEditorPluginClass = editorPluginClass;
-		boolean oldEditorPluginClassESet = editorPluginClassESet;
-		editorPluginClass = EDITOR_PLUGIN_CLASS_EDEFAULT;
-		editorPluginClassESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS, oldEditorPluginClass, EDITOR_PLUGIN_CLASS_EDEFAULT, oldEditorPluginClassESet));
-	}
+    String oldEditorPluginClass = editorPluginClass;
+    boolean oldEditorPluginClassESet = editorPluginClassESet;
+    editorPluginClass = EDITOR_PLUGIN_CLASS_EDEFAULT;
+    editorPluginClassESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS, oldEditorPluginClass, EDITOR_PLUGIN_CLASS_EDEFAULT, oldEditorPluginClassESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetEditorPluginClass()
   {
-		return editorPluginClassESet;
-	}
+    return editorPluginClassESet;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isUpdateClasspath()
   {
-		return updateClasspath;
-	}
+    return updateClasspath;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setUpdateClasspath(boolean newUpdateClasspath)
   {
-		boolean oldUpdateClasspath = updateClasspath;
-		updateClasspath = newUpdateClasspath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH, oldUpdateClasspath, updateClasspath));
-	}
+    boolean oldUpdateClasspath = updateClasspath;
+    updateClasspath = newUpdateClasspath;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH, oldUpdateClasspath, updateClasspath));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isGenerateSchema()
   {
-		return generateSchema;
-	}
+    return generateSchema;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setGenerateSchema(boolean newGenerateSchema)
   {
-		boolean oldGenerateSchema = generateSchema;
-		generateSchema = newGenerateSchema;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__GENERATE_SCHEMA, oldGenerateSchema, generateSchema));
-	}
+    boolean oldGenerateSchema = generateSchema;
+    generateSchema = newGenerateSchema;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__GENERATE_SCHEMA, oldGenerateSchema, generateSchema));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isNonNLSMarkers()
   {
-		return nonNLSMarkers;
-	}
+    return nonNLSMarkers;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setNonNLSMarkersGen(boolean newNonNLSMarkers)
   {
-		boolean oldNonNLSMarkers = nonNLSMarkers;
-		nonNLSMarkers = newNonNLSMarkers;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__NON_NLS_MARKERS, oldNonNLSMarkers, nonNLSMarkers));
-	}
+    boolean oldNonNLSMarkers = nonNLSMarkers;
+    nonNLSMarkers = newNonNLSMarkers;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__NON_NLS_MARKERS, oldNonNLSMarkers, nonNLSMarkers));
+  }
 
   public void setNonNLSMarkers(boolean newNonNLSMarkers)
   {
@@ -5032,73 +5033,74 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<String> getModelPluginVariables()
   {
-		if (modelPluginVariables == null) {
-			modelPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES);
-		}
-		return modelPluginVariables;
-	}
+    if (modelPluginVariables == null)
+    {
+      modelPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES);
+    }
+    return modelPluginVariables;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getRootExtendsInterface()
   {
-		return rootExtendsInterface;
-	}
+    return rootExtendsInterface;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRootExtendsInterface(String newRootExtendsInterface)
   {
-		String oldRootExtendsInterface = rootExtendsInterface;
-		rootExtendsInterface = newRootExtendsInterface;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE, oldRootExtendsInterface, rootExtendsInterface));
-	}
+    String oldRootExtendsInterface = rootExtendsInterface;
+    rootExtendsInterface = newRootExtendsInterface;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE, oldRootExtendsInterface, rootExtendsInterface));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getRootExtendsClass()
   {
-		return rootExtendsClass;
-	}
+    return rootExtendsClass;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRootExtendsClass(String newRootExtendsClass)
   {
-		String oldRootExtendsClass = rootExtendsClass;
-		rootExtendsClass = newRootExtendsClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS, oldRootExtendsClass, rootExtendsClass));
-	}
+    String oldRootExtendsClass = rootExtendsClass;
+    rootExtendsClass = newRootExtendsClass;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS, oldRootExtendsClass, rootExtendsClass));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getRootImplementsInterface()
   {
-		return rootImplementsInterface;
-	}
+    return rootImplementsInterface;
+  }
 
   protected GenClass rootImplementsInterfaceGenClass;
 
@@ -5122,17 +5124,17 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRootImplementsInterfaceGen(String newRootImplementsInterface)
   {
-		String oldRootImplementsInterface = rootImplementsInterface;
-		rootImplementsInterface = newRootImplementsInterface;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE, oldRootImplementsInterface, rootImplementsInterface));
-	}
+    String oldRootImplementsInterface = rootImplementsInterface;
+    rootImplementsInterface = newRootImplementsInterface;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE, oldRootImplementsInterface, rootImplementsInterface));
+  }
 
   public void setRootImplementsInterface(String newRootImplementsInterface)
   {
@@ -5181,175 +5183,175 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressEMFTypes()
   {
-		return suppressEMFTypes;
-	}
+    return suppressEMFTypes;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressEMFTypes(boolean newSuppressEMFTypes)
   {
-		boolean oldSuppressEMFTypes = suppressEMFTypes;
-		suppressEMFTypes = newSuppressEMFTypes;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES, oldSuppressEMFTypes, suppressEMFTypes));
-	}
+    boolean oldSuppressEMFTypes = suppressEMFTypes;
+    suppressEMFTypes = newSuppressEMFTypes;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES, oldSuppressEMFTypes, suppressEMFTypes));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressEMFMetaData()
   {
-		return suppressEMFMetaData;
-	}
+    return suppressEMFMetaData;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressEMFMetaData(boolean newSuppressEMFMetaData)
   {
-		boolean oldSuppressEMFMetaData = suppressEMFMetaData;
-		suppressEMFMetaData = newSuppressEMFMetaData;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA, oldSuppressEMFMetaData, suppressEMFMetaData));
-	}
+    boolean oldSuppressEMFMetaData = suppressEMFMetaData;
+    suppressEMFMetaData = newSuppressEMFMetaData;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA, oldSuppressEMFMetaData, suppressEMFMetaData));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressEMFModelTags()
   {
-		return suppressEMFModelTags;
-	}
+    return suppressEMFModelTags;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressEMFModelTags(boolean newSuppressEMFModelTags)
   {
-		boolean oldSuppressEMFModelTags = suppressEMFModelTags;
-		suppressEMFModelTags = newSuppressEMFModelTags;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS, oldSuppressEMFModelTags, suppressEMFModelTags));
-	}
+    boolean oldSuppressEMFModelTags = suppressEMFModelTags;
+    suppressEMFModelTags = newSuppressEMFModelTags;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS, oldSuppressEMFModelTags, suppressEMFModelTags));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressInterfaces()
   {
-		return suppressInterfaces;
-	}
+    return suppressInterfaces;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressInterfaces(boolean newSuppressInterfaces)
   {
-		boolean oldSuppressInterfaces = suppressInterfaces;
-		suppressInterfaces = newSuppressInterfaces;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES, oldSuppressInterfaces, suppressInterfaces));
-	}
+    boolean oldSuppressInterfaces = suppressInterfaces;
+    suppressInterfaces = newSuppressInterfaces;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES, oldSuppressInterfaces, suppressInterfaces));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getFeatureMapWrapperInterface()
   {
-		return featureMapWrapperInterface;
-	}
+    return featureMapWrapperInterface;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFeatureMapWrapperInterface(String newFeatureMapWrapperInterface)
   {
-		String oldFeatureMapWrapperInterface = featureMapWrapperInterface;
-		featureMapWrapperInterface = newFeatureMapWrapperInterface;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE, oldFeatureMapWrapperInterface, featureMapWrapperInterface));
-	}
+    String oldFeatureMapWrapperInterface = featureMapWrapperInterface;
+    featureMapWrapperInterface = newFeatureMapWrapperInterface;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE, oldFeatureMapWrapperInterface, featureMapWrapperInterface));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getFeatureMapWrapperInternalInterface()
   {
-		return featureMapWrapperInternalInterface;
-	}
+    return featureMapWrapperInternalInterface;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFeatureMapWrapperInternalInterface(String newFeatureMapWrapperInternalInterface)
   {
-		String oldFeatureMapWrapperInternalInterface = featureMapWrapperInternalInterface;
-		featureMapWrapperInternalInterface = newFeatureMapWrapperInternalInterface;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE, oldFeatureMapWrapperInternalInterface, featureMapWrapperInternalInterface));
-	}
+    String oldFeatureMapWrapperInternalInterface = featureMapWrapperInternalInterface;
+    featureMapWrapperInternalInterface = newFeatureMapWrapperInternalInterface;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE, oldFeatureMapWrapperInternalInterface, featureMapWrapperInternalInterface));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getFeatureMapWrapperClass()
   {
-		return featureMapWrapperClass;
-	}
+    return featureMapWrapperClass;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFeatureMapWrapperClass(String newFeatureMapWrapperClass)
   {
-		String oldFeatureMapWrapperClass = featureMapWrapperClass;
-		featureMapWrapperClass = newFeatureMapWrapperClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS, oldFeatureMapWrapperClass, featureMapWrapperClass));
-	}
+    String oldFeatureMapWrapperClass = featureMapWrapperClass;
+    featureMapWrapperClass = newFeatureMapWrapperClass;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS, oldFeatureMapWrapperClass, featureMapWrapperClass));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isRuntimeCompatibility()
   {
-		return runtimeCompatibility;
-	}
+    return runtimeCompatibility;
+  }
 
   public boolean needsRuntimeCompatibility()
   {
@@ -5357,27 +5359,27 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRuntimeCompatibility(boolean newRuntimeCompatibility)
   {
-		boolean oldRuntimeCompatibility = runtimeCompatibility;
-		runtimeCompatibility = newRuntimeCompatibility;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY, oldRuntimeCompatibility, runtimeCompatibility));
-	}
+    boolean oldRuntimeCompatibility = runtimeCompatibility;
+    runtimeCompatibility = newRuntimeCompatibility;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY, oldRuntimeCompatibility, runtimeCompatibility));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isRichClientPlatformGen()
   {
-		return richClientPlatform;
-	}
+    return richClientPlatform;
+  }
 
   public boolean isRichClientPlatform()
   {
@@ -5385,17 +5387,17 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRichClientPlatform(boolean newRichClientPlatform)
   {
-		boolean oldRichClientPlatform = richClientPlatform;
-		richClientPlatform = newRichClientPlatform;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM, oldRichClientPlatform, richClientPlatform));
-	}
+    boolean oldRichClientPlatform = richClientPlatform;
+    richClientPlatform = newRichClientPlatform;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM, oldRichClientPlatform, richClientPlatform));
+  }
 
   /**
    * <!-- begin-user-doc -->
@@ -5418,27 +5420,27 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isCodeFormatting()
   {
-		return codeFormatting;
-	}
+    return codeFormatting;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setCodeFormatting(boolean newCodeFormatting)
   {
-		boolean oldCodeFormatting = codeFormatting;
-		codeFormatting = newCodeFormatting;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CODE_FORMATTING, oldCodeFormatting, codeFormatting));
-	}
+    boolean oldCodeFormatting = codeFormatting;
+    codeFormatting = newCodeFormatting;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CODE_FORMATTING, oldCodeFormatting, codeFormatting));
+  }
 
   public String getTestsDirectory()
   {
@@ -5446,54 +5448,54 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getTestsDirectoryGen()
   {
-		return testsDirectory;
-	}
+    return testsDirectory;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setTestsDirectory(String newTestsDirectory)
   {
-		String oldTestsDirectory = testsDirectory;
-		testsDirectory = newTestsDirectory;
-		boolean oldTestsDirectoryESet = testsDirectoryESet;
-		testsDirectoryESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TESTS_DIRECTORY, oldTestsDirectory, testsDirectory, !oldTestsDirectoryESet));
-	}
+    String oldTestsDirectory = testsDirectory;
+    testsDirectory = newTestsDirectory;
+    boolean oldTestsDirectoryESet = testsDirectoryESet;
+    testsDirectoryESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TESTS_DIRECTORY, oldTestsDirectory, testsDirectory, !oldTestsDirectoryESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetTestsDirectory()
   {
-		String oldTestsDirectory = testsDirectory;
-		boolean oldTestsDirectoryESet = testsDirectoryESet;
-		testsDirectory = TESTS_DIRECTORY_EDEFAULT;
-		testsDirectoryESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__TESTS_DIRECTORY, oldTestsDirectory, TESTS_DIRECTORY_EDEFAULT, oldTestsDirectoryESet));
-	}
+    String oldTestsDirectory = testsDirectory;
+    boolean oldTestsDirectoryESet = testsDirectoryESet;
+    testsDirectory = TESTS_DIRECTORY_EDEFAULT;
+    testsDirectoryESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__TESTS_DIRECTORY, oldTestsDirectory, TESTS_DIRECTORY_EDEFAULT, oldTestsDirectoryESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetTestsDirectory()
   {
-		return testsDirectoryESet;
-	}
+    return testsDirectoryESet;
+  }
 
   // If we change to pattern defaults, will have to specify plain suffix in no main package case.
   //
@@ -5516,494 +5518,496 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getTestSuiteClassGen()
   {
-		return testSuiteClass;
-	}
+    return testSuiteClass;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setTestSuiteClass(String newTestSuiteClass)
   {
-		String oldTestSuiteClass = testSuiteClass;
-		testSuiteClass = newTestSuiteClass;
-		boolean oldTestSuiteClassESet = testSuiteClassESet;
-		testSuiteClassESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS, oldTestSuiteClass, testSuiteClass, !oldTestSuiteClassESet));
-	}
+    String oldTestSuiteClass = testSuiteClass;
+    testSuiteClass = newTestSuiteClass;
+    boolean oldTestSuiteClassESet = testSuiteClassESet;
+    testSuiteClassESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS, oldTestSuiteClass, testSuiteClass, !oldTestSuiteClassESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetTestSuiteClass()
   {
-		String oldTestSuiteClass = testSuiteClass;
-		boolean oldTestSuiteClassESet = testSuiteClassESet;
-		testSuiteClass = TEST_SUITE_CLASS_EDEFAULT;
-		testSuiteClassESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS, oldTestSuiteClass, TEST_SUITE_CLASS_EDEFAULT, oldTestSuiteClassESet));
-	}
+    String oldTestSuiteClass = testSuiteClass;
+    boolean oldTestSuiteClassESet = testSuiteClassESet;
+    testSuiteClass = TEST_SUITE_CLASS_EDEFAULT;
+    testSuiteClassESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS, oldTestSuiteClass, TEST_SUITE_CLASS_EDEFAULT, oldTestSuiteClassESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetTestSuiteClass()
   {
-		return testSuiteClassESet;
-	}
+    return testSuiteClassESet;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getBooleanFlagsField()
   {
-		return booleanFlagsField;
-	}
+    return booleanFlagsField;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setBooleanFlagsField(String newBooleanFlagsField)
   {
-		String oldBooleanFlagsField = booleanFlagsField;
-		booleanFlagsField = newBooleanFlagsField;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD, oldBooleanFlagsField, booleanFlagsField));
-	}
+    String oldBooleanFlagsField = booleanFlagsField;
+    booleanFlagsField = newBooleanFlagsField;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD, oldBooleanFlagsField, booleanFlagsField));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public int getBooleanFlagsReservedBits()
   {
-		return booleanFlagsReservedBits;
-	}
+    return booleanFlagsReservedBits;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setBooleanFlagsReservedBits(int newBooleanFlagsReservedBits)
   {
-		int oldBooleanFlagsReservedBits = booleanFlagsReservedBits;
-		booleanFlagsReservedBits = newBooleanFlagsReservedBits;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS, oldBooleanFlagsReservedBits, booleanFlagsReservedBits));
-	}
+    int oldBooleanFlagsReservedBits = booleanFlagsReservedBits;
+    booleanFlagsReservedBits = newBooleanFlagsReservedBits;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS, oldBooleanFlagsReservedBits, booleanFlagsReservedBits));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getImporterID()
   {
-		return importerID;
-	}
+    return importerID;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setImporterID(String newImporterID)
   {
-		String oldImporterID = importerID;
-		importerID = newImporterID;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__IMPORTER_ID, oldImporterID, importerID));
-	}
+    String oldImporterID = importerID;
+    importerID = newImporterID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__IMPORTER_ID, oldImporterID, importerID));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isBundleManifest()
   {
-		return bundleManifest;
-	}
+    return bundleManifest;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setBundleManifest(boolean newBundleManifest)
   {
-		boolean oldBundleManifest = bundleManifest;
-		bundleManifest = newBundleManifest;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST, oldBundleManifest, bundleManifest));
-	}
+    boolean oldBundleManifest = bundleManifest;
+    bundleManifest = newBundleManifest;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST, oldBundleManifest, bundleManifest));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public GenDelegationKind getFeatureDelegation()
   {
-		return featureDelegation;
-	}
+    return featureDelegation;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFeatureDelegation(GenDelegationKind newFeatureDelegation)
   {
-		GenDelegationKind oldFeatureDelegation = featureDelegation;
-		featureDelegation = newFeatureDelegation == null ? FEATURE_DELEGATION_EDEFAULT : newFeatureDelegation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_DELEGATION, oldFeatureDelegation, featureDelegation));
-	}
+    GenDelegationKind oldFeatureDelegation = featureDelegation;
+    featureDelegation = newFeatureDelegation == null ? FEATURE_DELEGATION_EDEFAULT : newFeatureDelegation;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FEATURE_DELEGATION, oldFeatureDelegation, featureDelegation));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isContainmentProxies()
   {
-		return containmentProxies;
-	}
+    return containmentProxies;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setContainmentProxies(boolean newContainmentProxies)
   {
-		boolean oldContainmentProxies = containmentProxies;
-		containmentProxies = newContainmentProxies;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES, oldContainmentProxies, containmentProxies));
-	}
+    boolean oldContainmentProxies = containmentProxies;
+    containmentProxies = newContainmentProxies;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES, oldContainmentProxies, containmentProxies));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isMinimalReflectiveMethods()
   {
-		return minimalReflectiveMethods;
-	}
+    return minimalReflectiveMethods;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setMinimalReflectiveMethods(boolean newMinimalReflectiveMethods)
   {
-		boolean oldMinimalReflectiveMethods = minimalReflectiveMethods;
-		minimalReflectiveMethods = newMinimalReflectiveMethods;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS, oldMinimalReflectiveMethods, minimalReflectiveMethods));
-	}
+    boolean oldMinimalReflectiveMethods = minimalReflectiveMethods;
+    minimalReflectiveMethods = newMinimalReflectiveMethods;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS, oldMinimalReflectiveMethods, minimalReflectiveMethods));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressContainment()
   {
-		return suppressContainment;
-	}
+    return suppressContainment;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressContainment(boolean newSuppressContainment)
   {
-		boolean oldSuppressContainment = suppressContainment;
-		suppressContainment = newSuppressContainment;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT, oldSuppressContainment, suppressContainment));
-	}
+    boolean oldSuppressContainment = suppressContainment;
+    suppressContainment = newSuppressContainment;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT, oldSuppressContainment, suppressContainment));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressNotification()
   {
-		return suppressNotification;
-	}
+    return suppressNotification;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressNotification(boolean newSuppressNotification)
   {
-		boolean oldSuppressNotification = suppressNotification;
-		suppressNotification = newSuppressNotification;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION, oldSuppressNotification, suppressNotification));
-	}
+    boolean oldSuppressNotification = suppressNotification;
+    suppressNotification = newSuppressNotification;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION, oldSuppressNotification, suppressNotification));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isArrayAccessors()
   {
-		return arrayAccessors;
-	}
+    return arrayAccessors;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setArrayAccessors(boolean newArrayAccessors)
   {
-		boolean oldArrayAccessors = arrayAccessors;
-		arrayAccessors = newArrayAccessors;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS, oldArrayAccessors, arrayAccessors));
-	}
+    boolean oldArrayAccessors = arrayAccessors;
+    arrayAccessors = newArrayAccessors;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS, oldArrayAccessors, arrayAccessors));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressUnsettable()
   {
-		return suppressUnsettable;
-	}
+    return suppressUnsettable;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressUnsettable(boolean newSuppressUnsettable)
   {
-		boolean oldSuppressUnsettable = suppressUnsettable;
-		suppressUnsettable = newSuppressUnsettable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE, oldSuppressUnsettable, suppressUnsettable));
-	}
+    boolean oldSuppressUnsettable = suppressUnsettable;
+    suppressUnsettable = newSuppressUnsettable;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE, oldSuppressUnsettable, suppressUnsettable));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getFacadeHelperClass()
   {
-		return facadeHelperClass;
-	}
+    return facadeHelperClass;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFacadeHelperClass(String newFacadeHelperClass)
   {
-		String oldFacadeHelperClass = facadeHelperClass;
-		facadeHelperClass = newFacadeHelperClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS, oldFacadeHelperClass, facadeHelperClass));
-	}
+    String oldFacadeHelperClass = facadeHelperClass;
+    facadeHelperClass = newFacadeHelperClass;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS, oldFacadeHelperClass, facadeHelperClass));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public GenJDKLevel getComplianceLevel()
   {
-		return complianceLevel;
-	}
+    return complianceLevel;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setComplianceLevel(GenJDKLevel newComplianceLevel)
   {
-		GenJDKLevel oldComplianceLevel = complianceLevel;
-		complianceLevel = newComplianceLevel == null ? COMPLIANCE_LEVEL_EDEFAULT : newComplianceLevel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL, oldComplianceLevel, complianceLevel));
-	}
+    GenJDKLevel oldComplianceLevel = complianceLevel;
+    complianceLevel = newComplianceLevel == null ? COMPLIANCE_LEVEL_EDEFAULT : newComplianceLevel;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL, oldComplianceLevel, complianceLevel));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSuppressGenModelAnnotations()
   {
-		return suppressGenModelAnnotations;
-	}
+    return suppressGenModelAnnotations;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSuppressGenModelAnnotations(boolean newSuppressGenModelAnnotations)
   {
-		boolean oldSuppressGenModelAnnotations = suppressGenModelAnnotations;
-		suppressGenModelAnnotations = newSuppressGenModelAnnotations;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS, oldSuppressGenModelAnnotations, suppressGenModelAnnotations));
-	}
+    boolean oldSuppressGenModelAnnotations = suppressGenModelAnnotations;
+    suppressGenModelAnnotations = newSuppressGenModelAnnotations;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS, oldSuppressGenModelAnnotations, suppressGenModelAnnotations));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isCopyrightFields()
   {
-		return copyrightFields;
-	}
+    return copyrightFields;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setCopyrightFields(boolean newCopyrightFields)
   {
-		boolean oldCopyrightFields = copyrightFields;
-		copyrightFields = newCopyrightFields;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS, oldCopyrightFields, copyrightFields));
-	}
+    boolean oldCopyrightFields = copyrightFields;
+    copyrightFields = newCopyrightFields;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS, oldCopyrightFields, copyrightFields));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isBinaryCompatibleReflectiveMethods()
   {
-		return binaryCompatibleReflectiveMethods;
-	}
+    return binaryCompatibleReflectiveMethods;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setBinaryCompatibleReflectiveMethods(boolean newBinaryCompatibleReflectiveMethods)
   {
-		boolean oldBinaryCompatibleReflectiveMethods = binaryCompatibleReflectiveMethods;
-		binaryCompatibleReflectiveMethods = newBinaryCompatibleReflectiveMethods;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS, oldBinaryCompatibleReflectiveMethods, binaryCompatibleReflectiveMethods));
-	}
+    boolean oldBinaryCompatibleReflectiveMethods = binaryCompatibleReflectiveMethods;
+    binaryCompatibleReflectiveMethods = newBinaryCompatibleReflectiveMethods;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS, oldBinaryCompatibleReflectiveMethods, binaryCompatibleReflectiveMethods));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isPublicConstructors()
   {
-		return publicConstructors;
-	}
+    return publicConstructors;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setPublicConstructors(boolean newPublicConstructors)
   {
-		boolean oldPublicConstructors = publicConstructors;
-		publicConstructors = newPublicConstructors;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS, oldPublicConstructors, publicConstructors));
-	}
+    boolean oldPublicConstructors = publicConstructors;
+    publicConstructors = newPublicConstructors;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS, oldPublicConstructors, publicConstructors));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<String> getTemplatePluginVariables()
   {
-		if (templatePluginVariables == null) {
-			templatePluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES);
-		}
-		return templatePluginVariables;
-	}
+    if (templatePluginVariables == null)
+    {
+      templatePluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES);
+    }
+    return templatePluginVariables;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getProviderRootExtendsClass()
   {
-		return providerRootExtendsClass;
-	}
+    return providerRootExtendsClass;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setProviderRootExtendsClass(String newProviderRootExtendsClass)
   {
-		String oldProviderRootExtendsClass = providerRootExtendsClass;
-		providerRootExtendsClass = newProviderRootExtendsClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS, oldProviderRootExtendsClass, providerRootExtendsClass));
-	}
+    String oldProviderRootExtendsClass = providerRootExtendsClass;
+    providerRootExtendsClass = newProviderRootExtendsClass;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS, oldProviderRootExtendsClass, providerRootExtendsClass));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<GenPackage> getGenPackages()
   {
-		if (genPackages == null) {
-			genPackages = new EObjectContainmentWithInverseEList<GenPackage>(GenPackage.class, this, GenModelPackage.GEN_MODEL__GEN_PACKAGES, GenModelPackage.GEN_PACKAGE__GEN_MODEL);
-		}
-		return genPackages;
-	}
+    if (genPackages == null)
+    {
+      genPackages = new EObjectContainmentWithInverseEList<GenPackage>(GenPackage.class, this, GenModelPackage.GEN_MODEL__GEN_PACKAGES, GenModelPackage.GEN_PACKAGE__GEN_MODEL);
+    }
+    return genPackages;
+  }
 
   public EList<GenPackage> getStaticGenPackages()
   {
@@ -6109,60 +6113,60 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getInterfaceNamePattern()
   {
-		return interfaceNamePattern;
-	}
+    return interfaceNamePattern;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setInterfaceNamePattern(String newInterfaceNamePattern)
   {
-		String oldInterfaceNamePattern = interfaceNamePattern;
-		interfaceNamePattern = newInterfaceNamePattern;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN, oldInterfaceNamePattern, interfaceNamePattern));
-	}
+    String oldInterfaceNamePattern = interfaceNamePattern;
+    interfaceNamePattern = newInterfaceNamePattern;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN, oldInterfaceNamePattern, interfaceNamePattern));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getClassNamePattern()
   {
-		return classNamePattern;
-	}
+    return classNamePattern;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setClassNamePattern(String newClassNamePattern)
   {
-		String oldClassNamePattern = classNamePattern;
-		classNamePattern = newClassNamePattern;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN, oldClassNamePattern, classNamePattern));
-	}
+    String oldClassNamePattern = classNamePattern;
+    classNamePattern = newClassNamePattern;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN, oldClassNamePattern, classNamePattern));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isOperationReflectionGen()
   {
-		return operationReflection;
-	}
+    return operationReflection;
+  }
 
   public boolean isOperationReflection()
   {
@@ -6170,1078 +6174,1084 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
   
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setOperationReflection(boolean newOperationReflection)
   {
-		boolean oldOperationReflection = operationReflection;
-		operationReflection = newOperationReflection;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__OPERATION_REFLECTION, oldOperationReflection, operationReflection));
-	}
+    boolean oldOperationReflection = operationReflection;
+    operationReflection = newOperationReflection;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__OPERATION_REFLECTION, oldOperationReflection, operationReflection));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isRichAjaxPlatform()
   {
-		return richAjaxPlatform;
-	}
+    return richAjaxPlatform;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRichAjaxPlatform(boolean newRichAjaxPlatform)
   {
-		boolean oldRichAjaxPlatform = richAjaxPlatform;
-		richAjaxPlatform = newRichAjaxPlatform;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM, oldRichAjaxPlatform, richAjaxPlatform));
-	}
+    boolean oldRichAjaxPlatform = richAjaxPlatform;
+    richAjaxPlatform = newRichAjaxPlatform;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM, oldRichAjaxPlatform, richAjaxPlatform));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenPackages()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenPackages()).basicAdd(otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
-				return ((InternalEList<?>)getGenPackages()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
+        return ((InternalEList<?>)getGenPackages()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
-				return getCopyrightText();
-			case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
-				return getModelDirectory();
-			case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
-				return isCreationCommands();
-			case GenModelPackage.GEN_MODEL__CREATION_ICONS:
-				return isCreationIcons();
-			case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
-				return isCreationSubmenus();
-			case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
-				return getEditDirectory();
-			case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
-				return getEditorDirectory();
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
-				return getModelPluginID();
-			case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
-				return getTemplateDirectory();
-			case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
-				return isRuntimeJar();
-			case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
-				return getForeignModel();
-			case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
-				return isDynamicTemplates();
-			case GenModelPackage.GEN_MODEL__REDIRECTION:
-				return getRedirection();
-			case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
-				return isForceOverwrite();
-			case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
-				return getNonExternalizedStringTag();
-			case GenModelPackage.GEN_MODEL__MODEL_NAME:
-				return getModelName();
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
-				return getModelPluginClass();
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
-				return getEditPluginClass();
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
-				return getEditorPluginClass();
-			case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
-				return isUpdateClasspath();
-			case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
-				return isGenerateSchema();
-			case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
-				return isNonNLSMarkers();
-			case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
-				return getStaticPackages();
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
-				return getModelPluginVariables();
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
-				return getRootExtendsInterface();
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
-				return getRootExtendsClass();
-			case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
-				return getRootImplementsInterface();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
-				return isSuppressEMFTypes();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
-				return isSuppressEMFMetaData();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
-				return isSuppressEMFModelTags();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
-				return isSuppressInterfaces();
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
-				return getFeatureMapWrapperInterface();
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
-				return getFeatureMapWrapperInternalInterface();
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
-				return getFeatureMapWrapperClass();
-			case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
-				return isRuntimeCompatibility();
-			case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
-				return isRichClientPlatform();
-			case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
-				return isReflectiveDelegation();
-			case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
-				return isCodeFormatting();
-			case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
-				return getTestsDirectory();
-			case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
-				return getTestSuiteClass();
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
-				return getBooleanFlagsField();
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
-				return getBooleanFlagsReservedBits();
-			case GenModelPackage.GEN_MODEL__IMPORTER_ID:
-				return getImporterID();
-			case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
-				return isBundleManifest();
-			case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
-				return getFeatureDelegation();
-			case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
-				return isContainmentProxies();
-			case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
-				return isMinimalReflectiveMethods();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
-				return isSuppressContainment();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
-				return isSuppressNotification();
-			case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
-				return isArrayAccessors();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
-				return isSuppressUnsettable();
-			case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
-				return getFacadeHelperClass();
-			case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
-				return getComplianceLevel();
-			case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
-				return isSuppressGenModelAnnotations();
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
-				return isCopyrightFields();
-			case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
-				return isBinaryCompatibleReflectiveMethods();
-			case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
-				return isPublicConstructors();
-			case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
-				return getTemplatePluginVariables();
-			case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
-				return getProviderRootExtendsClass();
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
-				return getEditPluginID();
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
-				return getEditPluginVariables();
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
-				return getEditorPluginID();
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
-				return getEditorPluginVariables();
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
-				return getTestsPluginID();
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
-				return getTestsPluginVariables();
-			case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
-				return isOptimizedHasChildren();
-			case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
-				return isTableProviders();
-			case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
-				return isColorProviders();
-			case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
-				return isFontProviders();
-			case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
-				return getRuntimeVersion();
-			case GenModelPackage.GEN_MODEL__LANGUAGE:
-				return getLanguage();
-			case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
-				return isPackedEnums();
-			case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
-				return getGenPackages();
-			case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
-				return getUsedGenPackages();
-			case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
-				return getInterfaceNamePattern();
-			case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
-				return getClassNamePattern();
-			case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
-				return isOperationReflection();
-			case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
-				return isRichAjaxPlatform();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
+        return getCopyrightText();
+      case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
+        return getModelDirectory();
+      case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
+        return isCreationCommands();
+      case GenModelPackage.GEN_MODEL__CREATION_ICONS:
+        return isCreationIcons();
+      case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
+        return isCreationSubmenus();
+      case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
+        return getEditDirectory();
+      case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
+        return getEditorDirectory();
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
+        return getModelPluginID();
+      case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
+        return getTemplateDirectory();
+      case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
+        return isRuntimeJar();
+      case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
+        return getForeignModel();
+      case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
+        return isDynamicTemplates();
+      case GenModelPackage.GEN_MODEL__REDIRECTION:
+        return getRedirection();
+      case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
+        return isForceOverwrite();
+      case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
+        return getNonExternalizedStringTag();
+      case GenModelPackage.GEN_MODEL__MODEL_NAME:
+        return getModelName();
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
+        return getModelPluginClass();
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
+        return getEditPluginClass();
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
+        return getEditorPluginClass();
+      case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
+        return isUpdateClasspath();
+      case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
+        return isGenerateSchema();
+      case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
+        return isNonNLSMarkers();
+      case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
+        return getStaticPackages();
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
+        return getModelPluginVariables();
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
+        return getRootExtendsInterface();
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
+        return getRootExtendsClass();
+      case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
+        return getRootImplementsInterface();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
+        return isSuppressEMFTypes();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
+        return isSuppressEMFMetaData();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
+        return isSuppressEMFModelTags();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
+        return isSuppressInterfaces();
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
+        return getFeatureMapWrapperInterface();
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
+        return getFeatureMapWrapperInternalInterface();
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
+        return getFeatureMapWrapperClass();
+      case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
+        return isRuntimeCompatibility();
+      case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
+        return isRichClientPlatform();
+      case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
+        return isReflectiveDelegation();
+      case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
+        return isCodeFormatting();
+      case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
+        return getTestsDirectory();
+      case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
+        return getTestSuiteClass();
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
+        return getBooleanFlagsField();
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
+        return getBooleanFlagsReservedBits();
+      case GenModelPackage.GEN_MODEL__IMPORTER_ID:
+        return getImporterID();
+      case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
+        return isBundleManifest();
+      case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
+        return getFeatureDelegation();
+      case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
+        return isContainmentProxies();
+      case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
+        return isMinimalReflectiveMethods();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
+        return isSuppressContainment();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
+        return isSuppressNotification();
+      case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
+        return isArrayAccessors();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
+        return isSuppressUnsettable();
+      case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
+        return getFacadeHelperClass();
+      case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
+        return getComplianceLevel();
+      case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
+        return isSuppressGenModelAnnotations();
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
+        return isCopyrightFields();
+      case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
+        return isBinaryCompatibleReflectiveMethods();
+      case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
+        return isPublicConstructors();
+      case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
+        return getTemplatePluginVariables();
+      case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
+        return getProviderRootExtendsClass();
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
+        return getEditPluginID();
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
+        return getEditPluginVariables();
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
+        return getEditorPluginID();
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
+        return getEditorPluginVariables();
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
+        return getTestsPluginID();
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
+        return getTestsPluginVariables();
+      case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
+        return isOptimizedHasChildren();
+      case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
+        return isTableProviders();
+      case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
+        return isColorProviders();
+      case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
+        return isFontProviders();
+      case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
+        return getRuntimeVersion();
+      case GenModelPackage.GEN_MODEL__LANGUAGE:
+        return getLanguage();
+      case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
+        return isPackedEnums();
+      case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
+        return getGenPackages();
+      case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
+        return getUsedGenPackages();
+      case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
+        return getInterfaceNamePattern();
+      case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
+        return getClassNamePattern();
+      case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
+        return isOperationReflection();
+      case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
+        return isRichAjaxPlatform();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
-				setCopyrightText((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
-				setModelDirectory((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
-				setCreationCommands((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__CREATION_ICONS:
-				setCreationIcons((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
-				setCreationSubmenus((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
-				setEditDirectory((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
-				setEditorDirectory((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
-				setModelPluginID((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
-				setTemplateDirectory((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
-				setRuntimeJar((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
-				getForeignModel().clear();
-				getForeignModel().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
-				setDynamicTemplates((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__REDIRECTION:
-				setRedirection((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
-				setForceOverwrite((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
-				setNonExternalizedStringTag((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_NAME:
-				setModelName((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
-				setModelPluginClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
-				setEditPluginClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
-				setEditorPluginClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
-				setUpdateClasspath((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
-				setGenerateSchema((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
-				setNonNLSMarkers((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
-				getStaticPackages().clear();
-				getStaticPackages().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
-				getModelPluginVariables().clear();
-				getModelPluginVariables().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
-				setRootExtendsInterface((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
-				setRootExtendsClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
-				setRootImplementsInterface((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
-				setSuppressEMFTypes((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
-				setSuppressEMFMetaData((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
-				setSuppressEMFModelTags((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
-				setSuppressInterfaces((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
-				setFeatureMapWrapperInterface((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
-				setFeatureMapWrapperInternalInterface((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
-				setFeatureMapWrapperClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
-				setRuntimeCompatibility((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
-				setRichClientPlatform((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
-				setReflectiveDelegation((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
-				setCodeFormatting((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
-				setTestsDirectory((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
-				setTestSuiteClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
-				setBooleanFlagsField((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
-				setBooleanFlagsReservedBits((Integer)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__IMPORTER_ID:
-				setImporterID((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
-				setBundleManifest((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
-				setFeatureDelegation((GenDelegationKind)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
-				setContainmentProxies((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
-				setMinimalReflectiveMethods((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
-				setSuppressContainment((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
-				setSuppressNotification((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
-				setArrayAccessors((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
-				setSuppressUnsettable((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
-				setFacadeHelperClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
-				setComplianceLevel((GenJDKLevel)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
-				setSuppressGenModelAnnotations((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
-				setCopyrightFields((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
-				setBinaryCompatibleReflectiveMethods((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
-				setPublicConstructors((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
-				getTemplatePluginVariables().clear();
-				getTemplatePluginVariables().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
-				setProviderRootExtendsClass((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
-				setEditPluginID((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
-				getEditPluginVariables().clear();
-				getEditPluginVariables().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
-				setEditorPluginID((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
-				getEditorPluginVariables().clear();
-				getEditorPluginVariables().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
-				setTestsPluginID((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
-				getTestsPluginVariables().clear();
-				getTestsPluginVariables().addAll((Collection<? extends String>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
-				setOptimizedHasChildren((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
-				setTableProviders((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
-				setColorProviders((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
-				setFontProviders((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
-				setRuntimeVersion((GenRuntimeVersion)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__LANGUAGE:
-				setLanguage((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
-				setPackedEnums((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
-				getGenPackages().clear();
-				getGenPackages().addAll((Collection<? extends GenPackage>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
-				getUsedGenPackages().clear();
-				getUsedGenPackages().addAll((Collection<? extends GenPackage>)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
-				setInterfaceNamePattern((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
-				setClassNamePattern((String)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
-				setOperationReflection((Boolean)newValue);
-				return;
-			case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
-				setRichAjaxPlatform((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
+        setCopyrightText((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
+        setModelDirectory((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
+        setCreationCommands((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__CREATION_ICONS:
+        setCreationIcons((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
+        setCreationSubmenus((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
+        setEditDirectory((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
+        setEditorDirectory((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
+        setModelPluginID((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
+        setTemplateDirectory((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
+        setRuntimeJar((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
+        getForeignModel().clear();
+        getForeignModel().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
+        setDynamicTemplates((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__REDIRECTION:
+        setRedirection((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
+        setForceOverwrite((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
+        setNonExternalizedStringTag((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_NAME:
+        setModelName((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
+        setModelPluginClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
+        setEditPluginClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
+        setEditorPluginClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
+        setUpdateClasspath((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
+        setGenerateSchema((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
+        setNonNLSMarkers((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
+        getStaticPackages().clear();
+        getStaticPackages().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
+        getModelPluginVariables().clear();
+        getModelPluginVariables().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
+        setRootExtendsInterface((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
+        setRootExtendsClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
+        setRootImplementsInterface((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
+        setSuppressEMFTypes((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
+        setSuppressEMFMetaData((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
+        setSuppressEMFModelTags((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
+        setSuppressInterfaces((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
+        setFeatureMapWrapperInterface((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
+        setFeatureMapWrapperInternalInterface((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
+        setFeatureMapWrapperClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
+        setRuntimeCompatibility((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
+        setRichClientPlatform((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
+        setReflectiveDelegation((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
+        setCodeFormatting((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
+        setTestsDirectory((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
+        setTestSuiteClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
+        setBooleanFlagsField((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
+        setBooleanFlagsReservedBits((Integer)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__IMPORTER_ID:
+        setImporterID((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
+        setBundleManifest((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
+        setFeatureDelegation((GenDelegationKind)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
+        setContainmentProxies((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
+        setMinimalReflectiveMethods((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
+        setSuppressContainment((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
+        setSuppressNotification((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
+        setArrayAccessors((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
+        setSuppressUnsettable((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
+        setFacadeHelperClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
+        setComplianceLevel((GenJDKLevel)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
+        setSuppressGenModelAnnotations((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
+        setCopyrightFields((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
+        setBinaryCompatibleReflectiveMethods((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
+        setPublicConstructors((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
+        getTemplatePluginVariables().clear();
+        getTemplatePluginVariables().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
+        setProviderRootExtendsClass((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
+        setEditPluginID((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
+        getEditPluginVariables().clear();
+        getEditPluginVariables().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
+        setEditorPluginID((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
+        getEditorPluginVariables().clear();
+        getEditorPluginVariables().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
+        setTestsPluginID((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
+        getTestsPluginVariables().clear();
+        getTestsPluginVariables().addAll((Collection<? extends String>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
+        setOptimizedHasChildren((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
+        setTableProviders((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
+        setColorProviders((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
+        setFontProviders((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
+        setRuntimeVersion((GenRuntimeVersion)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__LANGUAGE:
+        setLanguage((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
+        setPackedEnums((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
+        getGenPackages().clear();
+        getGenPackages().addAll((Collection<? extends GenPackage>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
+        getUsedGenPackages().clear();
+        getUsedGenPackages().addAll((Collection<? extends GenPackage>)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
+        setInterfaceNamePattern((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
+        setClassNamePattern((String)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
+        setOperationReflection((Boolean)newValue);
+        return;
+      case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
+        setRichAjaxPlatform((Boolean)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
-				setCopyrightText(COPYRIGHT_TEXT_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
-				setModelDirectory(MODEL_DIRECTORY_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
-				setCreationCommands(CREATION_COMMANDS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__CREATION_ICONS:
-				setCreationIcons(CREATION_ICONS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
-				setCreationSubmenus(CREATION_SUBMENUS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
-				unsetEditDirectory();
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
-				unsetEditorDirectory();
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
-				setModelPluginID(MODEL_PLUGIN_ID_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
-				setTemplateDirectory(TEMPLATE_DIRECTORY_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
-				setRuntimeJar(RUNTIME_JAR_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
-				getForeignModel().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
-				setDynamicTemplates(DYNAMIC_TEMPLATES_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__REDIRECTION:
-				setRedirection(REDIRECTION_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
-				setForceOverwrite(FORCE_OVERWRITE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
-				setNonExternalizedStringTag(NON_EXTERNALIZED_STRING_TAG_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_NAME:
-				setModelName(MODEL_NAME_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
-				setModelPluginClass(MODEL_PLUGIN_CLASS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
-				unsetEditPluginClass();
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
-				unsetEditorPluginClass();
-				return;
-			case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
-				setUpdateClasspath(UPDATE_CLASSPATH_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
-				setGenerateSchema(GENERATE_SCHEMA_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
-				setNonNLSMarkers(NON_NLS_MARKERS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
-				getStaticPackages().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
-				getModelPluginVariables().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
-				setRootExtendsInterface(ROOT_EXTENDS_INTERFACE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
-				setRootExtendsClass(ROOT_EXTENDS_CLASS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
-				setRootImplementsInterface(ROOT_IMPLEMENTS_INTERFACE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
-				setSuppressEMFTypes(SUPPRESS_EMF_TYPES_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
-				setSuppressEMFMetaData(SUPPRESS_EMF_META_DATA_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
-				setSuppressEMFModelTags(SUPPRESS_EMF_MODEL_TAGS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
-				setSuppressInterfaces(SUPPRESS_INTERFACES_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
-				setFeatureMapWrapperInterface(FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
-				setFeatureMapWrapperInternalInterface(FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
-				setFeatureMapWrapperClass(FEATURE_MAP_WRAPPER_CLASS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
-				setRuntimeCompatibility(RUNTIME_COMPATIBILITY_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
-				setRichClientPlatform(RICH_CLIENT_PLATFORM_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
-				setReflectiveDelegation(REFLECTIVE_DELEGATION_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
-				setCodeFormatting(CODE_FORMATTING_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
-				unsetTestsDirectory();
-				return;
-			case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
-				unsetTestSuiteClass();
-				return;
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
-				setBooleanFlagsField(BOOLEAN_FLAGS_FIELD_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
-				setBooleanFlagsReservedBits(BOOLEAN_FLAGS_RESERVED_BITS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__IMPORTER_ID:
-				setImporterID(IMPORTER_ID_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
-				setBundleManifest(BUNDLE_MANIFEST_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
-				setFeatureDelegation(FEATURE_DELEGATION_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
-				setContainmentProxies(CONTAINMENT_PROXIES_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
-				setMinimalReflectiveMethods(MINIMAL_REFLECTIVE_METHODS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
-				setSuppressContainment(SUPPRESS_CONTAINMENT_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
-				setSuppressNotification(SUPPRESS_NOTIFICATION_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
-				setArrayAccessors(ARRAY_ACCESSORS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
-				setSuppressUnsettable(SUPPRESS_UNSETTABLE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
-				setFacadeHelperClass(FACADE_HELPER_CLASS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
-				setComplianceLevel(COMPLIANCE_LEVEL_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
-				setSuppressGenModelAnnotations(SUPPRESS_GEN_MODEL_ANNOTATIONS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
-				setCopyrightFields(COPYRIGHT_FIELDS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
-				setBinaryCompatibleReflectiveMethods(BINARY_COMPATIBLE_REFLECTIVE_METHODS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
-				setPublicConstructors(PUBLIC_CONSTRUCTORS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
-				getTemplatePluginVariables().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
-				setProviderRootExtendsClass(PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
-				setEditPluginID(EDIT_PLUGIN_ID_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
-				getEditPluginVariables().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
-				setEditorPluginID(EDITOR_PLUGIN_ID_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
-				getEditorPluginVariables().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
-				setTestsPluginID(TESTS_PLUGIN_ID_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
-				getTestsPluginVariables().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
-				setOptimizedHasChildren(OPTIMIZED_HAS_CHILDREN_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
-				setTableProviders(TABLE_PROVIDERS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
-				setColorProviders(COLOR_PROVIDERS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
-				setFontProviders(FONT_PROVIDERS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
-				unsetRuntimeVersion();
-				return;
-			case GenModelPackage.GEN_MODEL__LANGUAGE:
-				setLanguage(LANGUAGE_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
-				setPackedEnums(PACKED_ENUMS_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
-				getGenPackages().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
-				getUsedGenPackages().clear();
-				return;
-			case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
-				setInterfaceNamePattern(INTERFACE_NAME_PATTERN_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
-				setClassNamePattern(CLASS_NAME_PATTERN_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
-				setOperationReflection(OPERATION_REFLECTION_EDEFAULT);
-				return;
-			case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
-				setRichAjaxPlatform(RICH_AJAX_PLATFORM_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
+        setCopyrightText(COPYRIGHT_TEXT_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
+        setModelDirectory(MODEL_DIRECTORY_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
+        setCreationCommands(CREATION_COMMANDS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__CREATION_ICONS:
+        setCreationIcons(CREATION_ICONS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
+        setCreationSubmenus(CREATION_SUBMENUS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
+        unsetEditDirectory();
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
+        unsetEditorDirectory();
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
+        setModelPluginID(MODEL_PLUGIN_ID_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
+        setTemplateDirectory(TEMPLATE_DIRECTORY_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
+        setRuntimeJar(RUNTIME_JAR_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
+        getForeignModel().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
+        setDynamicTemplates(DYNAMIC_TEMPLATES_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__REDIRECTION:
+        setRedirection(REDIRECTION_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
+        setForceOverwrite(FORCE_OVERWRITE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
+        setNonExternalizedStringTag(NON_EXTERNALIZED_STRING_TAG_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_NAME:
+        setModelName(MODEL_NAME_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
+        setModelPluginClass(MODEL_PLUGIN_CLASS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
+        unsetEditPluginClass();
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
+        unsetEditorPluginClass();
+        return;
+      case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
+        setUpdateClasspath(UPDATE_CLASSPATH_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
+        setGenerateSchema(GENERATE_SCHEMA_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
+        setNonNLSMarkers(NON_NLS_MARKERS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
+        getStaticPackages().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
+        getModelPluginVariables().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
+        setRootExtendsInterface(ROOT_EXTENDS_INTERFACE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
+        setRootExtendsClass(ROOT_EXTENDS_CLASS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
+        setRootImplementsInterface(ROOT_IMPLEMENTS_INTERFACE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
+        setSuppressEMFTypes(SUPPRESS_EMF_TYPES_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
+        setSuppressEMFMetaData(SUPPRESS_EMF_META_DATA_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
+        setSuppressEMFModelTags(SUPPRESS_EMF_MODEL_TAGS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
+        setSuppressInterfaces(SUPPRESS_INTERFACES_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
+        setFeatureMapWrapperInterface(FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
+        setFeatureMapWrapperInternalInterface(FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
+        setFeatureMapWrapperClass(FEATURE_MAP_WRAPPER_CLASS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
+        setRuntimeCompatibility(RUNTIME_COMPATIBILITY_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
+        setRichClientPlatform(RICH_CLIENT_PLATFORM_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
+        setReflectiveDelegation(REFLECTIVE_DELEGATION_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
+        setCodeFormatting(CODE_FORMATTING_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
+        unsetTestsDirectory();
+        return;
+      case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
+        unsetTestSuiteClass();
+        return;
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
+        setBooleanFlagsField(BOOLEAN_FLAGS_FIELD_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
+        setBooleanFlagsReservedBits(BOOLEAN_FLAGS_RESERVED_BITS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__IMPORTER_ID:
+        setImporterID(IMPORTER_ID_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
+        setBundleManifest(BUNDLE_MANIFEST_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
+        setFeatureDelegation(FEATURE_DELEGATION_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
+        setContainmentProxies(CONTAINMENT_PROXIES_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
+        setMinimalReflectiveMethods(MINIMAL_REFLECTIVE_METHODS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
+        setSuppressContainment(SUPPRESS_CONTAINMENT_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
+        setSuppressNotification(SUPPRESS_NOTIFICATION_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
+        setArrayAccessors(ARRAY_ACCESSORS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
+        setSuppressUnsettable(SUPPRESS_UNSETTABLE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
+        setFacadeHelperClass(FACADE_HELPER_CLASS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
+        setComplianceLevel(COMPLIANCE_LEVEL_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
+        setSuppressGenModelAnnotations(SUPPRESS_GEN_MODEL_ANNOTATIONS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
+        setCopyrightFields(COPYRIGHT_FIELDS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
+        setBinaryCompatibleReflectiveMethods(BINARY_COMPATIBLE_REFLECTIVE_METHODS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
+        setPublicConstructors(PUBLIC_CONSTRUCTORS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
+        getTemplatePluginVariables().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
+        setProviderRootExtendsClass(PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
+        setEditPluginID(EDIT_PLUGIN_ID_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
+        getEditPluginVariables().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
+        setEditorPluginID(EDITOR_PLUGIN_ID_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
+        getEditorPluginVariables().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
+        setTestsPluginID(TESTS_PLUGIN_ID_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
+        getTestsPluginVariables().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
+        setOptimizedHasChildren(OPTIMIZED_HAS_CHILDREN_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
+        setTableProviders(TABLE_PROVIDERS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
+        setColorProviders(COLOR_PROVIDERS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
+        setFontProviders(FONT_PROVIDERS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
+        unsetRuntimeVersion();
+        return;
+      case GenModelPackage.GEN_MODEL__LANGUAGE:
+        setLanguage(LANGUAGE_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
+        setPackedEnums(PACKED_ENUMS_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
+        getGenPackages().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
+        getUsedGenPackages().clear();
+        return;
+      case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
+        setInterfaceNamePattern(INTERFACE_NAME_PATTERN_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
+        setClassNamePattern(CLASS_NAME_PATTERN_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
+        setOperationReflection(OPERATION_REFLECTION_EDEFAULT);
+        return;
+      case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
+        setRichAjaxPlatform(RICH_AJAX_PLATFORM_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
-				return COPYRIGHT_TEXT_EDEFAULT == null ? copyrightText != null : !COPYRIGHT_TEXT_EDEFAULT.equals(copyrightText);
-			case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
-				return MODEL_DIRECTORY_EDEFAULT == null ? modelDirectory != null : !MODEL_DIRECTORY_EDEFAULT.equals(modelDirectory);
-			case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
-				return creationCommands != CREATION_COMMANDS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__CREATION_ICONS:
-				return creationIcons != CREATION_ICONS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
-				return creationSubmenus != CREATION_SUBMENUS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
-				return isSetEditDirectory();
-			case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
-				return isSetEditorDirectory();
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
-				return MODEL_PLUGIN_ID_EDEFAULT == null ? modelPluginID != null : !MODEL_PLUGIN_ID_EDEFAULT.equals(modelPluginID);
-			case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
-				return TEMPLATE_DIRECTORY_EDEFAULT == null ? templateDirectory != null : !TEMPLATE_DIRECTORY_EDEFAULT.equals(templateDirectory);
-			case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
-				return runtimeJar != RUNTIME_JAR_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
-				return foreignModel != null && !foreignModel.isEmpty();
-			case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
-				return dynamicTemplates != DYNAMIC_TEMPLATES_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__REDIRECTION:
-				return REDIRECTION_EDEFAULT == null ? redirection != null : !REDIRECTION_EDEFAULT.equals(redirection);
-			case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
-				return forceOverwrite != FORCE_OVERWRITE_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
-				return NON_EXTERNALIZED_STRING_TAG_EDEFAULT == null ? nonExternalizedStringTag != null : !NON_EXTERNALIZED_STRING_TAG_EDEFAULT.equals(nonExternalizedStringTag);
-			case GenModelPackage.GEN_MODEL__MODEL_NAME:
-				return MODEL_NAME_EDEFAULT == null ? modelName != null : !MODEL_NAME_EDEFAULT.equals(modelName);
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
-				return MODEL_PLUGIN_CLASS_EDEFAULT == null ? modelPluginClass != null : !MODEL_PLUGIN_CLASS_EDEFAULT.equals(modelPluginClass);
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
-				return isSetEditPluginClass();
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
-				return isSetEditorPluginClass();
-			case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
-				return updateClasspath != UPDATE_CLASSPATH_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
-				return generateSchema != GENERATE_SCHEMA_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
-				return nonNLSMarkers != NON_NLS_MARKERS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
-				return staticPackages != null && !staticPackages.isEmpty();
-			case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
-				return modelPluginVariables != null && !modelPluginVariables.isEmpty();
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
-				return ROOT_EXTENDS_INTERFACE_EDEFAULT == null ? rootExtendsInterface != null : !ROOT_EXTENDS_INTERFACE_EDEFAULT.equals(rootExtendsInterface);
-			case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
-				return ROOT_EXTENDS_CLASS_EDEFAULT == null ? rootExtendsClass != null : !ROOT_EXTENDS_CLASS_EDEFAULT.equals(rootExtendsClass);
-			case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
-				return ROOT_IMPLEMENTS_INTERFACE_EDEFAULT == null ? rootImplementsInterface != null : !ROOT_IMPLEMENTS_INTERFACE_EDEFAULT.equals(rootImplementsInterface);
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
-				return suppressEMFTypes != SUPPRESS_EMF_TYPES_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
-				return suppressEMFMetaData != SUPPRESS_EMF_META_DATA_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
-				return suppressEMFModelTags != SUPPRESS_EMF_MODEL_TAGS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
-				return suppressInterfaces != SUPPRESS_INTERFACES_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
-				return FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT == null ? featureMapWrapperInterface != null : !FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT.equals(featureMapWrapperInterface);
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
-				return FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT == null ? featureMapWrapperInternalInterface != null : !FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT.equals(featureMapWrapperInternalInterface);
-			case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
-				return FEATURE_MAP_WRAPPER_CLASS_EDEFAULT == null ? featureMapWrapperClass != null : !FEATURE_MAP_WRAPPER_CLASS_EDEFAULT.equals(featureMapWrapperClass);
-			case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
-				return runtimeCompatibility != RUNTIME_COMPATIBILITY_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
-				return richClientPlatform != RICH_CLIENT_PLATFORM_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
-				return isReflectiveDelegation() != REFLECTIVE_DELEGATION_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
-				return codeFormatting != CODE_FORMATTING_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
-				return isSetTestsDirectory();
-			case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
-				return isSetTestSuiteClass();
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
-				return BOOLEAN_FLAGS_FIELD_EDEFAULT == null ? booleanFlagsField != null : !BOOLEAN_FLAGS_FIELD_EDEFAULT.equals(booleanFlagsField);
-			case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
-				return booleanFlagsReservedBits != BOOLEAN_FLAGS_RESERVED_BITS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__IMPORTER_ID:
-				return IMPORTER_ID_EDEFAULT == null ? importerID != null : !IMPORTER_ID_EDEFAULT.equals(importerID);
-			case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
-				return bundleManifest != BUNDLE_MANIFEST_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
-				return featureDelegation != FEATURE_DELEGATION_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
-				return containmentProxies != CONTAINMENT_PROXIES_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
-				return minimalReflectiveMethods != MINIMAL_REFLECTIVE_METHODS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
-				return suppressContainment != SUPPRESS_CONTAINMENT_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
-				return suppressNotification != SUPPRESS_NOTIFICATION_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
-				return arrayAccessors != ARRAY_ACCESSORS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
-				return suppressUnsettable != SUPPRESS_UNSETTABLE_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
-				return FACADE_HELPER_CLASS_EDEFAULT == null ? facadeHelperClass != null : !FACADE_HELPER_CLASS_EDEFAULT.equals(facadeHelperClass);
-			case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
-				return complianceLevel != COMPLIANCE_LEVEL_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
-				return suppressGenModelAnnotations != SUPPRESS_GEN_MODEL_ANNOTATIONS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
-				return copyrightFields != COPYRIGHT_FIELDS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
-				return binaryCompatibleReflectiveMethods != BINARY_COMPATIBLE_REFLECTIVE_METHODS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
-				return publicConstructors != PUBLIC_CONSTRUCTORS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
-				return templatePluginVariables != null && !templatePluginVariables.isEmpty();
-			case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
-				return PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT == null ? providerRootExtendsClass != null : !PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT.equals(providerRootExtendsClass);
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
-				return EDIT_PLUGIN_ID_EDEFAULT == null ? editPluginID != null : !EDIT_PLUGIN_ID_EDEFAULT.equals(editPluginID);
-			case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
-				return editPluginVariables != null && !editPluginVariables.isEmpty();
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
-				return EDITOR_PLUGIN_ID_EDEFAULT == null ? editorPluginID != null : !EDITOR_PLUGIN_ID_EDEFAULT.equals(editorPluginID);
-			case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
-				return editorPluginVariables != null && !editorPluginVariables.isEmpty();
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
-				return TESTS_PLUGIN_ID_EDEFAULT == null ? testsPluginID != null : !TESTS_PLUGIN_ID_EDEFAULT.equals(testsPluginID);
-			case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
-				return testsPluginVariables != null && !testsPluginVariables.isEmpty();
-			case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
-				return optimizedHasChildren != OPTIMIZED_HAS_CHILDREN_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
-				return tableProviders != TABLE_PROVIDERS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
-				return colorProviders != COLOR_PROVIDERS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
-				return fontProviders != FONT_PROVIDERS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
-				return isSetRuntimeVersion();
-			case GenModelPackage.GEN_MODEL__LANGUAGE:
-				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
-			case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
-				return packedEnums != PACKED_ENUMS_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
-				return genPackages != null && !genPackages.isEmpty();
-			case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
-				return usedGenPackages != null && !usedGenPackages.isEmpty();
-			case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
-				return INTERFACE_NAME_PATTERN_EDEFAULT == null ? interfaceNamePattern != null : !INTERFACE_NAME_PATTERN_EDEFAULT.equals(interfaceNamePattern);
-			case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
-				return CLASS_NAME_PATTERN_EDEFAULT == null ? classNamePattern != null : !CLASS_NAME_PATTERN_EDEFAULT.equals(classNamePattern);
-			case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
-				return operationReflection != OPERATION_REFLECTION_EDEFAULT;
-			case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
-				return richAjaxPlatform != RICH_AJAX_PLATFORM_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_TEXT:
+        return COPYRIGHT_TEXT_EDEFAULT == null ? copyrightText != null : !COPYRIGHT_TEXT_EDEFAULT.equals(copyrightText);
+      case GenModelPackage.GEN_MODEL__MODEL_DIRECTORY:
+        return MODEL_DIRECTORY_EDEFAULT == null ? modelDirectory != null : !MODEL_DIRECTORY_EDEFAULT.equals(modelDirectory);
+      case GenModelPackage.GEN_MODEL__CREATION_COMMANDS:
+        return creationCommands != CREATION_COMMANDS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__CREATION_ICONS:
+        return creationIcons != CREATION_ICONS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__CREATION_SUBMENUS:
+        return creationSubmenus != CREATION_SUBMENUS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__EDIT_DIRECTORY:
+        return isSetEditDirectory();
+      case GenModelPackage.GEN_MODEL__EDITOR_DIRECTORY:
+        return isSetEditorDirectory();
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_ID:
+        return MODEL_PLUGIN_ID_EDEFAULT == null ? modelPluginID != null : !MODEL_PLUGIN_ID_EDEFAULT.equals(modelPluginID);
+      case GenModelPackage.GEN_MODEL__TEMPLATE_DIRECTORY:
+        return TEMPLATE_DIRECTORY_EDEFAULT == null ? templateDirectory != null : !TEMPLATE_DIRECTORY_EDEFAULT.equals(templateDirectory);
+      case GenModelPackage.GEN_MODEL__RUNTIME_JAR:
+        return runtimeJar != RUNTIME_JAR_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__FOREIGN_MODEL:
+        return foreignModel != null && !foreignModel.isEmpty();
+      case GenModelPackage.GEN_MODEL__DYNAMIC_TEMPLATES:
+        return dynamicTemplates != DYNAMIC_TEMPLATES_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__REDIRECTION:
+        return REDIRECTION_EDEFAULT == null ? redirection != null : !REDIRECTION_EDEFAULT.equals(redirection);
+      case GenModelPackage.GEN_MODEL__FORCE_OVERWRITE:
+        return forceOverwrite != FORCE_OVERWRITE_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__NON_EXTERNALIZED_STRING_TAG:
+        return NON_EXTERNALIZED_STRING_TAG_EDEFAULT == null ? nonExternalizedStringTag != null : !NON_EXTERNALIZED_STRING_TAG_EDEFAULT.equals(nonExternalizedStringTag);
+      case GenModelPackage.GEN_MODEL__MODEL_NAME:
+        return MODEL_NAME_EDEFAULT == null ? modelName != null : !MODEL_NAME_EDEFAULT.equals(modelName);
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_CLASS:
+        return MODEL_PLUGIN_CLASS_EDEFAULT == null ? modelPluginClass != null : !MODEL_PLUGIN_CLASS_EDEFAULT.equals(modelPluginClass);
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_CLASS:
+        return isSetEditPluginClass();
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_CLASS:
+        return isSetEditorPluginClass();
+      case GenModelPackage.GEN_MODEL__UPDATE_CLASSPATH:
+        return updateClasspath != UPDATE_CLASSPATH_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__GENERATE_SCHEMA:
+        return generateSchema != GENERATE_SCHEMA_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__NON_NLS_MARKERS:
+        return nonNLSMarkers != NON_NLS_MARKERS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__STATIC_PACKAGES:
+        return staticPackages != null && !staticPackages.isEmpty();
+      case GenModelPackage.GEN_MODEL__MODEL_PLUGIN_VARIABLES:
+        return modelPluginVariables != null && !modelPluginVariables.isEmpty();
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_INTERFACE:
+        return ROOT_EXTENDS_INTERFACE_EDEFAULT == null ? rootExtendsInterface != null : !ROOT_EXTENDS_INTERFACE_EDEFAULT.equals(rootExtendsInterface);
+      case GenModelPackage.GEN_MODEL__ROOT_EXTENDS_CLASS:
+        return ROOT_EXTENDS_CLASS_EDEFAULT == null ? rootExtendsClass != null : !ROOT_EXTENDS_CLASS_EDEFAULT.equals(rootExtendsClass);
+      case GenModelPackage.GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE:
+        return ROOT_IMPLEMENTS_INTERFACE_EDEFAULT == null ? rootImplementsInterface != null : !ROOT_IMPLEMENTS_INTERFACE_EDEFAULT.equals(rootImplementsInterface);
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_TYPES:
+        return suppressEMFTypes != SUPPRESS_EMF_TYPES_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_META_DATA:
+        return suppressEMFMetaData != SUPPRESS_EMF_META_DATA_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS:
+        return suppressEMFModelTags != SUPPRESS_EMF_MODEL_TAGS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_INTERFACES:
+        return suppressInterfaces != SUPPRESS_INTERFACES_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE:
+        return FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT == null ? featureMapWrapperInterface != null : !FEATURE_MAP_WRAPPER_INTERFACE_EDEFAULT.equals(featureMapWrapperInterface);
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE:
+        return FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT == null ? featureMapWrapperInternalInterface != null : !FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE_EDEFAULT.equals(featureMapWrapperInternalInterface);
+      case GenModelPackage.GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS:
+        return FEATURE_MAP_WRAPPER_CLASS_EDEFAULT == null ? featureMapWrapperClass != null : !FEATURE_MAP_WRAPPER_CLASS_EDEFAULT.equals(featureMapWrapperClass);
+      case GenModelPackage.GEN_MODEL__RUNTIME_COMPATIBILITY:
+        return runtimeCompatibility != RUNTIME_COMPATIBILITY_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__RICH_CLIENT_PLATFORM:
+        return richClientPlatform != RICH_CLIENT_PLATFORM_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__REFLECTIVE_DELEGATION:
+        return isReflectiveDelegation() != REFLECTIVE_DELEGATION_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__CODE_FORMATTING:
+        return codeFormatting != CODE_FORMATTING_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__TESTS_DIRECTORY:
+        return isSetTestsDirectory();
+      case GenModelPackage.GEN_MODEL__TEST_SUITE_CLASS:
+        return isSetTestSuiteClass();
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_FIELD:
+        return BOOLEAN_FLAGS_FIELD_EDEFAULT == null ? booleanFlagsField != null : !BOOLEAN_FLAGS_FIELD_EDEFAULT.equals(booleanFlagsField);
+      case GenModelPackage.GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS:
+        return booleanFlagsReservedBits != BOOLEAN_FLAGS_RESERVED_BITS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__IMPORTER_ID:
+        return IMPORTER_ID_EDEFAULT == null ? importerID != null : !IMPORTER_ID_EDEFAULT.equals(importerID);
+      case GenModelPackage.GEN_MODEL__BUNDLE_MANIFEST:
+        return bundleManifest != BUNDLE_MANIFEST_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__FEATURE_DELEGATION:
+        return featureDelegation != FEATURE_DELEGATION_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__CONTAINMENT_PROXIES:
+        return containmentProxies != CONTAINMENT_PROXIES_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__MINIMAL_REFLECTIVE_METHODS:
+        return minimalReflectiveMethods != MINIMAL_REFLECTIVE_METHODS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_CONTAINMENT:
+        return suppressContainment != SUPPRESS_CONTAINMENT_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_NOTIFICATION:
+        return suppressNotification != SUPPRESS_NOTIFICATION_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__ARRAY_ACCESSORS:
+        return arrayAccessors != ARRAY_ACCESSORS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_UNSETTABLE:
+        return suppressUnsettable != SUPPRESS_UNSETTABLE_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__FACADE_HELPER_CLASS:
+        return FACADE_HELPER_CLASS_EDEFAULT == null ? facadeHelperClass != null : !FACADE_HELPER_CLASS_EDEFAULT.equals(facadeHelperClass);
+      case GenModelPackage.GEN_MODEL__COMPLIANCE_LEVEL:
+        return complianceLevel != COMPLIANCE_LEVEL_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS:
+        return suppressGenModelAnnotations != SUPPRESS_GEN_MODEL_ANNOTATIONS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__COPYRIGHT_FIELDS:
+        return copyrightFields != COPYRIGHT_FIELDS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS:
+        return binaryCompatibleReflectiveMethods != BINARY_COMPATIBLE_REFLECTIVE_METHODS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__PUBLIC_CONSTRUCTORS:
+        return publicConstructors != PUBLIC_CONSTRUCTORS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES:
+        return templatePluginVariables != null && !templatePluginVariables.isEmpty();
+      case GenModelPackage.GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS:
+        return PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT == null ? providerRootExtendsClass != null : !PROVIDER_ROOT_EXTENDS_CLASS_EDEFAULT.equals(providerRootExtendsClass);
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID:
+        return EDIT_PLUGIN_ID_EDEFAULT == null ? editPluginID != null : !EDIT_PLUGIN_ID_EDEFAULT.equals(editPluginID);
+      case GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES:
+        return editPluginVariables != null && !editPluginVariables.isEmpty();
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID:
+        return EDITOR_PLUGIN_ID_EDEFAULT == null ? editorPluginID != null : !EDITOR_PLUGIN_ID_EDEFAULT.equals(editorPluginID);
+      case GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES:
+        return editorPluginVariables != null && !editorPluginVariables.isEmpty();
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID:
+        return TESTS_PLUGIN_ID_EDEFAULT == null ? testsPluginID != null : !TESTS_PLUGIN_ID_EDEFAULT.equals(testsPluginID);
+      case GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES:
+        return testsPluginVariables != null && !testsPluginVariables.isEmpty();
+      case GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN:
+        return optimizedHasChildren != OPTIMIZED_HAS_CHILDREN_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__TABLE_PROVIDERS:
+        return tableProviders != TABLE_PROVIDERS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__COLOR_PROVIDERS:
+        return colorProviders != COLOR_PROVIDERS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__FONT_PROVIDERS:
+        return fontProviders != FONT_PROVIDERS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__RUNTIME_VERSION:
+        return isSetRuntimeVersion();
+      case GenModelPackage.GEN_MODEL__LANGUAGE:
+        return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
+      case GenModelPackage.GEN_MODEL__PACKED_ENUMS:
+        return packedEnums != PACKED_ENUMS_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__GEN_PACKAGES:
+        return genPackages != null && !genPackages.isEmpty();
+      case GenModelPackage.GEN_MODEL__USED_GEN_PACKAGES:
+        return usedGenPackages != null && !usedGenPackages.isEmpty();
+      case GenModelPackage.GEN_MODEL__INTERFACE_NAME_PATTERN:
+        return INTERFACE_NAME_PATTERN_EDEFAULT == null ? interfaceNamePattern != null : !INTERFACE_NAME_PATTERN_EDEFAULT.equals(interfaceNamePattern);
+      case GenModelPackage.GEN_MODEL__CLASS_NAME_PATTERN:
+        return CLASS_NAME_PATTERN_EDEFAULT == null ? classNamePattern != null : !CLASS_NAME_PATTERN_EDEFAULT.equals(classNamePattern);
+      case GenModelPackage.GEN_MODEL__OPERATION_REFLECTION:
+        return operationReflection != OPERATION_REFLECTION_EDEFAULT;
+      case GenModelPackage.GEN_MODEL__RICH_AJAX_PLATFORM:
+        return richAjaxPlatform != RICH_AJAX_PLATFORM_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public String toString()
   {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (copyrightText: ");
-		result.append(copyrightText);
-		result.append(", modelDirectory: ");
-		result.append(modelDirectory);
-		result.append(", creationCommands: ");
-		result.append(creationCommands);
-		result.append(", creationIcons: ");
-		result.append(creationIcons);
-		result.append(", creationSubmenus: ");
-		result.append(creationSubmenus);
-		result.append(", editDirectory: ");
-		if (editDirectoryESet) result.append(editDirectory); else result.append("<unset>");
-		result.append(", editorDirectory: ");
-		if (editorDirectoryESet) result.append(editorDirectory); else result.append("<unset>");
-		result.append(", modelPluginID: ");
-		result.append(modelPluginID);
-		result.append(", templateDirectory: ");
-		result.append(templateDirectory);
-		result.append(", runtimeJar: ");
-		result.append(runtimeJar);
-		result.append(", foreignModel: ");
-		result.append(foreignModel);
-		result.append(", dynamicTemplates: ");
-		result.append(dynamicTemplates);
-		result.append(", redirection: ");
-		result.append(redirection);
-		result.append(", forceOverwrite: ");
-		result.append(forceOverwrite);
-		result.append(", nonExternalizedStringTag: ");
-		result.append(nonExternalizedStringTag);
-		result.append(", modelName: ");
-		result.append(modelName);
-		result.append(", modelPluginClass: ");
-		result.append(modelPluginClass);
-		result.append(", editPluginClass: ");
-		if (editPluginClassESet) result.append(editPluginClass); else result.append("<unset>");
-		result.append(", editorPluginClass: ");
-		if (editorPluginClassESet) result.append(editorPluginClass); else result.append("<unset>");
-		result.append(", updateClasspath: ");
-		result.append(updateClasspath);
-		result.append(", generateSchema: ");
-		result.append(generateSchema);
-		result.append(", nonNLSMarkers: ");
-		result.append(nonNLSMarkers);
-		result.append(", staticPackages: ");
-		result.append(staticPackages);
-		result.append(", modelPluginVariables: ");
-		result.append(modelPluginVariables);
-		result.append(", rootExtendsInterface: ");
-		result.append(rootExtendsInterface);
-		result.append(", rootExtendsClass: ");
-		result.append(rootExtendsClass);
-		result.append(", rootImplementsInterface: ");
-		result.append(rootImplementsInterface);
-		result.append(", suppressEMFTypes: ");
-		result.append(suppressEMFTypes);
-		result.append(", suppressEMFMetaData: ");
-		result.append(suppressEMFMetaData);
-		result.append(", suppressEMFModelTags: ");
-		result.append(suppressEMFModelTags);
-		result.append(", suppressInterfaces: ");
-		result.append(suppressInterfaces);
-		result.append(", featureMapWrapperInterface: ");
-		result.append(featureMapWrapperInterface);
-		result.append(", featureMapWrapperInternalInterface: ");
-		result.append(featureMapWrapperInternalInterface);
-		result.append(", featureMapWrapperClass: ");
-		result.append(featureMapWrapperClass);
-		result.append(", runtimeCompatibility: ");
-		result.append(runtimeCompatibility);
-		result.append(", richClientPlatform: ");
-		result.append(richClientPlatform);
-		result.append(", codeFormatting: ");
-		result.append(codeFormatting);
-		result.append(", testsDirectory: ");
-		if (testsDirectoryESet) result.append(testsDirectory); else result.append("<unset>");
-		result.append(", testSuiteClass: ");
-		if (testSuiteClassESet) result.append(testSuiteClass); else result.append("<unset>");
-		result.append(", booleanFlagsField: ");
-		result.append(booleanFlagsField);
-		result.append(", booleanFlagsReservedBits: ");
-		result.append(booleanFlagsReservedBits);
-		result.append(", importerID: ");
-		result.append(importerID);
-		result.append(", bundleManifest: ");
-		result.append(bundleManifest);
-		result.append(", featureDelegation: ");
-		result.append(featureDelegation);
-		result.append(", containmentProxies: ");
-		result.append(containmentProxies);
-		result.append(", minimalReflectiveMethods: ");
-		result.append(minimalReflectiveMethods);
-		result.append(", suppressContainment: ");
-		result.append(suppressContainment);
-		result.append(", suppressNotification: ");
-		result.append(suppressNotification);
-		result.append(", arrayAccessors: ");
-		result.append(arrayAccessors);
-		result.append(", suppressUnsettable: ");
-		result.append(suppressUnsettable);
-		result.append(", facadeHelperClass: ");
-		result.append(facadeHelperClass);
-		result.append(", complianceLevel: ");
-		result.append(complianceLevel);
-		result.append(", suppressGenModelAnnotations: ");
-		result.append(suppressGenModelAnnotations);
-		result.append(", copyrightFields: ");
-		result.append(copyrightFields);
-		result.append(", binaryCompatibleReflectiveMethods: ");
-		result.append(binaryCompatibleReflectiveMethods);
-		result.append(", publicConstructors: ");
-		result.append(publicConstructors);
-		result.append(", templatePluginVariables: ");
-		result.append(templatePluginVariables);
-		result.append(", providerRootExtendsClass: ");
-		result.append(providerRootExtendsClass);
-		result.append(", editPluginID: ");
-		result.append(editPluginID);
-		result.append(", editPluginVariables: ");
-		result.append(editPluginVariables);
-		result.append(", editorPluginID: ");
-		result.append(editorPluginID);
-		result.append(", editorPluginVariables: ");
-		result.append(editorPluginVariables);
-		result.append(", testsPluginID: ");
-		result.append(testsPluginID);
-		result.append(", testsPluginVariables: ");
-		result.append(testsPluginVariables);
-		result.append(", optimizedHasChildren: ");
-		result.append(optimizedHasChildren);
-		result.append(", tableProviders: ");
-		result.append(tableProviders);
-		result.append(", colorProviders: ");
-		result.append(colorProviders);
-		result.append(", fontProviders: ");
-		result.append(fontProviders);
-		result.append(", runtimeVersion: ");
-		if (runtimeVersionESet) result.append(runtimeVersion); else result.append("<unset>");
-		result.append(", language: ");
-		result.append(language);
-		result.append(", packedEnums: ");
-		result.append(packedEnums);
-		result.append(", interfaceNamePattern: ");
-		result.append(interfaceNamePattern);
-		result.append(", classNamePattern: ");
-		result.append(classNamePattern);
-		result.append(", operationReflection: ");
-		result.append(operationReflection);
-		result.append(", richAjaxPlatform: ");
-		result.append(richAjaxPlatform);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (copyrightText: ");
+    result.append(copyrightText);
+    result.append(", modelDirectory: ");
+    result.append(modelDirectory);
+    result.append(", creationCommands: ");
+    result.append(creationCommands);
+    result.append(", creationIcons: ");
+    result.append(creationIcons);
+    result.append(", creationSubmenus: ");
+    result.append(creationSubmenus);
+    result.append(", editDirectory: ");
+    if (editDirectoryESet) result.append(editDirectory); else result.append("<unset>");
+    result.append(", editorDirectory: ");
+    if (editorDirectoryESet) result.append(editorDirectory); else result.append("<unset>");
+    result.append(", modelPluginID: ");
+    result.append(modelPluginID);
+    result.append(", templateDirectory: ");
+    result.append(templateDirectory);
+    result.append(", runtimeJar: ");
+    result.append(runtimeJar);
+    result.append(", foreignModel: ");
+    result.append(foreignModel);
+    result.append(", dynamicTemplates: ");
+    result.append(dynamicTemplates);
+    result.append(", redirection: ");
+    result.append(redirection);
+    result.append(", forceOverwrite: ");
+    result.append(forceOverwrite);
+    result.append(", nonExternalizedStringTag: ");
+    result.append(nonExternalizedStringTag);
+    result.append(", modelName: ");
+    result.append(modelName);
+    result.append(", modelPluginClass: ");
+    result.append(modelPluginClass);
+    result.append(", editPluginClass: ");
+    if (editPluginClassESet) result.append(editPluginClass); else result.append("<unset>");
+    result.append(", editorPluginClass: ");
+    if (editorPluginClassESet) result.append(editorPluginClass); else result.append("<unset>");
+    result.append(", updateClasspath: ");
+    result.append(updateClasspath);
+    result.append(", generateSchema: ");
+    result.append(generateSchema);
+    result.append(", nonNLSMarkers: ");
+    result.append(nonNLSMarkers);
+    result.append(", staticPackages: ");
+    result.append(staticPackages);
+    result.append(", modelPluginVariables: ");
+    result.append(modelPluginVariables);
+    result.append(", rootExtendsInterface: ");
+    result.append(rootExtendsInterface);
+    result.append(", rootExtendsClass: ");
+    result.append(rootExtendsClass);
+    result.append(", rootImplementsInterface: ");
+    result.append(rootImplementsInterface);
+    result.append(", suppressEMFTypes: ");
+    result.append(suppressEMFTypes);
+    result.append(", suppressEMFMetaData: ");
+    result.append(suppressEMFMetaData);
+    result.append(", suppressEMFModelTags: ");
+    result.append(suppressEMFModelTags);
+    result.append(", suppressInterfaces: ");
+    result.append(suppressInterfaces);
+    result.append(", featureMapWrapperInterface: ");
+    result.append(featureMapWrapperInterface);
+    result.append(", featureMapWrapperInternalInterface: ");
+    result.append(featureMapWrapperInternalInterface);
+    result.append(", featureMapWrapperClass: ");
+    result.append(featureMapWrapperClass);
+    result.append(", runtimeCompatibility: ");
+    result.append(runtimeCompatibility);
+    result.append(", richClientPlatform: ");
+    result.append(richClientPlatform);
+    result.append(", codeFormatting: ");
+    result.append(codeFormatting);
+    result.append(", testsDirectory: ");
+    if (testsDirectoryESet) result.append(testsDirectory); else result.append("<unset>");
+    result.append(", testSuiteClass: ");
+    if (testSuiteClassESet) result.append(testSuiteClass); else result.append("<unset>");
+    result.append(", booleanFlagsField: ");
+    result.append(booleanFlagsField);
+    result.append(", booleanFlagsReservedBits: ");
+    result.append(booleanFlagsReservedBits);
+    result.append(", importerID: ");
+    result.append(importerID);
+    result.append(", bundleManifest: ");
+    result.append(bundleManifest);
+    result.append(", featureDelegation: ");
+    result.append(featureDelegation);
+    result.append(", containmentProxies: ");
+    result.append(containmentProxies);
+    result.append(", minimalReflectiveMethods: ");
+    result.append(minimalReflectiveMethods);
+    result.append(", suppressContainment: ");
+    result.append(suppressContainment);
+    result.append(", suppressNotification: ");
+    result.append(suppressNotification);
+    result.append(", arrayAccessors: ");
+    result.append(arrayAccessors);
+    result.append(", suppressUnsettable: ");
+    result.append(suppressUnsettable);
+    result.append(", facadeHelperClass: ");
+    result.append(facadeHelperClass);
+    result.append(", complianceLevel: ");
+    result.append(complianceLevel);
+    result.append(", suppressGenModelAnnotations: ");
+    result.append(suppressGenModelAnnotations);
+    result.append(", copyrightFields: ");
+    result.append(copyrightFields);
+    result.append(", binaryCompatibleReflectiveMethods: ");
+    result.append(binaryCompatibleReflectiveMethods);
+    result.append(", publicConstructors: ");
+    result.append(publicConstructors);
+    result.append(", templatePluginVariables: ");
+    result.append(templatePluginVariables);
+    result.append(", providerRootExtendsClass: ");
+    result.append(providerRootExtendsClass);
+    result.append(", editPluginID: ");
+    result.append(editPluginID);
+    result.append(", editPluginVariables: ");
+    result.append(editPluginVariables);
+    result.append(", editorPluginID: ");
+    result.append(editorPluginID);
+    result.append(", editorPluginVariables: ");
+    result.append(editorPluginVariables);
+    result.append(", testsPluginID: ");
+    result.append(testsPluginID);
+    result.append(", testsPluginVariables: ");
+    result.append(testsPluginVariables);
+    result.append(", optimizedHasChildren: ");
+    result.append(optimizedHasChildren);
+    result.append(", tableProviders: ");
+    result.append(tableProviders);
+    result.append(", colorProviders: ");
+    result.append(colorProviders);
+    result.append(", fontProviders: ");
+    result.append(fontProviders);
+    result.append(", runtimeVersion: ");
+    if (runtimeVersionESet) result.append(runtimeVersion); else result.append("<unset>");
+    result.append(", language: ");
+    result.append(language);
+    result.append(", packedEnums: ");
+    result.append(packedEnums);
+    result.append(", interfaceNamePattern: ");
+    result.append(interfaceNamePattern);
+    result.append(", classNamePattern: ");
+    result.append(classNamePattern);
+    result.append(", operationReflection: ");
+    result.append(operationReflection);
+    result.append(", richAjaxPlatform: ");
+    result.append(richAjaxPlatform);
+    result.append(')');
+    return result.toString();
+  }
 
   static protected String getProjectPath(String path)
   {
@@ -7320,14 +7330,14 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getEditPluginIDGen()
   {
-		return editPluginID;
-	}
+    return editPluginID;
+  }
 
   public String getEditPluginID()
   {
@@ -7349,40 +7359,41 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEditPluginID(String newEditPluginID)
   {
-		String oldEditPluginID = editPluginID;
-		editPluginID = newEditPluginID;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID, oldEditPluginID, editPluginID));
-	}
+    String oldEditPluginID = editPluginID;
+    editPluginID = newEditPluginID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_ID, oldEditPluginID, editPluginID));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<String> getEditPluginVariables()
   {
-		if (editPluginVariables == null) {
-			editPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES);
-		}
-		return editPluginVariables;
-	}
+    if (editPluginVariables == null)
+    {
+      editPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__EDIT_PLUGIN_VARIABLES);
+    }
+    return editPluginVariables;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getEditorPluginIDGen()
   {
-		return editorPluginID;
-	}
+    return editorPluginID;
+  }
 
   public String getEditorPluginID()
   {
@@ -7408,40 +7419,41 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEditorPluginID(String newEditorPluginID)
   {
-		String oldEditorPluginID = editorPluginID;
-		editorPluginID = newEditorPluginID;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID, oldEditorPluginID, editorPluginID));
-	}
+    String oldEditorPluginID = editorPluginID;
+    editorPluginID = newEditorPluginID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_ID, oldEditorPluginID, editorPluginID));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<String> getEditorPluginVariables()
   {
-		if (editorPluginVariables == null) {
-			editorPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES);
-		}
-		return editorPluginVariables;
-	}
+    if (editorPluginVariables == null)
+    {
+      editorPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__EDITOR_PLUGIN_VARIABLES);
+    }
+    return editorPluginVariables;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getTestsPluginIDGen()
   {
-		return testsPluginID;
-	}
+    return testsPluginID;
+  }
 
   public String getTestsPluginID()
   {
@@ -7471,132 +7483,133 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setTestsPluginID(String newTestsPluginID)
   {
-		String oldTestsPluginID = testsPluginID;
-		testsPluginID = newTestsPluginID;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID, oldTestsPluginID, testsPluginID));
-	}
+    String oldTestsPluginID = testsPluginID;
+    testsPluginID = newTestsPluginID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TESTS_PLUGIN_ID, oldTestsPluginID, testsPluginID));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<String> getTestsPluginVariables()
   {
-		if (testsPluginVariables == null) {
-			testsPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES);
-		}
-		return testsPluginVariables;
-	}
+    if (testsPluginVariables == null)
+    {
+      testsPluginVariables = new EDataTypeUniqueEList<String>(String.class, this, GenModelPackage.GEN_MODEL__TESTS_PLUGIN_VARIABLES);
+    }
+    return testsPluginVariables;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isOptimizedHasChildren()
   {
-		return optimizedHasChildren;
-	}
+    return optimizedHasChildren;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setOptimizedHasChildren(boolean newOptimizedHasChildren)
   {
-		boolean oldOptimizedHasChildren = optimizedHasChildren;
-		optimizedHasChildren = newOptimizedHasChildren;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN, oldOptimizedHasChildren, optimizedHasChildren));
-	}
+    boolean oldOptimizedHasChildren = optimizedHasChildren;
+    optimizedHasChildren = newOptimizedHasChildren;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__OPTIMIZED_HAS_CHILDREN, oldOptimizedHasChildren, optimizedHasChildren));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isTableProviders()
   {
-		return tableProviders;
-	}
+    return tableProviders;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setTableProviders(boolean newTableProviders)
   {
-		boolean oldTableProviders = tableProviders;
-		tableProviders = newTableProviders;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TABLE_PROVIDERS, oldTableProviders, tableProviders));
-	}
+    boolean oldTableProviders = tableProviders;
+    tableProviders = newTableProviders;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__TABLE_PROVIDERS, oldTableProviders, tableProviders));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isColorProviders()
   {
-		return colorProviders;
-	}
+    return colorProviders;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setColorProviders(boolean newColorProviders)
   {
-		boolean oldColorProviders = colorProviders;
-		colorProviders = newColorProviders;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COLOR_PROVIDERS, oldColorProviders, colorProviders));
-	}
+    boolean oldColorProviders = colorProviders;
+    colorProviders = newColorProviders;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__COLOR_PROVIDERS, oldColorProviders, colorProviders));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isFontProviders()
   {
-		return fontProviders;
-	}
+    return fontProviders;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setFontProviders(boolean newFontProviders)
   {
-		boolean oldFontProviders = fontProviders;
-		fontProviders = newFontProviders;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FONT_PROVIDERS, oldFontProviders, fontProviders));
-	}
+    boolean oldFontProviders = fontProviders;
+    fontProviders = newFontProviders;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__FONT_PROVIDERS, oldFontProviders, fontProviders));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public GenRuntimeVersion getRuntimeVersionGen()
   {
-		return runtimeVersion;
-	}
+    return runtimeVersion;
+  }
 
   public GenRuntimeVersion getRuntimeVersion()
   {
@@ -7607,67 +7620,67 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRuntimeVersion(GenRuntimeVersion newRuntimeVersion)
   {
-		GenRuntimeVersion oldRuntimeVersion = runtimeVersion;
-		runtimeVersion = newRuntimeVersion == null ? RUNTIME_VERSION_EDEFAULT : newRuntimeVersion;
-		boolean oldRuntimeVersionESet = runtimeVersionESet;
-		runtimeVersionESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RUNTIME_VERSION, oldRuntimeVersion, runtimeVersion, !oldRuntimeVersionESet));
-	}
+    GenRuntimeVersion oldRuntimeVersion = runtimeVersion;
+    runtimeVersion = newRuntimeVersion == null ? RUNTIME_VERSION_EDEFAULT : newRuntimeVersion;
+    boolean oldRuntimeVersionESet = runtimeVersionESet;
+    runtimeVersionESet = true;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__RUNTIME_VERSION, oldRuntimeVersion, runtimeVersion, !oldRuntimeVersionESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void unsetRuntimeVersion()
   {
-		GenRuntimeVersion oldRuntimeVersion = runtimeVersion;
-		boolean oldRuntimeVersionESet = runtimeVersionESet;
-		runtimeVersion = RUNTIME_VERSION_EDEFAULT;
-		runtimeVersionESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__RUNTIME_VERSION, oldRuntimeVersion, RUNTIME_VERSION_EDEFAULT, oldRuntimeVersionESet));
-	}
+    GenRuntimeVersion oldRuntimeVersion = runtimeVersion;
+    boolean oldRuntimeVersionESet = runtimeVersionESet;
+    runtimeVersion = RUNTIME_VERSION_EDEFAULT;
+    runtimeVersionESet = false;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.UNSET, GenModelPackage.GEN_MODEL__RUNTIME_VERSION, oldRuntimeVersion, RUNTIME_VERSION_EDEFAULT, oldRuntimeVersionESet));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isSetRuntimeVersion()
   {
-		return runtimeVersionESet;
-	}
+    return runtimeVersionESet;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getLanguage()
   {
-		return language;
-	}
+    return language;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setLanguageGen(String newLanguage)
   {
-		String oldLanguage = language;
-		language = newLanguage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__LANGUAGE, oldLanguage, language));
-	}
+    String oldLanguage = language;
+    language = newLanguage;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__LANGUAGE, oldLanguage, language));
+  }
 
   public void setLanguage(String newLanguage)
   {
@@ -7676,27 +7689,27 @@ public class GenModelImpl extends GenBaseImpl implements GenModel
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public boolean isPackedEnums()
   {
-		return packedEnums;
-	}
+    return packedEnums;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setPackedEnums(boolean newPackedEnums)
   {
-		boolean oldPackedEnums = packedEnums;
-		packedEnums = newPackedEnums;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__PACKED_ENUMS, oldPackedEnums, packedEnums));
-	}
+    boolean oldPackedEnums = packedEnums;
+    packedEnums = newPackedEnums;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_MODEL__PACKED_ENUMS, oldPackedEnums, packedEnums));
+  }
 
   public boolean hasModelPluginClass()
   {

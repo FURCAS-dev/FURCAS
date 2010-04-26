@@ -50,13 +50,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 public class GenEnumLiteralImpl extends GenBaseImpl implements GenEnumLiteral
 {
   /**
-	 * The cached value of the '{@link #getEcoreEnumLiteral() <em>Ecore Enum Literal</em>}' reference.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEcoreEnumLiteral() <em>Ecore Enum Literal</em>}' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getEcoreEnumLiteral()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getEcoreEnumLiteral()
+   * @generated
+   * @ordered
+   */
   protected EEnumLiteral ecoreEnumLiteral;
 
   /**
@@ -70,59 +70,60 @@ public class GenEnumLiteralImpl extends GenBaseImpl implements GenEnumLiteral
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return GenModelPackage.Literals.GEN_ENUM_LITERAL;
-	}
+    return GenModelPackage.Literals.GEN_ENUM_LITERAL;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public GenEnum getGenEnum()
   {
-		if (eContainerFeatureID() != GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM) return null;
-		return (GenEnum)eContainer();
-	}
+    if (eContainerFeatureID() != GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM) return null;
+    return (GenEnum)eContainer();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public NotificationChain basicSetGenEnum(GenEnum newGenEnum, NotificationChain msgs)
   {
-		msgs = eBasicSetContainer((InternalEObject)newGenEnum, GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM, msgs);
-		return msgs;
-	}
+    msgs = eBasicSetContainer((InternalEObject)newGenEnum, GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM, msgs);
+    return msgs;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setGenEnum(GenEnum newGenEnum)
   {
-		if (newGenEnum != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM && newGenEnum != null)) {
-			if (EcoreUtil.isAncestor(this, newGenEnum))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGenEnum != null)
-				msgs = ((InternalEObject)newGenEnum).eInverseAdd(this, GenModelPackage.GEN_ENUM__GEN_ENUM_LITERALS, GenEnum.class, msgs);
-			msgs = basicSetGenEnum(newGenEnum, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM, newGenEnum, newGenEnum));
-	}
+    if (newGenEnum != eInternalContainer() || (eContainerFeatureID() != GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM && newGenEnum != null))
+    {
+      if (EcoreUtil.isAncestor(this, newGenEnum))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newGenEnum != null)
+        msgs = ((InternalEObject)newGenEnum).eInverseAdd(this, GenModelPackage.GEN_ENUM__GEN_ENUM_LITERALS, GenEnum.class, msgs);
+      msgs = basicSetGenEnum(newGenEnum, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM, newGenEnum, newGenEnum));
+  }
 
   @Override
   public EModelElement getEcoreModelElement()
@@ -131,165 +132,174 @@ public class GenEnumLiteralImpl extends GenBaseImpl implements GenEnumLiteral
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EEnumLiteral getEcoreEnumLiteral()
   {
-		if (ecoreEnumLiteral != null && ecoreEnumLiteral.eIsProxy()) {
-			InternalEObject oldEcoreEnumLiteral = (InternalEObject)ecoreEnumLiteral;
-			ecoreEnumLiteral = (EEnumLiteral)eResolveProxy(oldEcoreEnumLiteral);
-			if (ecoreEnumLiteral != oldEcoreEnumLiteral) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL, oldEcoreEnumLiteral, ecoreEnumLiteral));
-			}
-		}
-		return ecoreEnumLiteral;
-	}
+    if (ecoreEnumLiteral != null && ecoreEnumLiteral.eIsProxy())
+    {
+      InternalEObject oldEcoreEnumLiteral = (InternalEObject)ecoreEnumLiteral;
+      ecoreEnumLiteral = (EEnumLiteral)eResolveProxy(oldEcoreEnumLiteral);
+      if (ecoreEnumLiteral != oldEcoreEnumLiteral)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL, oldEcoreEnumLiteral, ecoreEnumLiteral));
+      }
+    }
+    return ecoreEnumLiteral;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EEnumLiteral basicGetEcoreEnumLiteral()
   {
-		return ecoreEnumLiteral;
-	}
+    return ecoreEnumLiteral;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setEcoreEnumLiteral(EEnumLiteral newEcoreEnumLiteral)
   {
-		EEnumLiteral oldEcoreEnumLiteral = ecoreEnumLiteral;
-		ecoreEnumLiteral = newEcoreEnumLiteral;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL, oldEcoreEnumLiteral, ecoreEnumLiteral));
-	}
+    EEnumLiteral oldEcoreEnumLiteral = ecoreEnumLiteral;
+    ecoreEnumLiteral = newEcoreEnumLiteral;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL, oldEcoreEnumLiteral, ecoreEnumLiteral));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGenEnum((GenEnum)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        if (eInternalContainer() != null)
+          msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetGenEnum((GenEnum)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				return basicSetGenEnum(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        return basicSetGenEnum(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-		switch (eContainerFeatureID()) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_ENUM__GEN_ENUM_LITERALS, GenEnum.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+    switch (eContainerFeatureID())
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        return eInternalContainer().eInverseRemove(this, GenModelPackage.GEN_ENUM__GEN_ENUM_LITERALS, GenEnum.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				return getGenEnum();
-			case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
-				if (resolve) return getEcoreEnumLiteral();
-				return basicGetEcoreEnumLiteral();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        return getGenEnum();
+      case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
+        if (resolve) return getEcoreEnumLiteral();
+        return basicGetEcoreEnumLiteral();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eSet(int featureID, Object newValue)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				setGenEnum((GenEnum)newValue);
-				return;
-			case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
-				setEcoreEnumLiteral((EEnumLiteral)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        setGenEnum((GenEnum)newValue);
+        return;
+      case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
+        setEcoreEnumLiteral((EEnumLiteral)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				setGenEnum((GenEnum)null);
-				return;
-			case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
-				setEcoreEnumLiteral((EEnumLiteral)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        setGenEnum((GenEnum)null);
+        return;
+      case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
+        setEcoreEnumLiteral((EEnumLiteral)null);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-		switch (featureID) {
-			case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
-				return getGenEnum() != null;
-			case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
-				return ecoreEnumLiteral != null;
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__GEN_ENUM:
+        return getGenEnum() != null;
+      case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
+        return ecoreEnumLiteral != null;
+    }
+    return super.eIsSet(featureID);
+  }
 
   @Override
   public String getName()

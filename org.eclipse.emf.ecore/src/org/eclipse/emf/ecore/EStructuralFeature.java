@@ -51,100 +51,100 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 public interface EStructuralFeature extends ETypedElement
 {
   /**
-	 * Returns the value of the '<em><b>Transient</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Transient</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transient</em>' attribute.
-	 * @see #setTransient(boolean)
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Transient()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Transient</em>' attribute.
+   * @see #setTransient(boolean)
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Transient()
+   * @model
+   * @generated
+   */
   boolean isTransient();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isTransient <em>Transient</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isTransient <em>Transient</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transient</em>' attribute.
-	 * @see #isTransient()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Transient</em>' attribute.
+   * @see #isTransient()
+   * @generated
+   */
   void setTransient(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Volatile</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Volatile</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Volatile</em>' attribute.
-	 * @see #setVolatile(boolean)
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Volatile()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Volatile</em>' attribute.
+   * @see #setVolatile(boolean)
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Volatile()
+   * @model
+   * @generated
+   */
   boolean isVolatile();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isVolatile <em>Volatile</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isVolatile <em>Volatile</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Volatile</em>' attribute.
-	 * @see #isVolatile()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Volatile</em>' attribute.
+   * @see #isVolatile()
+   * @generated
+   */
   void setVolatile(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Changeable</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Changeable</b></em>' attribute.
+   * The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Changeable</em>' attribute.
-	 * @see #setChangeable(boolean)
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Changeable()
-	 * @model default="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Changeable</em>' attribute.
+   * @see #setChangeable(boolean)
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Changeable()
+   * @model default="true"
+   * @generated
+   */
   boolean isChangeable();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isChangeable <em>Changeable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isChangeable <em>Changeable</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Changeable</em>' attribute.
-	 * @see #isChangeable()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Changeable</em>' attribute.
+   * @see #isChangeable()
+   * @generated
+   */
   void setChangeable(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Default Value Literal</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Default Value Literal</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * It represents the serialized form of the default value.
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Value Literal</em>' attribute.
-	 * @see #setDefaultValueLiteral(String)
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_DefaultValueLiteral()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Default Value Literal</em>' attribute.
+   * @see #setDefaultValueLiteral(String)
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_DefaultValueLiteral()
+   * @model
+   * @generated
+   */
   String getDefaultValueLiteral();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#getDefaultValueLiteral <em>Default Value Literal</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#getDefaultValueLiteral <em>Default Value Literal</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Value Literal</em>' attribute.
-	 * @see #getDefaultValueLiteral()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Default Value Literal</em>' attribute.
+   * @see #getDefaultValueLiteral()
+   * @generated
+   */
   void setDefaultValueLiteral(String value);
 
   /**
-	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Default Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * It represents the default value that feature must take on when an
    * explicit value has not been set.  Specifically, it may be non-null if
@@ -158,11 +158,11 @@ public interface EStructuralFeature extends ETypedElement
    * with those two objects as parameters.
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Value</em>' attribute.
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_DefaultValue()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Default Value</em>' attribute.
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_DefaultValue()
+   * @model transient="true" changeable="false" volatile="true" derived="true"
+   * @generated
+   */
   Object getDefaultValue();
 
   /**
@@ -179,8 +179,8 @@ public interface EStructuralFeature extends ETypedElement
   void setDefaultValue(Object value);
 
   /**
-	 * Returns the value of the '<em><b>Unsettable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Unsettable</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * An unsettable feature explicitly models the state of being set verses being unset
    * and so provides a direct implementation for the reflective {@link EObject#eIsSet eIsSet}.
@@ -191,27 +191,27 @@ public interface EStructuralFeature extends ETypedElement
    * a reflective generator will generate the methods <code>isSetXyz</code> and <code>unsetXyz</code>.
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Unsettable</em>' attribute.
-	 * @see #setUnsettable(boolean)
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Unsettable()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Unsettable</em>' attribute.
+   * @see #setUnsettable(boolean)
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Unsettable()
+   * @model
+   * @generated
+   */
   boolean isUnsettable();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isUnsettable <em>Unsettable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isUnsettable <em>Unsettable</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Unsettable</em>' attribute.
-	 * @see #isUnsettable()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Unsettable</em>' attribute.
+   * @see #isUnsettable()
+   * @generated
+   */
   void setUnsettable(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Derived</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * A derived feature typically computes its value from those of other features.
    * It will typically be {@link #isTransient transient} 
@@ -219,58 +219,58 @@ public interface EStructuralFeature extends ETypedElement
    * The default {@link org.eclipse.emf.ecore.util.EcoreUtil.Copier copier} won't copy it.
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Derived</em>' attribute.
-	 * @see #setDerived(boolean)
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Derived()
-	 * @model
-	 * @generated
-	 */
+   * @return the value of the '<em>Derived</em>' attribute.
+   * @see #setDerived(boolean)
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_Derived()
+   * @model
+   * @generated
+   */
   boolean isDerived();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isDerived <em>Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isDerived <em>Derived</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Derived</em>' attribute.
-	 * @see #isDerived()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Derived</em>' attribute.
+   * @see #isDerived()
+   * @generated
+   */
   void setDerived(boolean value);
 
   /**
-	 * Returns the value of the '<em><b>EContaining Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EClass#getEStructuralFeatures <em>EStructural Features</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EContaining Class</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EClass#getEStructuralFeatures <em>EStructural Features</em>}'.
+   * <!-- begin-user-doc -->
    * <p>
    * It represents the containing class of this feature.
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>EContaining Class</em>' container reference.
-	 * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_EContainingClass()
-	 * @see org.eclipse.emf.ecore.EClass#getEStructuralFeatures
-	 * @model opposite="eStructuralFeatures" resolveProxies="false" changeable="false"
-	 * @generated
-	 */
+   * @return the value of the '<em>EContaining Class</em>' container reference.
+   * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_EContainingClass()
+   * @see org.eclipse.emf.ecore.EClass#getEStructuralFeatures
+   * @model opposite="eStructuralFeatures" resolveProxies="false" changeable="false"
+   * @generated
+   */
   EClass getEContainingClass();
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * Returns the ID relative to the {@link #getEContainingClass containing} class.
    * @return  the relative ID.
    * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
+   * @model kind="operation"
+   * @generated
+   */
   int getFeatureID();
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * Returns the {@link EClassifier#getInstanceClass instance class} of the {@link #getEContainingClass containing} class.
    * @return the instance class of the containing class.
    * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
+   * @model kind="operation"
+   * @generated
+   */
   Class<?> getContainerClass();
 
   /**

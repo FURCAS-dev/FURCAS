@@ -53,25 +53,25 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public abstract class GenTypedElementImpl extends GenBaseImpl implements GenTypedElement
 {
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected GenTypedElementImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return GenModelPackage.Literals.GEN_TYPED_ELEMENT;
-	}
+    return GenModelPackage.Literals.GEN_TYPED_ELEMENT;
+  }
 
   public abstract ETypedElement getEcoreTypedElement();
 

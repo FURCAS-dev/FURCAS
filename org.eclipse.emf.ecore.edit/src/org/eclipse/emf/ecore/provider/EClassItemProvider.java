@@ -56,80 +56,81 @@ public class EClassItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EClassItemProvider(AdapterFactory adapterFactory)
   {
-		super(adapterFactory);
-	}
+    super(adapterFactory);
+  }
 
   /**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    if (itemPropertyDescriptors == null)
+    {
+      super.getPropertyDescriptors(object);
 
-			addAbstractPropertyDescriptor(object);
-			addInterfacePropertyDescriptor(object);
-			addESuperTypesPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+      addAbstractPropertyDescriptor(object);
+      addInterfacePropertyDescriptor(object);
+      addESuperTypesPropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
 
   /**
-	 * This adds a property descriptor for the Abstract feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Abstract feature.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected void addAbstractPropertyDescriptor(Object object)
   {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EClass_abstract_feature"),
-				 getString("_UI_EClass_abstract_description"),
-				 EcorePackage.Literals.ECLASS__ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_EClass_abstract_feature"),
+         getString("_UI_EClass_abstract_description"),
+         EcorePackage.Literals.ECLASS__ABSTRACT,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+         null,
+         null));
+  }
 
   /**
-	 * This adds a property descriptor for the Interface feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Interface feature.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected void addInterfacePropertyDescriptor(Object object)
   {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EClass_interface_feature"),
-				 getString("_UI_EClass_interface_description"),
-				 EcorePackage.Literals.ECLASS__INTERFACE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_EClass_interface_feature"),
+         getString("_UI_EClass_interface_description"),
+         EcorePackage.Literals.ECLASS__INTERFACE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+         null,
+         null));
+  }
 
   /**
    * This adds a property descriptor for the ESuper Types feature.
@@ -243,18 +244,18 @@ public class EClassItemProvider
   }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EStructuralFeature getChildFeature(Object object, Object child)
   {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
 
-		return super.getChildFeature(object, child);
-	}
+    return super.getChildFeature(object, child);
+  }
 
   @Override
   public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
@@ -266,16 +267,16 @@ public class EClassItemProvider
   }
 
   /**
-	 * This returns EClass.gif.
-	 * <!-- begin-user-doc -->
+   * This returns EClass.gif.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object getImage(Object object)
   {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/EClass"));
-	}
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/EClass"));
+  }
 
   /**
    * This returns the label text for the adapted class.
@@ -332,65 +333,66 @@ public class EClassItemProvider
   }
 
   /**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void notifyChanged(Notification notification)
   {
-		updateChildren(notification);
+    updateChildren(notification);
 
-		switch (notification.getFeatureID(EClass.class)) {
-			case EcorePackage.ECLASS__ABSTRACT:
-			case EcorePackage.ECLASS__INTERFACE:
-			case EcorePackage.ECLASS__ESUPER_TYPES:
-			case EcorePackage.ECLASS__EREFERENCES:
-			case EcorePackage.ECLASS__EATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case EcorePackage.ECLASS__EOPERATIONS:
-			case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-			case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+    switch (notification.getFeatureID(EClass.class))
+    {
+      case EcorePackage.ECLASS__ABSTRACT:
+      case EcorePackage.ECLASS__INTERFACE:
+      case EcorePackage.ECLASS__ESUPER_TYPES:
+      case EcorePackage.ECLASS__EREFERENCES:
+      case EcorePackage.ECLASS__EATTRIBUTES:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+      case EcorePackage.ECLASS__EOPERATIONS:
+      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        return;
+    }
+    super.notifyChanged(notification);
+  }
 
   /**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
   {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
+    super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EcorePackage.Literals.ECLASS__EOPERATIONS,
-				 EcoreFactory.eINSTANCE.createEOperation()));
+    newChildDescriptors.add
+      (createChildParameter
+        (EcorePackage.Literals.ECLASS__EOPERATIONS,
+         EcoreFactory.eINSTANCE.createEOperation()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EcorePackage.Literals.ECLASS__ESTRUCTURAL_FEATURES,
-				 EcoreFactory.eINSTANCE.createEAttribute()));
+    newChildDescriptors.add
+      (createChildParameter
+        (EcorePackage.Literals.ECLASS__ESTRUCTURAL_FEATURES,
+         EcoreFactory.eINSTANCE.createEAttribute()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EcorePackage.Literals.ECLASS__ESTRUCTURAL_FEATURES,
-				 EcoreFactory.eINSTANCE.createEReference()));
+    newChildDescriptors.add
+      (createChildParameter
+        (EcorePackage.Literals.ECLASS__ESTRUCTURAL_FEATURES,
+         EcoreFactory.eINSTANCE.createEReference()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EcorePackage.Literals.ECLASS__EGENERIC_SUPER_TYPES,
-				 EcoreFactory.eINSTANCE.createEGenericType()));
-	}
+    newChildDescriptors.add
+      (createChildParameter
+        (EcorePackage.Literals.ECLASS__EGENERIC_SUPER_TYPES,
+         EcoreFactory.eINSTANCE.createEGenericType()));
+  }
 
 }

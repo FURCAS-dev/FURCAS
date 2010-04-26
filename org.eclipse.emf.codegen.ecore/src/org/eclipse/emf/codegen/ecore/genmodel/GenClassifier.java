@@ -43,31 +43,31 @@ import org.eclipse.emf.ecore.EClassifier;
 public interface GenClassifier extends GenBase
 {
   /**
-	 * Returns the value of the '<em><b>Gen Package</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getGenClassifiers <em>Gen Classifiers</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Package</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getGenClassifiers <em>Gen Classifiers</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Package</em>' reference.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenClassifier_GenPackage()
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getGenClassifiers
-	 * @model opposite="genClassifiers" resolveProxies="false" required="true" transient="true" changeable="false" volatile="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Package</em>' reference.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenClassifier_GenPackage()
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenPackage#getGenClassifiers
+   * @model opposite="genClassifiers" resolveProxies="false" required="true" transient="true" changeable="false" volatile="true"
+   * @generated
+   */
   GenPackage getGenPackage();
 
   /**
-	 * Returns the value of the '<em><b>Gen Type Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenTypeParameter}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Type Parameters</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenTypeParameter}.
+   * <!-- begin-user-doc -->
    * <p>
    * </p>
    * @since 2.3
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Type Parameters</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenClassifier_GenTypeParameters()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Type Parameters</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenClassifier_GenTypeParameters()
+   * @model containment="true"
+   * @generated
+   */
   EList<GenTypeParameter> getGenTypeParameters();
 
   EClassifier getEcoreClassifier();

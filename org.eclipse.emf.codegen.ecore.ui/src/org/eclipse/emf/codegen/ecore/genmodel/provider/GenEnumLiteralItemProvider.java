@@ -48,55 +48,56 @@ public class GenEnumLiteralItemProvider
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public GenEnumLiteralItemProvider(AdapterFactory adapterFactory)
   {
-		super(adapterFactory);
-	}
+    super(adapterFactory);
+  }
 
   /**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
   {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    if (itemPropertyDescriptors == null)
+    {
+      super.getPropertyDescriptors(object);
 
-			addEcoreEnumLiteralPropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+      addEcoreEnumLiteralPropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
 
   /**
-	 * This adds a property descriptor for the Ecore Enum Literal feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Ecore Enum Literal feature.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected void addEcoreEnumLiteralPropertyDescriptor(Object object)
   {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GenEnumLiteral_ecoreEnumLiteral_feature"),
-				 getString("_UI_GenEnumLiteral_ecoreEnumLiteral_description"),
-				 GenModelPackage.Literals.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL,
-				 false,
-				 false,
-				 false,
-				 null,
-				 getString("_UI_EcorePropertyCategory"),
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_GenEnumLiteral_ecoreEnumLiteral_feature"),
+         getString("_UI_GenEnumLiteral_ecoreEnumLiteral_description"),
+         GenModelPackage.Literals.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL,
+         false,
+         false,
+         false,
+         null,
+         getString("_UI_EcorePropertyCategory"),
+         null));
+  }
 
   /**
    */
@@ -117,23 +118,24 @@ public class GenEnumLiteralItemProvider
   }
 
   /**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void notifyChanged(Notification notification)
   {
-		updateChildren(notification);
+    updateChildren(notification);
 
-		switch (notification.getFeatureID(GenEnumLiteral.class)) {
-			case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+    switch (notification.getFeatureID(GenEnumLiteral.class))
+    {
+      case GenModelPackage.GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+    }
+    super.notifyChanged(notification);
+  }
 
 }

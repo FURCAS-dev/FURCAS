@@ -45,78 +45,78 @@ import org.eclipse.emf.ecore.EOperation;
 public interface GenOperation extends GenTypedElement
 {
   /**
-	 * Returns the value of the '<em><b>Gen Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenOperations <em>Gen Operations</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Class</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenOperations <em>Gen Operations</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Class</em>' container reference.
-	 * @see #setGenClass(GenClass)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_GenClass()
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenOperations
-	 * @model opposite="genOperations" required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Class</em>' container reference.
+   * @see #setGenClass(GenClass)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_GenClass()
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenClass#getGenOperations
+   * @model opposite="genOperations" required="true"
+   * @generated
+   */
   GenClass getGenClass();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation#getGenClass <em>Gen Class</em>}' container reference.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation#getGenClass <em>Gen Class</em>}' container reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Gen Class</em>' container reference.
-	 * @see #getGenClass()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Gen Class</em>' container reference.
+   * @see #getGenClass()
+   * @generated
+   */
   void setGenClass(GenClass value);
 
   /**
-	 * Returns the value of the '<em><b>Ecore Operation</b></em>' reference.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Ecore Operation</b></em>' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ecore Operation</em>' reference.
-	 * @see #setEcoreOperation(EOperation)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_EcoreOperation()
-	 * @model required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Ecore Operation</em>' reference.
+   * @see #setEcoreOperation(EOperation)
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_EcoreOperation()
+   * @model required="true"
+   * @generated
+   */
   EOperation getEcoreOperation();
 
   /**
-	 * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation#getEcoreOperation <em>Ecore Operation</em>}' reference.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenOperation#getEcoreOperation <em>Ecore Operation</em>}' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ecore Operation</em>' reference.
-	 * @see #getEcoreOperation()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Ecore Operation</em>' reference.
+   * @see #getEcoreOperation()
+   * @generated
+   */
   void setEcoreOperation(EOperation value);
 
   /**
-	 * Returns the value of the '<em><b>Gen Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenParameter}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenParameter#getGenOperation <em>Gen Operation</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Parameters</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenParameter}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.codegen.ecore.genmodel.GenParameter#getGenOperation <em>Gen Operation</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Parameters</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_GenParameters()
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenParameter#getGenOperation
-	 * @model opposite="genOperation" containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Parameters</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_GenParameters()
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenParameter#getGenOperation
+   * @model opposite="genOperation" containment="true"
+   * @generated
+   */
   EList<GenParameter> getGenParameters();
 
   /**
-	 * Returns the value of the '<em><b>Gen Type Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenTypeParameter}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Gen Type Parameters</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.codegen.ecore.genmodel.GenTypeParameter}.
+   * <!-- begin-user-doc -->
    * <p>
    * </p>
    * @since 2.3
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Type Parameters</em>' containment reference list.
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_GenTypeParameters()
-	 * @model containment="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Gen Type Parameters</em>' containment reference list.
+   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenOperation_GenTypeParameters()
+   * @model containment="true"
+   * @generated
+   */
   EList<GenTypeParameter> getGenTypeParameters();
 
   String getName();

@@ -24,235 +24,241 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum GenDelegationKind implements Enumerator
 {
   /**
-	 * The '<em><b>None</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>None</b></em>' literal object.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #NONE
-	 * @generated
-	 * @ordered
-	 */
+   * @see #NONE
+   * @generated
+   * @ordered
+   */
   NONE_LITERAL(0, "None", "None"),
   /**
-	 * The '<em><b>Reflective</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>Reflective</b></em>' literal object.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #REFLECTIVE
-	 * @generated
-	 * @ordered
-	 */
+   * @see #REFLECTIVE
+   * @generated
+   * @ordered
+   */
   REFLECTIVE_LITERAL(1, "Reflective", "Reflective"),
   /**
-	 * The '<em><b>Virtual</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>Virtual</b></em>' literal object.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #VIRTUAL
-	 * @generated
-	 * @ordered
-	 */
+   * @see #VIRTUAL
+   * @generated
+   * @ordered
+   */
   VIRTUAL_LITERAL(2, "Virtual", "Virtual"), /**
-	 * The '<em><b>Dynamic</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>Dynamic</b></em>' literal object.
+   * <!-- begin-user-doc -->
    * @since 2.5
    * <!-- end-user-doc -->
-	 * @see #DYNAMIC
-	 * @generated
-	 * @ordered
-	 */
+   * @see #DYNAMIC
+   * @generated
+   * @ordered
+   */
   DYNAMIC_LITERAL(3, "Dynamic", "Dynamic");
   /**
-	 * The '<em><b>None</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>None</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #NONE_LITERAL
-	 * @model name="None"
-	 * @generated
-	 * @ordered
-	 */
+   * @see #NONE_LITERAL
+   * @model name="None"
+   * @generated
+   * @ordered
+   */
   public static final int NONE = 0;
 
   /**
-	 * The '<em><b>Reflective</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>Reflective</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #REFLECTIVE_LITERAL
-	 * @model name="Reflective"
-	 * @generated
-	 * @ordered
-	 */
+   * @see #REFLECTIVE_LITERAL
+   * @model name="Reflective"
+   * @generated
+   * @ordered
+   */
   public static final int REFLECTIVE = 1;
 
   /**
-	 * The '<em><b>Virtual</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>Virtual</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #VIRTUAL_LITERAL
-	 * @model name="Virtual"
-	 * @generated
-	 * @ordered
-	 */
+   * @see #VIRTUAL_LITERAL
+   * @model name="Virtual"
+   * @generated
+   * @ordered
+   */
   public static final int VIRTUAL = 2;
 
   /**
-	 * The '<em><b>Dynamic</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+   * The '<em><b>Dynamic</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Dynamic</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-	 * @see #DYNAMIC_LITERAL
-	 * @model name="Dynamic"
-	 * @generated
-	 * @ordered
-	 */
+   * @see #DYNAMIC_LITERAL
+   * @model name="Dynamic"
+   * @generated
+   * @ordered
+   */
   public static final int DYNAMIC = 3;
 
   /**
-	 * An array of all the '<em><b>Gen Delegation Kind</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+   * An array of all the '<em><b>Gen Delegation Kind</b></em>' enumerators.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   private static final GenDelegationKind[] VALUES_ARRAY =
-    new GenDelegationKind[] {
-			NONE_LITERAL,
-			REFLECTIVE_LITERAL,
-			VIRTUAL_LITERAL,
-			DYNAMIC_LITERAL,
-		};
+    new GenDelegationKind[]
+    {
+      NONE_LITERAL,
+      REFLECTIVE_LITERAL,
+      VIRTUAL_LITERAL,
+      DYNAMIC_LITERAL,
+    };
 
   /**
-	 * A public read-only list of all the '<em><b>Gen Delegation Kind</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+   * A public read-only list of all the '<em><b>Gen Delegation Kind</b></em>' enumerators.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public static final List<GenDelegationKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-	 * Returns the '<em><b>Gen Delegation Kind</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+   * Returns the '<em><b>Gen Delegation Kind</b></em>' literal with the specified literal value.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public static GenDelegationKind get(String literal)
   {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			GenDelegationKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+    for (int i = 0; i < VALUES_ARRAY.length; ++i)
+    {
+      GenDelegationKind result = VALUES_ARRAY[i];
+      if (result.toString().equals(literal))
+      {
+        return result;
+      }
+    }
+    return null;
+  }
 
   /**
-	 * Returns the '<em><b>Gen Delegation Kind</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+   * Returns the '<em><b>Gen Delegation Kind</b></em>' literal with the specified name.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public static GenDelegationKind getByName(String name)
   {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			GenDelegationKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+    for (int i = 0; i < VALUES_ARRAY.length; ++i)
+    {
+      GenDelegationKind result = VALUES_ARRAY[i];
+      if (result.getName().equals(name))
+      {
+        return result;
+      }
+    }
+    return null;
+  }
 
   /**
-	 * Returns the '<em><b>Gen Delegation Kind</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+   * Returns the '<em><b>Gen Delegation Kind</b></em>' literal with the specified integer value.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public static GenDelegationKind get(int value)
   {
-		switch (value) {
-			case NONE: return NONE_LITERAL;
-			case REFLECTIVE: return REFLECTIVE_LITERAL;
-			case VIRTUAL: return VIRTUAL_LITERAL;
-			case DYNAMIC: return DYNAMIC_LITERAL;
-		}
-		return null;
-	}
+    switch (value)
+    {
+      case NONE: return NONE_LITERAL;
+      case REFLECTIVE: return REFLECTIVE_LITERAL;
+      case VIRTUAL: return VIRTUAL_LITERAL;
+      case DYNAMIC: return DYNAMIC_LITERAL;
+    }
+    return null;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   private final int value;
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   private final String name;
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   private final String literal;
 
   /**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+   * Only this class can construct instances.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   private GenDelegationKind(int value, String name, String literal)
   {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
+    this.value = value;
+    this.name = name;
+    this.literal = literal;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public int getValue()
   {
-	  return value;
-	}
+    return value;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getName()
   {
-	  return name;
-	}
+    return name;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getLiteral()
   {
-	  return literal;
-	}
+    return literal;
+  }
 
   /**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
+   * Returns the literal value of the enumerator, which is its string representation.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public String toString()
   {
-		return literal;
-	}
+    return literal;
+  }
 }
