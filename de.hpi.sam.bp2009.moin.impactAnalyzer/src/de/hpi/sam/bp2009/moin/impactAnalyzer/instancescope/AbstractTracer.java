@@ -11,6 +11,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	private T expression;
@@ -75,7 +76,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	}
 	
 	public static boolean doesTypeMatch(EClass sourceType,
-			EObject fromObject) {
+	        AnnotatedEObject fromObject) {
 		return sourceType.isInstance(fromObject);
 	}
 

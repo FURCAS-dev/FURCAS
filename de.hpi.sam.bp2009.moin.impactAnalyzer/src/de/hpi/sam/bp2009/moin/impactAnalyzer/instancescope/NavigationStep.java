@@ -3,15 +3,14 @@ package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 
 /**
  * During instance scope analysis, starting from an event's source element, by navigation the analyzer is trying to find
@@ -35,7 +34,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
  * 
  */
 public interface NavigationStep {
-	Set<EObject> navigate(Set<EObject> from, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack);
+	Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache);
 
 	/**
 	 * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is

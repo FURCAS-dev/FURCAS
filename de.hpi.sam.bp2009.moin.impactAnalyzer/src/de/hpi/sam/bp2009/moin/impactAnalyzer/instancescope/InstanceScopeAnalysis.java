@@ -33,6 +33,7 @@ import org.eclipse.ocl.ecore.StringLiteralExp;
 
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
@@ -324,7 +325,7 @@ public class InstanceScopeAnalysis {
         return OclTypeImpl.getAllInstancesMris(context.getQualifiedName());
     }
 
-    protected static Set<EObject> getAllPossibleContextInstances(EClass context) {
+    protected static Set<AnnotatedEObject> getAllPossibleContextInstances(EClass context) {
         //FIXME: atm the ported impact analyzer has no knowledge about the meta model instance. Actually getting all instances therefore is impossible
         return OclTypeImpl.getAllInstances(context.getQualifiedName());
     }
@@ -346,7 +347,7 @@ public class InstanceScopeAnalysis {
         NavigationStep step = getNavigationStepsToSelfForExpression(attributeOrAssociationEndCall
                 .getSource(), context);
         Set<EObject> sourceElementAsSet = Collections.singleton(sourceElement);
-        Set<EObject> result = step.navigate(sourceElementAsSet, cache, tupleLiteralIdentifierStack);
+        Set<EObject> result = step.navigate(sourceElementAsSet, cache);
         return result;
     }
 

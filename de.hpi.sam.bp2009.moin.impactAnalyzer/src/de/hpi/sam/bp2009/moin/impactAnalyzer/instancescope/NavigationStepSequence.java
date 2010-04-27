@@ -5,13 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 
 /**
  * Performs a sequence of navigation steps where the subsequent step uses as its input
@@ -166,15 +165,15 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
-	Set<EObject> result = Collections.singleton(fromObject);
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+	Set<AnnotatedEObject> result = Collections.singleton(fromObject);
 	if (isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    // If the navigation along the sequence produces an empty set, we can abort
 	    // the navigation.
 	    for (int i=0; !result.isEmpty() && i<getSteps().length; i++) {
-		result = getSteps()[i].navigate(result, cache, tuplePartIdentifierStack);
+		result = getSteps()[i].navigate(result, cache);
 	    }
 	}
 	return result;

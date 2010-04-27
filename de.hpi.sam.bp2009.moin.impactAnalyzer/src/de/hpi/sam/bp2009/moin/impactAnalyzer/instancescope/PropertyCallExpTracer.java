@@ -1,8 +1,8 @@
 package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
 
 import java.util.Iterator;
+import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 
@@ -91,12 +92,11 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         EReference forwardRef = (EReference)getExpression().getNavigationSource();
         NavigationStep reverseTraversal;
         if (forwardRef.getEOpposite() != null){
-            //the opposite is a normal reference -> we can navigate it with eGet()
             reverseTraversal = new AssociationNavigationStep(
-                    getInnermostElementType(getExpression().getType()),
-                    getInnermostElementType(sourceType),
-                    forwardRef.getEOpposite(),
-                    getExpression());
+                getInnermostElementType(sourceType),
+                getInnermostElementType(getExpression().getType()),
+                forwardRef,
+                getExpression());
         }else{
             //if hidden Opposites are implemented, reaching the else would be an error
             throw new RuntimeException("Missing EOpposite. Since hiddenOpposites are generated for uni-directional EReferences, every reference must have an opposite.");
@@ -110,8 +110,9 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         //TODO: implement correct tuple specific handling
         if (sourceType instanceof TupleType) {
             OCLExpression<EClassifier> tupleValueExp = null;
+            //this should be the top symbol of the stack
             String referredAttributeName = getExpression().getReferredProperty().getName();
-            EList<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)sourceExp).getPart();
+            List<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)((VariableExp)sourceExp).getReferredVariable().getInitExpression()).getPart();
             for (Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator(); i.hasNext();) {
                 TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next();
                 if (tuplePart.getName().equals(referredAttributeName)) {
@@ -122,11 +123,14 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             if (tupleValueExp == null) {
                 throw new RuntimeException("Internal error. Couldn't find tuple part named " + referredAttributeName);
             }
-            return pathCache.getOrCreateNavigationPath(tupleValueExp, context, classScopeAnalyzer);
+            //return a navigation sequence consisting of a TupleLiteralExpStep(which pushes the needed symbol on the stack) and the getOrCreateNavPath
+            return pathCache.navigationStepFromSequence(getExpression(),
+                    new TupleNavigationStep(null, null, null),
+                    pathCache.getOrCreateNavigationPath(getExpression(), context, classScopeAnalyzer));
 
         } else {
             return pathCache.navigationStepFromSequence(
-                    sourceExp,
+                    getExpression(),
                     new RefImmediateCompositeNavigationStep(
                             (EClass) getExpression().getType(),
                             (EClass) sourceType,

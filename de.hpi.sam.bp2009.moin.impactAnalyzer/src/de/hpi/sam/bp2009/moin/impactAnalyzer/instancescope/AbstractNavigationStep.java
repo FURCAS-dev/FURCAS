@@ -8,15 +8,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 
 
 public abstract class AbstractNavigationStep implements NavigationStep {
@@ -106,7 +105,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * must be able to suppress incrementing under special circumstances
      * (e.g. suppress count of additional recursive round trip in IndirectingStep)
      */
-    protected void incrementNavigateCounter(Set<EObject> from){
+    protected void incrementNavigateCounter(Set<AnnotatedEObject> from){
         navigateCounter++;
     }
 
@@ -115,18 +114,18 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * manages the type checks.
      */
     @Override
-    public Set<EObject> navigate(Set<EObject> from, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
+    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache) {
         incrementNavigateCounter(from);
 
-        Set<EObject> result = new HashSet<EObject>();
+        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         if (isAbsolute()) {
             from = Collections.singleton(null);
         }
         if (!isAlwaysEmpty()) { // don't do anything for empty steps
-            for (EObject fromObject : from) {
+            for (AnnotatedEObject fromObject : from) {
                 // for absolute steps, don't do the source type check and invoke just once, passing null for "from"
                 if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
-                    for (EObject singleResult : getFromCacheOrNavigate(fromObject, cache, tuplePartIdentifierStack)) {
+                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject, cache)) {
                         if (AbstractTracer.doesTypeMatch(getTargetType(), singleResult)) {
                             result.add(singleResult);
                         }
@@ -138,18 +137,18 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         return result;
     }
 
-    private Collection<EObject> getFromCacheOrNavigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
-        Set<EObject> result;
+    private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+        Set<AnnotatedEObject> result;
         List<Object> cacheKey = new BasicEList<Object>();
         cacheKey.add(this);
         cacheKey.add(fromObject);
-        cacheKey.add(tuplePartIdentifierStack);
+
         result = cache.get(cacheKey);
         if (result == null) {
             cacheMisses++;
-            Set<EObject> from = new HashSet<EObject>();
+            Set<AnnotatedEObject> from = new HashSet<AnnotatedEObject>();
             from.add(fromObject);
-            result = navigate(from , cache, tuplePartIdentifierStack); 
+            result = navigate(from , cache); 
             cache.put(cacheKey, result);
         }
         return result;
@@ -183,8 +182,8 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         }
     }
 
-    protected abstract Set<EObject> navigate(EObject fromObject,
-            Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack);
+    protected abstract Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject,
+            Map<List<Object>, Set<AnnotatedEObject>> cache);
 
     public String toString() {
         Map<NavigationStep, Integer> visited = new HashMap<NavigationStep, Integer>();

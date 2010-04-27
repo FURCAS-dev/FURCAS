@@ -12,6 +12,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     private static final Set<String> sourcePassThroughStdLibOpNames;
@@ -51,7 +52,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
         NavigationStep result;
 
-        OCLExpression<EClassifier> body = classScopeAnalyzer.getOperationBody(getExpression().getReferredOperation());
+        OCLExpression<EClassifier> body = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null) {
             // an OCL-specified operation; trace back using the body expression
             result = pathCache.getPathForNode(body);

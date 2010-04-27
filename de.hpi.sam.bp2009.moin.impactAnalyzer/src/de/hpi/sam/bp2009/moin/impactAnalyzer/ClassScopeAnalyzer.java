@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
@@ -61,7 +62,7 @@ public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, E
     /**
      * For each operation body analyzed, stores the calls to the operation that were visited
      */
-    final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression, Set<OperationCallExp>>();
+    final private Map<OCLExpression<EClassifier>, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression<EClassifier>, Set<OperationCallExp>>();
     
     // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
     // redundant/duplicate filters
@@ -77,7 +78,7 @@ public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, E
      *            be responsible for the initial evaluation of those OCL expressions on new element, and therefore,
      *            context element creation events are not of interest.
      */
-    public ClassScopeAnalyzer(OCLExpression exp, boolean notifyNewContextElements) {
+    public ClassScopeAnalyzer(OCLExpression<EClassifier> exp, boolean notifyNewContextElements) {
 	super();
 	this.notifyNewContextElements = notifyNewContextElements;
 	safeVisit(exp);
@@ -138,7 +139,7 @@ public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, E
     public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> exp, EPackage sourceResult, List<EPackage> qualifierResults) {
 
 	if (exp.getReferredOperation().getName().equals("allInstances") ) {
-	    OCLExpression typeExp = (OCLExpression) exp.getSource();
+	    OCLExpression<EClassifier> typeExp = exp.getSource();
 	    AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();
 	    OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
 	    EventTypeFilter evCreateFilter = EventManagerFactory.eINSTANCE.createEventTypeFilter();
@@ -150,13 +151,13 @@ public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, E
 	    orFilter.getFilters().add(evCreateFilter);
 	    orFilter.getFilters().add(evDeleteFilter);
 	    ClassFilter classFilter = EventManagerFactory.eINSTANCE.createClassFilter();
-	    classFilter.setWantedClass(typeExp.getEType().eClass());
+	    classFilter.setWantedClass(typeExp.getType().eClass());
 	    andFilter.getFilters().add(orFilter);
 	    andFilter.getFilters().add(classFilter);
 	    
 	    addFilter(andFilter);
 	} else {
-	    OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
+	    OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
 	    if (body != null) {
 		Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
 		if (analyzedCallsToBody == null) {
@@ -176,8 +177,8 @@ public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, E
      * from the root expression analyzed by this {@link ClassScopeAnalyzer}. If no such calls exist,
      * an empty set is returned.
      */
-    public Set<OperationCallExp> getCallsOf(OCLExpression operationBody) {
-	Set<OperationCallExp> result = visitedOperationBodies.get(operationBody);
+    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression) {
+	Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
 	if (result == null) {
 	    result = Collections.emptySet();
 	}
@@ -185,7 +186,7 @@ public class ClassScopeAnalyzer extends AbstractVisitor<EPackage, EClassifier, E
     }
 
     @Override
-    public EPackage handleVariable(org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> var, EPackage initResult) {
+    public EPackage handleVariable(Variable<EClassifier, EParameter> var, EPackage initResult) {
 	if ( var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
 		&& notifyNewContextElements) {
 		AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilter();

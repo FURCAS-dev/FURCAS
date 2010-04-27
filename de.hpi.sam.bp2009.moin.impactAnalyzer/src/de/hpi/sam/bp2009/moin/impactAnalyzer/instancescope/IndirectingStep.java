@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 
 /**
  * Steps of this type can be an empty placeholder during the analysis phase and can
@@ -93,14 +93,14 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
-	Set<EObject> result;
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+	Set<AnnotatedEObject> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject);
-	    Set<EObject> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(set, cache, tuplePartIdentifierStack);
+	    Set<AnnotatedEObject> set = Collections.singleton(fromObject);
+	    result = actualStep.navigate(set, cache);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
 	}
 	return result;
@@ -110,7 +110,7 @@ public class IndirectingStep extends AbstractNavigationStep {
      * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion 
      */
     @Override
-    protected void incrementNavigateCounter(Set<EObject> from) {
+    protected void incrementNavigateCounter(Set<AnnotatedEObject> from) {
 	boolean oneFromObjectIsEvaluating = false;
 	
 	for(EObject obj : from){

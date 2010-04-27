@@ -5,12 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
+
+import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
@@ -107,11 +106,11 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<EObject> navigate(EObject fromObject, Map<List<Object>, Set<EObject>> cache, Stack<EStructuralFeature> tuplePartIdentifierStack) {
-        Set<EObject> result = new HashSet<EObject>();
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (NavigationStep singleStep : getSteps()) {
-            Set<EObject> fromSet = Collections.singleton(fromObject);
-            result.addAll(singleStep.navigate(fromSet, cache, tuplePartIdentifierStack));
+            Set<AnnotatedEObject> fromSet = Collections.singleton(fromObject);
+            result.addAll(singleStep.navigate(fromSet, cache));
         }
         return result;
     }
