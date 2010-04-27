@@ -718,7 +718,7 @@ public class EcoreEnvironment
 			"where hiddenOpposite.ownedOpposite = oppositeParent "+ //$NON-NLS-1$
 //				"where oppositeParent.ownedOpposite = hiddenOpposite "+ //$NON-NLS-1$ // TODO this would be right after the query2 bugs have been fixed
 			"where hiddenOpposite.name = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
-			"where oppositeParent.eType = classifier", getQueryContext(rs)); //$NON-NLS-1$
+			"where oppositeParent.eType = classifier", getWorkspaceQueryContext(rs)); //$NON-NLS-1$
 		for (int i=0; i<result.getSize(); i++) {
 			ends.add((EReference) rs.getEObject(result.getUri(i, "hiddenOpposite"), /* loadOnDemand */ true)); //$NON-NLS-1$
 		}
@@ -750,13 +750,16 @@ public class EcoreEnvironment
 				"where annotation.details = detail "+ //$NON-NLS-1$
 				"where detail.key = 'Property.oppositeRoleName' "+ //$NON-NLS-1$
 				"where detail.value = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
-				"where oppositeParent.eType = classifier", getQueryContext(rs)); //$NON-NLS-1$
+				"where oppositeParent.eType = classifier", getWorkspaceQueryContext(rs)); //$NON-NLS-1$
 		for (int i=0; i<result.getSize(); i++) {
 			ends.add((EReference) rs.getEObject(result.getUri(i, "oppositeParent"), /* loadOnDemand */ true)); //$NON-NLS-1$
 		}
     }
 
-	private QueryContext getQueryContext(final ResourceSet rs) {
+	/**
+	 * Provides a query context that contains all resources known to the current query2 index
+	 */
+	protected static QueryContext getWorkspaceQueryContext(final ResourceSet rs) {
 		return new QueryContext() {
 			public URI[] getResourceScope() {
 				final List<URI> result = new ArrayList<URI>();

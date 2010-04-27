@@ -58,9 +58,6 @@ import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
-
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
  * expressions on instances of Ecore models (i.e., on M0 models).
@@ -71,13 +68,16 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
 public class EcoreEvaluationEnvironment
     extends
     AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
-	implements EvaluationEnvironment.Enumerations<EEnumLiteral> {
+	implements EvaluationEnvironment.Enumerations<EEnumLiteral>, QueryContextProvider {
 
-    /**
+    private QueryContextProvider queryContextProvider;
+
+	/**
      * Initializes me.
      */
     public EcoreEvaluationEnvironment() {
         super();
+        setQueryContextProvider(this);
     }
 
     /**
@@ -89,6 +89,11 @@ public class EcoreEvaluationEnvironment
     public EcoreEvaluationEnvironment(
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
         super(parent);
+        if (parent instanceof EcoreEvaluationEnvironment) {
+        	queryContextProvider = ((EcoreEvaluationEnvironment) parent).getQueryContextProvider();
+        } else {
+        	queryContextProvider = this;
+        }
     }
 
     @Override
@@ -202,8 +207,7 @@ public class EcoreEvaluationEnvironment
             	if (property instanceof EReference &&
             				((EReference) property).getEOpposite().getOwnedOpposite() == property &&
             				((EClass) ((EReference) property).getEOpposite().getEType()).isSuperTypeOf(etarget.eClass())) {
-            		ScopeProvider sp = new ProjectBasedScopeProviderImpl(etarget);
-            		QueryContext queryContext = sp.getForwardScopeAsQueryContext();
+            		QueryContext queryContext = getQueryContextProvider().getQueryContext(etarget);
             		ResourceSet rs = etarget.eResource().getResourceSet();
             		if (rs == null) {
             			rs = new ResourceSetImpl();
@@ -234,8 +238,7 @@ public class EcoreEvaluationEnvironment
 			Collection<EObject> result = null;
 			if (property instanceof EReference
 				&& ((EClass) ((EReference) property).getEType()).isSuperTypeOf(etarget.eClass())) {
-				ScopeProvider sp = new ProjectBasedScopeProviderImpl(etarget);
-				QueryContext queryContext = sp.getForwardScopeAsQueryContext();
+				QueryContext queryContext = getQueryContextProvider().getQueryContext(etarget);
 				ResourceSet rs = etarget.eResource().getResourceSet();
 				if (rs == null) {
 					rs = new ResourceSetImpl();
@@ -248,6 +251,26 @@ public class EcoreEvaluationEnvironment
 		}
         throw new IllegalArgumentException();
     }
+
+    /**
+     * Used to set the provider of a {@link QueryContext} for {@link #navigateOppositeProperty(EStructuralFeature, List, Object)}.
+     * By default, <tt>this</tt> is the query context provider (see {@link #getQueryContext(EObject)}) which naively responds
+     * with all resources known to the Eclipse workspace.
+     */
+	public void setQueryContextProvider(QueryContextProvider queryContextProvider) {
+		this.queryContextProvider = queryContextProvider;
+	}
+
+	public QueryContext getQueryContext(EObject etarget) {
+		ResourceSet rs = null;
+		if (etarget.eResource() != null) {
+			rs = etarget.eResource().getResourceSet();
+		}
+		if (rs == null) {
+			rs = new ResourceSetImpl();
+		}
+		return EcoreEnvironment.getWorkspaceQueryContext(rs);
+	}
 
     /**
      * Obtains the collection kind appropriate for representing the values of
@@ -458,4 +481,8 @@ public class EcoreEvaluationEnvironment
     public Enumerator getValue(EEnumLiteral enumerationLiteral) {
     	return enumerationLiteral.getInstance();
     }
+
+	private QueryContextProvider getQueryContextProvider() {
+		return queryContextProvider;
+	}
 }
