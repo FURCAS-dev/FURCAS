@@ -32,6 +32,7 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     private List<Exception> exceptions;
@@ -97,6 +98,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+            new ProjectDependencyQueryContextProvider().apply(ocl);
             Helper helper = ocl.createOCLHelper();
 
             switch (modelElement.eClass().getClassifierID()) {

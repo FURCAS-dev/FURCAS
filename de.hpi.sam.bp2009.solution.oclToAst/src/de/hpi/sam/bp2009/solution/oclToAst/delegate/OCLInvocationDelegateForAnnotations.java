@@ -32,6 +32,7 @@ import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
 import org.eclipse.osgi.util.NLS;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 /**
  * An implementation of an operation-invocation delegate for OCL body
@@ -57,6 +58,7 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments)
 			throws InvocationTargetException {
 		OCL ocl = delegateDomain.getOCL();
+		new ProjectDependencyQueryContextProvider().apply(ocl);
 		if (body == null) {
 			body = InvocationBehaviorForAnnotations.INSTANCE.getOperationBody(ocl, eOperation);
 		}

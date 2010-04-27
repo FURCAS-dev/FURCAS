@@ -16,10 +16,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.petriNet.PetriNet;
 import de.hpi.sam.petriNet.PetriNetFactory;
 import de.hpi.sam.petriNet.PetriNetPackage;
@@ -79,7 +81,9 @@ public class TestEcoreHelper extends TestCase {
         OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(transition.eClass());
-        OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
+		((EcoreEvaluationEnvironment) ocl.getEvaluationEnvironment())
+				.setQueryContextProvider(new ProjectDependencyQueryContextProvider());
+		OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
         Object result = ocl.evaluate(transition, expr);
         assertTrue(result instanceof Collection<?>);
         assertEquals(place, ((Collection<?>) result).iterator().next());

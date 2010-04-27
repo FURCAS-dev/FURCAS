@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+
 /**
  * Factory for OCL derived-attribute setting delegates.
  * 
@@ -35,6 +37,7 @@ public class OCLSettingDelegateFactory extends org.eclipse.ocl.ecore.delegate.OC
 	}
 	public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 		EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
+		new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
 		return new OCLSettingDelegateForAnnotations(getDelegateDomain(ePackage), structuralFeature);
 	}
 	

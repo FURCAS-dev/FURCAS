@@ -32,6 +32,8 @@ import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
 
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+
 /**
  * Factory for OCL derived-classifier validation delegates.
  * 
@@ -48,6 +50,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 
 	public ValidationDelegate createValidationDelegate(EClassifier classifier) {
 		EPackage ePackage = classifier.getEPackage();
+		new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
 		return new OCLValidationDelegateForAnnotations(getDelegateDomain(ePackage), classifier);
 	}
 
