@@ -29,7 +29,6 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -53,7 +52,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -63,7 +61,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class EGenericTypeItemProvider
-  extends ItemProviderAdapter
+  extends EObjectItemProvider
   implements	
     IEditingDomainItemProvider,	
     IStructuredItemContentProvider,	
@@ -653,18 +651,7 @@ public class EGenericTypeItemProvider
             super.getCreateChildText(owner, feature, child, selection);
   }
   
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	@Override
-	public ResourceLocator getResourceLocator() {
-    return EcoreEditPlugin.INSTANCE;
-  }
-
-		@Override
+  @Override
   protected Command createCreateChildCommand(
     EditingDomain domain,
     EObject owner,

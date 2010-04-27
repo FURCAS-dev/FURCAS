@@ -45,7 +45,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -57,7 +56,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class EModelElementItemProvider
-  extends ItemProviderAdapter
+  extends EObjectItemProvider
   implements
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
@@ -173,18 +172,7 @@ public class EModelElementItemProvider
          EcoreFactory.eINSTANCE.createEAnnotation()));
   }
 
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	@Override
-	public ResourceLocator getResourceLocator() {
-    return EcoreEditPlugin.INSTANCE;
-  }
-
-		/** 
+  /** 
    * Strips whitespace and converts the empty string to null.
    * 
    * @param value Any string or null.

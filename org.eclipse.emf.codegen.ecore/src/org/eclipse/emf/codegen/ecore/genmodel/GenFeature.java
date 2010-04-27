@@ -42,7 +42,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#isPropertySortChoices <em>Property Sort Choices</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getGenClass <em>Gen Class</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getEcoreFeature <em>Ecore Feature</em>}</li>
- *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getOwnedOpposite <em>Owned Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -331,33 +330,7 @@ public interface GenFeature extends GenTypedElement
    */
   void setEcoreFeature(EStructuralFeature value);
 
-  /**
-   * Returns the value of the '<em><b>Owned Opposite</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Opposite</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Owned Opposite</em>' containment reference.
-   * @see #setOwnedOpposite(GenFeature)
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage#getGenFeature_OwnedOpposite()
-   * @model containment="true"
-   * @generated
-   */
-	GenFeature getOwnedOpposite();
-
-		/**
-   * Sets the value of the '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getOwnedOpposite <em>Owned Opposite</em>}' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Owned Opposite</em>' containment reference.
-   * @see #getOwnedOpposite()
-   * @generated
-   */
-	void setOwnedOpposite(GenFeature value);
-
-		String getName(); // callers that plan to use this name without appending a suffix should call f.safeName(f.getName()) to make sure its not a keyword
+  String getName(); // callers that plan to use this name without appending a suffix should call f.safeName(f.getName()) to make sure its not a keyword
   String getSafeName(); // this is a safe guaranteed uncapitalized form of the name
   String getSafeNameAsEObject(); // the safe name and cast to EObject, if necessary.
   String getCapName();
@@ -397,7 +370,6 @@ public interface GenFeature extends GenTypedElement
   boolean isEffectiveContains();
   boolean isBidirectional();
   GenFeature getReverse();
-  GenFeature getReverseIncludingHidden();
   
   List<GenFeature> getKeys();
 

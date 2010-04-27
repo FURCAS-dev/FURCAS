@@ -1569,15 +1569,6 @@ public class GenModelPackageImpl extends EPackageImpl implements GenModelPackage
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getGenFeature_OwnedOpposite() {
-    return (EReference)genFeatureEClass.getEStructuralFeatures().get(11);
-  }
-
-		/**
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
@@ -1978,325 +1969,177 @@ public class GenModelPackageImpl extends EPackageImpl implements GenModelPackage
     // Create classes and their features
     genModelEClass = createEClass(GEN_MODEL);
     createEAttribute(genModelEClass, GEN_MODEL__COPYRIGHT_TEXT);
-      
     createEAttribute(genModelEClass, GEN_MODEL__MODEL_DIRECTORY);
-      
     createEAttribute(genModelEClass, GEN_MODEL__CREATION_COMMANDS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__CREATION_ICONS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__CREATION_SUBMENUS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDIT_DIRECTORY);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDITOR_DIRECTORY);
-      
     createEAttribute(genModelEClass, GEN_MODEL__MODEL_PLUGIN_ID);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TEMPLATE_DIRECTORY);
-      
     createEAttribute(genModelEClass, GEN_MODEL__RUNTIME_JAR);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FOREIGN_MODEL);
-      
     createEAttribute(genModelEClass, GEN_MODEL__DYNAMIC_TEMPLATES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__REDIRECTION);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FORCE_OVERWRITE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__NON_EXTERNALIZED_STRING_TAG);
-      
     createEAttribute(genModelEClass, GEN_MODEL__MODEL_NAME);
-      
     createEAttribute(genModelEClass, GEN_MODEL__MODEL_PLUGIN_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDIT_PLUGIN_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDITOR_PLUGIN_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__UPDATE_CLASSPATH);
-      
     createEAttribute(genModelEClass, GEN_MODEL__GENERATE_SCHEMA);
-      
     createEAttribute(genModelEClass, GEN_MODEL__NON_NLS_MARKERS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__STATIC_PACKAGES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__MODEL_PLUGIN_VARIABLES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__ROOT_EXTENDS_INTERFACE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__ROOT_EXTENDS_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__ROOT_IMPLEMENTS_INTERFACE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_EMF_TYPES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_EMF_META_DATA);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_EMF_MODEL_TAGS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_INTERFACES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FEATURE_MAP_WRAPPER_INTERFACE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FEATURE_MAP_WRAPPER_INTERNAL_INTERFACE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FEATURE_MAP_WRAPPER_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__RUNTIME_COMPATIBILITY);
-      
     createEAttribute(genModelEClass, GEN_MODEL__RICH_CLIENT_PLATFORM);
-      
     createEAttribute(genModelEClass, GEN_MODEL__REFLECTIVE_DELEGATION);
-      
     createEAttribute(genModelEClass, GEN_MODEL__CODE_FORMATTING);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TESTS_DIRECTORY);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TEST_SUITE_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__BOOLEAN_FLAGS_FIELD);
-      
     createEAttribute(genModelEClass, GEN_MODEL__BOOLEAN_FLAGS_RESERVED_BITS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__IMPORTER_ID);
-      
     createEAttribute(genModelEClass, GEN_MODEL__BUNDLE_MANIFEST);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FEATURE_DELEGATION);
-      
     createEAttribute(genModelEClass, GEN_MODEL__CONTAINMENT_PROXIES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__MINIMAL_REFLECTIVE_METHODS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_CONTAINMENT);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_NOTIFICATION);
-      
     createEAttribute(genModelEClass, GEN_MODEL__ARRAY_ACCESSORS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_UNSETTABLE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FACADE_HELPER_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__COMPLIANCE_LEVEL);
-      
     createEAttribute(genModelEClass, GEN_MODEL__SUPPRESS_GEN_MODEL_ANNOTATIONS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__COPYRIGHT_FIELDS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__BINARY_COMPATIBLE_REFLECTIVE_METHODS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__PUBLIC_CONSTRUCTORS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TEMPLATE_PLUGIN_VARIABLES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__PROVIDER_ROOT_EXTENDS_CLASS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDIT_PLUGIN_ID);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDIT_PLUGIN_VARIABLES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDITOR_PLUGIN_ID);
-      
     createEAttribute(genModelEClass, GEN_MODEL__EDITOR_PLUGIN_VARIABLES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TESTS_PLUGIN_ID);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TESTS_PLUGIN_VARIABLES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__OPTIMIZED_HAS_CHILDREN);
-      
     createEAttribute(genModelEClass, GEN_MODEL__TABLE_PROVIDERS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__COLOR_PROVIDERS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__FONT_PROVIDERS);
-      
     createEAttribute(genModelEClass, GEN_MODEL__RUNTIME_VERSION);
-      
     createEAttribute(genModelEClass, GEN_MODEL__LANGUAGE);
-      
     createEAttribute(genModelEClass, GEN_MODEL__PACKED_ENUMS);
-      
     createEReference(genModelEClass, GEN_MODEL__GEN_PACKAGES);
-      
     createEReference(genModelEClass, GEN_MODEL__USED_GEN_PACKAGES);
-      
     createEAttribute(genModelEClass, GEN_MODEL__INTERFACE_NAME_PATTERN);
-      
     createEAttribute(genModelEClass, GEN_MODEL__CLASS_NAME_PATTERN);
-      
     createEAttribute(genModelEClass, GEN_MODEL__OPERATION_REFLECTION);
-      
     createEAttribute(genModelEClass, GEN_MODEL__RICH_AJAX_PLATFORM);
-      
 
     genPackageEClass = createEClass(GEN_PACKAGE);
     createEAttribute(genPackageEClass, GEN_PACKAGE__PREFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__BASE_PACKAGE);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__RESOURCE);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__DISPOSABLE_PROVIDER_FACTORY);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__ADAPTER_FACTORY);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__LOAD_INITIALIZATION);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__INTERFACE_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__META_DATA_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__CLASS_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__UTILITY_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__PROVIDER_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__PRESENTATION_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__TESTS_PACKAGE_SUFFIX);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__GENERATE_EXAMPLE_CLASS);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__LITERALS_INTERFACE);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__DATA_TYPE_CONVERTERS);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__MULTIPLE_EDITOR_PAGES);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__GENERATE_MODEL_WIZARD);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__EXTENSIBLE_PROVIDER_FACTORY);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__CHILD_CREATION_EXTENDERS);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__CONTENT_TYPE_IDENTIFIER);
-      
     createEAttribute(genPackageEClass, GEN_PACKAGE__FILE_EXTENSIONS);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__ECORE_PACKAGE);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__GEN_MODEL);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__GEN_ENUMS);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__GEN_DATA_TYPES);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__GEN_CLASSES);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__NESTED_GEN_PACKAGES);
-      
     createEReference(genPackageEClass, GEN_PACKAGE__GEN_CLASSIFIERS);
-      
 
     genClassEClass = createEClass(GEN_CLASS);
     createEAttribute(genClassEClass, GEN_CLASS__PROVIDER);
-      
     createEAttribute(genClassEClass, GEN_CLASS__IMAGE);
-      
     createEAttribute(genClassEClass, GEN_CLASS__DYNAMIC);
-      
     createEReference(genClassEClass, GEN_CLASS__ECORE_CLASS);
-      
     createEReference(genClassEClass, GEN_CLASS__GEN_FEATURES);
-      
     createEReference(genClassEClass, GEN_CLASS__GEN_OPERATIONS);
-      
     createEReference(genClassEClass, GEN_CLASS__LABEL_FEATURE);
-      
 
     genFeatureEClass = createEClass(GEN_FEATURE);
     createEAttribute(genFeatureEClass, GEN_FEATURE__PROPERTY);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__NOTIFY);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__CHILDREN);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__CREATE_CHILD);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__PROPERTY_CATEGORY);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__PROPERTY_FILTER_FLAGS);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__PROPERTY_DESCRIPTION);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__PROPERTY_MULTI_LINE);
-      
     createEAttribute(genFeatureEClass, GEN_FEATURE__PROPERTY_SORT_CHOICES);
-      
     createEReference(genFeatureEClass, GEN_FEATURE__GEN_CLASS);
-      
     createEReference(genFeatureEClass, GEN_FEATURE__ECORE_FEATURE);
-      
-    createEReference(genFeatureEClass, GEN_FEATURE__OWNED_OPPOSITE);
-      
 
     genBaseEClass = createEClass(GEN_BASE);
     createEReference(genBaseEClass, GEN_BASE__GEN_ANNOTATIONS);
-      
 
     genEnumEClass = createEClass(GEN_ENUM);
     createEAttribute(genEnumEClass, GEN_ENUM__TYPE_SAFE_ENUM_COMPATIBLE);
-      
     createEReference(genEnumEClass, GEN_ENUM__ECORE_ENUM);
-      
     createEReference(genEnumEClass, GEN_ENUM__GEN_ENUM_LITERALS);
-      
 
     genEnumLiteralEClass = createEClass(GEN_ENUM_LITERAL);
     createEReference(genEnumLiteralEClass, GEN_ENUM_LITERAL__GEN_ENUM);
-      
     createEReference(genEnumLiteralEClass, GEN_ENUM_LITERAL__ECORE_ENUM_LITERAL);
-      
 
     genClassifierEClass = createEClass(GEN_CLASSIFIER);
     createEReference(genClassifierEClass, GEN_CLASSIFIER__GEN_PACKAGE);
-      
     createEReference(genClassifierEClass, GEN_CLASSIFIER__GEN_TYPE_PARAMETERS);
-      
 
     genDataTypeEClass = createEClass(GEN_DATA_TYPE);
     createEReference(genDataTypeEClass, GEN_DATA_TYPE__ECORE_DATA_TYPE);
-      
 
     genOperationEClass = createEClass(GEN_OPERATION);
     createEReference(genOperationEClass, GEN_OPERATION__GEN_CLASS);
-      
     createEReference(genOperationEClass, GEN_OPERATION__ECORE_OPERATION);
-      
     createEReference(genOperationEClass, GEN_OPERATION__GEN_PARAMETERS);
-      
     createEReference(genOperationEClass, GEN_OPERATION__GEN_TYPE_PARAMETERS);
-      
 
     genParameterEClass = createEClass(GEN_PARAMETER);
     createEReference(genParameterEClass, GEN_PARAMETER__GEN_OPERATION);
-      
     createEReference(genParameterEClass, GEN_PARAMETER__ECORE_PARAMETER);
-      
 
     genTypedElementEClass = createEClass(GEN_TYPED_ELEMENT);
 
     genAnnotationEClass = createEClass(GEN_ANNOTATION);
     createEAttribute(genAnnotationEClass, GEN_ANNOTATION__SOURCE);
-      
     createEReference(genAnnotationEClass, GEN_ANNOTATION__DETAILS);
-      
     createEReference(genAnnotationEClass, GEN_ANNOTATION__GEN_BASE);
-      
     createEReference(genAnnotationEClass, GEN_ANNOTATION__REFERENCES);
-      
     createEReference(genAnnotationEClass, GEN_ANNOTATION__CONTENTS);
-      
 
     genTypeParameterEClass = createEClass(GEN_TYPE_PARAMETER);
     createEReference(genTypeParameterEClass, GEN_TYPE_PARAMETER__ECORE_TYPE_PARAMETER);
-      
 
     // Create enums
     genProviderKindEEnum = createEEnum(GEN_PROVIDER_KIND);
@@ -2428,9 +2271,7 @@ public class GenModelPackageImpl extends EPackageImpl implements GenModelPackage
     initEAttribute(getGenModel_Language(), ecorePackage.getEString(), "language", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenModel_PackedEnums(), ecorePackage.getEBoolean(), "packedEnums", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenModel_GenPackages(), this.getGenPackage(), this.getGenPackage_GenModel(), "genPackages", null, 0, -1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenModel_UsedGenPackages(), this.getGenPackage(), null, "usedGenPackages", null, 0, -1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEAttribute(getGenModel_InterfaceNamePattern(), ecorePackage.getEString(), "interfaceNamePattern", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenModel_ClassNamePattern(), ecorePackage.getEString(), "classNamePattern", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenModel_OperationReflection(), ecorePackage.getEBoolean(), "operationReflection", "false", 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2460,32 +2301,21 @@ public class GenModelPackageImpl extends EPackageImpl implements GenModelPackage
     initEAttribute(getGenPackage_ContentTypeIdentifier(), ecorePackage.getEString(), "contentTypeIdentifier", null, 0, 1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenPackage_FileExtensions(), ecorePackage.getEString(), "fileExtensions", null, 0, 1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenPackage_EcorePackage(), theEcorePackage.getEPackage(), null, "ecorePackage", null, 1, 1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenPackage_GenModel(), this.getGenModel(), this.getGenModel_GenPackages(), "genModel", null, 1, 1, GenPackage.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenPackage_GenEnums(), this.getGenEnum(), null, "genEnums", null, 0, -1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenPackage_GenDataTypes(), this.getGenDataType(), null, "genDataTypes", null, 0, -1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenPackage_GenClasses(), this.getGenClass(), null, "genClasses", null, 0, -1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenPackage_NestedGenPackages(), this.getGenPackage(), null, "nestedGenPackages", null, 0, -1, GenPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenPackage_GenClassifiers(), this.getGenClassifier(), this.getGenClassifier_GenPackage(), "genClassifiers", null, 0, -1, GenPackage.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genClassEClass, GenClass.class, "GenClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenClass_Provider(), this.getGenProviderKind(), "provider", null, 0, 1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenClass_Image(), ecorePackage.getEBoolean(), "image", "true", 0, 1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenClass_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 0, 1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenClass_EcoreClass(), theEcorePackage.getEClass(), null, "ecoreClass", null, 1, 1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenClass_GenFeatures(), this.getGenFeature(), this.getGenFeature_GenClass(), "genFeatures", null, 0, -1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenClass_GenOperations(), this.getGenOperation(), this.getGenOperation_GenClass(), "genOperations", null, 0, -1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenClass_LabelFeature(), this.getGenFeature(), null, "labelFeature", null, 0, 1, GenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genFeatureEClass, GenFeature.class, "GenFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenFeature_Property(), this.getGenPropertyKind(), "property", null, 0, 1, GenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2498,15 +2328,10 @@ public class GenModelPackageImpl extends EPackageImpl implements GenModelPackage
     initEAttribute(getGenFeature_PropertyMultiLine(), ecorePackage.getEBoolean(), "propertyMultiLine", null, 0, 1, GenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGenFeature_PropertySortChoices(), ecorePackage.getEBoolean(), "propertySortChoices", null, 0, 1, GenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenFeature_GenClass(), this.getGenClass(), this.getGenClass_GenFeatures(), "genClass", null, 1, 1, GenFeature.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenFeature_EcoreFeature(), theEcorePackage.getEStructuralFeature(), null, "ecoreFeature", null, 1, 1, GenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
-    initEReference(getGenFeature_OwnedOpposite(), this.getGenFeature(), null, "ownedOpposite", null, 0, 1, GenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genBaseEClass, GenBase.class, "GenBase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenBase_GenAnnotations(), this.getGenAnnotation(), this.getGenAnnotation_GenBase(), "genAnnotations", null, 0, -1, GenBase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     EOperation op = addEOperation(genBaseEClass, this.getGenAnnotation(), "getGenAnnotation", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -2514,58 +2339,40 @@ public class GenModelPackageImpl extends EPackageImpl implements GenModelPackage
     initEClass(genEnumEClass, GenEnum.class, "GenEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenEnum_TypeSafeEnumCompatible(), ecorePackage.getEBoolean(), "typeSafeEnumCompatible", "true", 0, 1, GenEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenEnum_EcoreEnum(), theEcorePackage.getEEnum(), null, "ecoreEnum", null, 1, 1, GenEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenEnum_GenEnumLiterals(), this.getGenEnumLiteral(), this.getGenEnumLiteral_GenEnum(), "genEnumLiterals", null, 0, -1, GenEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genEnumLiteralEClass, GenEnumLiteral.class, "GenEnumLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenEnumLiteral_GenEnum(), this.getGenEnum(), this.getGenEnum_GenEnumLiterals(), "genEnum", null, 1, 1, GenEnumLiteral.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenEnumLiteral_EcoreEnumLiteral(), theEcorePackage.getEEnumLiteral(), null, "ecoreEnumLiteral", null, 1, 1, GenEnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genClassifierEClass, GenClassifier.class, "GenClassifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenClassifier_GenPackage(), this.getGenPackage(), this.getGenPackage_GenClassifiers(), "genPackage", null, 1, 1, GenClassifier.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenClassifier_GenTypeParameters(), this.getGenTypeParameter(), null, "genTypeParameters", null, 0, -1, GenClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genDataTypeEClass, GenDataType.class, "GenDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenDataType_EcoreDataType(), theEcorePackage.getEDataType(), null, "ecoreDataType", null, 1, 1, GenDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genOperationEClass, GenOperation.class, "GenOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenOperation_GenClass(), this.getGenClass(), this.getGenClass_GenOperations(), "genClass", null, 1, 1, GenOperation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenOperation_EcoreOperation(), theEcorePackage.getEOperation(), null, "ecoreOperation", null, 1, 1, GenOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenOperation_GenParameters(), this.getGenParameter(), this.getGenParameter_GenOperation(), "genParameters", null, 0, -1, GenOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenOperation_GenTypeParameters(), this.getGenTypeParameter(), null, "genTypeParameters", null, 0, -1, GenOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genParameterEClass, GenParameter.class, "GenParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenParameter_GenOperation(), this.getGenOperation(), this.getGenOperation_GenParameters(), "genOperation", null, 1, 1, GenParameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenParameter_EcoreParameter(), theEcorePackage.getEParameter(), null, "ecoreParameter", null, 1, 1, GenParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genTypedElementEClass, GenTypedElement.class, "GenTypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(genAnnotationEClass, GenAnnotation.class, "GenAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, GenAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGenAnnotation_Details(), theEcorePackage.getEStringToStringMapEntry(), null, "details", null, 0, -1, GenAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenAnnotation_GenBase(), this.getGenBase(), this.getGenBase_GenAnnotations(), "genBase", null, 0, 1, GenAnnotation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenAnnotation_References(), theEcorePackage.getEObject(), null, "references", null, 0, -1, GenAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
     initEReference(getGenAnnotation_Contents(), theEcorePackage.getEObject(), null, "contents", null, 0, -1, GenAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     initEClass(genTypeParameterEClass, GenTypeParameter.class, "GenTypeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGenTypeParameter_EcoreTypeParameter(), theEcorePackage.getETypeParameter(), null, "ecoreTypeParameter", null, 1, 1, GenTypeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        
 
     // Initialize enums and add enum literals
     initEEnum(genProviderKindEEnum, GenProviderKind.class, "GenProviderKind");

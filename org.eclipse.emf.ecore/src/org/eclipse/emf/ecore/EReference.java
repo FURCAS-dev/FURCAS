@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EReference.java,v 1.11 2008/12/22 19:51:05 emerks Exp $
+ * $Id: EReference.java,v 1.12 2010/04/14 16:48:28 emerks Exp $
  */
 package org.eclipse.emf.ecore;
 
@@ -34,12 +34,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.emf.ecore.EReference#getEOpposite <em>EOpposite</em>}</li>
  *   <li>{@link org.eclipse.emf.ecore.EReference#getEReferenceType <em>EReference Type</em>}</li>
  *   <li>{@link org.eclipse.emf.ecore.EReference#getEKeys <em>EKeys</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.EReference#getOwnedOpposite <em>Owned Opposite</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.emf.ecore.EcorePackage#getEReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConsistentOpposite SingleContainer ConsistentKeys ConsistentUnique'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConsistentOpposite SingleContainer ConsistentKeys ConsistentUnique ConsistentContainer'"
  * @generated
  */
 public interface EReference extends EStructuralFeature
@@ -160,31 +159,5 @@ public interface EReference extends EStructuralFeature
    * @generated
    */
   EList<EAttribute> getEKeys();
-
-		/**
-   * Returns the value of the '<em><b>Owned Opposite</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Opposite</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Owned Opposite</em>' containment reference.
-   * @see #setOwnedOpposite(EReference)
-   * @see org.eclipse.emf.ecore.EcorePackage#getEReference_OwnedOpposite()
-   * @model containment="true" resolveProxies="true"
-   * @generated
-   */
-	EReference getOwnedOpposite();
-
-		/**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#getOwnedOpposite <em>Owned Opposite</em>}' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Owned Opposite</em>' containment reference.
-   * @see #getOwnedOpposite()
-   * @generated
-   */
-	void setOwnedOpposite(EReference value);
 
 }

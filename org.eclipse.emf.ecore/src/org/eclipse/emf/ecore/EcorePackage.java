@@ -2637,22 +2637,13 @@ public interface EcorePackage extends EPackage
   int EREFERENCE__EKEYS = ESTRUCTURAL_FEATURE_FEATURE_COUNT + 5;
 
   /**
-   * The feature id for the '<em><b>Owned Opposite</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int EREFERENCE__OWNED_OPPOSITE = ESTRUCTURAL_FEATURE_FEATURE_COUNT + 6;
-
-		/**
    * The number of structural features of the '<em>EReference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EREFERENCE_FEATURE_COUNT = ESTRUCTURAL_FEATURE_FEATURE_COUNT + 7;
+  int EREFERENCE_FEATURE_COUNT = ESTRUCTURAL_FEATURE_FEATURE_COUNT + 6;
 
   /**
    * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -4334,17 +4325,6 @@ public interface EcorePackage extends EPackage
   EReference getEReference_EKeys();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.emf.ecore.EReference#getOwnedOpposite <em>Owned Opposite</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Owned Opposite</em>'.
-   * @see org.eclipse.emf.ecore.EReference#getOwnedOpposite()
-   * @see #getEReference()
-   * @generated
-   */
-	EReference getEReference_OwnedOpposite();
-
-		/**
    * Returns the meta object for class '{@link org.eclipse.emf.ecore.EStructuralFeature <em>EStructural Feature</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6009,14 +5989,6 @@ public interface EcorePackage extends EPackage
     EReference EREFERENCE__EKEYS = eINSTANCE.getEReference_EKeys();
 
     /**
-     * The meta object literal for the '<em><b>Owned Opposite</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EReference EREFERENCE__OWNED_OPPOSITE = eINSTANCE.getEReference_OwnedOpposite();
-
-				/**
      * The meta object literal for the '{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl <em>EStructural Feature</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

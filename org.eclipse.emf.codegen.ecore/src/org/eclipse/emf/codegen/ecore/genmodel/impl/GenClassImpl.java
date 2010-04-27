@@ -1748,12 +1748,6 @@ public class GenClassImpl extends GenClassifierImpl implements GenClass
         GenFeature genFeature = getGenModel().createGenFeature();
         getGenFeatures().add(localFeatureIndex++, genFeature);
         genFeature.initialize(reference);
-        if (reference.getOwnedOpposite() != null)
-        {
-          GenFeature genFeatureHiddenOpposite = getGenModel().createGenFeature();
-          genFeatureHiddenOpposite.initialize(reference.getOwnedOpposite());
-          genFeature.setOwnedOpposite(genFeatureHiddenOpposite);
-        }
       }
     }
     

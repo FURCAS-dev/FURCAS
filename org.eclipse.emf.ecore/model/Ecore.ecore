@@ -293,7 +293,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EReference" eSuperTypes="#//EStructuralFeature">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ConsistentOpposite SingleContainer ConsistentKeys ConsistentUnique"/>
+      <details key="constraints" value="ConsistentOpposite SingleContainer ConsistentKeys ConsistentUnique ConsistentContainer"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="containment" eType="#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="container" eType="#//EBoolean"
@@ -305,8 +305,6 @@
         eType="#//EClass" changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eKeys" upperBound="-1"
         eType="#//EAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOpposite" eType="#//EReference"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStructuralFeature" abstract="true"
       eSuperTypes="#//ETypedElement">

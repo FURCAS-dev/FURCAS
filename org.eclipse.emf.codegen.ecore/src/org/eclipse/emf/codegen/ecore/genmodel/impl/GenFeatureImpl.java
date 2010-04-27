@@ -43,7 +43,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
@@ -74,7 +73,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#isPropertySortChoices <em>Property Sort Choices</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#getGenClass <em>Gen Class</em>}</li>
  *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#getEcoreFeature <em>Ecore Feature</em>}</li>
- *   <li>{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl#getOwnedOpposite <em>Owned Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -272,16 +270,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   protected EStructuralFeature ecoreFeature;
 
   /**
-   * The cached value of the '{@link #getOwnedOpposite() <em>Owned Opposite</em>}' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see #getOwnedOpposite()
-   * @generated
-   * @ordered
-   */
-	protected GenFeature ownedOpposite;
-
-		/**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated modifiable
@@ -648,51 +636,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public GenFeature getOwnedOpposite() {
-    return ownedOpposite;
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public NotificationChain basicSetOwnedOpposite(GenFeature newOwnedOpposite, NotificationChain msgs) {
-    GenFeature oldOwnedOpposite = ownedOpposite;
-    ownedOpposite = newOwnedOpposite;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, oldOwnedOpposite, newOwnedOpposite);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public void setOwnedOpposite(GenFeature newOwnedOpposite) {
-    if (newOwnedOpposite != ownedOpposite)
-    {
-      NotificationChain msgs = null;
-      if (ownedOpposite != null)
-        msgs = ((InternalEObject)ownedOpposite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, null, msgs);
-      if (newOwnedOpposite != null)
-        msgs = ((InternalEObject)newOwnedOpposite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, null, msgs);
-      msgs = basicSetOwnedOpposite(newOwnedOpposite, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE, newOwnedOpposite, newOwnedOpposite));
-  }
-
-		/**
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
@@ -721,8 +664,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
     {
       case GenModelPackage.GEN_FEATURE__GEN_CLASS:
         return basicSetGenClass(null, msgs);
-      case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
-        return basicSetOwnedOpposite(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -776,8 +717,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
       case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
         if (resolve) return getEcoreFeature();
         return basicGetEcoreFeature();
-      case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
-        return getOwnedOpposite();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -827,9 +766,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
       case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
         setEcoreFeature((EStructuralFeature)newValue);
         return;
-      case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
-        setOwnedOpposite((GenFeature)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -877,9 +813,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
       case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
         setEcoreFeature((EStructuralFeature)null);
         return;
-      case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
-        setOwnedOpposite((GenFeature)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -916,8 +849,6 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
         return getGenClass() != null;
       case GenModelPackage.GEN_FEATURE__ECORE_FEATURE:
         return ecoreFeature != null;
-      case GenModelPackage.GEN_FEATURE__OWNED_OPPOSITE:
-        return ownedOpposite != null;
     }
     return super.eIsSet(featureID);
   }
@@ -1062,28 +993,12 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
 
   public GenPackage getGenPackage()
   {
-    if (getGenClass() != null)
-    {
-      return getGenClass().getGenPackage();
-    }
-    else
-    {
-      // hidden opposite's package can be determined by retrieving the owning forward reference
-      // and determining its eType and for that the genClass, then from there the genPackage.
-      return getGenModel().findGenClassifier(getEcoreFeature().getEType()).getGenPackage();
-    }
+    return getGenClass().getGenPackage();
   }
 
   public String getFeatureAccessorName()
   {
-    GenClass genClass = getGenClass();
-    if (genClass == null)
-    {
-      // hidden opposite's package can be determined by retrieving the owning forward reference
-      // and determining its eType and for that the genClass, then from there the genPackage.
-      genClass = (GenClass) getGenModel().findGenClassifier(getEcoreFeature().getEType());
-    }
-    return genClass.getName() + "_" + getCapName();
+    return getGenClass().getName() + "_" + getCapName();
   }
 
   public String getQualifiedFeatureAccessorName()
@@ -1209,9 +1124,7 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
     if (isReferenceType())
     {
       EReference eReverseFeature = ((EReference)getEcoreFeature()).getEOpposite();
-      return eReverseFeature != null &&
-            eReverseFeature.getOwnedOpposite() != getEcoreFeature() &&
-            ((EReference) getEcoreFeature()).getOwnedOpposite() != eReverseFeature; //  && eReverseFeature.isNavigable();
+      return eReverseFeature != null; //  && eReverseFeature.isNavigable();
     }
     return false;
   }
@@ -1223,56 +1136,15 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
       EReference eReverseFeature = ((EReference)getEcoreFeature()).getEOpposite();
       if (eReverseFeature != null)
       {
-        EObject reverseContainer = eReverseFeature.eContainer();
-        if (reverseContainer instanceof EClass)
+        EClass eReverseClass = (EClass)eReverseFeature.eContainer();
+        GenClass genClass = findGenClass(eReverseClass);
+        if (genClass != null)
         {
-          EClass eReverseClass = (EClass) eReverseFeature.eContainer();
-          GenClass genClass = findGenClass(eReverseClass);
-          if (genClass != null)
+          for (GenFeature genFeature : genClass.getGenFeatures())
           {
-            for (GenFeature genFeature : genClass.getGenFeatures())
+            if (genFeature.getEcoreFeature() == eReverseFeature)
             {
-              if (genFeature.getEcoreFeature() == eReverseFeature)
-              {
-                return genFeature;
-              }
-            }
-          }
-        }
-      }
-    }
-    return null;
-  }
-
-  public GenFeature getReverseIncludingHidden()
-  {
-    GenFeature oppositeGenFeature = getOwnedOpposite();
-    if (oppositeGenFeature != null)
-    {
-      return oppositeGenFeature;
-    }
-    else
-    {
-      if (isBidirectional())
-      {
-        EReference eReverseFeature = ((EReference) getEcoreFeature()).getEOpposite();
-        if (eReverseFeature != null)
-        {
-          EObject reverseContainer = eReverseFeature.eContainer();
-          GenClass genClass;
-          if (reverseContainer instanceof EClass)
-          {
-            EClass eReverseClass = (EClass) eReverseFeature.eContainer();
-            genClass = findGenClass(eReverseClass);
-            if (genClass != null)
-            {
-              for (GenFeature genFeature : genClass.getGenFeatures())
-              {
-                if (genFeature.getEcoreFeature() == eReverseFeature)
-                {
-                  return genFeature;
-                }
-              }
+              return genFeature;
             }
           }
         }
@@ -1301,7 +1173,7 @@ public class GenFeatureImpl extends GenTypedElementImpl implements GenFeature
   public String getContainerClass()
   {
     GenClass genClass = getGenClass();
-    return genClass == null || genClass.isDocumentRoot() || genClass.isDynamic() ? "null" : genClass.getImportedInterfaceName() + ".class";
+    return genClass.isDocumentRoot() || genClass.isDynamic() ? "null" : genClass.getImportedInterfaceName() + ".class";
   }
 
   public String getDerivedFlag()

@@ -209,8 +209,6 @@
         eType="#//GenClass" transient="true" eOpposite="#//GenClass/genFeatures"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ecoreFeature" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOpposite" eType="#//GenFeature"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenBase" abstract="true">
     <eOperations name="getGenAnnotation" eType="#//GenAnnotation">

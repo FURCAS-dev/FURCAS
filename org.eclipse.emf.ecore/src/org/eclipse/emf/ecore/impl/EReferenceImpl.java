@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 
 /**
@@ -47,7 +46,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEOpposite <em>EOpposite</em>}</li>
  *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEReferenceType <em>EReference Type</em>}</li>
  *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEKeys <em>EKeys</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getOwnedOpposite <em>Owned Opposite</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,16 +124,6 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected EList<EAttribute> eKeys;
 
   /**
-   * The cached value of the '{@link #getOwnedOpposite() <em>Owned Opposite</em>}' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see #getOwnedOpposite()
-   * @generated
-   * @ordered
-   */
-	protected EReference ownedOpposite;
-
-		/**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -335,98 +323,6 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
 
   /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getOwnedOpposite() {
-    if (ownedOpposite != null && ownedOpposite.eIsProxy())
-    {
-      InternalEObject oldOwnedOpposite = (InternalEObject)ownedOpposite;
-      ownedOpposite = (EReference)eResolveProxy(oldOwnedOpposite);
-      if (ownedOpposite != oldOwnedOpposite)
-      {
-        InternalEObject newOwnedOpposite = (InternalEObject)ownedOpposite;
-        NotificationChain msgs = oldOwnedOpposite.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.EREFERENCE__OWNED_OPPOSITE, null, null);
-        if (newOwnedOpposite.eInternalContainer() == null)
-        {
-          msgs = newOwnedOpposite.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.EREFERENCE__OWNED_OPPOSITE, null, msgs);
-        }
-        if (msgs != null) msgs.dispatch();
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.EREFERENCE__OWNED_OPPOSITE, oldOwnedOpposite, ownedOpposite));
-      }
-    }
-    return ownedOpposite;
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference basicGetOwnedOpposite() {
-    return ownedOpposite;
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public NotificationChain basicSetOwnedOpposite(EReference newOwnedOpposite, NotificationChain msgs) {
-    EReference oldOwnedOpposite = ownedOpposite;
-    ownedOpposite = newOwnedOpposite;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__OWNED_OPPOSITE, oldOwnedOpposite, newOwnedOpposite);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public void setOwnedOpposite(EReference newOwnedOpposite) {
-    if (newOwnedOpposite != ownedOpposite)
-    {
-      NotificationChain msgs = null;
-      if (ownedOpposite != null)
-        msgs = ((InternalEObject)ownedOpposite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.EREFERENCE__OWNED_OPPOSITE, null, msgs);
-      if (newOwnedOpposite != null)
-        msgs = ((InternalEObject)newOwnedOpposite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.EREFERENCE__OWNED_OPPOSITE, null, msgs);
-      msgs = basicSetOwnedOpposite(newOwnedOpposite, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__OWNED_OPPOSITE, newOwnedOpposite, newOwnedOpposite));
-  }
-
-		/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID)
-    {
-      case EcorePackage.EREFERENCE__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EREFERENCE__EGENERIC_TYPE:
-        return basicUnsetEGenericType(msgs);
-      case EcorePackage.EREFERENCE__ECONTAINING_CLASS:
-        return eBasicSetContainer(null, EcorePackage.EREFERENCE__ECONTAINING_CLASS, msgs);
-      case EcorePackage.EREFERENCE__OWNED_OPPOSITE:
-        return basicSetOwnedOpposite(null, msgs);
-    }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
-
-		/**
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
@@ -486,9 +382,6 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
         return basicGetEReferenceType();
       case EcorePackage.EREFERENCE__EKEYS:
         return getEKeys();
-      case EcorePackage.EREFERENCE__OWNED_OPPOSITE:
-        if (resolve) return getOwnedOpposite();
-        return basicGetOwnedOpposite();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
@@ -560,9 +453,6 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
         getEKeys().clear();
         getEKeys().addAll((Collection<? extends EAttribute>)newValue);
         return;
-      case EcorePackage.EREFERENCE__OWNED_OPPOSITE:
-        setOwnedOpposite((EReference)newValue);
-        return;
     }
     eDynamicSet(featureID, newValue);
   }
@@ -631,9 +521,6 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
       case EcorePackage.EREFERENCE__EKEYS:
         getEKeys().clear();
         return;
-      case EcorePackage.EREFERENCE__OWNED_OPPOSITE:
-        setOwnedOpposite((EReference)null);
-        return;
     }
     eDynamicUnset(featureID);
   }
@@ -696,8 +583,6 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
         return basicGetEReferenceType() != null;
       case EcorePackage.EREFERENCE__EKEYS:
         return eKeys != null && !eKeys.isEmpty();
-      case EcorePackage.EREFERENCE__OWNED_OPPOSITE:
-        return ownedOpposite != null;
     }
     return eDynamicIsSet(featureID);
   }

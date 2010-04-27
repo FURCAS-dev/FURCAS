@@ -1434,22 +1434,13 @@ public interface GenModelPackage extends EPackage
   int GEN_FEATURE__ECORE_FEATURE = GEN_TYPED_ELEMENT_FEATURE_COUNT + 10;
 
   /**
-   * The feature id for the '<em><b>Owned Opposite</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int GEN_FEATURE__OWNED_OPPOSITE = GEN_TYPED_ELEMENT_FEATURE_COUNT + 11;
-
-		/**
    * The number of structural features of the '<em>Gen Feature</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GEN_FEATURE_FEATURE_COUNT = GEN_TYPED_ELEMENT_FEATURE_COUNT + 12;
+  int GEN_FEATURE_FEATURE_COUNT = GEN_TYPED_ELEMENT_FEATURE_COUNT + 11;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenDataTypeImpl <em>Gen Data Type</em>}' class.
@@ -3336,17 +3327,6 @@ public interface GenModelPackage extends EPackage
   EReference getGenFeature_EcoreFeature();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getOwnedOpposite <em>Owned Opposite</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Owned Opposite</em>'.
-   * @see org.eclipse.emf.codegen.ecore.genmodel.GenFeature#getOwnedOpposite()
-   * @see #getGenFeature()
-   * @generated
-   */
-	EReference getGenFeature_OwnedOpposite();
-
-		/**
    * Returns the meta object for class '{@link org.eclipse.emf.codegen.ecore.genmodel.GenBase <em>Gen Base</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4801,14 +4781,6 @@ public interface GenModelPackage extends EPackage
     EReference GEN_FEATURE__ECORE_FEATURE = eINSTANCE.getGenFeature_EcoreFeature();
 
     /**
-     * The meta object literal for the '<em><b>Owned Opposite</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EReference GEN_FEATURE__OWNED_OPPOSITE = eINSTANCE.getGenFeature_OwnedOpposite();
-
-				/**
      * The meta object literal for the '{@link org.eclipse.emf.codegen.ecore.genmodel.impl.GenBaseImpl <em>Gen Base</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

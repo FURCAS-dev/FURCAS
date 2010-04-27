@@ -200,30 +200,9 @@ public class EcoreEvaluationEnvironment
 
         if (target instanceof EObject) {
             EObject etarget = (EObject) target;
+
             if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
                 return coerceValue(property, etarget.eGet(property), true);
-            } else {
-				Object result = null;
-            	if (property instanceof EReference &&
-            				((EReference) property).getEOpposite().getOwnedOpposite() == property &&
-            				((EClass) ((EReference) property).getEOpposite().getEType()).isSuperTypeOf(etarget.eClass())) {
-            		QueryContext queryContext = getQueryContextProvider().getQueryContext(etarget);
-            		ResourceSet rs = etarget.eResource().getResourceSet();
-            		if (rs == null) {
-            			rs = new ResourceSetImpl();
-            		}
-					Collection<EObject> resultCollection = EcoreHelper
-						.getInstance().navigateByQuery(etarget,
-							(EReference) property, queryContext, rs);
-					if (property.getUpperBound() == 1) {
-						if (!resultCollection.isEmpty()) {
-							result = resultCollection.iterator().next();
-						}
-					} else {
-						result = resultCollection;
-					}
-				}
-            	return result;
             }
         }
 

@@ -290,7 +290,6 @@
       <genFeatures property="Readonly" createChild="false" propertyCategory="Ecore"
           propertyDescription="The Ecore model element for this structural feature"
           ecoreFeature="ecore:EReference GenModel.ecore#//GenFeature/ecoreFeature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference GenModel.ecore#//GenFeature/ownedOpposite"/>
     </genClasses>
     <genClasses image="false" ecoreClass="GenModel.ecore#//GenBase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference GenModel.ecore#//GenBase/genAnnotations"/>
