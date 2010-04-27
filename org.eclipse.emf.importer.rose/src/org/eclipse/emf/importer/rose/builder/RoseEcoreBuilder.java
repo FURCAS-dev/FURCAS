@@ -76,14 +76,13 @@ public class RoseEcoreBuilder implements RoseVisitor
     private static final String ROSE2MOF_CONSTRAINED_ELEMENTS = "\"rose2mof.constrainedElements\"";
     private static final String MOF = "\"MOF\"";
     private static final String VALIDATION_DELEGATES = "validationDelegates";
-    private static final String SETTING_DELEGATES = "settingDelegates";
     private static final String INVOCATION_DELEGATES = "invocationDelegates";
     private static final String INV = "inv";
     private static final String COLON = ":";
     private static final String DELEGATE_URI = "http://de.hpi.sam.bp2009.OCL";
     private static final String ECORE_NS_URI = "http://www.eclipse.org/emf/2002/Ecore";
     private static final String CONSTRAINTS = "constraints";
-    //do you want to parse the semantic tab infos?
+    //do you want to parse the semantic tab info?
     public boolean activateSemanticsTab = false;
 
     class DeferredConstraintAnnotation{
@@ -825,9 +824,26 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
       boolean ref1Navigable = role1.isNavigable();
       boolean ref2Navigable = role2.isNavigable();
-      if (!ref1Navigable)
+      if (ref1Navigable)
       {
-        ref2.setOwnedOpposite(ref1);
+        ref2.setEOpposite(ref1);
+        setEReferenceIsContainment(ref1, role1, role2);
+        roseUtil.refTable.put(ref1, ref2Quidu);
+        TableObject obj = (TableObject)roseUtil.quidTable.get(ref1Quidu);
+        if (obj != null)
+        {
+          roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1, obj.getName());
+        }
+        else
+        {
+          warning(RoseImporterPlugin.INSTANCE.getString("_UI_UnresolvedTypeNameFor_message", new Object []{
+            role1.getRoseSupplier(),
+            ref1.getName() }));
+          roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1, "EObject");
+        }
+      }
+      else
+      {
         EAnnotation oppositeRoleNameAnnotation = ref2.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
         if (oppositeRoleNameAnnotation == null) {
             oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -838,23 +854,26 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
         }
         oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref1.getName());
       }
-      ref2.setEOpposite(ref1);
-      setEReferenceIsContainment(ref1, role1, role2);
-      roseUtil.refTable.put(ref1, ref2Quidu);
-      TableObject obj = (TableObject) roseUtil.quidTable.get(ref1Quidu);
-      if (obj != null) {
-        roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1,
-            obj.getName());
-      } else {
-        warning(RoseImporterPlugin.INSTANCE.getString(
-            "_UI_UnresolvedTypeNameFor_message", new Object[] {
-                role1.getRoseSupplier(), ref1.getName() }));
-        roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1,
-            "EObject");
-      }
-      if (!ref2Navigable)
+      if (ref2Navigable)
       {
-        ref1.setOwnedOpposite(ref2);
+        ref1.setEOpposite(ref2);
+        setEReferenceIsContainment(ref2, role2, role1);
+        roseUtil.refTable.put(ref2, ref1Quidu);
+        TableObject obj = (TableObject)roseUtil.quidTable.get(ref2Quidu);
+        if (obj != null)
+        {
+          roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2, obj.getName());
+        }
+        else
+        {
+          warning(RoseImporterPlugin.INSTANCE.getString("_UI_UnresolvedTypeNameFor_message", new Object []{
+            role2.getRoseSupplier(),
+            ref2.getName() }));
+          roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2, "EObject");
+        }
+      }
+      else
+      {
         EAnnotation oppositeRoleNameAnnotation = ref1.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
         if (oppositeRoleNameAnnotation == null) {
             oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -864,20 +883,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
             oppositeRoleNameAnnotation.getDetails().clear();
         }
         oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref2.getName());
-      }
-      ref1.setEOpposite(ref2);
-      setEReferenceIsContainment(ref2, role2, role1);
-      roseUtil.refTable.put(ref2, ref1Quidu);
-      obj = (TableObject) roseUtil.quidTable.get(ref2Quidu);
-      if (obj != null) {
-        roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2,
-            obj.getName());
-      } else {
-        warning(RoseImporterPlugin.INSTANCE.getString(
-            "_UI_UnresolvedTypeNameFor_message", new Object[] {
-                role2.getRoseSupplier(), ref2.getName() }));
-        roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2,
-            "EObject");
       }
     }
 
@@ -2297,26 +2302,22 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     //
     for (EReference eReference : roseUtil.refTable.keySet())
     {
-      if (!(eReference.eContainer() instanceof EReference))
+      String quid = roseUtil.refTable.get(eReference);
+      TableObject tableObject = (TableObject)roseUtil.quidTable.get(quid);
+      if (tableObject != null)
       {
-        String quid = roseUtil.refTable.get(eReference);
-        TableObject tableObject = (TableObject) roseUtil.quidTable.get(quid);
-        if (tableObject != null)
+        Object struct = tableObject.getObject();
+        if (struct instanceof EClass)
         {
-          Object struct = tableObject.getObject();
-          if (struct instanceof EClass)
-          {
-            ((EClass) struct).getEStructuralFeatures()
-                .add(
-                    -1
-                        - Collections.binarySearch(((EClass) struct).getEStructuralFeatures(), eReference,
-                            eStructuralFeatureComparator), eReference);
-          }
-          else
-          {
-            warning(RoseImporterPlugin.INSTANCE.getString("_UI_CannotAddReference_message", new Object[]
-            { eReference.getName(), tableObject.getName() }));
-          }
+          ((EClass)struct).getEStructuralFeatures().add(
+            -1 - Collections.binarySearch(((EClass)struct).getEStructuralFeatures(), eReference, eStructuralFeatureComparator),
+            eReference);
+        }
+        else
+        {
+          warning(RoseImporterPlugin.INSTANCE.getString("_UI_CannotAddReference_message", new Object []{
+            eReference.getName(),
+            tableObject.getName() }));
         }
       }
     }
@@ -2681,7 +2682,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
 
   private void addDelegateAnnotation(EPackage packg){
       EcoreUtil.setAnnotation(packg, ECORE_NS_URI, INVOCATION_DELEGATES, DELEGATE_URI);
-      EcoreUtil.setAnnotation(packg, ECORE_NS_URI, SETTING_DELEGATES, DELEGATE_URI);
       EcoreUtil.setAnnotation(packg, ECORE_NS_URI, VALIDATION_DELEGATES, DELEGATE_URI);
   }
   protected void build(RoseNode roseNode, Object parent, ENamedElement eNamedElement)
