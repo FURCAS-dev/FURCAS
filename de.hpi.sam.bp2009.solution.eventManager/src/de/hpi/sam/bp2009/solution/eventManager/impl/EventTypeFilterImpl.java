@@ -8,13 +8,11 @@ package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +21,8 @@ import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventTypeFilterImpl#getEventEClass <em>Event EClass</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventTypeFilterImpl#getMatchingNotification <em>Matching Notification</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventTypeFilterImpl#getEventType <em>Event Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,14 +30,41 @@ import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
  */
 public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter {
 	/**
-	 * The cached value of the '{@link #getEventEClass() <em>Event EClass</em>}' reference.
+	 * The default value of the '{@link #getMatchingNotification() <em>Matching Notification</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEventEClass()
+	 * @see #getMatchingNotification()
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass eventEClass;
+	protected static final Notification MATCHING_NOTIFICATION_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getMatchingNotification() <em>Matching Notification</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMatchingNotification()
+	 * @generated
+	 * @ordered
+	 */
+	protected Notification matchingNotification = MATCHING_NOTIFICATION_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getEventType() <em>Event Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEventType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Integer EVENT_TYPE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getEventType() <em>Event Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEventType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Integer eventType = EVENT_TYPE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,16 +88,8 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventEClass() {
-		if (eventEClass != null && eventEClass.eIsProxy()) {
-			InternalEObject oldEventEClass = (InternalEObject)eventEClass;
-			eventEClass = (EClass)eResolveProxy(oldEventEClass);
-			if (eventEClass != oldEventEClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.EVENT_TYPE_FILTER__EVENT_ECLASS, oldEventEClass, eventEClass));
-			}
-		}
-		return eventEClass;
+	public Notification getMatchingNotification() {
+		return matchingNotification;
 	}
 
 	/**
@@ -79,20 +97,32 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass basicGetEventEClass() {
-		return eventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventEClass(EClass newEventEClass) {
-		EClass oldEventEClass = eventEClass;
-		eventEClass = newEventEClass;
+	public void setMatchingNotification(Notification newMatchingNotification) {
+		Notification oldMatchingNotification = matchingNotification;
+		matchingNotification = newMatchingNotification;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__EVENT_ECLASS, oldEventEClass, eventEClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION, oldMatchingNotification, matchingNotification));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Integer getEventType() {
+		return eventType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventType(Integer newEventType) {
+		Integer oldEventType = eventType;
+		eventType = newEventType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE, oldEventType, eventType));
 	}
 
 	/**
@@ -100,8 +130,8 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean matchesFor(ModelChangeEvent event) {
-		return event.eClass().equals(getEventEClass());
+	public boolean matchesFor(Notification event) {
+		return event.getEventType()==getEventType(); 
 	}
 
 	/**
@@ -112,9 +142,10 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_ECLASS:
-				if (resolve) return getEventEClass();
-				return basicGetEventEClass();
+			case EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION:
+				return getMatchingNotification();
+			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE:
+				return getEventType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,8 +158,11 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_ECLASS:
-				setEventEClass((EClass)newValue);
+			case EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION:
+				setMatchingNotification((Notification)newValue);
+				return;
+			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE:
+				setEventType((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,8 +176,11 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_ECLASS:
-				setEventEClass((EClass)null);
+			case EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION:
+				setMatchingNotification(MATCHING_NOTIFICATION_EDEFAULT);
+				return;
+			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE:
+				setEventType(EVENT_TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,10 +194,30 @@ public class EventTypeFilterImpl extends EObjectImpl implements EventTypeFilter 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_ECLASS:
-				return eventEClass != null;
+			case EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION:
+				return MATCHING_NOTIFICATION_EDEFAULT == null ? matchingNotification != null : !MATCHING_NOTIFICATION_EDEFAULT.equals(matchingNotification);
+			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE:
+				return EVENT_TYPE_EDEFAULT == null ? eventType != null : !EVENT_TYPE_EDEFAULT.equals(eventType);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (matchingNotification: ");
+		result.append(matchingNotification);
+		result.append(", eventType: ");
+		result.append(eventType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EventTypeFilterImpl

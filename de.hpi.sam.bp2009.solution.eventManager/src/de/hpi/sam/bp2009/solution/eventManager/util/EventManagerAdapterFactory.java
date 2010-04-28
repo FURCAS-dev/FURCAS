@@ -15,24 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ContainerFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
-import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
-import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
-import de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
 
@@ -97,42 +84,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createEventManagerAdapter();
 			}
 			@Override
-			public Adapter caseModelChangeEvent(ModelChangeEvent object) {
-				return createModelChangeEventAdapter();
-			}
-			@Override
-			public Adapter caseElementChangeEvent(ElementChangeEvent object) {
-				return createElementChangeEventAdapter();
-			}
-			@Override
-			public Adapter caseAttributeValueChangeEvent(AttributeValueChangeEvent object) {
-				return createAttributeValueChangeEventAdapter();
-			}
-			@Override
-			public Adapter caseElementLifeCycleEvent(ElementLifeCycleEvent object) {
-				return createElementLifeCycleEventAdapter();
-			}
-			@Override
-			public Adapter caseLinkLifeCycleEvent(LinkLifeCycleEvent object) {
-				return createLinkLifeCycleEventAdapter();
-			}
-			@Override
-			public Adapter caseElementCreateEvent(ElementCreateEvent object) {
-				return createElementCreateEventAdapter();
-			}
-			@Override
-			public Adapter caseElementDeleteEvent(ElementDeleteEvent object) {
-				return createElementDeleteEventAdapter();
-			}
-			@Override
-			public Adapter caseLinkCreateEvent(LinkCreateEvent object) {
-				return createLinkCreateEventAdapter();
-			}
-			@Override
-			public Adapter caseLinkDeleteEvent(LinkDeleteEvent object) {
-				return createLinkDeleteEventAdapter();
-			}
-			@Override
 			public Adapter caseEventFilter(EventFilter object) {
 				return createEventFilterAdapter();
 			}
@@ -149,28 +100,12 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createOrFilterAdapter();
 			}
 			@Override
-			public Adapter caseNotFilter(NotFilter object) {
-				return createNotFilterAdapter();
-			}
-			@Override
 			public Adapter caseClassFilter(ClassFilter object) {
 				return createClassFilterAdapter();
 			}
 			@Override
-			public Adapter caseInstanceFilter(InstanceFilter object) {
-				return createInstanceFilterAdapter();
-			}
-			@Override
 			public Adapter caseAttributeFilter(AttributeFilter object) {
 				return createAttributeFilterAdapter();
-			}
-			@Override
-			public Adapter caseContainerFilter(ContainerFilter object) {
-				return createContainerFilterAdapter();
-			}
-			@Override
-			public Adapter caseCompositionHierarchyFilter(CompositionHierarchyFilter object) {
-				return createCompositionHierarchyFilterAdapter();
 			}
 			@Override
 			public Adapter casePackageFilter(PackageFilter object) {
@@ -181,16 +116,20 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createAssociationFilterAdapter();
 			}
 			@Override
-			public Adapter caseEventMapper(EventMapper object) {
-				return createEventMapperAdapter();
+			public Adapter caseOldValueClassFilter(OldValueClassFilter object) {
+				return createOldValueClassFilterAdapter();
 			}
 			@Override
-			public Adapter caseEventListener(EventListener object) {
-				return createEventListenerAdapter();
+			public Adapter caseContainmentFilter(ContainmentFilter object) {
+				return createContainmentFilterAdapter();
 			}
 			@Override
-			public Adapter caseAttributeMultiValueChangeEvent(AttributeMultiValueChangeEvent object) {
-				return createAttributeMultiValueChangeEventAdapter();
+			public Adapter caseNewValueClassFilter(NewValueClassFilter object) {
+				return createNewValueClassFilterAdapter();
+			}
+			@Override
+			public Adapter caseStructuralFeatureFilter(StructuralFeatureFilter object) {
+				return createStructuralFeatureFilterAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -223,132 +162,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventManagerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent <em>Model Change Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent
-	 * @generated
-	 */
-	public Adapter createModelChangeEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent <em>Element Change Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent
-	 * @generated
-	 */
-	public Adapter createElementChangeEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent <em>Attribute Value Change Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent
-	 * @generated
-	 */
-	public Adapter createAttributeValueChangeEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent <em>Element Life Cycle Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent
-	 * @generated
-	 */
-	public Adapter createElementLifeCycleEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent <em>Link Life Cycle Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent
-	 * @generated
-	 */
-	public Adapter createLinkLifeCycleEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent <em>Element Create Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent
-	 * @generated
-	 */
-	public Adapter createElementCreateEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent <em>Element Delete Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent
-	 * @generated
-	 */
-	public Adapter createElementDeleteEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent <em>Link Create Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent
-	 * @generated
-	 */
-	public Adapter createLinkCreateEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent <em>Link Delete Event</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent
-	 * @generated
-	 */
-	public Adapter createLinkDeleteEventAdapter() {
 		return null;
 	}
 
@@ -409,20 +222,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter <em>Not Filter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.NotFilter
-	 * @generated
-	 */
-	public Adapter createNotFilterAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ClassFilter <em>Class Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -437,20 +236,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.InstanceFilter <em>Instance Filter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.InstanceFilter
-	 * @generated
-	 */
-	public Adapter createInstanceFilterAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter <em>Attribute Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -461,34 +246,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeFilterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter <em>Container Filter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.ContainerFilter
-	 * @generated
-	 */
-	public Adapter createContainerFilterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter <em>Composition Hierarchy Filter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter
-	 * @generated
-	 */
-	public Adapter createCompositionHierarchyFilterAdapter() {
 		return null;
 	}
 
@@ -521,44 +278,58 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMapper <em>Event Mapper</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.OldValueClassFilter <em>Old Value Class Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventMapper
+	 * @see de.hpi.sam.bp2009.solution.eventManager.OldValueClassFilter
 	 * @generated
 	 */
-	public Adapter createEventMapperAdapter() {
+	public Adapter createOldValueClassFilterAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventListener <em>Event Listener</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.ContainmentFilter <em>Containment Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventListener
+	 * @see de.hpi.sam.bp2009.solution.eventManager.ContainmentFilter
 	 * @generated
 	 */
-	public Adapter createEventListenerAdapter() {
+	public Adapter createContainmentFilterAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent <em>Attribute Multi Value Change Event</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.NewValueClassFilter <em>New Value Class Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent
+	 * @see de.hpi.sam.bp2009.solution.eventManager.NewValueClassFilter
 	 * @generated
 	 */
-	public Adapter createAttributeMultiValueChangeEventAdapter() {
+	public Adapter createNewValueClassFilterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter <em>Structural Feature Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter
+	 * @generated
+	 */
+	public Adapter createStructuralFeatureFilterAdapter() {
 		return null;
 	}
 

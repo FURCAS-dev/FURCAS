@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -15,7 +16,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 
 /**
@@ -78,7 +78,8 @@ public class OrFilterImpl extends EObjectImpl implements OrFilter {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean matchesFor(ModelChangeEvent event) {		
+	public boolean matchesFor(Notification event) {
+
 		for(EventFilter otherFilter:getFilters()){			
 			if(otherFilter.matchesFor(event))
 				return true;

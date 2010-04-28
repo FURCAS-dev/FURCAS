@@ -66,24 +66,17 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case EventManagerPackage.EVENT_MANAGER: return createEventManager();
-			case EventManagerPackage.ATTRIBUTE_VALUE_CHANGE_EVENT: return createAttributeValueChangeEvent();
-			case EventManagerPackage.ELEMENT_CREATE_EVENT: return createElementCreateEvent();
-			case EventManagerPackage.ELEMENT_DELETE_EVENT: return createElementDeleteEvent();
-			case EventManagerPackage.LINK_CREATE_EVENT: return createLinkCreateEvent();
-			case EventManagerPackage.LINK_DELETE_EVENT: return createLinkDeleteEvent();
 			case EventManagerPackage.EVENT_TYPE_FILTER: return createEventTypeFilter();
 			case EventManagerPackage.AND_FILTER: return createAndFilter();
 			case EventManagerPackage.OR_FILTER: return createOrFilter();
-			case EventManagerPackage.NOT_FILTER: return createNotFilter();
 			case EventManagerPackage.CLASS_FILTER: return createClassFilter();
-			case EventManagerPackage.INSTANCE_FILTER: return createInstanceFilter();
 			case EventManagerPackage.ATTRIBUTE_FILTER: return createAttributeFilter();
-			case EventManagerPackage.CONTAINER_FILTER: return createContainerFilter();
-			case EventManagerPackage.COMPOSITION_HIERARCHY_FILTER: return createCompositionHierarchyFilter();
 			case EventManagerPackage.PACKAGE_FILTER: return createPackageFilter();
 			case EventManagerPackage.ASSOCIATION_FILTER: return createAssociationFilter();
-			case EventManagerPackage.EVENT_MAPPER: return createEventMapper();
-			case EventManagerPackage.ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT: return createAttributeMultiValueChangeEvent();
+			case EventManagerPackage.OLD_VALUE_CLASS_FILTER: return createOldValueClassFilter();
+			case EventManagerPackage.CONTAINMENT_FILTER: return createContainmentFilter();
+			case EventManagerPackage.NEW_VALUE_CLASS_FILTER: return createNewValueClassFilter();
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER: return createStructuralFeatureFilter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -142,56 +135,6 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeValueChangeEvent createAttributeValueChangeEvent() {
-		AttributeValueChangeEventImpl attributeValueChangeEvent = new AttributeValueChangeEventImpl();
-		return attributeValueChangeEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ElementCreateEvent createElementCreateEvent() {
-		ElementCreateEventImpl elementCreateEvent = new ElementCreateEventImpl();
-		return elementCreateEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ElementDeleteEvent createElementDeleteEvent() {
-		ElementDeleteEventImpl elementDeleteEvent = new ElementDeleteEventImpl();
-		return elementDeleteEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LinkCreateEvent createLinkCreateEvent() {
-		LinkCreateEventImpl linkCreateEvent = new LinkCreateEventImpl();
-		return linkCreateEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LinkDeleteEvent createLinkDeleteEvent() {
-		LinkDeleteEventImpl linkDeleteEvent = new LinkDeleteEventImpl();
-		return linkDeleteEvent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EventTypeFilter createEventTypeFilter() {
 		EventTypeFilterImpl eventTypeFilter = new EventTypeFilterImpl();
 		return eventTypeFilter;
@@ -222,16 +165,6 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotFilter createNotFilter() {
-		NotFilterImpl notFilter = new NotFilterImpl();
-		return notFilter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ClassFilter createClassFilter() {
 		ClassFilterImpl classFilter = new ClassFilterImpl();
 		return classFilter;
@@ -242,39 +175,9 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceFilter createInstanceFilter() {
-		InstanceFilterImpl instanceFilter = new InstanceFilterImpl();
-		return instanceFilter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public AttributeFilter createAttributeFilter() {
 		AttributeFilterImpl attributeFilter = new AttributeFilterImpl();
 		return attributeFilter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ContainerFilter createContainerFilter() {
-		ContainerFilterImpl containerFilter = new ContainerFilterImpl();
-		return containerFilter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositionHierarchyFilter createCompositionHierarchyFilter() {
-		CompositionHierarchyFilterImpl compositionHierarchyFilter = new CompositionHierarchyFilterImpl();
-		return compositionHierarchyFilter;
 	}
 
 	/**
@@ -302,9 +205,9 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventMapper createEventMapper() {
-		EventMapperImpl eventMapper = new EventMapperImpl();
-		return eventMapper;
+	public OldValueClassFilter createOldValueClassFilter() {
+		OldValueClassFilterImpl oldValueClassFilter = new OldValueClassFilterImpl();
+		return oldValueClassFilter;
 	}
 
 	/**
@@ -312,9 +215,29 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMultiValueChangeEvent createAttributeMultiValueChangeEvent() {
-		AttributeMultiValueChangeEventImpl attributeMultiValueChangeEvent = new AttributeMultiValueChangeEventImpl();
-		return attributeMultiValueChangeEvent;
+	public ContainmentFilter createContainmentFilter() {
+		ContainmentFilterImpl containmentFilter = new ContainmentFilterImpl();
+		return containmentFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewValueClassFilter createNewValueClassFilter() {
+		NewValueClassFilterImpl newValueClassFilter = new NewValueClassFilterImpl();
+		return newValueClassFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructuralFeatureFilter createStructuralFeatureFilter() {
+		StructuralFeatureFilterImpl structuralFeatureFilter = new StructuralFeatureFilterImpl();
+		return structuralFeatureFilter;
 	}
 
 	/**

@@ -35,51 +35,6 @@ public interface EventManagerFactory extends EFactory {
 	EventManager createEventManager();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Value Change Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Value Change Event</em>'.
-	 * @generated
-	 */
-	AttributeValueChangeEvent createAttributeValueChangeEvent();
-
-	/**
-	 * Returns a new object of class '<em>Element Create Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Create Event</em>'.
-	 * @generated
-	 */
-	ElementCreateEvent createElementCreateEvent();
-
-	/**
-	 * Returns a new object of class '<em>Element Delete Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Delete Event</em>'.
-	 * @generated
-	 */
-	ElementDeleteEvent createElementDeleteEvent();
-
-	/**
-	 * Returns a new object of class '<em>Link Create Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Create Event</em>'.
-	 * @generated
-	 */
-	LinkCreateEvent createLinkCreateEvent();
-
-	/**
-	 * Returns a new object of class '<em>Link Delete Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Delete Event</em>'.
-	 * @generated
-	 */
-	LinkDeleteEvent createLinkDeleteEvent();
-
-	/**
 	 * Returns a new object of class '<em>Event Type Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,15 +62,6 @@ public interface EventManagerFactory extends EFactory {
 	OrFilter createOrFilter();
 
 	/**
-	 * Returns a new object of class '<em>Not Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Not Filter</em>'.
-	 * @generated
-	 */
-	NotFilter createNotFilter();
-
-	/**
 	 * Returns a new object of class '<em>Class Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -125,15 +71,6 @@ public interface EventManagerFactory extends EFactory {
 	ClassFilter createClassFilter();
 
 	/**
-	 * Returns a new object of class '<em>Instance Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Filter</em>'.
-	 * @generated
-	 */
-	InstanceFilter createInstanceFilter();
-
-	/**
 	 * Returns a new object of class '<em>Attribute Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,24 +78,6 @@ public interface EventManagerFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeFilter createAttributeFilter();
-
-	/**
-	 * Returns a new object of class '<em>Container Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Filter</em>'.
-	 * @generated
-	 */
-	ContainerFilter createContainerFilter();
-
-	/**
-	 * Returns a new object of class '<em>Composition Hierarchy Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composition Hierarchy Filter</em>'.
-	 * @generated
-	 */
-	CompositionHierarchyFilter createCompositionHierarchyFilter();
 
 	/**
 	 * Returns a new object of class '<em>Package Filter</em>'.
@@ -179,22 +98,40 @@ public interface EventManagerFactory extends EFactory {
 	AssociationFilter createAssociationFilter();
 
 	/**
-	 * Returns a new object of class '<em>Event Mapper</em>'.
+	 * Returns a new object of class '<em>Old Value Class Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event Mapper</em>'.
+	 * @return a new object of class '<em>Old Value Class Filter</em>'.
 	 * @generated
 	 */
-	EventMapper createEventMapper();
+	OldValueClassFilter createOldValueClassFilter();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Multi Value Change Event</em>'.
+	 * Returns a new object of class '<em>Containment Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Multi Value Change Event</em>'.
+	 * @return a new object of class '<em>Containment Filter</em>'.
 	 * @generated
 	 */
-	AttributeMultiValueChangeEvent createAttributeMultiValueChangeEvent();
+	ContainmentFilter createContainmentFilter();
+
+	/**
+	 * Returns a new object of class '<em>New Value Class Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>New Value Class Filter</em>'.
+	 * @generated
+	 */
+	NewValueClassFilter createNewValueClassFilter();
+
+	/**
+	 * Returns a new object of class '<em>Structural Feature Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structural Feature Filter</em>'.
+	 * @generated
+	 */
+	StructuralFeatureFilter createStructuralFeatureFilter();
 
 	/**
 	 * Returns the package supported by this factory.

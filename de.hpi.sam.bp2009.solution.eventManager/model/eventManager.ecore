@@ -10,102 +10,40 @@
     <eOperations name="subscribe">
       <eParameters name="root" lowerBound="1" upperBound="-1" eType="#//Notifier"/>
       <eParameters name="filter" lowerBound="1" eType="#//EventFilter"/>
-      <eParameters name="caller" lowerBound="1" eType="#//EventListener"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
     </eOperations>
     <eOperations name="subscribeTransactional">
       <eParameters name="root" lowerBound="1" upperBound="-1" eType="#//Notifier"/>
       <eParameters name="filter" lowerBound="1" eType="#//EventFilter"/>
-      <eParameters name="caller" lowerBound="1" eType="#//EventListener"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
     </eOperations>
     <eOperations name="notifyApplication">
-      <eParameters name="application" lowerBound="1" eType="#//EventListener"/>
-      <eParameters name="msg" lowerBound="1" eType="#//ModelChangeEvent"/>
+      <eParameters name="application" lowerBound="1" eType="#//Adapter"/>
+      <eParameters name="msg" lowerBound="1" eType="#//Notification"/>
       <eParameters name="matchingFilter" eType="#//EventFilter"/>
     </eOperations>
     <eOperations name="handleEMFEvent">
       <eParameters name="notification" lowerBound="1" eType="#//Notification"/>
     </eOperations>
     <eOperations name="unsubscribe" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
-      <eParameters name="caller" lowerBound="1" eType="#//EventListener"/>
+      <eParameters name="caller" lowerBound="1" eType="#//Adapter"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="eventMapper" lowerBound="1"
-        eType="#//EventMapper"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eOperations name="getFilter" eType="#//EventFilter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Reference to the EObject that cause the event."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementChangeEvent" abstract="true"
-      eSuperTypes="#//ModelChangeEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeValueChangeEvent" eSuperTypes="#//ElementChangeEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changedAttribute" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="before" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="after" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementLifeCycleEvent" abstract="true"
-      eSuperTypes="#//ElementChangeEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="containingElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkLifeCycleEvent" abstract="true"
-      eSuperTypes="#//ElementChangeEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changedReference" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="correspondingObject" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementCreateEvent" eSuperTypes="#//ElementLifeCycleEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementDeleteEvent" eSuperTypes="#//ElementLifeCycleEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkCreateEvent" eSuperTypes="#//LinkLifeCycleEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkDeleteEvent" eSuperTypes="#//LinkLifeCycleEvent">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventFilter" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
     <eOperations name="matchesFor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="event" eType="#//ModelChangeEvent"/>
+      <eParameters name="event" eType="#//Notification"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventTypeFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="eventEClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="matchingNotification" eType="#//Notification"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventType" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AndFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -121,41 +59,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="filters" upperBound="-1"
         eType="#//EventFilter"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NotFilter" eSuperTypes="#//EventFilter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//EventFilter"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="wantedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InstanceFilter" eSuperTypes="#//EventFilter">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeFilter" eSuperTypes="#//StructuralFeatureFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeFilter" eSuperTypes="#//EventFilter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContainerFilter" eSuperTypes="#//EventFilter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositionHierarchyFilter" eSuperTypes="#//EventFilter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eOperations name="setAttribute">
+      <eParameters name="attribute" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -163,26 +79,24 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="wantedPackage" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssociationFilter" eSuperTypes="#//EventFilter">
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationFilter" eSuperTypes="#//StructuralFeatureFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EventMapper">
-    <eOperations name="mapNotificationToEvent" upperBound="-1" eType="#//ModelChangeEvent">
-      <eParameters name="notification" eType="#//Notification"/>
+    <eOperations name="setReference">
+      <eParameters name="reference" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Notification" instanceClassName="org.eclipse.emf.common.notify.Notification"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Notifier" instanceClassName="org.eclipse.emf.common.notify.Notifier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EventListener" abstract="true">
-    <eOperations name="handleEvent">
-      <eParameters name="event" eType="#//ModelChangeEvent"/>
-      <eParameters name="matchingFilter" eType="#//EventFilter"/>
-    </eOperations>
+  <eClassifiers xsi:type="ecore:EClass" name="OldValueClassFilter" eSuperTypes="#//EventFilter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeMultiValueChangeEvent" eSuperTypes="#//AttributeValueChangeEvent">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContainmentFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewValueClassFilter" eSuperTypes="#//EventFilter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructuralFeatureFilter" eSuperTypes="#//EventFilter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
   </eClassifiers>
 </ecore:EPackage>

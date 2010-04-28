@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
@@ -16,12 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Event Manager</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#getEventMapper <em>Event Mapper</em>}</li>
- * </ul>
- * </p>
  *
  * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventManager()
  * @model
@@ -29,54 +24,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EventManager extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Event Mapper</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Event Mapper</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Event Mapper</em>' reference.
-	 * @see #setEventMapper(EventMapper)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventManager_EventMapper()
-	 * @model required="true"
-	 * @generated
-	 */
-	EventMapper getEventMapper();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#getEventMapper <em>Event Mapper</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Event Mapper</em>' reference.
-	 * @see #getEventMapper()
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootRequired="true" rootMany="true" filterRequired="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true"
 	 * @generated
 	 */
-	void setEventMapper(EventMapper value);
+	void subscribe(EList<Notifier> root, EventFilter filter, Adapter caller);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootRequired="true" rootMany="true" filterRequired="true" callerRequired="true"
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootRequired="true" rootMany="true" filterRequired="true" callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true"
 	 * @generated
 	 */
-	void subscribe(EList<Notifier> root, EventFilter filter, EventListener caller);
+	void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" rootRequired="true" rootMany="true" filterRequired="true" callerRequired="true"
+	 * @model applicationDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" applicationRequired="true" msgDataType="de.hpi.sam.bp2009.solution.eventManager.Notification" msgRequired="true"
 	 * @generated
 	 */
-	void subscribeTransactional(EList<Notifier> root, EventFilter filter, EventListener caller);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model applicationRequired="true" msgRequired="true"
-	 * @generated
-	 */
-	void notifyApplication(EventListener application, ModelChangeEvent msg, EventFilter matchingFilter);
+	void notifyApplication(Adapter application, Notification msg, EventFilter matchingFilter);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,9 +58,9 @@ public interface EventManager extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model callerRequired="true"
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" callerRequired="true"
 	 * @generated
 	 */
-	boolean unsubscribe(EventListener caller);
+	boolean unsubscribe(Adapter caller);
 
 } // EventManager

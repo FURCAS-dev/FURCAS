@@ -8,13 +8,13 @@ package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
 
 /**
@@ -102,8 +102,14 @@ public class PackageFilterImpl extends EObjectImpl implements PackageFilter {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean matchesFor(ModelChangeEvent event) {
-		return event.getSourceObject().eClass().getEPackage().equals(getWantedPackage());
+	public boolean matchesFor(Notification event) {
+		// TODO check if an URI based comparison is more adequate
+		Object notifier = event.getNotifier();
+		if(notifier==null)
+			return false;
+		if(!(notifier instanceof EObject))
+			return false;
+		return ((EObject)notifier).eClass().getEPackage().equals((getWantedPackage()));
 	}
 
 	/**

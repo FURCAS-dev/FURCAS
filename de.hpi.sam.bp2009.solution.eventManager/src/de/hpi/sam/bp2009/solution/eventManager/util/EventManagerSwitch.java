@@ -15,24 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ContainerFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
-import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
-import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
-import de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
 /**
@@ -115,79 +102,6 @@ public class EventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.MODEL_CHANGE_EVENT: {
-				ModelChangeEvent modelChangeEvent = (ModelChangeEvent)theEObject;
-				T result = caseModelChangeEvent(modelChangeEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.ELEMENT_CHANGE_EVENT: {
-				ElementChangeEvent elementChangeEvent = (ElementChangeEvent)theEObject;
-				T result = caseElementChangeEvent(elementChangeEvent);
-				if (result == null) result = caseModelChangeEvent(elementChangeEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.ATTRIBUTE_VALUE_CHANGE_EVENT: {
-				AttributeValueChangeEvent attributeValueChangeEvent = (AttributeValueChangeEvent)theEObject;
-				T result = caseAttributeValueChangeEvent(attributeValueChangeEvent);
-				if (result == null) result = caseElementChangeEvent(attributeValueChangeEvent);
-				if (result == null) result = caseModelChangeEvent(attributeValueChangeEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.ELEMENT_LIFE_CYCLE_EVENT: {
-				ElementLifeCycleEvent elementLifeCycleEvent = (ElementLifeCycleEvent)theEObject;
-				T result = caseElementLifeCycleEvent(elementLifeCycleEvent);
-				if (result == null) result = caseElementChangeEvent(elementLifeCycleEvent);
-				if (result == null) result = caseModelChangeEvent(elementLifeCycleEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.LINK_LIFE_CYCLE_EVENT: {
-				LinkLifeCycleEvent linkLifeCycleEvent = (LinkLifeCycleEvent)theEObject;
-				T result = caseLinkLifeCycleEvent(linkLifeCycleEvent);
-				if (result == null) result = caseElementChangeEvent(linkLifeCycleEvent);
-				if (result == null) result = caseModelChangeEvent(linkLifeCycleEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.ELEMENT_CREATE_EVENT: {
-				ElementCreateEvent elementCreateEvent = (ElementCreateEvent)theEObject;
-				T result = caseElementCreateEvent(elementCreateEvent);
-				if (result == null) result = caseElementLifeCycleEvent(elementCreateEvent);
-				if (result == null) result = caseElementChangeEvent(elementCreateEvent);
-				if (result == null) result = caseModelChangeEvent(elementCreateEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.ELEMENT_DELETE_EVENT: {
-				ElementDeleteEvent elementDeleteEvent = (ElementDeleteEvent)theEObject;
-				T result = caseElementDeleteEvent(elementDeleteEvent);
-				if (result == null) result = caseElementLifeCycleEvent(elementDeleteEvent);
-				if (result == null) result = caseElementChangeEvent(elementDeleteEvent);
-				if (result == null) result = caseModelChangeEvent(elementDeleteEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.LINK_CREATE_EVENT: {
-				LinkCreateEvent linkCreateEvent = (LinkCreateEvent)theEObject;
-				T result = caseLinkCreateEvent(linkCreateEvent);
-				if (result == null) result = caseLinkLifeCycleEvent(linkCreateEvent);
-				if (result == null) result = caseElementChangeEvent(linkCreateEvent);
-				if (result == null) result = caseModelChangeEvent(linkCreateEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.LINK_DELETE_EVENT: {
-				LinkDeleteEvent linkDeleteEvent = (LinkDeleteEvent)theEObject;
-				T result = caseLinkDeleteEvent(linkDeleteEvent);
-				if (result == null) result = caseLinkLifeCycleEvent(linkDeleteEvent);
-				if (result == null) result = caseElementChangeEvent(linkDeleteEvent);
-				if (result == null) result = caseModelChangeEvent(linkDeleteEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EventManagerPackage.EVENT_FILTER: {
 				EventFilter eventFilter = (EventFilter)theEObject;
 				T result = caseEventFilter(eventFilter);
@@ -215,13 +129,6 @@ public class EventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.NOT_FILTER: {
-				NotFilter notFilter = (NotFilter)theEObject;
-				T result = caseNotFilter(notFilter);
-				if (result == null) result = caseEventFilter(notFilter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EventManagerPackage.CLASS_FILTER: {
 				ClassFilter classFilter = (ClassFilter)theEObject;
 				T result = caseClassFilter(classFilter);
@@ -229,31 +136,11 @@ public class EventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.INSTANCE_FILTER: {
-				InstanceFilter instanceFilter = (InstanceFilter)theEObject;
-				T result = caseInstanceFilter(instanceFilter);
-				if (result == null) result = caseEventFilter(instanceFilter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EventManagerPackage.ATTRIBUTE_FILTER: {
 				AttributeFilter attributeFilter = (AttributeFilter)theEObject;
 				T result = caseAttributeFilter(attributeFilter);
+				if (result == null) result = caseStructuralFeatureFilter(attributeFilter);
 				if (result == null) result = caseEventFilter(attributeFilter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.CONTAINER_FILTER: {
-				ContainerFilter containerFilter = (ContainerFilter)theEObject;
-				T result = caseContainerFilter(containerFilter);
-				if (result == null) result = caseEventFilter(containerFilter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EventManagerPackage.COMPOSITION_HIERARCHY_FILTER: {
-				CompositionHierarchyFilter compositionHierarchyFilter = (CompositionHierarchyFilter)theEObject;
-				T result = caseCompositionHierarchyFilter(compositionHierarchyFilter);
-				if (result == null) result = caseEventFilter(compositionHierarchyFilter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -267,28 +154,36 @@ public class EventManagerSwitch<T> {
 			case EventManagerPackage.ASSOCIATION_FILTER: {
 				AssociationFilter associationFilter = (AssociationFilter)theEObject;
 				T result = caseAssociationFilter(associationFilter);
+				if (result == null) result = caseStructuralFeatureFilter(associationFilter);
 				if (result == null) result = caseEventFilter(associationFilter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.EVENT_MAPPER: {
-				EventMapper eventMapper = (EventMapper)theEObject;
-				T result = caseEventMapper(eventMapper);
+			case EventManagerPackage.OLD_VALUE_CLASS_FILTER: {
+				OldValueClassFilter oldValueClassFilter = (OldValueClassFilter)theEObject;
+				T result = caseOldValueClassFilter(oldValueClassFilter);
+				if (result == null) result = caseEventFilter(oldValueClassFilter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.EVENT_LISTENER: {
-				EventListener eventListener = (EventListener)theEObject;
-				T result = caseEventListener(eventListener);
+			case EventManagerPackage.CONTAINMENT_FILTER: {
+				ContainmentFilter containmentFilter = (ContainmentFilter)theEObject;
+				T result = caseContainmentFilter(containmentFilter);
+				if (result == null) result = caseEventFilter(containmentFilter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT: {
-				AttributeMultiValueChangeEvent attributeMultiValueChangeEvent = (AttributeMultiValueChangeEvent)theEObject;
-				T result = caseAttributeMultiValueChangeEvent(attributeMultiValueChangeEvent);
-				if (result == null) result = caseAttributeValueChangeEvent(attributeMultiValueChangeEvent);
-				if (result == null) result = caseElementChangeEvent(attributeMultiValueChangeEvent);
-				if (result == null) result = caseModelChangeEvent(attributeMultiValueChangeEvent);
+			case EventManagerPackage.NEW_VALUE_CLASS_FILTER: {
+				NewValueClassFilter newValueClassFilter = (NewValueClassFilter)theEObject;
+				T result = caseNewValueClassFilter(newValueClassFilter);
+				if (result == null) result = caseEventFilter(newValueClassFilter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER: {
+				StructuralFeatureFilter structuralFeatureFilter = (StructuralFeatureFilter)theEObject;
+				T result = caseStructuralFeatureFilter(structuralFeatureFilter);
+				if (result == null) result = caseEventFilter(structuralFeatureFilter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,141 +203,6 @@ public class EventManagerSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventManager(EventManager object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Change Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Change Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelChangeEvent(ModelChangeEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Change Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Change Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseElementChangeEvent(ElementChangeEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Value Change Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Value Change Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeValueChangeEvent(AttributeValueChangeEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Life Cycle Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Life Cycle Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseElementLifeCycleEvent(ElementLifeCycleEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Life Cycle Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link Life Cycle Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkLifeCycleEvent(LinkLifeCycleEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Create Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Create Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseElementCreateEvent(ElementCreateEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Delete Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Delete Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseElementDeleteEvent(ElementDeleteEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Create Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link Create Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkCreateEvent(LinkCreateEvent object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Delete Event</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link Delete Event</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkDeleteEvent(LinkDeleteEvent object) {
 		return null;
 	}
 
@@ -507,21 +267,6 @@ public class EventManagerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Not Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Not Filter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNotFilter(NotFilter object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Class Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -537,21 +282,6 @@ public class EventManagerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Filter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstanceFilter(InstanceFilter object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Attribute Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -563,36 +293,6 @@ public class EventManagerSwitch<T> {
 	 * @generated
 	 */
 	public T caseAttributeFilter(AttributeFilter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container Filter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainerFilter(ContainerFilter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composition Hierarchy Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composition Hierarchy Filter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompositionHierarchyFilter(CompositionHierarchyFilter object) {
 		return null;
 	}
 
@@ -627,47 +327,62 @@ public class EventManagerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Mapper</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Old Value Class Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Mapper</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Old Value Class Filter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEventMapper(EventMapper object) {
+	public T caseOldValueClassFilter(OldValueClassFilter object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Listener</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Containment Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Listener</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Containment Filter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEventListener(EventListener object) {
+	public T caseContainmentFilter(ContainmentFilter object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Multi Value Change Event</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>New Value Class Filter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Multi Value Change Event</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>New Value Class Filter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeMultiValueChangeEvent(AttributeMultiValueChangeEvent object) {
+	public T caseNewValueClassFilter(NewValueClassFilter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structural Feature Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structural Feature Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructuralFeatureFilter(StructuralFeatureFilter object) {
 		return null;
 	}
 

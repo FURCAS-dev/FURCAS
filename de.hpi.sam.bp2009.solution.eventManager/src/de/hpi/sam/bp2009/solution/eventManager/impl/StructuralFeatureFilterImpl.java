@@ -6,49 +6,48 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Change Event</b></em>'.
+ * An implementation of the model object '<em><b>Structural Feature Filter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.ModelChangeEventImpl#getSourceObject <em>Source Object</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.StructuralFeatureFilterImpl#getFeature <em>Feature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelChangeEvent {
+public class StructuralFeatureFilterImpl extends EObjectImpl implements StructuralFeatureFilter {
 	/**
-	 * The cached value of the '{@link #getSourceObject() <em>Source Object</em>}' reference.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceObject()
+	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject sourceObject;
+	protected EStructuralFeature feature;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelChangeEventImpl() {
+	protected StructuralFeatureFilterImpl() {
 		super();
 	}
 
@@ -59,7 +58,7 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.MODEL_CHANGE_EVENT;
+		return EventManagerPackage.Literals.STRUCTURAL_FEATURE_FILTER;
 	}
 
 	/**
@@ -67,16 +66,16 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getSourceObject() {
-		if (sourceObject != null && sourceObject.eIsProxy()) {
-			InternalEObject oldSourceObject = (InternalEObject)sourceObject;
-			sourceObject = eResolveProxy(oldSourceObject);
-			if (sourceObject != oldSourceObject) {
+	public EStructuralFeature getFeature() {
+		if (feature != null && feature.eIsProxy()) {
+			InternalEObject oldFeature = (InternalEObject)feature;
+			feature = (EStructuralFeature)eResolveProxy(oldFeature);
+			if (feature != oldFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT, oldSourceObject, sourceObject));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE, oldFeature, feature));
 			}
 		}
-		return sourceObject;
+		return feature;
 	}
 
 	/**
@@ -84,8 +83,8 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject basicGetSourceObject() {
-		return sourceObject;
+	public EStructuralFeature basicGetFeature() {
+		return feature;
 	}
 
 	/**
@@ -93,19 +92,25 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSourceObject(EObject newSourceObject) {
-		EObject oldSourceObject = sourceObject;
-		sourceObject = newSourceObject;
+	public void setFeature(EStructuralFeature newFeature) {
+		EStructuralFeature oldFeature = feature;
+		feature = newFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT, oldSourceObject, sourceObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE, oldFeature, feature));
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	abstract public EventFilter getFilter();
+	public boolean matchesFor(Notification event) {
+		if(event.getFeature()==null){
+			return false;	
+		}
+		return event.getFeature().equals(this.getFeature());
+
+		
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,9 +120,9 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT:
-				if (resolve) return getSourceObject();
-				return basicGetSourceObject();
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				if (resolve) return getFeature();
+				return basicGetFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,8 +135,8 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT:
-				setSourceObject((EObject)newValue);
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				setFeature((EStructuralFeature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,8 +150,8 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT:
-				setSourceObject((EObject)null);
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				setFeature((EStructuralFeature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -160,10 +165,10 @@ public abstract class ModelChangeEventImpl extends EObjectImpl implements ModelC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.MODEL_CHANGE_EVENT__SOURCE_OBJECT:
-				return sourceObject != null;
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				return feature != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ModelChangeEventImpl
+} //StructuralFeatureFilterImpl

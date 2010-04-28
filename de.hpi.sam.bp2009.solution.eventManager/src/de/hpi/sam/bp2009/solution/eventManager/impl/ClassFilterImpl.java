@@ -6,16 +6,15 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import de.hpi.sam.bp2009.solution.eventManager.*;
+import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,10 +103,14 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean matchesFor(ModelChangeEvent event) {
-		return ((event instanceof ElementChangeEvent) 
-				&& ((ElementChangeEvent)event).getChangedClass().equals(getWantedClass()));
-			
+	public boolean matchesFor(Notification event) {
+		// TODO check if an URI based comparison is more adequate
+		Object notifier = event.getNotifier();
+		if(notifier==null)
+			return false;
+		if(!(notifier instanceof EObject))
+			return false;
+		return ((EObject)notifier).eClass().getEAllSuperTypes().contains(getWantedClass());
 	}
 
 	/**

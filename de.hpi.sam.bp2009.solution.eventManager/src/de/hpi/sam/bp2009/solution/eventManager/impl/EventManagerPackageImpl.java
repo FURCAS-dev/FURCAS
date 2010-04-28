@@ -21,30 +21,18 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.AttributeMultiValueChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ContainerFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventListener;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventMapper;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
-import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
-import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
-import de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
+import de.hpi.sam.bp2009.solution.eventManager.NewValueClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.OldValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
+import de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,69 +47,6 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * @generated
 	 */
 	private EClass eventManagerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass modelChangeEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass elementChangeEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass attributeValueChangeEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass elementLifeCycleEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass linkLifeCycleEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass elementCreateEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass elementDeleteEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass linkCreateEventEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass linkDeleteEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,13 +81,6 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass notFilterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass classFilterEClass = null;
 
 	/**
@@ -170,28 +88,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass instanceFilterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass attributeFilterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass containerFilterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositionHierarchyFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -212,21 +109,28 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eventMapperEClass = null;
+	private EClass oldValueClassFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eventListenerEClass = null;
+	private EClass containmentFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attributeMultiValueChangeEventEClass = null;
+	private EClass newValueClassFilterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structuralFeatureFilterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -327,168 +231,6 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventManager_EventMapper() {
-		return (EReference)eventManagerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getModelChangeEvent() {
-		return modelChangeEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getModelChangeEvent_SourceObject() {
-		return (EReference)modelChangeEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getElementChangeEvent() {
-		return elementChangeEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getElementChangeEvent_ChangedClass() {
-		return (EReference)elementChangeEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAttributeValueChangeEvent() {
-		return attributeValueChangeEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAttributeValueChangeEvent_ChangedAttribute() {
-		return (EReference)attributeValueChangeEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAttributeValueChangeEvent_Before() {
-		return (EAttribute)attributeValueChangeEventEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAttributeValueChangeEvent_After() {
-		return (EAttribute)attributeValueChangeEventEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getElementLifeCycleEvent() {
-		return elementLifeCycleEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getElementLifeCycleEvent_ContainingElement() {
-		return (EReference)elementLifeCycleEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLinkLifeCycleEvent() {
-		return linkLifeCycleEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLinkLifeCycleEvent_ChangedReference() {
-		return (EReference)linkLifeCycleEventEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLinkLifeCycleEvent_CorrespondingObject() {
-		return (EReference)linkLifeCycleEventEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getElementCreateEvent() {
-		return elementCreateEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getElementDeleteEvent() {
-		return elementDeleteEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLinkCreateEvent() {
-		return linkCreateEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLinkDeleteEvent() {
-		return linkDeleteEventEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEventFilter() {
 		return eventFilterEClass;
 	}
@@ -507,8 +249,17 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventTypeFilter_EventEClass() {
-		return (EReference)eventTypeFilterEClass.getEStructuralFeatures().get(0);
+	public EAttribute getEventTypeFilter_MatchingNotification() {
+		return (EAttribute)eventTypeFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventTypeFilter_EventType() {
+		return (EAttribute)eventTypeFilterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -552,24 +303,6 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNotFilter() {
-		return notFilterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNotFilter_Filter() {
-		return (EReference)notFilterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getClassFilter() {
 		return classFilterEClass;
 	}
@@ -588,71 +321,8 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInstanceFilter() {
-		return instanceFilterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInstanceFilter_Instance() {
-		return (EReference)instanceFilterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getAttributeFilter() {
 		return attributeFilterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAttributeFilter_Attribute() {
-		return (EReference)attributeFilterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getContainerFilter() {
-		return containerFilterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getContainerFilter_Container() {
-		return (EReference)containerFilterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompositionHierarchyFilter() {
-		return compositionHierarchyFilterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositionHierarchyFilter_Root() {
-		return (EReference)compositionHierarchyFilterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -687,8 +357,8 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssociationFilter_Reference() {
-		return (EReference)associationFilterEClass.getEStructuralFeatures().get(0);
+	public EClass getOldValueClassFilter() {
+		return oldValueClassFilterEClass;
 	}
 
 	/**
@@ -696,8 +366,8 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventMapper() {
-		return eventMapperEClass;
+	public EReference getOldValueClassFilter_AffectedClass() {
+		return (EReference)oldValueClassFilterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -705,8 +375,8 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEventListener() {
-		return eventListenerEClass;
+	public EClass getContainmentFilter() {
+		return containmentFilterEClass;
 	}
 
 	/**
@@ -714,8 +384,8 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttributeMultiValueChangeEvent() {
-		return attributeMultiValueChangeEventEClass;
+	public EClass getNewValueClassFilter() {
+		return newValueClassFilterEClass;
 	}
 
 	/**
@@ -723,8 +393,26 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAttributeMultiValueChangeEvent_Add() {
-		return (EAttribute)attributeMultiValueChangeEventEClass.getEStructuralFeatures().get(0);
+	public EReference getNewValueClassFilter_AffectedClass() {
+		return (EReference)newValueClassFilterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructuralFeatureFilter() {
+		return structuralFeatureFilterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructuralFeatureFilter_Feature() {
+		return (EReference)structuralFeatureFilterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -783,38 +471,12 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 
 		// Create classes and their features
 		eventManagerEClass = createEClass(EVENT_MANAGER);
-		createEReference(eventManagerEClass, EVENT_MANAGER__EVENT_MAPPER);
-
-		modelChangeEventEClass = createEClass(MODEL_CHANGE_EVENT);
-		createEReference(modelChangeEventEClass, MODEL_CHANGE_EVENT__SOURCE_OBJECT);
-
-		elementChangeEventEClass = createEClass(ELEMENT_CHANGE_EVENT);
-		createEReference(elementChangeEventEClass, ELEMENT_CHANGE_EVENT__CHANGED_CLASS);
-
-		attributeValueChangeEventEClass = createEClass(ATTRIBUTE_VALUE_CHANGE_EVENT);
-		createEReference(attributeValueChangeEventEClass, ATTRIBUTE_VALUE_CHANGE_EVENT__CHANGED_ATTRIBUTE);
-		createEAttribute(attributeValueChangeEventEClass, ATTRIBUTE_VALUE_CHANGE_EVENT__BEFORE);
-		createEAttribute(attributeValueChangeEventEClass, ATTRIBUTE_VALUE_CHANGE_EVENT__AFTER);
-
-		elementLifeCycleEventEClass = createEClass(ELEMENT_LIFE_CYCLE_EVENT);
-		createEReference(elementLifeCycleEventEClass, ELEMENT_LIFE_CYCLE_EVENT__CONTAINING_ELEMENT);
-
-		linkLifeCycleEventEClass = createEClass(LINK_LIFE_CYCLE_EVENT);
-		createEReference(linkLifeCycleEventEClass, LINK_LIFE_CYCLE_EVENT__CHANGED_REFERENCE);
-		createEReference(linkLifeCycleEventEClass, LINK_LIFE_CYCLE_EVENT__CORRESPONDING_OBJECT);
-
-		elementCreateEventEClass = createEClass(ELEMENT_CREATE_EVENT);
-
-		elementDeleteEventEClass = createEClass(ELEMENT_DELETE_EVENT);
-
-		linkCreateEventEClass = createEClass(LINK_CREATE_EVENT);
-
-		linkDeleteEventEClass = createEClass(LINK_DELETE_EVENT);
 
 		eventFilterEClass = createEClass(EVENT_FILTER);
 
 		eventTypeFilterEClass = createEClass(EVENT_TYPE_FILTER);
-		createEReference(eventTypeFilterEClass, EVENT_TYPE_FILTER__EVENT_ECLASS);
+		createEAttribute(eventTypeFilterEClass, EVENT_TYPE_FILTER__MATCHING_NOTIFICATION);
+		createEAttribute(eventTypeFilterEClass, EVENT_TYPE_FILTER__EVENT_TYPE);
 
 		andFilterEClass = createEClass(AND_FILTER);
 		createEReference(andFilterEClass, AND_FILTER__FILTERS);
@@ -822,36 +484,26 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		orFilterEClass = createEClass(OR_FILTER);
 		createEReference(orFilterEClass, OR_FILTER__FILTERS);
 
-		notFilterEClass = createEClass(NOT_FILTER);
-		createEReference(notFilterEClass, NOT_FILTER__FILTER);
-
 		classFilterEClass = createEClass(CLASS_FILTER);
 		createEReference(classFilterEClass, CLASS_FILTER__WANTED_CLASS);
 
-		instanceFilterEClass = createEClass(INSTANCE_FILTER);
-		createEReference(instanceFilterEClass, INSTANCE_FILTER__INSTANCE);
-
 		attributeFilterEClass = createEClass(ATTRIBUTE_FILTER);
-		createEReference(attributeFilterEClass, ATTRIBUTE_FILTER__ATTRIBUTE);
-
-		containerFilterEClass = createEClass(CONTAINER_FILTER);
-		createEReference(containerFilterEClass, CONTAINER_FILTER__CONTAINER);
-
-		compositionHierarchyFilterEClass = createEClass(COMPOSITION_HIERARCHY_FILTER);
-		createEReference(compositionHierarchyFilterEClass, COMPOSITION_HIERARCHY_FILTER__ROOT);
 
 		packageFilterEClass = createEClass(PACKAGE_FILTER);
 		createEReference(packageFilterEClass, PACKAGE_FILTER__WANTED_PACKAGE);
 
 		associationFilterEClass = createEClass(ASSOCIATION_FILTER);
-		createEReference(associationFilterEClass, ASSOCIATION_FILTER__REFERENCE);
 
-		eventMapperEClass = createEClass(EVENT_MAPPER);
+		oldValueClassFilterEClass = createEClass(OLD_VALUE_CLASS_FILTER);
+		createEReference(oldValueClassFilterEClass, OLD_VALUE_CLASS_FILTER__AFFECTED_CLASS);
 
-		eventListenerEClass = createEClass(EVENT_LISTENER);
+		containmentFilterEClass = createEClass(CONTAINMENT_FILTER);
 
-		attributeMultiValueChangeEventEClass = createEClass(ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT);
-		createEAttribute(attributeMultiValueChangeEventEClass, ATTRIBUTE_MULTI_VALUE_CHANGE_EVENT__ADD);
+		newValueClassFilterEClass = createEClass(NEW_VALUE_CLASS_FILTER);
+		createEReference(newValueClassFilterEClass, NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS);
+
+		structuralFeatureFilterEClass = createEClass(STRUCTURAL_FEATURE_FILTER);
+		createEReference(structuralFeatureFilterEClass, STRUCTURAL_FEATURE_FILTER__FEATURE);
 
 		// Create data types
 		adapterEDataType = createEDataType(ADAPTER);
@@ -890,87 +542,50 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		elementChangeEventEClass.getESuperTypes().add(this.getModelChangeEvent());
-		attributeValueChangeEventEClass.getESuperTypes().add(this.getElementChangeEvent());
-		elementLifeCycleEventEClass.getESuperTypes().add(this.getElementChangeEvent());
-		linkLifeCycleEventEClass.getESuperTypes().add(this.getElementChangeEvent());
-		elementCreateEventEClass.getESuperTypes().add(this.getElementLifeCycleEvent());
-		elementDeleteEventEClass.getESuperTypes().add(this.getElementLifeCycleEvent());
-		linkCreateEventEClass.getESuperTypes().add(this.getLinkLifeCycleEvent());
-		linkDeleteEventEClass.getESuperTypes().add(this.getLinkLifeCycleEvent());
 		eventTypeFilterEClass.getESuperTypes().add(this.getEventFilter());
 		andFilterEClass.getESuperTypes().add(this.getEventFilter());
 		orFilterEClass.getESuperTypes().add(this.getEventFilter());
-		notFilterEClass.getESuperTypes().add(this.getEventFilter());
 		classFilterEClass.getESuperTypes().add(this.getEventFilter());
-		instanceFilterEClass.getESuperTypes().add(this.getEventFilter());
-		attributeFilterEClass.getESuperTypes().add(this.getEventFilter());
-		containerFilterEClass.getESuperTypes().add(this.getEventFilter());
-		compositionHierarchyFilterEClass.getESuperTypes().add(this.getEventFilter());
+		attributeFilterEClass.getESuperTypes().add(this.getStructuralFeatureFilter());
 		packageFilterEClass.getESuperTypes().add(this.getEventFilter());
-		associationFilterEClass.getESuperTypes().add(this.getEventFilter());
-		attributeMultiValueChangeEventEClass.getESuperTypes().add(this.getAttributeValueChangeEvent());
+		associationFilterEClass.getESuperTypes().add(this.getStructuralFeatureFilter());
+		oldValueClassFilterEClass.getESuperTypes().add(this.getEventFilter());
+		containmentFilterEClass.getESuperTypes().add(this.getEventFilter());
+		newValueClassFilterEClass.getESuperTypes().add(this.getEventFilter());
+		structuralFeatureFilterEClass.getESuperTypes().add(this.getEventFilter());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventManagerEClass, EventManager.class, "EventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventManager_EventMapper(), this.getEventMapper(), null, "eventMapper", null, 1, 1, EventManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventListener(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "subscribeTransactional", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotifier(), "root", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEventFilter(), "filter", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventListener(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "notifyApplication", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventListener(), "application", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelChangeEvent(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "application", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotification(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEventFilter(), "matchingFilter", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, null, "handleEMFEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNotification(), "notification", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventManagerEClass, theEcorePackage.getEBoolean(), "unsubscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventListener(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(modelChangeEventEClass, ModelChangeEvent.class, "ModelChangeEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelChangeEvent_SourceObject(), ecorePackage.getEObject(), null, "sourceObject", null, 0, 1, ModelChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		addEOperation(modelChangeEventEClass, this.getEventFilter(), "getFilter", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(elementChangeEventEClass, ElementChangeEvent.class, "ElementChangeEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementChangeEvent_ChangedClass(), theEcorePackage.getEClass(), null, "changedClass", null, 0, 1, ElementChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(attributeValueChangeEventEClass, AttributeValueChangeEvent.class, "AttributeValueChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeValueChangeEvent_ChangedAttribute(), ecorePackage.getEAttribute(), null, "changedAttribute", null, 0, 1, AttributeValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeValueChangeEvent_Before(), ecorePackage.getEJavaObject(), "before", null, 0, 1, AttributeValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeValueChangeEvent_After(), theEcorePackage.getEJavaObject(), "after", null, 0, 1, AttributeValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(elementLifeCycleEventEClass, ElementLifeCycleEvent.class, "ElementLifeCycleEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementLifeCycleEvent_ContainingElement(), theEcorePackage.getEObject(), null, "containingElement", null, 0, 1, ElementLifeCycleEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(linkLifeCycleEventEClass, LinkLifeCycleEvent.class, "LinkLifeCycleEvent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLinkLifeCycleEvent_ChangedReference(), theEcorePackage.getEReference(), null, "changedReference", null, 0, 1, LinkLifeCycleEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkLifeCycleEvent_CorrespondingObject(), theEcorePackage.getEObject(), null, "correspondingObject", null, 0, 1, LinkLifeCycleEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(elementCreateEventEClass, ElementCreateEvent.class, "ElementCreateEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(elementDeleteEventEClass, ElementDeleteEvent.class, "ElementDeleteEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(linkCreateEventEClass, LinkCreateEvent.class, "LinkCreateEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(linkDeleteEventEClass, LinkDeleteEvent.class, "LinkDeleteEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		addEParameter(op, this.getAdapter(), "caller", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventFilterEClass, EventFilter.class, "EventFilter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = addEOperation(eventFilterEClass, ecorePackage.getEBoolean(), "matchesFor", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelChangeEvent(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotification(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventTypeFilterEClass, EventTypeFilter.class, "EventTypeFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventTypeFilter_EventEClass(), theEcorePackage.getEClass(), null, "eventEClass", null, 0, 1, EventTypeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventTypeFilter_MatchingNotification(), this.getNotification(), "matchingNotification", null, 0, 1, EventTypeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventTypeFilter_EventType(), theEcorePackage.getEIntegerObject(), "eventType", null, 0, 1, EventTypeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(andFilterEClass, AndFilter.class, "AndFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAndFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, -1, AndFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -978,43 +593,32 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		initEClass(orFilterEClass, OrFilter.class, "OrFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOrFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, -1, OrFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(notFilterEClass, NotFilter.class, "NotFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNotFilter_Filter(), this.getEventFilter(), null, "filter", null, 0, 1, NotFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(classFilterEClass, ClassFilter.class, "ClassFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassFilter_WantedClass(), theEcorePackage.getEClass(), null, "wantedClass", null, 0, 1, ClassFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(instanceFilterEClass, InstanceFilter.class, "InstanceFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstanceFilter_Instance(), theEcorePackage.getEObject(), null, "instance", null, 0, 1, InstanceFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(attributeFilterEClass, AttributeFilter.class, "AttributeFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeFilter_Attribute(), theEcorePackage.getEAttribute(), null, "attribute", null, 0, 1, AttributeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(containerFilterEClass, ContainerFilter.class, "ContainerFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContainerFilter_Container(), theEcorePackage.getEObject(), null, "container", null, 0, 1, ContainerFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compositionHierarchyFilterEClass, CompositionHierarchyFilter.class, "CompositionHierarchyFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositionHierarchyFilter_Root(), theEcorePackage.getEObject(), null, "root", null, 0, 1, CompositionHierarchyFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		op = addEOperation(attributeFilterEClass, null, "setAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEAttribute(), "attribute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(packageFilterEClass, PackageFilter.class, "PackageFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPackageFilter_WantedPackage(), theEcorePackage.getEPackage(), null, "wantedPackage", null, 0, 1, PackageFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationFilterEClass, AssociationFilter.class, "AssociationFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociationFilter_Reference(), theEcorePackage.getEReference(), null, "reference", null, 0, 1, AssociationFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eventMapperEClass, EventMapper.class, "EventMapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		op = addEOperation(associationFilterEClass, null, "setReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEReference(), "reference", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(eventMapperEClass, this.getModelChangeEvent(), "mapNotificationToEvent", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNotification(), "notification", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(oldValueClassFilterEClass, OldValueClassFilter.class, "OldValueClassFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOldValueClassFilter_AffectedClass(), theEcorePackage.getEClass(), null, "affectedClass", null, 0, 1, OldValueClassFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eventListenerEClass, EventListener.class, "EventListener", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(containmentFilterEClass, ContainmentFilter.class, "ContainmentFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(eventListenerEClass, null, "handleEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelChangeEvent(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "matchingFilter", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(newValueClassFilterEClass, NewValueClassFilter.class, "NewValueClassFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNewValueClassFilter_AffectedClass(), theEcorePackage.getEClass(), null, "affectedClass", null, 0, 1, NewValueClassFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attributeMultiValueChangeEventEClass, AttributeMultiValueChangeEvent.class, "AttributeMultiValueChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAttributeMultiValueChangeEvent_Add(), ecorePackage.getEBoolean(), "add", null, 0, 1, AttributeMultiValueChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(structuralFeatureFilterEClass, StructuralFeatureFilter.class, "StructuralFeatureFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructuralFeatureFilter_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, StructuralFeatureFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
