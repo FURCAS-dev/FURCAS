@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -11,7 +12,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 
@@ -30,10 +30,10 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     }
     
     @Override
-    public Collection<EObject> getContextObjects(ModelChangeEvent event,
+    public Collection<EObject> getContextObjects(Notification event,
             OCLExpression query, EClass cls) {
         //only very naive implementation
-        Resource resource = event.getSourceObject().eResource();
+        Resource resource = ((EObject)event.getNotifier()).eResource();
         Collection<EObject> result = new BasicEList<EObject>();
         TreeIterator<EObject> contents = resource.getAllContents();
         while(contents.hasNext()){

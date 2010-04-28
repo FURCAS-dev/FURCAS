@@ -8,12 +8,12 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 
 public interface ImpactAnalyzer {
@@ -43,6 +43,6 @@ public interface ImpactAnalyzer {
 	 * @param cls the context of the query
 	 * @return all relevant context objects
 	 */
-	Collection<EObject> getContextObjects(ModelChangeEvent event, OCLExpression expression, EClass context);
+	Collection<EObject> getContextObjects(Notification event, OCLExpression expression, EClass context);
 
 } // ImpactAnalyzer
