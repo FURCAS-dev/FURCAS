@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.utilities.Visitor;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
@@ -132,11 +133,9 @@ public class EAnnotationOCLParserTest extends TestCase {
 		anno.setSource(EAnnotationOCLParser.ANNOTATION_SOURCE);
 		anno.getDetails().put("body", "4");
 		operation.getEAnnotations().add(anno);
-
 		getFixture().convertOclAnnotation(operation);
 		assertTrue(operation.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE).getContents().get(0) instanceof OCLExpression<?>);
 	}
-	
 	public void testRunAnnotationsParserOnMdrsMetamodel() {
 	        String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
 	        final ResourceSet load_resourceSet = new ResourceSetImpl();
@@ -147,7 +146,14 @@ public class EAnnotationOCLParserTest extends TestCase {
 	        /*
 	         * Load the resource using the URI
 	         */
-	        Resource r = load_resourceSet.getResource(URI.createURI(uri), true);
+	        Resource r;
+			try {
+				r = load_resourceSet.getResource(URI.createURI(uri), true);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return;
+			}
 	        EcoreHelper.getInstance().addResourceToDefaultIndex(r);
 	        
 	        try {
