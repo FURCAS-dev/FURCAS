@@ -1,6 +1,8 @@
 package de.hpi.sam.bp2009.solution.oclToAst.ui;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -21,14 +23,17 @@ public class OclToAstAction implements org.eclipse.ui.IEditorActionDelegate{
 		System.out.println("Execute" + selectedFile);
 		if(selectedFile!=null){
 			EAnnotationOCLParser p = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-			p.convertAnnotations(URI.createURI(
-					selectedFile.getLocationURI()==null ?
-							 "":selectedFile.getLocationURI().toString()));
+			p.convertAnnotations(URI.createURI(selectedFile.getLocationURI()==null ?
+							 "":
+								 selectedFile.getLocationURI().toString()));
 			Shell shell = new Shell();
 	  		MessageDialog.openInformation(shell, "EAnnotation Parsing Complete",
 	 				"Succesfully parsed "+selectedFile.getLocationURI().toString());
-		}else{
-			
+	  		try {
+				selectedFile.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
+			} catch (CoreException e) {
+				//ignore
+			}
 		}
 		
 	}
