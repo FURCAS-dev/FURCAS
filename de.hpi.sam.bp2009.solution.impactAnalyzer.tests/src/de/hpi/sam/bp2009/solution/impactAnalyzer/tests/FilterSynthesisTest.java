@@ -57,9 +57,9 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
      */
     @Override
     @After
-    public void afterTestMethod( ) throws Exception {
+    public void tearDown( ) {
 
-        super.afterTestMethod( );
+        super.tearDown( );
         this.stmts.clear( );
         this.ia = null;
     }
@@ -70,9 +70,9 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
      */
     @Override
     @Before
-    public void beforeTestMethod( ) throws Exception {
+    public void setUp( ) {
 
-        super.beforeTestMethod( );
+        super.setUp( );
 
         // create some instances
         this.createInstances( 1, 5, 1 );

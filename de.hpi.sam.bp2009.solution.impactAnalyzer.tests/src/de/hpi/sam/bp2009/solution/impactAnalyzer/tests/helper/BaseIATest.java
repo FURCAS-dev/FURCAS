@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import org.eclipse.emf.common.notify.Notification;
 
 /**
  * Base class for all impact analyzer tests.
@@ -28,7 +28,7 @@ public class BaseIATest extends BaseOclTest {
      * @param iaResult
      * @return the "quality" of the result
      */
-    protected double checkResultAgainstOptimum( Set<ModelChangeEvent> optimum, Set<ModelChangeEvent> iaResult ) {
+    protected double checkResultAgainstOptimum( Set<Notification> optimum, Set<Notification> iaResult ) {
 
         Hashtable<String, Object> hash = new Hashtable<String, Object>( );
         boolean subSet = true;
@@ -41,12 +41,12 @@ public class BaseIATest extends BaseOclTest {
          * optimum to find out whether they are also included in iaResult.
          */
 
-        for ( Iterator<ModelChangeEvent> i = iaResult.iterator( ); i.hasNext( ); ) {
-            ModelChangeEvent event = i.next( );
+        for ( Iterator<Notification> i = iaResult.iterator( ); i.hasNext( ); ) {
+            Notification event = i.next( );
             hash.put( event.toString( ), event );
         }
-        for ( Iterator<ModelChangeEvent> i = optimum.iterator( ); i.hasNext( ); ) {
-            ModelChangeEvent event = i.next( );
+        for ( Iterator<Notification> i = optimum.iterator( ); i.hasNext( ); ) {
+            Notification event = i.next( );
             if ( !hash.containsKey( event.toString( ) ) ) {
                 subSet = false;
                 break;
@@ -73,25 +73,26 @@ public class BaseIATest extends BaseOclTest {
      * 
      * @param result the set of events
      * @param out the Stream to print to
-     * @param ordered whether the set should be orderd befor printing
+     * @param ordered whether the set should be ordered before printing
      * @throws IOException
      */
-    private void printResult( Set<ModelChangeEvent> result, OutputStream out, boolean ordered ) throws IOException {
+    @SuppressWarnings("unused")
+    private void printResult( Set<Notification> result, OutputStream out, boolean ordered ) throws IOException {
 
         if ( ordered ) {
-            SortedMap<String, ModelChangeEvent> sortedResult = new TreeMap<String, ModelChangeEvent>( );
-            for ( Iterator<ModelChangeEvent> i = result.iterator( ); i.hasNext( ); ) {
-                ModelChangeEvent o = i.next( );
+            SortedMap<String, Notification> sortedResult = new TreeMap<String, Notification>( );
+            for ( Iterator<Notification> i = result.iterator( ); i.hasNext( ); ) {
+                Notification o = i.next( );
                 sortedResult.put( o.toString( ), o );
             }
             BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( out ) );
-            for ( Iterator<ModelChangeEvent> i = sortedResult.values( ).iterator( ); i.hasNext( ); ) {
+            for ( Iterator<Notification> i = sortedResult.values( ).iterator( ); i.hasNext( ); ) {
                 writer.write( i.next( ) + "\n" );
             }
             writer.flush( );
         } else {
             BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( out ) );
-            for ( Iterator<ModelChangeEvent> i = result.iterator( ); i.hasNext( ); ) {
+            for ( Iterator<Notification> i = result.iterator( ); i.hasNext( ); ) {
                 writer.write( i.next( ) + "\n" );
             }
             writer.flush( );
@@ -107,22 +108,22 @@ public class BaseIATest extends BaseOclTest {
      * @param ordered whether the set should be orderd before printing
      * @throws IOException
      */
-    protected void printResult( Set<ModelChangeEvent> result, Set<ModelChangeEvent> optimum, OutputStream out, boolean ordered ) throws IOException {
+    protected void printResult( Set<Notification> result, Set<Notification> optimum, OutputStream out, boolean ordered ) throws IOException {
 
-        Hashtable<String, ModelChangeEvent> optHash = new Hashtable<String, ModelChangeEvent>( );
-        for ( Iterator<ModelChangeEvent> i = optimum.iterator( ); i.hasNext( ); ) {
-            ModelChangeEvent event = i.next( );
+        Hashtable<String, Notification> optHash = new Hashtable<String, Notification>( );
+        for ( Iterator<Notification> i = optimum.iterator( ); i.hasNext( ); ) {
+            Notification event = i.next( );
             optHash.put( event.toString( ), event );
         }
 
         if ( ordered ) {
-            SortedMap<String, ModelChangeEvent> sortedResult = new TreeMap<String, ModelChangeEvent>( );
-            for ( Iterator<ModelChangeEvent> i = result.iterator( ); i.hasNext( ); ) {
-                ModelChangeEvent o = i.next( );
+            SortedMap<String, Notification> sortedResult = new TreeMap<String, Notification>( );
+            for ( Iterator<Notification> i = result.iterator( ); i.hasNext( ); ) {
+                Notification o = i.next( );
                 sortedResult.put( o.toString( ), o );
             }
             BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( out ) );
-            for ( Iterator<ModelChangeEvent> i = sortedResult.values( ).iterator( ); i.hasNext( ); ) {
+            for ( Iterator<Notification> i = sortedResult.values( ).iterator( ); i.hasNext( ); ) {
                 Object event = i.next( );
                 if ( optHash.containsKey( event.toString( ) ) ) {
                     writer.write( event + " (opt)\n" );
@@ -133,7 +134,7 @@ public class BaseIATest extends BaseOclTest {
             writer.flush( );
         } else {
             BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( out ) );
-            for ( Iterator<ModelChangeEvent> i = result.iterator( ); i.hasNext( ); ) {
+            for ( Iterator<Notification> i = result.iterator( ); i.hasNext( ); ) {
                 Object event = i.next( );
                 if ( optHash.containsKey( event.toString( ) ) ) {
                     writer.write( event + " (opt)\n" );

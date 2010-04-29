@@ -15,7 +15,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
+import org.eclipse.ocl.parser.OCLLexer;
 import org.eclipse.ocl.parser.OCLParser;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.junit.After;
 import org.junit.Before;
 
@@ -38,17 +41,11 @@ public abstract class BaseOclTest extends TestCase {
 
     private OCLParser parser;
 
-    protected ModelPackageImpl modelPackage;
-
     private WellformednessTests wft;
 
     private boolean showJmiTree = false;
 
-    protected ModelPartition myTemporaryPartition;
-
     private long timeStamp;
-
-    protected Object syncObjectForWrite;
 
     /**
      * See the base class
@@ -60,23 +57,29 @@ public abstract class BaseOclTest extends TestCase {
 
     @Override
     @Before
-    public void beforeTestMethod( ) throws Exception {
+    public void setUp() {
 
         this.timeStamp = System.currentTimeMillis( );
 
         //MoinTestHelper.setTestConfigurationFile( "nwdiTestConfiguration.properties" );
-        super.beforeTestMethod( );
-
-        this.connection = createConnection( );
-        this.coreConnection = getTestHelper( ).getCoreConnection( this.connection );
-        CoreModelPartition cp = coreConnection.getOrCreateTransientPartitionNonTransactional( "OclTestTransientPartition" );
-        this.syncObjectForWrite = coreConnection.getSession( ).getWorkspaceSet( ).getSynchronizationManager( ).getProhibitWriteSyncObject( );
-        this.myJmiCreator = new JmiCreator( this.coreConnection, true, cp );
-        this.mofPkg = (com.sap.tc.moin.MoinPackage) this.coreConnection.getPackage( MoinPackage.PACKAGE_DESCRIPTOR );
-        this.modelPackage = (ModelPackageImpl) ( (MoinPackageImpl) this.mofPkg ).getModel( coreConnection );
+        try {
+            super.setUp();
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+      
         this.showJmiTree = "true".equalsIgnoreCase( System.getProperty( "OclShowJmiTree" ) );
-        this.parser = OclParserFactory.create( this.myJmiCreator );
-        this.wft = new WellformednessTests( coreConnection );
+        try {
+            this.parser = OCLParser.class.newInstance();
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.wft = new WellformednessTests( );
     }
 
     protected Collection<OCLExpression> parse( String string, EObject context, EPackage[] types ) {
@@ -86,19 +89,18 @@ public abstract class BaseOclTest extends TestCase {
 
     protected Collection<OCLExpression> parse( String expression, EObject context, EPackage[] types, Map<EClassifier, Set<EStructuralFeature>> oclDefinedFeatures ) {
 
-        Collection<OclStatement> statements = Collections.emptyList( );
-        try {
-            synchronized ( syncObjectForWrite ) {
-                statements = this.parser.parseString( expression, context, types, oclDefinedFeatures );
-            }
+        Collection<OCLExpression> statements = Collections.emptyList( );
+        try {         
+             statements = this.parser.parseString( expression, context, types, oclDefinedFeatures );
+            
         } catch ( ParsingException e ) {
             // TODO remove this when only the new parser is used
             if ( expression.indexOf( ".%isUnique" ) > 0 ) {
                 expression = expression.replace( ".%isUnique", ".isUnique" );
                 try {
-                    synchronized ( syncObjectForWrite ) {
-                        statements = this.parser.parseString( expression, context, types, oclDefinedFeatures );
-                    }
+                    
+                     statements = this.parser.parseString( expression, context, types, oclDefinedFeatures );
+                    
                 } catch ( ParsingException e1 ) {
                     ProcessReport report = this.parser.getReport( );
                     this.outputReport( expression, report );
@@ -108,10 +110,10 @@ public abstract class BaseOclTest extends TestCase {
             this.outputReport( expression, report );
         }
 
-        for ( Iterator<OclStatement> i = statements.iterator( ); i.hasNext( ); ) {
-            OclStatement s = i.next( );
-            this.wft.checkOclExpression( (OclExpressionInternal) s.getExpression( ) );
-            this.showJmiTree( s.getExpression( ) );
+        for ( Iterator<OCLExpression> i = statements.iterator( ); i.hasNext( ); ) {
+            OCLExpression s = i.next( );
+            this.wft.checkOclExpression( s );
+//            this.showJmiTree( s.getExpression( ) );
         }
         return statements;
     }
@@ -119,32 +121,28 @@ public abstract class BaseOclTest extends TestCase {
     protected void parseFail( String expression, EObject context, EPackage[] types ) {
 
         try {
-            synchronized ( this.syncObjectForWrite ) {
-                this.parser.parseString( expression, context, types );
-            }
+            
+            this.parser.parseString( expression, context, types );
+            
             this.outputReport( expression, this.parser.getReport( ) );
-            flop( "Expression should not parse: " + expression );
+            fail( "Expression should not parse: " + expression );
         } catch ( ParsingException e ) {
-            info( "Expected parsing failure encountered" );
+            fail( "Expected parsing failure encountered" );
         } catch ( Exception e ) {
             errorAndStop( "Unexpected Exception while parsing", e );
         }
 
     }
 
-    protected void showJmiTree( RefObject root ) {
+    protected void showJmiTree( EObject root ) {
 
         if ( this.showJmiTree ) {
-            CoreConnection cconn;
-            if ( connection instanceof Wrapper ) {
-                cconn = (CoreConnection) ( (Wrapper) connection ).unwrap( );
-            } else {
-                cconn = (CoreConnection) connection;
-            }
-            JmiTreeViewer viewer = new JmiTreeViewer( root, cconn );
-            viewer.setModal( true );
-            viewer.setBounds( new Rectangle( 100, 100, 400, 500 ) );
-            viewer.setVisible( true );
+            //TODO if necessary show AST
+            System.out.println("Currently no Tree Viewer provided!");
+//            JmiTreeViewer viewer = new JmiTreeViewer( root );
+//            viewer.setModal( true );
+//            viewer.setBounds( new Rectangle( 100, 100, 400, 500 ) );
+//            viewer.setVisible( true );
         }
     }
 
@@ -162,28 +160,24 @@ public abstract class BaseOclTest extends TestCase {
 
     @Override
     @After
-    public void afterTestMethod( ) throws Exception {
+    public void tearDown() {
 
-        if ( connection != null ) {
-            this.connection.close( );
-        }
-        this.connection = null;
         this.mofPkg = null;
         this.parser = null;
-        this.modelPackage = null;
         this.wft = null;
-        this.myTemporaryPartition = null;
-        this.syncObjectForWrite = null;
-        this.myJmiCreator = null;
 
         // TODO we should do without restarting MOIN, but still should call the
         // afterTestMethod of the JUnit...
-        super.afterTestMethod( );
+        try {
+            super.tearDown();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         long testTime = System.currentTimeMillis( ) - timeStamp;
 
-        if ( logger.isTraced( MoinSeverity.INFO ) ) {
-            logger.trace( MoinSeverity.INFO, "TestTime : " + testTime + "ms" );
-        }
+        
+        System.out.println( "TestTime : " + testTime + "ms" );
     }
 }

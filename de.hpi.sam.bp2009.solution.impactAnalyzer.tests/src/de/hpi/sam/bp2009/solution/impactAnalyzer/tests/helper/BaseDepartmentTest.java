@@ -119,12 +119,14 @@ public class BaseDepartmentTest extends BaseIATest {
     /**
      * the expenses per department must not exceed its budget
      */
+    @SuppressWarnings("unused")
     private static final String expensesRestriction = "context Department inv BudgetRestriction: \n" + "self.calcExpenses() <= self.budget";
 
     /**
      * defines how to calculate expenses: The sum of the employee's salary plus
      * the boss' salary
      */
+    @SuppressWarnings("unused")
     private static final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" + "self.employee->iterate(e; sum=0 | sum + e.salary) + \n" + "self.boss.salary";
 
     /**
@@ -257,10 +259,10 @@ public class BaseDepartmentTest extends BaseIATest {
      */
     @Override
     @After
-    public void afterTestMethod( ) throws Exception {
+    public void tearDown() {
 
         this.resetInstances( );
-        super.afterTestMethod( );
+        super.tearDown();
     }
 
     private void resetInstances( ) {
@@ -344,14 +346,14 @@ public class BaseDepartmentTest extends BaseIATest {
      */
     @Override
     @Before
-    public void beforeTestMethod( ) throws Exception {
+    public void setUp( ) {
 
-        this.beforeTestMethod( true );
+        this.setUp( );
     }
 
     protected void beforeTestMethod( boolean withParsing ) throws Exception {
 
-        super.beforeTestMethod( );
+        super.setUp( );
         // build up the test model used in the papers
         buildModel( );
         if ( withParsing ) {
@@ -441,7 +443,7 @@ public class BaseDepartmentTest extends BaseIATest {
 
         int maxNumJuniors = 3;
         int budget = 50000;
-        synchronized ( this.syncObjectForWrite ) {
+        
 //            Division myDivision = this.coreConnection.getWrapper( ).createElementInPartition( Division.class, null );
             this.aDivision = (DivisionImpl) company.CompanyFactory.eINSTANCE.createDivision();
             ( (DivisionImpl) this.aDivision ).setName( "The super Division" );
@@ -454,7 +456,7 @@ public class BaseDepartmentTest extends BaseIATest {
             this.aDivision.getDepartment( ).add( this.aDepartment );
             this.aEmployee = (EmployeeImpl) this.allEmployees.iterator( ).next( );
             this.aFreelance = (FreelanceImpl) this.allFreelances.iterator( ).next( );
-        }
+        
     }
 
 //    protected void printAffectedStatements( Set<EvaluationUnit> affectedStmts ) throws Exception {
