@@ -10,3 +10,5 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.solution.scopeProvider;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.oclToAst;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.emf.query.index,
+ org.eclipse.emf.query.index.ui

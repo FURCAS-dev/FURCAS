@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -123,6 +124,19 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         if ( var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
                 && notifyNewContextElements) {
             addFilter(EventFilterFactory.getInstance().createFilterForElementInsertion(var.getType().eClass()));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the calls to the operation whose body is <tt>operationBody</tt> that are reachable
+     * from the root expression analyzed by this {@link ClassScopeAnalyzer}. If no such calls exist,
+     * an empty set is returned.
+     */
+    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression) {
+        Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
+        if (result == null) {
+            result = Collections.emptySet();
         }
         return result;
     }

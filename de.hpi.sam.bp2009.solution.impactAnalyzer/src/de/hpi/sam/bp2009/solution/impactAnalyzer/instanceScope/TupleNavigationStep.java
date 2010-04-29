@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.expressions.OCLExpression;
 
-import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class TupleNavigationStep extends AbstractNavigationStep {
 

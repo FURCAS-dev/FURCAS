@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	private final boolean absolute;

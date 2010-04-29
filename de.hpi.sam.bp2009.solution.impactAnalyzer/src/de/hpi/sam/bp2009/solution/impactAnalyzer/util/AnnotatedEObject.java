@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.moin.impactAnalyzer.util;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;

@@ -6,7 +6,11 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
-import org.eclipse.ocl.ecore.OCLExpression;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.expressions.OCLExpression;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 
 public interface FilterSynthesis{
@@ -20,5 +24,7 @@ public interface FilterSynthesis{
      * @return the filter matching all relevant events 
      */
     public EventFilter getSynthesisedFilter();
+
+    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression);
     
 }//FilterSynthesis

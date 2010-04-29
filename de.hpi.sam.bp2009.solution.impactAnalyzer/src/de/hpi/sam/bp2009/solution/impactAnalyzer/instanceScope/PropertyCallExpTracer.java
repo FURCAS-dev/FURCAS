@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 
-import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
 public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     public PropertyCallExpTracer(PropertyCallExp expression) {
@@ -23,7 +23,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
         /*
          * In ECore AssociationEndCallExp and AttributeCallExp are both mapped to PropertyCallExp.
          * That's why we need to check what the PropertyCall refers to and create different NavigationSteps for each case.
@@ -76,16 +76,16 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         EStructuralFeature refProp = getExpression().getReferredProperty();
 
         if (refProp instanceof EReference){
-            result = handleAssociationCall(context, pathCache, classScopeAnalyzer);
+            result = handleAssociationCall(context, pathCache, filterSynthesizer);
         }else if (refProp instanceof EAttribute){
-            result = handleAttributeCall(context, pathCache, classScopeAnalyzer);
+            result = handleAttributeCall(context, pathCache, filterSynthesizer);
         }else{
             throw new RuntimeException("Unhandled subclass of EStructuralFeature. Revisit PropertyCallExpTracer to implement specific behaviour.");
         }
         return result;
     }
 
-    private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer){
+    private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer){
         OCLExpression<EClassifier> sourceExp = getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {
@@ -107,10 +107,10 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             //TODO: check if TupleNavigationStep is a valid step
             return pathCache.navigationStepFromSequence(getExpression(),
                     new TupleNavigationStep(context, context, getExpression(), referredAttributeName),
-                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, classScopeAnalyzer));
+                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer));
 
         } else {
-            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, classScopeAnalyzer);
+            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer);
             EReference forwardRef = (EReference)getExpression().getNavigationSource();
             NavigationStep reverseTraversal;
             if (forwardRef.getEOpposite() != null){
@@ -127,7 +127,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         }
     } 
 
-    private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer){
+    private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer){
         OCLExpression<EClassifier> sourceExp = getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {
@@ -148,7 +148,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             //TODO: check if TupleNavigationStep is a valid step
             return pathCache.navigationStepFromSequence(getExpression(),
                     new TupleNavigationStep(context, context, getExpression(), referredAttributeName),
-                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, classScopeAnalyzer));
+                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer));
 
         } else {
             return pathCache.navigationStepFromSequence(
@@ -157,7 +157,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
                             (EClass) getExpression().getType(),
                             (EClass) sourceType,
                             getExpression()),
-                            pathCache.getOrCreateNavigationPath(sourceExp, context, classScopeAnalyzer));
+                            pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer));
         }
     }
 }

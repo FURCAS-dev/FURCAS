@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collections;
 import java.util.HashMap;

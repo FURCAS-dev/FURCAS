@@ -13,3 +13,9 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.solution.eventManager
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.impactAnalyzer.impl
+Import-Package: de.hpi.sam.bp2009.solution.oclToAst,
+ de.hpi.sam.bp2009.solution.scopeProvider,
+ de.hpi.sam.bp2009.solution.scopeProvider.impl,
+ org.eclipse.emf.query.index,
+ org.eclipse.emf.query.index.ui,
+ org.eclipse.emf.query2

@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.moin.impactAnalyzer.instancescope;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.impl.EClassImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.QueryContext;
@@ -54,8 +52,8 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 
-import de.hpi.sam.bp2009.moin.impactAnalyzer.ClassScopeAnalyzer;
-import de.hpi.sam.bp2009.moin.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
@@ -75,7 +73,7 @@ public class InstanceScopeAnalysis {
     private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression<EClassifier>, NavigationStep> expressionToStep;
     private final PathCache pathCache;
-    private final ClassScopeAnalyzer classScopeAnalyzer;
+    private final FilterSynthesis filterSynthesizer;
 
     /**
      * @param expression
@@ -90,11 +88,11 @@ public class InstanceScopeAnalysis {
      *            makes available the operation call relations reachable from the root expression that was analyzed by
      *            the class scope analyzer.
      */
-    public InstanceScopeAnalysis(OCLExpression<EClassifier> expression, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public InstanceScopeAnalysis(OCLExpression<EClassifier> expression, PathCache pathCache, FilterSynthesis classScopeAnalyzer) {
         associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder();
         expressionToStep = new HashMap<OCLExpression<EClassifier>, NavigationStep>();
         this.pathCache = pathCache;
-        this.classScopeAnalyzer = classScopeAnalyzer;
+        this.filterSynthesizer = classScopeAnalyzer;
         associationEndAndAttributeCallFinder.walk(expression);
     }
 
