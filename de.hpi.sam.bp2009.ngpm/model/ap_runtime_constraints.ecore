@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ap_runtime_constraints"
+    nsURI="http:///ap_runtime_constraints.ecore" nsPrefix="ap_runtime_constraints">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryConstraint"/>
+</ecore:EPackage>

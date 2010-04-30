@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="abapmapping"
+    nsURI="http:///abapmapping.ecore" nsPrefix="abapmapping">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="AbapClassImplementationAnnotation">
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="AbapTypeMustBeUnstructured" value="self.kind = AbapClassKind::ABAP_TYPE implies&#xD;&#xA;    self.abapType.oclIsKindOf(UnstructuredAbapType)"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="AbapTypeMustBeUnstructured"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//AbapClassKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abapType" lowerBound="1"
+        eType="#//abapdictionary/AbapType">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbapAssociationImplementationAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbapAssociationEndImplementationAnnotation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbapSignatureImplementationAnnotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//AbapSignatureKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AbapClassKind">
+    <eLiterals name="BO_AND_ROOT_NODE"/>
+    <eLiterals name="BO_NODE" value="1"/>
+    <eLiterals name="DEPENDENT_OBJECT" value="2"/>
+    <eLiterals name="DATA_TYPE" value="3"/>
+    <eLiterals name="ABAP_TYPE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AbapSignatureKind">
+    <eLiterals name="QUERY"/>
+    <eLiterals name="ACTION" value="1"/>
+  </eClassifiers>
+  <eSubpackages name="abapdictionary" nsURI="http:///abapmapping/abapdictionary.ecore"
+      nsPrefix="abapmapping.abapdictionary">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="XsdType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="xsdType" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalDigits" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fractionDigits" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UnstructuredAbapType" eSuperTypes="#//abapdictionary/AbapType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Like any AbapType, mapped to a Class with the corresponding annotations."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CodeValue">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="We deliberately reduced code values to unstructured, primitive values. Those examples that we are aware of where codes are of structured types only contain unmaintained attributes such as LIST_AGENCY_IDs and other supplementary components that can in our opinion safely be omitted for the time being."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="languageDependentDescription"
+          lowerBound="1" eType="ecore:EClass sproxy_content.ecore#//LanguageDependentText">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="ecore:EClass localization.ecore#//TranslatableText"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//abapdictionary/AbapPrimtiveType">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Code" eSuperTypes="#//abapdictionary/DataElement">
+      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+        <details key="TypeOfValuesEqualsAbapType" value="self.values->forAll(cv:CodeValue |&#xD;&#xA;      cv.type = self.abapType)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="TypeOfValuesEqualsAbapType"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extensible" eType="ecore:EClass runtime.ecore#//primitivetypes/Boolean"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+          eType="#//abapdictionary/CodeValue" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataElement" eSuperTypes="#//abapdictionary/UnstructuredAbapType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="abapType" lowerBound="1"
+          eType="#//abapdictionary/AbapPrimtiveType">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbapType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="xsdRepresentation" lowerBound="1"
+          eType="#//abapdictionary/XsdType">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbapStructureType" eSuperTypes="#//abapdictionary/AbapType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+          eType="#//abapdictionary/AbapStructureField">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbapStructureField">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//abapdictionary/AbapType">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbapPrimtiveType" eSuperTypes="#//abapdictionary/UnstructuredAbapType">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

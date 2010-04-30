@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="runtime"
+    nsURI="http:///runtime.ecore" nsPrefix="runtime">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Contains M1 constructs that instantiate other metamodel constructs. It is as such not relevant for JMI generation or XMI import/export. It is supposed to describe classes and packages that constitute the elementary runtime libraries.&#xD;&#xA;&#xD;&#xA;This is also where concepts are expressed that need special treatment, such as collections or blocks. Furthermore, the list of predefined primitive types is specified here.&#xD;&#xA;&#xD;&#xA;As a general hint, in this package UML classes are used to represent instances. The class stereotype is used to indicate the type of the instance represented by the UML class. For example, &lt;&lt;PrimitiveType>>-stereotyped classes denote instances of the PrimitiveType class, such as Integer or String."/>
+  </eAnnotations>
+  <eSubpackages name="primitivetypes" nsURI="http:///runtime/primitivetypes.ecore"
+      nsPrefix="runtime.primitivetypes">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Binary">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A sequence of bytes or arbitrary length"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Boolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The Boolean extent comprises the two values True and False."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DateTime">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A point in time"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Number">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A number of arbitrary precision. It can be constrained later in qualifying types in order to match, e.g., typical integer precision, or decimals with two decimal digits. Number may also need to capture true fractions or even irrational numbers such as sqrt(2).&#xD;&#xA;&#xD;&#xA;Operations on Number instances will be influenced by the precision of the instances involved. Rounding rules may additionally need to be specified."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A sequence of (Unicode) characters of arbitrary length"/>
+      </eAnnotations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="enumerations" nsURI="http:///runtime/enumerations.ecore" nsPrefix="runtime.enumerations">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Enumeration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An enumeration type declares a number of literals that constitute the instances of the enumeration type. Enumerations can thus also be used to implement a concept known as &quot;Code List&quot; that is used, e.g., to encode ISO code lists of currencies, countries or others.&#xD;&#xA;&#xD;&#xA;However, I wonder if the choice of a Code List / Enumeration is appropriate for, e.g., currency encoding, given the fact that the set of currencies available worldwide may change over time (think &quot;Euro&quot;). Similar for countries (Soviet Union --> GUS, Yugoslavia, ...). Probably, those would better have been instances of classes, only marked as not changing very frequently."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="literals" lowerBound="1"
+          upperBound="-1" eType="#//enumerations/EnumerationLiteral" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteral">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="ecore:EClass localization.ecore#//TranslatableText"
+          containment="true" resolveProxies="false"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="collections" nsURI="http:///runtime/collections.ecore" nsPrefix="runtime.collections">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+  </eSubpackages>
+  <eSubpackages name="testwithroles" nsURI="http:///runtime/testwithroles.ecore" nsPrefix="runtime.testwithroles">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessPartner">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="streetAddress" eType="#//testwithroles/Address">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="BankAccount" eType="#//testwithroles/BankAccount">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Supplier" upperBound="-1"
+          eType="#//testwithroles/Supplier" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Customer" upperBound="-1"
+          eType="#//testwithroles/Customer" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Employee" upperBound="-1"
+          eType="#//testwithroles/Employee" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Employer" upperBound="-1"
+          eType="#//testwithroles/Employer" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SalesOrder">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="buyer" lowerBound="1"
+          eType="#//testwithroles/Customer" eOpposite="#//testwithroles/Customer/SalesOrder"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="seller" lowerBound="1"
+          eType="#//testwithroles/Supplier" eOpposite="#//testwithroles/Supplier/SalesOrder"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BankAccount"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkAgreement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="employer" lowerBound="1"
+          eType="#//testwithroles/Employer">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="employee" lowerBound="1"
+          eType="#//testwithroles/Employee">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Address"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Employee"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Customer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="SalesOrder" upperBound="-1"
+          eType="#//testwithroles/SalesOrder" eOpposite="#//testwithroles/SalesOrder/buyer"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Supplier">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="SalesOrder" upperBound="-1"
+          eType="#//testwithroles/SalesOrder" eOpposite="#//testwithroles/SalesOrder/seller"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Employer"/>
+  </eSubpackages>
+  <eSubpackages name="testwithpolymorphicassociations" nsURI="http:///runtime/testwithpolymorphicassociations.ecore"
+      nsPrefix="runtime.testwithpolymorphicassociations">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="A">
+      <eOperations name="a"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="AtoB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="b" upperBound="-1" eType="#//testwithpolymorphicassociations/B"
+          eOpposite="#//testwithpolymorphicassociations/B/a"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="C">
+      <eOperations name="a"/>
+      <eOperations name="c"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="CtoD" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="AtoB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="b" upperBound="-1" eType="#//testwithpolymorphicassociations/D"
+          eOpposite="#//testwithpolymorphicassociations/D/a"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="B">
+      <eOperations name="b"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="a" upperBound="-1" eType="#//testwithpolymorphicassociations/A"
+          eOpposite="#//testwithpolymorphicassociations/A/b"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="D">
+      <eOperations name="b"/>
+      <eOperations name="d"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="a" upperBound="-1" eType="#//testwithpolymorphicassociations/C"
+          eOpposite="#//testwithpolymorphicassociations/C/b"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="E">
+      <eOperations name="a"/>
+      <eOperations name="c"/>
+      <eOperations name="e"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="EtoF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="b" upperBound="-1" eType="#//testwithpolymorphicassociations/F"
+          eOpposite="#//testwithpolymorphicassociations/F/a"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="F">
+      <eOperations name="b"/>
+      <eOperations name="d"/>
+      <eOperations name="f"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="a" upperBound="-1" eType="#//testwithpolymorphicassociations/E"
+          eOpposite="#//testwithpolymorphicassociations/E/b"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="configuration2" nsURI="http:///runtime/configuration2.ecore"
+      nsPrefix="runtime.configuration2">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="SalesOrder">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="numberRange" upperBound="-1"
+          eType="#//configuration2/NumberRange">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NumberRangeImpl"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PurchaseOrder">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="numberRange" upperBound="-1"
+          eType="#//configuration2/NumberRange">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NumberRange" abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PurchaseOrderNumberRanges">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nr1" eType="#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nr2" eType="#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SalesOrderNumberRanges">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nr1" eType="#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nr2" eType="#//primitivetypes/String"
+          containment="true" resolveProxies="false"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

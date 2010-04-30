@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="csn"
+    nsURI="http:///csn.ecore" nsPrefix="csn">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Integrate error messages, fixes, transport orders etc. with the rest of the programming model"/>
+  </eAnnotations>
+</ecore:EPackage>

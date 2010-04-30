@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="solutions"
+    nsURI="http:///solutions.ecore" nsPrefix="solutions">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Allows modelers to group components into solutions, typically along business dimensions. This should eventually help in scoping an installation and knowing what needs to be configured.&#xD;&#xA;&#xD;&#xA;Does this have a link to configuration? If so, which?"/>
+  </eAnnotations>
+  <eSubpackages name="ppms" nsURI="http:///solutions/ppms.ecore" nsPrefix="solutions.ppms">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Entities taken from the Product Planning and Management System (PPMS). This is about combining software component(s) (version(s)) into shippable products, telling about deployment packages, functional elements, patches and upgrades and installation into landscapes."/>
+    </eAnnotations>
+  </eSubpackages>
+</ecore:EPackage>

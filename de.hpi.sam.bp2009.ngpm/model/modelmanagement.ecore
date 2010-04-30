@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modelmanagement"
+    nsURI="http:///modelmanagement.ecore" nsPrefix="modelmanagement">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Packaging, namespaces, visibility rules, dependency management, specifying facades / public parts, SCs, DCs, SCVs, ..."/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//PackageOwner">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Packages own and structure the model content. Higher-level concepts such as process components, applications or deployment units should not inherit from Package but instead own packages that contain their implementation."/>
+    </eAnnotations>
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="DistinctClassNamesPerPackage" value="self.classes->forAll( i, j | i &lt;> j implies i.name &lt;> j.name )"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="DistinctClassNamesPerPackage"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associations" upperBound="-1"
+        eType="ecore:EClass data.ecore#//classes/Association" containment="true" eOpposite="data.ecore#//classes/Association/package_"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+        eType="ecore:EClass data.ecore#//classes/SapClass" containment="true" eOpposite="data.ecore#//classes/SapClass/package_"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterizedClasses" upperBound="-1"
+        eType="ecore:EClass data.ecore#//generics/ClassParameterization" containment="true"
+        eOpposite="data.ecore#//generics/ClassParameterization/package_"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurability" upperBound="-1"
+        eType="ecore:EClass configuration.ecore#//businessconfiguration/experimental/ConfigurationEntity"
+        containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="package_"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
+        eType="ecore:EClass integration.ecore#//binding/Binding" containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value="package_"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="ecore:EClass localization.ecore#//TranslatableText"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Application" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An application, such as &quot;Business ByDesign&quot;"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentUnits" eType="#//deploymentunits/DeploymentUnit"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integrationScenarios" upperBound="-1"
+        eType="ecore:EClass integration.ecore#//processintegration/IntegrationScenario"
+        containment="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+        <details key="Property.oppositeRoleName" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageOwner" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" eType="#//Package"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Module"/>
+  <eSubpackages name="processcomponents" nsURI="http:///modelmanagement/processcomponents.ecore"
+      nsPrefix="modelmanagement.processcomponents">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The process components as defined by AP are an important structuring means into which BOs can be grouped."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="ProcessComponent" abstract="true"
+        eSuperTypes="#//PackageOwner">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterfaces" eType="ecore:EClass data.ecore#//classes/SapClass"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eventProducers" eType="ecore:EClass behavioral.ecore#//events/EventProducer"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="interactions" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
+          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedInteractions"
+          eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
+          containment="true" resolveProxies="false"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProcessComponentInsideCompany" eSuperTypes="#//processcomponents/ProcessComponent">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A process component that the implementation is known of. It therefore specifies the set of implementing classes and blocks. The blocks implement service interfaces offered by the process component."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProcessComponentOutsideCompany" eSuperTypes="#//processcomponents/ProcessComponent"/>
+  </eSubpackages>
+  <eSubpackages name="deploymentunits" nsURI="http:///modelmanagement/deploymentunits.ecore"
+      nsPrefix="modelmanagement.deploymentunits">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+      <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Specifies constraints regarding the deployability of a solution. Which parts need to be codeployed, what can be distributed.&#xD;&#xA;&#xD;&#xA;Align with PPMS &quot;Deployment Package&quot;"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="DeploymentUnit" eSuperTypes="#//PackageOwner #//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pcsInsideCompany" eType="#//processcomponents/ProcessComponent"
+          containment="true" resolveProxies="false"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>
