@@ -9,6 +9,11 @@
 --     J.Warmer, A.Kleppe - original example in 'The Object Constraint Language Second Edition'
 --     M.Garcia - realisation of the example for use within Eclipse 
 --------------------------------------------------------------------------------
+
+
+--Uncomment the next line to use the Xtext editor in 3.0.0M7 (expect 36 errors!)
+--import 'RoyalAndLoyal.ecore'
+
 package RandL
 
 context ServiceLevel
