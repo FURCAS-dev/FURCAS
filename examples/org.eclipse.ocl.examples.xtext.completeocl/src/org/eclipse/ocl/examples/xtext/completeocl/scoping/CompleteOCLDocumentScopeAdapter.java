@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.2 2010/05/03 14:43:02 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.3 2010/05/03 20:00:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -62,7 +62,7 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 					}
 				}
 				else {
-					filteredAccesses.addNamedElement(anImport);
+					filteredAccesses.addElement(anImport.getName(), anImport.getNamespace());
 				}
 			}
 		}
