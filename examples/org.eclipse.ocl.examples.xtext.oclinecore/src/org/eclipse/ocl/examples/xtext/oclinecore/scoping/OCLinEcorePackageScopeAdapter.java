@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePackageScopeAdapter.java,v 1.1 2010/05/03 05:44:34 ewillink Exp $
+ * $Id: OCLinEcorePackageScopeAdapter.java,v 1.2 2010/05/03 11:53:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -53,8 +53,14 @@ public class OCLinEcorePackageScopeAdapter extends EssentialOCLScopeAdapter<OCLi
 
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		filteredAccesses.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, getTarget().getSubpackages());
-		filteredAccesses.addNamedElements(OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CLASSIFIER_CS, getTarget().getClassifiers());
-		filteredAccesses.addNamedElements(OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CLASS_CS, getTarget().getClassifiers());
+		if (containmentFeature == null) {			
+		}
+		else {
+			OCLinEcorePackageCS target = getTarget();
+			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, target.getSubpackages());
+			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.CLASSIFIER_CS, target.getClassifiers());
+			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.CLASS_CS, target.getClassifiers());
+			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.NAMESPACE_CS, target.getClassifiers());		// FIXME needed for Enums
+		}
 	}
 }
