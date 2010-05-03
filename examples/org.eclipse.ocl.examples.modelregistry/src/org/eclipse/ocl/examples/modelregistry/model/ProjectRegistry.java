@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ProjectRegistry.java,v 1.3 2010/04/08 06:23:56 ewillink Exp $
+ * $Id: ProjectRegistry.java,v 1.4 2010/05/03 09:35:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.model;
 
@@ -147,9 +147,8 @@ public class ProjectRegistry
 	/**
 	 * Return all registrations applicable to accessorClass in the context of fileHandle, typically
 	 * to treat all such registrations as a look-up path.
-	 * @param Class<A> kind of accessor
 	 * @param fileHandle defining look-up context
-	 * @param accessor name of accessor
+	 * @param namespace name of accessor
 	 * @return the registrations
 	 */
 	public <A extends Accessor<A>> Collection<Registration<A>> getRegistrations(FileHandle fileHandle, Accessor.Namespace<A> namespace) {

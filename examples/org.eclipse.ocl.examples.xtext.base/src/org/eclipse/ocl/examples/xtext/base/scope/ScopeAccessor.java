@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAccessor.java,v 1.1 2010/05/03 05:25:51 ewillink Exp $
+ * $Id: ScopeAccessor.java,v 1.2 2010/05/03 09:35:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -30,8 +30,6 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
  * Accesses are filtered on the fly since a cache of results does not remain valid
  * for long enough to merit it, with incremental reparsing regularly trashing
  * the CST.
- *
- * @param <T>
  */
 public class ScopeAccessor extends AbstractScope
 {

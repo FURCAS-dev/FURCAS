@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.26 2010/02/27 13:27:40 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.27 2010/05/03 09:38:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -103,7 +103,7 @@ public abstract class AbstractTestSuite
 	/**
 	 * Adds parser-style independent tests to the test suite.
 	 * 
-	 * @param the suite
+	 * @param result the suite
 	 */
 	public static void suite(CheckedTestSuite result) {
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
@@ -146,7 +146,7 @@ public abstract class AbstractTestSuite
 	/**
 	 * Adds backtracking tests to the test suite.
 	 * 
-	 * @param the suite
+	 * @param result the suite
 	 */
 	public static void suiteBacktracking(CheckedTestSuite result) {
 		result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");

@@ -16,7 +16,7 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.19 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.20 2010/05/03 09:32:33 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.TypeChecker;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -157,8 +158,6 @@ public class TypeUtil {
      * @param env the OCL environment
 	 * @param owner the classifier to search
 	 * @param name the name of the operation
-	 * @param args a list of arguments to match against the operation signature,
-     *     as either expressions or variables
 	 * 
 	 * @return the matching operation, or <code>null</code> if not found
 	 * 
@@ -195,7 +194,7 @@ public class TypeUtil {
 	 * 
      * @param env the OCL environment
 	 * @param owner the type that owns the operation
-	 * @param params the operation parameters or signal attributes to match
+	 * @param paramsOrProperties the operation parameters or signal attributes to match
      *     against the arguments
 	 * @param args a list of {@link OCLExpression}s or {@link Variable}s
 	 * 
@@ -284,7 +283,7 @@ public class TypeUtil {
      * @param oper the operation
      * 
      * @return the operation's effect result type
-	 * @deprecated Use the {@link #getResultTypeObject, Environment, Object, Object, List}
+	 * @deprecated Use the {@link #getResultType(Object, Environment, Object, Object, List)}
 	 *             method, instead, which resolves generic operation signatures
 	 *             against actual arguments
 	 */

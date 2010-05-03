@@ -10,7 +10,7 @@
  *     Zeligsoft - Bug 233673 - Port other bug fixes to this new API
  *     Zeligsoft - Bug 179990
  * 
- * $Id: TypeChecker.java,v 1.2 2008/11/12 15:25:50 cdamus Exp $
+ * $Id: TypeChecker.java,v 1.3 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -159,8 +159,6 @@ public interface TypeChecker<C, O, P> {
 	/**
 	 * Compare two types. Returns true if types are compatible, false otherwise.
 	 * 
-	 * @param env
-	 *            the OCL environment
 	 * @param type1
 	 *            a type
 	 * @param type2
@@ -246,7 +244,7 @@ public interface TypeChecker<C, O, P> {
 	 * 
 	 * @param owner
 	 *            the type that owns the operation
-	 * @param params
+	 * @param paramsOrProperties
 	 *            the operation parameters or signal attributes to match against
 	 *            the arguments
 	 * @param args
@@ -261,15 +259,10 @@ public interface TypeChecker<C, O, P> {
 	 * Finds the most specific (re)definition of an attribute in the specified
 	 * classifier.
 	 * 
-	 * @param env
-	 *            the OCL environment
 	 * @param owner
 	 *            the classifier to search
 	 * @param name
 	 *            the name of the operation
-	 * @param args
-	 *            a list of arguments to match against the operation signature,
-	 *            as either expressions or variables
 	 * 
 	 * @return the matching operation, or <code>null</code> if not found
 	 */

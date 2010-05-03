@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.8 2009/12/22 18:54:06 ewillink Exp $
+ * $Id: ExpressionInOCL.java,v 1.9 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -140,7 +140,7 @@ public interface ExpressionInOCL<C, PM>
 
 	/**
 	 * Returns the value of the '<em><b>Generated Type</b></em>' containment reference list.
-	 * The list contents are of type {@link C}.
+	 * The list contents are of type C.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Generated Type</em>' containment reference list isn't clear,
