@@ -12,6 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
@@ -33,34 +36,24 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private boolean isLetVariable() {
-        //FIXME: use Query2 to check if this variable is defined in a LetExp
-	return false;
+        // let variables are contained in the letExp
+        Variable exp = getVariableDeclaration();  
+        return exp.eContainer() instanceof LetExp && ((LetExp)exp.eContainer()).getVariable() == exp;
     }
 
     private boolean isOperationParameter() {
-        //FIXME: use Query2 to check if this variable is used as an operation parameter
-//	OCLExpression rootExpression = getRootExpression();
-//	EOperation op = InstanceScopeAnalysis.getDefines(rootExpression);
-//	String variableName = getVariableDeclaration().getName();
-//	JmiListImpl<ModelElement> pList = (JmiListImpl<ModelElement>) op.getContents();
-//	for (Iterator<ModelElement> i=pList.iterator(); i.hasNext(); ) {
-//	    ModelElement p = i.next();
-//	    if (p instanceof Parameter && ((Parameter) p).getDirection() == DirectionKindEnum.IN_DIR
-//		    && variableName.equals(((Parameter) p).getName())) {
-//		return true;
-//	    }
-//	}
-	return false;
+        return getVariableDeclaration().getRepresentedParameter() != null;
     }
 
     private boolean isIterateResultVariable() {
-        //FIXME: use Query2 to check if any iterateExp returns this variable on getResult()
-	return false;
+        //result variables are contained in iterateExp
+        Variable exp = getVariableDeclaration();     
+	return (exp.eContainer() instanceof IterateExp && ((IterateExp) exp.eContainer()).getResult() == exp);
     }
 
     private boolean isIteratorVariable() {
-        //FIXME: use Query2 to check if any iteratorExp returns a list containing this variable on getIterator()
-	return false;
+        Variable exp = getVariableDeclaration();  
+	return (exp.eContainer() instanceof IteratorExp && ((IteratorExp)exp.eContainer()).getIterator().contains(exp));
     }
 
     private boolean isSelf() {
@@ -145,12 +138,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	        getVariableDeclaration().getInitExpression(),
 	        context,
 	        filterSynthesizer);
-	//FIXME: use Query2 to get the iterateExp that returns this Variable on getIterator()
-	NavigationStep stepForBodyExpression = null;
-//	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
-//	((IterateExp) getVariableDeclaration().getBaseExp()).getBody(),
-//	context,
-//	classScopeAnalyzer);
+	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
+	        ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
+	        context,
+	        filterSynthesizer);
 	return new BranchingNavigationStep(
 	        (EClass) getExpression().getType(),
 	        context,
@@ -160,12 +151,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
-        //FIXME: use Query2 to get the loopExp that returns this Variable on getIterator()
-//	return pathCache.getOrCreateNavigationPath(
-//	        ((PropertyCallExp) getVariableDeclaration().getLoopExpr()).getSource(),
-//	        context,
-//	        classScopeAnalyzer);
-        return null;
+	return pathCache.getOrCreateNavigationPath(
+	        ((IteratorExp) getVariableDeclaration().eContainer()).getSource(),
+	        context,
+	        filterSynthesizer);
     }
 
     private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
