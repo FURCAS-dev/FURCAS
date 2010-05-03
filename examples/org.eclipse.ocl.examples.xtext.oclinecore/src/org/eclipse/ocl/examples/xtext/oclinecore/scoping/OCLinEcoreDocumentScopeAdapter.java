@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.2 2010/05/03 14:43:04 ewillink Exp $
+ * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.3 2010/05/03 19:59:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -43,7 +43,6 @@ public class OCLinEcoreDocumentScopeAdapter extends StandardDocumentScopeAdapter
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
 		if (filteredAccesses.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
-			filteredAccesses.addNamedElements(getTarget().getPackages());
 			for (ImportCS anImport : getTarget().getImports()) {
 				if (anImport.getName() == null) {
 					NamespaceCS namespace = anImport.getNamespace();
@@ -55,6 +54,7 @@ public class OCLinEcoreDocumentScopeAdapter extends StandardDocumentScopeAdapter
 					filteredAccesses.addNamedElement(anImport);
 				}
 			}
+			filteredAccesses.addNamedElements(getTarget().getPackages());		// Overrides imports
 		}
 	}
 
