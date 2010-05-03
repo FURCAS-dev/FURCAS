@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: LiteralExpCS.java,v 1.2 2010/05/03 05:38:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -27,5 +27,5 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * @model
  * @generated
  */
-public interface LiteralExpCS extends OclExpressionCS {
+public interface LiteralExpCS extends ExpCS {
 } // LiteralExpCS

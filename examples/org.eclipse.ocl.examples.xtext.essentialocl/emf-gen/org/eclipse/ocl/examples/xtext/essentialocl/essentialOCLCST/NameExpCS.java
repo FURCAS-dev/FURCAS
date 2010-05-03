@@ -12,21 +12,21 @@
  *
  * </copyright>
  *
- * $Id: TypeCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: NameExpCS.java,v 1.1 2010/05/03 05:38:08 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type CS</b></em>'.
+ * A representation of the model object '<em><b>Named Element Ref CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getTypeCS()
- * @model
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNameExpCS()
+ * @model abstract="true"
  * @generated
  */
-public interface TypeCS extends EObject {
-} // TypeCS
+public interface NameExpCS extends TypeExpCS {
+} // NamedElementRefCS

@@ -12,20 +12,23 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: ExpCS.java,v 1.1 2010/05/03 05:38:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
+
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Unlimited Natural Literal Exp CS</b></em>'.
+ * A representation of the model object '<em><b>Ocl Expression CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getUnlimitedNaturalLiteralExpCS()
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getExpCS()
  * @model
  * @generated
  */
-public interface UnlimitedNaturalLiteralExpCS extends PrimitiveLiteralExpCS {
-} // UnlimitedNaturalLiteralExpCS
+public interface ExpCS extends ElementCS {
+} // OclExpressionCS

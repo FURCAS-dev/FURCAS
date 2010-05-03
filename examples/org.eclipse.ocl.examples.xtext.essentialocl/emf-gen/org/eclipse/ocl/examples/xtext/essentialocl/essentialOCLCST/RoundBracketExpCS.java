@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpCS.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
+ * $Id: RoundBracketExpCS.java,v 1.1 2010/05/03 05:38:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -26,17 +26,17 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable1 <em>Variable1</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable2 <em>Variable2</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS#getVariable1 <em>Variable1</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS#getVariable2 <em>Variable2</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCallExpCS()
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getRoundBracketExpCS()
  * @model
  * @generated
  */
-public interface CallExpCS extends OperationExpressionCS {
+public interface RoundBracketExpCS extends NamedExpCS {
 	/**
 	 * Returns the value of the '<em><b>Variable1</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -47,14 +47,14 @@ public interface CallExpCS extends OperationExpressionCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable1</em>' containment reference.
 	 * @see #setVariable1(VariableCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCallExpCS_Variable1()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getRoundBracketExpCS_Variable1()
 	 * @model containment="true"
 	 * @generated
 	 */
 	VariableCS getVariable1();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable1 <em>Variable1</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS#getVariable1 <em>Variable1</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Variable1</em>' containment reference.
@@ -73,14 +73,14 @@ public interface CallExpCS extends OperationExpressionCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable2</em>' containment reference.
 	 * @see #setVariable2(VariableCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCallExpCS_Variable2()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getRoundBracketExpCS_Variable2()
 	 * @model containment="true"
 	 * @generated
 	 */
 	VariableCS getVariable2();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CallExpCS#getVariable2 <em>Variable2</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS#getVariable2 <em>Variable2</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Variable2</em>' containment reference.
@@ -91,7 +91,7 @@ public interface CallExpCS extends OperationExpressionCS {
 
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
@@ -99,10 +99,10 @@ public interface CallExpCS extends OperationExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arguments</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCallExpCS_Arguments()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getRoundBracketExpCS_Arguments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<OclExpressionCS> getArguments();
+	EList<ExpCS> getArguments();
 
 } // CallExpCS

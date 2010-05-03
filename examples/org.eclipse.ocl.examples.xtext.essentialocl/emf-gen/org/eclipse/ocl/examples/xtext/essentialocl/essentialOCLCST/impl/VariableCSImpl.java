@@ -12,23 +12,19 @@
  *
  * </copyright>
  *
- * $Id: VariableCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: VariableCSImpl.java,v 1.2 2010/05/03 05:37:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -38,7 +34,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableCSImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableCSImpl#getInitExpression <em>Init Expression</em>}</li>
  * </ul>
@@ -46,17 +41,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * @generated
  */
-public class VariableCSImpl extends EObjectImpl implements VariableCS {
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected SimpleNameCS name;
-
+public class VariableCSImpl extends NamedElementCSImpl implements VariableCS {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -75,7 +60,7 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS initExpression;
+	protected ExpCS initExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,49 +79,6 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSTPackage.Literals.VARIABLE_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleNameCS getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetName(SimpleNameCS newName, NotificationChain msgs) {
-		SimpleNameCS oldName = name;
-		name = newName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.VARIABLE_CS__NAME, oldName, newName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(SimpleNameCS newName) {
-		if (newName != name) {
-			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.VARIABLE_CS__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.VARIABLE_CS__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.VARIABLE_CS__NAME, newName, newName));
 	}
 
 	/**
@@ -187,7 +129,7 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getInitExpression() {
+	public ExpCS getInitExpression() {
 		return initExpression;
 	}
 
@@ -196,8 +138,8 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(OclExpressionCS newInitExpression, NotificationChain msgs) {
-		OclExpressionCS oldInitExpression = initExpression;
+	public NotificationChain basicSetInitExpression(ExpCS newInitExpression, NotificationChain msgs) {
+		ExpCS oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
@@ -211,7 +153,7 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitExpression(OclExpressionCS newInitExpression) {
+	public void setInitExpression(ExpCS newInitExpression) {
 		if (newInitExpression != initExpression) {
 			NotificationChain msgs = null;
 			if (initExpression != null)
@@ -233,8 +175,6 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.VARIABLE_CS__NAME:
-				return basicSetName(null, msgs);
 			case EssentialOCLCSTPackage.VARIABLE_CS__TYPE:
 				return basicSetType(null, msgs);
 			case EssentialOCLCSTPackage.VARIABLE_CS__INIT_EXPRESSION:
@@ -251,8 +191,6 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.VARIABLE_CS__NAME:
-				return getName();
 			case EssentialOCLCSTPackage.VARIABLE_CS__TYPE:
 				return getType();
 			case EssentialOCLCSTPackage.VARIABLE_CS__INIT_EXPRESSION:
@@ -269,14 +207,11 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.VARIABLE_CS__NAME:
-				setName((SimpleNameCS)newValue);
-				return;
 			case EssentialOCLCSTPackage.VARIABLE_CS__TYPE:
 				setType((TypeCS)newValue);
 				return;
 			case EssentialOCLCSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-				setInitExpression((OclExpressionCS)newValue);
+				setInitExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -290,14 +225,11 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.VARIABLE_CS__NAME:
-				setName((SimpleNameCS)null);
-				return;
 			case EssentialOCLCSTPackage.VARIABLE_CS__TYPE:
 				setType((TypeCS)null);
 				return;
 			case EssentialOCLCSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-				setInitExpression((OclExpressionCS)null);
+				setInitExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -311,14 +243,22 @@ public class VariableCSImpl extends EObjectImpl implements VariableCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.VARIABLE_CS__NAME:
-				return name != null;
 			case EssentialOCLCSTPackage.VARIABLE_CS__TYPE:
 				return type != null;
 			case EssentialOCLCSTPackage.VARIABLE_CS__INIT_EXPRESSION:
 				return initExpression != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //VariableCSImpl

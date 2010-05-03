@@ -12,25 +12,19 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: TupleTypeCSImpl.java,v 1.2 2010/05/03 05:37:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
@@ -42,34 +36,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleTypeCSImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleTypeCSImpl#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
-	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
-
+public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS {
 	/**
 	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -97,27 +70,6 @@ public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSTPackage.Literals.TUPLE_TYPE_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getValue() {
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.TUPLE_TYPE_CS__VALUE, oldValue, value));
 	}
 
 	/**
@@ -154,8 +106,6 @@ public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__VALUE:
-				return getValue();
 			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__PART:
 				return getPart();
 		}
@@ -171,9 +121,6 @@ public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__VALUE:
-				setValue((String)newValue);
-				return;
 			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__PART:
 				getPart().clear();
 				getPart().addAll((Collection<? extends VariableCS>)newValue);
@@ -190,9 +137,6 @@ public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__VALUE:
-				setValue(VALUE_EDEFAULT);
-				return;
 			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__PART:
 				getPart().clear();
 				return;
@@ -208,28 +152,10 @@ public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 			case EssentialOCLCSTPackage.TUPLE_TYPE_CS__PART:
 				return part != null && !part.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
-		result.append(value);
-		result.append(')');
-		return result.toString();
 	}
 
 } //TupleTypeCSImpl

@@ -12,21 +12,18 @@
  *
  * </copyright>
  *
- * $Id: IfExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: IfExpCSImpl.java,v 1.2 2010/05/03 05:37:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpression
  *
  * @generated
  */
-public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
+public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -52,7 +49,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS condition;
+	protected ExpCS condition;
 
 	/**
 	 * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
@@ -62,7 +59,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS thenExpression;
+	protected ExpCS thenExpression;
 
 	/**
 	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
@@ -72,7 +69,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS elseExpression;
+	protected ExpCS elseExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,7 +95,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getCondition() {
+	public ExpCS getCondition() {
 		return condition;
 	}
 
@@ -107,8 +104,8 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(OclExpressionCS newCondition, NotificationChain msgs) {
-		OclExpressionCS oldCondition = condition;
+	public NotificationChain basicSetCondition(ExpCS newCondition, NotificationChain msgs) {
+		ExpCS oldCondition = condition;
 		condition = newCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.IF_EXP_CS__CONDITION, oldCondition, newCondition);
@@ -122,7 +119,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondition(OclExpressionCS newCondition) {
+	public void setCondition(ExpCS newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
@@ -141,7 +138,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getThenExpression() {
+	public ExpCS getThenExpression() {
 		return thenExpression;
 	}
 
@@ -150,8 +147,8 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetThenExpression(OclExpressionCS newThenExpression, NotificationChain msgs) {
-		OclExpressionCS oldThenExpression = thenExpression;
+	public NotificationChain basicSetThenExpression(ExpCS newThenExpression, NotificationChain msgs) {
+		ExpCS oldThenExpression = thenExpression;
 		thenExpression = newThenExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION, oldThenExpression, newThenExpression);
@@ -165,7 +162,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThenExpression(OclExpressionCS newThenExpression) {
+	public void setThenExpression(ExpCS newThenExpression) {
 		if (newThenExpression != thenExpression) {
 			NotificationChain msgs = null;
 			if (thenExpression != null)
@@ -184,7 +181,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getElseExpression() {
+	public ExpCS getElseExpression() {
 		return elseExpression;
 	}
 
@@ -193,8 +190,8 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElseExpression(OclExpressionCS newElseExpression, NotificationChain msgs) {
-		OclExpressionCS oldElseExpression = elseExpression;
+	public NotificationChain basicSetElseExpression(ExpCS newElseExpression, NotificationChain msgs) {
+		ExpCS oldElseExpression = elseExpression;
 		elseExpression = newElseExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.IF_EXP_CS__ELSE_EXPRESSION, oldElseExpression, newElseExpression);
@@ -208,7 +205,7 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElseExpression(OclExpressionCS newElseExpression) {
+	public void setElseExpression(ExpCS newElseExpression) {
 		if (newElseExpression != elseExpression) {
 			NotificationChain msgs = null;
 			if (elseExpression != null)
@@ -267,13 +264,13 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
-				setCondition((OclExpressionCS)newValue);
+				setCondition((ExpCS)newValue);
 				return;
 			case EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-				setThenExpression((OclExpressionCS)newValue);
+				setThenExpression((ExpCS)newValue);
 				return;
 			case EssentialOCLCSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-				setElseExpression((OclExpressionCS)newValue);
+				setElseExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,13 +285,13 @@ public class IfExpCSImpl extends OclExpressionCSImpl implements IfExpCS {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
-				setCondition((OclExpressionCS)null);
+				setCondition((ExpCS)null);
 				return;
 			case EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-				setThenExpression((OclExpressionCS)null);
+				setThenExpression((ExpCS)null);
 				return;
 			case EssentialOCLCSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-				setElseExpression((OclExpressionCS)null);
+				setElseExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);

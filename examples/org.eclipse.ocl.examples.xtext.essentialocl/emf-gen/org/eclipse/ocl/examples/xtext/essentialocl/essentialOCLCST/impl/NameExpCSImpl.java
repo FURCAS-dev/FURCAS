@@ -12,31 +12,31 @@
  *
  * </copyright>
  *
- * $Id: VariableExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: NameExpCSImpl.java,v 1.1 2010/05/03 05:37:42 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable Exp CS</b></em>'.
+ * An implementation of the model object '<em><b>Named Element Ref CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class VariableExpCSImpl extends OclExpressionCSImpl implements VariableExpCS {
+public abstract class NameExpCSImpl extends TypeExpCSImpl implements NameExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableExpCSImpl() {
+	protected NameExpCSImpl() {
 		super();
 	}
 
@@ -47,7 +47,7 @@ public class VariableExpCSImpl extends OclExpressionCSImpl implements VariableEx
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.VARIABLE_EXP_CS;
+		return EssentialOCLCSTPackage.Literals.NAME_EXP_CS;
 	}
 
-} //VariableExpCSImpl
+} //NamedElementRefCSImpl

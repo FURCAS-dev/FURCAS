@@ -12,21 +12,22 @@
  *
  * </copyright>
  *
- * $Id: OclExpressionCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: TypeExpCS.java,v 1.1 2010/05/03 05:38:25 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ocl Expression CS</b></em>'.
+ * A representation of the model object '<em><b>Type Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getOclExpressionCS()
- * @model
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getTypeExpCS()
+ * @model abstract="true"
  * @generated
  */
-public interface OclExpressionCS extends EObject {
-} // OclExpressionCS
+public interface TypeExpCS extends LiteralExpCS, TypeCS {
+} // TypeExpCS

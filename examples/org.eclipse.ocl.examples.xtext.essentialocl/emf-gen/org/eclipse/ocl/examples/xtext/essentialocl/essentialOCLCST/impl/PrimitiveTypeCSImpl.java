@@ -12,33 +12,32 @@
  *
  * </copyright>
  *
- * $Id: OclExpressionCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: PrimitiveTypeCSImpl.java,v 1.1 2010/05/03 05:37:40 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ocl Expression CS</b></em>'.
+ * An implementation of the model object '<em><b>Primitive Type CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class OclExpressionCSImpl extends EObjectImpl implements OclExpressionCS {
+public class PrimitiveTypeCSImpl extends NamedElementCSImpl implements PrimitiveTypeCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OclExpressionCSImpl() {
+	protected PrimitiveTypeCSImpl() {
 		super();
 	}
 
@@ -49,7 +48,7 @@ public class OclExpressionCSImpl extends EObjectImpl implements OclExpressionCS 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.OCL_EXPRESSION_CS;
+		return EssentialOCLCSTPackage.Literals.PRIMITIVE_TYPE_CS;
 	}
 
-} //OclExpressionCSImpl
+} //PrimitiveTypeCSImpl

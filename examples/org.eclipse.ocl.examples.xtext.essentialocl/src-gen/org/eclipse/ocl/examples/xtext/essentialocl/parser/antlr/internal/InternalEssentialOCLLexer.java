@@ -30,7 +30,9 @@ public class InternalEssentialOCLLexer extends Lexer {
     public static final int T32=32;
     public static final int T17=17;
     public static final int T51=51;
+    public static final int RULE_SINGLE_QUOTED_STRING=6;
     public static final int T46=46;
+    public static final int RULE_DOUBLE_QUOTED_STRING=7;
     public static final int T16=16;
     public static final int T38=38;
     public static final int T41=41;
@@ -41,12 +43,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public static final int T62=62;
     public static final int T44=44;
     public static final int T55=55;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_ML_COMMENT=8;
     public static final int T33=33;
-    public static final int T11=11;
     public static final int T22=22;
     public static final int T50=50;
-    public static final int RULE_STRING_LITERAL=6;
     public static final int T43=43;
     public static final int T12=12;
     public static final int T23=23;
@@ -60,19 +60,20 @@ public class InternalEssentialOCLLexer extends Lexer {
     public static final int T65=65;
     public static final int T56=56;
     public static final int T59=59;
-    public static final int RULE_WS=9;
+    public static final int RULE_WS=10;
     public static final int T48=48;
     public static final int T15=15;
     public static final int T54=54;
     public static final int EOF=-1;
+    public static final int T67=67;
     public static final int T47=47;
-    public static final int Tokens=67;
+    public static final int Tokens=68;
     public static final int T53=53;
     public static final int T60=60;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int RULE_ANY_OTHER=11;
     public static final int T31=31;
     public static final int T49=49;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_SL_COMMENT=9;
     public static final int T27=27;
     public static final int T52=52;
     public static final int T30=30;
@@ -82,32 +83,14 @@ public class InternalEssentialOCLLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g"; }
 
-    // $ANTLR start T11
-    public final void mT11() throws RecognitionException {
-        try {
-            int _type = T11;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:10:5: ( '.' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:10:7: '.'
-            {
-            match('.'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T11
-
     // $ANTLR start T12
     public final void mT12() throws RecognitionException {
         try {
             int _type = T12;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:11:5: ( 'e' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:11:7: 'e'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:10:5: ( '.' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:10:7: '.'
             {
-            match('e'); 
+            match('.'); 
 
             }
 
@@ -122,10 +105,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT13() throws RecognitionException {
         try {
             int _type = T13;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:12:5: ( 'E' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:12:7: 'E'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:11:5: ( 'e' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:11:7: 'e'
             {
-            match('E'); 
+            match('e'); 
 
             }
 
@@ -140,10 +123,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:13:5: ( '+' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:13:7: '+'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:12:5: ( 'E' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:12:7: 'E'
             {
-            match('+'); 
+            match('E'); 
 
             }
 
@@ -158,10 +141,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT15() throws RecognitionException {
         try {
             int _type = T15;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:14:5: ( '-' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:14:7: '-'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:13:5: ( '+' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:13:7: '+'
             {
-            match('-'); 
+            match('+'); 
 
             }
 
@@ -176,11 +159,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT16() throws RecognitionException {
         try {
             int _type = T16;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:15:5: ( 'Tuple' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:15:7: 'Tuple'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:14:5: ( '-' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:14:7: '-'
             {
-            match("Tuple"); 
-
+            match('-'); 
 
             }
 
@@ -195,10 +177,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT17() throws RecognitionException {
         try {
             int _type = T17;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:16:5: ( 'self' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:16:7: 'self'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:15:5: ( 'Boolean' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:15:7: 'Boolean'
             {
-            match("self"); 
+            match("Boolean"); 
 
 
             }
@@ -214,10 +196,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT18() throws RecognitionException {
         try {
             int _type = T18;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:17:5: ( '::' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:17:7: '::'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:16:5: ( 'Integer' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:16:7: 'Integer'
             {
-            match("::"); 
+            match("Integer"); 
 
 
             }
@@ -233,10 +215,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT19() throws RecognitionException {
         try {
             int _type = T19;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:18:5: ( 'Boolean' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:18:7: 'Boolean'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:17:5: ( 'Real' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:17:7: 'Real'
             {
-            match("Boolean"); 
+            match("Real"); 
 
 
             }
@@ -252,10 +234,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT20() throws RecognitionException {
         try {
             int _type = T20;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:19:5: ( 'Integer' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:19:7: 'Integer'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:18:5: ( 'String' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:18:7: 'String'
             {
-            match("Integer"); 
+            match("String"); 
 
 
             }
@@ -271,10 +253,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:20:5: ( 'Real' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:20:7: 'Real'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:19:5: ( 'UnlimitedNatural' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:19:7: 'UnlimitedNatural'
             {
-            match("Real"); 
+            match("UnlimitedNatural"); 
 
 
             }
@@ -290,10 +272,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:21:5: ( 'String' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:21:7: 'String'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:20:5: ( 'OclAny' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:20:7: 'OclAny'
             {
-            match("String"); 
+            match("OclAny"); 
 
 
             }
@@ -309,10 +291,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:22:5: ( 'UnlimitedNatural' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:22:7: 'UnlimitedNatural'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:21:5: ( 'OclInvalid' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:21:7: 'OclInvalid'
             {
-            match("UnlimitedNatural"); 
+            match("OclInvalid"); 
 
 
             }
@@ -328,10 +310,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:23:5: ( 'OclAny' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:23:7: 'OclAny'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:22:5: ( 'OclVoid' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:22:7: 'OclVoid'
             {
-            match("OclAny"); 
+            match("OclVoid"); 
 
 
             }
@@ -347,10 +329,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:24:5: ( 'OclInvalid' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:24:7: 'OclInvalid'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:23:5: ( 'Set' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:23:7: 'Set'
             {
-            match("OclInvalid"); 
+            match("Set"); 
 
 
             }
@@ -366,10 +348,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:25:5: ( 'OclVoid' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:25:7: 'OclVoid'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:24:5: ( 'Bag' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:24:7: 'Bag'
             {
-            match("OclVoid"); 
+            match("Bag"); 
 
 
             }
@@ -385,10 +367,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT27() throws RecognitionException {
         try {
             int _type = T27;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:26:5: ( 'Set' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:26:7: 'Set'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:25:5: ( 'Sequence' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:25:7: 'Sequence'
             {
-            match("Set"); 
+            match("Sequence"); 
 
 
             }
@@ -404,10 +386,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT28() throws RecognitionException {
         try {
             int _type = T28;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:27:5: ( 'Bag' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:27:7: 'Bag'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:26:5: ( 'Collection' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:26:7: 'Collection'
             {
-            match("Bag"); 
+            match("Collection"); 
 
 
             }
@@ -423,10 +405,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT29() throws RecognitionException {
         try {
             int _type = T29;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:28:5: ( 'Sequence' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:28:7: 'Sequence'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:27:5: ( 'OrderedSet' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:27:7: 'OrderedSet'
             {
-            match("Sequence"); 
+            match("OrderedSet"); 
 
 
             }
@@ -442,11 +424,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT30() throws RecognitionException {
         try {
             int _type = T30;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:29:5: ( 'Collection' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:29:7: 'Collection'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:28:5: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:28:7: '('
             {
-            match("Collection"); 
-
+            match('('); 
 
             }
 
@@ -461,11 +442,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT31() throws RecognitionException {
         try {
             int _type = T31;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:30:5: ( 'OrderedSet' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:30:7: 'OrderedSet'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:29:5: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:29:7: ')'
             {
-            match("OrderedSet"); 
-
+            match(')'); 
 
             }
 
@@ -480,10 +460,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT32() throws RecognitionException {
         try {
             int _type = T32;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:31:5: ( '(' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:31:7: '('
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:30:5: ( 'Tuple' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:30:7: 'Tuple'
             {
-            match('('); 
+            match("Tuple"); 
+
 
             }
 
@@ -498,10 +479,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT33() throws RecognitionException {
         try {
             int _type = T33;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:32:5: ( ')' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:32:7: ')'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:31:5: ( ',' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:31:7: ','
             {
-            match(')'); 
+            match(','); 
 
             }
 
@@ -516,10 +497,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT34() throws RecognitionException {
         try {
             int _type = T34;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:33:5: ( ',' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:33:7: ','
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:32:5: ( ':' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:32:7: ':'
             {
-            match(','); 
+            match(':'); 
 
             }
 
@@ -534,10 +515,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT35() throws RecognitionException {
         try {
             int _type = T35;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:34:5: ( ':' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:34:7: ':'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:33:5: ( '{' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:33:7: '{'
             {
-            match(':'); 
+            match('{'); 
 
             }
 
@@ -552,10 +533,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:35:5: ( '{' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:35:7: '{'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:34:5: ( '}' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:34:7: '}'
             {
-            match('{'); 
+            match('}'); 
 
             }
 
@@ -570,10 +551,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:36:5: ( '}' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:36:7: '}'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:35:5: ( '..' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:35:7: '..'
             {
-            match('}'); 
+            match(".."); 
+
 
             }
 
@@ -588,11 +570,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:37:5: ( '..' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:37:7: '..'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:36:5: ( '=' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:36:7: '='
             {
-            match(".."); 
-
+            match('='); 
 
             }
 
@@ -607,10 +588,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:38:5: ( '=' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:38:7: '='
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:37:5: ( 'true' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:37:7: 'true'
             {
-            match('='); 
+            match("true"); 
+
 
             }
 
@@ -625,10 +607,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:39:5: ( 'true' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:39:7: 'true'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:38:5: ( 'false' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:38:7: 'false'
             {
-            match("true"); 
+            match("false"); 
 
 
             }
@@ -644,10 +626,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:40:5: ( 'false' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:40:7: 'false'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:39:5: ( 'invalid' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:39:7: 'invalid'
             {
-            match("false"); 
+            match("invalid"); 
 
 
             }
@@ -663,10 +645,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:41:5: ( '*' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:41:7: '*'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:40:5: ( 'null' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:40:7: 'null'
             {
-            match('*'); 
+            match("null"); 
+
 
             }
 
@@ -681,10 +664,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:42:5: ( 'invalid' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:42:7: 'invalid'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:41:5: ( 'implies' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:41:7: 'implies'
             {
-            match("invalid"); 
+            match("implies"); 
 
 
             }
@@ -700,10 +683,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:43:5: ( 'null' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:43:7: 'null'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:42:5: ( 'xor' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:42:7: 'xor'
             {
-            match("null"); 
+            match("xor"); 
 
 
             }
@@ -719,10 +702,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:44:5: ( 'implies' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:44:7: 'implies'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:43:5: ( 'or' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:43:7: 'or'
             {
-            match("implies"); 
+            match("or"); 
 
 
             }
@@ -738,10 +721,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:45:5: ( 'xor' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:45:7: 'xor'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:44:5: ( 'and' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:44:7: 'and'
             {
-            match("xor"); 
+            match("and"); 
 
 
             }
@@ -757,10 +740,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:46:5: ( 'or' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:46:7: 'or'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:45:5: ( '<>' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:45:7: '<>'
             {
-            match("or"); 
+            match("<>"); 
 
 
             }
@@ -776,11 +759,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:47:5: ( 'and' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:47:7: 'and'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:46:5: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:46:7: '>'
             {
-            match("and"); 
-
+            match('>'); 
 
             }
 
@@ -795,11 +777,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:48:5: ( '<>' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:48:7: '<>'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:47:5: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:47:7: '<'
             {
-            match("<>"); 
-
+            match('<'); 
 
             }
 
@@ -814,10 +795,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:49:5: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:49:7: '>'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:48:5: ( '>=' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:48:7: '>='
             {
-            match('>'); 
+            match(">="); 
+
 
             }
 
@@ -832,10 +814,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:50:5: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:50:7: '<'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:49:5: ( '<=' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:49:7: '<='
             {
-            match('<'); 
+            match("<="); 
+
 
             }
 
@@ -850,11 +833,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:51:5: ( '>=' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:51:7: '>='
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:50:5: ( '*' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:50:7: '*'
             {
-            match(">="); 
-
+            match('*'); 
 
             }
 
@@ -869,11 +851,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:52:5: ( '<=' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:52:7: '<='
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:51:5: ( '/' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:51:7: '/'
             {
-            match("<="); 
-
+            match('/'); 
 
             }
 
@@ -888,10 +869,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:53:5: ( '/' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:53:7: '/'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:52:5: ( 'not' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:52:7: 'not'
             {
-            match('/'); 
+            match("not"); 
+
 
             }
 
@@ -906,10 +888,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:54:5: ( 'not' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:54:7: 'not'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:53:5: ( '->' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:53:7: '->'
             {
-            match("not"); 
+            match("->"); 
 
 
             }
@@ -925,11 +907,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:55:5: ( '->' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:55:7: '->'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:54:5: ( ';' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:54:7: ';'
             {
-            match("->"); 
-
+            match(';'); 
 
             }
 
@@ -944,10 +925,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:56:5: ( ';' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:56:7: ';'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:55:5: ( '|' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:55:7: '|'
             {
-            match(';'); 
+            match('|'); 
 
             }
 
@@ -962,10 +943,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:57:5: ( '|' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:57:7: '|'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:56:5: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:56:7: '['
             {
-            match('|'); 
+            match('['); 
 
             }
 
@@ -980,10 +961,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:58:5: ( '[' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:58:7: '['
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:57:5: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:57:7: ']'
             {
-            match('['); 
+            match(']'); 
 
             }
 
@@ -998,10 +979,11 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:59:5: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:59:7: ']'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:58:5: ( 'self' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:58:7: 'self'
             {
-            match(']'); 
+            match("self"); 
+
 
             }
 
@@ -1016,10 +998,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:60:5: ( 'if' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:60:7: 'if'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:59:5: ( '::' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:59:7: '::'
             {
-            match("if"); 
+            match("::"); 
 
 
             }
@@ -1035,10 +1017,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:61:5: ( 'then' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:61:7: 'then'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:60:5: ( 'if' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:60:7: 'if'
             {
-            match("then"); 
+            match("if"); 
 
 
             }
@@ -1054,10 +1036,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:62:5: ( 'else' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:62:7: 'else'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:61:5: ( 'then' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:61:7: 'then'
             {
-            match("else"); 
+            match("then"); 
 
 
             }
@@ -1073,10 +1055,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:63:5: ( 'endif' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:63:7: 'endif'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:62:5: ( 'else' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:62:7: 'else'
             {
-            match("endif"); 
+            match("else"); 
 
 
             }
@@ -1092,10 +1074,10 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:64:5: ( 'let' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:64:7: 'let'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:63:5: ( 'endif' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:63:7: 'endif'
             {
-            match("let"); 
+            match("endif"); 
 
 
             }
@@ -1111,6 +1093,25 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:64:5: ( 'let' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:64:7: 'let'
+            {
+            match("let"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T66
+
+    // $ANTLR start T67
+    public final void mT67() throws RecognitionException {
+        try {
+            int _type = T67;
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:65:5: ( 'in' )
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:65:7: 'in'
             {
@@ -1124,17 +1125,17 @@ public class InternalEssentialOCLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T66
+    // $ANTLR end T67
 
-    // $ANTLR start RULE_STRING_LITERAL
-    public final void mRULE_STRING_LITERAL() throws RecognitionException {
+    // $ANTLR start RULE_DOUBLE_QUOTED_STRING
+    public final void mRULE_DOUBLE_QUOTED_STRING() throws RecognitionException {
         try {
-            int _type = RULE_STRING_LITERAL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4568:21: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4568:23: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            int _type = RULE_DOUBLE_QUOTED_STRING;
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4368:27: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4368:29: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
-            match('\''); 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4568:28: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            match('\"'); 
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4368:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop1:
             do {
                 int alt1=3;
@@ -1143,14 +1144,14 @@ public class InternalEssentialOCLLexer extends Lexer {
                 if ( (LA1_0=='\\') ) {
                     alt1=1;
                 }
-                else if ( ((LA1_0>='\u0000' && LA1_0<='&')||(LA1_0>='(' && LA1_0<='[')||(LA1_0>=']' && LA1_0<='\uFFFE')) ) {
+                else if ( ((LA1_0>='\u0000' && LA1_0<='!')||(LA1_0>='#' && LA1_0<='[')||(LA1_0>=']' && LA1_0<='\uFFFE')) ) {
                     alt1=2;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4568:29: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4368:34: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1167,9 +1168,9 @@ public class InternalEssentialOCLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4568:70: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4368:75: ~ ( ( '\\\\' | '\"' ) )
             	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
 
             	    }
@@ -1188,6 +1189,79 @@ public class InternalEssentialOCLLexer extends Lexer {
                 }
             } while (true);
 
+            match('\"'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end RULE_DOUBLE_QUOTED_STRING
+
+    // $ANTLR start RULE_SINGLE_QUOTED_STRING
+    public final void mRULE_SINGLE_QUOTED_STRING() throws RecognitionException {
+        try {
+            int _type = RULE_SINGLE_QUOTED_STRING;
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4370:27: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4370:29: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            {
+            match('\''); 
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4370:34: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            loop2:
+            do {
+                int alt2=3;
+                int LA2_0 = input.LA(1);
+
+                if ( (LA2_0=='\\') ) {
+                    alt2=1;
+                }
+                else if ( ((LA2_0>='\u0000' && LA2_0<='&')||(LA2_0>='(' && LA2_0<='[')||(LA2_0>=']' && LA2_0<='\uFFFE')) ) {
+                    alt2=2;
+                }
+
+
+                switch (alt2) {
+            	case 1 :
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4370:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    {
+            	    match('\\'); 
+            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recover(mse);    throw mse;
+            	    }
+
+
+            	    }
+            	    break;
+            	case 2 :
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4370:76: ~ ( ( '\\\\' | '\\'' ) )
+            	    {
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recover(mse);    throw mse;
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop2;
+                }
+            } while (true);
+
             match('\''); 
 
             }
@@ -1197,40 +1271,40 @@ public class InternalEssentialOCLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end RULE_STRING_LITERAL
+    // $ANTLR end RULE_SINGLE_QUOTED_STRING
 
     // $ANTLR start RULE_ID_TERMINAL
     public final void mRULE_ID_TERMINAL() throws RecognitionException {
         try {
             int _type = RULE_ID_TERMINAL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4570:18: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_STRING_LITERAL ) )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4570:20: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_STRING_LITERAL )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4372:18: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4372:20: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4570:20: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_STRING_LITERAL )
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4372:20: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-            if ( (LA3_0=='_') ) {
-                int LA3_1 = input.LA(2);
+            if ( (LA4_0=='_') ) {
+                int LA4_1 = input.LA(2);
 
-                if ( (LA3_1=='\'') ) {
-                    alt3=2;
+                if ( (LA4_1=='\'') ) {
+                    alt4=2;
                 }
                 else {
-                    alt3=1;}
+                    alt4=1;}
             }
-            else if ( ((LA3_0>='A' && LA3_0<='Z')||(LA3_0>='a' && LA3_0<='z')) ) {
-                alt3=1;
+            else if ( ((LA4_0>='A' && LA4_0<='Z')||(LA4_0>='a' && LA4_0<='z')) ) {
+                alt4=1;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("4570:20: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_STRING_LITERAL )", 3, 0, input);
+                    new NoViableAltException("4372:20: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '_' RULE_SINGLE_QUOTED_STRING )", 4, 0, input);
 
                 throw nvae;
             }
-            switch (alt3) {
+            switch (alt4) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4570:21: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4372:21: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                         input.consume();
@@ -1242,18 +1316,18 @@ public class InternalEssentialOCLLexer extends Lexer {
                         recover(mse);    throw mse;
                     }
 
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4570:45: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-                    loop2:
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4372:45: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    loop3:
                     do {
-                        int alt2=2;
-                        int LA2_0 = input.LA(1);
+                        int alt3=2;
+                        int LA3_0 = input.LA(1);
 
-                        if ( ((LA2_0>='0' && LA2_0<='9')||(LA2_0>='A' && LA2_0<='Z')||LA2_0=='_'||(LA2_0>='a' && LA2_0<='z')) ) {
-                            alt2=1;
+                        if ( ((LA3_0>='0' && LA3_0<='9')||(LA3_0>='A' && LA3_0<='Z')||LA3_0=='_'||(LA3_0>='a' && LA3_0<='z')) ) {
+                            alt3=1;
                         }
 
 
-                        switch (alt2) {
+                        switch (alt3) {
                     	case 1 :
                     	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:
                     	    {
@@ -1272,7 +1346,7 @@ public class InternalEssentialOCLLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop2;
+                    	    break loop3;
                         }
                     } while (true);
 
@@ -1280,10 +1354,10 @@ public class InternalEssentialOCLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4570:79: '_' RULE_STRING_LITERAL
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4372:79: '_' RULE_SINGLE_QUOTED_STRING
                     {
                     match('_'); 
-                    mRULE_STRING_LITERAL(); 
+                    mRULE_SINGLE_QUOTED_STRING(); 
 
                     }
                     break;
@@ -1304,24 +1378,24 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4572:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4572:12: ( '0' .. '9' )+
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4374:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4374:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4572:12: ( '0' .. '9' )+
-            int cnt4=0;
-            loop4:
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4374:12: ( '0' .. '9' )+
+            int cnt5=0;
+            loop5:
             do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+                int alt5=2;
+                int LA5_0 = input.LA(1);
 
-                if ( ((LA4_0>='0' && LA4_0<='9')) ) {
-                    alt4=1;
+                if ( ((LA5_0>='0' && LA5_0<='9')) ) {
+                    alt5=1;
                 }
 
 
-                switch (alt4) {
+                switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4572:13: '0' .. '9'
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4374:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1329,12 +1403,12 @@ public class InternalEssentialOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt4 >= 1 ) break loop4;
+            	    if ( cnt5 >= 1 ) break loop5;
                         EarlyExitException eee =
-                            new EarlyExitException(4, input);
+                            new EarlyExitException(5, input);
                         throw eee;
                 }
-                cnt4++;
+                cnt5++;
             } while (true);
 
 
@@ -1351,37 +1425,37 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4574:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4574:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4376:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4376:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4574:24: ( options {greedy=false; } : . )*
-            loop5:
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4376:24: ( options {greedy=false; } : . )*
+            loop6:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-                if ( (LA5_0=='*') ) {
-                    int LA5_1 = input.LA(2);
+                if ( (LA6_0=='*') ) {
+                    int LA6_1 = input.LA(2);
 
-                    if ( (LA5_1=='/') ) {
-                        alt5=2;
+                    if ( (LA6_1=='/') ) {
+                        alt6=2;
                     }
-                    else if ( ((LA5_1>='\u0000' && LA5_1<='.')||(LA5_1>='0' && LA5_1<='\uFFFE')) ) {
-                        alt5=1;
+                    else if ( ((LA6_1>='\u0000' && LA6_1<='.')||(LA6_1>='0' && LA6_1<='\uFFFE')) ) {
+                        alt6=1;
                     }
 
 
                 }
-                else if ( ((LA5_0>='\u0000' && LA5_0<=')')||(LA5_0>='+' && LA5_0<='\uFFFE')) ) {
-                    alt5=1;
+                else if ( ((LA6_0>='\u0000' && LA6_0<=')')||(LA6_0>='+' && LA6_0<='\uFFFE')) ) {
+                    alt6=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4574:52: .
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4376:52: .
             	    {
             	    matchAny(); 
 
@@ -1389,7 +1463,7 @@ public class InternalEssentialOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop5;
+            	    break loop6;
                 }
             } while (true);
 
@@ -1409,25 +1483,25 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("--"); 
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop6:
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            loop7:
             do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( ((LA6_0>='\u0000' && LA6_0<='\t')||(LA6_0>='\u000B' && LA6_0<='\f')||(LA6_0>='\u000E' && LA6_0<='\uFFFE')) ) {
-                    alt6=1;
+                if ( ((LA7_0>='\u0000' && LA7_0<='\t')||(LA7_0>='\u000B' && LA7_0<='\f')||(LA7_0>='\u000E' && LA7_0<='\uFFFE')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt6) {
+                switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1444,31 +1518,31 @@ public class InternalEssentialOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop6;
+            	    break loop7;
                 }
             } while (true);
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:40: ( ( '\\r' )? '\\n' )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:40: ( ( '\\r' )? '\\n' )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA8_0=='\n'||LA8_0=='\r') ) {
-                alt8=1;
+            if ( (LA9_0=='\n'||LA9_0=='\r') ) {
+                alt9=1;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:41: ( '\\r' )?
-                    int alt7=2;
-                    int LA7_0 = input.LA(1);
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:41: ( '\\r' )?
+                    int alt8=2;
+                    int LA8_0 = input.LA(1);
 
-                    if ( (LA7_0=='\r') ) {
-                        alt7=1;
+                    if ( (LA8_0=='\r') ) {
+                        alt8=1;
                     }
-                    switch (alt7) {
+                    switch (alt8) {
                         case 1 :
-                            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4576:41: '\\r'
+                            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4378:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1498,22 +1572,22 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4578:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4578:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4380:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4380:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4578:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt9=0;
-            loop9:
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4380:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            int cnt10=0;
+            loop10:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( ((LA9_0>='\t' && LA9_0<='\n')||LA9_0=='\r'||LA9_0==' ') ) {
-                    alt9=1;
+                if ( ((LA10_0>='\t' && LA10_0<='\n')||LA10_0=='\r'||LA10_0==' ') ) {
+                    alt10=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt10) {
             	case 1 :
             	    // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:
             	    {
@@ -1532,12 +1606,12 @@ public class InternalEssentialOCLLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt9 >= 1 ) break loop9;
+            	    if ( cnt10 >= 1 ) break loop10;
                         EarlyExitException eee =
-                            new EarlyExitException(9, input);
+                            new EarlyExitException(10, input);
                         throw eee;
                 }
-                cnt9++;
+                cnt10++;
             } while (true);
 
 
@@ -1554,8 +1628,8 @@ public class InternalEssentialOCLLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4580:16: ( . )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4580:18: .
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4382:16: ( . )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4382:18: .
             {
             matchAny(); 
 
@@ -1569,73 +1643,1523 @@ public class InternalEssentialOCLLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:8: ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | RULE_STRING_LITERAL | RULE_ID_TERMINAL | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt10=63;
-        int LA10_0 = input.LA(1);
+        // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:8: ( T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID_TERMINAL | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt11=64;
+        int LA11_0 = input.LA(1);
 
-        if ( (LA10_0=='.') ) {
-            int LA10_1 = input.LA(2);
+        if ( (LA11_0=='.') ) {
+            alt11 = mTokensHelper001();
+        }
+        else if ( (LA11_0=='e') ) {
+            alt11 = mTokensHelper002();
+        }
+        else if ( (LA11_0=='E') ) {
+            alt11 = mTokensHelper003();
+        }
+        else if ( (LA11_0=='+') ) {
+            alt11 = mTokensHelper004();
+        }
+        else if ( (LA11_0=='-') ) {
+            alt11 = mTokensHelper005();
+        }
+        else if ( (LA11_0=='B') ) {
+            alt11 = mTokensHelper006();
+        }
+        else if ( (LA11_0=='I') ) {
+            alt11 = mTokensHelper007();
+        }
+        else if ( (LA11_0=='R') ) {
+            alt11 = mTokensHelper008();
+        }
+        else if ( (LA11_0=='S') ) {
+            alt11 = mTokensHelper009();
+        }
+        else if ( (LA11_0=='U') ) {
+            alt11 = mTokensHelper010();
+        }
+        else if ( (LA11_0=='O') ) {
+            alt11 = mTokensHelper011();
+        }
+        else if ( (LA11_0=='C') ) {
+            alt11 = mTokensHelper012();
+        }
+        else if ( (LA11_0=='(') ) {
+            alt11 = mTokensHelper013();
+        }
+        else if ( (LA11_0==')') ) {
+            alt11 = mTokensHelper014();
+        }
+        else if ( (LA11_0=='T') ) {
+            alt11 = mTokensHelper015();
+        }
+        else if ( (LA11_0==',') ) {
+            alt11 = mTokensHelper016();
+        }
+        else if ( (LA11_0==':') ) {
+            alt11 = mTokensHelper017();
+        }
+        else if ( (LA11_0=='{') ) {
+            alt11 = mTokensHelper018();
+        }
+        else if ( (LA11_0=='}') ) {
+            alt11 = mTokensHelper019();
+        }
+        else if ( (LA11_0=='=') ) {
+            alt11 = mTokensHelper020();
+        }
+        else if ( (LA11_0=='t') ) {
+            alt11 = mTokensHelper021();
+        }
+        else if ( (LA11_0=='f') ) {
+            alt11 = mTokensHelper022();
+        }
+        else if ( (LA11_0=='i') ) {
+            alt11 = mTokensHelper023();
+        }
+        else if ( (LA11_0=='n') ) {
+            alt11 = mTokensHelper024();
+        }
+        else if ( (LA11_0=='x') ) {
+            alt11 = mTokensHelper025();
+        }
+        else if ( (LA11_0=='o') ) {
+            alt11 = mTokensHelper026();
+        }
+        else if ( (LA11_0=='a') ) {
+            alt11 = mTokensHelper027();
+        }
+        else if ( (LA11_0=='<') ) {
+            alt11 = mTokensHelper028();
+        }
+        else if ( (LA11_0=='>') ) {
+            alt11 = mTokensHelper029();
+        }
+        else if ( (LA11_0=='*') ) {
+            alt11 = mTokensHelper030();
+        }
+        else if ( (LA11_0=='/') ) {
+            alt11 = mTokensHelper031();
+        }
+        else if ( (LA11_0==';') ) {
+            alt11 = mTokensHelper032();
+        }
+        else if ( (LA11_0=='|') ) {
+            alt11 = mTokensHelper033();
+        }
+        else if ( (LA11_0=='[') ) {
+            alt11 = mTokensHelper034();
+        }
+        else if ( (LA11_0==']') ) {
+            alt11 = mTokensHelper035();
+        }
+        else if ( (LA11_0=='s') ) {
+            alt11 = mTokensHelper036();
+        }
+        else if ( (LA11_0=='l') ) {
+            alt11 = mTokensHelper037();
+        }
+        else if ( (LA11_0=='\"') ) {
+            alt11 = mTokensHelper038();
+        }
+        else if ( (LA11_0=='\'') ) {
+            alt11 = mTokensHelper039();
+        }
+        else if ( (LA11_0=='_') ) {
+            alt11 = mTokensHelper040();
+        }
+        else if ( (LA11_0=='A'||LA11_0=='D'||(LA11_0>='F' && LA11_0<='H')||(LA11_0>='J' && LA11_0<='N')||(LA11_0>='P' && LA11_0<='Q')||(LA11_0>='V' && LA11_0<='Z')||(LA11_0>='b' && LA11_0<='d')||(LA11_0>='g' && LA11_0<='h')||(LA11_0>='j' && LA11_0<='k')||LA11_0=='m'||(LA11_0>='p' && LA11_0<='r')||(LA11_0>='u' && LA11_0<='w')||(LA11_0>='y' && LA11_0<='z')) ) {
+            alt11 = mTokensHelper041();
+        }
+        else if ( ((LA11_0>='0' && LA11_0<='9')) ) {
+            alt11 = mTokensHelper042();
+        }
+        else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {
+            alt11 = mTokensHelper043();
+        }
+        else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||LA11_0=='!'||(LA11_0>='#' && LA11_0<='&')||(LA11_0>='?' && LA11_0<='@')||LA11_0=='\\'||LA11_0=='^'||LA11_0=='`'||(LA11_0>='~' && LA11_0<='\uFFFE')) ) {
+            alt11 = mTokensHelper044();
+        }
+        else {
+            alt11 = mTokensHelper045();
+        }
+        switch (alt11) {
+            case 1 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:10: T12
+                {
+                mT12(); 
 
-            if ( (LA10_1=='.') ) {
-                alt10=28;
+                }
+                break;
+            case 2 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:14: T13
+                {
+                mT13(); 
+
+                }
+                break;
+            case 3 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:18: T14
+                {
+                mT14(); 
+
+                }
+                break;
+            case 4 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:22: T15
+                {
+                mT15(); 
+
+                }
+                break;
+            case 5 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:26: T16
+                {
+                mT16(); 
+
+                }
+                break;
+            case 6 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:30: T17
+                {
+                mT17(); 
+
+                }
+                break;
+            case 7 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:34: T18
+                {
+                mT18(); 
+
+                }
+                break;
+            case 8 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:38: T19
+                {
+                mT19(); 
+
+                }
+                break;
+            case 9 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:42: T20
+                {
+                mT20(); 
+
+                }
+                break;
+            case 10 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:46: T21
+                {
+                mT21(); 
+
+                }
+                break;
+            case 11 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:50: T22
+                {
+                mT22(); 
+
+                }
+                break;
+            case 12 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:54: T23
+                {
+                mT23(); 
+
+                }
+                break;
+            case 13 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:58: T24
+                {
+                mT24(); 
+
+                }
+                break;
+            case 14 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:62: T25
+                {
+                mT25(); 
+
+                }
+                break;
+            case 15 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:66: T26
+                {
+                mT26(); 
+
+                }
+                break;
+            case 16 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:70: T27
+                {
+                mT27(); 
+
+                }
+                break;
+            case 17 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:74: T28
+                {
+                mT28(); 
+
+                }
+                break;
+            case 18 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:78: T29
+                {
+                mT29(); 
+
+                }
+                break;
+            case 19 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:82: T30
+                {
+                mT30(); 
+
+                }
+                break;
+            case 20 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:86: T31
+                {
+                mT31(); 
+
+                }
+                break;
+            case 21 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:90: T32
+                {
+                mT32(); 
+
+                }
+                break;
+            case 22 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:94: T33
+                {
+                mT33(); 
+
+                }
+                break;
+            case 23 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:98: T34
+                {
+                mT34(); 
+
+                }
+                break;
+            case 24 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:102: T35
+                {
+                mT35(); 
+
+                }
+                break;
+            case 25 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:106: T36
+                {
+                mT36(); 
+
+                }
+                break;
+            case 26 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:110: T37
+                {
+                mT37(); 
+
+                }
+                break;
+            case 27 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:114: T38
+                {
+                mT38(); 
+
+                }
+                break;
+            case 28 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:118: T39
+                {
+                mT39(); 
+
+                }
+                break;
+            case 29 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:122: T40
+                {
+                mT40(); 
+
+                }
+                break;
+            case 30 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:126: T41
+                {
+                mT41(); 
+
+                }
+                break;
+            case 31 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:130: T42
+                {
+                mT42(); 
+
+                }
+                break;
+            case 32 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:134: T43
+                {
+                mT43(); 
+
+                }
+                break;
+            case 33 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:138: T44
+                {
+                mT44(); 
+
+                }
+                break;
+            case 34 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:142: T45
+                {
+                mT45(); 
+
+                }
+                break;
+            case 35 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:146: T46
+                {
+                mT46(); 
+
+                }
+                break;
+            case 36 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:150: T47
+                {
+                mT47(); 
+
+                }
+                break;
+            case 37 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:154: T48
+                {
+                mT48(); 
+
+                }
+                break;
+            case 38 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:158: T49
+                {
+                mT49(); 
+
+                }
+                break;
+            case 39 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:162: T50
+                {
+                mT50(); 
+
+                }
+                break;
+            case 40 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:166: T51
+                {
+                mT51(); 
+
+                }
+                break;
+            case 41 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:170: T52
+                {
+                mT52(); 
+
+                }
+                break;
+            case 42 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:174: T53
+                {
+                mT53(); 
+
+                }
+                break;
+            case 43 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:178: T54
+                {
+                mT54(); 
+
+                }
+                break;
+            case 44 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:182: T55
+                {
+                mT55(); 
+
+                }
+                break;
+            case 45 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:186: T56
+                {
+                mT56(); 
+
+                }
+                break;
+            case 46 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:190: T57
+                {
+                mT57(); 
+
+                }
+                break;
+            case 47 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:194: T58
+                {
+                mT58(); 
+
+                }
+                break;
+            case 48 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:198: T59
+                {
+                mT59(); 
+
+                }
+                break;
+            case 49 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:202: T60
+                {
+                mT60(); 
+
+                }
+                break;
+            case 50 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:206: T61
+                {
+                mT61(); 
+
+                }
+                break;
+            case 51 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:210: T62
+                {
+                mT62(); 
+
+                }
+                break;
+            case 52 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:214: T63
+                {
+                mT63(); 
+
+                }
+                break;
+            case 53 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:218: T64
+                {
+                mT64(); 
+
+                }
+                break;
+            case 54 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:222: T65
+                {
+                mT65(); 
+
+                }
+                break;
+            case 55 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:226: T66
+                {
+                mT66(); 
+
+                }
+                break;
+            case 56 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:230: T67
+                {
+                mT67(); 
+
+                }
+                break;
+            case 57 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:234: RULE_DOUBLE_QUOTED_STRING
+                {
+                mRULE_DOUBLE_QUOTED_STRING(); 
+
+                }
+                break;
+            case 58 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:260: RULE_SINGLE_QUOTED_STRING
+                {
+                mRULE_SINGLE_QUOTED_STRING(); 
+
+                }
+                break;
+            case 59 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:286: RULE_ID_TERMINAL
+                {
+                mRULE_ID_TERMINAL(); 
+
+                }
+                break;
+            case 60 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:303: RULE_INT
+                {
+                mRULE_INT(); 
+
+                }
+                break;
+            case 61 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:312: RULE_ML_COMMENT
+                {
+                mRULE_ML_COMMENT(); 
+
+                }
+                break;
+            case 62 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:328: RULE_SL_COMMENT
+                {
+                mRULE_SL_COMMENT(); 
+
+                }
+                break;
+            case 63 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:344: RULE_WS
+                {
+                mRULE_WS(); 
+
+                }
+                break;
+            case 64 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:352: RULE_ANY_OTHER
+                {
+                mRULE_ANY_OTHER(); 
+
+                }
+                break;
+
+        }
+
+    }
+    private int mTokensHelper001() throws RecognitionException {
+        int LA11_1 = input.LA(2);
+
+        if ( (LA11_1=='.') ) {
+            return 26;
+        }
+        else {
+            return 1;}
+    }
+
+    private int mTokensHelper002() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'l':
+            {
+            int LA11_47 = input.LA(3);
+
+            if ( (LA11_47=='s') ) {
+                int LA11_104 = input.LA(4);
+
+                if ( (LA11_104=='e') ) {
+                    int LA11_132 = input.LA(5);
+
+                    if ( ((LA11_132>='0' && LA11_132<='9')||(LA11_132>='A' && LA11_132<='Z')||LA11_132=='_'||(LA11_132>='a' && LA11_132<='z')) ) {
+                        return 59;
+                    }
+                    else {
+                        return 53;}
+                }
+                else {
+                    return 59;}
             }
             else {
-                alt10=1;}
+                return 59;}
+            }
+        case 'n':
+            {
+            int LA11_48 = input.LA(3);
+
+            if ( (LA11_48=='d') ) {
+                int LA11_105 = input.LA(4);
+
+                if ( (LA11_105=='i') ) {
+                    int LA11_133 = input.LA(5);
+
+                    if ( (LA11_133=='f') ) {
+                        int LA11_160 = input.LA(6);
+
+                        if ( ((LA11_160>='0' && LA11_160<='9')||(LA11_160>='A' && LA11_160<='Z')||LA11_160=='_'||(LA11_160>='a' && LA11_160<='z')) ) {
+                            return 59;
+                        }
+                        else {
+                            return 54;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case 'A':
+        case 'B':
+        case 'C':
+        case 'D':
+        case 'E':
+        case 'F':
+        case 'G':
+        case 'H':
+        case 'I':
+        case 'J':
+        case 'K':
+        case 'L':
+        case 'M':
+        case 'N':
+        case 'O':
+        case 'P':
+        case 'Q':
+        case 'R':
+        case 'S':
+        case 'T':
+        case 'U':
+        case 'V':
+        case 'W':
+        case 'X':
+        case 'Y':
+        case 'Z':
+        case '_':
+        case 'a':
+        case 'b':
+        case 'c':
+        case 'd':
+        case 'e':
+        case 'f':
+        case 'g':
+        case 'h':
+        case 'i':
+        case 'j':
+        case 'k':
+        case 'm':
+        case 'o':
+        case 'p':
+        case 'q':
+        case 'r':
+        case 's':
+        case 't':
+        case 'u':
+        case 'v':
+        case 'w':
+        case 'x':
+        case 'y':
+        case 'z':
+            {
+            return 59;
+            }
+        default:
+            return 2;}
+
+    }
+
+    private int mTokensHelper003() throws RecognitionException {
+        int LA11_3 = input.LA(2);
+
+        if ( ((LA11_3>='0' && LA11_3<='9')||(LA11_3>='A' && LA11_3<='Z')||LA11_3=='_'||(LA11_3>='a' && LA11_3<='z')) ) {
+            return 59;
         }
-        else if ( (LA10_0=='e') ) {
-            switch ( input.LA(2) ) {
-            case 'n':
-                {
-                int LA10_46 = input.LA(3);
+        else {
+            return 3;}
+    }
 
-                if ( (LA10_46=='d') ) {
-                    int LA10_102 = input.LA(4);
+    private int mTokensHelper004() throws RecognitionException {
+        return 4;
+    }
 
-                    if ( (LA10_102=='i') ) {
-                        int LA10_130 = input.LA(5);
+    private int mTokensHelper005() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case '>':
+            {
+            return 44;
+            }
+        case '-':
+            {
+            return 62;
+            }
+        default:
+            return 5;}
 
-                        if ( (LA10_130=='f') ) {
-                            int LA10_157 = input.LA(6);
+    }
 
-                            if ( ((LA10_157>='0' && LA10_157<='9')||(LA10_157>='A' && LA10_157<='Z')||LA10_157=='_'||(LA10_157>='a' && LA10_157<='z')) ) {
-                                alt10=58;
+    private int mTokensHelper006() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'o':
+            {
+            int LA11_56 = input.LA(3);
+
+            if ( (LA11_56=='o') ) {
+                int LA11_106 = input.LA(4);
+
+                if ( (LA11_106=='l') ) {
+                    int LA11_134 = input.LA(5);
+
+                    if ( (LA11_134=='e') ) {
+                        int LA11_161 = input.LA(6);
+
+                        if ( (LA11_161=='a') ) {
+                            int LA11_181 = input.LA(7);
+
+                            if ( (LA11_181=='n') ) {
+                                int LA11_195 = input.LA(8);
+
+                                if ( ((LA11_195>='0' && LA11_195<='9')||(LA11_195>='A' && LA11_195<='Z')||LA11_195=='_'||(LA11_195>='a' && LA11_195<='z')) ) {
+                                    return 59;
+                                }
+                                else {
+                                    return 6;}
                             }
                             else {
-                                alt10=54;}
+                                return 59;}
                         }
                         else {
-                            alt10=58;}
+                            return 59;}
                     }
                     else {
-                        alt10=58;}
+                        return 59;}
                 }
                 else {
-                    alt10=58;}
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        case 'a':
+            {
+            int LA11_57 = input.LA(3);
+
+            if ( (LA11_57=='g') ) {
+                int LA11_107 = input.LA(4);
+
+                if ( ((LA11_107>='0' && LA11_107<='9')||(LA11_107>='A' && LA11_107<='Z')||LA11_107=='_'||(LA11_107>='a' && LA11_107<='z')) ) {
+                    return 59;
                 }
-                break;
-            case 'l':
+                else {
+                    return 15;}
+            }
+            else {
+                return 59;}
+            }
+        default:
+            return 59;}
+
+    }
+
+    private int mTokensHelper007() throws RecognitionException {
+        int LA11_7 = input.LA(2);
+
+        if ( (LA11_7=='n') ) {
+            int LA11_58 = input.LA(3);
+
+            if ( (LA11_58=='t') ) {
+                int LA11_108 = input.LA(4);
+
+                if ( (LA11_108=='e') ) {
+                    int LA11_136 = input.LA(5);
+
+                    if ( (LA11_136=='g') ) {
+                        int LA11_162 = input.LA(6);
+
+                        if ( (LA11_162=='e') ) {
+                            int LA11_182 = input.LA(7);
+
+                            if ( (LA11_182=='r') ) {
+                                int LA11_196 = input.LA(8);
+
+                                if ( ((LA11_196>='0' && LA11_196<='9')||(LA11_196>='A' && LA11_196<='Z')||LA11_196=='_'||(LA11_196>='a' && LA11_196<='z')) ) {
+                                    return 59;
+                                }
+                                else {
+                                    return 7;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper008() throws RecognitionException {
+        int LA11_8 = input.LA(2);
+
+        if ( (LA11_8=='e') ) {
+            int LA11_59 = input.LA(3);
+
+            if ( (LA11_59=='a') ) {
+                int LA11_109 = input.LA(4);
+
+                if ( (LA11_109=='l') ) {
+                    int LA11_137 = input.LA(5);
+
+                    if ( ((LA11_137>='0' && LA11_137<='9')||(LA11_137>='A' && LA11_137<='Z')||LA11_137=='_'||(LA11_137>='a' && LA11_137<='z')) ) {
+                        return 59;
+                    }
+                    else {
+                        return 8;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper009() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'e':
+            {
+            switch ( input.LA(3) ) {
+            case 't':
                 {
-                int LA10_47 = input.LA(3);
+                int LA11_110 = input.LA(4);
 
-                if ( (LA10_47=='s') ) {
-                    int LA10_103 = input.LA(4);
-
-                    if ( (LA10_103=='e') ) {
-                        int LA10_131 = input.LA(5);
-
-                        if ( ((LA10_131>='0' && LA10_131<='9')||(LA10_131>='A' && LA10_131<='Z')||LA10_131=='_'||(LA10_131>='a' && LA10_131<='z')) ) {
-                            alt10=58;
-                        }
-                        else {
-                            alt10=53;}
-                    }
-                    else {
-                        alt10=58;}
+                if ( ((LA11_110>='0' && LA11_110<='9')||(LA11_110>='A' && LA11_110<='Z')||LA11_110=='_'||(LA11_110>='a' && LA11_110<='z')) ) {
+                    return 59;
                 }
                 else {
-                    alt10=58;}
+                    return 14;}
                 }
-                break;
+            case 'q':
+                {
+                int LA11_111 = input.LA(4);
+
+                if ( (LA11_111=='u') ) {
+                    int LA11_139 = input.LA(5);
+
+                    if ( (LA11_139=='e') ) {
+                        int LA11_164 = input.LA(6);
+
+                        if ( (LA11_164=='n') ) {
+                            int LA11_183 = input.LA(7);
+
+                            if ( (LA11_183=='c') ) {
+                                int LA11_197 = input.LA(8);
+
+                                if ( (LA11_197=='e') ) {
+                                    int LA11_209 = input.LA(9);
+
+                                    if ( ((LA11_209>='0' && LA11_209<='9')||(LA11_209>='A' && LA11_209<='Z')||LA11_209=='_'||(LA11_209>='a' && LA11_209<='z')) ) {
+                                        return 59;
+                                    }
+                                    else {
+                                        return 16;}
+                                }
+                                else {
+                                    return 59;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+                }
+            default:
+                return 59;}
+
+            }
+        case 't':
+            {
+            int LA11_61 = input.LA(3);
+
+            if ( (LA11_61=='r') ) {
+                int LA11_112 = input.LA(4);
+
+                if ( (LA11_112=='i') ) {
+                    int LA11_140 = input.LA(5);
+
+                    if ( (LA11_140=='n') ) {
+                        int LA11_165 = input.LA(6);
+
+                        if ( (LA11_165=='g') ) {
+                            int LA11_184 = input.LA(7);
+
+                            if ( ((LA11_184>='0' && LA11_184<='9')||(LA11_184>='A' && LA11_184<='Z')||LA11_184=='_'||(LA11_184>='a' && LA11_184<='z')) ) {
+                                return 59;
+                            }
+                            else {
+                                return 9;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        default:
+            return 59;}
+
+    }
+
+    private int mTokensHelper010() throws RecognitionException {
+        int LA11_10 = input.LA(2);
+
+        if ( (LA11_10=='n') ) {
+            int LA11_62 = input.LA(3);
+
+            if ( (LA11_62=='l') ) {
+                int LA11_113 = input.LA(4);
+
+                if ( (LA11_113=='i') ) {
+                    int LA11_141 = input.LA(5);
+
+                    if ( (LA11_141=='m') ) {
+                        int LA11_166 = input.LA(6);
+
+                        if ( (LA11_166=='i') ) {
+                            int LA11_185 = input.LA(7);
+
+                            if ( (LA11_185=='t') ) {
+                                int LA11_199 = input.LA(8);
+
+                                if ( (LA11_199=='e') ) {
+                                    int LA11_210 = input.LA(9);
+
+                                    if ( (LA11_210=='d') ) {
+                                        int LA11_218 = input.LA(10);
+
+                                        if ( (LA11_218=='N') ) {
+                                            int LA11_222 = input.LA(11);
+
+                                            if ( (LA11_222=='a') ) {
+                                                int LA11_226 = input.LA(12);
+
+                                                if ( (LA11_226=='t') ) {
+                                                    int LA11_230 = input.LA(13);
+
+                                                    if ( (LA11_230=='u') ) {
+                                                        int LA11_231 = input.LA(14);
+
+                                                        if ( (LA11_231=='r') ) {
+                                                            int LA11_232 = input.LA(15);
+
+                                                            if ( (LA11_232=='a') ) {
+                                                                int LA11_233 = input.LA(16);
+
+                                                                if ( (LA11_233=='l') ) {
+                                                                    int LA11_234 = input.LA(17);
+
+                                                                    if ( ((LA11_234>='0' && LA11_234<='9')||(LA11_234>='A' && LA11_234<='Z')||LA11_234=='_'||(LA11_234>='a' && LA11_234<='z')) ) {
+                                                                        return 59;
+                                                                    }
+                                                                    else {
+                                                                        return 10;}
+                                                                }
+                                                                else {
+                                                                    return 59;}
+                                                            }
+                                                            else {
+                                                                return 59;}
+                                                        }
+                                                        else {
+                                                            return 59;}
+                                                    }
+                                                    else {
+                                                        return 59;}
+                                                }
+                                                else {
+                                                    return 59;}
+                                            }
+                                            else {
+                                                return 59;}
+                                        }
+                                        else {
+                                            return 59;}
+                                    }
+                                    else {
+                                        return 59;}
+                                }
+                                else {
+                                    return 59;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper011() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'c':
+            {
+            int LA11_63 = input.LA(3);
+
+            if ( (LA11_63=='l') ) {
+                switch ( input.LA(4) ) {
+                case 'A':
+                    {
+                    int LA11_142 = input.LA(5);
+
+                    if ( (LA11_142=='n') ) {
+                        int LA11_167 = input.LA(6);
+
+                        if ( (LA11_167=='y') ) {
+                            int LA11_186 = input.LA(7);
+
+                            if ( ((LA11_186>='0' && LA11_186<='9')||(LA11_186>='A' && LA11_186<='Z')||LA11_186=='_'||(LA11_186>='a' && LA11_186<='z')) ) {
+                                return 59;
+                            }
+                            else {
+                                return 11;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                    }
+                case 'V':
+                    {
+                    int LA11_143 = input.LA(5);
+
+                    if ( (LA11_143=='o') ) {
+                        int LA11_168 = input.LA(6);
+
+                        if ( (LA11_168=='i') ) {
+                            int LA11_187 = input.LA(7);
+
+                            if ( (LA11_187=='d') ) {
+                                int LA11_201 = input.LA(8);
+
+                                if ( ((LA11_201>='0' && LA11_201<='9')||(LA11_201>='A' && LA11_201<='Z')||LA11_201=='_'||(LA11_201>='a' && LA11_201<='z')) ) {
+                                    return 59;
+                                }
+                                else {
+                                    return 13;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                    }
+                case 'I':
+                    {
+                    int LA11_144 = input.LA(5);
+
+                    if ( (LA11_144=='n') ) {
+                        int LA11_169 = input.LA(6);
+
+                        if ( (LA11_169=='v') ) {
+                            int LA11_188 = input.LA(7);
+
+                            if ( (LA11_188=='a') ) {
+                                int LA11_202 = input.LA(8);
+
+                                if ( (LA11_202=='l') ) {
+                                    int LA11_212 = input.LA(9);
+
+                                    if ( (LA11_212=='i') ) {
+                                        int LA11_219 = input.LA(10);
+
+                                        if ( (LA11_219=='d') ) {
+                                            int LA11_223 = input.LA(11);
+
+                                            if ( ((LA11_223>='0' && LA11_223<='9')||(LA11_223>='A' && LA11_223<='Z')||LA11_223=='_'||(LA11_223>='a' && LA11_223<='z')) ) {
+                                                return 59;
+                                            }
+                                            else {
+                                                return 12;}
+                                        }
+                                        else {
+                                            return 59;}
+                                    }
+                                    else {
+                                        return 59;}
+                                }
+                                else {
+                                    return 59;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                    }
+                default:
+                    return 59;}
+
+            }
+            else {
+                return 59;}
+            }
+        case 'r':
+            {
+            int LA11_64 = input.LA(3);
+
+            if ( (LA11_64=='d') ) {
+                int LA11_115 = input.LA(4);
+
+                if ( (LA11_115=='e') ) {
+                    int LA11_145 = input.LA(5);
+
+                    if ( (LA11_145=='r') ) {
+                        int LA11_170 = input.LA(6);
+
+                        if ( (LA11_170=='e') ) {
+                            int LA11_189 = input.LA(7);
+
+                            if ( (LA11_189=='d') ) {
+                                int LA11_203 = input.LA(8);
+
+                                if ( (LA11_203=='S') ) {
+                                    int LA11_213 = input.LA(9);
+
+                                    if ( (LA11_213=='e') ) {
+                                        int LA11_220 = input.LA(10);
+
+                                        if ( (LA11_220=='t') ) {
+                                            int LA11_224 = input.LA(11);
+
+                                            if ( ((LA11_224>='0' && LA11_224<='9')||(LA11_224>='A' && LA11_224<='Z')||LA11_224=='_'||(LA11_224>='a' && LA11_224<='z')) ) {
+                                                return 59;
+                                            }
+                                            else {
+                                                return 18;}
+                                        }
+                                        else {
+                                            return 59;}
+                                    }
+                                    else {
+                                        return 59;}
+                                }
+                                else {
+                                    return 59;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        default:
+            return 59;}
+
+    }
+
+    private int mTokensHelper012() throws RecognitionException {
+        int LA11_12 = input.LA(2);
+
+        if ( (LA11_12=='o') ) {
+            int LA11_65 = input.LA(3);
+
+            if ( (LA11_65=='l') ) {
+                int LA11_116 = input.LA(4);
+
+                if ( (LA11_116=='l') ) {
+                    int LA11_146 = input.LA(5);
+
+                    if ( (LA11_146=='e') ) {
+                        int LA11_171 = input.LA(6);
+
+                        if ( (LA11_171=='c') ) {
+                            int LA11_190 = input.LA(7);
+
+                            if ( (LA11_190=='t') ) {
+                                int LA11_204 = input.LA(8);
+
+                                if ( (LA11_204=='i') ) {
+                                    int LA11_214 = input.LA(9);
+
+                                    if ( (LA11_214=='o') ) {
+                                        int LA11_221 = input.LA(10);
+
+                                        if ( (LA11_221=='n') ) {
+                                            int LA11_225 = input.LA(11);
+
+                                            if ( ((LA11_225>='0' && LA11_225<='9')||(LA11_225>='A' && LA11_225<='Z')||LA11_225=='_'||(LA11_225>='a' && LA11_225<='z')) ) {
+                                                return 59;
+                                            }
+                                            else {
+                                                return 17;}
+                                        }
+                                        else {
+                                            return 59;}
+                                    }
+                                    else {
+                                        return 59;}
+                                }
+                                else {
+                                    return 59;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper013() throws RecognitionException {
+        return 19;
+    }
+
+    private int mTokensHelper014() throws RecognitionException {
+        return 20;
+    }
+
+    private int mTokensHelper015() throws RecognitionException {
+        int LA11_15 = input.LA(2);
+
+        if ( (LA11_15=='u') ) {
+            int LA11_68 = input.LA(3);
+
+            if ( (LA11_68=='p') ) {
+                int LA11_117 = input.LA(4);
+
+                if ( (LA11_117=='l') ) {
+                    int LA11_147 = input.LA(5);
+
+                    if ( (LA11_147=='e') ) {
+                        int LA11_172 = input.LA(6);
+
+                        if ( ((LA11_172>='0' && LA11_172<='9')||(LA11_172>='A' && LA11_172<='Z')||LA11_172=='_'||(LA11_172>='a' && LA11_172<='z')) ) {
+                            return 59;
+                        }
+                        else {
+                            return 21;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper016() throws RecognitionException {
+        return 22;
+    }
+
+    private int mTokensHelper017() throws RecognitionException {
+        int LA11_17 = input.LA(2);
+
+        if ( (LA11_17==':') ) {
+            return 50;
+        }
+        else {
+            return 23;}
+    }
+
+    private int mTokensHelper018() throws RecognitionException {
+        return 24;
+    }
+
+    private int mTokensHelper019() throws RecognitionException {
+        return 25;
+    }
+
+    private int mTokensHelper020() throws RecognitionException {
+        return 27;
+    }
+
+    private int mTokensHelper021() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'h':
+            {
+            int LA11_75 = input.LA(3);
+
+            if ( (LA11_75=='e') ) {
+                int LA11_118 = input.LA(4);
+
+                if ( (LA11_118=='n') ) {
+                    int LA11_148 = input.LA(5);
+
+                    if ( ((LA11_148>='0' && LA11_148<='9')||(LA11_148>='A' && LA11_148<='Z')||LA11_148=='_'||(LA11_148>='a' && LA11_148<='z')) ) {
+                        return 59;
+                    }
+                    else {
+                        return 52;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        case 'r':
+            {
+            int LA11_76 = input.LA(3);
+
+            if ( (LA11_76=='u') ) {
+                int LA11_119 = input.LA(4);
+
+                if ( (LA11_119=='e') ) {
+                    int LA11_149 = input.LA(5);
+
+                    if ( ((LA11_149>='0' && LA11_149<='9')||(LA11_149>='A' && LA11_149<='Z')||LA11_149=='_'||(LA11_149>='a' && LA11_149<='z')) ) {
+                        return 59;
+                    }
+                    else {
+                        return 28;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        default:
+            return 59;}
+
+    }
+
+    private int mTokensHelper022() throws RecognitionException {
+        int LA11_22 = input.LA(2);
+
+        if ( (LA11_22=='a') ) {
+            int LA11_77 = input.LA(3);
+
+            if ( (LA11_77=='l') ) {
+                int LA11_120 = input.LA(4);
+
+                if ( (LA11_120=='s') ) {
+                    int LA11_150 = input.LA(5);
+
+                    if ( (LA11_150=='e') ) {
+                        int LA11_175 = input.LA(6);
+
+                        if ( ((LA11_175>='0' && LA11_175<='9')||(LA11_175>='A' && LA11_175<='Z')||LA11_175=='_'||(LA11_175>='a' && LA11_175<='z')) ) {
+                            return 59;
+                        }
+                        else {
+                            return 29;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper023() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'n':
+            {
+            switch ( input.LA(3) ) {
+            case 'v':
+                {
+                int LA11_121 = input.LA(4);
+
+                if ( (LA11_121=='a') ) {
+                    int LA11_151 = input.LA(5);
+
+                    if ( (LA11_151=='l') ) {
+                        int LA11_176 = input.LA(6);
+
+                        if ( (LA11_176=='i') ) {
+                            int LA11_193 = input.LA(7);
+
+                            if ( (LA11_193=='d') ) {
+                                int LA11_205 = input.LA(8);
+
+                                if ( ((LA11_205>='0' && LA11_205<='9')||(LA11_205>='A' && LA11_205<='Z')||LA11_205=='_'||(LA11_205>='a' && LA11_205<='z')) ) {
+                                    return 59;
+                                }
+                                else {
+                                    return 30;}
+                            }
+                            else {
+                                return 59;}
+                        }
+                        else {
+                            return 59;}
+                    }
+                    else {
+                        return 59;}
+                }
+                else {
+                    return 59;}
+                }
             case '0':
             case '1':
             case '2':
@@ -1684,7 +3208,9 @@ public class InternalEssentialOCLLexer extends Lexer {
             case 'i':
             case 'j':
             case 'k':
+            case 'l':
             case 'm':
+            case 'n':
             case 'o':
             case 'p':
             case 'q':
@@ -1692,1612 +3218,329 @@ public class InternalEssentialOCLLexer extends Lexer {
             case 's':
             case 't':
             case 'u':
-            case 'v':
             case 'w':
             case 'x':
             case 'y':
             case 'z':
                 {
-                alt10=58;
+                return 59;
                 }
-                break;
             default:
-                alt10=2;}
+                return 56;}
 
-        }
-        else if ( (LA10_0=='E') ) {
-            int LA10_3 = input.LA(2);
+            }
+        case 'f':
+            {
+            int LA11_79 = input.LA(3);
 
-            if ( ((LA10_3>='0' && LA10_3<='9')||(LA10_3>='A' && LA10_3<='Z')||LA10_3=='_'||(LA10_3>='a' && LA10_3<='z')) ) {
-                alt10=58;
+            if ( ((LA11_79>='0' && LA11_79<='9')||(LA11_79>='A' && LA11_79<='Z')||LA11_79=='_'||(LA11_79>='a' && LA11_79<='z')) ) {
+                return 59;
             }
             else {
-                alt10=3;}
-        }
-        else if ( (LA10_0=='+') ) {
-            alt10=4;
-        }
-        else if ( (LA10_0=='-') ) {
-            switch ( input.LA(2) ) {
-            case '>':
-                {
-                alt10=46;
-                }
-                break;
-            case '-':
-                {
-                alt10=61;
-                }
-                break;
-            default:
-                alt10=5;}
-
-        }
-        else if ( (LA10_0=='T') ) {
-            int LA10_6 = input.LA(2);
-
-            if ( (LA10_6=='u') ) {
-                int LA10_55 = input.LA(3);
-
-                if ( (LA10_55=='p') ) {
-                    int LA10_104 = input.LA(4);
-
-                    if ( (LA10_104=='l') ) {
-                        int LA10_132 = input.LA(5);
-
-                        if ( (LA10_132=='e') ) {
-                            int LA10_159 = input.LA(6);
-
-                            if ( ((LA10_159>='0' && LA10_159<='9')||(LA10_159>='A' && LA10_159<='Z')||LA10_159=='_'||(LA10_159>='a' && LA10_159<='z')) ) {
-                                alt10=58;
-                            }
-                            else {
-                                alt10=6;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
+                return 51;}
             }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='s') ) {
-            int LA10_7 = input.LA(2);
+        case 'm':
+            {
+            int LA11_80 = input.LA(3);
 
-            if ( (LA10_7=='e') ) {
-                int LA10_56 = input.LA(3);
+            if ( (LA11_80=='p') ) {
+                int LA11_124 = input.LA(4);
 
-                if ( (LA10_56=='l') ) {
-                    int LA10_105 = input.LA(4);
+                if ( (LA11_124=='l') ) {
+                    int LA11_152 = input.LA(5);
 
-                    if ( (LA10_105=='f') ) {
-                        int LA10_133 = input.LA(5);
+                    if ( (LA11_152=='i') ) {
+                        int LA11_177 = input.LA(6);
 
-                        if ( ((LA10_133>='0' && LA10_133<='9')||(LA10_133>='A' && LA10_133<='Z')||LA10_133=='_'||(LA10_133>='a' && LA10_133<='z')) ) {
-                            alt10=58;
-                        }
-                        else {
-                            alt10=7;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0==':') ) {
-            int LA10_8 = input.LA(2);
+                        if ( (LA11_177=='e') ) {
+                            int LA11_194 = input.LA(7);
 
-            if ( (LA10_8==':') ) {
-                alt10=8;
-            }
-            else {
-                alt10=25;}
-        }
-        else if ( (LA10_0=='B') ) {
-            switch ( input.LA(2) ) {
-            case 'a':
-                {
-                int LA10_59 = input.LA(3);
+                            if ( (LA11_194=='s') ) {
+                                int LA11_206 = input.LA(8);
 
-                if ( (LA10_59=='g') ) {
-                    int LA10_106 = input.LA(4);
-
-                    if ( ((LA10_106>='0' && LA10_106<='9')||(LA10_106>='A' && LA10_106<='Z')||LA10_106=='_'||(LA10_106>='a' && LA10_106<='z')) ) {
-                        alt10=58;
-                    }
-                    else {
-                        alt10=18;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            case 'o':
-                {
-                int LA10_60 = input.LA(3);
-
-                if ( (LA10_60=='o') ) {
-                    int LA10_107 = input.LA(4);
-
-                    if ( (LA10_107=='l') ) {
-                        int LA10_135 = input.LA(5);
-
-                        if ( (LA10_135=='e') ) {
-                            int LA10_161 = input.LA(6);
-
-                            if ( (LA10_161=='a') ) {
-                                int LA10_180 = input.LA(7);
-
-                                if ( (LA10_180=='n') ) {
-                                    int LA10_193 = input.LA(8);
-
-                                    if ( ((LA10_193>='0' && LA10_193<='9')||(LA10_193>='A' && LA10_193<='Z')||LA10_193=='_'||(LA10_193>='a' && LA10_193<='z')) ) {
-                                        alt10=58;
-                                    }
-                                    else {
-                                        alt10=9;}
+                                if ( ((LA11_206>='0' && LA11_206<='9')||(LA11_206>='A' && LA11_206<='Z')||LA11_206=='_'||(LA11_206>='a' && LA11_206<='z')) ) {
+                                    return 59;
                                 }
                                 else {
-                                    alt10=58;}
+                                    return 32;}
                             }
                             else {
-                                alt10=58;}
+                                return 59;}
                         }
                         else {
-                            alt10=58;}
+                            return 59;}
                     }
                     else {
-                        alt10=58;}
+                        return 59;}
                 }
                 else {
-                    alt10=58;}
-                }
-                break;
-            default:
-                alt10=58;}
-
-        }
-        else if ( (LA10_0=='I') ) {
-            int LA10_10 = input.LA(2);
-
-            if ( (LA10_10=='n') ) {
-                int LA10_61 = input.LA(3);
-
-                if ( (LA10_61=='t') ) {
-                    int LA10_108 = input.LA(4);
-
-                    if ( (LA10_108=='e') ) {
-                        int LA10_136 = input.LA(5);
-
-                        if ( (LA10_136=='g') ) {
-                            int LA10_162 = input.LA(6);
-
-                            if ( (LA10_162=='e') ) {
-                                int LA10_181 = input.LA(7);
-
-                                if ( (LA10_181=='r') ) {
-                                    int LA10_194 = input.LA(8);
-
-                                    if ( ((LA10_194>='0' && LA10_194<='9')||(LA10_194>='A' && LA10_194<='Z')||LA10_194=='_'||(LA10_194>='a' && LA10_194<='z')) ) {
-                                        alt10=58;
-                                    }
-                                    else {
-                                        alt10=10;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
+                    return 59;}
             }
             else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='R') ) {
-            int LA10_11 = input.LA(2);
-
-            if ( (LA10_11=='e') ) {
-                int LA10_62 = input.LA(3);
-
-                if ( (LA10_62=='a') ) {
-                    int LA10_109 = input.LA(4);
-
-                    if ( (LA10_109=='l') ) {
-                        int LA10_137 = input.LA(5);
-
-                        if ( ((LA10_137>='0' && LA10_137<='9')||(LA10_137>='A' && LA10_137<='Z')||LA10_137=='_'||(LA10_137>='a' && LA10_137<='z')) ) {
-                            alt10=58;
-                        }
-                        else {
-                            alt10=11;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
+                return 59;}
             }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='S') ) {
-            switch ( input.LA(2) ) {
-            case 'e':
-                {
-                switch ( input.LA(3) ) {
-                case 'q':
-                    {
-                    int LA10_110 = input.LA(4);
-
-                    if ( (LA10_110=='u') ) {
-                        int LA10_138 = input.LA(5);
-
-                        if ( (LA10_138=='e') ) {
-                            int LA10_164 = input.LA(6);
-
-                            if ( (LA10_164=='n') ) {
-                                int LA10_182 = input.LA(7);
-
-                                if ( (LA10_182=='c') ) {
-                                    int LA10_195 = input.LA(8);
-
-                                    if ( (LA10_195=='e') ) {
-                                        int LA10_207 = input.LA(9);
-
-                                        if ( ((LA10_207>='0' && LA10_207<='9')||(LA10_207>='A' && LA10_207<='Z')||LA10_207=='_'||(LA10_207>='a' && LA10_207<='z')) ) {
-                                            alt10=58;
-                                        }
-                                        else {
-                                            alt10=19;}
-                                    }
-                                    else {
-                                        alt10=58;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                    }
-                    break;
-                case 't':
-                    {
-                    int LA10_111 = input.LA(4);
-
-                    if ( ((LA10_111>='0' && LA10_111<='9')||(LA10_111>='A' && LA10_111<='Z')||LA10_111=='_'||(LA10_111>='a' && LA10_111<='z')) ) {
-                        alt10=58;
-                    }
-                    else {
-                        alt10=17;}
-                    }
-                    break;
-                default:
-                    alt10=58;}
-
-                }
-                break;
-            case 't':
-                {
-                int LA10_64 = input.LA(3);
-
-                if ( (LA10_64=='r') ) {
-                    int LA10_112 = input.LA(4);
-
-                    if ( (LA10_112=='i') ) {
-                        int LA10_140 = input.LA(5);
-
-                        if ( (LA10_140=='n') ) {
-                            int LA10_165 = input.LA(6);
-
-                            if ( (LA10_165=='g') ) {
-                                int LA10_183 = input.LA(7);
-
-                                if ( ((LA10_183>='0' && LA10_183<='9')||(LA10_183>='A' && LA10_183<='Z')||LA10_183=='_'||(LA10_183>='a' && LA10_183<='z')) ) {
-                                    alt10=58;
-                                }
-                                else {
-                                    alt10=12;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            default:
-                alt10=58;}
-
-        }
-        else if ( (LA10_0=='U') ) {
-            int LA10_13 = input.LA(2);
-
-            if ( (LA10_13=='n') ) {
-                int LA10_65 = input.LA(3);
-
-                if ( (LA10_65=='l') ) {
-                    int LA10_113 = input.LA(4);
-
-                    if ( (LA10_113=='i') ) {
-                        int LA10_141 = input.LA(5);
-
-                        if ( (LA10_141=='m') ) {
-                            int LA10_166 = input.LA(6);
-
-                            if ( (LA10_166=='i') ) {
-                                int LA10_184 = input.LA(7);
-
-                                if ( (LA10_184=='t') ) {
-                                    int LA10_197 = input.LA(8);
-
-                                    if ( (LA10_197=='e') ) {
-                                        int LA10_208 = input.LA(9);
-
-                                        if ( (LA10_208=='d') ) {
-                                            int LA10_216 = input.LA(10);
-
-                                            if ( (LA10_216=='N') ) {
-                                                int LA10_220 = input.LA(11);
-
-                                                if ( (LA10_220=='a') ) {
-                                                    int LA10_224 = input.LA(12);
-
-                                                    if ( (LA10_224=='t') ) {
-                                                        int LA10_228 = input.LA(13);
-
-                                                        if ( (LA10_228=='u') ) {
-                                                            int LA10_229 = input.LA(14);
-
-                                                            if ( (LA10_229=='r') ) {
-                                                                int LA10_230 = input.LA(15);
-
-                                                                if ( (LA10_230=='a') ) {
-                                                                    int LA10_231 = input.LA(16);
-
-                                                                    if ( (LA10_231=='l') ) {
-                                                                        int LA10_232 = input.LA(17);
-
-                                                                        if ( ((LA10_232>='0' && LA10_232<='9')||(LA10_232>='A' && LA10_232<='Z')||LA10_232=='_'||(LA10_232>='a' && LA10_232<='z')) ) {
-                                                                            alt10=58;
-                                                                        }
-                                                                        else {
-                                                                            alt10=13;}
-                                                                    }
-                                                                    else {
-                                                                        alt10=58;}
-                                                                }
-                                                                else {
-                                                                    alt10=58;}
-                                                            }
-                                                            else {
-                                                                alt10=58;}
-                                                        }
-                                                        else {
-                                                            alt10=58;}
-                                                    }
-                                                    else {
-                                                        alt10=58;}
-                                                }
-                                                else {
-                                                    alt10=58;}
-                                            }
-                                            else {
-                                                alt10=58;}
-                                        }
-                                        else {
-                                            alt10=58;}
-                                    }
-                                    else {
-                                        alt10=58;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='O') ) {
-            switch ( input.LA(2) ) {
-            case 'r':
-                {
-                int LA10_66 = input.LA(3);
-
-                if ( (LA10_66=='d') ) {
-                    int LA10_114 = input.LA(4);
-
-                    if ( (LA10_114=='e') ) {
-                        int LA10_142 = input.LA(5);
-
-                        if ( (LA10_142=='r') ) {
-                            int LA10_167 = input.LA(6);
-
-                            if ( (LA10_167=='e') ) {
-                                int LA10_185 = input.LA(7);
-
-                                if ( (LA10_185=='d') ) {
-                                    int LA10_198 = input.LA(8);
-
-                                    if ( (LA10_198=='S') ) {
-                                        int LA10_209 = input.LA(9);
-
-                                        if ( (LA10_209=='e') ) {
-                                            int LA10_217 = input.LA(10);
-
-                                            if ( (LA10_217=='t') ) {
-                                                int LA10_221 = input.LA(11);
-
-                                                if ( ((LA10_221>='0' && LA10_221<='9')||(LA10_221>='A' && LA10_221<='Z')||LA10_221=='_'||(LA10_221>='a' && LA10_221<='z')) ) {
-                                                    alt10=58;
-                                                }
-                                                else {
-                                                    alt10=21;}
-                                            }
-                                            else {
-                                                alt10=58;}
-                                        }
-                                        else {
-                                            alt10=58;}
-                                    }
-                                    else {
-                                        alt10=58;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            case 'c':
-                {
-                int LA10_67 = input.LA(3);
-
-                if ( (LA10_67=='l') ) {
-                    switch ( input.LA(4) ) {
-                    case 'V':
-                        {
-                        int LA10_143 = input.LA(5);
-
-                        if ( (LA10_143=='o') ) {
-                            int LA10_168 = input.LA(6);
-
-                            if ( (LA10_168=='i') ) {
-                                int LA10_186 = input.LA(7);
-
-                                if ( (LA10_186=='d') ) {
-                                    int LA10_199 = input.LA(8);
-
-                                    if ( ((LA10_199>='0' && LA10_199<='9')||(LA10_199>='A' && LA10_199<='Z')||LA10_199=='_'||(LA10_199>='a' && LA10_199<='z')) ) {
-                                        alt10=58;
-                                    }
-                                    else {
-                                        alt10=16;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                        }
-                        break;
-                    case 'I':
-                        {
-                        int LA10_144 = input.LA(5);
-
-                        if ( (LA10_144=='n') ) {
-                            int LA10_169 = input.LA(6);
-
-                            if ( (LA10_169=='v') ) {
-                                int LA10_187 = input.LA(7);
-
-                                if ( (LA10_187=='a') ) {
-                                    int LA10_200 = input.LA(8);
-
-                                    if ( (LA10_200=='l') ) {
-                                        int LA10_211 = input.LA(9);
-
-                                        if ( (LA10_211=='i') ) {
-                                            int LA10_218 = input.LA(10);
-
-                                            if ( (LA10_218=='d') ) {
-                                                int LA10_222 = input.LA(11);
-
-                                                if ( ((LA10_222>='0' && LA10_222<='9')||(LA10_222>='A' && LA10_222<='Z')||LA10_222=='_'||(LA10_222>='a' && LA10_222<='z')) ) {
-                                                    alt10=58;
-                                                }
-                                                else {
-                                                    alt10=15;}
-                                            }
-                                            else {
-                                                alt10=58;}
-                                        }
-                                        else {
-                                            alt10=58;}
-                                    }
-                                    else {
-                                        alt10=58;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                        }
-                        break;
-                    case 'A':
-                        {
-                        int LA10_145 = input.LA(5);
-
-                        if ( (LA10_145=='n') ) {
-                            int LA10_170 = input.LA(6);
-
-                            if ( (LA10_170=='y') ) {
-                                int LA10_188 = input.LA(7);
-
-                                if ( ((LA10_188>='0' && LA10_188<='9')||(LA10_188>='A' && LA10_188<='Z')||LA10_188=='_'||(LA10_188>='a' && LA10_188<='z')) ) {
-                                    alt10=58;
-                                }
-                                else {
-                                    alt10=14;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                        }
-                        break;
-                    default:
-                        alt10=58;}
-
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            default:
-                alt10=58;}
-
-        }
-        else if ( (LA10_0=='C') ) {
-            int LA10_15 = input.LA(2);
-
-            if ( (LA10_15=='o') ) {
-                int LA10_68 = input.LA(3);
-
-                if ( (LA10_68=='l') ) {
-                    int LA10_116 = input.LA(4);
-
-                    if ( (LA10_116=='l') ) {
-                        int LA10_146 = input.LA(5);
-
-                        if ( (LA10_146=='e') ) {
-                            int LA10_171 = input.LA(6);
-
-                            if ( (LA10_171=='c') ) {
-                                int LA10_189 = input.LA(7);
-
-                                if ( (LA10_189=='t') ) {
-                                    int LA10_202 = input.LA(8);
-
-                                    if ( (LA10_202=='i') ) {
-                                        int LA10_212 = input.LA(9);
-
-                                        if ( (LA10_212=='o') ) {
-                                            int LA10_219 = input.LA(10);
-
-                                            if ( (LA10_219=='n') ) {
-                                                int LA10_223 = input.LA(11);
-
-                                                if ( ((LA10_223>='0' && LA10_223<='9')||(LA10_223>='A' && LA10_223<='Z')||LA10_223=='_'||(LA10_223>='a' && LA10_223<='z')) ) {
-                                                    alt10=58;
-                                                }
-                                                else {
-                                                    alt10=20;}
-                                            }
-                                            else {
-                                                alt10=58;}
-                                        }
-                                        else {
-                                            alt10=58;}
-                                    }
-                                    else {
-                                        alt10=58;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='(') ) {
-            alt10=22;
-        }
-        else if ( (LA10_0==')') ) {
-            alt10=23;
-        }
-        else if ( (LA10_0==',') ) {
-            alt10=24;
-        }
-        else if ( (LA10_0=='{') ) {
-            alt10=26;
-        }
-        else if ( (LA10_0=='}') ) {
-            alt10=27;
-        }
-        else if ( (LA10_0=='=') ) {
-            alt10=29;
-        }
-        else if ( (LA10_0=='t') ) {
-            switch ( input.LA(2) ) {
-            case 'r':
-                {
-                int LA10_75 = input.LA(3);
-
-                if ( (LA10_75=='u') ) {
-                    int LA10_117 = input.LA(4);
-
-                    if ( (LA10_117=='e') ) {
-                        int LA10_147 = input.LA(5);
-
-                        if ( ((LA10_147>='0' && LA10_147<='9')||(LA10_147>='A' && LA10_147<='Z')||LA10_147=='_'||(LA10_147>='a' && LA10_147<='z')) ) {
-                            alt10=58;
-                        }
-                        else {
-                            alt10=30;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            case 'h':
-                {
-                int LA10_76 = input.LA(3);
-
-                if ( (LA10_76=='e') ) {
-                    int LA10_118 = input.LA(4);
-
-                    if ( (LA10_118=='n') ) {
-                        int LA10_148 = input.LA(5);
-
-                        if ( ((LA10_148>='0' && LA10_148<='9')||(LA10_148>='A' && LA10_148<='Z')||LA10_148=='_'||(LA10_148>='a' && LA10_148<='z')) ) {
-                            alt10=58;
-                        }
-                        else {
-                            alt10=52;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            default:
-                alt10=58;}
-
-        }
-        else if ( (LA10_0=='f') ) {
-            int LA10_23 = input.LA(2);
-
-            if ( (LA10_23=='a') ) {
-                int LA10_77 = input.LA(3);
-
-                if ( (LA10_77=='l') ) {
-                    int LA10_119 = input.LA(4);
-
-                    if ( (LA10_119=='s') ) {
-                        int LA10_149 = input.LA(5);
-
-                        if ( (LA10_149=='e') ) {
-                            int LA10_174 = input.LA(6);
-
-                            if ( ((LA10_174>='0' && LA10_174<='9')||(LA10_174>='A' && LA10_174<='Z')||LA10_174=='_'||(LA10_174>='a' && LA10_174<='z')) ) {
-                                alt10=58;
-                            }
-                            else {
-                                alt10=31;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='*') ) {
-            alt10=32;
-        }
-        else if ( (LA10_0=='i') ) {
-            switch ( input.LA(2) ) {
-            case 'n':
-                {
-                switch ( input.LA(3) ) {
-                case 'v':
-                    {
-                    int LA10_120 = input.LA(4);
-
-                    if ( (LA10_120=='a') ) {
-                        int LA10_150 = input.LA(5);
-
-                        if ( (LA10_150=='l') ) {
-                            int LA10_175 = input.LA(6);
-
-                            if ( (LA10_175=='i') ) {
-                                int LA10_191 = input.LA(7);
-
-                                if ( (LA10_191=='d') ) {
-                                    int LA10_203 = input.LA(8);
-
-                                    if ( ((LA10_203>='0' && LA10_203<='9')||(LA10_203>='A' && LA10_203<='Z')||LA10_203=='_'||(LA10_203>='a' && LA10_203<='z')) ) {
-                                        alt10=58;
-                                    }
-                                    else {
-                                        alt10=33;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                    }
-                    break;
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                case 'A':
-                case 'B':
-                case 'C':
-                case 'D':
-                case 'E':
-                case 'F':
-                case 'G':
-                case 'H':
-                case 'I':
-                case 'J':
-                case 'K':
-                case 'L':
-                case 'M':
-                case 'N':
-                case 'O':
-                case 'P':
-                case 'Q':
-                case 'R':
-                case 'S':
-                case 'T':
-                case 'U':
-                case 'V':
-                case 'W':
-                case 'X':
-                case 'Y':
-                case 'Z':
-                case '_':
-                case 'a':
-                case 'b':
-                case 'c':
-                case 'd':
-                case 'e':
-                case 'f':
-                case 'g':
-                case 'h':
-                case 'i':
-                case 'j':
-                case 'k':
-                case 'l':
-                case 'm':
-                case 'n':
-                case 'o':
-                case 'p':
-                case 'q':
-                case 'r':
-                case 's':
-                case 't':
-                case 'u':
-                case 'w':
-                case 'x':
-                case 'y':
-                case 'z':
-                    {
-                    alt10=58;
-                    }
-                    break;
-                default:
-                    alt10=56;}
-
-                }
-                break;
-            case 'm':
-                {
-                int LA10_80 = input.LA(3);
-
-                if ( (LA10_80=='p') ) {
-                    int LA10_122 = input.LA(4);
-
-                    if ( (LA10_122=='l') ) {
-                        int LA10_151 = input.LA(5);
-
-                        if ( (LA10_151=='i') ) {
-                            int LA10_176 = input.LA(6);
-
-                            if ( (LA10_176=='e') ) {
-                                int LA10_192 = input.LA(7);
-
-                                if ( (LA10_192=='s') ) {
-                                    int LA10_204 = input.LA(8);
-
-                                    if ( ((LA10_204>='0' && LA10_204<='9')||(LA10_204>='A' && LA10_204<='Z')||LA10_204=='_'||(LA10_204>='a' && LA10_204<='z')) ) {
-                                        alt10=58;
-                                    }
-                                    else {
-                                        alt10=35;}
-                                }
-                                else {
-                                    alt10=58;}
-                            }
-                            else {
-                                alt10=58;}
-                        }
-                        else {
-                            alt10=58;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            case 'f':
-                {
-                int LA10_81 = input.LA(3);
-
-                if ( ((LA10_81>='0' && LA10_81<='9')||(LA10_81>='A' && LA10_81<='Z')||LA10_81=='_'||(LA10_81>='a' && LA10_81<='z')) ) {
-                    alt10=58;
-                }
-                else {
-                    alt10=51;}
-                }
-                break;
-            default:
-                alt10=58;}
-
-        }
-        else if ( (LA10_0=='n') ) {
-            switch ( input.LA(2) ) {
-            case 'o':
-                {
-                int LA10_82 = input.LA(3);
-
-                if ( (LA10_82=='t') ) {
-                    int LA10_124 = input.LA(4);
-
-                    if ( ((LA10_124>='0' && LA10_124<='9')||(LA10_124>='A' && LA10_124<='Z')||LA10_124=='_'||(LA10_124>='a' && LA10_124<='z')) ) {
-                        alt10=58;
-                    }
-                    else {
-                        alt10=45;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            case 'u':
-                {
-                int LA10_83 = input.LA(3);
-
-                if ( (LA10_83=='l') ) {
-                    int LA10_125 = input.LA(4);
-
-                    if ( (LA10_125=='l') ) {
-                        int LA10_153 = input.LA(5);
-
-                        if ( ((LA10_153>='0' && LA10_153<='9')||(LA10_153>='A' && LA10_153<='Z')||LA10_153=='_'||(LA10_153>='a' && LA10_153<='z')) ) {
-                            alt10=58;
-                        }
-                        else {
-                            alt10=34;}
-                    }
-                    else {
-                        alt10=58;}
-                }
-                else {
-                    alt10=58;}
-                }
-                break;
-            default:
-                alt10=58;}
-
-        }
-        else if ( (LA10_0=='x') ) {
-            int LA10_27 = input.LA(2);
-
-            if ( (LA10_27=='o') ) {
-                int LA10_84 = input.LA(3);
-
-                if ( (LA10_84=='r') ) {
-                    int LA10_126 = input.LA(4);
-
-                    if ( ((LA10_126>='0' && LA10_126<='9')||(LA10_126>='A' && LA10_126<='Z')||LA10_126=='_'||(LA10_126>='a' && LA10_126<='z')) ) {
-                        alt10=58;
-                    }
-                    else {
-                        alt10=36;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='o') ) {
-            int LA10_28 = input.LA(2);
-
-            if ( (LA10_28=='r') ) {
-                int LA10_85 = input.LA(3);
-
-                if ( ((LA10_85>='0' && LA10_85<='9')||(LA10_85>='A' && LA10_85<='Z')||LA10_85=='_'||(LA10_85>='a' && LA10_85<='z')) ) {
-                    alt10=58;
-                }
-                else {
-                    alt10=37;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='a') ) {
-            int LA10_29 = input.LA(2);
-
-            if ( (LA10_29=='n') ) {
-                int LA10_86 = input.LA(3);
-
-                if ( (LA10_86=='d') ) {
-                    int LA10_128 = input.LA(4);
-
-                    if ( ((LA10_128>='0' && LA10_128<='9')||(LA10_128>='A' && LA10_128<='Z')||LA10_128=='_'||(LA10_128>='a' && LA10_128<='z')) ) {
-                        alt10=58;
-                    }
-                    else {
-                        alt10=38;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='<') ) {
-            switch ( input.LA(2) ) {
-            case '>':
-                {
-                alt10=39;
-                }
-                break;
-            case '=':
-                {
-                alt10=43;
-                }
-                break;
-            default:
-                alt10=41;}
-
-        }
-        else if ( (LA10_0=='>') ) {
-            int LA10_31 = input.LA(2);
-
-            if ( (LA10_31=='=') ) {
-                alt10=42;
-            }
-            else {
-                alt10=40;}
-        }
-        else if ( (LA10_0=='/') ) {
-            int LA10_32 = input.LA(2);
-
-            if ( (LA10_32=='*') ) {
-                alt10=60;
-            }
-            else {
-                alt10=44;}
-        }
-        else if ( (LA10_0==';') ) {
-            alt10=47;
-        }
-        else if ( (LA10_0=='|') ) {
-            alt10=48;
-        }
-        else if ( (LA10_0=='[') ) {
-            alt10=49;
-        }
-        else if ( (LA10_0==']') ) {
-            alt10=50;
-        }
-        else if ( (LA10_0=='l') ) {
-            int LA10_37 = input.LA(2);
-
-            if ( (LA10_37=='e') ) {
-                int LA10_98 = input.LA(3);
-
-                if ( (LA10_98=='t') ) {
-                    int LA10_129 = input.LA(4);
-
-                    if ( ((LA10_129>='0' && LA10_129<='9')||(LA10_129>='A' && LA10_129<='Z')||LA10_129=='_'||(LA10_129>='a' && LA10_129<='z')) ) {
-                        alt10=58;
-                    }
-                    else {
-                        alt10=55;}
-                }
-                else {
-                    alt10=58;}
-            }
-            else {
-                alt10=58;}
-        }
-        else if ( (LA10_0=='\'') ) {
-            int LA10_38 = input.LA(2);
-
-            if ( ((LA10_38>='\u0000' && LA10_38<='\uFFFE')) ) {
-                alt10=57;
-            }
-            else {
-                alt10=63;}
-        }
-        else if ( (LA10_0=='_') ) {
-            alt10=58;
-        }
-        else if ( (LA10_0=='A'||LA10_0=='D'||(LA10_0>='F' && LA10_0<='H')||(LA10_0>='J' && LA10_0<='N')||(LA10_0>='P' && LA10_0<='Q')||(LA10_0>='V' && LA10_0<='Z')||(LA10_0>='b' && LA10_0<='d')||(LA10_0>='g' && LA10_0<='h')||(LA10_0>='j' && LA10_0<='k')||LA10_0=='m'||(LA10_0>='p' && LA10_0<='r')||(LA10_0>='u' && LA10_0<='w')||(LA10_0>='y' && LA10_0<='z')) ) {
-            alt10=58;
-        }
-        else if ( ((LA10_0>='0' && LA10_0<='9')) ) {
-            alt10=59;
-        }
-        else if ( ((LA10_0>='\t' && LA10_0<='\n')||LA10_0=='\r'||LA10_0==' ') ) {
-            alt10=62;
-        }
-        else if ( ((LA10_0>='\u0000' && LA10_0<='\b')||(LA10_0>='\u000B' && LA10_0<='\f')||(LA10_0>='\u000E' && LA10_0<='\u001F')||(LA10_0>='!' && LA10_0<='&')||(LA10_0>='?' && LA10_0<='@')||LA10_0=='\\'||LA10_0=='^'||LA10_0=='`'||(LA10_0>='~' && LA10_0<='\uFFFE')) ) {
-            alt10=63;
-        }
-        else {
-            NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | RULE_STRING_LITERAL | RULE_ID_TERMINAL | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 10, 0, input);
-
-            throw nvae;
-        }
-        switch (alt10) {
-            case 1 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:10: T11
-                {
-                mT11(); 
-
-                }
-                break;
-            case 2 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:14: T12
-                {
-                mT12(); 
-
-                }
-                break;
-            case 3 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:18: T13
-                {
-                mT13(); 
-
-                }
-                break;
-            case 4 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:22: T14
-                {
-                mT14(); 
-
-                }
-                break;
-            case 5 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:26: T15
-                {
-                mT15(); 
-
-                }
-                break;
-            case 6 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:30: T16
-                {
-                mT16(); 
-
-                }
-                break;
-            case 7 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:34: T17
-                {
-                mT17(); 
-
-                }
-                break;
-            case 8 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:38: T18
-                {
-                mT18(); 
-
-                }
-                break;
-            case 9 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:42: T19
-                {
-                mT19(); 
-
-                }
-                break;
-            case 10 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:46: T20
-                {
-                mT20(); 
-
-                }
-                break;
-            case 11 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:50: T21
-                {
-                mT21(); 
-
-                }
-                break;
-            case 12 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:54: T22
-                {
-                mT22(); 
-
-                }
-                break;
-            case 13 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:58: T23
-                {
-                mT23(); 
-
-                }
-                break;
-            case 14 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:62: T24
-                {
-                mT24(); 
-
-                }
-                break;
-            case 15 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:66: T25
-                {
-                mT25(); 
-
-                }
-                break;
-            case 16 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:70: T26
-                {
-                mT26(); 
-
-                }
-                break;
-            case 17 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:74: T27
-                {
-                mT27(); 
-
-                }
-                break;
-            case 18 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:78: T28
-                {
-                mT28(); 
-
-                }
-                break;
-            case 19 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:82: T29
-                {
-                mT29(); 
-
-                }
-                break;
-            case 20 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:86: T30
-                {
-                mT30(); 
-
-                }
-                break;
-            case 21 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:90: T31
-                {
-                mT31(); 
-
-                }
-                break;
-            case 22 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:94: T32
-                {
-                mT32(); 
-
-                }
-                break;
-            case 23 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:98: T33
-                {
-                mT33(); 
-
-                }
-                break;
-            case 24 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:102: T34
-                {
-                mT34(); 
-
-                }
-                break;
-            case 25 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:106: T35
-                {
-                mT35(); 
-
-                }
-                break;
-            case 26 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:110: T36
-                {
-                mT36(); 
-
-                }
-                break;
-            case 27 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:114: T37
-                {
-                mT37(); 
-
-                }
-                break;
-            case 28 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:118: T38
-                {
-                mT38(); 
-
-                }
-                break;
-            case 29 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:122: T39
-                {
-                mT39(); 
-
-                }
-                break;
-            case 30 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:126: T40
-                {
-                mT40(); 
-
-                }
-                break;
-            case 31 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:130: T41
-                {
-                mT41(); 
-
-                }
-                break;
-            case 32 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:134: T42
-                {
-                mT42(); 
-
-                }
-                break;
-            case 33 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:138: T43
-                {
-                mT43(); 
-
-                }
-                break;
-            case 34 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:142: T44
-                {
-                mT44(); 
-
-                }
-                break;
-            case 35 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:146: T45
-                {
-                mT45(); 
-
-                }
-                break;
-            case 36 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:150: T46
-                {
-                mT46(); 
-
-                }
-                break;
-            case 37 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:154: T47
-                {
-                mT47(); 
-
-                }
-                break;
-            case 38 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:158: T48
-                {
-                mT48(); 
-
-                }
-                break;
-            case 39 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:162: T49
-                {
-                mT49(); 
-
-                }
-                break;
-            case 40 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:166: T50
-                {
-                mT50(); 
-
-                }
-                break;
-            case 41 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:170: T51
-                {
-                mT51(); 
-
-                }
-                break;
-            case 42 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:174: T52
-                {
-                mT52(); 
-
-                }
-                break;
-            case 43 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:178: T53
-                {
-                mT53(); 
-
-                }
-                break;
-            case 44 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:182: T54
-                {
-                mT54(); 
-
-                }
-                break;
-            case 45 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:186: T55
-                {
-                mT55(); 
-
-                }
-                break;
-            case 46 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:190: T56
-                {
-                mT56(); 
-
-                }
-                break;
-            case 47 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:194: T57
-                {
-                mT57(); 
-
-                }
-                break;
-            case 48 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:198: T58
-                {
-                mT58(); 
-
-                }
-                break;
-            case 49 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:202: T59
-                {
-                mT59(); 
-
-                }
-                break;
-            case 50 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:206: T60
-                {
-                mT60(); 
-
-                }
-                break;
-            case 51 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:210: T61
-                {
-                mT61(); 
-
-                }
-                break;
-            case 52 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:214: T62
-                {
-                mT62(); 
-
-                }
-                break;
-            case 53 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:218: T63
-                {
-                mT63(); 
-
-                }
-                break;
-            case 54 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:222: T64
-                {
-                mT64(); 
-
-                }
-                break;
-            case 55 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:226: T65
-                {
-                mT65(); 
-
-                }
-                break;
-            case 56 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:230: T66
-                {
-                mT66(); 
-
-                }
-                break;
-            case 57 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:234: RULE_STRING_LITERAL
-                {
-                mRULE_STRING_LITERAL(); 
-
-                }
-                break;
-            case 58 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:254: RULE_ID_TERMINAL
-                {
-                mRULE_ID_TERMINAL(); 
-
-                }
-                break;
-            case 59 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:271: RULE_INT
-                {
-                mRULE_INT(); 
-
-                }
-                break;
-            case 60 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:280: RULE_ML_COMMENT
-                {
-                mRULE_ML_COMMENT(); 
-
-                }
-                break;
-            case 61 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:296: RULE_SL_COMMENT
-                {
-                mRULE_SL_COMMENT(); 
-
-                }
-                break;
-            case 62 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:312: RULE_WS
-                {
-                mRULE_WS(); 
-
-                }
-                break;
-            case 63 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1:320: RULE_ANY_OTHER
-                {
-                mRULE_ANY_OTHER(); 
-
-                }
-                break;
-
-        }
+        default:
+            return 59;}
 
     }
+
+    private int mTokensHelper024() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'o':
+            {
+            int LA11_81 = input.LA(3);
+
+            if ( (LA11_81=='t') ) {
+                int LA11_125 = input.LA(4);
+
+                if ( ((LA11_125>='0' && LA11_125<='9')||(LA11_125>='A' && LA11_125<='Z')||LA11_125=='_'||(LA11_125>='a' && LA11_125<='z')) ) {
+                    return 59;
+                }
+                else {
+                    return 43;}
+            }
+            else {
+                return 59;}
+            }
+        case 'u':
+            {
+            int LA11_82 = input.LA(3);
+
+            if ( (LA11_82=='l') ) {
+                int LA11_126 = input.LA(4);
+
+                if ( (LA11_126=='l') ) {
+                    int LA11_154 = input.LA(5);
+
+                    if ( ((LA11_154>='0' && LA11_154<='9')||(LA11_154>='A' && LA11_154<='Z')||LA11_154=='_'||(LA11_154>='a' && LA11_154<='z')) ) {
+                        return 59;
+                    }
+                    else {
+                        return 31;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+            }
+        default:
+            return 59;}
+
+    }
+
+    private int mTokensHelper025() throws RecognitionException {
+        int LA11_25 = input.LA(2);
+
+        if ( (LA11_25=='o') ) {
+            int LA11_83 = input.LA(3);
+
+            if ( (LA11_83=='r') ) {
+                int LA11_127 = input.LA(4);
+
+                if ( ((LA11_127>='0' && LA11_127<='9')||(LA11_127>='A' && LA11_127<='Z')||LA11_127=='_'||(LA11_127>='a' && LA11_127<='z')) ) {
+                    return 59;
+                }
+                else {
+                    return 33;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper026() throws RecognitionException {
+        int LA11_26 = input.LA(2);
+
+        if ( (LA11_26=='r') ) {
+            int LA11_84 = input.LA(3);
+
+            if ( ((LA11_84>='0' && LA11_84<='9')||(LA11_84>='A' && LA11_84<='Z')||LA11_84=='_'||(LA11_84>='a' && LA11_84<='z')) ) {
+                return 59;
+            }
+            else {
+                return 34;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper027() throws RecognitionException {
+        int LA11_27 = input.LA(2);
+
+        if ( (LA11_27=='n') ) {
+            int LA11_85 = input.LA(3);
+
+            if ( (LA11_85=='d') ) {
+                int LA11_129 = input.LA(4);
+
+                if ( ((LA11_129>='0' && LA11_129<='9')||(LA11_129>='A' && LA11_129<='Z')||LA11_129=='_'||(LA11_129>='a' && LA11_129<='z')) ) {
+                    return 59;
+                }
+                else {
+                    return 35;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper028() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case '>':
+            {
+            return 36;
+            }
+        case '=':
+            {
+            return 40;
+            }
+        default:
+            return 38;}
+
+    }
+
+    private int mTokensHelper029() throws RecognitionException {
+        int LA11_29 = input.LA(2);
+
+        if ( (LA11_29=='=') ) {
+            return 39;
+        }
+        else {
+            return 37;}
+    }
+
+    private int mTokensHelper030() throws RecognitionException {
+        return 41;
+    }
+
+    private int mTokensHelper031() throws RecognitionException {
+        int LA11_31 = input.LA(2);
+
+        if ( (LA11_31=='*') ) {
+            return 61;
+        }
+        else {
+            return 42;}
+    }
+
+    private int mTokensHelper032() throws RecognitionException {
+        return 45;
+    }
+
+    private int mTokensHelper033() throws RecognitionException {
+        return 46;
+    }
+
+    private int mTokensHelper034() throws RecognitionException {
+        return 47;
+    }
+
+    private int mTokensHelper035() throws RecognitionException {
+        return 48;
+    }
+
+    private int mTokensHelper036() throws RecognitionException {
+        int LA11_36 = input.LA(2);
+
+        if ( (LA11_36=='e') ) {
+            int LA11_98 = input.LA(3);
+
+            if ( (LA11_98=='l') ) {
+                int LA11_130 = input.LA(4);
+
+                if ( (LA11_130=='f') ) {
+                    int LA11_157 = input.LA(5);
+
+                    if ( ((LA11_157>='0' && LA11_157<='9')||(LA11_157>='A' && LA11_157<='Z')||LA11_157=='_'||(LA11_157>='a' && LA11_157<='z')) ) {
+                        return 59;
+                    }
+                    else {
+                        return 49;}
+                }
+                else {
+                    return 59;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper037() throws RecognitionException {
+        int LA11_37 = input.LA(2);
+
+        if ( (LA11_37=='e') ) {
+            int LA11_99 = input.LA(3);
+
+            if ( (LA11_99=='t') ) {
+                int LA11_131 = input.LA(4);
+
+                if ( ((LA11_131>='0' && LA11_131<='9')||(LA11_131>='A' && LA11_131<='Z')||LA11_131=='_'||(LA11_131>='a' && LA11_131<='z')) ) {
+                    return 59;
+                }
+                else {
+                    return 55;}
+            }
+            else {
+                return 59;}
+        }
+        else {
+            return 59;}
+    }
+
+    private int mTokensHelper038() throws RecognitionException {
+        int LA11_38 = input.LA(2);
+
+        if ( ((LA11_38>='\u0000' && LA11_38<='\uFFFE')) ) {
+            return 57;
+        }
+        else {
+            return 64;}
+    }
+
+    private int mTokensHelper039() throws RecognitionException {
+        int LA11_39 = input.LA(2);
+
+        if ( ((LA11_39>='\u0000' && LA11_39<='\uFFFE')) ) {
+            return 58;
+        }
+        else {
+            return 64;}
+    }
+
+    private int mTokensHelper040() throws RecognitionException {
+        return 59;
+    }
+
+    private int mTokensHelper041() throws RecognitionException {
+        return 59;
+    }
+
+    private int mTokensHelper042() throws RecognitionException {
+        return 60;
+    }
+
+    private int mTokensHelper043() throws RecognitionException {
+        return 63;
+    }
+
+    private int mTokensHelper044() throws RecognitionException {
+        return 64;
+    }
+
+    private int mTokensHelper045() throws RecognitionException {
+        NoViableAltException nvae =
+            new NoViableAltException("1:1: Tokens : ( T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID_TERMINAL | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 11, 0, input);
+
+        throw nvae;
+    }
+
 
 
  

@@ -12,20 +12,21 @@
  *
  * </copyright>
  *
- * $Id: VariableExpCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: NestedExpCS.java,v 1.1 2010/05/03 05:38:28 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Variable Exp CS</b></em>'.
+ * A representation of the model object '<em><b>Nested Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getVariableExpCS()
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNestedExpCS()
  * @model
  * @generated
  */
-public interface VariableExpCS extends OclExpressionCS {
-} // VariableExpCS
+public interface NestedExpCS extends SubExpCS {
+} // NestedExpCS

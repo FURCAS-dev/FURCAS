@@ -12,33 +12,31 @@
  *
  * </copyright>
  *
- * $Id: TypeCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: NestedExpCSImpl.java,v 1.1 2010/05/03 05:37:43 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type CS</b></em>'.
+ * An implementation of the model object '<em><b>Nested Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class TypeCSImpl extends EObjectImpl implements TypeCS {
+public class NestedExpCSImpl extends SubExpCSImpl implements NestedExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeCSImpl() {
+	protected NestedExpCSImpl() {
 		super();
 	}
 
@@ -49,7 +47,7 @@ public class TypeCSImpl extends EObjectImpl implements TypeCS {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.TYPE_CS;
+		return EssentialOCLCSTPackage.Literals.NESTED_EXP_CS;
 	}
 
-} //TypeCSImpl
+} //NestedExpCSImpl

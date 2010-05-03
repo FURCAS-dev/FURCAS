@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: LetExpCSImpl.java,v 1.2 2010/05/03 05:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -20,20 +20,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -50,7 +45,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * @generated
  */
-public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
+public class LetExpCSImpl extends ExpCSImpl implements LetExpCS {
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -69,7 +64,7 @@ public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS in;
+	protected ExpCS in;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,7 +102,7 @@ public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getIn() {
+	public ExpCS getIn() {
 		return in;
 	}
 
@@ -116,8 +111,8 @@ public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIn(OclExpressionCS newIn, NotificationChain msgs) {
-		OclExpressionCS oldIn = in;
+	public NotificationChain basicSetIn(ExpCS newIn, NotificationChain msgs) {
+		ExpCS oldIn = in;
 		in = newIn;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.LET_EXP_CS__IN, oldIn, newIn);
@@ -131,7 +126,7 @@ public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIn(OclExpressionCS newIn) {
+	public void setIn(ExpCS newIn) {
 		if (newIn != in) {
 			NotificationChain msgs = null;
 			if (in != null)
@@ -191,7 +186,7 @@ public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
 				getVariable().addAll((Collection<? extends VariableCS>)newValue);
 				return;
 			case EssentialOCLCSTPackage.LET_EXP_CS__IN:
-				setIn((OclExpressionCS)newValue);
+				setIn((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -209,7 +204,7 @@ public class LetExpCSImpl extends OclExpressionCSImpl implements LetExpCS {
 				getVariable().clear();
 				return;
 			case EssentialOCLCSTPackage.LET_EXP_CS__IN:
-				setIn((OclExpressionCS)null);
+				setIn((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);

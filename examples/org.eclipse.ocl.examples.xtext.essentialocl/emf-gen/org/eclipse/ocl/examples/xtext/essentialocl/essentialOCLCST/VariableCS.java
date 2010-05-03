@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: VariableCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: VariableCS.java,v 1.2 2010/05/03 05:38:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS#getInitExpression <em>Init Expression</em>}</li>
  * </ul>
@@ -36,33 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface VariableCS extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(SimpleNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getVariableCS_Name()
-	 * @model containment="true"
-	 * @generated
-	 */
-	SimpleNameCS getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS#getName <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(SimpleNameCS value);
-
+public interface VariableCS extends NamedElementCS {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -98,12 +73,12 @@ public interface VariableCS extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(OclExpressionCS)
+	 * @see #setInitExpression(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getVariableCS_InitExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getInitExpression();
+	ExpCS getInitExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS#getInitExpression <em>Init Expression</em>}' containment reference.
@@ -113,6 +88,6 @@ public interface VariableCS extends EObject {
 	 * @see #getInitExpression()
 	 * @generated
 	 */
-	void setInitExpression(OclExpressionCS value);
+	void setInitExpression(ExpCS value);
 
 } // VariableCS

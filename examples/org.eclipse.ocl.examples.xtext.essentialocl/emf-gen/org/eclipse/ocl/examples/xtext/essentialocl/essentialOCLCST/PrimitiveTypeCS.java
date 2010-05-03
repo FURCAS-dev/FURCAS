@@ -12,21 +12,23 @@
  *
  * </copyright>
  *
- * $Id: UnaryExpressionCS.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
+ * $Id: PrimitiveTypeCS.java,v 1.1 2010/05/03 05:38:22 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
+
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Unary Expression CS</b></em>'.
+ * A representation of the model object '<em><b>Primitive Type CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getUnaryExpressionCS()
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getPrimitiveTypeCS()
  * @model
  * @generated
  */
-public interface UnaryExpressionCS extends OperationExpressionCS {
-
-} // UnaryExpressionCS
+public interface PrimitiveTypeCS extends NamedElementCS, TypeExpCS {
+} // PrimitiveTypeCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.2 2010/05/03 05:38:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -31,7 +31,26 @@ import org.eclipse.xtext.util.Strings;
 
 import com.google.common.collect.ImmutableSet;
 
-public class EssentialOCLValueConverterService extends AbstractDeclarativeValueConverterService {
+public class EssentialOCLValueConverterService extends AbstractDeclarativeValueConverterService
+{
+	@ValueConverter(rule = "DOUBLE_QUOTED_STRING")
+	public IValueConverter<String> DOUBLE_QUOTED_STRING() {
+		return new AbstractNullSafeConverter<String>() {
+			@Override
+			protected String internalToValue(String string, AbstractNode node) {
+				try {
+					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), false);
+				} catch(IllegalArgumentException e) {
+					throw new ValueConverterException(e.getMessage(), node, e);
+				}
+			}
+
+			@Override
+			protected String internalToString(String value) {
+				return '"' + Strings.convertToJavaString(value, false) + '"';
+			}
+		};
+	}
 
 	@ValueConverter(rule = "ID")
 	public IValueConverter<String> ID() {
@@ -55,8 +74,33 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		};
 	}
 
-	@ValueConverter(rule = "STRING_LITERAL")
-	public IValueConverter<String> STRING_LITERAL() {
+	@ValueConverter(rule = "NUMBER_LITERAL")
+	public IValueConverter<Number> NUMBER_LITERAL() {
+		return new IValueConverter<Number>() {
+			
+			public Number toValue(String string, AbstractNode node) {
+				if (Strings.isEmpty(string))
+					throw new ValueConverterException("Couldn't convert empty string to number", node, null);
+				try {
+					if (string.contains(".") || string.contains("e") || string.contains("e")) {
+						return new BigDecimal(string);
+					}
+					else {
+						return new BigInteger(string);
+					}
+				} catch (NumberFormatException e) {
+					throw new ValueConverterException("Couldn't convert '"+string+"' to number", node, e);
+				}
+			}
+
+			public String toString(Number value) {
+				return value.toString();
+			}
+		};
+	}
+
+	@ValueConverter(rule = "SINGLE_QUOTED_STRING")
+	public IValueConverter<String> SINGLE_QUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {
@@ -73,47 +117,4 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 			}
 		};
 	}
-
-	@ValueConverter(rule = "INTEGER_LITERAL")
-	public IValueConverter<BigInteger> INTEGER_LITERAL() {
-		return new IValueConverter<BigInteger>() {
-			
-			public BigInteger toValue(String string, AbstractNode node) {
-				if (Strings.isEmpty(string))
-					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
-				try {
-					return new BigInteger(string);
-				} catch (NumberFormatException e) {
-					throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
-				}
-			}
-
-			public String toString(BigInteger value) {
-				return value.toString();
-			}
-
-		};
-	}
-
-	@ValueConverter(rule = "REAL_LITERAL")
-	public IValueConverter<BigDecimal> REAL_LITERAL() {
-		return new IValueConverter<BigDecimal>() {
-			
-			public BigDecimal toValue(String string, AbstractNode node) {
-				if (Strings.isEmpty(string))
-					throw new ValueConverterException("Couldn't convert empty string to real", node, null);
-				try {
-					return new BigDecimal(string);
-				} catch (NumberFormatException e) {
-					throw new ValueConverterException("Couldn't convert '"+string+"' to real", node, e);
-				}
-			}
-
-			public String toString(BigDecimal value) {
-				return value.toString();
-			}
-
-		};
-	}
-
 }

@@ -12,22 +12,19 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: CollectionLiteralPartCSImpl.java,v 1.2 2010/05/03 05:37:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpression
  *
  * @generated
  */
-public class CollectionLiteralPartCSImpl extends EObjectImpl implements CollectionLiteralPartCS {
+public class CollectionLiteralPartCSImpl extends ElementCSImpl implements CollectionLiteralPartCS {
 	/**
 	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -52,7 +49,7 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS expressionCS;
+	protected ExpCS expressionCS;
 
 	/**
 	 * The cached value of the '{@link #getLastExpressionCS() <em>Last Expression CS</em>}' containment reference.
@@ -62,7 +59,7 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS lastExpressionCS;
+	protected ExpCS lastExpressionCS;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,7 +85,7 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getExpressionCS() {
+	public ExpCS getExpressionCS() {
 		return expressionCS;
 	}
 
@@ -97,8 +94,8 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExpressionCS(OclExpressionCS newExpressionCS, NotificationChain msgs) {
-		OclExpressionCS oldExpressionCS = expressionCS;
+	public NotificationChain basicSetExpressionCS(ExpCS newExpressionCS, NotificationChain msgs) {
+		ExpCS oldExpressionCS = expressionCS;
 		expressionCS = newExpressionCS;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
@@ -112,7 +109,7 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExpressionCS(OclExpressionCS newExpressionCS) {
+	public void setExpressionCS(ExpCS newExpressionCS) {
 		if (newExpressionCS != expressionCS) {
 			NotificationChain msgs = null;
 			if (expressionCS != null)
@@ -131,7 +128,7 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getLastExpressionCS() {
+	public ExpCS getLastExpressionCS() {
 		return lastExpressionCS;
 	}
 
@@ -140,8 +137,8 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLastExpressionCS(OclExpressionCS newLastExpressionCS, NotificationChain msgs) {
-		OclExpressionCS oldLastExpressionCS = lastExpressionCS;
+	public NotificationChain basicSetLastExpressionCS(ExpCS newLastExpressionCS, NotificationChain msgs) {
+		ExpCS oldLastExpressionCS = lastExpressionCS;
 		lastExpressionCS = newLastExpressionCS;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, oldLastExpressionCS, newLastExpressionCS);
@@ -155,7 +152,7 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLastExpressionCS(OclExpressionCS newLastExpressionCS) {
+	public void setLastExpressionCS(ExpCS newLastExpressionCS) {
 		if (newLastExpressionCS != lastExpressionCS) {
 			NotificationChain msgs = null;
 			if (lastExpressionCS != null)
@@ -210,10 +207,10 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
-				setExpressionCS((OclExpressionCS)newValue);
+				setExpressionCS((ExpCS)newValue);
 				return;
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS:
-				setLastExpressionCS((OclExpressionCS)newValue);
+				setLastExpressionCS((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,10 +225,10 @@ public class CollectionLiteralPartCSImpl extends EObjectImpl implements Collecti
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
-				setExpressionCS((OclExpressionCS)null);
+				setExpressionCS((ExpCS)null);
 				return;
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS:
-				setLastExpressionCS((OclExpressionCS)null);
+				setLastExpressionCS((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);

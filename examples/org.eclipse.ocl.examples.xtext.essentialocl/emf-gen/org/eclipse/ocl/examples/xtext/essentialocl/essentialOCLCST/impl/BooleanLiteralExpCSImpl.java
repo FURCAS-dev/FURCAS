@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: BooleanLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 
@@ -32,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BooleanLiteralExpCSImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BooleanLiteralExpCSImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,24 +37,24 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
  */
 public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements BooleanLiteralExpCS {
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String value = VALUE_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,8 +80,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
-		return value;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -92,11 +89,11 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
-		value = newValue;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -107,8 +104,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__VALUE:
-				return getValue();
+			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,8 +118,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__VALUE:
-				setValue((String)newValue);
+			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,8 +133,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__VALUE:
-				setValue(VALUE_EDEFAULT);
+			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,8 +148,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -160,17 +157,11 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
-		result.append(value);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //BooleanLiteralExpCSImpl

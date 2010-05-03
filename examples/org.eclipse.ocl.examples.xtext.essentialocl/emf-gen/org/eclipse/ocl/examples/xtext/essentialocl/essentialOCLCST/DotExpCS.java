@@ -12,28 +12,29 @@
  *
  * </copyright>
  *
- * $Id: BinaryExpressionCS.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
+ * $Id: DotExpCS.java,v 1.1 2010/05/03 05:38:21 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Binary Expression CS</b></em>'.
+ * A representation of the model object '<em><b>Dot Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getBinaryExpressionCS()
+ * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getDotExpCS()
  * @model
  * @generated
  */
-public interface BinaryExpressionCS extends OperationExpressionCS {
+public interface DotExpCS extends SubExpCS {
 	/**
 	 * Returns the value of the '<em><b>Argument</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -43,21 +44,21 @@ public interface BinaryExpressionCS extends OperationExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Argument</em>' containment reference.
-	 * @see #setArgument(OclExpressionCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getBinaryExpressionCS_Argument()
+	 * @see #setArgument(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getDotExpCS_Argument()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getArgument();
+	ExpCS getArgument();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryExpressionCS#getArgument <em>Argument</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS#getArgument <em>Argument</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Argument</em>' containment reference.
 	 * @see #getArgument()
 	 * @generated
 	 */
-	void setArgument(OclExpressionCS value);
+	void setArgument(ExpCS value);
 
-} // BinaryExpressionCS
+} // DotExpCS

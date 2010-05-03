@@ -12,31 +12,31 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: ExpCSImpl.java,v 1.1 2010/05/03 05:37:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unlimited Natural Literal Exp CS</b></em>'.
+ * An implementation of the model object '<em><b>Ocl Expression CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements UnlimitedNaturalLiteralExpCS {
+public class ExpCSImpl extends ElementCSImpl implements ExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UnlimitedNaturalLiteralExpCSImpl() {
+	protected ExpCSImpl() {
 		super();
 	}
 
@@ -47,7 +47,7 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP_CS;
+		return EssentialOCLCSTPackage.Literals.EXP_CS;
 	}
 
-} //UnlimitedNaturalLiteralExpCSImpl
+} //OclExpressionCSImpl

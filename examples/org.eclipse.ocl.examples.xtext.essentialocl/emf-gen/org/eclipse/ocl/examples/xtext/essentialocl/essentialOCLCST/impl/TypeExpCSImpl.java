@@ -12,30 +12,31 @@
  *
  * </copyright>
  *
- * $Id: UnaryExpressionCSImpl.java,v 1.2 2010/04/13 20:35:15 ewillink Exp $
+ * $Id: TypeExpCSImpl.java,v 1.1 2010/05/03 05:37:53 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryExpressionCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeExpCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unary Expression CS</b></em>'.
+ * An implementation of the model object '<em><b>Type Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class UnaryExpressionCSImpl extends OperationExpressionCSImpl implements UnaryExpressionCS {
+public abstract class TypeExpCSImpl extends LiteralExpCSImpl implements TypeExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UnaryExpressionCSImpl() {
+	protected TypeExpCSImpl() {
 		super();
 	}
 
@@ -46,7 +47,7 @@ public class UnaryExpressionCSImpl extends OperationExpressionCSImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.UNARY_EXPRESSION_CS;
+		return EssentialOCLCSTPackage.Literals.TYPE_EXP_CS;
 	}
 
-} //UnaryExpressionCSImpl
+} //TypeExpCSImpl

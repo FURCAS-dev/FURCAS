@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: LiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
  *
  * @generated
  */
-public class LiteralExpCSImpl extends OclExpressionCSImpl implements LiteralExpCS {
+public class LiteralExpCSImpl extends ExpCSImpl implements LiteralExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

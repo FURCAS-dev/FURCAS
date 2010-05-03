@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.3 2010/05/03 05:38:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -36,40 +36,31 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	EssentialOCLCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Ocl Expression CS</em>'.
+	 * Returns a new object of class '<em>Arrow Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Expression CS</em>'.
+	 * @return a new object of class '<em>Arrow Exp CS</em>'.
 	 * @generated
 	 */
-	OclExpressionCS createOclExpressionCS();
+	ArrowExpCS createArrowExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Simple Name CS</em>'.
+	 * Returns a new object of class '<em>Path Name Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Name CS</em>'.
+	 * @return a new object of class '<em>Path Name Exp CS</em>'.
 	 * @generated
 	 */
-	SimpleNameCS createSimpleNameCS();
+	PathNameExpCS createPathNameExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Path Name CS</em>'.
+	 * Returns a new object of class '<em>Prefix Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Path Name CS</em>'.
+	 * @return a new object of class '<em>Prefix Exp CS</em>'.
 	 * @generated
 	 */
-	PathNameCS createPathNameCS();
-
-	/**
-	 * Returns a new object of class '<em>Type CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type CS</em>'.
-	 * @generated
-	 */
-	TypeCS createTypeCS();
+	PrefixExpCS createPrefixExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Collection Type CS</em>'.
@@ -79,6 +70,24 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	CollectionTypeCS createCollectionTypeCS();
+
+	/**
+	 * Returns a new object of class '<em>Dot Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dot Exp CS</em>'.
+	 * @generated
+	 */
+	DotExpCS createDotExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Exp CS</em>'.
+	 * @generated
+	 */
+	ExpCS createExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Type CS</em>'.
@@ -108,6 +117,15 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	LiteralExpCS createLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Nested Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Nested Exp CS</em>'.
+	 * @generated
+	 */
+	NestedExpCS createNestedExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Collection Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,6 +153,51 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	PrimitiveLiteralExpCS createPrimitiveLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Primitive Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive Type CS</em>'.
+	 * @generated
+	 */
+	PrimitiveTypeCS createPrimitiveTypeCS();
+
+	/**
+	 * Returns a new object of class '<em>Round Bracket Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Round Bracket Exp CS</em>'.
+	 * @generated
+	 */
+	RoundBracketExpCS createRoundBracketExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Self Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Self Exp CS</em>'.
+	 * @generated
+	 */
+	SelfExpCS createSelfExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Simple Name Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Name Exp CS</em>'.
+	 * @generated
+	 */
+	SimpleNameExpCS createSimpleNameExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Square Bracket Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Square Bracket Exp CS</em>'.
+	 * @generated
+	 */
+	SquareBracketExpCS createSquareBracketExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,24 +205,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	TupleLiteralExpCS createTupleLiteralExpCS();
-
-	/**
-	 * Returns a new object of class '<em>Integer Literal Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Integer Literal Exp CS</em>'.
-	 * @generated
-	 */
-	IntegerLiteralExpCS createIntegerLiteralExpCS();
-
-	/**
-	 * Returns a new object of class '<em>Real Literal Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Real Literal Exp CS</em>'.
-	 * @generated
-	 */
-	RealLiteralExpCS createRealLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>String Literal Exp CS</em>'.
@@ -180,15 +225,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	BooleanLiteralExpCS createBooleanLiteralExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Unlimited Natural Literal Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unlimited Natural Literal Exp CS</em>'.
-	 * @generated
-	 */
-	UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Invalid Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -207,22 +243,13 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	NullLiteralExpCS createNullLiteralExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Type Literal Exp CS</em>'.
+	 * Returns a new object of class '<em>Number Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Literal Exp CS</em>'.
+	 * @return a new object of class '<em>Number Literal Exp CS</em>'.
 	 * @generated
 	 */
-	TypeLiteralExpCS createTypeLiteralExpCS();
-
-	/**
-	 * Returns a new object of class '<em>Variable Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Exp CS</em>'.
-	 * @generated
-	 */
-	VariableExpCS createVariableExpCS();
+	NumberLiteralExpCS createNumberLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>If Exp CS</em>'.
@@ -234,13 +261,13 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	IfExpCS createIfExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Index Exp CS</em>'.
+	 * Returns a new object of class '<em>Infix Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Index Exp CS</em>'.
+	 * @return a new object of class '<em>Infix Exp CS</em>'.
 	 * @generated
 	 */
-	IndexExpCS createIndexExpCS();
+	InfixExpCS createInfixExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Let Exp CS</em>'.
@@ -250,33 +277,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	LetExpCS createLetExpCS();
-
-	/**
-	 * Returns a new object of class '<em>Binary Expression CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Expression CS</em>'.
-	 * @generated
-	 */
-	BinaryExpressionCS createBinaryExpressionCS();
-
-	/**
-	 * Returns a new object of class '<em>Unary Expression CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unary Expression CS</em>'.
-	 * @generated
-	 */
-	UnaryExpressionCS createUnaryExpressionCS();
-
-	/**
-	 * Returns a new object of class '<em>Call Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Call Exp CS</em>'.
-	 * @generated
-	 */
-	CallExpCS createCallExpCS();
 
 	/**
 	 * Returns the package supported by this factory.
