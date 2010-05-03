@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: OperationContextDeclCSImpl.java,v 1.2 2010/05/03 05:58:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -20,25 +20,20 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,8 +42,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getPres <em>Pres</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getPosts <em>Posts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getBodies <em>Bodies</em>}</li>
@@ -57,7 +52,17 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * @generated
  */
-public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements OperationContextDeclCS {
+public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl implements OperationContextDeclCS {
+	/**
+	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected OperationRefCS operation;
+
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -67,16 +72,6 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 * @ordered
 	 */
 	protected EList<VariableCS> parameters;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeCS type;
 
 	/**
 	 * The cached value of the '{@link #getPres() <em>Pres</em>}' containment reference list.
@@ -132,11 +127,8 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VariableCS> getParameters() {
-		if (parameters == null) {
-			parameters = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS);
-		}
-		return parameters;
+	public OperationRefCS getOperation() {
+		return operation;
 	}
 
 	/**
@@ -144,20 +136,11 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeCS getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetType(TypeCS newType, NotificationChain msgs) {
-		TypeCS oldType = type;
-		type = newType;
+	public NotificationChain basicSetOperation(OperationRefCS newOperation, NotificationChain msgs) {
+		OperationRefCS oldOperation = operation;
+		operation = newOperation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, oldOperation, newOperation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -168,18 +151,30 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(TypeCS newType) {
-		if (newType != type) {
+	public void setOperation(OperationRefCS newOperation) {
+		if (newOperation != operation) {
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (operation != null)
+				msgs = ((InternalEObject)operation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, null, msgs);
+			if (newOperation != null)
+				msgs = ((InternalEObject)newOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, null, msgs);
+			msgs = basicSetOperation(newOperation, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, newOperation, newOperation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<VariableCS> getParameters() {
+		if (parameters == null) {
+			parameters = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS);
+		}
+		return parameters;
 	}
 
 	/**
@@ -226,10 +221,10 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
+				return basicSetOperation(null, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE:
-				return basicSetType(null, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				return ((InternalEList<?>)getPres()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS:
@@ -248,10 +243,10 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
+				return getOperation();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return getParameters();
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE:
-				return getType();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				return getPres();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS:
@@ -271,12 +266,12 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
+				setOperation((OperationRefCS)newValue);
+				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends VariableCS>)newValue);
-				return;
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE:
-				setType((TypeCS)newValue);
 				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				getPres().clear();
@@ -302,11 +297,11 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
+				setOperation((OperationRefCS)null);
+				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
-				return;
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE:
-				setType((TypeCS)null);
 				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				getPres().clear();
@@ -329,10 +324,10 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
+				return operation != null;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__TYPE:
-				return type != null;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				return pres != null && !pres.isEmpty();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS:

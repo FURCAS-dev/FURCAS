@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: PackageDeclarationCS.java,v 1.2 2010/05/03 05:58:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getContexts <em>Contexts</em>}</li>
  * </ul>
  * </p>
@@ -39,32 +38,32 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameCS;
  * @model
  * @generated
  */
-public interface PackageDeclarationCS extends EObject {
+public interface PackageDeclarationCS extends ElementCS {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Package</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS_Name()
+	 * @return the value of the '<em>Package</em>' containment reference.
+	 * @see #setPackage(PackageRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS_Package()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PathNameCS getName();
+	PackageRefCS getPackage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getName <em>Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Package</em>' containment reference.
+	 * @see #getPackage()
 	 * @generated
 	 */
-	void setName(PathNameCS value);
+	void setPackage(PackageRefCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.

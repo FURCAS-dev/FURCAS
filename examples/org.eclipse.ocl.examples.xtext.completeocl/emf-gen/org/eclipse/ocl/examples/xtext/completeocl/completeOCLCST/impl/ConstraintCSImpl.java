@@ -12,23 +12,19 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: ConstraintCSImpl.java,v 1.2 2010/05/03 05:58:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpression
  *
  * @generated
  */
-public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements ConstraintCS {
+public class ConstraintCSImpl extends ElementCSImpl implements ConstraintCS {
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -52,7 +48,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS expression;
+	protected ExpCS expression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,7 +74,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getExpression() {
+	public ExpCS getExpression() {
 		return expression;
 	}
 
@@ -87,8 +83,8 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExpression(OclExpressionCS newExpression, NotificationChain msgs) {
-		OclExpressionCS oldExpression = expression;
+	public NotificationChain basicSetExpression(ExpCS newExpression, NotificationChain msgs) {
+		ExpCS oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.CONSTRAINT_CS__EXPRESSION, oldExpression, newExpression);
@@ -102,7 +98,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExpression(OclExpressionCS newExpression) {
+	public void setExpression(ExpCS newExpression) {
 		if (newExpression != expression) {
 			NotificationChain msgs = null;
 			if (expression != null)
@@ -153,7 +149,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.CONSTRAINT_CS__EXPRESSION:
-				setExpression((OclExpressionCS)newValue);
+				setExpression((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -168,7 +164,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.CONSTRAINT_CS__EXPRESSION:
-				setExpression((OclExpressionCS)null);
+				setExpression((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);

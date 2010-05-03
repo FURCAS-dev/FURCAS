@@ -12,24 +12,21 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextDeclCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: PropertyContextDeclCSImpl.java,v 1.2 2010/05/03 05:58:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PropertyContextDeclCSImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PropertyContextDeclCSImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PropertyContextDeclCSImpl#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PropertyContextDeclCSImpl#getDer <em>Der</em>}</li>
  * </ul>
@@ -46,16 +43,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
  *
  * @generated
  */
-public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements PropertyContextDeclCS {
+public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implements PropertyContextDeclCS {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getProperty()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeCS type;
+	protected StructuralFeatureRefCS property;
 
 	/**
 	 * The cached value of the '{@link #getInit() <em>Init</em>}' containment reference.
@@ -101,8 +98,8 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeCS getType() {
-		return type;
+	public StructuralFeatureRefCS getProperty() {
+		return property;
 	}
 
 	/**
@@ -110,11 +107,11 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(TypeCS newType, NotificationChain msgs) {
-		TypeCS oldType = type;
-		type = newType;
+	public NotificationChain basicSetProperty(StructuralFeatureRefCS newProperty, NotificationChain msgs) {
+		StructuralFeatureRefCS oldProperty = property;
+		property = newProperty;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY, oldProperty, newProperty);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -125,18 +122,18 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(TypeCS newType) {
-		if (newType != type) {
+	public void setProperty(StructuralFeatureRefCS newProperty) {
+		if (newProperty != property) {
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (property != null)
+				msgs = ((InternalEObject)property).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY, null, msgs);
+			if (newProperty != null)
+				msgs = ((InternalEObject)newProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY, null, msgs);
+			msgs = basicSetProperty(newProperty, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY, newProperty, newProperty));
 	}
 
 	/**
@@ -233,8 +230,8 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE:
-				return basicSetType(null, msgs);
+			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
+				return basicSetProperty(null, msgs);
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
 				return basicSetInit(null, msgs);
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__DER:
@@ -251,8 +248,8 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE:
-				return getType();
+			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
+				return getProperty();
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
 				return getInit();
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__DER:
@@ -269,8 +266,8 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE:
-				setType((TypeCS)newValue);
+			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
+				setProperty((StructuralFeatureRefCS)newValue);
 				return;
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
 				setInit((InitCS)newValue);
@@ -290,8 +287,8 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE:
-				setType((TypeCS)null);
+			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
+				setProperty((StructuralFeatureRefCS)null);
 				return;
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
 				setInit((InitCS)null);
@@ -311,8 +308,8 @@ public class PropertyContextDeclCSImpl extends ContextDeclCSImpl implements Prop
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__TYPE:
-				return type != null;
+			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__PROPERTY:
+				return property != null;
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__INIT:
 				return init != null;
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS__DER:

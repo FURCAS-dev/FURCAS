@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: NamedConstraintCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: NamedConstraintCS.java,v 1.2 2010/05/03 05:58:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,29 +35,29 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
  */
 public interface NamedConstraintCS extends ConstraintCS {
 	/**
-	 * Returns the value of the '<em><b>Constraint Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Constraint Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraint Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Name</em>' containment reference.
-	 * @see #setConstraintName(SimpleNameCS)
+	 * @return the value of the '<em>Constraint Name</em>' attribute.
+	 * @see #setConstraintName(String)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getNamedConstraintCS_ConstraintName()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	SimpleNameCS getConstraintName();
+	String getConstraintName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedConstraintCS#getConstraintName <em>Constraint Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedConstraintCS#getConstraintName <em>Constraint Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint Name</em>' containment reference.
+	 * @param value the new value of the '<em>Constraint Name</em>' attribute.
 	 * @see #getConstraintName()
 	 * @generated
 	 */
-	void setConstraintName(SimpleNameCS value);
+	void setConstraintName(String value);
 
 } // NamedConstraintCS

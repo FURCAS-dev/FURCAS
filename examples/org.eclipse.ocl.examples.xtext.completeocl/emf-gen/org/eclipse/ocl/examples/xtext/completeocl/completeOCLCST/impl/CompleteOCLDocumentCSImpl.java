@@ -12,29 +12,23 @@
  *
  * </copyright>
  *
- * $Id: DocumentCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: CompleteOCLDocumentCSImpl.java,v 1.1 2010/05/03 05:58:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.DocumentCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OclExpressionCSImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,25 +37,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OclExpre
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DocumentCSImpl#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DocumentCSImpl#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DocumentCSImpl#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLDocumentCSImpl#getPackages <em>Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLDocumentCSImpl#getContexts <em>Contexts</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
-	/**
-	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ImportCS> imports;
-
+public class CompleteOCLDocumentCSImpl extends DocumentCSImpl implements CompleteOCLDocumentCS {
 	/**
 	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -87,7 +70,7 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DocumentCSImpl() {
+	protected CompleteOCLDocumentCSImpl() {
 		super();
 	}
 
@@ -98,19 +81,7 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CompleteOCLCSTPackage.Literals.DOCUMENT_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ImportCS> getImports() {
-		if (imports == null) {
-			imports = new EObjectContainmentEList<ImportCS>(ImportCS.class, this, CompleteOCLCSTPackage.DOCUMENT_CS__IMPORTS);
-		}
-		return imports;
+		return CompleteOCLCSTPackage.Literals.COMPLETE_OCL_DOCUMENT_CS;
 	}
 
 	/**
@@ -120,7 +91,7 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	 */
 	public EList<PackageDeclarationCS> getPackages() {
 		if (packages == null) {
-			packages = new EObjectContainmentEList<PackageDeclarationCS>(PackageDeclarationCS.class, this, CompleteOCLCSTPackage.DOCUMENT_CS__PACKAGES);
+			packages = new EObjectContainmentEList<PackageDeclarationCS>(PackageDeclarationCS.class, this, CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES);
 		}
 		return packages;
 	}
@@ -132,7 +103,7 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	 */
 	public EList<ContextDeclCS> getContexts() {
 		if (contexts == null) {
-			contexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSTPackage.DOCUMENT_CS__CONTEXTS);
+			contexts = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS);
 		}
 		return contexts;
 	}
@@ -145,11 +116,9 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.DOCUMENT_CS__IMPORTS:
-				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSTPackage.DOCUMENT_CS__PACKAGES:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				return ((InternalEList<?>)getPackages()).basicRemove(otherEnd, msgs);
-			case CompleteOCLCSTPackage.DOCUMENT_CS__CONTEXTS:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
 				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -163,11 +132,9 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.DOCUMENT_CS__IMPORTS:
-				return getImports();
-			case CompleteOCLCSTPackage.DOCUMENT_CS__PACKAGES:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				return getPackages();
-			case CompleteOCLCSTPackage.DOCUMENT_CS__CONTEXTS:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
 				return getContexts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -182,15 +149,11 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.DOCUMENT_CS__IMPORTS:
-				getImports().clear();
-				getImports().addAll((Collection<? extends ImportCS>)newValue);
-				return;
-			case CompleteOCLCSTPackage.DOCUMENT_CS__PACKAGES:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				getPackages().clear();
 				getPackages().addAll((Collection<? extends PackageDeclarationCS>)newValue);
 				return;
-			case CompleteOCLCSTPackage.DOCUMENT_CS__CONTEXTS:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
 				getContexts().clear();
 				getContexts().addAll((Collection<? extends ContextDeclCS>)newValue);
 				return;
@@ -206,13 +169,10 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.DOCUMENT_CS__IMPORTS:
-				getImports().clear();
-				return;
-			case CompleteOCLCSTPackage.DOCUMENT_CS__PACKAGES:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				getPackages().clear();
 				return;
-			case CompleteOCLCSTPackage.DOCUMENT_CS__CONTEXTS:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
 				getContexts().clear();
 				return;
 		}
@@ -227,11 +187,9 @@ public class DocumentCSImpl extends OclExpressionCSImpl implements DocumentCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.DOCUMENT_CS__IMPORTS:
-				return imports != null && !imports.isEmpty();
-			case CompleteOCLCSTPackage.DOCUMENT_CS__PACKAGES:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__PACKAGES:
 				return packages != null && !packages.isEmpty();
-			case CompleteOCLCSTPackage.DOCUMENT_CS__CONTEXTS:
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS__CONTEXTS:
 				return contexts != null && !contexts.isEmpty();
 		}
 		return super.eIsSet(featureID);

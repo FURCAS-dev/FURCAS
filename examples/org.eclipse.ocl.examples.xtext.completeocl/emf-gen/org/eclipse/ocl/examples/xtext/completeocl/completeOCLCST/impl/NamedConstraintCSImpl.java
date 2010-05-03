@@ -12,22 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NamedConstraintCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: NamedConstraintCSImpl.java,v 1.2 2010/05/03 05:58:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedConstraintCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,14 +37,23 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
  */
 public class NamedConstraintCSImpl extends ConstraintCSImpl implements NamedConstraintCS {
 	/**
-	 * The cached value of the '{@link #getConstraintName() <em>Constraint Name</em>}' containment reference.
+	 * The default value of the '{@link #getConstraintName() <em>Constraint Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstraintName()
 	 * @generated
 	 * @ordered
 	 */
-	protected SimpleNameCS constraintName;
+	protected static final String CONSTRAINT_NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getConstraintName() <em>Constraint Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstraintName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String constraintName = CONSTRAINT_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,7 +79,7 @@ public class NamedConstraintCSImpl extends ConstraintCSImpl implements NamedCons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleNameCS getConstraintName() {
+	public String getConstraintName() {
 		return constraintName;
 	}
 
@@ -86,47 +88,11 @@ public class NamedConstraintCSImpl extends ConstraintCSImpl implements NamedCons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConstraintName(SimpleNameCS newConstraintName, NotificationChain msgs) {
-		SimpleNameCS oldConstraintName = constraintName;
+	public void setConstraintName(String newConstraintName) {
+		String oldConstraintName = constraintName;
 		constraintName = newConstraintName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME, oldConstraintName, newConstraintName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintName(SimpleNameCS newConstraintName) {
-		if (newConstraintName != constraintName) {
-			NotificationChain msgs = null;
-			if (constraintName != null)
-				msgs = ((InternalEObject)constraintName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME, null, msgs);
-			if (newConstraintName != null)
-				msgs = ((InternalEObject)newConstraintName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME, null, msgs);
-			msgs = basicSetConstraintName(newConstraintName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME, newConstraintName, newConstraintName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME:
-				return basicSetConstraintName(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME, oldConstraintName, constraintName));
 	}
 
 	/**
@@ -152,7 +118,7 @@ public class NamedConstraintCSImpl extends ConstraintCSImpl implements NamedCons
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME:
-				setConstraintName((SimpleNameCS)newValue);
+				setConstraintName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,7 +133,7 @@ public class NamedConstraintCSImpl extends ConstraintCSImpl implements NamedCons
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME:
-				setConstraintName((SimpleNameCS)null);
+				setConstraintName(CONSTRAINT_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -182,9 +148,19 @@ public class NamedConstraintCSImpl extends ConstraintCSImpl implements NamedCons
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS__CONSTRAINT_NAME:
-				return constraintName != null;
+				return CONSTRAINT_NAME_EDEFAULT == null ? constraintName != null : !CONSTRAINT_NAME_EDEFAULT.equals(constraintName);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //NamedConstraintCSImpl

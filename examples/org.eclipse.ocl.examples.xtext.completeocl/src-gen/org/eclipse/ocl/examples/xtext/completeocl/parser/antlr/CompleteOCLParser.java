@@ -42,7 +42,7 @@ public class CompleteOCLParser extends org.eclipse.xtext.parser.antlr.AbstractAn
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "CompleteOCLDocumentCS";
 	}
 	
 	public CompleteOCLGrammarAccess getGrammarAccess() {

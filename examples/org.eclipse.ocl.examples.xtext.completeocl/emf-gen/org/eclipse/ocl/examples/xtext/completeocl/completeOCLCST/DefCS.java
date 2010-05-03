@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: DefCS.java,v 1.2 2010/05/03 05:58:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -69,30 +67,30 @@ public interface DefCS extends NamedConstraintCS {
 	void setStatic(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Constrained Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Constrained Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constrained Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constrained Name</em>' containment reference.
-	 * @see #setConstrainedName(SimpleNameCS)
+	 * @return the value of the '<em>Constrained Name</em>' attribute.
+	 * @see #setConstrainedName(String)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_ConstrainedName()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	SimpleNameCS getConstrainedName();
+	String getConstrainedName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constrained Name</em>' containment reference.
+	 * @param value the new value of the '<em>Constrained Name</em>' attribute.
 	 * @see #getConstrainedName()
 	 * @generated
 	 */
-	void setConstrainedName(SimpleNameCS value);
+	void setConstrainedName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.

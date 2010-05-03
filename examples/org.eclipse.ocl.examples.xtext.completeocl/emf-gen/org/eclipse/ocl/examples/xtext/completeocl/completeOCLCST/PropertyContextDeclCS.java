@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextDeclCS.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: PropertyContextDeclCS.java,v 1.2 2010/05/03 05:58:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS#getProperty <em>Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS#getDer <em>Der</em>}</li>
  * </ul>
@@ -36,32 +37,32 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
  * @model
  * @generated
  */
-public interface PropertyContextDeclCS extends ContextDeclCS {
+public interface PropertyContextDeclCS extends FeatureContextDeclCS {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Property</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Property</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(TypeCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPropertyContextDeclCS_Type()
+	 * @return the value of the '<em>Property</em>' containment reference.
+	 * @see #setProperty(StructuralFeatureRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPropertyContextDeclCS_Property()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeCS getType();
+	StructuralFeatureRefCS getProperty();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS#getType <em>Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS#getProperty <em>Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Property</em>' containment reference.
+	 * @see #getProperty()
 	 * @generated
 	 */
-	void setType(TypeCS value);
+	void setProperty(StructuralFeatureRefCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Init</b></em>' containment reference.

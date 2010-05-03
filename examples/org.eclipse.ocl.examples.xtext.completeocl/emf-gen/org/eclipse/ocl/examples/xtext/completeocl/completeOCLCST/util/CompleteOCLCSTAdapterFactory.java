@@ -12,20 +12,21 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTAdapterFactory.java,v 1.1 2010/04/13 06:38:27 ewillink Exp $
+ * $Id: CompleteOCLCSTAdapterFactory.java,v 1.2 2010/05/03 05:58:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,6 +93,10 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 				return createClassifierContextDeclCSAdapter();
 			}
 			@Override
+			public Adapter caseCompleteOCLDocumentCS(CompleteOCLDocumentCS object) {
+				return createCompleteOCLDocumentCSAdapter();
+			}
+			@Override
 			public Adapter caseConstraintCS(ConstraintCS object) {
 				return createConstraintCSAdapter();
 			}
@@ -108,12 +113,8 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 				return createDerCSAdapter();
 			}
 			@Override
-			public Adapter caseDocumentCS(DocumentCS object) {
-				return createDocumentCSAdapter();
-			}
-			@Override
-			public Adapter caseImportCS(ImportCS object) {
-				return createImportCSAdapter();
+			public Adapter caseFeatureContextDeclCS(FeatureContextDeclCS object) {
+				return createFeatureContextDeclCSAdapter();
 			}
 			@Override
 			public Adapter caseInitCS(InitCS object) {
@@ -156,8 +157,28 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyContextDeclCSAdapter();
 			}
 			@Override
-			public Adapter caseOclExpressionCS(OclExpressionCS object) {
-				return createOclExpressionCSAdapter();
+			public Adapter caseElementCS(ElementCS object) {
+				return createElementCSAdapter();
+			}
+			@Override
+			public Adapter caseModelElementCS(ModelElementCS object) {
+				return createModelElementCSAdapter();
+			}
+			@Override
+			public Adapter caseNamedElementCS(NamedElementCS object) {
+				return createNamedElementCSAdapter();
+			}
+			@Override
+			public Adapter caseNamespaceCS(NamespaceCS object) {
+				return createNamespaceCSAdapter();
+			}
+			@Override
+			public Adapter caseDocumentCS(DocumentCS object) {
+				return createDocumentCSAdapter();
+			}
+			@Override
+			public Adapter caseExpCS(ExpCS object) {
+				return createExpCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -180,30 +201,16 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS <em>Document CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS <em>Feature Context Decl CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS
 	 * @generated
 	 */
-	public Adapter createDocumentCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ImportCS <em>Import CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ImportCS
-	 * @generated
-	 */
-	public Adapter createImportCSAdapter() {
+	public Adapter createFeatureContextDeclCSAdapter() {
 		return null;
 	}
 
@@ -250,6 +257,90 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS <em>Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS
+	 * @generated
+	 */
+	public Adapter createElementCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS <em>Model Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS
+	 * @generated
+	 */
+	public Adapter createModelElementCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS <em>Named Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS
+	 * @generated
+	 */
+	public Adapter createNamedElementCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS <em>Namespace CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS
+	 * @generated
+	 */
+	public Adapter createNamespaceCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS <em>Document CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS
+	 * @generated
+	 */
+	public Adapter createDocumentCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS <em>Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS
+	 * @generated
+	 */
+	public Adapter createExpCSAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS <em>Init CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -288,6 +379,20 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassifierContextDeclCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS <em>Complete OCL Document CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS
+	 * @generated
+	 */
+	public Adapter createCompleteOCLDocumentCSAdapter() {
 		return null;
 	}
 
@@ -428,20 +533,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOclMessageCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS <em>Ocl Expression CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS
-	 * @generated
-	 */
-	public Adapter createOclExpressionCSAdapter() {
 		return null;
 	}
 

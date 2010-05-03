@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: DocumentCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: CompleteOCLDocumentCS.java,v 1.1 2010/05/03 05:58:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,33 +27,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpression
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getPackages <em>Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getContexts <em>Contexts</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDocumentCS()
+ * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getCompleteOCLDocumentCS()
  * @model
  * @generated
  */
-public interface DocumentCS extends OclExpressionCS {
-	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ImportCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDocumentCS_Imports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ImportCS> getImports();
-
+public interface CompleteOCLDocumentCS extends DocumentCS {
 	/**
 	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS}.
@@ -65,7 +47,7 @@ public interface DocumentCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Packages</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDocumentCS_Packages()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getCompleteOCLDocumentCS_Packages()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -81,7 +63,7 @@ public interface DocumentCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contexts</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDocumentCS_Contexts()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getCompleteOCLDocumentCS_Contexts()
 	 * @model containment="true"
 	 * @generated
 	 */
