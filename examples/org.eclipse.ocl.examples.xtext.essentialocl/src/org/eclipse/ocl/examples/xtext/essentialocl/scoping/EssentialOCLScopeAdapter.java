@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeAdapter.java,v 1.1 2010/05/03 05:38:07 ewillink Exp $
+ * $Id: EssentialOCLScopeAdapter.java,v 1.2 2010/05/03 14:45:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeAdapter;
@@ -52,6 +53,9 @@ public abstract class EssentialOCLScopeAdapter<T extends ElementCS> extends OCLs
 	public ClassifierCS getLibType(TypeCS csType) {
 		if (csType instanceof PrimitiveTypeCS) {
 			return getLibType(((PrimitiveTypeCS)csType).getName());
+		}
+		else if (csType instanceof SimpleNameExpCS) {
+			return getLibType(((SimpleNameExpCS)csType).getElement());
 		}
 		else {
 			return super.getLibType(csType);

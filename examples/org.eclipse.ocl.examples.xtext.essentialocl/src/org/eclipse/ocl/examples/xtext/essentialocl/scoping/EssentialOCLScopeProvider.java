@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeProvider.java,v 1.2 2010/05/03 05:38:02 ewillink Exp $
+ * $Id: EssentialOCLScopeProvider.java,v 1.3 2010/05/03 14:45:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -127,7 +127,7 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 			else if (container instanceof ArrowExpCS)
 				return new ArrowOperationCallExpScopeAdapter(eObject);
 			else
-				return null;
+				return null;		// FIXME implicit call
 		}
 
 		@Override
