@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleNameExpScopeAdapter.java,v 1.1 2010/05/03 05:38:04 ewillink Exp $
+ * $Id: SimpleNameExpScopeAdapter.java,v 1.2 2010/05/03 14:45:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -44,6 +45,14 @@ public class SimpleNameExpScopeAdapter extends EssentialOCLScopeAdapter<SimpleNa
 	public TypeCS getType() {
 		SimpleNameExpCS target = getTarget();
 		NamedElementCS element = target.getElement();
+		if (element instanceof TypedElementCS) {
+			TypedRefCS type = ((TypedElementCS)element).getType();
+			return getLibType(type);
+		}
+		else if (element instanceof VariableCS) {
+			TypeCS type = ((VariableCS)element).getType();
+			return getLibType(type);
+		}
 		return getLibType(element);
 	}
 }
