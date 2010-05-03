@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.3 2010/05/03 05:44:44 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.4 2010/05/03 14:44:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -96,8 +96,11 @@ public class OCLinEcoreLinkingService extends OCLstdlibLinkingService
 				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, resource);
 			}
 			else {
-				EPackage ePackage = (EPackage) resourceSet.getEObject(uri, true);
-				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, ePackage);
+				EObject eObject = resourceSet.getEObject(uri, true);
+				if (eObject instanceof ElementCS) {
+					return (ElementCS) eObject;
+				}
+				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, eObject);
 			}
 		} catch(RuntimeException ex) {
 			log.trace("Cannot load package with URI '" + uri + "'", ex);
