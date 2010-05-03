@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreAdapterFactory.java,v 1.10 2010/04/23 05:52:40 ewillink Exp $
+ * $Id: EcoreAdapterFactory.java,v 1.11 2010/05/03 09:32:49 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -2464,7 +2464,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_AnyTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_AnyTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createAnyType_1Adapter() {
@@ -2472,7 +2472,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_CollectionTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_CollectionTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createCollectionType_1Adapter() {
@@ -2480,7 +2480,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_BagTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_BagTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createBagType_1Adapter() {
@@ -2488,7 +2488,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_ElementTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_ElementTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createElementType_1Adapter() {
@@ -2496,7 +2496,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_InvalidTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_InvalidTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createInvalidType_1Adapter() {
@@ -2504,7 +2504,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_MessageTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_MessageTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createMessageType_1Adapter() {
@@ -2512,7 +2512,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_OrderedSetTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_OrderedSetTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createOrderedSetType_1Adapter() {
@@ -2520,7 +2520,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_PrimitiveTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_PrimitiveTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createPrimitiveType_1Adapter() {
@@ -2528,7 +2528,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_SequenceTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_SequenceTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createSequenceType_1Adapter() {
@@ -2536,7 +2536,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_SetTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_SetTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createSetType_1Adapter() {
@@ -2544,7 +2544,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_TupleTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_TupleTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createTupleType_1Adapter() {
@@ -2552,7 +2552,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_TypeTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_TypeTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createTypeType_1Adapter() {
@@ -2560,7 +2560,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createTypes_VoidTypeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createTypes_VoidTypeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createVoidType_1Adapter() {
@@ -2568,7 +2568,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createUtilities_ExpressionInOCLAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createUtilities_ExpressionInOCLAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createExpressionInOCL_1Adapter() {
@@ -2576,7 +2576,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_OCLExpressionAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_OCLExpressionAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createOCLExpression_1Adapter() {
@@ -2584,7 +2584,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_CallExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_CallExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createCallExp_1Adapter() {
@@ -2592,7 +2592,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_FeatureCallExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_FeatureCallExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createFeatureCallExp_1Adapter() {
@@ -2600,7 +2600,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_NavigationCallExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_NavigationCallExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createNavigationCallExp_1Adapter() {
@@ -2608,7 +2608,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_AssociationClassCallExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_AssociationClassCallExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createAssociationClassCallExp_1Adapter() {
@@ -2616,7 +2616,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_LiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_LiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createLiteralExp_1Adapter() {
@@ -2624,7 +2624,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_PrimitiveLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_PrimitiveLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createPrimitiveLiteralExp_1Adapter() {
@@ -2632,7 +2632,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_BooleanLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_BooleanLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createBooleanLiteralExp_1Adapter() {
@@ -2640,7 +2640,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionLiteralPartAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_CollectionLiteralPartAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createCollectionLiteralPart_1Adapter() {
@@ -2648,7 +2648,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionItemAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_CollectionItemAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createCollectionItem_1Adapter() {
@@ -2656,7 +2656,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_CollectionLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createCollectionLiteralExp_1Adapter() {
@@ -2664,7 +2664,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionRangeAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_CollectionRangeAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createCollectionRange_1Adapter() {
@@ -2672,7 +2672,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_EnumLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_EnumLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createEnumLiteralExp_1Adapter() {
@@ -2680,7 +2680,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_IfExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_IfExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createIfExp_1Adapter() {
@@ -2688,7 +2688,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_NumericLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_NumericLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createNumericLiteralExp_1Adapter() {
@@ -2696,7 +2696,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_IntegerLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_IntegerLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createIntegerLiteralExp_1Adapter() {
@@ -2704,7 +2704,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_UnlimitedNaturalLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_UnlimitedNaturalLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createUnlimitedNaturalLiteralExp_1Adapter() {
@@ -2712,7 +2712,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_InvalidLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_InvalidLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createInvalidLiteralExp_1Adapter() {
@@ -2720,7 +2720,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_LoopExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_LoopExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createLoopExp_1Adapter() {
@@ -2728,7 +2728,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_IterateExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_IterateExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createIterateExp_1Adapter() {
@@ -2736,7 +2736,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_IteratorExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_IteratorExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createIteratorExp_1Adapter() {
@@ -2744,7 +2744,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_LetExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_LetExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createLetExp_1Adapter() {
@@ -2752,7 +2752,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_MessageExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_MessageExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createMessageExp_1Adapter() {
@@ -2760,7 +2760,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_NullLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_NullLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createNullLiteralExp_1Adapter() {
@@ -2768,7 +2768,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_OperationCallExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_OperationCallExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createOperationCallExp_1Adapter() {
@@ -2776,7 +2776,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_PropertyCallExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_PropertyCallExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createPropertyCallExp_1Adapter() {
@@ -2784,7 +2784,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_RealLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_RealLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createRealLiteralExp_1Adapter() {
@@ -2792,7 +2792,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_StateExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_StateExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createStateExp_1Adapter() {
@@ -2800,7 +2800,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_StringLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_StringLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createStringLiteralExp_1Adapter() {
@@ -2808,7 +2808,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_TupleLiteralExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_TupleLiteralExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createTupleLiteralExp_1Adapter() {
@@ -2816,7 +2816,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_TupleLiteralPartAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_TupleLiteralPartAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createTupleLiteralPart_1Adapter() {
@@ -2824,7 +2824,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_TypeExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_TypeExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createTypeExp_1Adapter() {
@@ -2832,7 +2832,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_UnspecifiedValueExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_UnspecifiedValueExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createUnspecifiedValueExp_1Adapter() {
@@ -2840,7 +2840,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_VariableAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_VariableAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createVariable_1Adapter() {
@@ -2848,7 +2848,7 @@ public class EcoreAdapterFactory
 	}
 
 	/**
-	 * @deprecated Since 1.3, override the {@link createExpressions_VariableExpAdapter} method, instead.
+	 * @deprecated Since 1.3, override the {@link #createExpressions_VariableExpAdapter} method, instead.
 	 */
 	@Deprecated
 	public Adapter createVariableExp_1Adapter() {

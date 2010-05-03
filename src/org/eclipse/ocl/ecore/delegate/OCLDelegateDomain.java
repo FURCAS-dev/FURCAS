@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLDelegateDomain.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: OCLDelegateDomain.java,v 1.3 2010/05/03 09:32:49 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -70,8 +70,10 @@ public class OCLDelegateDomain implements DelegateDomain
 	/**
 	 * Initializes me with my delegate URI and package.
 	 * 
-	 * @param operation
-	 *            the operation that I handle
+	 * @param delegateURI
+	 *            the delegate namespace I handle
+	 * @param ePackage
+	 *            the package that I handle
 	 * 
 	 * @throws ParserException
 	 *             if the operation's OCL body expression is invalid
