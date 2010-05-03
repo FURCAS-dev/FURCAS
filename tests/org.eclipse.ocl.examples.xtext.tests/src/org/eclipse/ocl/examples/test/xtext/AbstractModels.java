@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.URI;
  * A derived class with a singleton INSTANCE, may provide the URI of
  * a model within its folder using getURI().
  */
-public class AbstractModels extends UtilityTestCase
+public class AbstractModels extends XtextTestCase
 {
 	public URI getURI(String modelName) {
 		String projectName = getClass().getPackage().getName();
