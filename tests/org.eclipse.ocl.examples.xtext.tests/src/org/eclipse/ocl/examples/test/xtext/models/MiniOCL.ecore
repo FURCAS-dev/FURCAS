@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
+    nsURI="http://www.eclipse.org/ocl/1.1.0/OCL" nsPrefix="ocl">
+  <eSubpackages name="utilities" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"
+      nsPrefix="ocl.util">
+    <eClassifiers xsi:type="ecore:EClass" name="Visitable" abstract="true" interface="true">
+      <eOperations name="accept">
+        <eGenericType eTypeParameter="#//utilities/Visitable/accept/T"/>
+        <eTypeParameters name="T"/>
+        <eTypeParameters name="U">
+          <eBounds eClassifier="#//utilities/Visitor">
+            <eTypeArguments eTypeParameter="#//utilities/Visitable/accept/T"/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eBounds>
+        </eTypeParameters>
+        <eParameters name="v">
+          <eGenericType eTypeParameter="#//utilities/Visitable/accept/U"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Visitor" abstract="true" interface="true">
+      <eTypeParameters name="T"/>
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="O"/>
+      <eTypeParameters name="P"/>
+      <eTypeParameters name="EL"/>
+      <eTypeParameters name="PM"/>
+      <eTypeParameters name="S"/>
+      <eTypeParameters name="COA"/>
+      <eTypeParameters name="SSA"/>
+      <eTypeParameters name="CT"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

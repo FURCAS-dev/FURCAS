@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib/emf-gen"
+    editDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.editor/emf-gen"
+    modelPluginID="org.eclipse.ocl.examples.xtext.oclstdlib" forceOverwrite="true"
+    modelName="OCLstdlib" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.tests/emf-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.edit"
+    editorPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.editor" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST">
+  <foreignModel>OCLstdlibCST.ecore</foreignModel>
+  <genPackages prefix="OCLstdlibCST" basePackage="org.eclipse.ocl.examples.xtext.oclstdlib"
+      disposableProviderFactory="true" ecorePackage="OCLstdlibCST.ecore#/">
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibClassCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibClassCS/class"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//LibClassCS/conformsTo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//LibClassCS/iterations"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibIterationCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibIterationCS/class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibIterationCS/iterators"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibOperationCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibOperationCS/class"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibPropertyCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibPropertyCS/class"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibRootCS"/>
+  </genPackages>
+</genmodel:GenModel>

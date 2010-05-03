@@ -1,0 +1,266 @@
+library lib {
+package ocl {
+
+type Bag<Tbag> conformsTo NonOrderedCollection<Tbag>,NonUniqueCollection<Tbag> {
+	iteration reject(i) : Bag<Tbag> => 'org.eclipse.ocl.library.features.iterator.RejectIteration';
+	iteration select(i) : Bag<Tbag> => 'org.eclipse.ocl.library.features.iterator.SelectIteration';
+	operation _'='(bag : Bag<Tbag>) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionEqualOperation';
+	operation _'<>'(bag : Bag<Tbag>) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionNotEqualOperation';
+	operation excluding(object : Tbag) : Bag<Tbag> => 'org.eclipse.ocl.library.features.collection.CollectionExcludingOperation';
+	operation flatten() : Bag<Tbag> => 'org.eclipse.ocl.library.features.collection.CollectionFlattenOperation';
+	operation including(object : Tbag) : Bag<Tbag> => 'org.eclipse.ocl.library.features.collection.CollectionIncludingOperation';
+}
+
+type Boolean conformsTo Classifier {
+	static operation allInstances() : Set<Boolean> => 'org.eclipse.ocl.library.features.logical.BooleanAllInstancesOperation';
+	operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanEqualOperation';
+	operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanNotEqualOperation';
+	operation and(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanAndOperation';
+	operation implies(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanImpliesOperation';
+	operation not() : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanNotOperation';
+	operation or(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanOrOperation';
+	operation toString() : String => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	operation xor(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanXorOperation';
+}
+
+type Collection<Tc> conformsTo Classifier {
+	iteration any(i) : Tc => 'org.eclipse.ocl.library.features.iterator.AnyIteration';
+	iteration collect(i) : Collection => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
+	iteration collectNested(i) : Collection => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
+	iteration exists(i ...) : Boolean => 'org.eclipse.ocl.library.features.iterator.ExistsIteration';
+	iteration forAll(i ...) : Boolean => 'org.eclipse.ocl.library.features.iterator.ForAllIteration';
+	iteration isUnique(i) : Boolean => 'org.eclipse.ocl.library.features.iterator.IsUniqueIteration';
+	iteration one(i) : Boolean => 'org.eclipse.ocl.library.features.iterator.OneIteration';
+	iteration reject(i) : Collection => 'org.eclipse.ocl.library.features.iterator.RejectIteration';
+	iteration select(i) : Collection => 'org.eclipse.ocl.library.features.iterator.SelectIteration';
+	iteration sortedBy(i) : OrderedCollection<Tc> => 'org.eclipse.ocl.library.features.iterator.SortedByIteration';
+	operation _'='(c : Classifier) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionEqualOperation';
+	operation _'<>'(c : Classifier) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionNotEqualOperation';
+	operation asBag() : Bag<Tc> => 'org.eclipse.ocl.library.features.collection.CollectionAsBagOperation';
+	operation asOrderedSet() : OrderedSet<Tc> => 'org.eclipse.ocl.library.features.collection.CollectionAsOrderedSetOperation';
+	operation asSequence() : Sequence<Tc> => 'org.eclipse.ocl.library.features.collection.CollectionAsSequenceOperation';
+	operation asSet() : Set<Tc> => 'org.eclipse.ocl.library.features.collection.CollectionAsSetOperation';
+	operation count(object : Tc) : Integer => 'org.eclipse.ocl.library.features.collection.CollectionCountOperation';
+	operation excludes(object : Tc) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionExcludesOperation';
+	operation excludesAll(c2 : Collection) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionExcludesAllOperation';
+	operation excluding(object : Tc) : Collection => 'org.eclipse.ocl.library.features.collection.CollectionExcludingOperation';
+	operation flatten() : Collection => 'org.eclipse.ocl.library.features.collection.CollectionFlattenOperation';
+	operation includes(object : Tc) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionIncludesOperation';
+	operation includesAll(c2 : Collection) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionIncludesAllOperation';
+	operation including(object : Tc) : Collection => 'org.eclipse.ocl.library.features.collection.CollectionIncludingOperation';
+	operation isEmpty() : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionIsEmptyOperation';
+	operation max() : Tc => 'org.eclipse.ocl.library.features.collection.CollectionMaxOperation';
+	operation min() : Tc => 'org.eclipse.ocl.library.features.collection.CollectionMinOperation';
+	operation notEmpty() : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionNotEmptyOperation';
+	operation product<Tp>(c2 : Collection<Tp>) : Set<Tuple<Tc,Tp>> => 'org.eclipse.ocl.library.features.collection.CollectionProductOperation';
+	operation size() : Integer => 'org.eclipse.ocl.library.features.collection.CollectionSizeOperation';
+	operation sum() : Tc => 'org.eclipse.ocl.library.features.collection.CollectionSumOperation';
+}
+
+type Classifier conformsTo OclAny {
+	static operation allInstances() : Set<Classifier> => 'org.eclipse.ocl.library.features.classifier.ClassifierAllInstancesOperation';
+}
+
+type Enumeration conformsTo Classifier {
+	static operation allInstances() : Set<Enumeration> => 'org.eclipse.ocl.library.features.enumeration.EnumerationAllInstancesOperation';
+}
+
+type Integer conformsTo Real {
+	operation _'-'() : Integer => 'org.eclipse.ocl.library.features.numeric.NumericNegateOperation';
+	operation _'+'(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericPlusOperation';
+	operation _'-'(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericMinusOperation';
+	operation _'*'(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericTimesOperation';
+	operation _'/'(i : Integer) : Real => 'org.eclipse.ocl.library.features.numeric.NumericDivideOperation';
+	operation abs() : Integer => 'org.eclipse.ocl.library.features.numeric.NumericAbsOperation';
+	operation div(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericDivOperation';
+	operation mod(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericModOperation';
+	operation max(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericMaxOperation';
+	operation min(i : Integer) : Integer => 'org.eclipse.ocl.library.features.numeric.NumericMinOperation';
+	operation toString() : String => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+}
+
+type Java conformsTo Classifier {
+	operation _'='(j : Java) : Boolean => 'org.eclipse.ocl.library.features.java.JavaEqualOperation';
+	operation _'<>'(j : Java) : Boolean => 'org.eclipse.ocl.library.features.java.JavaNotEqualOperation';
+	operation _'>'(j : Java) : Boolean => 'org.eclipse.ocl.library.features.java.JavaGreaterThanEqualOperation';
+	operation _'<'(j : Java) : Boolean => 'org.eclipse.ocl.library.features.java.JavaGreaterThanEqualOperation';
+	operation _'<='(j : Java) : Boolean => 'org.eclipse.ocl.library.features.java.JavaGreaterThanEqualOperation';
+	operation _'>='(j : Java) : Boolean => 'org.eclipse.ocl.library.features.java.JavaGreaterThanEqualOperation';
+}
+
+type NonOrderedCollection<Tnoc> conformsTo Collection<Tnoc> {
+	iteration closure(i) : Set<Tnoc> => 'org.eclipse.ocl.library.features.iterator.ClosureIteration';
+	iteration collect(i) : Bag<Tnoc> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
+	operation intersection(bag : Bag<Tnoc>) : Bag<Tnoc> => 'org.eclipse.ocl.library.features.collection.UniqueCollectionIntersectionOperation';
+	operation intersection(s : Set<Tnoc>) : Set<Tnoc> => 'org.eclipse.ocl.library.features.collection.UniqueCollectionIntersectionOperation';
+	operation union(bag : Bag<Tnoc>) : Bag<Tnoc> => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
+	operation union(s : Set<Tnoc>) : Set<Tnoc> => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
+}
+
+type NonUniqueCollection<Tnuc> conformsTo Collection<Tnuc> {
+	iteration sortedBy(i) : Sequence<Tnuc> => 'org.eclipse.ocl.library.features.iterator.SortedByIteration';
+}
+
+type OclAny {
+	static operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyEqualOperation';
+	static operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyNotEqualOperation';
+	operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyEqualOperation';
+	operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyNotEqualOperation';
+	operation oclAsSet() : Collection<Classifier> => 'org.eclipse.ocl.library.features.oclany.OclAnyOclAsSetOperation';
+	operation oclAsType(type : Classifier) : Classifier => 'org.eclipse.ocl.library.features.oclany.OclAnyOclAsTypeOperation';
+	operation oclIsInState(statespec : OclState) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyOclIsInStateOperation';
+	operation oclIsInvalid() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyOclIsInvalidOperation';
+	operation oclIsKindOf(type : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyOclIsKindOfOperation';
+	operation oclIsNew() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	operation oclIsTypeOf(type : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyOclIsTypeOfOperation';
+	operation oclIsUndefined() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyOclIsUndefinedOperation';
+	operation oclType() : Classifier => 'org.eclipse.ocl.library.features.oclany.OclAnyOclTypeOperation';
+}
+
+type OclInvalid conformsTo OclVoid {
+	static operation allInstances() : Set<OclInvalid> => 'org.eclipse.ocl.library.features.oclinvalid.OclInvalidAllInstancesOperation';
+	operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclinvalid.OclInvalidEqualOperation';
+	operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclinvalid.OclInvalidNotEqualOperation';
+}
+
+type OclMessage conformsTo Classifier {
+operation hasReturned() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+operation result() : Classifier => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+operation isOperationCall() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+operation isSignalSent() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+}
+
+type OclState conformsTo Classifier {
+}
+
+type OclTuple conformsTo Classifier {
+operation _'='(object2 : OclTuple) : Boolean => 'org.eclipse.ocl.library.features.tuple.TupleEqualOperation';
+operation _'<>'(object2 : OclTuple) : Boolean => 'org.eclipse.ocl.library.features.tuple.TupleNotEqualOperation';
+}
+
+type OclType conformsTo Classifier {
+}
+
+type OclVoid conformsTo Classifier {
+	static operation allInstances() : Set<OclVoid> => 'org.eclipse.ocl.library.features.oclvoid.OclVoidAllInstancesOperation';
+	operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidEqualOperation';
+	operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidNotEqualOperation';
+	operation and(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidAndOperation';
+	operation implies(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidImpliesOperation';
+	operation or(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidOrOperation';
+}
+
+type OrderedCollection<Toc> conformsTo Collection<Toc> {
+	iteration closure(i) : OrderedSet<Toc> => 'org.eclipse.ocl.library.features.iterator.ClosureIteration';
+	iteration collect(i) : Sequence<Toc> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
+	operation at(index : Integer) : Toc => 'org.eclipse.ocl.library.features.collection.OrderedCollectionAtOperation';
+	operation first() : Toc => 'org.eclipse.ocl.library.features.collection.OrderedCollectionFirstOperation';
+	operation indexOf(obj : Toc) : Integer => 'org.eclipse.ocl.library.features.collection.OrderedCollectionIndexOfOperation';
+	operation last() : Toc => 'org.eclipse.ocl.library.features.collection.OrderedCollectionLastOperation';
+}
+
+type OrderedSet<Tos> conformsTo OrderedCollection<Tos>,UniqueCollection<Tos> {
+	iteration reject(i) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.iterator.RejectIteration';
+	iteration select(i) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.iterator.SelectIteration';
+	operation _'='(o : OrderedSet<Tos>) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionEqualOperation';
+	operation _'<>'(o : OrderedSet<Tos>) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionNotEqualOperation';
+	operation _'-'(s : Set<Tos>) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.SetMinusOperation';
+	operation append(object : Tos) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.OrderedCollectionAppendOperation';
+	operation excluding(object : Tos) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.CollectionExcludingOperation';
+	operation including(object : Tos) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.CollectionIncludingOperation';
+	operation insertAt(index : Integer, object : Tos) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.OrderedCollectionInsertAtOperation';
+	operation intersection(o : Set<Tos>) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.UniqueCollectionIntersectionOperation';
+	operation prepend(object : Tos) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.OrderedCollectionPrependOperation';
+	operation reverse() : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.OrderedCollectionReverseOperation';
+	operation subOrderedSet(lower : Integer, upper : Integer) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.OrderedSetSubOrderedSetOperation';
+	operation symmetricDifference(s : Set<Tos>) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.SetSymmetricDifferenceOperation';
+	operation union(o : OrderedSet<Tos>) : OrderedSet<Tos> => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
+	operation union(s : Set<Tos>) : Set<Tos> => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
+}
+
+type Real conformsTo Classifier {
+	operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericEqualOperation';
+	operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericNotEqualOperation';
+	operation _'+'(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericPlusOperation';
+	operation _'-'(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericMinusOperation';
+	operation _'*'(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericTimesOperation';
+	operation _'-'() : Real => 'org.eclipse.ocl.library.features.numeric.NumericNegateOperation';
+	operation _'/'(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericDivideOperation';
+	operation _'>'(r : Real) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericGreaterThanOperation';
+	operation _'<'(r : Real) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericLessThanOperation';
+	operation _'<='(r : Real) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericLessThanEqualOperation';
+	operation _'>='(r : Real) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericGreaterThanEqualOperation';
+	operation abs() : Real => 'org.eclipse.ocl.library.features.numeric.NumericAbsOperation';
+	operation floor() : Integer => 'org.eclipse.ocl.library.features.numeric.NumericFloorOperation';
+	operation round() : Integer => 'org.eclipse.ocl.library.features.numeric.NumericRoundOperation';
+	operation max(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericMaxOperation';
+	operation min(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericMinOperation';
+	operation oclAsType(type : Classifier) : Real => 'org.eclipse.ocl.library.features.numeric.NumericOclAsTypeOperation';
+	operation toString() : String => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+}
+
+type Sequence<Tseq> conformsTo OrderedCollection<Tseq>,NonUniqueCollection<Tseq> {
+	iteration reject(i) : Sequence => 'org.eclipse.ocl.library.features.iterator.RejectIteration';
+	iteration select(i) : Sequence => 'org.eclipse.ocl.library.features.iterator.SelectIteration';
+	operation _'='(s : Sequence) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionEqualOperation';
+	operation _'<>'(s : Sequence) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionNotEqualOperation';
+	operation append(object : Tseq) : Sequence => 'org.eclipse.ocl.library.features.collection.OrderedCollectionAppendOperation';
+	operation excluding(object : Tseq) : Sequence => 'org.eclipse.ocl.library.features.collection.CollectionExcludingOperation';
+	operation flatten() : Sequence => 'org.eclipse.ocl.library.features.collection.CollectionFlattenOperation';
+	operation including(object : Tseq) : Sequence => 'org.eclipse.ocl.library.features.collection.CollectionIncludingOperation';
+	operation insertAt(index : Integer, object : Tseq) : Sequence => 'org.eclipse.ocl.library.features.collection.OrderedCollectionInsertAtOperation';
+	operation prepend(object : Tseq) : Sequence => 'org.eclipse.ocl.library.features.collection.OrderedCollectionPrependOperation';
+	operation reverse() : Sequence => 'org.eclipse.ocl.library.features.collection.OrderedCollectionReverseOperation';
+	operation subSequence(lower : Integer, upper : Integer) : Sequence => 'org.eclipse.ocl.library.features.collection.SequenceSubSequenceOperation';
+	operation union(s : Sequence) : Sequence => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
+}
+
+type Set<Tset> conformsTo NonOrderedCollection<Tset>,UniqueCollection<Tset> {
+	iteration reject(i) : Set => 'org.eclipse.ocl.library.features.iterator.RejectIteration';
+	iteration select(i) : Set => 'org.eclipse.ocl.library.features.iterator.SelectIteration';
+	operation _'='(s : Set) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionEqualOperation';
+	operation _'<>'(s : Set) : Boolean => 'org.eclipse.ocl.library.features.collection.CollectionNotEqualOperation';
+	operation _'-'(s : Set) : Set => 'org.eclipse.ocl.library.features.collection.SetMinusOperation';
+	operation excluding(object : Tset) : Set => 'org.eclipse.ocl.library.features.collection.CollectionExcludingOperation';
+	operation flatten() : Set => 'org.eclipse.ocl.library.features.collection.CollectionFlattenOperation';
+	operation including(object : Tset) : Set => 'org.eclipse.ocl.library.features.collection.CollectionIncludingOperation';
+	operation intersection(s : Set) : Set => 'org.eclipse.ocl.library.features.collection.UniqueCollectionIntersectionOperation';
+	operation symmetricDifference(s : Set) : Set => 'org.eclipse.ocl.library.features.collection.SetSymmetricDifferenceOperation';
+}
+
+type String conformsTo Classifier {
+	operation _'='(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.string.StringEqualOperation';
+	operation _'<>'(object2 : Classifier) : Boolean => 'org.eclipse.ocl.library.features.string.StringNotEqualOperation';
+	operation _'+'(s : String) : String => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	operation size() : Integer => 'org.eclipse.ocl.library.features.string.StringSizeOperation';
+	operation concat(s : String) : String => 'org.eclipse.ocl.library.features.string.StringConcatOperation';
+	operation substring(lower : Integer, upper : Integer) : String => 'org.eclipse.ocl.library.features.string.StringSubstringOperation';
+	operation toInteger() : Integer => 'org.eclipse.ocl.library.features.string.StringToIntegerOperation';
+	operation toReal() : Real => 'org.eclipse.ocl.library.features.string.StringToRealOperation';
+	operation toUpperCase() : String => 'org.eclipse.ocl.library.features.string.StringToUpperCaseOperation';
+	operation toLowerCase() : String => 'org.eclipse.ocl.library.features.string.StringToLowerCaseOperation';
+	operation indexOf(s : String) : Integer => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	operation equalsIgnoreCase(s : String) : Integer => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	operation at(i : Integer) : String => 'org.eclipse.ocl.library.features.string.StringAtOperation';
+	operation characters() : Integer => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	operation toBoolean() : Boolean => 'org.eclipse.ocl.library.features.string.StringToBooleanOperation';
+	operation _'>'(s : String) : Boolean => 'org.eclipse.ocl.library.features.string.StringGreaterThanOperation';
+	operation _'<'(s : String) : Boolean => 'org.eclipse.ocl.library.features.string.StringLessThanOperation';
+	operation _'<='(s : String) : Boolean => 'org.eclipse.ocl.library.features.string.StringLessThanEqualOperation';
+	operation _'>='(s : String) : Boolean => 'org.eclipse.ocl.library.features.string.StringGreaterThanEqualOperation';
+}
+
+type Tuple<Tfirst, Tsecond> conformsTo OclTuple {
+	property first : Tfirst => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+	property second : Tsecond => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
+}
+
+type UniqueCollection<Tuc> conformsTo Collection<Tuc> {
+	iteration sortedBy(i) : OrderedSet<Tuc> => 'org.eclipse.ocl.library.features.iterator.SortedByIteration';
+}
+
+type UnlimitedNatural conformsTo Integer {
+}
+
+}
+}

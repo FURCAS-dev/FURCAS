@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2010/05/03 05:25:47 ewillink Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/ocl/3.0.0/BaseCST"
+            class="org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage"
+            genModel="model/BaseCST.genmodel"/>
+   </extension>
+
+</plugin>
