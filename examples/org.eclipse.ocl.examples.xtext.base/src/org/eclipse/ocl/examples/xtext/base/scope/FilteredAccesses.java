@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FilteredAccesses.java,v 1.1 2010/05/03 05:25:54 ewillink Exp $
+ * $Id: FilteredAccesses.java,v 1.2 2010/05/03 11:12:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
@@ -56,7 +55,7 @@ public class FilteredAccesses
 	public void addElementsOfScope(ElementCS element) {
 		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(element);
 		if (scopeAdapter != null) {
-			scopeAdapter.createContents(this, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__ANNOTATIONS);		// Any non-null value
+			scopeAdapter.getInclusiveInheritedContents(this);
 		}
 	}
 

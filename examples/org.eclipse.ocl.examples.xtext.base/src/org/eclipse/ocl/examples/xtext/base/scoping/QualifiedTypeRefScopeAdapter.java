@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedTypeRefScopeAdapter.java,v 1.1 2010/05/03 05:24:45 ewillink Exp $
+ * $Id: QualifiedTypeRefScopeAdapter.java,v 1.2 2010/05/03 11:12:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
@@ -38,7 +38,7 @@ public class QualifiedTypeRefScopeAdapter extends AbstractScopeAdapter<Qualified
 			QualifiedTypeRefCS target = getTarget();
 			AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(target.getNamespace());
 			if (scopeAdapter != null) {
-				scopeAdapter.createContents(filteredAccesses, null);
+				scopeAdapter.getInclusiveInheritedContents(filteredAccesses);
 			}
 		}
 	}
