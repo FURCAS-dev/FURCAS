@@ -12,18 +12,15 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: StringLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 
@@ -34,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteral
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.StringLiteralExpCSImpl#getStringSymbol <em>String Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.StringLiteralExpCSImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,15 +39,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteral
  */
 public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements StringLiteralExpCS {
 	/**
-	 * The cached value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute list.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStringSymbol()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> stringSymbol;
-
+	protected EList<String> name;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,11 +71,11 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getStringSymbol() {
-		if (stringSymbol == null) {
-			stringSymbol = new EDataTypeEList<String>(String.class, this, EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL);
+	public EList<String> getName() {
+		if (name == null) {
+			name = new EDataTypeEList<String>(String.class, this, EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME);
 		}
-		return stringSymbol;
+		return name;
 	}
 
 	/**
@@ -90,8 +86,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-				return getStringSymbol();
+			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -105,9 +101,9 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-				getStringSymbol().clear();
-				getStringSymbol().addAll((Collection<? extends String>)newValue);
+			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
+				getName().clear();
+				getName().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -121,8 +117,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-				getStringSymbol().clear();
+			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
+				getName().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -136,8 +132,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-				return stringSymbol != null && !stringSymbol.isEmpty();
+			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
+				return name != null && !name.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -145,17 +141,11 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (stringSymbol: ");
-		result.append(stringSymbol);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //StringLiteralExpCSImpl

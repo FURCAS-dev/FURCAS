@@ -12,19 +12,46 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.2 2010/04/13 20:35:16 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.3 2010/05/03 05:37:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracketExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +68,7 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 */
 	public static EssentialOCLCSTFactory init() {
 		try {
-			EssentialOCLCSTFactory theEssentialOCLCSTFactory = (EssentialOCLCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"); 
+			EssentialOCLCSTFactory theEssentialOCLCSTFactory = (EssentialOCLCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"); //$NON-NLS-1$ 
 			if (theEssentialOCLCSTFactory != null) {
 				return theEssentialOCLCSTFactory;
 			}
@@ -70,35 +97,35 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EssentialOCLCSTPackage.BINARY_EXPRESSION_CS: return createBinaryExpressionCS();
+			case EssentialOCLCSTPackage.ARROW_EXP_CS: return createArrowExpCS();
 			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
-			case EssentialOCLCSTPackage.CALL_EXP_CS: return createCallExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
+			case EssentialOCLCSTPackage.DOT_EXP_CS: return createDotExpCS();
+			case EssentialOCLCSTPackage.EXP_CS: return createExpCS();
 			case EssentialOCLCSTPackage.IF_EXP_CS: return createIfExpCS();
-			case EssentialOCLCSTPackage.INDEX_EXP_CS: return createIndexExpCS();
-			case EssentialOCLCSTPackage.INTEGER_LITERAL_EXP_CS: return createIntegerLiteralExpCS();
+			case EssentialOCLCSTPackage.INFIX_EXP_CS: return createInfixExpCS();
 			case EssentialOCLCSTPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
 			case EssentialOCLCSTPackage.LET_EXP_CS: return createLetExpCS();
 			case EssentialOCLCSTPackage.LITERAL_EXP_CS: return createLiteralExpCS();
+			case EssentialOCLCSTPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSTPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
-			case EssentialOCLCSTPackage.OCL_EXPRESSION_CS: return createOclExpressionCS();
-			case EssentialOCLCSTPackage.PATH_NAME_CS: return createPathNameCS();
+			case EssentialOCLCSTPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
+			case EssentialOCLCSTPackage.PATH_NAME_EXP_CS: return createPathNameExpCS();
+			case EssentialOCLCSTPackage.PREFIX_EXP_CS: return createPrefixExpCS();
 			case EssentialOCLCSTPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
-			case EssentialOCLCSTPackage.REAL_LITERAL_EXP_CS: return createRealLiteralExpCS();
-			case EssentialOCLCSTPackage.SIMPLE_NAME_CS: return createSimpleNameCS();
+			case EssentialOCLCSTPackage.PRIMITIVE_TYPE_CS: return createPrimitiveTypeCS();
+			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS: return createRoundBracketExpCS();
+			case EssentialOCLCSTPackage.SELF_EXP_CS: return createSelfExpCS();
+			case EssentialOCLCSTPackage.SIMPLE_NAME_EXP_CS: return createSimpleNameExpCS();
+			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS: return createSquareBracketExpCS();
 			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS: return createStringLiteralExpCS();
 			case EssentialOCLCSTPackage.TUPLE_LITERAL_EXP_CS: return createTupleLiteralExpCS();
 			case EssentialOCLCSTPackage.TUPLE_TYPE_CS: return createTupleTypeCS();
-			case EssentialOCLCSTPackage.TYPE_CS: return createTypeCS();
-			case EssentialOCLCSTPackage.TYPE_LITERAL_EXP_CS: return createTypeLiteralExpCS();
-			case EssentialOCLCSTPackage.UNARY_EXPRESSION_CS: return createUnaryExpressionCS();
-			case EssentialOCLCSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS: return createUnlimitedNaturalLiteralExpCS();
 			case EssentialOCLCSTPackage.VARIABLE_CS: return createVariableCS();
-			case EssentialOCLCSTPackage.VARIABLE_EXP_CS: return createVariableExpCS();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -107,9 +134,14 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS createOclExpressionCS() {
-		OclExpressionCSImpl oclExpressionCS = new OclExpressionCSImpl();
-		return oclExpressionCS;
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case EssentialOCLCSTPackage.BIG_NUMBER:
+				return createBigNumberFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 	}
 
 	/**
@@ -117,9 +149,14 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleNameCS createSimpleNameCS() {
-		SimpleNameCSImpl simpleNameCS = new SimpleNameCSImpl();
-		return simpleNameCS;
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case EssentialOCLCSTPackage.BIG_NUMBER:
+				return convertBigNumberToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 	}
 
 	/**
@@ -127,9 +164,9 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS createPathNameCS() {
-		PathNameCSImpl pathNameCS = new PathNameCSImpl();
-		return pathNameCS;
+	public ArrowExpCS createArrowExpCS() {
+		ArrowExpCSImpl arrowExpCS = new ArrowExpCSImpl();
+		return arrowExpCS;
 	}
 
 	/**
@@ -137,9 +174,19 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeCS createTypeCS() {
-		TypeCSImpl typeCS = new TypeCSImpl();
-		return typeCS;
+	public PathNameExpCS createPathNameExpCS() {
+		PathNameExpCSImpl pathNameExpCS = new PathNameExpCSImpl();
+		return pathNameExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrefixExpCS createPrefixExpCS() {
+		PrefixExpCSImpl prefixExpCS = new PrefixExpCSImpl();
+		return prefixExpCS;
 	}
 
 	/**
@@ -150,6 +197,26 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DotExpCS createDotExpCS() {
+		DotExpCSImpl dotExpCS = new DotExpCSImpl();
+		return dotExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpCS createExpCS() {
+		ExpCSImpl expCS = new ExpCSImpl();
+		return expCS;
 	}
 
 	/**
@@ -187,6 +254,16 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NestedExpCS createNestedExpCS() {
+		NestedExpCSImpl nestedExpCS = new NestedExpCSImpl();
+		return nestedExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CollectionLiteralExpCS createCollectionLiteralExpCS() {
 		CollectionLiteralExpCSImpl collectionLiteralExpCS = new CollectionLiteralExpCSImpl();
 		return collectionLiteralExpCS;
@@ -217,29 +294,59 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PrimitiveTypeCS createPrimitiveTypeCS() {
+		PrimitiveTypeCSImpl primitiveTypeCS = new PrimitiveTypeCSImpl();
+		return primitiveTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RoundBracketExpCS createRoundBracketExpCS() {
+		RoundBracketExpCSImpl roundBracketExpCS = new RoundBracketExpCSImpl();
+		return roundBracketExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SelfExpCS createSelfExpCS() {
+		SelfExpCSImpl selfExpCS = new SelfExpCSImpl();
+		return selfExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleNameExpCS createSimpleNameExpCS() {
+		SimpleNameExpCSImpl simpleNameExpCS = new SimpleNameExpCSImpl();
+		return simpleNameExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SquareBracketExpCS createSquareBracketExpCS() {
+		SquareBracketExpCSImpl squareBracketExpCS = new SquareBracketExpCSImpl();
+		return squareBracketExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TupleLiteralExpCS createTupleLiteralExpCS() {
 		TupleLiteralExpCSImpl tupleLiteralExpCS = new TupleLiteralExpCSImpl();
 		return tupleLiteralExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntegerLiteralExpCS createIntegerLiteralExpCS() {
-		IntegerLiteralExpCSImpl integerLiteralExpCS = new IntegerLiteralExpCSImpl();
-		return integerLiteralExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RealLiteralExpCS createRealLiteralExpCS() {
-		RealLiteralExpCSImpl realLiteralExpCS = new RealLiteralExpCSImpl();
-		return realLiteralExpCS;
 	}
 
 	/**
@@ -267,16 +374,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS() {
-		UnlimitedNaturalLiteralExpCSImpl unlimitedNaturalLiteralExpCS = new UnlimitedNaturalLiteralExpCSImpl();
-		return unlimitedNaturalLiteralExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public InvalidLiteralExpCS createInvalidLiteralExpCS() {
 		InvalidLiteralExpCSImpl invalidLiteralExpCS = new InvalidLiteralExpCSImpl();
 		return invalidLiteralExpCS;
@@ -297,9 +394,9 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeLiteralExpCS createTypeLiteralExpCS() {
-		TypeLiteralExpCSImpl typeLiteralExpCS = new TypeLiteralExpCSImpl();
-		return typeLiteralExpCS;
+	public NumberLiteralExpCS createNumberLiteralExpCS() {
+		NumberLiteralExpCSImpl numberLiteralExpCS = new NumberLiteralExpCSImpl();
+		return numberLiteralExpCS;
 	}
 
 	/**
@@ -307,9 +404,17 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableExpCS createVariableExpCS() {
-		VariableExpCSImpl variableExpCS = new VariableExpCSImpl();
-		return variableExpCS;
+	public Number createBigNumberFromString(EDataType eDataType, String initialValue) {
+		return (Number)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBigNumberToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**
@@ -327,9 +432,9 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IndexExpCS createIndexExpCS() {
-		IndexExpCSImpl indexExpCS = new IndexExpCSImpl();
-		return indexExpCS;
+	public InfixExpCS createInfixExpCS() {
+		InfixExpCSImpl infixExpCS = new InfixExpCSImpl();
+		return infixExpCS;
 	}
 
 	/**
@@ -340,36 +445,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public LetExpCS createLetExpCS() {
 		LetExpCSImpl letExpCS = new LetExpCSImpl();
 		return letExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BinaryExpressionCS createBinaryExpressionCS() {
-		BinaryExpressionCSImpl binaryExpressionCS = new BinaryExpressionCSImpl();
-		return binaryExpressionCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnaryExpressionCS createUnaryExpressionCS() {
-		UnaryExpressionCSImpl unaryExpressionCS = new UnaryExpressionCSImpl();
-		return unaryExpressionCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CallExpCS createCallExpCS() {
-		CallExpCSImpl callExpCS = new CallExpCSImpl();
-		return callExpCS;
 	}
 
 	/**

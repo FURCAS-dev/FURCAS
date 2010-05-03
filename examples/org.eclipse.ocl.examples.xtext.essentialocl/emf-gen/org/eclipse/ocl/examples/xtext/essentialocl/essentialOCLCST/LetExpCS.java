@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCS.java,v 1.1 2010/04/13 06:32:30 ewillink Exp $
+ * $Id: LetExpCS.java,v 1.2 2010/05/03 05:38:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface LetExpCS extends OclExpressionCS {
+public interface LetExpCS extends ExpCS {
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS}.
@@ -61,12 +61,12 @@ public interface LetExpCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>In</em>' containment reference.
-	 * @see #setIn(OclExpressionCS)
+	 * @see #setIn(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getLetExpCS_In()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getIn();
+	ExpCS getIn();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS#getIn <em>In</em>}' containment reference.
@@ -76,6 +76,6 @@ public interface LetExpCS extends OclExpressionCS {
 	 * @see #getIn()
 	 * @generated
 	 */
-	void setIn(OclExpressionCS value);
+	void setIn(ExpCS value);
 
 } // LetExpCS

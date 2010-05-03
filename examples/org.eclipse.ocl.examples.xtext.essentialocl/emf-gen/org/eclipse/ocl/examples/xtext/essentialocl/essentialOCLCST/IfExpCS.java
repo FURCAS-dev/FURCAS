@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: IfExpCS.java,v 1.2 2010/05/03 05:38:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -35,7 +35,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * @model
  * @generated
  */
-public interface IfExpCS extends OclExpressionCS {
+public interface IfExpCS extends ExpCS {
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -45,12 +45,12 @@ public interface IfExpCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(OclExpressionCS)
+	 * @see #setCondition(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getIfExpCS_Condition()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getCondition();
+	ExpCS getCondition();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS#getCondition <em>Condition</em>}' containment reference.
@@ -60,7 +60,7 @@ public interface IfExpCS extends OclExpressionCS {
 	 * @see #getCondition()
 	 * @generated
 	 */
-	void setCondition(OclExpressionCS value);
+	void setCondition(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Then Expression</b></em>' containment reference.
@@ -71,12 +71,12 @@ public interface IfExpCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Then Expression</em>' containment reference.
-	 * @see #setThenExpression(OclExpressionCS)
+	 * @see #setThenExpression(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getIfExpCS_ThenExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getThenExpression();
+	ExpCS getThenExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS#getThenExpression <em>Then Expression</em>}' containment reference.
@@ -86,7 +86,7 @@ public interface IfExpCS extends OclExpressionCS {
 	 * @see #getThenExpression()
 	 * @generated
 	 */
-	void setThenExpression(OclExpressionCS value);
+	void setThenExpression(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Else Expression</b></em>' containment reference.
@@ -97,12 +97,12 @@ public interface IfExpCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Else Expression</em>' containment reference.
-	 * @see #setElseExpression(OclExpressionCS)
+	 * @see #setElseExpression(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getIfExpCS_ElseExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getElseExpression();
+	ExpCS getElseExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS#getElseExpression <em>Else Expression</em>}' containment reference.
@@ -112,6 +112,6 @@ public interface IfExpCS extends OclExpressionCS {
 	 * @see #getElseExpression()
 	 * @generated
 	 */
-	void setElseExpression(OclExpressionCS value);
+	void setElseExpression(ExpCS value);
 
 } // IfExpCS

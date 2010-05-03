@@ -6,8 +6,13 @@ Bundle-Localization: plugin
 Bundle-Version: 3.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.oclinecore; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.common;bundle-version="3.0.0";visibility:=reexport
+Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0, 4.0.0)";visibility:=reexport,
+ org.eclipse.ocl.examples.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.xtext.oclinecore,

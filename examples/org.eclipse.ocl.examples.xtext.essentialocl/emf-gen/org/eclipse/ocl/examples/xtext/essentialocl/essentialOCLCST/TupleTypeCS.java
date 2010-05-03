@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCS.java,v 1.1 2010/04/13 06:32:30 ewillink Exp $
+ * $Id: TupleTypeCS.java,v 1.2 2010/05/03 05:38:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
@@ -35,33 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TupleTypeCS extends TypeCS, TypeLiteralExpCS {
-	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getTupleTypeCS_Value()
-	 * @model
-	 * @generated
-	 */
-	String getValue();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(String value);
-
+public interface TupleTypeCS extends NamedElementCS, TypeExpCS {
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS}.

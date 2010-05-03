@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLFormatter.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: EssentialOCLFormatter.java,v 1.2 2010/05/03 05:38:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.formatting;
 
@@ -31,7 +31,7 @@ public class EssentialOCLFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess f = (org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess) getGrammarAccess();
+//		EssentialOCLGrammarAccess f = (EssentialOCLGrammarAccess) getGrammarAccess();
 
 		//...
 	}

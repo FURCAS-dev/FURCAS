@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.2 2010/04/16 18:05:32 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.3 2010/05/03 05:44:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -22,128 +22,85 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassifierCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.ImportScopeAdapter;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibLinkingService;
 import org.eclipse.xtext.conversion.IValueConverterService;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
 import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
 
 import com.google.inject.Inject;
 
-public class OCLinEcoreLinkingService extends DefaultLinkingService
+public class OCLinEcoreLinkingService extends OCLstdlibLinkingService
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreLinkingService.class);
-
-	@Inject
-	private IValueConverterService valueConverterService;
 	
-//	@Inject
-//	private OCLinEcoreGrammarAccess grammarAccess;
-	
-	// FIXME Use Scopes, retarct mappings when deleted
-	private Map<String, EPackage> modelNameMap = new HashMap<String, EPackage>();
-
-	private List<EObject> getLinkedClassifier(EClassifierCSRef context, EReference ref, LeafNode text) throws IllegalNodeException {
-		String alias = context.getModelName();
-		if (alias == null) {
-			alias = "";
-		}
-		EClassifier eClassifier = null;
-		EPackage ePackage = modelNameMap.get(alias);
-		if (ePackage != null) {
-			eClassifier = ePackage.getEClassifier(text.getText());
-		}
-		if (eClassifier != null) {
-			return Collections.<EObject>singletonList(eClassifier);
-		}
-		return Collections.emptyList();
-	}
-
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
-		if ((ref == OCLinEcoreCSTPackage.Literals.IMPORT_CS__EPACKAGE) && (context instanceof ImportCS))
-			return getPackage((ImportCS)context, (LeafNode) node);
-		if ((ref == OCLinEcoreCSTPackage.Literals.ECLASSIFIER_CS_REF__REF) && (context instanceof EClassifierCSRef))
-			return getLinkedClassifier((EClassifierCSRef)context, ref, (LeafNode) ((CompositeNode) node).getChildren().get(0));
+		if ((ref == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS)) {
+			return getLinkedImport(context, node);
+		}
 		return super.getLinkedObjects(context, ref, node);
 	}
 
-	private String getMetamodelNsURI(LeafNode text) {
-		try {
-			return (String) valueConverterService.toValue(text.getText(), getLinkingHelper().getRuleNameFrom(text
-					.getGrammarElement()), text);
-		} catch (ValueConverterException e) {
-			log.debug("Exception on leaf '" + text.getText() + "'", e);
-			return null;
-		}
-	}
-
-/*	private List<EObject> getPackage(String nsUri, Grammar grammar, Set<Grammar> visitedGrammars) {
-		if (!visitedGrammars.add(grammar))
-			return null;
-		for(AbstractMetamodelDeclaration declaration: grammar.getMetamodelDeclarations()) {
-			EPackage pack = declaration.getEPackage();
-			if (pack != null && nsUri.equals(pack.getNsURI()))
-				return Collections.<EObject>singletonList(pack);
-		}
-		for (Grammar usedGrammar: grammar.getUsedGrammars()) {
-			List<EObject> result = getPackage(nsUri, usedGrammar, visitedGrammars);
-			if (result != null)
-				return result;
-		}
-		return null;
-	} */
-
-	private List<EObject> getPackage(ImportCS context, LeafNode text) {
-		String nsUri = getMetamodelNsURI(text);
-		if (nsUri == null)
-			return Collections.emptyList();
-/*		Grammar grammar = grammarAccess.getGrammar();
-		Set<Grammar> visitedGrammars = new HashSet<Grammar>();
-		for (Grammar usedGrammar: grammar.getUsedGrammars()) {
-			List<EObject> result = getPackage(nsUri, usedGrammar, visitedGrammars);
-			if (result != null)
-				return result;
-		} */
-		EPackage pack = loadEPackage(nsUri, context.eResource().getResourceSet());
-		if (pack != null) {
-			String alias = context.getAlias();
-			if (alias == null) {
-				alias = "";
+	private List<EObject> getLinkedImport(EObject context, AbstractNode node) {
+		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(context);
+		String text = getText(node);
+		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
+			Resource eResource = context.eResource();
+			URI uri = URI.createURI(text);
+			uri = uri.resolve(eResource.getURI());
+			ImportScopeAdapter importScopeAdapter = (ImportScopeAdapter)scopeAdapter;
+			URI oldURI = importScopeAdapter.getURI();
+			ElementCS importedElement;				
+			if (uri.equals(oldURI)) {
+				importedElement = importScopeAdapter.getImportedElement();
 			}
-			modelNameMap.put(alias, pack);
-			return Collections.<EObject>singletonList(pack);
+			else {
+				ResourceSet resourceSet = eResource.getResourceSet();
+				importedElement = loadResource(uri, ((ImportCS)context).getName(), resourceSet);				
+				importScopeAdapter.setImportedElement(uri, importedElement);
+			}
+			if (importedElement != null) {
+				return Collections.<EObject>singletonList(importedElement);
+			}
 		}
 		return Collections.emptyList();
 	}
 
-	private EPackage loadEPackage(String resourceOrNsURI, ResourceSet resourceSet) {
-		if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
-			return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
+	private ElementCS loadResource(URI uri, String alias, ResourceSet resourceSet) {
+//		if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
+//			return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
 		try {
-			URI uri = URI.createURI(resourceOrNsURI);
 			if (uri.fragment() == null) {
 				Resource resource = resourceSet.getResource(uri, true);
-				EPackage result = (EPackage) resource.getContents().get(0);
-				return result;
+				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, resource);
 			}
-			EPackage result = (EPackage) resourceSet.getEObject(uri, true);
-			return result;
-
+			else {
+				EPackage ePackage = (EPackage) resourceSet.getEObject(uri, true);
+				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, ePackage);
+			}
 		} catch(RuntimeException ex) {
-			log.trace("Cannot load package with URI '" + resourceOrNsURI + "'", ex);
+			log.trace("Cannot load package with URI '" + uri + "'", ex);
 			return null;
 		}
 	}

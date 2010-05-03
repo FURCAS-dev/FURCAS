@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: DocumentationCS.java,v 1.1 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: DocumentationCS.java,v 1.2 2010/05/03 05:44:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
+
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 
 
 /**

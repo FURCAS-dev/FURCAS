@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: DocumentationCSImpl.java,v 1.1 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: DocumentationCSImpl.java,v 1.2 2010/05/03 05:44:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationElementCSImpl;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
@@ -160,17 +158,11 @@ public class DocumentationCSImpl extends AnnotationElementCSImpl implements Docu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
-		result.append(value);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //DocumentationCSImpl

@@ -3,104 +3,114 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="essentialOCLCST"
     nsURI="http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST" nsPrefix="essentialOCLCST">
-  <eClassifiers xsi:type="ecore:EClass" name="BinaryExpressionCS" eSuperTypes="#//OperationExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//OclExpressionCS"
+  <eClassifiers xsi:type="ecore:EClass" name="ArrowExpCS" eSuperTypes="#//SubExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallExpCS" eSuperTypes="#//OperationExpressionCS">
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExpCS" eSuperTypes="#//LiteralExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//CollectionTypeCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collectionLiteralParts"
+        upperBound="-1" eType="#//CollectionLiteralPartCS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPartCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//ExpCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lastExpressionCS" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS #//TypeExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypeCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DotExpCS" eSuperTypes="#//SubExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ElementCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IfExpCS" eSuperTypes="#//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ExpCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" eType="#//ExpCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfixExpCS" eSuperTypes="#//SubExpCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LetExpCS" eSuperTypes="#//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
+        eType="#//VariableCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="in" eType="#//ExpCS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//ExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" abstract="true" eSuperTypes="#//TypeExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedExpCS" abstract="true" eSuperTypes="#//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//NameExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedExpCS" eSuperTypes="#//SubExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//BigNumber"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathNameExpCS" eSuperTypes="#//NameExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamespaceCS"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//NameExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//SubExpCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS #//TypeExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RoundBracketExpCS" eSuperTypes="#//NamedExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable1" eType="#//VariableCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable2" eType="#//VariableCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-        eType="#//OclExpressionCS" containment="true"/>
+        eType="#//ExpCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPartCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//OclExpressionCS"
+  <eClassifiers xsi:type="ecore:EClass" name="SelfExpCS" eSuperTypes="#//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleNameExpCS" eSuperTypes="#//NameExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SquareBracketExpCS" eSuperTypes="#//NamedExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//ExpCS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubExpCS" abstract="true" eSuperTypes="#//ExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ExpCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lastExpressionCS" eType="#//OclExpressionCS"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeCS" eSuperTypes="#//TypeCS #//CollectionLiteralExpCS #//TypeLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//SimpleNameCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//TypeCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="collectionLiteralParts"
-        upperBound="-1" eType="#//CollectionLiteralPartCS" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfExpCS" eSuperTypes="#//OclExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//OclExpressionCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" eType="#//OclExpressionCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" eType="#//OclExpressionCS"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IndexExpCS" eSuperTypes="#//OperationExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="indexes" upperBound="-1"
-        eType="#//OclExpressionCS" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LetExpCS" eSuperTypes="#//OclExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
-        eType="#//VariableCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="in" eType="#//OclExpressionCS"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//OclExpressionCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclExpressionCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationExpressionCS" abstract="true"
-      eSuperTypes="#//OclExpressionCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//OclExpressionCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathNameCS" eSuperTypes="#//TypeCS #//TypeLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNames" upperBound="-1"
-        eType="#//SimpleNameCS" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RealLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleNameCS" eSuperTypes="#//TypeCS #//CollectionLiteralExpCS #//TypeLiteralExpCS #//VariableExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="collectionLiteralParts"
-        upperBound="-1" eType="#//CollectionLiteralPartCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSymbol" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExpCS" eSuperTypes="#//LiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//VariableCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TupleTypeCS" eSuperTypes="#//TypeCS #//TypeLiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleTypeCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS #//TypeExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//VariableCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeLiteralExpCS" eSuperTypes="#//LiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpressionCS" eSuperTypes="#//OperationExpressionCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//SimpleNameCS"
+  <eClassifiers xsi:type="ecore:EClass" name="TypeExpCS" abstract="true" eSuperTypes="#//LiteralExpCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypeCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypeCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" eType="#//OclExpressionCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableExpCS" eSuperTypes="#//OclExpressionCS"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="BigNumber" instanceClassName="java.lang.Number"/>
 </ecore:EPackage>

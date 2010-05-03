@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: CollectionLiteralPartCS.java,v 1.2 2010/05/03 05:38:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+
+
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface CollectionLiteralPartCS extends EObject {
+public interface CollectionLiteralPartCS extends ElementCS {
 	/**
 	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -45,12 +47,12 @@ public interface CollectionLiteralPartCS extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression CS</em>' containment reference.
-	 * @see #setExpressionCS(OclExpressionCS)
+	 * @see #setExpressionCS(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCollectionLiteralPartCS_ExpressionCS()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getExpressionCS();
+	ExpCS getExpressionCS();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}' containment reference.
@@ -60,7 +62,7 @@ public interface CollectionLiteralPartCS extends EObject {
 	 * @see #getExpressionCS()
 	 * @generated
 	 */
-	void setExpressionCS(OclExpressionCS value);
+	void setExpressionCS(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Last Expression CS</b></em>' containment reference.
@@ -71,12 +73,12 @@ public interface CollectionLiteralPartCS extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Last Expression CS</em>' containment reference.
-	 * @see #setLastExpressionCS(OclExpressionCS)
+	 * @see #setLastExpressionCS(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCollectionLiteralPartCS_LastExpressionCS()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getLastExpressionCS();
+	ExpCS getLastExpressionCS();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS#getLastExpressionCS <em>Last Expression CS</em>}' containment reference.
@@ -86,6 +88,6 @@ public interface CollectionLiteralPartCS extends EObject {
 	 * @see #getLastExpressionCS()
 	 * @generated
 	 */
-	void setLastExpressionCS(OclExpressionCS value);
+	void setLastExpressionCS(ExpCS value);
 
 } // CollectionLiteralPartCS

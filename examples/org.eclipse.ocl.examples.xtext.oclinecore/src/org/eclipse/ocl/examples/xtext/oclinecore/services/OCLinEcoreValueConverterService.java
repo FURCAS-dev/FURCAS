@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreValueConverterService.java,v 1.1 2010/04/13 06:44:12 ewillink Exp $
+ * $Id: OCLinEcoreValueConverterService.java,v 1.2 2010/05/03 05:44:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -30,6 +30,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 	public IValueConverter<Integer> LOWER() {
 		return new AbstractNullSafeConverter<Integer>() {
 			
+			@Override
 			public Integer internalToValue(String string, AbstractNode node) {
 				if (Strings.isEmpty(string))
 					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
@@ -40,6 +41,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 				}
 			}
 
+			@Override
 			public String internalToString(Integer value) {
 				return value.toString();
 			}
@@ -47,32 +49,8 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		};
 	}
 
-	@ValueConverter(rule = "UPPER")
-	public IValueConverter<Integer> UPPER() {
-		return new AbstractNullSafeConverter<Integer>() {
-			
-			public Integer internalToValue(String string, AbstractNode node) {
-				if (Strings.isEmpty(string))
-					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
-				try {
-					if ("*".equals(string)) {
-						return Integer.valueOf(-1);
-					}
-					return Integer.valueOf(string);
-				} catch (NumberFormatException e) {
-					throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
-				}
-			}
-
-			public String internalToString(Integer value) {
-				return value >= 0 ? value.toString() : "*";
-			}
-
-		};
-	}
-
-	@ValueConverter(rule = "OCL")
-	public IValueConverter<String> OCL() {
+	@ValueConverter(rule = "UNQUOTED_STRING")
+	public IValueConverter<String> UNQUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {
@@ -89,23 +67,30 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 			}
 		};
 	}
-
-	@ValueConverter(rule = "URL")
-	public IValueConverter<String> URL() {
-		return new AbstractNullSafeConverter<String>() {
+	
+	@ValueConverter(rule = "UPPER")
+	public IValueConverter<Integer> UPPER() {
+		return new AbstractNullSafeConverter<Integer>() {
+			
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			public Integer internalToValue(String string, AbstractNode node) {
+				if (Strings.isEmpty(string))
+					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
 				try {
-					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), false);
-				} catch(IllegalArgumentException e) {
-					throw new ValueConverterException(e.getMessage(), node, e);
+					if ("*".equals(string)) {
+						return Integer.valueOf(-1);
+					}
+					return Integer.valueOf(string);
+				} catch (NumberFormatException e) {
+					throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
 				}
 			}
 
 			@Override
-			protected String internalToString(String value) {
-				return '"' + Strings.convertToJavaString(value, false) + '"';
+			public String internalToString(Integer value) {
+				return value >= 0 ? value.toString() : "*";
 			}
+
 		};
 	}
 }

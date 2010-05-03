@@ -42,7 +42,7 @@ public class OCLinEcoreParser extends org.eclipse.xtext.parser.antlr.AbstractAnt
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "DocumentCS";
+		return "OCLinEcoreDocumentCS";
 	}
 	
 	public OCLinEcoreGrammarAccess getGrammarAccess() {

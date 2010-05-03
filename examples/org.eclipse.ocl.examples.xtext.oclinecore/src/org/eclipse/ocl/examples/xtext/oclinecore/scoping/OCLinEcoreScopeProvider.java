@@ -12,14 +12,29 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.1 2010/04/13 06:44:12 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.2 2010/05/03 05:44:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.EmptyScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedTypeRefScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
 
 /**
  * This class contains custom scoping description.
@@ -28,12 +43,58 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  * on how and when to use it 
  *
  */
-public class OCLinEcoreScopeProvider extends AbstractDeclarativeScopeProvider {
-
-	@Override
-	public IScope getScope(EObject context, EReference reference) {
-		// TODO Auto-generated method stub
-		return super.getScope(context, reference);
+public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
+{
+	static {
+		EssentialOCLScopeAdapter.addSwitch(OCLinEcoreCSTPackage.eINSTANCE, new OCLinEcoreScopeSwitch());
 	}
+	
+	public static class OCLinEcoreScopeSwitch 
+		extends OCLinEcoreCSTSwitch<AbstractScopeAdapter<? extends EObject>>
+		implements EssentialOCLScopeAdapter.ISwitch
+	{
+		@Override
+		public AbstractScopeAdapter<? extends EObject> caseConstraintCS(ConstraintCS eObject) {
+			return new EmptyScopeAdapter(eObject);
+		}
 
+		@Override
+		public EmptyScopeAdapter caseDataTypeCS(DataTypeCS eObject) {
+			return new EmptyScopeAdapter(eObject);
+		}
+
+		@Override
+		public EssentialOCLScopeAdapter<? extends EObject> caseEnumCS(EnumCS eObject) {
+			return new EnumScopeAdapter(eObject);
+		}
+
+		@Override
+		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcoreClassCS(OCLinEcoreClassCS eObject) {
+			return new ClassScopeAdapter(eObject);
+		}
+
+		@Override
+		public OCLinEcoreDocumentScopeAdapter caseOCLinEcoreDocumentCS(OCLinEcoreDocumentCS eObject) {
+			return new OCLinEcoreDocumentScopeAdapter(eObject);
+		}
+
+		@Override
+		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcoreOperationCS(OCLinEcoreOperationCS eObject) {
+			return new OperationScopeAdapter(eObject);
+		}
+
+		@Override
+		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcorePackageCS(OCLinEcorePackageCS eObject) {
+			return new OCLinEcorePackageScopeAdapter(eObject);
+		}
+
+		@Override
+		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
+			return new DefaultScopeAdapter((ElementCS) eObject);
+		}
+
+		public AbstractScopeAdapter<?> doInPackageSwitch(EObject eObject) {
+			return doSwitch(eObject.eClass(), eObject);
+		}
+	}
 }

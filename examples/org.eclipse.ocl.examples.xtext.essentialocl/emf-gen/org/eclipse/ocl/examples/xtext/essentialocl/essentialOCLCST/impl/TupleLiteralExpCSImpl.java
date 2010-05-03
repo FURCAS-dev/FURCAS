@@ -12,22 +12,18 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSImpl.java,v 1.1 2010/04/13 06:32:28 ewillink Exp $
+ * $Id: TupleLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
