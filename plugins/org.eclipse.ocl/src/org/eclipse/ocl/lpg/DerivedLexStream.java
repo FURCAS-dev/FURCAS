@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DerivedLexStream.java,v 1.1 2010/01/22 18:37:58 asanchez Exp $
+ * $Id: DerivedLexStream.java,v 1.2 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -59,7 +59,7 @@ public abstract class DerivedLexStream extends LpgLexStream {
 	
     /**
 	 * Define the input text as a given array of characters.
-     * @param buffer the characters
+     * @param inputChars the characters
      */
 	public void initialize(char[] inputChars) {	
 		setInputChars(inputChars);

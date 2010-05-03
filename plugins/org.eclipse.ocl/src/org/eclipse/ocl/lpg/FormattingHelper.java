@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FormattingHelper.java,v 1.2 2007/11/06 20:02:10 cdamus Exp $
+ * $Id: FormattingHelper.java,v 1.3 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -35,7 +35,7 @@ public interface FormattingHelper
 
 	/**
 	 * Return the Ecore class name of object. e.g. "EOperation"
-	 * @param object to be formatted
+	 * @param eObject to be formatted
 	 * @return non-null string describing the Ecore class of object
 	 */
 	public String formatEClassName(EObject eObject);
@@ -80,7 +80,7 @@ public interface FormattingHelper
 	/**
 	 * Return the type of object. e.g. "Set(String)".  The type may be obtained by
 	 * using known type methods such as ETypedElement.getType().
-	 * @param object to be formatted
+	 * @param type object to be formatted
 	 * @return non-null string describing the type of object
 	 */
 	public String formatType(Object type);
