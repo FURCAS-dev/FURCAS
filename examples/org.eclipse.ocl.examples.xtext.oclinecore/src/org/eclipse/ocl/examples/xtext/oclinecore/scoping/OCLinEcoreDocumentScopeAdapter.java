@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.1 2010/05/03 05:44:34 ewillink Exp $
+ * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.2 2010/05/03 14:43:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -50,6 +50,9 @@ public class OCLinEcoreDocumentScopeAdapter extends StandardDocumentScopeAdapter
 					if (namespace instanceof OCLinEcoreDocumentCS) {
 						filteredAccesses.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages());
 					}
+				}
+				else {
+					filteredAccesses.addNamedElement(anImport);
 				}
 			}
 		}
