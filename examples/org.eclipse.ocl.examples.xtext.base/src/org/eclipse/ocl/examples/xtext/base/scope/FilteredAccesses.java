@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FilteredAccesses.java,v 1.2 2010/05/03 11:12:52 ewillink Exp $
+ * $Id: FilteredAccesses.java,v 1.3 2010/05/03 14:38:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -115,7 +115,7 @@ public class FilteredAccesses
 		if (reference != null) {
 			s.append(reference.getName());
 			s.append(" : ");
-			s.append(reference.getEType().eClass().getName());
+			s.append(reference.getEType().getName());
 		}
 		s.append(" \"");
 		if (name != null) {
