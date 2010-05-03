@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ICSTFileEnvironment.java,v 1.2 2010/04/08 06:26:23 ewillink Exp $
+ * $Id: ICSTFileEnvironment.java,v 1.3 2010/05/03 09:36:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.parser.environment;
 
@@ -62,10 +62,10 @@ extends ICSTEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	public C lookupClassifier(PK contextPackage, List<String> names);
 	
 	/**
-	 * Parse the source text that purports to come from filr and return its root environment
-	 * from which AST and CST may be obtained. monitor may nbe used to cancel parsing.
+	 * Parse the source text that purports to come from file and return its root environment
+	 * from which AST and CST may be obtained. monitor may be used to cancel parsing.
 	 * @param reader the source text, or null to use the file contents
-	 * @param the file source if reader null, or the nominal source if reader non-null
+	 * @param file source if reader null, or the nominal source if reader non-null
 	 * @param monitor
 	 * @return
 	 * @throws IOException
