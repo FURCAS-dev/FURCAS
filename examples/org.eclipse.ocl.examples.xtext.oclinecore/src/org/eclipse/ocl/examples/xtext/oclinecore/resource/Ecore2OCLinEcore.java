@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.3 2010/05/03 05:44:43 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.4 2010/05/03 14:43:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -807,9 +807,9 @@ public class Ecore2OCLinEcore extends AbstractConversion
 	protected OCLinEcoreDocumentCS importResource(Resource ecoreResource, String alias) {
 		Session session = new Session(ecoreResource);
 		OCLinEcoreDocumentCS documentCS = session.importResource();
-		if ((documentCS != null) && (documentCS.getName() == null)) {
-			documentCS.setName(alias);
-		}
+//		if ((documentCS != null) && (documentCS.getName() == null)) {
+//			documentCS.setName(alias);
+//		}
 		return documentCS;
 	}
 }
