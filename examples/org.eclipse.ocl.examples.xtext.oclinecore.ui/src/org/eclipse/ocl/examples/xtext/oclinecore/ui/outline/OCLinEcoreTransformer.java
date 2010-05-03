@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreTransformer.java,v 1.2 2010/04/16 18:09:43 ewillink Exp $
+ * $Id: OCLinEcoreTransformer.java,v 1.3 2010/05/03 05:54:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.outline;
 
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassifierCS;
-import org.eclipse.xtext.ui.editor.outline.ContentOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
 
 /**

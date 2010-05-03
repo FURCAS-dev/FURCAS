@@ -12,21 +12,17 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreAntlrTokenToAttributeIdMapper.java,v 1.1 2010/04/16 18:09:44 ewillink Exp $
+ * $Id: OCLinEcoreAntlrTokenToAttributeIdMapper.java,v 1.2 2010/05/03 05:54:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.syntaxcoloring;
-
-import java.util.regex.Pattern;
 
 import org.eclipse.ocl.examples.xtext.oclinecore.formatting.OCLinEcoreFormatter;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.formatting.IFormatter;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
 
 import com.google.inject.Inject;

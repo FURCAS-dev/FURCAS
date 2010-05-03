@@ -6,9 +6,16 @@ Bundle-Localization: plugin
 Bundle-Version: 3.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.oclinecore.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.ocl.examples.xtext.oclinecore;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.jdt.core
+Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl.ui;bundle-version="[3.0.0,
+ 4.0.0)";visibility:=reexport,
+ org.eclipse.ocl.examples.xtext.oclinecore;bundle-version="[3.0.0, 4.0.0)";visibility:=reexport,
+ org.eclipse.jdt.core,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui.editors,
+ org.eclipse.ui,
+ org.antlr.runtime,
+ org.eclipse.xtext.builder
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.xtext.oclinecore.ui,
