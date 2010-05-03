@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: ConstraintCS.java,v 1.2 2010/05/03 05:58:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpression
  * @model
  * @generated
  */
-public interface ConstraintCS extends EObject {
+public interface ConstraintCS extends ElementCS {
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -46,12 +45,12 @@ public interface ConstraintCS extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression</em>' containment reference.
-	 * @see #setExpression(OclExpressionCS)
+	 * @see #setExpression(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getConstraintCS_Expression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getExpression();
+	ExpCS getExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS#getExpression <em>Expression</em>}' containment reference.
@@ -61,6 +60,6 @@ public interface ConstraintCS extends EObject {
 	 * @see #getExpression()
 	 * @generated
 	 */
-	void setExpression(OclExpressionCS value);
+	void setExpression(ExpCS value);
 
 } // ConstraintCS

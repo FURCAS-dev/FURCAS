@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: DerCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: DerCSImpl.java,v 1.2 2010/05/03 05:58:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 

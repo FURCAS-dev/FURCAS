@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OclMessageCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: OclMessageCS.java,v 1.2 2010/05/03 05:58:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
  * @model
  * @generated
  */
-public interface OclMessageCS extends OclExpressionCS {
+public interface OclMessageCS extends ExpCS {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -50,12 +48,12 @@ public interface OclMessageCS extends OclExpressionCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(OclExpressionCS)
+	 * @see #setSource(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOclMessageCS_Source()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getSource();
+	ExpCS getSource();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getSource <em>Source</em>}' containment reference.
@@ -65,7 +63,7 @@ public interface OclMessageCS extends OclExpressionCS {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(OclExpressionCS value);
+	void setSource(ExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Op</b></em>' attribute.
@@ -94,34 +92,34 @@ public interface OclMessageCS extends OclExpressionCS {
 	void setOp(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Message Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Message Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Message Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Message Name</em>' containment reference.
-	 * @see #setMessageName(SimpleNameCS)
+	 * @return the value of the '<em>Message Name</em>' attribute.
+	 * @see #setMessageName(String)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOclMessageCS_MessageName()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	SimpleNameCS getMessageName();
+	String getMessageName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getMessageName <em>Message Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getMessageName <em>Message Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Message Name</em>' containment reference.
+	 * @param value the new value of the '<em>Message Name</em>' attribute.
 	 * @see #getMessageName()
 	 * @generated
 	 */
-	void setMessageName(SimpleNameCS value);
+	void setMessageName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
@@ -133,6 +131,6 @@ public interface OclMessageCS extends OclExpressionCS {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<OclExpressionCS> getArguments();
+	EList<ExpCS> getArguments();
 
 } // OclMessageCS

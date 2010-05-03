@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackageImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: CompleteOCLCSTPackageImpl.java,v 1.2 2010/05/03 05:58:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -20,19 +20,18 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedConstraintCS;
@@ -43,8 +42,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,14 +57,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass documentCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass importCSEClass = null;
+	private EClass featureContextDeclCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,6 +100,13 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	private EClass classifierContextDeclCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass completeOCLDocumentCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -226,7 +225,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		isInited = true;
 
 		// Initialize simple dependencies
-		EssentialOCLCSTPackage.eINSTANCE.eClass();
+		OCLinEcoreCSTPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theCompleteOCLCSTPackage.createPackageContents();
@@ -248,8 +247,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDocumentCS() {
-		return documentCSEClass;
+	public EClass getFeatureContextDeclCS() {
+		return featureContextDeclCSEClass;
 	}
 
 	/**
@@ -257,8 +256,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDocumentCS_Imports() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(0);
+	public EReference getFeatureContextDeclCS_Class() {
+		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -266,35 +265,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDocumentCS_Packages() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDocumentCS_Contexts() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getImportCS() {
-		return importCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getImportCS_ImportedNamespace() {
-		return (EAttribute)importCSEClass.getEStructuralFeatures().get(0);
+	public EReference getFeatureContextDeclCS_Type() {
+		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -311,7 +283,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageDeclarationCS_Name() {
+	public EReference getPackageDeclarationCS_Package() {
 		return (EReference)packageDeclarationCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -338,15 +310,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getContextDeclCS_ContextName() {
-		return (EReference)contextDeclCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPropertyContextDeclCS() {
 		return propertyContextDeclCSEClass;
 	}
@@ -356,7 +319,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyContextDeclCS_Type() {
+	public EReference getPropertyContextDeclCS_Property() {
 		return (EReference)propertyContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -410,7 +373,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassifierContextDeclCS_SelfName() {
+	public EReference getClassifierContextDeclCS_Classifier() {
 		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -419,8 +382,17 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getClassifierContextDeclCS_SelfName() {
+		return (EAttribute)classifierContextDeclCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getClassifierContextDeclCS_Invs() {
-		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -429,7 +401,34 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	public EReference getClassifierContextDeclCS_Defs() {
-		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompleteOCLDocumentCS() {
+		return completeOCLDocumentCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteOCLDocumentCS_Packages() {
+		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompleteOCLDocumentCS_Contexts() {
+		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -464,8 +463,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDefCS_ConstrainedName() {
-		return (EReference)defCSEClass.getEStructuralFeatures().get(1);
+	public EAttribute getDefCS_ConstrainedName() {
+		return (EAttribute)defCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -500,7 +499,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Parameters() {
+	public EReference getOperationContextDeclCS_Operation() {
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -509,7 +508,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationContextDeclCS_Type() {
+	public EReference getOperationContextDeclCS_Parameters() {
 		return (EReference)operationContextDeclCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -599,8 +598,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedConstraintCS_ConstraintName() {
-		return (EReference)namedConstraintCSEClass.getEStructuralFeatures().get(0);
+	public EAttribute getNamedConstraintCS_ConstraintName() {
+		return (EAttribute)namedConstraintCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -653,8 +652,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOclMessageCS_MessageName() {
-		return (EReference)oclMessageCSEClass.getEStructuralFeatures().get(2);
+	public EAttribute getOclMessageCS_MessageName() {
+		return (EAttribute)oclMessageCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -697,38 +696,38 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		bodyCSEClass = createEClass(BODY_CS);
 
 		classifierContextDeclCSEClass = createEClass(CLASSIFIER_CONTEXT_DECL_CS);
-		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME);
+		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER);
+		createEAttribute(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME);
 		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__INVS);
 		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__DEFS);
+
+		completeOCLDocumentCSEClass = createEClass(COMPLETE_OCL_DOCUMENT_CS);
+		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__PACKAGES);
+		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__CONTEXTS);
 
 		constraintCSEClass = createEClass(CONSTRAINT_CS);
 		createEReference(constraintCSEClass, CONSTRAINT_CS__EXPRESSION);
 
 		contextDeclCSEClass = createEClass(CONTEXT_DECL_CS);
-		createEReference(contextDeclCSEClass, CONTEXT_DECL_CS__CONTEXT_NAME);
 
 		defCSEClass = createEClass(DEF_CS);
 		createEAttribute(defCSEClass, DEF_CS__STATIC);
-		createEReference(defCSEClass, DEF_CS__CONSTRAINED_NAME);
+		createEAttribute(defCSEClass, DEF_CS__CONSTRAINED_NAME);
 		createEReference(defCSEClass, DEF_CS__PARAMETERS);
 		createEReference(defCSEClass, DEF_CS__TYPE);
 
 		derCSEClass = createEClass(DER_CS);
 
-		documentCSEClass = createEClass(DOCUMENT_CS);
-		createEReference(documentCSEClass, DOCUMENT_CS__IMPORTS);
-		createEReference(documentCSEClass, DOCUMENT_CS__PACKAGES);
-		createEReference(documentCSEClass, DOCUMENT_CS__CONTEXTS);
-
-		importCSEClass = createEClass(IMPORT_CS);
-		createEAttribute(importCSEClass, IMPORT_CS__IMPORTED_NAMESPACE);
+		featureContextDeclCSEClass = createEClass(FEATURE_CONTEXT_DECL_CS);
+		createEReference(featureContextDeclCSEClass, FEATURE_CONTEXT_DECL_CS__CLASS);
+		createEReference(featureContextDeclCSEClass, FEATURE_CONTEXT_DECL_CS__TYPE);
 
 		initCSEClass = createEClass(INIT_CS);
 
 		invCSEClass = createEClass(INV_CS);
 
 		namedConstraintCSEClass = createEClass(NAMED_CONSTRAINT_CS);
-		createEReference(namedConstraintCSEClass, NAMED_CONSTRAINT_CS__CONSTRAINT_NAME);
+		createEAttribute(namedConstraintCSEClass, NAMED_CONSTRAINT_CS__CONSTRAINT_NAME);
 
 		oclMessageArgCSEClass = createEClass(OCL_MESSAGE_ARG_CS);
 		createEReference(oclMessageArgCSEClass, OCL_MESSAGE_ARG_CS__TYPE);
@@ -736,18 +735,18 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		oclMessageCSEClass = createEClass(OCL_MESSAGE_CS);
 		createEReference(oclMessageCSEClass, OCL_MESSAGE_CS__SOURCE);
 		createEAttribute(oclMessageCSEClass, OCL_MESSAGE_CS__OP);
-		createEReference(oclMessageCSEClass, OCL_MESSAGE_CS__MESSAGE_NAME);
+		createEAttribute(oclMessageCSEClass, OCL_MESSAGE_CS__MESSAGE_NAME);
 		createEReference(oclMessageCSEClass, OCL_MESSAGE_CS__ARGUMENTS);
 
 		operationContextDeclCSEClass = createEClass(OPERATION_CONTEXT_DECL_CS);
+		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__OPERATION);
 		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__PARAMETERS);
-		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__TYPE);
 		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__PRES);
 		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__POSTS);
 		createEReference(operationContextDeclCSEClass, OPERATION_CONTEXT_DECL_CS__BODIES);
 
 		packageDeclarationCSEClass = createEClass(PACKAGE_DECLARATION_CS);
-		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__NAME);
+		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__PACKAGE);
 		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__CONTEXTS);
 
 		postCSEClass = createEClass(POST_CS);
@@ -755,7 +754,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		preCSEClass = createEClass(PRE_CS);
 
 		propertyContextDeclCSEClass = createEClass(PROPERTY_CONTEXT_DECL_CS);
-		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__TYPE);
+		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__PROPERTY);
 		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__INIT);
 		createEReference(propertyContextDeclCSEClass, PROPERTY_CONTEXT_DECL_CS__DER);
 	}
@@ -784,7 +783,9 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		BaseCSTPackage theBaseCSTPackage = (BaseCSTPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSTPackage.eNS_URI);
 		EssentialOCLCSTPackage theEssentialOCLCSTPackage = (EssentialOCLCSTPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSTPackage.eNS_URI);
+		OCLinEcoreCSTPackage theOCLinEcoreCSTPackage = (OCLinEcoreCSTPackage)EPackage.Registry.INSTANCE.getEPackage(OCLinEcoreCSTPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -793,74 +794,78 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		// Add supertypes to classes
 		bodyCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
 		classifierContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
+		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getDocumentCS());
+		constraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getElementCS());
+		contextDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getElementCS());
 		defCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
 		derCSEClass.getESuperTypes().add(this.getConstraintCS());
-		documentCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getOclExpressionCS());
+		featureContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		initCSEClass.getESuperTypes().add(this.getConstraintCS());
 		invCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
 		namedConstraintCSEClass.getESuperTypes().add(this.getConstraintCS());
-		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getOclExpressionCS());
-		oclMessageCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getOclExpressionCS());
-		operationContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
+		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
+		oclMessageCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
+		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
+		packageDeclarationCSEClass.getESuperTypes().add(theBaseCSTPackage.getElementCS());
 		postCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
 		preCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
-		propertyContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
+		propertyContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(bodyCSEClass, BodyCS.class, "BodyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(classifierContextDeclCSEClass, ClassifierContextDeclCS.class, "ClassifierContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassifierContextDeclCS_SelfName(), theEssentialOCLCSTPackage.getSimpleNameCS(), null, "selfName", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassifierContextDeclCS_Classifier(), theBaseCSTPackage.getClassifierRefCS(), null, "classifier", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClassifierContextDeclCS_SelfName(), ecorePackage.getEString(), "selfName", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassifierContextDeclCS_Invs(), this.getInvCS(), null, "invs", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassifierContextDeclCS_Defs(), this.getDefCS(), null, "defs", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(completeOCLDocumentCSEClass, CompleteOCLDocumentCS.class, "CompleteOCLDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompleteOCLDocumentCS_Packages(), this.getPackageDeclarationCS(), null, "packages", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompleteOCLDocumentCS_Contexts(), this.getContextDeclCS(), null, "contexts", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(constraintCSEClass, ConstraintCS.class, "ConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstraintCS_Expression(), theEssentialOCLCSTPackage.getOclExpressionCS(), null, "expression", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraintCS_Expression(), theEssentialOCLCSTPackage.getExpCS(), null, "expression", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextDeclCSEClass, ContextDeclCS.class, "ContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContextDeclCS_ContextName(), theEssentialOCLCSTPackage.getPathNameCS(), null, "contextName", null, 0, 1, ContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(defCSEClass, DefCS.class, "DefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDefCS_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDefCS_ConstrainedName(), theEssentialOCLCSTPackage.getSimpleNameCS(), null, "constrainedName", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDefCS_ConstrainedName(), ecorePackage.getEString(), "constrainedName", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDefCS_Parameters(), theEssentialOCLCSTPackage.getVariableCS(), null, "parameters", null, 0, -1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDefCS_Type(), theEssentialOCLCSTPackage.getTypeCS(), null, "type", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefCS_Type(), theBaseCSTPackage.getTypeCS(), null, "type", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(derCSEClass, DerCS.class, "DerCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(documentCSEClass, DocumentCS.class, "DocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDocumentCS_Imports(), this.getImportCS(), null, "imports", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDocumentCS_Packages(), this.getPackageDeclarationCS(), null, "packages", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDocumentCS_Contexts(), this.getContextDeclCS(), null, "contexts", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(importCSEClass, ImportCS.class, "ImportCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImportCS_ImportedNamespace(), ecorePackage.getEString(), "importedNamespace", null, 0, 1, ImportCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(featureContextDeclCSEClass, FeatureContextDeclCS.class, "FeatureContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureContextDeclCS_Class(), theOCLinEcoreCSTPackage.getOCLinEcoreClassCS(), null, "class", null, 0, 1, FeatureContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureContextDeclCS_Type(), theBaseCSTPackage.getTypeCS(), null, "type", null, 0, 1, FeatureContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(initCSEClass, InitCS.class, "InitCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(invCSEClass, InvCS.class, "InvCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(namedConstraintCSEClass, NamedConstraintCS.class, "NamedConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamedConstraintCS_ConstraintName(), theEssentialOCLCSTPackage.getSimpleNameCS(), null, "constraintName", null, 0, 1, NamedConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamedConstraintCS_ConstraintName(), ecorePackage.getEString(), "constraintName", null, 0, 1, NamedConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageArgCSEClass, OclMessageArgCS.class, "OclMessageArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOclMessageArgCS_Type(), theEssentialOCLCSTPackage.getTypeCS(), null, "type", null, 0, 1, OclMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOclMessageArgCS_Type(), theBaseCSTPackage.getTypeCS(), null, "type", null, 0, 1, OclMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageCSEClass, OclMessageCS.class, "OclMessageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOclMessageCS_Source(), theEssentialOCLCSTPackage.getOclExpressionCS(), null, "source", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOclMessageCS_Source(), theEssentialOCLCSTPackage.getExpCS(), null, "source", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOclMessageCS_Op(), ecorePackage.getEString(), "op", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOclMessageCS_MessageName(), theEssentialOCLCSTPackage.getSimpleNameCS(), null, "messageName", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOclMessageCS_Arguments(), theEssentialOCLCSTPackage.getOclExpressionCS(), null, "arguments", null, 0, -1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOclMessageCS_MessageName(), ecorePackage.getEString(), "messageName", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOclMessageCS_Arguments(), theEssentialOCLCSTPackage.getExpCS(), null, "arguments", null, 0, -1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationContextDeclCSEClass, OperationContextDeclCS.class, "OperationContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperationContextDeclCS_Operation(), theBaseCSTPackage.getOperationRefCS(), null, "operation", null, 0, 1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationContextDeclCS_Parameters(), theEssentialOCLCSTPackage.getVariableCS(), null, "parameters", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationContextDeclCS_Type(), theEssentialOCLCSTPackage.getTypeCS(), null, "type", null, 0, 1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationContextDeclCS_Pres(), this.getPreCS(), null, "pres", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationContextDeclCS_Posts(), this.getPostCS(), null, "posts", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationContextDeclCS_Bodies(), this.getBodyCS(), null, "bodies", null, 0, -1, OperationContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageDeclarationCSEClass, PackageDeclarationCS.class, "PackageDeclarationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackageDeclarationCS_Name(), theEssentialOCLCSTPackage.getPathNameCS(), null, "name", null, 0, 1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageDeclarationCS_Package(), theBaseCSTPackage.getPackageRefCS(), null, "package", null, 0, 1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackageDeclarationCS_Contexts(), this.getContextDeclCS(), null, "contexts", null, 0, -1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(postCSEClass, PostCS.class, "PostCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -868,7 +873,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		initEClass(preCSEClass, PreCS.class, "PreCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(propertyContextDeclCSEClass, PropertyContextDeclCS.class, "PropertyContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertyContextDeclCS_Type(), theEssentialOCLCSTPackage.getTypeCS(), null, "type", null, 0, 1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyContextDeclCS_Property(), theBaseCSTPackage.getStructuralFeatureRefCS(), null, "property", null, 0, 1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyContextDeclCS_Init(), this.getInitCS(), null, "init", null, 0, 1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyContextDeclCS_Der(), this.getDerCS(), null, "der", null, 0, 1, PropertyContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -12,18 +12,47 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.2 2010/05/03 05:58:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
+import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
+import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
+import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreScopeProvider;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreCrossReferenceSerializer;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreQualifiedNameProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.parsetree.reconstr.ICrossReferenceSerializer;
+import org.eclipse.xtext.scoping.IScopeProvider;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.completeocl.AbstractCompleteOCLRuntimeModule
 {
+	@Override
+	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
+		return OCLinEcoreCrossReferenceSerializer.class;
+	}
+
+	@Override
+	public Class<? extends ILinkingService> bindILinkingService() {
+		return CompleteOCLLinkingService.class;
+	}
+
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return OCLinEcoreQualifiedNameProvider.class;
+	}
+
+	@Override
+	public Class<? extends IScopeProvider> bindIScopeProvider() {
+		return CompleteOCLScopeProvider.class;
+	}
+
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 	  return EssentialOCLValueConverterService.class;

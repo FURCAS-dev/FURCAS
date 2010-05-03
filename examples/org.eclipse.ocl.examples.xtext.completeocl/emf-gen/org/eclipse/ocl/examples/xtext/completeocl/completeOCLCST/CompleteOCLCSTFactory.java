@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactory.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: CompleteOCLCSTFactory.java,v 1.2 2010/05/03 05:58:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -34,24 +34,6 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	CompleteOCLCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Document CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Document CS</em>'.
-	 * @generated
-	 */
-	DocumentCS createDocumentCS();
-
-	/**
-	 * Returns a new object of class '<em>Import CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import CS</em>'.
-	 * @generated
-	 */
-	ImportCS createImportCS();
 
 	/**
 	 * Returns a new object of class '<em>Package Declaration CS</em>'.
@@ -106,6 +88,15 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	ClassifierContextDeclCS createClassifierContextDeclCS();
+
+	/**
+	 * Returns a new object of class '<em>Complete OCL Document CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete OCL Document CS</em>'.
+	 * @generated
+	 */
+	CompleteOCLDocumentCS createCompleteOCLDocumentCS();
 
 	/**
 	 * Returns a new object of class '<em>Inv CS</em>'.

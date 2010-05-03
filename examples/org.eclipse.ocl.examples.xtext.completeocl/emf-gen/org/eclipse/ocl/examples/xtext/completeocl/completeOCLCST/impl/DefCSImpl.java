@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: DefCSImpl.java,v 1.2 2010/05/03 05:58:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -20,22 +20,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -76,14 +69,24 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 	protected boolean static_ = STATIC_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConstrainedName() <em>Constrained Name</em>}' containment reference.
+	 * The default value of the '{@link #getConstrainedName() <em>Constrained Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstrainedName()
 	 * @generated
 	 * @ordered
 	 */
-	protected SimpleNameCS constrainedName;
+	protected static final String CONSTRAINED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getConstrainedName() <em>Constrained Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstrainedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String constrainedName = CONSTRAINED_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
@@ -150,7 +153,7 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleNameCS getConstrainedName() {
+	public String getConstrainedName() {
 		return constrainedName;
 	}
 
@@ -159,33 +162,11 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConstrainedName(SimpleNameCS newConstrainedName, NotificationChain msgs) {
-		SimpleNameCS oldConstrainedName = constrainedName;
+	public void setConstrainedName(String newConstrainedName) {
+		String oldConstrainedName = constrainedName;
 		constrainedName = newConstrainedName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, oldConstrainedName, newConstrainedName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstrainedName(SimpleNameCS newConstrainedName) {
-		if (newConstrainedName != constrainedName) {
-			NotificationChain msgs = null;
-			if (constrainedName != null)
-				msgs = ((InternalEObject)constrainedName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, null, msgs);
-			if (newConstrainedName != null)
-				msgs = ((InternalEObject)newConstrainedName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, null, msgs);
-			msgs = basicSetConstrainedName(newConstrainedName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, newConstrainedName, newConstrainedName));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, oldConstrainedName, constrainedName));
 	}
 
 	/**
@@ -251,8 +232,6 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				return basicSetConstrainedName(null, msgs);
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSTPackage.DEF_CS__TYPE:
@@ -294,7 +273,7 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 				setStatic((Boolean)newValue);
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				setConstrainedName((SimpleNameCS)newValue);
+				setConstrainedName((String)newValue);
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				getParameters().clear();
@@ -319,7 +298,7 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 				setStatic(STATIC_EDEFAULT);
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				setConstrainedName((SimpleNameCS)null);
+				setConstrainedName(CONSTRAINED_NAME_EDEFAULT);
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				getParameters().clear();
@@ -342,7 +321,7 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 			case CompleteOCLCSTPackage.DEF_CS__STATIC:
 				return static_ != STATIC_EDEFAULT;
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
-				return constrainedName != null;
+				return CONSTRAINED_NAME_EDEFAULT == null ? constrainedName != null : !CONSTRAINED_NAME_EDEFAULT.equals(constrainedName);
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
 			case CompleteOCLCSTPackage.DEF_CS__TYPE:
@@ -354,17 +333,11 @@ public class DefCSImpl extends NamedConstraintCSImpl implements DefCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (static: ");
-		result.append(static_);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //DefCSImpl

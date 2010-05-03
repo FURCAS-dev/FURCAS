@@ -12,17 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.2 2010/04/16 18:16:19 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.3 2010/05/03 06:01:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.ocl.cst.PathNameCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 import com.google.inject.Inject;
@@ -39,40 +38,34 @@ public class CompleteOCLLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 
-	public String text(ClassifierContextDeclCS ele) {
-		PathNameCS contextName = ele.getContextName();
-		StringBuffer s = new StringBuffer();
-		appendPathName(s, contextName);
-		return s.toString();
-	}
+//	public String text(ClassifierContextDeclCS ele) {
+//		return ele.getClassifier().getName();
+//		PathNameCS contextName = ele.getClassifier().getName();
+//		StringBuffer s = new StringBuffer();
+//		appendPathName(s, contextName);
+//		return s.toString();
+//	}
 
-	protected void appendPathName(StringBuffer s, PathNameCS pathName) {
-		for (SimpleNameCS simpleName : pathName.getSimpleNames()) {
-			if (s.length() > 0) {
-				s.append("::");
-			}
-			s.append(simpleName.getValue());
-		}
-	}
-
-	public String text(DocumentCS ele) {
+	public String text(CompleteOCLDocumentCS ele) {
 		return "OclInEcore document";
 	}
 
-	public String text(OperationContextDeclCS ele) {
-		PathNameCS contextName = ele.getContextName();
-		StringBuffer s = new StringBuffer();
-		appendPathName(s, contextName);
-		s.append("()");
-		return s.toString();
-	}
+//	public String text(OperationContextDeclCS ele) {
+//		return ele.getOperation().getName();
+//		PathNameCS contextName = ele.getContextName();
+//		StringBuffer s = new StringBuffer();
+//		appendPathName(s, contextName);
+//		s.append("()");
+//		return s.toString();
+//	}
 
-	public String text(PropertyContextDeclCS ele) {
-		PathNameCS contextName = ele.getContextName();
-		StringBuffer s = new StringBuffer();
-		appendPathName(s, contextName);
-		return s.toString();
-	}
+//	public String text(PropertyContextDeclCS ele) {
+//		return ele.getProperty().getName();
+//		PathNameCS contextName = ele.getContextName();
+//		StringBuffer s = new StringBuffer();
+//		appendPathName(s, contextName);
+//		return s.toString();
+//	}
 
 /*
 	//Labels and icons can be computed like this:

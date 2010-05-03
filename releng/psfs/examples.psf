@@ -64,11 +64,14 @@
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.parser.unresolved" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.project.empty" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.project.royalandloyal" type="4"/>
+		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.base" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.completeocl" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.completeocl.ui" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.essentialocl" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.essentialocl.ui" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclinecore" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclinecore.ui" type="4"/>
+		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclstdlib" type="4"/>
+		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclstdlib.ui" type="4"/>
 	</workingSets>
 </psf>

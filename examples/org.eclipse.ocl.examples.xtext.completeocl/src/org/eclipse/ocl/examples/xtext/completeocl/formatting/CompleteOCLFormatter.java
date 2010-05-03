@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLFormatter.java,v 1.1 2010/04/13 06:38:28 ewillink Exp $
+ * $Id: CompleteOCLFormatter.java,v 1.2 2010/05/03 05:58:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.formatting;
 
@@ -31,7 +31,7 @@ public class CompleteOCLFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess f = (org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess) getGrammarAccess();
+//		org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess f = (org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess) getGrammarAccess();
 
 		//...
 	}

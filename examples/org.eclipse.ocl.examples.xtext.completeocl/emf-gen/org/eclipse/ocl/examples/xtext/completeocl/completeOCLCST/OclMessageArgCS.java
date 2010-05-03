@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OclMessageArgCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: OclMessageArgCS.java,v 1.2 2010/05/03 05:58:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeCS;
  * @model
  * @generated
  */
-public interface OclMessageArgCS extends OclExpressionCS {
+public interface OclMessageArgCS extends ExpCS {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

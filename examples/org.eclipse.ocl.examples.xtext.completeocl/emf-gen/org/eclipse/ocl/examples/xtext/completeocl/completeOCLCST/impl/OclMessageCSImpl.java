@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclMessageCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: OclMessageCSImpl.java,v 1.2 2010/05/03 05:58:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -20,24 +20,16 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OclExpressionCSImpl;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpCSImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +47,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OclExpre
  *
  * @generated
  */
-public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageCS {
+public class OclMessageCSImpl extends ExpCSImpl implements OclMessageCS {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -64,7 +56,7 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS source;
+	protected ExpCS source;
 
 	/**
 	 * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
@@ -87,14 +79,24 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	protected String op = OP_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getMessageName() <em>Message Name</em>}' containment reference.
+	 * The default value of the '{@link #getMessageName() <em>Message Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMessageName()
 	 * @generated
 	 * @ordered
 	 */
-	protected SimpleNameCS messageName;
+	protected static final String MESSAGE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMessageName() <em>Message Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMessageName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String messageName = MESSAGE_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
@@ -104,7 +106,7 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OclExpressionCS> arguments;
+	protected EList<ExpCS> arguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,7 +132,7 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getSource() {
+	public ExpCS getSource() {
 		return source;
 	}
 
@@ -139,8 +141,8 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(OclExpressionCS newSource, NotificationChain msgs) {
-		OclExpressionCS oldSource = source;
+	public NotificationChain basicSetSource(ExpCS newSource, NotificationChain msgs) {
+		ExpCS oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OCL_MESSAGE_CS__SOURCE, oldSource, newSource);
@@ -154,7 +156,7 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(OclExpressionCS newSource) {
+	public void setSource(ExpCS newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
@@ -194,7 +196,7 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleNameCS getMessageName() {
+	public String getMessageName() {
 		return messageName;
 	}
 
@@ -203,14 +205,11 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMessageName(SimpleNameCS newMessageName, NotificationChain msgs) {
-		SimpleNameCS oldMessageName = messageName;
+	public void setMessageName(String newMessageName) {
+		String oldMessageName = messageName;
 		messageName = newMessageName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME, oldMessageName, newMessageName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME, oldMessageName, messageName));
 	}
 
 	/**
@@ -218,28 +217,9 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMessageName(SimpleNameCS newMessageName) {
-		if (newMessageName != messageName) {
-			NotificationChain msgs = null;
-			if (messageName != null)
-				msgs = ((InternalEObject)messageName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME, null, msgs);
-			if (newMessageName != null)
-				msgs = ((InternalEObject)newMessageName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME, null, msgs);
-			msgs = basicSetMessageName(newMessageName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME, newMessageName, newMessageName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OclExpressionCS> getArguments() {
+	public EList<ExpCS> getArguments() {
 		if (arguments == null) {
-			arguments = new EObjectContainmentEList<OclExpressionCS>(OclExpressionCS.class, this, CompleteOCLCSTPackage.OCL_MESSAGE_CS__ARGUMENTS);
+			arguments = new EObjectContainmentEList<ExpCS>(ExpCS.class, this, CompleteOCLCSTPackage.OCL_MESSAGE_CS__ARGUMENTS);
 		}
 		return arguments;
 	}
@@ -254,8 +234,6 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 		switch (featureID) {
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__SOURCE:
 				return basicSetSource(null, msgs);
-			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME:
-				return basicSetMessageName(null, msgs);
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__ARGUMENTS:
 				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
@@ -292,17 +270,17 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__SOURCE:
-				setSource((OclExpressionCS)newValue);
+				setSource((ExpCS)newValue);
 				return;
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__OP:
 				setOp((String)newValue);
 				return;
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME:
-				setMessageName((SimpleNameCS)newValue);
+				setMessageName((String)newValue);
 				return;
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__ARGUMENTS:
 				getArguments().clear();
-				getArguments().addAll((Collection<? extends OclExpressionCS>)newValue);
+				getArguments().addAll((Collection<? extends ExpCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -317,13 +295,13 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__SOURCE:
-				setSource((OclExpressionCS)null);
+				setSource((ExpCS)null);
 				return;
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__OP:
 				setOp(OP_EDEFAULT);
 				return;
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME:
-				setMessageName((SimpleNameCS)null);
+				setMessageName(MESSAGE_NAME_EDEFAULT);
 				return;
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__ARGUMENTS:
 				getArguments().clear();
@@ -345,7 +323,7 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__OP:
 				return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__MESSAGE_NAME:
-				return messageName != null;
+				return MESSAGE_NAME_EDEFAULT == null ? messageName != null : !MESSAGE_NAME_EDEFAULT.equals(messageName);
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
 		}
@@ -355,17 +333,11 @@ public class OclMessageCSImpl extends OclExpressionCSImpl implements OclMessageC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (op: ");
-		result.append(op);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //OclMessageCSImpl

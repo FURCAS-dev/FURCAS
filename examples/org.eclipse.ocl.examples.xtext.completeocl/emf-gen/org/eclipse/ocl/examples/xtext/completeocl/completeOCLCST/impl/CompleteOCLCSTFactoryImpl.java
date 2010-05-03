@@ -12,19 +12,35 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactoryImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: CompleteOCLCSTFactoryImpl.java,v 1.2 2010/05/03 05:58:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTFactory;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedConstraintCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,12 +88,11 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 		switch (eClass.getClassifierID()) {
 			case CompleteOCLCSTPackage.BODY_CS: return createBodyCS();
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS: return createClassifierContextDeclCS();
+			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
 			case CompleteOCLCSTPackage.CONSTRAINT_CS: return createConstraintCS();
 			case CompleteOCLCSTPackage.CONTEXT_DECL_CS: return createContextDeclCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
-			case CompleteOCLCSTPackage.DOCUMENT_CS: return createDocumentCS();
-			case CompleteOCLCSTPackage.IMPORT_CS: return createImportCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
 			case CompleteOCLCSTPackage.INV_CS: return createInvCS();
 			case CompleteOCLCSTPackage.NAMED_CONSTRAINT_CS: return createNamedConstraintCS();
@@ -91,26 +106,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DocumentCS createDocumentCS() {
-		DocumentCSImpl documentCS = new DocumentCSImpl();
-		return documentCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ImportCS createImportCS() {
-		ImportCSImpl importCS = new ImportCSImpl();
-		return importCS;
 	}
 
 	/**
@@ -171,6 +166,16 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public ClassifierContextDeclCS createClassifierContextDeclCS() {
 		ClassifierContextDeclCSImpl classifierContextDeclCS = new ClassifierContextDeclCSImpl();
 		return classifierContextDeclCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompleteOCLDocumentCS createCompleteOCLDocumentCS() {
+		CompleteOCLDocumentCSImpl completeOCLDocumentCS = new CompleteOCLDocumentCSImpl();
+		return completeOCLDocumentCS;
 	}
 
 	/**

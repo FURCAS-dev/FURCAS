@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.1 2010/04/13 06:38:26 ewillink Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.2 2010/05/03 05:58:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -20,23 +20,18 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,23 +40,23 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl#getContexts <em>Contexts</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container implements PackageDeclarationCS {
+public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDeclarationCS {
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+	 * The cached value of the '{@link #getPackage() <em>Package</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getPackage()
 	 * @generated
 	 * @ordered
 	 */
-	protected PathNameCS name;
+	protected PackageRefCS package_;
 
 	/**
 	 * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
@@ -97,8 +92,8 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getName() {
-		return name;
+	public PackageRefCS getPackage() {
+		return package_;
 	}
 
 	/**
@@ -106,11 +101,11 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetName(PathNameCS newName, NotificationChain msgs) {
-		PathNameCS oldName = name;
-		name = newName;
+	public NotificationChain basicSetPackage(PackageRefCS newPackage, NotificationChain msgs) {
+		PackageRefCS oldPackage = package_;
+		package_ = newPackage;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME, oldName, newName);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, oldPackage, newPackage);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -121,18 +116,18 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(PathNameCS newName) {
-		if (newName != name) {
+	public void setPackage(PackageRefCS newPackage) {
+		if (newPackage != package_) {
 			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
+			if (package_ != null)
+				msgs = ((InternalEObject)package_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, null, msgs);
+			if (newPackage != null)
+				msgs = ((InternalEObject)newPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, null, msgs);
+			msgs = basicSetPackage(newPackage, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME, newName, newName));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, newPackage, newPackage));
 	}
 
 	/**
@@ -155,8 +150,8 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME:
-				return basicSetName(null, msgs);
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
+				return basicSetPackage(null, msgs);
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
 		}
@@ -171,8 +166,8 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME:
-				return getName();
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
+				return getPackage();
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				return getContexts();
 		}
@@ -188,8 +183,8 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME:
-				setName((PathNameCS)newValue);
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
+				setPackage((PackageRefCS)newValue);
 				return;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				getContexts().clear();
@@ -207,8 +202,8 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME:
-				setName((PathNameCS)null);
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
+				setPackage((PackageRefCS)null);
 				return;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				getContexts().clear();
@@ -225,8 +220,8 @@ public class PackageDeclarationCSImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAME:
-				return name != null;
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
+				return package_ != null;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				return contexts != null && !contexts.isEmpty();
 		}

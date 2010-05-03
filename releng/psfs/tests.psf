@@ -12,5 +12,6 @@
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.ecore.tests" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.uml.tests" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.tests" type="4"/>
+		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.tests" type="4"/>
 	</workingSets>
 </psf>

@@ -7,72 +7,71 @@ package org.eclipse.ocl.examples.xtext.completeocl.ui.contentassist.antlr.intern
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 }
 
-T11 : 'body' ;
-T12 : 'context' ;
-T13 : 'def' ;
-T14 : 'derive' ;
-T15 : 'endpackage' ;
+T12 : 'body' ;
+T13 : 'context' ;
+T14 : 'def' ;
+T15 : 'derive' ;
 T16 : 'import' ;
 T17 : 'init' ;
 T18 : 'inv' ;
-T19 : 'package' ;
-T20 : 'post' ;
-T21 : 'pre' ;
-T22 : 'static' ;
-T23 : 'e' ;
-T24 : 'E' ;
-T25 : '^^' ;
-T26 : '^' ;
-T27 : '+' ;
-T28 : '-' ;
-T29 : '=' ;
-T30 : '<>' ;
-T31 : '>' ;
-T32 : '<' ;
-T33 : '>=' ;
-T34 : '<=' ;
-T35 : '*' ;
-T36 : '/' ;
-T37 : 'not' ;
-T38 : '.' ;
-T39 : '->' ;
-T40 : ':' ;
-T41 : '(' ;
-T42 : ')' ;
-T43 : ',' ;
-T44 : '@' ;
-T45 : '?' ;
-T46 : '::' ;
-T47 : '{' ;
-T48 : '}' ;
-T49 : '..' ;
-T50 : 'Tuple' ;
-T51 : 'invalid' ;
-T52 : 'null' ;
-T53 : '|' ;
-T54 : ';' ;
-T55 : '[' ;
-T56 : ']' ;
-T57 : 'if' ;
-T58 : 'then' ;
-T59 : 'else' ;
-T60 : 'endif' ;
-T61 : 'let' ;
-T62 : 'in' ;
-T63 : 'self' ;
-T64 : 'Boolean' ;
-T65 : 'Integer' ;
-T66 : 'Real' ;
-T67 : 'String' ;
-T68 : 'UnlimitedNatural' ;
-T69 : 'OclAny' ;
-T70 : 'OclInvalid' ;
-T71 : 'OclVoid' ;
-T72 : 'Set' ;
-T73 : 'Bag' ;
-T74 : 'Sequence' ;
-T75 : 'Collection' ;
-T76 : 'OrderedSet' ;
+T19 : '^^' ;
+T20 : '^' ;
+T21 : 'e' ;
+T22 : 'E' ;
+T23 : '+' ;
+T24 : '-' ;
+T25 : 'Boolean' ;
+T26 : 'Integer' ;
+T27 : 'Real' ;
+T28 : 'String' ;
+T29 : 'UnlimitedNatural' ;
+T30 : 'OclAny' ;
+T31 : 'OclInvalid' ;
+T32 : 'OclVoid' ;
+T33 : 'Set' ;
+T34 : 'Bag' ;
+T35 : 'Sequence' ;
+T36 : 'Collection' ;
+T37 : 'OrderedSet' ;
+T38 : '=' ;
+T39 : '<>' ;
+T40 : '>' ;
+T41 : '<' ;
+T42 : '>=' ;
+T43 : '<=' ;
+T44 : '*' ;
+T45 : '/' ;
+T46 : 'not' ;
+T47 : ':' ;
+T48 : '(' ;
+T49 : ')' ;
+T50 : ',' ;
+T51 : 'package' ;
+T52 : 'endpackage' ;
+T53 : 'post' ;
+T54 : 'pre' ;
+T55 : '::' ;
+T56 : '.' ;
+T57 : '->' ;
+T58 : '?' ;
+T59 : '{' ;
+T60 : '}' ;
+T61 : '..' ;
+T62 : 'Tuple' ;
+T63 : 'invalid' ;
+T64 : 'null' ;
+T65 : '|' ;
+T66 : ';' ;
+T67 : '[' ;
+T68 : ']' ;
+T69 : 'self' ;
+T70 : 'if' ;
+T71 : 'then' ;
+T72 : 'else' ;
+T73 : 'endif' ;
+T74 : 'let' ;
+T75 : 'in' ;
+T76 : 'static' ;
 T77 : 'true' ;
 T78 : 'false' ;
 T79 : 'implies' ;
@@ -80,25 +79,28 @@ T80 : 'xor' ;
 T81 : 'or' ;
 T82 : 'and' ;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11032
-RULE_STRING_LITERAL : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11659
+RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11034
-RULE_ID_TERMINAL : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_STRING_LITERAL);
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11661
+RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11036
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11663
+RULE_ID_TERMINAL : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
+
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11665
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11038
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11667
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11040
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11669
 RULE_SL_COMMENT : '--' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11042
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11671
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11044
+// $ANTLR src "../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g" 11673
 RULE_ANY_OTHER : .;
 
 
