@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EnumCS.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: EnumCS.java,v 1.2 2010/05/03 05:44:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,10 +36,10 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface EnumCS extends DataTypeOrEnumCS {
+public interface EnumCS extends DataTypeOrEnumCS, NamespaceCS {
 	/**
 	 * Returns the value of the '<em><b>Literals</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumLiteralCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Literals</em>' containment reference list isn't clear,

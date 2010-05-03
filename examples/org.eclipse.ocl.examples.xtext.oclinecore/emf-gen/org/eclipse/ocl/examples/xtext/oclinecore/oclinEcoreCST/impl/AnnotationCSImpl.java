@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: AnnotationCSImpl.java,v 1.3 2010/05/03 05:44:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -24,14 +24,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationElementCSImpl;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ObjectRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,7 +107,7 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ObjectRef> references;
+	protected EList<ModelElementCSRef> references;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,9 +187,9 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ObjectRef> getReferences() {
+	public EList<ModelElementCSRef> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentEList<ObjectRef>(ObjectRef.class, this, OCLinEcoreCSTPackage.ANNOTATION_CS__REFERENCES);
+			references = new EObjectContainmentEList<ModelElementCSRef>(ModelElementCSRef.class, this, OCLinEcoreCSTPackage.ANNOTATION_CS__REFERENCES);
 		}
 		return references;
 	}
@@ -252,7 +251,7 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 				return;
 			case OCLinEcoreCSTPackage.ANNOTATION_CS__REFERENCES:
 				getReferences().clear();
-				getReferences().addAll((Collection<? extends ObjectRef>)newValue);
+				getReferences().addAll((Collection<? extends ModelElementCSRef>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -305,19 +304,11 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (idSource: ");
-		result.append(idSource);
-		result.append(", stringSource: ");
-		result.append(stringSource);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //AnnotationCSImpl

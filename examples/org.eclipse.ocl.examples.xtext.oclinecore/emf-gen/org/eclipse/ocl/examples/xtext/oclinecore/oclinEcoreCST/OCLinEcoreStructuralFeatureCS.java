@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: StructuralFeatureCS.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: OCLinEcoreStructuralFeatureCS.java,v 1.1 2010/05/03 05:44:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,16 +28,16 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.StructuralFeatureCS#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.StructuralFeatureCS#getDefaultValueLiteral <em>Default Value Literal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS#getDefaultValueLiteral <em>Default Value Literal</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getStructuralFeatureCS()
+ * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getOCLinEcoreStructuralFeatureCS()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface StructuralFeatureCS extends TypedElementCS {
+public interface OCLinEcoreStructuralFeatureCS extends StructuralFeatureCS {
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS}.
@@ -46,7 +48,7 @@ public interface StructuralFeatureCS extends TypedElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraints</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getStructuralFeatureCS_Constraints()
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getOCLinEcoreStructuralFeatureCS_Constraints()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -62,14 +64,14 @@ public interface StructuralFeatureCS extends TypedElementCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default Value Literal</em>' attribute.
 	 * @see #setDefaultValueLiteral(String)
-	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getStructuralFeatureCS_DefaultValueLiteral()
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getOCLinEcoreStructuralFeatureCS_DefaultValueLiteral()
 	 * @model
 	 * @generated
 	 */
 	String getDefaultValueLiteral();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.StructuralFeatureCS#getDefaultValueLiteral <em>Default Value Literal</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS#getDefaultValueLiteral <em>Default Value Literal</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default Value Literal</em>' attribute.

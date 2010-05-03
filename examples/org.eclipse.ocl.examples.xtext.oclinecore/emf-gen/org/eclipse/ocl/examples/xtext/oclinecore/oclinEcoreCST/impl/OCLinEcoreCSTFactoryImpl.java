@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTFactoryImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: OCLinEcoreCSTFactoryImpl.java,v 1.3 2010/05/03 05:44:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -23,37 +23,18 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.*;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EAttributeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassifierCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassifierRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EDataTypeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EObjectRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EReferenceRef;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumLiteralCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreAttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeParameterCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,36 +81,16 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case OCLinEcoreCSTPackage.ANNOTATION_CS: return createAnnotationCS();
-			case OCLinEcoreCSTPackage.ATTRIBUTE_CS: return createAttributeCS();
-			case OCLinEcoreCSTPackage.ATTRIBUTE_CS_REF: return createAttributeCSRef();
-			case OCLinEcoreCSTPackage.CLASS_CS: return createClassCS();
-			case OCLinEcoreCSTPackage.CLASS_CS_REF: return createClassCSRef();
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS: return createConstraintCS();
 			case OCLinEcoreCSTPackage.DATA_TYPE_CS: return createDataTypeCS();
-			case OCLinEcoreCSTPackage.DATA_TYPE_CS_REF: return createDataTypeCSRef();
-			case OCLinEcoreCSTPackage.DETAIL_CS: return createDetailCS();
-			case OCLinEcoreCSTPackage.DOCUMENT_CS: return createDocumentCS();
 			case OCLinEcoreCSTPackage.DOCUMENTATION_CS: return createDocumentationCS();
-			case OCLinEcoreCSTPackage.EATTRIBUTE_REF: return createEAttributeRef();
-			case OCLinEcoreCSTPackage.ECLASS_REF: return createEClassRef();
-			case OCLinEcoreCSTPackage.ECLASSIFIER_CS_REF: return createEClassifierCSRef();
-			case OCLinEcoreCSTPackage.ECLASSIFIER_REF: return createEClassifierRef();
-			case OCLinEcoreCSTPackage.EDATA_TYPE_REF: return createEDataTypeRef();
-			case OCLinEcoreCSTPackage.EOBJECT_REF: return createEObjectRef();
-			case OCLinEcoreCSTPackage.EREFERENCE_REF: return createEReferenceRef();
 			case OCLinEcoreCSTPackage.ENUM_CS: return createEnumCS();
-			case OCLinEcoreCSTPackage.ENUM_LITERAL_CS: return createEnumLiteralCS();
-			case OCLinEcoreCSTPackage.IMPORT_CS: return createImportCS();
-			case OCLinEcoreCSTPackage.MODEL_ELEMENT_CS_REF: return createModelElementCSRef();
-			case OCLinEcoreCSTPackage.OPERATION_CS: return createOperationCS();
-			case OCLinEcoreCSTPackage.PACKAGE_CS: return createPackageCS();
-			case OCLinEcoreCSTPackage.PARAMETER_CS: return createParameterCS();
-			case OCLinEcoreCSTPackage.REFERENCE_CS: return createReferenceCS();
-			case OCLinEcoreCSTPackage.REFERENCE_CS_REF: return createReferenceCSRef();
-			case OCLinEcoreCSTPackage.TYPE_CS_REF: return createTypeCSRef();
-			case OCLinEcoreCSTPackage.TYPE_PARAMETER_CS: return createTypeParameterCS();
-			case OCLinEcoreCSTPackage.TYPED_TYPE_REF_CS: return createTypedTypeRefCS();
-			case OCLinEcoreCSTPackage.WILDCARD_TYPE_REF_CS: return createWildcardTypeRefCS();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_ATTRIBUTE_CS: return createOCLinEcoreAttributeCS();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS: return createOCLinEcoreClassCS();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_DOCUMENT_CS: return createOCLinEcoreDocumentCS();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_OPERATION_CS: return createOCLinEcoreOperationCS();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_PACKAGE_CS: return createOCLinEcorePackageCS();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_REFERENCE_CS: return createOCLinEcoreReferenceCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -150,9 +111,9 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeCS createAttributeCS() {
-		AttributeCSImpl attributeCS = new AttributeCSImpl();
-		return attributeCS;
+	public OCLinEcoreAttributeCS createOCLinEcoreAttributeCS() {
+		OCLinEcoreAttributeCSImpl ocLinEcoreAttributeCS = new OCLinEcoreAttributeCSImpl();
+		return ocLinEcoreAttributeCS;
 	}
 
 	/**
@@ -160,39 +121,9 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeCSRef createAttributeCSRef() {
-		AttributeCSRefImpl attributeCSRef = new AttributeCSRefImpl();
-		return attributeCSRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClassCS createClassCS() {
-		ClassCSImpl classCS = new ClassCSImpl();
-		return classCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClassCSRef createClassCSRef() {
-		ClassCSRefImpl classCSRef = new ClassCSRefImpl();
-		return classCSRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DocumentCS createDocumentCS() {
-		DocumentCSImpl documentCS = new DocumentCSImpl();
-		return documentCS;
+	public OCLinEcoreClassCS createOCLinEcoreClassCS() {
+		OCLinEcoreClassCSImpl ocLinEcoreClassCS = new OCLinEcoreClassCSImpl();
+		return ocLinEcoreClassCS;
 	}
 
 	/**
@@ -210,76 +141,6 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttributeRef createEAttributeRef() {
-		EAttributeRefImpl eAttributeRef = new EAttributeRefImpl();
-		return eAttributeRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClassRef createEClassRef() {
-		EClassRefImpl eClassRef = new EClassRefImpl();
-		return eClassRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClassifierCSRef createEClassifierCSRef() {
-		EClassifierCSRefImpl eClassifierCSRef = new EClassifierCSRefImpl();
-		return eClassifierCSRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClassifierRef createEClassifierRef() {
-		EClassifierRefImpl eClassifierRef = new EClassifierRefImpl();
-		return eClassifierRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataTypeRef createEDataTypeRef() {
-		EDataTypeRefImpl eDataTypeRef = new EDataTypeRefImpl();
-		return eDataTypeRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObjectRef createEObjectRef() {
-		EObjectRefImpl eObjectRef = new EObjectRefImpl();
-		return eObjectRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReferenceRef createEReferenceRef() {
-		EReferenceRefImpl eReferenceRef = new EReferenceRefImpl();
-		return eReferenceRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EnumCS createEnumCS() {
 		EnumCSImpl enumCS = new EnumCSImpl();
 		return enumCS;
@@ -290,9 +151,9 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumLiteralCS createEnumLiteralCS() {
-		EnumLiteralCSImpl enumLiteralCS = new EnumLiteralCSImpl();
-		return enumLiteralCS;
+	public OCLinEcoreDocumentCS createOCLinEcoreDocumentCS() {
+		OCLinEcoreDocumentCSImpl ocLinEcoreDocumentCS = new OCLinEcoreDocumentCSImpl();
+		return ocLinEcoreDocumentCS;
 	}
 
 	/**
@@ -300,9 +161,9 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImportCS createImportCS() {
-		ImportCSImpl importCS = new ImportCSImpl();
-		return importCS;
+	public OCLinEcoreOperationCS createOCLinEcoreOperationCS() {
+		OCLinEcoreOperationCSImpl ocLinEcoreOperationCS = new OCLinEcoreOperationCSImpl();
+		return ocLinEcoreOperationCS;
 	}
 
 	/**
@@ -310,9 +171,9 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElementCSRef createModelElementCSRef() {
-		ModelElementCSRefImpl modelElementCSRef = new ModelElementCSRefImpl();
-		return modelElementCSRef;
+	public OCLinEcorePackageCS createOCLinEcorePackageCS() {
+		OCLinEcorePackageCSImpl ocLinEcorePackageCS = new OCLinEcorePackageCSImpl();
+		return ocLinEcorePackageCS;
 	}
 
 	/**
@@ -320,89 +181,9 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationCS createOperationCS() {
-		OperationCSImpl operationCS = new OperationCSImpl();
-		return operationCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PackageCS createPackageCS() {
-		PackageCSImpl packageCS = new PackageCSImpl();
-		return packageCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParameterCS createParameterCS() {
-		ParameterCSImpl parameterCS = new ParameterCSImpl();
-		return parameterCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReferenceCS createReferenceCS() {
-		ReferenceCSImpl referenceCS = new ReferenceCSImpl();
-		return referenceCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReferenceCSRef createReferenceCSRef() {
-		ReferenceCSRefImpl referenceCSRef = new ReferenceCSRefImpl();
-		return referenceCSRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeCSRef createTypeCSRef() {
-		TypeCSRefImpl typeCSRef = new TypeCSRefImpl();
-		return typeCSRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeParameterCS createTypeParameterCS() {
-		TypeParameterCSImpl typeParameterCS = new TypeParameterCSImpl();
-		return typeParameterCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypedTypeRefCS createTypedTypeRefCS() {
-		TypedTypeRefCSImpl typedTypeRefCS = new TypedTypeRefCSImpl();
-		return typedTypeRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WildcardTypeRefCS createWildcardTypeRefCS() {
-		WildcardTypeRefCSImpl wildcardTypeRefCS = new WildcardTypeRefCSImpl();
-		return wildcardTypeRefCS;
+	public OCLinEcoreReferenceCS createOCLinEcoreReferenceCS() {
+		OCLinEcoreReferenceCSImpl ocLinEcoreReferenceCS = new OCLinEcoreReferenceCSImpl();
+		return ocLinEcoreReferenceCS;
 	}
 
 	/**
@@ -423,26 +204,6 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	public DataTypeCS createDataTypeCS() {
 		DataTypeCSImpl dataTypeCS = new DataTypeCSImpl();
 		return dataTypeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataTypeCSRef createDataTypeCSRef() {
-		DataTypeCSRefImpl dataTypeCSRef = new DataTypeCSRefImpl();
-		return dataTypeCSRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DetailCS createDetailCS() {
-		DetailCSImpl detailCS = new DetailCSImpl();
-		return detailCS;
 	}
 
 	/**

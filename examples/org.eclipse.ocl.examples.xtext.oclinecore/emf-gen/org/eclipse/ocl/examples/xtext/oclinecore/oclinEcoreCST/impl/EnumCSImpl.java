@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: EnumCSImpl.java,v 1.2 2010/05/03 05:44:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumLiteralCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
 /**
@@ -156,5 +156,4 @@ public class EnumCSImpl extends DataTypeOrEnumCSImpl implements EnumCS {
 		}
 		return super.eIsSet(featureID);
 	}
-
 } //EnumCSImpl

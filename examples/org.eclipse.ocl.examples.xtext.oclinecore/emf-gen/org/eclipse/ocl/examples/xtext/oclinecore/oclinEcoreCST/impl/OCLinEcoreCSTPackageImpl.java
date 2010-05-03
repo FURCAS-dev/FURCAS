@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackageImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackageImpl.java,v 1.3 2010/05/03 05:44:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -22,55 +22,24 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AttributeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCSRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EAttributeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassifierCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EClassifierRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EDataTypeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EObjectRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EReferenceRef;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumLiteralCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreAttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ObjectRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ReferenceRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeCSRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeParameterCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeRef;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeRefCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypedElementCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassifierCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,63 +60,14 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass annotationElementCSEClass = null;
+	private EClass ocLinEcoreAttributeCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attributeCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass attributeCSRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass attributeRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classCSRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classifierCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass documentCSEClass = null;
+	private EClass ocLinEcoreClassCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,55 +81,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eAttributeRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eClassRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eClassifierCSRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eClassifierRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eDataTypeRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eObjectRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eReferenceRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass enumCSEClass = null;
 
 	/**
@@ -217,147 +88,42 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass enumLiteralCSEClass = null;
+	private EClass ocLinEcoreClassifierCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass importCSEClass = null;
+	private EClass ocLinEcoreDocumentCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelElementCSEClass = null;
+	private EClass ocLinEcoreOperationCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelElementCSRefEClass = null;
+	private EClass ocLinEcorePackageCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedElementCSEClass = null;
+	private EClass ocLinEcoreReferenceCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass objectRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass operationCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass packageCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass parameterCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referenceCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referenceCSRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass referenceRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass structuralFeatureCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeCSRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typedElementCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typedTypeRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass wildcardTypeRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeParameterCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeRefCSEClass = null;
+	private EClass ocLinEcoreStructuralFeatureCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -365,13 +131,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * @generated
 	 */
 	private EClass constraintCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dataTypeRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -386,20 +145,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * @generated
 	 */
 	private EClass dataTypeOrEnumCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dataTypeCSRefEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass detailCSEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -516,8 +261,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAnnotationElementCS() {
-		return annotationElementCSEClass;
+	public EClass getOCLinEcoreAttributeCS() {
+		return ocLinEcoreAttributeCSEClass;
 	}
 
 	/**
@@ -525,179 +270,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnnotationElementCS_Details() {
-		return (EReference)annotationElementCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAttributeCS() {
-		return attributeCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAttributeCSRef() {
-		return attributeCSRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAttributeCSRef_Ref() {
-		return (EReference)attributeCSRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAttributeRef() {
-		return attributeRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClassCS() {
-		return classCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassCS_SuperTypes() {
-		return (EReference)classCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassCS_Operations() {
-		return (EReference)classCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassCS_StructuralFeatures() {
-		return (EReference)classCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClassCSRef() {
-		return classCSRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassCSRef_Ref() {
-		return (EReference)classCSRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClassRef() {
-		return classRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClassifierCS() {
-		return classifierCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassifierCS_Constraints() {
-		return (EReference)classifierCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getClassifierCS_InstanceClassName() {
-		return (EAttribute)classifierCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getClassifierCS_Qualifiers() {
-		return (EAttribute)classifierCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassifierCS_TypeParameters() {
-		return (EReference)classifierCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDocumentCS() {
-		return documentCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDocumentCS_Imports() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDocumentCS_Packages() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(1);
+	public EClass getOCLinEcoreClassCS() {
+		return ocLinEcoreClassCSEClass;
 	}
 
 	/**
@@ -723,141 +297,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEAttributeRef() {
-		return eAttributeRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEAttributeRef_Ref() {
-		return (EReference)eAttributeRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEClassRef() {
-		return eClassRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEClassRef_Ref() {
-		return (EReference)eClassRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEClassifierCSRef() {
-		return eClassifierCSRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEClassifierCSRef_Ref() {
-		return (EReference)eClassifierCSRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEClassifierCSRef_ModelName() {
-		return (EAttribute)eClassifierCSRefEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEClassifierRef() {
-		return eClassifierRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEClassifierRef_Ref() {
-		return (EReference)eClassifierRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEDataTypeRef() {
-		return eDataTypeRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEDataTypeRef_Ref() {
-		return (EReference)eDataTypeRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEObjectRef() {
-		return eObjectRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEObjectRef_Ref() {
-		return (EReference)eObjectRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEReferenceRef() {
-		return eReferenceRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEReferenceRef_Ref() {
-		return (EReference)eReferenceRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEnumCS() {
 		return enumCSEClass;
 	}
@@ -876,8 +315,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEnumLiteralCS() {
-		return enumLiteralCSEClass;
+	public EClass getOCLinEcoreClassifierCS() {
+		return ocLinEcoreClassifierCSEClass;
 	}
 
 	/**
@@ -885,8 +324,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEnumLiteralCS_Value() {
-		return (EAttribute)enumLiteralCSEClass.getEStructuralFeatures().get(0);
+	public EReference getOCLinEcoreClassifierCS_Constraints() {
+		return (EReference)ocLinEcoreClassifierCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -894,8 +333,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getImportCS() {
-		return importCSEClass;
+	public EAttribute getOCLinEcoreClassifierCS_InstanceClassName() {
+		return (EAttribute)ocLinEcoreClassifierCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -903,8 +342,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImportCS_Alias() {
-		return (EAttribute)importCSEClass.getEStructuralFeatures().get(0);
+	public EAttribute getOCLinEcoreClassifierCS_Qualifiers() {
+		return (EAttribute)ocLinEcoreClassifierCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -912,8 +351,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getImportCS_EPackage() {
-		return (EReference)importCSEClass.getEStructuralFeatures().get(1);
+	public EClass getOCLinEcoreDocumentCS() {
+		return ocLinEcoreDocumentCSEClass;
 	}
 
 	/**
@@ -921,8 +360,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelElementCS() {
-		return modelElementCSEClass;
+	public EReference getOCLinEcoreDocumentCS_Packages() {
+		return (EReference)ocLinEcoreDocumentCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -930,8 +369,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElementCS_Annotations() {
-		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(0);
+	public EClass getOCLinEcoreOperationCS() {
+		return ocLinEcoreOperationCSEClass;
 	}
 
 	/**
@@ -939,8 +378,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelElementCSRef() {
-		return modelElementCSRefEClass;
+	public EReference getOCLinEcoreOperationCS_Constraints() {
+		return (EReference)ocLinEcoreOperationCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -948,8 +387,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelElementCSRef_Ref() {
-		return (EReference)modelElementCSRefEClass.getEStructuralFeatures().get(0);
+	public EReference getOCLinEcoreOperationCS_Exceptions() {
+		return (EReference)ocLinEcoreOperationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -957,8 +396,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedElementCS() {
-		return namedElementCSEClass;
+	public EClass getOCLinEcorePackageCS() {
+		return ocLinEcorePackageCSEClass;
 	}
 
 	/**
@@ -966,8 +405,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElementCS_Name() {
-		return (EAttribute)namedElementCSEClass.getEStructuralFeatures().get(0);
+	public EClass getOCLinEcoreReferenceCS() {
+		return ocLinEcoreReferenceCSEClass;
 	}
 
 	/**
@@ -975,8 +414,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getObjectRef() {
-		return objectRefEClass;
+	public EReference getOCLinEcoreReferenceCS_Keys() {
+		return (EReference)ocLinEcoreReferenceCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -984,8 +423,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperationCS() {
-		return operationCSEClass;
+	public EClass getOCLinEcoreStructuralFeatureCS() {
+		return ocLinEcoreStructuralFeatureCSEClass;
 	}
 
 	/**
@@ -993,8 +432,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationCS_Constraints() {
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(0);
+	public EReference getOCLinEcoreStructuralFeatureCS_Constraints() {
+		return (EReference)ocLinEcoreStructuralFeatureCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1002,341 +441,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationCS_Parameters() {
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOperationCS_TypeParameters() {
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOperationCS_Exceptions() {
-		return (EReference)operationCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPackageCS() {
-		return packageCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPackageCS_Classifiers() {
-		return (EReference)packageCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPackageCS_Subpackages() {
-		return (EReference)packageCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPackageCS_Prefix() {
-		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPackageCS_Uri() {
-		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getParameterCS() {
-		return parameterCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReferenceCS() {
-		return referenceCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceCS_Opposite() {
-		return (EReference)referenceCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceCS_Keys() {
-		return (EReference)referenceCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReferenceCSRef() {
-		return referenceCSRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getReferenceCSRef_Ref() {
-		return (EReference)referenceCSRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getReferenceRef() {
-		return referenceRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStructuralFeatureCS() {
-		return structuralFeatureCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStructuralFeatureCS_Constraints() {
-		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStructuralFeatureCS_DefaultValueLiteral() {
-		return (EAttribute)structuralFeatureCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeCS() {
-		return typeCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeCSRef() {
-		return typeCSRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeCSRef_Ref() {
-		return (EReference)typeCSRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypedElementCS() {
-		return typedElementCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElementCS_Lower() {
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElementCS_Multiplicity() {
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElementCS_Qualifiers() {
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypedElementCS_Type() {
-		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTypedElementCS_Upper() {
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypedTypeRefCS() {
-		return typedTypeRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypedTypeRefCS_Type() {
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypedTypeRefCS_TypeArguments() {
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getWildcardTypeRefCS() {
-		return wildcardTypeRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getWildcardTypeRefCS_Extends() {
-		return (EReference)wildcardTypeRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getWildcardTypeRefCS_Super() {
-		return (EReference)wildcardTypeRefCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeParameterCS() {
-		return typeParameterCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeParameterCS_Extends() {
-		return (EReference)typeParameterCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeParameterCS_Super() {
-		return (EReference)typeParameterCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeRef() {
-		return typeRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeRefCS() {
-		return typeRefCSEClass;
+	public EAttribute getOCLinEcoreStructuralFeatureCS_DefaultValueLiteral() {
+		return (EAttribute)ocLinEcoreStructuralFeatureCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1380,15 +486,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDataTypeRef() {
-		return dataTypeRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDataTypeCS() {
 		return dataTypeCSEClass;
 	}
@@ -1400,60 +497,6 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 */
 	public EClass getDataTypeOrEnumCS() {
 		return dataTypeOrEnumCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDataTypeCSRef() {
-		return dataTypeCSRefEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDataTypeCSRef_Ref() {
-		return (EReference)dataTypeCSRefEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDetailCS() {
-		return detailCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDetailCS_IdName() {
-		return (EAttribute)detailCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDetailCS_StringName() {
-		return (EAttribute)detailCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDetailCS_Value() {
-		return (EAttribute)detailCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1490,155 +533,45 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		createEReference(annotationCSEClass, ANNOTATION_CS__CONTENTS);
 		createEReference(annotationCSEClass, ANNOTATION_CS__REFERENCES);
 
-		annotationElementCSEClass = createEClass(ANNOTATION_ELEMENT_CS);
-		createEReference(annotationElementCSEClass, ANNOTATION_ELEMENT_CS__DETAILS);
-
-		attributeCSEClass = createEClass(ATTRIBUTE_CS);
-
-		attributeCSRefEClass = createEClass(ATTRIBUTE_CS_REF);
-		createEReference(attributeCSRefEClass, ATTRIBUTE_CS_REF__REF);
-
-		attributeRefEClass = createEClass(ATTRIBUTE_REF);
-
-		classCSEClass = createEClass(CLASS_CS);
-		createEReference(classCSEClass, CLASS_CS__SUPER_TYPES);
-		createEReference(classCSEClass, CLASS_CS__OPERATIONS);
-		createEReference(classCSEClass, CLASS_CS__STRUCTURAL_FEATURES);
-
-		classCSRefEClass = createEClass(CLASS_CS_REF);
-		createEReference(classCSRefEClass, CLASS_CS_REF__REF);
-
-		classRefEClass = createEClass(CLASS_REF);
-
-		classifierCSEClass = createEClass(CLASSIFIER_CS);
-		createEReference(classifierCSEClass, CLASSIFIER_CS__CONSTRAINTS);
-		createEAttribute(classifierCSEClass, CLASSIFIER_CS__INSTANCE_CLASS_NAME);
-		createEAttribute(classifierCSEClass, CLASSIFIER_CS__QUALIFIERS);
-		createEReference(classifierCSEClass, CLASSIFIER_CS__TYPE_PARAMETERS);
-
 		constraintCSEClass = createEClass(CONSTRAINT_CS);
 		createEAttribute(constraintCSEClass, CONSTRAINT_CS__STEREOTYPE);
 		createEAttribute(constraintCSEClass, CONSTRAINT_CS__EXPR_STRING);
 		createEReference(constraintCSEClass, CONSTRAINT_CS__EXPR_VALUE);
 
-		dataTypeRefEClass = createEClass(DATA_TYPE_REF);
-
 		dataTypeCSEClass = createEClass(DATA_TYPE_CS);
 
 		dataTypeOrEnumCSEClass = createEClass(DATA_TYPE_OR_ENUM_CS);
 
-		dataTypeCSRefEClass = createEClass(DATA_TYPE_CS_REF);
-		createEReference(dataTypeCSRefEClass, DATA_TYPE_CS_REF__REF);
-
-		detailCSEClass = createEClass(DETAIL_CS);
-		createEAttribute(detailCSEClass, DETAIL_CS__ID_NAME);
-		createEAttribute(detailCSEClass, DETAIL_CS__STRING_NAME);
-		createEAttribute(detailCSEClass, DETAIL_CS__VALUE);
-
-		documentCSEClass = createEClass(DOCUMENT_CS);
-		createEReference(documentCSEClass, DOCUMENT_CS__IMPORTS);
-		createEReference(documentCSEClass, DOCUMENT_CS__PACKAGES);
-
 		documentationCSEClass = createEClass(DOCUMENTATION_CS);
 		createEAttribute(documentationCSEClass, DOCUMENTATION_CS__VALUE);
-
-		eAttributeRefEClass = createEClass(EATTRIBUTE_REF);
-		createEReference(eAttributeRefEClass, EATTRIBUTE_REF__REF);
-
-		eClassRefEClass = createEClass(ECLASS_REF);
-		createEReference(eClassRefEClass, ECLASS_REF__REF);
-
-		eClassifierCSRefEClass = createEClass(ECLASSIFIER_CS_REF);
-		createEReference(eClassifierCSRefEClass, ECLASSIFIER_CS_REF__REF);
-		createEAttribute(eClassifierCSRefEClass, ECLASSIFIER_CS_REF__MODEL_NAME);
-
-		eClassifierRefEClass = createEClass(ECLASSIFIER_REF);
-		createEReference(eClassifierRefEClass, ECLASSIFIER_REF__REF);
-
-		eDataTypeRefEClass = createEClass(EDATA_TYPE_REF);
-		createEReference(eDataTypeRefEClass, EDATA_TYPE_REF__REF);
-
-		eObjectRefEClass = createEClass(EOBJECT_REF);
-		createEReference(eObjectRefEClass, EOBJECT_REF__REF);
-
-		eReferenceRefEClass = createEClass(EREFERENCE_REF);
-		createEReference(eReferenceRefEClass, EREFERENCE_REF__REF);
 
 		enumCSEClass = createEClass(ENUM_CS);
 		createEReference(enumCSEClass, ENUM_CS__LITERALS);
 
-		enumLiteralCSEClass = createEClass(ENUM_LITERAL_CS);
-		createEAttribute(enumLiteralCSEClass, ENUM_LITERAL_CS__VALUE);
+		ocLinEcoreAttributeCSEClass = createEClass(OC_LIN_ECORE_ATTRIBUTE_CS);
 
-		importCSEClass = createEClass(IMPORT_CS);
-		createEAttribute(importCSEClass, IMPORT_CS__ALIAS);
-		createEReference(importCSEClass, IMPORT_CS__EPACKAGE);
+		ocLinEcoreClassCSEClass = createEClass(OC_LIN_ECORE_CLASS_CS);
 
-		modelElementCSEClass = createEClass(MODEL_ELEMENT_CS);
-		createEReference(modelElementCSEClass, MODEL_ELEMENT_CS__ANNOTATIONS);
+		ocLinEcoreClassifierCSEClass = createEClass(OC_LIN_ECORE_CLASSIFIER_CS);
+		createEReference(ocLinEcoreClassifierCSEClass, OC_LIN_ECORE_CLASSIFIER_CS__CONSTRAINTS);
+		createEAttribute(ocLinEcoreClassifierCSEClass, OC_LIN_ECORE_CLASSIFIER_CS__INSTANCE_CLASS_NAME);
+		createEAttribute(ocLinEcoreClassifierCSEClass, OC_LIN_ECORE_CLASSIFIER_CS__QUALIFIERS);
 
-		modelElementCSRefEClass = createEClass(MODEL_ELEMENT_CS_REF);
-		createEReference(modelElementCSRefEClass, MODEL_ELEMENT_CS_REF__REF);
+		ocLinEcoreDocumentCSEClass = createEClass(OC_LIN_ECORE_DOCUMENT_CS);
+		createEReference(ocLinEcoreDocumentCSEClass, OC_LIN_ECORE_DOCUMENT_CS__PACKAGES);
 
-		namedElementCSEClass = createEClass(NAMED_ELEMENT_CS);
-		createEAttribute(namedElementCSEClass, NAMED_ELEMENT_CS__NAME);
+		ocLinEcoreOperationCSEClass = createEClass(OC_LIN_ECORE_OPERATION_CS);
+		createEReference(ocLinEcoreOperationCSEClass, OC_LIN_ECORE_OPERATION_CS__CONSTRAINTS);
+		createEReference(ocLinEcoreOperationCSEClass, OC_LIN_ECORE_OPERATION_CS__EXCEPTIONS);
 
-		objectRefEClass = createEClass(OBJECT_REF);
+		ocLinEcorePackageCSEClass = createEClass(OC_LIN_ECORE_PACKAGE_CS);
 
-		operationCSEClass = createEClass(OPERATION_CS);
-		createEReference(operationCSEClass, OPERATION_CS__CONSTRAINTS);
-		createEReference(operationCSEClass, OPERATION_CS__PARAMETERS);
-		createEReference(operationCSEClass, OPERATION_CS__TYPE_PARAMETERS);
-		createEReference(operationCSEClass, OPERATION_CS__EXCEPTIONS);
+		ocLinEcoreReferenceCSEClass = createEClass(OC_LIN_ECORE_REFERENCE_CS);
+		createEReference(ocLinEcoreReferenceCSEClass, OC_LIN_ECORE_REFERENCE_CS__KEYS);
 
-		packageCSEClass = createEClass(PACKAGE_CS);
-		createEReference(packageCSEClass, PACKAGE_CS__CLASSIFIERS);
-		createEReference(packageCSEClass, PACKAGE_CS__SUBPACKAGES);
-		createEAttribute(packageCSEClass, PACKAGE_CS__PREFIX);
-		createEAttribute(packageCSEClass, PACKAGE_CS__URI);
-
-		parameterCSEClass = createEClass(PARAMETER_CS);
-
-		referenceCSEClass = createEClass(REFERENCE_CS);
-		createEReference(referenceCSEClass, REFERENCE_CS__OPPOSITE);
-		createEReference(referenceCSEClass, REFERENCE_CS__KEYS);
-
-		referenceCSRefEClass = createEClass(REFERENCE_CS_REF);
-		createEReference(referenceCSRefEClass, REFERENCE_CS_REF__REF);
-
-		referenceRefEClass = createEClass(REFERENCE_REF);
-
-		structuralFeatureCSEClass = createEClass(STRUCTURAL_FEATURE_CS);
-		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__CONSTRAINTS);
-		createEAttribute(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__DEFAULT_VALUE_LITERAL);
-
-		typeCSEClass = createEClass(TYPE_CS);
-
-		typeCSRefEClass = createEClass(TYPE_CS_REF);
-		createEReference(typeCSRefEClass, TYPE_CS_REF__REF);
-
-		typeParameterCSEClass = createEClass(TYPE_PARAMETER_CS);
-		createEReference(typeParameterCSEClass, TYPE_PARAMETER_CS__EXTENDS);
-		createEReference(typeParameterCSEClass, TYPE_PARAMETER_CS__SUPER);
-
-		typeRefEClass = createEClass(TYPE_REF);
-
-		typeRefCSEClass = createEClass(TYPE_REF_CS);
-
-		typedElementCSEClass = createEClass(TYPED_ELEMENT_CS);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__LOWER);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__MULTIPLICITY);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__QUALIFIERS);
-		createEReference(typedElementCSEClass, TYPED_ELEMENT_CS__TYPE);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__UPPER);
-
-		typedTypeRefCSEClass = createEClass(TYPED_TYPE_REF_CS);
-		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__TYPE);
-		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__TYPE_ARGUMENTS);
-
-		wildcardTypeRefCSEClass = createEClass(WILDCARD_TYPE_REF_CS);
-		createEReference(wildcardTypeRefCSEClass, WILDCARD_TYPE_REF_CS__EXTENDS);
-		createEReference(wildcardTypeRefCSEClass, WILDCARD_TYPE_REF_CS__SUPER);
+		ocLinEcoreStructuralFeatureCSEClass = createEClass(OC_LIN_ECORE_STRUCTURAL_FEATURE_CS);
+		createEReference(ocLinEcoreStructuralFeatureCSEClass, OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__CONSTRAINTS);
+		createEAttribute(ocLinEcoreStructuralFeatureCSEClass, OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__DEFAULT_VALUE_LITERAL);
 	}
 
 	/**
@@ -1665,6 +598,7 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		BaseCSTPackage theBaseCSTPackage = (BaseCSTPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSTPackage.eNS_URI);
 		EssentialOCLCSTPackage theEssentialOCLCSTPackage = (EssentialOCLCSTPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSTPackage.eNS_URI);
 
 		// Create type parameters
@@ -1672,204 +606,71 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		annotationCSEClass.getESuperTypes().add(this.getAnnotationElementCS());
-		annotationElementCSEClass.getESuperTypes().add(this.getModelElementCS());
-		attributeCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
-		attributeCSRefEClass.getESuperTypes().add(this.getAttributeRef());
-		attributeRefEClass.getESuperTypes().add(this.getObjectRef());
-		classCSEClass.getESuperTypes().add(this.getClassifierCS());
-		classCSRefEClass.getESuperTypes().add(this.getClassRef());
-		classRefEClass.getESuperTypes().add(this.getTypeRef());
-		classifierCSEClass.getESuperTypes().add(this.getTypeCS());
-		constraintCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		dataTypeRefEClass.getESuperTypes().add(this.getTypeRef());
+		annotationCSEClass.getESuperTypes().add(theBaseCSTPackage.getAnnotationElementCS());
+		constraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
 		dataTypeCSEClass.getESuperTypes().add(this.getDataTypeOrEnumCS());
-		dataTypeOrEnumCSEClass.getESuperTypes().add(this.getClassifierCS());
-		dataTypeCSRefEClass.getESuperTypes().add(this.getDataTypeRef());
-		documentationCSEClass.getESuperTypes().add(this.getAnnotationElementCS());
-		eAttributeRefEClass.getESuperTypes().add(this.getAttributeRef());
-		eClassRefEClass.getESuperTypes().add(this.getClassRef());
-		eClassifierCSRefEClass.getESuperTypes().add(this.getTypeRef());
-		eClassifierRefEClass.getESuperTypes().add(this.getTypeRef());
-		eDataTypeRefEClass.getESuperTypes().add(this.getDataTypeRef());
-		eObjectRefEClass.getESuperTypes().add(this.getObjectRef());
-		eReferenceRefEClass.getESuperTypes().add(this.getReferenceRef());
+		dataTypeOrEnumCSEClass.getESuperTypes().add(this.getOCLinEcoreClassifierCS());
+		documentationCSEClass.getESuperTypes().add(theBaseCSTPackage.getAnnotationElementCS());
 		enumCSEClass.getESuperTypes().add(this.getDataTypeOrEnumCS());
-		enumLiteralCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		modelElementCSRefEClass.getESuperTypes().add(this.getObjectRef());
-		namedElementCSEClass.getESuperTypes().add(this.getModelElementCS());
-		operationCSEClass.getESuperTypes().add(this.getTypedElementCS());
-		packageCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		parameterCSEClass.getESuperTypes().add(this.getTypedElementCS());
-		referenceCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
-		referenceCSRefEClass.getESuperTypes().add(this.getReferenceRef());
-		referenceRefEClass.getESuperTypes().add(this.getObjectRef());
-		structuralFeatureCSEClass.getESuperTypes().add(this.getTypedElementCS());
-		typeCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		typeCSRefEClass.getESuperTypes().add(this.getTypeRef());
-		typeParameterCSEClass.getESuperTypes().add(this.getTypeCS());
-		typeRefEClass.getESuperTypes().add(this.getObjectRef());
-		typeRefCSEClass.getESuperTypes().add(this.getModelElementCS());
-		typedElementCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		typedTypeRefCSEClass.getESuperTypes().add(this.getTypeRefCS());
-		wildcardTypeRefCSEClass.getESuperTypes().add(this.getTypeRefCS());
+		enumCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamespaceCS());
+		ocLinEcoreAttributeCSEClass.getESuperTypes().add(this.getOCLinEcoreStructuralFeatureCS());
+		ocLinEcoreAttributeCSEClass.getESuperTypes().add(theBaseCSTPackage.getAttributeCS());
+		ocLinEcoreClassCSEClass.getESuperTypes().add(this.getOCLinEcoreClassifierCS());
+		ocLinEcoreClassCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
+		ocLinEcoreClassifierCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassifierCS());
+		ocLinEcoreDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getDocumentCS());
+		ocLinEcoreOperationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
+		ocLinEcorePackageCSEClass.getESuperTypes().add(theBaseCSTPackage.getPackageCS());
+		ocLinEcoreReferenceCSEClass.getESuperTypes().add(this.getOCLinEcoreStructuralFeatureCS());
+		ocLinEcoreReferenceCSEClass.getESuperTypes().add(theBaseCSTPackage.getReferenceCS());
+		ocLinEcoreStructuralFeatureCSEClass.getESuperTypes().add(theBaseCSTPackage.getStructuralFeatureCS());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(annotationCSEClass, AnnotationCS.class, "AnnotationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAnnotationCS_IdSource(), ecorePackage.getEString(), "idSource", null, 0, 1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAnnotationCS_StringSource(), ecorePackage.getEString(), "stringSource", null, 0, 1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnnotationCS_Contents(), this.getModelElementCS(), null, "contents", null, 0, -1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnnotationCS_References(), this.getObjectRef(), null, "references", null, 0, -1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(annotationElementCSEClass, AnnotationElementCS.class, "AnnotationElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnnotationElementCS_Details(), this.getDetailCS(), null, "details", null, 0, -1, AnnotationElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(attributeCSEClass, AttributeCS.class, "AttributeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(attributeCSRefEClass, AttributeCSRef.class, "AttributeCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeCSRef_Ref(), this.getAttributeCS(), null, "ref", null, 0, 1, AttributeCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(attributeRefEClass, AttributeRef.class, "AttributeRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(classCSEClass, ClassCS.class, "ClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassCS_SuperTypes(), this.getTypeRefCS(), null, "superTypes", null, 0, -1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassCS_Operations(), this.getOperationCS(), null, "operations", null, 0, -1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassCS_StructuralFeatures(), this.getStructuralFeatureCS(), null, "structuralFeatures", null, 0, -1, ClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classCSRefEClass, ClassCSRef.class, "ClassCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassCSRef_Ref(), this.getClassCS(), null, "ref", null, 0, 1, ClassCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classRefEClass, ClassRef.class, "ClassRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(classifierCSEClass, ClassifierCS.class, "ClassifierCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassifierCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClassifierCS_InstanceClassName(), ecorePackage.getEString(), "instanceClassName", null, 0, 1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClassifierCS_Qualifiers(), ecorePackage.getEString(), "qualifiers", null, 0, -1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getClassifierCS_TypeParameters(), this.getTypeParameterCS(), null, "typeParameters", null, 0, -1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotationCS_Contents(), theBaseCSTPackage.getModelElementCS(), null, "contents", null, 0, -1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotationCS_References(), theBaseCSTPackage.getModelElementCSRef(), null, "references", null, 0, -1, AnnotationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintCSEClass, ConstraintCS.class, "ConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstraintCS_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConstraintCS_ExprString(), ecorePackage.getEString(), "exprString", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintCS_ExprValue(), theEssentialOCLCSTPackage.getOclExpressionCS(), null, "exprValue", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(dataTypeRefEClass, DataTypeRef.class, "DataTypeRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConstraintCS_ExprValue(), theEssentialOCLCSTPackage.getExpCS(), null, "exprValue", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataTypeCSEClass, DataTypeCS.class, "DataTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(dataTypeOrEnumCSEClass, DataTypeOrEnumCS.class, "DataTypeOrEnumCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(dataTypeCSRefEClass, DataTypeCSRef.class, "DataTypeCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataTypeCSRef_Ref(), this.getDataTypeOrEnumCS(), null, "ref", null, 0, 1, DataTypeCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(detailCSEClass, DetailCS.class, "DetailCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDetailCS_IdName(), ecorePackage.getEString(), "idName", null, 0, 1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDetailCS_StringName(), ecorePackage.getEString(), "stringName", null, 0, 1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDetailCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(documentCSEClass, DocumentCS.class, "DocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDocumentCS_Imports(), this.getImportCS(), null, "imports", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDocumentCS_Packages(), this.getPackageCS(), null, "packages", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(documentationCSEClass, DocumentationCS.class, "DocumentationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDocumentationCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, DocumentationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(eAttributeRefEClass, EAttributeRef.class, "EAttributeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEAttributeRef_Ref(), ecorePackage.getEAttribute(), null, "ref", null, 0, 1, EAttributeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eClassRefEClass, EClassRef.class, "EClassRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEClassRef_Ref(), ecorePackage.getEClass(), null, "ref", null, 0, 1, EClassRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eClassifierCSRefEClass, EClassifierCSRef.class, "EClassifierCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEClassifierCSRef_Ref(), ecorePackage.getEClassifier(), null, "ref", null, 0, 1, EClassifierCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEClassifierCSRef_ModelName(), ecorePackage.getEString(), "modelName", null, 0, 1, EClassifierCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eClassifierRefEClass, EClassifierRef.class, "EClassifierRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEClassifierRef_Ref(), ecorePackage.getEClassifier(), null, "ref", null, 0, 1, EClassifierRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eDataTypeRefEClass, EDataTypeRef.class, "EDataTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEDataTypeRef_Ref(), ecorePackage.getEDataType(), null, "ref", null, 0, 1, EDataTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eObjectRefEClass, EObjectRef.class, "EObjectRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEObjectRef_Ref(), ecorePackage.getEObject(), null, "ref", null, 0, 1, EObjectRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(eReferenceRefEClass, EReferenceRef.class, "EReferenceRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEReferenceRef_Ref(), ecorePackage.getEReference(), null, "ref", null, 0, 1, EReferenceRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(enumCSEClass, EnumCS.class, "EnumCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEnumCS_Literals(), this.getEnumLiteralCS(), null, "literals", null, 0, -1, EnumCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnumCS_Literals(), theBaseCSTPackage.getEnumLiteralCS(), null, "literals", null, 0, -1, EnumCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(enumLiteralCSEClass, EnumLiteralCS.class, "EnumLiteralCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEnumLiteralCS_Value(), ecorePackage.getEInt(), "value", null, 0, 1, EnumLiteralCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreAttributeCSEClass, OCLinEcoreAttributeCS.class, "OCLinEcoreAttributeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(importCSEClass, ImportCS.class, "ImportCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImportCS_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, ImportCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getImportCS_EPackage(), ecorePackage.getEPackage(), null, "ePackage", null, 0, 1, ImportCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreClassCSEClass, OCLinEcoreClassCS.class, "OCLinEcoreClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelElementCSEClass, ModelElementCS.class, "ModelElementCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementCS_Annotations(), this.getAnnotationElementCS(), null, "annotations", null, 0, -1, ModelElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreClassifierCSEClass, OCLinEcoreClassifierCS.class, "OCLinEcoreClassifierCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOCLinEcoreClassifierCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, OCLinEcoreClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOCLinEcoreClassifierCS_InstanceClassName(), ecorePackage.getEString(), "instanceClassName", null, 0, 1, OCLinEcoreClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOCLinEcoreClassifierCS_Qualifiers(), ecorePackage.getEString(), "qualifiers", null, 0, -1, OCLinEcoreClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(modelElementCSRefEClass, ModelElementCSRef.class, "ModelElementCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementCSRef_Ref(), this.getModelElementCS(), null, "ref", null, 0, 1, ModelElementCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreDocumentCSEClass, OCLinEcoreDocumentCS.class, "OCLinEcoreDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOCLinEcoreDocumentCS_Packages(), this.getOCLinEcorePackageCS(), null, "packages", null, 0, -1, OCLinEcoreDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(namedElementCSEClass, NamedElementCS.class, "NamedElementCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedElementCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreOperationCSEClass, OCLinEcoreOperationCS.class, "OCLinEcoreOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOCLinEcoreOperationCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, OCLinEcoreOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOCLinEcoreOperationCS_Exceptions(), theBaseCSTPackage.getTypedRefCS(), null, "exceptions", null, 0, -1, OCLinEcoreOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(objectRefEClass, ObjectRef.class, "ObjectRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(ocLinEcorePackageCSEClass, OCLinEcorePackageCS.class, "OCLinEcorePackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(operationCSEClass, OperationCS.class, "OperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperationCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationCS_Parameters(), this.getParameterCS(), null, "parameters", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationCS_TypeParameters(), this.getTypeParameterCS(), null, "typeParameters", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationCS_Exceptions(), this.getTypeRefCS(), null, "exceptions", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreReferenceCSEClass, OCLinEcoreReferenceCS.class, "OCLinEcoreReferenceCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOCLinEcoreReferenceCS_Keys(), theBaseCSTPackage.getAttributeCSRef(), null, "keys", null, 0, -1, OCLinEcoreReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(packageCSEClass, PackageCS.class, "PackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackageCS_Classifiers(), this.getClassifierCS(), null, "classifiers", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPackageCS_Subpackages(), this.getPackageCS(), null, "subpackages", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPackageCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPackageCS_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(parameterCSEClass, ParameterCS.class, "ParameterCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(referenceCSEClass, ReferenceCS.class, "ReferenceCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReferenceCS_Opposite(), this.getReferenceRef(), null, "opposite", null, 0, 1, ReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReferenceCS_Keys(), this.getAttributeRef(), null, "keys", null, 0, -1, ReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(referenceCSRefEClass, ReferenceCSRef.class, "ReferenceCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReferenceCSRef_Ref(), this.getReferenceCS(), null, "ref", null, 0, 1, ReferenceCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(referenceRefEClass, ReferenceRef.class, "ReferenceRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(structuralFeatureCSEClass, StructuralFeatureCS.class, "StructuralFeatureCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStructuralFeatureCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStructuralFeatureCS_DefaultValueLiteral(), ecorePackage.getEString(), "defaultValueLiteral", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeCSEClass, TypeCS.class, "TypeCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typeCSRefEClass, TypeCSRef.class, "TypeCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeCSRef_Ref(), this.getTypeCS(), null, "ref", null, 0, 1, TypeCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeParameterCSEClass, TypeParameterCS.class, "TypeParameterCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeParameterCS_Extends(), this.getTypeRefCS(), null, "extends", null, 0, -1, TypeParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeParameterCS_Super(), this.getTypeRefCS(), null, "super", null, 0, 1, TypeParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeRefEClass, TypeRef.class, "TypeRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typeRefCSEClass, TypeRefCS.class, "TypeRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typedElementCSEClass, TypedElementCS.class, "TypedElementCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTypedElementCS_Lower(), ecorePackage.getEInt(), "lower", "0", 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElementCS_Multiplicity(), ecorePackage.getEString(), "multiplicity", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElementCS_Qualifiers(), ecorePackage.getEString(), "qualifiers", null, 0, -1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getTypedElementCS_Type(), this.getTypeRefCS(), null, "type", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTypedElementCS_Upper(), ecorePackage.getEInt(), "upper", "1", 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typedTypeRefCSEClass, TypedTypeRefCS.class, "TypedTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedTypeRefCS_Type(), this.getTypeRef(), null, "type", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedTypeRefCS_TypeArguments(), this.getTypeRefCS(), null, "typeArguments", null, 0, -1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(wildcardTypeRefCSEClass, WildcardTypeRefCS.class, "WildcardTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWildcardTypeRefCS_Extends(), this.getTypeRefCS(), null, "extends", null, 0, 1, WildcardTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWildcardTypeRefCS_Super(), this.getTypeRefCS(), null, "super", null, 0, 1, WildcardTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ocLinEcoreStructuralFeatureCSEClass, OCLinEcoreStructuralFeatureCS.class, "OCLinEcoreStructuralFeatureCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOCLinEcoreStructuralFeatureCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, OCLinEcoreStructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOCLinEcoreStructuralFeatureCS_DefaultValueLiteral(), ecorePackage.getEString(), "defaultValueLiteral", null, 0, 1, OCLinEcoreStructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreGlobalScopeProvider.java,v 1.1 2010/04/16 18:05:32 ewillink Exp $
+ * $Id: OCLinEcoreGlobalScopeProvider.java,v 1.2 2010/05/03 05:44:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -21,8 +21,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.IContainer;
+import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 
 public class OCLinEcoreGlobalScopeProvider extends DefaultGlobalScopeProvider

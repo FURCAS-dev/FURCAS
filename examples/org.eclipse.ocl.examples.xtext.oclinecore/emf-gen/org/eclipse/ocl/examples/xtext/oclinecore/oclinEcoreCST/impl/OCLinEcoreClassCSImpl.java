@@ -12,8 +12,9 @@
  *
  * </copyright>
  *
- * $Id: ClassCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: OCLinEcoreClassCSImpl.java,v 1.1 2010/05/03 05:44:37 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
 import java.util.Collection;
@@ -27,34 +28,49 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeParameterCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Class CS</b></em>'.
+ * An implementation of the model object '<em><b>OC Lin Ecore Class CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getSuperTypes <em>Super Types</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getOperations <em>Operations</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ClassCSImpl#getStructuralFeatures <em>Structural Features</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getSuperTypes <em>Super Types</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getStructuralFeatures <em>Structural Features</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ClassCSImpl extends TypeCSImpl implements ClassCS {
+public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEcoreClassCS {
+	/**
+	 * The cached value of the '{@link #getTypeParameters() <em>Type Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypeParameterCS> typeParameters;
+
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -105,16 +121,6 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	protected EList<String> qualifiers;
 
 	/**
-	 * The cached value of the '{@link #getTypeParameters() <em>Type Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeParameterCS> typeParameters;
-
-	/**
 	 * The cached value of the '{@link #getSuperTypes() <em>Super Types</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,7 +128,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeRefCS> superTypes;
+	protected EList<TypedRefCS> superTypes;
 
 	/**
 	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
@@ -149,7 +155,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClassCSImpl() {
+	protected OCLinEcoreClassCSImpl() {
 		super();
 	}
 
@@ -160,7 +166,19 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCLinEcoreCSTPackage.Literals.CLASS_CS;
+		return OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CLASS_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TypeParameterCS> getTypeParameters() {
+		if (typeParameters == null) {
+			typeParameters = new EObjectContainmentEList<TypeParameterCS>(TypeParameterCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS);
+		}
+		return typeParameters;
 	}
 
 	/**
@@ -170,7 +188,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 */
 	public EList<ConstraintCS> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, OCLinEcoreCSTPackage.CLASS_CS__CONSTRAINTS);
+			constraints = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS);
 		}
 		return constraints;
 	}
@@ -195,7 +213,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 		boolean oldInstanceClassNameESet = instanceClassNameESet;
 		instanceClassNameESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName, !oldInstanceClassNameESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, instanceClassName, !oldInstanceClassNameESet));
 	}
 
 	/**
@@ -209,7 +227,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 		instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 		instanceClassNameESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLinEcoreCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, INSTANCE_CLASS_NAME_EDEFAULT, oldInstanceClassNameESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME, oldInstanceClassName, INSTANCE_CLASS_NAME_EDEFAULT, oldInstanceClassNameESet));
 	}
 
 	/**
@@ -228,7 +246,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 */
 	public EList<String> getQualifiers() {
 		if (qualifiers == null) {
-			qualifiers = new EDataTypeUniqueEList<String>(String.class, this, OCLinEcoreCSTPackage.CLASS_CS__QUALIFIERS);
+			qualifiers = new EDataTypeUniqueEList<String>(String.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__QUALIFIERS);
 		}
 		return qualifiers;
 	}
@@ -238,21 +256,9 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeParameterCS> getTypeParameters() {
-		if (typeParameters == null) {
-			typeParameters = new EObjectContainmentEList<TypeParameterCS>(TypeParameterCS.class, this, OCLinEcoreCSTPackage.CLASS_CS__TYPE_PARAMETERS);
-		}
-		return typeParameters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TypeRefCS> getSuperTypes() {
+	public EList<TypedRefCS> getSuperTypes() {
 		if (superTypes == null) {
-			superTypes = new EObjectContainmentEList.Unsettable<TypeRefCS>(TypeRefCS.class, this, OCLinEcoreCSTPackage.CLASS_CS__SUPER_TYPES);
+			superTypes = new EObjectContainmentEList.Unsettable<TypedRefCS>(TypedRefCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES);
 		}
 		return superTypes;
 	}
@@ -282,7 +288,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 */
 	public EList<OperationCS> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentEList<OperationCS>(OperationCS.class, this, OCLinEcoreCSTPackage.CLASS_CS__OPERATIONS);
+			operations = new EObjectContainmentEList<OperationCS>(OperationCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS);
 		}
 		return operations;
 	}
@@ -294,7 +300,7 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 */
 	public EList<StructuralFeatureCS> getStructuralFeatures() {
 		if (structuralFeatures == null) {
-			structuralFeatures = new EObjectContainmentEList<StructuralFeatureCS>(StructuralFeatureCS.class, this, OCLinEcoreCSTPackage.CLASS_CS__STRUCTURAL_FEATURES);
+			structuralFeatures = new EObjectContainmentEList<StructuralFeatureCS>(StructuralFeatureCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES);
 		}
 		return structuralFeatures;
 	}
@@ -307,15 +313,15 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CLASS_CS__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
-			case OCLinEcoreCSTPackage.CLASS_CS__TYPE_PARAMETERS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
 				return ((InternalEList<?>)getTypeParameters()).basicRemove(otherEnd, msgs);
-			case OCLinEcoreCSTPackage.CLASS_CS__SUPER_TYPES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES:
 				return ((InternalEList<?>)getSuperTypes()).basicRemove(otherEnd, msgs);
-			case OCLinEcoreCSTPackage.CLASS_CS__OPERATIONS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS:
 				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
-			case OCLinEcoreCSTPackage.CLASS_CS__STRUCTURAL_FEATURES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES:
 				return ((InternalEList<?>)getStructuralFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -329,19 +335,19 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CLASS_CS__CONSTRAINTS:
-				return getConstraints();
-			case OCLinEcoreCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case OCLinEcoreCSTPackage.CLASS_CS__QUALIFIERS:
-				return getQualifiers();
-			case OCLinEcoreCSTPackage.CLASS_CS__TYPE_PARAMETERS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
 				return getTypeParameters();
-			case OCLinEcoreCSTPackage.CLASS_CS__SUPER_TYPES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
+				return getConstraints();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__QUALIFIERS:
+				return getQualifiers();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES:
 				return getSuperTypes();
-			case OCLinEcoreCSTPackage.CLASS_CS__OPERATIONS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS:
 				return getOperations();
-			case OCLinEcoreCSTPackage.CLASS_CS__STRUCTURAL_FEATURES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES:
 				return getStructuralFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -356,30 +362,30 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CLASS_CS__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
-				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__QUALIFIERS:
-				getQualifiers().clear();
-				getQualifiers().addAll((Collection<? extends String>)newValue);
-				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__TYPE_PARAMETERS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
 				getTypeParameters().clear();
 				getTypeParameters().addAll((Collection<? extends TypeParameterCS>)newValue);
 				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__SUPER_TYPES:
-				getSuperTypes().clear();
-				getSuperTypes().addAll((Collection<? extends TypeRefCS>)newValue);
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
 				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__OPERATIONS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__QUALIFIERS:
+				getQualifiers().clear();
+				getQualifiers().addAll((Collection<? extends String>)newValue);
+				return;
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES:
+				getSuperTypes().clear();
+				getSuperTypes().addAll((Collection<? extends TypedRefCS>)newValue);
+				return;
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS:
 				getOperations().clear();
 				getOperations().addAll((Collection<? extends OperationCS>)newValue);
 				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__STRUCTURAL_FEATURES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES:
 				getStructuralFeatures().clear();
 				getStructuralFeatures().addAll((Collection<? extends StructuralFeatureCS>)newValue);
 				return;
@@ -395,25 +401,25 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CLASS_CS__CONSTRAINTS:
-				getConstraints().clear();
-				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME:
-				unsetInstanceClassName();
-				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__QUALIFIERS:
-				getQualifiers().clear();
-				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__TYPE_PARAMETERS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
 				getTypeParameters().clear();
 				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__SUPER_TYPES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
+				getConstraints().clear();
+				return;
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME:
+				unsetInstanceClassName();
+				return;
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__QUALIFIERS:
+				getQualifiers().clear();
+				return;
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES:
 				unsetSuperTypes();
 				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__OPERATIONS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS:
 				getOperations().clear();
 				return;
-			case OCLinEcoreCSTPackage.CLASS_CS__STRUCTURAL_FEATURES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES:
 				getStructuralFeatures().clear();
 				return;
 		}
@@ -428,19 +434,19 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CLASS_CS__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
-			case OCLinEcoreCSTPackage.CLASS_CS__INSTANCE_CLASS_NAME:
-				return isSetInstanceClassName();
-			case OCLinEcoreCSTPackage.CLASS_CS__QUALIFIERS:
-				return qualifiers != null && !qualifiers.isEmpty();
-			case OCLinEcoreCSTPackage.CLASS_CS__TYPE_PARAMETERS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
 				return typeParameters != null && !typeParameters.isEmpty();
-			case OCLinEcoreCSTPackage.CLASS_CS__SUPER_TYPES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME:
+				return isSetInstanceClassName();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__QUALIFIERS:
+				return qualifiers != null && !qualifiers.isEmpty();
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES:
 				return isSetSuperTypes();
-			case OCLinEcoreCSTPackage.CLASS_CS__OPERATIONS:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS:
 				return operations != null && !operations.isEmpty();
-			case OCLinEcoreCSTPackage.CLASS_CS__STRUCTURAL_FEATURES:
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES:
 				return structuralFeatures != null && !structuralFeatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -452,16 +458,63 @@ public class ClassCSImpl extends TypeCSImpl implements ClassCS {
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (instanceClassName: ");
-		if (instanceClassNameESet) result.append(instanceClassName); else result.append("<unset>");
-		result.append(", qualifiers: ");
-		result.append(qualifiers);
-		result.append(')');
-		return result.toString();
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == TypeCS.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == NamespaceCS.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ClassCS.class) {
+			switch (derivedFeatureID) {
+				case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES: return BaseCSTPackage.CLASS_CS__SUPER_TYPES;
+				case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS: return BaseCSTPackage.CLASS_CS__OPERATIONS;
+				case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES: return BaseCSTPackage.CLASS_CS__STRUCTURAL_FEATURES;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
-} //ClassCSImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == TypeCS.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == NamespaceCS.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ClassCS.class) {
+			switch (baseFeatureID) {
+				case BaseCSTPackage.CLASS_CS__SUPER_TYPES: return OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES;
+				case BaseCSTPackage.CLASS_CS__OPERATIONS: return OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS;
+				case BaseCSTPackage.CLASS_CS__STRUCTURAL_FEATURES: return OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+} //OCLinEcoreClassCSImpl

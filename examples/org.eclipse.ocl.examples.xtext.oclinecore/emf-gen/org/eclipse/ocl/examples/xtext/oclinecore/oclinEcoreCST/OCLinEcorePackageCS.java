@@ -12,20 +12,24 @@
  *
  * </copyright>
  *
- * $Id: TypeCS.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: OCLinEcorePackageCS.java,v 1.1 2010/05/03 05:44:33 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type Def CS</b></em>'.
+ * A representation of the model object '<em><b>OC Lin Ecore Package CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getTypeCS()
- * @model abstract="true"
+ * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getOCLinEcorePackageCS()
+ * @model
  * @generated
  */
-public interface TypeCS extends NamedElementCS {
-} // TypeDefCS
+public interface OCLinEcorePackageCS extends PackageCS {
+
+} // OCLinEcorePackageCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataTypeOrEnumCS.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: DataTypeOrEnumCS.java,v 1.2 2010/05/03 05:44:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -27,5 +27,5 @@ package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
  * @model abstract="true"
  * @generated
  */
-public interface DataTypeOrEnumCS extends ClassifierCS {
+public interface DataTypeOrEnumCS extends OCLinEcoreClassifierCS {
 } // DataTypeOrEnumCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataTypeOrEnumCSImpl.java,v 1.1 2010/04/13 06:44:11 ewillink Exp $
+ * $Id: DataTypeOrEnumCSImpl.java,v 1.2 2010/05/03 05:44:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -27,10 +27,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeParameterCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,16 +40,26 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.TypeParameterCS;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl#getQualifiers <em>Qualifiers</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.DataTypeOrEnumCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTypeOrEnumCS {
+public abstract class DataTypeOrEnumCSImpl extends NamedElementCSImpl implements DataTypeOrEnumCS {
+	/**
+	 * The cached value of the '{@link #getTypeParameters() <em>Type Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypeParameterCS> typeParameters;
+
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -97,16 +108,6 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	 * @ordered
 	 */
 	protected EList<String> qualifiers;
-
-	/**
-	 * The cached value of the '{@link #getTypeParameters() <em>Type Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeParameterCS> typeParameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,10 +218,10 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
 				return ((InternalEList<?>)getTypeParameters()).basicRemove(otherEnd, msgs);
+			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -233,14 +234,14 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
+				return getTypeParameters();
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__CONSTRAINTS:
 				return getConstraints();
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__QUALIFIERS:
 				return getQualifiers();
-			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
-				return getTypeParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,6 +255,10 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
+				getTypeParameters().clear();
+				getTypeParameters().addAll((Collection<? extends TypeParameterCS>)newValue);
+				return;
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__CONSTRAINTS:
 				getConstraints().clear();
 				getConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
@@ -264,10 +269,6 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__QUALIFIERS:
 				getQualifiers().clear();
 				getQualifiers().addAll((Collection<? extends String>)newValue);
-				return;
-			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
-				getTypeParameters().clear();
-				getTypeParameters().addAll((Collection<? extends TypeParameterCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,6 +282,9 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
+				getTypeParameters().clear();
+				return;
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__CONSTRAINTS:
 				getConstraints().clear();
 				return;
@@ -289,9 +293,6 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 				return;
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__QUALIFIERS:
 				getQualifiers().clear();
-				return;
-			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
-				getTypeParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -305,14 +306,14 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
+				return typeParameters != null && !typeParameters.isEmpty();
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__QUALIFIERS:
 				return qualifiers != null && !qualifiers.isEmpty();
-			case OCLinEcoreCSTPackage.DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS:
-				return typeParameters != null && !typeParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -320,19 +321,11 @@ public abstract class DataTypeOrEnumCSImpl extends TypeCSImpl implements DataTyp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (instanceClassName: ");
-		if (instanceClassNameESet) result.append(instanceClassName); else result.append("<unset>");
-		result.append(", qualifiers: ");
-		result.append(qualifiers);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //DataTypeOrEnumCSImpl

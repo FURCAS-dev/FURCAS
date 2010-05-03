@@ -12,21 +12,22 @@
  *
  * </copyright>
  *
- * $Id: TypeRefCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreAttributeCS.java,v 1.1 2010/05/03 05:44:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
+
+import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type Ref CS</b></em>'.
+ * A representation of the model object '<em><b>Attribute CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getTypeRefCS()
- * @model abstract="true"
+ * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getOCLinEcoreAttributeCS()
+ * @model
  * @generated
  */
-public interface TypeRefCS extends ModelElementCS {
-
-} // TypeRefCS
+public interface OCLinEcoreAttributeCS extends OCLinEcoreStructuralFeatureCS, AttributeCS {
+} // AttributeCS

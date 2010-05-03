@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: ConstraintCS.java,v 1.2 2010/05/03 05:44:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,12 +99,12 @@ public interface ConstraintCS extends NamedElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expr Value</em>' containment reference.
-	 * @see #setExprValue(OclExpressionCS)
+	 * @see #setExprValue(ExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getConstraintCS_ExprValue()
 	 * @model containment="true"
 	 * @generated
 	 */
-	OclExpressionCS getExprValue();
+	ExpCS getExprValue();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS#getExprValue <em>Expr Value</em>}' containment reference.
@@ -113,6 +114,6 @@ public interface ConstraintCS extends NamedElementCS {
 	 * @see #getExprValue()
 	 * @generated
 	 */
-	void setExprValue(OclExpressionCS value);
+	void setExprValue(ExpCS value);
 
 } // ConstraintCS

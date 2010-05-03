@@ -12,11 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCS.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: AnnotationCS.java,v 1.3 2010/05/03 05:44:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,7 +95,7 @@ public interface AnnotationCS extends AnnotationElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ModelElementCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
@@ -108,7 +111,7 @@ public interface AnnotationCS extends AnnotationElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ObjectRef}.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>References</em>' reference list isn't clear,
@@ -120,6 +123,6 @@ public interface AnnotationCS extends AnnotationElementCS {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ObjectRef> getReferences();
+	EList<ModelElementCSRef> getReferences();
 
 } // AnnotationCS

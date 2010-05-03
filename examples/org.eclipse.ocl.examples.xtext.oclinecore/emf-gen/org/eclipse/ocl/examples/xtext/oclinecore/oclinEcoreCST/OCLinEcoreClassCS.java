@@ -12,20 +12,25 @@
  *
  * </copyright>
  *
- * $Id: ParameterCS.java,v 1.1 2010/04/13 06:44:10 ewillink Exp $
+ * $Id: OCLinEcoreClassCS.java,v 1.1 2010/05/03 05:44:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Parameter CS</b></em>'.
+ * A representation of the model object '<em><b>Class CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getParameterCS()
+ * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage#getOCLinEcoreClassCS()
  * @model
  * @generated
  */
-public interface ParameterCS extends TypedElementCS {
-} // ParameterCS
+public interface OCLinEcoreClassCS extends OCLinEcoreClassifierCS, ClassCS {
+
+} // ClassCS

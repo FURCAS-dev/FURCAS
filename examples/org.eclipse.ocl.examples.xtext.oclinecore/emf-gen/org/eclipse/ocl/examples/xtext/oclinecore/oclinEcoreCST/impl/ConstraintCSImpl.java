@@ -12,24 +12,17 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSImpl.java,v 1.2 2010/04/16 18:05:31 ewillink Exp $
+ * $Id: ConstraintCSImpl.java,v 1.3 2010/05/03 05:44:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OclExpressionCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
@@ -40,8 +33,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPack
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl#getExprString <em>Expr String</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl#getExprValue <em>Expr Value</em>}</li>
@@ -50,37 +41,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPack
  *
  * @generated
  */
-public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements ConstraintCS {
-	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnotations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AnnotationElementCS> annotations;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
+public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS {
 	/**
 	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,7 +90,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpressionCS exprValue;
+	protected ExpCS exprValue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,39 +109,6 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	@Override
 	protected EClass eStaticClass() {
 		return OCLinEcoreCSTPackage.Literals.CONSTRAINT_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AnnotationElementCS> getAnnotations() {
-		if (annotations == null) {
-			annotations = new EObjectContainmentEList<AnnotationElementCS>(AnnotationElementCS.class, this, OCLinEcoreCSTPackage.CONSTRAINT_CS__ANNOTATIONS);
-		}
-		return annotations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.CONSTRAINT_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -230,7 +158,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpressionCS getExprValue() {
+	public ExpCS getExprValue() {
 		return exprValue;
 	}
 
@@ -239,8 +167,8 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExprValue(OclExpressionCS newExprValue, NotificationChain msgs) {
-		OclExpressionCS oldExprValue = exprValue;
+	public NotificationChain basicSetExprValue(ExpCS newExprValue, NotificationChain msgs) {
+		ExpCS oldExprValue = exprValue;
 		exprValue = newExprValue;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OCLinEcoreCSTPackage.CONSTRAINT_CS__EXPR_VALUE, oldExprValue, newExprValue);
@@ -254,7 +182,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExprValue(OclExpressionCS newExprValue) {
+	public void setExprValue(ExpCS newExprValue) {
 		if (newExprValue != exprValue) {
 			NotificationChain msgs = null;
 			if (exprValue != null)
@@ -276,8 +204,6 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__ANNOTATIONS:
-				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__EXPR_VALUE:
 				return basicSetExprValue(null, msgs);
 		}
@@ -292,10 +218,6 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__ANNOTATIONS:
-				return getAnnotations();
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__NAME:
-				return getName();
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				return getStereotype();
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__EXPR_STRING:
@@ -311,17 +233,9 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__ANNOTATIONS:
-				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends AnnotationElementCS>)newValue);
-				return;
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__NAME:
-				setName((String)newValue);
-				return;
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				setStereotype((String)newValue);
 				return;
@@ -329,7 +243,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 				setExprString((String)newValue);
 				return;
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__EXPR_VALUE:
-				setExprValue((OclExpressionCS)newValue);
+				setExprValue((ExpCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -343,12 +257,6 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__ANNOTATIONS:
-				getAnnotations().clear();
-				return;
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				setStereotype(STEREOTYPE_EDEFAULT);
 				return;
@@ -356,7 +264,7 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 				setExprString(EXPR_STRING_EDEFAULT);
 				return;
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__EXPR_VALUE:
-				setExprValue((OclExpressionCS)null);
+				setExprValue((ExpCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -370,10 +278,6 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__ANNOTATIONS:
-				return annotations != null && !annotations.isEmpty();
-			case OCLinEcoreCSTPackage.CONSTRAINT_CS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
 			case OCLinEcoreCSTPackage.CONSTRAINT_CS__EXPR_STRING:
@@ -387,21 +291,11 @@ public class ConstraintCSImpl extends MinimalEObjectImpl.Container implements Co
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", stereotype: ");
-		result.append(stereotype);
-		result.append(", exprString: ");
-		result.append(exprString);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //ConstraintCSImpl
