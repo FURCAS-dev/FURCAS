@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameExpScopeAdapter.java,v 1.2 2010/05/03 11:53:57 ewillink Exp $
+ * $Id: PathNameExpScopeAdapter.java,v 1.3 2010/05/03 19:58:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -39,8 +39,6 @@ public class PathNameExpScopeAdapter extends AbstractScopeAdapter<PathNameExpCS>
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {			
-		}
-		else if (filteredAccesses == EssentialOCLCSTPackage.Literals.PATH_NAME_EXP_CS__NAMESPACE) {
 		}
 		else {
 			PathNameExpCS target = getTarget();

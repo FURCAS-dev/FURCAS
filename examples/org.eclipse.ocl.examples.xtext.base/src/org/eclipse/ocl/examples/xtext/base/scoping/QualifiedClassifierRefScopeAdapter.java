@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: QualifiedClassifierRefScopeAdapter.java,v 1.2 2010/05/03 11:12:52 ewillink Exp $
+ * $Id: QualifiedClassifierRefScopeAdapter.java,v 1.3 2010/05/03 19:58:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
@@ -31,8 +30,6 @@ public class QualifiedClassifierRefScopeAdapter extends AbstractScopeAdapter<Qua
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {			
-		}
-		else if (filteredAccesses == BaseCSTPackage.Literals.QUALIFIED_CLASSIFIER_REF_CS__CLASSIFIER) {
 		}
 		else {
 			QualifiedClassifierRefCS target = getTarget();
