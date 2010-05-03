@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: SaveAsEcoreHandler.java,v 1.1 2010/04/16 18:09:45 ewillink Exp $
+ * $Id: SaveAsEcoreHandler.java,v 1.2 2010/05/03 05:54:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;

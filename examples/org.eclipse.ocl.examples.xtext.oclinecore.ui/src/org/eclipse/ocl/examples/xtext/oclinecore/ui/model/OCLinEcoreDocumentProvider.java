@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.2 2010/04/16 18:09:45 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.3 2010/05/03 05:54:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -22,28 +22,30 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PackageCS;
+import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
@@ -57,6 +59,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	private Map<IDocument,Boolean> loadedAsEcoreMap = new HashMap<IDocument,Boolean>();
 	
 	private Map<IDocument,Boolean> saveAsEcoreMap = new HashMap<IDocument,Boolean>();
+
+	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -74,7 +78,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 			ByteArrayOutputStream ecoreStream = new ByteArrayOutputStream();
 			String savedContent = document.get();
 			try {
-				((OCLinEcoreDocument) document).saveAsEcore(ecoreStream);
+				ResourceSet resourceSet = resourceSetProvider.get(null);
+				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
+				((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, ecoreStream);
 				document.set(ecoreStream.toString());
 				super.doSaveDocument(monitor, element, document, overwrite);
 				loadedAsEcoreMap.put(document, Boolean.TRUE);
@@ -88,17 +94,6 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		else {
 			super.doSaveDocument(monitor, element, document, overwrite);
 		}
-	}
-
-	public DocumentCS importAsDocumentCS(Resource ecoreResource) {
-		Ecore2OCLinEcore converter = new Ecore2OCLinEcore();
-		List<EObject> csObjects = converter.convertAll(ecoreResource.getContents());
-		DocumentCS documentCS = OCLinEcoreCSTFactory.eINSTANCE.createDocumentCS();
-		List<PackageCS> packages = documentCS.getPackages();
-		for (EObject csObject : csObjects) {
-			packages.add((PackageCS) csObject);
-		}
-		return documentCS;
 	}
 
 	@Override
@@ -120,6 +115,13 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	}
 
 	@Override
+	protected boolean setDocumentContent(IDocument document, IEditorInput editorInput, String encoding) throws CoreException {
+		URI uri = EditUIUtil.getURI(editorInput);
+		uriMap.put(document, uri);
+		return super.setDocumentContent(document, editorInput, encoding);
+	}
+
+	@Override
 	protected void setDocumentContent(IDocument document, InputStream inputStream, String encoding) throws CoreException {
 		try {
 			if (!inputStream.markSupported()) {
@@ -130,24 +132,54 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 			saveAsEcoreMap.put(document, asEcore);
 			if (asEcore) {
 				ResourceSet resourceSet = resourceSetProvider.get(null);
-				Resource ecoreResource = resourceSet.createResource(URI.createFileURI("$ecore$.ecore"), EcorePackage.eCONTENT_TYPE);
+				URI uri = uriMap.get(document);
+				Resource ecoreResource = resourceSet.createResource(uri, EcorePackage.eCONTENT_TYPE);
 				ecoreResource.load(inputStream, null);
-				DocumentCS documentCS = importAsDocumentCS(ecoreResource);
-				Resource xtextResource = resourceSet.createResource(URI.createFileURI("$xtext$.oclinecore"), OCLinEcoreCSTPackage.eCONTENT_TYPE);
-				xtextResource.getContents().add(documentCS);		
+				List<Resource.Diagnostic> allErrors = null;
+				for (Resource resource : resourceSet.getResources()) {
+					List<Resource.Diagnostic> errors = resource.getErrors();
+					if (errors.size() > 0) {
+						if (allErrors == null) {
+							allErrors = new ArrayList<Resource.Diagnostic>();
+						}
+						allErrors.addAll(errors);
+					}
+				}
+				if (allErrors != null) {
+					StringBuffer s = new StringBuffer();
+					for (Resource.Diagnostic diagnostic : allErrors) {
+						s.append("\n");
+						s.append(diagnostic.toString());
+					}
+					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
+				}
+				OCLinEcoreDocumentCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, "", ecoreResource);		
+				Resource xtextResource = documentCS.eResource();		
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-				xtextResource.save(outputStream, null);
+				try {
+					xtextResource.save(outputStream, null);
+				} catch (XtextSerializationException e) {
+					List<Diagnostic> diagnostics = ((XtextResource) xtextResource).validateConcreteSyntax();
+					if (diagnostics.size() > 0) {
+						StringBuffer s = new StringBuffer();
+						s.append("Concrete Syntax valiation failed");
+						for (Diagnostic diagnostic : diagnostics) {
+							s.append("\n");
+							s.append(diagnostic.toString());
+						}
+						throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString(), e));
+					}
+					else {
+						throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+					}
+				}
 				xtextResource.unload();
 				resourceSet.getResources().remove(xtextResource);
 				resourceSet.getResources().remove(ecoreResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
 			}
-		} catch (XtextSerializationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
 		}
 		super.setDocumentContent(document, inputStream, encoding);		// FIXME encoding
 	}
