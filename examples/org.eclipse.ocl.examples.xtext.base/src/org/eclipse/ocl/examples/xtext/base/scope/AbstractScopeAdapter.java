@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.1 2010/05/03 05:25:53 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.2 2010/05/03 11:12:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -87,7 +87,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	protected final AbstractScopeAdapter<?> parent;
 	protected final AbstractDocumentScopeAdapter<?> document;
 	protected final Class<T> targetClass;
-//	private Map<EReference, IScope> scopes = null;
+	private boolean unresolvable = false;		// Set true after a linking failure
 	
 	/**
 	 * Creates an instance.
@@ -112,6 +112,10 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 
 	public ScopeAccessor getExclusiveScopeAccessor(EReference targetReference) {
 		return new ScopeAccessor(this, null, targetReference);
+	}
+
+	public void getInclusiveInheritedContents(FilteredAccesses descriptions) {
+		createContents(descriptions, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__ANNOTATIONS);	// Non-null value
 	}
 
 	public ScopeAccessor getInclusiveScopeAccessor(EReference targetReference) {
@@ -195,12 +199,20 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return type == AbstractScopeAdapter.class;
 	}
 
+	public boolean isUnresolvable() {
+		return unresolvable;
+	}
+
 	/*
 	 * Javadoc copied from interface.
 	 */
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || targetClass.isAssignableFrom(newTarget.getClass());
 		super.setTarget(newTarget);
+	}
+
+	public void setUnresolvable() {
+		unresolvable  = true;
 	}
 
 	@Override
