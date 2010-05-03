@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibScopeAdapter.java,v 1.2 2010/05/03 09:35:14 ewillink Exp $
+ * $Id: OCLstdlibScopeAdapter.java,v 1.3 2010/05/03 14:45:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -125,6 +125,9 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 	public ClassifierCS getLibType(NamedElementCS element) {
 		if (element.eIsProxy()) {
 			return null;
+		}
+		if (element instanceof ClassifierCS) {
+			return (ClassifierCS) element;
 		}
 		if (element instanceof TypedElementCS) {
 			TypedRefCS type = ((TypedElementCS)element).getType();
