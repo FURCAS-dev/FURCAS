@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: QualifiedPackageRefScopeAdapter.java,v 1.2 2010/05/03 11:12:52 ewillink Exp $
+ * $Id: QualifiedPackageRefScopeAdapter.java,v 1.3 2010/05/03 19:58:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
@@ -31,8 +30,6 @@ public class QualifiedPackageRefScopeAdapter extends AbstractScopeAdapter<Qualif
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {			
-		}
-		else if (filteredAccesses == BaseCSTPackage.Literals.QUALIFIED_PACKAGE_REF_CS__PACKAGE) {
 		}
 		else {
 			QualifiedPackageRefCS target = getTarget();
