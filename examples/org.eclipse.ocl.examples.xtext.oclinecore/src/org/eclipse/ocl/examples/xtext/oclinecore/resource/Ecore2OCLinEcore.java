@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.4 2010/05/03 14:43:59 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.5 2010/05/03 19:58:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -140,11 +140,6 @@ public class Ecore2OCLinEcore extends AbstractConversion
 	private Map<EObject, ModelElementCS> createMap = new HashMap<EObject, ModelElementCS>();
 
 	/**
-	 * Set of all targets for EClassifierRef.
-	 */
-	private Set<EClassifier> allEClassifiers = new HashSet<EClassifier>();
-
-	/**
 	 * Set of all aliases.
 	 */
 	private Map<String, EPackage> alias2ePackage = new HashMap<String, EPackage>();
@@ -155,6 +150,10 @@ public class Ecore2OCLinEcore extends AbstractConversion
 		 * Set of all CS elements created during pass 1 that require further work in pass 2.
 		 */
 		private Set<ModelElementCS> deferred = new HashSet<ModelElementCS>();
+		/**
+		 * Set of all targets for EClassifierRef during session.
+		 */
+		private Set<EClassifier> allEClassifiers = new HashSet<EClassifier>();
 		
 		private List<Resource.Diagnostic> errors = null;
 		
@@ -728,6 +727,7 @@ public class Ecore2OCLinEcore extends AbstractConversion
 				if (resource != null) {
 					Session session = new Session(resource);
 					OCLinEcoreDocumentCS importResource = session.importResource();
+					allEClassifiers.addAll(session.allEClassifiers);
 					URI uri = resource.getURI();
 					if (uri != null) {
 						importResource.setName(uri.lastSegment());
@@ -748,6 +748,16 @@ public class Ecore2OCLinEcore extends AbstractConversion
 			}
 			return null;
 		}
+		
+		public Collection<EPackage> getReferencedEPackages() {
+			Set<EPackage> ePackages = new HashSet<EPackage>();
+			for (EClassifier eClassifier : allEClassifiers) {
+				EPackage ePackage = eClassifier.getEPackage();
+				if (ePackage != null)
+					ePackages.add(ePackage);
+			}
+			return ePackages;
+		}
 
 		protected OCLinEcoreDocumentCS importResource() {
 			URI oclinecoreURI = resource.getURI().appendFileExtension("oclinecore");
@@ -765,6 +775,10 @@ public class Ecore2OCLinEcore extends AbstractConversion
 			// sort
 			List<ImportCS> imports = documentCS.getImports();
 			for (EPackage ePackage : ePackages) {
+				ModelElementCS csElement = createMap.get(ePackage);
+				if ((csElement != null) && (csElement.eResource() == xtextResource)) {
+					continue;		// Don't import defined packages
+				}
 				ImportCS importCS = BaseCSTFactory.eINSTANCE.createImportCS();
 				String alias = ePackage2alias.get(ePackage);
 				if (alias == null) {
@@ -778,7 +792,9 @@ public class Ecore2OCLinEcore extends AbstractConversion
 					ePackage2alias.put(ePackage, alias);
 				}
 				importCS.setName(alias);
-				importCS.setUri(EcoreUtil.getURI(ePackage).toString());
+				URI fullURI = EcoreUtil.getURI(ePackage);
+				URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
+				importCS.setUri(deresolvedURI.toString());
 				PackageCS csPackage = getCS(ePackage, PackageCS.class);
 				importCS.setNamespace(csPackage);
 				imports.add(importCS);
@@ -792,16 +808,6 @@ public class Ecore2OCLinEcore extends AbstractConversion
 
 	public Ecore2OCLinEcore(ResourceSet resourceSet) {
 		super(resourceSet);
-	}
-	
-	public Collection<EPackage> getReferencedEPackages() {
-		Set<EPackage> ePackages = new HashSet<EPackage>();
-		for (EClassifier eClassifier : allEClassifiers) {
-			EPackage ePackage = eClassifier.getEPackage();
-			if (ePackage != null)
-				ePackages.add(ePackage);
-		}
-		return ePackages;
 	}
 
 	protected OCLinEcoreDocumentCS importResource(Resource ecoreResource, String alias) {
