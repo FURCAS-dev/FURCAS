@@ -24,6 +24,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.utilities.AbstractVisitor;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
@@ -53,9 +54,6 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      */
     final private Map<OCLExpression<EClassifier>, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression<EClassifier>, Set<OperationCallExp>>();
 
-    // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
-    // redundant/duplicate filters
-
     /**
      * @param exp The {@link OCLExpression} the filter should be created from. 
      * @param notifyNewContextElements
@@ -75,6 +73,8 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     }
 
     public EventFilter getSynthesisedFilter() {
+        // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
+        // redundant/duplicate filters
     	return EventFilterFactory.getInstance().getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
 
     }
@@ -99,7 +99,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     @Override
     public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> exp, EPackage sourceResult, List<EPackage> qualifierResults) {
 
-        if (exp.getReferredOperation().getName().equals("allInstances") ) {
+        if (exp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES) ) {
             OCLExpression<EClassifier> typeExp = exp.getSource();
             addFilter(EventFilterFactory.getInstance().
             		createFilterForElementInsertionOrDeletion(typeExp.getType().eClass()));

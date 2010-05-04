@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class NotificationMapper {
+public class NotificationHelper {
     
     public static boolean isAttributeValueChangeEvent(Notification n){
         boolean result = false;

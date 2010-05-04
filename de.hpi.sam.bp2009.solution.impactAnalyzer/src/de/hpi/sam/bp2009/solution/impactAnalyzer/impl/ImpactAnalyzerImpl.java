@@ -22,7 +22,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     
     @Override
-    public EventFilter createFilterForQuery(OCLExpression query, EClass cls, boolean notifyNewContextElements) {
+    public EventFilter createFilterForQuery(OCLExpression query, boolean notifyNewContextElements) {
         //ported MOIN implementation
         FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(query, notifyNewContextElements);
         System.out.println("createFilterForQuery");

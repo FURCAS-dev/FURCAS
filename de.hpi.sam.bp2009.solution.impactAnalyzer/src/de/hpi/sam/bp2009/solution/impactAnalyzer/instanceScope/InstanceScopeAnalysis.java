@@ -49,7 +49,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.NotificationMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.NotificationHelper;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
@@ -92,7 +92,7 @@ public class InstanceScopeAnalysis {
 
     public Collection<EObject> getContextObjects(Notification event, OCLExpression<EClassifier> expression, EClass context){
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        if (NotificationMapper.isElementLifeCycleEvent(event)){
+        if (NotificationHelper.isElementLifeCycleEvent(event)){
             EClass notiCls = ((EObject)event.getNotifier()).eClass();
             if (expressionContainsAllInstancesCallForType(notiCls)){
                 result = getAllPossibleContextInstances(new AnnotatedEObject((EObject)event.getNotifier()), context);
@@ -164,9 +164,9 @@ public class InstanceScopeAnalysis {
                 return false; // probably an allInstances-triggered element creation/deletion event
             }
             for (PropertyCallExp ace : calls) {
-                if (NotificationMapper.isAttributeValueChangeEvent(changeEvent)) {
+                if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
                     if (ace.getType() instanceof PrimitiveType) {
-                        if (ace.getReferredProperty().equals(NotificationMapper.getNotificationFeature(changeEvent))) {
+                        if (ace.getReferredProperty().equals(NotificationHelper.getNotificationFeature(changeEvent))) {
                             OCLExpression<EClassifier> otherArgument = null;
                             OperationCallExp op;
                             boolean attributeIsParameter = false;
@@ -349,7 +349,7 @@ public class InstanceScopeAnalysis {
      *         below. In all other cases, the source element on which the event occured, is returned.
      */
     private EObject getSourceElement(Notification changeEvent, PropertyCallExp attributeOrAssociationEndCall) {
-        assert NotificationMapper.isAttributeValueChangeEvent(changeEvent) || NotificationMapper.isLinkLifeCycleEvent(changeEvent);
+        assert NotificationHelper.isAttributeValueChangeEvent(changeEvent) || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
         AnnotatedEObject result = new AnnotatedEObject((EObject)changeEvent.getNotifier());
         if (!attributeOrAssociationEndCall.getSource().getType().isInstance(result.getAnnotatedObject())) {
             result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
@@ -363,10 +363,10 @@ public class InstanceScopeAnalysis {
      */
     private Set<? extends PropertyCallExp> getAttributeOrAssociationEndCalls(Notification changeEvent) {
         Set<? extends PropertyCallExp> result;
-        if (NotificationMapper.isAttributeValueChangeEvent(changeEvent)) {
-            result = associationEndAndAttributeCallFinder.getAttributeCallExpressions((EAttribute) NotificationMapper.getNotificationFeature(changeEvent));
-        } else if (NotificationMapper.isLinkLifeCycleEvent(changeEvent)) {
-            EReference ref = (EReference)NotificationMapper.getNotificationFeature(changeEvent);
+        if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
+            result = associationEndAndAttributeCallFinder.getAttributeCallExpressions((EAttribute) NotificationHelper.getNotificationFeature(changeEvent));
+        } else if (NotificationHelper.isLinkLifeCycleEvent(changeEvent)) {
+            EReference ref = (EReference)NotificationHelper.getNotificationFeature(changeEvent);
 
             Set<PropertyCallExp> localResult = new HashSet<PropertyCallExp>();
             localResult .addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref));
