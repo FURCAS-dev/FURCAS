@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
@@ -90,7 +91,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
 
     @Override
     public EPackage handlePropertyCallExp(org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> exp, EPackage sourceResult, List<EPackage> qualifierResults) {
-    	 addFilter(EventFilterFactory.getInstance().createFilterForStructuralFeature(exp.getSource().getType().eClass(),exp.getReferredProperty() ));
+    	 addFilter(EventFilterFactory.getInstance().createFilterForStructuralFeature((EClass) exp.getSource().getType(),exp.getReferredProperty() ));
         return result;
     }
 
@@ -100,18 +101,26 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         if (exp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES) ) {
             OCLExpression<EClassifier> typeExp = exp.getSource();
             addFilter(EventFilterFactory.getInstance().
-            		createFilterForElementInsertionOrDeletion(typeExp.getType().eClass()));
+            		createFilterForElementInsertionOrDeletion((EClass) typeExp.getType()));
         } else {
-            OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
-            if (body != null) {
-                Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
-                if (analyzedCallsToBody == null) {
-                    analyzedCallsToBody = new HashSet<OperationCallExp>();
-                    // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
-                    visitedOperationBodies.put(body, analyzedCallsToBody);
-                    safeVisit(body);
+            if (exp.getOperationCode() > 0){
+                safeVisit(exp.getSource());
+                for (OCLExpression<EClassifier> o: exp.getArgument()){
+                    safeVisit(o);
+                }               
+            } else {
+                //TODO check whether it works like intended
+                OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
+                if (body != null) {
+                    Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
+                    if (analyzedCallsToBody == null) {
+                        analyzedCallsToBody = new HashSet<OperationCallExp>();
+                        // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+                        visitedOperationBodies.put(body, analyzedCallsToBody);
+                        safeVisit(body);
+                    }
+                    analyzedCallsToBody.add((OperationCallExp) exp);
                 }
-                analyzedCallsToBody.add((OperationCallExp) exp);
             }
         }
         return result;
@@ -121,7 +130,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
         if ( var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
                 && notifyNewContextElements) {
-            addFilter(EventFilterFactory.getInstance().createFilterForElementInsertion(var.getType().eClass()));
+            addFilter(EventFilterFactory.getInstance().createFilterForElementInsertion((EClass) var.getType()));
         }
         return result;
     }

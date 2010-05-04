@@ -82,6 +82,7 @@ public class EventFilterFactory {
 		for(int t:types){
 			EventTypeFilter e1 = EventManagerFactory.eINSTANCE.createEventTypeFilter();
 			e1.setEventType(t);
+			or.getFilters().add(e1);
 		}
 		return or;
 

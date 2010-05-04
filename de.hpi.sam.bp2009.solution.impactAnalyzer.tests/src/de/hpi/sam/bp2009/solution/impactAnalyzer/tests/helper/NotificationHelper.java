@@ -4,7 +4,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -20,13 +19,17 @@ public class NotificationHelper {
         @Override
         public void notifyChanged(Notification notification) {
             noti=notification;
-            // this adapter removes itself once a notification is caught
-            if(getTarget()!=null){
-                getTarget().eAdapters().remove(this);
-            }
         }
     }// TestAdapter
 
+    private static Notification getNotificationfrom(TestAdapter a){
+        Notification noti = a.getNoti();
+        // this adapter removes itself once a notification is caught
+        if(a.getTarget()!=null){
+            a.getTarget().eAdapters().remove(a);
+        }
+        return noti;
+    }
     public static Notification createAttributeChangeNotification(EObject notifier, EAttribute feature, Object oldValue, Object newValue) {
         EDataType dataType = feature.getEAttributeType();
         boolean validOldValue = dataType.isInstance(oldValue) || 
@@ -39,7 +42,7 @@ public class NotificationHelper {
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
             notifier.eSet(feature, newValue);
-            return myTestA.getNoti();
+            return getNotificationfrom(myTestA);
         }
         return null;                
     }
@@ -65,7 +68,7 @@ public class NotificationHelper {
             } else {
                 notifier.eSet(feature, objectToAdd);
             }
-            return myTestA.getNoti();
+            return getNotificationfrom(myTestA);
         }
         return null;                
     }
@@ -88,31 +91,29 @@ public class NotificationHelper {
             } else {
                 notifier.eUnset(feature);
             }
-            return myTestA.getNoti();
+            return getNotificationfrom(myTestA);
         }
         return null;
     }
 
     @SuppressWarnings("unchecked")
-    public static Notification createElementAddNotification(EObject notifier) {
-        EReference ref = notifier.eClass().getEAllContainments().get(0);
-        EObject newObj = notifier.eClass().getEPackage().getEFactoryInstance().create((EClass) ref.getEType());
+    public static Notification createElementAddNotification(EObject container, EReference ref, EObject target) {
 
         TestAdapter myTestA = new TestAdapter();
-        notifier.eAdapters().add(myTestA);
+        container.eAdapters().add(myTestA);
 
         if (ref.isMany()){
-            Object ob = notifier.eGet(ref);
+            Object ob = container.eGet(ref);
             if (ob != null && ob instanceof EList<?>){
-                ((EList<EObject>)ob).add(newObj); 
+                ((EList<EObject>)ob).add(target); 
             }
             else {
                 return null;
             }
         }else{
-            notifier.eSet(ref, newObj);
+            container.eSet(ref, target);
         }
-        return myTestA.getNoti();
+        return getNotificationfrom(myTestA);
     }
 
     public static Notification createElementDeleteNotification(EObject notifier){
@@ -121,6 +122,6 @@ public class NotificationHelper {
 
         EcoreUtil.delete(notifier);
 
-        return myTestA.getNoti();
+        return getNotificationfrom(myTestA);
     }
 }

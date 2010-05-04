@@ -211,7 +211,7 @@ public class BaseDepartmentTest extends TestCase{
 
     protected EAttribute employeeSalary = null;
 
-    protected EAttribute employeeSecretary = null;
+    protected EReference employeeSecretary = null;
 
     protected EClass freelance = null;
 
@@ -235,28 +235,28 @@ public class BaseDepartmentTest extends TestCase{
      * This method fetches some meta object form the model which are used to
      * create ModelChangeEvents later on
      */
-    private void buildModel( ) throws Exception {
+    private void buildModel( ) {
 
         this.comp = company.CompanyPackage.eINSTANCE;
-        this.division = this.comp.getDivision( ).eClass();
+        this.division = this.comp.getDivision( );
         this.divisionBudget = (EAttribute) this.division.getEStructuralFeature( "budget" );
-        this.department = this.comp.getDepartment( ).eClass();
+        this.department = this.comp.getDepartment( );
         this.departmentName = (EAttribute) this.department.getEStructuralFeature( "name" );
         this.departmentMaxJuniors = (EAttribute) this.department.getEStructuralFeature( "maxJuniors" );
         this.departmentBudget = (EAttribute) this.department.getEStructuralFeature( "budget" );
         this.bossRef = (EReference) this.department.getEStructuralFeature( "boss" );
         this.employeeRef = (EReference) this.department.getEStructuralFeature( "employee" );
         this.departmentRef = (EReference) this.division.getEStructuralFeature( "department" );
-        this.employee = this.comp.getEmployee( ).eClass();
+        this.employee = this.comp.getEmployee( );
         this.employeeName = (EAttribute) this.employee.getEStructuralFeature( "name" );
         this.employeeAge = (EAttribute) this.employee.getEStructuralFeature( "age" );
         this.employeeSalary = (EAttribute) this.employee.getEStructuralFeature( "salary" );
         this.employerRef = (EReference) this.employee.getEStructuralFeature( "employer" );
-        this.employeeSecretary = (EAttribute) this.employee.getEStructuralFeature( "secretary" );
+        this.employeeSecretary = (EReference) this.employee.getEStructuralFeature( "secretary" );
         this.directedRef = (EReference) this.employee.getEStructuralFeature( "directed" );
         this.managedRef = (EReference) this.employee.getEStructuralFeature( "managed" );
-        this.freelance = this.comp.getFreelance( ).eClass();
-        this.student = this.comp.getStudent( ).eClass();
+        this.freelance = this.comp.getFreelance( );
+        this.student = this.comp.getStudent( );
         this.freelanceAssignment = (EAttribute) this.freelance.getEStructuralFeature( "assignment" );
     }
 
@@ -343,30 +343,33 @@ public class BaseDepartmentTest extends TestCase{
      * @throws ParserException
      */
     private List<Constraint> parse(String expression) throws ParserException {
-        OCL ocl = OCL.newInstance();
         OCLInput exp = new OCLInput(expression);
-        EPackage.Registry.INSTANCE.put(this.comp.getNsURI(), this.comp);
+        EPackage.Registry.INSTANCE.put(this.comp.getNsPrefix(), this.comp);
         ArrayList<String> path = new ArrayList<String>();
-        path.add(this.comp.getNsURI());      
-        ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path);
+        path.add(this.comp.getNsPrefix());
+        OCL ocl = OCL.newInstance();
+        ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
         return ocl.parse(exp);
     }
 
     @Override
     @Before
     public void setUp( ) {
-
-        this.setUp( );
+        beforeTestMethod(true);
     }
 
-    protected void beforeTestMethod( boolean withParsing ) throws Exception {
+    protected void beforeTestMethod( boolean withParsing ) {
 
-        super.setUp( );
         // build up the test model used in the papers
-        buildModel( );
+        buildModel( );       
         if ( withParsing ) {
             // parse the constraints defined in the papers
-            parseConstraints( );
+            try {
+                parseConstraints( );
+            } catch (ParserException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
     }

@@ -91,9 +91,9 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
         }
         if ( this.ia == null ) {
             this.ia = new ImpactAnalyzerImpl();
-            
-            while(this.stmts.iterator().hasNext()){
-                OCLExpression<EClassifier> exp = this.stmts.iterator().next();
+            Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator();
+            while(i.hasNext()){
+                OCLExpression<EClassifier> exp = i.next();
                 //why filter isn't saved?? we think this is done for caching purpose only
                 this.ia.createFilterForQuery(exp, true);
             }           
@@ -103,10 +103,9 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     /**
      * prints out all statements which will be fed into IA
      * 
-     * @throws Exception
      */
     @Test
-    public void testPrintAllStmts( ) throws Exception {
+    public void testPrintAllStmts( ) {
 
         System.out.println( "===Statements:=============================================\n" );
         for ( Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator( ); i.hasNext( ); ) {
@@ -125,7 +124,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     public void testAttributeValueChangedEventAge( ) {
         
         System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.age)'===\n" );
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Integer( 23 ), new Integer( 42 )); 
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Long( 23 ), new Long( 42 )); 
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.bossIsOldestAST);
@@ -142,8 +141,9 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
      */
     private HashSet<OCLExpression<EClassifier>> filterStatementsForNotification(Notification noti) {
         HashSet<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>();
-        while(this.stmts.iterator().hasNext()){
-            OCLExpression<EClassifier> exp = this.stmts.iterator().next();
+        Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator();
+        while(i.hasNext()){
+            OCLExpression<EClassifier> exp = i.next();
             EventFilter filter = this.ia.createFilterForQuery(exp, true);           
             if (filter.matchesFor(noti)){
                 affectedStmts.add(exp);
@@ -162,7 +162,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     public void testAttributeValueChangedEventAssignment( ) {
 
         System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Freelance.assignment)'===\n" );
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, new Integer( 23 ), new Integer( 42 ));
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, new Long( 23 ), new Long( 42 ));
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
@@ -199,7 +199,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testAttributeValueChangedEventSalary( ) {
 
-        Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeSalary, new Integer( 1234 ), new Integer( 1234 ) );
+        Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeSalary, new Long( 1234 ), new Long( 1234 ) );
         System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.salary)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
@@ -219,7 +219,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testAttributeValueChangedEventBudget( ) {
 
-        Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Integer( 1234 ), new Integer( 1234 ) );
+        Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Long( 1234 ), new Long( 1234 ) );
         System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Department.budget)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);        
@@ -237,7 +237,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testElementAddedEventDepartment( ) {
 
-        Notification noti = NotificationHelper.createElementAddNotification( this.aDepartment );
+        Notification noti = NotificationHelper.createElementAddNotification(this.aDivision, this.departmentRef, comp.getCompanyFactory().createDepartment() );
         System.out.println( "===affected Statements for 'ElementAddedEvent(Department)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
@@ -259,7 +259,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testElementAddedEventEmployee( ) {
 
-        Notification noti = NotificationHelper.createElementAddNotification( this.aEmployee );
+        Notification noti = NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef,  comp.getCompanyFactory().createEmployee() );
         System.out.println( "===affected Statements for 'ElementAddedEvent(Employee)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
@@ -279,7 +279,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testElementAddedEventFreelance( ) {
 
-        Notification noti = NotificationHelper.createElementAddNotification( this.aFreelance );
+        Notification noti = NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef, comp.getCompanyFactory().createFreelance() );
         System.out.println( "===affected Statements for 'ElementAddedEvent(Freelance)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
@@ -356,7 +356,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testLinkAddedEventManages( ) {
 
-        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, this.aEmployee);
+        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee());
         System.out.println( "===affected Statements for 'LinkAddEvent(Manages)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
@@ -377,7 +377,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testLinkAddedEventWorksIn( ) {
 
-        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.employeeRef, this.aEmployee );
+        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.employeeRef, comp.getCompanyFactory().createEmployee() );
         System.out.println( "===affected Statements for 'LinkAddEvent(WorksIn)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
@@ -399,7 +399,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     @Test
     public void testLinkRemovedEventManages( ) {
 
-        Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.bossRef, this.aEmployee );
+        Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee() );
         System.out.println( "===affected Statements for 'LinkRemoveEvent(Manages)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);

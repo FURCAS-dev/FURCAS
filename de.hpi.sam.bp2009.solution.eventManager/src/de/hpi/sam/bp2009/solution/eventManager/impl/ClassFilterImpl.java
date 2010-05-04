@@ -110,6 +110,9 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 			return false;
 		if(!(notifier instanceof EObject))
 			return false;
+		if (((EObject)notifier).eClass().equals(getWantedClass())){
+		    return true;
+		}
 		return ((EObject)notifier).eClass().getEAllSuperTypes().contains(getWantedClass());
 	}
 
