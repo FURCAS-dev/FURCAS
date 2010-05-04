@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCS.java,v 1.1 2010/05/03 05:30:09 ewillink Exp $
+ * $Id: LibIterationCS.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getIterators <em>Iterators</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,21 +62,5 @@ public interface LibIterationCS extends OperationCS {
 	 * @generated
 	 */
 	void setClass(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Iterators</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Iterators</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Iterators</em>' attribute list.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibIterationCS_Iterators()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getIterators();
 
 } // LibIterationCS

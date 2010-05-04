@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackageImpl.java,v 1.1 2010/05/03 05:30:16 ewillink Exp $
+ * $Id: OCLstdlibCSTPackageImpl.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -217,15 +217,6 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLibIterationCS_Iterators() {
-		return (EAttribute)libIterationCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getLibOperationCS() {
 		return libOperationCSEClass;
 	}
@@ -304,7 +295,6 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 
 		libIterationCSEClass = createEClass(LIB_ITERATION_CS);
 		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__CLASS);
-		createEAttribute(libIterationCSEClass, LIB_ITERATION_CS__ITERATORS);
 
 		libOperationCSEClass = createEClass(LIB_OPERATION_CS);
 		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__CLASS);
@@ -367,7 +357,6 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 
 		initEClass(libIterationCSEClass, LibIterationCS.class, "LibIterationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLibIterationCS_Class(), ecorePackage.getEString(), "class", null, 0, 1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibIterationCS_Iterators(), ecorePackage.getEString(), "iterators", null, 0, -1, LibIterationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libOperationCSEClass, LibOperationCS.class, "LibOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLibOperationCS_Class(), ecorePackage.getEString(), "class", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

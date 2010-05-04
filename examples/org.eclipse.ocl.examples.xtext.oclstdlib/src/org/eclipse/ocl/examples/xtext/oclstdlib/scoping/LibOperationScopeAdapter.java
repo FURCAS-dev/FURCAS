@@ -12,18 +12,19 @@
  *
  * </copyright>
  *
- * $Id: LibOperationScopeAdapter.java,v 1.1 2010/05/03 05:29:39 ewillink Exp $
+ * $Id: LibOperationScopeAdapter.java,v 1.2 2010/05/04 06:43:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 
-public class LibOperationScopeAdapter extends OCLstdlibScopeAdapter<LibOperationCS>
+public class LibOperationScopeAdapter extends OCLstdlibScopeAdapter<OperationCS>
 {
-	public LibOperationScopeAdapter(LibOperationCS csElement) {
+	public LibOperationScopeAdapter(OperationCS csElement) {
 		super(csElement);
 	}
 

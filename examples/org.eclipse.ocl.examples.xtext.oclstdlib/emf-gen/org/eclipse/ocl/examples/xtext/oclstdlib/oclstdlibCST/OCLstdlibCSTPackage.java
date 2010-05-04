@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.1 2010/05/03 05:30:04 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -408,22 +408,13 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	int LIB_ITERATION_CS__CLASS = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Iterators</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__ITERATORS = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Lib Iteration CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS_FEATURE_COUNT = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 2;
+	int LIB_ITERATION_CS_FEATURE_COUNT = BaseCSTPackage.OPERATION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibOperationCSImpl <em>Lib Operation CS</em>}' class.
@@ -875,17 +866,6 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	EAttribute getLibIterationCS_Class();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getIterators <em>Iterators</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Iterators</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS#getIterators()
-	 * @see #getLibIterationCS()
-	 * @generated
-	 */
-	EAttribute getLibIterationCS_Iterators();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS <em>Lib Operation CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1028,14 +1008,6 @@ public interface OCLstdlibCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LIB_ITERATION_CS__CLASS = eINSTANCE.getLibIterationCS_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Iterators</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LIB_ITERATION_CS__ITERATORS = eINSTANCE.getLibIterationCS_Iterators();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibOperationCSImpl <em>Lib Operation CS</em>}' class.

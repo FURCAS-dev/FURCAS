@@ -11,6 +11,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
@@ -42,6 +43,11 @@ public class OCLstdlibScopeProvider extends BaseScopeProvider {
 		@Override
 		public AbstractScopeAdapter<? extends EObject> caseLibDocumentCS(LibDocumentCS eObject) {
 			return new LibDocumentScopeAdapter(eObject);
+		}
+
+		@Override
+		public AbstractScopeAdapter<? extends EObject> caseLibIterationCS(LibIterationCS eObject) {
+			return new LibOperationScopeAdapter(eObject);
 		}
 
 		@Override

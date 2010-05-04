@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlib.xtext,v 1.1 2010/05/03 05:30:26 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.2 2010/05/04 06:43:49 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib hidden(WS, ML_COMMENT, SL_COMMENT)
 
@@ -66,13 +66,13 @@ Identifier:
 |	'operation'
 |	'package'
 |	'property'
-|	'static'
 |	'super'
 |	'type'
 ;
 
-PathName:
-	Identifier ('::' Identifier)*
+Name:
+	Identifier
+|	DOUBLE_QUOTED_STRING
 ;
 
 LibImportCS returns base::ImportCS :
@@ -91,8 +91,9 @@ LibClassifierCS returns base::ClassifierCS:
 ;
 
 LibIterationCS returns LibIterationCS:
-	'iteration' name=Identifier
-	 '(' iterators+=Identifier (',' iterators+=Identifier)* (iterators+=('...'))? ')'
+	'iteration' name=Name
+	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
+	 '(' parameters+=LibParameterCS (',' parameters+=LibParameterCS)* ')'
 	 ':' type=LibTypedRefCS
 	'=>' class=SINGLE_QUOTED_STRING
 //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
@@ -100,8 +101,7 @@ LibIterationCS returns LibIterationCS:
 ;
 
 LibOperationCS returns LibOperationCS:
-	(isStatic ?= 'static')?
-	'operation' name=Identifier
+	'operation' name=Name
 	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
 	 '(' (parameters+=LibParameterCS (',' parameters+=LibParameterCS)*)? ')'
 	 ':' type=LibTypedRefCS
@@ -122,8 +122,7 @@ LibParameterCS returns base::ParameterCS:
 ;
 
 LibPropertyCS returns LibPropertyCS:
-	(isStatic ?= 'static')?
-	'property' name=Identifier
+	'property' name=Name
 	':' type=LibTypedRefCS
 	'=>' class=SINGLE_QUOTED_STRING
 //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]

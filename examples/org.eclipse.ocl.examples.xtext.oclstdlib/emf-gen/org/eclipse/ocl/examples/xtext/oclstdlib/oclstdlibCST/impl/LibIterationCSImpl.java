@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCSImpl.java,v 1.1 2010/05/03 05:30:18 ewillink Exp $
+ * $Id: LibIterationCSImpl.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -52,7 +52,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibIterationCSImpl#getIterators <em>Iterators</em>}</li>
  * </ul>
  * </p>
  *
@@ -218,16 +217,6 @@ public class LibIterationCSImpl extends NamedElementCSImpl implements LibIterati
 	 * @ordered
 	 */
 	protected String class_ = CLASS_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getIterators() <em>Iterators</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIterators()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> iterators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -458,18 +447,6 @@ public class LibIterationCSImpl extends NamedElementCSImpl implements LibIterati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getIterators() {
-		if (iterators == null) {
-			iterators = new EDataTypeUniqueEList<String>(String.class, this, OCLstdlibCSTPackage.LIB_ITERATION_CS__ITERATORS);
-		}
-		return iterators;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -511,8 +488,6 @@ public class LibIterationCSImpl extends NamedElementCSImpl implements LibIterati
 				return getTypeParameters();
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__CLASS:
 				return getClass_();
-			case OCLstdlibCSTPackage.LIB_ITERATION_CS__ITERATORS:
-				return getIterators();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -559,10 +534,6 @@ public class LibIterationCSImpl extends NamedElementCSImpl implements LibIterati
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__CLASS:
 				setClass((String)newValue);
 				return;
-			case OCLstdlibCSTPackage.LIB_ITERATION_CS__ITERATORS:
-				getIterators().clear();
-				getIterators().addAll((Collection<? extends String>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -605,9 +576,6 @@ public class LibIterationCSImpl extends NamedElementCSImpl implements LibIterati
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__CLASS:
 				setClass(CLASS_EDEFAULT);
 				return;
-			case OCLstdlibCSTPackage.LIB_ITERATION_CS__ITERATORS:
-				getIterators().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -640,8 +608,6 @@ public class LibIterationCSImpl extends NamedElementCSImpl implements LibIterati
 				return typeParameters != null && !typeParameters.isEmpty();
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__CLASS:
 				return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
-			case OCLstdlibCSTPackage.LIB_ITERATION_CS__ITERATORS:
-				return iterators != null && !iterators.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
