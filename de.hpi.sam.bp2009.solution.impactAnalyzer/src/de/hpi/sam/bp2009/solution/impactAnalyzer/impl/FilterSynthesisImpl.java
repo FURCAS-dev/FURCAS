@@ -90,9 +90,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
 
     @Override
     public EPackage handlePropertyCallExp(org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> exp, EPackage sourceResult, List<EPackage> qualifierResults) {
-        // TODO will this case distinction still be required once the event manager switches back to EMF notifications?
     	 addFilter(EventFilterFactory.getInstance().createFilterForStructuralFeature(exp.getSource().getType().eClass(),exp.getReferredProperty() ));
-
         return result;
     }
 

@@ -44,16 +44,24 @@ public class NotificationHelper {
         return null;                
     }
 
+
     @SuppressWarnings("unchecked")
     public static Notification createReferenceAddNotification(EObject notifier, EReference feature, EObject objectToAdd){
         boolean validObjectToAdd = feature.getEType().isInstance(objectToAdd);
-        
+
         if (feature.isChangeable() && validObjectToAdd){
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
-            
+
             if (feature.isMany()){
-                ((EList)notifier.eGet(feature)).add(objectToAdd);
+                Object ob = notifier.eGet(feature);
+                if (ob != null && ob instanceof EList<?>){
+                    ((EList<EObject>)ob).add(objectToAdd); 
+                }
+                else {
+                    return null;
+                }
+
             } else {
                 notifier.eSet(feature, objectToAdd);
             }
@@ -61,16 +69,22 @@ public class NotificationHelper {
         }
         return null;                
     }
-    
+
     @SuppressWarnings("unchecked")
     public static Notification createReferenceRemoveNotification(EObject notifier, EReference feature, EObject objectToRemove){
         boolean validObjectToAdd = feature.getEType().isInstance(objectToRemove);
         if (feature.isChangeable() && validObjectToAdd){
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
-            
+
             if (feature.isMany()){
-                ((EList)notifier.eGet(feature)).remove(objectToRemove);                
+                Object ob = notifier.eGet(feature);
+                if (ob != null && ob instanceof EList<?>){
+                    ((EList<EObject>)ob).remove(objectToRemove); 
+                } else {
+                    return null;
+                }
+                                
             } else {
                 notifier.eUnset(feature);
             }
@@ -83,12 +97,18 @@ public class NotificationHelper {
     public static Notification createElementAddNotification(EObject notifier) {
         EReference ref = notifier.eClass().getEAllContainments().get(0);
         EObject newObj = notifier.eClass().getEPackage().getEFactoryInstance().create((EClass) ref.getEType());
-        
+
         TestAdapter myTestA = new TestAdapter();
         notifier.eAdapters().add(myTestA);
-        
+
         if (ref.isMany()){
-            ((EList)notifier.eGet(ref)).add(newObj);
+            Object ob = notifier.eGet(ref);
+            if (ob != null && ob instanceof EList<?>){
+                ((EList<EObject>)ob).add(newObj); 
+            }
+            else {
+                return null;
+            }
         }else{
             notifier.eSet(ref, newObj);
         }
@@ -98,9 +118,9 @@ public class NotificationHelper {
     public static Notification createElementDeleteNotification(EObject notifier){
         TestAdapter myTestA = new TestAdapter();
         notifier.eContainer().eAdapters().add(myTestA);
-        
+
         EcoreUtil.delete(notifier);
-        
+
         return myTestA.getNoti();
     }
 }

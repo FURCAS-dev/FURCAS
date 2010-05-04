@@ -7,9 +7,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -22,7 +23,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     
     @Override
-    public EventFilter createFilterForQuery(OCLExpression query, boolean notifyNewContextElements) {
+    public EventFilter createFilterForQuery(OCLExpression<EClassifier> query, boolean notifyNewContextElements) {
         //ported MOIN implementation
         FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(query, notifyNewContextElements);
         System.out.println("createFilterForQuery");
@@ -31,7 +32,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     
     @Override
     public Collection<EObject> getContextObjects(Notification event,
-            OCLExpression query, EClass cls) {
+            OCLExpression<EClassifier> query, EClass cls) {
         //only very naive implementation
         Resource resource = ((EObject)event.getNotifier()).eResource();
         Collection<EObject> result = new BasicEList<EObject>();

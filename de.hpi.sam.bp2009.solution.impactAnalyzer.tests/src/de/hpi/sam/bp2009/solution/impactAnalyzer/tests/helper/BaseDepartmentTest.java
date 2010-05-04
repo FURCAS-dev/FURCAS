@@ -1,15 +1,23 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.EReferenceImpl;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.OCLInput;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 
@@ -21,7 +29,7 @@ import company.impl.FreelanceImpl;
 /**
  * This is the super class for all tests based on the Department model.
  */
-public class BaseDepartmentTest extends BaseIATest {
+public class BaseDepartmentTest extends TestCase{
 
     /**
      *  
@@ -156,29 +164,29 @@ public class BaseDepartmentTest extends BaseIATest {
     /*
      * OCL AST representing the constrains above
      */
-    protected OCLExpression notBossFreelanceAST = null;
+    protected OCLExpression<EClassifier> notBossFreelanceAST = null;
 
-    protected OCLExpression oldEmployeeAST = null;
+    protected OCLExpression<EClassifier> oldEmployeeAST = null;
 
-    protected OCLExpression uniqueNamesAST = null;
+    protected OCLExpression<EClassifier> uniqueNamesAST = null;
 
-    protected OCLExpression validAssignmentAST = null;
+    protected OCLExpression<EClassifier> validAssignmentAST = null;
 
-    protected OCLExpression maxJuniorsAST = null;
+    protected OCLExpression<EClassifier> maxJuniorsAST = null;
 
-    protected OCLExpression bossIsOldestAST = null;
+    protected OCLExpression<EClassifier> bossIsOldestAST = null;
 
-    protected OCLExpression bossHighestSalaryAST = null;
+    protected OCLExpression<EClassifier> bossHighestSalaryAST = null;
 
-    protected OCLExpression expensesRestrictionAST = null;
+    protected OCLExpression<EClassifier> expensesRestrictionAST = null;
 
-    protected OCLExpression nastyConstraintAST = null;
+    protected OCLExpression<EClassifier> nastyConstraintAST = null;
 
-    protected OCLExpression divisionBossSecretaryAST = null;
+    protected OCLExpression<EClassifier> divisionBossSecretaryAST = null;
 
-    protected OCLExpression secretaryOlderThanBossAST = null;
+    protected OCLExpression<EClassifier> secretaryOlderThanBossAST = null;
 
-    protected OCLExpression boss10YearsOlderThanJuniorAST = null;
+    protected OCLExpression<EClassifier> boss10YearsOlderThanJuniorAST = null;
 
     /*
      * for easy access to the model
@@ -211,17 +219,17 @@ public class BaseDepartmentTest extends BaseIATest {
 
     protected EAttribute freelanceAssignment = null;
 
-    protected EReferenceImpl departmentRef = null;
+    protected EReference departmentRef = null;
 
-    protected EReferenceImpl bossRef = null;
+    protected EReference bossRef = null;
 
     protected EReference managedRef = null;
 
-    protected EReferenceImpl employerRef = null;
+    protected EReference employerRef = null;
 
-    protected EReferenceImpl employeeRef = null;
+    protected EReference employeeRef = null;
 
-    protected EReferenceImpl directedRef = null;
+    protected EReference directedRef = null;
 
     /**
      * This method fetches some meta object form the model which are used to
@@ -229,7 +237,6 @@ public class BaseDepartmentTest extends BaseIATest {
      */
     private void buildModel( ) throws Exception {
 
-//        company.CompanyPackage wrappedPackage = getMOINConnection( ).getPackage( company.CompanyPackage.PACKAGE_DESCRIPTOR );
         this.comp = company.CompanyPackage.eINSTANCE;
         this.division = this.comp.getDivision( ).eClass();
         this.divisionBudget = (EAttribute) this.division.getEStructuralFeature( "budget" );
@@ -237,32 +244,33 @@ public class BaseDepartmentTest extends BaseIATest {
         this.departmentName = (EAttribute) this.department.getEStructuralFeature( "name" );
         this.departmentMaxJuniors = (EAttribute) this.department.getEStructuralFeature( "maxJuniors" );
         this.departmentBudget = (EAttribute) this.department.getEStructuralFeature( "budget" );
-        this.bossRef = (EReferenceImpl) this.department.getEStructuralFeature( "boss" );
-        this.employeeRef = (EReferenceImpl) this.department.getEStructuralFeature( "employee" );
-        this.departmentRef = (EReferenceImpl) this.division.getEStructuralFeature( "department" );
+        this.bossRef = (EReference) this.department.getEStructuralFeature( "boss" );
+        this.employeeRef = (EReference) this.department.getEStructuralFeature( "employee" );
+        this.departmentRef = (EReference) this.division.getEStructuralFeature( "department" );
         this.employee = this.comp.getEmployee( ).eClass();
         this.employeeName = (EAttribute) this.employee.getEStructuralFeature( "name" );
         this.employeeAge = (EAttribute) this.employee.getEStructuralFeature( "age" );
         this.employeeSalary = (EAttribute) this.employee.getEStructuralFeature( "salary" );
-        this.employerRef = (EReferenceImpl) this.employee.getEStructuralFeature( "employer" );
+        this.employerRef = (EReference) this.employee.getEStructuralFeature( "employer" );
         this.employeeSecretary = (EAttribute) this.employee.getEStructuralFeature( "secretary" );
-        this.directedRef = (EReferenceImpl) this.employee.getEStructuralFeature( "directed" );
+        this.directedRef = (EReference) this.employee.getEStructuralFeature( "directed" );
         this.managedRef = (EReference) this.employee.getEStructuralFeature( "managed" );
         this.freelance = this.comp.getFreelance( ).eClass();
         this.student = this.comp.getStudent( ).eClass();
         this.freelanceAssignment = (EAttribute) this.freelance.getEStructuralFeature( "assignment" );
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.sap.tc.jtools.jver.framework.Test#cleanUp()
-     */
     @Override
     @After
     public void tearDown() {
 
         this.resetInstances( );
-        super.tearDown();
+        try {
+            super.tearDown();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     private void resetInstances( ) {
@@ -312,38 +320,38 @@ public class BaseDepartmentTest extends BaseIATest {
 
     /**
      * parses the constraints
+     * @throws ParserException 
      */
-    private void parseConstraints( ) throws Exception {
+    private void parseConstraints( ) throws ParserException {
 
-        // TODO remove this comment once the user-defined operations are working
-        // // parse the helper definition first
-        // // so can be used later on
-        // OclStatement spentBudget = parse(this.expenses, company);
-        // // attach body to the model
-        // OclParser parser = new OclParser(this.mmrConnection);
-        // Collection c = new Vector();
-        // c.add(spentBudget);
-        // // continue parsing
-        // parser.connectStatementsToContext(c);
-        // expensesRestrictionAST = parse(expensesRestriction, company);
-        EPackage[] types = new EPackage[] { this.comp };
-        this.oldEmployeeAST = parse( oldEmployee, null, types ).iterator( ).next( );
-        this.notBossFreelanceAST = parse( notBossFreelance, null, types ).iterator( ).next( );
-        this.uniqueNamesAST = parse( uniqueNames, null, types ).iterator( ).next( );
-        this.validAssignmentAST = parse( validAssignment, null, types ).iterator( ).next( );
-        this.maxJuniorsAST = parse( maxJuniors, null, types ).iterator( ).next( );
-        this.bossIsOldestAST = parse( bossIsOldest, null, types ).iterator( ).next( );
-        this.bossHighestSalaryAST = parse( bossHighestSalary, null, types ).iterator( ).next( );
-        this.nastyConstraintAST = parse( nastyConstraint, null, types ).iterator( ).next( );
-        this.divisionBossSecretaryAST = parse( divisionBossSecretary, null, types ).iterator( ).next( );
-        this.secretaryOlderThanBossAST = parse( secretaryOlderThanBoss, null, types ).iterator( ).next( );
-        this.boss10YearsOlderThanJuniorAST = parse( boss10YearsOlderThanJunior, null, types ).iterator( ).next( );
+        this.oldEmployeeAST = parse( oldEmployee ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.notBossFreelanceAST = parse( notBossFreelance ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.uniqueNamesAST = parse( uniqueNames ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.validAssignmentAST = parse( validAssignment ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.maxJuniorsAST = parse( maxJuniors ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.bossIsOldestAST = parse( bossIsOldest ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.bossHighestSalaryAST = parse( bossHighestSalary ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.nastyConstraintAST = parse( nastyConstraint ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.divisionBossSecretaryAST = parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.secretaryOlderThanBossAST = parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.boss10YearsOlderThanJuniorAST = parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.sap.tc.jtools.jver.framework.Test#prepare()
+    /**
+     * @param expression
+     * @return
+     * @throws ParserException
      */
+    private List<Constraint> parse(String expression) throws ParserException {
+        OCL ocl = OCL.newInstance();
+        OCLInput exp = new OCLInput(expression);
+        EPackage.Registry.INSTANCE.put(this.comp.getNsURI(), this.comp);
+        ArrayList<String> path = new ArrayList<String>();
+        path.add(this.comp.getNsURI());      
+        ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path);
+        return ocl.parse(exp);
+    }
+
     @Override
     @Before
     public void setUp( ) {
@@ -360,8 +368,6 @@ public class BaseDepartmentTest extends BaseIATest {
             // parse the constraints defined in the papers
             parseConstraints( );
         }
-        // // create some instances
-        // this.createInstances(1, 5, 1);
 
     }
 
@@ -375,8 +381,6 @@ public class BaseDepartmentTest extends BaseIATest {
      * @param budget the value for the budget attribute
      */
     private company.impl.DepartmentImpl createDepartment( int employees, int freelances, int maxNumJuniors, int budget ) {
-
-//        Department wrappedDepartment = coreConnection.getWrapper( ).createElementInPartition( Department.class, null );
 
         DepartmentImpl dep = (DepartmentImpl) company.CompanyFactory.eINSTANCE.createDepartment();
         dep.setName( "Dep" + this.curDepartmentID );
@@ -404,7 +408,6 @@ public class BaseDepartmentTest extends BaseIATest {
      */
     private company.impl.EmployeeImpl createEmployee( ) {
 
-//        Employee wrappedEmplyoee = coreConnection.getWrapper( ).createElementInPartition( Employee.class, null );
         EmployeeImpl e = (EmployeeImpl) company.CompanyFactory.eINSTANCE.createEmployee();
         e.setName( "empl" + this.curImployeeID );
         e.setAge( 42 );
@@ -419,7 +422,6 @@ public class BaseDepartmentTest extends BaseIATest {
      */
     private company.impl.FreelanceImpl createFreelance( ) {
 
-//        Freelance wrappedFreelance = coreConnection.getWrapper( ).createElementInPartition( Freelance.class, null );
         FreelanceImpl f = (FreelanceImpl) company.CompanyFactory.eINSTANCE.createFreelance();
         f.setName( "empl" + this.curImployeeID );
         f.setAge( 42 );
@@ -444,7 +446,6 @@ public class BaseDepartmentTest extends BaseIATest {
         int maxNumJuniors = 3;
         int budget = 50000;
         
-//            Division myDivision = this.coreConnection.getWrapper( ).createElementInPartition( Division.class, null );
             this.aDivision = (DivisionImpl) company.CompanyFactory.eINSTANCE.createDivision();
             ( (DivisionImpl) this.aDivision ).setName( "The super Division" );
             ( (DivisionImpl) this.aDivision ).setBudget( 2000000 );
@@ -459,47 +460,4 @@ public class BaseDepartmentTest extends BaseIATest {
         
     }
 
-//    protected void printAffectedStatements( Set<EvaluationUnit> affectedStmts ) throws Exception {
-//
-//        for ( Iterator<EvaluationUnit> i = affectedStmts.iterator( ); i.hasNext( ); ) {
-//            EvaluationUnit unit = i.next( );
-//
-//            this.info( "Stmt: " + unit.getAffectedStatement( ).getName( ) + "\n" );
-//            this.info( ( unit.getAffectedStatement( ) ) + "\n\n" );
-//
-//            // if (showJmiGraph) {
-//            // JmiTreeViewer tw = new
-//            // JmiTreeViewer(unit.getAffectedStatement().getExpression());
-//            // tw.setBounds(bounds);
-//            // tw.setModal(true);
-//            // tw.show();
-//            // }
-//            for ( Iterator<InstanceSet> j = unit.getInstanceSets( ).iterator( ); j.hasNext( ); ) {
-//                InstanceSet iSet = j.next( );
-//                this.info( "   Instances:\n" );
-//                for ( Iterator<RefObject> it = iSet.getStartingPoints( ).iterator( ); it.hasNext( ); ) {
-//                    RefFeatured inst = it.next( );
-//                    this.info( "    " + inst + " \n" );
-//                }
-//                this.info( ( iSet.getNavigationStatement( ) ) + "\n\n" );
-//                // FIXME adjust to new interface
-//                //this.showJmiTree(iSet.getNavigationStatement().getExpression());
-//            }
-//        }
-//    }
-
-    /**
-     * Turns an array of OCLExpressions into a Set of OCLExpressions
-     * 
-     * @param objects
-     * @return the set of statements
-     */
-    protected Set<OCLExpression> asSet( OCLExpression[] objects ) {
-
-        Set<OCLExpression> s = new HashSet<OCLExpression>( );
-        for ( int i = 0; i < objects.length; i++ ) {
-            s.add( objects[i] );
-        }
-        return s;
-    }
 }

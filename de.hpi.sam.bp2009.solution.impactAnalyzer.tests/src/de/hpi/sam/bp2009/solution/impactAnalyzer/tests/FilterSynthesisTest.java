@@ -3,17 +3,19 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.tests;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 /**
  * Class scope analysis test
@@ -22,7 +24,7 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
 
     private ImpactAnalyzer ia;
 
-    private final Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+    private final Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
 
     /**
      * Checks a Set of EvaluationContext against a Set of expected
@@ -34,13 +36,13 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
      * <tt>expectedAffectedStmts</tt> is contained in an EvaluationContext in
      * <tt>iaResult</tt> and vice versa.
      */
-    private boolean checkAffectedStatements( Set<OCLExpression> iaResult, Set<OCLExpression> expectedAffectedStmts ) {
+    private boolean checkAffectedStatements( Set<OCLExpression<EClassifier>> iaResult, Set<OCLExpression<EClassifier>> expectedAffectedStmts ) {
 
         if ( iaResult.size( ) != expectedAffectedStmts.size( ) ) {
             return false;
         }
-        Set<OCLExpression> affectedStmts = new HashSet<OCLExpression>( );
-        for ( Iterator<OCLExpression> i = iaResult.iterator( ); i.hasNext( ); ) {
+        Set<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>( );
+        for ( Iterator<OCLExpression<EClassifier>> i = iaResult.iterator( ); i.hasNext( ); ) {
             affectedStmts.add( i.next( ));
         }
 
@@ -90,11 +92,12 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
         if ( this.ia == null ) {
             this.ia = new ImpactAnalyzerImpl();
             
-            //TODO analyze what analyze have done and apply to our api
-            this.ia.analyze( this.stmts );
-            
+            while(this.stmts.iterator().hasNext()){
+                OCLExpression<EClassifier> exp = this.stmts.iterator().next();
+                //why filter isn't saved?? we think this is done for caching purpose only
+                this.ia.createFilterForQuery(exp, true);
+            }           
         }
-
     }
 
     /**
@@ -106,497 +109,332 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
     public void testPrintAllStmts( ) throws Exception {
 
         System.out.println( "===Statements:=============================================\n" );
-        for ( Iterator<OCLExpression> i = this.stmts.iterator( ); i.hasNext( ); ) {
-            OCLExpression stmt = i.next( );
+        for ( Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator( ); i.hasNext( ); ) {
+            OCLExpression<EClassifier> stmt = i.next( );
             System.out.println( stmt );
         }
         System.out.println( "===END====================================================\n" );
     }
 
     /**
-     * Feeds a set of ocl statements to IA, fetches the InternalEvents and
-     * compares them to a set of expected InternalEvents.
+     * Sends a {@link Notification} to IA and compares the returned affected
+     * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testInternalEvents( ) throws Exception {
+    public void testAttributeValueChangedEventAge( ) {
+        
+        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.age)'===\n" );
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Integer( 23 ), new Integer( 42 )); 
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        expectedStmts.add(this.maxJuniorsAST);        
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);       
+        assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
+        System.out.println( "===END=======================================================\n\n" );
+    }
 
-        // TODO This will compile, but definitely not work at the moment!
-        InternalEventFactory factory = new InternalEventFactory( );
-        /*
-         * build the expected set of InternalEvents
-         */
-        Set<InternalEvent> expectedEvents = new HashSet<InternalEvent>( );
-        // events for OldEmployee
-        expectedEvents.add( factory.createInsertET( this.department ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.employeeRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.employeeRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.employeeAge ) );
-        // events for NotBossFreelance
-        expectedEvents.add( factory.createInsertET( this.department ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.bossRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.bossRef.getReferencedEnd( coreConnection ) ) );
-        // events for UniqueNames
-        expectedEvents.add( factory.createInsertET( this.employee ) );
-        expectedEvents.add( factory.createDeleteET( this.employee ) );
-        expectedEvents.add( factory.createInsertET( this.freelance ) );
-        expectedEvents.add( factory.createDeleteET( this.freelance ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.employeeName ) );
-        // events for ValidAssignment
-        expectedEvents.add( factory.createInsertET( this.freelance ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.freelanceAssignment ) );
-        // events for BossIsOldest
-        expectedEvents.add( factory.createInsertET( this.employee ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.employeeAge ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.bossRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.bossRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.employerRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.employerRef.getReferencedEnd( coreConnection ) ) );
-        // events for bossHighestSalary
-        expectedEvents.add( factory.createInsertET( this.department ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.bossRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.bossRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.employeeRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.employeeRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.employeeSalary ) );
-        // events for MaxJuniors
-        expectedEvents.add( factory.createInsertET( this.department ) );
-        expectedEvents.add( factory.createInsertRT( coreConnection, this.employeeRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createDeleteRT( coreConnection, this.employeeRef.getReferencedEnd( coreConnection ) ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.employeeAge ) );
-        expectedEvents.add( factory.createUpdateAttribute( coreConnection, this.departmentMaxJuniors ) );
-
-        /*
-         * checking the internalEvents
-         */
-        this.info( "===Checking InternalEvents===\n" );
-        Set<InternalEvent> iaEvents = this.ia.testingGetInternalEvents( );
-        this.printResult( iaEvents, expectedEvents, System.out, true );
-        double res = this.checkResultAgainstOptimum( expectedEvents, iaEvents );
-        if ( res >= 0 ) {
-            this.info( "PASSED: " + res + "\n" );
-        } else {
-            this.info( "FAILED\n" );
-            this.info( "===Missing Events===\n" );
-            Set<InternalEvent> missingEvents = new HashSet<InternalEvent>( );
-            missingEvents.addAll( expectedEvents );
-            missingEvents.removeAll( iaEvents );
-            for ( Iterator<InternalEvent> i = missingEvents.iterator( ); i.hasNext( ); ) {
-                this.info( i.next( ).toString( ) + "\n" );
+    /**
+     * @param noti a {@link Notification} including a model change
+     * @return the {@link OCLExpression<EClassifier>}s which are affected by the given {@link Notification}
+     */
+    private HashSet<OCLExpression<EClassifier>> filterStatementsForNotification(Notification noti) {
+        HashSet<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        while(this.stmts.iterator().hasNext()){
+            OCLExpression<EClassifier> exp = this.stmts.iterator().next();
+            EventFilter filter = this.ia.createFilterForQuery(exp, true);           
+            if (filter.matchesFor(noti)){
+                affectedStmts.add(exp);
             }
-
         }
-        /*
-         * Check the returned filter
-         */
-        // FIXME remove this once MoinFilterGenerator#dump(Filter) has been fixed
-        // String filterString = MoinFilterGenerator.dump(filter);
-        // this.info("===Returned MoinEventFilter===\n");
-        // this.info(filterString);
-        this.info( "\n===DONE===\n" );
-        if ( res < 0 ) {
-            flop( "Checking InternalEvents failed" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        return affectedStmts;
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
      * @throws Exception
      */
     @Test
-    public void testAttributeValueChangedEventAge( ) throws Exception {
-        //FIXME create notification, and check for all OCLExpressions whether they include an
-        // attribute change event, and if so check that this expression is informed by eventmanager
-        AttributeValueChangeEvent employeeAgeChanged = new AttributeValueChangeEventImpl( coreConnection, this.aEmployee, this.employeeAge, new Integer( 23 ), new Integer( 42 ) );
-        this.info( "===affected Statements for 'AttributeValueChangedEvent(Employee.age)'===\n" );
-        affectedStmts = this.ia.createFilterForQuery(expression, context, employeeAgeChanged);
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.oldEmployeeAST, this.bossIsOldestAST, this.maxJuniorsAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+    public void testAttributeValueChangedEventAssignment( ) {
+
+        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Freelance.assignment)'===\n" );
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, new Integer( 23 ), new Integer( 42 ));
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.validAssignmentAST);
+        
+        assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testAttributeValueChangedEventAssignment( ) throws Exception {
+    public void testAttributeValueChangedEventName( ) {
 
-        AttributeValueChangeEvent freelanceAssignmentChanged = new AttributeValueChangeEventImpl( coreConnection, this.aFreelance, this.freelanceAssignment, new Integer( 23 ), new Integer( 42 ) );
-        this.info( "===affected Statements for 'AttributeValueChangedEvent(Freelance.assignment)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, freelanceAssignmentChanged );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.validAssignmentAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeName, "Hinz", "Kunz" );
+        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.name)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.uniqueNamesAST);
+        
+        assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testAttributeValueChangedEventName( ) throws Exception {
+    public void testAttributeValueChangedEventSalary( ) {
 
-        AttributeValueChangeEvent employeeNameChanged = new AttributeValueChangeEventImpl( coreConnection, this.aEmployee, this.employeeName, "Hinz", "Kunz" );
-        this.info( "===affected Statements for 'AttributeValueChangedEvent(Employee.name)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeNameChanged );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.uniqueNamesAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeSalary, new Integer( 1234 ), new Integer( 1234 ) );
+        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.salary)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.bossHighestSalaryAST);
+        //expectedStmts.add(this.expensesRestrictionAST);
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+      
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testAttributeValueChangedEventSalary( ) throws Exception {
+    public void testAttributeValueChangedEventBudget( ) {
 
-        AttributeValueChangeEvent employeeNameChanged = new AttributeValueChangeEventImpl( coreConnection, this.aEmployee, this.employeeSalary, new Integer( 1234 ), new Integer( 1234 ) );
-        this.info( "===affected Statements for 'AttributeValueChangedEvent(Employee.salary)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeNameChanged );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.bossHighestSalaryAST } );
-        // , this.expensesRestrictionAST });
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Integer( 1234 ), new Integer( 1234 ) );
+        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Department.budget)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);        
+        Set<OCLExpression<EClassifier>> expectedStmts = Collections.emptySet( );//expectedStmts.add(this.expensesRestrictionAST);
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testAttributeValueChangedEventBudget( ) throws Exception {
+    public void testElementAddedEventDepartment( ) {
 
-        AttributeValueChangeEvent employeeNameChanged = new AttributeValueChangeEventImpl( coreConnection, this.aDepartment, this.departmentBudget, new Integer( 1234 ), new Integer( 1234 ) );
-        this.info( "===affected Statements for 'AttributeValueChangedEvent(Department.budget)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeNameChanged );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = Collections.emptySet( );// asSet(new OclStatement[] { this.expensesRestrictionAST });
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createElementAddNotification( this.aDepartment );
+        System.out.println( "===affected Statements for 'ElementAddedEvent(Department)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.notBossFreelanceAST);
+        expectedStmts.add(this.maxJuniorsAST); 
+        expectedStmts.add(this.bossHighestSalaryAST);
+       
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testElementAddedEventDepartment( ) throws Exception {
+    public void testElementAddedEventEmployee( ) {
 
-        ElementCreateEvent departmentAdded = new ElementCreateEventImpl( coreConnection, this.aDepartment );
-        this.info( "===affected Statements for 'ElementAddedEvent(Department)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, departmentAdded );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.oldEmployeeAST, this.notBossFreelanceAST, this.maxJuniorsAST, this.bossHighestSalaryAST } );// , this.expensesRestrictionAST});
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createElementAddNotification( this.aEmployee );
+        System.out.println( "===affected Statements for 'ElementAddedEvent(Employee)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.uniqueNamesAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testElementAddedEventEmployee( ) throws Exception {
+    public void testElementAddedEventFreelance( ) {
 
-        ElementCreateEvent employeeAdded = new ElementCreateEventImpl( coreConnection, this.aEmployee );
-        this.info( "===affected Statements for 'ElementAddedEvent(Employee)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeAdded );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.uniqueNamesAST, this.bossIsOldestAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createElementAddNotification( this.aFreelance );
+        System.out.println( "===affected Statements for 'ElementAddedEvent(Freelance)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.validAssignmentAST);
+        expectedStmts.add(this.uniqueNamesAST);
+        expectedStmts.add(this.bossIsOldestAST); 
+        
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testElementAddedEventFreelance( ) throws Exception {
+    public void testElementRemovedEventDepartment( ) {
 
-        ElementCreateEvent freelanceAdded = new ElementCreateEventImpl( coreConnection, this.aFreelance );
-        this.info( "===affected Statements for 'ElementAddedEvent(Freelance)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, freelanceAdded );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.validAssignmentAST, this.uniqueNamesAST, this.bossIsOldestAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createElementDeleteNotification( this.aDepartment );
+        System.out.println( "===affected Statements for 'ElementRemovedEvent(Department)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = Collections.emptySet();
+        
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testElementRemovedEventDepartment( ) throws Exception {
+    public void testElementRemovedEventEmployee( ) {
 
-        ElementDeleteEvent departmentRemoved = new ElementDeleteEventImpl( coreConnection, this.aDepartment );
-        this.info( "===affected Statements for 'ElementRemovedEvent(Department)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, departmentRemoved );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] {} );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createElementDeleteNotification( this.aEmployee );
+        System.out.println( "===affected Statements for 'ElementRemovedEvent(Employee)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.uniqueNamesAST);
+
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testElementRemovedEventEmployee( ) throws Exception {
+    public void testElementRemovedEventFreelance( ) {
 
-        ElementDeleteEvent employeeRemoved = new ElementDeleteEventImpl( coreConnection, this.aEmployee );
-        this.info( "===affected Statements for 'ElementRemovedEvent(Employee)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeRemoved );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.uniqueNamesAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createElementDeleteNotification( this.aFreelance );
+        System.out.println( "===affected Statements for 'ElementRemovedEvent(Freelance)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.uniqueNamesAST);
+        
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testElementRemovedEventFreelance( ) throws Exception {
+    public void testLinkAddedEventManages( ) {
 
-        ElementDeleteEvent freelanceRemoved = new ElementDeleteEventImpl( coreConnection, this.aFreelance );
-        this.info( "===affected Statements for 'ElementRemovedEvent(Freelance)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, freelanceRemoved );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.uniqueNamesAST } );
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, this.aEmployee);
+        System.out.println( "===affected Statements for 'LinkAddEvent(Manages)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.notBossFreelanceAST);
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        // this.expensesRestrictionAST
+        assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testLinkAddedEventManages( ) throws Exception {
+    public void testLinkAddedEventWorksIn( ) {
 
-        List<MRI> dummy = new Vector<MRI>( );
-        dummy.add( new MRIImpl( this.aEmployee ) );
-        dummy.add( new MRIImpl( this.aDepartment ) );
-        LinkAddEvent bossHired = new LinkAddEventImpl( coreConnection, dummy, this.bossRef.getReferencedEnd( coreConnection ) );
-
-        this.info( "===affected Statements for 'LinkAddEvent(Manages)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, bossHired );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.notBossFreelanceAST, this.bossHighestSalaryAST, this.bossIsOldestAST } ); // , this.expensesRestrictionAST
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.employeeRef, this.aEmployee );
+        System.out.println( "===affected Statements for 'LinkAddEvent(WorksIn)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.maxJuniorsAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        // this.expensesRestrictionAST
+        assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testLinkAddedEventWorksIn( ) throws Exception {
+    public void testLinkRemovedEventManages( ) {
 
-        List<MRI> dummy = new Vector<MRI>( );
-        dummy.add( new MRIImpl( this.aEmployee ) );
-        dummy.add( new MRIImpl( this.aDepartment ) );
-        LinkAddEvent employeeHired = new LinkAddEventImpl( coreConnection, dummy, this.employeeRef.getReferencedEnd( coreConnection ) );
-        this.info( "===affected Statements for 'LinkAddEvent(WorksIn)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeHired );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.oldEmployeeAST, this.bossHighestSalaryAST, this.maxJuniorsAST, this.bossIsOldestAST } );
-        // this.expensesRestrictionAST});
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.bossRef, this.aEmployee );
+        System.out.println( "===affected Statements for 'LinkRemoveEvent(Manages)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.notBossFreelanceAST);
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        // this.expensesRestrictionAST
+        
+        assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
-     * @param affectedStmts
-     * @param expectedStmts
-     */
-    private void printHint( Set<OCLExpression> affectedStmts, Set<OCLExpression> expectedStmts ) {
-
-        this.info( "===expected statements===\n" );
-        for ( Iterator<OCLExpression> i = expectedStmts.iterator( ); i.hasNext( ); ) {
-            OCLExpression stmt = i.next( );
-            this.info( this.serializer.serialize( stmt ) + "\n" );
-        }
-        this.info( "===returned affected statements===\n" );
-        for ( Iterator<OCLExpression> i = affectedStmts.iterator( ); i.hasNext( ); ) {
-            this.info( this.serializer.serialize( i.next( ) ) + "\n" );
-        }
-    }
-
-    /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
+     * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
      * 
-     * @throws Exception
      */
     @Test
-    public void testLinkRemovedEventManages( ) throws Exception {
+    public void testLinkRemovedEventWorksIn( ) {
 
-        List<MRI> dummy = new Vector<MRI>( );
-        dummy.add( new MRIImpl( this.aEmployee ) );
-        dummy.add( new MRIImpl( this.aDepartment ) );
-        LinkRemoveEvent bossFired = new LinkRemoveEventImpl( coreConnection, dummy, this.bossRef.getReferencedEnd( coreConnection ) );
-
-        this.info( "===affected Statements for 'LinkRemoveEvent(Manages)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, bossFired );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.notBossFreelanceAST, this.bossHighestSalaryAST, this.bossIsOldestAST } ); // , this.expensesRestrictionAST });
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
-    }
-
-    /**
-     * Sends a ModelChangeEvent to IA and compares the returned affected
-     * statements to a set of expected affected statements.
-     * 
-     * @throws Exception
-     */
-    @Test
-    public void testLinkRemovedEventWorksIn( ) throws Exception {
-
-        List<MRI> dummy = new Vector<MRI>( );
-        dummy.add( new MRIImpl( this.aEmployee ) );
-        dummy.add( new MRIImpl( this.aDepartment ) );
-        LinkRemoveEvent employeeFired = new LinkRemoveEventImpl( coreConnection, dummy, this.employeeRef.getReferencedEnd( coreConnection ) );
-
-        this.info( "===affected Statements for 'LinkRemoveEvent(WorksIn)'===\n" );
-        Set<EvaluationUnit> affectedStmts = this.ia.filter( coreConnection, employeeFired );
-        printAffectedStatements( affectedStmts );
-        Set<OclStatement> expectedStmts = asSet( new OclStatement[] { this.oldEmployeeAST, this.bossHighestSalaryAST, this.maxJuniorsAST, this.bossIsOldestAST } );
-        // this.expensesRestrictionAST});
+        Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.employeeRef, this.aEmployee );
+        System.out.println( "===affected Statements for 'LinkRemoveEvent(WorksIn)'===\n" );
+        
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.maxJuniorsAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        // this.expensesRestrictionAST
         // TODO this fails right now because bossisoldest is returned in affected statements
         // TODO not sure if this can be fixed
-        if ( checkAffectedStatements( affectedStmts, expectedStmts ) ) {
-            this.info( "PASSED\n\n" );
-        } else {
-            this.info( "FAILED\n\n" );
-            printHint( affectedStmts, expectedStmts );
-            flop( "FAILED" );
-        }
-        this.info( "===END=======================================================\n\n" );
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+         System.out.println( "===END=======================================================\n\n" );
     }
 
 }
