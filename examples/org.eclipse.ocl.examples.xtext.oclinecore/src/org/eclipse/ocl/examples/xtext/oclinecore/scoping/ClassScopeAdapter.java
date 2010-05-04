@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.1 2010/05/03 05:44:36 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.2 2010/05/04 07:30:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -47,6 +47,9 @@ public class ClassScopeAdapter extends EssentialOCLScopeAdapter<OCLinEcoreClassC
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
+		}
+		else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__SUPER_TYPES) {
+			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
 		}
 		else if (containmentFeature == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__CONFORMS_TO) {
 			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
