@@ -48,6 +48,7 @@ import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
@@ -155,9 +156,9 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation
              */
-//            ResourceChanger rc= new ResourceChanger();
-//            expr.accept(rc);
-//            a.eResource().getContents().addAll(rc.getSet());
+            ResourceChanger rc= new ResourceChanger();
+            expr.accept(rc);
+            a.eResource().getContents().addAll(rc.getSet());
             
             a.getContents().add(expr);
 
@@ -225,8 +226,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 			
 		}
 		private void handle(EObject typ) {
-			if(typ!=null && typ.eResource()!=null && typ.eResource().getURI()!=null){
-				URI uri= typ.eResource().getURI();
+			if(typ!=null && (typ.eResource()==null || typ.eResource().getURI()!=null)){
+				URI uri= typ.eResource()==null?null:typ.eResource().getURI();
 				System.err.println(uri);
 				System.err.println(typ.eResource().getContents());
 				if( uri.equals(URI.createURI("ocl:///oclenv.ecore"))){
@@ -242,8 +243,17 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 		protected EPackage handlePropertyCallExp(
 				PropertyCallExp<EClassifier, EStructuralFeature> callExp,
 				EPackage sourceResult, List<EPackage> qualifierResults) {
-			handle(callExp.getType());
 			return super.handlePropertyCallExp(callExp, sourceResult, qualifierResults);
+			
+		}
+		@Override
+		protected EPackage handleOppositePropertyCallExp(
+				OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+				EPackage sourceResult, List<EPackage> qualifierResults) {
+			// TODO Auto-generated methodhandleOppositePropertyCallExp stub
+			handle(callExp.getType());
+			return super.handleOppositePropertyCallExp(callExp, sourceResult,
+					qualifierResults);
 			
 		}
 		/* (non-Javadoc)
