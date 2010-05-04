@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.1 2010/05/03 20:01:59 ewillink Exp $
+ * $Id: LoadTests.java,v 1.2 2010/05/04 21:37:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -39,15 +39,15 @@ public class LoadTests extends XtextTestCase
 		Resource xtextResource = resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", xtextResource.getErrors());
 		Map<EObject, Collection<Setting>> unresolved = UnresolvedProxyCrossReferencer.find(xtextResource);
-		assertEquals("Unresolved proxies", 0, unresolved.size());
+		assertNoUnresolvedProxies("Unresolved proxies", unresolved);
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
 		xmiResource.save(null);
 	}
 
-//	public void testLoad_RoyalAndLoyal_ecore() throws IOException, InterruptedException {
-//		doLoad("Copy of RoyalAndLoyal.ecore");
-//	}	
+	public void testLoad_Ecore_ecore() throws IOException, InterruptedException {
+		doLoad("Ecore.ecore");
+	}	
 
 	public void testLoad_Imports_ecore() throws IOException, InterruptedException {
 		doLoad("Imports.ecore");
@@ -57,8 +57,16 @@ public class LoadTests extends XtextTestCase
 		doLoad("Imports.ocl");
 	}	
 
+	public void testLoad_RoyalAndLoyal_ecore() throws IOException, InterruptedException {
+		doLoad("RoyalAndLoyal.ecore");
+	}	
+
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {
 		doLoad("RoyalAndLoyal.ocl");
+	}	
+
+	public void testLoad_Test_ocl() throws IOException, InterruptedException {
+		doLoad("Test.ocl");
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
