@@ -325,7 +325,7 @@ public abstract class GenClassifierImpl extends GenBaseImpl implements GenClassi
 
   public String getConstraintExpression(String constraint, String indentation)
   {
-    return indent(getConstraintExpression(constraint), indentation);
+    return indent(getConstraintExpression(constraint).replace('\r', ' ').replace("\n", "\\n"), indentation);
   }
 
   public String getValidationDelegate(String constraint)
