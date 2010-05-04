@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.2 2010/05/04 06:45:19 ewillink Exp $
+ * $Id: DefScopeAdapter.java,v 1.1 2010/05/04 06:45:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -33,14 +34,16 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 
-public class OperationContextScopeAdapter extends EssentialOCLScopeAdapter<OperationContextDeclCS>
+public class DefScopeAdapter extends EssentialOCLScopeAdapter<DefCS>
 {
-	public OperationContextScopeAdapter(OperationContextDeclCS csElement) {
+	public DefScopeAdapter(DefCS csElement) {
 		super(csElement);
 	}
 
@@ -48,24 +51,12 @@ public class OperationContextScopeAdapter extends EssentialOCLScopeAdapter<Opera
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PARAMETERS) {
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.FEATURE_CONTEXT_DECL_CS__TYPE) {
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__OPERATION) {
+		else if (containmentFeature == CompleteOCLCSTPackage.Literals.DEF_CS__PARAMETERS) {
 		}
 		else {
-			OperationRefCS csOperationRef = getTarget().getOperation();
-			while (csOperationRef instanceof QualifiedOperationRefCS) {
-				csOperationRef = ((QualifiedOperationRefCS)csOperationRef).getOperation();
-			}
-			if (csOperationRef instanceof SimpleOperationRefCS) {
-				SimpleOperationRefCS csSimpleOperationRef = (SimpleOperationRefCS)csOperationRef;
-				OperationCS operation = csSimpleOperationRef.getOperation();
-				filteredAccesses.addElementsOfScope(operation);
-				filteredAccesses.addElement("result", operation);	// FIXME transient VariableCS		
-				filteredAccesses.addElement("self", (ElementCS) operation.eContainer());
-			}
+			filteredAccesses.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getParameters());
+//			filteredAccesses.addElement("result", operation);	// FIXME transient VariableCS		
+//			filteredAccesses.addElement("self", (ElementCS) operation.eContainer());
 		}
 	}
 }
