@@ -71,6 +71,25 @@
         <eParameters name="excludingConforming" eType="#//classes/SapClass"/>
         <eParameters name="excludingTo" eType="#//classes/SapClass"/>
       </eOperations>
+      <eOperations name="getNamedValuesInScope" eType="#//classes/NamedValue">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="self.getOwningClass().formalObjectParameters->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="For a signature, only the owning class's formal object parameters are in scope."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getOwningClass" eType="#//classes/SapClass">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="if self.oclIsKindOf(MethodSignature) then    let owner = self.oclAsType(MethodSignature).owner in    if owner.oclIsKindOf(SapClass) then      owner.oclAsType(SapClass)    else      null    -- e.g., TypeAdapter    endif  else    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sideEffectFree" eType="ecore:EDataType primitivetypes.ecore#//Boolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="If this flag is set, the signature's implementation must not use a link-modifying implementation on any object of an entity class. It is permissible for an implementation to create value objects. All signatures being called by an implementation must then also have this flag set.&#xD;&#xA;&#xD;&#xA;This flag is also relevant for conformance. A signature only conforms to one with this flag set if it also has this flag set.&#xD;&#xA;&#xD;&#xA;Note that activities that do not modify the link structure may still have side effects outside of the scope of this programming model, such as producing a log entry in some persistence layer about a query being executed. Such side effects that are outside of this programming model do not count as a side effect in the sense of this flag. In particular, they do not make the program's semantics depend on execution order of such signature implementations."/>
@@ -465,7 +484,7 @@
       </eOperations>
       <eOperations name="getType" eType="#//classes/TypeDefinition">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="if self.ownedTypeDefinition->notEmpty() then    self.ownedTypeDefinition  else    if self.oclIsKindOf(Variable) then      self.oclAsType(Variable).initExpression.getType()    else if self.oclIsKindOf(Constant) then      if self.oclAsType(Constant).initExpression->notEmpty() then        self.oclAsType(Constant).initExpression.getType()      else         if self.oclAsType(Constant).&quot;iterate&quot;[dataaccess::expressions::collectionExpressions::IterateAccumulator]->notEmpty() then           self.oclAsType(Constant).&quot;iterate&quot;[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()         else           null         endif      endif    else if self.oclIsKindOf(Iterator) then      if self.oclAsType(Iterator).boundToFor->notEmpty() then        self.oclAsType(Iterator).boundToFor.collection.getType()      else if self.oclAsType(Iterator).selection->notEmpty() then        if self.oclAsType(Iterator).selection.object.getType().oclIsKindOf(NestedTypeDefinition) then          -- if the selection's object has a nested type definition, un-nest by one level          self.oclAsType(Iterator).selection.object.getType().oclAsType(NestedTypeDefinition).type        else          -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;          -- Just in case the tool doesn't do this and for the case where the object has upper          -- multiplicity 1, use the object's type as the default for the &quot;self&quot; iterator          self.oclAsType(Iterator).selection.object.getType()        endif      else        if self.oclAsType(Iterator).selection.object.getType().oclIsKindOf(NestedTypeDefinition) then          -- if the selection's object has a nested type definition, un-nest by one level          self.oclAsType(Iterator).&quot;iterate&quot;[dataaccess::expressions::collectionExpressions::IterateIterator].source.getType().               oclAsType(NestedTypeDefinition).type        else          -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;          -- Just in case the tool doesn't do this and for the case where the object has upper          -- multiplicity 1, use the object's type as the default for the &quot;self&quot; iterator          self.oclAsType(Iterator).&quot;iterate&quot;[dataaccess::expressions::collectionExpressions::IterateIterator].source.getType()        endif      endif      endif    else if self.oclIsKindOf(Including) or self.oclIsKindOf(Excluding) then      self.oclAsType(CollectionExpression).source.getType()    else if self.oclIsKindOf(Iterate) then      self.oclAsType(Iterate).iteratorExpression.getType()    else if self.oclIsKindOf(Parameter) then      if self.oclAsType(Parameter).defaultValue->notEmpty() then        self.oclAsType(Parameter).defaultValue.getType()      else        if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation->notEmpty() and        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then  &#x9;let impl = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in            impl.end.type        else          if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then            if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension->notEmpty() then              self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension.cellSet.factsType            else              if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction->notEmpty() then                self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction.factsType              else                if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction->notEmpty() then                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction->notEmpty() then                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction.output                  else                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType                  endif                else                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(CellSet) then                    let pos:Integer = self.oclAsType(Parameter).ownerSignature.input->indexOf(self.oclAsType(Parameter)) in                    if pos = 1 then                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).factsType                    else                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).                          dimensions->at(-1+pos).characteristicFunction.output                    endif                  else                    null                  endif                endif              endif            endif          else            null          endif        endif      endif    else if self.oclIsKindOf(DimensionExpression) then      -- TODO Here, the multiplicity would have to be forced to 0..*      self.oclAsType(DimensionExpression).dimension.getType()    else if self.oclIsKindOf(VariableExpression) then      self.oclAsType(VariableExpression).variable.getType()    else if self.oclIsKindOf(SignatureCallExpression) then      self.oclAsType(SignatureCallExpression).getSignature().output    else if self.oclIsKindOf(AssociationEndNavigationExpression) then      self.oclAsType(AssociationEndNavigationExpression).toEnd.type    else if self.oclIsKindOf(Replace) then      self.oclAsType(Replace).object.getType()    else if self.oclIsKindOf(Ternary) then      -- Find the &quot;least&quot; TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.      -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.      -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly      if self.oclAsType(Ternary).trueExpr.getType().conformsTo(self.oclAsType(Ternary).falseExpr.getType()) then        self.oclAsType(Ternary).falseExpr.getType()      else        self.oclAsType(Ternary).trueExpr.getType()      endif    else if self.oclIsKindOf(Selection) then      self.oclAsType(Selection).object.getType()    else      null    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif  endif"/>
+          <details key="body" value="if self.ownedTypeDefinition->notEmpty() then    self.ownedTypeDefinition  else    if self.oclIsKindOf(Variable) then      self.oclAsType(Variable).initExpression.getType()    else if self.oclIsKindOf(Constant) then      if self.oclAsType(Constant).initExpression->notEmpty() then        self.oclAsType(Constant).initExpression.getType()      else         if self.oclAsType(Constant).&quot;iterate&quot;[dataaccess::expressions::collectionExpressions::IterateAccumulator]->notEmpty() then           if self.oclAsType(Constant).initExpression->notEmpty() then             self.oclAsType(Constant).initExpression.getType()           else             self.oclAsType(Constant).&quot;iterate&quot;[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()           endif         else           null         endif      endif    else if self.oclIsKindOf(Iterator) then      if self.oclAsType(Iterator).boundToFor->notEmpty() then        if self.oclAsType(Iterator).boundToFor.collection.getType().oclIsKindOf(NestedTypeDefinition) then          -- if the selection's object has a nested type definition, un-nest by one level          self.oclAsType(Iterator).boundToFor.collection.getType().oclAsType(NestedTypeDefinition).type        else          -- the tool should infer a better match; this as a better default than &quot;null&quot;          self.oclAsType(Iterator).boundToFor.collection.getType()        endif      else        let selection:Set(Expression)=self.oclAsType(Iterator).selection.object->asSet() in        let groupby:Set(Expression)=self.oclAsType(Iterator).factOfGroupBy.object->asSet() in        let iterateexp:Set(Expression)=self.oclAsType(Iterator).&quot;iterate&quot;.source->asSet() in        let iteratesource:Set(Expression)=selection->union(groupby)->union(iterateexp) in        if iteratesource->notEmpty() then          if iteratesource->any(true).getType().oclIsKindOf(NestedTypeDefinition) then            -- if the Selection's/GroupBy's object has a nested type definition, un-nest by one level            iteratesource->any(true).getType().oclAsType(NestedTypeDefinition).type          else            -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;            -- Just in case the tool doesn't do this and for the case where the object has upper            -- multiplicity 1, use the object's type as the default for the &quot;self&quot; iterator            iteratesource->any(true).getType()          endif        else          if self.oclAsType(Iterator).groupedFactsOfGroupBy->notEmpty() then            -- the groups of a group-by expression can re-used the facts type            self.oclAsType(Iterator).factOfGroupBy.object.getType()          else            if self.oclAsType(Iterator).dimension->notEmpty() then              -- the DimensionDefinition's expression defines the dimension iterator's type              self.oclAsType(Iterator).dimension.expression.getType()            else              -- Then we have no idea how to infer the Iterator's type              null            endif          endif        endif      endif    else if self.oclIsKindOf(Including) or self.oclIsKindOf(Excluding) then      self.oclAsType(CollectionExpression).source.getType()    else if self.oclIsKindOf(Iterate) then      self.oclAsType(Iterate).iteratorExpression.getType()    else if self.oclIsKindOf(Parameter) then      if self.oclAsType(Parameter).defaultValue->notEmpty() then        self.oclAsType(Parameter).defaultValue.getType()      else        if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation->notEmpty() and        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then  &#x9;let impl = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in            impl.end.type        else          if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then            if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension->notEmpty() then              self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension.cellSet.factsType            else              if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction->notEmpty() then                self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction.factsType              else                if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction->notEmpty() then                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction->notEmpty() then                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction.output                  else                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType                  endif                else                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(CellSet) then                    let pos:Integer = self.oclAsType(Parameter).ownerSignature.input->indexOf(self.oclAsType(Parameter)) in                    if pos = 1 then                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).factsType                    else                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).                          dimensions->at(-1+pos).characteristicFunction.output                    endif                  else                    null                  endif                endif              endif            endif          else            null          endif        endif      endif    else if self.oclIsKindOf(DimensionExpression) then      -- TODO Here, the multiplicity would have to be forced to 0..*      self.oclAsType(DimensionExpression).dimension.getType()    else if self.oclIsKindOf(VariableExpression) then      self.oclAsType(VariableExpression).variable.getType()    else if self.oclIsKindOf(SignatureCallExpression) then      self.oclAsType(SignatureCallExpression).getSignature().output    else if self.oclIsKindOf(AssociationEndNavigationExpression) then      self.oclAsType(AssociationEndNavigationExpression).toEnd.type    else if self.oclIsKindOf(Replace) then      self.oclAsType(Replace).object.getType()    else if self.oclIsKindOf(Ternary) then      -- Find the &quot;least&quot; TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.      -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.      -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly      if self.oclAsType(Ternary).trueExpr.getType().conformsTo(self.oclAsType(Ternary).falseExpr.getType()) then        self.oclAsType(Ternary).falseExpr.getType()      else        self.oclAsType(Ternary).trueExpr.getType()      endif    else if self.oclIsKindOf(Selection) then      self.oclAsType(Selection).object.getType()    else      null    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif    endif  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -709,6 +728,17 @@
           <details key="constraints" value="body"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getNamedValuesInScope" eType="#//classes/NamedValue">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="-- find owner of type definition and collect the named values in scope for the owner  (let ownerSig = self.ownerSignature in  if ownerSig->notEmpty() and ownerSig.oclIsKindOf(Signature) then    ownerSig.oclAsType(Signature).getNamedValuesInScope()  else    Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported  endif)->union(  if self.ownerTypedElement->notEmpty() then    if self.ownerTypedElement.oclIsKindOf(Expression) then      self.ownerTypedElement.oclAsType(Expression).getNamedValuesInScope()    else      if self.ownerTypedElement.oclIsKindOf(NamedValue) then        self.ownerTypedElement.oclAsType(NamedValue).getNamedValuesInScope()      else        Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported      endif    endif  else    Set{}  endif)"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Needs to find the owner of the type definition, then check if it's a statement such as a variable declaration, or a method signature (meaning the owner may contribute formal object parameters) or a function signature (meaning the function expression knows the NamedValues in scope), etc."/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="signaturesWithOutput"
           upperBound="-1" eType="#//classes/Signature" eOpposite="#//classes/Signature/output"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownerTypedElement" eType="#//classes/TypedElement"
@@ -745,7 +775,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1"
           eType="#//classes/Signature">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
+          <details key="Property.oppositeRoleName" value="typeDefinition"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSignature" eType="#//classes/Signature"
@@ -783,6 +813,14 @@
       <eOperations name="isAbstract" eType="ecore:EDataType primitivetypes.ecore#//Boolean">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.implementation->isEmpty()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getImplementedAnonymousFunctionExpression" eType="ecore:EClass dataaccess.ecore#//expressions/fp/AnonymousFunctionExpr">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="let candidates = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)->asSequence() in  if candidates->isEmpty() then    null  else    candidates->at(1)  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -894,6 +932,14 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A value that can be used by name in the scope of a Block. Specializations are, e.g., Constant and Variable. Specializations may have different rules for initialization expressions."/>
       </eAnnotations>
+      <eOperations name="getNamedValuesInScope" eType="#//classes/NamedValue">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="self.owner.getNamedValuesInScope()->union(    if self.oclIsKindOf(Parameter) then      self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()    else      if self.oclIsKindOf(Iterator) then        self.oclAsType(Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(        self.oclAsType(Iterator).&quot;iterate&quot;.getNamedValuesInScope()->asSet())      else        if self.oclIsKindOf(Constant) then          self.oclAsType(Constant).&quot;iterate&quot;.getNamedValuesInScope()        else          Set{}    -- TODO further cases?        endif      endif    endif    )"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="ecore:EClass behavioral.ecore#//actions/Block"
           transient="true" eOpposite="behavioral.ecore#//actions/Block/variables"/>
     </eClassifiers>
@@ -950,7 +996,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
           eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
+          <details key="Property.oppositeRoleName" value="actualObjectParameter"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClassTypeDefinition"
@@ -978,6 +1024,21 @@
         <details key="documentation" value="An implementation that optionally specifies a position in an ordered link set telling where to apply the modification."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="at" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InScope" abstract="true">
+      <eOperations name="addNamedValuesWithNewNames" eType="#//classes/NamedValue">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="inner->union(outer->select(o | not inner->exists(i | i.name = o.name))->asSet())"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Used to build up a scope of named values, proceeding &quot;inside-out.&quot; The first argument is the already computed set of NamedValues, all of which end up in the resulting set of NamedValues. NamedValues from the second argument are added to the result set if the first NamedValue set does not contain any NamedValue with an equal name."/>
+        </eAnnotations>
+        <eParameters name="inner" eType="#//classes/NamedValue"/>
+        <eParameters name="outer" eType="#//classes/NamedValue"/>
+      </eOperations>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="constraints" nsURI="http:///data/constraints.ecore" nsPrefix="data.constraints">
@@ -1079,10 +1140,10 @@
           <details key="documentation" value="If true, data is valid over a given timespan, not only a single point in time. When writing data, the validity period is to be specified as a timespan rather than a point in time.&#xD;&#xA;&#xD;&#xA;If false, data samples are valid only at a single point in time, such as from an RFID reader or a temperature sensor. Access APIs would have to allow for conveniently finding the &quot;nearest&quot; match for a given point in time."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="theClass" lowerBound="1"
-          eType="#//classes/SapClass" transient="true" eOpposite="#//classes/SapClass/timeDependency"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
-          eType="#//classes/Association" transient="true" eOpposite="#//classes/Association/timeDependency"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="theClass" eType="#//classes/SapClass"
+          transient="true" eOpposite="#//classes/SapClass/timeDependency"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="association" eType="#//classes/Association"
+          transient="true" eOpposite="#//classes/Association/timeDependency"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="documents" nsURI="http:///data/documents.ecore" nsPrefix="data.documents">
@@ -1176,7 +1237,7 @@
           lowerBound="1" upperBound="-1" eType="#//generics/FormalTypeParameter" containment="true"
           eOpposite="#//generics/FormalTypeParameter/parameterOf"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningClassDefinition"
-          lowerBound="1" eType="#//classes/SapClass" transient="true" eOpposite="#//classes/SapClass/parameterization"/>
+          eType="#//classes/SapClass" transient="true" eOpposite="#//classes/SapClass/parameterization"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="package_" eType="ecore:EClass modelmanagement.ecore#//Package"
           transient="true" eOpposite="modelmanagement.ecore#//Package/parameterizedClasses"/>
     </eClassifiers>

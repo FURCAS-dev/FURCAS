@@ -50,7 +50,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="assignTo" lowerBound="1"
           eType="#//actions/Variable" eOpposite="#//actions/Variable/assignments"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true" eSuperTypes="data.ecore#//classes/InScope">
       <eOperations name="getOutermostBlock" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.block.getOutermostBlock()"/>
@@ -82,10 +82,26 @@
         </eAnnotations>
         <eParameters name="block" eType="#//actions/Block"/>
       </eOperations>
+      <eOperations name="getNamedValuesInScope" eType="ecore:EClass data.ecore#//classes/NamedValue">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="-- collect all NamedValue declarations introduced by statements in this statement's owning block, prior to this statement.  let pos = self.block.statements->indexOf(self) in  if pos > 1 then    self.addNamedValuesWithNewNames(    if self.block.statements->at(-1+pos).oclIsKindOf(NamedValueDeclaration) then      self.block.statements->at(-1+pos).oclAsType(NamedValueDeclaration).namedValue->asSet()    else      Set{}    endif,    self.block.statements->at(-1+pos).getNamedValuesInScope())  else    -- first statement in block; consider block itself    self.block.getNamedValuesInScope()  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getOwningClass" eType="ecore:EClass data.ecore#//classes/SapClass">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="self.block.getOwningClass()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="block" lowerBound="1"
           eType="#//actions/Block" transient="true" eOpposite="#//actions/Block/statements"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="data.ecore#//classes/FunctionSignatureImplementation">
+    <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="data.ecore#//classes/FunctionSignatureImplementation data.ecore#//classes/InScope">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A block contains statements and provides a scope, e.g., for block-local variables. Such a scope can be used for mapping to and from an operation's signature. A block accepts a number of values for a set of variables and as such is parameterizable. Additional variables can be introduced in the block that will not be provided to the block by its surrounding context. Those are considered the block's &quot;local variables.&quot;&#xD;&#xA;&#xD;&#xA;A block can be executed like in SmallTalk, dynamically binding its arguments at runtime.&#xD;&#xA;&#xD;&#xA;With this, an operation is only a very thin wrapper around a Block.&#xD;&#xA;&#xD;&#xA;The parameters of a block are always defined by the signature that is implemented by the block."/>
       </eAnnotations>
@@ -116,6 +132,25 @@
           <details key="constraints" value="body"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getNamedValuesInScope" eType="ecore:EClass data.ecore#//classes/NamedValue">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="self.addNamedValuesWithNewNames(  -- Handle Foreach  let s:Set(NamedValue)=Set{} in  s->union(if owningStatement.oclIsKindOf(Foreach) then    owningStatement.oclAsType(Foreach).forVariable->asSet()  else    Set{}  endif)->union(  -- add parameters for those blocks that are used as a signature implementation  functionSignature.input->asSet()  )->union(  implements_.input->asSet()  ),  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block  if owningStatement->notEmpty() then    owningStatement.getNamedValuesInScope()  else    -- add formal object parameters from owning class    let oc = self.getOwningClass() in    if oc->notEmpty() then      oc.formalObjectParameters->asSet()    else      Set{}    endif  endif)"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Determines all NamedValues that are in scope for all statements of this block. For example, in the block of a Foreach statement, the Foreach Iterator is in scope for all contained statements. If the block is nested in a statement (such as for an &quot;if&quot; statement), the NamedValues in scope for the containing statement are added as well. Additionally, if the block occurs as a signature implementation, the signature parameters are added. If this block occurs in an object-parameterized class, the formal object parameters are also added.&#xD;&#xA;&#xD;&#xA;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getOwningClass" eType="ecore:EClass data.ecore#//classes/SapClass">
+        <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+          <details key="body" value="let outermost = self.getOutermostBlock() in  let implementedSignature = outermost.getImplementedSignature() in  if implementedSignature->notEmpty() then    implementedSignature.getOwningClass()  else    null  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
           eType="#//actions/Statement" containment="true" eOpposite="#//actions/Statement/block"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
@@ -124,7 +159,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningStatement" eType="#//actions/StatementWithNestedBlocks"
           transient="true" eOpposite="#//actions/StatementWithNestedBlocks/nestedBlocks"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IfElse" eSuperTypes="#//actions/StatementWithNestedBlocks dataaccess.ecore#//expressions/Conditional">
+    <eClassifiers xsi:type="ecore:EClass" name="IfElse" eSuperTypes="#//actions/ConditionalStatement #//actions/StatementWithNestedBlocks">
       <eOperations name="getIfBlock" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.nestedBlocks->at(1)"/>
@@ -142,7 +177,7 @@
         </eAnnotations>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//actions/SingleBlockStatement dataaccess.ecore#//expressions/Conditional">
+    <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//actions/ConditionalStatement #//actions/SingleBlockStatement">
       <eOperations name="getLoopBody" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.nestedBlocks->at(1)"/>
@@ -277,7 +312,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="namedValue" lowerBound="1"
           eType="#//actions/NamedValueWithOptionalInitExpression">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
+          <details key="Property.oppositeRoleName" value="namedValueDeclaration"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -309,10 +344,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
           containment="true">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
+          <details key="Property.oppositeRoleName" value="initExpressionFor"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionalStatement" abstract="true"
+        eSuperTypes="dataaccess.ecore#//expressions/Conditional #//actions/Statement"/>
   </eSubpackages>
   <eSubpackages name="rules" nsURI="http:///behavioral/rules.ecore" nsPrefix="behavioral.rules">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

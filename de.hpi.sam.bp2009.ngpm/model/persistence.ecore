@@ -59,9 +59,10 @@
           <details key="Property.oppositeRoleName" value=""/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="snapshotIdentifier" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="snapshotIdentifier" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
+          containment="true">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
+          <details key="Property.oppositeRoleName" value="all"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

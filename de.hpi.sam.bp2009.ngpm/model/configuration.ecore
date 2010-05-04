@@ -154,14 +154,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ContextCategoryValue" eSuperTypes="#//context_drivers/ContextCategory">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType primitivetypes.ecore#//String"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-          eType="#//context_drivers/ContextCategory" transient="true" eOpposite="#//context_drivers/ContextCategory/rootValue"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//context_drivers/ContextCategory"
+          transient="true" eOpposite="#//context_drivers/ContextCategory/rootValue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedValuesConfiguration"
           upperBound="-1" eType="#//context_drivers/ContexConfiguration" eOpposite="#//context_drivers/ContexConfiguration/includedValues"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
           eType="#//context_drivers/ContextCategoryValue" containment="true" eOpposite="#//context_drivers/ContextCategoryValue/parent"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parent" lowerBound="1"
-          eType="#//context_drivers/ContextCategoryValue" transient="true" eOpposite="#//context_drivers/ContextCategoryValue/children"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//context_drivers/ContextCategoryValue"
+          transient="true" eOpposite="#//context_drivers/ContextCategoryValue/children"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="excludedValuesConfiguration"
           upperBound="-1" eType="#//context_drivers/ContexConfiguration" eOpposite="#//context_drivers/ContexConfiguration/excludedValues"/>
     </eClassifiers>

@@ -1,0 +1,83 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package abapmapping.abapdictionary;
+
+import org.eclipse.emf.ecore.EObject;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Abap Structure Field</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link abapmapping.abapdictionary.AbapStructureField#getName <em>Name</em>}</li>
+ *   <li>{@link abapmapping.abapdictionary.AbapStructureField#getType <em>Type</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField()
+ * @model
+ * @generated
+ */
+public interface AbapStructureField extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' containment reference.
+   * @see #setName(runtime.primitivetypes.String)
+   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Name()
+   * @model containment="true"
+   * @generated
+   */
+  runtime.primitivetypes.String getName();
+
+  /**
+   * Sets the value of the '{@link abapmapping.abapdictionary.AbapStructureField#getName <em>Name</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' containment reference.
+   * @see #getName()
+   * @generated
+   */
+  void setName(runtime.primitivetypes.String value);
+
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' reference.
+   * @see #setType(AbapType)
+   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Type()
+   * @model required="true"
+   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+   * @generated
+   */
+  AbapType getType();
+
+  /**
+   * Sets the value of the '{@link abapmapping.abapdictionary.AbapStructureField#getType <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' reference.
+   * @see #getType()
+   * @generated
+   */
+  void setType(AbapType value);
+
+} // AbapStructureField
