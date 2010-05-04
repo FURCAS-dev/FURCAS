@@ -38,12 +38,12 @@ plugin@org.eclipse.ocl.examples.parser=v201005040140,:pserver:anonymous@dev.ecli
 plugin@org.eclipse.ocl.examples.parser.ocl=v201004240200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.ocl
 plugin@org.eclipse.ocl.examples.parser.unresolved=v201004240200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.unresolved
 plugin@org.eclipse.ocl.examples.project.empty=v201004240200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.empty
-plugin@org.eclipse.ocl.examples.project.royalandloyal=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.royalandloyal
+plugin@org.eclipse.ocl.examples.project.royalandloyal=v201005041200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.project.royalandloyal
 
 plugin@org.eclipse.ocl.examples.xtext.base=v201004240200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.base
-plugin@org.eclipse.ocl.examples.xtext.completeocl=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl
+plugin@org.eclipse.ocl.examples.xtext.completeocl=v201005041200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl
 plugin@org.eclipse.ocl.examples.xtext.completeocl.ui=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl.ui
-plugin@org.eclipse.ocl.examples.xtext.essentialocl=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl
+plugin@org.eclipse.ocl.examples.xtext.essentialocl=v201005041200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl
 plugin@org.eclipse.ocl.examples.xtext.essentialocl.ui=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl.ui
 plugin@org.eclipse.ocl.examples.xtext.oclinecore=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore
 plugin@org.eclipse.ocl.examples.xtext.oclinecore.ui=v201005040140,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore.ui
