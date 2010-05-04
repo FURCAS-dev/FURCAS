@@ -11,7 +11,7 @@
 --------------------------------------------------------------------------------
 
 
---Uncomment the next line to use the Xtext editor in 3.0.0M7 (expect 36 errors!)
+--Uncomment the next line to use the Xtext editor in 3.0.0M7 (expect 5 errors)
 --import 'RoyalAndLoyal.ecore'
 
 package RandL
@@ -221,9 +221,9 @@ inv invariant_Membership5 :
 
 context Service
 inv invariant_Service5 :
-	'Anneke'.toUpper() = 'ANNEKE'
+	'Anneke'.toUpperCase() = 'ANNEKE'
 inv invariant_Service6 :
-	'Anneke'.toLower() = 'anneke'
+	'Anneke'.toLowerCase() = 'anneke'
 inv invariant_Service7 :
 	('Anneke and Jos'.substring(12, 14)) = 'Jos'
 inv invariant_Service4 :
