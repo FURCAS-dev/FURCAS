@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.3 2010/05/04 21:35:58 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.4 2010/05/05 05:22:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.ENamedElement;
@@ -36,21 +35,15 @@ import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.internal.InternalOCLinEcoreParser;
-import org.eclipse.xtext.conversion.IValueConverterService;
-import org.eclipse.xtext.linking.impl.LinkingHelper;
-import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultCrossReferenceSerializer;
-
-import com.google.inject.Inject;
 
 public class OCLinEcoreCrossReferenceSerializer extends DefaultCrossReferenceSerializer
 {
-	@Inject
-	private IValueConverterService valueConverter;
+//	private final SimpleAttributeResolver<EObject, String> aliasResolver;
 
 	public OCLinEcoreCrossReferenceSerializer() {
 		super();
+//		aliasResolver = SimpleAttributeResolver.newResolver(String.class, "alias");
 	}
 
 	@Override
@@ -66,6 +59,8 @@ public class OCLinEcoreCrossReferenceSerializer extends DefaultCrossReferenceSer
 			return ((ReferenceCS) object).getName();
 		if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_CS_REF__REF) && (context instanceof ModelElementCSRef))
 			return ((NamedElementCS) object).getName();
+//		if ((reference == OCLinEcoreCSTPackage.Literals.NAMED_ELEMENT_CS__NAME) && (context instanceof TypeCS))
+//			return "::" + ((TypeCS) object).getName();
 		return super.getUnconvertedLinkText(object, reference, context);
 	}
 
@@ -85,16 +80,9 @@ public class OCLinEcoreCrossReferenceSerializer extends DefaultCrossReferenceSer
 			if (s.length() > 0){
 				s.append("::");
 			}
-			s.append(valueConverter.toString(objectPath.get(i), "Identifier"));
-		}
-		if ((s.length() <= 0) && (iSize > 0)) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1), "Identifier"));
+			s.append(objectPath.get(i));
 		}
 		return s.toString();
-	}
-
-	public String convertIdentifier(String convertMe) {
-		return valueConverter.toString(convertMe, "Identifier");
 	}
 
 	private List<String> getPath(EObject eObject) {

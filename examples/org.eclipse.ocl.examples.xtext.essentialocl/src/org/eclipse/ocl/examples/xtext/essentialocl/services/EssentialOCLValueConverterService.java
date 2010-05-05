@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.3 2010/05/04 21:35:56 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.4 2010/05/05 05:22:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -52,8 +52,8 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		};
 	}
 
-	@ValueConverter(rule = "Identifier")
-	public IValueConverter<String> Identifier() {
+	@ValueConverter(rule = "ID")
+	public IValueConverter<String> ID() {
 		return new AbstractNullSafeConverter<String>() {
 			
 			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
