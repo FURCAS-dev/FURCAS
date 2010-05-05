@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.2 2010/05/04 21:37:48 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.3 2010/05/05 05:22:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -48,12 +48,6 @@ public class SerializeTests extends XtextTestCase
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
 		assertNoDiagnosticErrors("Concrete Syntax valiation failed", diagnostics);
 		xtextResource.save(null);
-		
-		resourceSet.getResources().clear();
-		XtextResource reloadedResource = (XtextResource) resourceSet.getResource(outputURI, true);
-		assertNoResourceErrors("Reload failed", reloadedResource.getErrors());
-		
-		
 		return documentCS;
 	}
 
