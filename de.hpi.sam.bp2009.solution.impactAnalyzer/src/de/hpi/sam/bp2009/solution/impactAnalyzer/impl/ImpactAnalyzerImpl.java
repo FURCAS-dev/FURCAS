@@ -2,6 +2,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
@@ -13,7 +14,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
 
 /**
@@ -22,26 +26,69 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     
+    private HashMap<OCLExpression<EClassifier>, FilterSynthesis> expToFilterSyn = new HashMap<OCLExpression<EClassifier>, FilterSynthesis>();
+    private PathCache pathCache = new PathCache();
+    
+    /**
+     * @return the expToFilterSyn
+     */
+    HashMap<OCLExpression<EClassifier>, FilterSynthesis> getExpToFilterSyn() {
+        return expToFilterSyn;
+    }
+
+    /**
+     * @return the pathCache
+     */
+    PathCache getPathCache() {
+        return pathCache;
+    }
+
+    /**
+     * @param expToFilterSyn the expToFilterSyn to set
+     */
+    void setExpToFilterSyn(HashMap<OCLExpression<EClassifier>, FilterSynthesis> expToFilterSyn) {
+        this.expToFilterSyn = expToFilterSyn;
+    }
+
+    /**
+     * @param pathCache the pathCache to set
+     */
+    void setPathCache(PathCache pathCache) {
+        this.pathCache = pathCache;
+    }
+
     @Override
-    public EventFilter createFilterForQuery(OCLExpression<EClassifier> query, boolean notifyNewContextElements) {
-        //ported MOIN implementation
-        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(query, notifyNewContextElements);
-        System.out.println("createFilterForQuery");
+    public EventFilter createFilterForQuery(OCLExpression<EClassifier> expression, boolean notifyNewContextElements) {
+        FilterSynthesis filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
+        this.getExpToFilterSyn().put(expression, filtersyn);
         return filtersyn.getSynthesisedFilter();
     }
     
     @Override
-    public Collection<EObject> getContextObjects(Notification event,
-            OCLExpression<EClassifier> query, EClass cls) {
-        //only very naive implementation
+    public Collection<EObject> getAllContextObjects(Notification event) {
         Resource resource = ((EObject)event.getNotifier()).eResource();
         Collection<EObject> result = new BasicEList<EObject>();
         TreeIterator<EObject> contents = resource.getAllContents();
         while(contents.hasNext()){
             result.add(contents.next());
         }
-        System.out.println("getContextObjects");
         return result;
+    }
+
+    @Override
+    public Collection<EObject> getContextObjects(Notification event,
+            OCLExpression<EClassifier> expression, EClass context) {
+        if(!(this.getExpToFilterSyn().containsKey(expression))){
+            createFilterForQuery(expression, true);
+        }
+        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, this.getPathCache(), this.getExpToFilterSyn().get(expression));        
+        return instanceScopeAnalysis.getContextObjects(event, expression, context);
+    }
+
+    @Override
+    public void reset() {
+        this.getExpToFilterSyn().clear();
+        this.setPathCache(new PathCache());       
     }
 
 } //ImpactAnalyzerImpl

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
@@ -22,13 +23,17 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
 /**
  * Collects the events for a single {@link OCLExpression} recursively. The analyzer can be parameterized during
@@ -42,7 +47,7 @@ import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
  * 
  */
 public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
-EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
+EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> implements FilterSynthesis{
 
     final private boolean notifyNewContextElements;
     /**
@@ -76,8 +81,63 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     public EventFilter getSynthesisedFilter() {
         // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
         // redundant/duplicate filters
-    	return EventFilterFactory.getInstance().getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
+        return EventFilterFactory.getInstance().getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
 
+    }
+
+    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression) {
+        Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
+        if (result == null) {
+            result = Collections.emptySet();
+        }
+        return result;
+    }
+
+    @Override
+    public EPackage handlePropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> propCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
+        EClass cls = (EClass) propCallExp.getSource().getType();
+        addFilter(EventFilterFactory.getInstance().createFilterForStructuralFeature(cls,propCallExp.getReferredProperty() ));
+        return result;
+    }
+
+    @Override
+    public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> opCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
+
+        if (opCallExp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES) ) {
+            EClass cls = (EClass) opCallExp.getSource().getType();
+            addFilter(createFilterForElementInsertionOrDeletion(cls));
+        } else {
+            if (opCallExp.getOperationCode() > 0){
+                safeVisit(opCallExp.getSource());
+                for (OCLExpression<EClassifier> args: opCallExp.getArgument()){
+                    safeVisit(args);
+                }               
+            } else {
+                //TODO check whether it works like intended
+                OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), opCallExp.getReferredOperation());
+                if (body != null) {
+                    Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
+                    if (analyzedCallsToBody == null) {
+                        analyzedCallsToBody = new HashSet<OperationCallExp>();
+                        // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+                        visitedOperationBodies.put(body, analyzedCallsToBody);
+                        safeVisit(body);
+                    }
+                    analyzedCallsToBody.add((OperationCallExp) opCallExp);
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
+        if ( var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
+                && notifyNewContextElements) {
+            EClass cls = (EClass) var.getType();
+            addFilter(createFilterForElementInsertionOrDeletion(cls));
+        }
+        return result;
     }
 
     /**
@@ -89,62 +149,16 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         filters.add(filter);
     }
 
-    @Override
-    public EPackage handlePropertyCallExp(org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> exp, EPackage sourceResult, List<EPackage> qualifierResults) {
-    	 addFilter(EventFilterFactory.getInstance().createFilterForStructuralFeature((EClass) exp.getSource().getType(),exp.getReferredProperty() ));
-        return result;
-    }
-
-    @Override
-    public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> exp, EPackage sourceResult, List<EPackage> qualifierResults) {
-
-        if (exp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES) ) {
-            OCLExpression<EClassifier> typeExp = exp.getSource();
-            addFilter(EventFilterFactory.getInstance().
-            		createFilterForElementInsertionOrDeletion((EClass) typeExp.getType()));
-        } else {
-            if (exp.getOperationCode() > 0){
-                safeVisit(exp.getSource());
-                for (OCLExpression<EClassifier> o: exp.getArgument()){
-                    safeVisit(o);
-                }               
-            } else {
-                //TODO check whether it works like intended
-                OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), exp.getReferredOperation());
-                if (body != null) {
-                    Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
-                    if (analyzedCallsToBody == null) {
-                        analyzedCallsToBody = new HashSet<OperationCallExp>();
-                        // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
-                        visitedOperationBodies.put(body, analyzedCallsToBody);
-                        safeVisit(body);
-                    }
-                    analyzedCallsToBody.add((OperationCallExp) exp);
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
-        if ( var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
-                && notifyNewContextElements) {
-            addFilter(EventFilterFactory.getInstance().createFilterForElementInsertion((EClass) var.getType()));
-        }
-        return result;
-    }
-    
     /**
-     * Returns all the calls to the operation whose body is <tt>operationBody</tt> that are reachable
-     * from the root expression analyzed by this {@link ClassScopeAnalyzer}. If no such calls exist,
-     * an empty set is returned.
+     * @param clazz
+     * @return a filter containing a element creation or deletion filter for all sub types of the given class
      */
-    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression) {
-        Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
-        if (result == null) {
-            result = Collections.emptySet();
+    private EventFilter createFilterForElementInsertionOrDeletion(EClass clazz) {
+        OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
+        for(EClass cls: EcoreHelper.getInstance().getAllSubclasses(clazz)){
+            orFilter.getFilters().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(cls));
         }
-        return result;
+        orFilter.getFilters().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(clazz));
+        return orFilter;
     }
 } //FilterSynthesisImpl

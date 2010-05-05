@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 
 
 public interface ImpactAnalyzer {
@@ -40,10 +41,22 @@ public interface ImpactAnalyzer {
 	/**
 	 * Calculates all context objects for an event, which should be starting point of the evaluation of the given query
 	 * @param event the event to calculate for
-	 * @param query the query which should be reevaluated
-	 * @param cls the context of the query
-	 * @return all relevant context objects
+	 * @return all context objects
 	 */
-	Collection<EObject> getContextObjects(Notification event, OCLExpression<EClassifier> expression, EClass context);
+	Collection<EObject> getAllContextObjects(Notification event);
 
+	/**
+         * Calculates all context objects for an event, which should be starting point of the evaluation of the given query,
+         * with the help of the {@link InstanceScopeAnalysis}
+         * @param event the event to calculate for
+         * @param query the query which should be reevaluated
+         * @param cls the context of the query
+         * @return all relevant context objects
+         */
+        Collection<EObject> getContextObjects(Notification event, OCLExpression<EClassifier> expression, EClass context);
+
+        /**
+         * resets all instance variables of the {@link ImpactAnalyzer} e.g. PathCache
+         */
+        void reset();
 } // ImpactAnalyzer
