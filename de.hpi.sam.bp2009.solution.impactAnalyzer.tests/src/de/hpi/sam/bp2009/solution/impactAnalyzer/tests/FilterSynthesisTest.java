@@ -15,48 +15,47 @@ import org.junit.Test;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 /**
  * Class scope analysis test
  */
-public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest {
+public class FilterSynthesisTest extends BaseDepartmentTest {
 
     private ImpactAnalyzer ia;
 
     private final Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
 
-    /**
-     * Checks a Set of EvaluationContext against a Set of expected
-     * OclStatements.
-     * 
-     * @param iaResult
-     * @param expectedAffectedStmts
-     * @return <tt>true</tt> iff each OclStatement in
-     * <tt>expectedAffectedStmts</tt> is contained in an EvaluationContext in
-     * <tt>iaResult</tt> and vice versa.
-     */
-    private boolean checkAffectedStatements( Set<OCLExpression<EClassifier>> iaResult, Set<OCLExpression<EClassifier>> expectedAffectedStmts ) {
-
-        if ( iaResult.size( ) != expectedAffectedStmts.size( ) ) {
-            return false;
+    @Override
+    @Before
+    public void setUp( ) {
+    
+        super.setUp( );
+    
+        // create some instances
+        this.createInstances( 1, 5, 1 );
+    
+        if ( this.stmts.isEmpty( ) ) {
+            this.stmts.add( this.notBossFreelanceAST );
+            this.stmts.add( this.validAssignmentAST );
+            this.stmts.add( this.uniqueNamesAST );
+            this.stmts.add( this.oldEmployeeAST );
+            this.stmts.add( this.bossHighestSalaryAST );
+            this.stmts.add( this.bossIsOldestAST );
+            this.stmts.add( this.maxJuniorsAST );
         }
-        Set<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>( );
-        for ( Iterator<OCLExpression<EClassifier>> i = iaResult.iterator( ); i.hasNext( ); ) {
-            affectedStmts.add( i.next( ));
+        if ( this.ia == null ) {
+            this.ia = new ImpactAnalyzerImpl();
+            Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator();
+            while(i.hasNext()){
+                OCLExpression<EClassifier> exp = i.next();
+                //filter isn't saved, because this is done for caching purpose only
+                this.ia.createFilterForQuery(exp, true);
+            }           
         }
-
-        if ( affectedStmts.containsAll( expectedAffectedStmts ) ) {
-            return true;
-        }
-        return false;
-
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.sap.tc.jtools.jver.framework.Test#cleanUp()
-     */
     @Override
     @After
     public void tearDown( ) {
@@ -66,179 +65,89 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
         this.ia = null;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.sap.tc.jtools.jver.framework.Test#prepare()
-     */
-    @Override
-    @Before
-    public void setUp( ) {
-
-        super.setUp( );
-
-        // create some instances
-        this.createInstances( 1, 5, 1 );
-
-        if ( this.stmts.isEmpty( ) ) {
-            this.stmts.add( this.notBossFreelanceAST );
-            this.stmts.add( this.validAssignmentAST );
-            this.stmts.add( this.uniqueNamesAST );
-            this.stmts.add( this.oldEmployeeAST );
-            this.stmts.add( this.bossHighestSalaryAST );
-            this.stmts.add( this.bossIsOldestAST );
-            this.stmts.add( this.maxJuniorsAST );
-            // this.stmts.add(this.expensesRestrictionAST);
-        }
-        if ( this.ia == null ) {
-            this.ia = new ImpactAnalyzerImpl();
-            Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator();
-            while(i.hasNext()){
-                OCLExpression<EClassifier> exp = i.next();
-                //why filter isn't saved?? we think this is done for caching purpose only
-                this.ia.createFilterForQuery(exp, true);
-            }           
-        }
-    }
-
-    /**
-     * prints out all statements which will be fed into IA
-     * 
-     */
-    @Test
-    public void testPrintAllStmts( ) {
-
-        System.out.println( "===Statements:=============================================\n" );
-        for ( Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator( ); i.hasNext( ); ) {
-            OCLExpression<EClassifier> stmt = i.next( );
-            System.out.println( stmt );
-        }
-        System.out.println( "===END====================================================\n" );
-    }
-
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testAttributeValueChangedEventAge( ) {
-        
-        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.age)'===\n" );
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Long( 23 ), new Long( 42 )); 
+
+        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.bossIsOldestAST);
-        expectedStmts.add(this.maxJuniorsAST);        
-        
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);       
-        assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
-        System.out.println( "===END=======================================================\n\n" );
-    }
+        expectedStmts.add(this.maxJuniorsAST);                            
 
-    /**
-     * @param noti a {@link Notification} including a model change
-     * @return the {@link OCLExpression<EClassifier>}s which are affected by the given {@link Notification}
-     */
-    private HashSet<OCLExpression<EClassifier>> filterStatementsForNotification(Notification noti) {
-        HashSet<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>();
-        Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator();
-        while(i.hasNext()){
-            OCLExpression<EClassifier> exp = i.next();
-            EventFilter filter = this.ia.createFilterForQuery(exp, true);           
-            if (filter.matchesFor(noti)){
-                affectedStmts.add(exp);
-            }
-        }
-        return affectedStmts;
+        assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
-     * @throws Exception
      */
     @Test
     public void testAttributeValueChangedEventAssignment( ) {
-
-        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Freelance.assignment)'===\n" );
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, new Long( 23 ), new Long( 42 ));
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.validAssignmentAST);
-        
+       
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testAttributeValueChangedEventName( ) {
-
         Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeName, "Hinz", "Kunz" );
-        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.name)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.uniqueNamesAST);
         
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testAttributeValueChangedEventSalary( ) {
-
         Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeSalary, new Long( 1234 ), new Long( 1234 ) );
-        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Employee.salary)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.bossHighestSalaryAST);
-        //expectedStmts.add(this.expensesRestrictionAST);
-        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-      
-        System.out.println( "===END=======================================================\n\n" );
+
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );     
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testAttributeValueChangedEventBudget( ) {
-
         Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Long( 1234 ), new Long( 1234 ) );
-        System.out.println( "===affected Statements for 'AttributeValueChangedEvent(Department.budget)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);        
-        Set<OCLExpression<EClassifier>> expectedStmts = Collections.emptySet( );//expectedStmts.add(this.expensesRestrictionAST);
-        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
+        Set<OCLExpression<EClassifier>> expectedStmts = Collections.emptySet( );
         
-        System.out.println( "===END=======================================================\n\n" );
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );        
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testElementAddedEventDepartment( ) {
-
         Notification noti = NotificationHelper.createElementAddNotification(this.aDivision, this.departmentRef, comp.getCompanyFactory().createDepartment() );
-        System.out.println( "===affected Statements for 'ElementAddedEvent(Department)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
@@ -248,137 +157,136 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
         expectedStmts.add(this.bossHighestSalaryAST);
        
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testElementAddedEventEmployee( ) {
-
         Notification noti = NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef,  comp.getCompanyFactory().createEmployee() );
-        System.out.println( "===affected Statements for 'ElementAddedEvent(Employee)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.uniqueNamesAST);
         expectedStmts.add(this.bossIsOldestAST);
+        //added by bp2009
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.maxJuniorsAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
-
+    
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testElementAddedEventFreelance( ) {
-
         Notification noti = NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef, comp.getCompanyFactory().createFreelance() );
-        System.out.println( "===affected Statements for 'ElementAddedEvent(Freelance)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.validAssignmentAST);
         expectedStmts.add(this.uniqueNamesAST);
         expectedStmts.add(this.bossIsOldestAST); 
+        //added by bp2009
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.maxJuniorsAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testElementRemovedEventDepartment( ) {
-
         Notification noti = NotificationHelper.createElementDeleteNotification( this.aDepartment );
-        System.out.println( "===affected Statements for 'ElementRemovedEvent(Department)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = Collections.emptySet();
+        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        //added by bp2009
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.notBossFreelanceAST);
+        expectedStmts.add(this.maxJuniorsAST); 
+        expectedStmts.add(this.bossHighestSalaryAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testElementRemovedEventEmployee( ) {
-
         Notification noti = NotificationHelper.createElementDeleteNotification( this.aEmployee );
-        System.out.println( "===affected Statements for 'ElementRemovedEvent(Employee)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.uniqueNamesAST);
+        //added by bp2009
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.maxJuniorsAST);
+        expectedStmts.add(this.bossIsOldestAST);
 
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testElementRemovedEventFreelance( ) {
 
         Notification noti = NotificationHelper.createElementDeleteNotification( this.aFreelance );
-        System.out.println( "===affected Statements for 'ElementRemovedEvent(Freelance)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.uniqueNamesAST);
+        //added by bp2009
+        expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.oldEmployeeAST);
+        expectedStmts.add(this.maxJuniorsAST);
+        expectedStmts.add(this.bossIsOldestAST);
+        expectedStmts.add(this.validAssignmentAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testLinkAddedEventManages( ) {
-
         Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee());
-        System.out.println( "===affected Statements for 'LinkAddEvent(Manages)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.bossIsOldestAST);
-        // this.expensesRestrictionAST
+        //added by bp2009
+        expectedStmts.add(this.uniqueNamesAST);
+
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testLinkAddedEventWorksIn( ) {
-
         Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.employeeRef, comp.getCompanyFactory().createEmployee() );
-        System.out.println( "===affected Statements for 'LinkAddEvent(WorksIn)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
@@ -386,43 +294,36 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.maxJuniorsAST);
         expectedStmts.add(this.bossIsOldestAST);
-        // this.expensesRestrictionAST
+        //added by bp2009
+        expectedStmts.add(this.uniqueNamesAST);
+   
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testLinkRemovedEventManages( ) {
-
         Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee() );
-        System.out.println( "===affected Statements for 'LinkRemoveEvent(Manages)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.bossIsOldestAST);
-        // this.expensesRestrictionAST
         
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
-        System.out.println( "===END=======================================================\n\n" );
     }
 
     /**
      * Sends a {@link Notification} to IA and compares the returned affected
      * statements to a set of expected affected statements.
-     * 
      */
     @Test
     public void testLinkRemovedEventWorksIn( ) {
-
         Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.employeeRef, this.aEmployee );
-        System.out.println( "===affected Statements for 'LinkRemoveEvent(WorksIn)'===\n" );
         
         HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
@@ -430,11 +331,50 @@ public class FilterSynthesisTest extends de.hpi.sam.bp2009.solution.impactAnalyz
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.maxJuniorsAST);
         expectedStmts.add(this.bossIsOldestAST);
-        // this.expensesRestrictionAST
-        // TODO this fails right now because bossisoldest is returned in affected statements
-        // TODO not sure if this can be fixed
+        //added by bp2009
+        expectedStmts.add(this.uniqueNamesAST);
+        
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
-         System.out.println( "===END=======================================================\n\n" );
     }
 
+    /**
+     * @param noti a {@link Notification} including a model change
+     * @return the {@link OCLExpression<EClassifier>}s which are affected by the given {@link Notification}
+     */
+    private HashSet<OCLExpression<EClassifier>> filterStatementsForNotification(Notification noti) {
+        HashSet<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        
+        for(Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator(); i.hasNext();){
+            OCLExpression<EClassifier> exp = i.next();
+            EventFilter filter = this.ia.createFilterForQuery(exp, true); 
+            if (filter.matchesFor(noti)){
+                affectedStmts.add(exp);
+            }
+        }
+        return affectedStmts;
+    }
+
+    /**
+     * @param iaResult
+     * @param expectedAffectedStmts
+     * @return <tt>true</tt> if each {@link OCLExpression} in
+     * <tt>expectedAffectedStmts</tt> is contained in
+     * <tt>iaResult</tt> and vice versa.
+     */
+    private boolean checkAffectedStatements( Set<OCLExpression<EClassifier>> iaResult, Set<OCLExpression<EClassifier>> expectedAffectedStmts ) {
+    
+        if ( iaResult.size( ) != expectedAffectedStmts.size( ) ) {
+            return false;
+        }
+        Set<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>( );
+        for ( Iterator<OCLExpression<EClassifier>> i = iaResult.iterator( ); i.hasNext( ); ) {
+            affectedStmts.add( i.next( ));
+        }
+    
+        if ( affectedStmts.containsAll( expectedAffectedStmts ) ) {
+            return true;
+        }
+        return false;
+    
+    }
 }

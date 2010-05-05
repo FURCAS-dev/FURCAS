@@ -11,25 +11,37 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public class NotificationHelper {
     public static class TestAdapter extends AdapterImpl{
-        Notification noti= null;
-        public Notification getNoti(){
-            return noti;
-        }
+        private Notification noti= null;
 
         @Override
         public void notifyChanged(Notification notification) {
-            noti=notification;
+            setNoti(notification);
+        }
+
+        /**
+         * @param noti the {@link Notification} to set
+         */
+        void setNoti(Notification noti) {
+            this.noti = noti;
+        }
+
+        /**
+         * @return the {@link Notification}
+         */
+        Notification getNoti() {
+            return noti;
         }
     }// TestAdapter
 
-    private static Notification getNotificationfrom(TestAdapter a){
-        Notification noti = a.getNoti();
+    private static Notification getNotificationfrom(TestAdapter adapter){
+        Notification noti = adapter.getNoti();
         // this adapter removes itself once a notification is caught
-        if(a.getTarget()!=null){
-            a.getTarget().eAdapters().remove(a);
+        if(adapter.getTarget()!=null){
+            adapter.getTarget().eAdapters().remove(adapter);
         }
         return noti;
     }
+    
     public static Notification createAttributeChangeNotification(EObject notifier, EAttribute feature, Object oldValue, Object newValue) {
         EDataType dataType = feature.getEAttributeType();
         boolean validOldValue = dataType.isInstance(oldValue) || 
@@ -47,7 +59,6 @@ public class NotificationHelper {
         return null;                
     }
 
-
     @SuppressWarnings("unchecked")
     public static Notification createReferenceAddNotification(EObject notifier, EReference feature, EObject objectToAdd){
         boolean validObjectToAdd = feature.getEType().isInstance(objectToAdd);
@@ -60,11 +71,9 @@ public class NotificationHelper {
                 Object ob = notifier.eGet(feature);
                 if (ob != null && ob instanceof EList<?>){
                     ((EList<EObject>)ob).add(objectToAdd); 
-                }
-                else {
+                } else {
                     return null;
                 }
-
             } else {
                 notifier.eSet(feature, objectToAdd);
             }
@@ -86,8 +95,7 @@ public class NotificationHelper {
                     ((EList<EObject>)ob).remove(objectToRemove); 
                 } else {
                     return null;
-                }
-                                
+                }                               
             } else {
                 notifier.eUnset(feature);
             }
@@ -98,7 +106,6 @@ public class NotificationHelper {
 
     @SuppressWarnings("unchecked")
     public static Notification createElementAddNotification(EObject container, EReference ref, EObject target) {
-
         TestAdapter myTestA = new TestAdapter();
         container.eAdapters().add(myTestA);
 

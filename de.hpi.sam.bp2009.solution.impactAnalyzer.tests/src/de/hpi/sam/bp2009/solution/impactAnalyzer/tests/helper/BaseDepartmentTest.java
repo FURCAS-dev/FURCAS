@@ -21,6 +21,10 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 
+import company.CompanyFactory;
+import company.CompanyPackage;
+import company.Employee;
+import company.Freelance;
 import company.impl.DepartmentImpl;
 import company.impl.DivisionImpl;
 import company.impl.EmployeeImpl;
@@ -39,22 +43,22 @@ public class BaseDepartmentTest extends TestCase{
     /**
      * the package containing the Company/Department meta model
      */
-    protected company.CompanyPackage comp = null;
+    protected CompanyPackage comp = null;
 
     /**
-     * the set for all instances of Department
+     * the set for all instances of {@link DepartmentImpl}
      */
-    protected Set<company.impl.DepartmentImpl> allDepartments = new HashSet<company.impl.DepartmentImpl>( );
+    protected Set<DepartmentImpl> allDepartments = new HashSet<DepartmentImpl>( );
 
     /**
-     * the set of all instances of Freelance
+     * the set of all instances of {@link FreelanceImpl}
      */
-    protected Set<company.impl.FreelanceImpl> allFreelances = new HashSet<company.impl.FreelanceImpl>( );
+    protected Set<FreelanceImpl> allFreelances = new HashSet<FreelanceImpl>( );
 
     /**
-     * the set of all instances of Employee
+     * the set of all instances of {@link EmployeeImpl}
      */
-    protected Set<company.impl.EmployeeImpl> allEmployees = new HashSet<company.impl.EmployeeImpl>( );
+    protected Set<EmployeeImpl> allEmployees = new HashSet<EmployeeImpl>( );
 
     /**
      * a ID used to create unique names for employees and freelances
@@ -67,24 +71,24 @@ public class BaseDepartmentTest extends TestCase{
     protected int curDepartmentID = 0;
 
     /**
-     * a instances of Employee
+     * a instances of {@link EmployeeImpl}
      */
-    protected company.impl.EmployeeImpl aEmployee = null;
+    protected EmployeeImpl aEmployee = null;
 
     /**
-     * a instance of Department
+     * a instance of {@link DepartmentImpl}
      */
-    protected company.impl.DepartmentImpl aDepartment = null;
+    protected DepartmentImpl aDepartment = null;
 
     /**
-     * an instance of Division
+     * an instance of {@link DivisionImpl}
      */
-    protected company.impl.DivisionImpl aDivision = null;
+    protected DivisionImpl aDivision = null;
 
     /**
-     * a instance of Freelance
+     * a instance of {@link FreelanceImpl}
      */
-    protected company.impl.FreelanceImpl aFreelance = null;
+    protected FreelanceImpl aFreelance = null;
 
     /*
      * constaints
@@ -125,19 +129,6 @@ public class BaseDepartmentTest extends TestCase{
     private static final String bossHighestSalary = "context Department inv BossHighestSalary: \n" + "self.employee->select(\n" + "	e|e.salary >= self.boss.salary)->size() <= 1\n";
 
     /**
-     * the expenses per department must not exceed its budget
-     */
-    @SuppressWarnings("unused")
-    private static final String expensesRestriction = "context Department inv BudgetRestriction: \n" + "self.calcExpenses() <= self.budget";
-
-    /**
-     * defines how to calculate expenses: The sum of the employee's salary plus
-     * the boss' salary
-     */
-    @SuppressWarnings("unused")
-    private static final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" + "self.employee->iterate(e; sum=0 | sum + e.salary) + \n" + "self.boss.salary";
-
-    /**
      * this is a nasty constraint with 2 navigation path introduced by collect()
      * stating that the salaries of the employees and the bosses must not exceed
      * the division's budget.
@@ -162,7 +153,7 @@ public class BaseDepartmentTest extends TestCase{
     private static final String boss10YearsOlderThanJunior = "context Department \n" + "inv boss10YearsOlderThanJunior: \n" + "let t:Tuple(boss:Employee,junior:Employee)=" + "Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in \n" + "t.boss.age > t.junior.age + 10";
 
     /*
-     * OCL AST representing the constrains above
+     * OCLExpression representing the constrains above
      */
     protected OCLExpression<EClassifier> notBossFreelanceAST = null;
 
@@ -231,6 +222,54 @@ public class BaseDepartmentTest extends TestCase{
 
     protected EReference directedRef = null;
 
+    @Override
+    @Before
+    public void setUp( ) {
+        beforeTestMethod(true);
+    }
+
+    @Override
+    @After
+    public void tearDown() {
+        this.resetInstances( );
+    }
+
+    protected void beforeTestMethod( boolean withParsing ) {
+
+        // build up the test model
+        buildModel( );       
+        if ( withParsing ) {
+            // parse the constraints
+            parseConstraints( );
+        }
+    }
+
+    /**
+     * creates a whole bunch of instances
+     * 
+     * @param numDepartments the number of departments
+     * @param numEmployees the number of employees (not freelance) per department
+     * @param numFreelance the number of freelance per department
+     */
+    protected void createInstances( double numDepartments, int numEmployees, int numFreelance ) {
+
+        int maxNumJuniors = 3;
+        int budget = 50000;
+
+        this.aDivision = (DivisionImpl) CompanyFactory.eINSTANCE.createDivision();
+        this.aDivision.setName( "The super Division" );
+        this.aDivision.setBudget( 2000000 );
+        for ( double i = 0; i < numDepartments; i++ ) {
+            createDepartment( numEmployees, numFreelance, maxNumJuniors, budget );
+        }
+        // pick some instances to which the events will be related
+        this.aDepartment = this.allDepartments.iterator( ).next( );
+        this.aDivision.getDepartment( ).add( this.aDepartment );
+        this.aEmployee = this.allEmployees.iterator( ).next( );
+        this.aFreelance = this.allFreelances.iterator( ).next( );
+
+    }
+
     /**
      * This method fetches some meta object form the model which are used to
      * create ModelChangeEvents later on
@@ -260,17 +299,104 @@ public class BaseDepartmentTest extends TestCase{
         this.freelanceAssignment = (EAttribute) this.freelance.getEStructuralFeature( "assignment" );
     }
 
-    @Override
-    @After
-    public void tearDown() {
+    /**
+     * Creates a Department instance
+     * 
+     * @param employees number of employees which are not freelances in the department
+     * @param freelances the number of freelances in the department
+     * @param maxJuniors the value for the maxJunior attribute
+     * @param budget the value for the budget attribute
+     */
+    private company.impl.DepartmentImpl createDepartment( int employees, int freelances, int maxNumJuniors, int budget ) {
 
-        this.resetInstances( );
+        DepartmentImpl dep = (DepartmentImpl) CompanyFactory.eINSTANCE.createDepartment();
+        dep.setName( "Dep" + this.curDepartmentID );
+        dep.setMaxJuniors( maxNumJuniors );
+        dep.setBudget( budget );
+        this.curDepartmentID++;
+        EmployeeImpl e = null;
+        FreelanceImpl f = null;
+        for ( int i = 0; i < employees; i++ ) {
+            e = createEmployee( );
+            dep.getEmployee( ).add( e );
+            e.setEmployer( dep );
+        }
+        for ( int i = 0; i < freelances; i++ ) {
+            f = createFreelance( );
+            dep.getEmployee( ).add( f );
+            f.setEmployer( dep );
+        }
+        this.allDepartments.add( dep );
+        return dep;
+    }
+
+    /**
+     * @return an instance of {@link Employee}
+     */
+    private company.impl.EmployeeImpl createEmployee( ) {
+
+        EmployeeImpl e = (EmployeeImpl) CompanyFactory.eINSTANCE.createEmployee();
+        e.setName( "empl" + this.curImployeeID );
+        e.setAge( 42 );
+        e.setSalary( 2345 );
+        this.curImployeeID++;
+        this.allEmployees.add( e );
+        return e;
+    }
+
+    /**
+     * @return a instances of {@link Freelance}
+     */
+    private company.impl.FreelanceImpl createFreelance( ) {
+
+        FreelanceImpl f = (FreelanceImpl) CompanyFactory.eINSTANCE.createFreelance();
+        f.setName( "empl" + this.curImployeeID );
+        f.setAge( 42 );
+        f.setAssignment( 7 );
+        f.setSalary( 2345 );
+        this.curImployeeID++;
+        this.allFreelances.add( f );
+        return f;
+    }
+
+    /**
+     * parses the constraints
+     */
+    private void parseConstraints( ) {
+
+        this.oldEmployeeAST = parse( oldEmployee ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.notBossFreelanceAST = parse( notBossFreelance ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.uniqueNamesAST = parse( uniqueNames ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.validAssignmentAST = parse( validAssignment ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.maxJuniorsAST = parse( maxJuniors ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.bossIsOldestAST = parse( bossIsOldest ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.bossHighestSalaryAST = parse( bossHighestSalary ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.nastyConstraintAST = parse( nastyConstraint ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.divisionBossSecretaryAST = parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.secretaryOlderThanBossAST = parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.boss10YearsOlderThanJuniorAST = parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
+    }
+
+    /**
+     * @param expression to parse
+     * @return a list of {@link Constraint}s parsed from given expression
+     */
+    private List<Constraint> parse(String expression) {
+        OCLInput exp = new OCLInput(expression);
+        String nsPrefix = this.comp.getNsPrefix();
+        EPackage.Registry.INSTANCE.put(nsPrefix, this.comp);
+        ArrayList<String> path = new ArrayList<String>();
+        path.add(nsPrefix);
+        OCL ocl = OCL.newInstance();
+        ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+        List<Constraint> result = null;
         try {
-            super.tearDown();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
+            result = ocl.parse(exp);
+        } catch (ParserException e) {
+            System.err.println("Error while parsing Expression:" + exp);
             e.printStackTrace();
         }
+        return result;
     }
 
     private void resetInstances( ) {
@@ -316,151 +442,6 @@ public class BaseDepartmentTest extends TestCase{
         this.employerRef = null;
         this.employeeRef = null;
         this.directedRef = null;
-    }
-
-    /**
-     * parses the constraints
-     * @throws ParserException 
-     */
-    private void parseConstraints( ) throws ParserException {
-
-        this.oldEmployeeAST = parse( oldEmployee ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.notBossFreelanceAST = parse( notBossFreelance ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.uniqueNamesAST = parse( uniqueNames ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.validAssignmentAST = parse( validAssignment ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.maxJuniorsAST = parse( maxJuniors ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.bossIsOldestAST = parse( bossIsOldest ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.bossHighestSalaryAST = parse( bossHighestSalary ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.nastyConstraintAST = parse( nastyConstraint ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.divisionBossSecretaryAST = parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.secretaryOlderThanBossAST = parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.boss10YearsOlderThanJuniorAST = parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
-    }
-
-    /**
-     * @param expression
-     * @return
-     * @throws ParserException
-     */
-    private List<Constraint> parse(String expression) throws ParserException {
-        OCLInput exp = new OCLInput(expression);
-        EPackage.Registry.INSTANCE.put(this.comp.getNsPrefix(), this.comp);
-        ArrayList<String> path = new ArrayList<String>();
-        path.add(this.comp.getNsPrefix());
-        OCL ocl = OCL.newInstance();
-        ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
-        return ocl.parse(exp);
-    }
-
-    @Override
-    @Before
-    public void setUp( ) {
-        beforeTestMethod(true);
-    }
-
-    protected void beforeTestMethod( boolean withParsing ) {
-
-        // build up the test model used in the papers
-        buildModel( );       
-        if ( withParsing ) {
-            // parse the constraints defined in the papers
-            try {
-                parseConstraints( );
-            } catch (ParserException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    /**
-     * Creates a Department instance
-     * 
-     * @param employees number of employees which are not freelance in the
-     * department
-     * @param freelances the number of freelances in the department
-     * @param maxJuniors the value for the maxJunior attribute
-     * @param budget the value for the budget attribute
-     */
-    private company.impl.DepartmentImpl createDepartment( int employees, int freelances, int maxNumJuniors, int budget ) {
-
-        DepartmentImpl dep = (DepartmentImpl) company.CompanyFactory.eINSTANCE.createDepartment();
-        dep.setName( "Dep" + this.curDepartmentID );
-        dep.setMaxJuniors( maxNumJuniors );
-        dep.setBudget( budget );
-        this.curDepartmentID++;
-        EmployeeImpl e = null;
-        FreelanceImpl f = null;
-        for ( int i = 0; i < employees; i++ ) {
-            e = createEmployee( );
-            dep.getEmployee( ).add( e );
-            e.setEmployer( dep );
-        }
-        for ( int i = 0; i < freelances; i++ ) {
-            f = createFreelance( );
-            dep.getEmployee( ).add( f );
-            f.setEmployer( dep );
-        }
-        this.allDepartments.add( dep );
-        return dep;
-    }
-
-    /**
-     * @return an instance of Employee
-     */
-    private company.impl.EmployeeImpl createEmployee( ) {
-
-        EmployeeImpl e = (EmployeeImpl) company.CompanyFactory.eINSTANCE.createEmployee();
-        e.setName( "empl" + this.curImployeeID );
-        e.setAge( 42 );
-        e.setSalary( 2345 );
-        this.curImployeeID++;
-        this.allEmployees.add( e );
-        return e;
-    }
-
-    /**
-     * @return a instances of Freelance
-     */
-    private company.impl.FreelanceImpl createFreelance( ) {
-
-        FreelanceImpl f = (FreelanceImpl) company.CompanyFactory.eINSTANCE.createFreelance();
-        f.setName( "empl" + this.curImployeeID );
-        f.setAge( 42 );
-        f.setAssignment( 7 );
-        f.setSalary( 2345 );
-        this.curImployeeID++;
-        // this.allEmployees.add(f);
-        this.allFreelances.add( f );
-        return f;
-    }
-
-    /**
-     * creates a whole bunch of instances
-     * 
-     * @param numDepartments the number of departments
-     * @param numEmployees the number of employees (not freelance) pre
-     * department
-     * @param numFreelance the number of freelance per department
-     */
-    protected void createInstances( double numDepartments, int numEmployees, int numFreelance ) {
-
-        int maxNumJuniors = 3;
-        int budget = 50000;
-        
-            this.aDivision = (DivisionImpl) company.CompanyFactory.eINSTANCE.createDivision();
-            ( (DivisionImpl) this.aDivision ).setName( "The super Division" );
-            ( (DivisionImpl) this.aDivision ).setBudget( 2000000 );
-            for ( double i = 0; i < numDepartments; i++ ) {
-                createDepartment( numEmployees, numFreelance, maxNumJuniors, budget );
-            }
-            // pick some instances to which the events will be related
-            this.aDepartment = (DepartmentImpl) this.allDepartments.iterator( ).next( );
-            this.aDivision.getDepartment( ).add( this.aDepartment );
-            this.aEmployee = (EmployeeImpl) this.allEmployees.iterator( ).next( );
-            this.aFreelance = (FreelanceImpl) this.allFreelances.iterator( ).next( );
-        
     }
 
 }
