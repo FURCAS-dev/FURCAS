@@ -6,7 +6,6 @@
  */
 package de.hpi.sam.petriNet;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
