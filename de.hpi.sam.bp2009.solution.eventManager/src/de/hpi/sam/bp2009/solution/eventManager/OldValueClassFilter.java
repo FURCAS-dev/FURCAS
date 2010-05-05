@@ -26,29 +26,29 @@ import org.eclipse.emf.ecore.EClass;
  */
 public interface OldValueClassFilter extends EventFilter {
 	/**
-	 * Returns the value of the '<em><b>Affected Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Affected Class</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Affected Class</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Affected Class</em>' reference.
-	 * @see #setAffectedClass(EClass)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getOldValueClassFilter_AffectedClass()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Affected Class</em>' reference.
+     * @see #setAffectedClass(EClass)
+     * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getOldValueClassFilter_AffectedClass()
+     * @model
+     * @generated
+     */
 	EClass getAffectedClass();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.OldValueClassFilter#getAffectedClass <em>Affected Class</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.OldValueClassFilter#getAffectedClass <em>Affected Class</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Affected Class</em>' reference.
-	 * @see #getAffectedClass()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Affected Class</em>' reference.
+     * @see #getAffectedClass()
+     * @generated
+     */
 	void setAffectedClass(EClass value);
 
 } // OldValueClassFilter

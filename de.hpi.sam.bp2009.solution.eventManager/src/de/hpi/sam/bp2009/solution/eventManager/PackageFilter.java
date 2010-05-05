@@ -28,28 +28,28 @@ import org.eclipse.emf.ecore.EPackage;
 public interface PackageFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Wanted Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Wanted Package</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Wanted Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Wanted Package</em>' reference.
-	 * @see #setWantedPackage(EPackage)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getPackageFilter_WantedPackage()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Wanted Package</em>' reference.
+     * @see #setWantedPackage(EPackage)
+     * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getPackageFilter_WantedPackage()
+     * @model
+     * @generated
+     */
 	EPackage getWantedPackage();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getWantedPackage <em>Wanted Package</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getWantedPackage <em>Wanted Package</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Wanted Package</em>' reference.
-	 * @see #getWantedPackage()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Wanted Package</em>' reference.
+     * @see #getWantedPackage()
+     * @generated
+     */
 	void setWantedPackage(EPackage value);
 } // PackageFilter

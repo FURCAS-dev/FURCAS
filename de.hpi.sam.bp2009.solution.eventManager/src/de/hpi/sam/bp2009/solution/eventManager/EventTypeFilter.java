@@ -29,54 +29,54 @@ import org.eclipse.emf.common.notify.Notification;
 public interface EventTypeFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Matching Notification</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Matching Notification</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Matching Notification</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Matching Notification</em>' attribute.
-	 * @see #setMatchingNotification(Notification)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventTypeFilter_MatchingNotification()
-	 * @model dataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
-	 * @generated
-	 */
+     * @return the value of the '<em>Matching Notification</em>' attribute.
+     * @see #setMatchingNotification(Notification)
+     * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventTypeFilter_MatchingNotification()
+     * @model dataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
+     * @generated
+     */
 	Notification getMatchingNotification();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getMatchingNotification <em>Matching Notification</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getMatchingNotification <em>Matching Notification</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Matching Notification</em>' attribute.
-	 * @see #getMatchingNotification()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Matching Notification</em>' attribute.
+     * @see #getMatchingNotification()
+     * @generated
+     */
 	void setMatchingNotification(Notification value);
 
 	/**
-	 * Returns the value of the '<em><b>Event Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Event Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Event Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Event Type</em>' attribute.
-	 * @see #setEventType(Integer)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventTypeFilter_EventType()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Event Type</em>' attribute.
+     * @see #setEventType(Integer)
+     * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventTypeFilter_EventType()
+     * @model
+     * @generated
+     */
 	Integer getEventType();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getEventType <em>Event Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getEventType <em>Event Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Event Type</em>' attribute.
-	 * @see #getEventType()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Event Type</em>' attribute.
+     * @see #getEventType()
+     * @generated
+     */
 	void setEventType(Integer value);
 } // EventTypeFilter

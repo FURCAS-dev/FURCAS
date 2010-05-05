@@ -33,45 +33,45 @@ import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
  */
 public class OrFilterImpl extends EObjectImpl implements OrFilter {
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilters()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFilters()
+     * @generated
+     * @ordered
+     */
 	protected EList<EventFilter> filters;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OrFilterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.OR_FILTER;
-	}
+        return EventManagerPackage.Literals.OR_FILTER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<EventFilter> getFilters() {
-		if (filters == null) {
-			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.OR_FILTER__FILTERS);
-		}
-		return filters;
-	}
+        if (filters == null) {
+            filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.OR_FILTER__FILTERS);
+        }
+        return filters;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,63 +88,81 @@ public class OrFilterImpl extends EObjectImpl implements OrFilter {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EventManagerPackage.OR_FILTER__FILTERS:
-				return getFilters();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EventManagerPackage.OR_FILTER__FILTERS:
+                return getFilters();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EventManagerPackage.OR_FILTER__FILTERS:
-				getFilters().clear();
-				getFilters().addAll((Collection<? extends EventFilter>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EventManagerPackage.OR_FILTER__FILTERS:
+                getFilters().clear();
+                getFilters().addAll((Collection<? extends EventFilter>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.OR_FILTER__FILTERS:
-				getFilters().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EventManagerPackage.OR_FILTER__FILTERS:
+                getFilters().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.OR_FILTER__FILTERS:
-				return filters != null && !filters.isEmpty();
-		}
-		return super.eIsSet(featureID);
+        switch (featureID) {
+            case EventManagerPackage.OR_FILTER__FILTERS:
+                return filters != null && !filters.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
+	@Override
+	public String toString() {
+	    StringBuilder bld = new StringBuilder();
+	    boolean first = true;
+	    
+	    for(EventFilter f: getFilters()){
+	        if(!first){
+	            bld.append("\n OR ");
+	        }else{
+	            first=false;
+	        }
+	        bld.append("("); 
+	        bld.append(f.toString());
+	        bld.append(")");
+	    }
+	     
+	    return bld.toString();
 	}
 
 } //OrFilterImpl

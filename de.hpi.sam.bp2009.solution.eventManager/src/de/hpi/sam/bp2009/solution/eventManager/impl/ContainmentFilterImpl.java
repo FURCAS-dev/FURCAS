@@ -26,23 +26,23 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ContainmentFilterImpl extends EObjectImpl implements ContainmentFilter {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ContainmentFilterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.CONTAINMENT_FILTER;
-	}
+        return EventManagerPackage.Literals.CONTAINMENT_FILTER;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,6 +55,10 @@ public class ContainmentFilterImpl extends EObjectImpl implements ContainmentFil
 			return ref.isContainment();
 		}
 		return false;
+	}
+	@Override
+	public String toString() {
+	    return "filter Containment";
 	}
 
 } //ConainmentFilterImpl

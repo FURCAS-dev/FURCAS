@@ -55,14 +55,14 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		this.adapter= new EventAdapter();
 	}
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.EVENT_MANAGER;
-	}
+        return EventManagerPackage.Literals.EVENT_MANAGER;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

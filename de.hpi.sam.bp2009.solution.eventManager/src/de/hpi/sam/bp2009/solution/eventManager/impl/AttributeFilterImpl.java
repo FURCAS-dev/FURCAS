@@ -24,22 +24,22 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 public class AttributeFilterImpl extends StructuralFeatureFilterImpl implements AttributeFilter {
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AttributeFilterImpl() {
-		super();
-	}
+        super();
+    }
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.ATTRIBUTE_FILTER;
-	}
+        return EventManagerPackage.Literals.ATTRIBUTE_FILTER;
+    }
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

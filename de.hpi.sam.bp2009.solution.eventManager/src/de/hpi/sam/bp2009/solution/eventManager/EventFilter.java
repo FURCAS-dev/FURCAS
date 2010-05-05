@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EventFilter extends EObject {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model eventDataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
-	 * @generated
-	 */
+     * @model eventDataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
+     * @generated
+     */
 	boolean matchesFor(Notification event);
 
 } // EventFilter

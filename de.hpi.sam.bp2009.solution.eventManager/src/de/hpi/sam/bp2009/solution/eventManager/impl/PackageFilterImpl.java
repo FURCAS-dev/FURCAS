@@ -32,70 +32,70 @@ import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
  */
 public class PackageFilterImpl extends EObjectImpl implements PackageFilter {
 	/**
-	 * The cached value of the '{@link #getWantedPackage() <em>Wanted Package</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getWantedPackage() <em>Wanted Package</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWantedPackage()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getWantedPackage()
+     * @generated
+     * @ordered
+     */
 	protected EPackage wantedPackage;
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PackageFilterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.PACKAGE_FILTER;
-	}
+        return EventManagerPackage.Literals.PACKAGE_FILTER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EPackage getWantedPackage() {
-		if (wantedPackage != null && wantedPackage.eIsProxy()) {
-			InternalEObject oldWantedPackage = (InternalEObject)wantedPackage;
-			wantedPackage = (EPackage)eResolveProxy(oldWantedPackage);
-			if (wantedPackage != oldWantedPackage) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE, oldWantedPackage, wantedPackage));
-			}
-		}
-		return wantedPackage;
-	}
+        if (wantedPackage != null && wantedPackage.eIsProxy()) {
+            InternalEObject oldWantedPackage = (InternalEObject)wantedPackage;
+            wantedPackage = (EPackage)eResolveProxy(oldWantedPackage);
+            if (wantedPackage != oldWantedPackage) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE, oldWantedPackage, wantedPackage));
+            }
+        }
+        return wantedPackage;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EPackage basicGetWantedPackage() {
-		return wantedPackage;
-	}
+        return wantedPackage;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setWantedPackage(EPackage newWantedPackage) {
-		EPackage oldWantedPackage = wantedPackage;
-		wantedPackage = newWantedPackage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE, oldWantedPackage, wantedPackage));
-	}
+        EPackage oldWantedPackage = wantedPackage;
+        wantedPackage = newWantedPackage;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE, oldWantedPackage, wantedPackage));
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,62 +113,68 @@ public class PackageFilterImpl extends EObjectImpl implements PackageFilter {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
-				if (resolve) return getWantedPackage();
-				return basicGetWantedPackage();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
+                if (resolve) return getWantedPackage();
+                return basicGetWantedPackage();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
-				setWantedPackage((EPackage)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
+                setWantedPackage((EPackage)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
-				setWantedPackage((EPackage)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
+                setWantedPackage((EPackage)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
-				return wantedPackage != null;
-		}
-		return super.eIsSet(featureID);
+        switch (featureID) {
+            case EventManagerPackage.PACKAGE_FILTER__WANTED_PACKAGE:
+                return wantedPackage != null;
+        }
+        return super.eIsSet(featureID);
+    }
+	@Override
+	public String toString() {
+	    if(getWantedPackage()!=null)
+	        return "filter package "+getWantedPackage().toString();
+	    return "filter undefined package";
 	}
 
 } //PackageFilterImpl
