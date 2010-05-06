@@ -22,19 +22,20 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+@SuppressWarnings("all")
 public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID_TERMINAL", "RULE_SINGLE_QUOTED_STRING", "RULE_DOUBLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'.'", "'e'", "'E'", "'+'", "'-'", "'Boolean'", "'Integer'", "'Real'", "'String'", "'UnlimitedNatural'", "'OclAny'", "'OclInvalid'", "'OclVoid'", "'Set'", "'Bag'", "'Sequence'", "'Collection'", "'OrderedSet'", "'('", "')'", "'Tuple'", "','", "':'", "'{'", "'}'", "'..'", "'='", "'true'", "'false'", "'invalid'", "'null'", "'implies'", "'xor'", "'or'", "'and'", "'<>'", "'>'", "'<'", "'>='", "'<='", "'*'", "'/'", "'not'", "'->'", "';'", "'|'", "'['", "']'", "'self'", "'::'", "'if'", "'then'", "'else'", "'endif'", "'let'", "'in'"
     };
-    public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID_TERMINAL=5;
-    public static final int RULE_WS=10;
-    public static final int EOF=-1;
-    public static final int RULE_INT=4;
-    public static final int RULE_SINGLE_QUOTED_STRING=6;
     public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_SINGLE_QUOTED_STRING=6;
     public static final int RULE_DOUBLE_QUOTED_STRING=7;
+    public static final int RULE_INT=4;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=9;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=8;
 
         public InternalEssentialOCLParser(TokenStream input) {
             super(input);
@@ -126,7 +127,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject this_ExpCS_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:97:6: (this_ExpCS_0= ruleExpCS )
@@ -1247,7 +1248,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:464:6: ( ( (lv_name_0_0= rulePrimitiveTypeIdentifier ) ) )
@@ -1550,7 +1551,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject this_TupleTypeCS_3 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:568:6: ( (this_PrimitiveTypeCS_0= rulePrimitiveTypeCS | this_NameExpCS_1= ruleNameExpCS | this_CollectionTypeCS_2= ruleCollectionTypeCS | this_TupleTypeCS_3= ruleTupleTypeCS ) )
@@ -1778,7 +1779,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_typeCS_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:642:6: ( ( ( (lv_name_0_0= ruleCollectionTypeIdentifier ) ) ( '(' ( (lv_typeCS_2_0= ruleTypeExpCS ) ) ')' )? ) )
@@ -1970,7 +1971,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_part_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:721:6: ( ( ( (lv_name_0_0= 'Tuple' ) ) '(' ( ( (lv_part_2_0= ruletuplePartCS ) ) ( ',' ( (lv_part_4_0= ruletuplePartCS ) ) )* )? ')' ) )
@@ -2224,7 +2225,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_type_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:825:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ':' ( (lv_type_2_0= ruleTypeExpCS ) ) ) )
@@ -2394,7 +2395,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_collectionLiteralParts_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:900:6: ( (this_CollectionTypeCS_0= ruleCollectionTypeCS ( () '{' ( ( (lv_collectionLiteralParts_3_0= ruleCollectionLiteralPartCS ) ) ( ',' ( (lv_collectionLiteralParts_5_0= ruleCollectionLiteralPartCS ) ) )* )? '}' )? ) )
@@ -2680,7 +2681,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_lastExpressionCS_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1014:6: ( ( ( (lv_expressionCS_0_0= ruleExpCS ) ) ( '..' ( (lv_lastExpressionCS_2_0= ruleExpCS ) ) )? ) )
@@ -2871,7 +2872,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject this_NullLiteralExpCS_4 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1089:6: ( (this_NumberLiteralExpCS_0= ruleNumberLiteralExpCS | this_StringLiteralExpCS_1= ruleStringLiteralExpCS | this_BooleanLiteralExpCS_2= ruleBooleanLiteralExpCS | this_InvalidLiteralExpCS_3= ruleInvalidLiteralExpCS | this_NullLiteralExpCS_4= ruleNullLiteralExpCS ) )
@@ -3118,7 +3119,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_part_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1176:6: ( ( () 'Tuple' ( '{' ( (lv_part_3_0= ruleTupleLiteralPartCS ) ) ( ',' ( (lv_part_5_0= ruleTupleLiteralPartCS ) ) )* '}' )? ) )
@@ -3370,7 +3371,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_initExpression_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1277:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ( ':' ( (lv_type_2_0= ruleTypeExpCS ) ) )? '=' ( (lv_initExpression_4_0= ruleExpCS ) ) ) )
@@ -3599,7 +3600,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1380:6: ( ( (lv_name_0_0= ruleNUMBER_LITERAL ) ) )
@@ -3713,7 +3714,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1427:6: ( ( (lv_name_0_0= ruleStringLiteral ) )+ )
@@ -3851,7 +3852,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         Token lv_name_0_0=null;
         Token lv_name_1_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1474:6: ( ( ( (lv_name_0_0= 'true' ) ) | ( (lv_name_1_0= 'false' ) ) ) )
@@ -4021,7 +4022,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     public final EObject ruleInvalidLiteralExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1540:6: ( ( () 'invalid' ) )
@@ -4127,7 +4128,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     public final EObject ruleNullLiteralExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1581:6: ( ( () 'null' ) )
@@ -4238,7 +4239,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject this_LetExpCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1622:6: ( (this_impliesCS_0= ruleimpliesCS | this_LetExpCS_1= ruleLetExpCS ) )
@@ -4390,7 +4391,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1670:6: ( (this_xorCS_0= rulexorCS ( () ( (lv_op_2_0= 'implies' ) ) ( ( (lv_argument_3_1= rulexorCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -4687,7 +4688,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1793:6: ( (this_orCS_0= ruleorCS ( () ( (lv_op_2_0= 'xor' ) ) ( ( (lv_argument_3_1= ruleorCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -4984,7 +4985,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:1916:6: ( (this_andCS_0= ruleandCS ( () ( (lv_op_2_0= 'or' ) ) ( ( (lv_argument_3_1= ruleandCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -5281,7 +5282,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2039:6: ( (this_equalityCS_0= ruleequalityCS ( () ( (lv_op_2_0= 'and' ) ) ( ( (lv_argument_3_1= ruleequalityCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -5579,7 +5580,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2162:6: ( (this_relationalCS_0= rulerelationalCS ( () ( ( (lv_op_2_1= '=' | lv_op_2_2= '<>' ) ) ) ( ( (lv_argument_3_1= rulerelationalCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -5942,7 +5943,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2306:6: ( (this_additiveCS_0= ruleadditiveCS ( () ( ( (lv_op_2_1= '>' | lv_op_2_2= '<' | lv_op_2_3= '>=' | lv_op_2_4= '<=' ) ) ) ( ( (lv_argument_3_1= ruleadditiveCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -6397,7 +6398,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2486:6: ( (this_multiplicativeCS_0= rulemultiplicativeCS ( () ( ( (lv_op_2_1= '+' | lv_op_2_2= '-' ) ) ) ( ( (lv_argument_3_1= rulemultiplicativeCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -6758,7 +6759,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2630:6: ( (this_unaryCS_0= ruleunaryCS ( () ( ( (lv_op_2_1= '*' | lv_op_2_2= '/' ) ) ) ( ( (lv_argument_3_1= ruleunaryCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -7117,7 +7118,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_source_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2774:6: ( (this_NavigationExpCS_0= ruleNavigationExpCS | ( () ( ( (lv_op_2_1= '-' | lv_op_2_2= 'not' ) ) ) ( (lv_source_3_0= ruleunaryCS ) ) ) ) )
@@ -7404,7 +7405,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:2890:6: ( (this_SubNavigationExpCS_0= ruleSubNavigationExpCS ( ( () '.' ( (lv_argument_3_0= ruleNavigatingExpCS ) ) ) | ( () '->' ( (lv_argument_6_0= ruleNavigatingExpCS ) ) ) )? ) )
@@ -7694,7 +7695,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_argument_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3020:6: ( (this_SubNavigatingExpCS_0= ruleSubNavigatingExpCS ( ( () '.' ( (lv_argument_3_0= ruleNavigatingExpCS ) ) ) | ( () '->' ( (lv_argument_6_0= ruleNavigatingExpCS ) ) ) )? ) )
@@ -7996,7 +7997,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_source_10_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3150:6: ( (this_RoundBracketExpCS_0= ruleRoundBracketExpCS | this_SquareBracketExpCS_1= ruleSquareBracketExpCS | this_SelfExpCS_2= ruleSelfExpCS | this_PrimitiveLiteralExpCS_3= rulePrimitiveLiteralExpCS | this_TupleLiteralExpCS_4= ruleTupleLiteralExpCS | this_CollectionLiteralExpCS_5= ruleCollectionLiteralExpCS | this_TypeExpCS_6= ruleTypeExpCS | this_IfExpCS_7= ruleIfExpCS | ( '(' () ( (lv_source_10_0= ruleExpCS ) ) ')' ) ) )
@@ -8601,7 +8602,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject this_NameExpCS_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3323:6: ( (this_RoundBracketExpCS_0= ruleRoundBracketExpCS | this_SquareBracketExpCS_1= ruleSquareBracketExpCS | this_NameExpCS_2= ruleNameExpCS ) )
@@ -8836,7 +8837,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_type_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3384:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ( ':' ( (lv_type_2_0= ruleTypeExpCS ) ) )? ) )
@@ -9023,7 +9024,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_initExpression_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3459:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ':' ( (lv_type_2_0= ruleTypeExpCS ) ) '=' ( (lv_initExpression_4_0= ruleExpCS ) ) ) )
@@ -9245,7 +9246,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_arguments_10_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3562:6: ( ( ( (lv_name_0_0= ruleNameExpCS ) ) '(' ( ( (lv_variable1_2_0= ruleiteratorVariableCS ) ) ( ( ',' ( (lv_variable2_4_0= ruleiteratorVariableCS ) ) ) | ( ';' ( (lv_variable2_6_0= ruleiteratorAccumulatorCS ) ) ) )? '|' )? ( ( (lv_arguments_8_0= ruleExpCS ) ) ( ',' ( (lv_arguments_10_0= ruleExpCS ) ) )* )? ')' ) )
@@ -9307,7 +9308,10 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA52_1 = input.LA(2);
 
-                    if ( (LA52_1==33) ) {
+                    if ( (LA52_1==34||(LA52_1>=56 && LA52_1<=57)) ) {
+                        alt52=1;
+                    }
+                    else if ( (LA52_1==33) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -9338,9 +9342,6 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( (LA52_1==34||(LA52_1>=56 && LA52_1<=57)) ) {
-                        alt52=1;
                     }
                     }
                     break;
@@ -9822,7 +9823,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_arguments_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3754:6: ( ( ( (lv_name_0_0= ruleNameExpCS ) ) '[' ( (lv_arguments_2_0= ruleExpCS ) ) ( ',' ( (lv_arguments_4_0= ruleExpCS ) ) )* ']' ) )
@@ -10061,7 +10062,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     public final EObject ruleSelfExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3861:6: ( ( () 'self' ) )
@@ -10172,7 +10173,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject this_SimpleNameExpCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3902:6: ( (this_PathNameExpCS_0= rulePathNameExpCS | this_SimpleNameExpCS_1= ruleSimpleNameExpCS ) )
@@ -10185,11 +10186,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA56_1 = input.LA(2);
 
-                if ( (LA56_1==EOF||LA56_1==12||(LA56_1>=15 && LA56_1<=16)||(LA56_1>=30 && LA56_1<=31)||LA56_1==33||(LA56_1>=36 && LA56_1<=38)||(LA56_1>=43 && LA56_1<=53)||(LA56_1>=55 && LA56_1<=59)||(LA56_1>=63 && LA56_1<=65)||LA56_1==67) ) {
-                    alt56=2;
-                }
-                else if ( (LA56_1==61) ) {
+                if ( (LA56_1==61) ) {
                     alt56=1;
+                }
+                else if ( (LA56_1==EOF||LA56_1==12||(LA56_1>=15 && LA56_1<=16)||(LA56_1>=30 && LA56_1<=31)||LA56_1==33||(LA56_1>=36 && LA56_1<=38)||(LA56_1>=43 && LA56_1<=53)||(LA56_1>=55 && LA56_1<=59)||(LA56_1>=63 && LA56_1<=65)||LA56_1==67) ) {
+                    alt56=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10223,11 +10224,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA56_3 = input.LA(2);
 
-                if ( (LA56_3==EOF||LA56_3==12||(LA56_3>=15 && LA56_3<=16)||(LA56_3>=30 && LA56_3<=31)||LA56_3==33||(LA56_3>=36 && LA56_3<=38)||(LA56_3>=43 && LA56_3<=53)||(LA56_3>=55 && LA56_3<=59)||(LA56_3>=63 && LA56_3<=65)||LA56_3==67) ) {
-                    alt56=2;
-                }
-                else if ( (LA56_3==61) ) {
+                if ( (LA56_3==61) ) {
                     alt56=1;
+                }
+                else if ( (LA56_3==EOF||LA56_3==12||(LA56_3>=15 && LA56_3<=16)||(LA56_3>=30 && LA56_3<=31)||LA56_3==33||(LA56_3>=36 && LA56_3<=38)||(LA56_3>=43 && LA56_3<=53)||(LA56_3>=55 && LA56_3<=59)||(LA56_3>=63 && LA56_3<=65)||LA56_3==67) ) {
+                    alt56=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10370,7 +10371,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_element_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:3950:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleNameExpCS ) ) ) )
@@ -10532,7 +10533,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     public final EObject ruleSimpleNameExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4020:6: ( ( ( ruleIdentifier ) ) )
@@ -10649,7 +10650,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_elseExpression_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4062:6: ( ( 'if' ( (lv_condition_1_0= ruleExpCS ) ) 'then' ( (lv_thenExpression_3_0= ruleExpCS ) ) 'else' ( (lv_elseExpression_5_0= ruleExpCS ) ) 'endif' ) )
@@ -10877,7 +10878,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_in_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4173:6: ( ( 'let' ( (lv_variable_1_0= ruleLetVariableCS ) ) ( ',' ( (lv_variable_3_0= ruleLetVariableCS ) ) )* 'in' ( (lv_in_5_0= ruleExpCS ) ) ) )
@@ -11123,7 +11124,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         EObject lv_initExpression_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.essentialocl/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/parser/antlr/internal/InternalEssentialOCL.g:4280:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ':' ( (lv_type_2_0= ruleTypeExpCS ) ) '=' ( (lv_initExpression_4_0= ruleExpCS ) ) ) )
@@ -12196,11 +12197,109 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end synpred76
 
+    public final boolean synpred44() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred44_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred71() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred71_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred46() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred46_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred57() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred57_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred75() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred75_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
     public final boolean synpred72() {
         backtracking++;
         int start = input.mark();
         try {
             synpred72_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred68() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred68_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred49() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred49_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12238,118 +12337,6 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred46() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred46_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred40() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred40_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred57() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred57_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred68() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred68_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred75() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred75_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred42() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred42_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred44() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred44_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred49() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred49_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
     public final boolean synpred67() {
         backtracking++;
         int start = input.mark();
@@ -12378,11 +12365,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred60() {
+    public final boolean synpred40() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred60_fragment(); // can never throw exception
+            synpred40_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12392,11 +12379,25 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred71() {
+    public final boolean synpred42() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred71_fragment(); // can never throw exception
+            synpred42_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred60() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred60_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }

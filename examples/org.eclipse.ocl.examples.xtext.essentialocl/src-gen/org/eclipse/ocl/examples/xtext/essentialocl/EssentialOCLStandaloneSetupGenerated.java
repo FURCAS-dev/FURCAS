@@ -1,3 +1,4 @@
+
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -10,11 +11,7 @@ import com.google.inject.Injector;
 /**
  * Generated from StandaloneSetup.xpt!
  */
-public class EssentialOCLStandaloneSetup implements ISetup {
-
-	public static void doSetup() {
-		new EssentialOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
-	}
+public class EssentialOCLStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		// register default ePackages
