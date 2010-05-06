@@ -13,13 +13,13 @@
 	</target>
 
 	<target name="preFetch">
-		<!--echo message="[[[Unzipping LPG]]]" />
+		<echo message="[[[Unzipping LPG from ${downloadsDir}/${tools.orbit.file}]]]" />
 		<unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
 			<patternset>
 				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*.jar"/>
 				<include name="**/lpg.runtime.java.source_${LPGRuntimeVersion}*.jar"/>
 			</patternset>
-		</unzip-->
+		</unzip>
 		
 		<!-- Here is where we fetch all of the example plugins from CVS
 		      We don't need them to be packaged into the Master zip, but rather
