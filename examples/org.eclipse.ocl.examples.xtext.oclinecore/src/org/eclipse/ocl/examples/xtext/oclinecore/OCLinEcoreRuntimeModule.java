@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.3 2010/05/03 05:44:34 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.4 2010/05/06 17:48:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.parsetree.reconstr.ICrossReferenceSerializer;
+import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
@@ -36,7 +36,6 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 {
 	// Reference value to text serialisation.
-	@Override
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return OCLinEcoreCrossReferenceSerializer.class;
 	}

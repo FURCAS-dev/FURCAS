@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.4 2010/05/05 05:22:03 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.5 2010/05/06 17:48:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -33,11 +32,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
-import org.eclipse.xtext.parsetree.reconstr.impl.DefaultCrossReferenceSerializer;
+import org.eclipse.xtext.parsetree.reconstr.impl.CrossReferenceSerializer;
 
-public class OCLinEcoreCrossReferenceSerializer extends DefaultCrossReferenceSerializer
+public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 {
 //	private final SimpleAttributeResolver<EObject, String> aliasResolver;
 
