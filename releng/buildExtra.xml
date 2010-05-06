@@ -13,39 +13,45 @@
 	</target>
 
 	<target name="preFetch">
-		<echo message="[[[Unzipping LPG]]]" />
+		<!--echo message="[[[Unzipping LPG]]]" />
 		<unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
 			<patternset>
 				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*.jar"/>
 				<include name="**/lpg.runtime.java.source_${LPGRuntimeVersion}*.jar"/>
 			</patternset>
-		</unzip>
+		</unzip-->
 		
 		<!-- Here is where we fetch all of the example plugins from CVS
 		      We don't need them to be packaged into the Master zip, but rather
 		      they are needed so that they can be zipped up into the examples
 		      plugin as part of the build for that plugin. See the postProcess
 		      target below for the other part of this process.-->
+		<echo message="[[[Fetching org.eclipse.ocl.examples.interpreter]]]" />
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.ocl.examples.interpreter"/>
 		</ant>
+		<echo message="[[[Fetching org.eclipse.emf.examples.library]]]" />
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.emf.examples.library"/>
 		</ant>
+		<echo message="[[[Fetching org.eclipse.emf.examples.library.edit]]]" />
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.emf.examples.library.edit"/>
 		</ant>
+		<echo message="[[[Fetching org.eclipse.emf.examples.library.editor]]]" />
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.emf.examples.library.editor"/>
 		</ant>
+		<echo message="[[[Fetching org.eclipse.ocl.examples.project.empty]]]" />
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.ocl.examples.project.empty"/>
 		</ant>
+		<echo message="[[[Fetching org.eclipse.ocl.examples.project.royalandloyal]]]" />
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.ocl.examples.project.royalandloyal"/>
@@ -141,10 +147,16 @@
 			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
 			            dirmode="775"
 			            filemode="664"
-			            excludes="**/${domainNamespace}.*.examples*, **/${domainNamespace}.*.examples*/**, **/${domainNamespace}.*.samples*, **/${domainNamespace}.*.samples*/**, **/${domainNamespace}.*.sdk*, **/${domainNamespace}.*.sdk*/**, **/${domainNamespace}.*.all*, **/${domainNamespace}.*.all*/**, **/${domainNamespace}.*.doc*, **/${domainNamespace}.*.doc*/**, **/${domainNamespace}.*.source*, **/${domainNamespace}.*.source*/**, **/*src.zip"
 			>
-				<include name="**/${domainNamespace}.ocl*/" />
-				<include name="**/${domainNamespace}.ocl*/**" />
+				<include name="**/features/${domainNamespace}.ocl_*/" />
+				<include name="**/features/${domainNamespace}.ocl.edit_*/" />
+				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.edit_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore.edit_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml.edit_*/" />
 				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*" />
 				<include name="**/eclipse/epl-v10.html" />
 				<include name="**/eclipse/notice.html" />
