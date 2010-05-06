@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.3 2010/05/03 14:45:03 ewillink Exp $
+ * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.4 2010/05/06 17:56:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
@@ -59,7 +59,7 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 		}
 	}
 
-	private Resource createResourceFor(IFile storage) {
+	protected Resource createResourceFor(IFile storage) {
 		// Modified so that an XtextResource is created for an ecore file
 		ResourceSet resourceSet = getResourceSet(null);
 		URI uri = URI.createPlatformResourceURI(storage.getFullPath().toString(), true);
@@ -73,7 +73,7 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 		return resource;
 	}
 
-	private Resource createResourceFor(IJarEntryResource storage) {
+	protected Resource createResourceFor(IJarEntryResource storage) {
 		// Modified so that an XtextResource is creatred for an ecore file
 		ResourceSet resourceSet = getResourceSet(storage);
 		URI uri = storageToUriMapper.getUri(storage);
