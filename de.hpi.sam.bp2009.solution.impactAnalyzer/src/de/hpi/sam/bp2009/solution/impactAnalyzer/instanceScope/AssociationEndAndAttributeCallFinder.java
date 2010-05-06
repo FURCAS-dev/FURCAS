@@ -164,10 +164,8 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
 
     public void walk(OCLExpression<EClassifier> expression) {
         if (!visitedExpressions.contains(expression)) {
-            if (super.safeVisit(expression) != null)
-                visitedExpressions.add(expression);
-            else
-                throw new RuntimeException("The given OCLExpression is not visitable: " + expression);
+            safeVisit(expression);
+            visitedExpressions.add(expression);
         }
     }
 }

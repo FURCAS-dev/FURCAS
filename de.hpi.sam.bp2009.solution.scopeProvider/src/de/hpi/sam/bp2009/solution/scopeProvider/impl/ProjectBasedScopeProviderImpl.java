@@ -89,6 +89,9 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public QueryContext getForwardScopeAsQueryContext() {
+        if ( rs == null){
+            throw new IllegalStateException("No ResourceSet defined!");
+        }
         return new QueryContext() {
 
             @Override
@@ -146,8 +149,11 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             ResourceSet set = res.getResourceSet();
             if (rs == null && set != null) {
                 rs = set;
+            }           
+            URIConverter converter = null;
+            if( set != null){
+                converter = set.getURIConverter();
             }
-            URIConverter converter = set.getURIConverter();
             if (converter == null) {
                 converter = URIConverter.INSTANCE;
             }

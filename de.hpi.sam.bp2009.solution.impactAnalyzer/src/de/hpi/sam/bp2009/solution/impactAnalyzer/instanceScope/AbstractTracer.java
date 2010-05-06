@@ -7,6 +7,7 @@ import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
@@ -49,7 +50,13 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 			x = parent;
 			parent = getLogicalImmediateComposite(x);
 		}
-		return (OCLExpression) x;
+		if (x instanceof Constraint){
+		    return (OCLExpression) ((Constraint) x).getSpecification().getBodyExpression();
+		}
+		if (x instanceof OCLExpression){
+		    return (OCLExpression) x;
+		}
+		throw new IllegalArgumentException();
 	}
 
 	private EObject getLogicalImmediateComposite(EObject x) {

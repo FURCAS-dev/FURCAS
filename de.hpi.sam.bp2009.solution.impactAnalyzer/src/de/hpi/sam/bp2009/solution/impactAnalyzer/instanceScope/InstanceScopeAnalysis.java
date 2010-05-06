@@ -327,7 +327,7 @@ public class InstanceScopeAnalysis {
         case EcorePackage.STRING_LITERAL_EXP: return new StringLiteralExpTracer((StringLiteralExp) expression);
         case EcorePackage.TUPLE_LITERAL_EXP: return new TupleLiteralExpTracer((TupleLiteralExp) expression);
         case EcorePackage.TYPE_EXP: return new TypeExpTracer((TypeExp) expression);
-        case EcorePackage.VARIABLE: return new VariableExpTracer((VariableExp) expression);
+        case EcorePackage.VARIABLE_EXP: return new VariableExpTracer((VariableExp) expression);
         default: throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
         }
     }
