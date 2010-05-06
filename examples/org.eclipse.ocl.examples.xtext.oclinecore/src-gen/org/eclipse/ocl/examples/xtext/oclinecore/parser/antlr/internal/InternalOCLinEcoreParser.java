@@ -22,20 +22,21 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+@SuppressWarnings("all")
 public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_UNQUOTED_STRING", "RULE_SINGLE_QUOTED_STRING", "RULE_ID_TERMINAL", "RULE_DOUBLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'abstract'", "'annotation'", "'attribute'", "'body'", "'class'", "'composes'", "'datatype'", "'derived'", "'documentation'", "'enum'", "'extends'", "'id'", "'import'", "'initial'", "'interface'", "'invariant'", "'library'", "'operation'", "'ordered'", "'package'", "'property'", "'readonly'", "'resolve'", "'serializable'", "'static'", "'super'", "'transient'", "'unique'", "'unsettable'", "'volatile'", "':'", "';'", "'derivation'", "'postcondition'", "'precondition'", "'('", "','", "')'", "'{'", "'}'", "'definition'", "'['", "'..'", "'+'", "'?'", "']'", "'='", "'!derived'", "'!id'", "'!ordered'", "'!readonly'", "'!transient'", "'!unique'", "'!unsettable'", "'!volatile'", "'<'", "'>'", "'!abstract'", "'!interface'", "'!serializable'", "'throws'", "'::'", "'#'", "'!composes'", "'!resolve'", "'&&'", "'.'", "'e'", "'E'", "'-'", "'Boolean'", "'Integer'", "'Real'", "'String'", "'UnlimitedNatural'", "'OclAny'", "'OclInvalid'", "'OclVoid'", "'Set'", "'Bag'", "'Sequence'", "'Collection'", "'OrderedSet'", "'Tuple'", "'true'", "'false'", "'invalid'", "'null'", "'implies'", "'xor'", "'or'", "'and'", "'<>'", "'>='", "'<='", "'/'", "'not'", "'->'", "'|'", "'self'", "'if'", "'then'", "'else'", "'endif'", "'let'", "'in'"
     };
-    public static final int RULE_ML_COMMENT=9;
     public static final int RULE_ID_TERMINAL=7;
-    public static final int RULE_WS=11;
-    public static final int EOF=-1;
-    public static final int RULE_INT=4;
-    public static final int RULE_SINGLE_QUOTED_STRING=6;
     public static final int RULE_ANY_OTHER=12;
-    public static final int RULE_DOUBLE_QUOTED_STRING=8;
-    public static final int RULE_SL_COMMENT=10;
     public static final int RULE_UNQUOTED_STRING=5;
+    public static final int RULE_SINGLE_QUOTED_STRING=6;
+    public static final int RULE_DOUBLE_QUOTED_STRING=8;
+    public static final int RULE_INT=4;
+    public static final int RULE_WS=11;
+    public static final int RULE_SL_COMMENT=10;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=9;
 
         public InternalOCLinEcoreParser(TokenStream input) {
             super(input);
@@ -131,7 +132,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_packages_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:97:6: ( ( ( (lv_libraries_0_0= ruleLibraryCS ) )* ( (lv_imports_1_0= ruleImportCS ) )* ( (lv_packages_2_0= rulePackageCS ) )* ) )
@@ -1377,7 +1378,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_exprValue_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:533:6: ( ( ( (lv_stereotype_0_0= 'body' ) ) ( (lv_name_1_0= ruleIdentifier ) )? ':' ( ( (lv_exprValue_3_0= ruleExpCS ) ) | ( (lv_exprString_4_0= RULE_UNQUOTED_STRING ) ) )? ';' ) )
@@ -1658,7 +1659,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_exprValue_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:658:6: ( ( ( (lv_stereotype_0_0= 'derivation' ) ) ':' ( ( (lv_exprValue_2_0= ruleExpCS ) ) | ( (lv_exprString_3_0= RULE_UNQUOTED_STRING ) ) )? ';' ) )
@@ -1888,7 +1889,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_exprValue_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:759:6: ( ( ( (lv_stereotype_0_0= 'initial' ) ) ':' ( ( (lv_exprValue_2_0= ruleExpCS ) ) | ( (lv_exprString_3_0= RULE_UNQUOTED_STRING ) ) )? ';' ) )
@@ -2120,7 +2121,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_exprValue_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:860:6: ( ( ( (lv_stereotype_0_0= 'invariant' ) ) ( (lv_name_1_0= ruleIdentifier ) )? ':' ( ( (lv_exprValue_3_0= ruleExpCS ) ) | ( (lv_exprString_4_0= RULE_UNQUOTED_STRING ) ) )? ';' ) )
@@ -2403,7 +2404,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_exprValue_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:985:6: ( ( ( (lv_stereotype_0_0= 'postcondition' ) ) ( (lv_name_1_0= ruleIdentifier ) )? ':' ( ( (lv_exprValue_3_0= ruleExpCS ) ) | ( (lv_exprString_4_0= RULE_UNQUOTED_STRING ) ) )? ';' ) )
@@ -2686,7 +2687,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_exprValue_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1110:6: ( ( ( (lv_stereotype_0_0= 'precondition' ) ) ( (lv_name_1_0= ruleIdentifier ) )? ':' ( ( (lv_exprValue_3_0= ruleExpCS ) ) | ( (lv_exprString_4_0= RULE_UNQUOTED_STRING ) ) )? ';' ) )
@@ -2976,7 +2977,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_references_11_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1235:6: ( ( 'annotation' ( ( (lv_idSource_1_0= ruleIdentifier ) ) | ( (lv_stringSource_2_0= RULE_SINGLE_QUOTED_STRING ) ) ) ( '(' ( (lv_details_4_0= ruleDetailCS ) ) ( ',' ( (lv_details_6_0= ruleDetailCS ) ) )* ')' )? ( ( '{' ( ( (lv_annotations_9_0= ruleAnnotationElementCS ) ) | ( (lv_contents_10_0= ruleModelElementCS ) ) | ( (lv_references_11_0= ruleModelElementCSRef ) ) )+ '}' ) | ';' ) ) )
@@ -4002,7 +4003,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_DocumentationCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1458:6: ( (this_AnnotationCS_0= ruleAnnotationCS | this_DocumentationCS_1= ruleDocumentationCS ) )
@@ -4199,7 +4200,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_constraints_21_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:1506:6: ( ( ( (lv_isStatic_0_0= 'static' ) )? ( (lv_isDefinition_1_0= 'definition' ) )? 'attribute' ( (lv_name_3_0= ruleIdentifier ) ) ( ':' ( (lv_type_5_0= ruleTypedRefCS ) ) ( '[' ( ( ( (lv_lower_7_0= ruleLOWER ) ) ( '..' ( (lv_upper_9_0= ruleUPPER ) ) )? ) | ( ( (lv_multiplicity_10_1= '*' | lv_multiplicity_10_2= '+' | lv_multiplicity_10_3= '?' ) ) ) ) ']' )? )? ( '=' ( (lv_defaultValueLiteral_13_0= RULE_SINGLE_QUOTED_STRING ) ) )? ( '{' ( ( (lv_qualifiers_15_1= 'derived' | lv_qualifiers_15_2= '!derived' | lv_qualifiers_15_3= 'id' | lv_qualifiers_15_4= '!id' | lv_qualifiers_15_5= 'ordered' | lv_qualifiers_15_6= '!ordered' | lv_qualifiers_15_7= 'readonly' | lv_qualifiers_15_8= '!readonly' | lv_qualifiers_15_9= 'transient' | lv_qualifiers_15_10= '!transient' | lv_qualifiers_15_11= 'unique' | lv_qualifiers_15_12= '!unique' | lv_qualifiers_15_13= 'unsettable' | lv_qualifiers_15_14= '!unsettable' | lv_qualifiers_15_15= 'volatile' | lv_qualifiers_15_16= '!volatile' ) ) ) ( ',' ( ( (lv_qualifiers_17_1= 'derived' | lv_qualifiers_17_2= '!derived' | lv_qualifiers_17_3= 'id' | lv_qualifiers_17_4= '!id' | lv_qualifiers_17_5= 'ordered' | lv_qualifiers_17_6= '!ordered' | lv_qualifiers_17_7= 'readonly' | lv_qualifiers_17_8= '!readonly' | lv_qualifiers_17_9= 'transient' | lv_qualifiers_17_10= '!transient' | lv_qualifiers_17_11= 'unique' | lv_qualifiers_17_12= '!unique' | lv_qualifiers_17_13= 'unsettable' | lv_qualifiers_17_14= '!unsettable' | lv_qualifiers_17_15= 'volatile' | lv_qualifiers_17_16= '!volatile' ) ) ) )* '}' )? ( ( '{' ( ( (lv_annotations_20_0= ruleAnnotationElementCS ) ) | ( ( (lv_constraints_21_1= ruleInitialConstraintCS | lv_constraints_21_2= ruleDerivedConstraintCS ) ) ) )* '}' ) | ';' ) ) )
@@ -6227,7 +6228,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_constraints_22_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:2462:6: ( ( 'class' ( (lv_name_1_0= ruleIdentifier ) ) ( '<' ( (lv_typeParameters_3_0= ruleTypeParameterCS ) ) ( ',' ( (lv_typeParameters_5_0= ruleTypeParameterCS ) ) )* '>' )? ( 'extends' ( (lv_superTypes_8_0= ruleTypedRefCS ) ) ( ',' ( (lv_superTypes_10_0= ruleTypedRefCS ) ) )* )? ( ':' ( (lv_instanceClassName_12_0= RULE_SINGLE_QUOTED_STRING ) ) )? ( '{' ( ( (lv_qualifiers_14_1= 'abstract' | lv_qualifiers_14_2= '!abstract' | lv_qualifiers_14_3= 'interface' | lv_qualifiers_14_4= '!interface' ) ) ) ( ',' ( ( (lv_qualifiers_16_1= 'abstract' | lv_qualifiers_16_2= '!abstract' | lv_qualifiers_16_3= 'interface' | lv_qualifiers_16_4= '!interface' ) ) ) )* '}' )? ( ( '{' ( ( (lv_annotations_19_0= ruleAnnotationElementCS ) ) | ( (lv_operations_20_0= ruleOperationCS ) ) | ( (lv_structuralFeatures_21_0= ruleStructuralFeatureCS ) ) | ( (lv_constraints_22_0= ruleInvariantConstraintCS ) ) )* '}' ) | ';' ) ) )
@@ -7035,11 +7036,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 {
                                 int LA46_4 = input.LA(3);
 
-                                if ( (LA46_4==16||LA46_4==34) ) {
-                                    alt46=3;
-                                }
-                                else if ( (LA46_4==31) ) {
+                                if ( (LA46_4==31) ) {
                                     alt46=2;
+                                }
+                                else if ( (LA46_4==16||LA46_4==34) ) {
+                                    alt46=3;
                                 }
 
 
@@ -7065,11 +7066,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                             {
                             int LA46_4 = input.LA(2);
 
-                            if ( (LA46_4==16||LA46_4==34) ) {
-                                alt46=3;
-                            }
-                            else if ( (LA46_4==31) ) {
+                            if ( (LA46_4==31) ) {
                                 alt46=2;
+                            }
+                            else if ( (LA46_4==16||LA46_4==34) ) {
+                                alt46=3;
                             }
 
 
@@ -7387,7 +7388,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_EnumCS_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:2937:6: ( (this_ClassCS_0= ruleClassCS | this_DataTypeCS_1= ruleDataTypeCS | this_EnumCS_2= ruleEnumCS ) )
@@ -7571,7 +7572,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_typeArguments_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:2998:6: ( ( ( (lv_name_0_0= ruleCollectionTypeIdentifier ) ) ( '(' ( (lv_typeArguments_2_0= ruleTypeRefCS ) )? ')' )? ) )
@@ -7782,7 +7783,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_constraints_14_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3077:6: ( ( 'datatype' ( (lv_name_1_0= ruleIdentifier ) ) ( '<' ( (lv_typeParameters_3_0= ruleTypeParameterCS ) ) ( ',' ( (lv_typeParameters_5_0= ruleTypeParameterCS ) ) )* '>' )? ( ':' ( (lv_instanceClassName_8_0= RULE_SINGLE_QUOTED_STRING ) ) )? ( '{' ( ( (lv_qualifiers_10_1= 'serializable' | lv_qualifiers_10_2= '!serializable' ) ) ) '}' )? ( ( '{' ( ( (lv_annotations_13_0= ruleAnnotationElementCS ) ) | ( (lv_constraints_14_0= ruleInvariantConstraintCS ) ) )* '}' ) | ';' ) ) )
@@ -8399,7 +8400,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_idName_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3328:6: ( ( ( ( (lv_idName_0_0= ruleIdentifier ) ) | ( (lv_stringName_1_0= RULE_SINGLE_QUOTED_STRING ) ) ) '=' ( (lv_value_3_0= RULE_SINGLE_QUOTED_STRING ) ) ) )
@@ -8635,7 +8636,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_details_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3428:6: ( ( () 'documentation' ( (lv_value_2_0= RULE_SINGLE_QUOTED_STRING ) )? ( '(' ( (lv_details_4_0= ruleDetailCS ) ) ( ',' ( (lv_details_6_0= ruleDetailCS ) ) )* ')' )? ';' ) )
@@ -8948,7 +8949,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_constraints_12_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3557:6: ( ( 'enum' ( (lv_name_1_0= ruleIdentifier ) ) ( '<' ( (lv_typeParameters_3_0= ruleTypeParameterCS ) ) ( ',' ( (lv_typeParameters_5_0= ruleTypeParameterCS ) ) )* '>' )? ( ':' ( (lv_instanceClassName_8_0= RULE_SINGLE_QUOTED_STRING ) ) )? ( ( '{' ( ( (lv_annotations_10_0= ruleAnnotationElementCS ) ) | ( (lv_literals_11_0= ruleEnumLiteralCS ) ) | ( (lv_constraints_12_0= ruleInvariantConstraintCS ) ) )* '}' ) | ';' ) ) )
@@ -9241,11 +9242,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                             {
                             int LA65_2 = input.LA(2);
 
-                            if ( ((LA65_2>=RULE_SINGLE_QUOTED_STRING && LA65_2<=RULE_ID_TERMINAL)||(LA65_2>=14 && LA65_2<=43)||(LA65_2>=81 && LA65_2<=82)) ) {
-                                alt65=1;
-                            }
-                            else if ( (LA65_2==45||LA65_2==52||LA65_2==60) ) {
+                            if ( (LA65_2==45||LA65_2==52||LA65_2==60) ) {
                                 alt65=2;
+                            }
+                            else if ( ((LA65_2>=RULE_SINGLE_QUOTED_STRING && LA65_2<=RULE_ID_TERMINAL)||(LA65_2>=14 && LA65_2<=43)||(LA65_2>=81 && LA65_2<=82)) ) {
+                                alt65=1;
                             }
 
 
@@ -9583,7 +9584,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_annotations_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3783:6: ( ( ( (lv_name_0_0= ruleIdentifier ) ) ( '=' ( (lv_value_2_0= ruleINTEGER ) ) )? ( ( '{' ( (lv_annotations_4_0= ruleAnnotationElementCS ) )* '}' ) | ';' ) ) )
@@ -9881,7 +9882,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_1_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3895:6: ( ( 'import' ( ( (lv_name_1_0= ruleIdentifier ) ) ':' )? ( ( RULE_SINGLE_QUOTED_STRING ) ) ';' ) )
@@ -10067,7 +10068,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_1_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:3971:6: ( ( 'library' ( ( (lv_name_1_0= ruleIdentifier ) ) ':' )? ( ( RULE_SINGLE_QUOTED_STRING ) ) ';' ) )
@@ -10261,7 +10262,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_StructuralFeatureCS_4 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:4047:6: ( (this_ClassifierCS_0= ruleClassifierCS | this_EnumLiteralCS_1= ruleEnumLiteralCS | this_OperationCS_2= ruleOperationCS | this_PackageCS_3= rulePackageCS | this_StructuralFeatureCS_4= ruleStructuralFeatureCS ) )
@@ -10274,11 +10275,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA72_1 = input.LA(2);
 
-                if ( (LA72_1==45||LA72_1==52||LA72_1==60) ) {
-                    alt72=2;
-                }
-                else if ( (LA72_1==RULE_ID_TERMINAL||(LA72_1>=14 && LA72_1<=43)||(LA72_1>=81 && LA72_1<=82)) ) {
+                if ( (LA72_1==RULE_ID_TERMINAL||(LA72_1>=14 && LA72_1<=43)||(LA72_1>=81 && LA72_1<=82)) ) {
                     alt72=1;
+                }
+                else if ( (LA72_1==45||LA72_1==52||LA72_1==60) ) {
+                    alt72=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10312,11 +10313,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA72_3 = input.LA(2);
 
-                if ( (LA72_3==45||LA72_3==52||LA72_3==60) ) {
-                    alt72=2;
-                }
-                else if ( (LA72_3==RULE_ID_TERMINAL||(LA72_3>=14 && LA72_3<=43)||(LA72_3>=81 && LA72_3<=82)) ) {
+                if ( (LA72_3==RULE_ID_TERMINAL||(LA72_3>=14 && LA72_3<=43)||(LA72_3>=81 && LA72_3<=82)) ) {
                     alt72=1;
+                }
+                else if ( (LA72_3==45||LA72_3==52||LA72_3==60) ) {
+                    alt72=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10360,11 +10361,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA72_5 = input.LA(2);
 
-                if ( (LA72_5==45||LA72_5==52||LA72_5==60) ) {
-                    alt72=2;
-                }
-                else if ( (LA72_5==RULE_ID_TERMINAL||(LA72_5>=14 && LA72_5<=43)||(LA72_5>=81 && LA72_5<=82)) ) {
+                if ( (LA72_5==RULE_ID_TERMINAL||(LA72_5>=14 && LA72_5<=43)||(LA72_5>=81 && LA72_5<=82)) ) {
                     alt72=5;
+                }
+                else if ( (LA72_5==45||LA72_5==52||LA72_5==60) ) {
+                    alt72=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10379,11 +10380,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA72_6 = input.LA(2);
 
-                if ( (LA72_6==RULE_ID_TERMINAL||(LA72_6>=14 && LA72_6<=43)||(LA72_6>=81 && LA72_6<=82)) ) {
-                    alt72=3;
-                }
-                else if ( (LA72_6==45||LA72_6==52||LA72_6==60) ) {
+                if ( (LA72_6==45||LA72_6==52||LA72_6==60) ) {
                     alt72=2;
+                }
+                else if ( (LA72_6==RULE_ID_TERMINAL||(LA72_6>=14 && LA72_6<=43)||(LA72_6>=81 && LA72_6<=82)) ) {
+                    alt72=3;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10439,11 +10440,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA72_10 = input.LA(3);
 
-                    if ( (LA72_10==31) ) {
-                        alt72=3;
-                    }
-                    else if ( (LA72_10==16||LA72_10==34) ) {
+                    if ( (LA72_10==16||LA72_10==34) ) {
                         alt72=5;
+                    }
+                    else if ( (LA72_10==31) ) {
+                        alt72=3;
                     }
                     else {
                         if (backtracking>0) {failed=true; return current;}
@@ -10454,15 +10455,15 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     }
                     break;
+                case 31:
+                    {
+                    alt72=3;
+                    }
+                    break;
                 case 16:
                 case 34:
                     {
                     alt72=5;
-                    }
-                    break;
-                case 31:
-                    {
-                    alt72=3;
                     }
                     break;
                 case 45:
@@ -10486,11 +10487,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA72_10 = input.LA(2);
 
-                if ( (LA72_10==31) ) {
-                    alt72=3;
-                }
-                else if ( (LA72_10==16||LA72_10==34) ) {
+                if ( (LA72_10==16||LA72_10==34) ) {
                     alt72=5;
+                }
+                else if ( (LA72_10==31) ) {
+                    alt72=3;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -10708,7 +10709,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public final EObject ruleModelElementCSRef() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:4134:6: ( ( ( ruleIdentifier ) ) )
@@ -10864,7 +10865,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_constraints_33_3 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:4176:6: ( ( ( (lv_isStatic_0_0= 'static' ) )? ( (lv_isDefinition_1_0= 'definition' ) )? 'operation' ( (lv_name_3_0= ruleIdentifier ) ) ( '<' ( (lv_typeParameters_5_0= ruleTypeParameterCS ) ) ( ',' ( (lv_typeParameters_7_0= ruleTypeParameterCS ) ) )* '>' )? '(' ( ( (lv_parameters_10_0= ruleParameterCS ) ) ( ',' ( (lv_parameters_12_0= ruleParameterCS ) ) )* )? ')' ( ':' ( (lv_type_15_0= ruleTypedRefCS ) )? ( '[' ( ( ( (lv_lower_17_0= ruleLOWER ) ) ( '..' ( (lv_upper_19_0= ruleUPPER ) ) )? ) | ( ( (lv_multiplicity_20_1= '*' | lv_multiplicity_20_2= '+' | lv_multiplicity_20_3= '?' ) ) ) ) ']' )? )? ( 'throws' ( (lv_exceptions_23_0= ruleTypedRefCS ) ) ( ',' ( (lv_exceptions_25_0= ruleTypedRefCS ) ) )* )? ( '{' ( ( (lv_qualifiers_27_1= 'derived' | lv_qualifiers_27_2= '!derived' | lv_qualifiers_27_3= 'ordered' | lv_qualifiers_27_4= '!ordered' | lv_qualifiers_27_5= 'unique' | lv_qualifiers_27_6= '!unique' ) ) ) ( ',' ( ( (lv_qualifiers_29_1= 'derived' | lv_qualifiers_29_2= '!derived' | lv_qualifiers_29_3= 'ordered' | lv_qualifiers_29_4= '!ordered' | lv_qualifiers_29_5= 'unique' | lv_qualifiers_29_6= '!unique' ) ) ) )* '}' )? ( ( '{' ( ( (lv_annotations_32_0= ruleAnnotationElementCS ) ) | ( ( (lv_constraints_33_1= rulePreconditionConstraintCS | lv_constraints_33_2= ruleBodyConstraintCS | lv_constraints_33_3= rulePostconditionConstraintCS ) ) ) )* '}' ) | ';' ) ) )
@@ -12641,7 +12642,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_classifiers_9_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:4941:6: ( ( 'package' ( (lv_name_1_0= ruleIdentifier ) ) ( ':' ( (lv_prefix_3_0= ruleIdentifier ) ) '=' ( (lv_uri_5_0= RULE_SINGLE_QUOTED_STRING ) ) )? ( ( '{' ( ( (lv_annotations_7_0= ruleAnnotationElementCS ) ) | ( (lv_subpackages_8_0= rulePackageCS ) ) | ( (lv_classifiers_9_0= ruleClassifierCS ) ) )* '}' ) | ';' ) ) )
@@ -13120,7 +13121,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_annotations_15_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5135:6: ( ( ( (lv_name_0_0= ruleIdentifier ) ) ( ':' ( (lv_type_2_0= ruleTypedRefCS ) ) ( '[' ( ( ( (lv_lower_4_0= ruleLOWER ) ) ( '..' ( (lv_upper_6_0= ruleUPPER ) ) )? ) | ( ( (lv_multiplicity_7_1= '*' | lv_multiplicity_7_2= '+' | lv_multiplicity_7_3= '?' ) ) ) ) ']' )? )? ( '{' ( ( (lv_qualifiers_10_1= 'ordered' | lv_qualifiers_10_2= '!ordered' | lv_qualifiers_10_3= 'unique' | lv_qualifiers_10_4= '!unique' ) ) ) ( ',' ( ( (lv_qualifiers_12_1= 'ordered' | lv_qualifiers_12_2= '!ordered' | lv_qualifiers_12_3= 'unique' | lv_qualifiers_12_4= '!unique' ) ) ) )* '}' )? ( '{' ( (lv_annotations_15_0= ruleAnnotationElementCS ) )* '}' )? ) )
@@ -14057,7 +14058,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5531:6: ( ( (lv_name_0_0= rulePrimitiveTypeIdentifier ) ) )
@@ -14175,7 +14176,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_type_7_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5578:6: ( ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleTypedRefCS ) ) ) )
@@ -14535,7 +14536,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_constraints_23_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5708:6: ( ( ( (lv_isStatic_0_0= 'static' ) )? ( (lv_isDefinition_1_0= 'definition' ) )? 'property' ( (lv_name_3_0= ruleIdentifier ) ) ( '#' ( (lv_opposite_5_0= ruleReferenceCSRef ) ) )? ( ':' ( (lv_type_7_0= ruleTypedRefCS ) ) ( '[' ( ( ( (lv_lower_9_0= ruleLOWER ) ) ( '..' ( (lv_upper_11_0= ruleUPPER ) ) )? ) | ( ( (lv_multiplicity_12_1= '*' | lv_multiplicity_12_2= '+' | lv_multiplicity_12_3= '?' ) ) ) ) ']' )? )? ( '=' ( (lv_defaultValueLiteral_15_0= RULE_SINGLE_QUOTED_STRING ) ) )? ( '{' ( ( (lv_qualifiers_17_1= 'composes' | lv_qualifiers_17_2= '!composes' | lv_qualifiers_17_3= 'derived' | lv_qualifiers_17_4= '!derived' | lv_qualifiers_17_5= 'ordered' | lv_qualifiers_17_6= '!ordered' | lv_qualifiers_17_7= 'readonly' | lv_qualifiers_17_8= '!readonly' | lv_qualifiers_17_9= 'resolve' | lv_qualifiers_17_10= '!resolve' | lv_qualifiers_17_11= 'transient' | lv_qualifiers_17_12= '!transient' | lv_qualifiers_17_13= 'unique' | lv_qualifiers_17_14= '!unique' | lv_qualifiers_17_15= 'unsettable' | lv_qualifiers_17_16= '!unsettable' | lv_qualifiers_17_17= 'volatile' | lv_qualifiers_17_18= '!volatile' ) ) ) ( ',' ( ( (lv_qualifiers_19_1= 'composes' | lv_qualifiers_19_2= '!composes' | lv_qualifiers_19_3= 'derived' | lv_qualifiers_19_4= '!derived' | lv_qualifiers_19_5= 'ordered' | lv_qualifiers_19_6= '!ordered' | lv_qualifiers_19_7= 'readonly' | lv_qualifiers_19_8= '!readonly' | lv_qualifiers_19_9= 'resolve' | lv_qualifiers_19_10= '!resolve' | lv_qualifiers_19_11= 'transient' | lv_qualifiers_19_12= '!transient' | lv_qualifiers_19_13= 'unique' | lv_qualifiers_19_14= '!unique' | lv_qualifiers_19_15= 'unsettable' | lv_qualifiers_19_16= '!unsettable' | lv_qualifiers_19_17= 'volatile' | lv_qualifiers_19_18= '!volatile' ) ) ) )* '}' )? ( ( '{' ( ( (lv_annotations_22_0= ruleAnnotationElementCS ) ) | ( ( (lv_constraints_23_1= ruleInitialConstraintCS | lv_constraints_23_2= ruleDerivedConstraintCS ) ) ) )* '}' ) | ';' ) ) )
@@ -16726,7 +16727,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public final EObject ruleReferenceCSRef() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:6764:6: ( ( ( ruleIdentifier ) ) )
@@ -16841,7 +16842,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_ReferenceCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:6806:6: ( (this_AttributeCS_0= ruleAttributeCS | this_ReferenceCS_1= ruleReferenceCS ) )
@@ -16872,14 +16873,14 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     }
                     break;
-                case 34:
-                    {
-                    alt126=2;
-                    }
-                    break;
                 case 16:
                     {
                     alt126=1;
+                    }
+                    break;
+                case 34:
+                    {
+                    alt126=2;
                     }
                     break;
                 default:
@@ -17059,7 +17060,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_super_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:6856:6: ( ( ( (lv_name_0_0= ruleIdentifier ) ) ( ( 'extends' ( (lv_extends_2_0= ruleTypedRefCS ) ) ( '&&' ( (lv_extends_4_0= ruleTypedRefCS ) ) )* ) | ( 'super' ( (lv_super_6_0= ruleTypedRefCS ) ) ) )? ) )
@@ -17381,7 +17382,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_WildcardTypeRefCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:6988:6: ( (this_TypedRefCS_0= ruleTypedRefCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) )
@@ -17534,7 +17535,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_TypedTypeRefCS_3 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7036:6: ( (this_QualifiedTypeRefCS_0= ruleQualifiedTypeRefCS | this_PrimitiveTypeRefCS_1= rulePrimitiveTypeRefCS | this_CollectionTypeRefCS_2= ruleCollectionTypeRefCS | this_TypedTypeRefCS_3= ruleTypedTypeRefCS ) )
@@ -18377,7 +18378,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_typeArguments_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7110:6: ( ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? ) )
@@ -18637,7 +18638,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_super_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7212:6: ( ( () '?' ( ( 'extends' ( (lv_extends_3_0= ruleTypedRefCS ) ) ) | ( 'super' ( (lv_super_5_0= ruleTypedRefCS ) ) ) )? ) )
@@ -19810,7 +19811,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7610:6: ( ( (lv_name_0_0= rulePrimitiveTypeIdentifier ) ) )
@@ -20113,7 +20114,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_TupleTypeCS_3 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7714:6: ( (this_PrimitiveTypeCS_0= rulePrimitiveTypeCS | this_NameExpCS_1= ruleNameExpCS | this_CollectionTypeCS_2= ruleCollectionTypeCS | this_TupleTypeCS_3= ruleTupleTypeCS ) )
@@ -20371,7 +20372,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_typeCS_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7788:6: ( ( ( (lv_name_0_0= ruleCollectionTypeIdentifier ) ) ( '(' ( (lv_typeCS_2_0= ruleTypeExpCS ) ) ')' )? ) )
@@ -20563,7 +20564,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_part_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7867:6: ( ( ( (lv_name_0_0= 'Tuple' ) ) '(' ( ( (lv_part_2_0= ruletuplePartCS ) ) ( ',' ( (lv_part_4_0= ruletuplePartCS ) ) )* )? ')' ) )
@@ -20817,7 +20818,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_type_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:7971:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ':' ( (lv_type_2_0= ruleTypeExpCS ) ) ) )
@@ -20987,7 +20988,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_collectionLiteralParts_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8046:6: ( (this_CollectionTypeCS_0= ruleCollectionTypeCS ( () '{' ( ( (lv_collectionLiteralParts_3_0= ruleCollectionLiteralPartCS ) ) ( ',' ( (lv_collectionLiteralParts_5_0= ruleCollectionLiteralPartCS ) ) )* )? '}' )? ) )
@@ -21273,7 +21274,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_lastExpressionCS_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8160:6: ( ( ( (lv_expressionCS_0_0= ruleExpCS ) ) ( '..' ( (lv_lastExpressionCS_2_0= ruleExpCS ) ) )? ) )
@@ -21464,7 +21465,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_NullLiteralExpCS_4 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8235:6: ( (this_NumberLiteralExpCS_0= ruleNumberLiteralExpCS | this_StringLiteralExpCS_1= ruleStringLiteralExpCS | this_BooleanLiteralExpCS_2= ruleBooleanLiteralExpCS | this_InvalidLiteralExpCS_3= ruleInvalidLiteralExpCS | this_NullLiteralExpCS_4= ruleNullLiteralExpCS ) )
@@ -21711,7 +21712,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_part_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8322:6: ( ( () 'Tuple' ( '{' ( (lv_part_3_0= ruleTupleLiteralPartCS ) ) ( ',' ( (lv_part_5_0= ruleTupleLiteralPartCS ) ) )* '}' )? ) )
@@ -21963,7 +21964,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_initExpression_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8423:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ( ':' ( (lv_type_2_0= ruleTypeExpCS ) ) )? '=' ( (lv_initExpression_4_0= ruleExpCS ) ) ) )
@@ -22192,7 +22193,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8526:6: ( ( (lv_name_0_0= ruleNUMBER_LITERAL ) ) )
@@ -22306,7 +22307,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8573:6: ( ( (lv_name_0_0= ruleStringLiteral ) )+ )
@@ -22444,7 +22445,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         Token lv_name_0_0=null;
         Token lv_name_1_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8620:6: ( ( ( (lv_name_0_0= 'true' ) ) | ( (lv_name_1_0= 'false' ) ) ) )
@@ -22614,7 +22615,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public final EObject ruleInvalidLiteralExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8686:6: ( ( () 'invalid' ) )
@@ -22720,7 +22721,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public final EObject ruleNullLiteralExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8727:6: ( ( () 'null' ) )
@@ -22831,7 +22832,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_LetExpCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8768:6: ( (this_impliesCS_0= ruleimpliesCS | this_LetExpCS_1= ruleLetExpCS ) )
@@ -22983,7 +22984,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8816:6: ( (this_xorCS_0= rulexorCS ( () ( (lv_op_2_0= 'implies' ) ) ( ( (lv_argument_3_1= rulexorCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -23280,7 +23281,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:8939:6: ( (this_orCS_0= ruleorCS ( () ( (lv_op_2_0= 'xor' ) ) ( ( (lv_argument_3_1= ruleorCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -23577,7 +23578,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9062:6: ( (this_andCS_0= ruleandCS ( () ( (lv_op_2_0= 'or' ) ) ( ( (lv_argument_3_1= ruleandCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -23874,7 +23875,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9185:6: ( (this_equalityCS_0= ruleequalityCS ( () ( (lv_op_2_0= 'and' ) ) ( ( (lv_argument_3_1= ruleequalityCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -24172,7 +24173,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9308:6: ( (this_relationalCS_0= rulerelationalCS ( () ( ( (lv_op_2_1= '=' | lv_op_2_2= '<>' ) ) ) ( ( (lv_argument_3_1= rulerelationalCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -24535,7 +24536,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9452:6: ( (this_additiveCS_0= ruleadditiveCS ( () ( ( (lv_op_2_1= '>' | lv_op_2_2= '<' | lv_op_2_3= '>=' | lv_op_2_4= '<=' ) ) ) ( ( (lv_argument_3_1= ruleadditiveCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -24990,7 +24991,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9632:6: ( (this_multiplicativeCS_0= rulemultiplicativeCS ( () ( ( (lv_op_2_1= '+' | lv_op_2_2= '-' ) ) ) ( ( (lv_argument_3_1= rulemultiplicativeCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -25351,7 +25352,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_3_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9776:6: ( (this_unaryCS_0= ruleunaryCS ( () ( ( (lv_op_2_1= '*' | lv_op_2_2= '/' ) ) ) ( ( (lv_argument_3_1= ruleunaryCS | lv_argument_3_2= ruleLetExpCS ) ) ) )* ) )
@@ -25710,7 +25711,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_source_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9920:6: ( (this_NavigationExpCS_0= ruleNavigationExpCS | ( () ( ( (lv_op_2_1= '-' | lv_op_2_2= 'not' ) ) ) ( (lv_source_3_0= ruleunaryCS ) ) ) ) )
@@ -25997,7 +25998,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10036:6: ( (this_SubNavigationExpCS_0= ruleSubNavigationExpCS ( ( () '.' ( (lv_argument_3_0= ruleNavigatingExpCS ) ) ) | ( () '->' ( (lv_argument_6_0= ruleNavigatingExpCS ) ) ) )? ) )
@@ -26287,7 +26288,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_argument_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10166:6: ( (this_SubNavigatingExpCS_0= ruleSubNavigatingExpCS ( ( () '.' ( (lv_argument_3_0= ruleNavigatingExpCS ) ) ) | ( () '->' ( (lv_argument_6_0= ruleNavigatingExpCS ) ) ) )? ) )
@@ -26589,7 +26590,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_source_10_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10296:6: ( (this_RoundBracketExpCS_0= ruleRoundBracketExpCS | this_SquareBracketExpCS_1= ruleSquareBracketExpCS | this_SelfExpCS_2= ruleSelfExpCS | this_PrimitiveLiteralExpCS_3= rulePrimitiveLiteralExpCS | this_TupleLiteralExpCS_4= ruleTupleLiteralExpCS | this_CollectionLiteralExpCS_5= ruleCollectionLiteralExpCS | this_TypeExpCS_6= ruleTypeExpCS | this_IfExpCS_7= ruleIfExpCS | ( '(' () ( (lv_source_10_0= ruleExpCS ) ) ')' ) ) )
@@ -27854,7 +27855,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_NameExpCS_2 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10469:6: ( (this_RoundBracketExpCS_0= ruleRoundBracketExpCS | this_SquareBracketExpCS_1= ruleSquareBracketExpCS | this_NameExpCS_2= ruleNameExpCS ) )
@@ -28749,7 +28750,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_type_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10530:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ( ':' ( (lv_type_2_0= ruleTypeExpCS ) ) )? ) )
@@ -28936,7 +28937,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_initExpression_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10605:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ':' ( (lv_type_2_0= ruleTypeExpCS ) ) '=' ( (lv_initExpression_4_0= ruleExpCS ) ) ) )
@@ -29158,7 +29159,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_arguments_10_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10708:6: ( ( ( (lv_name_0_0= ruleNameExpCS ) ) '(' ( ( (lv_variable1_2_0= ruleiteratorVariableCS ) ) ( ( ',' ( (lv_variable2_4_0= ruleiteratorVariableCS ) ) ) | ( ';' ( (lv_variable2_6_0= ruleiteratorAccumulatorCS ) ) ) )? '|' )? ( ( (lv_arguments_8_0= ruleExpCS ) ) ( ',' ( (lv_arguments_10_0= ruleExpCS ) ) )* )? ')' ) )
@@ -29220,10 +29221,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_1 = input.LA(2);
 
-                    if ( ((LA185_1>=44 && LA185_1<=45)||LA185_1==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_1==50) ) {
+                    if ( (LA185_1==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -29524,6 +29522,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_1>=44 && LA185_1<=45)||LA185_1==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -29531,10 +29532,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_2 = input.LA(2);
 
-                    if ( ((LA185_2>=44 && LA185_2<=45)||LA185_2==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_2==50) ) {
+                    if ( (LA185_2==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -29835,6 +29833,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_2>=44 && LA185_2<=45)||LA185_2==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -29842,10 +29843,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_3 = input.LA(2);
 
-                    if ( ((LA185_3>=44 && LA185_3<=45)||LA185_3==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_3==50) ) {
+                    if ( (LA185_3==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -30146,6 +30144,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_3>=44 && LA185_3<=45)||LA185_3==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -30464,10 +30465,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_5 = input.LA(2);
 
-                    if ( ((LA185_5>=44 && LA185_5<=45)||LA185_5==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_5==50) ) {
+                    if ( (LA185_5==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -30768,6 +30766,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_5>=44 && LA185_5<=45)||LA185_5==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -30775,7 +30776,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_6 = input.LA(2);
 
-                    if ( (LA185_6==50) ) {
+                    if ( ((LA185_6>=44 && LA185_6<=45)||LA185_6==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_6==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -31076,9 +31080,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_6>=44 && LA185_6<=45)||LA185_6==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -31086,7 +31087,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_7 = input.LA(2);
 
-                    if ( (LA185_7==50) ) {
+                    if ( ((LA185_7>=44 && LA185_7<=45)||LA185_7==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_7==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -31387,9 +31391,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_7>=44 && LA185_7<=45)||LA185_7==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -31397,7 +31398,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_8 = input.LA(2);
 
-                    if ( (LA185_8==50) ) {
+                    if ( ((LA185_8>=44 && LA185_8<=45)||LA185_8==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_8==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -31698,9 +31702,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_8>=44 && LA185_8<=45)||LA185_8==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -31708,10 +31709,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_9 = input.LA(2);
 
-                    if ( ((LA185_9>=44 && LA185_9<=45)||LA185_9==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_9==50) ) {
+                    if ( (LA185_9==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -32012,6 +32010,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_9>=44 && LA185_9<=45)||LA185_9==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -34196,7 +34197,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_17 = input.LA(2);
 
-                    if ( (LA185_17==50) ) {
+                    if ( ((LA185_17>=44 && LA185_17<=45)||LA185_17==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_17==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -34497,9 +34501,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_17>=44 && LA185_17<=45)||LA185_17==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -34507,7 +34508,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_18 = input.LA(2);
 
-                    if ( (LA185_18==50) ) {
+                    if ( ((LA185_18>=44 && LA185_18<=45)||LA185_18==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_18==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -34808,9 +34812,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_18>=44 && LA185_18<=45)||LA185_18==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -34818,7 +34819,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_19 = input.LA(2);
 
-                    if ( (LA185_19==50) ) {
+                    if ( ((LA185_19>=44 && LA185_19<=45)||LA185_19==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_19==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -35119,9 +35123,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_19>=44 && LA185_19<=45)||LA185_19==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -35129,10 +35130,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_20 = input.LA(2);
 
-                    if ( ((LA185_20>=44 && LA185_20<=45)||LA185_20==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_20==50) ) {
+                    if ( (LA185_20==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -35433,6 +35431,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_20>=44 && LA185_20<=45)||LA185_20==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -36062,7 +36063,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_23 = input.LA(2);
 
-                    if ( (LA185_23==50) ) {
+                    if ( ((LA185_23>=44 && LA185_23<=45)||LA185_23==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_23==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -36363,9 +36367,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_23>=44 && LA185_23<=45)||LA185_23==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -36684,7 +36685,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_25 = input.LA(2);
 
-                    if ( (LA185_25==50) ) {
+                    if ( ((LA185_25>=44 && LA185_25<=45)||LA185_25==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_25==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -36985,9 +36989,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_25>=44 && LA185_25<=45)||LA185_25==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -36995,7 +36996,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_26 = input.LA(2);
 
-                    if ( (LA185_26==50) ) {
+                    if ( ((LA185_26>=44 && LA185_26<=45)||LA185_26==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_26==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -37296,9 +37300,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_26>=44 && LA185_26<=45)||LA185_26==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -37617,10 +37618,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_28 = input.LA(2);
 
-                    if ( ((LA185_28>=44 && LA185_28<=45)||LA185_28==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_28==50) ) {
+                    if ( (LA185_28==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -37921,6 +37919,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_28>=44 && LA185_28<=45)||LA185_28==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -38550,7 +38551,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_31 = input.LA(2);
 
-                    if ( (LA185_31==50) ) {
+                    if ( ((LA185_31>=44 && LA185_31<=45)||LA185_31==112) ) {
+                        alt185=1;
+                    }
+                    else if ( (LA185_31==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -38851,9 +38855,6 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( ((LA185_31>=44 && LA185_31<=45)||LA185_31==112) ) {
-                        alt185=1;
                     }
                     }
                     break;
@@ -39172,10 +39173,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     {
                     int LA185_33 = input.LA(2);
 
-                    if ( ((LA185_33>=44 && LA185_33<=45)||LA185_33==112) ) {
-                        alt185=1;
-                    }
-                    else if ( (LA185_33==50) ) {
+                    if ( (LA185_33==50) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID_TERMINAL:
                                 {
@@ -39476,6 +39474,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( ((LA185_33>=44 && LA185_33<=45)||LA185_33==112) ) {
+                        alt185=1;
                     }
                     }
                     break;
@@ -39875,7 +39876,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_arguments_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10900:6: ( ( ( (lv_name_0_0= ruleNameExpCS ) ) '[' ( (lv_arguments_2_0= ruleExpCS ) ) ( ',' ( (lv_arguments_4_0= ruleExpCS ) ) )* ']' ) )
@@ -40114,7 +40115,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public final EObject ruleSelfExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11007:6: ( ( () 'self' ) )
@@ -40225,7 +40226,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject this_SimpleNameExpCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11048:6: ( (this_PathNameExpCS_0= rulePathNameExpCS | this_SimpleNameExpCS_1= ruleSimpleNameExpCS ) )
@@ -40257,11 +40258,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_2 = input.LA(2);
 
-                if ( (LA189_2==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_2==EOF||LA189_2==13||LA189_2==45||(LA189_2>=49 && LA189_2<=51)||LA189_2==53||(LA189_2>=55 && LA189_2<=57)||(LA189_2>=59 && LA189_2<=60)||(LA189_2>=69 && LA189_2<=70)||LA189_2==80||LA189_2==83||(LA189_2>=102 && LA189_2<=109)||(LA189_2>=111 && LA189_2<=112)||(LA189_2>=115 && LA189_2<=117)||LA189_2==119) ) {
+                if ( (LA189_2==EOF||LA189_2==13||LA189_2==45||(LA189_2>=49 && LA189_2<=51)||LA189_2==53||(LA189_2>=55 && LA189_2<=57)||(LA189_2>=59 && LA189_2<=60)||(LA189_2>=69 && LA189_2<=70)||LA189_2==80||LA189_2==83||(LA189_2>=102 && LA189_2<=109)||(LA189_2>=111 && LA189_2<=112)||(LA189_2>=115 && LA189_2<=117)||LA189_2==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_2==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40352,11 +40353,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_7 = input.LA(2);
 
-                if ( (LA189_7==EOF||LA189_7==13||LA189_7==45||(LA189_7>=49 && LA189_7<=51)||LA189_7==53||(LA189_7>=55 && LA189_7<=57)||(LA189_7>=59 && LA189_7<=60)||(LA189_7>=69 && LA189_7<=70)||LA189_7==80||LA189_7==83||(LA189_7>=102 && LA189_7<=109)||(LA189_7>=111 && LA189_7<=112)||(LA189_7>=115 && LA189_7<=117)||LA189_7==119) ) {
-                    alt189=2;
-                }
-                else if ( (LA189_7==75) ) {
+                if ( (LA189_7==75) ) {
                     alt189=1;
+                }
+                else if ( (LA189_7==EOF||LA189_7==13||LA189_7==45||(LA189_7>=49 && LA189_7<=51)||LA189_7==53||(LA189_7>=55 && LA189_7<=57)||(LA189_7>=59 && LA189_7<=60)||(LA189_7>=69 && LA189_7<=70)||LA189_7==80||LA189_7==83||(LA189_7>=102 && LA189_7<=109)||(LA189_7>=111 && LA189_7<=112)||(LA189_7>=115 && LA189_7<=117)||LA189_7==119) ) {
+                    alt189=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40371,11 +40372,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_8 = input.LA(2);
 
-                if ( (LA189_8==EOF||LA189_8==13||LA189_8==45||(LA189_8>=49 && LA189_8<=51)||LA189_8==53||(LA189_8>=55 && LA189_8<=57)||(LA189_8>=59 && LA189_8<=60)||(LA189_8>=69 && LA189_8<=70)||LA189_8==80||LA189_8==83||(LA189_8>=102 && LA189_8<=109)||(LA189_8>=111 && LA189_8<=112)||(LA189_8>=115 && LA189_8<=117)||LA189_8==119) ) {
-                    alt189=2;
-                }
-                else if ( (LA189_8==75) ) {
+                if ( (LA189_8==75) ) {
                     alt189=1;
+                }
+                else if ( (LA189_8==EOF||LA189_8==13||LA189_8==45||(LA189_8>=49 && LA189_8<=51)||LA189_8==53||(LA189_8>=55 && LA189_8<=57)||(LA189_8>=59 && LA189_8<=60)||(LA189_8>=69 && LA189_8<=70)||LA189_8==80||LA189_8==83||(LA189_8>=102 && LA189_8<=109)||(LA189_8>=111 && LA189_8<=112)||(LA189_8>=115 && LA189_8<=117)||LA189_8==119) ) {
+                    alt189=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40409,11 +40410,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_10 = input.LA(2);
 
-                if ( (LA189_10==EOF||LA189_10==13||LA189_10==45||(LA189_10>=49 && LA189_10<=51)||LA189_10==53||(LA189_10>=55 && LA189_10<=57)||(LA189_10>=59 && LA189_10<=60)||(LA189_10>=69 && LA189_10<=70)||LA189_10==80||LA189_10==83||(LA189_10>=102 && LA189_10<=109)||(LA189_10>=111 && LA189_10<=112)||(LA189_10>=115 && LA189_10<=117)||LA189_10==119) ) {
-                    alt189=2;
-                }
-                else if ( (LA189_10==75) ) {
+                if ( (LA189_10==75) ) {
                     alt189=1;
+                }
+                else if ( (LA189_10==EOF||LA189_10==13||LA189_10==45||(LA189_10>=49 && LA189_10<=51)||LA189_10==53||(LA189_10>=55 && LA189_10<=57)||(LA189_10>=59 && LA189_10<=60)||(LA189_10>=69 && LA189_10<=70)||LA189_10==80||LA189_10==83||(LA189_10>=102 && LA189_10<=109)||(LA189_10>=111 && LA189_10<=112)||(LA189_10>=115 && LA189_10<=117)||LA189_10==119) ) {
+                    alt189=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40428,11 +40429,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_11 = input.LA(2);
 
-                if ( (LA189_11==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_11==EOF||LA189_11==13||LA189_11==45||(LA189_11>=49 && LA189_11<=51)||LA189_11==53||(LA189_11>=55 && LA189_11<=57)||(LA189_11>=59 && LA189_11<=60)||(LA189_11>=69 && LA189_11<=70)||LA189_11==80||LA189_11==83||(LA189_11>=102 && LA189_11<=109)||(LA189_11>=111 && LA189_11<=112)||(LA189_11>=115 && LA189_11<=117)||LA189_11==119) ) {
+                if ( (LA189_11==EOF||LA189_11==13||LA189_11==45||(LA189_11>=49 && LA189_11<=51)||LA189_11==53||(LA189_11>=55 && LA189_11<=57)||(LA189_11>=59 && LA189_11<=60)||(LA189_11>=69 && LA189_11<=70)||LA189_11==80||LA189_11==83||(LA189_11>=102 && LA189_11<=109)||(LA189_11>=111 && LA189_11<=112)||(LA189_11>=115 && LA189_11<=117)||LA189_11==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_11==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40447,11 +40448,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_12 = input.LA(2);
 
-                if ( (LA189_12==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_12==EOF||LA189_12==13||LA189_12==45||(LA189_12>=49 && LA189_12<=51)||LA189_12==53||(LA189_12>=55 && LA189_12<=57)||(LA189_12>=59 && LA189_12<=60)||(LA189_12>=69 && LA189_12<=70)||LA189_12==80||LA189_12==83||(LA189_12>=102 && LA189_12<=109)||(LA189_12>=111 && LA189_12<=112)||(LA189_12>=115 && LA189_12<=117)||LA189_12==119) ) {
+                if ( (LA189_12==EOF||LA189_12==13||LA189_12==45||(LA189_12>=49 && LA189_12<=51)||LA189_12==53||(LA189_12>=55 && LA189_12<=57)||(LA189_12>=59 && LA189_12<=60)||(LA189_12>=69 && LA189_12<=70)||LA189_12==80||LA189_12==83||(LA189_12>=102 && LA189_12<=109)||(LA189_12>=111 && LA189_12<=112)||(LA189_12>=115 && LA189_12<=117)||LA189_12==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_12==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40485,11 +40486,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_14 = input.LA(2);
 
-                if ( (LA189_14==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_14==EOF||LA189_14==13||LA189_14==45||(LA189_14>=49 && LA189_14<=51)||LA189_14==53||(LA189_14>=55 && LA189_14<=57)||(LA189_14>=59 && LA189_14<=60)||(LA189_14>=69 && LA189_14<=70)||LA189_14==80||LA189_14==83||(LA189_14>=102 && LA189_14<=109)||(LA189_14>=111 && LA189_14<=112)||(LA189_14>=115 && LA189_14<=117)||LA189_14==119) ) {
+                if ( (LA189_14==EOF||LA189_14==13||LA189_14==45||(LA189_14>=49 && LA189_14<=51)||LA189_14==53||(LA189_14>=55 && LA189_14<=57)||(LA189_14>=59 && LA189_14<=60)||(LA189_14>=69 && LA189_14<=70)||LA189_14==80||LA189_14==83||(LA189_14>=102 && LA189_14<=109)||(LA189_14>=111 && LA189_14<=112)||(LA189_14>=115 && LA189_14<=117)||LA189_14==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_14==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40504,11 +40505,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_15 = input.LA(2);
 
-                if ( (LA189_15==EOF||LA189_15==13||LA189_15==45||(LA189_15>=49 && LA189_15<=51)||LA189_15==53||(LA189_15>=55 && LA189_15<=57)||(LA189_15>=59 && LA189_15<=60)||(LA189_15>=69 && LA189_15<=70)||LA189_15==80||LA189_15==83||(LA189_15>=102 && LA189_15<=109)||(LA189_15>=111 && LA189_15<=112)||(LA189_15>=115 && LA189_15<=117)||LA189_15==119) ) {
-                    alt189=2;
-                }
-                else if ( (LA189_15==75) ) {
+                if ( (LA189_15==75) ) {
                     alt189=1;
+                }
+                else if ( (LA189_15==EOF||LA189_15==13||LA189_15==45||(LA189_15>=49 && LA189_15<=51)||LA189_15==53||(LA189_15>=55 && LA189_15<=57)||(LA189_15>=59 && LA189_15<=60)||(LA189_15>=69 && LA189_15<=70)||LA189_15==80||LA189_15==83||(LA189_15>=102 && LA189_15<=109)||(LA189_15>=111 && LA189_15<=112)||(LA189_15>=115 && LA189_15<=117)||LA189_15==119) ) {
+                    alt189=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40523,11 +40524,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_16 = input.LA(2);
 
-                if ( (LA189_16==EOF||LA189_16==13||LA189_16==45||(LA189_16>=49 && LA189_16<=51)||LA189_16==53||(LA189_16>=55 && LA189_16<=57)||(LA189_16>=59 && LA189_16<=60)||(LA189_16>=69 && LA189_16<=70)||LA189_16==80||LA189_16==83||(LA189_16>=102 && LA189_16<=109)||(LA189_16>=111 && LA189_16<=112)||(LA189_16>=115 && LA189_16<=117)||LA189_16==119) ) {
-                    alt189=2;
-                }
-                else if ( (LA189_16==75) ) {
+                if ( (LA189_16==75) ) {
                     alt189=1;
+                }
+                else if ( (LA189_16==EOF||LA189_16==13||LA189_16==45||(LA189_16>=49 && LA189_16<=51)||LA189_16==53||(LA189_16>=55 && LA189_16<=57)||(LA189_16>=59 && LA189_16<=60)||(LA189_16>=69 && LA189_16<=70)||LA189_16==80||LA189_16==83||(LA189_16>=102 && LA189_16<=109)||(LA189_16>=111 && LA189_16<=112)||(LA189_16>=115 && LA189_16<=117)||LA189_16==119) ) {
+                    alt189=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40561,11 +40562,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_18 = input.LA(2);
 
-                if ( (LA189_18==EOF||LA189_18==13||LA189_18==45||(LA189_18>=49 && LA189_18<=51)||LA189_18==53||(LA189_18>=55 && LA189_18<=57)||(LA189_18>=59 && LA189_18<=60)||(LA189_18>=69 && LA189_18<=70)||LA189_18==80||LA189_18==83||(LA189_18>=102 && LA189_18<=109)||(LA189_18>=111 && LA189_18<=112)||(LA189_18>=115 && LA189_18<=117)||LA189_18==119) ) {
-                    alt189=2;
-                }
-                else if ( (LA189_18==75) ) {
+                if ( (LA189_18==75) ) {
                     alt189=1;
+                }
+                else if ( (LA189_18==EOF||LA189_18==13||LA189_18==45||(LA189_18>=49 && LA189_18<=51)||LA189_18==53||(LA189_18>=55 && LA189_18<=57)||(LA189_18>=59 && LA189_18<=60)||(LA189_18>=69 && LA189_18<=70)||LA189_18==80||LA189_18==83||(LA189_18>=102 && LA189_18<=109)||(LA189_18>=111 && LA189_18<=112)||(LA189_18>=115 && LA189_18<=117)||LA189_18==119) ) {
+                    alt189=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40637,11 +40638,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_22 = input.LA(2);
 
-                if ( (LA189_22==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_22==EOF||LA189_22==13||LA189_22==45||(LA189_22>=49 && LA189_22<=51)||LA189_22==53||(LA189_22>=55 && LA189_22<=57)||(LA189_22>=59 && LA189_22<=60)||(LA189_22>=69 && LA189_22<=70)||LA189_22==80||LA189_22==83||(LA189_22>=102 && LA189_22<=109)||(LA189_22>=111 && LA189_22<=112)||(LA189_22>=115 && LA189_22<=117)||LA189_22==119) ) {
+                if ( (LA189_22==EOF||LA189_22==13||LA189_22==45||(LA189_22>=49 && LA189_22<=51)||LA189_22==53||(LA189_22>=55 && LA189_22<=57)||(LA189_22>=59 && LA189_22<=60)||(LA189_22>=69 && LA189_22<=70)||LA189_22==80||LA189_22==83||(LA189_22>=102 && LA189_22<=109)||(LA189_22>=111 && LA189_22<=112)||(LA189_22>=115 && LA189_22<=117)||LA189_22==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_22==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40732,11 +40733,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_27 = input.LA(2);
 
-                if ( (LA189_27==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_27==EOF||LA189_27==13||LA189_27==45||(LA189_27>=49 && LA189_27<=51)||LA189_27==53||(LA189_27>=55 && LA189_27<=57)||(LA189_27>=59 && LA189_27<=60)||(LA189_27>=69 && LA189_27<=70)||LA189_27==80||LA189_27==83||(LA189_27>=102 && LA189_27<=109)||(LA189_27>=111 && LA189_27<=112)||(LA189_27>=115 && LA189_27<=117)||LA189_27==119) ) {
+                if ( (LA189_27==EOF||LA189_27==13||LA189_27==45||(LA189_27>=49 && LA189_27<=51)||LA189_27==53||(LA189_27>=55 && LA189_27<=57)||(LA189_27>=59 && LA189_27<=60)||(LA189_27>=69 && LA189_27<=70)||LA189_27==80||LA189_27==83||(LA189_27>=102 && LA189_27<=109)||(LA189_27>=111 && LA189_27<=112)||(LA189_27>=115 && LA189_27<=117)||LA189_27==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_27==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40751,11 +40752,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_28 = input.LA(2);
 
-                if ( (LA189_28==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_28==EOF||LA189_28==13||LA189_28==45||(LA189_28>=49 && LA189_28<=51)||LA189_28==53||(LA189_28>=55 && LA189_28<=57)||(LA189_28>=59 && LA189_28<=60)||(LA189_28>=69 && LA189_28<=70)||LA189_28==80||LA189_28==83||(LA189_28>=102 && LA189_28<=109)||(LA189_28>=111 && LA189_28<=112)||(LA189_28>=115 && LA189_28<=117)||LA189_28==119) ) {
+                if ( (LA189_28==EOF||LA189_28==13||LA189_28==45||(LA189_28>=49 && LA189_28<=51)||LA189_28==53||(LA189_28>=55 && LA189_28<=57)||(LA189_28>=59 && LA189_28<=60)||(LA189_28>=69 && LA189_28<=70)||LA189_28==80||LA189_28==83||(LA189_28>=102 && LA189_28<=109)||(LA189_28>=111 && LA189_28<=112)||(LA189_28>=115 && LA189_28<=117)||LA189_28==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_28==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40789,11 +40790,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA189_30 = input.LA(2);
 
-                if ( (LA189_30==75) ) {
-                    alt189=1;
-                }
-                else if ( (LA189_30==EOF||LA189_30==13||LA189_30==45||(LA189_30>=49 && LA189_30<=51)||LA189_30==53||(LA189_30>=55 && LA189_30<=57)||(LA189_30>=59 && LA189_30<=60)||(LA189_30>=69 && LA189_30<=70)||LA189_30==80||LA189_30==83||(LA189_30>=102 && LA189_30<=109)||(LA189_30>=111 && LA189_30<=112)||(LA189_30>=115 && LA189_30<=117)||LA189_30==119) ) {
+                if ( (LA189_30==EOF||LA189_30==13||LA189_30==45||(LA189_30>=49 && LA189_30<=51)||LA189_30==53||(LA189_30>=55 && LA189_30<=57)||(LA189_30>=59 && LA189_30<=60)||(LA189_30>=69 && LA189_30<=70)||LA189_30==80||LA189_30==83||(LA189_30>=102 && LA189_30<=109)||(LA189_30>=111 && LA189_30<=112)||(LA189_30>=115 && LA189_30<=117)||LA189_30==119) ) {
                     alt189=2;
+                }
+                else if ( (LA189_30==75) ) {
+                    alt189=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -40993,7 +40994,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_element_2_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11096:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleNameExpCS ) ) ) )
@@ -41155,7 +41156,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     public final EObject ruleSimpleNameExpCS() throws RecognitionException {
         EObject current = null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11166:6: ( ( ( ruleIdentifier ) ) )
@@ -41272,7 +41273,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_elseExpression_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11208:6: ( ( 'if' ( (lv_condition_1_0= ruleExpCS ) ) 'then' ( (lv_thenExpression_3_0= ruleExpCS ) ) 'else' ( (lv_elseExpression_5_0= ruleExpCS ) ) 'endif' ) )
@@ -41500,7 +41501,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_in_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11319:6: ( ( 'let' ( (lv_variable_1_0= ruleLetVariableCS ) ) ( ',' ( (lv_variable_3_0= ruleLetVariableCS ) ) )* 'in' ( (lv_in_5_0= ruleExpCS ) ) ) )
@@ -41746,7 +41747,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         EObject lv_initExpression_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:11426:6: ( ( ( (lv_name_0_0= ruleSimpleName ) ) ':' ( (lv_type_2_0= ruleTypeExpCS ) ) '=' ( (lv_initExpression_4_0= ruleExpCS ) ) ) )
@@ -42993,193 +42994,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end synpred346
 
-    public final boolean synpred337() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred337_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred142() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred142_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred343() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred343_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred54() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred54_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred264() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred264_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred141() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred141_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred310() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred310_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred314() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred314_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred341() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred341_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred330() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred330_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred346() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred346_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
     public final boolean synpred56() {
         backtracking++;
         int start = input.mark();
         try {
             synpred56_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred312() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred312_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred338() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred338_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -43203,6 +43022,104 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
+    public final boolean synpred55() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred55_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred54() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred54_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred141() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred141_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred142() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred142_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred330() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred330_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred264() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred264_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred341() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred341_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
     public final boolean synpred342() {
         backtracking++;
         int start = input.mark();
@@ -43217,11 +43134,25 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred327() {
+    public final boolean synpred324() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred327_fragment(); // can never throw exception
+            synpred324_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred343() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred343_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -43259,11 +43190,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred55() {
+    public final boolean synpred314() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred55_fragment(); // can never throw exception
+            synpred314_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -43273,11 +43204,81 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred324() {
+    public final boolean synpred327() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred324_fragment(); // can never throw exception
+            synpred327_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred346() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred346_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred337() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred337_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred338() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred338_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred312() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred312_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred310() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred310_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }

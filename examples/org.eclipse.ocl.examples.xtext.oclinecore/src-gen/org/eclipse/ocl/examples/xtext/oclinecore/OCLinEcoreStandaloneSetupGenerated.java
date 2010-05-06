@@ -1,3 +1,4 @@
+
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -10,11 +11,7 @@ import com.google.inject.Injector;
 /**
  * Generated from StandaloneSetup.xpt!
  */
-public class OCLinEcoreStandaloneSetup implements ISetup {
-
-	public static void doSetup() {
-		new OCLinEcoreStandaloneSetup().createInjectorAndDoEMFRegistration();
-	}
+public class OCLinEcoreStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup.doSetup();
