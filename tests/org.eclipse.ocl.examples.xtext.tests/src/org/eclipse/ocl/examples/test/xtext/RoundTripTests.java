@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.1 2010/05/03 20:01:59 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.2 2010/05/06 17:34:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -51,6 +51,7 @@ public class RoundTripTests extends XtextTestCase
 		Resource rightResource = cs2e.exportToEcore();
 		assertEquals("To Ecore errors", 0, rightResource.getErrors().size());
 		rightResource.save(null);
+		resourceSet.getResources().add(rightResource);
     	assertSameModel(leftResource, rightResource);
 	}
 
