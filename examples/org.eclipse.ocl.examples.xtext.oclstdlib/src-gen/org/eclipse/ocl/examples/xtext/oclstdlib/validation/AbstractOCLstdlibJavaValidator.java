@@ -10,10 +10,10 @@ import org.eclipse.xtext.validation.ComposedChecks;
 @ComposedChecks(validators= {org.eclipse.xtext.validation.ImportUriValidator.class, org.eclipse.xtext.validation.NamesAreUniqueValidator.class})
 public class AbstractOCLstdlibJavaValidator extends AbstractDeclarativeValidator {
 
-    @Override
-    protected List<EPackage> getEPackages() {
-        List<EPackage> result = new ArrayList<EPackage>();
-        return result;
-    }
+@Override
+	protected List<EPackage> getEPackages() {
+	    List<EPackage> result = new ArrayList<EPackage>();
+		return result;
+	}
 
 }
