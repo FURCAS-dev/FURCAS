@@ -4,9 +4,11 @@ Bundle-Name: de.hpi.sam.bp2009.moin.impactAnalyzer.tests
 Bundle-SymbolicName: de.hpi.sam.bp2009.solution.impactAnalyzer.tests
 Bundle-Version: 0.1.0
 Require-Bundle: org.eclipse.emf.ecore,
- org.junit;bundle-version="3.8.0",
+ org.junit;bundle-version="3.8.2",
  de.hpi.sam.bp2009.solution.eventManager;bundle-version="1.0.0",
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
  company;bundle-version="1.0.0",
- de.hpi.sam.bp2009.solution.impactAnalyzer;bundle-version="1.0.0"
+ de.hpi.sam.bp2009.solution.impactAnalyzer;bundle-version="1.0.0",
+ org.hamcrest.core;bundle-version="1.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.junit

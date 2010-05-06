@@ -103,6 +103,32 @@ public class NotificationHelper {
         }
         return null;
     }
+    
+    @SuppressWarnings("unchecked")
+    public static Notification createReferenceChangeNotification(EObject notifier, EReference feature, EObject from, EObject to){
+        boolean validFrom = feature.getEType().isInstance(from);
+        boolean validTo = feature.getEType().isInstance(to);
+        if (feature.isChangeable() && validFrom && validTo){
+            TestAdapter myTestA1 = new TestAdapter();
+            notifier.eAdapters().add(myTestA1);
+            
+            if (feature.isMany()){
+                Object ob = notifier.eGet(feature);
+                if (ob != null && ob instanceof EList<?>){
+                    EList<EObject> newValue = (EList<EObject>)ob;
+                    newValue.remove(from);
+                    newValue.add(to);
+                    notifier.eSet(feature, newValue); 
+                } else {
+                    return null;
+                }
+            }else{
+                notifier.eSet(feature, to);
+            }
+            return myTestA1.getNoti();
+        }
+        return null;
+    }
 
     @SuppressWarnings("unchecked")
     public static Notification createElementAddNotification(EObject container, EReference ref, EObject target) {
