@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.2 2010/05/03 05:58:36 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.3 2010/05/06 18:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreQualifiedNam
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.parsetree.reconstr.ICrossReferenceSerializer;
+import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
 /**
@@ -33,7 +33,6 @@ import org.eclipse.xtext.scoping.IScopeProvider;
  */
 public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.completeocl.AbstractCompleteOCLRuntimeModule
 {
-	@Override
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
 		return OCLinEcoreCrossReferenceSerializer.class;
 	}
