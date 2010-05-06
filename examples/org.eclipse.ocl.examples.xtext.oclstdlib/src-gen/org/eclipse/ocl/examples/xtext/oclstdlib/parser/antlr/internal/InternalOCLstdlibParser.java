@@ -22,18 +22,19 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+@SuppressWarnings("all")
 public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID_TERMINAL", "RULE_DOUBLE_QUOTED_STRING", "RULE_SINGLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'library'", "'{'", "'}'", "'*'", "'conformsTo'", "'extends'", "'import'", "'iteration'", "'operation'", "'package'", "'property'", "'super'", "'type'", "':'", "'<'", "','", "'>'", "'('", "')'", "'=>'", "';'", "'['", "'..'", "'+'", "'?'", "']'", "'::'", "'&&'"
     };
-    public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID_TERMINAL=5;
-    public static final int RULE_WS=10;
-    public static final int EOF=-1;
-    public static final int RULE_INT=4;
     public static final int RULE_SINGLE_QUOTED_STRING=7;
     public static final int RULE_DOUBLE_QUOTED_STRING=6;
+    public static final int RULE_INT=4;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=9;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=8;
 
         public InternalOCLstdlibParser(TokenStream input) {
             super(input);
@@ -129,7 +130,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_packages_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:97:6: ( ( 'library' ( (lv_name_1_0= ruleIdentifier ) ) ( (lv_imports_2_0= ruleLibImportCS ) )* '{' ( (lv_packages_4_0= ruleLibPackageCS ) )* '}' ) )
@@ -1036,7 +1037,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_name_1_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:413:6: ( ( 'import' ( ( (lv_name_1_0= ruleIdentifier ) ) ':' )? ( ( RULE_SINGLE_QUOTED_STRING ) ) ) )
@@ -1230,7 +1231,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_structuralFeatures_14_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:485:6: ( ( 'type' ( (lv_name_1_0= ruleIdentifier ) ) ( '<' ( (lv_typeParameters_3_0= ruleLibTypeParameterCS ) ) ( ',' ( (lv_typeParameters_5_0= ruleLibTypeParameterCS ) ) )* '>' )? ( 'conformsTo' ( (lv_conformsTo_8_0= ruleLibTypedRefCS ) ) ( ',' ( (lv_conformsTo_10_0= ruleLibTypedRefCS ) ) )* )? '{' ( ( (lv_iterations_12_0= ruleLibIterationCS ) ) | ( (lv_operations_13_0= ruleLibOperationCS ) ) | ( (lv_structuralFeatures_14_0= ruleLibPropertyCS ) ) )* '}' ) )
@@ -1808,7 +1809,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject this_LibClassCS_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:734:6: (this_LibClassCS_0= ruleLibClassCS )
@@ -1913,7 +1914,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_type_13_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:769:6: ( ( 'iteration' ( (lv_name_1_0= ruleName ) ) ( '<' ( (lv_typeParameters_3_0= ruleLibTypeParameterCS ) ) ( ',' ( (lv_typeParameters_5_0= ruleLibTypeParameterCS ) ) )* '>' )? '(' ( (lv_parameters_8_0= ruleLibParameterCS ) ) ( ',' ( (lv_parameters_10_0= ruleLibParameterCS ) ) )* ')' ':' ( (lv_type_13_0= ruleLibTypedRefCS ) ) '=>' ( (lv_class_15_0= RULE_SINGLE_QUOTED_STRING ) ) ';' ) )
@@ -2406,7 +2407,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_type_13_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1000:6: ( ( 'operation' ( (lv_name_1_0= ruleName ) ) ( '<' ( (lv_typeParameters_3_0= ruleLibTypeParameterCS ) ) ( ',' ( (lv_typeParameters_5_0= ruleLibTypeParameterCS ) ) )* '>' )? '(' ( ( (lv_parameters_8_0= ruleLibParameterCS ) ) ( ',' ( (lv_parameters_10_0= ruleLibParameterCS ) ) )* )? ')' ':' ( (lv_type_13_0= ruleLibTypedRefCS ) ) '=>' ( (lv_class_15_0= RULE_SINGLE_QUOTED_STRING ) ) ';' ) )
@@ -2909,7 +2910,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_classifiers_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1231:6: ( ( 'package' ( (lv_name_1_0= ruleIdentifier ) ) '{' ( ( (lv_subpackages_3_0= ruleLibPackageCS ) ) | ( (lv_classifiers_4_0= ruleLibClassifierCS ) ) )* '}' ) )
@@ -3169,7 +3170,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         AntlrDatatypeRuleToken lv_upper_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1339:6: ( ( ( (lv_name_0_0= ruleIdentifier ) ) ':' ( (lv_type_2_0= ruleLibTypedRefCS ) ) ( '[' ( ( ( (lv_lower_4_0= ruleLOWER ) ) ( '..' ( (lv_upper_6_0= ruleUPPER ) ) )? ) | ( ( (lv_multiplicity_7_1= '*' | lv_multiplicity_7_2= '+' | lv_multiplicity_7_3= '?' ) ) ) ) ']' )? ) )
@@ -3632,7 +3633,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_type_3_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1535:6: ( ( 'property' ( (lv_name_1_0= ruleName ) ) ':' ( (lv_type_3_0= ruleLibTypedRefCS ) ) '=>' ( (lv_class_5_0= RULE_SINGLE_QUOTED_STRING ) ) ';' ) )
@@ -3857,7 +3858,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_type_7_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1646:6: ( ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleLibTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleLibTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleLibTypedRefCS ) ) ) )
@@ -4167,7 +4168,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_super_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1776:6: ( ( ( (lv_name_0_0= ruleIdentifier ) ) ( ( 'extends' ( (lv_extends_2_0= ruleLibTypedRefCS ) ) ( '&&' ( (lv_extends_4_0= ruleLibTypedRefCS ) ) )* ) | ( 'super' ( (lv_super_6_0= ruleLibTypedRefCS ) ) ) )? ) )
@@ -4489,7 +4490,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject this_LibWildcardTypeRefCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1908:6: ( (this_LibTypedRefCS_0= ruleLibTypedRefCS | this_LibWildcardTypeRefCS_1= ruleLibWildcardTypeRefCS ) )
@@ -4638,7 +4639,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject this_LibTypedTypeRefCS_1 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:1956:6: ( (this_LibQualifiedTypeRefCS_0= ruleLibQualifiedTypeRefCS | this_LibTypedTypeRefCS_1= ruleLibTypedTypeRefCS ) )
@@ -4990,7 +4991,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_typeArguments_4_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:2004:6: ( ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleLibTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleLibTypeRefCS ) ) )* '>' )? ) )
@@ -5250,7 +5251,7 @@ public class InternalOCLstdlibParser extends AbstractInternalAntlrParser {
         EObject lv_super_5_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.ocl.examples.xtext.oclstdlib/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/parser/antlr/internal/InternalOCLstdlib.g:2106:6: ( ( () '?' ( ( 'extends' ( (lv_extends_3_0= ruleLibTypedRefCS ) ) ) | ( 'super' ( (lv_super_5_0= ruleLibTypedRefCS ) ) ) )? ) )

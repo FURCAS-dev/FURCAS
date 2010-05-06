@@ -29,10 +29,13 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackagesLibPackageCSParserRuleCall_4_0 = (RuleCall)cPackagesAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//Library returns LibDocumentCS:
-		//  "library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS* "}"; 
-		//
 		////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
+		//
+		//
+		//
+		//Library returns LibDocumentCS:
+		//  "library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS*
+		//  "}";
 		public ParserRule getRule() { return rule; }
 
 		//"library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS* "}"
@@ -114,8 +117,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		
 		//Identifier returns ecore::EString:
-		//  ID_TERMINAL|"conformsTo"|"extends"|"import"|"iteration"|"library"|"operation"|
-		//  "package"|"property"|"super"|"type";
+		//  ID_TERMINAL|"conformsTo"|"extends"|"import"|"iteration"|"library"|"operation"
+		//  |"package"|"property"|"super"|"type";
 		public ParserRule getRule() { return rule; }
 
 		//ID_TERMINAL|"conformsTo"|"extends"|"import"|"iteration"|"library"|"operation"|
@@ -189,10 +192,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNamespaceNamespaceCSSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1 = (RuleCall)cNamespaceNamespaceCSCrossReference_2_0.eContents().get(1);
 		
 		//LibImportCS returns base::ImportCS:
-		//  "import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING];
+		//  "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
+		//  SINGLE_QUOTED_STRING];
 		public ParserRule getRule() { return rule; }
 
-		//"import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING]
+		//"import" (name=Identifier ":")? namespace=[base::NamespaceCS|
+		//SINGLE_QUOTED_STRING]
 		public Group getGroup() { return cGroup; }
 
 		//"import"
@@ -254,15 +259,17 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//LibClassCS:
-		//  "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-		//  LibTypeParameterCS)* ">")? ("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=
-		//  LibTypedRefCS)*)? "{" (iterations+=LibIterationCS|operations+=LibOperationCS|
+		//  "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS (","
+		//  typeParameters+=LibTypeParameterCS)* ">")? ("conformsTo"
+		//  conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (
+		//  iterations+=LibIterationCS|operations+=LibOperationCS|
 		//  structuralFeatures+=LibPropertyCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-		//LibTypeParameterCS)* ">")? ("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=
-		//LibTypedRefCS)*)? "{" (iterations+=LibIterationCS|operations+=LibOperationCS|
+		//"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS (","
+		//typeParameters+=LibTypeParameterCS)* ">")? ("conformsTo"
+		//conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (
+		//iterations+=LibIterationCS|operations+=LibOperationCS|
 		//structuralFeatures+=LibPropertyCS)* "}"
 		public Group getGroup() { return cGroup; }
 
@@ -275,8 +282,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_1_0() { return cNameIdentifierParserRuleCall_1_0; }
 
-		//("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)*
-		//">")?
+		//("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)
+		// * ">")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"<"
@@ -330,8 +337,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 
-		//(iterations+=LibIterationCS|operations+=LibOperationCS|structuralFeatures+=
-		//LibPropertyCS)*
+		//(iterations+=LibIterationCS|operations+=LibOperationCS|
+		//structuralFeatures+=LibPropertyCS)*
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 
 		//iterations+=LibIterationCS
@@ -400,42 +407,20 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//LibIterationCS:
-		//  "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-		//  LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS ("," parameters+=
-		//  LibParameterCS)* ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";"; 
+		//  "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS (","
+		//  typeParameters+=LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS (
+		//  "," parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>"
+		//  class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 		//
-		//
-		//
-		//    
-		//
-		//	  
-		//
-		//	         
-		//
-		//	         
-		//
-		//	   
-		//
-		//	  
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//  ";";
 		public ParserRule getRule() { return rule; }
 
-		//"iteration" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-		//LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS ("," parameters+=
-		//LibParameterCS)* ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";" 
+		//"iteration" name=Name ("<" typeParameters+=LibTypeParameterCS (","
+		//typeParameters+=LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS (","
+		//parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>"
+		//class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 		//
-		//	  
-		//
-		//	         
-		//
-		//	         
-		//
-		//	   
-		//
-		//	  
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//";"
 		public Group getGroup() { return cGroup; }
 
 		//"iteration"
@@ -447,8 +432,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)*
-		//">")?
+		//("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)
+		// * ">")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"<"
@@ -511,19 +496,15 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"=>"
 		public Keyword getEqualsSignGreaterThanSignKeyword_9() { return cEqualsSignGreaterThanSignKeyword_9; }
 
-		//class=SINGLE_QUOTED_STRING   
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//class=SINGLE_QUOTED_STRING
 		public Assignment getClassAssignment_10() { return cClassAssignment_10; }
 
-		//SINGLE_QUOTED_STRING 
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//SINGLE_QUOTED_STRING
 		public RuleCall getClassSINGLE_QUOTED_STRINGTerminalRuleCall_10_0() { return cClassSINGLE_QUOTED_STRINGTerminalRuleCall_10_0; }
 
-		//";" 
-		//
 		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//
+		//";"
 		public Keyword getSemicolonKeyword_11() { return cSemicolonKeyword_11; }
 	}
 
@@ -560,42 +541,20 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//LibOperationCS:
-		//  "operation" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-		//  LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS ("," parameters+=
-		//  LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";"; 
+		//  "operation" name=Name ("<" typeParameters+=LibTypeParameterCS (","
+		//  typeParameters+=LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS (
+		//  "," parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
+		//  class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 		//
-		//
-		//
-		//    
-		//
-		//	  
-		//
-		//	         
-		//
-		//	         
-		//
-		//	   
-		//
-		//	  
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//  ";";
 		public ParserRule getRule() { return rule; }
 
-		//"operation" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-		//LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS ("," parameters+=
-		//LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";" 
+		//"operation" name=Name ("<" typeParameters+=LibTypeParameterCS (","
+		//typeParameters+=LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS (","
+		//parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
+		//class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 		//
-		//	  
-		//
-		//	         
-		//
-		//	         
-		//
-		//	   
-		//
-		//	  
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//";"
 		public Group getGroup() { return cGroup; }
 
 		//"operation"
@@ -607,8 +566,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)*
-		//">")?
+		//("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)
+		// * ">")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"<"
@@ -674,19 +633,15 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"=>"
 		public Keyword getEqualsSignGreaterThanSignKeyword_8() { return cEqualsSignGreaterThanSignKeyword_8; }
 
-		//class=SINGLE_QUOTED_STRING   
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//class=SINGLE_QUOTED_STRING
 		public Assignment getClassAssignment_9() { return cClassAssignment_9; }
 
-		//SINGLE_QUOTED_STRING 
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//SINGLE_QUOTED_STRING
 		public RuleCall getClassSINGLE_QUOTED_STRINGTerminalRuleCall_9_0() { return cClassSINGLE_QUOTED_STRINGTerminalRuleCall_9_0; }
 
-		//";" 
-		//
 		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//
+		//";"
 		public Keyword getSemicolonKeyword_10() { return cSemicolonKeyword_10; }
 	}
 
@@ -705,12 +660,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//LibPackageCS:
-		//  "package" name=Identifier "{" (subpackages+=LibPackageCS|classifiers+=
-		//  LibClassifierCS)* "}";
+		//  "package" name=Identifier "{" (subpackages+=LibPackageCS|
+		//  classifiers+=LibClassifierCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"package" name=Identifier "{" (subpackages+=LibPackageCS|classifiers+=
-		//LibClassifierCS)* "}"
+		//"package" name=Identifier "{" (subpackages+=LibPackageCS|
+		//classifiers+=LibClassifierCS)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -857,30 +812,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//LibPropertyCS:
-		//  "property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";"; 
+		//  "property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 		//
-		//
-		//
-		//    
-		//
-		//	  
-		//
-		//	  
-		//
-		//	  
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//  ";";
 		public ParserRule getRule() { return rule; }
 
-		//"property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";" 
+		//"property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 		//
-		//	  
-		//
-		//	  
-		//
-		//	  
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//";"
 		public Group getGroup() { return cGroup; }
 
 		//"property"
@@ -904,19 +843,15 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"=>"
 		public Keyword getEqualsSignGreaterThanSignKeyword_4() { return cEqualsSignGreaterThanSignKeyword_4; }
 
-		//class=SINGLE_QUOTED_STRING   
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//class=SINGLE_QUOTED_STRING
 		public Assignment getClassAssignment_5() { return cClassAssignment_5; }
 
-		//SINGLE_QUOTED_STRING 
-		//
-		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//SINGLE_QUOTED_STRING
 		public RuleCall getClassSINGLE_QUOTED_STRINGTerminalRuleCall_5_0() { return cClassSINGLE_QUOTED_STRINGTerminalRuleCall_5_0; }
 
-		//";" 
-		//
 		////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+		//
+		//";"
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
 
@@ -940,8 +875,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeLibTypedRefCSParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
 		
 		//LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-		//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
-		//  typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
+		//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (
+		//  "," typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
 		public ParserRule getRule() { return rule; }
 
 		//namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
@@ -1014,12 +949,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuperLibTypedRefCSParserRuleCall_1_1_1_0 = (RuleCall)cSuperAssignment_1_1_1.eContents().get(0);
 		
 		//LibTypeParameterCS returns base::TypeParameterCS:
-		//  name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*|
-		//  "super" super=LibTypedRefCS)?;
+		//  name=Identifier ("extends" extends+=LibTypedRefCS ("&&"
+		//  extends+=LibTypedRefCS)*|"super" super=LibTypedRefCS)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*|
-		//"super" super=LibTypedRefCS)?
+		//name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*
+		//|"super" super=LibTypedRefCS)?
 		public Group getGroup() { return cGroup; }
 
 		//name=Identifier
@@ -1028,8 +963,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_0_0() { return cNameIdentifierParserRuleCall_0_0; }
 
-		//("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*|"super" super=
-		//LibTypedRefCS)?
+		//("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*|"super"
+		//super=LibTypedRefCS)?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//"extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*
@@ -1126,12 +1061,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//LibTypedTypeRefCS returns base::TypedTypeRefCS:
-		//  type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=
-		//  LibTypeRefCS)* ">")?;
+		//  type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
+		//  typeArguments+=LibTypeRefCS)* ">")?;
 		public ParserRule getRule() { return rule; }
 
-		//type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=
-		//LibTypeRefCS)* ">")?
+		//type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
+		//typeArguments+=LibTypeRefCS)* ">")?
 		public Group getGroup() { return cGroup; }
 
 		//type=[base::TypeCS|Identifier]
@@ -1187,12 +1122,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuperLibTypedRefCSParserRuleCall_2_1_1_0 = (RuleCall)cSuperAssignment_2_1_1.eContents().get(0);
 		
 		//LibWildcardTypeRefCS returns base::WildcardTypeRefCS:
-		//  {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super" super=
-		//  LibTypedRefCS)?;
+		//  {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super"
+		//  super=LibTypedRefCS)?;
 		public ParserRule getRule() { return rule; }
 
-		//{base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super" super=
-		//LibTypedRefCS)?
+		//{base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super"
+		//super=LibTypedRefCS)?
 		public Group getGroup() { return cGroup; }
 
 		//{base::WildcardTypeRefCS}
@@ -1270,10 +1205,13 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 
 	
-	//Library returns LibDocumentCS:
-	//  "library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS* "}"; 
-	//
 	////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
+	//
+	//
+	//
+	//Library returns LibDocumentCS:
+	//  "library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS*
+	//  "}";
 	public LibraryElements getLibraryAccess() {
 		return (pLibrary != null) ? pLibrary : (pLibrary = new LibraryElements());
 	}
@@ -1283,24 +1221,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOUBLE_QUOTED_STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
+	//  ))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
 		return (tDOUBLE_QUOTED_STRING != null) ? tDOUBLE_QUOTED_STRING : (tDOUBLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE_QUOTED_STRING"));
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
-	//  "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//  "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"
+	//  ))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return (tSINGLE_QUOTED_STRING != null) ? tSINGLE_QUOTED_STRING : (tSINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_QUOTED_STRING"));
 	} 
 
+	//// NB not "ID" to ensure implicit use of ID is an error
+	//
+	//
+	//
 	//terminal ID_TERMINAL:
-	//  ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" SINGLE_QUOTED_STRING
-	//;  
-	//
-	//	
-	//
-	//    		 // NB not "ID" to ensure implicit use of ID is an error
+	//  ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_"
+	//  SINGLE_QUOTED_STRING;
 	public TerminalRule getID_TERMINALRule() {
 		return (tID_TERMINAL != null) ? tID_TERMINAL : (tID_TERMINAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID_TERMINAL"));
 	} 
@@ -1323,12 +1263,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
+	//// String to allow diverse re-use
+	//
+	//
+	//
 	//terminal INT:
-	//  "0".."9"+; 
-	//
-	//
-	//
-	//  											 // String to allow diverse re-use
+	//  "0".."9"+;
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
@@ -1354,8 +1294,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Identifier returns ecore::EString:
-	//  ID_TERMINAL|"conformsTo"|"extends"|"import"|"iteration"|"library"|"operation"|
-	//  "package"|"property"|"super"|"type";
+	//  ID_TERMINAL|"conformsTo"|"extends"|"import"|"iteration"|"library"|"operation"
+	//  |"package"|"property"|"super"|"type";
 	public IdentifierElements getIdentifierAccess() {
 		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
 	}
@@ -1375,7 +1315,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibImportCS returns base::ImportCS:
-	//  "import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING];
+	//  "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
+	//  SINGLE_QUOTED_STRING];
 	public LibImportCSElements getLibImportCSAccess() {
 		return (pLibImportCS != null) ? pLibImportCS : (pLibImportCS = new LibImportCSElements());
 	}
@@ -1385,9 +1326,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibClassCS:
-	//  "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-	//  LibTypeParameterCS)* ">")? ("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=
-	//  LibTypedRefCS)*)? "{" (iterations+=LibIterationCS|operations+=LibOperationCS|
+	//  "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS (","
+	//  typeParameters+=LibTypeParameterCS)* ">")? ("conformsTo"
+	//  conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (
+	//  iterations+=LibIterationCS|operations+=LibOperationCS|
 	//  structuralFeatures+=LibPropertyCS)* "}";
 	public LibClassCSElements getLibClassCSAccess() {
 		return (pLibClassCS != null) ? pLibClassCS : (pLibClassCS = new LibClassCSElements());
@@ -1408,25 +1350,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibIterationCS:
-	//  "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-	//  LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS ("," parameters+=
-	//  LibParameterCS)* ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";"; 
+	//  "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS (","
+	//  typeParameters+=LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS (
+	//  "," parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>"
+	//  class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 	//
-	//
-	//
-	//    
-	//
-	//	  
-	//
-	//	         
-	//
-	//	         
-	//
-	//	   
-	//
-	//	  
-	//
-	////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+	//  ";";
 	public LibIterationCSElements getLibIterationCSAccess() {
 		return (pLibIterationCS != null) ? pLibIterationCS : (pLibIterationCS = new LibIterationCSElements());
 	}
@@ -1436,25 +1365,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibOperationCS:
-	//  "operation" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=
-	//  LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS ("," parameters+=
-	//  LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";"; 
+	//  "operation" name=Name ("<" typeParameters+=LibTypeParameterCS (","
+	//  typeParameters+=LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS (
+	//  "," parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
+	//  class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 	//
-	//
-	//
-	//    
-	//
-	//	  
-	//
-	//	         
-	//
-	//	         
-	//
-	//	   
-	//
-	//	  
-	//
-	////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+	//  ";";
 	public LibOperationCSElements getLibOperationCSAccess() {
 		return (pLibOperationCS != null) ? pLibOperationCS : (pLibOperationCS = new LibOperationCSElements());
 	}
@@ -1464,8 +1380,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibPackageCS:
-	//  "package" name=Identifier "{" (subpackages+=LibPackageCS|classifiers+=
-	//  LibClassifierCS)* "}";
+	//  "package" name=Identifier "{" (subpackages+=LibPackageCS|
+	//  classifiers+=LibClassifierCS)* "}";
 	public LibPackageCSElements getLibPackageCSAccess() {
 		return (pLibPackageCS != null) ? pLibPackageCS : (pLibPackageCS = new LibPackageCSElements());
 	}
@@ -1486,19 +1402,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibPropertyCS:
-	//  "property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING ";"; 
+	//  "property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 	//
-	//
-	//
-	//    
-	//
-	//	  
-	//
-	//	  
-	//
-	//	  
-	//
-	////	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+	//  ";";
 	public LibPropertyCSElements getLibPropertyCSAccess() {
 		return (pLibPropertyCS != null) ? pLibPropertyCS : (pLibPropertyCS = new LibPropertyCSElements());
 	}
@@ -1508,8 +1414,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
-	//  typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
+	//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (
+	//  "," typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
 	public LibQualifiedTypeRefCSElements getLibQualifiedTypeRefCSAccess() {
 		return (pLibQualifiedTypeRefCS != null) ? pLibQualifiedTypeRefCS : (pLibQualifiedTypeRefCS = new LibQualifiedTypeRefCSElements());
 	}
@@ -1519,8 +1425,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibTypeParameterCS returns base::TypeParameterCS:
-	//  name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*|
-	//  "super" super=LibTypedRefCS)?;
+	//  name=Identifier ("extends" extends+=LibTypedRefCS ("&&"
+	//  extends+=LibTypedRefCS)*|"super" super=LibTypedRefCS)?;
 	public LibTypeParameterCSElements getLibTypeParameterCSAccess() {
 		return (pLibTypeParameterCS != null) ? pLibTypeParameterCS : (pLibTypeParameterCS = new LibTypeParameterCSElements());
 	}
@@ -1550,8 +1456,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibTypedTypeRefCS returns base::TypedTypeRefCS:
-	//  type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=
-	//  LibTypeRefCS)* ">")?;
+	//  type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
+	//  typeArguments+=LibTypeRefCS)* ">")?;
 	public LibTypedTypeRefCSElements getLibTypedTypeRefCSAccess() {
 		return (pLibTypedTypeRefCS != null) ? pLibTypedTypeRefCS : (pLibTypedTypeRefCS = new LibTypedTypeRefCSElements());
 	}
@@ -1561,8 +1467,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibWildcardTypeRefCS returns base::WildcardTypeRefCS:
-	//  {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super" super=
-	//  LibTypedRefCS)?;
+	//  {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super"
+	//  super=LibTypedRefCS)?;
 	public LibWildcardTypeRefCSElements getLibWildcardTypeRefCSAccess() {
 		return (pLibWildcardTypeRefCS != null) ? pLibWildcardTypeRefCS : (pLibWildcardTypeRefCS = new LibWildcardTypeRefCSElements());
 	}

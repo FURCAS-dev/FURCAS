@@ -17,6 +17,11 @@ public abstract class AbstractEssentialOCLUiModule extends DefaultUiModule {
 	}
 	
 	
+	// contributed by org.eclipse.xtext.ui.generator.ImplicitUiFragment
+	public com.google.inject.Provider<org.eclipse.xtext.resource.containers.IAllContainersState> provideIAllContainersState() {
+		return org.eclipse.xtext.ui.shared.Access.getJavaProjectsState();
+	}
+
 	// contributed by org.eclipse.xtext.generator.exporting.QualifiedNamesFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher> bindPrefixMatcher() {
 		return org.eclipse.xtext.ui.editor.contentassist.FQNPrefixMatcher.class;
