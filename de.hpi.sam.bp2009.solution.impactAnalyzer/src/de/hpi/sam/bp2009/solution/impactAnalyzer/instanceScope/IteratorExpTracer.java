@@ -6,6 +6,8 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
+
+
 public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
 	public IteratorExpTracer(IteratorExp expression) {
 		super(expression);

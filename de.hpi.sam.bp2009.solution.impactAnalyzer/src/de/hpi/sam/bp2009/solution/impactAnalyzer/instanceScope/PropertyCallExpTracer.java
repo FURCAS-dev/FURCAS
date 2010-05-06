@@ -17,6 +17,8 @@ import org.eclipse.ocl.expressions.TupleLiteralPart;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
+
+
 public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     public PropertyCallExpTracer(PropertyCallExp expression) {
         super(expression);

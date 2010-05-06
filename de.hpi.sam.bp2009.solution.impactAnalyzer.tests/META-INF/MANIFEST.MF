@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
  company;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.impactAnalyzer;bundle-version="1.0.0",
- org.hamcrest.core;bundle-version="1.1.0"
+ org.hamcrest.core;bundle-version="1.1.0",
+ de.hpi.sam.bp2009.ngpm
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.junit

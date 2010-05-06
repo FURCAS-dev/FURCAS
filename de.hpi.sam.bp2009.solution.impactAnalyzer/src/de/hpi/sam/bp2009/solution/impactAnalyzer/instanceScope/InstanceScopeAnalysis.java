@@ -72,22 +72,20 @@ public class InstanceScopeAnalysis {
     /**
      * @param expression
      * 		  the OCL expression for which to perform instance scope impact analysis
-     * @param conn
-     *            the connection used to walk the expression tree
      * @param pathCache
      *            caches {@link NavigationPath} traceback navigations to the possible contexts for a given expression
      *            that can be invoked for model elements; using this cache avoids redundant path calculations for common
      *            subexpressions, such as operation bodies called by several expressions.
-     * @param classScopeAnalyzer
-     *            makes available the operation call relations reachable from the root expression that was analyzed by
-     *            the class scope analyzer.
      */
-    public InstanceScopeAnalysis(OCLExpression<EClassifier> expression, PathCache pathCache, FilterSynthesis classScopeAnalyzer) {
+    public InstanceScopeAnalysis(OCLExpression<EClassifier> expression, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+        if (expression == null || pathCache == null){
+            throw new IllegalArgumentException("Arguments must not be null");
+        }
         associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder();
         expressionToStep = new HashMap<OCLExpression<EClassifier>, NavigationStep>();
         this.pathCache = pathCache;
-        this.filterSynthesizer = classScopeAnalyzer;
         associationEndAndAttributeCallFinder.walk(expression);
+        this.filterSynthesizer = filterSynthesizer;
     }
 
     public Collection<EObject> getContextObjects(Notification event, OCLExpression<EClassifier> expression, EClass context){

@@ -22,6 +22,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
+
+
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
     public VariableExpTracer(VariableExp expression) {
 	super(expression);
@@ -129,18 +131,19 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
-	return pathCache.getOrCreateNavigationPath(getVariableDeclaration()
-		.getInitExpression(), context, filterSynthesizer);
+	return pathCache.getOrCreateNavigationPath(getVariableDeclaration().getInitExpression(), 
+	        context, 
+	        filterSynthesizer);
     }
 
     private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
 	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(
 	        getVariableDeclaration().getInitExpression(),
-	        context,
+	        context, 
 	        filterSynthesizer);
 	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
 	        ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
-	        context,
+	        context, 
 	        filterSynthesizer);
 	return new BranchingNavigationStep(
 	        (EClass) getExpression().getType(),
@@ -153,7 +156,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
 	return pathCache.getOrCreateNavigationPath(
 	        ((IteratorExp) getVariableDeclaration().eContainer()).getSource(),
-	        context,
+	        context, 
 	        filterSynthesizer);
     }
 

@@ -3,20 +3,12 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests;
 
-import static org.junit.Assert.fail;
-import junit.framework.TestCase;
-
 import org.easymock.EasyMock;
-
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AssociationEndAndAttributeCallFinder;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
@@ -33,20 +25,23 @@ public class InstanceScopeAnalysisTests extends BaseDepartmentTest {
      */
     private class ClassMock extends org.easymock.classextension.EasyMock{}
     private PathCache pathCacheMock;
+    private FilterSynthesis filterSynthesizerMock;
 //    private OCLExpression<EClassifier> oclExpressionMock;
 //    private AssociationEndAndAttributeCallFinder visitorMock;
 
-    @SuppressWarnings("unchecked") // EasyMock cant't handle generic types
     @Before
     public void setUp() {   
         super.setUp();
         pathCacheMock = ClassMock.createMock(PathCache.class);
+        filterSynthesizerMock = EasyMock.createMock(FilterSynthesis.class);
 //        oclExpressionMock = ClassMock.createMock(OCLExpression.class);
 //        visitorMock = ClassMock.createMock(AssociationEndAndAttributeCallFinder.class);
     }
 
     @After
     public void tearDown() {
+        pathCacheMock = null;
+        filterSynthesizerMock = null;
     }
 
     /**
@@ -54,23 +49,40 @@ public class InstanceScopeAnalysisTests extends BaseDepartmentTest {
      */
     @Test
     public void testInstanceScopeAnalysisArguments() {
-        InstanceScopeAnalysis isa;
-//        ClassMock.expect(oclExpressionMock.accept(visitorMock)).andReturn(EcoreFactory.eINSTANCE.createEPackage());
-//        ClassMock.replay(oclExpressionMock);
+        String errorMsg = "Should produce IllegalArgumentException";
+        InstanceScopeAnalysis isa = null;
         try{
-            isa = new InstanceScopeAnalysis(null, null);
-            fail("Should produce IllegalArgumentException");
-        }catch (IllegalArgumentException e){}
-        try{
-            isa = new InstanceScopeAnalysis(null, pathCacheMock);
-            fail("Should produce IllegalArgumentException");
-        }catch (IllegalArgumentException e){}
-        try{
-            isa = new InstanceScopeAnalysis(this.maxJuniorsAST, null);
-            fail("Should produce IllegalArgumentException");
+            isa = new InstanceScopeAnalysis(null, null, filterSynthesizerMock);
+            fail(errorMsg);
         }catch (IllegalArgumentException e){}
         
-        isa = new InstanceScopeAnalysis(this.maxJuniorsAST, pathCacheMock);
+        try{
+            isa = new InstanceScopeAnalysis(null, pathCacheMock, null);
+            fail(errorMsg);
+        }catch (IllegalArgumentException e){}
+        
+        try{
+            isa = new InstanceScopeAnalysis(this.maxJuniorsAST, null, null);
+            fail(errorMsg);
+        }catch (IllegalArgumentException e){}
+        
+        try{
+            isa = new InstanceScopeAnalysis(this.maxJuniorsAST, pathCacheMock, null);
+            fail(errorMsg);
+        }catch (IllegalArgumentException e){}
+        
+        try{
+            isa = new InstanceScopeAnalysis(this.maxJuniorsAST, null, filterSynthesizerMock);
+            fail(errorMsg);
+        }catch (IllegalArgumentException e){}
+        
+        try{
+            isa = new InstanceScopeAnalysis(null, pathCacheMock, filterSynthesizerMock);
+            fail(errorMsg);
+        }catch (IllegalArgumentException e){}
+        
+        isa = new InstanceScopeAnalysis(this.maxJuniorsAST, pathCacheMock, filterSynthesizerMock);
+        assertTrue(isa != null);
     }
 
     /**

@@ -14,6 +14,8 @@ import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
 
+
+
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
     public CollectionLiteralExpTracer(CollectionLiteralExp expression) {
         super(expression);

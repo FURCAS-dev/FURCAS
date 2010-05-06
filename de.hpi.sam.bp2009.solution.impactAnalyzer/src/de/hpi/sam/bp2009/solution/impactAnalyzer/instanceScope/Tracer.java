@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
+
+
 /**
  * All implementations must offer a constructor that takes a {@link CoreConnection} and a {@link OclExpression} impl
  * subclass of the type handled by them as argument. Furthermore, the implementing classes underly a naming convention.
@@ -28,6 +30,7 @@ public interface Tracer {
      *            the context type that defines the type of any <tt>self</tt> occurrence outside of operation bodies
      * @param pathCache
      *            a global cache that remembers the navigation steps already computed for some OCL expressions
+     * @param filterSynthesizer TODO
      * @param classScopeAnalyzer
      *            retains the results of traversing the outermost expression's tree, a sub-expression of which this
      *            tracer will analyze in this method. The class scope analyzer in particular remembers the operation

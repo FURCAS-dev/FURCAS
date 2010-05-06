@@ -17,7 +17,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	 * without consideration of the <tt>fromObject</tt>'s type always computes all
 	 * instances of the {@link NavigationStep#getTargetType() target type} and all
 	 * its direct and indirect subtypes.
-	 * @param debugInfo TODO
+	 * @param debugInfo
 	 */
 	public AllInstancesNavigationStep(EClass targetType, OCLExpression debugInfo) {
 		super(null, targetType, debugInfo);
@@ -31,7 +31,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	 * conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The
 	 * consideration of the <tt>fromObject</tt> is the reason why if constructed with this
 	 * constructor an object of this class is not absolute.
-	 * @param debugInfo TODO
+	 * @param debugInfo
 	 */
 	public AllInstancesNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
 		super(sourceType, targetType, debugInfo);
