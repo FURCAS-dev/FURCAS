@@ -3,13 +3,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.swing.event.ChangeListener;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
-
+import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
@@ -29,8 +25,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * 
  * Navigation steps may form a possibly cyclic (in case of recursive operations) graph. Steps may navigate, e.g., along
  * associations or ascend the composition hierarchy, using {@link RefObject#refImmediateComposite()}.
- * 
- * @author Axel Uhl (d043530)
  * 
  */
 public interface NavigationStep {
@@ -61,7 +55,7 @@ public interface NavigationStep {
 	 * created. This can aid the impact analysis debugging process. May return <tt>null</tt>.
 	 * @return
 	 */
-	OCLExpression<EClassifier> getDebugInfo();
+	OCLExpression getDebugInfo();
 
 	/**
 	 * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be

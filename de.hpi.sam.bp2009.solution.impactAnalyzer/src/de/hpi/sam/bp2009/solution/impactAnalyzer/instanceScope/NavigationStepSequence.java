@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -22,8 +21,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * This means that when a navigation step produces an empty result, then for no element
  * does the subexpression produce the result sought. Therefore, the further ascend towards
  * the root expression's context can be aborted at that point.
- * 
- * @author Axel Uhl D043530
  *
  */
 public class NavigationStepSequence extends CompositeNavigationStep {
@@ -35,7 +32,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
      * {@link #getSourceType()} and {@link #getTargetType()} and dynamically fetches them
      * from the underlying step sequence.
      */
-    public NavigationStepSequence(OCLExpression<EClassifier> debugInfo, NavigationStep... steps) {
+    public NavigationStepSequence(OCLExpression debugInfo, NavigationStep... steps) {
 	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(steps, debugInfo));
 	setSourceType(getSteps()[0].getSourceType());
 	getSteps()[0].addASourceTypeChangeListener(new SourceTypeChangeListener() {
@@ -116,7 +113,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
      * @param debugInfo
      *            used in case a simplifying {@link EmptyResultNavigationStep} is created for the sequence
      */
-    private static NavigationStep[] compactSteps(NavigationStep[] steps, OCLExpression<EClassifier> debugInfo) {
+    private static NavigationStep[] compactSteps(NavigationStep[] steps, OCLExpression debugInfo) {
 	if (steps.length==0) {
 	    throw new RuntimeException("NavigationStepSequence must at least have one element");
 	}

@@ -35,6 +35,7 @@ import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LiteralExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
@@ -44,7 +45,6 @@ import org.eclipse.ocl.ecore.StringLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
@@ -65,7 +65,7 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
-    private final Map<OCLExpression<EClassifier>, NavigationStep> expressionToStep;
+    private final Map<OCLExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
     private final FilterSynthesis filterSynthesizer;
 
@@ -77,18 +77,18 @@ public class InstanceScopeAnalysis {
      *            that can be invoked for model elements; using this cache avoids redundant path calculations for common
      *            subexpressions, such as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression<EClassifier> expression, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    public InstanceScopeAnalysis(OCLExpression expression, PathCache pathCache, FilterSynthesis filterSynthesizer) {
         if (expression == null || pathCache == null){
             throw new IllegalArgumentException("Arguments must not be null");
         }
         associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder();
-        expressionToStep = new HashMap<OCLExpression<EClassifier>, NavigationStep>();
+        expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         this.pathCache = pathCache;
         associationEndAndAttributeCallFinder.walk(expression);
         this.filterSynthesizer = filterSynthesizer;
     }
 
-    public Collection<EObject> getContextObjects(Notification event, OCLExpression<EClassifier> expression, EClass context){
+    public Collection<EObject> getContextObjects(Notification event, OCLExpression expression, EClass context){
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         if (NotificationHelper.isElementLifeCycleEvent(event)){
             EClass notiCls = ((EObject)event.getNotifier()).eClass();
@@ -123,7 +123,7 @@ public class InstanceScopeAnalysis {
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context
      *            type defines the type for <tt>self</tt> if used outside of operation bodies.
      */
-    private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression<EClassifier> exp, EClass context) {
+    private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
         NavigationStep result = expressionToStep.get(exp);
         if (result == null) {
             result = getTracer(exp).traceback(context, pathCache, filterSynthesizer);
@@ -165,12 +165,12 @@ public class InstanceScopeAnalysis {
                 if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
                     if (ace.getType() instanceof PrimitiveType) {
                         if (ace.getReferredProperty().equals(NotificationHelper.getNotificationFeature(changeEvent))) {
-                            OCLExpression<EClassifier> otherArgument = null;
+                            OCLExpression otherArgument = null;
                             OperationCallExp op;
                             boolean attributeIsParameter = false;
                             op = (OperationCallExp) ace.eContainer(); // argument of a comparison operation?
                             if (op != null && isComparisonOperation(op)) {
-                                otherArgument = (OCLExpression<EClassifier>) op.getSource();
+                                otherArgument =  (OCLExpression) op.getSource();
                                 attributeIsParameter = true;
                             } else {
                                 CallExp callExp = (CallExp) ace.eContainer(); // source of a comparison operation?
@@ -178,7 +178,7 @@ public class InstanceScopeAnalysis {
                                         && callExp instanceof OperationCallExp
                                         && isComparisonOperation(((OperationCallExp) callExp))) {
                                     op = ((OperationCallExp) callExp);
-                                    otherArgument = (OCLExpression<EClassifier>) op.getArgument().iterator().next();
+                                    otherArgument = (OCLExpression) op.getArgument().iterator().next();
                                     attributeIsParameter = false;
                                 }
                             }
@@ -296,7 +296,7 @@ public class InstanceScopeAnalysis {
     private Set<AnnotatedEObject> self(PropertyCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache) {
         NavigationStep step = getNavigationStepsToSelfForExpression(
-                attributeOrAssociationEndCall.getSource(),
+                (OCLExpression)attributeOrAssociationEndCall.getSource(),
                 context);
         Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
         Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache);
@@ -307,7 +307,7 @@ public class InstanceScopeAnalysis {
      * Factory method that creats an instance of some {@link Tracer}-implementing class specific to the
      * type of the OCL <tt>expression</tt>.
      */
-    protected static Tracer getTracer(OCLExpression<EClassifier> expression) {
+    protected static Tracer getTracer(OCLExpression expression) {
         // using the class loader is another option, but that would create implicit naming conventions
         // thats why we do the mapping "manually"
         switch(expression.eClass().getClassifierID()){
@@ -386,7 +386,7 @@ public class InstanceScopeAnalysis {
      * operation, <tt>null</tt> is returned. Otherwise, the first operation (usually there would be
      * at most one) for which <tt>expression</tt> is the operation body is returned.
      */
-    protected static EOperation getDefines(OCLExpression<EClassifier> expression) {
+    protected static EOperation getDefines(OCLExpression expression) {
         //TODO: check correctness of this query
         String query = "select op from [" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEOperation()) + "] as op, " +
         "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation()) + "] as annotation, " +

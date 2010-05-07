@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
@@ -27,22 +26,20 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
  * entries from a {@link PathCache} seems to cause more effort than using a new {@link PathCache}
  * object for each expression analyzed, particularly given the fact that the {@link NavigationPath}
  * assembly only has to happen once per life-time of an {@link OCLExpression<EClassifier>} during a session.
- * 
- * @author Axel Uhl D043530
  *
  */
 public class PathCache {
-	private Map<OCLExpression<EClassifier>, NavigationStep> subexpressionToPath = new HashMap<OCLExpression<EClassifier>, NavigationStep>();
+	private Map<OCLExpression, NavigationStep> subexpressionToPath = new HashMap<OCLExpression, NavigationStep>();
 
-	public NavigationStep getPathForNode(OCLExpression<EClassifier> subexpression) {
+	public NavigationStep getPathForNode(OCLExpression subexpression) {
 		return subexpressionToPath.get(subexpression);
 	}
 
-	private void put(OCLExpression<EClassifier> subexpression, NavigationStep path) {
+	private void put(OCLExpression subexpression, NavigationStep path) {
 		subexpressionToPath.put(subexpression, path);
 	}
 
-	NavigationStep getOrCreateNavigationPath(OCLExpression<EClassifier> sourceExpression, EClass context, FilterSynthesis filterSynthesizer) {
+	NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context, FilterSynthesis filterSynthesizer) {
 		NavigationStep result = getPathForNode(sourceExpression);
 		if (result == null) {
 			result = InstanceScopeAnalysis.getTracer(sourceExpression).traceback(context, this, filterSynthesizer);
@@ -59,7 +56,7 @@ public class PathCache {
 	 *            may be <tt>null</tt>; optionally, use this to tell a debugging user to which OCL (sub-)expression the
 	 *            navigation step to create belongs
 	 */
-	protected NavigationStep navigationStepFromSequence(OCLExpression<EClassifier> debugInfo, NavigationStep... steps) {
+	protected NavigationStep navigationStepFromSequence(OCLExpression debugInfo, NavigationStep... steps) {
 		NavigationStep result;
 		if (steps[steps.length-1].isAbsolute()) {
 			result = steps[steps.length-1];
@@ -77,7 +74,7 @@ public class PathCache {
 	 * method will be found in this cache and therefore will not lead to an endless-recursive
 	 * step creation procedure.
 	 */
-	public IndirectingStep createIndirectingStepFor(OCLExpression<EClassifier> expr) {
+	public IndirectingStep createIndirectingStepFor(OCLExpression expr) {
 		IndirectingStep result = new IndirectingStep(expr);
 		put(expr, result);
 		return result;

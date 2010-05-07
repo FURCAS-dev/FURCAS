@@ -3,19 +3,16 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
- * 
- * @author Axel Uhl (d043530)
  *
  */
 public abstract class CompositeNavigationStep extends AbstractNavigationStep {
     private final NavigationStep[] steps;
 
-    public CompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression<EClassifier> debugInfo, NavigationStep... steps) {
+    public CompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... steps) {
 	super(sourceType, targetType, debugInfo);
 	this.steps = steps;
     }

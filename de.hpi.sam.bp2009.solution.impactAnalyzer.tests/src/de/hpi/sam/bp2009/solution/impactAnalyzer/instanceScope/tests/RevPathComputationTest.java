@@ -7,9 +7,8 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -81,7 +80,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // self.employee->select(
         // e|e.salary >= self.boss.salary)->size() <= 1
         System.out.println( "Testing BossHighestSalary\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
         stmts.add( this.bossHighestSalaryAST );
         
         Set<EObject> expectedInstances = new HashSet<EObject>( );
@@ -120,7 +119,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // context Employee inv BossIsOldest:
         // self.age <= self.employer.boss.age
         System.out.println( "Testing BossIsOldest\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
         stmts.add( this.bossIsOldestAST );
         
         Set<EObject> expectedInstances = new HashSet<EObject>( );
@@ -162,7 +161,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // inv NotBossFreelance:
         // not self.boss.oclIsTypeOf(Freelance)
         System.out.println( "Testing NotBossFreelance\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
         Notification noti = null;
 
         stmts.add( this.notBossFreelanceAST );
@@ -182,7 +181,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // inv OldEmployee:
         // self.employee->exists(e | e.age > 45)
         System.out.println( "Testing OldEmployee\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
 
         stmts.add( this.oldEmployeeAST );
         ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
@@ -212,7 +211,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // Employee.allInstances()->forAll(e |
         // e <> self implies e.name <> self.name)
         System.out.println( "Testing UniqueNames\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
 
         stmts.add( this.uniqueNamesAST );
         ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
@@ -232,7 +231,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // inv ValidAssignment:
         // self.assignment >= 5 and self.assignment <= 30
         System.out.println( "Testing ValidAssignment\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
         stmts.add( this.validAssignmentAST );
 
         ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
@@ -252,7 +251,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // context Department inv MaxJuniors:
         // self.employee->select(e|e.age < 25)->size() < self.maxJuniors
         System.out.println( "Testing MaxJuniors\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
         stmts.add( this.maxJuniorsAST );
 
         ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
@@ -285,7 +284,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // self.department->collect(d|
         // d.employee->including(d.boss)).salary->sum() < budget";
         System.out.println( "Testing nasty\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
 
         stmts.add( this.nastyConstraintAST );
         ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
@@ -335,7 +334,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // else true \n"
         // endif";
         System.out.println( "Testing secretaryOlderThanBoss\n" );
-        Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
         stmts.add( this.secretaryOlderThanBossAST );
         ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
         createFilters(stmts, ia, false);
@@ -507,9 +506,9 @@ public class RevPathComputationTest extends BaseDepartmentTest {
      * @param ia
      * @param notifyNewContectElements
      */
-    private void createFilters(Set<OCLExpression<EClassifier>> stmts, ImpactAnalyzer ia, boolean notifyNewContectElements) {
+    private void createFilters(Set<OCLExpression> stmts, ImpactAnalyzer ia, boolean notifyNewContectElements) {
         //for caching purpose only
-        for ( Iterator<OCLExpression<EClassifier>> i = stmts.iterator(); i.hasNext();){
+        for ( Iterator<OCLExpression> i = stmts.iterator(); i.hasNext();){
             ia.createFilterForQuery(i.next(), notifyNewContectElements);
         }
     }
@@ -522,9 +521,9 @@ public class RevPathComputationTest extends BaseDepartmentTest {
      * @param context
      * @return a Collection of {@link EObject}s representing the affected context instances.
      */
-    private Collection<EObject> computeAffectedInstances(Set<OCLExpression<EClassifier>> expressions, Notification noti, ImpactAnalyzer ia, EClass context) {
+    private Collection<EObject> computeAffectedInstances(Set<OCLExpression> expressions, Notification noti, ImpactAnalyzer ia, EClass context) {
         Collection<EObject> instances = new HashSet<EObject>();
-        for(Iterator<OCLExpression<EClassifier>> i = expressions.iterator(); i.hasNext();){           
+        for(Iterator<OCLExpression> i = expressions.iterator(); i.hasNext();){           
             instances = ia.getContextObjects(noti, i.next(), context);
         }
         return instances;

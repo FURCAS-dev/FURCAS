@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -13,8 +12,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
- * 
- * @author Axel Uhl (d043530)
  *
  */
 public class BranchingNavigationStep extends CompositeNavigationStep {

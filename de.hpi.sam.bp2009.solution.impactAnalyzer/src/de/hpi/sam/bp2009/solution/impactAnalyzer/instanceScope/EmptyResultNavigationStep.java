@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
-
+import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 
-	public EmptyResultNavigationStep(OCLExpression<EClassifier> debugInfo) {
+	public EmptyResultNavigationStep(OCLExpression debugInfo) {
 		super(null, debugInfo);
 		setAlwaysEmpty();
 	}

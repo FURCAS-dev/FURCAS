@@ -8,10 +8,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
@@ -26,13 +25,13 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     
-    private HashMap<OCLExpression<EClassifier>, FilterSynthesis> expToFilterSyn = new HashMap<OCLExpression<EClassifier>, FilterSynthesis>();
+    private HashMap<OCLExpression, FilterSynthesis> expToFilterSyn = new HashMap<OCLExpression, FilterSynthesis>();
     private PathCache pathCache = new PathCache();
     
     /**
      * @return the expToFilterSyn
      */
-    HashMap<OCLExpression<EClassifier>, FilterSynthesis> getExpToFilterSyn() {
+    HashMap<OCLExpression, FilterSynthesis> getExpToFilterSyn() {
         return expToFilterSyn;
     }
 
@@ -46,7 +45,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @param expToFilterSyn the expToFilterSyn to set
      */
-    void setExpToFilterSyn(HashMap<OCLExpression<EClassifier>, FilterSynthesis> expToFilterSyn) {
+    void setExpToFilterSyn(HashMap<OCLExpression, FilterSynthesis> expToFilterSyn) {
         this.expToFilterSyn = expToFilterSyn;
     }
 
@@ -58,7 +57,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     }
 
     @Override
-    public EventFilter createFilterForQuery(OCLExpression<EClassifier> expression, boolean notifyNewContextElements) {
+    public EventFilter createFilterForQuery(OCLExpression expression, boolean notifyNewContextElements) {
         FilterSynthesis filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
         this.getExpToFilterSyn().put(expression, filtersyn);
         return filtersyn.getSynthesisedFilter();
@@ -77,7 +76,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     @Override
     public Collection<EObject> getContextObjects(Notification event,
-            OCLExpression<EClassifier> expression, EClass context) {
+            OCLExpression expression, EClass context) {
         if(!(this.getExpToFilterSyn().containsKey(expression))){
             createFilterForQuery(expression, true);
         }

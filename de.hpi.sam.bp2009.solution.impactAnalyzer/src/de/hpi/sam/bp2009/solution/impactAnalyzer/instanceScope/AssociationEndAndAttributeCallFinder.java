@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TypeExp;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
 
@@ -45,7 +45,7 @@ public class AssociationEndAndAttributeCallFinder extends AbstractVisitor<EPacka
 EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
     private final Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = new HashMap<EAttribute, Set<PropertyCallExp>>();
     private final Map<EReference, Set<PropertyCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<PropertyCallExp>>();
-    private final Set<OCLExpression<EClassifier>> visitedExpressions = new HashSet<OCLExpression<EClassifier>>();
+    private final Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
     private final Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
 
     public AssociationEndAndAttributeCallFinder() {
@@ -93,7 +93,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             List<EPackage> argumentResults) {
         
         EOperation referredOperation = ((OperationCallExp) callExp).getReferredOperation();
-        OCLExpression<EClassifier> bodyExpr = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(referredOperation, "body");
+        OCLExpression bodyExpr = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(referredOperation, "body");
         if (bodyExpr != null) {
             walk(bodyExpr);
         } else if (referredOperation.getName().equals(PredefinedType.ALL_INSTANCES_NAME)) {
@@ -162,7 +162,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         return result;
     }
 
-    public void walk(OCLExpression<EClassifier> expression) {
+    public void walk(OCLExpression expression) {
         if (!visitedExpressions.contains(expression)) {
             safeVisit(expression);
             visitedExpressions.add(expression);

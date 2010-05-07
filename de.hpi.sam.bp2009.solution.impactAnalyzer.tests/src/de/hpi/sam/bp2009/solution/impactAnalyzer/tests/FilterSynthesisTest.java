@@ -6,8 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
 
     private ImpactAnalyzer ia;
 
-    private final Set<OCLExpression<EClassifier>> stmts = new HashSet<OCLExpression<EClassifier>>( );
+    private final Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
 
     @Override
     @Before
@@ -47,9 +46,9 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         }
         if ( this.ia == null ) {
             this.ia = new ImpactAnalyzerImpl();
-            Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator();
+            Iterator<OCLExpression> i = this.stmts.iterator();
             while(i.hasNext()){
-                OCLExpression<EClassifier> exp = i.next();
+                OCLExpression exp = i.next();
                 //filter isn't saved, because this is done for caching purpose only
                 this.ia.createFilterForQuery(exp, true);
             }           
@@ -73,8 +72,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testAttributeValueChangedEventAge( ) {
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Long( 23 ), new Long( 42 )); 
 
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.bossIsOldestAST);
         expectedStmts.add(this.maxJuniorsAST);                            
@@ -90,8 +89,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testAttributeValueChangedEventAssignment( ) {
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, new Long( 23 ), new Long( 42 ));
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.validAssignmentAST);
        
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
@@ -105,8 +104,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testAttributeValueChangedEventName( ) {
         Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeName, "Hinz", "Kunz" );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.uniqueNamesAST);
         
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
@@ -120,8 +119,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testAttributeValueChangedEventSalary( ) {
         Notification noti = NotificationHelper.createAttributeChangeNotification( this.aEmployee, this.employeeSalary, new Long( 1234 ), new Long( 1234 ) );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.bossHighestSalaryAST);
 
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );     
@@ -135,8 +134,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testAttributeValueChangedEventBudget( ) {
         Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Long( 1234 ), new Long( 1234 ) );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);        
-        Set<OCLExpression<EClassifier>> expectedStmts = Collections.emptySet( );
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);        
+        Set<OCLExpression> expectedStmts = Collections.emptySet( );
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );        
     }
@@ -149,8 +148,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testElementAddedEventDepartment( ) {
         Notification noti = NotificationHelper.createElementAddNotification(this.aDivision, this.departmentRef, comp.getCompanyFactory().createDepartment() );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.maxJuniorsAST); 
@@ -167,8 +166,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testElementAddedEventEmployee( ) {
         Notification noti = NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef,  comp.getCompanyFactory().createEmployee() );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.uniqueNamesAST);
         expectedStmts.add(this.bossIsOldestAST);
         //added by bp2009
@@ -187,8 +186,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testElementAddedEventFreelance( ) {
         Notification noti = NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef, comp.getCompanyFactory().createFreelance() );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.validAssignmentAST);
         expectedStmts.add(this.uniqueNamesAST);
         expectedStmts.add(this.bossIsOldestAST); 
@@ -208,8 +207,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testElementRemovedEventDepartment( ) {
         Notification noti = NotificationHelper.createElementDeleteNotification( this.aDepartment );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         //added by bp2009
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.notBossFreelanceAST);
@@ -227,8 +226,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testElementRemovedEventEmployee( ) {
         Notification noti = NotificationHelper.createElementDeleteNotification( this.aEmployee );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.uniqueNamesAST);
         //added by bp2009
         expectedStmts.add(this.bossHighestSalaryAST);
@@ -248,8 +247,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
 
         Notification noti = NotificationHelper.createElementDeleteNotification( this.aFreelance );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.uniqueNamesAST);
         //added by bp2009
         expectedStmts.add(this.bossHighestSalaryAST);
@@ -269,8 +268,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testLinkAddedEventManages( ) {
         Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee());
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.bossIsOldestAST);
@@ -288,8 +287,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testLinkAddedEventWorksIn( ) {
         Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.employeeRef, comp.getCompanyFactory().createEmployee() );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.maxJuniorsAST);
@@ -308,8 +307,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testLinkRemovedEventManages( ) {
         Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee() );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.bossIsOldestAST);
@@ -325,8 +324,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     public void testLinkRemovedEventWorksIn( ) {
         Notification noti = NotificationHelper.createReferenceRemoveNotification( this.aDepartment, this.employeeRef, this.aEmployee );
         
-        HashSet<OCLExpression<EClassifier>> affectedStmts = filterStatementsForNotification(noti);
-        Set<OCLExpression<EClassifier>> expectedStmts = new HashSet<OCLExpression<EClassifier>>();
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.maxJuniorsAST);
@@ -341,11 +340,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      * @param noti a {@link Notification} including a model change
      * @return the {@link OCLExpression<EClassifier>}s which are affected by the given {@link Notification}
      */
-    private HashSet<OCLExpression<EClassifier>> filterStatementsForNotification(Notification noti) {
-        HashSet<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>();
+    private HashSet<OCLExpression> filterStatementsForNotification(Notification noti) {
+        HashSet<OCLExpression> affectedStmts = new HashSet<OCLExpression>();
         
-        for(Iterator<OCLExpression<EClassifier>> i = this.stmts.iterator(); i.hasNext();){
-            OCLExpression<EClassifier> exp = i.next();
+        for(Iterator<OCLExpression> i = this.stmts.iterator(); i.hasNext();){
+            OCLExpression exp = i.next();
             EventFilter filter = this.ia.createFilterForQuery(exp, true); 
             if (filter.matchesFor(noti)){
                 affectedStmts.add(exp);
@@ -361,13 +360,13 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      * <tt>expectedAffectedStmts</tt> is contained in
      * <tt>iaResult</tt> and vice versa.
      */
-    private boolean checkAffectedStatements( Set<OCLExpression<EClassifier>> iaResult, Set<OCLExpression<EClassifier>> expectedAffectedStmts ) {
+    private boolean checkAffectedStatements( Set<OCLExpression> iaResult, Set<OCLExpression> expectedAffectedStmts ) {
     
         if ( iaResult.size( ) != expectedAffectedStmts.size( ) ) {
             return false;
         }
-        Set<OCLExpression<EClassifier>> affectedStmts = new HashSet<OCLExpression<EClassifier>>( );
-        for ( Iterator<OCLExpression<EClassifier>> i = iaResult.iterator( ); i.hasNext( ); ) {
+        Set<OCLExpression> affectedStmts = new HashSet<OCLExpression>( );
+        for ( Iterator<OCLExpression> i = iaResult.iterator( ); i.hasNext( ); ) {
             affectedStmts.add( i.next( ));
         }
     

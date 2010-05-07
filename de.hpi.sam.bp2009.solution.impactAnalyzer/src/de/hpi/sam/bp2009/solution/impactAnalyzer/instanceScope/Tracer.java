@@ -2,9 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
 
@@ -14,8 +12,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
  * subclass of the type handled by them as argument. Furthermore, the implementing classes underly a naming convention.
  * If they handle an {@link OclExpression} type by the MOF name of <tt>X</tt> then the tracer implementation class name
  * must be <tt>XTracer</tt>.
- * 
- * @author Axel Uhl D043530
  * 
  */
 public interface Tracer {

@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -17,8 +16,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * be filled in later, e.g., pointing to a real {@link NavigationStep}. All fields are
  * initialized with <tt>null</tt> by the constructor. Clients have to ensure that
  * a valid state is achieved before leaving the analysis phase and using this step.<p>
- * 
- * @author Axel Uhl D043530
  *
  */
 public class IndirectingStep extends AbstractNavigationStep {
@@ -38,7 +35,7 @@ public class IndirectingStep extends AbstractNavigationStep {
 	}
     };
 
-    public IndirectingStep(OCLExpression<EClassifier> expr) {
+    public IndirectingStep(OCLExpression expr) {
 	super(null, null, expr);
     }
     

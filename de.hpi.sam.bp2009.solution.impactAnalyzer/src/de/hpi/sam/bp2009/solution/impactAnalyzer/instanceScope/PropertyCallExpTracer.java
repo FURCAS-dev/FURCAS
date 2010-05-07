@@ -2,19 +2,17 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.VariableExp;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
 
@@ -88,17 +86,17 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     }
 
     private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer){
-        OCLExpression<EClassifier> sourceExp = getExpression().getSource();
+        OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {
-            OCLExpression<EClassifier> tupleValueExp = null;
+            OCLExpression tupleValueExp = null;
             //this should be pushed on the stack
             String referredAttributeName = getExpression().getReferredProperty().getName();
             List<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)((VariableExp)sourceExp).getReferredVariable().getInitExpression()).getPart();
             for (Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator(); i.hasNext();) {
                 TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next();
                 if (tuplePart.getName().equals(referredAttributeName)) {
-                    tupleValueExp = tuplePart.getValue();
+                    tupleValueExp = (OCLExpression) tuplePart.getValue();
                     break;
                 }
             }
@@ -130,16 +128,16 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     } 
 
     private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer){
-        OCLExpression<EClassifier> sourceExp = getExpression().getSource();
+        OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {
-            OCLExpression<EClassifier> tupleValueExp = null;
+            OCLExpression tupleValueExp = null;
             String referredAttributeName = getExpression().getReferredProperty().getName();
             List<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)((VariableExp)sourceExp).getReferredVariable().getInitExpression()).getPart();
             for (Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator(); i.hasNext();) {
                 TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next();
                 if (tuplePart.getName().equals(referredAttributeName)) {
-                    tupleValueExp = tuplePart.getValue();
+                    tupleValueExp = (OCLExpression) tuplePart.getValue();
                     break;
                 }
             }

@@ -10,21 +10,20 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.emf.query2.EcoreHelper;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
-import org.eclipse.emf.query2.QueryContext;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 public class AssociationNavigationStep extends AbstractNavigationStep {
     private final EReference toEnd;
 
-    public AssociationNavigationStep(EClass sourceType, EClass targetType, EReference toEnd, OCLExpression<EClassifier> debugInfo) {
+    public AssociationNavigationStep(EClass sourceType, EClass targetType, EReference toEnd, OCLExpression debugInfo) {
         super(sourceType, targetType, debugInfo);
         this.toEnd = toEnd;
     }

@@ -10,14 +10,13 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 
@@ -155,29 +154,29 @@ public class BaseDepartmentTest extends TestCase{
     /*
      * OCLExpression representing the constrains above
      */
-    protected OCLExpression<EClassifier> notBossFreelanceAST = null;
+    protected OCLExpression notBossFreelanceAST = null;
 
-    protected OCLExpression<EClassifier> oldEmployeeAST = null;
+    protected OCLExpression oldEmployeeAST = null;
 
-    protected OCLExpression<EClassifier> uniqueNamesAST = null;
+    protected OCLExpression uniqueNamesAST = null;
 
-    protected OCLExpression<EClassifier> validAssignmentAST = null;
+    protected OCLExpression validAssignmentAST = null;
 
-    protected OCLExpression<EClassifier> maxJuniorsAST = null;
+    protected OCLExpression maxJuniorsAST = null;
 
-    protected OCLExpression<EClassifier> bossIsOldestAST = null;
+    protected OCLExpression bossIsOldestAST = null;
 
-    protected OCLExpression<EClassifier> bossHighestSalaryAST = null;
+    protected OCLExpression bossHighestSalaryAST = null;
 
-    protected OCLExpression<EClassifier> expensesRestrictionAST = null;
+    protected OCLExpression expensesRestrictionAST = null;
 
-    protected OCLExpression<EClassifier> nastyConstraintAST = null;
+    protected OCLExpression nastyConstraintAST = null;
 
-    protected OCLExpression<EClassifier> divisionBossSecretaryAST = null;
+    protected OCLExpression divisionBossSecretaryAST = null;
 
-    protected OCLExpression<EClassifier> secretaryOlderThanBossAST = null;
+    protected OCLExpression secretaryOlderThanBossAST = null;
 
-    protected OCLExpression<EClassifier> boss10YearsOlderThanJuniorAST = null;
+    protected OCLExpression boss10YearsOlderThanJuniorAST = null;
 
     /*
      * for easy access to the model
@@ -364,17 +363,17 @@ public class BaseDepartmentTest extends TestCase{
      */
     private void parseConstraints( ) {
 
-        this.oldEmployeeAST = parse( oldEmployee ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.notBossFreelanceAST = parse( notBossFreelance ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.uniqueNamesAST = parse( uniqueNames ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.validAssignmentAST = parse( validAssignment ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.maxJuniorsAST = parse( maxJuniors ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.bossIsOldestAST = parse( bossIsOldest ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.bossHighestSalaryAST = parse( bossHighestSalary ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.nastyConstraintAST = parse( nastyConstraint ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.divisionBossSecretaryAST = parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.secretaryOlderThanBossAST = parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
-        this.boss10YearsOlderThanJuniorAST = parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.oldEmployeeAST = (OCLExpression) parse( oldEmployee ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.notBossFreelanceAST = (OCLExpression) parse( notBossFreelance ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.uniqueNamesAST = (OCLExpression) parse( uniqueNames ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.validAssignmentAST = (OCLExpression) parse( validAssignment ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.maxJuniorsAST = (OCLExpression) parse( maxJuniors ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.bossIsOldestAST = (OCLExpression) parse( bossIsOldest ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.bossHighestSalaryAST = (OCLExpression) parse( bossHighestSalary ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.nastyConstraintAST = (OCLExpression) parse( nastyConstraint ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.divisionBossSecretaryAST = (OCLExpression) parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.secretaryOlderThanBossAST = (OCLExpression) parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
+        this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
     }
 
     /**

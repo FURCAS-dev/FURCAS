@@ -5,10 +5,10 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
@@ -52,7 +52,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
         NavigationStep result;
 
-        OCLExpression<EClassifier> body = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
+        OCLExpression body = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null) {
             // an OCL-specified operation; trace back using the body expression
             result = pathCache.getPathForNode(body);
@@ -66,12 +66,12 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         } else {
             String opName = getExpression().getReferredOperation().getName();
             if (opName.equals(PredefinedType.OCL_AS_TYPE_NAME)) {
-                OCLExpression<EClassifier> argument = (getExpression().getArgument()).get(0);
+                OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(0);
                 if (argument instanceof TypeExp) {
                     EClassifier type = ((TypeExpImpl) argument).getReferredType();
                     IdentityNavigationStep identityStep = new IdentityNavigationStep((EClass) getExpression().getType(), (EClass) type,
-                            (OCLExpression<EClassifier>) getExpression());
-                    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(getExpression().getSource(),
+                            getExpression());
+                    NavigationStep sourceStep = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(),
                             context, filterSynthesizer);
                     result = pathCache.navigationStepFromSequence(getExpression(), identityStep, sourceStep);
                 } else {
@@ -80,10 +80,10 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                 }
             } else if (sourcePassThroughStdLibOpNames.contains(opName)) {
                 // FIXME handle product
-                NavigationStep sourcePath = pathCache.getOrCreateNavigationPath(getExpression()
+                NavigationStep sourcePath = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression()
                         .getSource(), context, filterSynthesizer);
                 if (argumentPassThroughStdLibOpNames.contains(opName)) {
-                    OCLExpression<EClassifier> argument = (getExpression().getArgument()).get(0);
+                    OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(0);
                     NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, filterSynthesizer);
                     result = new BranchingNavigationStep(
                             getInnermostElementType(getExpression().getType()),

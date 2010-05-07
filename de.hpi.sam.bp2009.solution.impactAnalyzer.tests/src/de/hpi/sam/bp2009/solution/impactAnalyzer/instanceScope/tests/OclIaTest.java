@@ -8,14 +8,13 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
 
 import data.classes.AssociationEnd;
@@ -76,7 +75,7 @@ public class OclIaTest extends TestCase{
     
     @Test
     public void testLongRunningNavigationPathConstruction(){
-        OCLExpression<EClassifier> expression = parse(testLongRunningNavigationPathExpression).iterator().next().getSpecification().getBodyExpression();
+        OCLExpression expression = (OCLExpression) parse(testLongRunningNavigationPathExpression).iterator().next().getSpecification().getBodyExpression();
         final AssociationEnd ae = ClassesFactory.eINSTANCE.createAssociationEnd();
         EAttribute att = (EAttribute) ae.eClass().getEStructuralFeature(ClassesPackage.ASSOCIATION_END__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(ae, att, "oldName", "newName");

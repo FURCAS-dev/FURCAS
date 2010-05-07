@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
@@ -15,10 +14,10 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
-import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 
@@ -86,7 +85,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
-	OCLExpression<EClassifier> rootExpression = getRootExpression();
+	OCLExpression rootExpression = getRootExpression();
 	EOperation op = InstanceScopeAnalysis.getDefines(rootExpression);
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
@@ -96,8 +95,8 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	// invalidate all cache entries that depend on this step. Or we add steps produced for new calls to this
 	// step as the calls get added; but that may require a re-assessment of the isAlwaysEmpty() calls.
 	// This may not pay off.
-	for (OperationCallExp call : filterSynthesizer.getCallsOf(rootExpression)) {
-	    OCLExpression<EClassifier> argumentExpression = ((EList<OCLExpression<EClassifier>>) (call).getArgument()).get(pos);
+	for (OperationCallExp call : filterSynthesizer.getCallsOf( rootExpression)) {
+	    OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
 	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, filterSynthesizer));
 	}
 	indirectingStep.setActualStep(new BranchingNavigationStep(
@@ -131,18 +130,18 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
-	return pathCache.getOrCreateNavigationPath(getVariableDeclaration().getInitExpression(), 
+	return pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(), 
 	        context, 
 	        filterSynthesizer);
     }
 
     private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
 	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(
-	        getVariableDeclaration().getInitExpression(),
+	        (OCLExpression) getVariableDeclaration().getInitExpression(),
 	        context, 
 	        filterSynthesizer);
 	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
-	        ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
+	        (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
 	        context, 
 	        filterSynthesizer);
 	return new BranchingNavigationStep(
@@ -155,7 +154,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
 	return pathCache.getOrCreateNavigationPath(
-	        ((IteratorExp) getVariableDeclaration().eContainer()).getSource(),
+	        (OCLExpression) ((IteratorExp) getVariableDeclaration().eContainer()).getSource(),
 	        context, 
 	        filterSynthesizer);
     }
@@ -170,7 +169,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression());
 	    List<NavigationStep> stepsForCalls = new ArrayList<NavigationStep>();
 	    for (OperationCallExp call : calls) {
-		OCLExpression<EClassifier> callSource = call.getSource();
+		OCLExpression callSource = (OCLExpression) call.getSource();
 		stepsForCalls.add(pathCache.getOrCreateNavigationPath(callSource, context, filterSynthesizer));
 	    }
 	    indirectingStep.setActualStep(new BranchingNavigationStep(

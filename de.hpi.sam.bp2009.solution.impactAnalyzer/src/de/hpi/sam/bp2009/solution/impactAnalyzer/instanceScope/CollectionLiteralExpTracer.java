@@ -9,12 +9,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
-
-
-
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
     public CollectionLiteralExpTracer(CollectionLiteralExp expression) {
@@ -28,7 +26,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
         for (Iterator<CollectionLiteralPart<EClassifier>> i = parts.iterator(); i.hasNext();) {
             CollectionLiteralPart<EClassifier> part = i.next();
             if (part instanceof CollectionItem) {
-                steps.add(pathCache.getOrCreateNavigationPath(((CollectionItem) part)
+                steps.add(pathCache.getOrCreateNavigationPath((OCLExpression) ((CollectionItem) part)
                         .getItem(), context, filterSynthesizer));
             }
         }

@@ -9,9 +9,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.expressions.OCLExpression;
+
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 
 public interface FilterSynthesis{
@@ -30,6 +30,6 @@ public interface FilterSynthesis{
      * from the root expression analyzed by this {@link FilterSynthesis}. If no such calls exist,
      * an empty set is returned.
      */
-    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression);
+    public Set<OperationCallExp> getCallsOf(OCLExpression rootExpression);
     
 }//FilterSynthesis

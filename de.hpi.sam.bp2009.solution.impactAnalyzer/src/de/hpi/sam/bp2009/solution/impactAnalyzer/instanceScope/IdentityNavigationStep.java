@@ -4,11 +4,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
-
+import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
@@ -21,11 +18,9 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * of this step object and cached in the {@link #alwaysEmpty} field. If <tt>true</tt>, this makes this
  * step {@link #isAbsolute() absolute}, and {@link #isAlwaysEmpty()} will return <tt>true</tt>.
  * 
- * @author Axel Uhl D043530
- * 
  */
 public class IdentityNavigationStep extends AbstractNavigationStep {
-	public IdentityNavigationStep(EClass sourceType, EClass targetType, OCLExpression<EClassifier> oclExpression) {
+	public IdentityNavigationStep(EClass sourceType, EClass targetType, OCLExpression oclExpression) {
 		super(sourceType, targetType, oclExpression);
 		if (!AbstractNavigationStep.haveIntersectingSubclassTree(sourceType, targetType)) {
 			setAlwaysEmpty();

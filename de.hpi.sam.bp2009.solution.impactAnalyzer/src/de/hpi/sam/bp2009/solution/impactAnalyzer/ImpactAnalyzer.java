@@ -10,9 +10,8 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
@@ -35,7 +34,7 @@ public interface ImpactAnalyzer {
 	 * @param cls the context of the expression
 	 * @return the filter matching all relevant events
 	 */
-	EventFilter createFilterForQuery(OCLExpression<EClassifier> expression, boolean notifyNewContextElements);
+	EventFilter createFilterForQuery(OCLExpression expression, boolean notifyNewContextElements);
 
 
 	/**
@@ -53,7 +52,7 @@ public interface ImpactAnalyzer {
          * @param cls the context of the query
          * @return all relevant context objects
          */
-        Collection<EObject> getContextObjects(Notification event, OCLExpression<EClassifier> expression, EClass context);
+        Collection<EObject> getContextObjects(Notification event, OCLExpression expression, EClass context);
 
         /**
          * resets all instance variables of the {@link ImpactAnalyzer} e.g. PathCache

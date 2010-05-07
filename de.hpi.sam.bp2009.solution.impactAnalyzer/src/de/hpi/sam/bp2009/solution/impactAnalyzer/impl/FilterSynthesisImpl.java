@@ -19,10 +19,10 @@ import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.parser.OCLParsersym;
@@ -58,7 +58,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     /**
      * For each operation body analyzed, stores the calls to the operation that were visited
      */
-    final private Map<OCLExpression<EClassifier>, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression<EClassifier>, Set<OperationCallExp>>();
+    final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression, Set<OperationCallExp>>();
 
     /**
      * @param exp The {@link OCLExpression} the filter should be created from. 
@@ -72,7 +72,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      *            be responsible for the initial evaluation of those OCL expressions on new element, and therefore,
      *            context element creation events are not of interest.
      */
-    public FilterSynthesisImpl(OCLExpression<EClassifier> exp, boolean notifyNewContextElements) {
+    public FilterSynthesisImpl(OCLExpression exp, boolean notifyNewContextElements) {
         super();
         this.notifyNewContextElements = notifyNewContextElements;
         safeVisit(exp);
@@ -85,7 +85,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
 
     }
 
-    public Set<OperationCallExp> getCallsOf(OCLExpression<EClassifier> rootExpression) {
+    public Set<OperationCallExp> getCallsOf(OCLExpression rootExpression) {
         Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
         if (result == null) {
             result = Collections.emptySet();
@@ -109,12 +109,12 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         } else {
             if (opCallExp.getOperationCode() > 0){
                 safeVisit(opCallExp.getSource());
-                for (OCLExpression<EClassifier> args: opCallExp.getArgument()){
+                for ( org.eclipse.ocl.expressions.OCLExpression<EClassifier> args: opCallExp.getArgument()){
                     safeVisit(args);
                 }               
             } else {
                 //TODO check whether it works like intended
-                OCLExpression<EClassifier> body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), opCallExp.getReferredOperation());
+                OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), opCallExp.getReferredOperation());
                 if (body != null) {
                     Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
                     if (analyzedCallsToBody == null) {
