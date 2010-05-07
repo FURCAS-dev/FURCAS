@@ -50,7 +50,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             while(i.hasNext()){
                 OCLExpression exp = i.next();
                 //filter isn't saved, because this is done for caching purpose only
-                this.ia.createFilterForQuery(exp, true);
+                this.ia.createFilterForExpression(exp, true);
             }           
         }
     }
@@ -345,7 +345,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         
         for(Iterator<OCLExpression> i = this.stmts.iterator(); i.hasNext();){
             OCLExpression exp = i.next();
-            EventFilter filter = this.ia.createFilterForQuery(exp, true); 
+            EventFilter filter = this.ia.createFilterForExpression(exp, true); 
             if (filter.matchesFor(noti)){
                 affectedStmts.add(exp);
             }

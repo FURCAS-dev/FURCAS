@@ -509,7 +509,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
     private void createFilters(Set<OCLExpression> stmts, ImpactAnalyzer ia, boolean notifyNewContectElements) {
         //for caching purpose only
         for ( Iterator<OCLExpression> i = stmts.iterator(); i.hasNext();){
-            ia.createFilterForQuery(i.next(), notifyNewContectElements);
+            ia.createFilterForExpression(i.next(), notifyNewContectElements);
         }
     }
 
