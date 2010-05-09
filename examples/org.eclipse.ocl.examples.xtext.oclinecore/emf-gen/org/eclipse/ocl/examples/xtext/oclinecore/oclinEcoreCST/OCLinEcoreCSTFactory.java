@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTFactory.java,v 1.3 2010/05/03 05:44:27 ewillink Exp $
+ * $Id: OCLinEcoreCSTFactory.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -115,6 +115,15 @@ public interface OCLinEcoreCSTFactory extends EFactory {
 	 * @generated
 	 */
 	OCLinEcoreReferenceCS createOCLinEcoreReferenceCS();
+
+	/**
+	 * Returns a new object of class '<em>Postcondition CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Postcondition CS</em>'.
+	 * @generated
+	 */
+	PostconditionCS createPostconditionCS();
 
 	/**
 	 * Returns a new object of class '<em>Constraint CS</em>'.

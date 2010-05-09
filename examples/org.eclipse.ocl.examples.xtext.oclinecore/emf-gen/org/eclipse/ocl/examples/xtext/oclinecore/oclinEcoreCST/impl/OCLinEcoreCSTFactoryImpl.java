@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTFactoryImpl.java,v 1.3 2010/05/03 05:44:36 ewillink Exp $
+ * $Id: OCLinEcoreCSTFactoryImpl.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -91,6 +91,7 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_OPERATION_CS: return createOCLinEcoreOperationCS();
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_PACKAGE_CS: return createOCLinEcorePackageCS();
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_REFERENCE_CS: return createOCLinEcoreReferenceCS();
+			case OCLinEcoreCSTPackage.POSTCONDITION_CS: return createPostconditionCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -184,6 +185,16 @@ public class OCLinEcoreCSTFactoryImpl extends EFactoryImpl implements OCLinEcore
 	public OCLinEcoreReferenceCS createOCLinEcoreReferenceCS() {
 		OCLinEcoreReferenceCSImpl ocLinEcoreReferenceCS = new OCLinEcoreReferenceCSImpl();
 		return ocLinEcoreReferenceCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PostconditionCS createPostconditionCS() {
+		PostconditionCSImpl postconditionCS = new PostconditionCSImpl();
+		return postconditionCS;
 	}
 
 	/**

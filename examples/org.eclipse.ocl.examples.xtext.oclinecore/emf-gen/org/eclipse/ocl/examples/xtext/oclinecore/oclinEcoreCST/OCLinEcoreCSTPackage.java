@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.3 2010/05/03 05:44:28 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -1634,6 +1634,88 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_REFERENCE_CS_FEATURE_COUNT = OC_LIN_ECORE_STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PostconditionCSImpl <em>Postcondition CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PostconditionCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getPostconditionCS()
+	 * @generated
+	 */
+	int POSTCONDITION_CS = 14;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__ANNOTATIONS = CONSTRAINT_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__ORIGINAL_OBJECT = CONSTRAINT_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__ORIGINAL_XMI_ID = CONSTRAINT_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__NAME = CONSTRAINT_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__STEREOTYPE = CONSTRAINT_CS__STEREOTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__EXPR_STRING = CONSTRAINT_CS__EXPR_STRING;
+
+	/**
+	 * The feature id for the '<em><b>Expr Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS__EXPR_VALUE = CONSTRAINT_CS__EXPR_VALUE;
+
+	/**
+	 * The number of structural features of the '<em>Postcondition CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSTCONDITION_CS_FEATURE_COUNT = CONSTRAINT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS <em>Documentation CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1833,6 +1915,16 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOCLinEcoreStructuralFeatureCS_DefaultValueLiteral();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PostconditionCS <em>Postcondition CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Postcondition CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PostconditionCS
+	 * @generated
+	 */
+	EClass getPostconditionCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS <em>Constraint CS</em>}'.
@@ -2148,6 +2240,16 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__DEFAULT_VALUE_LITERAL = eINSTANCE.getOCLinEcoreStructuralFeatureCS_DefaultValueLiteral();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PostconditionCSImpl <em>Postcondition CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.PostconditionCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getPostconditionCS()
+		 * @generated
+		 */
+		EClass POSTCONDITION_CS = eINSTANCE.getPostconditionCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.

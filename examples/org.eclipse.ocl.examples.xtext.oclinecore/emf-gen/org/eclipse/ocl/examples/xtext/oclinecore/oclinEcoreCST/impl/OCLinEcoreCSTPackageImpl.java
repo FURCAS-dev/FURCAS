@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackageImpl.java,v 1.3 2010/05/03 05:44:42 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackageImpl.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperati
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PostconditionCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,6 +125,13 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * @generated
 	 */
 	private EClass ocLinEcoreStructuralFeatureCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass postconditionCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -450,6 +458,15 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPostconditionCS() {
+		return postconditionCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConstraintCS() {
 		return constraintCSEClass;
 	}
@@ -572,6 +589,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		ocLinEcoreStructuralFeatureCSEClass = createEClass(OC_LIN_ECORE_STRUCTURAL_FEATURE_CS);
 		createEReference(ocLinEcoreStructuralFeatureCSEClass, OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__CONSTRAINTS);
 		createEAttribute(ocLinEcoreStructuralFeatureCSEClass, OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__DEFAULT_VALUE_LITERAL);
+
+		postconditionCSEClass = createEClass(POSTCONDITION_CS);
 	}
 
 	/**
@@ -624,6 +643,7 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		ocLinEcoreReferenceCSEClass.getESuperTypes().add(this.getOCLinEcoreStructuralFeatureCS());
 		ocLinEcoreReferenceCSEClass.getESuperTypes().add(theBaseCSTPackage.getReferenceCS());
 		ocLinEcoreStructuralFeatureCSEClass.getESuperTypes().add(theBaseCSTPackage.getStructuralFeatureCS());
+		postconditionCSEClass.getESuperTypes().add(this.getConstraintCS());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(annotationCSEClass, AnnotationCS.class, "AnnotationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -671,6 +691,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		initEClass(ocLinEcoreStructuralFeatureCSEClass, OCLinEcoreStructuralFeatureCS.class, "OCLinEcoreStructuralFeatureCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOCLinEcoreStructuralFeatureCS_Constraints(), this.getConstraintCS(), null, "constraints", null, 0, -1, OCLinEcoreStructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOCLinEcoreStructuralFeatureCS_DefaultValueLiteral(), ecorePackage.getEString(), "defaultValueLiteral", null, 0, 1, OCLinEcoreStructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(postconditionCSEClass, PostconditionCS.class, "PostconditionCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

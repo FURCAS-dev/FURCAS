@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTSwitch.java,v 1.3 2010/05/03 05:44:24 ewillink Exp $
+ * $Id: OCLinEcoreCSTSwitch.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 
@@ -289,6 +289,16 @@ public class OCLinEcoreCSTSwitch<T> {
 				if (result == null) result = caseNamedElementCS(ocLinEcoreStructuralFeatureCS);
 				if (result == null) result = caseModelElementCS(ocLinEcoreStructuralFeatureCS);
 				if (result == null) result = caseElementCS(ocLinEcoreStructuralFeatureCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLinEcoreCSTPackage.POSTCONDITION_CS: {
+				PostconditionCS postconditionCS = (PostconditionCS)theEObject;
+				T result = casePostconditionCS(postconditionCS);
+				if (result == null) result = caseConstraintCS(postconditionCS);
+				if (result == null) result = caseNamedElementCS(postconditionCS);
+				if (result == null) result = caseModelElementCS(postconditionCS);
+				if (result == null) result = caseElementCS(postconditionCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -638,6 +648,21 @@ public class OCLinEcoreCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseOCLinEcoreStructuralFeatureCS(OCLinEcoreStructuralFeatureCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Postcondition CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Postcondition CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePostconditionCS(PostconditionCS object) {
 		return null;
 	}
 
