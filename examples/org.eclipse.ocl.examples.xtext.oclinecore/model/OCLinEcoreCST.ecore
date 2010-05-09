@@ -67,4 +67,5 @@
         eType="#//ConstraintCS" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValueLiteral" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PostconditionCS" eSuperTypes="#//ConstraintCS"/>
 </ecore:EPackage>
