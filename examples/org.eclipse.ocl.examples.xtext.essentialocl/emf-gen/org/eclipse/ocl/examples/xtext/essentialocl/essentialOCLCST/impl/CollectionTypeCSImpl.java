@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.2 2010/05/03 05:37:50 ewillink Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.3 2010/05/09 10:32:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -145,7 +145,6 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
