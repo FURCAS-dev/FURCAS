@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCSImpl.java,v 1.1 2010/05/03 05:25:34 ewillink Exp $
+ * $Id: NamedElementCSImpl.java,v 1.2 2010/05/09 10:38:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -175,7 +175,7 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 			((NamedElementCSImpl)eContainer).toString(s);
 		}
 		if (eContainer != null) {
-			s.append("::");
+			s.append("::"); //$NON-NLS-1$
 		}
 		s.append(getName());
 	}

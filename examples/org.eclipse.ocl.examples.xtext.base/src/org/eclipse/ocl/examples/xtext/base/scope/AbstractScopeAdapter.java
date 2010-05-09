@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.2 2010/05/03 11:12:37 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.3 2010/05/09 10:38:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -140,6 +140,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	/*
 	 * Javadoc copied from interface.
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public T getTarget() {
 		return (T) target;
@@ -195,6 +196,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	 *            the type.
 	 * @return <code>false</code>
 	 */
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == AbstractScopeAdapter.class;
 	}
@@ -206,6 +208,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	/*
 	 * Javadoc copied from interface.
 	 */
+	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || targetClass.isAssignableFrom(newTarget.getClass());
 		super.setTarget(newTarget);
