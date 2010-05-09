@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.1 2010/05/03 05:24:44 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.2 2010/05/09 10:16:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
@@ -56,6 +57,11 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		@Override
 		public AbstractScopeAdapter<? extends EObject> caseImportCS(ImportCS eObject) {
 			return new ImportScopeAdapter(eObject);
+		}
+
+		@Override
+		public AbstractScopeAdapter<? extends EObject> caseParameterCS(ParameterCS eObject) {
+			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
