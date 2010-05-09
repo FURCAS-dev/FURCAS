@@ -9,6 +9,7 @@
 --     J.Warmer, A.Kleppe - original example in 'The Object Constraint Language Second Edition'
 --     M.Garcia - realisation of the example for use within Eclipse 
 --------------------------------------------------------------------------------
+
 import 'RoyalAndLoyal.ecore'
 
 package RandL
@@ -64,21 +65,20 @@ inv invariant_Transaction4 :
 	self.oclIsKindOf(Burning) = false
 
 context Transaction::program() : LoyaltyProgram
-post:	self.card.Membership
---post:	result = self.card.Membership.programs
+post:	result = self.card.Membership.programs
 
 context LoyaltyAccount
---inv invariant_points :
---	(self.points > 0) implies self.transactions->exists( t : Transaction | t.points > 0 )
---inv invariant_transactions :
---	self.transactions->collect( i_Transaction : Transaction | i_Transaction.points )->exists( p : Integer | p = 500 )
+inv invariant_points :
+	(self.points > 0) implies self.transactions->exists( t : Transaction | t.points > 0 )
+inv invariant_transactions :
+	self.transactions->collect( i_Transaction : Transaction | i_Transaction.points )->exists( p : Integer | p = 500 )
 inv invariant_oneOwner :
 	(self.transactions->collect( i_Transaction : Transaction | i_Transaction.card )->collect( i_CustomerCard : CustomerCard | i_CustomerCard.owner )->asSet()->size()) = 1
 
 context LoyaltyAccount::points : Integer
 init :
 	0
-/*
+
 context LoyaltyAccount::totalPointsEarned : Integer
 derive :
 	self.transactions->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Earning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()
@@ -219,9 +219,9 @@ inv invariant_Membership5 :
 
 context Service
 inv invariant_Service5 :
-	'Anneke'.toUpper() = 'ANNEKE'
+	'Anneke'.toUpperCase() = 'ANNEKE'
 inv invariant_Service6 :
-	'Anneke'.toLower() = 'anneke'
+	'Anneke'.toLowerCase() = 'anneke'
 inv invariant_Service7 :
 	('Anneke and Jos'.substring(12, 14)) = 'Jos'
 inv invariant_Service4 :
@@ -393,5 +393,5 @@ pre:	not self.participants->includes(c)
 
 context LoyaltyProgram::getServices() : Set(Service)
 body:	self.partners->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->asSet()
-*/
+
 endpackage
