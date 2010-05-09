@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibValueConverterService.java,v 1.1 2010/05/03 05:30:44 ewillink Exp $
+ * $Id: OCLstdlibValueConverterService.java,v 1.2 2010/05/09 10:10:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -61,7 +61,7 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {
 				int length = string.length();
-				return string.startsWith("_'") && (length >= 3) && string.endsWith("'") ? string.substring(2, length-1) : string;
+				return string.startsWith("\"") && (length >= 2) && string.endsWith("\"") ? string.substring(1, length-1) : string;
 			}
 
 			@Override
