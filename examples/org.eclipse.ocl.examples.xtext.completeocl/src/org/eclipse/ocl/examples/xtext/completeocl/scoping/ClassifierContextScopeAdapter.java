@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextScopeAdapter.java,v 1.2 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: ClassifierContextScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -33,7 +33,7 @@ public class ClassifierContextScopeAdapter extends EssentialOCLScopeAdapter<Clas
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
@@ -46,9 +46,10 @@ public class ClassifierContextScopeAdapter extends EssentialOCLScopeAdapter<Clas
 			if (csClassifierRef instanceof SimpleClassifierRefCS) {
 				SimpleClassifierRefCS csSimpleClassifierRef = (SimpleClassifierRefCS)csClassifierRef;
 				ClassifierCS classifier = csSimpleClassifierRef.getClassifier();
-				filteredAccesses.addElementsOfScope(classifier);
-				filteredAccesses.addElement("self", classifier);
+				environmentView.addElementsOfScope(classifier);
+				environmentView.addElement("self", classifier);
 			}
 		}
+		return true;
 	}
 }

@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LetExpScopeAdapter.java,v 1.2 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: LetExpScopeAdapter.java,v 1.3 2010/05/09 17:08:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 
@@ -28,7 +28,8 @@ public class LetExpScopeAdapter extends EssentialOCLScopeAdapter<LetExpCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		filteredAccesses.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable());
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		environmentView.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable());
+		return true;
 	}
 }

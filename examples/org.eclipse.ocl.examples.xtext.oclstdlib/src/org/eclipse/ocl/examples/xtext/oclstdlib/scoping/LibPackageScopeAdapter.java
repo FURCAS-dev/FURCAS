@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibPackageScopeAdapter.java,v 1.2 2010/05/09 14:24:28 ewillink Exp $
+ * $Id: LibPackageScopeAdapter.java,v 1.3 2010/05/09 17:08:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
 
@@ -45,9 +45,9 @@ public class LibPackageScopeAdapter extends OCLstdlibScopeAdapter<LibPackageCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		filteredAccesses.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, getTarget().getSubpackages());
-		filteredAccesses.addNamedElements(BaseCSTPackage.Literals.CLASSIFIER_CS, getTarget().getClassifiers());
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		environmentView.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, getTarget().getSubpackages());
+		environmentView.addNamedElements(BaseCSTPackage.Literals.CLASSIFIER_CS, getTarget().getClassifiers());
 /*		else if (ElementUtil.conformsTo(eStructuralFeature, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CLASS_CS)) {
 			for (ClassifierCS classifier : getTarget().getClassifiers()) {
 				if (classifier instanceof OCLinEcoreClassCS) {
@@ -55,5 +55,6 @@ public class LibPackageScopeAdapter extends OCLstdlibScopeAdapter<LibPackageCS>
 				}
 			}
 		} */
+		return true;
 	}
 }

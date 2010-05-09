@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: DotExpScopeAdapter.java,v 1.2 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: DotExpScopeAdapter.java,v 1.3 2010/05/09 17:08:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
@@ -32,22 +32,23 @@ public class DotExpScopeAdapter extends EssentialOCLScopeAdapter<DotExpCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
 		else if (containmentFeature == EssentialOCLCSTPackage.Literals.DOT_EXP_CS__ARGUMENT) {
 			ExpCS source = getTarget().getSource();
 			AbstractScopeAdapter<?> sourceScope = getScopeAdapter(source);
 			if (sourceScope == null) {
-				return;
+				return true;
 			}
 			TypeCS type = sourceScope.getType();
 			AbstractScopeAdapter<?> typeScope = getScopeAdapter(type);
 			if (typeScope == null) {
-				return;
+				return true;
 			}
-			typeScope.getInclusiveScopeAccessor(null).getFilteredContent(filteredAccesses);	// Non-null value
+			typeScope.getInclusiveScopeAccessor(null).computeInheritedEnvironmentView(environmentView);	// Non-null value
 		}
+		return true;
 	}
 
 	@Override

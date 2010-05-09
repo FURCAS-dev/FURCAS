@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.3 2010/05/09 10:38:01 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.4 2010/05/09 17:08:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -104,7 +104,17 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		this.targetClass = (Class<T>) csElement.getClass();
 	}
 
-	public void createContents(FilteredAccesses descriptions, EStructuralFeature containmentFeature) {}
+	/**
+	 * Compute a view that comprises a lookup with the Inherited Attributes on behalf of a the child
+	 * syntax element identified by containmentFeature
+	 * 
+	 * @param environmentView the EnvironmentView to compute
+	 * @param containmentFeature the Syntax element for which the view is required
+	 * @return true if computation may proceed in outer scope, false if computation redirected
+	 */
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		return true;
+	}
 
 	public AbstractDocumentScopeAdapter<?> getDocumentScopeAdapter() {
 		return document;
@@ -114,8 +124,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return new ScopeAccessor(this, null, targetReference);
 	}
 
-	public void getInclusiveInheritedContents(FilteredAccesses descriptions) {
-		createContents(descriptions, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__ANNOTATIONS);	// Non-null value
+	public boolean getInclusiveInheritedContents(EnvironmentView environmentView) {
+		return computeInheritedEnvironmentView(environmentView, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__ANNOTATIONS);	// Non-null value
 	}
 
 	public ScopeAccessor getInclusiveScopeAccessor(EReference targetReference) {

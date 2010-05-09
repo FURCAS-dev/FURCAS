@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.2 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRef
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -34,7 +34,7 @@ public class PropertyContextScopeAdapter extends EssentialOCLScopeAdapter<Proper
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS__PROPERTY) {
@@ -47,9 +47,10 @@ public class PropertyContextScopeAdapter extends EssentialOCLScopeAdapter<Proper
 			if (csStructuralFeatureRef instanceof SimpleStructuralFeatureRefCS) {
 				SimpleStructuralFeatureRefCS csSimpleStructuralFeatureRef = (SimpleStructuralFeatureRefCS)csStructuralFeatureRef;
 				StructuralFeatureCS classifier = csSimpleStructuralFeatureRef.getFeature();
-				filteredAccesses.addElementsOfScope(classifier);
-				filteredAccesses.addElement("self", (ElementCS) classifier.eContainer());
+				environmentView.addElementsOfScope(classifier);
+				environmentView.addElement("self", (ElementCS) classifier.eContainer());
 			}
 		}
+		return true;
 	}
 }

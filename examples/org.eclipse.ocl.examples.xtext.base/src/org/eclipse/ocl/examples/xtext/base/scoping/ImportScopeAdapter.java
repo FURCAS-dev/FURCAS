@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportScopeAdapter.java,v 1.1 2010/05/03 05:24:46 ewillink Exp $
+ * $Id: ImportScopeAdapter.java,v 1.2 2010/05/09 17:08:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class ImportScopeAdapter extends AbstractScopeAdapter<ImportCS>
 {
@@ -33,8 +33,9 @@ public class ImportScopeAdapter extends AbstractScopeAdapter<ImportCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		filteredAccesses.addElementsOfScope(importedElement);
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		environmentView.addElementsOfScope(importedElement);
+		return false;
 	}
 
 	public void setImportedElement(URI uri, ElementCS importedElement) {

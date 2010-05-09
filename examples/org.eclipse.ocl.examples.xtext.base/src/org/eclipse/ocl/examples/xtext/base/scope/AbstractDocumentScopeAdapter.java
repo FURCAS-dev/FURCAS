@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDocumentScopeAdapter.java,v 1.1 2010/05/03 05:25:52 ewillink Exp $
+ * $Id: AbstractDocumentScopeAdapter.java,v 1.2 2010/05/09 17:08:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -31,18 +31,19 @@ public abstract class AbstractDocumentScopeAdapter<T extends DocumentCS> extends
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		filteredAccesses.addNamedElements(BaseCSTPackage.Literals.NAMESPACE_CS, getTarget().getImports());
-		if (filteredAccesses.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		environmentView.addNamedElements(BaseCSTPackage.Literals.NAMESPACE_CS, getTarget().getImports());
+		if (environmentView.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
 			for (ImportCS anImport : getTarget().getImports()) {
 				if (anImport.getName() == null) {
 					NamespaceCS namespace = anImport.getNamespace();
 					if (namespace instanceof PackageCS) {
-						filteredAccesses.addNamedElement(namespace);
+						environmentView.addNamedElement(namespace);
 					}
 				}
 			}
 		}
+		return true;
 	}
 
 	public String getAlias(PackageCS csPackage) {

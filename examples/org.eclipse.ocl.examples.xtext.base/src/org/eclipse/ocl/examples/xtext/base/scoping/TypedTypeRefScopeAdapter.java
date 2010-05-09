@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefScopeAdapter.java,v 1.1 2010/05/03 05:24:45 ewillink Exp $
+ * $Id: TypedTypeRefScopeAdapter.java,v 1.2 2010/05/09 17:08:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class TypedTypeRefScopeAdapter extends AbstractScopeAdapter<TypedTypeRefCS>
 {
@@ -29,12 +29,19 @@ public class TypedTypeRefScopeAdapter extends AbstractScopeAdapter<TypedTypeRefC
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {		
 		}
+/*		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS) {
+			AbstractScopeAdapter<?> parent = getParent();
+			for ( ; parent instanceof QualifiedTypeRefScopeAdapter; parent = parent.getParent())
+				;
+			return parent.computeInheritedEnvironmentView(environmentView, containmentFeature);
+		} */
 		else {
 			TypeCS type = getTarget().getType();
-			filteredAccesses.addElementsOfScope(type);
+			return environmentView.addElementsOfScope(type);
 		}
+		return true;
 	}
 }

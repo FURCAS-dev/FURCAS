@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.2 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -32,7 +32,7 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLScopeAdapter<Pac
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
@@ -44,8 +44,9 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLScopeAdapter<Pac
 			}
 			if (csPackageRef instanceof SimplePackageRefCS) {
 				SimplePackageRefCS csSimplePackageRef = (SimplePackageRefCS)csPackageRef;
-				filteredAccesses.addElementsOfScope(csSimplePackageRef.getPackage());
+				environmentView.addElementsOfScope(csSimplePackageRef.getPackage());
 			}
 		}
+		return true;
 	}
 }

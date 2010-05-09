@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: VariableScopeAdapter.java,v 1.3 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: VariableScopeAdapter.java,v 1.4 2010/05/09 17:08:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
@@ -30,7 +30,7 @@ public class VariableScopeAdapter extends EssentialOCLScopeAdapter<VariableCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {			
 		}
 		else if (containmentFeature == EssentialOCLCSTPackage.Literals.VARIABLE_CS__TYPE) {			
@@ -38,7 +38,8 @@ public class VariableScopeAdapter extends EssentialOCLScopeAdapter<VariableCS>
 		else {
 			TypeCS type = getTarget().getType();
 			ClassifierCS libType = getLibType(type);
-			filteredAccesses.addElementsOfScope(libType);
+			environmentView.addElementsOfScope(libType);
 		}
+		return true;
 	}
 }

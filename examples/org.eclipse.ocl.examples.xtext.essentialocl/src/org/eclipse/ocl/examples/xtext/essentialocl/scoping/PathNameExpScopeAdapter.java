@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: PathNameExpScopeAdapter.java,v 1.4 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: PathNameExpScopeAdapter.java,v 1.5 2010/05/09 17:08:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS;
 
 public class PathNameExpScopeAdapter extends AbstractScopeAdapter<PathNameExpCS>
@@ -29,16 +29,17 @@ public class PathNameExpScopeAdapter extends AbstractScopeAdapter<PathNameExpCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {			
 		}
 		else {
 			PathNameExpCS target = getTarget();
 			AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(target.getNamespace());
 			if (scopeAdapter != null) {
-				scopeAdapter.getInclusiveInheritedContents(filteredAccesses);
+				scopeAdapter.getInclusiveInheritedContents(environmentView);
 			}
 		}
+		return true;
 	}
 
 	@Override

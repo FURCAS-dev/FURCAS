@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: QualifiedStructuralFeatureRefScopeAdapter.java,v 1.3 2010/05/03 19:58:25 ewillink Exp $
+ * $Id: QualifiedStructuralFeatureRefScopeAdapter.java,v 1.4 2010/05/09 17:08:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class QualifiedStructuralFeatureRefScopeAdapter extends AbstractScopeAdapter<QualifiedStructuralFeatureRefCS>
 {
@@ -28,15 +28,17 @@ public class QualifiedStructuralFeatureRefScopeAdapter extends AbstractScopeAdap
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {			
 		}
 		else {
 			QualifiedStructuralFeatureRefCS target = getTarget();
 			AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(target.getNamespace());
 			if (scopeAdapter != null) {
-				scopeAdapter.getInclusiveInheritedContents(filteredAccesses);
+				scopeAdapter.getInclusiveInheritedContents(environmentView);
 			}
+			return false;
 		}
+		return true;
 	}
 }
