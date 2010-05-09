@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.4 2010/05/09 10:26:23 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.5 2010/05/09 14:28:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
 
 /**
@@ -91,10 +92,10 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 			return new OCLinEcorePackageScopeAdapter(eObject);
 		}
 
-//		@Override
-//		public AbstractScopeAdapter<? extends EObject> caseOCLinEcoreReferenceCS(OCLinEcoreReferenceCS eObject) {
-//			return new OCLinEcoreReferenceScopeAdapter(eObject);
-//		}
+		@Override
+		public AbstractScopeAdapter<? extends EObject> caseOCLinEcoreReferenceCS(OCLinEcoreReferenceCS eObject) {
+			return new OCLinEcoreReferenceScopeAdapter(eObject);
+		}
 
 		@Override
 		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
