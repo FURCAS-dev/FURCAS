@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -60,6 +63,26 @@ public class XtextTestCase extends TestCase
 			for (Resource.Diagnostic conversionError : errors) {
 				s.append("\n");
 				s.append(conversionError.getMessage());
+			}
+			fail(s.toString());
+		}
+	}
+
+	public static void assertNoUnresolvedProxies(String message, Map<EObject, Collection<Setting>> unresolvedProxies) {
+		if (unresolvedProxies.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append(unresolvedProxies.size());
+			s.append(" ");	
+			s.append(message);
+			for (Map.Entry<EObject, Collection<Setting>> unresolvedProxy : unresolvedProxies.entrySet()) {
+				s.append("\n");	
+				BasicEObjectImpl key = (BasicEObjectImpl) unresolvedProxy.getKey();
+				s.append(key.eProxyURI());
+				for (Setting setting : unresolvedProxy.getValue()) {
+					s.append("\n\t");
+					EObject eObject = setting.getEObject();
+					s.append(eObject.toString());
+				}
 			}
 			fail(s.toString());
 		}
