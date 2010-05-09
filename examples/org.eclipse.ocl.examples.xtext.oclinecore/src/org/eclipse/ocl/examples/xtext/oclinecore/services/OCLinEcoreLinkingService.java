@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.4 2010/05/03 14:44:31 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.5 2010/05/09 09:52:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -91,17 +91,22 @@ public class OCLinEcoreLinkingService extends OCLstdlibLinkingService
 //		if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
 //			return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
 		try {
-			if (uri.fragment() == null) {
-				Resource resource = resourceSet.getResource(uri, true);
-				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, resource);
-			}
-			else {
-				EObject eObject = resourceSet.getEObject(uri, true);
-				if (eObject instanceof ElementCS) {
-					return (ElementCS) eObject;
+			Resource resource = resourceSet.getResource(uri.trimFragment(), true);
+			if (resource != null) {
+				String fragment = uri.fragment();
+				if (fragment == null) {
+					return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, resource);				
 				}
-				return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, eObject);
+				else {
+					EObject eObject = resource.getEObject(fragment);			
+					if (eObject instanceof ElementCS) {
+						return (ElementCS) eObject;
+					}
+					return Ecore2OCLinEcore.importFromEcore(resourceSet, alias, eObject);
+				}
 			}
+			log.trace("Cannot load package with URI '" + uri + "'");
+			return null;
 		} catch(RuntimeException ex) {
 			log.trace("Cannot load package with URI '" + uri + "'", ex);
 			return null;
