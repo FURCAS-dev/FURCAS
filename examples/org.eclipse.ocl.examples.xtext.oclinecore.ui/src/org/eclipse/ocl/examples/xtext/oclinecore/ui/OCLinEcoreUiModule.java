@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.3 2010/05/03 05:54:43 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.4 2010/05/09 10:26:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
@@ -52,6 +52,7 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 		return OCLinEcoreAntlrTokenToAttributeIdMapper.class;
 	}
 
+	@Override
 	public Class<? extends IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {
 		return OCLinEcoreResourceForEditorInputFactory.class;
 	}
