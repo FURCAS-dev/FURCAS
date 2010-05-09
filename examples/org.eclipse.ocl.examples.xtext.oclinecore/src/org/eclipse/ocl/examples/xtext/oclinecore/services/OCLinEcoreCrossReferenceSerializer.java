@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.7 2010/05/09 10:26:23 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.8 2010/05/09 14:28:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -82,16 +82,16 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 			if (s.length() > 0){
 				s.append("::");
 			}
-			s.append(valueConverter.toString(objectPath.get(i), "Identifier"));
+			s.append(valueConverter.toString(objectPath.get(i), "ID_TERMINAL"));
 		}
 		if ((s.length() <= 0) && (iSize > 0)) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1), "Identifier"));
+			s.append(valueConverter.toString(objectPath.get(iSize-1), "ID_TERMINAL"));
 		}
 		return s.toString();
 	}
 
 	public String convertIdentifier(String convertMe) {
-		return valueConverter.toString(convertMe, "Identifier");
+		return valueConverter.toString(convertMe, "ID_TERMINAL");
 	}
 
 	private List<String> getPath(AbstractDocumentScopeAdapter<?> documentScopeAdapter, EObject eObject) {
