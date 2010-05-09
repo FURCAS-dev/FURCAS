@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ArrowOperationCallExpScopeAdapter.java,v 1.1 2010/05/03 05:38:00 ewillink Exp $
+ * $Id: ArrowOperationCallExpScopeAdapter.java,v 1.2 2010/05/09 10:13:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -30,11 +31,11 @@ public class ArrowOperationCallExpScopeAdapter extends EssentialOCLScopeAdapter<
 
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else {
-			filteredAccesses.addNamedElement(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable1());
-			filteredAccesses.addNamedElement(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable2());
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.ROUND_BRACKET_EXP_CS__ARGUMENTS) {
+			RoundBracketExpCS target = getTarget();
+			filteredAccesses.addNamedElement(EssentialOCLCSTPackage.Literals.VARIABLE_CS, target.getVariable1());
+			filteredAccesses.addNamedElement(EssentialOCLCSTPackage.Literals.VARIABLE_CS, target.getVariable2());
+//			filteredAccesses.addElement("self", target.getVariable1().getType());
 		}
 	}
 }
