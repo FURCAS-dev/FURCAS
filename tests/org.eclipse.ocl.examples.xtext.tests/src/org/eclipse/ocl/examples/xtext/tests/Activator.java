@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Activator.java,v 1.1 2010/05/03 05:34:38 ewillink Exp $
+ * $Id: Activator.java,v 1.2 2010/05/09 10:39:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.tests;
 
@@ -40,6 +40,7 @@ public class Activator extends AbstractUIPlugin {
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -49,6 +50,7 @@ public class Activator extends AbstractUIPlugin {
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
