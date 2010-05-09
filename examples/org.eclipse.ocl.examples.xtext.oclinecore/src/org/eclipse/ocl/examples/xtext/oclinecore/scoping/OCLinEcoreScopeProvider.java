@@ -12,18 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.2 2010/05/03 05:44:35 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.3 2010/05/09 09:50:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.EmptyScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedTypeRefScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
@@ -34,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PostconditionCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
 
 /**
@@ -86,6 +84,11 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 		@Override
 		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcorePackageCS(OCLinEcorePackageCS eObject) {
 			return new OCLinEcorePackageScopeAdapter(eObject);
+		}
+
+		@Override
+		public AbstractScopeAdapter<? extends EObject> casePostconditionCS(PostconditionCS eObject) {
+			return new PostconditionScopeAdapter(eObject);
 		}
 
 		@Override
