@@ -12,16 +12,21 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.3 2010/05/05 05:22:01 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.4 2010/05/09 10:08:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
@@ -48,6 +53,14 @@ public class SerializeTests extends XtextTestCase
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
 		assertNoDiagnosticErrors("Concrete Syntax valiation failed", diagnostics);
 		xtextResource.save(null);
+		
+		resourceSet.getResources().clear();
+		XtextResource reloadedResource = (XtextResource) resourceSet.getResource(outputURI, true);
+		assertNoResourceErrors("Reload failed", reloadedResource.getErrors());
+		Map<EObject, Collection<Setting>> unresolved = UnresolvedProxyCrossReferencer.find(reloadedResource);
+		assertNoUnresolvedProxies("unresolved reload proxies", unresolved);
+		
+		
 		return documentCS;
 	}
 
