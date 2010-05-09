@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.4 2010/05/06 17:48:41 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.5 2010/05/09 10:26:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreCrossReferen
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
-import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;

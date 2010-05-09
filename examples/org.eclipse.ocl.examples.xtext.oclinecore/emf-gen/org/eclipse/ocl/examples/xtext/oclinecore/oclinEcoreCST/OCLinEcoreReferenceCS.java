@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreReferenceCS.java,v 1.1 2010/05/03 05:44:24 ewillink Exp $
+ * $Id: OCLinEcoreReferenceCS.java,v 1.2 2010/05/09 10:26:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 
 
 /**

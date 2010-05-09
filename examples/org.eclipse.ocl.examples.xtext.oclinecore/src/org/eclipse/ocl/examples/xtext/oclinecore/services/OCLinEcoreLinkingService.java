@@ -12,43 +12,28 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.5 2010/05/09 09:52:25 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.6 2010/05/09 10:26:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.ImportScopeAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibLinkingService;
-import org.eclipse.xtext.conversion.IValueConverterService;
-import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
 import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
-
-import com.google.inject.Inject;
 
 public class OCLinEcoreLinkingService extends OCLstdlibLinkingService
 {
