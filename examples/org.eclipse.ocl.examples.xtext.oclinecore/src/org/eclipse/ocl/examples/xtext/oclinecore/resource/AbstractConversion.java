@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractConversion.java,v 1.2 2010/05/03 05:44:44 ewillink Exp $
+ * $Id: AbstractConversion.java,v 1.3 2010/05/09 09:49:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -24,6 +24,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public abstract class AbstractConversion extends EcoreUtil
 {	// extends EcoreUtil solely to gain access to protected GEN_MODEL_PACKAGE_NS_URI
+	protected static <T> T basicGet(EObject eObject, EAttribute eFeature, Class<T> resultClass) {
+		if (!eObject.eIsSet(eFeature)) {
+			return null;
+		}
+		@SuppressWarnings("unchecked")
+		T result = (T) eObject.eGet(eFeature);
+		return result;
+	}
+
 	public static EPackage getEPackage(EObject eObject) {
 		for (; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof EPackage) {
@@ -49,14 +58,5 @@ public abstract class AbstractConversion extends EcoreUtil
 
 	protected AbstractConversion(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
-	}
-
-	protected <T> T basicGet(EObject eObject, EAttribute eFeature, Class<T> resultClass) {
-		if (!eObject.eIsSet(eFeature)) {
-			return null;
-		}
-		@SuppressWarnings("unchecked")
-		T result = (T) eObject.eGet(eFeature);
-		return result;
 	}
 }
