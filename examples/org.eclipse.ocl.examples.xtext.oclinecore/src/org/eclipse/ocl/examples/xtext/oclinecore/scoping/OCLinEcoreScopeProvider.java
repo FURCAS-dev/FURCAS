@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.5 2010/05/09 14:28:52 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.6 2010/05/09 17:08:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.EmptyScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
@@ -52,6 +53,11 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 		extends OCLinEcoreCSTSwitch<AbstractScopeAdapter<? extends EObject>>
 		implements EssentialOCLScopeAdapter.ISwitch
 	{
+		@Override
+		public EmptyScopeAdapter caseAnnotationCS(AnnotationCS eObject) {
+			return new EmptyScopeAdapter(eObject);
+		}
+
 		@Override
 		public AbstractScopeAdapter<? extends EObject> caseConstraintCS(ConstraintCS eObject) {
 			return new EmptyScopeAdapter(eObject);
