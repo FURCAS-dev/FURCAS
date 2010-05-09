@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PostScopeAdapter.java,v 1.2 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: PostScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
@@ -31,13 +31,14 @@ public class PostScopeAdapter extends EssentialOCLScopeAdapter<PostCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.CONSTRAINT_CS__EXPRESSION) {
 			PostCS csPost = getTarget();
 			OperationContextDeclCS csOperation = (OperationContextDeclCS) csPost.eContainer();
 			OperationContextScopeAdapter operationScope = (OperationContextScopeAdapter) getScopeAdapter(csOperation);
 			VariableCS csResult = null; //csOperation.getResultVariable();
-			filteredAccesses.addElement("result", csResult);		
+			environmentView.addElement("result", csResult);		
 		}
+		return true;
 	}
 }

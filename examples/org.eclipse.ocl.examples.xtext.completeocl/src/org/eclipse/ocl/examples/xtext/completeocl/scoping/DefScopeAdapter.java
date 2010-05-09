@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: DefScopeAdapter.java,v 1.2 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: DefScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -30,15 +30,16 @@ public class DefScopeAdapter extends EssentialOCLScopeAdapter<DefCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.DEF_CS__PARAMETERS) {
 		}
 		else {
-			filteredAccesses.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getParameters());
-//			filteredAccesses.addElement("result", operation);	// FIXME transient VariableCS		
-//			filteredAccesses.addElement("self", (ElementCS) operation.eContainer());
+			environmentView.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getParameters());
+//			environmentView.addElement("result", operation);	// FIXME transient VariableCS		
+//			environmentView.addElement("self", (ElementCS) operation.eContainer());
 		}
+		return true;
 	}
 }

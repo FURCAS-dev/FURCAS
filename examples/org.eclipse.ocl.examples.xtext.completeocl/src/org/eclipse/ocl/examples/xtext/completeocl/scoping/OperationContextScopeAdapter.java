@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.4 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.5 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -34,7 +34,7 @@ public class OperationContextScopeAdapter extends EssentialOCLScopeAdapter<Opera
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if ((containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PRES) 
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__BODIES) 
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__POSTS)) {
@@ -46,10 +46,11 @@ public class OperationContextScopeAdapter extends EssentialOCLScopeAdapter<Opera
 				SimpleOperationRefCS csSimpleOperationRef = (SimpleOperationRefCS)csOperationRef;
 				OperationCS operationContext = csSimpleOperationRef.getOperation();
 				ElementCS classifierContext = (ElementCS) operationContext.eContainer();
-				filteredAccesses.addNamedElements(operationContext.getParameters());
-				filteredAccesses.addElementsOfScope(classifierContext);
-				filteredAccesses.addElement("self", classifierContext);
+				environmentView.addNamedElements(operationContext.getParameters());
+				environmentView.addElementsOfScope(classifierContext);
+				environmentView.addElement("self", classifierContext);
 			}
 		}
+		return true;
 	}
 }

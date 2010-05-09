@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.4 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.5 2010/05/09 17:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
@@ -36,20 +36,21 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		if (filteredAccesses.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		if (environmentView.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
 			for (ImportCS anImport : getTarget().getImports()) {
 				if (anImport.getName() == null) {
 					NamespaceCS namespace = anImport.getNamespace();
 					if (namespace instanceof OCLinEcoreDocumentCS) {
-						filteredAccesses.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages());
+						environmentView.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages());
 					}
 				}
 				else {
-					filteredAccesses.addElement(anImport.getName(), anImport.getNamespace());
+					environmentView.addElement(anImport.getName(), anImport.getNamespace());
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
