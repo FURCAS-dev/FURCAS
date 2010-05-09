@@ -12,17 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLinkingService.java,v 1.1 2010/05/03 05:58:38 ewillink Exp $
+ * $Id: CompleteOCLLinkingService.java,v 1.2 2010/05/09 10:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.services;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
-import org.eclipse.xtext.linking.impl.IllegalNodeException;
-import org.eclipse.xtext.parsetree.AbstractNode;
 
 public class CompleteOCLLinkingService extends OCLinEcoreLinkingService
 {

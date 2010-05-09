@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCS.java,v 1.2 2010/05/03 05:58:34 ewillink Exp $
+ * $Id: ClassifierContextDeclCS.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassifierCS;
 
 /**
  * <!-- begin-user-doc -->
