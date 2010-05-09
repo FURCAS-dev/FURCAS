@@ -12,43 +12,43 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalOCLstdlibLexer extends Lexer {
-    public static final int RULE_ID_TERMINAL=5;
-    public static final int RULE_SINGLE_QUOTED_STRING=7;
-    public static final int RULE_DOUBLE_QUOTED_STRING=6;
-    public static final int T29=29;
-    public static final int T28=28;
-    public static final int T27=27;
-    public static final int T26=26;
-    public static final int T25=25;
-    public static final int Tokens=39;
-    public static final int T24=24;
-    public static final int EOF=-1;
-    public static final int RULE_SL_COMMENT=9;
-    public static final int T23=23;
-    public static final int T22=22;
     public static final int T21=21;
-    public static final int T20=20;
     public static final int RULE_ML_COMMENT=8;
-    public static final int RULE_INT=4;
-    public static final int T38=38;
-    public static final int T11=11;
-    public static final int T37=37;
-    public static final int T12=12;
-    public static final int T13=13;
     public static final int T14=14;
-    public static final int T34=34;
-    public static final int RULE_WS=10;
-    public static final int T15=15;
+    public static final int T29=29;
+    public static final int RULE_ID_TERMINAL=5;
     public static final int T33=33;
-    public static final int T16=16;
+    public static final int T22=22;
+    public static final int T11=11;
     public static final int T36=36;
-    public static final int T17=17;
+    public static final int T12=12;
+    public static final int T28=28;
+    public static final int T23=23;
     public static final int T35=35;
+    public static final int T13=13;
+    public static final int T34=34;
+    public static final int T20=20;
+    public static final int T25=25;
+    public static final int T37=37;
     public static final int T18=18;
-    public static final int T30=30;
-    public static final int T19=19;
+    public static final int RULE_WS=10;
+    public static final int T26=26;
+    public static final int T15=15;
+    public static final int RULE_INT=4;
+    public static final int EOF=-1;
     public static final int T32=32;
+    public static final int T17=17;
+    public static final int Tokens=39;
+    public static final int RULE_SINGLE_QUOTED_STRING=7;
     public static final int T31=31;
+    public static final int RULE_DOUBLE_QUOTED_STRING=6;
+    public static final int T16=16;
+    public static final int T38=38;
+    public static final int T27=27;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int T30=30;
+    public static final int T24=24;
+    public static final int T19=19;
     public InternalOCLstdlibLexer() {;} 
     public InternalOCLstdlibLexer(CharStream input) {
         super(input);
@@ -1406,36 +1406,30 @@ public class InternalOCLstdlibLexer extends Lexer {
         case 'p':
             {
             switch ( input.LA(2) ) {
-            case 'r':
+            case 'a':
                 {
                 int LA11_39 = input.LA(3);
 
-                if ( (LA11_39=='o') ) {
+                if ( (LA11_39=='c') ) {
                     int LA11_51 = input.LA(4);
 
-                    if ( (LA11_51=='p') ) {
+                    if ( (LA11_51=='k') ) {
                         int LA11_61 = input.LA(5);
 
-                        if ( (LA11_61=='e') ) {
+                        if ( (LA11_61=='a') ) {
                             int LA11_71 = input.LA(6);
 
-                            if ( (LA11_71=='r') ) {
+                            if ( (LA11_71=='g') ) {
                                 int LA11_81 = input.LA(7);
 
-                                if ( (LA11_81=='t') ) {
+                                if ( (LA11_81=='e') ) {
                                     int LA11_90 = input.LA(8);
 
-                                    if ( (LA11_90=='y') ) {
-                                        int LA11_97 = input.LA(9);
-
-                                        if ( ((LA11_97>='0' && LA11_97<='9')||(LA11_97>='A' && LA11_97<='Z')||LA11_97=='_'||(LA11_97>='a' && LA11_97<='z')) ) {
-                                            alt11=31;
-                                        }
-                                        else {
-                                            alt11=11;}
+                                    if ( ((LA11_90>='0' && LA11_90<='9')||(LA11_90>='A' && LA11_90<='Z')||LA11_90=='_'||(LA11_90>='a' && LA11_90<='z')) ) {
+                                        alt11=31;
                                     }
                                     else {
-                                        alt11=31;}
+                                        alt11=10;}
                                 }
                                 else {
                                     alt11=31;}
@@ -1453,30 +1447,36 @@ public class InternalOCLstdlibLexer extends Lexer {
                     alt11=31;}
                 }
                 break;
-            case 'a':
+            case 'r':
                 {
                 int LA11_40 = input.LA(3);
 
-                if ( (LA11_40=='c') ) {
+                if ( (LA11_40=='o') ) {
                     int LA11_52 = input.LA(4);
 
-                    if ( (LA11_52=='k') ) {
+                    if ( (LA11_52=='p') ) {
                         int LA11_62 = input.LA(5);
 
-                        if ( (LA11_62=='a') ) {
+                        if ( (LA11_62=='e') ) {
                             int LA11_72 = input.LA(6);
 
-                            if ( (LA11_72=='g') ) {
+                            if ( (LA11_72=='r') ) {
                                 int LA11_82 = input.LA(7);
 
-                                if ( (LA11_82=='e') ) {
+                                if ( (LA11_82=='t') ) {
                                     int LA11_91 = input.LA(8);
 
-                                    if ( ((LA11_91>='0' && LA11_91<='9')||(LA11_91>='A' && LA11_91<='Z')||LA11_91=='_'||(LA11_91>='a' && LA11_91<='z')) ) {
-                                        alt11=31;
+                                    if ( (LA11_91=='y') ) {
+                                        int LA11_98 = input.LA(9);
+
+                                        if ( ((LA11_98>='0' && LA11_98<='9')||(LA11_98>='A' && LA11_98<='Z')||LA11_98=='_'||(LA11_98>='a' && LA11_98<='z')) ) {
+                                            alt11=31;
+                                        }
+                                        else {
+                                            alt11=11;}
                                     }
                                     else {
-                                        alt11=10;}
+                                        alt11=31;}
                                 }
                                 else {
                                     alt11=31;}
