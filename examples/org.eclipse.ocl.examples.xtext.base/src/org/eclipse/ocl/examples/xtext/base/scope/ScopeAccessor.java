@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAccessor.java,v 1.2 2010/05/03 09:35:12 ewillink Exp $
+ * $Id: ScopeAccessor.java,v 1.3 2010/05/09 10:38:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -43,9 +43,10 @@ public class ScopeAccessor extends AbstractScope
 		this.targetReference = targetReference;
 	}
 	
+	@Override
 	public IEObjectDescription getContentByName(String name) {
 		if (name == null)
-			throw new NullPointerException("name");
+			throw new NullPointerException("name"); //$NON-NLS-1$
 		FilteredAccesses descriptions = new FilteredAccesses(targetReference, name);
 		return getFilteredContent(descriptions);
 	}
@@ -84,7 +85,7 @@ public class ScopeAccessor extends AbstractScope
 	public void getPrefix(StringBuffer s) {
 		s.append(getTarget().eClass().getName());
 		if (containmentFeature != null) {
-			s.append("::");
+			s.append("::"); //$NON-NLS-1$
 			s.append(containmentFeature.getName());
 		}
 	}
@@ -103,9 +104,9 @@ public class ScopeAccessor extends AbstractScope
 	@Override
 	public String toString() {
 		StringBuffer s = new StringBuffer();
-		s.append("[");
+		s.append("["); //$NON-NLS-1$
 		getPrefix(s);
-		s.append("] ");
+		s.append("] "); //$NON-NLS-1$
 		s.append(String.valueOf(getTarget()));
 		return s.toString();
 	}

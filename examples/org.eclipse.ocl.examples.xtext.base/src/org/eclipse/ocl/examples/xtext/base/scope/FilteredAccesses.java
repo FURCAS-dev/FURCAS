@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FilteredAccesses.java,v 1.4 2010/05/09 10:16:33 ewillink Exp $
+ * $Id: FilteredAccesses.java,v 1.5 2010/05/09 10:38:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -145,21 +145,21 @@ public class FilteredAccesses
 		StringBuffer s = new StringBuffer();
 		if (reference != null) {
 			s.append(reference.getName());
-			s.append(" : ");
+			s.append(" : "); //$NON-NLS-1$
 			s.append(reference.getEType().getName());
 		}
-		s.append(" \"");
+		s.append(" \""); //$NON-NLS-1$
 		if (name != null) {
 			s.append(name);
 		}
-		s.append("\" {");
-		String prefix = "";
+		s.append("\" {"); //$NON-NLS-1$
+		String prefix = ""; //$NON-NLS-1$
 		for (String contentName : contentsByName.keySet()) {
 			s.append(prefix);
 			s.append(contentName);
-			prefix = ",";
+			prefix = ","; //$NON-NLS-1$
 		}
-		s.append("}");
+		s.append("}"); //$NON-NLS-1$
 		return s.toString();
 	}
 }
