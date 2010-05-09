@@ -12,14 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibQuickfixProvider.java,v 1.1 2010/05/03 05:32:23 ewillink Exp $
+ * $Id: OCLstdlibQuickfixProvider.java,v 1.2 2010/05/09 10:29:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.quickfix;
 
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider;
-import org.eclipse.xtext.ui.editor.quickfix.Fix;
-import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor;
-import org.eclipse.xtext.validation.Issue;
 
 public class OCLstdlibQuickfixProvider extends DefaultQuickfixProvider {
 
