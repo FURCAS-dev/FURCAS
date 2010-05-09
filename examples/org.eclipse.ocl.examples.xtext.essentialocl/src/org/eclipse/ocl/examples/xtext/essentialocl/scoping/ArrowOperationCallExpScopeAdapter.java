@@ -12,13 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ArrowOperationCallExpScopeAdapter.java,v 1.2 2010/05/09 10:13:38 ewillink Exp $
+ * $Id: ArrowOperationCallExpScopeAdapter.java,v 1.3 2010/05/09 10:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS;

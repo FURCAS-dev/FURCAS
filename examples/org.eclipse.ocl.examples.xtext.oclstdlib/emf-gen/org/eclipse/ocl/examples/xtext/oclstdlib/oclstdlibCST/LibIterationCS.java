@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCS.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
+ * $Id: LibIterationCS.java,v 1.3 2010/05/09 10:29:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 
 /**

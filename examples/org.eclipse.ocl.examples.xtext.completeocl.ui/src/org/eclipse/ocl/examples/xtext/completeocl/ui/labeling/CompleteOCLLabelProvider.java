@@ -12,16 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.3 2010/05/03 06:01:41 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.4 2010/05/09 10:37:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.ocl.cst.PathNameCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 import com.google.inject.Inject;

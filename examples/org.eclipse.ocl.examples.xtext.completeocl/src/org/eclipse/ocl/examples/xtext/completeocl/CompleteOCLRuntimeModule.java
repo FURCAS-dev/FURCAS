@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.3 2010/05/06 18:00:44 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.4 2010/05/09 10:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
-import org.eclipse.ocl.examples.xtext.oclinecore.scoping.OCLinEcoreScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreQualifiedNameProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;

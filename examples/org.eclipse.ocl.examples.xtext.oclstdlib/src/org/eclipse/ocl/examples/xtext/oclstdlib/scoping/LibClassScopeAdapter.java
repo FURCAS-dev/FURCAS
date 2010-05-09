@@ -12,23 +12,16 @@
  *
  * </copyright>
  *
- * $Id: LibClassScopeAdapter.java,v 1.1 2010/05/03 05:29:44 ewillink Exp $
+ * $Id: LibClassScopeAdapter.java,v 1.2 2010/05/09 10:29:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
 
 public class LibClassScopeAdapter extends OCLstdlibScopeAdapter<LibClassCS>
 {

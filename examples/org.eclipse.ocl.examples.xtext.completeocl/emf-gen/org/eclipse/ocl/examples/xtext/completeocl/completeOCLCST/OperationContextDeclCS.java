@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCS.java,v 1.2 2010/05/03 05:58:33 ewillink Exp $
+ * $Id: OperationContextDeclCS.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
 
 /**
  * <!-- begin-user-doc -->

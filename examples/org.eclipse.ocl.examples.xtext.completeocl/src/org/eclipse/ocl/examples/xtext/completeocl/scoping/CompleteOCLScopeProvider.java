@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLScopeProvider.java,v 1.4 2010/05/09 09:50:50 ewillink Exp $
+ * $Id: CompleteOCLScopeProvider.java,v 1.5 2010/05/09 10:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;

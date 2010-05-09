@@ -12,19 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpScopeAdapter.java,v 1.1 2010/05/03 05:38:03 ewillink Exp $
+ * $Id: StringLiteralExpScopeAdapter.java,v 1.2 2010/05/09 10:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
-import org.eclipse.xtext.resource.IEObjectDescription;
 
 public class StringLiteralExpScopeAdapter extends EssentialOCLScopeAdapter<StringLiteralExpCS>
 {

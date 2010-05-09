@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextDeclCSImpl.java,v 1.2 2010/05/03 05:58:17 ewillink Exp $
+ * $Id: PropertyContextDeclCSImpl.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 
 /**
  * <!-- begin-user-doc -->

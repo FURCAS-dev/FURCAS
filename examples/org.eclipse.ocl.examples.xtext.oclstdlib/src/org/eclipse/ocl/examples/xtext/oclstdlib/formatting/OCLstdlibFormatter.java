@@ -18,7 +18,7 @@ public class OCLstdlibFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess f = (org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess) getGrammarAccess();
+//		org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess f = (org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess) getGrammarAccess();
 
 		//...
 	}

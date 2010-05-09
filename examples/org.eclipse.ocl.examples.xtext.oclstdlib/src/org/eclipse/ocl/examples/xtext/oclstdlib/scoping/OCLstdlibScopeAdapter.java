@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibScopeAdapter.java,v 1.3 2010/05/03 14:45:39 ewillink Exp $
+ * $Id: OCLstdlibScopeAdapter.java,v 1.4 2010/05/09 10:29:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -88,7 +88,7 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 			else if (size > 1) {
 				List<ClassifierCS> results = new ArrayList<ClassifierCS>(size);
 				for (TypedRefCS csTypedRefCS : conformsTo) {
-					ClassifierCS result = getLibType(conformsTo.get(0));
+					ClassifierCS result = getLibType(csTypedRefCS);
 					if (result != null) {
 						results.add(result);
 					}
@@ -111,7 +111,7 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 			else {
 				List<ClassifierCS> results = new ArrayList<ClassifierCS>(size);
 				for (TypedRefCS csTypedRefCS : superTypes) {
-					ClassifierCS result = getLibType(superTypes.get(0));
+					ClassifierCS result = getLibType(csTypedRefCS);
 					if (result != null) {
 						results.add(result);
 					}
