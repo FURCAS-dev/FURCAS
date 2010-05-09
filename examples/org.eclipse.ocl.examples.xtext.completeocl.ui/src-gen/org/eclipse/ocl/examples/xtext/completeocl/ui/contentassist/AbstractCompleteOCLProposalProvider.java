@@ -172,6 +172,7 @@ public class AbstractCompleteOCLProposalProvider extends EssentialOCLProposalPro
 	public void completeSimplePropertyRefCS_Feature(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
+	@Override
 	public void completeNavigationExpCS_Argument(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
@@ -185,6 +186,7 @@ public class AbstractCompleteOCLProposalProvider extends EssentialOCLProposalPro
 	public void completeNavigationExpCS_Arguments(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
+	@Override
 	public void completeNavigatingExpCS_Argument(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
@@ -205,6 +207,7 @@ public class AbstractCompleteOCLProposalProvider extends EssentialOCLProposalPro
 	public void complete_CompleteOCLDocumentCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	@Override
 	public void complete_RestrictedKeywords(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -286,9 +289,11 @@ public class AbstractCompleteOCLProposalProvider extends EssentialOCLProposalPro
 	public void complete_SimplePropertyRefCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	@Override
 	public void complete_NavigationExpCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	@Override
 	public void complete_NavigatingExpCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
