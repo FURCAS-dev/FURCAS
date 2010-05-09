@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FilteredAccesses.java,v 1.3 2010/05/03 14:38:43 ewillink Exp $
+ * $Id: FilteredAccesses.java,v 1.4 2010/05/09 10:16:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -31,8 +32,8 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 
 public class FilteredAccesses
 {		
-	private Map<String, ElementCS> contentsByName = new HashMap<String, ElementCS>();
-	private Map<ElementCS, String> contentsByElement = new HashMap<ElementCS, String>();
+	private Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single ElementCS or List<ElementCS>
+//	private Map<ElementCS, String> contentsByElement = new HashMap<ElementCS, String>();
 	private EStructuralFeature reference;
 	private String name;
 
@@ -47,8 +48,23 @@ public class FilteredAccesses
 
 	public void addElement(String elementName, ElementCS element) {
 		if ((element != null) && ((name == null) || name.equals(elementName))) {
-			contentsByName.put(elementName, element);
-			contentsByElement.put(element, elementName);
+			Object value = contentsByName.get(elementName);
+			if (value == null) {
+				contentsByName.put(elementName, element);
+			}
+			else {
+				List<EObject> values;
+				if (value instanceof EObject) {
+					values = new ArrayList<EObject>();
+					values.add((EObject) value);
+				}
+				else {
+					@SuppressWarnings("unchecked")
+					List<EObject> castValue = (List<EObject>)value;
+					values = castValue;
+				}
+				values.add(element);
+			}
 		}
 	}
 
@@ -91,16 +107,31 @@ public class FilteredAccesses
 
 	public IEObjectDescription getContent() {
 		assert contentsByName.size() == 1;
-		for (Map.Entry<String, ElementCS> entry : contentsByName.entrySet()) {
-			return EObjectDescription.create(entry.getKey(), entry.getValue());
+		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
+			Object value = entry.getValue();
+			if (value instanceof List<?>) {
+				List<?> values = (List<?>)value;
+				value = values.get(values.size()-1);
+			}
+			if (value instanceof EObject) {
+				return EObjectDescription.create(entry.getKey(), (EObject) value);
+			}
 		}
 		return null;
 	}
 
 	public List<IEObjectDescription> getContents() {
 		List<IEObjectDescription> contents = new ArrayList<IEObjectDescription>();
-		for (Map.Entry<String, ElementCS> entry : contentsByName.entrySet()) {
-			contents.add(EObjectDescription.create(entry.getKey(), entry.getValue()));
+		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
+			Object values = entry.getValue();
+			if (values instanceof EObject) {
+				contents.add(EObjectDescription.create(entry.getKey(), (EObject) values));
+			}
+			else if (values instanceof List<?>) {
+				for (Object value : (List<?>)values) {
+					contents.add(EObjectDescription.create(entry.getKey(), (EObject) value));
+				}
+			}
 		}
 		return contents;
 	}
