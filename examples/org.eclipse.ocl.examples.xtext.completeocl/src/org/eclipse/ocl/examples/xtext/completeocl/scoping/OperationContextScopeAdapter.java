@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.2 2010/05/04 06:45:19 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.3 2010/05/09 09:50:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -46,25 +46,20 @@ public class OperationContextScopeAdapter extends EssentialOCLScopeAdapter<Opera
 
 	@Override
 	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PARAMETERS) {
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.FEATURE_CONTEXT_DECL_CS__TYPE) {
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__OPERATION) {
-		}
-		else {
+		if ((containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PRES) 
+		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__BODIES) 
+		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__POSTS)) {
 			OperationRefCS csOperationRef = getTarget().getOperation();
 			while (csOperationRef instanceof QualifiedOperationRefCS) {
 				csOperationRef = ((QualifiedOperationRefCS)csOperationRef).getOperation();
 			}
 			if (csOperationRef instanceof SimpleOperationRefCS) {
 				SimpleOperationRefCS csSimpleOperationRef = (SimpleOperationRefCS)csOperationRef;
-				OperationCS operation = csSimpleOperationRef.getOperation();
-				filteredAccesses.addElementsOfScope(operation);
-				filteredAccesses.addElement("result", operation);	// FIXME transient VariableCS		
-				filteredAccesses.addElement("self", (ElementCS) operation.eContainer());
+				OperationCS operationContext = csSimpleOperationRef.getOperation();
+				ElementCS classifierContext = (ElementCS) operationContext.eContainer();
+				filteredAccesses.addNamedElements(operationContext.getParameters());
+				filteredAccesses.addElementsOfScope(classifierContext);
+				filteredAccesses.addElement("self", classifierContext);
 			}
 		}
 	}

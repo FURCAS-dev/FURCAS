@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLScopeProvider.java,v 1.3 2010/05/04 06:45:19 ewillink Exp $
+ * $Id: CompleteOCLScopeProvider.java,v 1.4 2010/05/09 09:50:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -103,7 +103,7 @@ public class CompleteOCLScopeProvider extends EssentialOCLScopeProvider
 
 		@Override
 		public AbstractScopeAdapter<? extends EObject> casePostCS(PostCS eObject) {
-			return new EmptyScopeAdapter(eObject);
+			return new PostScopeAdapter(eObject);
 		}
 
 		@Override
