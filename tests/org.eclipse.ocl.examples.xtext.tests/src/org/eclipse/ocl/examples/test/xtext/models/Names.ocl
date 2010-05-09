@@ -1,0 +1,11 @@
+import 'Names.ecore'
+
+package names
+
+context Named::r : Real
+init: 0.0
+
+context Named::s : String
+derive: ''
+
+endpackage

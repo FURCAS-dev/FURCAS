@@ -1,0 +1,11 @@
+package PrimitiveTypes : primitivetypes = 'http://schema.omg.org/spec/QVT/1.1/primitivetypes.xml'
+{
+  datatype _'Boolean' : 'java.lang.Boolean';
+}
+package EMOF : emof = 'http://schema.omg.org/spec/QVT/1.1/emof.xml'
+{
+  class Class
+  {
+    attribute isAbstract : PrimitiveTypes::_'Boolean'[?] = 'false';
+  }
+}

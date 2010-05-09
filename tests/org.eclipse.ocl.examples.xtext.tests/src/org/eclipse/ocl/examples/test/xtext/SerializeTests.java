@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.4 2010/05/09 10:08:02 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.5 2010/05/09 14:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -79,6 +79,10 @@ public class SerializeTests extends XtextTestCase
 		assertEquals("One import", 1, imports.size());
 	}
 
+	public void testNamesSerialize() throws IOException, InterruptedException {
+		doSerialize("Names");
+	}
+
 	public void testOCLinEcoreCSTSerialize() throws IOException, InterruptedException {
 		doSerialize("OCLinEcoreCST");
 	}
@@ -92,10 +96,10 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("OCL");
 	}
 
-//	public void testTestSerialize() throws IOException, InterruptedException {
+	public void testTestSerialize() throws IOException, InterruptedException {
 //		doRoundTrip("Test");
-//		doSerialize("Test");
-//	}
+		doSerialize("Test");
+	}
 
 	public void testQVTSerialize() throws IOException, InterruptedException {
 		doSerialize("QVT");
