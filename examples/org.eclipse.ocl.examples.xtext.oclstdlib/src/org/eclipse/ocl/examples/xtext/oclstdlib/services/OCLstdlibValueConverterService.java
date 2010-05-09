@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibValueConverterService.java,v 1.2 2010/05/09 10:10:16 ewillink Exp $
+ * $Id: OCLstdlibValueConverterService.java,v 1.3 2010/05/09 14:24:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -52,8 +52,8 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 		};
 	}
 
-	@ValueConverter(rule = "Identifier")
-	public IValueConverter<String> Identifier() {
+	@ValueConverter(rule = "ID_TERMINAL")
+	public IValueConverter<String> ID_TERMINAL() {
 		return new AbstractNullSafeConverter<String>() {
 			
 			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
@@ -72,6 +72,11 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 				return value;
 			}
 		};
+	}
+
+	@ValueConverter(rule = "Identifier")
+	public IValueConverter<String> Identifier() {
+		return ID_TERMINAL();
 	}
 
 	@ValueConverter(rule = "NUMBER_LITERAL")
