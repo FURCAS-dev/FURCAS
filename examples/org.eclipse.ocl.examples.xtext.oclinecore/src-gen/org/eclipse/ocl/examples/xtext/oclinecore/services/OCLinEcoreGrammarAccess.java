@@ -501,7 +501,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprStringUNQUOTED_STRINGTerminalRuleCall_3_1_0 = (RuleCall)cExprStringAssignment_3_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//PostconditionConstraintCS returns ConstraintCS:
+		//PostconditionConstraintCS returns PostconditionCS:
 		//  stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
 		//  exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
@@ -3780,7 +3780,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getInvariantConstraintCSAccess().getRule();
 	}
 
-	//PostconditionConstraintCS returns ConstraintCS:
+	//PostconditionConstraintCS returns PostconditionCS:
 	//  stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
 	//  exprString=UNQUOTED_STRING)? ";";
 	public PostconditionConstraintCSElements getPostconditionConstraintCSAccess() {

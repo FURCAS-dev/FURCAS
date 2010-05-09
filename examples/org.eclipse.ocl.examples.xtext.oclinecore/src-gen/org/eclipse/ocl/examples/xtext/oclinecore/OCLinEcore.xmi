@@ -182,7 +182,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="PostconditionConstraintCS">
       <type metamodel="/0/@metamodelDeclarations.3">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.0.0/OCLinEcoreCST#//ConstraintCS"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.0.0/OCLinEcoreCST#//PostconditionCS"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="stereotype" operator="=">
