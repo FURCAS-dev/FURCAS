@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.5 2010/05/06 17:48:46 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.6 2010/05/09 09:51:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -48,8 +49,9 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS))
 			return ((ImportCS) context).getUri();
 		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
-			List<String> contextPath = getPath(context);
-			List<String> objectPath = getPath(object);
+			AbstractDocumentScopeAdapter<?> documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter((ElementCS)context);
+			List<String> contextPath = getPath(documentScopeAdapter, context);
+			List<String> objectPath = getPath(documentScopeAdapter, object);
 			return divergentPath(objectPath, contextPath);					// FIXME Check cast
 		}
 		if ((reference == BaseCSTPackage.Literals.REFERENCE_CS_REF__REF) && (context instanceof ReferenceCSRef))
@@ -82,18 +84,22 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 		return s.toString();
 	}
 
-	private List<String> getPath(EObject eObject) {
+	private List<String> getPath(AbstractDocumentScopeAdapter<?> documentScopeAdapter, EObject eObject) {
+		if (eObject instanceof PackageCS) {
+			String alias = documentScopeAdapter.getAlias((PackageCS)eObject);
+			if (alias != null) {
+				List<String> result = new ArrayList<String>();
+				result.add(alias);
+				return result;
+			}
+		}
 		EObject eContainer = eObject.eContainer();
 		if (eContainer == null) {
 			return new ArrayList<String>();
 		}
-		List<String> result = getPath(eContainer);
+		List<String> result = getPath(documentScopeAdapter, eContainer);
 		if (eObject instanceof ENamedElement) {
 			result.add(((ENamedElement)eObject).getName());
-		}
-		else if (eObject instanceof PackageCS) {
-			AbstractDocumentScopeAdapter<?> documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter((PackageCS)eObject);
-			result.add(documentScopeAdapter.getAlias((PackageCS)eObject));
 		}
 		else if (eObject instanceof NamedElementCS) {
 			result.add(((NamedElementCS)eObject).getName());
