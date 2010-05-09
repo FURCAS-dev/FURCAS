@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLinkingService.java,v 1.2 2010/05/03 11:12:15 ewillink Exp $
+ * $Id: OCLstdlibLinkingService.java,v 1.3 2010/05/09 10:29:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
@@ -61,6 +60,7 @@ public class OCLstdlibLinkingService extends DefaultLinkingService
 		return Collections.emptyList();
 	}
 
+	@Override
 	protected IScope getScope(EObject context, EReference reference) {
 		IScopeProvider scopeProvider = getScopeProvider();
 		if (scopeProvider == null)
