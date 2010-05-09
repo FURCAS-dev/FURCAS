@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.2 2010/05/09 10:16:59 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.3 2010/05/09 17:08:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
@@ -22,15 +22,17 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
@@ -90,6 +92,11 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 
 		@Override
+		public AbstractScopeAdapter<? extends EObject> caseReferenceCSRef(ReferenceCSRef eObject) {
+			return new EmptyScopeAdapter(eObject);
+		}
+
+		@Override
 		public AbstractScopeAdapter<? extends EObject> caseSimpleClassifierRefCS(SimpleClassifierRefCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
@@ -106,6 +113,11 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 
 		@Override
 		public AbstractScopeAdapter<? extends EObject> caseSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS eObject) {
+			return new EmptyScopeAdapter(eObject);
+		}
+
+		@Override
+		public AbstractScopeAdapter<? extends EObject> caseTypeParameterCS(TypeParameterCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 

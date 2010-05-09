@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FilteredAccesses.java,v 1.6 2010/05/09 14:23:02 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.1 2010/05/09 17:08:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -30,14 +30,26 @@ import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 
-public class FilteredAccesses
+/**
+ * An EnvironmentView provides a selective view of the environment visible at some CST node.
+ * 
+ * The selection corresponds to an Environment lookup method as defined by the OCL specification
+ * computed in accordance with the the Inherited Attributes.
+ * 
+ * The selective view is normally for just the single name required by the lookUp, but may be
+ * for all names when a Completion Assist is required.
+ * 
+ * The EnvironmentView is computed on demand, rather than cached, since only small parts of
+ * the overall environment are needed and caches may not remain valid for long given the rapid
+ * recreation of CST nodes that occurs while editing.
+ */
+public class EnvironmentView
 {		
 	private Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single ElementCS or List<ElementCS>
-//	private Map<ElementCS, String> contentsByElement = new HashMap<ElementCS, String>();
 	private EStructuralFeature reference;
 	private String name;
 
-	public FilteredAccesses(EStructuralFeature reference, String name) {
+	public EnvironmentView(EStructuralFeature reference, String name) {
 		this.reference = reference;
 		this.name = name;
 	}
@@ -46,7 +58,14 @@ public class FilteredAccesses
 		return ElementUtil.conformsTo(reference, eClass);
 	}
 
-	public void addElement(String elementName, ElementCS element) {
+	/**
+	 * Add an element with an elementName to the view
+	 * 
+	 * @param elementName name of element
+	 * @param element the element
+	 * @return the number of elements added; 1 if added, 0 if not
+	 */
+	public int addElement(String elementName, ElementCS element) {
 		if ((element != null) && ((name == null) || name.equals(elementName))) {
 			Object value = contentsByName.get(elementName);
 			if (value == null) {
@@ -65,44 +84,53 @@ public class FilteredAccesses
 				}
 				values.add(element);
 			}
+			return 1;
 		}
+		return 0;
 	}
 
-	public void addElementsOfScope(ElementCS element) {
+	public boolean addElementsOfScope(ElementCS element) {
 		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(element);
 		if (scopeAdapter != null) {
-			scopeAdapter.getInclusiveInheritedContents(this);
+			return scopeAdapter.getInclusiveInheritedContents(this);
 		}
+		return true;
 	}
 
-	public void addNamedElement(NamedElementCS namedElement) {
+	public int addNamedElement(NamedElementCS namedElement) {
 		if (namedElement != null) {
-			addElement(namedElement.getName(), namedElement);
+			return addElement(namedElement.getName(), namedElement);
 		}
+		return 0;
 	}
 
-	public void addNamedElement(EClass eClass, NamedElementCS namedElement) {
+	public int addNamedElement(EClass eClass, NamedElementCS namedElement) {
 		if ((namedElement != null) && accepts(eClass)) {
 			if (eClass.isSuperTypeOf(namedElement.eClass())) {
-				addNamedElement(namedElement);
+				return addNamedElement(namedElement);
 			}
 		}
+		return 0;
 	}
 
-	public void addNamedElements(List<? extends NamedElementCS> namedElements) {
+	public int addNamedElements(List<? extends NamedElementCS> namedElements) {
+		int additions = 0;
 		for (NamedElementCS namedElement : namedElements) {
-			addElement(namedElement.getName(), namedElement);
+			additions += addElement(namedElement.getName(), namedElement);
 		}
+		return additions;
 	}
 
-	public void addNamedElements(EClass eClass, List<? extends NamedElementCS> namedElements) {
+	public int addNamedElements(EClass eClass, List<? extends NamedElementCS> namedElements) {
+		int additions = 0;
 		if ((namedElements != null) && accepts(eClass)) {
 			for (NamedElementCS namedElement : namedElements) {
 				if (eClass.isSuperTypeOf(namedElement.eClass())) {
-					addElement(namedElement.getName(), namedElement);
+					additions += addElement(namedElement.getName(), namedElement);
 				}
 			}
 		}
+		return additions;
 	}
 
 	public IEObjectDescription getContent() {

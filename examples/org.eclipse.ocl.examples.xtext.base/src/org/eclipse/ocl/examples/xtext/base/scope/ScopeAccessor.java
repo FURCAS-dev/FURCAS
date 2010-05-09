@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAccessor.java,v 1.3 2010/05/09 10:38:01 ewillink Exp $
+ * $Id: ScopeAccessor.java,v 1.4 2010/05/09 17:08:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -42,35 +42,36 @@ public class ScopeAccessor extends AbstractScope
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
 	}
+
+	public IEObjectDescription computeInheritedEnvironmentView(EnvironmentView environmentView) {
+		boolean continueInOuterScopes = scopeAdapter.computeInheritedEnvironmentView(environmentView, containmentFeature);
+		int size = environmentView.getSize();
+		if (size == 0) {
+			if (continueInOuterScopes) {
+				IScope outerScope = getOuterScope();
+				if (outerScope instanceof ScopeAccessor) {
+					return ((ScopeAccessor)outerScope).computeInheritedEnvironmentView(environmentView);
+				}
+			}
+			scopeAdapter.computeInheritedEnvironmentView(environmentView, containmentFeature);
+			return null;
+		}
+		else if (size == 1){
+			return environmentView.getContent();
+		}
+		else {
+			Collection<IEObjectDescription> contents = environmentView.getContents();
+			// FIXME error for ambiguous
+			return contents.iterator().next();
+		}
+	}
 	
 	@Override
 	public IEObjectDescription getContentByName(String name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		FilteredAccesses descriptions = new FilteredAccesses(targetReference, name);
-		return getFilteredContent(descriptions);
-	}
-
-	public IEObjectDescription getFilteredContent(FilteredAccesses filteredAccesses) {
-		scopeAdapter.createContents(filteredAccesses, containmentFeature);
-		int size = filteredAccesses.getSize();
-		if (size == 0) {
-			IScope outerScope = getOuterScope();
-			if (outerScope instanceof ScopeAccessor) {
-				return ((ScopeAccessor)outerScope).getFilteredContent(filteredAccesses);
-			}
-			else {
-				return null;
-			}
-		}
-		else if (size == 1){
-			return filteredAccesses.getContent();
-		}
-		else {
-			Collection<IEObjectDescription> contents = filteredAccesses.getContents();
-			// FIXME error for ambiguous
-			return contents.iterator().next();
-		}
+		EnvironmentView environmentView = new EnvironmentView(targetReference, name);
+		return computeInheritedEnvironmentView(environmentView);
 	}
 
 	public final IScope getOuterScope() {
@@ -96,9 +97,9 @@ public class ScopeAccessor extends AbstractScope
 
 	@Override
 	protected final Iterable<IEObjectDescription> internalGetContents() {
-		FilteredAccesses descriptions = new FilteredAccesses(targetReference, null);
-		scopeAdapter.createContents(descriptions, containmentFeature);
-		return descriptions.getContents();
+		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
+		scopeAdapter.computeInheritedEnvironmentView(environmentView, containmentFeature);
+		return environmentView.getContents();
 	}
 
 	@Override
