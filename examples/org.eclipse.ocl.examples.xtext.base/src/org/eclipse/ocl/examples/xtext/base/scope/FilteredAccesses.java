@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FilteredAccesses.java,v 1.5 2010/05/09 10:38:01 ewillink Exp $
+ * $Id: FilteredAccesses.java,v 1.6 2010/05/09 14:23:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 

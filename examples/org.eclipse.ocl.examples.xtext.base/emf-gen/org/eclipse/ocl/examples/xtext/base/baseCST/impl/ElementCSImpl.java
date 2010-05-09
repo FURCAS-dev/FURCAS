@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSImpl.java,v 1.1 2010/05/03 05:25:26 ewillink Exp $
+ * $Id: ElementCSImpl.java,v 1.2 2010/05/09 14:23:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.parsetree.CompositeNode;
 
 /**

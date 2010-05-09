@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibPackageScopeAdapter.java,v 1.1 2010/05/03 05:29:41 ewillink Exp $
+ * $Id: LibPackageScopeAdapter.java,v 1.2 2010/05/09 14:24:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
 
 public class LibPackageScopeAdapter extends OCLstdlibScopeAdapter<LibPackageCS>

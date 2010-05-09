@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCSImpl.java,v 1.2 2010/05/09 10:38:01 ewillink Exp $
+ * $Id: NamedElementCSImpl.java,v 1.3 2010/05/09 14:23:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.parsetree.CompositeNode;
 
 /**
