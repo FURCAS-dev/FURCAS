@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.6 2010/05/09 09:51:46 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.7 2010/05/09 10:26:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -33,15 +33,18 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.parsetree.reconstr.impl.CrossReferenceSerializer;
+
+import com.google.inject.Inject;
 
 public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 {
-//	private final SimpleAttributeResolver<EObject, String> aliasResolver;
+	@Inject
+	private IValueConverterService valueConverter;
 
 	public OCLinEcoreCrossReferenceSerializer() {
 		super();
-//		aliasResolver = SimpleAttributeResolver.newResolver(String.class, "alias");
 	}
 
 	@Override
@@ -79,9 +82,16 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 			if (s.length() > 0){
 				s.append("::");
 			}
-			s.append(objectPath.get(i));
+			s.append(valueConverter.toString(objectPath.get(i), "Identifier"));
+		}
+		if ((s.length() <= 0) && (iSize > 0)) {
+			s.append(valueConverter.toString(objectPath.get(iSize-1), "Identifier"));
 		}
 		return s.toString();
+	}
+
+	public String convertIdentifier(String convertMe) {
+		return valueConverter.toString(convertMe, "Identifier");
 	}
 
 	private List<String> getPath(AbstractDocumentScopeAdapter<?> documentScopeAdapter, EObject eObject) {

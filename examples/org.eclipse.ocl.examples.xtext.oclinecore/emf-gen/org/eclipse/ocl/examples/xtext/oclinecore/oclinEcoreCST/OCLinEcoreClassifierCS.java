@@ -12,17 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreClassifierCS.java,v 1.1 2010/05/03 05:44:31 ewillink Exp $
+ * $Id: OCLinEcoreClassifierCS.java,v 1.2 2010/05/09 10:26:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 
 /**
  * <!-- begin-user-doc -->

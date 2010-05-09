@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.3 2010/05/09 09:50:12 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.4 2010/05/09 10:26:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -26,12 +26,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProv
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreAttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.PostconditionCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
 
 /**
@@ -67,6 +67,11 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 		}
 
 		@Override
+		public AbstractScopeAdapter<? extends EObject> caseOCLinEcoreAttributeCS(OCLinEcoreAttributeCS eObject) {
+			return new EmptyScopeAdapter(eObject);
+		}
+
+		@Override
 		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcoreClassCS(OCLinEcoreClassCS eObject) {
 			return new ClassScopeAdapter(eObject);
 		}
@@ -86,10 +91,10 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 			return new OCLinEcorePackageScopeAdapter(eObject);
 		}
 
-		@Override
-		public AbstractScopeAdapter<? extends EObject> casePostconditionCS(PostconditionCS eObject) {
-			return new PostconditionScopeAdapter(eObject);
-		}
+//		@Override
+//		public AbstractScopeAdapter<? extends EObject> caseOCLinEcoreReferenceCS(OCLinEcoreReferenceCS eObject) {
+//			return new OCLinEcoreReferenceScopeAdapter(eObject);
+//		}
 
 		@Override
 		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {

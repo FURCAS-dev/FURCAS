@@ -12,25 +12,19 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePackageScopeAdapter.java,v 1.2 2010/05/03 11:53:58 ewillink Exp $
+ * $Id: OCLinEcorePackageScopeAdapter.java,v 1.3 2010/05/09 10:26:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
-import java.util.Set;
-
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.ElementUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
-import org.eclipse.xtext.resource.IEObjectDescription;
 
 public class OCLinEcorePackageScopeAdapter extends EssentialOCLScopeAdapter<OCLinEcorePackageCS>
 {

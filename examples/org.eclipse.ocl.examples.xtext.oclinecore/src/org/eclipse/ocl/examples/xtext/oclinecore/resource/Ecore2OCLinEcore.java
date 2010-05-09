@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.6 2010/05/09 09:52:25 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.7 2010/05/09 10:26:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -29,7 +29,6 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
@@ -63,10 +62,10 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -83,19 +82,19 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreAttributeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreAttributeCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassifierCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
@@ -255,18 +254,10 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			if (literal != null) {
 				AnnotationCS csAnnotation = OCLinEcoreCSTFactory.eINSTANCE.createAnnotationCS();
 				csAnnotation.setIdSource(EcorePackage.eNS_URI);
-				if (literal != null) {
-					DetailCS csDetail = BaseCSTFactory.eINSTANCE.createDetailCS();
-					csDetail.setIdName("literal");
-					csDetail.setValue(literal);
-					csAnnotation.getDetails().add(csDetail);
-				}
-//				if (instance != null) {
-//					DetailCS csDetail = OCLinEcoreCSTFactory.eINSTANCE.createDetailCS();
-//					csDetail.setIdName("instance");
-//					csDetail.setValue(instance);
-//					csAnnotation.getDetails().add(csDetail);
-//				}
+				DetailCS csDetail = BaseCSTFactory.eINSTANCE.createDetailCS();
+				csDetail.setIdName("literal");
+				csDetail.setValue(literal);
+				csAnnotation.getDetails().add(csDetail);
 				csEnumLiteral.getAnnotations().add(csAnnotation);
 			}
 			return csEnumLiteral;
@@ -690,7 +681,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 
 		protected ModelElementCSRef copyObjectRef(EObject eObject) {
 			ModelElementCSRef objectRef = null;
-			ModelElementCS csObject = (ModelElementCS) createMap.get(eObject);
+			ModelElementCS csObject = createMap.get(eObject);
 			if (csObject != null) {
 				ModelElementCSRef modelElementCSRef = BaseCSTFactory.eINSTANCE.createModelElementCSRef();
 				modelElementCSRef.setRef(csObject);
