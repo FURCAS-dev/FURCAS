@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibDocumentScopeAdapter.java,v 1.1 2010/05/03 05:29:45 ewillink Exp $
+ * $Id: LibDocumentScopeAdapter.java,v 1.2 2010/05/09 17:08:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibLinkingService;
 
@@ -33,8 +33,9 @@ public class LibDocumentScopeAdapter extends AbstractDocumentScopeAdapter<LibDoc
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
-		filteredAccesses.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, getTarget().getPackages());
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+		environmentView.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, getTarget().getPackages());
+		return true;
 	}
 
 	@Override

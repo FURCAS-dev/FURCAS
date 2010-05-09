@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: LibOperationScopeAdapter.java,v 1.3 2010/05/09 10:29:25 ewillink Exp $
+ * $Id: LibOperationScopeAdapter.java,v 1.4 2010/05/09 17:08:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.scope.FilteredAccesses;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class LibOperationScopeAdapter extends OCLstdlibScopeAdapter<OperationCS>
 {
@@ -28,15 +28,16 @@ public class LibOperationScopeAdapter extends OCLstdlibScopeAdapter<OperationCS>
 	}
 
 	@Override
-	public void createContents(FilteredAccesses filteredAccesses, EStructuralFeature containmentFeature) {
+	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
 		if (containmentFeature == null) {
 		}
 		else if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__PARAMETERS) {
-			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
+			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
 		}
 		else {
-			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.PARAMETER_CS, getTarget().getParameters());
-			filteredAccesses.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
+			environmentView.addNamedElements(BaseCSTPackage.Literals.PARAMETER_CS, getTarget().getParameters());
+			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
 		}
+		return true;
 	}
 }
