@@ -53,19 +53,16 @@ public abstract class AbstractOCLinEcoreUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
-	@Override
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling.OCLinEcoreLabelProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
-	@Override
 	public void configureResourceUIServiceLabelProvider(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.jface.viewers.ILabelProvider.class).annotatedWith(org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider.class).to(org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling.OCLinEcoreDescriptionLabelProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.outline.TransformerFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.outline.transformer.ISemanticModelTransformer> bindISemanticModelTransformer() {
 		return org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.OCLinEcoreTransformer.class;
 	}
@@ -111,7 +108,6 @@ public abstract class AbstractOCLinEcoreUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
 		return org.eclipse.ocl.examples.xtext.oclinecore.ui.quickfix.OCLinEcoreQuickfixProvider.class;
 	}

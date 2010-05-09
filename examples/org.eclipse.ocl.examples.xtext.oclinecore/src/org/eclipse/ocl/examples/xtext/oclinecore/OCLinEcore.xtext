@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore.xtext,v 1.3 2010/05/03 05:44:34 ewillink Exp $
+ * $Id: OCLinEcore.xtext,v 1.4 2010/05/09 14:28:23 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -99,7 +99,7 @@ InvariantConstraintCS returns ConstraintCS:
 	stereotype='invariant' name=Identifier? ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
 ;
 
-PostconditionConstraintCS returns ConstraintCS:
+PostconditionConstraintCS returns PostconditionCS:
 	stereotype='postcondition' name=Identifier? ':' (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ';'
 ;
 

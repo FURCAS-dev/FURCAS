@@ -472,7 +472,6 @@ public class AbstractOCLinEcoreProposalProvider extends EssentialOCLProposalProv
 	public void complete_UPPER(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
-	@Override
 	public void complete_RestrictedKeywords(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
