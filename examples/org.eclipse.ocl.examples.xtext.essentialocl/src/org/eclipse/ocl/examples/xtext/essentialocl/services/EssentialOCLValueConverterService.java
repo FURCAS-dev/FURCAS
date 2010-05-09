@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.5 2010/05/09 10:13:58 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.6 2010/05/09 14:26:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Set;
 
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
@@ -52,8 +53,8 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		};
 	}
 
-	@ValueConverter(rule = "Identifier")
-	public IValueConverter<String> Identifier() {
+	@ValueConverter(rule = "ID_TERMINAL")
+	public IValueConverter<String> ID_TERMINAL() {
 		return new AbstractNullSafeConverter<String>() {
 			
 			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
@@ -66,12 +67,20 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 			@Override
 			protected String internalToString(String value) {
-				if (allKeywords.contains(value)) {
+				if (allKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
+					if (value.contains("::")) {
+						return value;		// FIXME Why did recursive conversion occur?
+					}
 					return "_'" + value + "'";
 				}
 				return value;
 			}
 		};
+	}
+
+	@ValueConverter(rule = "Identifier")
+	public IValueConverter<String> Identifier() {
+		return ID_TERMINAL();
 	}
 
 	@ValueConverter(rule = "NUMBER_LITERAL")
