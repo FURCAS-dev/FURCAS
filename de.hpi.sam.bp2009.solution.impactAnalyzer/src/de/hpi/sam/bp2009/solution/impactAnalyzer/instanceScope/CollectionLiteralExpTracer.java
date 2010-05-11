@@ -7,12 +7,12 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
     public CollectionLiteralExpTracer(CollectionLiteralExp expression) {
@@ -20,7 +20,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         EList<CollectionLiteralPart<EClassifier>> parts = (EList<CollectionLiteralPart<EClassifier>>) getExpression().getPart();
         Set<NavigationStep> steps = new HashSet<NavigationStep>();
         for (Iterator<CollectionLiteralPart<EClassifier>> i = parts.iterator(); i.hasNext();) {

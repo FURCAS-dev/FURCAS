@@ -11,7 +11,7 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
@@ -92,7 +92,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	 * {@link EmptyResultNavigationStep} which is what this default implementation does.
 	 */
 	@Override
-	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 		return new EmptyResultNavigationStep((OCLExpression) getExpression());
 	}
 

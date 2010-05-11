@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 
 
@@ -14,7 +14,7 @@ public class IterateExpTracer extends AbstractTracer<IterateExp> {
 	}
 
 	@Override
-	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 		return pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getBody(), context, filterSynthesizer);
 	}
 

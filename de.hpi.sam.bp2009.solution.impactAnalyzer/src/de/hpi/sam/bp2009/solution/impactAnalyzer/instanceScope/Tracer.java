@@ -2,8 +2,10 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Map;
 import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 
 
@@ -33,5 +35,5 @@ public interface Tracer {
      *            calls it found and thereby makes it possible to limit the analysis of operation bodies by the scope of
      *            those calls actually invoking the operation in the context of the outermost expression.
      */
-    NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer);
+    NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer);
 }

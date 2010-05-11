@@ -14,7 +14,25 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
+/**
+ * 
+ * The Impact Analyzer (IA) analyzes the impact of {@link Notification}s on
+ * a set of {@link OCLExpression}s.
+ * <p>
+ * The interaction with IA happens in two steps. First call
+ * {@link #createFilterForExpression(OCLExpression, boolean)}.
+ * This returns a {@link EventFilter} which can be used to register a listener
+ * in the {@link EventManager}. The subscriber will then be supplied with all
+ * relevant {@link Notification}s relevant to the supplied {@link OCLExpression}.
+ * <p>
+ * Once a relevant <code>Notification</code> occurs it can be passed to IA
+ * by calling {@link #getContextObjects(Notification, OCLExpression, EClass)} which returns a
+ * set of {@link EObject}s. These can be used to instruct the evaluator to
+ * evaluate affected <code>OCLExpressions</code> for a certain set of instances.
+ * 
+ */
 public interface ImpactAnalyzer {
 
 	/**
@@ -23,6 +41,8 @@ public interface ImpactAnalyzer {
 	 * Note that also events may be matched that don't actually lead to a change. The
 	 * filter synthesis is "conservative" in this sense.
 	 * 
+	 * @param expression
+	 *            the {@link OCLExpression} to create the filter for
 	 * @param notifyNewContextElements
 	 *            The analyzer can be parameterized during construction such
 	 *            that it either registers for creation events on the context
@@ -37,8 +57,6 @@ public interface ImpactAnalyzer {
 	 *            responsible for the initial evaluation of those OCL
 	 *            expressions on new element, and therefore, context element
 	 *            creation events are not of interest.
-	 * @param expression
-	 *            the expression to create the filter for
 	 * @return the filter matching all relevant events
 	 */
 	EventFilter createFilterForExpression(OCLExpression expression,
@@ -58,12 +76,4 @@ public interface ImpactAnalyzer {
 	 */
 	Collection<EObject> getContextObjects(Notification event,
 			OCLExpression expression, EClass context);
-
-	/**
-	 * resets all instance variables of the {@link ImpactAnalyzer} e.g.
-	 * PathCache
-	 * 
-	 * TODO remove this from the API; I don't think this should be exposed to clients; at best to test cases and then the Impl class should expose it instead
-	 */
-	void reset();
 } // ImpactAnalyzer

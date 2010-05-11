@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
@@ -19,16 +18,15 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 /**
  * Implementation of the {@link ImpactAnalyzer}
  */
-
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     
-    private HashMap<OCLExpression, FilterSynthesis> expToFilterSyn = new HashMap<OCLExpression, FilterSynthesis>();
+    private HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn = new HashMap<OCLExpression, FilterSynthesisImpl>();
     private PathCache pathCache = new PathCache();
     
     /**
      * @return the expToFilterSyn
      */
-    HashMap<OCLExpression, FilterSynthesis> getExpToFilterSyn() {
+    HashMap<OCLExpression, FilterSynthesisImpl> getExpToFilterSyn() {
         return expToFilterSyn;
     }
 
@@ -42,7 +40,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @param expToFilterSyn the expToFilterSyn to set
      */
-    void setExpToFilterSyn(HashMap<OCLExpression, FilterSynthesis> expToFilterSyn) {
+    void setExpToFilterSyn(HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn) {
         this.expToFilterSyn = expToFilterSyn;
     }
 
@@ -55,7 +53,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     @Override
     public EventFilter createFilterForExpression(OCLExpression expression, boolean notifyNewContextElements) {
-        FilterSynthesis filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
+    	FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
         this.getExpToFilterSyn().put(expression, filtersyn);
         return filtersyn.getSynthesisedFilter();
     }
@@ -70,7 +68,10 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         return instanceScopeAnalysis.getContextObjects(event, expression, context);
     }
 
-    @Override
+	/**
+	 * resets all instance variables of the {@link ImpactAnalyzer}
+	 * 
+	 */
     public void reset() {
         this.getExpToFilterSyn().clear();
         this.setPathCache(new PathCache());       

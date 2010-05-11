@@ -47,10 +47,10 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.NotificationHelper;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 /**
  * Supports a lookup from a source model element of either an attribute value change event or a link add/remove event
@@ -59,15 +59,13 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
  * for all expression occuring within one root OCL expression, including the expressions reachable in operation body
  * expressions where the operation may be called directly of indirectly by the root expression.
  * 
- * @author Axel Uhl D043530
- * 
  */
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
-    private final FilterSynthesis filterSynthesizer;
+    private final FilterSynthesisImpl filterSynthesizer;
 
     /**
      * @param expression
@@ -77,7 +75,7 @@ public class InstanceScopeAnalysis {
      *            that can be invoked for model elements; using this cache avoids redundant path calculations for common
      *            subexpressions, such as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    public InstanceScopeAnalysis(OCLExpression expression, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         if (expression == null || pathCache == null){
             throw new IllegalArgumentException("Arguments must not be null");
         }

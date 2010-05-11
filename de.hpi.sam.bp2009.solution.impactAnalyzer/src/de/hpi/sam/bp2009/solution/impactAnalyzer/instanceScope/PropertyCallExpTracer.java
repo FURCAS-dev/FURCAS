@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -13,7 +14,8 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 
 
@@ -23,7 +25,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         /*
          * In ECore AssociationEndCallExp and AttributeCallExp are both mapped to PropertyCallExp.
          * That's why we need to check what the PropertyCall refers to and create different NavigationSteps for each case.
@@ -85,7 +87,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         return result;
     }
 
-    private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer){
+    private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer){
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {
@@ -127,7 +129,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         }
     } 
 
-    private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer){
+    private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer){
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {

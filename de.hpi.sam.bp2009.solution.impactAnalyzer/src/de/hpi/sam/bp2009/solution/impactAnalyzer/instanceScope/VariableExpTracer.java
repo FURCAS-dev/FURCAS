@@ -19,7 +19,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 
 
@@ -62,7 +62,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep result;
 	if (isSelf()) {
 	    result = tracebackSelf(context, pathCache, filterSynthesizer);
@@ -84,7 +84,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return result;
     }
 
-    private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	OCLExpression rootExpression = getRootExpression();
 	EOperation op = InstanceScopeAnalysis.getDefines(rootExpression);
 	int pos = getParameterPosition(op);
@@ -129,13 +129,13 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return pos;
     }
 
-    private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	return pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(), 
 	        context, 
 	        filterSynthesizer);
     }
 
-    private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) getVariableDeclaration().getInitExpression(),
 	        context, 
@@ -152,14 +152,14 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	        stepForBodyExpression);
     }
 
-    private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	return pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) ((IteratorExp) getVariableDeclaration().eContainer()).getSource(),
 	        context, 
 	        filterSynthesizer);
     }
 
-    private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+    private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep result;
 	EOperation op = InstanceScopeAnalysis.getDefines(getRootExpression());
 	if (op != null) {

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -33,7 +34,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * Collects the events for a single {@link OCLExpression} recursively. The analyzer can be parameterized during
@@ -47,7 +48,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
  * 
  */
 public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
-EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> implements FilterSynthesis{
+EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
 
     final private boolean notifyNewContextElements;
     /**
@@ -72,12 +73,19 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      *            be responsible for the initial evaluation of those OCL expressions on new element, and therefore,
      *            context element creation events are not of interest.
      */
-    public FilterSynthesisImpl(OCLExpression exp, boolean notifyNewContextElements) {
+    protected FilterSynthesisImpl(OCLExpression exp, boolean notifyNewContextElements) {
         super();
         this.notifyNewContextElements = notifyNewContextElements;
         safeVisit(exp);
     }
 
+    /**
+     * Obtains the event filter for the expression passed to the constructor. When an event matches the filter, the
+     * value of the expression may have changed for one or more evaluation contexts. To determine a superset of those
+     * context elements for which the value may have changed, feed the event into
+     * {@link ImpactAnalyzer#getContextObjects(Notification, OCLExpression, org.eclipse.emf.ecore.EClass)}.
+     * @return the filter matching all relevant events 
+     */
     public EventFilter getSynthesisedFilter() {
         // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
         // redundant/duplicate filters
@@ -85,6 +93,11 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
 
     }
 
+    /**
+     * Returns all the calls to the operation whose body is <tt>operationBody</tt> that are reachable
+     * from the root expression analyzed by this {@link FilterSynthesis}. If no such calls exist,
+     * an empty set is returned.
+     */
     public Set<OperationCallExp> getCallsOf(OCLExpression rootExpression) {
         Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
         if (result == null) {

@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 
 
@@ -14,7 +14,7 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
 	}
 
 	@Override
-	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesis filterSynthesizer) {
+	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 		NavigationStep result;
 		String name = getExpression().getName();
 		if (name.equals("select") || name.equals("reject") || name.equals("sortedBy") || name.equals("any")) {

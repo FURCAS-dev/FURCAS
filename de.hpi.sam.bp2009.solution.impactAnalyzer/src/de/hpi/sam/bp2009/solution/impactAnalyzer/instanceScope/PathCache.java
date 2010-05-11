@@ -6,7 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 /**
  * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each
@@ -39,7 +39,7 @@ public class PathCache {
 		subexpressionToPath.put(subexpression, path);
 	}
 
-	NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context, FilterSynthesis filterSynthesizer) {
+	NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context, FilterSynthesisImpl filterSynthesizer) {
 		NavigationStep result = getPathForNode(sourceExpression);
 		if (result == null) {
 			result = InstanceScopeAnalysis.getTracer(sourceExpression).traceback(context, this, filterSynthesizer);
