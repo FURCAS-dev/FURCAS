@@ -9,7 +9,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Conainment Filter</b></em>'.
+ * A representation of the model object '<em><b>Containment Filter</b></em>'.
  * <!-- end-user-doc -->
  *
  *
@@ -18,4 +18,4 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * @generated
  */
 public interface ContainmentFilter extends EventFilter {
-} // ConainmentFilter
+} // ContainmentFilter

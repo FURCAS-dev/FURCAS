@@ -30,12 +30,15 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EventFilter" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="EventFilter" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
     <eOperations name="matchesFor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="event" eType="#//Notification"/>
+    </eOperations>
+    <eOperations name="buildNotificationIdentifiers" upperBound="-1" eType="#//NotificationIdentifier">
+      <eParameters name="identifier" eType="#//NotificationIdentifier"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventTypeFilter" eSuperTypes="#//EventFilter">
@@ -73,12 +76,6 @@
       <eParameters name="attribute" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PackageFilter" eSuperTypes="#//EventFilter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="wantedPackage" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationFilter" eSuperTypes="#//StructuralFeatureFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
@@ -92,11 +89,35 @@
   <eClassifiers xsi:type="ecore:EClass" name="OldValueClassFilter" eSuperTypes="#//EventFilter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="affectedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContainmentFilter" eSuperTypes="#//EventFilter"/>
   <eClassifiers xsi:type="ecore:EClass" name="NewValueClassFilter" eSuperTypes="#//EventFilter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="affectedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructuralFeatureFilter" eSuperTypes="#//EventFilter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotificationIdentifier">
+    <eOperations name="getHash" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eOperations name="clone" eType="#//NotificationIdentifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="notifierClassURI" eType="#//URI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventType" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureURI" eType="#//URI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldValueClassURIs" ordered="false"
+        eType="#//URISet" transient="true" defaultValueLiteral="new HashSet&lt;URI>()"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValueClassURIs" ordered="false"
+        eType="#//URISet" transient="true" defaultValueLiteral="new HashSet&lt;URI>()"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="touch" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reset" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containment" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotificationIdentifierBuilder">
+    <eOperations name="buildFrom" eType="#//NotificationIdentifierSet">
+      <eParameters name="noti" eType="#//Notification"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="org.eclipse.emf.common.util.URI"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContainmentFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="NotificationIdentifierSet" instanceTypeName="java.util.Set&lt;de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier>"
+      serializable="false"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="URISet" instanceTypeName="java.util.Set&lt;org.eclipse.emf.common.util.URI>"
+      serializable="false"/>
 </ecore:EPackage>

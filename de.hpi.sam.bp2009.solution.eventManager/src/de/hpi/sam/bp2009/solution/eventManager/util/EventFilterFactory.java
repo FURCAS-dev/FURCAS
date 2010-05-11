@@ -48,6 +48,11 @@ public class EventFilterFactory {
 		and.getFilters().addAll(Arrays.asList(eventFilters));
 		return and;
 	}
+	/**
+	 * Creates an And-Filter for all given filters
+	 * @param eventFilters
+	 * @return
+	 */
 	public EventFilter getOrFilterFor(EventFilter... eventFilters){
 		OrFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
 		or.getFilters().addAll(Arrays.asList(eventFilters));
@@ -63,7 +68,6 @@ public class EventFilterFactory {
 		OldValueClassFilter ov = i.createOldValueClassFilter();
 		ov.setAffectedClass(cls);
 
-
 		return getAndFilterFor(getOrFilterFor(nv,ov),
 				i.createContainmentFilter() );
 	}
@@ -72,10 +76,13 @@ public class EventFilterFactory {
 			
 		NewValueClassFilter nv = i.createNewValueClassFilter();
 		nv.setAffectedClass(cls);
-		
+		/*
+		 * Figure out what the containing Reference is
+		 */
 		return getAndFilterFor(createOrFilterForEventTypes(Notification.ADD, Notification.SET, Notification.ADD_MANY),
 				nv,
 				i.createContainmentFilter());
+
 	}
 	public OrFilter createOrFilterForEventTypes(int... types){
 		OrFilter or = EventManagerFactory.eINSTANCE.createOrFilter();

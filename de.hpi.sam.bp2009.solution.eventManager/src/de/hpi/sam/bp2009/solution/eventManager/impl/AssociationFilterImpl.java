@@ -31,14 +31,14 @@ public class AssociationFilterImpl extends StructuralFeatureFilterImpl implement
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EventManagerPackage.Literals.ASSOCIATION_FILTER;
-    }
+		return EventManagerPackage.Literals.ASSOCIATION_FILTER;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

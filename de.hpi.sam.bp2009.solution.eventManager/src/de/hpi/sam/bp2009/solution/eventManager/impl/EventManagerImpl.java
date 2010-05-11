@@ -7,11 +7,9 @@
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 
-import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -24,7 +22,10 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
+import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifierBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,9 +44,12 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 			handleEMFEvent(notification);	
 		}
 	}
-	private Map<EventFilter, Adapter> rootFilterToListenerMap = new HashMap<EventFilter, Adapter>();
 	private EventAdapter adapter = new EventAdapter();
-	
+	private HashMap<NotificationIdentifier, Set<Adapter>> identifierToListener = new HashMap<NotificationIdentifier, Set<Adapter>>();
+	private NotificationIdentifierBuilder bld = EventManagerFactory.eINSTANCE.createNotificationIdentifierBuilder();
+
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,14 +59,14 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		this.adapter= new EventAdapter();
 	}
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EventManagerPackage.Literals.EVENT_MANAGER;
-    }
+		return EventManagerPackage.Literals.EVENT_MANAGER;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,28 +74,19 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * @generated NOT
 	 */
 	public void handleEMFEvent(Notification notification) {
-		System.out.println(notification);
-			System.out.println("Mapped Event:----"+notification);
-			for(EventFilter filter: getFilters(notification)){
-				Adapter app= getAdapterForFilter(filter);
-				if(app!=null)
-					notifyApplication( app, notification, filter);
+		for(NotificationIdentifier id: bld.buildFrom(notification)){
+			for(Adapter a : getListenerList(id)){
+				notifyApplication(a, notification, null);
 			}
-		
-	}
+		}
 
-	private Adapter getAdapterForFilter(EventFilter filter) {
-		return rootFilterToListenerMap.get(filter); 		
 	}
-
-	private Collection<? extends EventFilter> getFilters(Notification event) {
-		HashSet<EventFilter> result = new HashSet<EventFilter>();
-		for(EventFilter filter:rootFilterToListenerMap.keySet())
-			if(filter.matchesFor(event))
-					result.add(filter);
-		return result ;
-		
-		
+	private Set<Adapter> getListenerList(NotificationIdentifier id) {
+		Set<Adapter> rs=identifierToListener.get(id);
+		if(rs==null){
+			return Collections.emptySet();
+		}
+		return rs;
 	}
 
 	/**
@@ -120,10 +115,16 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 */
 	public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
 		root.eAdapters().add(adapter);
-		rootFilterToListenerMap.put(filter, caller);
-		
-		
-		
+		for(NotificationIdentifier id: filter.buildNotificationIdentifiers(EventManagerFactory.eINSTANCE.createNotificationIdentifier())){
+			if(identifierToListener.get(id)==null){
+				identifierToListener.put(id, new HashSet<Adapter>());
+			}
+			getListenerList(id).add(caller);
+		}
+
+
+
+
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,23 +132,20 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * @generated NOT
 	 */
 	public boolean unsubscribe(Adapter caller) {
-		Set<EventFilter> filters = new HashSet<EventFilter>();
-		for(Entry<EventFilter, Adapter> entry: rootFilterToListenerMap.entrySet())
-			if(entry.getValue().equals(caller))
-				filters.add(entry.getKey());
-		for(EventFilter e: filters)
-			rootFilterToListenerMap.remove(e);
-		
-		return filters.isEmpty();
+		boolean result = false;
+		for(Set<Adapter> set : identifierToListener.values()){
+			result = result?result:set.remove(caller);
+		}
+		return result;
 	}
-	
+
 	@Override
 	@Deprecated
 	public void subscribeTransactional(EList<Notifier> root,
 			EventFilter filter, Adapter caller) {
 		// TODO Auto-generated methodsubscribeTransactional stub
 		System.out.println("subscribeTransactional");
-		
+
 	}
 
 } //EventManagerImpl

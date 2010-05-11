@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.EReference;
 public interface AssociationFilter extends StructuralFeatureFilter {
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model
-     * @generated
-     */
+	 * @model
+	 * @generated
+	 */
 	void setReference(EReference reference);
 } // AssociationFilter

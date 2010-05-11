@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EAttribute;
 public interface AttributeFilter extends StructuralFeatureFilter {
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model
-     * @generated
-     */
+	 * @model
+	 * @generated
+	 */
 	void setAttribute(EAttribute attribute);
 
 

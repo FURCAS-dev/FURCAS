@@ -6,17 +6,18 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter;
-
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
+import de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,73 +32,73 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class StructuralFeatureFilterImpl extends EObjectImpl implements StructuralFeatureFilter {
+public class StructuralFeatureFilterImpl extends EventFilterImpl implements StructuralFeatureFilter {
 	/**
-     * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getFeature()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFeature()
+	 * @generated
+	 * @ordered
+	 */
 	protected EStructuralFeature feature;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StructuralFeatureFilterImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EventManagerPackage.Literals.STRUCTURAL_FEATURE_FILTER;
-    }
+		return EventManagerPackage.Literals.STRUCTURAL_FEATURE_FILTER;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EStructuralFeature getFeature() {
-        if (feature != null && feature.eIsProxy()) {
-            InternalEObject oldFeature = (InternalEObject)feature;
-            feature = (EStructuralFeature)eResolveProxy(oldFeature);
-            if (feature != oldFeature) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE, oldFeature, feature));
-            }
-        }
-        return feature;
-    }
+		if (feature != null && feature.eIsProxy()) {
+			InternalEObject oldFeature = (InternalEObject)feature;
+			feature = (EStructuralFeature)eResolveProxy(oldFeature);
+			if (feature != oldFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE, oldFeature, feature));
+			}
+		}
+		return feature;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EStructuralFeature basicGetFeature() {
-        return feature;
-    }
+		return feature;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setFeature(EStructuralFeature newFeature) {
-        EStructuralFeature oldFeature = feature;
-        feature = newFeature;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE, oldFeature, feature));
-    }
+		EStructuralFeature oldFeature = feature;
+		feature = newFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE, oldFeature, feature));
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,61 +116,74 @@ public class StructuralFeatureFilterImpl extends EObjectImpl implements Structur
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated NOT
+	 */
+	public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
+		EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
+		result.add(identifier);
+		
+		identifier.setFeatureURI(EcoreUtil.getURI(getFeature()));
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
-                if (resolve) return getFeature();
-                return basicGetFeature();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				if (resolve) return getFeature();
+				return basicGetFeature();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
-                setFeature((EStructuralFeature)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				setFeature((EStructuralFeature)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
-                setFeature((EStructuralFeature)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				setFeature((EStructuralFeature)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
-                return feature != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EventManagerPackage.STRUCTURAL_FEATURE_FILTER__FEATURE:
+				return feature != null;
+		}
+		return super.eIsSet(featureID);
+	}
 	@Override
 	public String toString() {
 	    if(getFeature() !=null)
