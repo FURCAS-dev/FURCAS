@@ -64,8 +64,8 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         if(!(this.getExpToFilterSyn().containsKey(expression))){
             createFilterForExpression(expression, true);
         }
-        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, this.getPathCache(), this.getExpToFilterSyn().get(expression));        
-        return instanceScopeAnalysis.getContextObjects(event, expression, context);
+        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, this.getPathCache(), this.getExpToFilterSyn().get(expression));        
+        return instanceScopeAnalysis.getContextObjects(event);
     }
 
 	/**

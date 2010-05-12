@@ -13,10 +13,6 @@ public class TupleNavigationStep extends AbstractNavigationStep {
 
     private String tupleLiteralPartName = "";
 
-    public TupleNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
-        super(sourceType, targetType, debugInfo);
-    }
-
     public TupleNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, String referredAttributeName) {
         super(sourceType, targetType, debugInfo);
         this.tupleLiteralPartName  = referredAttributeName;        
@@ -24,6 +20,7 @@ public class TupleNavigationStep extends AbstractNavigationStep {
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+        
         HashSet<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         fromObject.pushTupleIdentifier(tupleLiteralPartName);
         result.add(fromObject);

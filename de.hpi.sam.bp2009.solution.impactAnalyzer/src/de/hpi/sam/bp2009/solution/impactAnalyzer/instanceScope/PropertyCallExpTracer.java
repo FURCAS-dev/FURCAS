@@ -115,7 +115,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer);
             EReference forwardRef = (EReference)getExpression().getReferredProperty();
             NavigationStep reverseTraversal;
-            //FIXME if forwardref is composite then create compositeNavigationStep
+            //FIXME if forwardref is composite then create compositeNavigationStep if there is no eOpposite
             if (forwardRef.getEOpposite() != null){
                 reverseTraversal = new AssociationNavigationStep(
                         getInnermostElementType(sourceType),
@@ -123,8 +123,10 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
                         forwardRef,
                         getExpression());
             }else{
+                System.err.println("Missing EOpposite. At this point we should implement a clever way to get the opposite reference. At the moment we use allInstances!");
+                reverseTraversal = new AllInstancesNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression().getSource().getType(), getExpression());
                 //if hidden Opposites are implemented, reaching the else would be an error
-                throw new RuntimeException("Missing EOpposite. Since hiddenOpposites are generated for uni-directional EReferences, every reference must have an opposite.");
+                //throw new RuntimeException("Missing EOpposite. Since hiddenOpposites are generated for uni-directional EReferences, every reference must have an opposite.");
             }
             return pathCache.navigationStepFromSequence(getExpression(), reverseTraversal, sourceStep);
         }

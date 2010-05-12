@@ -115,6 +115,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
 
     @Test
     public void testBossIsOldest( ) {
+        
 
         // context Employee inv BossIsOldest:
         // self.age <= self.employer.boss.age
@@ -365,6 +366,28 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         instances = computeAffectedInstances(stmts, noti, ia, this.employee );
         compareInstances( instances, new EObject[] { this.director } );
 
+        System.out.println( "--------------------------------------------------\n" );
+    }
+    
+    @Test
+    public void testBoss10YearsOlderThanJunior(){
+        
+        // context Department \n"
+        // inv boss10YearsOlderThanJunior: \n"
+        // let t:Tuple(boss:Employee,junior:Employee)="
+        // Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in \n"
+        // t.boss.age > t.junior.age + 10";
+        System.out.println("Testing boss10YearsOlderThanJunior\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+        stmts.add( this.boss10YearsOlderThanJuniorAST );
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
+        createFilters(stmts, ia, false);
+        
+        //change age of employee from 42 to 1 
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeAge, new Long(42), new Long(1));
+        Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.department );
+        compareInstances( instances, new EObject[] { this.e1.getEmployer() } );
+        
         System.out.println( "--------------------------------------------------\n" );
     }
 

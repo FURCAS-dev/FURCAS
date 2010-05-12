@@ -196,4 +196,9 @@ public class AnnotatedEObject implements EObject{
     public void eSetDeliver(boolean deliver) {
         refObject.eSetDeliver(deliver);
     }
+    
+    @Override
+    public String toString() {
+        return super.toString() + " (annotatedObject: " + refObject.toString() + ") (annotation: " + annotation + ") (tupleStack: " + tupleIdentifiers.toString() + ")";
+    }
 }

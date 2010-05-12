@@ -44,13 +44,15 @@ public class NotificationHelper {
     
     public static Notification createAttributeChangeNotification(EObject notifier, EAttribute feature, Object oldValue, Object newValue) {
         EDataType dataType = feature.getEAttributeType();
-        boolean validOldValue = dataType.isInstance(oldValue) || 
+        boolean validOldValue = oldValue == null || dataType.isInstance(oldValue) ||
         (feature.isMany() && oldValue instanceof EList<?> && dataType.isInstance(((EList<?>)oldValue).get(0)));
         boolean validNewValue = dataType.isInstance(newValue) ||
         (feature.isMany() && newValue instanceof EList<?> && dataType.isInstance(((EList<?>)newValue).get(0)));
 
         if (feature.isChangeable() && validOldValue && validNewValue){
-            notifier.eSet(feature, oldValue);
+            if (oldValue != null){
+                notifier.eSet(feature, oldValue);
+            }
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
             notifier.eSet(feature, newValue);

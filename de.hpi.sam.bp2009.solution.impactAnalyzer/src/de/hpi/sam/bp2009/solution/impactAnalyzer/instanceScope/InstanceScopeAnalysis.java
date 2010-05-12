@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -66,43 +65,128 @@ public class InstanceScopeAnalysis {
     private final Map<OCLExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
     private final FilterSynthesisImpl filterSynthesizer;
+    private final EClass context;
+
+    private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] { 
+            PredefinedType.EQUAL_NAME,
+            PredefinedType.LESS_THAN_NAME,
+            PredefinedType.LESS_THAN_EQUAL_NAME,
+            PredefinedType.GREATER_THAN_NAME,
+            PredefinedType.GREATER_THAN_EQUAL_NAME,
+            PredefinedType.NOT_EQUAL_NAME }));
+
+    protected static Set<AnnotatedEObject> getAllPossibleContextInstances(AnnotatedEObject fromObject, EClass context) {
+        String query = "select obj from ["+ EcoreUtil.getURI(context) +"] as obj";
+        QueryContext scope = new ProjectBasedScopeProviderImpl(fromObject.eResource()).getForwardScopeAsQueryContext();
+        ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
+        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        if(!resultSet.isEmpty()){
+            for (int i = 0; i < resultSet.getSize(); i++){
+                EObject obj = fromObject.eResource().getEObject(resultSet.getUri(i,"op").toString());
+                AnnotatedEObject annObj = new AnnotatedEObject(obj);
+                result.add(annObj);
+            }
+        } else {
+            result = Collections.emptySet();
+        }
+        return result;
+    }
+
+    /**
+     * For an "impl" object representing an OCL expression, obtains the {@link EOperation} for which it is the body.
+     * {@link OCLExpression<EClassifier>#getDefines()} is used because on "impl" objects the getters that receive the
+     * {@link CoreConnection} need to be called. If the expression is not a body of an
+     * operation, <tt>null</tt> is returned. Otherwise, the first operation (usually there would be
+     * at most one) for which <tt>expression</tt> is the operation body is returned.
+     */
+    protected static EOperation getDefines(OCLExpression expression) {
+        //TODO: check correctness of this query
+    	//FIXME should never be reached by standard operations (currently "implies" reaches this point)
+        String query = "select op from [" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEOperation()) + "] as op, " +
+        "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation()) + "] as annotation, " +
+        "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation_Details().getEType()) + "] as details, " +
+        "[" + EcoreUtil.getURI(expression.eClass()) + "] as ocl " +
+        //"in elements [[" + "]] " +
+        "where op.eAnnotations = annotation " +
+        "where annotation.details = details " +
+        "where details.key = 'body' " +
+        "where annotation.contents = ocl";        
+        QueryContext scope = new ProjectBasedScopeProviderImpl(expression.eResource()).getForwardScopeAsQueryContext();
+        ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
+        if(!resultSet.isEmpty()){
+            //return the first match
+            return (EOperation) expression.eResource().getEObject(resultSet.getUri(0,"op").toString());
+        }
+        return null;
+//    	EAnnotationOCLParser annoParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+//    	EOperation operation = ((OperationCallExp) ((IteratorExp) expression).getBody()).getReferredOperation();
+//    	annoParser.convertOclAnnotation(operation);
+//    	OCLExpression bodyExpr = annoParser.getExpressionFromAnnotationsOf(operation, "body");
+//    	return ;
+    }
+    /**
+     * Factory method that creats an instance of some {@link Tracer}-implementing class specific to the
+     * type of the OCL <tt>expression</tt>.
+     */
+    protected static Tracer getTracer(OCLExpression expression) {
+        // Using the class loader is another option, but that would create implicit naming conventions.
+        // Thats why we do the mapping "manually".
+        switch(expression.eClass().getClassifierID()){
+        case EcorePackage.PROPERTY_CALL_EXP: return new PropertyCallExpTracer((PropertyCallExp) expression);
+        case EcorePackage.BOOLEAN_LITERAL_EXP: return new BooleanLiteralExpTracer((BooleanLiteralExp) expression);
+        case EcorePackage.COLLECTION_LITERAL_EXP: return new CollectionLiteralExpTracer((CollectionLiteralExp) expression);
+        case EcorePackage.ENUM_LITERAL_EXP: return new EnumLiteralExpTracer((EnumLiteralExp) expression);
+        case EcorePackage.IF_EXP: return new IfExpTracer((IfExp) expression);
+        case EcorePackage.INTEGER_LITERAL_EXP: return new IntegerLiteralExpTracer((IntegerLiteralExp) expression);
+        case EcorePackage.ITERATE_EXP: return new IterateExpTracer((IterateExp) expression);
+        case EcorePackage.ITERATOR_EXP: return new IteratorExpTracer((IteratorExp) expression);
+        case EcorePackage.LET_EXP: return new LetExpTracer((LetExp) expression);
+        case EcorePackage.OPERATION_CALL_EXP: return new OperationCallExpTracer((OperationCallExp) expression);
+        case EcorePackage.REAL_LITERAL_EXP: return new RealLiteralExpTracer((RealLiteralExp) expression);
+        case EcorePackage.STRING_LITERAL_EXP: return new StringLiteralExpTracer((StringLiteralExp) expression);
+        case EcorePackage.TUPLE_LITERAL_EXP: return new TupleLiteralExpTracer((TupleLiteralExp) expression);
+        case EcorePackage.TYPE_EXP: return new TypeExpTracer((TypeExp) expression);
+        case EcorePackage.VARIABLE_EXP: return new VariableExpTracer((VariableExp) expression);
+        default: throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
+        }
+    }
 
     /**
      * @param expression
      * 		  the OCL expression for which to perform instance scope impact analysis
+     * @param exprContext TODO
      * @param pathCache
      *            caches {@link NavigationPath} traceback navigations to the possible contexts for a given expression
      *            that can be invoked for model elements; using this cache avoids redundant path calculations for common
      *            subexpressions, such as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-        if (expression == null || pathCache == null){
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+        if (expression == null || exprContext == null || pathCache == null || filterSynthesizer == null){
             throw new IllegalArgumentException("Arguments must not be null");
         }
         associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder();
+        associationEndAndAttributeCallFinder.walk(expression);
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         this.pathCache = pathCache;
-        associationEndAndAttributeCallFinder.walk(expression);
+        this.context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
     }
 
-    public Collection<EObject> getContextObjects(Notification event, OCLExpression expression, EClass context){
+    public Collection<EObject> getContextObjects(Notification event){
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         if (NotificationHelper.isElementLifeCycleEvent(event)){
             EClass notiCls = ((EObject)event.getNotifier()).eClass();
             if (expressionContainsAllInstancesCallForType(notiCls)){
-                result = getAllPossibleContextInstances(new AnnotatedEObject((EObject)event.getNotifier()), context);
+                result = getAllPossibleContextInstances(new AnnotatedEObject((EObject)event.getNotifier()), getContext());
             }
         } else {
             for (PropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
-                EObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
+                AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
                 if (sourceElement != null) {
                     Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
                     // the source element may have been deleted already by subsequent events; at this point,
                     // this makes it impossible to trace the change event back to a context; all we have is
-                    for (AnnotatedEObject roi : self(attributeOrAssociationEndCall, new AnnotatedEObject(sourceElement), context, cache )) {
-                        result.add(roi);
-                    }
+                    result = self(attributeOrAssociationEndCall, sourceElement, getContext(), cache );
                 }
             }
         }       
@@ -112,22 +196,6 @@ public class InstanceScopeAnalysis {
             resultCollection.add(it.next().getAnnotatedObject());
         }
         return resultCollection;
-    }
-    /**
-     * Looks up <tt>exp</tt> in {@link #expressionToStep}. If not found, the respective {@link Tracer} is created and
-     * used to compute and then cache the required {@link NavigationStep}.
-     * 
-     * @param context
-     *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context
-     *            type defines the type for <tt>self</tt> if used outside of operation bodies.
-     */
-    private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
-        NavigationStep result = expressionToStep.get(exp);
-        if (result == null) {
-            result = getTracer(exp).traceback(context, pathCache, filterSynthesizer);
-            expressionToStep.put(exp, result);
-        }
-        return result;
     }
 
     /**
@@ -244,39 +312,84 @@ public class InstanceScopeAnalysis {
             }
         }
         return result;
-    } 
-
-    private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] { 
-            PredefinedType.EQUAL_NAME,
-            PredefinedType.LESS_THAN_NAME,
-            PredefinedType.LESS_THAN_EQUAL_NAME,
-            PredefinedType.GREATER_THAN_NAME,
-            PredefinedType.GREATER_THAN_EQUAL_NAME,
-            PredefinedType.NOT_EQUAL_NAME }));
-
-    private boolean isComparisonOperation(OperationCallExp op) {
-        return comparisonOpNames.contains(op.getReferredOperation().getName());
     }
 
     private boolean expressionContainsAllInstancesCallForType(EClassifier classifier) {
         return !associationEndAndAttributeCallFinder.getAllInstancesCallsFor(classifier).isEmpty();
     }
 
-    protected static Set<AnnotatedEObject> getAllPossibleContextInstances(AnnotatedEObject fromObject, EClass context) {
-        String query = "select obj from ["+ EcoreUtil.getURI(context) +"] as obj";
-        QueryContext scope = new ProjectBasedScopeProviderImpl(fromObject.eResource()).getForwardScopeAsQueryContext();
-        ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        if(!resultSet.isEmpty()){
-            for (int i = 0; i < resultSet.getSize(); i++){
-                EObject obj = fromObject.eResource().getEObject(resultSet.getUri(i,"op").toString());
-                AnnotatedEObject annObj = new AnnotatedEObject(obj, "", new Stack<String>());
-                result.add(annObj);
+    /**
+     * Finds all attribute and association end call expressions in <tt>expression</tt> that are affected by the
+     * <tt>changeEvent</tt>. The result is always non-<tt>null</tt> but may be empty.
+     */
+    private Set<? extends PropertyCallExp> getAttributeOrAssociationEndCalls(Notification changeEvent) {
+        Set<? extends PropertyCallExp> result;
+        if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
+            result = associationEndAndAttributeCallFinder.getAttributeCallExpressions((EAttribute) NotificationHelper.getNotificationFeature(changeEvent));
+        } else if (NotificationHelper.isLinkLifeCycleEvent(changeEvent)) {
+            EReference ref = (EReference)NotificationHelper.getNotificationFeature(changeEvent);
+
+            Set<PropertyCallExp> localResult = new HashSet<PropertyCallExp>();
+            localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref));
+            if (ref.getEOpposite() != null){
+                //TODO: check if the EOpposite is really needed
+                localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref.getEOpposite()));
             }
+            result = localResult;
         } else {
             result = Collections.emptySet();
         }
         return result;
+    }
+
+    private EClass getContext(){
+        return context;
+    }
+
+    /**
+     * Looks up <tt>exp</tt> in {@link #expressionToStep}. If not found, the respective {@link Tracer} is created and
+     * used to compute and then cache the required {@link NavigationStep}.
+     * 
+     * @param context
+     *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context
+     *            type defines the type for <tt>self</tt> if used outside of operation bodies.
+     */
+    private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
+        NavigationStep result = expressionToStep.get(exp);
+        if (result == null) {
+            result = getTracer(exp).traceback(context, pathCache, filterSynthesizer);
+            expressionToStep.put(exp, result);
+        }
+        return result;
+    }
+
+    /**
+     * @param changeEvent
+     *            either an {@link AttributeValueChangeEvent} or a {@link LinkChangeEvent}.
+     * @param attributeOrAssociationEndCall
+     *            a (sub-)expression originally affected by <tt>changeEvent</tt>. For {@link LinkChangeEvent}s it
+     *            depends on which end the expression uses what will be considered the source element of the change
+     *            which will then be returned by this method. The source is the element at the end of the link changed
+     *            that is the opposite end of the end used by the {@link AssociationEndCallExp}.
+     *            <tt>attributeOrAssociationEndCall</tt> has to be of type {@link AttributeCallExp} in case
+     *            <tt>changeEvent</tt> is an {@link AttributeValueChangeEvent}, and of type
+     *            {@link AssociationEndCallExp} in case <tt>changeEvent</tt> is of type {@link LinkChangeEvent}.
+     * @return <tt>null</tt> in case the source element indicated by the change event does not conform to the static
+     *         attribute or association call's source expression type. <tt>null</tt> may also result if the element
+     *         indicated by the event cannot be resolved (anymore). This is still an open issue. See the to-do marker
+     *         below. In all other cases, the source element on which the event occured, is returned.
+     */
+    private AnnotatedEObject getSourceElement(Notification changeEvent, PropertyCallExp attributeOrAssociationEndCall) {
+        assert NotificationHelper.isAttributeValueChangeEvent(changeEvent) || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
+        AnnotatedEObject result = new AnnotatedEObject((EObject)changeEvent.getNotifier());
+        if (!attributeOrAssociationEndCall.getSource().getType().isInstance(result.getAnnotatedObject())) {
+            result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
+            // also see the ASCII arts in AssociationEndCallExpTracer.traceback
+        }
+        return result;
+    }
+    private boolean isComparisonOperation(OperationCallExp op) {
+        return comparisonOpNames.contains(op.getReferredOperation().getName());
     }
 
     /**
@@ -299,114 +412,5 @@ public class InstanceScopeAnalysis {
         Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
         Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache);
         return result;
-    }
-
-    /**
-     * Factory method that creats an instance of some {@link Tracer}-implementing class specific to the
-     * type of the OCL <tt>expression</tt>.
-     */
-    protected static Tracer getTracer(OCLExpression expression) {
-        // using the class loader is another option, but that would create implicit naming conventions
-        // thats why we do the mapping "manually"
-        switch(expression.eClass().getClassifierID()){
-        case EcorePackage.PROPERTY_CALL_EXP: return new PropertyCallExpTracer((PropertyCallExp) expression);
-        case EcorePackage.BOOLEAN_LITERAL_EXP: return new BooleanLiteralExpTracer((BooleanLiteralExp) expression);
-        case EcorePackage.COLLECTION_LITERAL_EXP: return new CollectionLiteralExpTracer((CollectionLiteralExp) expression);
-        case EcorePackage.ENUM_LITERAL_EXP: return new EnumLiteralExpTracer((EnumLiteralExp) expression);
-        case EcorePackage.IF_EXP: return new IfExpTracer((IfExp) expression);
-        case EcorePackage.INTEGER_LITERAL_EXP: return new IntegerLiteralExpTracer((IntegerLiteralExp) expression);
-        case EcorePackage.ITERATE_EXP: return new IterateExpTracer((IterateExp) expression);
-        case EcorePackage.ITERATOR_EXP: return new IteratorExpTracer((IteratorExp) expression);
-        case EcorePackage.LET_EXP: return new LetExpTracer((LetExp) expression);
-        case EcorePackage.OPERATION_CALL_EXP: return new OperationCallExpTracer((OperationCallExp) expression);
-        case EcorePackage.REAL_LITERAL_EXP: return new RealLiteralExpTracer((RealLiteralExp) expression);
-        case EcorePackage.STRING_LITERAL_EXP: return new StringLiteralExpTracer((StringLiteralExp) expression);
-        case EcorePackage.TUPLE_LITERAL_EXP: return new TupleLiteralExpTracer((TupleLiteralExp) expression);
-        case EcorePackage.TYPE_EXP: return new TypeExpTracer((TypeExp) expression);
-        case EcorePackage.VARIABLE_EXP: return new VariableExpTracer((VariableExp) expression);
-        default: throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
-        }
-    }
-
-    /**
-     * @param changeEvent
-     *            either an {@link AttributeValueChangeEvent} or a {@link LinkChangeEvent}.
-     * @param attributeOrAssociationEndCall
-     *            a (sub-)expression originally affected by <tt>changeEvent</tt>. For {@link LinkChangeEvent}s it
-     *            depends on which end the expression uses what will be considered the source element of the change
-     *            which will then be returned by this method. The source is the element at the end of the link changed
-     *            that is the opposite end of the end used by the {@link AssociationEndCallExp}.
-     *            <tt>attributeOrAssociationEndCall</tt> has to be of type {@link AttributeCallExp} in case
-     *            <tt>changeEvent</tt> is an {@link AttributeValueChangeEvent}, and of type
-     *            {@link AssociationEndCallExp} in case <tt>changeEvent</tt> is of type {@link LinkChangeEvent}.
-     * @return <tt>null</tt> in case the source element indicated by the change event does not conform to the static
-     *         attribute or association call's source expression type. <tt>null</tt> may also result if the element
-     *         indicated by the event cannot be resolved (anymore). This is still an open issue. See the to-do marker
-     *         below. In all other cases, the source element on which the event occured, is returned.
-     */
-    private EObject getSourceElement(Notification changeEvent, PropertyCallExp attributeOrAssociationEndCall) {
-        assert NotificationHelper.isAttributeValueChangeEvent(changeEvent) || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
-        AnnotatedEObject result = new AnnotatedEObject((EObject)changeEvent.getNotifier());
-        if (!attributeOrAssociationEndCall.getSource().getType().isInstance(result.getAnnotatedObject())) {
-            result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
-            // also see the ASCII arts in AssociationEndCallExpTracer.traceback
-        }
-        return result;
-    }
-    /**
-     * Finds all attribute and association end call expressions in <tt>expression</tt> that are affected by the
-     * <tt>changeEvent</tt>. The result is always non-<tt>null</tt> but may be empty.
-     */
-    private Set<? extends PropertyCallExp> getAttributeOrAssociationEndCalls(Notification changeEvent) {
-        Set<? extends PropertyCallExp> result;
-        if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
-            result = associationEndAndAttributeCallFinder.getAttributeCallExpressions((EAttribute) NotificationHelper.getNotificationFeature(changeEvent));
-        } else if (NotificationHelper.isLinkLifeCycleEvent(changeEvent)) {
-            EReference ref = (EReference)NotificationHelper.getNotificationFeature(changeEvent);
-
-            Set<PropertyCallExp> localResult = new HashSet<PropertyCallExp>();
-            localResult .addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref));
-            if (ref.getEOpposite() != null){
-                //TODO: check if the EOpposite is really needed
-                localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref.getEOpposite()));
-            }
-            result = localResult;
-        } else {
-            result = Collections.emptySet();
-        }
-        return result;
-    }
-
-    /**
-     * For an "impl" object representing an OCL expression, obtains the {@link EOperation} for which it is the body.
-     * {@link OCLExpression<EClassifier>#getDefines()} is used because on "impl" objects the getters that receive the
-     * {@link CoreConnection} need to be called. If the expression is not a body of an
-     * operation, <tt>null</tt> is returned. Otherwise, the first operation (usually there would be
-     * at most one) for which <tt>expression</tt> is the operation body is returned.
-     */
-    protected static EOperation getDefines(OCLExpression expression) {
-        //TODO: check correctness of this query
-    	//FIXME should never be reached by standard operations (currently "implies" reaches this point)
-        String query = "select op from [" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEOperation()) + "] as op, " +
-        "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation()) + "] as annotation, " +
-        "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation_Details().getEType()) + "] as details, " +
-        "[" + EcoreUtil.getURI(expression.eClass()) + "] as ocl " +
-        //"in elements [[" + "]] " +
-        "where op.eAnnotations = annotation " +
-        "where annotation.details = details " +
-        "where details.key = 'body' " +
-        "where annotation.contents = ocl";        
-        QueryContext scope = new ProjectBasedScopeProviderImpl(expression.eResource()).getForwardScopeAsQueryContext();
-        ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
-        if(!resultSet.isEmpty()){
-            //return the first match
-            return (EOperation) expression.eResource().getEObject(resultSet.getUri(0,"op").toString());
-        }
-        return null;
-//    	EAnnotationOCLParser annoParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-//    	EOperation operation = ((OperationCallExp) ((IteratorExp) expression).getBody()).getReferredOperation();
-//    	annoParser.convertOclAnnotation(operation);
-//    	OCLExpression bodyExpr = annoParser.getExpressionFromAnnotationsOf(operation, "body");
-//    	return ;
     }
 }
