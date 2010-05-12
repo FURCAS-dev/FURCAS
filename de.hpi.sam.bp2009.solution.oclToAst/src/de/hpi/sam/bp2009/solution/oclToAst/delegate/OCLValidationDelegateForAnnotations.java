@@ -38,38 +38,38 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  */
 public class OCLValidationDelegateForAnnotations extends OCLValidationDelegate
 {	
-	EAnnotationOCLParser parser= OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-	public OCLValidationDelegateForAnnotations(
-			OCLDelegateDomain delegateDomain, EClassifier classifier) {
-		super(delegateDomain, classifier);
-	}
+    EAnnotationOCLParser parser= OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+    public OCLValidationDelegateForAnnotations(
+            OCLDelegateDomain delegateDomain, EClassifier classifier) {
+        super(delegateDomain, classifier);
+    }
 
-	public boolean validate(EClass eClass, EObject eObject,
-			Map<Object, Object> context, EOperation invariant, String expression) {
+    public boolean validate(EClass eClass, EObject eObject,
+            Map<Object, Object> context, EOperation invariant, String expression) {
 
-		OCLExpression query = parser.getExpressionFromAnnotationsOf(eClass,invariant.getName());
-		if(query!=null)
-			return check(eObject, invariant.getName(), query);
-		
-		throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
-	}
-	
+        OCLExpression query = parser.getExpressionFromAnnotationsOf(eClass,invariant.getName());
+        if(query!=null)
+            return check(eObject, invariant.getName(), query);
+
+        throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+    }
 
 
-	public boolean validate(EClass eClass, EObject eObject,
-			Map<Object, Object> context, String constraint, String expression) {
-		OCLExpression query = parser.getExpressionFromAnnotationsOf(eClass,constraint);
-		if(query!=null)
-			return check(eObject, constraint, query);
-		throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
-	}
 
-	public boolean validate(EDataType eDataType, Object value,
-			Map<Object, Object> context, String constraint, String expression) {
+    public boolean validate(EClass eClass, EObject eObject,
+            Map<Object, Object> context, String constraint, String expression) {
+        OCLExpression query = parser.getExpressionFromAnnotationsOf(eClass,constraint);
+        if(query!=null)
+            return check(eObject, constraint, query);
+        throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+    }
 
-		OCLExpression query =  parser.getExpressionFromAnnotationsOf(eDataType,constraint);
-		if(query!=null)
-			return check(value, constraint, query);
-		throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
-	}
+    public boolean validate(EDataType eDataType, Object value,
+            Map<Object, Object> context, String constraint, String expression) {
+
+        OCLExpression query =  parser.getExpressionFromAnnotationsOf(eDataType,constraint);
+        if(query!=null)
+            return check(value, constraint, query);
+        throw new IllegalArgumentException(EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+    }
 }

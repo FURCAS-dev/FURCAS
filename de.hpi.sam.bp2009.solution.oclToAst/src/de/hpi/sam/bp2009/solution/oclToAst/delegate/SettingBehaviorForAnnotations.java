@@ -22,41 +22,41 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  */
 public class SettingBehaviorForAnnotations extends org.eclipse.ocl.ecore.delegate.SettingBehavior
 {
-	public static final SettingBehaviorForAnnotations INSTANCE = new SettingBehaviorForAnnotations();
-	EAnnotationOCLParser parser= OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+    public static final SettingBehaviorForAnnotations INSTANCE = new SettingBehaviorForAnnotations();
+    EAnnotationOCLParser parser= OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
 
-	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
-		String expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, DERIVATION_CONSTRAINT_KEY);
-		if (expr == null) {
-			expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, INITIAL_CONSTRAINT_KEY);
-			if (expr == null) {
-				return null;
-			}
-		}
-		EClass context = structuralFeature.getEContainingClass();
-		OCL.Helper helper = ocl.createOCLHelper();
-		helper.setAttributeContext(context, structuralFeature);
-		Constraint constraint;
-		try {
-			constraint = helper.createDerivedValueExpression(expr);
-		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
-		}
-		if (constraint == null) {
-			return null;
-		}
-		ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
-		if (specification == null) {
-			return null;
-		}
-		return (OCLExpression) specification.getBodyExpression();
-	}
-	
-	public String getName() {
-		return NAME;
-	}
+    public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
+        String expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, DERIVATION_CONSTRAINT_KEY);
+        if (expr == null) {
+            expr = EcoreUtil.getAnnotation(structuralFeature, OCLDelegateDomain.OCL_DELEGATE_URI, INITIAL_CONSTRAINT_KEY);
+            if (expr == null) {
+                return null;
+            }
+        }
+        EClass context = structuralFeature.getEContainingClass();
+        OCL.Helper helper = ocl.createOCLHelper();
+        helper.setAttributeContext(context, structuralFeature);
+        Constraint constraint;
+        try {
+            constraint = helper.createDerivedValueExpression(expr);
+        } catch (ParserException e) {
+            throw new OCLDelegateException(e.getLocalizedMessage(), e);
+        }
+        if (constraint == null) {
+            return null;
+        }
+        ExpressionInOCL specification = (ExpressionInOCL) constraint.getSpecification();
+        if (specification == null) {
+            return null;
+        }
+        return (OCLExpression) specification.getBodyExpression();
+    }
 
-	public Class<SettingDelegate.Factory.Registry> getRegistryClass() {
-		return SettingDelegate.Factory.Registry.class;
-	}
+    public String getName() {
+        return NAME;
+    }
+
+    public Class<SettingDelegate.Factory.Registry> getRegistryClass() {
+        return SettingDelegate.Factory.Registry.class;
+    }
 }

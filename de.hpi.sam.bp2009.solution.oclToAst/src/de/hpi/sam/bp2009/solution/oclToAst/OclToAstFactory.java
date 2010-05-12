@@ -13,16 +13,16 @@ package de.hpi.sam.bp2009.solution.oclToAst;
  * @see de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage
  */
 public interface OclToAstFactory {
-	/**
-	 * The singleton instance of the factory.
-	 */
-	OclToAstFactory eINSTANCE = de.hpi.sam.bp2009.solution.oclToAst.impl.OclToAstFactoryImpl.init();
+    /**
+     * The singleton instance of the factory.
+     */
+    OclToAstFactory eINSTANCE = de.hpi.sam.bp2009.solution.oclToAst.impl.OclToAstFactoryImpl.init();
 
-	/**
-	 * Returns a new object of class '<em>EAnnotation OCL Parser</em>'.
-	 * @return a new object of class '<em>EAnnotation OCL Parser</em>'.
-	 */
-	EAnnotationOCLParser createEAnnotationOCLParser();
+    /**
+     * Returns a new object of class '<em>EAnnotation OCL Parser</em>'.
+     * @return a new object of class '<em>EAnnotation OCL Parser</em>'.
+     */
+    EAnnotationOCLParser createEAnnotationOCLParser();
 
 
 } //OclToAstFactory

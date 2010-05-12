@@ -29,14 +29,14 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  */
 public class InvocationBehaviorForAnnotations extends InvocationBehavior
 {
-	public static final InvocationBehaviorForAnnotations INSTANCE = new InvocationBehaviorForAnnotations();
-	EAnnotationOCLParser parser= OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-	
-	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
-		OCLExpression expr= parser.getExpressionFromAnnotationsOf(operation,BODY_CONSTRAINT_KEY);
-		if(expr!=null)
-			return expr;
-		return super.getOperationBody(ocl,operation);
-	}
+    public static final InvocationBehaviorForAnnotations INSTANCE = new InvocationBehaviorForAnnotations();
+    EAnnotationOCLParser parser= OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+
+    public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
+        OCLExpression expr= parser.getExpressionFromAnnotationsOf(operation,BODY_CONSTRAINT_KEY);
+        if(expr!=null)
+            return expr;
+        return super.getOperationBody(ocl,operation);
+    }
 
 }

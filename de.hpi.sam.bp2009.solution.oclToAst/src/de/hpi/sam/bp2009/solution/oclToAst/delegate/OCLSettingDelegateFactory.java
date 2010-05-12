@@ -31,34 +31,34 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextPro
 public class OCLSettingDelegateFactory extends org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory
 
 {
-	public OCLSettingDelegateFactory() {}
-	public OCLSettingDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
-	public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
-		EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
-		new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
-		return new OCLSettingDelegateForAnnotations(getDelegateDomain(ePackage), structuralFeature);
-	}
-	
-	/**
-	 * The Global variant of the Factory delegates to a local ResourceSet factory if one
-	 * can be located at the EStructuralFeature.Internal.SettingDelegate.Factory.Registry
-	 * by the DelegateResourceSetAdapter.
-	 */
-	public static class Global extends OCLSettingDelegateFactory
-	{
+    public OCLSettingDelegateFactory() {}
+    public OCLSettingDelegateFactory(OCLDelegateDomain delegateDomain) {
+        super(delegateDomain);
+    }
+    public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+        EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
+        new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
+        return new OCLSettingDelegateForAnnotations(getDelegateDomain(ePackage), structuralFeature);
+    }
 
-		public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
-			EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				structuralFeature, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, null);
-			if (localRegistry != null) {
-				EStructuralFeature.Internal.SettingDelegate.Factory factory = localRegistry.getFactory(delegateURI);
-				if (factory != null) {
-					return factory.createSettingDelegate(structuralFeature);
-				}
-			}
-			return super.createSettingDelegate(structuralFeature);
-		}	
-	}
+    /**
+     * The Global variant of the Factory delegates to a local ResourceSet factory if one
+     * can be located at the EStructuralFeature.Internal.SettingDelegate.Factory.Registry
+     * by the DelegateResourceSetAdapter.
+     */
+    public static class Global extends OCLSettingDelegateFactory
+    {
+
+        public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+            EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
+                    structuralFeature, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, null);
+            if (localRegistry != null) {
+                EStructuralFeature.Internal.SettingDelegate.Factory factory = localRegistry.getFactory(delegateURI);
+                if (factory != null) {
+                    return factory.createSettingDelegate(structuralFeature);
+                }
+            }
+            return super.createSettingDelegate(structuralFeature);
+        }	
+    }
 }

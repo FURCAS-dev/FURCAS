@@ -31,39 +31,39 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLSettingDelegateForAnnotations extends org.eclipse.ocl.ecore.delegate.OCLSettingDelegate
 {
-	protected final OCLDelegateDomain delegateDomain;
-	private OCLExpression derivation;
-	private ValueConverter converter;
-	
-	public OCLSettingDelegateForAnnotations(OCLDelegateDomain delegateDomain,
-			EStructuralFeature structuralFeature) {
-		super(delegateDomain, structuralFeature);
-		this.delegateDomain = delegateDomain;
-		this.converter = structuralFeature.isMany()
-			? ValueConverter.LIST
-			: ValueConverter.VERBATIM;
-	}
+    protected final OCLDelegateDomain delegateDomain;
+    private OCLExpression derivation;
+    private ValueConverter converter;
+
+    public OCLSettingDelegateForAnnotations(OCLDelegateDomain delegateDomain,
+            EStructuralFeature structuralFeature) {
+        super(delegateDomain, structuralFeature);
+        this.delegateDomain = delegateDomain;
+        this.converter = structuralFeature.isMany()
+        ? ValueConverter.LIST
+                : ValueConverter.VERBATIM;
+    }
 
 
 
 
-	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		OCL ocl = delegateDomain.getOCL();
-		if (derivation == null) {
-			derivation = SettingBehaviorForAnnotations.INSTANCE.getFeatureBody(ocl, eStructuralFeature);
-		}
-		if(derivation == null)
-			return super.get(owner, resolve, coreType);
+    @Override
+    protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+        OCL ocl = delegateDomain.getOCL();
+        if (derivation == null) {
+            derivation = SettingBehaviorForAnnotations.INSTANCE.getFeatureBody(ocl, eStructuralFeature);
+        }
+        if(derivation == null)
+            return super.get(owner, resolve, coreType);
 
-		OCL.Query query = ocl.createQuery(derivation);
-		Object result = query.evaluate(owner);
-		if (ocl.isInvalid(result)) {
-			String message = NLS.bind("OCL evaluation result of ''{0}'' is invalid", getFeatureName());
-			throw new OCLDelegateException(message);
-		}
+        OCL.Query query = ocl.createQuery(derivation);
+        Object result = query.evaluate(owner);
+        if (ocl.isInvalid(result)) {
+            String message = NLS.bind("OCL evaluation result of ''{0}'' is invalid", getFeatureName());
+            throw new OCLDelegateException(message);
+        }
 
-		return converter.convert(ocl, result);
-	}
-	
+        return converter.convert(ocl, result);
+    }
+
 }

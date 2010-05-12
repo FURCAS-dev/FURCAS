@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
@@ -17,73 +18,80 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.CallOperationAction;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.expressions.AssociationClassCallExp;
-import org.eclipse.ocl.expressions.CollectionItem;
-import org.eclipse.ocl.expressions.CollectionLiteralExp;
-import org.eclipse.ocl.expressions.CollectionRange;
-import org.eclipse.ocl.expressions.IfExp;
-import org.eclipse.ocl.expressions.IterateExp;
-import org.eclipse.ocl.expressions.IteratorExp;
-import org.eclipse.ocl.expressions.LetExp;
-import org.eclipse.ocl.expressions.MessageExp;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
-import org.eclipse.ocl.expressions.PropertyCallExp;
-import org.eclipse.ocl.expressions.TupleLiteralExp;
-import org.eclipse.ocl.expressions.TupleLiteralPart;
-import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.expressions.VariableExp;
-import org.eclipse.ocl.utilities.AbstractVisitor;
-import org.eclipse.ocl.utilities.Visitable;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
-    private List<Exception> exceptions;
+    /**
+     * Data container for all informations around an exception
+     * @author Philipp
+     *
+     */
+    private class ErrorMessageImpl implements ErrorMessage{
+        private Exception e;
+        private String m;
+        private Object o;
 
-    public List<Exception> getExceptions() {
-        return exceptions;
+        public ErrorMessageImpl(Exception exception, String message, Object object) {
+            this.e=exception;
+            this.m=message;
+            this.o=object;
+        }
+        @Override
+        public Object getAffectedObject() {
+            return o;
+        }
+
+        @Override
+        public Exception getException() {
+            return e;			
+        }
+
+        @Override
+        public String getMessageString() {
+            return m;
+        }
+
     }
+    private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
 
     public static void main(String[] args) {
         String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
 
         if (args.length > 1)
             uri = args[1];
-        EAnnotationOCLParserImpl parser = new EAnnotationOCLParserImpl();
+        EAnnotationOCLParser parser = new EAnnotationOCLParserImpl();
         parser.convertAnnotations(URI.createURI(uri));
 
     }
 
-	/**
-	 * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
-	 * @param fileUri
-	 */
-	@Override
-	public  void convertAnnotations(URI fileUri) {
-		ResourceSet load_resourceSet = new ResourceSetImpl();
+
+    /**
+     * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
+     * @param fileUri
+     */
+    @Override
+    public  void convertAnnotations(URI fileUri) {
+        ResourceSet load_resourceSet = new ResourceSetImpl();
 
         /*
          * Register XML Factory implementation using DEFAULT_EXTENSION
@@ -92,28 +100,37 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         /*
          * Load the resource using the URI
          */
-        Resource r = load_resourceSet.getResource(fileUri, true);
-        EcoreHelper.getInstance().addResourceToDefaultIndex(r);
+        Resource r =null;
         try {
+            r = load_resourceSet.getResource(fileUri, true);
+            EcoreHelper.getInstance().addResourceToDefaultIndex(r);
+
             r.load(null);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             e.printStackTrace();
+            getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource load."+fileUri, r));
+            return;
         }
-        System.out.println(r.getContents().get(0));
-        /*
-         * by convention is the first content of an *.ecore file one package
-         */
-        traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
-        System.err.println(getExceptions());
+
+
+        for(EObject sPkg: r.getContents()){
+            if(sPkg instanceof EPackage){
+                if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
+                    ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
+                }
+                traversalConvertOclAnnotations((EPackage)sPkg);
+            }
+        }
         try {
             r.save(null);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", r));
         }
-	}
+    }
 
+    /* (non-Javadoc)
+     * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
+     */
     public void convertOclAnnotation(EModelElement modelElement) {
         EAnnotation a = modelElement.getEAnnotation(ANNOTATION_SOURCE);
         if (a == null)
@@ -126,7 +143,9 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
             new ProjectDependencyQueryContextProvider().apply(ocl);
             Helper helper = ocl.createOCLHelper();
-
+            /*
+             * set correct context
+             */
             switch (modelElement.eClass().getClassifierID()) {
             case EcorePackage.ECLASSIFIER:
             case EcorePackage.ECLASS:
@@ -148,7 +167,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
-                exceptions.add(e1);
+                getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
             }
 
             if (expr == null)
@@ -158,13 +177,30 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
              */
             ResourceChanger rc= new ResourceChanger();
             expr.accept(rc);
-            a.eResource().getContents().addAll(rc.getSet());
-            
+            EPackage p = getRootPackage(modelElement);
+            if(p != null){
+                addOclTypesAnnotationToPackage(rc.getSet(), p);       			
+            }else{
+                getAllOccurredErrorMessages().add(new ErrorMessageImpl(new IllegalArgumentException(), "No Package as root element available", modelElement));
+            }
+
             a.getContents().add(expr);
 
         }
     }
 
+    /* (non-Javadoc)
+     * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#getAllOccurredErrorMessages()
+     */
+    @Override
+    public Collection<ErrorMessage> getAllOccurredErrorMessages() {
+        return messages;
+
+    }
+
+    /* (non-Javadoc)
+     * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#getExpressionFromAnnotationsOf(org.eclipse.emf.ecore.ENamedElement, java.lang.String)
+     */
     public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
         OCLExpression query = null;
         EAnnotation anno = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
@@ -186,16 +222,19 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             }
         }
         if (query == null) {
-        	// we know the annotation exists, but it seems the OCLExpression is not present in the contents:
-        	convertOclAnnotation(element);
-        	query = getExpressionFromAnnotationsOf(element, constraintName); // try again
+            // we know the annotation exists, but it seems the OCLExpression is not present in the contents:
+            convertOclAnnotation(element);
+            query = getExpressionFromAnnotationsOf(element, constraintName); // try again
         }
         return query;
     }
 
-	@Override
+    /* (non-Javadoc)
+     * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#traversalConvertOclAnnotations(org.eclipse.emf.ecore.EPackage)
+     */
+    @Override
     public void traversalConvertOclAnnotations(EPackage pkg) {
-        exceptions = new ArrayList<Exception>();
+        getAllOccurredErrorMessages().clear();
 
         for (EClassifier cls : pkg.getEClassifiers()) {
             convertOclAnnotation(cls);
@@ -211,218 +250,47 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             traversalConvertOclAnnotations(p);
 
     }
-    private class ResourceChanger extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
-	EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp, java.lang.Object, java.util.List)
-		 */
-		@Override
-		protected EPackage handleOperationCallExp(
-				OperationCallExp<EClassifier, EOperation> callExp,
-				EPackage sourceResult, List<EPackage> argumentResults) {
-			EClassifier typ= callExp.getType();
-			handle(typ);
-			return super.handleOperationCallExp(callExp, sourceResult, argumentResults);
-			
-		}
-		private void handle(EObject typ) {
-			if(typ!=null && (typ.eResource()==null || typ.eResource().getURI()!=null)){
-				URI uri= typ.eResource()==null?null:typ.eResource().getURI();
-				System.err.println(uri);
-				System.err.println(typ.eResource().getContents());
-				if( uri.equals(URI.createURI("ocl:///oclenv.ecore"))){
-					set.add(typ);
-				 System.out.println("Alert: " + typ);
-				}
-			}
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handlePropertyCallExp(org.eclipse.ocl.expressions.PropertyCallExp, java.lang.Object, java.util.List)
-		 */
-		@Override
-		protected EPackage handlePropertyCallExp(
-				PropertyCallExp<EClassifier, EStructuralFeature> callExp,
-				EPackage sourceResult, List<EPackage> qualifierResults) {
-			return super.handlePropertyCallExp(callExp, sourceResult, qualifierResults);
-			
-		}
-		@Override
-		protected EPackage handleOppositePropertyCallExp(
-				OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
-				EPackage sourceResult, List<EPackage> qualifierResults) {
-			// TODO Auto-generated methodhandleOppositePropertyCallExp stub
-			handle(callExp.getType());
-			return super.handleOppositePropertyCallExp(callExp, sourceResult,
-					qualifierResults);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleAssociationClassCallExp(org.eclipse.ocl.expressions.AssociationClassCallExp, java.lang.Object, java.util.List)
-		 */
-		@Override
-		protected EPackage handleAssociationClassCallExp(
-				AssociationClassCallExp<EClassifier, EStructuralFeature> callExp,
-				EPackage sourceResult, List<EPackage> qualifierResults) {
-			handle(callExp.getType());
-			return super.handleAssociationClassCallExp(callExp, sourceResult,
-					qualifierResults);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleVariable(org.eclipse.ocl.expressions.Variable, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleVariable(
-				Variable<EClassifier, EParameter> variable, EPackage initResult) {
-			handle(variable.getType());
-			handle(variable);
-			return super.handleVariable(variable, initResult);
-			
-		}
-		@Override
-		public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> v) {
-			System.out.println(v);
-			v.getReferredVariable().accept(this);
-			return super.visitVariableExp(v);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleIfExp(org.eclipse.ocl.expressions.IfExp, java.lang.Object, java.lang.Object, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleIfExp(IfExp<EClassifier> ifExp,
-				EPackage conditionResult, EPackage thenResult,
-				EPackage elseResult) {
-			handle(ifExp.getType());
 
-			return super.handleIfExp(ifExp, conditionResult, thenResult, elseResult);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleMessageExp(org.eclipse.ocl.expressions.MessageExp, java.lang.Object, java.util.List)
-		 */
-		@Override
-		protected EPackage handleMessageExp(
-				MessageExp<EClassifier, CallOperationAction, SendSignalAction> messageExp,
-				EPackage targetResult, List<EPackage> argumentResults) {
-			handle(messageExp.getType());
+    /**
+     * Adds all given oclTypes to the oclTypes annotation of the given pacakge
+     * @param hashSet all types to add
+     * @param p the package to get the annotation
+     */
+    private void addOclTypesAnnotationToPackage(HashSet<EObject> hashSet, EPackage p) {
+        EAnnotation annotation = p.getEAnnotation(OCL_TYPES);
+        if(annotation ==null){
+            annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+            annotation.setSource(OCL_TYPES);
+        }else{
+            hashSet.addAll(annotation.getContents());
+            annotation.getContents().clear();
+        }
+        annotation.getContents().addAll(hashSet);
 
-			return super.handleMessageExp(messageExp, targetResult, argumentResults);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleTupleLiteralExp(org.eclipse.ocl.expressions.TupleLiteralExp, java.util.List)
-		 */
-		@Override
-		protected EPackage handleTupleLiteralExp(
-				TupleLiteralExp<EClassifier, EStructuralFeature> literalExp,
-				List<EPackage> partResults) {
-			handle(literalExp.getType());
-
-			return super.handleTupleLiteralExp(literalExp, partResults);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleTupleLiteralPart(org.eclipse.ocl.expressions.TupleLiteralPart, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleTupleLiteralPart(
-				TupleLiteralPart<EClassifier, EStructuralFeature> part,
-				EPackage valueResult) {
-			handle(part.getType());
-
-			return super.handleTupleLiteralPart(part, valueResult);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleLetExp(org.eclipse.ocl.expressions.LetExp, java.lang.Object, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleLetExp(LetExp<EClassifier, EParameter> letExp,
-				EPackage variableResult, EPackage inResult) {
-			handle(letExp.getType());
-
-			return super.handleLetExp(letExp, variableResult, inResult);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleCollectionLiteralExp(org.eclipse.ocl.expressions.CollectionLiteralExp, java.util.List)
-		 */
-		@Override
-		protected EPackage handleCollectionLiteralExp(
-				CollectionLiteralExp<EClassifier> literalExp,
-				List<EPackage> partResults) {
-			handle(literalExp.getType());
-
-			return super.handleCollectionLiteralExp(literalExp, partResults);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleCollectionItem(org.eclipse.ocl.expressions.CollectionItem, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleCollectionItem(
-				CollectionItem<EClassifier> item, EPackage itemResult) {
-			handle(item.getType());
-
-			return super.handleCollectionItem(item, itemResult);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleCollectionRange(org.eclipse.ocl.expressions.CollectionRange, java.lang.Object, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleCollectionRange(
-				CollectionRange<EClassifier> range, EPackage firstResult,
-				EPackage lastResult) {
-			handle(range.getType());
-
-			return super.handleCollectionRange(range, firstResult, lastResult);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleIteratorExp(org.eclipse.ocl.expressions.IteratorExp, java.lang.Object, java.util.List, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleIteratorExp(
-				IteratorExp<EClassifier, EParameter> callExp,
-				EPackage sourceResult, List<EPackage> variableResults,
-				EPackage bodyResult) {
-			handle(callExp.getType());
-
-			return super.handleIteratorExp(callExp, sourceResult, variableResults,
-					bodyResult);
-			
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#handleIterateExp(org.eclipse.ocl.expressions.IterateExp, java.lang.Object, java.util.List, java.lang.Object, java.lang.Object)
-		 */
-		@Override
-		protected EPackage handleIterateExp(
-				IterateExp<EClassifier, EParameter> callExp,
-				EPackage sourceResult, List<EPackage> variableResults,
-				EPackage resultResult, EPackage bodyResult) {
-			handle(callExp.getType());
-
-			return super.handleIterateExp(callExp, sourceResult, variableResults,
-					resultResult, bodyResult);
-			
-		}
-		private HashSet<EObject> set;
-		public ResourceChanger() {
-			this.set = new HashSet<EObject>();
-		}
-		/* (non-Javadoc)
-		 * @see org.eclipse.ocl.utilities.AbstractVisitor#safeVisit(org.eclipse.ocl.utilities.Visitable)
-		 */
-		@Override
-		protected EPackage safeVisit(Visitable v) {
-			return super.safeVisit(v);
-		}
-		public HashSet<EObject> getSet() {
-			return set;
-		}
-    	
+        p.getEAnnotations().add(annotation);
+        /*
+         * after resolving all names of BagTypes are set
+         * due to a bug in the BagTypeImpl this is neccessary
+         */
+        for(EObject o: hashSet){
+            EcoreUtil.getURI(o);
+        }
     }
-
+    /**
+     * Calculates the root pacakge for a given element
+     * @param modelElement get the root pacakge for this
+     * @return the root package
+     */
+    private EPackage getRootPackage(EModelElement modelElement) {
+        EPackage p = null;
+        EObject current = modelElement;
+        while(current!=null){
+            if(current instanceof EPackage){
+                p=(EPackage) current;
+                break;
+            }
+            current=current.eContainer();
+        }
+        return p;
+    }
 } // EAnnotationOCLParserImpl

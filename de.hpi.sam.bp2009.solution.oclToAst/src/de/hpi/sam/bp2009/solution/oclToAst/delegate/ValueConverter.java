@@ -29,21 +29,21 @@ import org.eclipse.ocl.ecore.OCL;
  */
 interface ValueConverter {
 
-	ValueConverter VERBATIM = new ValueConverter() {
+    ValueConverter VERBATIM = new ValueConverter() {
 
-		public Object convert(OCL ocl, Object value) {
-			return value;
-		}
-	};
+        public Object convert(OCL ocl, Object value) {
+            return value;
+        }
+    };
 
-	ValueConverter LIST = new ValueConverter() {
+    ValueConverter LIST = new ValueConverter() {
 
-		public Object convert(OCL ocl, Object value) {
-			Collection<?> collection = (Collection<?>) value;
-			return new BasicEList.UnmodifiableEList<Object>(collection
-				.size(), collection.toArray());
-		}
-	};
+        public Object convert(OCL ocl, Object value) {
+            Collection<?> collection = (Collection<?>) value;
+            return new BasicEList.UnmodifiableEList<Object>(collection
+                    .size(), collection.toArray());
+        }
+    };
 
-	Object convert(OCL ocl, Object value);
+    Object convert(OCL ocl, Object value);
 }

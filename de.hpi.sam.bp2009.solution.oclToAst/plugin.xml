@@ -31,7 +31,6 @@
          <action label="Parse Annotations"
                class="de.hpi.sam.bp2009.solution.oclToAst.ui.OclToAstAction"
                menubarPath="additions" 
-               enablesFor="1"
                id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser"/>
       </objectContribution>
    </extension>

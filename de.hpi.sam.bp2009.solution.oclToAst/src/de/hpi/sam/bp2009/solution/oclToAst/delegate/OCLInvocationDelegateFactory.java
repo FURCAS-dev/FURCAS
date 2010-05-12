@@ -29,37 +29,37 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextPro
  * @since 3.0
  */
 public class OCLInvocationDelegateFactory extends org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory
-		implements EOperation.Internal.InvocationDelegate.Factory {
-	
-	public OCLInvocationDelegateFactory() {}
-	
-	public OCLInvocationDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
+implements EOperation.Internal.InvocationDelegate.Factory {
 
-	public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
-		EPackage ePackage = operation.getEContainingClass().getEPackage();
-		new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
-		return new OCLInvocationDelegateForAnnotations(getDelegateDomain(ePackage), operation);
-	}
-	
-	/**
-	 * The Global variant of the Factory delegates to a local ResourceSet factory if one
-	 * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
-	 * by the DelegateResourceSetAdapter.
-	 */
-	public static class Global extends OCLInvocationDelegateFactory
-	{
-		public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
-			EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				operation, EOperation.Internal.InvocationDelegate.Factory.Registry.class, null);
-			if (localRegistry != null) {
-				EOperation.Internal.InvocationDelegate.Factory factory = localRegistry.getFactory(delegateURI);
-				if (factory != null) {
-					return factory.createInvocationDelegate(operation);
-				}
-			}
-			return super.createInvocationDelegate(operation);
-		}	
-	}
+    public OCLInvocationDelegateFactory() {}
+
+    public OCLInvocationDelegateFactory(OCLDelegateDomain delegateDomain) {
+        super(delegateDomain);
+    }
+
+    public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
+        EPackage ePackage = operation.getEContainingClass().getEPackage();
+        new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
+        return new OCLInvocationDelegateForAnnotations(getDelegateDomain(ePackage), operation);
+    }
+
+    /**
+     * The Global variant of the Factory delegates to a local ResourceSet factory if one
+     * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
+     * by the DelegateResourceSetAdapter.
+     */
+    public static class Global extends OCLInvocationDelegateFactory
+    {
+        public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
+            EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
+                    operation, EOperation.Internal.InvocationDelegate.Factory.Registry.class, null);
+            if (localRegistry != null) {
+                EOperation.Internal.InvocationDelegate.Factory factory = localRegistry.getFactory(delegateURI);
+                if (factory != null) {
+                    return factory.createInvocationDelegate(operation);
+                }
+            }
+            return super.createInvocationDelegate(operation);
+        }	
+    }
 }

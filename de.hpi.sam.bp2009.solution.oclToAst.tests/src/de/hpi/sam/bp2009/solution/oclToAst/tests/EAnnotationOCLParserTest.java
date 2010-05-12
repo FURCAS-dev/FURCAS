@@ -28,6 +28,7 @@ import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 import de.hpi.sam.bp2009.solution.oclToAst.impl.EAnnotationOCLParserImpl;
 
@@ -149,7 +150,6 @@ public class EAnnotationOCLParserTest extends TestCase {
 			try {
 				r = load_resourceSet.getResource(URI.createURI(uri), true);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 				return;
 			}
@@ -158,17 +158,18 @@ public class EAnnotationOCLParserTest extends TestCase {
 	        try {
 	            r.load(null);
 	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
 	            e.printStackTrace();
 	        }
-	        System.out.println(r.getContents().get(0));
-	        EAnnotationOCLParserImpl parser = new EAnnotationOCLParserImpl();
+	        EAnnotationOCLParser parser = new EAnnotationOCLParserImpl();
 	        parser.traversalConvertOclAnnotations((EPackage) r.getContents().get(0));
-	        System.err.println(parser.getExceptions());
+	        for(ErrorMessage e : parser.getAllOccurredErrorMessages()){
+	        	if(e.getException()!=null){
+	        		e.getException().printStackTrace();
+	        	}
+	        }
 	        try {
 	            r.save(null);
 	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
 	            e.printStackTrace();
 	        }
 	}

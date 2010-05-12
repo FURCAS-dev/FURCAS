@@ -40,66 +40,66 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextPro
  * @since 3.0
  */
 public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
-		implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValidator.ValidationDelegate.Descriptor
+implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValidator.ValidationDelegate.Descriptor
 
-	public OCLValidationDelegateFactory() {}
+    public OCLValidationDelegateFactory() {}
 
-	public OCLValidationDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
+    public OCLValidationDelegateFactory(OCLDelegateDomain delegateDomain) {
+        super(delegateDomain);
+    }
 
-	public ValidationDelegate createValidationDelegate(EClassifier classifier) {
-		EPackage ePackage = classifier.getEPackage();
-		new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
-		return new OCLValidationDelegateForAnnotations(getDelegateDomain(ePackage), classifier);
-	}
+    public ValidationDelegate createValidationDelegate(EClassifier classifier) {
+        EPackage ePackage = classifier.getEPackage();
+        new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
+        return new OCLValidationDelegateForAnnotations(getDelegateDomain(ePackage), classifier);
+    }
 
-	protected ValidationDelegate getValidationDelegate(EClassifier eClassifier) {
-		if (delegateDomain == null) {
-			EPackage ePackage = eClassifier.getEPackage();
-			DelegateEPackageAdapter epAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-			delegateDomain = (OCLDelegateDomain) epAdapter.getDelegateDomain(delegateURI);
-		}
-		DelegateEClassifierAdapter ecAdapter = DelegateEClassifierAdapter.getAdapter(eClassifier);
-		ValidationDelegate validationDelegate = ecAdapter.getValidationDelegate(delegateURI);
-		return validationDelegate;
-	}
+    protected ValidationDelegate getValidationDelegate(EClassifier eClassifier) {
+        if (delegateDomain == null) {
+            EPackage ePackage = eClassifier.getEPackage();
+            DelegateEPackageAdapter epAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
+            delegateDomain = (OCLDelegateDomain) epAdapter.getDelegateDomain(delegateURI);
+        }
+        DelegateEClassifierAdapter ecAdapter = DelegateEClassifierAdapter.getAdapter(eClassifier);
+        ValidationDelegate validationDelegate = ecAdapter.getValidationDelegate(delegateURI);
+        return validationDelegate;
+    }
 
-	public boolean validate(EClass eClass, EObject eObject,
-			Map<Object, Object> context, EOperation invariant, String expression) {
-		ValidationDelegate validationDelegate = getValidationDelegate(eClass);
-		return validationDelegate.validate(eClass, eObject, context, invariant, expression);
-	}
+    public boolean validate(EClass eClass, EObject eObject,
+            Map<Object, Object> context, EOperation invariant, String expression) {
+        ValidationDelegate validationDelegate = getValidationDelegate(eClass);
+        return validationDelegate.validate(eClass, eObject, context, invariant, expression);
+    }
 
-	public boolean validate(EClass eClass, EObject eObject,
-			Map<Object, Object> context, String constraint, String expression) {
-		ValidationDelegate validationDelegate = getValidationDelegate(eClass);
-		return validationDelegate.validate(eClass, eObject, context, constraint, expression);
-	}
+    public boolean validate(EClass eClass, EObject eObject,
+            Map<Object, Object> context, String constraint, String expression) {
+        ValidationDelegate validationDelegate = getValidationDelegate(eClass);
+        return validationDelegate.validate(eClass, eObject, context, constraint, expression);
+    }
 
-	public boolean validate(EDataType eDataType, Object value,
-			Map<Object, Object> context, String constraint, String expression) {
-		ValidationDelegate validationDelegate = getValidationDelegate(eDataType);
-		return validationDelegate.validate(eDataType, value, context, constraint, expression);
-	}
-	
-	/**
-	 * The Global variant of the Factory delegates to a local ResourceSet factory if one
-	 * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
-	 * by the DelegateResourceSetAdapter.
-	 */
-	public static class Global extends OCLValidationDelegateFactory
-	{
-		public ValidationDelegate createValidationDelegate(EClassifier classifier) {
-			ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				classifier, ValidationDelegate.Factory.Registry.class, null);
-			if (localRegistry != null) {
-				ValidationDelegate.Factory factory = localRegistry.getValidationDelegate(delegateURI);
-				if (factory != null) {
-					return factory.createValidationDelegate(classifier);
-				}
-			}
-			return super.createValidationDelegate(classifier);
-		}	
-	}
+    public boolean validate(EDataType eDataType, Object value,
+            Map<Object, Object> context, String constraint, String expression) {
+        ValidationDelegate validationDelegate = getValidationDelegate(eDataType);
+        return validationDelegate.validate(eDataType, value, context, constraint, expression);
+    }
+
+    /**
+     * The Global variant of the Factory delegates to a local ResourceSet factory if one
+     * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
+     * by the DelegateResourceSetAdapter.
+     */
+    public static class Global extends OCLValidationDelegateFactory
+    {
+        public ValidationDelegate createValidationDelegate(EClassifier classifier) {
+            ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
+                    classifier, ValidationDelegate.Factory.Registry.class, null);
+            if (localRegistry != null) {
+                ValidationDelegate.Factory factory = localRegistry.getValidationDelegate(delegateURI);
+                if (factory != null) {
+                    return factory.createValidationDelegate(classifier);
+                }
+            }
+            return super.createValidationDelegate(classifier);
+        }	
+    }
 }

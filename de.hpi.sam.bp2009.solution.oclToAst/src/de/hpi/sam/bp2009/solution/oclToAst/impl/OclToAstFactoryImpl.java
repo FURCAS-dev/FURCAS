@@ -16,40 +16,40 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * @generated
  */
 public class OclToAstFactoryImpl implements OclToAstFactory {
-	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static OclToAstFactory instance=null;
-	public static OclToAstFactory init() {
-		if(instance ==null)
-			instance= new OclToAstFactoryImpl();
-		return instance;
-	}
+    /**
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static OclToAstFactory instance=null;
+    public static OclToAstFactory init() {
+        if(instance ==null)
+            instance= new OclToAstFactoryImpl();
+        return instance;
+    }
 
-	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclToAstFactoryImpl() {
-		super();
-	}
+    /**
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OclToAstFactoryImpl() {
+        super();
+    }
 
 
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAnnotationOCLParser createEAnnotationOCLParser() {
-		EAnnotationOCLParserImpl eAnnotationOCLParser = new EAnnotationOCLParserImpl();
-		return eAnnotationOCLParser;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAnnotationOCLParser createEAnnotationOCLParser() {
+        EAnnotationOCLParserImpl eAnnotationOCLParser = new EAnnotationOCLParserImpl();
+        return eAnnotationOCLParser;
+    }
 
-	
+
 } //OclToAstFactoryImpl

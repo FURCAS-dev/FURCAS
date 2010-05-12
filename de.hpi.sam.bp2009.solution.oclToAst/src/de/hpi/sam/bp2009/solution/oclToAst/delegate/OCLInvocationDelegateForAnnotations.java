@@ -42,52 +42,52 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextPro
  */
 public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
 {
-	private OCLExpression body;
-	private ValueConverter converter;
+    private OCLExpression body;
+    private ValueConverter converter;
 
-	public OCLInvocationDelegateForAnnotations(
-			OCLDelegateDomain delegateDomain, EOperation operation) {
-		super(delegateDomain, operation);
-		this.converter = operation.isMany()
-		? ValueConverter.LIST
-		: ValueConverter.VERBATIM;
-	}
+    public OCLInvocationDelegateForAnnotations(
+            OCLDelegateDomain delegateDomain, EOperation operation) {
+        super(delegateDomain, operation);
+        this.converter = operation.isMany()
+        ? ValueConverter.LIST
+                : ValueConverter.VERBATIM;
+    }
 
 
-	@Override
-	public Object dynamicInvoke(InternalEObject target, EList<?> arguments)
-			throws InvocationTargetException {
-		OCL ocl = delegateDomain.getOCL();
-		new ProjectDependencyQueryContextProvider().apply(ocl);
-		if (body == null) {
-			body = InvocationBehaviorForAnnotations.INSTANCE.getOperationBody(ocl, eOperation);
-		}
-		/*
-		 * call super behaviour if not able to resolve annotation 
-		 * 
-		 */
-		if(body == null)
-			throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+    @Override
+    public Object dynamicInvoke(InternalEObject target, EList<?> arguments)
+    throws InvocationTargetException {
+        OCL ocl = delegateDomain.getOCL();
+        new ProjectDependencyQueryContextProvider().apply(ocl);
+        if (body == null) {
+            body = InvocationBehaviorForAnnotations.INSTANCE.getOperationBody(ocl, eOperation);
+        }
+        /*
+         * call super behaviour if not able to resolve annotation 
+         * 
+         */
+        if(body == null)
+            throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
 
-		
-		OCL.Query query = ocl.createQuery(body);
-		EList<EParameter> parms = eOperation.getEParameters();
 
-		if (!parms.isEmpty()) {
-			// bind arguments to parameter names
-			EvaluationEnvironment<EClassifier, ?, ?, ?, ?> env = query
-				.getEvaluationEnvironment();
+        OCL.Query query = ocl.createQuery(body);
+        EList<EParameter> parms = eOperation.getEParameters();
 
-			for (int i = 0; i < parms.size(); i++) {
-				env.add(parms.get(i).getName(), arguments.get(i));
-			}
-		}
-		Object result = query.evaluate(target);
-		if (ocl.isInvalid(result)) {
-			String message = NLS.bind("OCL evaluation result of ''{0}'' is invalid", getOperationName());
-			throw new OCLDelegateException(message);
-		}
-		return converter.convert(ocl, result);
-	}
-	
+        if (!parms.isEmpty()) {
+            // bind arguments to parameter names
+            EvaluationEnvironment<EClassifier, ?, ?, ?, ?> env = query
+            .getEvaluationEnvironment();
+
+            for (int i = 0; i < parms.size(); i++) {
+                env.add(parms.get(i).getName(), arguments.get(i));
+            }
+        }
+        Object result = query.evaluate(target);
+        if (ocl.isInvalid(result)) {
+            String message = NLS.bind("OCL evaluation result of ''{0}'' is invalid", getOperationName());
+            throw new OCLDelegateException(message);
+        }
+        return converter.convert(ocl, result);
+    }
+
 }
