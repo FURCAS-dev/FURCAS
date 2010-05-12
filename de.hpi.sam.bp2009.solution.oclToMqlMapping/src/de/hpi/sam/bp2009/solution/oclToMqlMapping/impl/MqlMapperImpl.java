@@ -16,40 +16,49 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
-import org.eclipse.emf.query2.*;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
-import org.eclipse.ocl.expressions.*;
-import org.eclipse.ocl.utilities.*;
+import org.eclipse.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.TypeExp;
+import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.oclToMqlMapping.MqlMapper;
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 @SuppressWarnings("restriction")
-public abstract class MqlMapperImpl <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-       implements MqlMapper <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
-    
-    private Map<CLS, ? extends Set<? extends E>> extentMap;
+public class MqlMapperImpl implements org.eclipse.ocl.OclToMql {
+
+    private Map<EClassifier,Set<EObject>> extentMap;
 
     public MqlMapperImpl() {
         super();
-        
+
     }
-    public Map<CLS, ? extends Set<? extends E>> getExtentMap() {
+    public Map<EClassifier,Set<EObject>> getExtentMap() {
         return extentMap;
     }
     @Override
-    public boolean checkForExpression (OCLExpression<C> expression){
-        return false;
-        
+    public void setExtendMap(Map<EClassifier, Set<EObject>> map) {
+        extentMap = map;
+
     }
-    
-    public  Object oclToMqlMapping(Object context, OCLExpression<C> expression) {
+    @Override
+    public boolean checkForExpression (OCLExpression<EClassifier> expression){
+        return expression instanceof IteratorExp<?, ?>;        
+    }
+
+    public  Object oclToMqlMapping(Object context, OCLExpression<EClassifier> expression) {
         System.out.println("Ich bin drin");
         Object sourceValue = null;
 
-        if (expression.getType() instanceof IteratorExp<?, ?>){
-            IteratorExp<?, ?> ie = (IteratorExp<?, ?>)expression.getType();
+        if (expression instanceof IteratorExp<?, ?>){
+            IteratorExp<?, ?> ie = (IteratorExp<?, ?>)expression;
             Object sourceType = ie.getSource().getType();
 
             if (sourceType instanceof PredefinedType<?>) {
@@ -59,9 +68,12 @@ public abstract class MqlMapperImpl <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
 
                     if(opCode==PredefinedType.ALL_INSTANCES){
                         Set<EObject> allO = new HashSet<EObject>();
-                        Map<? extends CLS, ? extends Set<? extends E>> map = getExtentMap();
-                        if(!map.values().isEmpty()){
-                            Iterator<? extends E> list = map.values().iterator().next().iterator();
+
+                        if(!getExtentMap().values().isEmpty()){
+                            /*
+                             * TODO  why only take the first EClassifier as COntext
+                             */
+                            Iterator<EObject> list = getExtentMap().values().iterator().next().iterator();
                             while(list.hasNext())
                                 allO.add((EObject)list.next());
                         }
@@ -119,13 +131,14 @@ public abstract class MqlMapperImpl <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
                         else {
                             // TODO add handling of empty result set
                             sourceValue= null;
-                    }
+                        }
+                    }else{
+                        sourceValue= null;
+                    }}else{
+                        sourceValue= null;
                     }}
-            }
+        }
 
-        }
-        else{
-            sourceValue= null;    
-        }
+
         return sourceValue;}
 }

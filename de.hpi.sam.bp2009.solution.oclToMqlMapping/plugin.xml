@@ -2,19 +2,11 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.ocl.environments">
-      <environmentFactory
-            class="de.hpi.sam.bp2009.solution.ocltomqlmapping.EnvironmentFactory">
-         <package
-               nsURI="de.hpi.sam.bp2009.solution.oclToMqlMapping.package1">
-         </package>
-      </environmentFactory>
+         point="org.eclipse.ocl.OclToMqlExtensionPointID">
+         <oclToMql
+         mapperClass= "de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MqlMapperImpl">
+         </oclToMql>
    </extension>
-   <extension
-         point="org.eclipse.ocl.oclToMqlExtensionPointID">
-     <OclToMql
-       oclToMqlClass="de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MqlMapperImpl">
-   </OclToMql>
-   </extension>
-
+   
+   
 </plugin>
