@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.FilterSynthesis;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
@@ -25,7 +25,7 @@ public class InstanceScopeAnalysisTests extends BaseDepartmentTest {
      */
     private class ClassMock extends org.easymock.classextension.EasyMock{}
     private PathCache pathCacheMock;
-    private FilterSynthesis filterSynthesizerMock;
+    private FilterSynthesisImpl filterSynthesizerMock;
 //    private OCLExpression<EClassifier> oclExpressionMock;
 //    private AssociationEndAndAttributeCallFinder visitorMock;
 
@@ -33,7 +33,7 @@ public class InstanceScopeAnalysisTests extends BaseDepartmentTest {
     public void setUp() {   
         super.setUp();
         pathCacheMock = ClassMock.createMock(PathCache.class);
-        filterSynthesizerMock = EasyMock.createMock(FilterSynthesis.class);
+        filterSynthesizerMock = EasyMock.createMock(FilterSynthesisImpl.class);
 //        oclExpressionMock = ClassMock.createMock(OCLExpression.class);
 //        visitorMock = ClassMock.createMock(AssociationEndAndAttributeCallFinder.class);
     }

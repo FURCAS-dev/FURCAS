@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
@@ -34,6 +36,7 @@ import company.impl.FreelanceImpl;
  */
 public class BaseDepartmentTest extends TestCase{
 
+	protected ResourceSet rs = null;
     /**
      *  
      */
@@ -296,6 +299,8 @@ public class BaseDepartmentTest extends TestCase{
         this.freelance = this.comp.getFreelance( );
         this.student = this.comp.getStudent( );
         this.freelanceAssignment = (EAttribute) this.freelance.getEStructuralFeature( "assignment" );
+        this.rs = new ResourceSetImpl();
+        this.rs.getResources().add(this.comp.eResource());
     }
 
     /**
@@ -326,6 +331,9 @@ public class BaseDepartmentTest extends TestCase{
             f.setEmployer( dep );
         }
         this.allDepartments.add( dep );
+        if (this.comp.eResource() != null){
+        	this.comp.eResource().getContents().add(dep);
+        }
         return dep;
     }
 
@@ -340,6 +348,9 @@ public class BaseDepartmentTest extends TestCase{
         e.setSalary( 2345 );
         this.curImployeeID++;
         this.allEmployees.add( e );
+        if (this.comp.eResource() != null){
+        	this.comp.eResource().getContents().add(e);
+        }
         return e;
     }
 
@@ -355,6 +366,9 @@ public class BaseDepartmentTest extends TestCase{
         f.setSalary( 2345 );
         this.curImployeeID++;
         this.allFreelances.add( f );
+        if (this.comp.eResource() != null){
+        	this.comp.eResource().getContents().add(f);
+        }
         return f;
     }
 
@@ -374,6 +388,20 @@ public class BaseDepartmentTest extends TestCase{
         this.divisionBossSecretaryAST = (OCLExpression) parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
         this.secretaryOlderThanBossAST = (OCLExpression) parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
         this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
+        //if comp has an EResource add each expression to this EResource
+        if (this.comp.eResource() != null){
+	        this.comp.eResource().getContents().add(this.boss10YearsOlderThanJuniorAST);
+	        this.comp.eResource().getContents().add(this.bossIsOldestAST);
+	        this.comp.eResource().getContents().add(this.maxJuniorsAST);
+	        this.comp.eResource().getContents().add(this.notBossFreelanceAST);
+	        this.comp.eResource().getContents().add(this.uniqueNamesAST);
+	        this.comp.eResource().getContents().add(this.validAssignmentAST);
+	        this.comp.eResource().getContents().add(this.oldEmployeeAST);
+	        this.comp.eResource().getContents().add(this.secretaryOlderThanBossAST);
+	        this.comp.eResource().getContents().add(this.nastyConstraintAST);
+	        this.comp.eResource().getContents().add(this.bossHighestSalaryAST);
+	        this.comp.eResource().getContents().add(this.divisionBossSecretaryAST);
+        }
     }
 
     /**
@@ -400,6 +428,7 @@ public class BaseDepartmentTest extends TestCase{
 
     private void resetInstances( ) {
 
+    	this.rs = null;
         this.companyPackage = null;
         this.comp = null;
         this.allDepartments = null;

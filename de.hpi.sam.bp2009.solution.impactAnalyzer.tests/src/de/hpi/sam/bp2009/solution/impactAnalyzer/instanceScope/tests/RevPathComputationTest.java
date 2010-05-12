@@ -291,7 +291,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         createFilters(stmts, ia, false);
 
         // add new department
-        Notification noti = NotificationHelper.createReferenceAddNotification(this.div, this.departmentRef, this.dep1 );
+        Notification noti = NotificationHelper.createReferenceAddNotification(this.div, this.departmentRef, CompanyFactory.eINSTANCE.createDepartment() );
         Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.division );
         compareInstances( instances, new EObject[] { this.div } );
 
@@ -367,56 +367,6 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         System.out.println( "--------------------------------------------------\n" );
     }
 
-//    /**
-//     * Unfortunately not all features can be tested with the department model
-//     */
-//    private void extendModel( ) {
-//
-//         for some tests we need some additional classes
-//         MofClass a = this.mofPackage.getModel().getMofClass().createMofClass();
-//         a.setName("A");
-//         MofClass b = this.mofPackage.getModel().getMofClass().createMofClass();
-//         a.setName("B");
-//         MofClass c = this.mofPackage.getModel().getMofClass().createMofClass();
-//         a.setName("C");
-//         MofClass d = this.mofPackage.getModel().getMofClass().createMofClass();
-//         a.setName("D");
-//         // B is a subtype of A
-//         b.getSupertypes().add(a);
-//         // D-B-Association
-//         Association db = this.mofPackage.getModel().getAssociation().createAssociation();
-//         db.setName("DB-Assocation");
-//         AssociationEnd toB = this.mofPackage.getModel().getAssociationEnd().createAssociationEnd();
-//         toB.setName("toB");
-//         toB.setType(b);
-//         toB.setMultiplicity(this.mofPackage.getModel().createMultiplicityType(0,-1,true,true));
-//         db.getContents().add(toB);
-//         AssociationEnd toD = this.mofPackage.getModel().getAssociationEnd().createAssociationEnd();
-//         toB.setName("toD");
-//         toB.setType(d);
-//         toB.setMultiplicity(this.mofPackage.getModel().createMultiplicityType(0,-1,true,true));
-//         db.getContents().add(toD);
-//         // A-C-Association
-//         Association ac = this.mofPackage.getModel().getAssociation().createAssociation();
-//         ac.setName("DB-Assocation");
-//         AssociationEnd toC = this.mofPackage.getModel().getAssociationEnd().createAssociationEnd();
-//         toC.setName("toC");
-//         toC.setType(c);
-//         toC.setMultiplicity(this.mofPackage.getModel().createMultiplicityType(0,-1,true,true));
-//         ac.getContents().add(toC);
-//         AssociationEnd toA = this.mofPackage.getModel().getAssociationEnd().createAssociationEnd();
-//         toA.setName("toA");
-//         toA.setType(a);
-//         toA.setMultiplicity(this.mofPackage.getModel().createMultiplicityType(0,-1,true,true));
-//         ac.getContents().add(toA);
-//         this.companyPackage.getContents().add(a);
-//         this.companyPackage.getContents().add(b);
-//         this.companyPackage.getContents().add(c);
-//         this.companyPackage.getContents().add(d);
-//         this.companyPackage.getContents().add(ac);
-//         this.companyPackage.getContents().add(db);
-//    }
-
     /**
      * Creates an instance of the company model ie 2 instances of Department
      * with e employees and one boss each.
@@ -426,41 +376,48 @@ public class RevPathComputationTest extends BaseDepartmentTest {
             this.div = CompanyFactory.eINSTANCE.createDivision();
             this.div.setBudget( 1234567 );
             this.div.setName( "Div1" );
-    
+            this.comp.eResource().getContents().add(this.div);
+           
             this.director = CompanyFactory.eINSTANCE.createEmployee();
             this.director.setAge( 42 );
             this.director.setName( "Director" );
             this.director.setDirected( this.div );
             this.director.setSalary( 1234 );
             this.div.setDirector( this.director );
+            this.comp.eResource().getContents().add(this.director);
     
             this.secretary = CompanyFactory.eINSTANCE.createEmployee();
             this.secretary.setAge( 55 );
             this.secretary.setName( "Secretary" );
             this.secretary.setSalary( 1234 );
             this.director.setSecretary( this.secretary );
+            this.comp.eResource().getContents().add(this.secretary);
     
             this.dep1 = CompanyFactory.eINSTANCE.createDepartment();
             this.dep1.setName( "Dep1" );
             this.dep1.setBudget( 12345567 );
             this.dep1.setMaxJuniors( 5 );
+            this.comp.eResource().getContents().add(this.dep1);
             this.e1 = CompanyFactory.eINSTANCE.createEmployee();
             this.e1.setAge( 42 );
             this.e1.setName( "e1" );
             this.e1.setEmployer( this.dep1 );
             this.e1.setSalary( 1234 );
+            this.comp.eResource().getContents().add(this.e1);
             this.e2 = CompanyFactory.eINSTANCE.createFreelance();
             this.e2.setAge( 42 );
             this.e2.setName( "e2" );
             this.e2.setAssignment( 9 );
             this.e2.setEmployer( this.dep1 );
             this.e2.setSalary( 1234 );
+            this.comp.eResource().getContents().add(this.e2);
             this.boss1 = CompanyFactory.eINSTANCE.createEmployee();
             this.boss1.setAge( 43 );
             this.boss1.setName( "boss1" );
             this.boss1.setEmployer( this.dep1 );
             this.boss1.setManaged( this.dep1 );
             this.boss1.setSalary( 1234 );
+            this.comp.eResource().getContents().add(this.boss1);
     
             this.e1.setEmployer( dep1 );
             this.e2.setEmployer( dep1 );
@@ -471,24 +428,28 @@ public class RevPathComputationTest extends BaseDepartmentTest {
             this.dep2.setName( "Dep2" );
             this.dep2.setBudget( 12345567 );
             this.dep2.setMaxJuniors( 5 );
+            this.comp.eResource().getContents().add(this.dep2);
     
             this.e3 = CompanyFactory.eINSTANCE.createEmployee();
             this.e3.setAge( 42 );
             this.e3.setName( "e3" );
             this.e3.setEmployer( this.dep2 );
             this.e3.setSalary( 1234 );
+            this.comp.eResource().getContents().add(this.e3);
             this.e4 = CompanyFactory.eINSTANCE.createFreelance();
             this.e4.setAge( 42 );
             this.e4.setName( "e4" );
             this.e2.setAssignment( 9 );
             this.e4.setEmployer( this.dep2 );
             this.e4.setSalary( 1234 );
+            this.comp.eResource().getContents().add(this.e4);
             this.boss2 = CompanyFactory.eINSTANCE.createEmployee();
             this.boss2.setAge( 43 );
             this.boss2.setName( "boss2" );
             this.boss2.setEmployer( this.dep2 );
             this.boss2.setManaged( this.dep2 );
             this.boss2.setSalary( 1234 );
+            this.comp.eResource().getContents().add(this.boss2);
     
             this.e3.setEmployer( dep2 );
             this.e4.setEmployer( dep2 );
