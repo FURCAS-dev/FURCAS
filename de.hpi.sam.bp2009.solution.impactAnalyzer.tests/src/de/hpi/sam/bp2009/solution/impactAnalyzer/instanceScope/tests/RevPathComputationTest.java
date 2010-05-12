@@ -219,6 +219,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
 
         // change name of an employee
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeName, this.e2.getName( ), this.e2.getName( ) );
+        
         Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.employee );
         compareInstances( instances, new EObject[] { this.e1, this.e2, this.e3, this.e4, this.boss1, this.boss2, this.director, this.secretary } );
         System.out.println( "--------------------------------------------------\n" );

@@ -113,8 +113,9 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
 
         } else {
             NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer);
-            EReference forwardRef = (EReference)getExpression().getNavigationSource();
+            EReference forwardRef = (EReference)getExpression().getReferredProperty();
             NavigationStep reverseTraversal;
+            //FIXME if forwardref is composite then create compositeNavigationStep
             if (forwardRef.getEOpposite() != null){
                 reverseTraversal = new AssociationNavigationStep(
                         getInnermostElementType(sourceType),

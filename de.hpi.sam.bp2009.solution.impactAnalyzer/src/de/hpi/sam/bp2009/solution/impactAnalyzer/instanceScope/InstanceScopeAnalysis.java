@@ -47,10 +47,10 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.NotificationHelper;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 
 /**
  * Supports a lookup from a source model element of either an attribute value change event or a link add/remove event
@@ -386,15 +386,16 @@ public class InstanceScopeAnalysis {
      */
     protected static EOperation getDefines(OCLExpression expression) {
         //TODO: check correctness of this query
+    	//FIXME should never be reached by standard operations (currently "implies" reaches this point)
         String query = "select op from [" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEOperation()) + "] as op, " +
         "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation()) + "] as annotation, " +
         "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation_Details().getEType()) + "] as details, " +
-        "[" + EcoreUtil.getURI(expression) + "] as as ocl " +
-        "in elements [[" + "]] " +
-        "where op.annotation = annotation " +
+        "[" + EcoreUtil.getURI(expression.eClass()) + "] as ocl " +
+        //"in elements [[" + "]] " +
+        "where op.eAnnotations = annotation " +
         "where annotation.details = details " +
         "where details.key = 'body' " +
-        "where annotation.contents = ocl";
+        "where annotation.contents = ocl";        
         QueryContext scope = new ProjectBasedScopeProviderImpl(expression.eResource()).getForwardScopeAsQueryContext();
         ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
         if(!resultSet.isEmpty()){
@@ -402,5 +403,10 @@ public class InstanceScopeAnalysis {
             return (EOperation) expression.eResource().getEObject(resultSet.getUri(0,"op").toString());
         }
         return null;
+//    	EAnnotationOCLParser annoParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+//    	EOperation operation = ((OperationCallExp) ((IteratorExp) expression).getBody()).getReferredOperation();
+//    	annoParser.convertOclAnnotation(operation);
+//    	OCLExpression bodyExpr = annoParser.getExpressionFromAnnotationsOf(operation, "body");
+//    	return ;
     }
 }
