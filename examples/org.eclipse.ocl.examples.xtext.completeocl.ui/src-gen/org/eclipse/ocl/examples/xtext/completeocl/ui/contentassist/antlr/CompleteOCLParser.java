@@ -226,13 +226,13 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyContextDeclCSAccess().getDerAssignment_4_1_0(), "rule__PropertyContextDeclCS__DerAssignment_4_1_0");
 					put(grammarAccess.getPropertyContextDeclCSAccess().getInitAssignment_4_1_1(), "rule__PropertyContextDeclCS__InitAssignment_4_1_1");
 					put(grammarAccess.getQualifiedClassifierRefCSAccess().getNamespaceAssignment_0(), "rule__QualifiedClassifierRefCS__NamespaceAssignment_0");
-					put(grammarAccess.getQualifiedClassifierRefCSAccess().getClassifierAssignment_2(), "rule__QualifiedClassifierRefCS__ClassifierAssignment_2");
+					put(grammarAccess.getQualifiedClassifierRefCSAccess().getElementAssignment_2(), "rule__QualifiedClassifierRefCS__ElementAssignment_2");
 					put(grammarAccess.getQualifiedOperationRefCSAccess().getNamespaceAssignment_0(), "rule__QualifiedOperationRefCS__NamespaceAssignment_0");
-					put(grammarAccess.getQualifiedOperationRefCSAccess().getOperationAssignment_2(), "rule__QualifiedOperationRefCS__OperationAssignment_2");
+					put(grammarAccess.getQualifiedOperationRefCSAccess().getElementAssignment_2(), "rule__QualifiedOperationRefCS__ElementAssignment_2");
 					put(grammarAccess.getQualifiedPropertyRefCSAccess().getNamespaceAssignment_0(), "rule__QualifiedPropertyRefCS__NamespaceAssignment_0");
-					put(grammarAccess.getQualifiedPropertyRefCSAccess().getFeatureAssignment_2(), "rule__QualifiedPropertyRefCS__FeatureAssignment_2");
+					put(grammarAccess.getQualifiedPropertyRefCSAccess().getElementAssignment_2(), "rule__QualifiedPropertyRefCS__ElementAssignment_2");
 					put(grammarAccess.getQualifiedPackageRefCSAccess().getNamespaceAssignment_0(), "rule__QualifiedPackageRefCS__NamespaceAssignment_0");
-					put(grammarAccess.getQualifiedPackageRefCSAccess().getPackageAssignment_2(), "rule__QualifiedPackageRefCS__PackageAssignment_2");
+					put(grammarAccess.getQualifiedPackageRefCSAccess().getElementAssignment_2(), "rule__QualifiedPackageRefCS__ElementAssignment_2");
 					put(grammarAccess.getSimpleClassifierRefCSAccess().getClassifierAssignment(), "rule__SimpleClassifierRefCS__ClassifierAssignment");
 					put(grammarAccess.getSimpleOperationRefCSAccess().getOperationAssignment(), "rule__SimpleOperationRefCS__OperationAssignment");
 					put(grammarAccess.getSimplePackageRefCSAccess().getPackageAssignment(), "rule__SimplePackageRefCS__PackageAssignment");
