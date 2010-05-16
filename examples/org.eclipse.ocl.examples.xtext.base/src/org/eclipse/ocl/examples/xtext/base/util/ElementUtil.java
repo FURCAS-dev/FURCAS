@@ -12,17 +12,21 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.1 2010/05/09 14:22:49 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.2 2010/05/16 19:18:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.util;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.NodeAdapter;
 import org.eclipse.xtext.parsetree.NodeUtil;
@@ -46,6 +50,42 @@ public class ElementUtil
 		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
 	}
 
+	public static String getCollectionTypeName(TypedElementCS csTypedElement) {
+		String multiplicity = csTypedElement.getMultiplicity();
+		if (multiplicity != null) {
+			if ("?".equals(multiplicity)) { //$NON-NLS-1$
+				return null;
+			}
+		}
+		else {
+			int upper = csTypedElement.getUpper();
+			if (upper == 1) {
+				return null;
+			}
+		}
+		EList<String> qualifiers = csTypedElement.getQualifiers();
+		boolean isOrdered = true;
+		boolean isUnique = true;
+		if (qualifiers.contains("!ordered")) { //$NON-NLS-1$
+			isOrdered = false;
+		}
+		else if (qualifiers.contains("ordered")) { //$NON-NLS-1$
+			isOrdered = true;
+		}
+		if (qualifiers.contains("!unique")) { //$NON-NLS-1$
+			isUnique = false;
+		}
+		else if (qualifiers.contains("unique")) { //$NON-NLS-1$
+			isUnique = true;
+		}
+		if (isOrdered) {
+			return isUnique ? "OrderedSet" : "Sequence"; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		else {
+			return isUnique ? "Set" : "Bag"; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+
 	public static <T extends NamedElementCS> T getNamedElementCS(Collection<T> namedElements, String name) {
 		for (T namedElement : namedElements) {
 			if (name.equals(namedElement.getName())) {
@@ -58,6 +98,10 @@ public class ElementUtil
 	public static CompositeNode getParserNode(EObject eObject) {
 		NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(eObject);
 		return nodeAdapter != null ? nodeAdapter.getParserNode() : null;
+	}
+
+	public static ScopeAdapter getScopeAdapter(EObject element) {
+		return AbstractScopeAdapter.getScopeAdapter(element);
 	}
 	
 /*	public static List<String> getTexts(EObject eObject) {

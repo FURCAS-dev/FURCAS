@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: DefaultScopeAdapter.java,v 1.1 2010/05/03 05:24:44 ewillink Exp $
+ * $Id: DefaultScopeAdapter.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 
 /**
  * Scopes that are accidentally empty; a debugging aid.
  */
-public class DefaultScopeAdapter extends AbstractScopeAdapter<ElementCS>
+public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
 {
-	public DefaultScopeAdapter(ElementCS csElement) {
+	public DefaultScopeAdapter(EObject csElement) {
 		super(csElement);
 	}
 }

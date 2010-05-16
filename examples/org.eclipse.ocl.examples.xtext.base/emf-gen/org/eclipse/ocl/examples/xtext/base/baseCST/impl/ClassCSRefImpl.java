@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSRefImpl.java,v 1.1 2010/05/03 05:25:43 ewillink Exp $
+ * $Id: ClassCSRefImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -164,4 +165,8 @@ public class ClassCSRefImpl extends ElementCSImpl implements ClassCSRef {
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getRef());
+	}
 } //ClassCSRefImpl

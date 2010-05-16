@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitiveTypeRefCSImpl.java,v 1.1 2010/05/03 05:25:39 ewillink Exp $
+ * $Id: PrimitiveTypeRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -196,4 +197,8 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 		return result.toString();
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendName(this);
+	}
 } //PrimitiveTypeRefCSImpl

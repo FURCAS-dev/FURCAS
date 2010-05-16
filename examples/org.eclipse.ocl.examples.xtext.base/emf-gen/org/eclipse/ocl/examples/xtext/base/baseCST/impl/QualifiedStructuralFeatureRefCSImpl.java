@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QualifiedStructuralFeatureRefCSImpl.java,v 1.1 2010/05/03 05:25:16 ewillink Exp $
+ * $Id: QualifiedStructuralFeatureRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -16,8 +16,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedStructuralFeatureRefCSImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedStructuralFeatureRefCSImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedStructuralFeatureRefCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,14 +47,14 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	protected NamespaceCS namespace;
 
 	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeature()
+	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected StructuralFeatureRefCS feature;
+	protected StructuralFeatureRefCS element;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,8 +118,8 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuralFeatureRefCS getFeature() {
-		return feature;
+	public StructuralFeatureRefCS getElement() {
+		return element;
 	}
 
 	/**
@@ -125,11 +127,11 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFeature(StructuralFeatureRefCS newFeature, NotificationChain msgs) {
-		StructuralFeatureRefCS oldFeature = feature;
-		feature = newFeature;
+	public NotificationChain basicSetElement(StructuralFeatureRefCS newElement, NotificationChain msgs) {
+		StructuralFeatureRefCS oldElement = element;
+		element = newElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE, oldFeature, newFeature);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT, oldElement, newElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -140,18 +142,18 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFeature(StructuralFeatureRefCS newFeature) {
-		if (newFeature != feature) {
+	public void setElement(StructuralFeatureRefCS newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
-			if (feature != null)
-				msgs = ((InternalEObject)feature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE, null, msgs);
-			if (newFeature != null)
-				msgs = ((InternalEObject)newFeature).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE, null, msgs);
-			msgs = basicSetFeature(newFeature, msgs);
+			if (element != null)
+				msgs = ((InternalEObject)element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT, null, msgs);
+			if (newElement != null)
+				msgs = ((InternalEObject)newElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT, null, msgs);
+			msgs = basicSetElement(newElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE, newFeature, newFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT, newElement, newElement));
 	}
 
 	/**
@@ -162,8 +164,8 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE:
-				return basicSetFeature(null, msgs);
+			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT:
+				return basicSetElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -179,8 +181,8 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__NAMESPACE:
 				if (resolve) return getNamespace();
 				return basicGetNamespace();
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE:
-				return getFeature();
+			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,8 +198,8 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)newValue);
 				return;
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE:
-				setFeature((StructuralFeatureRefCS)newValue);
+			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT:
+				setElement((StructuralFeatureRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,8 +216,8 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)null);
 				return;
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE:
-				setFeature((StructuralFeatureRefCS)null);
+			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT:
+				setElement((StructuralFeatureRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -231,10 +233,48 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 		switch (featureID) {
 			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__NAMESPACE:
 				return namespace != null;
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__FEATURE:
-				return feature != null;
+			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT:
+				return element != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (derivedFeatureID) {
+				case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (baseFeatureID) {
+				case BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getElement());
+	}
 } //QualifiedStructuralFeatureRefCSImpl

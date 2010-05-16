@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeRefCSImpl.java,v 1.1 2010/05/03 05:25:27 ewillink Exp $
+ * $Id: CollectionTypeRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
+
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -26,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -285,4 +288,9 @@ public class CollectionTypeRefCSImpl extends TypedRefCSImpl implements Collectio
 		return result.toString();
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendName(this);
+		signature.appendTypeArguments(Collections.singletonList(getTypeArguments()));
+	}
 } //CollectionTypeRefCSImpl

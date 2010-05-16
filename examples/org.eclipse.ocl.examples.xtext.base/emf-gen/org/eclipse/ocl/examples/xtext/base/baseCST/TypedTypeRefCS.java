@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCS.java,v 1.1 2010/05/03 05:25:02 ewillink Exp $
+ * $Id: TypedTypeRefCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getTypeArguments <em>Type Arguments</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TypedTypeRefCS extends TypedRefCS {
+public interface TypedTypeRefCS extends ParameterizedTypeRefCS {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -61,21 +59,5 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * @generated
 	 */
 	void setType(TypeCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Type Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type Arguments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Arguments</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedTypeRefCS_TypeArguments()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<TypeRefCS> getTypeArguments();
 
 } // TypedTypeRefCS

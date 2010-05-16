@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.3 2010/05/09 17:08:31 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.4 2010/05/16 19:18:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
@@ -32,11 +33,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAccessor;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
 /**
@@ -53,95 +57,103 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 	}
 	
 	public static class BaseScopeSwitch 
-		extends BaseCSTSwitch<AbstractScopeAdapter<? extends EObject>>
-		implements AbstractScopeAdapter.ISwitch
+		extends BaseCSTSwitch<ScopeAdapter>
+		implements ScopeAdapter.Switch
 	{
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseImportCS(ImportCS eObject) {
+		public ScopeAdapter caseBoundClassifierCS(BoundClassifierCS eObject) {
+			return new BoundClassifierScopeAdapter(eObject);
+		}
+
+		@Override
+		public ScopeAdapter caseImportCS(ImportCS eObject) {
 			return new ImportScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseParameterCS(ParameterCS eObject) {
+		public ScopeAdapter caseParameterCS(ParameterCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseQualifiedClassifierRefCS(QualifiedClassifierRefCS eObject) {
-			return new QualifiedClassifierRefScopeAdapter(eObject);
+		public ScopeAdapter caseQualifiedClassifierRefCS(QualifiedClassifierRefCS eObject) {
+			return new QualifiedRefScopeAdapter<QualifiedClassifierRefCS>(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseQualifiedOperationRefCS(QualifiedOperationRefCS eObject) {
-			return new QualifiedOperationRefScopeAdapter(eObject);
+		public ScopeAdapter caseQualifiedOperationRefCS(QualifiedOperationRefCS eObject) {
+			return new QualifiedRefScopeAdapter<QualifiedOperationRefCS>(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseQualifiedPackageRefCS(QualifiedPackageRefCS eObject) {
-			return new QualifiedPackageRefScopeAdapter(eObject);
+		public ScopeAdapter caseQualifiedPackageRefCS(QualifiedPackageRefCS eObject) {
+			return new QualifiedRefScopeAdapter<QualifiedPackageRefCS>(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS eObject) {
-			return new QualifiedStructuralFeatureRefScopeAdapter(eObject);
+		public ScopeAdapter caseQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS eObject) {
+			return new QualifiedRefScopeAdapter<QualifiedStructuralFeatureRefCS>(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseQualifiedTypeRefCS(QualifiedTypeRefCS eObject) {
-			return new QualifiedTypeRefScopeAdapter(eObject);
+		public ScopeAdapter caseQualifiedTypeRefCS(QualifiedTypeRefCS eObject) {
+			return new QualifiedRefScopeAdapter<QualifiedTypeRefCS>(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseReferenceCSRef(ReferenceCSRef eObject) {
+		public ScopeAdapter caseReferenceCSRef(ReferenceCSRef eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseSimpleClassifierRefCS(SimpleClassifierRefCS eObject) {
+		public ScopeAdapter caseSimpleClassifierRefCS(SimpleClassifierRefCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseSimpleOperationRefCS(SimpleOperationRefCS eObject) {
+		public ScopeAdapter caseSimpleOperationRefCS(SimpleOperationRefCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseSimplePackageRefCS(SimplePackageRefCS eObject) {
+		public ScopeAdapter caseSimplePackageRefCS(SimplePackageRefCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS eObject) {
+		public ScopeAdapter caseSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseTypeParameterCS(TypeParameterCS eObject) {
+		public ScopeAdapter caseTypeParameterCS(TypeParameterCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseTypedTypeRefCS(TypedTypeRefCS eObject) {
+		public ScopeAdapter caseTypedTypeRefCS(TypedTypeRefCS eObject) {
 			return new TypedTypeRefScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ElementCS) eObject);
+		public ScopeAdapter defaultCase(EObject eObject) {
+			return new DefaultScopeAdapter(eObject);
 		}
 
-		public AbstractScopeAdapter<?> doInPackageSwitch(EObject eObject) {
+		public ScopeAdapter doInPackageSwitch(EObject eObject) {
 			return doSwitch(eObject.eClass(), eObject);
 		}
 	}
 
 	@Override
-	public ScopeAccessor getScope(EObject context, EReference reference) {
-		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(context);
+	public ScopeView getScope(EObject context, EReference reference) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return scopeAdapter.getExclusiveScopeAccessor(reference);
+		TypeBindingsCS bindings = BaseCSTFactory.eINSTANCE.createTypeBindingsCS();
+		bindings.setDocument(scopeAdapter.getDocumentScopeAdapter().getTarget());
+		return scopeAdapter.getOuterScopeView(reference, bindings);
+//		return scopeAdapter.getExclusiveScopeAccessor(reference);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCSImpl.java,v 1.1 2010/05/03 05:25:44 ewillink Exp $
+ * $Id: PackageCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -30,6 +30,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.scope.DocumentScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -298,6 +302,20 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public void getSignature(Signature signature) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(this);
+		DocumentScopeAdapter documentScopeAdapter = scopeAdapter.getDocumentScopeAdapter();
+		if (documentScopeAdapter != null) {
+			String alias = documentScopeAdapter.getAlias(this);
+			if (alias != null) {
+				signature.append(alias);
+				return;
+			}
+		}
+		super.getSignature(signature);
 	}
 
 	/**

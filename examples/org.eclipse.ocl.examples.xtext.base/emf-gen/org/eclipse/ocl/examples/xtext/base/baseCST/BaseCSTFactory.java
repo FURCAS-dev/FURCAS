@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.1 2010/05/03 05:24:48 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -44,6 +44,24 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeCSRef createAttributeCSRef();
+
+	/**
+	 * Returns a new object of class '<em>Bound Classifier CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bound Classifier CS</em>'.
+	 * @generated
+	 */
+	BoundClassifierCS createBoundClassifierCS();
+
+	/**
+	 * Returns a new object of class '<em>Bound Operation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bound Operation CS</em>'.
+	 * @generated
+	 */
+	BoundOperationCS createBoundOperationCS();
 
 	/**
 	 * Returns a new object of class '<em>Class CS Ref</em>'.
@@ -224,6 +242,24 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	SimpleStructuralFeatureRefCS createSimpleStructuralFeatureRefCS();
+
+	/**
+	 * Returns a new object of class '<em>Type Binding CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Binding CS</em>'.
+	 * @generated
+	 */
+	TypeBindingCS createTypeBindingCS();
+
+	/**
+	 * Returns a new object of class '<em>Type Bindings CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Bindings CS</em>'.
+	 * @generated
+	 */
+	TypeBindingsCS createTypeBindingsCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Parameter CS</em>'.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCS.java,v 1.1 2010/05/03 05:24:48 ewillink Exp $
+ * $Id: OperationCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface OperationCS extends FeatureCS {

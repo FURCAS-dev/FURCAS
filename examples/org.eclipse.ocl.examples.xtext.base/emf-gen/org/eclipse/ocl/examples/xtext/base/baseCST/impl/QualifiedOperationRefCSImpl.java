@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QualifiedOperationRefCSImpl.java,v 1.1 2010/05/03 05:25:13 ewillink Exp $
+ * $Id: QualifiedOperationRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -18,6 +18,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedOperationRefCSImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedOperationRefCSImpl#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedOperationRefCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,14 +47,14 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 	protected NamespaceCS namespace;
 
 	/**
-	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference.
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperation()
+	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected OperationRefCS operation;
+	protected OperationRefCS element;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,8 +118,8 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationRefCS getOperation() {
-		return operation;
+	public OperationRefCS getElement() {
+		return element;
 	}
 
 	/**
@@ -125,11 +127,11 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOperation(OperationRefCS newOperation, NotificationChain msgs) {
-		OperationRefCS oldOperation = operation;
-		operation = newOperation;
+	public NotificationChain basicSetElement(OperationRefCS newElement, NotificationChain msgs) {
+		OperationRefCS oldElement = element;
+		element = newElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION, oldOperation, newOperation);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT, oldElement, newElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -140,18 +142,18 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperation(OperationRefCS newOperation) {
-		if (newOperation != operation) {
+	public void setElement(OperationRefCS newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
-			if (operation != null)
-				msgs = ((InternalEObject)operation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION, null, msgs);
-			if (newOperation != null)
-				msgs = ((InternalEObject)newOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION, null, msgs);
-			msgs = basicSetOperation(newOperation, msgs);
+			if (element != null)
+				msgs = ((InternalEObject)element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT, null, msgs);
+			if (newElement != null)
+				msgs = ((InternalEObject)newElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT, null, msgs);
+			msgs = basicSetElement(newElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION, newOperation, newOperation));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT, newElement, newElement));
 	}
 
 	/**
@@ -162,8 +164,8 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION:
-				return basicSetOperation(null, msgs);
+			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT:
+				return basicSetElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -179,8 +181,8 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__NAMESPACE:
 				if (resolve) return getNamespace();
 				return basicGetNamespace();
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION:
-				return getOperation();
+			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,8 +198,8 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)newValue);
 				return;
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION:
-				setOperation((OperationRefCS)newValue);
+			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT:
+				setElement((OperationRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,8 +216,8 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)null);
 				return;
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION:
-				setOperation((OperationRefCS)null);
+			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT:
+				setElement((OperationRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -231,10 +233,48 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 		switch (featureID) {
 			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__NAMESPACE:
 				return namespace != null;
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__OPERATION:
-				return operation != null;
+			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT:
+				return element != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (derivedFeatureID) {
+				case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (baseFeatureID) {
+				case BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_OPERATION_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getElement());
+	}
 } //QualifiedOperationRefCSImpl
