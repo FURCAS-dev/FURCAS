@@ -125,7 +125,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLibQualifiedTypeRefCSAccess().getNamespaceAssignment_0(), "rule__LibQualifiedTypeRefCS__NamespaceAssignment_0");
 					put(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeArgumentsAssignment_1_1(), "rule__LibQualifiedTypeRefCS__TypeArgumentsAssignment_1_1");
 					put(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeArgumentsAssignment_1_2_1(), "rule__LibQualifiedTypeRefCS__TypeArgumentsAssignment_1_2_1");
-					put(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeAssignment_3(), "rule__LibQualifiedTypeRefCS__TypeAssignment_3");
+					put(grammarAccess.getLibQualifiedTypeRefCSAccess().getElementAssignment_3(), "rule__LibQualifiedTypeRefCS__ElementAssignment_3");
 					put(grammarAccess.getLibTypeParameterCSAccess().getNameAssignment_0(), "rule__LibTypeParameterCS__NameAssignment_0");
 					put(grammarAccess.getLibTypeParameterCSAccess().getExtendsAssignment_1_0_1(), "rule__LibTypeParameterCS__ExtendsAssignment_1_0_1");
 					put(grammarAccess.getLibTypeParameterCSAccess().getExtendsAssignment_1_0_2_1(), "rule__LibTypeParameterCS__ExtendsAssignment_1_0_2_1");

@@ -3983,9 +3983,9 @@ rule__LibQualifiedTypeRefCS__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeAssignment_3()); }
-(rule__LibQualifiedTypeRefCS__TypeAssignment_3)
-{ after(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeAssignment_3()); }
+{ before(grammarAccess.getLibQualifiedTypeRefCSAccess().getElementAssignment_3()); }
+(rule__LibQualifiedTypeRefCS__ElementAssignment_3)
+{ after(grammarAccess.getLibQualifiedTypeRefCSAccess().getElementAssignment_3()); }
 )
 
 ;
@@ -5571,14 +5571,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__LibQualifiedTypeRefCS__TypeAssignment_3
+rule__LibQualifiedTypeRefCS__ElementAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeLibTypedRefCSParserRuleCall_3_0()); }
-	ruleLibTypedRefCS{ after(grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeLibTypedRefCSParserRuleCall_3_0()); }
+{ before(grammarAccess.getLibQualifiedTypeRefCSAccess().getElementLibTypedRefCSParserRuleCall_3_0()); }
+	ruleLibTypedRefCS{ after(grammarAccess.getLibQualifiedTypeRefCSAccess().getElementLibTypedRefCSParserRuleCall_3_0()); }
 )
 
 ;
