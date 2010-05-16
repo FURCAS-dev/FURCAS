@@ -13846,9 +13846,9 @@ rule__QualifiedTypeRefCS__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getQualifiedTypeRefCSAccess().getTypeAssignment_3()); }
-(rule__QualifiedTypeRefCS__TypeAssignment_3)
-{ after(grammarAccess.getQualifiedTypeRefCSAccess().getTypeAssignment_3()); }
+{ before(grammarAccess.getQualifiedTypeRefCSAccess().getElementAssignment_3()); }
+(rule__QualifiedTypeRefCS__ElementAssignment_3)
+{ after(grammarAccess.getQualifiedTypeRefCSAccess().getElementAssignment_3()); }
 )
 
 ;
@@ -23268,14 +23268,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__QualifiedTypeRefCS__TypeAssignment_3
+rule__QualifiedTypeRefCS__ElementAssignment_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getQualifiedTypeRefCSAccess().getTypeTypedRefCSParserRuleCall_3_0()); }
-	ruleTypedRefCS{ after(grammarAccess.getQualifiedTypeRefCSAccess().getTypeTypedRefCSParserRuleCall_3_0()); }
+{ before(grammarAccess.getQualifiedTypeRefCSAccess().getElementTypedRefCSParserRuleCall_3_0()); }
+	ruleTypedRefCS{ after(grammarAccess.getQualifiedTypeRefCSAccess().getElementTypedRefCSParserRuleCall_3_0()); }
 )
 
 ;
