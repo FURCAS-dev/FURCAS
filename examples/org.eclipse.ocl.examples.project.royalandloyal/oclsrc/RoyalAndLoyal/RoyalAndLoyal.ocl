@@ -11,7 +11,7 @@
 --------------------------------------------------------------------------------
 
 
---Uncomment the next line to use the Xtext editor in 3.0.0M7 (expect 5 errors)
+--Uncomment the next line to use the Xtext editor in 3.0.0
 --import 'RoyalAndLoyal.ecore'
 
 package RandL

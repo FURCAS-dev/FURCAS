@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLScopeProvider.java,v 1.5 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: CompleteOCLScopeProvider.java,v 1.6 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.EmptyScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
@@ -52,75 +50,75 @@ public class CompleteOCLScopeProvider extends EssentialOCLScopeProvider
 	}
 	
 	public static class CompleteOCLScopeSwitch 
-	extends CompleteOCLCSTSwitch<AbstractScopeAdapter<? extends EObject>>
-	implements AbstractScopeAdapter.ISwitch
+	extends CompleteOCLCSTSwitch<ScopeAdapter>
+	implements ScopeAdapter.Switch
 	{
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseBodyCS(BodyCS eObject) {
+		public ScopeAdapter caseBodyCS(BodyCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> caseClassifierContextDeclCS(ClassifierContextDeclCS eObject) {
+		public ScopeAdapter caseClassifierContextDeclCS(ClassifierContextDeclCS eObject) {
 			return new ClassifierContextScopeAdapter(eObject);
 		}
 	
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseCompleteOCLDocumentCS(CompleteOCLDocumentCS eObject) {
+		public ScopeAdapter caseCompleteOCLDocumentCS(CompleteOCLDocumentCS eObject) {
 			return new CompleteOCLDocumentScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseDefCS(DefCS eObject) {
+		public ScopeAdapter caseDefCS(DefCS eObject) {
 			return new DefScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseDerCS(DerCS eObject) {
+		public ScopeAdapter caseDerCS(DerCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseInitCS(InitCS eObject) {
+		public ScopeAdapter caseInitCS(InitCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseInvCS(InvCS eObject) {
+		public ScopeAdapter caseInvCS(InvCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> caseOperationContextDeclCS(OperationContextDeclCS eObject) {
+		public ScopeAdapter caseOperationContextDeclCS(OperationContextDeclCS eObject) {
 			return new OperationContextScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> casePackageDeclarationCS(PackageDeclarationCS eObject) {
+		public ScopeAdapter casePackageDeclarationCS(PackageDeclarationCS eObject) {
 			return new PackageDeclarationScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> casePostCS(PostCS eObject) {
+		public ScopeAdapter casePostCS(PostCS eObject) {
 			return new PostScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> casePreCS(PreCS eObject) {
+		public ScopeAdapter casePreCS(PreCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> casePropertyContextDeclCS(PropertyContextDeclCS eObject) {
+		public ScopeAdapter casePropertyContextDeclCS(PropertyContextDeclCS eObject) {
 			return new PropertyContextScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ElementCS) eObject);
+		public ScopeAdapter defaultCase(EObject eObject) {
+			return new EmptyScopeAdapter(eObject);
 		}
 
-		public AbstractScopeAdapter<?> doInPackageSwitch(EObject eObject) {
+		public ScopeAdapter doInPackageSwitch(EObject eObject) {
 			return doSwitch(eObject.eClass(), eObject);
 		}
 	}

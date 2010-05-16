@@ -1966,9 +1966,9 @@ ruleQualifiedClassifierRefCS returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getQualifiedClassifierRefCSAccess().getClassifierClassifierRefCSParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getQualifiedClassifierRefCSAccess().getElementClassifierRefCSParserRuleCall_2_0(), currentNode); 
 	    }
-		lv_classifier_2_0=ruleClassifierRefCS		{
+		lv_element_2_0=ruleClassifierRefCS		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getQualifiedClassifierRefCSRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -1976,8 +1976,8 @@ ruleQualifiedClassifierRefCS returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"classifier",
-	        		lv_classifier_2_0, 
+	       			"element",
+	        		lv_element_2_0, 
 	        		"ClassifierRefCS", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -2036,9 +2036,9 @@ ruleQualifiedOperationRefCS returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getQualifiedOperationRefCSAccess().getOperationOperationRefCSParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getQualifiedOperationRefCSAccess().getElementOperationRefCSParserRuleCall_2_0(), currentNode); 
 	    }
-		lv_operation_2_0=ruleOperationRefCS		{
+		lv_element_2_0=ruleOperationRefCS		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getQualifiedOperationRefCSRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -2046,8 +2046,8 @@ ruleQualifiedOperationRefCS returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"operation",
-	        		lv_operation_2_0, 
+	       			"element",
+	        		lv_element_2_0, 
 	        		"OperationRefCS", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -2106,9 +2106,9 @@ ruleQualifiedPropertyRefCS returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getQualifiedPropertyRefCSAccess().getFeaturePropertyRefCSParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getQualifiedPropertyRefCSAccess().getElementPropertyRefCSParserRuleCall_2_0(), currentNode); 
 	    }
-		lv_feature_2_0=rulePropertyRefCS		{
+		lv_element_2_0=rulePropertyRefCS		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getQualifiedPropertyRefCSRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -2116,8 +2116,8 @@ ruleQualifiedPropertyRefCS returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"feature",
-	        		lv_feature_2_0, 
+	       			"element",
+	        		lv_element_2_0, 
 	        		"PropertyRefCS", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -2176,9 +2176,9 @@ ruleQualifiedPackageRefCS returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getQualifiedPackageRefCSAccess().getPackagePackageRefCSParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getQualifiedPackageRefCSAccess().getElementPackageRefCSParserRuleCall_2_0(), currentNode); 
 	    }
-		lv_package_2_0=rulePackageRefCS		{
+		lv_element_2_0=rulePackageRefCS		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getQualifiedPackageRefCSRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -2186,8 +2186,8 @@ ruleQualifiedPackageRefCS returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"package",
-	        		lv_package_2_0, 
+	       			"element",
+	        		lv_element_2_0, 
 	        		"PackageRefCS", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {

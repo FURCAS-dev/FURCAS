@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.4 2010/05/16 19:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -711,13 +711,22 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int OPERATION_CONTEXT_DECL_CS__PARAMETERS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CONTEXT_DECL_CS__RESULT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Pres</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__PRES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int OPERATION_CONTEXT_DECL_CS__PRES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Posts</b></em>' containment reference list.
@@ -726,7 +735,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__POSTS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int OPERATION_CONTEXT_DECL_CS__POSTS = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Bodies</b></em>' containment reference list.
@@ -735,7 +744,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+	int OPERATION_CONTEXT_DECL_CS__BODIES = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Operation Context Decl CS</em>' class.
@@ -744,7 +753,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 5;
+	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' containment reference.
@@ -1200,6 +1209,17 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperationContextDeclCS_Parameters();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getResult <em>Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Result</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getResult()
+	 * @see #getOperationContextDeclCS()
+	 * @generated
+	 */
+	EReference getOperationContextDeclCS_Result();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getPres <em>Pres</em>}'.
@@ -1664,6 +1684,14 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION_CONTEXT_DECL_CS__PARAMETERS = eINSTANCE.getOperationContextDeclCS_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Result</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CONTEXT_DECL_CS__RESULT = eINSTANCE.getOperationContextDeclCS_Result();
 
 		/**
 		 * The meta object literal for the '<em><b>Pres</b></em>' containment reference list feature.

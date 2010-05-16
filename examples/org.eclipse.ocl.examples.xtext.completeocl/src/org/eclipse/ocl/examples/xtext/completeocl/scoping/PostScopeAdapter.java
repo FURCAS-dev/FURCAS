@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: PostScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
+ * $Id: PostScopeAdapter.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 
 public class PostScopeAdapter extends EssentialOCLScopeAdapter<PostCS>
@@ -31,14 +31,13 @@ public class PostScopeAdapter extends EssentialOCLScopeAdapter<PostCS>
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.CONSTRAINT_CS__EXPRESSION) {
 			PostCS csPost = getTarget();
 			OperationContextDeclCS csOperation = (OperationContextDeclCS) csPost.eContainer();
-			OperationContextScopeAdapter operationScope = (OperationContextScopeAdapter) getScopeAdapter(csOperation);
-			VariableCS csResult = null; //csOperation.getResultVariable();
-			environmentView.addElement("result", csResult);		
+			environmentView.addNamedElement(csOperation.getResult(), scopeView.getBindings());		
 		}
-		return true;
+		return scopeView.getOuterScope();
 	}
 }

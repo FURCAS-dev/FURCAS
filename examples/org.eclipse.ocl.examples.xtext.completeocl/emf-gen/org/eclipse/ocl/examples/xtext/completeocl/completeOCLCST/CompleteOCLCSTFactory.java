@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactory.java,v 1.2 2010/05/03 05:58:34 ewillink Exp $
+ * $Id: CompleteOCLCSTFactory.java,v 1.3 2010/05/16 19:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -43,15 +43,6 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	PackageDeclarationCS createPackageDeclarationCS();
-
-	/**
-	 * Returns a new object of class '<em>Context Decl CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Context Decl CS</em>'.
-	 * @generated
-	 */
-	ContextDeclCS createContextDeclCS();
 
 	/**
 	 * Returns a new object of class '<em>Property Context Decl CS</em>'.
