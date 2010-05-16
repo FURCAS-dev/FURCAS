@@ -11197,12 +11197,12 @@ protected class PrimitiveTypeRefCS_NameAssignment extends AssignmentToken  {
  *
  * QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
  *   namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
- *   typeArguments+=TypeRefCS)* ">")? "::" type=TypedRefCS;
+ *   typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS;
  *
  **/
 
 // namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-// typeArguments+=TypeRefCS)* ">")? "::" type=TypedRefCS
+// typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS
 protected class QualifiedTypeRefCS_Group extends GroupToken {
 	
 	public QualifiedTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11217,7 +11217,7 @@ protected class QualifiedTypeRefCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new QualifiedTypeRefCS_TypeAssignment_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new QualifiedTypeRefCS_ElementAssignment_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -11496,16 +11496,16 @@ protected class QualifiedTypeRefCS_ColonColonKeyword_2 extends KeywordToken  {
 
 }
 
-// type=TypedRefCS
-protected class QualifiedTypeRefCS_TypeAssignment_3 extends AssignmentToken  {
+// element=TypedRefCS
+protected class QualifiedTypeRefCS_ElementAssignment_3 extends AssignmentToken  {
 	
-	public QualifiedTypeRefCS_TypeAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public QualifiedTypeRefCS_ElementAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getQualifiedTypeRefCSAccess().getTypeAssignment_3();
+		return grammarAccess.getQualifiedTypeRefCSAccess().getElementAssignment_3();
 	}
 
     @Override
@@ -11518,13 +11518,13 @@ protected class QualifiedTypeRefCS_TypeAssignment_3 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
+		if((value = eObjectConsumer.getConsumable("element",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("element");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getTypedRefCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getQualifiedTypeRefCSAccess().getTypeTypedRefCSParserRuleCall_3_0(); 
+				element = grammarAccess.getQualifiedTypeRefCSAccess().getElementTypedRefCSParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -14362,7 +14362,7 @@ protected class Model_ExpCSParserRuleCall extends RuleCallToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLetExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
@@ -17005,7 +17005,7 @@ protected class ExpCS_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLetExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
@@ -17055,7 +17055,7 @@ protected class ExpCS_ImpliesCSParserRuleCall_0 extends RuleCallToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17160,7 +17160,7 @@ protected class ImpliesCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17405,7 +17405,7 @@ protected class XorCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17650,7 +17650,7 @@ protected class OrCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getAndCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17897,7 +17897,7 @@ protected class AndCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getAndCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -18144,7 +18144,7 @@ protected class EqualityCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -18397,7 +18397,7 @@ protected class RelationalCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getRelationalCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -18660,7 +18660,7 @@ protected class AdditiveCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAdditiveCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getMultiplicativeCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 

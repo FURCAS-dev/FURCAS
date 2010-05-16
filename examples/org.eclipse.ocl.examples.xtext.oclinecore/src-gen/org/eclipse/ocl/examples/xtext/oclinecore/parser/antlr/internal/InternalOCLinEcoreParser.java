@@ -14165,7 +14165,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleQualifiedTypeRefCS
-    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5573:1: ruleQualifiedTypeRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleTypedRefCS ) ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5573:1: ruleQualifiedTypeRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_element_7_0= ruleTypedRefCS ) ) ) ;
     public final EObject ruleQualifiedTypeRefCS() throws RecognitionException {
         EObject current = null;
 
@@ -14173,17 +14173,17 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
         EObject lv_typeArguments_4_0 = null;
 
-        EObject lv_type_7_0 = null;
+        EObject lv_element_7_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5578:6: ( ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleTypedRefCS ) ) ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:1: ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleTypedRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5578:6: ( ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_element_7_0= ruleTypedRefCS ) ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:1: ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_element_7_0= ruleTypedRefCS ) ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:1: ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleTypedRefCS ) ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:2: ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_type_7_0= ruleTypedRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:1: ( ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_element_7_0= ruleTypedRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:2: ( ( ruleIdentifier ) ) ( '<' ( (lv_typeArguments_2_0= ruleTypeRefCS ) ) ( ',' ( (lv_typeArguments_4_0= ruleTypeRefCS ) ) )* '>' )? '::' ( (lv_element_7_0= ruleTypedRefCS ) )
             {
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5579:2: ( ( ruleIdentifier ) )
             // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5580:1: ( ruleIdentifier )
@@ -14369,19 +14369,19 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                       createLeafNode(grammarAccess.getQualifiedTypeRefCSAccess().getColonColonKeyword_2(), null); 
                   
             }
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5662:1: ( (lv_type_7_0= ruleTypedRefCS ) )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5663:1: (lv_type_7_0= ruleTypedRefCS )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5662:1: ( (lv_element_7_0= ruleTypedRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5663:1: (lv_element_7_0= ruleTypedRefCS )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5663:1: (lv_type_7_0= ruleTypedRefCS )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5664:3: lv_type_7_0= ruleTypedRefCS
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5663:1: (lv_element_7_0= ruleTypedRefCS )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:5664:3: lv_element_7_0= ruleTypedRefCS
             {
             if ( backtracking==0 ) {
                
-              	        currentNode=createCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getTypeTypedRefCSParserRuleCall_3_0(), currentNode); 
+              	        currentNode=createCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getElementTypedRefCSParserRuleCall_3_0(), currentNode); 
               	    
             }
             pushFollow(FollowSets000.FOLLOW_ruleTypedRefCS_in_ruleQualifiedTypeRefCS9494);
-            lv_type_7_0=ruleTypedRefCS();
+            lv_element_7_0=ruleTypedRefCS();
             _fsp--;
             if (failed) return current;
             if ( backtracking==0 ) {
@@ -14393,8 +14393,8 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
               	        try {
               	       		set(
               	       			current, 
-              	       			"type",
-              	        		lv_type_7_0, 
+              	       			"element",
+              	        		lv_element_7_0, 
               	        		"TypedRefCS", 
               	        		currentNode);
               	        } catch (ValueConverterException vce) {

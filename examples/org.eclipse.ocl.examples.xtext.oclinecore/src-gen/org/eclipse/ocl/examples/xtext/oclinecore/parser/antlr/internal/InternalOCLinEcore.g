@@ -5662,9 +5662,9 @@ ruleQualifiedTypeRefCS returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getTypeTypedRefCSParserRuleCall_3_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getElementTypedRefCSParserRuleCall_3_0(), currentNode); 
 	    }
-		lv_type_7_0=ruleTypedRefCS		{
+		lv_element_7_0=ruleTypedRefCS		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getQualifiedTypeRefCSRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -5672,8 +5672,8 @@ ruleQualifiedTypeRefCS returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"type",
-	        		lv_type_7_0, 
+	       			"element",
+	        		lv_element_7_0, 
 	        		"TypedRefCS", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {

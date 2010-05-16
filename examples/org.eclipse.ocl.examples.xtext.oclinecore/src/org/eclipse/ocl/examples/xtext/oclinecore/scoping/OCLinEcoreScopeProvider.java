@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.6 2010/05/09 17:08:27 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.7 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.EmptyScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -50,65 +49,65 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 	}
 	
 	public static class OCLinEcoreScopeSwitch 
-		extends OCLinEcoreCSTSwitch<AbstractScopeAdapter<? extends EObject>>
-		implements EssentialOCLScopeAdapter.ISwitch
+		extends OCLinEcoreCSTSwitch<ScopeAdapter>
+		implements ScopeAdapter.Switch
 	{
 		@Override
-		public EmptyScopeAdapter caseAnnotationCS(AnnotationCS eObject) {
+		public ScopeAdapter caseAnnotationCS(AnnotationCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseConstraintCS(ConstraintCS eObject) {
+		public ScopeAdapter caseConstraintCS(ConstraintCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public EmptyScopeAdapter caseDataTypeCS(DataTypeCS eObject) {
+		public ScopeAdapter caseDataTypeCS(DataTypeCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> caseEnumCS(EnumCS eObject) {
+		public ScopeAdapter caseEnumCS(EnumCS eObject) {
 			return new EnumScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseOCLinEcoreAttributeCS(OCLinEcoreAttributeCS eObject) {
+		public ScopeAdapter caseOCLinEcoreAttributeCS(OCLinEcoreAttributeCS eObject) {
 			return new EmptyScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcoreClassCS(OCLinEcoreClassCS eObject) {
+		public ScopeAdapter caseOCLinEcoreClassCS(OCLinEcoreClassCS eObject) {
 			return new ClassScopeAdapter(eObject);
 		}
 
 		@Override
-		public OCLinEcoreDocumentScopeAdapter caseOCLinEcoreDocumentCS(OCLinEcoreDocumentCS eObject) {
+		public ScopeAdapter caseOCLinEcoreDocumentCS(OCLinEcoreDocumentCS eObject) {
 			return new OCLinEcoreDocumentScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcoreOperationCS(OCLinEcoreOperationCS eObject) {
+		public ScopeAdapter caseOCLinEcoreOperationCS(OCLinEcoreOperationCS eObject) {
 			return new OperationScopeAdapter(eObject);
 		}
 
 		@Override
-		public EssentialOCLScopeAdapter<? extends EObject> caseOCLinEcorePackageCS(OCLinEcorePackageCS eObject) {
+		public ScopeAdapter caseOCLinEcorePackageCS(OCLinEcorePackageCS eObject) {
 			return new OCLinEcorePackageScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseOCLinEcoreReferenceCS(OCLinEcoreReferenceCS eObject) {
+		public ScopeAdapter caseOCLinEcoreReferenceCS(OCLinEcoreReferenceCS eObject) {
 			return new OCLinEcoreReferenceScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ElementCS) eObject);
+		public ScopeAdapter defaultCase(EObject eObject) {
+			return new DefaultScopeAdapter(eObject);
 		}
 
-		public AbstractScopeAdapter<?> doInPackageSwitch(EObject eObject) {
+		public ScopeAdapter doInPackageSwitch(EObject eObject) {
 			return doSwitch(eObject.eClass(), eObject);
 		}
 	}

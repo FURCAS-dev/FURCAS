@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.8 2010/05/09 14:28:52 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.9 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -52,7 +51,7 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS))
 			return ((ImportCS) context).getUri();
 		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
-			AbstractDocumentScopeAdapter<?> documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter((ElementCS)context);
+			AbstractDocumentScopeAdapter<?> documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(context);
 			List<String> contextPath = getPath(documentScopeAdapter, context);
 			List<String> objectPath = getPath(documentScopeAdapter, object);
 			return divergentPath(objectPath, contextPath);					// FIXME Check cast

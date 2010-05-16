@@ -12,18 +12,19 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.4 2010/05/09 17:08:27 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.5 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
@@ -37,52 +38,51 @@ public class ClassScopeAdapter extends EssentialOCLScopeAdapter<OCLinEcoreClassC
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__SUPER_TYPES) {
-			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
-		}
-		else if (containmentFeature == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__CONFORMS_TO) {
-			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		TypeBindingsCS bindings = scopeView.getBindings();
+		OCLinEcoreClassCS target = getTarget();
+		if ((containmentFeature == BaseCSTPackage.Literals.CLASS_CS__SUPER_TYPES)
+		 || (containmentFeature == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__CONFORMS_TO)) {
+			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters(), bindings);
+			return scopeView.getOuterScope();
 		}
 		else {
-			OCLinEcoreClassCS target = getTarget();
-			environmentView.addNamedElements(OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_OPERATION_CS, target.getOperations());
-			environmentView.addNamedElements(OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_STRUCTURAL_FEATURE_CS, target.getStructuralFeatures());
-			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters());
-			addInheritedContents(environmentView, target); // FIXME Use getConformsTo
+			environmentView.addNamedElements(OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_OPERATION_CS, target.getOperations(), bindings);
+			environmentView.addNamedElements(OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_STRUCTURAL_FEATURE_CS, target.getStructuralFeatures(), bindings);
+			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters(), bindings);
+			addInheritedContents(environmentView, target, scopeView); // FIXME Use getConformsTo
+			return scopeView.getOuterScope();
 		}
-		return true;
 	}
 
-	public void addInheritedContents(EnvironmentView environmentView, OCLinEcoreClassCS target) {
+	public void addInheritedContents(EnvironmentView environmentView, OCLinEcoreClassCS target, ScopeView scopeView) {
 		EList<TypedRefCS> superTypes = target.getSuperTypes();
 		if (superTypes.size() > 0) {
 			for (TypedRefCS csSuperType : superTypes) {
-				environmentView.addElementsOfScope(csSuperType);
+				environmentView.addElementsOfScope(csSuperType, scopeView);
 			}
 		}
 		else {
-			ClassCS libType = getLibType("Classifier");
-			addLibContents(environmentView, libType);
+			ClassifierCS libType = getLibraryClassifierType();
+			addLibContents(environmentView, libType, scopeView);
 		}
 	}
 
-	public void addLibContents(EnvironmentView environmentView, ElementCS libType) {
+	public void addLibContents(EnvironmentView environmentView, ModelElementCS libType, ScopeView scopeView) {
 		if (libType == null) {
 			return;
 		}
-		environmentView.addElementsOfScope(libType);
+		environmentView.addElementsOfScope(libType, scopeView);
 		if (libType instanceof LibClassCS) {
 			for (TypedRefCS csSuperType : ((LibClassCS) libType).getConformsTo()) {
-				addLibContents(environmentView, csSuperType);
+				addLibContents(environmentView, csSuperType, scopeView);
 			}
 		}
 	}
-
+	
 	@Override
-	public TypeCS getType() {
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		return getTarget();
 	}
 }

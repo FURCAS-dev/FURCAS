@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: PostconditionScopeAdapter.java,v 1.2 2010/05/09 17:08:27 ewillink Exp $
+ * $Id: PostconditionScopeAdapter.java,v 1.3 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
@@ -31,13 +32,14 @@ public class PostconditionScopeAdapter extends EssentialOCLScopeAdapter<Postcond
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == OCLinEcoreCSTPackage.Literals.CONSTRAINT_CS__EXPR_VALUE) {
 			PostconditionCS csPost = getTarget();
 			OperationCS csOperation = (OperationCS) csPost.eContainer();
 			VariableCS csResult = null; //csOperation.getResultVariable();
-			environmentView.addElement("result", csResult);		
+			environmentView.addElement("result", csResult, scopeView.getBindings());		
 		}
-		return true;
+		return scopeView.getOuterScope();
 	}
 }
