@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibClassCSImpl.java,v 1.1 2010/05/03 05:30:20 ewillink Exp $
+ * $Id: LibClassCSImpl.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -27,11 +27,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
@@ -43,10 +39,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getSuperTypes <em>Super Types</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getOperations <em>Operations</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getStructuralFeatures <em>Structural Features</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getConformsTo <em>Conforms To</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getIterations <em>Iterations</em>}</li>
@@ -55,47 +47,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  *
  * @generated
  */
-public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
-	/**
-	 * The cached value of the '{@link #getTypeParameters() <em>Type Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeParameterCS> typeParameters;
-
-	/**
-	 * The cached value of the '{@link #getSuperTypes() <em>Super Types</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSuperTypes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypedRefCS> superTypes;
-
-	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OperationCS> operations;
-
-	/**
-	 * The cached value of the '{@link #getStructuralFeatures() <em>Structural Features</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStructuralFeatures()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<StructuralFeatureCS> structuralFeatures;
-
+public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 	/**
 	 * The cached value of the '{@link #getClass_() <em>Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -143,72 +95,6 @@ public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
 	@Override
 	protected EClass eStaticClass() {
 		return OCLstdlibCSTPackage.Literals.LIB_CLASS_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TypeParameterCS> getTypeParameters() {
-		if (typeParameters == null) {
-			typeParameters = new EObjectContainmentEList<TypeParameterCS>(TypeParameterCS.class, this, OCLstdlibCSTPackage.LIB_CLASS_CS__TYPE_PARAMETERS);
-		}
-		return typeParameters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TypedRefCS> getSuperTypes() {
-		if (superTypes == null) {
-			superTypes = new EObjectContainmentEList.Unsettable<TypedRefCS>(TypedRefCS.class, this, OCLstdlibCSTPackage.LIB_CLASS_CS__SUPER_TYPES);
-		}
-		return superTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetSuperTypes() {
-		if (superTypes != null) ((InternalEList.Unsettable<?>)superTypes).unset();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSuperTypes() {
-		return superTypes != null && ((InternalEList.Unsettable<?>)superTypes).isSet();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OperationCS> getOperations() {
-		if (operations == null) {
-			operations = new EObjectContainmentEList<OperationCS>(OperationCS.class, this, OCLstdlibCSTPackage.LIB_CLASS_CS__OPERATIONS);
-		}
-		return operations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<StructuralFeatureCS> getStructuralFeatures() {
-		if (structuralFeatures == null) {
-			structuralFeatures = new EObjectContainmentEList<StructuralFeatureCS>(StructuralFeatureCS.class, this, OCLstdlibCSTPackage.LIB_CLASS_CS__STRUCTURAL_FEATURES);
-		}
-		return structuralFeatures;
 	}
 
 	/**
@@ -264,14 +150,6 @@ public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__TYPE_PARAMETERS:
-				return ((InternalEList<?>)getTypeParameters()).basicRemove(otherEnd, msgs);
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__SUPER_TYPES:
-				return ((InternalEList<?>)getSuperTypes()).basicRemove(otherEnd, msgs);
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__OPERATIONS:
-				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__STRUCTURAL_FEATURES:
-				return ((InternalEList<?>)getStructuralFeatures()).basicRemove(otherEnd, msgs);
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:
 				return ((InternalEList<?>)getConformsTo()).basicRemove(otherEnd, msgs);
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS:
@@ -288,14 +166,6 @@ public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__TYPE_PARAMETERS:
-				return getTypeParameters();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__SUPER_TYPES:
-				return getSuperTypes();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__OPERATIONS:
-				return getOperations();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__STRUCTURAL_FEATURES:
-				return getStructuralFeatures();
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CLASS:
 				return getClass_();
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:
@@ -315,22 +185,6 @@ public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__TYPE_PARAMETERS:
-				getTypeParameters().clear();
-				getTypeParameters().addAll((Collection<? extends TypeParameterCS>)newValue);
-				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__SUPER_TYPES:
-				getSuperTypes().clear();
-				getSuperTypes().addAll((Collection<? extends TypedRefCS>)newValue);
-				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__OPERATIONS:
-				getOperations().clear();
-				getOperations().addAll((Collection<? extends OperationCS>)newValue);
-				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__STRUCTURAL_FEATURES:
-				getStructuralFeatures().clear();
-				getStructuralFeatures().addAll((Collection<? extends StructuralFeatureCS>)newValue);
-				return;
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CLASS:
 				setClass((Class<?>)newValue);
 				return;
@@ -354,18 +208,6 @@ public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__TYPE_PARAMETERS:
-				getTypeParameters().clear();
-				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__SUPER_TYPES:
-				unsetSuperTypes();
-				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__OPERATIONS:
-				getOperations().clear();
-				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__STRUCTURAL_FEATURES:
-				getStructuralFeatures().clear();
-				return;
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CLASS:
 				setClass((Class<?>)null);
 				return;
@@ -387,14 +229,6 @@ public class LibClassCSImpl extends NamedElementCSImpl implements LibClassCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__TYPE_PARAMETERS:
-				return typeParameters != null && !typeParameters.isEmpty();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__SUPER_TYPES:
-				return isSetSuperTypes();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__OPERATIONS:
-				return operations != null && !operations.isEmpty();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__STRUCTURAL_FEATURES:
-				return structuralFeatures != null && !structuralFeatures.isEmpty();
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CLASS:
 				return class_ != null;
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:

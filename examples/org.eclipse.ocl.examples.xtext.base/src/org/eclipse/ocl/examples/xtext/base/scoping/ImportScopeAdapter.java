@@ -12,38 +12,45 @@
  *
  * </copyright>
  *
- * $Id: ImportScopeAdapter.java,v 1.2 2010/05/09 17:08:31 ewillink Exp $
+ * $Id: ImportScopeAdapter.java,v 1.3 2010/05/16 19:18:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ImportScopeAdapter extends AbstractScopeAdapter<ImportCS>
 {
 	private URI uri = null;
-	private ElementCS importedElement = null;
+	private EObject importedElement = null;
 	
 	public ImportScopeAdapter(ImportCS csElement) {
 		super(csElement);
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		environmentView.addElementsOfScope(importedElement);
-		return false;
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		if (containmentFeature == null) {
+			environmentView.addElementsOfScope(importedElement, scopeView);
+		}
+		else {
+			environmentView.addElementsOfScope(importedElement, scopeView);
+		}
+		return scopeView.getOuterScope();
 	}
 
-	public void setImportedElement(URI uri, ElementCS importedElement) {
+	public void setImportedElement(URI uri, EObject importedElement) {
 		this.uri = uri;
 		this.importedElement = importedElement;
 	}
 
-	public ElementCS getImportedElement() {
+	public EObject getImportedElement() {
 		return importedElement;
 	}
 

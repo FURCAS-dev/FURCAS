@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreClassCSImpl.java,v 1.1 2010/05/03 05:44:37 ewillink Exp $
+ * $Id: OCLinEcoreClassCSImpl.java,v 1.2 2010/05/16 19:22:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
@@ -28,15 +28,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
@@ -48,7 +46,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
@@ -60,17 +57,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS
  *
  * @generated
  */
-public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEcoreClassCS {
-	/**
-	 * The cached value of the '{@link #getTypeParameters() <em>Type Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeParameterCS> typeParameters;
-
+public class OCLinEcoreClassCSImpl extends ClassifierCSImpl implements OCLinEcoreClassCS {
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -167,18 +154,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	@Override
 	protected EClass eStaticClass() {
 		return OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CLASS_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TypeParameterCS> getTypeParameters() {
-		if (typeParameters == null) {
-			typeParameters = new EObjectContainmentEList<TypeParameterCS>(TypeParameterCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS);
-		}
-		return typeParameters;
 	}
 
 	/**
@@ -313,8 +288,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
-				return ((InternalEList<?>)getTypeParameters()).basicRemove(otherEnd, msgs);
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__SUPER_TYPES:
@@ -335,8 +308,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
-				return getTypeParameters();
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
 				return getConstraints();
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME:
@@ -362,10 +333,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
-				getTypeParameters().clear();
-				getTypeParameters().addAll((Collection<? extends TypeParameterCS>)newValue);
-				return;
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
 				getConstraints().clear();
 				getConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
@@ -401,9 +368,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
-				getTypeParameters().clear();
-				return;
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
 				getConstraints().clear();
 				return;
@@ -434,8 +398,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS:
-				return typeParameters != null && !typeParameters.isEmpty();
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
 			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__INSTANCE_CLASS_NAME:
@@ -459,11 +421,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == TypeCS.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == NamespaceCS.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -487,11 +444,6 @@ public class OCLinEcoreClassCSImpl extends NamedElementCSImpl implements OCLinEc
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == TypeCS.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == NamespaceCS.class) {
 			switch (baseFeatureID) {
 				default: return -1;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.3 2010/05/16 19:20:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -72,14 +72,14 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	OCLstdlibCSTPackage eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl <em>Lib Class CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassifierCSImpl <em>Lib Classifier CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibClassCS()
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassifierCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibClassifierCS()
 	 * @generated
 	 */
-	int LIB_CLASS_CS = 0;
+	int LIB_CLASSIFIER_CS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -88,7 +88,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__ANNOTATIONS = BaseCSTPackage.CLASS_CS__ANNOTATIONS;
+	int LIB_CLASSIFIER_CS__ANNOTATIONS = BaseCSTPackage.CLASS_CS__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Original Object</b></em>' reference.
@@ -97,7 +97,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__ORIGINAL_OBJECT = BaseCSTPackage.CLASS_CS__ORIGINAL_OBJECT;
+	int LIB_CLASSIFIER_CS__ORIGINAL_OBJECT = BaseCSTPackage.CLASS_CS__ORIGINAL_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -106,7 +106,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CLASS_CS__ORIGINAL_XMI_ID;
+	int LIB_CLASSIFIER_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -115,7 +115,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__NAME = BaseCSTPackage.CLASS_CS__NAME;
+	int LIB_CLASSIFIER_CS__NAME = BaseCSTPackage.CLASS_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
@@ -124,7 +124,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__TYPE_PARAMETERS = BaseCSTPackage.CLASS_CS__TYPE_PARAMETERS;
+	int LIB_CLASSIFIER_CS__TYPE_PARAMETERS = BaseCSTPackage.CLASS_CS__TYPE_PARAMETERS;
 
 	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
@@ -133,7 +133,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__SUPER_TYPES = BaseCSTPackage.CLASS_CS__SUPER_TYPES;
+	int LIB_CLASSIFIER_CS__SUPER_TYPES = BaseCSTPackage.CLASS_CS__SUPER_TYPES;
 
 	/**
 	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
@@ -142,7 +142,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__OPERATIONS = BaseCSTPackage.CLASS_CS__OPERATIONS;
+	int LIB_CLASSIFIER_CS__OPERATIONS = BaseCSTPackage.CLASS_CS__OPERATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
@@ -151,7 +151,207 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__STRUCTURAL_FEATURES = BaseCSTPackage.CLASS_CS__STRUCTURAL_FEATURES;
+	int LIB_CLASSIFIER_CS__STRUCTURAL_FEATURES = BaseCSTPackage.CLASS_CS__STRUCTURAL_FEATURES;
+
+	/**
+	 * The number of structural features of the '<em>Lib Classifier CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASSIFIER_CS_FEATURE_COUNT = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibBoundClassCSImpl <em>Lib Bound Class CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibBoundClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibBoundClassCS()
+	 * @generated
+	 */
+	int LIB_BOUND_CLASS_CS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__ANNOTATIONS = LIB_CLASSIFIER_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__ORIGINAL_OBJECT = LIB_CLASSIFIER_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__ORIGINAL_XMI_ID = LIB_CLASSIFIER_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__NAME = LIB_CLASSIFIER_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__TYPE_PARAMETERS = LIB_CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__SUPER_TYPES = LIB_CLASSIFIER_CS__SUPER_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__OPERATIONS = LIB_CLASSIFIER_CS__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__STRUCTURAL_FEATURES = LIB_CLASSIFIER_CS__STRUCTURAL_FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__BINDINGS = LIB_CLASSIFIER_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Binds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__BINDS = LIB_CLASSIFIER_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Lib Bound Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS_FEATURE_COUNT = LIB_CLASSIFIER_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl <em>Lib Class CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibClassCS()
+	 * @generated
+	 */
+	int LIB_CLASS_CS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__ANNOTATIONS = LIB_CLASSIFIER_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__ORIGINAL_OBJECT = LIB_CLASSIFIER_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__ORIGINAL_XMI_ID = LIB_CLASSIFIER_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__NAME = LIB_CLASSIFIER_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__TYPE_PARAMETERS = LIB_CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__SUPER_TYPES = LIB_CLASSIFIER_CS__SUPER_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OPERATIONS = LIB_CLASSIFIER_CS__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__STRUCTURAL_FEATURES = LIB_CLASSIFIER_CS__STRUCTURAL_FEATURES;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
@@ -160,7 +360,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__CLASS = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 0;
+	int LIB_CLASS_CS__CLASS = LIB_CLASSIFIER_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Conforms To</b></em>' containment reference list.
@@ -169,7 +369,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__CONFORMS_TO = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 1;
+	int LIB_CLASS_CS__CONFORMS_TO = LIB_CLASSIFIER_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Iterations</b></em>' containment reference list.
@@ -178,7 +378,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__ITERATIONS = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 2;
+	int LIB_CLASS_CS__ITERATIONS = LIB_CLASSIFIER_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Lib Class CS</em>' class.
@@ -187,7 +387,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS_FEATURE_COUNT = BaseCSTPackage.CLASS_CS_FEATURE_COUNT + 3;
+	int LIB_CLASS_CS_FEATURE_COUNT = LIB_CLASSIFIER_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibDocumentCSImpl <em>Lib Document CS</em>}' class.
@@ -197,7 +397,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibDocumentCS()
 	 * @generated
 	 */
-	int LIB_DOCUMENT_CS = 1;
+	int LIB_DOCUMENT_CS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -254,6 +454,24 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	int LIB_DOCUMENT_CS__LIBRARIES = BaseCSTPackage.DOCUMENT_CS__LIBRARIES;
 
 	/**
+	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_DOCUMENT_CS__BOUND_CLASSIFIERS = BaseCSTPackage.DOCUMENT_CS__BOUND_CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_DOCUMENT_CS__BOUND_OPERATIONS = BaseCSTPackage.DOCUMENT_CS__BOUND_OPERATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,7 +497,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibIterationCS()
 	 * @generated
 	 */
-	int LIB_ITERATION_CS = 2;
+	int LIB_ITERATION_CS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -424,7 +642,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibOperationCS()
 	 * @generated
 	 */
-	int LIB_OPERATION_CS = 3;
+	int LIB_OPERATION_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -569,7 +787,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibPackageCS()
 	 * @generated
 	 */
-	int LIB_PACKAGE_CS = 4;
+	int LIB_PACKAGE_CS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -660,7 +878,7 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibPropertyCS()
 	 * @generated
 	 */
-	int LIB_PROPERTY_CS = 5;
+	int LIB_PROPERTY_CS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -781,6 +999,16 @@ public interface OCLstdlibCSTPackage extends EPackage {
 
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS <em>Lib Bound Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Lib Bound Class CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS
+	 * @generated
+	 */
+	EClass getLibBoundClassCS();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS <em>Lib Class CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -822,6 +1050,16 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLibClassCS_Iterations();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS <em>Lib Classifier CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Lib Classifier CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS
+	 * @generated
+	 */
+	EClass getLibClassifierCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS <em>Lib Document CS</em>}'.
@@ -940,6 +1178,16 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibBoundClassCSImpl <em>Lib Bound Class CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibBoundClassCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibBoundClassCS()
+		 * @generated
+		 */
+		EClass LIB_BOUND_CLASS_CS = eINSTANCE.getLibBoundClassCS();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl <em>Lib Class CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -972,6 +1220,16 @@ public interface OCLstdlibCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIB_CLASS_CS__ITERATIONS = eINSTANCE.getLibClassCS_Iterations();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassifierCSImpl <em>Lib Classifier CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassifierCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTPackageImpl#getLibClassifierCS()
+		 * @generated
+		 */
+		EClass LIB_CLASSIFIER_CS = eINSTANCE.getLibClassifierCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibDocumentCSImpl <em>Lib Document CS</em>}' class.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.3 2010/05/03 05:38:16 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -736,13 +736,40 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int PATH_NAME_EXP_CS = 17;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_EXP_CS__ANNOTATIONS = NAME_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_EXP_CS__ORIGINAL_OBJECT = NAME_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_EXP_CS__ORIGINAL_XMI_ID = NAME_EXP_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_EXP_CS__NAMESPACE = NAME_EXP_CS_FEATURE_COUNT + 0;
+	int PATH_NAME_EXP_CS__NAMESPACE = NAME_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' containment reference.
@@ -751,7 +778,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_EXP_CS__ELEMENT = NAME_EXP_CS_FEATURE_COUNT + 1;
+	int PATH_NAME_EXP_CS__ELEMENT = NAME_EXP_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Path Name Exp CS</em>' class.
@@ -760,7 +787,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_EXP_CS_FEATURE_COUNT = NAME_EXP_CS_FEATURE_COUNT + 2;
+	int PATH_NAME_EXP_CS_FEATURE_COUNT = NAME_EXP_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.PrefixExpCSImpl <em>Prefix Exp CS</em>}' class.
@@ -1196,28 +1223,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPathNameExpCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS#getNamespace <em>Namespace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Namespace</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS#getNamespace()
-	 * @see #getPathNameExpCS()
-	 * @generated
-	 */
-	EReference getPathNameExpCS_Namespace();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS#getElement()
-	 * @see #getPathNameExpCS()
-	 * @generated
-	 */
-	EReference getPathNameExpCS_Element();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS <em>Prefix Exp CS</em>}'.
@@ -1888,22 +1893,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PATH_NAME_EXP_CS = eINSTANCE.getPathNameExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PATH_NAME_EXP_CS__NAMESPACE = eINSTANCE.getPathNameExpCS_Namespace();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PATH_NAME_EXP_CS__ELEMENT = eINSTANCE.getPathNameExpCS_Element();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.PrefixExpCSImpl <em>Prefix Exp CS</em>}' class.

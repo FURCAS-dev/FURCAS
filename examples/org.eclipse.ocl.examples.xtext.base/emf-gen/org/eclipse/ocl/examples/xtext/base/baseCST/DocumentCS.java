@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DocumentCS.java,v 1.1 2010/05/03 05:24:49 ewillink Exp $
+ * $Id: DocumentCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -30,6 +30,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getLibraries <em>Libraries</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getBoundClassifiers <em>Bound Classifiers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getBoundOperations <em>Bound Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,4 +72,36 @@ public interface DocumentCS extends NamespaceCS {
 	 * @generated
 	 */
 	EList<LibraryCS> getLibraries();
+
+	/**
+	 * Returns the value of the '<em><b>Bound Classifiers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bound Classifiers</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bound Classifiers</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getDocumentCS_BoundClassifiers()
+	 * @model containment="true" transient="true"
+	 * @generated
+	 */
+	EList<BoundClassifierCS> getBoundClassifiers();
+
+	/**
+	 * Returns the value of the '<em><b>Bound Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundOperationCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bound Operations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bound Operations</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getDocumentCS_BoundOperations()
+	 * @model containment="true" transient="true"
+	 * @generated
+	 */
+	EList<BoundOperationCS> getBoundOperations();
 } // DocumentCS

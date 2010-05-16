@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSImpl.java,v 1.1 2010/05/03 05:37:42 ewillink Exp $
+ * $Id: NameExpCSImpl.java,v 1.2 2010/05/16 19:19:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 
@@ -49,5 +50,12 @@ public abstract class NameExpCSImpl extends TypeExpCSImpl implements NameExpCS {
 	protected EClass eStaticClass() {
 		return EssentialOCLCSTPackage.Literals.NAME_EXP_CS;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract NamedElementCS getNamedElement();
 
 } //NamedElementRefCSImpl

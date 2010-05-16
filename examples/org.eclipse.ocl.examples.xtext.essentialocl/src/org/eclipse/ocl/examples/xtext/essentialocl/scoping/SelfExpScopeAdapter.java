@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: SelfExpScopeAdapter.java,v 1.2 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: SelfExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -30,21 +32,21 @@ public class SelfExpScopeAdapter extends EssentialOCLScopeAdapter<SelfExpCS>
 	}
 
 	@Override
-	public TypeCS getType() {
-		IScope scope = getExclusiveScopeAccessor(null);
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
+		IScope scope = getOuterScopeView(null, bindings);
 		IEObjectDescription selfDescription = scope.getContentByName("self");
 		if (selfDescription == null) {
 			return null;
 		}
 		EObject selfObject = selfDescription.getEObjectOrProxy();
-		AbstractScopeAdapter<?> selfScopeAdapter = getScopeAdapter(selfObject);
+		ScopeAdapter selfScopeAdapter = getScopeAdapter(selfObject);
 		if (selfScopeAdapter == null) {
 			return null;
 		}
-		TypeCS type = selfScopeAdapter.getType();
+		TypeCS type = selfScopeAdapter.getSynthesizedType(bindings);
 		if (type == null) {
 			return null;
 		}
-		return getLibType(type);
+		return getLibraryType(type, bindings);
 	}
 }

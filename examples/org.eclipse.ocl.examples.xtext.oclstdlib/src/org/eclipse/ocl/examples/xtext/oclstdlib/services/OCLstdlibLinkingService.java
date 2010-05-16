@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLinkingService.java,v 1.3 2010/05/09 10:29:25 ewillink Exp $
+ * $Id: OCLstdlibLinkingService.java,v 1.4 2010/05/16 19:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -21,7 +21,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
@@ -42,17 +43,21 @@ public class OCLstdlibLinkingService extends DefaultLinkingService
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
-		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(context);
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
 		if (!scopeAdapter.isUnresolvable()) {
 			String text = getText(node);
 			if (text != null) {			
 				IScope scope = getScope(context, ref);
 				if (scope != null) {
+//					System.out.println("Lookup " + text);
 					IEObjectDescription eObjectDescription = scope.getContentByName(text);
 					if (eObjectDescription != null) {
 						EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
+//						System.out.println("Lookup " + text + " = " + eObjectOrProxy);
 						return Collections.singletonList(eObjectOrProxy);
 					}
+//					System.out.println("Lookup " + text + " failed");
+//					eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
 				}
 			}
 			scopeAdapter.setUnresolvable();

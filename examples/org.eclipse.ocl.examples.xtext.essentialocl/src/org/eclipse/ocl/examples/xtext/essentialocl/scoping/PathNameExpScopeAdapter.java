@@ -12,39 +12,25 @@
  *
  * </copyright>
  *
- * $Id: PathNameExpScopeAdapter.java,v 1.5 2010/05/09 17:08:29 ewillink Exp $
+ * $Id: PathNameExpScopeAdapter.java,v 1.6 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.QualifiedRefScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS;
 
-public class PathNameExpScopeAdapter extends AbstractScopeAdapter<PathNameExpCS>
+public class PathNameExpScopeAdapter extends QualifiedRefScopeAdapter<PathNameExpCS>
 {
 	public PathNameExpScopeAdapter(PathNameExpCS csElement) {
 		super(csElement);
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {			
-		}
-		else {
-			PathNameExpCS target = getTarget();
-			AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(target.getNamespace());
-			if (scopeAdapter != null) {
-				scopeAdapter.getInclusiveInheritedContents(environmentView);
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public TypeCS getType() {
-		AbstractScopeAdapter<?> scopeAdapter = getScopeAdapter(getTarget().getElement());
-		return scopeAdapter != null ? scopeAdapter.getType() : null;
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
+		ScopeAdapter scopeAdapter = getScopeAdapter(getTarget().getElement());
+		return scopeAdapter != null ? scopeAdapter.getSynthesizedType(bindings) : null;
 	}
 }

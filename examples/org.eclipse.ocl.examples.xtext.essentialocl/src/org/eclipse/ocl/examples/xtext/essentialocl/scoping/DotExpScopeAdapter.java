@@ -12,17 +12,24 @@
  *
  * </copyright>
  *
- * $Id: DotExpScopeAdapter.java,v 1.3 2010/05/09 17:08:29 ewillink Exp $
+ * $Id: DotExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
 
 
 public class DotExpScopeAdapter extends EssentialOCLScopeAdapter<DotExpCS>
@@ -32,28 +39,31 @@ public class DotExpScopeAdapter extends EssentialOCLScopeAdapter<DotExpCS>
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else if (containmentFeature == EssentialOCLCSTPackage.Literals.DOT_EXP_CS__ARGUMENT) {
-			ExpCS source = getTarget().getSource();
-			AbstractScopeAdapter<?> sourceScope = getScopeAdapter(source);
-			if (sourceScope == null) {
-				return true;
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.DOT_EXP_CS__ARGUMENT) {
+			ScopeAdapter sourceScope = getScopeAdapter(getTarget().getSource());
+			if (sourceScope != null) {
+				TypeBindingsCS bindings = scopeView.getBindings();
+				TypeCS type = sourceScope.getSynthesizedType(bindings);
+				if (type instanceof LibBoundClassCS) {			// Implicit collect
+					// FIXME if conformsTo Collection
+					TypeBindingsCS boundBindings = ((LibBoundClassCS)type).getBindings();
+					List<TypeBindingCS> bindings2 = boundBindings.getBindings();
+					type = bindings2.get(0).getTypeArgument();
+				}
+				ScopeAdapter typeScope = getScopeAdapter(type);
+				if (typeScope != null) {
+					typeScope.getInnerScopeView(null, bindings).computeLookupWithParents(environmentView);
+				}
 			}
-			TypeCS type = sourceScope.getType();
-			AbstractScopeAdapter<?> typeScope = getScopeAdapter(type);
-			if (typeScope == null) {
-				return true;
-			}
-			typeScope.getInclusiveScopeAccessor(null).computeInheritedEnvironmentView(environmentView);	// Non-null value
 		}
-		return true;
+		return scopeView.getOuterScope();
 	}
 
 	@Override
-	public TypeCS getType() {
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		ExpCS argument = getTarget().getArgument();
-		return getScopeAdapter(argument).getType();
+		return getScopeAdapter(argument).getSynthesizedType(bindings);
 	}
 }

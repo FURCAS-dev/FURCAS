@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.1 2010/05/09 17:08:30 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -22,10 +22,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundOperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -45,9 +49,9 @@ import org.eclipse.xtext.resource.IEObjectDescription;
  */
 public class EnvironmentView
 {		
-	private Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single ElementCS or List<ElementCS>
-	private EStructuralFeature reference;
-	private String name;
+	private final Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single EObject or List<EObject>
+	private final EStructuralFeature reference;
+	private final String name;
 
 	public EnvironmentView(EStructuralFeature reference, String name) {
 		this.reference = reference;
@@ -65,8 +69,14 @@ public class EnvironmentView
 	 * @param element the element
 	 * @return the number of elements added; 1 if added, 0 if not
 	 */
-	public int addElement(String elementName, ElementCS element) {
+	public int addElement(String elementName, EObject element, TypeBindingsCS bindings) {
 		if ((element != null) && ((name == null) || name.equals(elementName))) {
+//			if (bindings == null) {
+//				bindings = rootBindings;
+//			}
+			if (!bindings.getBindings().isEmpty()) {
+				element = specialize(element, bindings);
+			}
 			Object value = contentsByName.get(elementName);
 			if (value == null) {
 				contentsByName.put(elementName, element);
@@ -89,44 +99,43 @@ public class EnvironmentView
 		return 0;
 	}
 
-	public boolean addElementsOfScope(ElementCS element) {
-		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(element);
+	public void addElementsOfScope(EObject element, ScopeView scopeView) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
 		if (scopeAdapter != null) {
-			return scopeAdapter.getInclusiveInheritedContents(this);
+			scopeAdapter.computeLookup(this, scopeView);
 		}
-		return true;
 	}
 
-	public int addNamedElement(NamedElementCS namedElement) {
+	public int addNamedElement(NamedElementCS namedElement, TypeBindingsCS bindings) {
 		if (namedElement != null) {
-			return addElement(namedElement.getName(), namedElement);
+			return addElement(namedElement.getName(), namedElement, bindings);
 		}
 		return 0;
 	}
 
-	public int addNamedElement(EClass eClass, NamedElementCS namedElement) {
+	public int addNamedElement(EClass eClass, NamedElementCS namedElement, TypeBindingsCS bindings) {
 		if ((namedElement != null) && accepts(eClass)) {
 			if (eClass.isSuperTypeOf(namedElement.eClass())) {
-				return addNamedElement(namedElement);
+				return addNamedElement(namedElement, bindings);
 			}
 		}
 		return 0;
 	}
 
-	public int addNamedElements(List<? extends NamedElementCS> namedElements) {
+	public int addNamedElements(List<? extends NamedElementCS> namedElements, TypeBindingsCS bindings) {
 		int additions = 0;
 		for (NamedElementCS namedElement : namedElements) {
-			additions += addElement(namedElement.getName(), namedElement);
+			additions += addElement(namedElement.getName(), namedElement, bindings);
 		}
 		return additions;
 	}
 
-	public int addNamedElements(EClass eClass, List<? extends NamedElementCS> namedElements) {
+	public int addNamedElements(EClass eClass, List<? extends NamedElementCS> namedElements, TypeBindingsCS bindings) {
 		int additions = 0;
 		if ((namedElements != null) && accepts(eClass)) {
 			for (NamedElementCS namedElement : namedElements) {
 				if (eClass.isSuperTypeOf(namedElement.eClass())) {
-					additions += addElement(namedElement.getName(), namedElement);
+					additions += addElement(namedElement.getName(), namedElement, bindings);
 				}
 			}
 		}
@@ -164,8 +173,31 @@ public class EnvironmentView
 		return contents;
 	}
 
+	public Object getName() {
+		return name;
+	}
+
+	public EClassifier getRequiredType() {
+		return reference != null ? reference.getEType() : null;
+	}
+
 	public int getSize() {
 		return contentsByName.size();
+	}
+
+	private EObject specialize(EObject element, TypeBindingsCS bindings) {
+		if (element instanceof OperationCS) {
+			BoundOperationCS boundElement = BaseCSTFactory.eINSTANCE.createBoundOperationCS();
+			OperationCS csOperation = (OperationCS) element;
+			boundElement.setName(csOperation.getName());
+			boundElement.setBinds(csOperation);
+			boundElement.setBindings(bindings);
+			bindings.getDocument().getBoundOperations().add(boundElement);
+			return boundElement;
+		}
+		else {
+			return element;
+		}
 	}
 	
 	@Override

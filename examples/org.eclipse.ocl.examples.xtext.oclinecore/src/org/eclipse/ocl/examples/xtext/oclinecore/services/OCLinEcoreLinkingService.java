@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.6 2010/05/09 10:26:23 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.7 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -28,8 +28,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.ImportScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
@@ -48,7 +49,7 @@ public class OCLinEcoreLinkingService extends OCLstdlibLinkingService
 	}
 
 	private List<EObject> getLinkedImport(EObject context, AbstractNode node) {
-		AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(context);
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
 		String text = getText(node);
 		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
 			Resource eResource = context.eResource();
@@ -56,7 +57,7 @@ public class OCLinEcoreLinkingService extends OCLstdlibLinkingService
 			uri = uri.resolve(eResource.getURI());
 			ImportScopeAdapter importScopeAdapter = (ImportScopeAdapter)scopeAdapter;
 			URI oldURI = importScopeAdapter.getURI();
-			ElementCS importedElement;				
+			EObject importedElement;				
 			if (uri.equals(oldURI)) {
 				importedElement = importScopeAdapter.getImportedElement();
 			}

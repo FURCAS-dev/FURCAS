@@ -2803,16 +2803,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeArgumentsTypeRefCSParserRuleCall_1_2_1_0 = (RuleCall)cTypeArgumentsAssignment_1_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final Keyword cColonColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeTypedRefCSParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Assignment cElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementTypedRefCSParserRuleCall_3_0 = (RuleCall)cElementAssignment_3.eContents().get(0);
 		
 		//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
 		//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-		//  typeArguments+=TypeRefCS)* ">")? "::" type=TypedRefCS;
+		//  typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS;
 		public ParserRule getRule() { return rule; }
 
 		//namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-		//typeArguments+=TypeRefCS)* ">")? "::" type=TypedRefCS
+		//typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -2854,11 +2854,11 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"::"
 		public Keyword getColonColonKeyword_2() { return cColonColonKeyword_2; }
 
-		//type=TypedRefCS
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		//element=TypedRefCS
+		public Assignment getElementAssignment_3() { return cElementAssignment_3; }
 
 		//TypedRefCS
-		public RuleCall getTypeTypedRefCSParserRuleCall_3_0() { return cTypeTypedRefCSParserRuleCall_3_0; }
+		public RuleCall getElementTypedRefCSParserRuleCall_3_0() { return cElementTypedRefCSParserRuleCall_3_0; }
 	}
 
 	public class ReferenceCSElements extends AbstractParserRuleElementFinder {
@@ -4042,7 +4042,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
 	//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-	//  typeArguments+=TypeRefCS)* ">")? "::" type=TypedRefCS;
+	//  typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS;
 	public QualifiedTypeRefCSElements getQualifiedTypeRefCSAccess() {
 		return (pQualifiedTypeRefCS != null) ? pQualifiedTypeRefCS : (pQualifiedTypeRefCS = new QualifiedTypeRefCSElements());
 	}

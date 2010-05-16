@@ -12,16 +12,17 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.5 2010/05/09 17:08:27 ewillink Exp $
+ * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.6 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.StandardDocumentScopeAdapter;
@@ -35,22 +36,23 @@ public class OCLinEcoreDocumentScopeAdapter extends StandardDocumentScopeAdapter
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		if (environmentView.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
+			TypeBindingsCS bindings = scopeView.getBindings();
 			for (ImportCS anImport : getTarget().getImports()) {
 				if (anImport.getName() == null) {
 					NamespaceCS namespace = anImport.getNamespace();
 					if (namespace instanceof OCLinEcoreDocumentCS) {
-						environmentView.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages());
+						environmentView.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages(), bindings);
 					}
 				}
 				else {
-					environmentView.addNamedElement(anImport);
+					environmentView.addNamedElement(anImport, bindings);
 				}
 			}
-			environmentView.addNamedElements(getTarget().getPackages());		// Overrides imports
+			environmentView.addNamedElements(getTarget().getPackages(), bindings);		// Overrides imports
 		}
-		return true;
+		return null;
 	}
 
 	@Override

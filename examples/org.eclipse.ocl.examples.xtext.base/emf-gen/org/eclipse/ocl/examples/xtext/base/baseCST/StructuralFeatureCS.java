@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StructuralFeatureCS.java,v 1.1 2010/05/03 05:24:51 ewillink Exp $
+ * $Id: StructuralFeatureCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -25,7 +25,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  *
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getStructuralFeatureCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface StructuralFeatureCS extends FeatureCS {

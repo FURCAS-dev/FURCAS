@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardDocumentScopeAdapter.java,v 1.1 2010/05/03 05:29:40 ewillink Exp $
+ * $Id: StandardDocumentScopeAdapter.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -26,19 +26,26 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTFactory;
 
 public abstract class StandardDocumentScopeAdapter<T extends DocumentCS> extends AbstractDocumentScopeAdapter<T>
 {
 	public static final String OCLSTDLIB_URI = "platform:/plugin/org.eclipse.ocl.examples.xtext.essentialocl/model/oclstdlib.oclstdlib";
 	protected Map<String, LibPackageCS> libraryNameMap = new HashMap<String, LibPackageCS>();
-	protected Map<String, LibClassCS> libraryTypeMap = new HashMap<String, LibClassCS>();
+	protected Map<String, ClassifierCS> libraryTypeMap = new HashMap<String, ClassifierCS>();
 
 	public StandardDocumentScopeAdapter(T csElement) {
 		super(csElement);
@@ -49,12 +56,12 @@ public abstract class StandardDocumentScopeAdapter<T extends DocumentCS> extends
 		return this;
 	}
 	
-	public LibClassCS getLibType(String name) {
+	public LibClassifierCS getLibType(String name) {
 		if (libraryNameMap.isEmpty()) {
 			URI uri = URI.createURI(OCLSTDLIB_URI);
 			importLibrary(getTarget().eResource().getResourceSet(), "ocl", uri);
 		}
-		return libraryTypeMap.get(name);
+		return (LibClassifierCS) libraryTypeMap.get(name);
 	}
 
 	protected List<EObject> importLibrary(ResourceSet resourceSet, String alias, URI uri) {
@@ -79,7 +86,7 @@ public abstract class StandardDocumentScopeAdapter<T extends DocumentCS> extends
 					LibPackageCS csPackage = csPackages.get(0);
 					libraryNameMap.put(alias, csPackage);
 					for (ClassifierCS csClassifier : csPackage.getClassifiers()) {
-						libraryTypeMap.put(csClassifier.getName(), (LibClassCS) csClassifier);
+						libraryTypeMap.put(csClassifier.getName(), csClassifier);
 					}
 					csElement = csPackage;
 				}
@@ -90,4 +97,33 @@ public abstract class StandardDocumentScopeAdapter<T extends DocumentCS> extends
 		}
 		return Collections.emptyList();
 	}
+
+	public ClassifierCS getLibraryType(String collectionTypeName, ClassifierCS elementTypeCS) {
+		ScopeAdapter elementScopeAdapter = getScopeAdapter(elementTypeCS);		
+		String elementSignature = elementScopeAdapter.getSignature();
+		String netSignature = collectionTypeName + "(" + elementSignature + ")";		
+		ClassifierCS specializedClassifier = getLibType(netSignature);
+		if (specializedClassifier == null) {
+			LibClassifierCS collectionClassifier = getLibType(collectionTypeName);
+			LibBoundClassCS parameterizedClassifier = OCLstdlibCSTFactory.eINSTANCE.createLibBoundClassCS();
+			parameterizedClassifier.setName(netSignature);
+			parameterizedClassifier.setBinds((LibClassCS) collectionClassifier);
+			TypeBindingCS binding = BaseCSTFactory.eINSTANCE.createTypeBindingCS();
+			binding.setTypeParameter(collectionClassifier.getTypeParameters().get(0));
+			binding.setTypeArgument(elementTypeCS);
+			List<TypeBindingCS> newBindings = Collections.singletonList(binding);
+			TypeBindingsCS bindings = parameterizedClassifier.getBindings();
+			TypeBindingsCS nestedBindings = BaseCSTFactory.eINSTANCE.createTypeBindingsCS();
+			nestedBindings.setDocument(getTarget());
+			nestedBindings.getBindings().addAll(newBindings);
+			if (bindings != null) { 
+				bindings.getNested().add(nestedBindings);
+			}
+			parameterizedClassifier.setBindings(nestedBindings);
+			libraryTypeMap.put(netSignature, parameterizedClassifier);
+			specializedClassifier = parameterizedClassifier;
+		}		
+		return specializedClassifier;
+	}
 }
+

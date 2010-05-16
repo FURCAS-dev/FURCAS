@@ -12,19 +12,17 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCSImpl.java,v 1.3 2010/05/09 14:23:02 ewillink Exp $
+ * $Id: NamedElementCSImpl.java,v 1.4 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
-import org.eclipse.xtext.parsetree.CompositeNode;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,25 +156,19 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public String toString() {
-		CompositeNode parserNode = ElementUtil.getParserNode(this);
-		if (parserNode != null) {
-			return parserNode.serialize().trim();
-		}
-		StringBuffer s = new StringBuffer();
-		toString(s);
-		return s.toString();
+		return super.toString();
 	}
-	
-	protected void toString(StringBuffer s) {
-		EObject eContainer = eContainer();
-		if (eContainer instanceof NamedElementCSImpl) {
-			((NamedElementCSImpl)eContainer).toString(s);
-		}
-		if (eContainer != null) {
-			s.append("::"); //$NON-NLS-1$
-		}
-		s.append(getName());
+
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendParent(this, "::"); //$NON-NLS-1$
+		signature.appendName(this);
 	}
 } //NamedElementCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.4 2010/05/09 17:08:30 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.5 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -29,28 +29,31 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeAdapter;
 import org.eclipse.xtext.parsetree.NodeUtil;
 
-public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImpl
+/**
+ * A AbstractScopeAdapter provides the basic behaviour for a family of derived
+ * classes that provide additional scope/environment behaviour for corresponding
+ * CS elements.
+ *
+ * @param <T>
+ */
+public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImpl implements ScopeAdapter
 {	
-	public static interface ISwitch {
-		<E extends EObject> AbstractScopeAdapter<?> doInPackageSwitch(E eObject);
-	}
-	
-	private static Map<EPackage, ISwitch> switchMap = new HashMap<EPackage, ISwitch>();
+	private static Map<EPackage, Switch> switchMap = new HashMap<EPackage, Switch>();
 
-	public static void addSwitch(EPackage ePackage, ISwitch iSwitch) {
+	public static void addSwitch(EPackage ePackage, Switch iSwitch) {
 		switchMap.put(ePackage, iSwitch);
 	}
 
-	public static AbstractDocumentScopeAdapter<?> getDocumentScopeAdapter(ElementCS context) {
-		for (AbstractScopeAdapter<?> scopeAdapter = AbstractScopeAdapter.getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
+	public static AbstractDocumentScopeAdapter<?> getDocumentScopeAdapter(EObject context) {
+		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
 			if (scopeAdapter instanceof AbstractDocumentScopeAdapter<?>) {
 				return (AbstractDocumentScopeAdapter<?>) scopeAdapter;
 			}
@@ -58,7 +61,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return null;
 	}
 
-	public static AbstractScopeAdapter<?> getScopeAdapter(EObject eObject) {
+	public static ScopeAdapter getScopeAdapter(EObject eObject) {
 		if (eObject == null) {
 			return null;
 		}
@@ -66,12 +69,12 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 			return null;
 		}
 		EList<Adapter> eAdapters = eObject.eAdapters();
-		AbstractScopeAdapter<?> adapter = (AbstractScopeAdapter<?>) EcoreUtil.getAdapter(eAdapters, AbstractScopeAdapter.class);
+		ScopeAdapter adapter = (ScopeAdapter) EcoreUtil.getAdapter(eAdapters, ScopeAdapter.class);
 		if (adapter != null) {
 			return adapter;
 		}
 		EClass eClass = eObject.eClass();
-		ISwitch adapterSwitch = switchMap.get(eClass.getEPackage());
+		Switch adapterSwitch = switchMap.get(eClass.getEPackage());
 		if (adapterSwitch != null) {
 			adapter = adapterSwitch.doInPackageSwitch(eObject);
 		}
@@ -84,8 +87,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return null;
 	}
 
-	protected final AbstractScopeAdapter<?> parent;
-	protected final AbstractDocumentScopeAdapter<?> document;
+	protected final ScopeAdapter parent;
+	protected final DocumentScopeAdapter document;
 	protected final Class<T> targetClass;
 	private boolean unresolvable = false;		// Set true after a linking failure
 	
@@ -94,58 +97,78 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	 * @param parent 
 	 */
 	protected AbstractScopeAdapter(T csElement) {
-		this(getScopeAdapter(csElement.eContainer()), csElement);
+		this(csElement.eContainer(), csElement);
+	}
+	
+	protected AbstractScopeAdapter(EObject csDocumentElement, T csElement) {
+		this(getScopeAdapter(csDocumentElement), csElement);
 	}
 
 	@SuppressWarnings("unchecked")
-	private AbstractScopeAdapter(AbstractScopeAdapter<?> containerScopeAdapter, T csElement) {
+	private AbstractScopeAdapter(ScopeAdapter containerScopeAdapter, T csElement) {
 		this.parent = containerScopeAdapter;
 		this.document = parent != null ? parent.getDocumentScopeAdapter() : (AbstractDocumentScopeAdapter<?>)this;
 		this.targetClass = (Class<T>) csElement.getClass();
 	}
 
-	/**
-	 * Compute a view that comprises a lookup with the Inherited Attributes on behalf of a the child
-	 * syntax element identified by containmentFeature
-	 * 
-	 * @param environmentView the EnvironmentView to compute
-	 * @param containmentFeature the Syntax element for which the view is required
-	 * @return true if computation may proceed in outer scope, false if computation redirected
-	 */
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		return true;
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		return scopeView.getOuterScope();
 	}
 
-	public AbstractDocumentScopeAdapter<?> getDocumentScopeAdapter() {
+	public void computeLookup(EnvironmentView environmentView, EReference targetReference, TypeBindingsCS bindings) {
+		ScopeView scopeView = getInnerScopeView(targetReference, bindings);
+		computeLookup(environmentView, scopeView);
+	}
+
+	public DocumentScopeAdapter getDocumentScopeAdapter() {
 		return document;
 	}
 
-	public ScopeAccessor getExclusiveScopeAccessor(EReference targetReference) {
-		return new ScopeAccessor(this, null, targetReference);
+/*	public ClassifierCS getInheritedSynthesizedType() {
+		if (parent == null) {
+			return null;
+		} else {
+			return parent.getSynthesizedType(getTarget().eContainingFeature());
+		}
+	} */
+
+	public ScopeView getInnerScopeView(EReference targetReference, TypeBindingsCS bindings) {
+		return new BaseScopeView(this, null, targetReference, bindings);
 	}
 
-	public boolean getInclusiveInheritedContents(EnvironmentView environmentView) {
-		return computeInheritedEnvironmentView(environmentView, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__ANNOTATIONS);	// Non-null value
+	public ScopeView getOuterScopeView(EReference targetReference, TypeBindingsCS bindings) {
+		ScopeAdapter parent = getParent();
+		T target = getTarget();
+		return new BaseScopeView(parent, target.eContainingFeature(), targetReference, bindings);
 	}
 
-	public ScopeAccessor getInclusiveScopeAccessor(EReference targetReference) {
-		return new ScopeAccessor(this, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__ANNOTATIONS, targetReference);	// Non-null value
-	}
-
-	public AbstractScopeAdapter<?> getParent() {
+	public ScopeAdapter getParent() {
 		return parent;
 	}
 
-	public AbstractScopeAdapter<?> getScopeAdapter(String scopeName, boolean isNested) {
-		if (isNested) {
-			return null;
+	public final String getSignature() {
+		T target = getTarget();
+		if (target instanceof ModelElementCS) {
+			return ((ModelElementCS)target).getSignature();
 		}
-		AbstractScopeAdapter<?> outerScope = getParent();
-		if (outerScope == null) {
-			return null;
+		else {
+			return target.toString();
 		}
-		return outerScope.getScopeAdapter(scopeName, false);
 	}
+	
+	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
+		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSourceScope"); //$NON-NLS-1$
+//		return null;
+	}
+
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
+		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSynthesizedType"); //$NON-NLS-1$
+//		return null;
+	}
+
+//	public ClassifierCS getSynthesizedType(EStructuralFeature containmentFeature) {
+//		return null;
+//	}
 
 	/*
 	 * Javadoc copied from interface.
@@ -189,15 +212,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		}
 		return s != null ? s.toString() : string;
 	}
-
-	/**
-	 * Return the type of the target.
-	 * 
-	 * @return the type or null if unknown
-	 */
-	public TypeCS getType() {
-		return null;
-	}
 	
 	/**
 	 * Returns <code>false</code>
@@ -208,7 +222,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	 */
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == AbstractScopeAdapter.class;
+		return type == ScopeAdapter.class;
 	}
 
 	public boolean isUnresolvable() {
@@ -230,6 +244,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 
 	@Override
 	public String toString() {
-		return String.valueOf(getTarget());
+		return String.valueOf(getSignature());
 	}
 }

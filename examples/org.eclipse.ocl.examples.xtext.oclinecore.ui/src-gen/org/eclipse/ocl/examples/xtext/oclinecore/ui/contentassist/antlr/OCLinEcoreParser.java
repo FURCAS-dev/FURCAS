@@ -411,7 +411,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedTypeRefCSAccess().getNamespaceAssignment_0(), "rule__QualifiedTypeRefCS__NamespaceAssignment_0");
 					put(grammarAccess.getQualifiedTypeRefCSAccess().getTypeArgumentsAssignment_1_1(), "rule__QualifiedTypeRefCS__TypeArgumentsAssignment_1_1");
 					put(grammarAccess.getQualifiedTypeRefCSAccess().getTypeArgumentsAssignment_1_2_1(), "rule__QualifiedTypeRefCS__TypeArgumentsAssignment_1_2_1");
-					put(grammarAccess.getQualifiedTypeRefCSAccess().getTypeAssignment_3(), "rule__QualifiedTypeRefCS__TypeAssignment_3");
+					put(grammarAccess.getQualifiedTypeRefCSAccess().getElementAssignment_3(), "rule__QualifiedTypeRefCS__ElementAssignment_3");
 					put(grammarAccess.getReferenceCSAccess().getIsStaticAssignment_0(), "rule__ReferenceCS__IsStaticAssignment_0");
 					put(grammarAccess.getReferenceCSAccess().getIsDefinitionAssignment_1(), "rule__ReferenceCS__IsDefinitionAssignment_1");
 					put(grammarAccess.getReferenceCSAccess().getNameAssignment_3(), "rule__ReferenceCS__NameAssignment_3");

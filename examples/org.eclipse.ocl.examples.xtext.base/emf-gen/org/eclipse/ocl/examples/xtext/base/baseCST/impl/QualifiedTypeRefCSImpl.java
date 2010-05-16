@@ -12,26 +12,22 @@
  *
  * </copyright>
  *
- * $Id: QualifiedTypeRefCSImpl.java,v 1.1 2010/05/03 05:25:37 ewillink Exp $
+ * $Id: QualifiedTypeRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,14 +37,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl#getTypeArguments <em>Type Arguments</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedTypeRefCS {
+public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements QualifiedTypeRefCS {
 	/**
 	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -60,24 +55,14 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 	protected NamespaceCS namespace;
 
 	/**
-	 * The cached value of the '{@link #getTypeArguments() <em>Type Arguments</em>}' containment reference list.
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeArguments()
+	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeRefCS> typeArguments;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedRefCS type;
+	protected TypedRefCS element;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,11 +126,8 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeRefCS> getTypeArguments() {
-		if (typeArguments == null) {
-			typeArguments = new EObjectContainmentEList<TypeRefCS>(TypeRefCS.class, this, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE_ARGUMENTS);
-		}
-		return typeArguments;
+	public TypedRefCS getElement() {
+		return element;
 	}
 
 	/**
@@ -153,20 +135,11 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedRefCS getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetType(TypedRefCS newType, NotificationChain msgs) {
-		TypedRefCS oldType = type;
-		type = newType;
+	public NotificationChain basicSetElement(TypedRefCS newElement, NotificationChain msgs) {
+		TypedRefCS oldElement = element;
+		element = newElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, oldElement, newElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -177,18 +150,18 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(TypedRefCS newType) {
-		if (newType != type) {
+	public void setElement(TypedRefCS newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (element != null)
+				msgs = ((InternalEObject)element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, null, msgs);
+			if (newElement != null)
+				msgs = ((InternalEObject)newElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, null, msgs);
+			msgs = basicSetElement(newElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, newElement, newElement));
 	}
 
 	/**
@@ -199,10 +172,8 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return ((InternalEList<?>)getTypeArguments()).basicRemove(otherEnd, msgs);
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE:
-				return basicSetType(null, msgs);
+			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
+				return basicSetElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -218,10 +189,8 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
 				if (resolve) return getNamespace();
 				return basicGetNamespace();
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return getTypeArguments();
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE:
-				return getType();
+			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,19 +200,14 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)newValue);
 				return;
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				getTypeArguments().clear();
-				getTypeArguments().addAll((Collection<? extends TypeRefCS>)newValue);
-				return;
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE:
-				setType((TypedRefCS)newValue);
+			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
+				setElement((TypedRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -260,11 +224,8 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)null);
 				return;
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				getTypeArguments().clear();
-				return;
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE:
-				setType((TypedRefCS)null);
+			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
+				setElement((TypedRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -280,12 +241,49 @@ public class QualifiedTypeRefCSImpl extends TypedRefCSImpl implements QualifiedT
 		switch (featureID) {
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE:
 				return namespace != null;
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return typeArguments != null && !typeArguments.isEmpty();
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__TYPE:
-				return type != null;
+			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
+				return element != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (derivedFeatureID) {
+				case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (baseFeatureID) {
+				case BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_TYPE_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getElement());
+		signature.appendTypeArguments(getTypeArguments());
+	}
 } //PrimitiveTypeRefCSImpl

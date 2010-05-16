@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.1 2010/05/03 05:25:58 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.*;
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage
  * @generated
  */
-public class BaseCSTSwitch<T> {
+public class BaseCSTSwitch<T1> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public class BaseCSTSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
+	public T1 doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -76,7 +76,7 @@ public class BaseCSTSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
+	protected T1 doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
@@ -96,11 +96,11 @@ public class BaseCSTSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(int classifierID, EObject theEObject) {
+	protected T1 doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case BaseCSTPackage.ANNOTATION_ELEMENT_CS: {
 				AnnotationElementCS annotationElementCS = (AnnotationElementCS)theEObject;
-				T result = caseAnnotationElementCS(annotationElementCS);
+				T1 result = caseAnnotationElementCS(annotationElementCS);
 				if (result == null) result = caseModelElementCS(annotationElementCS);
 				if (result == null) result = caseElementCS(annotationElementCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -108,7 +108,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.ATTRIBUTE_CS: {
 				AttributeCS attributeCS = (AttributeCS)theEObject;
-				T result = caseAttributeCS(attributeCS);
+				T1 result = caseAttributeCS(attributeCS);
 				if (result == null) result = caseStructuralFeatureCS(attributeCS);
 				if (result == null) result = caseFeatureCS(attributeCS);
 				if (result == null) result = caseTypedElementCS(attributeCS);
@@ -120,14 +120,48 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.ATTRIBUTE_CS_REF: {
 				AttributeCSRef attributeCSRef = (AttributeCSRef)theEObject;
-				T result = caseAttributeCSRef(attributeCSRef);
+				T1 result = caseAttributeCSRef(attributeCSRef);
 				if (result == null) result = caseElementCS(attributeCSRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.BOUND_CLASSIFIER_CS: {
+				BoundClassifierCS boundClassifierCS = (BoundClassifierCS)theEObject;
+				T1 result = caseBoundClassifierCS(boundClassifierCS);
+				if (result == null) result = caseClassifierCS(boundClassifierCS);
+				if (result == null) result = caseBoundElementCS(boundClassifierCS);
+				if (result == null) result = caseNamedElementCS(boundClassifierCS);
+				if (result == null) result = caseTypeCS(boundClassifierCS);
+				if (result == null) result = caseModelElementCS(boundClassifierCS);
+				if (result == null) result = caseElementCS(boundClassifierCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.BOUND_ELEMENT_CS: {
+				BoundElementCS<?> boundElementCS = (BoundElementCS<?>)theEObject;
+				T1 result = caseBoundElementCS(boundElementCS);
+				if (result == null) result = caseNamedElementCS(boundElementCS);
+				if (result == null) result = caseModelElementCS(boundElementCS);
+				if (result == null) result = caseElementCS(boundElementCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.BOUND_OPERATION_CS: {
+				BoundOperationCS boundOperationCS = (BoundOperationCS)theEObject;
+				T1 result = caseBoundOperationCS(boundOperationCS);
+				if (result == null) result = caseOperationCS(boundOperationCS);
+				if (result == null) result = caseBoundElementCS(boundOperationCS);
+				if (result == null) result = caseFeatureCS(boundOperationCS);
+				if (result == null) result = caseTypedElementCS(boundOperationCS);
+				if (result == null) result = caseNamedElementCS(boundOperationCS);
+				if (result == null) result = caseModelElementCS(boundOperationCS);
+				if (result == null) result = caseElementCS(boundOperationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.CLASS_CS: {
 				ClassCS classCS = (ClassCS)theEObject;
-				T result = caseClassCS(classCS);
+				T1 result = caseClassCS(classCS);
 				if (result == null) result = caseClassifierCS(classCS);
 				if (result == null) result = caseNamespaceCS(classCS);
 				if (result == null) result = caseNamedElementCS(classCS);
@@ -139,14 +173,14 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.CLASS_CS_REF: {
 				ClassCSRef classCSRef = (ClassCSRef)theEObject;
-				T result = caseClassCSRef(classCSRef);
+				T1 result = caseClassCSRef(classCSRef);
 				if (result == null) result = caseElementCS(classCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.CLASSIFIER_CS: {
 				ClassifierCS classifierCS = (ClassifierCS)theEObject;
-				T result = caseClassifierCS(classifierCS);
+				T1 result = caseClassifierCS(classifierCS);
 				if (result == null) result = caseNamedElementCS(classifierCS);
 				if (result == null) result = caseTypeCS(classifierCS);
 				if (result == null) result = caseModelElementCS(classifierCS);
@@ -156,7 +190,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.CLASSIFIER_REF_CS: {
 				ClassifierRefCS classifierRefCS = (ClassifierRefCS)theEObject;
-				T result = caseClassifierRefCS(classifierRefCS);
+				T1 result = caseClassifierRefCS(classifierRefCS);
 				if (result == null) result = caseModelElementCS(classifierRefCS);
 				if (result == null) result = caseElementCS(classifierRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -164,7 +198,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.COLLECTION_TYPE_REF_CS: {
 				CollectionTypeRefCS collectionTypeRefCS = (CollectionTypeRefCS)theEObject;
-				T result = caseCollectionTypeRefCS(collectionTypeRefCS);
+				T1 result = caseCollectionTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseTypedRefCS(collectionTypeRefCS);
 				if (result == null) result = caseNamedElementCS(collectionTypeRefCS);
 				if (result == null) result = caseTypeRefCS(collectionTypeRefCS);
@@ -175,14 +209,14 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.DETAIL_CS: {
 				DetailCS detailCS = (DetailCS)theEObject;
-				T result = caseDetailCS(detailCS);
+				T1 result = caseDetailCS(detailCS);
 				if (result == null) result = caseElementCS(detailCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.DOCUMENT_CS: {
 				DocumentCS documentCS = (DocumentCS)theEObject;
-				T result = caseDocumentCS(documentCS);
+				T1 result = caseDocumentCS(documentCS);
 				if (result == null) result = caseNamespaceCS(documentCS);
 				if (result == null) result = caseNamedElementCS(documentCS);
 				if (result == null) result = caseModelElementCS(documentCS);
@@ -192,13 +226,13 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.ELEMENT_CS: {
 				ElementCS elementCS = (ElementCS)theEObject;
-				T result = caseElementCS(elementCS);
+				T1 result = caseElementCS(elementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.ENUM_LITERAL_CS: {
 				EnumLiteralCS enumLiteralCS = (EnumLiteralCS)theEObject;
-				T result = caseEnumLiteralCS(enumLiteralCS);
+				T1 result = caseEnumLiteralCS(enumLiteralCS);
 				if (result == null) result = caseNamedElementCS(enumLiteralCS);
 				if (result == null) result = caseModelElementCS(enumLiteralCS);
 				if (result == null) result = caseElementCS(enumLiteralCS);
@@ -207,7 +241,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.FEATURE_CS: {
 				FeatureCS featureCS = (FeatureCS)theEObject;
-				T result = caseFeatureCS(featureCS);
+				T1 result = caseFeatureCS(featureCS);
 				if (result == null) result = caseTypedElementCS(featureCS);
 				if (result == null) result = caseNamedElementCS(featureCS);
 				if (result == null) result = caseModelElementCS(featureCS);
@@ -217,7 +251,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.IMPORT_CS: {
 				ImportCS importCS = (ImportCS)theEObject;
-				T result = caseImportCS(importCS);
+				T1 result = caseImportCS(importCS);
 				if (result == null) result = caseNamespaceCS(importCS);
 				if (result == null) result = caseNamedElementCS(importCS);
 				if (result == null) result = caseModelElementCS(importCS);
@@ -227,7 +261,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.LIBRARY_CS: {
 				LibraryCS libraryCS = (LibraryCS)theEObject;
-				T result = caseLibraryCS(libraryCS);
+				T1 result = caseLibraryCS(libraryCS);
 				if (result == null) result = caseNamespaceCS(libraryCS);
 				if (result == null) result = caseNamedElementCS(libraryCS);
 				if (result == null) result = caseModelElementCS(libraryCS);
@@ -237,21 +271,21 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.MODEL_ELEMENT_CS: {
 				ModelElementCS modelElementCS = (ModelElementCS)theEObject;
-				T result = caseModelElementCS(modelElementCS);
+				T1 result = caseModelElementCS(modelElementCS);
 				if (result == null) result = caseElementCS(modelElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF: {
 				ModelElementCSRef modelElementCSRef = (ModelElementCSRef)theEObject;
-				T result = caseModelElementCSRef(modelElementCSRef);
+				T1 result = caseModelElementCSRef(modelElementCSRef);
 				if (result == null) result = caseElementCS(modelElementCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.NAMED_ELEMENT_CS: {
 				NamedElementCS namedElementCS = (NamedElementCS)theEObject;
-				T result = caseNamedElementCS(namedElementCS);
+				T1 result = caseNamedElementCS(namedElementCS);
 				if (result == null) result = caseModelElementCS(namedElementCS);
 				if (result == null) result = caseElementCS(namedElementCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -259,7 +293,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.NAMESPACE_CS: {
 				NamespaceCS namespaceCS = (NamespaceCS)theEObject;
-				T result = caseNamespaceCS(namespaceCS);
+				T1 result = caseNamespaceCS(namespaceCS);
 				if (result == null) result = caseNamedElementCS(namespaceCS);
 				if (result == null) result = caseModelElementCS(namespaceCS);
 				if (result == null) result = caseElementCS(namespaceCS);
@@ -268,7 +302,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.OPERATION_CS: {
 				OperationCS operationCS = (OperationCS)theEObject;
-				T result = caseOperationCS(operationCS);
+				T1 result = caseOperationCS(operationCS);
 				if (result == null) result = caseFeatureCS(operationCS);
 				if (result == null) result = caseTypedElementCS(operationCS);
 				if (result == null) result = caseNamedElementCS(operationCS);
@@ -279,7 +313,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.OPERATION_REF_CS: {
 				OperationRefCS operationRefCS = (OperationRefCS)theEObject;
-				T result = caseOperationRefCS(operationRefCS);
+				T1 result = caseOperationRefCS(operationRefCS);
 				if (result == null) result = caseModelElementCS(operationRefCS);
 				if (result == null) result = caseElementCS(operationRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -287,7 +321,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.PACKAGE_CS: {
 				PackageCS packageCS = (PackageCS)theEObject;
-				T result = casePackageCS(packageCS);
+				T1 result = casePackageCS(packageCS);
 				if (result == null) result = caseNamespaceCS(packageCS);
 				if (result == null) result = caseNamedElementCS(packageCS);
 				if (result == null) result = caseModelElementCS(packageCS);
@@ -297,7 +331,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.PACKAGE_REF_CS: {
 				PackageRefCS packageRefCS = (PackageRefCS)theEObject;
-				T result = casePackageRefCS(packageRefCS);
+				T1 result = casePackageRefCS(packageRefCS);
 				if (result == null) result = caseModelElementCS(packageRefCS);
 				if (result == null) result = caseElementCS(packageRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -305,7 +339,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.PARAMETER_CS: {
 				ParameterCS parameterCS = (ParameterCS)theEObject;
-				T result = caseParameterCS(parameterCS);
+				T1 result = caseParameterCS(parameterCS);
 				if (result == null) result = caseTypedElementCS(parameterCS);
 				if (result == null) result = caseNamedElementCS(parameterCS);
 				if (result == null) result = caseModelElementCS(parameterCS);
@@ -313,9 +347,19 @@ public class BaseCSTSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS: {
+				ParameterizedTypeRefCS parameterizedTypeRefCS = (ParameterizedTypeRefCS)theEObject;
+				T1 result = caseParameterizedTypeRefCS(parameterizedTypeRefCS);
+				if (result == null) result = caseTypedRefCS(parameterizedTypeRefCS);
+				if (result == null) result = caseTypeRefCS(parameterizedTypeRefCS);
+				if (result == null) result = caseModelElementCS(parameterizedTypeRefCS);
+				if (result == null) result = caseElementCS(parameterizedTypeRefCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: {
 				PrimitiveTypeRefCS primitiveTypeRefCS = (PrimitiveTypeRefCS)theEObject;
-				T result = casePrimitiveTypeRefCS(primitiveTypeRefCS);
+				T1 result = casePrimitiveTypeRefCS(primitiveTypeRefCS);
 				if (result == null) result = caseTypedRefCS(primitiveTypeRefCS);
 				if (result == null) result = caseNamedElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseTypeRefCS(primitiveTypeRefCS);
@@ -326,8 +370,9 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.QUALIFIED_CLASSIFIER_REF_CS: {
 				QualifiedClassifierRefCS qualifiedClassifierRefCS = (QualifiedClassifierRefCS)theEObject;
-				T result = caseQualifiedClassifierRefCS(qualifiedClassifierRefCS);
+				T1 result = caseQualifiedClassifierRefCS(qualifiedClassifierRefCS);
 				if (result == null) result = caseClassifierRefCS(qualifiedClassifierRefCS);
+				if (result == null) result = caseQualifiedRefCS(qualifiedClassifierRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedClassifierRefCS);
 				if (result == null) result = caseElementCS(qualifiedClassifierRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -335,8 +380,9 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS: {
 				QualifiedOperationRefCS qualifiedOperationRefCS = (QualifiedOperationRefCS)theEObject;
-				T result = caseQualifiedOperationRefCS(qualifiedOperationRefCS);
+				T1 result = caseQualifiedOperationRefCS(qualifiedOperationRefCS);
 				if (result == null) result = caseOperationRefCS(qualifiedOperationRefCS);
+				if (result == null) result = caseQualifiedRefCS(qualifiedOperationRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedOperationRefCS);
 				if (result == null) result = caseElementCS(qualifiedOperationRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -344,17 +390,27 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS: {
 				QualifiedPackageRefCS qualifiedPackageRefCS = (QualifiedPackageRefCS)theEObject;
-				T result = caseQualifiedPackageRefCS(qualifiedPackageRefCS);
+				T1 result = caseQualifiedPackageRefCS(qualifiedPackageRefCS);
 				if (result == null) result = casePackageRefCS(qualifiedPackageRefCS);
+				if (result == null) result = caseQualifiedRefCS(qualifiedPackageRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedPackageRefCS);
 				if (result == null) result = caseElementCS(qualifiedPackageRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.QUALIFIED_REF_CS: {
+				QualifiedRefCS<?> qualifiedRefCS = (QualifiedRefCS<?>)theEObject;
+				T1 result = caseQualifiedRefCS(qualifiedRefCS);
+				if (result == null) result = caseModelElementCS(qualifiedRefCS);
+				if (result == null) result = caseElementCS(qualifiedRefCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS: {
 				QualifiedStructuralFeatureRefCS qualifiedStructuralFeatureRefCS = (QualifiedStructuralFeatureRefCS)theEObject;
-				T result = caseQualifiedStructuralFeatureRefCS(qualifiedStructuralFeatureRefCS);
+				T1 result = caseQualifiedStructuralFeatureRefCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = caseStructuralFeatureRefCS(qualifiedStructuralFeatureRefCS);
+				if (result == null) result = caseQualifiedRefCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = caseElementCS(qualifiedStructuralFeatureRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -362,7 +418,9 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS: {
 				QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)theEObject;
-				T result = caseQualifiedTypeRefCS(qualifiedTypeRefCS);
+				T1 result = caseQualifiedTypeRefCS(qualifiedTypeRefCS);
+				if (result == null) result = caseParameterizedTypeRefCS(qualifiedTypeRefCS);
+				if (result == null) result = caseQualifiedRefCS(qualifiedTypeRefCS);
 				if (result == null) result = caseTypedRefCS(qualifiedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(qualifiedTypeRefCS);
 				if (result == null) result = caseModelElementCS(qualifiedTypeRefCS);
@@ -372,7 +430,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.REFERENCE_CS: {
 				ReferenceCS referenceCS = (ReferenceCS)theEObject;
-				T result = caseReferenceCS(referenceCS);
+				T1 result = caseReferenceCS(referenceCS);
 				if (result == null) result = caseStructuralFeatureCS(referenceCS);
 				if (result == null) result = caseFeatureCS(referenceCS);
 				if (result == null) result = caseTypedElementCS(referenceCS);
@@ -384,14 +442,14 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.REFERENCE_CS_REF: {
 				ReferenceCSRef referenceCSRef = (ReferenceCSRef)theEObject;
-				T result = caseReferenceCSRef(referenceCSRef);
+				T1 result = caseReferenceCSRef(referenceCSRef);
 				if (result == null) result = caseElementCS(referenceCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS: {
 				SimpleClassifierRefCS simpleClassifierRefCS = (SimpleClassifierRefCS)theEObject;
-				T result = caseSimpleClassifierRefCS(simpleClassifierRefCS);
+				T1 result = caseSimpleClassifierRefCS(simpleClassifierRefCS);
 				if (result == null) result = caseClassifierRefCS(simpleClassifierRefCS);
 				if (result == null) result = caseModelElementCS(simpleClassifierRefCS);
 				if (result == null) result = caseElementCS(simpleClassifierRefCS);
@@ -400,7 +458,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.SIMPLE_OPERATION_REF_CS: {
 				SimpleOperationRefCS simpleOperationRefCS = (SimpleOperationRefCS)theEObject;
-				T result = caseSimpleOperationRefCS(simpleOperationRefCS);
+				T1 result = caseSimpleOperationRefCS(simpleOperationRefCS);
 				if (result == null) result = caseOperationRefCS(simpleOperationRefCS);
 				if (result == null) result = caseModelElementCS(simpleOperationRefCS);
 				if (result == null) result = caseElementCS(simpleOperationRefCS);
@@ -409,7 +467,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS: {
 				SimplePackageRefCS simplePackageRefCS = (SimplePackageRefCS)theEObject;
-				T result = caseSimplePackageRefCS(simplePackageRefCS);
+				T1 result = caseSimplePackageRefCS(simplePackageRefCS);
 				if (result == null) result = casePackageRefCS(simplePackageRefCS);
 				if (result == null) result = caseModelElementCS(simplePackageRefCS);
 				if (result == null) result = caseElementCS(simplePackageRefCS);
@@ -418,7 +476,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.SIMPLE_STRUCTURAL_FEATURE_REF_CS: {
 				SimpleStructuralFeatureRefCS simpleStructuralFeatureRefCS = (SimpleStructuralFeatureRefCS)theEObject;
-				T result = caseSimpleStructuralFeatureRefCS(simpleStructuralFeatureRefCS);
+				T1 result = caseSimpleStructuralFeatureRefCS(simpleStructuralFeatureRefCS);
 				if (result == null) result = caseStructuralFeatureRefCS(simpleStructuralFeatureRefCS);
 				if (result == null) result = caseModelElementCS(simpleStructuralFeatureRefCS);
 				if (result == null) result = caseElementCS(simpleStructuralFeatureRefCS);
@@ -427,7 +485,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS: {
 				StructuralFeatureCS structuralFeatureCS = (StructuralFeatureCS)theEObject;
-				T result = caseStructuralFeatureCS(structuralFeatureCS);
+				T1 result = caseStructuralFeatureCS(structuralFeatureCS);
 				if (result == null) result = caseFeatureCS(structuralFeatureCS);
 				if (result == null) result = caseTypedElementCS(structuralFeatureCS);
 				if (result == null) result = caseNamedElementCS(structuralFeatureCS);
@@ -438,22 +496,36 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.STRUCTURAL_FEATURE_REF_CS: {
 				StructuralFeatureRefCS structuralFeatureRefCS = (StructuralFeatureRefCS)theEObject;
-				T result = caseStructuralFeatureRefCS(structuralFeatureRefCS);
+				T1 result = caseStructuralFeatureRefCS(structuralFeatureRefCS);
 				if (result == null) result = caseModelElementCS(structuralFeatureRefCS);
 				if (result == null) result = caseElementCS(structuralFeatureRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.TYPE_BINDING_CS: {
+				TypeBindingCS typeBindingCS = (TypeBindingCS)theEObject;
+				T1 result = caseTypeBindingCS(typeBindingCS);
+				if (result == null) result = caseElementCS(typeBindingCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.TYPE_BINDINGS_CS: {
+				TypeBindingsCS typeBindingsCS = (TypeBindingsCS)theEObject;
+				T1 result = caseTypeBindingsCS(typeBindingsCS);
+				if (result == null) result = caseElementCS(typeBindingsCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.TYPE_CS: {
 				TypeCS typeCS = (TypeCS)theEObject;
-				T result = caseTypeCS(typeCS);
+				T1 result = caseTypeCS(typeCS);
 				if (result == null) result = caseElementCS(typeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BaseCSTPackage.TYPE_PARAMETER_CS: {
 				TypeParameterCS typeParameterCS = (TypeParameterCS)theEObject;
-				T result = caseTypeParameterCS(typeParameterCS);
+				T1 result = caseTypeParameterCS(typeParameterCS);
 				if (result == null) result = caseNamedElementCS(typeParameterCS);
 				if (result == null) result = caseTypeCS(typeParameterCS);
 				if (result == null) result = caseModelElementCS(typeParameterCS);
@@ -463,7 +535,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.TYPE_REF_CS: {
 				TypeRefCS typeRefCS = (TypeRefCS)theEObject;
-				T result = caseTypeRefCS(typeRefCS);
+				T1 result = caseTypeRefCS(typeRefCS);
 				if (result == null) result = caseModelElementCS(typeRefCS);
 				if (result == null) result = caseElementCS(typeRefCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -471,7 +543,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.TYPED_ELEMENT_CS: {
 				TypedElementCS typedElementCS = (TypedElementCS)theEObject;
-				T result = caseTypedElementCS(typedElementCS);
+				T1 result = caseTypedElementCS(typedElementCS);
 				if (result == null) result = caseNamedElementCS(typedElementCS);
 				if (result == null) result = caseModelElementCS(typedElementCS);
 				if (result == null) result = caseElementCS(typedElementCS);
@@ -480,7 +552,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.TYPED_REF_CS: {
 				TypedRefCS typedRefCS = (TypedRefCS)theEObject;
-				T result = caseTypedRefCS(typedRefCS);
+				T1 result = caseTypedRefCS(typedRefCS);
 				if (result == null) result = caseTypeRefCS(typedRefCS);
 				if (result == null) result = caseModelElementCS(typedRefCS);
 				if (result == null) result = caseElementCS(typedRefCS);
@@ -489,7 +561,8 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.TYPED_TYPE_REF_CS: {
 				TypedTypeRefCS typedTypeRefCS = (TypedTypeRefCS)theEObject;
-				T result = caseTypedTypeRefCS(typedTypeRefCS);
+				T1 result = caseTypedTypeRefCS(typedTypeRefCS);
+				if (result == null) result = caseParameterizedTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseTypedRefCS(typedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseModelElementCS(typedTypeRefCS);
@@ -499,7 +572,7 @@ public class BaseCSTSwitch<T> {
 			}
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS: {
 				WildcardTypeRefCS wildcardTypeRefCS = (WildcardTypeRefCS)theEObject;
-				T result = caseWildcardTypeRefCS(wildcardTypeRefCS);
+				T1 result = caseWildcardTypeRefCS(wildcardTypeRefCS);
 				if (result == null) result = caseTypeRefCS(wildcardTypeRefCS);
 				if (result == null) result = caseModelElementCS(wildcardTypeRefCS);
 				if (result == null) result = caseElementCS(wildcardTypeRefCS);
@@ -521,7 +594,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAnnotationElementCS(AnnotationElementCS object) {
+	public T1 caseAnnotationElementCS(AnnotationElementCS object) {
 		return null;
 	}
 
@@ -536,7 +609,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeCS(AttributeCS object) {
+	public T1 caseAttributeCS(AttributeCS object) {
 		return null;
 	}
 
@@ -551,7 +624,52 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeCSRef(AttributeCSRef object) {
+	public T1 caseAttributeCSRef(AttributeCSRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bound Classifier CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bound Classifier CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseBoundClassifierCS(BoundClassifierCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bound Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bound Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends NamedElementCS> T1 caseBoundElementCS(BoundElementCS<T> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bound Operation CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bound Operation CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseBoundOperationCS(BoundOperationCS object) {
 		return null;
 	}
 
@@ -566,7 +684,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassCS(ClassCS object) {
+	public T1 caseClassCS(ClassCS object) {
 		return null;
 	}
 
@@ -581,7 +699,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassCSRef(ClassCSRef object) {
+	public T1 caseClassCSRef(ClassCSRef object) {
 		return null;
 	}
 
@@ -596,7 +714,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassifierCS(ClassifierCS object) {
+	public T1 caseClassifierCS(ClassifierCS object) {
 		return null;
 	}
 
@@ -611,7 +729,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassifierRefCS(ClassifierRefCS object) {
+	public T1 caseClassifierRefCS(ClassifierRefCS object) {
 		return null;
 	}
 
@@ -626,7 +744,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCollectionTypeRefCS(CollectionTypeRefCS object) {
+	public T1 caseCollectionTypeRefCS(CollectionTypeRefCS object) {
 		return null;
 	}
 
@@ -641,7 +759,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDetailCS(DetailCS object) {
+	public T1 caseDetailCS(DetailCS object) {
 		return null;
 	}
 
@@ -656,7 +774,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDocumentCS(DocumentCS object) {
+	public T1 caseDocumentCS(DocumentCS object) {
 		return null;
 	}
 
@@ -671,7 +789,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElementCS(ElementCS object) {
+	public T1 caseElementCS(ElementCS object) {
 		return null;
 	}
 
@@ -686,7 +804,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEnumLiteralCS(EnumLiteralCS object) {
+	public T1 caseEnumLiteralCS(EnumLiteralCS object) {
 		return null;
 	}
 
@@ -701,7 +819,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFeatureCS(FeatureCS object) {
+	public T1 caseFeatureCS(FeatureCS object) {
 		return null;
 	}
 
@@ -716,7 +834,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImportCS(ImportCS object) {
+	public T1 caseImportCS(ImportCS object) {
 		return null;
 	}
 
@@ -731,7 +849,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLibraryCS(LibraryCS object) {
+	public T1 caseLibraryCS(LibraryCS object) {
 		return null;
 	}
 
@@ -746,7 +864,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElementCS(ModelElementCS object) {
+	public T1 caseModelElementCS(ModelElementCS object) {
 		return null;
 	}
 
@@ -761,7 +879,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElementCSRef(ModelElementCSRef object) {
+	public T1 caseModelElementCSRef(ModelElementCSRef object) {
 		return null;
 	}
 
@@ -776,7 +894,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedElementCS(NamedElementCS object) {
+	public T1 caseNamedElementCS(NamedElementCS object) {
 		return null;
 	}
 
@@ -791,7 +909,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamespaceCS(NamespaceCS object) {
+	public T1 caseNamespaceCS(NamespaceCS object) {
 		return null;
 	}
 
@@ -806,7 +924,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOperationCS(OperationCS object) {
+	public T1 caseOperationCS(OperationCS object) {
 		return null;
 	}
 
@@ -821,7 +939,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOperationRefCS(OperationRefCS object) {
+	public T1 caseOperationRefCS(OperationRefCS object) {
 		return null;
 	}
 
@@ -836,7 +954,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePackageCS(PackageCS object) {
+	public T1 casePackageCS(PackageCS object) {
 		return null;
 	}
 
@@ -851,7 +969,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePackageRefCS(PackageRefCS object) {
+	public T1 casePackageRefCS(PackageRefCS object) {
 		return null;
 	}
 
@@ -866,7 +984,22 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseParameterCS(ParameterCS object) {
+	public T1 caseParameterCS(ParameterCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameterized Type Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameterized Type Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseParameterizedTypeRefCS(ParameterizedTypeRefCS object) {
 		return null;
 	}
 
@@ -881,7 +1014,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
+	public T1 casePrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
 		return null;
 	}
 
@@ -896,7 +1029,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualifiedClassifierRefCS(QualifiedClassifierRefCS object) {
+	public T1 caseQualifiedClassifierRefCS(QualifiedClassifierRefCS object) {
 		return null;
 	}
 
@@ -911,7 +1044,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualifiedOperationRefCS(QualifiedOperationRefCS object) {
+	public T1 caseQualifiedOperationRefCS(QualifiedOperationRefCS object) {
 		return null;
 	}
 
@@ -926,7 +1059,22 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualifiedPackageRefCS(QualifiedPackageRefCS object) {
+	public T1 caseQualifiedPackageRefCS(QualifiedPackageRefCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Qualified Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Qualified Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <E extends ElementCS> T1 caseQualifiedRefCS(QualifiedRefCS<E> object) {
 		return null;
 	}
 
@@ -941,7 +1089,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS object) {
+	public T1 caseQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS object) {
 		return null;
 	}
 
@@ -956,7 +1104,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualifiedTypeRefCS(QualifiedTypeRefCS object) {
+	public T1 caseQualifiedTypeRefCS(QualifiedTypeRefCS object) {
 		return null;
 	}
 
@@ -971,7 +1119,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseReferenceCS(ReferenceCS object) {
+	public T1 caseReferenceCS(ReferenceCS object) {
 		return null;
 	}
 
@@ -986,7 +1134,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseReferenceCSRef(ReferenceCSRef object) {
+	public T1 caseReferenceCSRef(ReferenceCSRef object) {
 		return null;
 	}
 
@@ -1001,7 +1149,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimpleClassifierRefCS(SimpleClassifierRefCS object) {
+	public T1 caseSimpleClassifierRefCS(SimpleClassifierRefCS object) {
 		return null;
 	}
 
@@ -1016,7 +1164,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimpleOperationRefCS(SimpleOperationRefCS object) {
+	public T1 caseSimpleOperationRefCS(SimpleOperationRefCS object) {
 		return null;
 	}
 
@@ -1031,7 +1179,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimplePackageRefCS(SimplePackageRefCS object) {
+	public T1 caseSimplePackageRefCS(SimplePackageRefCS object) {
 		return null;
 	}
 
@@ -1046,7 +1194,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS object) {
+	public T1 caseSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS object) {
 		return null;
 	}
 
@@ -1061,7 +1209,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructuralFeatureCS(StructuralFeatureCS object) {
+	public T1 caseStructuralFeatureCS(StructuralFeatureCS object) {
 		return null;
 	}
 
@@ -1076,7 +1224,37 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructuralFeatureRefCS(StructuralFeatureRefCS object) {
+	public T1 caseStructuralFeatureRefCS(StructuralFeatureRefCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Binding CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Binding CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseTypeBindingCS(TypeBindingCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Bindings CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Bindings CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseTypeBindingsCS(TypeBindingsCS object) {
 		return null;
 	}
 
@@ -1091,7 +1269,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypeCS(TypeCS object) {
+	public T1 caseTypeCS(TypeCS object) {
 		return null;
 	}
 
@@ -1106,7 +1284,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypeParameterCS(TypeParameterCS object) {
+	public T1 caseTypeParameterCS(TypeParameterCS object) {
 		return null;
 	}
 
@@ -1121,7 +1299,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypeRefCS(TypeRefCS object) {
+	public T1 caseTypeRefCS(TypeRefCS object) {
 		return null;
 	}
 
@@ -1136,7 +1314,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypedElementCS(TypedElementCS object) {
+	public T1 caseTypedElementCS(TypedElementCS object) {
 		return null;
 	}
 
@@ -1151,7 +1329,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypedRefCS(TypedRefCS object) {
+	public T1 caseTypedRefCS(TypedRefCS object) {
 		return null;
 	}
 
@@ -1166,7 +1344,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypedTypeRefCS(TypedTypeRefCS object) {
+	public T1 caseTypedTypeRefCS(TypedTypeRefCS object) {
 		return null;
 	}
 
@@ -1181,7 +1359,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseWildcardTypeRefCS(WildcardTypeRefCS object) {
+	public T1 caseWildcardTypeRefCS(WildcardTypeRefCS object) {
 		return null;
 	}
 
@@ -1196,7 +1374,7 @@ public class BaseCSTSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T defaultCase(EObject object) {
+	public T1 defaultCase(EObject object) {
 		return null;
 	}
 

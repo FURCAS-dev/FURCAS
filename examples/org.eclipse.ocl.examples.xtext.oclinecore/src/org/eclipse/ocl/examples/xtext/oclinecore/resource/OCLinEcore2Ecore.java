@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore2Ecore.java,v 1.3 2010/05/03 05:44:43 ewillink Exp $
+ * $Id: OCLinEcore2Ecore.java,v 1.4 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -146,7 +146,7 @@ public class OCLinEcore2Ecore extends AbstractConversion
 
 			@Override
 			public EObject caseQualifiedTypeRefCS(QualifiedTypeRefCS csQualifiedTypeRef) {
-				return doSwitch(csQualifiedTypeRef.getType());
+				return doSwitch(csQualifiedTypeRef.getElement());
 			}
 
 			@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactoryImpl.java,v 1.1 2010/05/03 05:30:22 ewillink Exp $
+ * $Id: OCLstdlibCSTFactoryImpl.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -75,6 +75,7 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case OCLstdlibCSTPackage.LIB_BOUND_CLASS_CS: return createLibBoundClassCS();
 			case OCLstdlibCSTPackage.LIB_CLASS_CS: return createLibClassCS();
 			case OCLstdlibCSTPackage.LIB_DOCUMENT_CS: return createLibDocumentCS();
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS: return createLibIterationCS();
@@ -84,6 +85,16 @@ public class OCLstdlibCSTFactoryImpl extends EFactoryImpl implements OCLstdlibCS
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibBoundClassCS createLibBoundClassCS() {
+		LibBoundClassCSImpl libBoundClassCS = new LibBoundClassCSImpl();
+		return libBoundClassCS;
 	}
 
 	/**

@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackageImpl.java,v 1.3 2010/05/03 05:37:39 ewillink Exp $
+ * $Id: EssentialOCLCSTPackageImpl.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -377,24 +378,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 */
 	public EClass getPathNameExpCS() {
 		return pathNameExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPathNameExpCS_Namespace() {
-		return (EReference)pathNameExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPathNameExpCS_Element() {
-		return (EReference)pathNameExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1008,8 +991,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEAttribute(numberLiteralExpCSEClass, NUMBER_LITERAL_EXP_CS__NAME);
 
 		pathNameExpCSEClass = createEClass(PATH_NAME_EXP_CS);
-		createEReference(pathNameExpCSEClass, PATH_NAME_EXP_CS__NAMESPACE);
-		createEReference(pathNameExpCSEClass, PATH_NAME_EXP_CS__ELEMENT);
 
 		prefixExpCSEClass = createEClass(PREFIX_EXP_CS);
 		createEAttribute(prefixExpCSEClass, PREFIX_EXP_CS__OP);
@@ -1103,7 +1084,12 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		nestedExpCSEClass.getESuperTypes().add(this.getSubExpCS());
 		nullLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		numberLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
-		pathNameExpCSEClass.getESuperTypes().add(this.getNameExpCS());
+		EGenericType g1 = createEGenericType(this.getNameExpCS());
+		pathNameExpCSEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theBaseCSTPackage.getQualifiedRefCS());
+		EGenericType g2 = createEGenericType(this.getNameExpCS());
+		g1.getETypeArguments().add(g2);
+		pathNameExpCSEClass.getEGenericSuperTypes().add(g1);
 		prefixExpCSEClass.getESuperTypes().add(this.getSubExpCS());
 		primitiveLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		primitiveTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
@@ -1163,6 +1149,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 
 		initEClass(nameExpCSEClass, NameExpCS.class, "NameExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		addEOperation(nameExpCSEClass, theBaseCSTPackage.getNamedElementCS(), "getNamedElement", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(namedExpCSEClass, NamedExpCS.class, "NamedExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNamedExpCS_Name(), this.getNameExpCS(), null, "name", null, 0, 1, NamedExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -1174,8 +1162,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEAttribute(getNumberLiteralExpCS_Name(), this.getBigNumber(), "name", null, 0, 1, NumberLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pathNameExpCSEClass, PathNameExpCS.class, "PathNameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getPathNameExpCS_Namespace(), theBaseCSTPackage.getNamespaceCS(), null, "namespace", null, 0, 1, PathNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPathNameExpCS_Element(), this.getNameExpCS(), null, "element", null, 0, 1, PathNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(prefixExpCSEClass, PrefixExpCS.class, "PrefixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPrefixExpCS_Op(), ecorePackage.getEString(), "op", null, 0, 1, PrefixExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

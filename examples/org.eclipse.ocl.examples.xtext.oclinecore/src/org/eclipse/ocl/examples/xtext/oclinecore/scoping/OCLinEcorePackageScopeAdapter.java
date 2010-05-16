@@ -12,17 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePackageScopeAdapter.java,v 1.5 2010/05/09 17:08:27 ewillink Exp $
+ * $Id: OCLinEcorePackageScopeAdapter.java,v 1.6 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackageCS;
 
@@ -33,29 +30,13 @@ public class OCLinEcorePackageScopeAdapter extends EssentialOCLScopeAdapter<OCLi
 	}
 
 	@Override
-	public AbstractScopeAdapter<?> getScopeAdapter(String scopeName, boolean isNested) {
-		PackageCS csPackage = ElementUtil.getNamedElementCS(getTarget().getSubpackages(), scopeName);
-		if (csPackage != null) {
-			return getScopeAdapter(csPackage);
-		}
-		ClassifierCS csClassifier = ElementUtil.getNamedElementCS(getTarget().getClassifiers(), scopeName);
-		if (csClassifier != null) {
-			return getScopeAdapter(csClassifier);
-		}
-		return super.getScopeAdapter(scopeName, isNested);
-	}
-
-	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {			
-		}
-		else {
-			OCLinEcorePackageCS target = getTarget();
-			environmentView.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, target.getSubpackages());
-			environmentView.addNamedElements(BaseCSTPackage.Literals.CLASSIFIER_CS, target.getClassifiers());
-			environmentView.addNamedElements(BaseCSTPackage.Literals.CLASS_CS, target.getClassifiers());
-			environmentView.addNamedElements(BaseCSTPackage.Literals.NAMESPACE_CS, target.getClassifiers());		// FIXME needed for Enums
-		}
-		return true;
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		OCLinEcorePackageCS target = getTarget();
+		TypeBindingsCS bindings = scopeView.getBindings();
+		environmentView.addNamedElements(BaseCSTPackage.Literals.PACKAGE_CS, target.getSubpackages(), bindings);
+		environmentView.addNamedElements(BaseCSTPackage.Literals.CLASSIFIER_CS, target.getClassifiers(), bindings);
+		environmentView.addNamedElements(BaseCSTPackage.Literals.CLASS_CS, target.getClassifiers(), bindings);
+		environmentView.addNamedElements(BaseCSTPackage.Literals.NAMESPACE_CS, target.getClassifiers(), bindings);		// FIXME needed for Enums
+		return scopeView.getOuterScope();
 	}
 }

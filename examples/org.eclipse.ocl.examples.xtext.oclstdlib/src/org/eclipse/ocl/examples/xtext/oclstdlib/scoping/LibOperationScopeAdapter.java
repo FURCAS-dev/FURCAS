@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: LibOperationScopeAdapter.java,v 1.4 2010/05/09 17:08:24 ewillink Exp $
+ * $Id: LibOperationScopeAdapter.java,v 1.5 2010/05/16 19:20:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class LibOperationScopeAdapter extends OCLstdlibScopeAdapter<OperationCS>
 {
@@ -28,16 +30,16 @@ public class LibOperationScopeAdapter extends OCLstdlibScopeAdapter<OperationCS>
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__PARAMETERS) {
-			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		TypeBindingsCS bindings = scopeView.getBindings();
+		OperationCS target = getTarget();
+		if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__PARAMETERS) {
 		}
 		else {
-			environmentView.addNamedElements(BaseCSTPackage.Literals.PARAMETER_CS, getTarget().getParameters());
-			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, getTarget().getTypeParameters());
+			environmentView.addNamedElements(BaseCSTPackage.Literals.PARAMETER_CS, target.getParameters(), bindings);
 		}
-		return true;
+		environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters(), bindings);
+		return scopeView.getOuterScope();
 	}
 }

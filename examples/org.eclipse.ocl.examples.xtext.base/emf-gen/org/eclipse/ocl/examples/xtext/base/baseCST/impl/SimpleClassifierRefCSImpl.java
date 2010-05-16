@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleClassifierRefCSImpl.java,v 1.1 2010/05/03 05:25:36 ewillink Exp $
+ * $Id: SimpleClassifierRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -154,4 +155,8 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getClassifier());
+	}
 } //SimpleClassifierRefCSImpl

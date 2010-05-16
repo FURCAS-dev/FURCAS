@@ -12,22 +12,20 @@
  *
  * </copyright>
  *
- * $Id: InfixExpScopeAdapter.java,v 1.3 2010/05/09 17:08:29 ewillink Exp $
+ * $Id: InfixExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-
 
 public class InfixExpScopeAdapter extends EssentialOCLScopeAdapter<InfixExpCS>
 {
@@ -36,35 +34,15 @@ public class InfixExpScopeAdapter extends EssentialOCLScopeAdapter<InfixExpCS>
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else if (containmentFeature == EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__ARGUMENT) {
-			ExpCS source = getTarget().getSource();
-			AbstractScopeAdapter<?> sourceScope = getScopeAdapter(source);
-			if (sourceScope == null) {
-				return true;
-			}
-			TypeCS type = sourceScope.getType();
-			AbstractScopeAdapter<?> typeScope = getScopeAdapter(type);
-			if (typeScope == null) {
-				return true;
-			}
-			typeScope.getInclusiveScopeAccessor(null).computeInheritedEnvironmentView(environmentView);	// Non-null value
-		}
-		return true;
-	}
-
-	@Override
-	public TypeCS getType() {
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		InfixExpCS target = getTarget();		
 		ExpCS source = target.getSource();
-		TypeCS sourceType = getScopeAdapter(source).getType();
-		AbstractScopeAdapter<?> sourceScopeAdapter = getScopeAdapter(sourceType);
+		TypeCS sourceType = getScopeAdapter(source).getSynthesizedType(bindings);
+		ScopeAdapter sourceScopeAdapter = getScopeAdapter(sourceType);
 		if (sourceScopeAdapter == null) {
 			return null;
 		}
-		IScope sourceScope = sourceScopeAdapter.getExclusiveScopeAccessor(null);
+		IScope sourceScope = sourceScopeAdapter.getOuterScopeView(null, bindings);
 		if (sourceScope == null) {
 			return null;
 		}
@@ -76,6 +54,6 @@ public class InfixExpScopeAdapter extends EssentialOCLScopeAdapter<InfixExpCS>
 		if (!(csOperation instanceof OperationCS)) {
 			return null;
 		}
-		return getLibType((OperationCS)csOperation);
+		return getLibraryType((OperationCS)csOperation, bindings);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactory.java,v 1.1 2010/05/03 05:30:05 ewillink Exp $
+ * $Id: OCLstdlibCSTFactory.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -35,6 +35,15 @@ public interface OCLstdlibCSTFactory extends EFactory {
 	 * @generated
 	 */
 	OCLstdlibCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Lib Bound Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lib Bound Class CS</em>'.
+	 * @generated
+	 */
+	LibBoundClassCS createLibBoundClassCS();
 
 	/**
 	 * Returns a new object of class '<em>Lib Class CS</em>'.

@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NameExpCS.java,v 1.1 2010/05/03 05:38:08 ewillink Exp $
+ * $Id: NameExpCS.java,v 1.2 2010/05/16 19:19:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
+
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 
 
 /**
@@ -29,4 +31,12 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * @generated
  */
 public interface NameExpCS extends TypeExpCS {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	NamedElementCS getNamedElement();
 } // NamedElementRefCS

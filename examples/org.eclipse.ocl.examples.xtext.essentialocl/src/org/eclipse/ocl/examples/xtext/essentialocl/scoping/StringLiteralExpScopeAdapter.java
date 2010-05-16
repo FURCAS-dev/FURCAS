@@ -12,25 +12,26 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpScopeAdapter.java,v 1.2 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: StringLiteralExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 
 public class StringLiteralExpScopeAdapter extends EssentialOCLScopeAdapter<StringLiteralExpCS>
 {
-	private TypeCS type = null;
+	private ClassifierCS type = null;
 	
 	public StringLiteralExpScopeAdapter(StringLiteralExpCS csElement) {
 		super(csElement);
 	}
 	
 	@Override
-	public TypeCS getType() {
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		if (type == null) {
-			type = getLibType("String");
+			type = getLibraryStringType();
 		}
 		return type;
 	}

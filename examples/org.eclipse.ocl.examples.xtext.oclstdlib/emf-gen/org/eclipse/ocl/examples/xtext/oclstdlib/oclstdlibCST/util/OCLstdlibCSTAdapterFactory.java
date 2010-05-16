@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTAdapterFactory.java,v 1.1 2010/05/03 05:30:28 ewillink Exp $
+ * $Id: OCLstdlibCSTAdapterFactory.java,v 1.2 2010/05/16 19:20:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
@@ -100,8 +101,16 @@ public class OCLstdlibCSTAdapterFactory extends AdapterFactoryImpl {
 	protected OCLstdlibCSTSwitch<Adapter> modelSwitch =
 		new OCLstdlibCSTSwitch<Adapter>() {
 			@Override
+			public Adapter caseLibBoundClassCS(LibBoundClassCS object) {
+				return createLibBoundClassCSAdapter();
+			}
+			@Override
 			public Adapter caseLibClassCS(LibClassCS object) {
 				return createLibClassCSAdapter();
+			}
+			@Override
+			public Adapter caseLibClassifierCS(LibClassifierCS object) {
+				return createLibClassifierCSAdapter();
 			}
 			@Override
 			public Adapter caseLibDocumentCS(LibDocumentCS object) {
@@ -152,6 +161,10 @@ public class OCLstdlibCSTAdapterFactory extends AdapterFactoryImpl {
 				return createClassCSAdapter();
 			}
 			@Override
+			public <T extends NamedElementCS> Adapter caseBoundElementCS(BoundElementCS<T> object) {
+				return createBoundElementCSAdapter();
+			}
+			@Override
 			public Adapter caseDocumentCS(DocumentCS object) {
 				return createDocumentCSAdapter();
 			}
@@ -200,6 +213,20 @@ public class OCLstdlibCSTAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS <em>Lib Bound Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS
+	 * @generated
+	 */
+	public Adapter createLibBoundClassCSAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS <em>Lib Class CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -210,6 +237,20 @@ public class OCLstdlibCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLibClassCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS <em>Lib Classifier CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS
+	 * @generated
+	 */
+	public Adapter createLibClassifierCSAdapter() {
 		return null;
 	}
 
@@ -378,6 +419,20 @@ public class OCLstdlibCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS <em>Bound Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS
+	 * @generated
+	 */
+	public Adapter createBoundElementCSAdapter() {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackageImpl.java,v 1.2 2010/05/04 06:43:49 ewillink Exp $
+ * $Id: OCLstdlibCSTPackageImpl.java,v 1.3 2010/05/16 19:20:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -24,12 +24,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 
@@ -45,7 +47,19 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass libBoundClassCSEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass libClassCSEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass libClassifierCSEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,6 +159,15 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLibBoundClassCS() {
+		return libBoundClassCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLibClassCS() {
 		return libClassCSEClass;
 	}
@@ -174,6 +197,15 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 */
 	public EReference getLibClassCS_Iterations() {
 		return (EReference)libClassCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLibClassifierCS() {
+		return libClassifierCSEClass;
 	}
 
 	/**
@@ -285,10 +317,14 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		isCreated = true;
 
 		// Create classes and their features
+		libBoundClassCSEClass = createEClass(LIB_BOUND_CLASS_CS);
+
 		libClassCSEClass = createEClass(LIB_CLASS_CS);
 		createEAttribute(libClassCSEClass, LIB_CLASS_CS__CLASS);
 		createEReference(libClassCSEClass, LIB_CLASS_CS__CONFORMS_TO);
 		createEReference(libClassCSEClass, LIB_CLASS_CS__ITERATIONS);
+
+		libClassifierCSEClass = createEClass(LIB_CLASSIFIER_CS);
 
 		libDocumentCSEClass = createEClass(LIB_DOCUMENT_CS);
 		createEReference(libDocumentCSEClass, LIB_DOCUMENT_CS__PACKAGES);
@@ -336,7 +372,14 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		libClassCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
+		EGenericType g1 = createEGenericType(this.getLibClassifierCS());
+		libBoundClassCSEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theBaseCSTPackage.getBoundElementCS());
+		EGenericType g2 = createEGenericType(this.getLibClassCS());
+		g1.getETypeArguments().add(g2);
+		libBoundClassCSEClass.getEGenericSuperTypes().add(g1);
+		libClassCSEClass.getESuperTypes().add(this.getLibClassifierCS());
+		libClassifierCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
 		libDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getDocumentCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
 		libOperationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
@@ -344,13 +387,17 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		libPropertyCSEClass.getESuperTypes().add(theBaseCSTPackage.getAttributeCS());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(libBoundClassCSEClass, LibBoundClassCS.class, "LibBoundClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(libClassCSEClass, LibClassCS.class, "LibClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-		EGenericType g2 = createEGenericType();
+		g1 = createEGenericType(ecorePackage.getEJavaClass());
+		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getLibClassCS_Class(), g1, "class", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibClassCS_ConformsTo(), theBaseCSTPackage.getTypedRefCS(), null, "conformsTo", null, 0, -1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibClassCS_Iterations(), this.getLibIterationCS(), null, "iterations", null, 0, -1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(libClassifierCSEClass, LibClassifierCS.class, "LibClassifierCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(libDocumentCSEClass, LibDocumentCS.class, "LibDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibDocumentCS_Packages(), this.getLibPackageCS(), null, "packages", null, 0, -1, LibDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

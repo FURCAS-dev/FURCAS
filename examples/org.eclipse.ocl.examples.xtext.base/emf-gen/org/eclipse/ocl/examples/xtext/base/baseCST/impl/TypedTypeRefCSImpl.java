@@ -12,24 +12,18 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.1 2010/05/03 05:25:20 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,13 +33,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl#getTypeArguments <em>Type Arguments</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS {
+public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements TypedTypeRefCS {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -55,16 +48,6 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * @ordered
 	 */
 	protected TypeCS type;
-
-	/**
-	 * The cached value of the '{@link #getTypeArguments() <em>Type Arguments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeArguments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeRefCS> typeArguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,40 +111,12 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeRefCS> getTypeArguments() {
-		if (typeArguments == null) {
-			typeArguments = new EObjectContainmentEList<TypeRefCS>(TypeRefCS.class, this, BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS);
-		}
-		return typeArguments;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return ((InternalEList<?>)getTypeArguments()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return getTypeArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,16 +126,11 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
 				setType((TypeCS)newValue);
-				return;
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				getTypeArguments().clear();
-				getTypeArguments().addAll((Collection<? extends TypeRefCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,9 +147,6 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
 				setType((TypeCS)null);
 				return;
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				getTypeArguments().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,10 +161,17 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 		switch (featureID) {
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
 				return type != null;
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE_ARGUMENTS:
-				return typeArguments != null && !typeArguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		try {
+			signature.appendElement(getType());
+			signature.appendTypeArguments(getTypeArguments());
+		} catch (Exception e) {
+			signature.append(e.getMessage());
+		}
+	}
 } //TypedTypeRefCSImpl

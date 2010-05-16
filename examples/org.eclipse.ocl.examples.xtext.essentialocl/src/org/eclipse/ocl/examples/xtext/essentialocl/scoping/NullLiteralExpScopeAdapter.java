@@ -12,25 +12,26 @@
  *
  * </copyright>
  *
- * $Id: NullLiteralExpScopeAdapter.java,v 1.2 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: NullLiteralExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 
 public class NullLiteralExpScopeAdapter extends EssentialOCLScopeAdapter<NullLiteralExpCS>
 {
-	private TypeCS type = null;
+	private ClassifierCS type = null;
 	
 	public NullLiteralExpScopeAdapter(NullLiteralExpCS csElement) {
 		super(csElement);
 	}
 	
 	@Override
-	public TypeCS getType() {
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		if (type == null) {
-			type = getLibType("OclVoid");
+			type = getLibraryOclVoidType();
 		}
 		return type;
 	}

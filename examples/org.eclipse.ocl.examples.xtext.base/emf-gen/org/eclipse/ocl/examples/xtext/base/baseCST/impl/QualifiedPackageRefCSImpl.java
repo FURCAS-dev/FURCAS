@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedPackageRefCSImpl.java,v 1.1 2010/05/03 05:25:20 ewillink Exp $
+ * $Id: QualifiedPackageRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -29,6 +29,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedPackageRefCSImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedPackageRefCSImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedPackageRefCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,14 +58,14 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	protected NamespaceCS namespace;
 
 	/**
-	 * The cached value of the '{@link #getPackage() <em>Package</em>}' containment reference.
+	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPackage()
+	 * @see #getElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected PackageRefCS package_;
+	protected PackageRefCS element;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,8 +129,8 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageRefCS getPackage() {
-		return package_;
+	public PackageRefCS getElement() {
+		return element;
 	}
 
 	/**
@@ -136,11 +138,11 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPackage(PackageRefCS newPackage, NotificationChain msgs) {
-		PackageRefCS oldPackage = package_;
-		package_ = newPackage;
+	public NotificationChain basicSetElement(PackageRefCS newElement, NotificationChain msgs) {
+		PackageRefCS oldElement = element;
+		element = newElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE, oldPackage, newPackage);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT, oldElement, newElement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -151,18 +153,18 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPackage(PackageRefCS newPackage) {
-		if (newPackage != package_) {
+	public void setElement(PackageRefCS newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
-			if (package_ != null)
-				msgs = ((InternalEObject)package_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE, null, msgs);
-			if (newPackage != null)
-				msgs = ((InternalEObject)newPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE, null, msgs);
-			msgs = basicSetPackage(newPackage, msgs);
+			if (element != null)
+				msgs = ((InternalEObject)element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT, null, msgs);
+			if (newElement != null)
+				msgs = ((InternalEObject)newElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT, null, msgs);
+			msgs = basicSetElement(newElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE, newPackage, newPackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT, newElement, newElement));
 	}
 
 	/**
@@ -173,8 +175,8 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE:
-				return basicSetPackage(null, msgs);
+			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT:
+				return basicSetElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -190,8 +192,8 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__NAMESPACE:
 				if (resolve) return getNamespace();
 				return basicGetNamespace();
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE:
-				return getPackage();
+			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT:
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,8 +209,8 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)newValue);
 				return;
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE:
-				setPackage((PackageRefCS)newValue);
+			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT:
+				setElement((PackageRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,8 +227,8 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__NAMESPACE:
 				setNamespace((NamespaceCS)null);
 				return;
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE:
-				setPackage((PackageRefCS)null);
+			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT:
+				setElement((PackageRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -242,10 +244,48 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 		switch (featureID) {
 			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__NAMESPACE:
 				return namespace != null;
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__PACKAGE:
-				return package_ != null;
+			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT:
+				return element != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (derivedFeatureID) {
+				case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedRefCS.class) {
+			switch (baseFeatureID) {
+				case BaseCSTPackage.QUALIFIED_REF_CS__NAMESPACE: return BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__NAMESPACE;
+				case BaseCSTPackage.QUALIFIED_REF_CS__ELEMENT: return BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getElement());
+	}
 } //QualifiedPackageRefCSImpl

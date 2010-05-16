@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DocumentationCSImpl.java,v 1.2 2010/05/03 05:44:41 ewillink Exp $
+ * $Id: DocumentationCSImpl.java,v 1.3 2010/05/16 19:22:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
@@ -165,4 +166,9 @@ public class DocumentationCSImpl extends AnnotationElementCSImpl implements Docu
 		return super.toString();
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendParent(this, "@");
+		signature.append(hashCode());
+	}
 } //DocumentationCSImpl

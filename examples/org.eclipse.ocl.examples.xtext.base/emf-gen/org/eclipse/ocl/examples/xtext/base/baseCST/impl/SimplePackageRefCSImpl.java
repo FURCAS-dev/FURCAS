@@ -12,21 +12,19 @@
  *
  * </copyright>
  *
- * $Id: SimplePackageRefCSImpl.java,v 1.1 2010/05/03 05:25:22 ewillink Exp $
+ * $Id: SimplePackageRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -168,4 +166,8 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getPackage());
+	}
 } //SimplePackageRefCSImpl

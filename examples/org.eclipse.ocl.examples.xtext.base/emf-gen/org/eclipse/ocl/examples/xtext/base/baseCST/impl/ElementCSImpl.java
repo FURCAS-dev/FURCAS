@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSImpl.java,v 1.2 2010/05/09 14:23:02 ewillink Exp $
+ * $Id: ElementCSImpl.java,v 1.3 2010/05/16 19:18:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.xtext.parsetree.CompositeNode;
 
 /**
@@ -53,10 +54,35 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 		return BaseCSTPackage.Literals.ELEMENT_CS;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public final String getSignature() {
+		Signature s = new Signature();
+		try {
+			getSignature(s);
+			return s.toString();
+		}
+		catch (Throwable e) {
+			return e.getMessage();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract void getSignature(Signature signature);
+
 	@Override
 	public String toString() {
 		CompositeNode parserNode = ElementUtil.getParserNode(this);
-		return parserNode != null ? parserNode.serialize().trim() : super.toString();
+		if (parserNode != null) {
+			return parserNode.serialize().trim();
+		}
+		return getSignature();
 	}
-
 } //ElementCSImpl

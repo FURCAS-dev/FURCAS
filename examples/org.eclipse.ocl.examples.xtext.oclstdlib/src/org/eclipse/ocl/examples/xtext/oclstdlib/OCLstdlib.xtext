@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlib.xtext,v 1.2 2010/05/04 06:43:49 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.3 2010/05/16 19:20:26 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib hidden(WS, ML_COMMENT, SL_COMMENT)
 
@@ -132,7 +132,7 @@ LibPropertyCS returns LibPropertyCS:
 LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
 	namespace=[base::NamespaceCS|Identifier]
 	('<' typeArguments+=LibTypeRefCS (',' typeArguments+=LibTypeRefCS)* '>')?	
-	'::' type=LibTypedRefCS
+	'::' element=LibTypedRefCS
 ;
 
 LibTypeParameterCS returns base::TypeParameterCS:

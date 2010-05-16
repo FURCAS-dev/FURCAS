@@ -3469,12 +3469,12 @@ protected class LibPropertyCS_SemicolonKeyword_6 extends KeywordToken  {
  *
  * LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
  *   namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (
- *   "," typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
+ *   "," typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS;
  *
  **/
 
 // namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
-// typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS
+// typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS
 protected class LibQualifiedTypeRefCS_Group extends GroupToken {
 	
 	public LibQualifiedTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3489,7 +3489,7 @@ protected class LibQualifiedTypeRefCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new LibQualifiedTypeRefCS_TypeAssignment_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new LibQualifiedTypeRefCS_ElementAssignment_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3768,16 +3768,16 @@ protected class LibQualifiedTypeRefCS_ColonColonKeyword_2 extends KeywordToken  
 
 }
 
-// type=LibTypedRefCS
-protected class LibQualifiedTypeRefCS_TypeAssignment_3 extends AssignmentToken  {
+// element=LibTypedRefCS
+protected class LibQualifiedTypeRefCS_ElementAssignment_3 extends AssignmentToken  {
 	
-	public LibQualifiedTypeRefCS_TypeAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public LibQualifiedTypeRefCS_ElementAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeAssignment_3();
+		return grammarAccess.getLibQualifiedTypeRefCSAccess().getElementAssignment_3();
 	}
 
     @Override
@@ -3790,13 +3790,13 @@ protected class LibQualifiedTypeRefCS_TypeAssignment_3 extends AssignmentToken  
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
+		if((value = eObjectConsumer.getConsumable("element",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("element");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getLibTypedRefCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLibQualifiedTypeRefCSAccess().getTypeLibTypedRefCSParserRuleCall_3_0(); 
+				element = grammarAccess.getLibQualifiedTypeRefCSAccess().getElementLibTypedRefCSParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}

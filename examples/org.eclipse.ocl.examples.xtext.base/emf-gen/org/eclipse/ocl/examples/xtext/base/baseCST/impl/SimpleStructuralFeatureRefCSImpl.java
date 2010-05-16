@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleStructuralFeatureRefCSImpl.java,v 1.1 2010/05/03 05:25:19 ewillink Exp $
+ * $Id: SimpleStructuralFeatureRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -154,4 +155,8 @@ public class SimpleStructuralFeatureRefCSImpl extends StructuralFeatureRefCSImpl
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getFeature());
+	}
 } //SimpleStructuralFeatureRefCSImpl
