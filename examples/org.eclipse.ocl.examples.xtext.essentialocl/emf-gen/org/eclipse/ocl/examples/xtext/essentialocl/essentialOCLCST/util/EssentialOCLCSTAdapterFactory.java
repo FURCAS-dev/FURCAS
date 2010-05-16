@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTAdapterFactory.java,v 1.3 2010/05/03 05:38:45 ewillink Exp $
+ * $Id: EssentialOCLCSTAdapterFactory.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 
@@ -223,6 +224,10 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 				return createTypeCSAdapter();
 			}
 			@Override
+			public <E extends ElementCS> Adapter caseQualifiedRefCS(QualifiedRefCS<E> object) {
+				return createQualifiedRefCSAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -295,6 +300,20 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS <em>Qualified Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS
+	 * @generated
+	 */
+	public Adapter createQualifiedRefCSAdapter() {
 		return null;
 	}
 

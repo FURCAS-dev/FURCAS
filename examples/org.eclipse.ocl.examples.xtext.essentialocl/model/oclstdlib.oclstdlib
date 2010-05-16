@@ -26,8 +26,8 @@ type Boolean conformsTo Classifier {
 
 type Collection<T> conformsTo Classifier {
 	iteration any(i : T) : T => 'org.eclipse.ocl.library.features.iterator.AnyIteration';
-	iteration collect<T2>(i : T) : Collection<T2> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
-	iteration collectNested<T2>(i : T) : Collection<T2> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
+	iteration collect(i : T) : Collection<T> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
+	iteration collectNested(i : T) : Collection<T> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
 	iteration exists(i : T) : Boolean => 'org.eclipse.ocl.library.features.iterator.ExistsIteration';
 	iteration exists(i : T, j : T) : Boolean => 'org.eclipse.ocl.library.features.iterator.ExistsIteration';
 	iteration forAll(i : T) : Boolean => 'org.eclipse.ocl.library.features.iterator.ForAllIteration';
@@ -85,8 +85,8 @@ type Integer conformsTo Real {
 
 type NonOrderedCollection<T> conformsTo Collection<T> {
 	iteration closure(i : T) : Set<T> => 'org.eclipse.ocl.library.features.iterator.ClosureIteration';
-	iteration collect<T2>(i : T) : Bag<T2> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
-	iteration collectNested<T2>(i : T) : Bag<T2> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
+	iteration collect(i : T) : Bag<T> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
+	iteration collectNested(i : T) : Bag<T> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
 	operation intersection(bag : Bag<T>) : Bag<T> => 'org.eclipse.ocl.library.features.collection.UniqueCollectionIntersectionOperation';
 	operation intersection(s : Set<T>) : Set<T> => 'org.eclipse.ocl.library.features.collection.UniqueCollectionIntersectionOperation';
 	operation union(bag : Bag<T>) : Bag<T> => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
@@ -146,8 +146,8 @@ type OclVoid conformsTo Classifier {
 
 type OrderedCollection<T> conformsTo Collection<T> {
 	iteration closure(i : T) : OrderedSet<T> => 'org.eclipse.ocl.library.features.iterator.ClosureIteration';
-	iteration collect<T2>(i : T) : Sequence<T2> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
-	iteration collectNested<T2>(i : T) : Sequence<T2> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
+	iteration collect(i : T) : Sequence<T> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
+	iteration collectNested(i : T) : Sequence<T> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
 	operation at(index : Integer) : T => 'org.eclipse.ocl.library.features.collection.OrderedCollectionAtOperation';
 	operation first() : T => 'org.eclipse.ocl.library.features.collection.OrderedCollectionFirstOperation';
 	operation indexOf(obj : OclAny) : Integer => 'org.eclipse.ocl.library.features.collection.OrderedCollectionIndexOfOperation';

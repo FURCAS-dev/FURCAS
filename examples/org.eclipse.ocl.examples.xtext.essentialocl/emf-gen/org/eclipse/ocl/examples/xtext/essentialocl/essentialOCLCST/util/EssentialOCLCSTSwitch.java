@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTSwitch.java,v 1.3 2010/05/03 05:38:45 ewillink Exp $
+ * $Id: EssentialOCLCSTSwitch.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 
@@ -259,7 +260,9 @@ public class EssentialOCLCSTSwitch<T> {
 				PathNameExpCS pathNameExpCS = (PathNameExpCS)theEObject;
 				T result = casePathNameExpCS(pathNameExpCS);
 				if (result == null) result = caseNameExpCS(pathNameExpCS);
+				if (result == null) result = caseQualifiedRefCS(pathNameExpCS);
 				if (result == null) result = caseTypeExpCS(pathNameExpCS);
+				if (result == null) result = caseModelElementCS(pathNameExpCS);
 				if (result == null) result = caseLiteralExpCS(pathNameExpCS);
 				if (result == null) result = caseTypeCS(pathNameExpCS);
 				if (result == null) result = caseExpCS(pathNameExpCS);
@@ -456,6 +459,21 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseTypeCS(TypeCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Qualified Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Qualified Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <E extends ElementCS> T caseQualifiedRefCS(QualifiedRefCS<E> object) {
 		return null;
 	}
 

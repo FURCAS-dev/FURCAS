@@ -12,28 +12,44 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpScopeAdapter.java,v 1.2 2010/05/09 10:32:44 ewillink Exp $
+ * $Id: CollectionLiteralExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 public class CollectionLiteralExpScopeAdapter extends EssentialOCLScopeAdapter<CollectionLiteralExpCS>
 {
-	private TypeCS type = null;
+	private ClassifierCS type = null;
 	
 	public CollectionLiteralExpScopeAdapter(CollectionLiteralExpCS csElement) {
 		super(csElement);
 	}
 	
 	@Override
-	public TypeCS getType() {
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		if (type == null) {
-			CollectionTypeCS typeCS = getTarget().getTypeCS();
-			String text = typeCS.getName();
-			type = getLibType(text);
+			CollectionLiteralExpCS target = getTarget();
+			CollectionTypeCS collectionTypeCS = target.getTypeCS();
+			ClassifierCS elementTypeCS = null;
+			for (CollectionLiteralPartCS partCS : target.getCollectionLiteralParts()) {
+				ExpCS expressionCS = partCS.getExpressionCS();
+				ScopeAdapter expressionScopeAdapter = getScopeAdapter(expressionCS);
+				ClassifierCS partElementTypeCS = expressionScopeAdapter.getSynthesizedType(bindings);
+				if (elementTypeCS == null) {
+					elementTypeCS = partElementTypeCS;
+				}
+				else {
+					elementTypeCS = commonConformantType(elementTypeCS, partElementTypeCS);
+				}
+			}
+			type = getLibraryAdapter().getLibraryType(collectionTypeCS.getName(), elementTypeCS);
 		}
 		return type;
 	}

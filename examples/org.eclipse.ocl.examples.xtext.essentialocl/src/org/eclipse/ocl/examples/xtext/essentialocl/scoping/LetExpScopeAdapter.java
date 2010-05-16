@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: LetExpScopeAdapter.java,v 1.3 2010/05/09 17:08:29 ewillink Exp $
+ * $Id: LetExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 
@@ -28,8 +29,11 @@ public class LetExpScopeAdapter extends EssentialOCLScopeAdapter<LetExpCS>
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		environmentView.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable());
-		return true;
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
+			environmentView.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable(), scopeView.getBindings());
+		}
+		return scopeView.getOuterScope();
 	}
 }

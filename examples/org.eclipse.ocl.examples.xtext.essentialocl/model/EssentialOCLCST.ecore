@@ -51,7 +51,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" eType="#//ExpCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//ExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" abstract="true" eSuperTypes="#//TypeExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" abstract="true" eSuperTypes="#//TypeExpCS">
+    <eOperations name="getNamedElement" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedExpCS" abstract="true" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//NameExpCS"
         containment="true"/>
@@ -61,10 +63,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="NumberLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//BigNumber"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathNameExpCS" eSuperTypes="#//NameExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamespaceCS"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//NameExpCS"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PathNameExpCS">
+    <eGenericSuperTypes eClassifier="#//NameExpCS"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//QualifiedRefCS">
+      <eTypeArguments eClassifier="#//NameExpCS"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrefixExpCS" eSuperTypes="#//SubExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

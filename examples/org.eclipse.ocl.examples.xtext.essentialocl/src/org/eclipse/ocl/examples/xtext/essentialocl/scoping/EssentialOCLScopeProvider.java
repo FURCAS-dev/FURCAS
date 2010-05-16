@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeProvider.java,v 1.4 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: EssentialOCLScopeProvider.java,v 1.5 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
@@ -55,36 +55,36 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 	}
 	
 	public static class EssentialOCLScopeSwitch
-		extends EssentialOCLCSTSwitch<AbstractScopeAdapter<? extends EObject>>
-		implements AbstractScopeAdapter.ISwitch
+		extends EssentialOCLCSTSwitch<ScopeAdapter>
+		implements ScopeAdapter.Switch
 	{	
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseArrowExpCS(ArrowExpCS eObject) {
+		public ScopeAdapter caseArrowExpCS(ArrowExpCS eObject) {
 			return new ArrowExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseBooleanLiteralExpCS(BooleanLiteralExpCS eObject) {
+		public ScopeAdapter caseBooleanLiteralExpCS(BooleanLiteralExpCS eObject) {
 			return new BooleanLiteralExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseCollectionLiteralExpCS(CollectionLiteralExpCS eObject) {
+		public ScopeAdapter caseCollectionLiteralExpCS(CollectionLiteralExpCS eObject) {
 			return new CollectionLiteralExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseDotExpCS(DotExpCS eObject) {
+		public ScopeAdapter caseDotExpCS(DotExpCS eObject) {
 			return new DotExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseInfixExpCS(InfixExpCS eObject) {
+		public ScopeAdapter caseInfixExpCS(InfixExpCS eObject) {
 			return new InfixExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseInvalidLiteralExpCS(InvalidLiteralExpCS eObject) {
+		public ScopeAdapter caseInvalidLiteralExpCS(InvalidLiteralExpCS eObject) {
 			return new InvalidLiteralExpScopeAdapter(eObject);
 		}
 
@@ -94,27 +94,27 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseNestedExpCS(NestedExpCS eObject) {
+		public ScopeAdapter caseNestedExpCS(NestedExpCS eObject) {
 			return new NestedExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseNullLiteralExpCS(NullLiteralExpCS eObject) {
+		public ScopeAdapter caseNullLiteralExpCS(NullLiteralExpCS eObject) {
 			return new NullLiteralExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseNumberLiteralExpCS(NumberLiteralExpCS eObject) {
+		public ScopeAdapter caseNumberLiteralExpCS(NumberLiteralExpCS eObject) {
 			return new NumberLiteralExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> casePathNameExpCS(PathNameExpCS eObject) {
+		public ScopeAdapter casePathNameExpCS(PathNameExpCS eObject) {
 			return new PathNameExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseRoundBracketExpCS(RoundBracketExpCS eObject) {
+		public ScopeAdapter caseRoundBracketExpCS(RoundBracketExpCS eObject) {
 			EObject container = eObject.eContainer();
 			if (container instanceof DotExpCS)
 				return new DotOperationCallExpScopeAdapter(eObject);
@@ -125,36 +125,36 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseSelfExpCS(SelfExpCS eObject) {
+		public ScopeAdapter caseSelfExpCS(SelfExpCS eObject) {
 			return new SelfExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseSimpleNameExpCS(SimpleNameExpCS eObject) {
+		public ScopeAdapter caseSimpleNameExpCS(SimpleNameExpCS eObject) {
 			return new SimpleNameExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseStringLiteralExpCS(StringLiteralExpCS eObject) {
+		public ScopeAdapter caseStringLiteralExpCS(StringLiteralExpCS eObject) {
 			return new StringLiteralExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseTupleLiteralExpCS(TupleLiteralExpCS eObject) {
+		public ScopeAdapter caseTupleLiteralExpCS(TupleLiteralExpCS eObject) {
 			return new TupleLiteralExpScopeAdapter(eObject);
 		}
 
 		@Override
-		public VariableScopeAdapter caseVariableCS(VariableCS eObject) {
+		public ScopeAdapter caseVariableCS(VariableCS eObject) {
 			return new VariableScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ElementCS) eObject);
+		public ScopeAdapter defaultCase(EObject eObject) {
+			return new DefaultScopeAdapter(eObject);
 		}
 
-		public AbstractScopeAdapter<?> doInPackageSwitch(EObject eObject) {
+		public ScopeAdapter doInPackageSwitch(EObject eObject) {
 			return doSwitch(eObject.eClass(), eObject);
 		}
 	}

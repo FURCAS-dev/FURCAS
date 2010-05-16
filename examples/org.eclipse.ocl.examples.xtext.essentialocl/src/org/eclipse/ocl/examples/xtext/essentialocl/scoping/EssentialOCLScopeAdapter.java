@@ -12,15 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeAdapter.java,v 1.3 2010/05/09 10:32:43 ewillink Exp $
+ * $Id: EssentialOCLScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeAdapter;
 
 public abstract class EssentialOCLScopeAdapter<T extends ElementCS> extends OCLstdlibScopeAdapter<T>
@@ -30,15 +33,24 @@ public abstract class EssentialOCLScopeAdapter<T extends ElementCS> extends OCLs
 	}	
 
 	@Override
-	public ClassifierCS getLibType(TypeCS csType) {
-		if (csType instanceof PrimitiveTypeCS) {
-			return getLibType(((PrimitiveTypeCS)csType).getName());
+	public ClassifierCS getLibraryType(ElementCS csElement, TypeBindingsCS bindings) {
+		if (csElement instanceof PrimitiveTypeCS) {
+			return getLibraryType(((PrimitiveTypeCS)csElement).getName());
 		}
-		else if (csType instanceof SimpleNameExpCS) {
-			return getLibType(((SimpleNameExpCS)csType).getElement());
+		else if (csElement instanceof CollectionTypeCS) {
+			CollectionTypeCS collectionType = (CollectionTypeCS)csElement;
+			ClassifierCS elementType = getLibraryType(collectionType.getTypeCS(), bindings);
+			return getLibraryType(collectionType.getName(), elementType);
+		}
+		else if (csElement instanceof SimpleNameExpCS) {
+			return getLibraryType(((SimpleNameExpCS)csElement).getElement(), bindings);
+		}
+		else if (csElement instanceof VariableCS) {
+			TypeCS type = ((VariableCS)csElement).getType();
+			return getLibraryType(type, bindings);
 		}
 		else {
-			return super.getLibType(csType);
+			return super.getLibraryType(csElement, bindings);
 		}
 	}
 }
