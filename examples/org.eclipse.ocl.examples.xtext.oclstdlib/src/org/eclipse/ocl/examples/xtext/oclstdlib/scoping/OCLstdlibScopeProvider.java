@@ -4,10 +4,10 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
@@ -29,41 +29,46 @@ public class OCLstdlibScopeProvider extends BaseScopeProvider {
 	}
 	
 	public static class OCLstdlibScopeSwitch 
-		extends OCLstdlibCSTSwitch<AbstractScopeAdapter<? extends EObject>>
-		implements OCLstdlibScopeAdapter.ISwitch
+		extends OCLstdlibCSTSwitch<ScopeAdapter>
+		implements ScopeAdapter.Switch
 	{
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseLibClassCS(LibClassCS eObject) {
+		public ScopeAdapter caseLibClassCS(LibClassCS eObject) {
 			return new LibClassScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseLibDocumentCS(LibDocumentCS eObject) {
+		public ScopeAdapter caseLibDocumentCS(LibDocumentCS eObject) {
 			return new LibDocumentScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseLibIterationCS(LibIterationCS eObject) {
+		public ScopeAdapter caseLibIterationCS(LibIterationCS eObject) {
 			return new LibOperationScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseLibOperationCS(LibOperationCS eObject) {
+		public ScopeAdapter caseLibOperationCS(LibOperationCS eObject) {
 			return new LibOperationScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<? extends EObject> caseLibPackageCS(LibPackageCS eObject) {
+		public ScopeAdapter caseLibPackageCS(LibPackageCS eObject) {
 			return new LibPackageScopeAdapter(eObject);
 		}
 
 		@Override
-		public AbstractScopeAdapter<?> defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter((ElementCS) eObject);
+		public ScopeAdapter caseLibBoundClassCS(LibBoundClassCS eObject) {
+			return new LibBoundClassScopeAdapter(eObject);
 		}
 
-		public AbstractScopeAdapter<?> doInPackageSwitch(EObject eObject) {
+		@Override
+		public ScopeAdapter defaultCase(EObject eObject) {
+			return new DefaultScopeAdapter(eObject);
+		}
+
+		public ScopeAdapter doInPackageSwitch(EObject eObject) {
 			return doSwitch(eObject.eClass(), eObject);
 		}
 	}

@@ -871,16 +871,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeArgumentsLibTypeRefCSParserRuleCall_1_2_1_0 = (RuleCall)cTypeArgumentsAssignment_1_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final Keyword cColonColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeLibTypedRefCSParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Assignment cElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementLibTypedRefCSParserRuleCall_3_0 = (RuleCall)cElementAssignment_3.eContents().get(0);
 		
 		//LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
 		//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (
-		//  "," typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
+		//  "," typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS;
 		public ParserRule getRule() { return rule; }
 
 		//namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
-		//typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS
+		//typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -922,11 +922,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"::"
 		public Keyword getColonColonKeyword_2() { return cColonColonKeyword_2; }
 
-		//type=LibTypedRefCS
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		//element=LibTypedRefCS
+		public Assignment getElementAssignment_3() { return cElementAssignment_3; }
 
 		//LibTypedRefCS
-		public RuleCall getTypeLibTypedRefCSParserRuleCall_3_0() { return cTypeLibTypedRefCSParserRuleCall_3_0; }
+		public RuleCall getElementLibTypedRefCSParserRuleCall_3_0() { return cElementLibTypedRefCSParserRuleCall_3_0; }
 	}
 
 	public class LibTypeParameterCSElements extends AbstractParserRuleElementFinder {
@@ -1415,7 +1415,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	//LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
 	//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (
-	//  "," typeArguments+=LibTypeRefCS)* ">")? "::" type=LibTypedRefCS;
+	//  "," typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS;
 	public LibQualifiedTypeRefCSElements getLibQualifiedTypeRefCSAccess() {
 		return (pLibQualifiedTypeRefCS != null) ? pLibQualifiedTypeRefCS : (pLibQualifiedTypeRefCS = new LibQualifiedTypeRefCSElements());
 	}

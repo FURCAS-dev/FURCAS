@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LibClassCS.java,v 1.1 2010/05/03 05:30:08 ewillink Exp $
+ * $Id: LibClassCS.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
 /**
@@ -39,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * @model
  * @generated
  */
-public interface LibClassCS extends ClassCS {
+public interface LibClassCS extends LibClassifierCS {
 	/**
 	 * Returns the value of the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
