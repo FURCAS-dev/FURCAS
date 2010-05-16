@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCSImpl.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: OperationContextDeclCSImpl.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -27,11 +27,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -43,6 +45,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getResult <em>Result</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getPres <em>Pres</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getPosts <em>Posts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.OperationContextDeclCSImpl#getBodies <em>Bodies</em>}</li>
@@ -71,6 +74,16 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @ordered
 	 */
 	protected EList<VariableCS> parameters;
+
+	/**
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected VariableCS result;
 
 	/**
 	 * The cached value of the '{@link #getPres() <em>Pres</em>}' containment reference list.
@@ -179,6 +192,55 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public VariableCS getResult() {
+		if (result == null) {
+			VariableCS resultVariable = EssentialOCLCSTFactory.eINSTANCE.createVariableCS();
+			resultVariable.setName("result");
+			resultVariable.setType(getType());
+			setResult(resultVariable);
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetResult(VariableCS newResult, NotificationChain msgs) {
+		VariableCS oldResult = result;
+		result = newResult;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT, oldResult, newResult);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResult(VariableCS newResult) {
+		if (newResult != result) {
+			NotificationChain msgs = null;
+			if (result != null)
+				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT, null, msgs);
+			if (newResult != null)
+				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT, null, msgs);
+			msgs = basicSetResult(newResult, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT, newResult, newResult));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<PreCS> getPres() {
@@ -224,6 +286,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 				return basicSetOperation(null, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
+				return basicSetResult(null, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				return ((InternalEList<?>)getPres()).basicRemove(otherEnd, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS:
@@ -246,6 +310,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 				return getOperation();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return getParameters();
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
+				return getResult();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				return getPres();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS:
@@ -271,6 +337,9 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends VariableCS>)newValue);
+				return;
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
+				setResult((VariableCS)newValue);
 				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				getPres().clear();
@@ -302,6 +371,9 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
 				return;
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
+				setResult((VariableCS)null);
+				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				getPres().clear();
 				return;
@@ -327,6 +399,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 				return operation != null;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
+				return result != null;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES:
 				return pres != null && !pres.isEmpty();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS:
@@ -337,4 +411,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getOperation());
+	}
 } //OperationContextDeclCSImpl

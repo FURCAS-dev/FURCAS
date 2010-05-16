@@ -5635,21 +5635,21 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleQualifiedClassifierRefCS
-    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1937:1: ruleQualifiedClassifierRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_classifier_2_0= ruleClassifierRefCS ) ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1937:1: ruleQualifiedClassifierRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleClassifierRefCS ) ) ) ;
     public final EObject ruleQualifiedClassifierRefCS() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_classifier_2_0 = null;
+        EObject lv_element_2_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1942:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_classifier_2_0= ruleClassifierRefCS ) ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_classifier_2_0= ruleClassifierRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1942:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleClassifierRefCS ) ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleClassifierRefCS ) ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_classifier_2_0= ruleClassifierRefCS ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:2: ( ( ruleIdentifier ) ) '::' ( (lv_classifier_2_0= ruleClassifierRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleClassifierRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:2: ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleClassifierRefCS ) )
             {
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1943:2: ( ( ruleIdentifier ) )
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1944:1: ( ruleIdentifier )
@@ -5696,19 +5696,19 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                       createLeafNode(grammarAccess.getQualifiedClassifierRefCSAccess().getColonColonKeyword_1(), null); 
                   
             }
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1966:1: ( (lv_classifier_2_0= ruleClassifierRefCS ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1967:1: (lv_classifier_2_0= ruleClassifierRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1966:1: ( (lv_element_2_0= ruleClassifierRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1967:1: (lv_element_2_0= ruleClassifierRefCS )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1967:1: (lv_classifier_2_0= ruleClassifierRefCS )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1968:3: lv_classifier_2_0= ruleClassifierRefCS
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1967:1: (lv_element_2_0= ruleClassifierRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:1968:3: lv_element_2_0= ruleClassifierRefCS
             {
             if ( backtracking==0 ) {
                
-              	        currentNode=createCompositeNode(grammarAccess.getQualifiedClassifierRefCSAccess().getClassifierClassifierRefCSParserRuleCall_2_0(), currentNode); 
+              	        currentNode=createCompositeNode(grammarAccess.getQualifiedClassifierRefCSAccess().getElementClassifierRefCSParserRuleCall_2_0(), currentNode); 
               	    
             }
             pushFollow(FollowSets000.FOLLOW_ruleClassifierRefCS_in_ruleQualifiedClassifierRefCS3420);
-            lv_classifier_2_0=ruleClassifierRefCS();
+            lv_element_2_0=ruleClassifierRefCS();
             _fsp--;
             if (failed) return current;
             if ( backtracking==0 ) {
@@ -5720,8 +5720,8 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
               	        try {
               	       		set(
               	       			current, 
-              	       			"classifier",
-              	        		lv_classifier_2_0, 
+              	       			"element",
+              	        		lv_element_2_0, 
               	        		"ClassifierRefCS", 
               	        		currentNode);
               	        } catch (ValueConverterException vce) {
@@ -5800,21 +5800,21 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleQualifiedOperationRefCS
-    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2007:1: ruleQualifiedOperationRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_operation_2_0= ruleOperationRefCS ) ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2007:1: ruleQualifiedOperationRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleOperationRefCS ) ) ) ;
     public final EObject ruleQualifiedOperationRefCS() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_operation_2_0 = null;
+        EObject lv_element_2_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2012:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_operation_2_0= ruleOperationRefCS ) ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_operation_2_0= ruleOperationRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2012:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleOperationRefCS ) ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleOperationRefCS ) ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_operation_2_0= ruleOperationRefCS ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:2: ( ( ruleIdentifier ) ) '::' ( (lv_operation_2_0= ruleOperationRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleOperationRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:2: ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= ruleOperationRefCS ) )
             {
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2013:2: ( ( ruleIdentifier ) )
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2014:1: ( ruleIdentifier )
@@ -5861,19 +5861,19 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                       createLeafNode(grammarAccess.getQualifiedOperationRefCSAccess().getColonColonKeyword_1(), null); 
                   
             }
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2036:1: ( (lv_operation_2_0= ruleOperationRefCS ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2037:1: (lv_operation_2_0= ruleOperationRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2036:1: ( (lv_element_2_0= ruleOperationRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2037:1: (lv_element_2_0= ruleOperationRefCS )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2037:1: (lv_operation_2_0= ruleOperationRefCS )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2038:3: lv_operation_2_0= ruleOperationRefCS
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2037:1: (lv_element_2_0= ruleOperationRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2038:3: lv_element_2_0= ruleOperationRefCS
             {
             if ( backtracking==0 ) {
                
-              	        currentNode=createCompositeNode(grammarAccess.getQualifiedOperationRefCSAccess().getOperationOperationRefCSParserRuleCall_2_0(), currentNode); 
+              	        currentNode=createCompositeNode(grammarAccess.getQualifiedOperationRefCSAccess().getElementOperationRefCSParserRuleCall_2_0(), currentNode); 
               	    
             }
             pushFollow(FollowSets000.FOLLOW_ruleOperationRefCS_in_ruleQualifiedOperationRefCS3549);
-            lv_operation_2_0=ruleOperationRefCS();
+            lv_element_2_0=ruleOperationRefCS();
             _fsp--;
             if (failed) return current;
             if ( backtracking==0 ) {
@@ -5885,8 +5885,8 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
               	        try {
               	       		set(
               	       			current, 
-              	       			"operation",
-              	        		lv_operation_2_0, 
+              	       			"element",
+              	        		lv_element_2_0, 
               	        		"OperationRefCS", 
               	        		currentNode);
               	        } catch (ValueConverterException vce) {
@@ -5965,21 +5965,21 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleQualifiedPropertyRefCS
-    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2077:1: ruleQualifiedPropertyRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_feature_2_0= rulePropertyRefCS ) ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2077:1: ruleQualifiedPropertyRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePropertyRefCS ) ) ) ;
     public final EObject ruleQualifiedPropertyRefCS() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_feature_2_0 = null;
+        EObject lv_element_2_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2082:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_feature_2_0= rulePropertyRefCS ) ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_feature_2_0= rulePropertyRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2082:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePropertyRefCS ) ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePropertyRefCS ) ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_feature_2_0= rulePropertyRefCS ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:2: ( ( ruleIdentifier ) ) '::' ( (lv_feature_2_0= rulePropertyRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePropertyRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:2: ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePropertyRefCS ) )
             {
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2083:2: ( ( ruleIdentifier ) )
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2084:1: ( ruleIdentifier )
@@ -6026,19 +6026,19 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                       createLeafNode(grammarAccess.getQualifiedPropertyRefCSAccess().getColonColonKeyword_1(), null); 
                   
             }
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2106:1: ( (lv_feature_2_0= rulePropertyRefCS ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2107:1: (lv_feature_2_0= rulePropertyRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2106:1: ( (lv_element_2_0= rulePropertyRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2107:1: (lv_element_2_0= rulePropertyRefCS )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2107:1: (lv_feature_2_0= rulePropertyRefCS )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2108:3: lv_feature_2_0= rulePropertyRefCS
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2107:1: (lv_element_2_0= rulePropertyRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2108:3: lv_element_2_0= rulePropertyRefCS
             {
             if ( backtracking==0 ) {
                
-              	        currentNode=createCompositeNode(grammarAccess.getQualifiedPropertyRefCSAccess().getFeaturePropertyRefCSParserRuleCall_2_0(), currentNode); 
+              	        currentNode=createCompositeNode(grammarAccess.getQualifiedPropertyRefCSAccess().getElementPropertyRefCSParserRuleCall_2_0(), currentNode); 
               	    
             }
             pushFollow(FollowSets000.FOLLOW_rulePropertyRefCS_in_ruleQualifiedPropertyRefCS3678);
-            lv_feature_2_0=rulePropertyRefCS();
+            lv_element_2_0=rulePropertyRefCS();
             _fsp--;
             if (failed) return current;
             if ( backtracking==0 ) {
@@ -6050,8 +6050,8 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
               	        try {
               	       		set(
               	       			current, 
-              	       			"feature",
-              	        		lv_feature_2_0, 
+              	       			"element",
+              	        		lv_element_2_0, 
               	        		"PropertyRefCS", 
               	        		currentNode);
               	        } catch (ValueConverterException vce) {
@@ -6130,21 +6130,21 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleQualifiedPackageRefCS
-    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2147:1: ruleQualifiedPackageRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_package_2_0= rulePackageRefCS ) ) ) ;
+    // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2147:1: ruleQualifiedPackageRefCS returns [EObject current=null] : ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePackageRefCS ) ) ) ;
     public final EObject ruleQualifiedPackageRefCS() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_package_2_0 = null;
+        EObject lv_element_2_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2152:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_package_2_0= rulePackageRefCS ) ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_package_2_0= rulePackageRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2152:6: ( ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePackageRefCS ) ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePackageRefCS ) ) )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_package_2_0= rulePackageRefCS ) ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:2: ( ( ruleIdentifier ) ) '::' ( (lv_package_2_0= rulePackageRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:1: ( ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePackageRefCS ) ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:2: ( ( ruleIdentifier ) ) '::' ( (lv_element_2_0= rulePackageRefCS ) )
             {
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2153:2: ( ( ruleIdentifier ) )
             // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2154:1: ( ruleIdentifier )
@@ -6191,19 +6191,19 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                       createLeafNode(grammarAccess.getQualifiedPackageRefCSAccess().getColonColonKeyword_1(), null); 
                   
             }
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2176:1: ( (lv_package_2_0= rulePackageRefCS ) )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2177:1: (lv_package_2_0= rulePackageRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2176:1: ( (lv_element_2_0= rulePackageRefCS ) )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2177:1: (lv_element_2_0= rulePackageRefCS )
             {
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2177:1: (lv_package_2_0= rulePackageRefCS )
-            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2178:3: lv_package_2_0= rulePackageRefCS
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2177:1: (lv_element_2_0= rulePackageRefCS )
+            // ../org.eclipse.ocl.examples.xtext.completeocl/src-gen/org/eclipse/ocl/examples/xtext/completeocl/parser/antlr/internal/InternalCompleteOCL.g:2178:3: lv_element_2_0= rulePackageRefCS
             {
             if ( backtracking==0 ) {
                
-              	        currentNode=createCompositeNode(grammarAccess.getQualifiedPackageRefCSAccess().getPackagePackageRefCSParserRuleCall_2_0(), currentNode); 
+              	        currentNode=createCompositeNode(grammarAccess.getQualifiedPackageRefCSAccess().getElementPackageRefCSParserRuleCall_2_0(), currentNode); 
               	    
             }
             pushFollow(FollowSets000.FOLLOW_rulePackageRefCS_in_ruleQualifiedPackageRefCS3807);
-            lv_package_2_0=rulePackageRefCS();
+            lv_element_2_0=rulePackageRefCS();
             _fsp--;
             if (failed) return current;
             if ( backtracking==0 ) {
@@ -6215,8 +6215,8 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
               	        try {
               	       		set(
               	       			current, 
-              	       			"package",
-              	        		lv_package_2_0, 
+              	       			"element",
+              	        		lv_element_2_0, 
               	        		"PackageRefCS", 
               	        		currentNode);
               	        } catch (ValueConverterException vce) {

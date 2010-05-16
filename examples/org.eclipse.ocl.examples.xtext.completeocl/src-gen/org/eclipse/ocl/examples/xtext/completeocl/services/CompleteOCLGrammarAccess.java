@@ -924,14 +924,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cNamespaceNamespaceCSCrossReference_0_0 = (CrossReference)cNamespaceAssignment_0.eContents().get(0);
 		private final RuleCall cNamespaceNamespaceCSIdentifierParserRuleCall_0_0_1 = (RuleCall)cNamespaceNamespaceCSCrossReference_0_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cClassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cClassifierClassifierRefCSParserRuleCall_2_0 = (RuleCall)cClassifierAssignment_2.eContents().get(0);
+		private final Assignment cElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementClassifierRefCSParserRuleCall_2_0 = (RuleCall)cElementAssignment_2.eContents().get(0);
 		
 		//QualifiedClassifierRefCS returns base::QualifiedClassifierRefCS:
-		//  namespace=[base::NamespaceCS|Identifier] "::" classifier=ClassifierRefCS;
+		//  namespace=[base::NamespaceCS|Identifier] "::" element=ClassifierRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//namespace=[base::NamespaceCS|Identifier] "::" classifier=ClassifierRefCS
+		//namespace=[base::NamespaceCS|Identifier] "::" element=ClassifierRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -946,11 +946,11 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"::"
 		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
 
-		//classifier=ClassifierRefCS
-		public Assignment getClassifierAssignment_2() { return cClassifierAssignment_2; }
+		//element=ClassifierRefCS
+		public Assignment getElementAssignment_2() { return cElementAssignment_2; }
 
 		//ClassifierRefCS
-		public RuleCall getClassifierClassifierRefCSParserRuleCall_2_0() { return cClassifierClassifierRefCSParserRuleCall_2_0; }
+		public RuleCall getElementClassifierRefCSParserRuleCall_2_0() { return cElementClassifierRefCSParserRuleCall_2_0; }
 	}
 
 	public class QualifiedOperationRefCSElements extends AbstractParserRuleElementFinder {
@@ -960,14 +960,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cNamespaceNamespaceCSCrossReference_0_0 = (CrossReference)cNamespaceAssignment_0.eContents().get(0);
 		private final RuleCall cNamespaceNamespaceCSIdentifierParserRuleCall_0_0_1 = (RuleCall)cNamespaceNamespaceCSCrossReference_0_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOperationAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOperationOperationRefCSParserRuleCall_2_0 = (RuleCall)cOperationAssignment_2.eContents().get(0);
+		private final Assignment cElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementOperationRefCSParserRuleCall_2_0 = (RuleCall)cElementAssignment_2.eContents().get(0);
 		
 		//QualifiedOperationRefCS returns base::QualifiedOperationRefCS:
-		//  namespace=[base::NamespaceCS|Identifier] "::" operation=OperationRefCS;
+		//  namespace=[base::NamespaceCS|Identifier] "::" element=OperationRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//namespace=[base::NamespaceCS|Identifier] "::" operation=OperationRefCS
+		//namespace=[base::NamespaceCS|Identifier] "::" element=OperationRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -982,11 +982,11 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"::"
 		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
 
-		//operation=OperationRefCS
-		public Assignment getOperationAssignment_2() { return cOperationAssignment_2; }
+		//element=OperationRefCS
+		public Assignment getElementAssignment_2() { return cElementAssignment_2; }
 
 		//OperationRefCS
-		public RuleCall getOperationOperationRefCSParserRuleCall_2_0() { return cOperationOperationRefCSParserRuleCall_2_0; }
+		public RuleCall getElementOperationRefCSParserRuleCall_2_0() { return cElementOperationRefCSParserRuleCall_2_0; }
 	}
 
 	public class QualifiedPropertyRefCSElements extends AbstractParserRuleElementFinder {
@@ -996,14 +996,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cNamespaceNamespaceCSCrossReference_0_0 = (CrossReference)cNamespaceAssignment_0.eContents().get(0);
 		private final RuleCall cNamespaceNamespaceCSIdentifierParserRuleCall_0_0_1 = (RuleCall)cNamespaceNamespaceCSCrossReference_0_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cFeatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cFeaturePropertyRefCSParserRuleCall_2_0 = (RuleCall)cFeatureAssignment_2.eContents().get(0);
+		private final Assignment cElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementPropertyRefCSParserRuleCall_2_0 = (RuleCall)cElementAssignment_2.eContents().get(0);
 		
 		//QualifiedPropertyRefCS returns base::QualifiedStructuralFeatureRefCS:
-		//  namespace=[base::NamespaceCS|Identifier] "::" feature=PropertyRefCS;
+		//  namespace=[base::NamespaceCS|Identifier] "::" element=PropertyRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//namespace=[base::NamespaceCS|Identifier] "::" feature=PropertyRefCS
+		//namespace=[base::NamespaceCS|Identifier] "::" element=PropertyRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -1018,11 +1018,11 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"::"
 		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
 
-		//feature=PropertyRefCS
-		public Assignment getFeatureAssignment_2() { return cFeatureAssignment_2; }
+		//element=PropertyRefCS
+		public Assignment getElementAssignment_2() { return cElementAssignment_2; }
 
 		//PropertyRefCS
-		public RuleCall getFeaturePropertyRefCSParserRuleCall_2_0() { return cFeaturePropertyRefCSParserRuleCall_2_0; }
+		public RuleCall getElementPropertyRefCSParserRuleCall_2_0() { return cElementPropertyRefCSParserRuleCall_2_0; }
 	}
 
 	public class QualifiedPackageRefCSElements extends AbstractParserRuleElementFinder {
@@ -1032,14 +1032,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cNamespaceNamespaceCSCrossReference_0_0 = (CrossReference)cNamespaceAssignment_0.eContents().get(0);
 		private final RuleCall cNamespaceNamespaceCSIdentifierParserRuleCall_0_0_1 = (RuleCall)cNamespaceNamespaceCSCrossReference_0_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPackageAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPackagePackageRefCSParserRuleCall_2_0 = (RuleCall)cPackageAssignment_2.eContents().get(0);
+		private final Assignment cElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementPackageRefCSParserRuleCall_2_0 = (RuleCall)cElementAssignment_2.eContents().get(0);
 		
 		//QualifiedPackageRefCS returns base::QualifiedPackageRefCS:
-		//  namespace=[base::NamespaceCS|Identifier] "::" package=PackageRefCS;
+		//  namespace=[base::NamespaceCS|Identifier] "::" element=PackageRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//namespace=[base::NamespaceCS|Identifier] "::" package=PackageRefCS
+		//namespace=[base::NamespaceCS|Identifier] "::" element=PackageRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -1054,11 +1054,11 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"::"
 		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
 
-		//package=PackageRefCS
-		public Assignment getPackageAssignment_2() { return cPackageAssignment_2; }
+		//element=PackageRefCS
+		public Assignment getElementAssignment_2() { return cElementAssignment_2; }
 
 		//PackageRefCS
-		public RuleCall getPackagePackageRefCSParserRuleCall_2_0() { return cPackagePackageRefCSParserRuleCall_2_0; }
+		public RuleCall getElementPackageRefCSParserRuleCall_2_0() { return cElementPackageRefCSParserRuleCall_2_0; }
 	}
 
 	public class SimpleClassifierRefCSElements extends AbstractParserRuleElementFinder {
@@ -1759,7 +1759,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedClassifierRefCS returns base::QualifiedClassifierRefCS:
-	//  namespace=[base::NamespaceCS|Identifier] "::" classifier=ClassifierRefCS;
+	//  namespace=[base::NamespaceCS|Identifier] "::" element=ClassifierRefCS;
 	public QualifiedClassifierRefCSElements getQualifiedClassifierRefCSAccess() {
 		return (pQualifiedClassifierRefCS != null) ? pQualifiedClassifierRefCS : (pQualifiedClassifierRefCS = new QualifiedClassifierRefCSElements());
 	}
@@ -1769,7 +1769,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedOperationRefCS returns base::QualifiedOperationRefCS:
-	//  namespace=[base::NamespaceCS|Identifier] "::" operation=OperationRefCS;
+	//  namespace=[base::NamespaceCS|Identifier] "::" element=OperationRefCS;
 	public QualifiedOperationRefCSElements getQualifiedOperationRefCSAccess() {
 		return (pQualifiedOperationRefCS != null) ? pQualifiedOperationRefCS : (pQualifiedOperationRefCS = new QualifiedOperationRefCSElements());
 	}
@@ -1779,7 +1779,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedPropertyRefCS returns base::QualifiedStructuralFeatureRefCS:
-	//  namespace=[base::NamespaceCS|Identifier] "::" feature=PropertyRefCS;
+	//  namespace=[base::NamespaceCS|Identifier] "::" element=PropertyRefCS;
 	public QualifiedPropertyRefCSElements getQualifiedPropertyRefCSAccess() {
 		return (pQualifiedPropertyRefCS != null) ? pQualifiedPropertyRefCS : (pQualifiedPropertyRefCS = new QualifiedPropertyRefCSElements());
 	}
@@ -1789,7 +1789,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedPackageRefCS returns base::QualifiedPackageRefCS:
-	//  namespace=[base::NamespaceCS|Identifier] "::" package=PackageRefCS;
+	//  namespace=[base::NamespaceCS|Identifier] "::" element=PackageRefCS;
 	public QualifiedPackageRefCSElements getQualifiedPackageRefCSAccess() {
 		return (pQualifiedPackageRefCS != null) ? pQualifiedPackageRefCS : (pQualifiedPackageRefCS = new QualifiedPackageRefCSElements());
 	}

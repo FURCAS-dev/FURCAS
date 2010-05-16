@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextDeclCS.java,v 1.2 2010/05/03 05:58:33 ewillink Exp $
+ * $Id: ContextDeclCS.java,v 1.3 2010/05/16 19:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
  *
  *
  * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getContextDeclCS()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ContextDeclCS extends ElementCS {

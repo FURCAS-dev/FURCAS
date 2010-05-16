@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextDeclCSImpl.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: PropertyContextDeclCSImpl.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
@@ -317,4 +318,8 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void getSignature(Signature signature) {
+		signature.appendElement(getProperty());
+	}
 } //PropertyContextDeclCSImpl

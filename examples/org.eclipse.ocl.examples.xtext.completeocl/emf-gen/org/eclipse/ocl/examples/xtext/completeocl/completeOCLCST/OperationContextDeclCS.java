@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCS.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: OperationContextDeclCS.java,v 1.4 2010/05/16 19:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getResult <em>Result</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getPres <em>Pres</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getPosts <em>Posts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getBodies <em>Bodies</em>}</li>
@@ -82,6 +83,32 @@ public interface OperationContextDeclCS extends FeatureContextDeclCS {
 	 * @generated
 	 */
 	EList<VariableCS> getParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Result</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Result</em>' containment reference.
+	 * @see #setResult(VariableCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOperationContextDeclCS_Result()
+	 * @model containment="true" transient="true" derived="true"
+	 * @generated
+	 */
+	VariableCS getResult();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getResult <em>Result</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Result</em>' containment reference.
+	 * @see #getResult()
+	 * @generated
+	 */
+	void setResult(VariableCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Pres</b></em>' containment reference list.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactoryImpl.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: CompleteOCLCSTFactoryImpl.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTF
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
@@ -89,7 +88,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS: return createClassifierContextDeclCS();
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
 			case CompleteOCLCSTPackage.CONSTRAINT_CS: return createConstraintCS();
-			case CompleteOCLCSTPackage.CONTEXT_DECL_CS: return createContextDeclCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
@@ -115,16 +113,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public PackageDeclarationCS createPackageDeclarationCS() {
 		PackageDeclarationCSImpl packageDeclarationCS = new PackageDeclarationCSImpl();
 		return packageDeclarationCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ContextDeclCS createContextDeclCS() {
-		ContextDeclCSImpl contextDeclCS = new ContextDeclCSImpl();
-		return contextDeclCS;
 	}
 
 	/**

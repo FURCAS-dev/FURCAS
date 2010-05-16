@@ -12,17 +12,17 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -34,23 +34,23 @@ public class PropertyContextScopeAdapter extends EssentialOCLScopeAdapter<Proper
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS__PROPERTY) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		if (containmentFeature == CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS__PROPERTY) {
+			return scopeView.getOuterScope();
 		}
 		else {
 			StructuralFeatureRefCS csStructuralFeatureRef = getTarget().getProperty();
 			while (csStructuralFeatureRef instanceof QualifiedStructuralFeatureRefCS) {
-				csStructuralFeatureRef = ((QualifiedStructuralFeatureRefCS)csStructuralFeatureRef).getFeature();
+				csStructuralFeatureRef = ((QualifiedStructuralFeatureRefCS)csStructuralFeatureRef).getElement();
 			}
 			if (csStructuralFeatureRef instanceof SimpleStructuralFeatureRefCS) {
 				SimpleStructuralFeatureRefCS csSimpleStructuralFeatureRef = (SimpleStructuralFeatureRefCS)csStructuralFeatureRef;
 				StructuralFeatureCS classifier = csSimpleStructuralFeatureRef.getFeature();
-				environmentView.addElementsOfScope(classifier);
-				environmentView.addElement("self", (ElementCS) classifier.eContainer());
+				environmentView.addElementsOfScope(classifier, scopeView);
+				environmentView.addElement("self", classifier.eContainer(), scopeView.getBindings());
 			}
+			return scopeView.getOuterScope();
 		}
-		return true;
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.3 2010/05/09 17:08:25 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -32,21 +33,25 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLScopeAdapter<Pac
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
-		if (containmentFeature == null) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
+		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
+			return scopeView.getOuterScope();
 		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
-		}
-		else {
+		if ((containmentFeature == null)
+		 || (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS)) {
 			PackageRefCS csPackageRef = getTarget().getPackage();
 			while (csPackageRef instanceof QualifiedPackageRefCS) {
-				csPackageRef = ((QualifiedPackageRefCS)csPackageRef).getPackage();
+				csPackageRef = ((QualifiedPackageRefCS)csPackageRef).getElement();
 			}
 			if (csPackageRef instanceof SimplePackageRefCS) {
 				SimplePackageRefCS csSimplePackageRef = (SimplePackageRefCS)csPackageRef;
-				environmentView.addElementsOfScope(csSimplePackageRef.getPackage());
+				environmentView.addElementsOfScope(csSimplePackageRef.getPackage(), scopeView);
 			}
 		}
-		return true;
+		else {
+			return scopeView.getOuterScope();
+		}
+		return scopeView.getOuterScope();
 	}
 }

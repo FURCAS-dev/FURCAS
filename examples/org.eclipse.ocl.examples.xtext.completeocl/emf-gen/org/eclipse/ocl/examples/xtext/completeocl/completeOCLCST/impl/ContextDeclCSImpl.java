@@ -12,12 +12,15 @@
  *
  * </copyright>
  *
- * $Id: ContextDeclCSImpl.java,v 1.2 2010/05/03 05:58:22 ewillink Exp $
+ * $Id: ContextDeclCSImpl.java,v 1.3 2010/05/16 19:26:02 ewillink Exp $
  */
+
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
+
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 
@@ -30,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
  *
  * @generated
  */
-public class ContextDeclCSImpl extends ElementCSImpl implements ContextDeclCS {
+public abstract class ContextDeclCSImpl extends ElementCSImpl implements ContextDeclCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

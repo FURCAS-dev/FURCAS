@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.5 2010/05/09 17:08:25 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.6 2010/05/16 19:26:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
@@ -36,21 +36,21 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 	}
 
 	@Override
-	public boolean computeInheritedEnvironmentView(EnvironmentView environmentView, EStructuralFeature containmentFeature) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		if (environmentView.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {
 			for (ImportCS anImport : getTarget().getImports()) {
 				if (anImport.getName() == null) {
 					NamespaceCS namespace = anImport.getNamespace();
 					if (namespace instanceof OCLinEcoreDocumentCS) {
-						environmentView.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages());
+						environmentView.addNamedElements(((OCLinEcoreDocumentCS)namespace).getPackages(), scopeView.getBindings());
 					}
 				}
 				else {
-					environmentView.addElement(anImport.getName(), anImport.getNamespace());
+					environmentView.addElement(anImport.getName(), anImport.getNamespace(), scopeView.getBindings());
 				}
 			}
 		}
-		return true;
+		return null;
 	}
 
 	@Override
