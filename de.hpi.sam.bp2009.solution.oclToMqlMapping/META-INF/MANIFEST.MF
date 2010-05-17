@@ -6,6 +6,5 @@ Bundle-Version: 0.1.0
 Export-Package: de.hpi.sam.bp2009.solution.oclToMqlMapping.impl;uses:="org.eclipse.ocl.expressions"
 Require-Bundle: de.hpi.sam.bp2009.solution.scopeProvider,
  org.eclipse.ocl,
- org.eclipse.emf.index;bundle-version="0.7.0",
  org.eclipse.emf.query.index,
  org.eclipse.emf.query2;bundle-version="1.0.0"
