@@ -130,6 +130,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.nastyConstraintAST);
+        //added by bp2009
+        expectedStmts.add(this.expensesRestrictionAST);
 
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );     
     }
@@ -207,6 +209,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.expensesRestrictionAST);
       
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -232,6 +235,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.expensesRestrictionAST);
        
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -278,6 +282,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.expensesRestrictionAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -304,6 +309,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.expensesRestrictionAST);
       
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -325,6 +331,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.uniqueNamesAST);
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.expensesRestrictionAST);
 
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -349,6 +356,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.expensesRestrictionAST);
   
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -369,6 +377,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         //added by bp2009
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.expensesRestrictionAST);
           
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -393,13 +402,14 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.expensesRestrictionAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
     /**
      * @param noti a {@link Notification} including a model change
-     * @return the {@link OCLExpression<EClassifier>}s which are affected by the given {@link Notification}
+     * @return the {@link OCLExpression}s which are affected by the given {@link Notification}
      */
     private HashSet<OCLExpression> filterStatementsForNotification(Notification noti) {
         HashSet<OCLExpression> affectedStmts = new HashSet<OCLExpression>();

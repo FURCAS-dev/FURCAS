@@ -34,6 +34,8 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 /**
  * Collects the events for a single {@link OCLExpression} recursively. The analyzer can be parameterized during
@@ -86,10 +88,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      * @return the filter matching all relevant events 
      */
     public EventFilter getSynthesisedFilter() {
-        // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
-        // redundant/duplicate filters
         return EventFilterFactory.getInstance().getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
-
     }
 
     /**
@@ -131,22 +130,20 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     				safeVisit(args);
     			}               
     		} else {
-    			//TODO check whether it works like intended
-//    			EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-//    			parser.convertOclAnnotation(opCallExp.getSource().getType());
-//    			OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
-    				//OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), opCallExp.getReferredOperation());
-//    				if (body != null) {
-//    					Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
-//    					if (analyzedCallsToBody == null) {
-//    						analyzedCallsToBody = new HashSet<OperationCallExp>();
-//    						// we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
-//    						visitedOperationBodies.put(body, analyzedCallsToBody);
-//    						safeVisit(body);
-//    					}
-//    					analyzedCallsToBody.add((OperationCallExp) opCallExp);
-//    				}
+    			EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+    			parser.convertOclAnnotation(opCallExp.getSource().getType());
+    			OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
+    			if (body != null) {
+    				Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
+    				if (analyzedCallsToBody == null) {
+    					analyzedCallsToBody = new HashSet<OperationCallExp>();
+    					// we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+    					visitedOperationBodies.put(body, analyzedCallsToBody);
+    					safeVisit(body);
+    				}
+    				analyzedCallsToBody.add((OperationCallExp) opCallExp);
     			}
+    		}
     	}
     	return result;
     }
