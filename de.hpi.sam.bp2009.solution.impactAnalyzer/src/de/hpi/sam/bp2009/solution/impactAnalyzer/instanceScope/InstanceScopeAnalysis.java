@@ -82,7 +82,9 @@ public class InstanceScopeAnalysis {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         if(!resultSet.isEmpty()){
             for (int i = 0; i < resultSet.getSize(); i++){
-                EObject obj = fromObject.eResource().getEObject(resultSet.getUri(i,"obj").toString());
+                String uri=resultSet.getUri(i,"obj").toString();
+                String uriFragment = uri.split("#")[1];
+                EObject obj = fromObject.eResource().getEObject(uriFragment);
                 AnnotatedEObject annObj = new AnnotatedEObject(obj);
                 result.add(annObj);
             }

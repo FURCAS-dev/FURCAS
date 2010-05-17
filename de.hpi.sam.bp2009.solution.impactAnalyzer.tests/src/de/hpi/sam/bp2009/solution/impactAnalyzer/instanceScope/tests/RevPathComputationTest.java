@@ -8,6 +8,7 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
@@ -58,7 +59,17 @@ public class RevPathComputationTest extends BaseDepartmentTest {
     @Override
     @After
     public void tearDown( ) {
-
+        EcoreUtil.remove(this.div);
+        EcoreUtil.remove(this.dep1);
+        EcoreUtil.remove(this.dep2);
+        EcoreUtil.remove(this.e1);
+        EcoreUtil.remove(this.e2);
+        EcoreUtil.remove(this.e3);
+        EcoreUtil.remove(this.e4);
+        EcoreUtil.remove(this.boss1);
+        EcoreUtil.remove(this.boss2);
+        EcoreUtil.remove(this.director);
+        EcoreUtil.remove(this.secretary);
         this.div = null;
         this.dep1 = null;
         this.dep2 = null;
