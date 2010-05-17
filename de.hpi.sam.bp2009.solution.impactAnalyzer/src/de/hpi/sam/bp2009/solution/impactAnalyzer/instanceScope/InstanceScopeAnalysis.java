@@ -82,7 +82,7 @@ public class InstanceScopeAnalysis {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         if(!resultSet.isEmpty()){
             for (int i = 0; i < resultSet.getSize(); i++){
-                EObject obj = fromObject.eResource().getEObject(resultSet.getUri(i,"op").toString());
+                EObject obj = fromObject.eResource().getEObject(resultSet.getUri(i,"obj").toString());
                 AnnotatedEObject annObj = new AnnotatedEObject(obj);
                 result.add(annObj);
             }
@@ -177,7 +177,7 @@ public class InstanceScopeAnalysis {
         if (NotificationHelper.isElementLifeCycleEvent(event)){
             EClass notiCls = ((EObject)event.getNotifier()).eClass();
             if (expressionContainsAllInstancesCallForType(notiCls)){
-                result = getAllPossibleContextInstances(new AnnotatedEObject((EObject)event.getNotifier()), getContext());
+                result.addAll(getAllPossibleContextInstances(new AnnotatedEObject((EObject)event.getNotifier()), getContext()));
             }
         } else {
             for (PropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
@@ -186,7 +186,7 @@ public class InstanceScopeAnalysis {
                     Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
                     // the source element may have been deleted already by subsequent events; at this point,
                     // this makes it impossible to trace the change event back to a context; all we have is
-                    result = self(attributeOrAssociationEndCall, sourceElement, getContext(), cache );
+                    result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache ));
                 }
             }
         }       

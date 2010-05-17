@@ -118,9 +118,9 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             //FIXME if forwardref is composite then create compositeNavigationStep if there is no eOpposite
             if (forwardRef.getEOpposite() != null){
                 reverseTraversal = new AssociationNavigationStep(
-                        getInnermostElementType(sourceType),
                         getInnermostElementType(getExpression().getType()),
-                        forwardRef,
+                        getInnermostElementType(sourceType),
+                        forwardRef.getEOpposite(),
                         getExpression());
             }else{
                 System.err.println("Missing EOpposite. At this point we should implement a clever way to get the opposite reference. At the moment we use allInstances!");

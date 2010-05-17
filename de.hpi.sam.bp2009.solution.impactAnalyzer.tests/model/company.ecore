@@ -24,11 +24,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="salary" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employer" eType="#//Department"
-        containment="true" resolveProxies="false" eOpposite="#//Department/employee"/>
+        resolveProxies="false" eOpposite="#//Department/employee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="managed" eType="#//Department"
-        containment="true" resolveProxies="false"/>
+        resolveProxies="false" eOpposite="#//Department/boss"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="directed" eType="#//Division"
-        containment="true" resolveProxies="false"/>
+        resolveProxies="false" eOpposite="#//Division/director"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="secretary" eType="#//Employee"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
@@ -52,7 +52,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="employee" upperBound="-1"
         eType="#//Employee" containment="true" resolveProxies="false" eOpposite="#//Employee/employer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"
-        containment="true" resolveProxies="false"/>
+        resolveProxies="false" eOpposite="#//Employee/managed"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -76,7 +76,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
         eType="#//Department" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
-        containment="true" resolveProxies="false"/>
+        containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Student" eSuperTypes="#//Employee">

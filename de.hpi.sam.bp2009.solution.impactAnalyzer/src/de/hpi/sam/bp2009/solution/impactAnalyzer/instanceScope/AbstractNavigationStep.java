@@ -146,9 +146,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         result = cache.get(cacheKey);
         if (result == null) {
             cacheMisses++;
-            Set<AnnotatedEObject> from = new HashSet<AnnotatedEObject>();
-            from.add(fromObject);
-            result = navigate(from , cache); 
+            result = navigate(fromObject , cache); 
             cache.put(cacheKey, result);
         }
         return result;

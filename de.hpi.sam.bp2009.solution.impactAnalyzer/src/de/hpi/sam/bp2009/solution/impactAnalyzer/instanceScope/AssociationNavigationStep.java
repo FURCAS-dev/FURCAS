@@ -39,6 +39,7 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
 
         //cache lookup was unsuccessful -> perform the navigation
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        // TODO change the usage of HiddenOpposites
         if (toEnd.eContainer() instanceof EClass){
             //we have a "normal" EReference
             Object ref = fromObject.eGet(toEnd);
@@ -49,13 +50,13 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
                     while (it.hasNext()){
                         Object elem = it.next();
                         if (elem instanceof EObject){
-                            result.add(new AnnotatedEObject((EObject)elem, "", fromObject.getTupleIdentifierStack()));
+                            result.add(new AnnotatedEObject((EObject)elem, fromObject.getTupleIdentifierStack()));
                         }
                     }
                 }
             }else{
                 //eGet(toEnd) will return an EObject
-                result.add(new AnnotatedEObject((EObject)ref, "", fromObject.getTupleIdentifierStack()));
+                result.add(new AnnotatedEObject((EObject)ref, fromObject.getTupleIdentifierStack()));
             }
         }else{
             //we have a "hidden" EReference (-> contained in another EReference)

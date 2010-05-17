@@ -84,7 +84,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	
 	public static boolean doesTypeMatch(EClass sourceType,
 	        AnnotatedEObject fromObject) {
-		return sourceType.isInstance(fromObject);
+		return sourceType.isInstance(fromObject.getAnnotatedObject());
 	}
 
 	/**

@@ -28,7 +28,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * 
  */
 public interface NavigationStep {
-	Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache);
+	public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache);
 
 	/**
 	 * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is

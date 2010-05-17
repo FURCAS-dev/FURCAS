@@ -69,7 +69,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             set.add((PropertyCallExp) callExp);
             
         } else if (callExp.getReferredProperty() instanceof EReference){
-            EReference refRef = (EReference) callExp.getNavigationSource();
+            EReference refRef = (EReference) callExp.getReferredProperty();
             Set<PropertyCallExp> set = associationEndCallExpressions.get(refRef);
             if (set==null) {
                 set = new HashSet<PropertyCallExp>();
