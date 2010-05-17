@@ -7,6 +7,7 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.ocl.examples.xtext.essentialocl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ocl.examples.xtext.essentialocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ocl.examples.xtext.oclstdlib.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,

@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLTransformer.java,v 1.1 2010/04/13 06:33:11 ewillink Exp $
+ * $Id: EssentialOCLTransformer.java,v 1.2 2010/05/17 09:18:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
-import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.outline.OCLstdlibTransformer;
 
 /**
  * customization of the default outline structure
  * 
  */
-public class EssentialOCLTransformer extends AbstractDeclarativeSemanticModelTransformer {
+public class EssentialOCLTransformer extends OCLstdlibTransformer {
 	
 }
