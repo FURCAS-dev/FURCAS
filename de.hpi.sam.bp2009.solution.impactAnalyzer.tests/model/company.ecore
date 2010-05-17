@@ -45,7 +45,11 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning"/>
     </eAnnotations>
-    <eOperations name="calcExpenses" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eOperations name="calcExpenses" eType="ecore:EDataType primitivetypes.ecore#//Integer">
+      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+        <details key="body" value="self.employee->iterate(e ; s : Integer = 0 | s + e.salary) + self.boss.salary"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxJuniors" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>

@@ -32,131 +32,136 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Department extends EObject {
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see company.CompanyPackage#getDepartment_Name()
-     * @model dataType="primitivetypes.String"
-     * @generated
-     */
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see company.CompanyPackage#getDepartment_Name()
+	 * @model dataType="primitivetypes.String"
+	 * @generated
+	 */
     String getName();
 
     /**
-     * Sets the value of the '{@link company.Department#getName <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link company.Department#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
     void setName(String value);
 
     /**
-     * Returns the value of the '<em><b>Max Juniors</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Max Juniors</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Max Juniors</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Max Juniors</em>' attribute.
-     * @see #setMaxJuniors(long)
-     * @see company.CompanyPackage#getDepartment_MaxJuniors()
-     * @model dataType="primitivetypes.Integer"
-     * @generated
-     */
+	 * @return the value of the '<em>Max Juniors</em>' attribute.
+	 * @see #setMaxJuniors(long)
+	 * @see company.CompanyPackage#getDepartment_MaxJuniors()
+	 * @model dataType="primitivetypes.Integer"
+	 * @generated
+	 */
     long getMaxJuniors();
 
     /**
-     * Sets the value of the '{@link company.Department#getMaxJuniors <em>Max Juniors</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link company.Department#getMaxJuniors <em>Max Juniors</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Max Juniors</em>' attribute.
-     * @see #getMaxJuniors()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Max Juniors</em>' attribute.
+	 * @see #getMaxJuniors()
+	 * @generated
+	 */
     void setMaxJuniors(long value);
 
     /**
-     * Returns the value of the '<em><b>Budget</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Budget</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Budget</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Budget</em>' attribute.
-     * @see #setBudget(long)
-     * @see company.CompanyPackage#getDepartment_Budget()
-     * @model dataType="primitivetypes.Integer"
-     * @generated
-     */
+	 * @return the value of the '<em>Budget</em>' attribute.
+	 * @see #setBudget(long)
+	 * @see company.CompanyPackage#getDepartment_Budget()
+	 * @model dataType="primitivetypes.Integer"
+	 * @generated
+	 */
     long getBudget();
 
     /**
-     * Sets the value of the '{@link company.Department#getBudget <em>Budget</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link company.Department#getBudget <em>Budget</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Budget</em>' attribute.
-     * @see #getBudget()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Budget</em>' attribute.
+	 * @see #getBudget()
+	 * @generated
+	 */
     void setBudget(long value);
 
     /**
-     * Returns the value of the '<em><b>Employee</b></em>' containment reference list.
-     * The list contents are of type {@link company.Employee}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Employee</b></em>' containment reference list.
+	 * The list contents are of type {@link company.Employee}.
+	 * It is bidirectional and its opposite is '{@link company.Employee#getEmployer <em>Employer</em>}'.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Employee</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Employee</em>' containment reference list.
-     * @see company.CompanyPackage#getDepartment_Employee()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Employee</em>' containment reference list.
+	 * @see company.CompanyPackage#getDepartment_Employee()
+	 * @see company.Employee#getEmployer
+	 * @model opposite="employer" containment="true"
+	 * @generated
+	 */
     EList<Employee> getEmployee();
 
     /**
-     * Returns the value of the '<em><b>Boss</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Boss</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link company.Employee#getManaged <em>Managed</em>}'.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Boss</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Boss</em>' containment reference.
-     * @see #setBoss(Employee)
-     * @see company.CompanyPackage#getDepartment_Boss()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Boss</em>' reference.
+	 * @see #setBoss(Employee)
+	 * @see company.CompanyPackage#getDepartment_Boss()
+	 * @see company.Employee#getManaged
+	 * @model opposite="managed" resolveProxies="false"
+	 * @generated
+	 */
     Employee getBoss();
 
     /**
-     * Sets the value of the '{@link company.Department#getBoss <em>Boss</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link company.Department#getBoss <em>Boss</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Boss</em>' containment reference.
-     * @see #getBoss()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Boss</em>' reference.
+	 * @see #getBoss()
+	 * @generated
+	 */
     void setBoss(Employee value);
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model dataType="primitivetypes.Integer"
-     * @generated
-     */
+	 * @model dataType="primitivetypes.Integer"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.employee->iterate(e ; s : Integer = 0 | s + e.salary) + self.boss.salary'"
+	 * @generated
+	 */
     long calcExpenses();
 
 } // Department

@@ -19,11 +19,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.parser.OCLParsersym;
@@ -116,31 +115,40 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     @Override
     public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> opCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
 
-        if (opCallExp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES) ) {
-            EClass cls = (EClass) opCallExp.getSource().getType();
-            addFilter(createFilterForElementInsertionOrDeletion(cls));
-        } else {
-            if (opCallExp.getOperationCode() > 0){
-                safeVisit(opCallExp.getSource());
-                for ( org.eclipse.ocl.expressions.OCLExpression<EClassifier> args: opCallExp.getArgument()){
-                    safeVisit(args);
-                }               
-            } else {
-                //TODO check whether it works like intended
-                OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), opCallExp.getReferredOperation());
-                if (body != null) {
-                    Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
-                    if (analyzedCallsToBody == null) {
-                        analyzedCallsToBody = new HashSet<OperationCallExp>();
-                        // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
-                        visitedOperationBodies.put(body, analyzedCallsToBody);
-                        safeVisit(body);
-                    }
-                    analyzedCallsToBody.add((OperationCallExp) opCallExp);
-                }
-            }
-        }
-        return result;
+    	if (opCallExp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES_NAME) ) {
+    		EClass cls = null;
+    		org.eclipse.ocl.expressions.OCLExpression<EClassifier> source = opCallExp.getSource();
+    		if (source instanceof TypeExpImpl){
+    			cls = (EClass) ((TypeExpImpl)source).getReferredType();
+    		}else {
+    			cls = (EClass) source.getType();
+    		}
+    		addFilter(createFilterForElementInsertionOrDeletion(cls));
+    	} else {
+    		if (opCallExp.getOperationCode() > 0){
+    			safeVisit(opCallExp.getSource());
+    			for ( org.eclipse.ocl.expressions.OCLExpression<EClassifier> args: opCallExp.getArgument()){
+    				safeVisit(args);
+    			}               
+    		} else {
+    			//TODO check whether it works like intended
+//    			EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+//    			parser.convertOclAnnotation(opCallExp.getSource().getType());
+//    			OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
+    				//OCLExpression body = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(), opCallExp.getReferredOperation());
+//    				if (body != null) {
+//    					Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
+//    					if (analyzedCallsToBody == null) {
+//    						analyzedCallsToBody = new HashSet<OperationCallExp>();
+//    						// we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+//    						visitedOperationBodies.put(body, analyzedCallsToBody);
+//    						safeVisit(body);
+//    					}
+//    					analyzedCallsToBody.add((OperationCallExp) opCallExp);
+//    				}
+    			}
+    	}
+    	return result;
     }
 
     @Override

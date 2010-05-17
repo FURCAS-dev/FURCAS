@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.tests;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -43,6 +42,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             this.stmts.add( this.bossHighestSalaryAST );
             this.stmts.add( this.bossIsOldestAST );
             this.stmts.add( this.maxJuniorsAST );
+            this.stmts.add( this.expensesRestrictionAST );
+            this.stmts.add( this.nastyConstraintAST );
+            this.stmts.add( this.divisionBossSecretaryAST );
+            this.stmts.add( this.secretaryOlderThanBossAST );
+            this.stmts.add( this.boss10YearsOlderThanJuniorAST );
         }
         if ( this.ia == null ) {
             this.ia = new ImpactAnalyzerImpl();
@@ -76,7 +80,10 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.bossIsOldestAST);
-        expectedStmts.add(this.maxJuniorsAST);                            
+        expectedStmts.add(this.maxJuniorsAST);
+        //added by bp2009
+        expectedStmts.add(this.secretaryOlderThanBossAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
 
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
@@ -122,6 +129,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.bossHighestSalaryAST);
+        expectedStmts.add(this.nastyConstraintAST);
 
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );     
     }
@@ -135,7 +143,24 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Long( 1234 ), new Long( 1234 ) );
         
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);        
-        Set<OCLExpression> expectedStmts = Collections.emptySet( );
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
+        expectedStmts.add(this.expensesRestrictionAST);
+        
+        assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );        
+    }
+    
+    /**
+     * Sends a {@link Notification} to IA and compares the returned affected
+     * statements to a set of expected affected statements.
+     */
+    @Test
+    public void testAttributeValueChangedEventEmployeeBudget( ) {
+        Notification noti = NotificationHelper.createAttributeChangeNotification(  this.aDepartment, this.departmentBudget, new Long( 1234 ), new Long( 4000 ) );
+        
+        HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);        
+        Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
+        //added by bp2009
+        expectedStmts.add(this.expensesRestrictionAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );        
     }
@@ -154,7 +179,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.maxJuniorsAST); 
         expectedStmts.add(this.bossHighestSalaryAST);
-       
+        //added by bp2009
+        expectedStmts.add(this.expensesRestrictionAST);
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+      
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -174,7 +203,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.maxJuniorsAST);
-        
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.divisionBossSecretaryAST);
+        expectedStmts.add(this.secretaryOlderThanBossAST);
+      
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
     
@@ -195,7 +228,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.maxJuniorsAST);
-        
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.divisionBossSecretaryAST);
+        expectedStmts.add(this.secretaryOlderThanBossAST);
+       
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -214,7 +251,10 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.maxJuniorsAST); 
         expectedStmts.add(this.bossHighestSalaryAST);
-        
+        expectedStmts.add(this.expensesRestrictionAST);
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -234,7 +274,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.oldEmployeeAST);
         expectedStmts.add(this.maxJuniorsAST);
         expectedStmts.add(this.bossIsOldestAST);
-
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.divisionBossSecretaryAST);
+        expectedStmts.add(this.secretaryOlderThanBossAST);
+        
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -256,7 +300,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.maxJuniorsAST);
         expectedStmts.add(this.bossIsOldestAST);
         expectedStmts.add(this.validAssignmentAST);
-        
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.divisionBossSecretaryAST);
+        expectedStmts.add(this.secretaryOlderThanBossAST);
+      
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -275,6 +323,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.bossIsOldestAST);
         //added by bp2009
         expectedStmts.add(this.uniqueNamesAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.nastyConstraintAST);
 
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
@@ -295,7 +345,11 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.bossIsOldestAST);
         //added by bp2009
         expectedStmts.add(this.uniqueNamesAST);
-   
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.divisionBossSecretaryAST);
+        expectedStmts.add(this.secretaryOlderThanBossAST);
+  
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -312,7 +366,10 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.notBossFreelanceAST);
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.bossIsOldestAST);
-        
+        //added by bp2009
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.nastyConstraintAST);
+          
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
 
@@ -332,6 +389,10 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.bossIsOldestAST);
         //added by bp2009
         expectedStmts.add(this.uniqueNamesAST);
+        expectedStmts.add(this.nastyConstraintAST);
+        expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
+        expectedStmts.add(this.divisionBossSecretaryAST);
+        expectedStmts.add(this.secretaryOlderThanBossAST);
         
         assertTrue( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }

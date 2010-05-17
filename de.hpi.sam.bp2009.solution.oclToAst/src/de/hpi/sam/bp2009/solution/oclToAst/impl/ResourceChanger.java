@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,6 +30,7 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.AbstractVisitor;
@@ -61,6 +63,16 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         return super.visitVariableExp(v);
 
     }
+    @Override
+    public EPackage visitTypeExp(TypeExp<EClassifier> t) {
+        EClassifier newType = handle(t.getType());
+        if(newType!=null){
+            set.add(newType);
+
+            t.setType(newType);
+        }
+    	return super.visitTypeExp(t);
+    }
     /**
      * Checks whether the given object has a resource or is in the pseudo resource
      * @param <T> the typ of the given object
@@ -72,8 +84,10 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             /*
              * get URI if any there
              */
-            URI uri= typ.eResource()==null?null:typ.eResource().getURI();
+            URI uri= typ.eResource()==null?null:typ.eResource().getURI();            
+  
             if( uri==null ||uri.equals(URI.createURI(OCL_PSEUDO_RESOURCE_URI))){
+
                 return EcoreUtil.copy(typ);
             }
         }
@@ -271,6 +285,13 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             set.add(newType);
             callExp.setType(newType);
         }
+        if(callExp.getReferredProperty()!=null){
+	        EClassifier newType1 = handle(callExp.getReferredProperty().getEType());
+	        if(newType1!=null){
+	            set.add(newType1);
+	            callExp.getReferredProperty().setEType(newType1);
+	        }
+        }
         return super.handlePropertyCallExp(callExp, sourceResult, qualifierResults);
 
     }
@@ -302,6 +323,18 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             set.add(newType);
 
             part.setType(newType);
+        }
+        if(part.getAttribute()!=null){
+	        EClassifier attType =handle(part.getAttribute().getEType());
+	        if(attType !=null){
+	        	set.add(attType);
+	        	part.getAttribute().setEType(attType);
+	        }
+	        EGenericType genType =handle(part.getAttribute().getEGenericType());
+	        if(genType !=null){
+	        	set.add(genType);
+	        	part.getAttribute().setEGenericType(genType);
+	        }
         }
         return super.handleTupleLiteralPart(part, valueResult);
 

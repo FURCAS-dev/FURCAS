@@ -154,6 +154,16 @@ public class BaseDepartmentTest extends TestCase{
      */
     private static final String boss10YearsOlderThanJunior = "context Department \n" + "inv boss10YearsOlderThanJunior: \n" + "let t:Tuple(boss:Employee,junior:Employee)=" + "Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in \n" + "t.boss.age > t.junior.age + 10";
 
+    /**
+     * the expenses per department must not exceed its budget
+     */
+    private static final String expensesRestriction = "context Department inv BudgetRestriction: \n" + "self.calcExpenses() <= self.budget";
+
+    /**
+     * defines how to calculate expenses: The sum of the employee's salary plus
+     * the boss' salary
+     */
+    //private static final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" + "self.employee->iterate(e: sum=0 | sum + self.salary) + self.boss.salary";
     /*
      * OCLExpression representing the constrains above
      */
@@ -311,7 +321,7 @@ public class BaseDepartmentTest extends TestCase{
      * @param maxJuniors the value for the maxJunior attribute
      * @param budget the value for the budget attribute
      */
-    private company.impl.DepartmentImpl createDepartment( int employees, int freelances, int maxNumJuniors, int budget ) {
+    private DepartmentImpl createDepartment( int employees, int freelances, int maxNumJuniors, int budget ) {
 
         DepartmentImpl dep = (DepartmentImpl) CompanyFactory.eINSTANCE.createDepartment();
         dep.setName( "Dep" + this.curDepartmentID );
@@ -340,7 +350,7 @@ public class BaseDepartmentTest extends TestCase{
     /**
      * @return an instance of {@link Employee}
      */
-    private company.impl.EmployeeImpl createEmployee( ) {
+    private EmployeeImpl createEmployee( ) {
 
         EmployeeImpl e = (EmployeeImpl) CompanyFactory.eINSTANCE.createEmployee();
         e.setName( "empl" + this.curImployeeID );
@@ -357,7 +367,7 @@ public class BaseDepartmentTest extends TestCase{
     /**
      * @return a instances of {@link Freelance}
      */
-    private company.impl.FreelanceImpl createFreelance( ) {
+    private FreelanceImpl createFreelance( ) {
 
         FreelanceImpl f = (FreelanceImpl) CompanyFactory.eINSTANCE.createFreelance();
         f.setName( "empl" + this.curImployeeID );
@@ -388,6 +398,11 @@ public class BaseDepartmentTest extends TestCase{
         this.divisionBossSecretaryAST = (OCLExpression) parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
         this.secretaryOlderThanBossAST = (OCLExpression) parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
         this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
+        
+        this.expensesRestrictionAST = (OCLExpression) parse( expensesRestriction ).iterator().next().getSpecification().getBodyExpression();
+        //OCLExpression userDefinedOp = (OCLExpression) parse( expensesCalculation ).iterator().next().getSpecification().getBodyExpression();
+        
+        //this.expensesRestrictionAST.getEAnnotations().add((EAnnotation) userDefinedOp);
         //if comp has an EResource add each expression to this EResource
         if (this.comp.eResource() != null){
 	        this.comp.eResource().getContents().add(this.boss10YearsOlderThanJuniorAST);
@@ -401,6 +416,7 @@ public class BaseDepartmentTest extends TestCase{
 	        this.comp.eResource().getContents().add(this.nastyConstraintAST);
 	        this.comp.eResource().getContents().add(this.bossHighestSalaryAST);
 	        this.comp.eResource().getContents().add(this.divisionBossSecretaryAST);
+	        this.comp.eResource().getContents().add(this.expensesRestrictionAST);
         }
     }
 

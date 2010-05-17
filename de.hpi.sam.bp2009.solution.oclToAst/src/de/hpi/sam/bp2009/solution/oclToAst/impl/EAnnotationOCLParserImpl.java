@@ -203,10 +203,26 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
      */
     public OCLExpression getExpressionFromAnnotationsOf(ENamedElement element, String constraintName) {
         OCLExpression query = null;
-        EAnnotation anno = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
-        if (anno == null) {
+        EAnnotation annoTest = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
+        if (annoTest == null) {
             return null;
         }
+        
+        query = getExpressionFromAnnotation(element, constraintName);
+        if (query == null) {
+            // we know the annotation exists, but it seems the OCLExpression is not present in the contents:
+            convertOclAnnotation(element);
+            query = getExpressionFromAnnotation(element, constraintName); // try again
+        }
+        return query;
+    }
+
+
+	private OCLExpression getExpressionFromAnnotation(ENamedElement element,
+			String constraintName) {
+		OCLExpression query = null;
+		EAnnotation anno = element.getEAnnotation(EAnnotationOCLParser.ANNOTATION_SOURCE);
+
         int pos = -1;
         int count = 0;
         for (String constraint1 : anno.getDetails().keySet()) {
@@ -221,13 +237,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 query = (OCLExpression) anno.getContents().get(pos);
             }
         }
-        if (query == null) {
-            // we know the annotation exists, but it seems the OCLExpression is not present in the contents:
-            convertOclAnnotation(element);
-            query = getExpressionFromAnnotationsOf(element, constraintName); // try again
-        }
-        return query;
-    }
+		return query;
+	}
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#traversalConvertOclAnnotations(org.eclipse.emf.ecore.EPackage)
