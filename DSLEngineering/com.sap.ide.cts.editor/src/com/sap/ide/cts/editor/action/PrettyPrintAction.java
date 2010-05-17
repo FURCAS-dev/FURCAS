@@ -14,6 +14,7 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
 import com.sap.ide.cts.dialogs.ChooseConcreteSyntaxDialog;
+import com.sap.ide.cts.dialogs.ChoosePrettyPrintModeDialog;
 import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockIncrementalTCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
@@ -113,6 +114,13 @@ public class PrettyPrintAction extends Action {
 					throw new Exception(
 							"No template found to print model element!");
 				}
+				
+				boolean ppMode = false;
+				Object mode = new ChoosePrettyPrintModeDialog().execute(null);
+				if(mode instanceof String && mode.equals("conservative"))
+				{
+					ppMode = true;
+				}
 
 				// Choose corresponding parser factory
 				IConfigurationElement[] config = Platform
@@ -131,7 +139,7 @@ public class PrettyPrintAction extends Action {
 									connection
 											.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR),
 									modelElement.get___Partition(),
-									parserFactory, false);
+									parserFactory, ppMode);
 							break;
 						}
 					}

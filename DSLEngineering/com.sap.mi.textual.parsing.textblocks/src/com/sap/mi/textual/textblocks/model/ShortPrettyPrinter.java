@@ -2,6 +2,7 @@ package com.sap.mi.textual.textblocks.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import tcs.FilterParg;
 import tcs.LiteralRef;
@@ -128,7 +129,13 @@ public class ShortPrettyPrinter {
 //	    for (RefObject referencedObject : token.getParentBlock()
 //		    .getCorrespondingModelElements()) {
 	    //it is always the first element as all others do not have a syntax contribution!
-	    RefObject referencedObject = token.getParentBlock().getCorrespondingModelElements().get(0);
+	    RefObject referencedObject;
+	    List<RefObject> correspondingElements = token.getParentBlock().getCorrespondingModelElements();
+	    if (correspondingElements.isEmpty()) {
+		referencedObject = token.getParentBlock().getReferencedElements().iterator().next();
+	    } else {
+		referencedObject = correspondingElements.get(0);
+	    }
 		try {
 		    Object value = investigator
 			    .get(referencedObject, se.getPropertyReference()

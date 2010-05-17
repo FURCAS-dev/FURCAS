@@ -21,6 +21,14 @@
             name="Class Editor">
       </editor>
       <editor
+            class="com.sap.ap.cts.editor.PackageEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="ngpm"
+            icon="resources/icons/change_view_action.gif"
+            id="com.sap.ap.cts.editor.PackageEditor"
+            name="Package Editor">
+      </editor>
+      <editor
             class="com.sap.ap.cts.editor.BindingEditor"
             contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
             extensions="act"
@@ -55,6 +63,16 @@
             editorId="com.sap.ap.cts.editor.ClassEditor"
             inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
             objectClass="data.classes.SapClass">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="false"
+            default="true"
+            editorId="com.sap.ap.cts.editor.PackageEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="modelmanagement.Package">
       </association>
    </extension>
    <extension
@@ -145,6 +163,13 @@
       <configuration
             dynamicParserFactoryClass="com.sap.ap.cts.monet.parser.ClassParserFactory"
             languageID="Class">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            dynamicParserFactoryClass="com.sap.ap.cts.monet.parser.PackageParserFactory"
+            languageID="Package">
       </configuration>
    </extension>
 

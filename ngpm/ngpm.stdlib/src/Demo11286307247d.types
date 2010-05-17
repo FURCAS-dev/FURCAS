@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='data.classes.A_associations_package_' i='E0234C8C51EB7BC73E4B11DEC78E0018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='1' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
+<M c='1' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
+<modelmanagement.Package m:c='1' m:i='E0E1B8C65A043B10576E11DFA28BC3280A140F13' name='Demo1'/>
+<data.classes.A_associations_package_ c='1'>
+<L f='local:E0412956C4882500576E11DFCE67C3280A140F13' s='E0E1B8C65A043B10576E11DFA28BC3280A140F13'/>
+<L f='local:E0677A9A84409BD0576E11DFA820C3280A140F13' s='E0E1B8C65A043B10576E11DFA28BC3280A140F13'/>
+</data.classes.A_associations_package_>
+<modelmanagement.A_ownedPackages_owner c='1'>
+<L f='E0E1B8C65A043B10576E11DFA28BC3280A140F13' s='local:49AC5B4E1D8E5270077811DEBC0C0019D29902CC'/>
+</modelmanagement.A_ownedPackages_owner>
+</Partition>

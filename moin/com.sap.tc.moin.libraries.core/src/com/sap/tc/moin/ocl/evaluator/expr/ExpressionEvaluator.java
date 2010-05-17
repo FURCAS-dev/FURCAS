@@ -11,6 +11,8 @@ import com.sap.tc.moin.ocl.evaluator.StackedEvaluator;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclAny;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclCollection;
 import com.sap.tc.moin.repository.core.CoreConnection;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode.NodeRoleTypes;
@@ -66,6 +68,10 @@ public abstract class ExpressionEvaluator {
      * If <tt>expression</tt>'s source expression is of collection type (upper multiplicity greater than 1),
      * and <tt>sourceObject</tt> is not an {@link OclCollection}, an {@link OclCollection} will be created
      * on the fly to wrap <tt>sourceObject</tt> appropriately to, e.g., let loop expressions work properly.
+     * 
+     * @param throwExceptionWhenVisiting an exception will be thrown when the evaluator tries to
+     * navigate the {@link Pair#getA()} feature (an {@link Attribute} or {@link AssociationEnd})
+     * starting at the {@link Pair#getB()} element.
      */
     public abstract OclAny evaluate(CoreConnection connection, PropertyCallExp expression, OclAny sourceObject,
 	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
