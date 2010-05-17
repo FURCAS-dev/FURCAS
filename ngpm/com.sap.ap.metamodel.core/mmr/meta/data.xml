@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue Mar 16 17:45:28 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue May 11 23:22:29 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -1500,7 +1500,9 @@ body:
     if self.oclIsKindOf(FormalTypeParameter) then
       self.oclAsType(FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.delegatesTo())-&gt;flatten()-&gt;asSet()
     else
-      self.getAssociationEnds().otherEnd()-&gt;select(delegation-&gt;notEmpty()).type.clazz-&gt;reject(c|c=self)-&gt;asSet()
+      -- TODO improve OCL impact analysis algorithm so that this doesn't kill performance:
+      -- Set{}  -- use this for good performance
+      self.getAssociationEnds().otherEnd()-&gt;select(delegation-&gt;notEmpty()).type.clazz-&gt;reject(c|c=self)-&gt;asSet()    -- currently bad performance
     endif
   endif</XMI.any>
           </Model:Tag.values>
@@ -5737,7 +5739,7 @@ Read and update operations of time-dependent features can optionally be equipped
               scope = 'instance_level' visibility = 'public_vis' 
               isChangeable = 'true' >
               <Model:StructuralFeature.multiplicity>
-                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:StructuralFeature.multiplicity>
               <Model:TypedElement.type>
                 <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
@@ -5752,7 +5754,7 @@ Read and update operations of time-dependent features can optionally be equipped
               scope = 'instance_level' visibility = 'public_vis' 
               isChangeable = 'true' >
               <Model:StructuralFeature.multiplicity>
-                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:StructuralFeature.multiplicity>
               <Model:TypedElement.type>
                 <Model:Classifier xmi.idref = 'a44321DA40150'/>  <!-- data.classes.Association -->
@@ -5828,7 +5830,7 @@ inv:
               name = 'theClass' annotation = '' 
               isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
-                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
               <Model:TypedElement.type>
                 <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
@@ -5856,7 +5858,7 @@ inv:
               name = 'association' annotation = '' 
               isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
-                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
               <Model:TypedElement.type>
                 <Model:Classifier xmi.idref = 'a44321DA40150'/>  <!-- data.classes.Association -->
@@ -6182,7 +6184,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isChangeable = 'true' >
               <Model:StructuralFeature.multiplicity>
-                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:StructuralFeature.multiplicity>
               <Model:TypedElement.type>
                 <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
@@ -6399,7 +6401,7 @@ inv:
               name = 'owningClassDefinition' annotation = '' 
               isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
-                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
               <Model:TypedElement.type>
                 <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->

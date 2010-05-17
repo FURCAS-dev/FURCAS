@@ -112,7 +112,6 @@ public class IncrementalPrettyPrinter
 			}
 			// call pretty printer with corresponding model element
 			CtsPrettyPrinter.prettyPrint(source, syntax, target, template, context);
-			oldTbForSource.refDelete();
 			if (target instanceof CtsTextBlockIncrementalTCSExtractorStream)
 			{
 				rootBlock = ((CtsTextBlockIncrementalTCSExtractorStream) target)

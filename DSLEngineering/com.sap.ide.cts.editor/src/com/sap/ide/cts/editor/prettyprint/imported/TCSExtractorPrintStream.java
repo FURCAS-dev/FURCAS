@@ -136,4 +136,10 @@ public class TCSExtractorPrintStream implements TCSExtractorStream {
 
 	}
 
+	@Override
+	public void printDefault(String value)
+	{
+		current.append(value);
+	}
+
 }

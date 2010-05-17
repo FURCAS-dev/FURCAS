@@ -275,7 +275,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
             OclExpression expression = this.statement.getExpression( );
 
-            EvaluationContext evalCtx = new EvaluationContextImpl( oclContext );
+            new EvaluationContextImpl( oclContext );
 
             return new StackedEvaluator( ).debug( this.myConnection, expression );
 
@@ -302,7 +302,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
             OclExpression expression = this.statement.getExpression( );
 
-            EvaluationContext evalCtx = new EvaluationContextImpl( oclContext );
+            new EvaluationContextImpl( oclContext );
 
             return new StackedEvaluator( ).debug( this.myConnection, expression );
 
