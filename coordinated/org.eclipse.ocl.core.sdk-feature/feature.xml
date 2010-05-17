@@ -11,11 +11,17 @@
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
+      Copyright (c) 2005, 2010 IBM Corporation, Zeligsoft Inc. and
+others.
 All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
+are made available under the terms of the Eclipse Public License
+v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    IBM Corporation - Initial API and implementation
+    Adolfo Sanchez-Barbudo Herrera (Open Canarias S.L.) - Bug 313124
    </copyright>
 
    <license url="%licenseURL">
@@ -27,52 +33,16 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="compatible"/>
-      <import plugin="org.eclipse.uml2.uml" version="3.0.0" match="compatible"/>
-   </requires>
+   <includes
+         id="org.eclipse.ocl.all"
+         version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.ocl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.ecore"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.uml"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
+   <includes
          id="org.eclipse.ocl.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.ocl.ecore.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
+   <includes
          id="org.eclipse.ocl.uml.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>
