@@ -12,16 +12,29 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLTransformer.java,v 1.1 2010/04/13 06:36:42 ewillink Exp $
+ * $Id: CompleteOCLTransformer.java,v 1.2 2010/05/17 09:18:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.outline;
 
-import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.outline.EssentialOCLTransformer;
 
 /**
  * customization of the default outline structure
  * 
  */
-public class CompleteOCLTransformer extends AbstractDeclarativeSemanticModelTransformer {
-	
+public class CompleteOCLTransformer extends EssentialOCLTransformer
+{
+	public List<EObject> getChildren(CompleteOCLDocumentCS csDocument) {
+		List<EObject> contents = new ArrayList<EObject>();
+		contents.addAll(csDocument.getImports());
+		contents.addAll(csDocument.getLibraries());
+		contents.addAll(csDocument.getPackages());
+		contents.addAll(csDocument.getAnnotations());
+		return contents;
+	}
 }
