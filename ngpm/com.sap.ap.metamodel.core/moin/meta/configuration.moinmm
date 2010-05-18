@@ -197,13 +197,13 @@
 <Model.Class m:c='1' m:i='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' name='ContextCategory' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
 <Model.Tag m:c='1' m:i='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF' name='org.omg.sap2mof.store=no' annotation='' tagId='org.omg.sap2mof.store' values='no'/>
 <Model.Reference m:c='1' m:i='E0DDC76451FC44B23E4B11DE84A20018DE1146FF' name='context' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Reference>
 <Model.Reference m:c='1' m:i='E0DDC76451FC44B33E4B11DE85BD0018DE1146FF' name='includedValuesConfiguration' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.Reference>
 <Model.Reference m:c='1' m:i='E0DDC76451FC44B43E4B11DEAE3C0018DE1146FF' name='parent' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Reference>
 <Model.Reference m:c='1' m:i='E0DDC76451FC44B53E4B11DEA65D0018DE1146FF' name='children' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
@@ -236,7 +236,7 @@
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.AssociationEnd>
 <Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C13E4B11DE81920018DE1146FF' name='context' annotation='' isNavigable='true' aggregation='composite' isChangeable='true'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.AssociationEnd>
 <Model.Association m:c='1' m:i='E0DDC76451FC44C23E4B11DE86CD0018DE1146FF' name='ValuesOfBusinessContext' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
 <Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C33E4B11DEA4C00018DE1146FF' name='category' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
@@ -264,7 +264,7 @@
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.AssociationEnd>
 <Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44CD3E4B11DE8E250018DE1146FF' name='parent' annotation='' isNavigable='true' aggregation='composite' isChangeable='true'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.AssociationEnd>
 <Model.Association m:c='1' m:i='E0DDC76451FC44CE3E4B11DEBAE20018DE1146FF' name='ContextValueHierarchy' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
 <Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44CF3E4B11DEC4960018DE1146FF' name='excludedValues' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>

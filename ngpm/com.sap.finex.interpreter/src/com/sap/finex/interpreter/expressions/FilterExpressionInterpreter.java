@@ -57,7 +57,7 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
 	    }
 	}
 	result = FinexInterpreter.turnIntoObjectOfAppropriateMultiplicity(fe.getType(), interpreter, filteredResults,
-							 operand instanceof MultiValuedObject);
+							 operand instanceof MultiValuedObject<?, ?, ?>);
 	return result;
     }
     

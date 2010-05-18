@@ -64,4 +64,6 @@ public interface TCSExtractorStream {
 
 	void resetToSafePoint(int handle);
 
+	void printDefault(String value);
+
 }

@@ -131,4 +131,10 @@ public class DebugPrintTCSExtractorStream implements TCSExtractorStream {
 
 	}
 
+	@Override
+	public void printDefault(String value)
+	{
+		target.printDefault(value);
+	}
+
 }

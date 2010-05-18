@@ -74,7 +74,7 @@ import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
  */
 public class AdapterJMIHelper {
 
-	public class AssociationBean {
+	public static class AssociationBean {
 
 	    public final RefAssociation refAss;
 	    public final boolean isFirst;
@@ -372,7 +372,7 @@ public class AdapterJMIHelper {
 	boolean findAssociationAndAddLink(RefObject refAObject,
 	    String propertyName, Object value) throws ModelAdapterException {
 	boolean associationFound = false;
-	AssociationBean assocBean = findAssociation(refAObject, propertyName);
+	AssociationBean assocBean = findAssociation(refAObject, propertyName, jmiHelper);
 	try {
 	    if (assocBean.isFirst) {
 		if (value instanceof Collection<?>) {
@@ -406,45 +406,22 @@ public class AdapterJMIHelper {
 	return associationFound;
     }
 
-	public AssociationBean findAssociation(RefObject refAObject, String propertyName) {
-	    MofClass mofClass = (MofClass) refAObject.refMetaObject();
-		Set<AssociationEnd> assoEnds = jmiHelper.getAssociationEnds(mofClass,
-				true);
-		for (AssociationEnd associationEndCandidate : assoEnds) {
-
-			Association assoCandidate = (Association) associationEndCandidate
-					.getContainer();
-			// check whether the other end has the correct name
-
-			List<AssociationEnd> assoEndsPair = jmiHelper
-					.getAssociationEnds(assoCandidate);
-			// Association always has 2 ends
-
-			AssociationEnd assoA = assoEndsPair.get(0);
-			AssociationEnd assoB = assoEndsPair.get(1);
-			AssociationEnd otherEnd = null;
-			// now check whether this association is the one we were looking
-			// for,
-			// by checking that the other end has the right name
-			if (assoA == associationEndCandidate
-					&& assoB.getName().equals(propertyName)) {
-				otherEnd = assoB;
-			} else if (assoB == associationEndCandidate
-					&& assoA.getName().equals(propertyName)) {
-				otherEnd = assoA;
-			}
-			if (otherEnd != null) {
-
-				RefAssociation refAss = jmiHelper
-						.getRefAssociationForAssociation(assoCandidate);
-				boolean isFirst = jmiHelper.isFirstAssociationEnd(
-						assoCandidate, associationEndCandidate);
-				return new AssociationBean(refAss, isFirst);
-			}
-		}
-		return null;
+    public static AssociationBean findAssociation(RefObject refAObject, String propertyName, JmiHelper jmiHelper) {
+	MofClass mofClass = (MofClass) refAObject.refMetaObject();
+	Set<AssociationEnd> assoEnds = jmiHelper.getAssociationEnds(mofClass, true);
+	for (AssociationEnd associationEndCandidate : assoEnds) {
+	    AssociationEnd otherEnd = associationEndCandidate.otherEnd();
+	    // now check whether this association is the one we were looking
+	    // for, by checking that the other end has the right name
+	    if (otherEnd.getName().equals(propertyName)) {
+		Association assoCandidate = (Association) associationEndCandidate.getContainer();
+		RefAssociation refAss = jmiHelper.getRefAssociationForAssociation(assoCandidate);
+		boolean isFirst = jmiHelper.isFirstAssociationEnd(assoCandidate, associationEndCandidate);
+		return new AssociationBean(refAss, isFirst);
+	    }
 	}
-
+	return null;
+    }
 
 
 	private void addAssociationLink(Association ass, AssociationEnd endExposed,

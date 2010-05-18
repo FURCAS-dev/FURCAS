@@ -10,7 +10,6 @@ import java.util.Stack;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
-import org.eclipse.jface.text.rules.EndOfLineRule;
 
 import tcs.ClassTemplate;
 import tcs.ContextTemplate;
@@ -47,119 +46,123 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * 
- * @author Philipp Meier, Andreas Landerer
+ * @author Andreas Landerer
  * 
  */
-public class CtsTextBlockIncrementalTCSExtractorStream
-		implements
-			TCSExtractorStream {
+public class CtsTextBlockIncrementalTCSExtractorStream implements
+		TCSExtractorStream
+{
 
-	private static boolean debug = false;
-	private int textBlocksHandleCounter = 0;
-	private int commandId = 0;
-	private Stack<Integer> openTextBlocksHandles = new Stack<Integer>();
-	private TextBlock oldTextBlock = null;
-	private ClassTemplate templateForOldTextBlock = null;
-	private List<TextBlockCommand> current = new ArrayList<TextBlockCommand>();
-	private Map<Integer, List<TextBlockCommand>> backup = new HashMap<Integer, List<TextBlockCommand>>();
-	private int curBackupHandle = 0;
-	private Stack<SequenceElement> currentSE = new Stack<SequenceElement>();
-	private Map<TextBlock, Template> blockToTemplate = new HashMap<TextBlock, Template>();
-	private PrettyPrinter prettyPrinter = null;
-	private boolean formatMode = true;
-	TextblocksPackage pack = null;
-	ModelPartition part = null;
-	TextBlock rootBlock = null;
-	TextBlock curBlock = null;
-	int curOffset = 0;
-	int curBlockLength = 0;
-	StringBuffer rootBlockCachedString = new StringBuffer();
-	private final Lexer lexer;
+	private static boolean																		debug					= false;
+	private int																					textBlocksHandleCounter	= 0;
+	private Stack<Integer>																		openTextBlocksHandles	= new Stack<Integer>();
+	private TextBlock																			oldTextBlock			= null;
+	private ClassTemplate																		templateForOldTextBlock	= null;
+	private List<TextBlockCommand>																current					= new ArrayList<TextBlockCommand>();
+	private Map<Integer, List<TextBlockCommand>>												backup					= new HashMap<Integer, List<TextBlockCommand>>();
+	private int																					curBackupHandle			= 0;
+	private Stack<SequenceElement>																currentSE				= new Stack<SequenceElement>();
+	private Map<TextBlock, Template>															blockToTemplate			= new HashMap<TextBlock, Template>();
+	private PrettyPrinter																		prettyPrinter			= null;
+	private boolean																				formatMode				= true;
+	private TextblocksPackage																	pack					= null;
+	private ModelPartition																		part					= null;
+	private TextBlock																			rootBlock				= null;
+	private TextBlock																			curBlock				= null;
+	private int																					curOffset				= 0;
+	private int																					curBlockLength			= 0;
+	private Stack<Integer>																		indexesTB				= new Stack<Integer>();
+	private Stack<Integer>																		indexesTokens			= new Stack<Integer>();
+	private List<TextBlock>																		tbsToDelete				= new ArrayList<TextBlock>();
+	StringBuffer																				rootBlockCachedString	= new StringBuffer();
+	private final Lexer																			lexer;
+	private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>	pFactory;
 
-	private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> pFactory;
-
-	interface TextBlockCommand {
+	interface TextBlockCommand
+	{
 		void execute();
-		int getId();
 	}
 
-	class AddNextTextBlockCommand implements TextBlockCommand {
-		private RefObject object;
-		private Template t;
-		private SequenceElement se;
-		private int handle;
-		private int id;
+	class AddNextTextBlockCommand implements TextBlockCommand
+	{
+		private TextBlock		textblock;
+		private RefObject		object;
+		private Template		t;
+		private SequenceElement	se;
+		private int				handle;
 
 		public AddNextTextBlockCommand(RefObject object, Template t,
-				SequenceElement se, int handle) {
+				SequenceElement se, int handle)
+		{
 			this.object = object;
 			this.t = t;
 			this.se = se;
 			this.handle = handle;
-			this.id = CtsTextBlockIncrementalTCSExtractorStream.this.commandId++;
 		}
 
-		public void execute() {
-			addNextTextBlock(object, t, se, handle);
+		public AddNextTextBlockCommand(TextBlock textblock, RefObject object,
+				Template t, SequenceElement se, int handle)
+		{
+			this(object, t, se, handle);
+			this.textblock = textblock;
 		}
 
-		@Override
-		public int getId() {
-			return this.id;
+		public void execute()
+		{
+			if (this.textblock != null)
+			{
+				addNextTextBlock(this.textblock, object, t, se, handle);
+			}
+			else
+			{
+				addNextTextBlock(null, object, t, se, handle);
+			}
 		}
 	}
 
-	class FinishTextBlockCommand implements TextBlockCommand {
-		private int id;
-		private int handle;
+	class FinishTextBlockCommand implements TextBlockCommand
+	{
+		private int	handle;
 
-		public FinishTextBlockCommand(int handle) {
-			this.id = CtsTextBlockIncrementalTCSExtractorStream.this.commandId++;
+		public FinishTextBlockCommand(int handle)
+		{
 			this.handle = handle;
 		}
 
-		public void execute() {
+		public void execute()
+		{
 			finishTextBlock(handle);
-		}
-
-		@Override
-		public int getId() {
-			return this.id;
 		}
 	}
 
-	class AddNextTokenCommand implements TextBlockCommand {
-		private int id;
-		private String s;
-		private SequenceElement se;
-		private AbstractToken token;
+	class AddNextTokenCommand implements TextBlockCommand
+	{
+		private String			s;
+		private SequenceElement	se;
+		private AbstractToken	token;
 
-		public AddNextTokenCommand(String s, SequenceElement se) {
+		public AddNextTokenCommand(String s, SequenceElement se)
+		{
 			this.s = s;
 			this.se = se;
-			this.id = CtsTextBlockIncrementalTCSExtractorStream.this.commandId++;
 		}
 
-		public AddNextTokenCommand(AbstractToken token) {
+		public AddNextTokenCommand(AbstractToken token)
+		{
+			this(token.getValue(), null);
 			this.token = token;
-			this.s = token.getValue();
 		}
 
-		public void execute() {
-			if (this.token == null) {
+		public void execute()
+		{
+			if (this.token == null)
+			{
 				addNextToken(s, se);
-			} else {
-				this.token.setParentBlock(null);
-				this.token.setOffset(curOffset);
-				addToken(this.token);
-				TbMarkingUtil.markTokenRelexed(this.token);
-				rootBlockCachedString.append(this.s);
 			}
-		}
-
-		@Override
-		public int getId() {
-			return this.id;
+			else
+			{
+				addNextToken(this.token);
+			}
 		}
 	}
 
@@ -167,7 +170,8 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 			TextblocksPackage pack,
 			ModelPartition partitionForTextBlocks,
 			AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-			boolean formatMode) {
+			boolean formatMode)
+	{
 		this.pack = pack;
 		part = partitionForTextBlocks;
 		this.lexer = parserFactory.createLexer(null);
@@ -175,11 +179,13 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		this.formatMode = formatMode;
 	}
 
-	public TextBlock getRootBlock() {
+	public TextBlock getRootBlock()
+	{
 		return rootBlock;
 	}
 
-	TextBlock createTextBlock() {
+	TextBlock createTextBlock()
+	{
 		TextBlock b = (TextBlock) pack.getTextBlock()
 				.refCreateInstanceInPartition(part);
 		b.setChildrenChanged(false);
@@ -197,7 +203,8 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		return b;
 	}
 
-	LexedToken createLexedToken(SequenceElement se) {
+	LexedToken createLexedToken(SequenceElement se)
+	{
 		// TODO compute lookahead and lookback using lexer!
 		LexedToken t = (LexedToken) pack.getLexedToken()
 				.refCreateInstanceInPartition(part);
@@ -220,7 +227,8 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		return t;
 	}
 
-	OmittedToken createOmittedToken() {
+	OmittedToken createOmittedToken()
+	{
 		// TODO compute lookahead and lookback using lexer!
 		OmittedToken t = (OmittedToken) pack.getOmittedToken()
 				.refCreateInstanceInPartition(part);
@@ -242,9 +250,11 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		return t;
 	}
 
-	void addNextTextBlock(RefObject correspondingModelElement,
-			Template template, SequenceElement se, int handle) {
-		if (debug) {
+	void addNextTextBlock(TextBlock oldTb, RefObject correspondingModelElement,
+			Template template, SequenceElement se, int handle)
+	{
+		if (debug)
+		{
 			System.out.println("adding TextBlock for template "
 					+ TcsDebugUtil.prettyPrint(template) + " with handle: "
 					+ handle);
@@ -252,17 +262,29 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 
 		openTextBlocksHandles.add(handle);
 
-		if (rootBlock == null) {
+		if (rootBlock == null)
+		{
 			// first textBlock, special rootBlock handling
-			rootBlock = createTextBlock();
+			if (oldTb == null)
+			{
+				rootBlock = createTextBlock();
+			}
+			else
+			{
+				rootBlock = oldTb;
+			}
 			setType(rootBlock, template);
 			rootBlock.setOffsetRelative(false);
-			if (correspondingModelElement != null) {
-				if (TcsUtil.isPropertyInit(se)) {
+			if (correspondingModelElement != null)
+			{
+				if (TcsUtil.isPropertyInit(se))
+				{
 					// Add to referenced element if its a Property Init
 					rootBlock.getReferencedElements().add(
 							correspondingModelElement);
-				} else {
+				}
+				else
+				{
 					rootBlock.getCorrespondingModelElements().add(
 							correspondingModelElement);
 				}
@@ -270,32 +292,51 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 			rootBlock.setSequenceElement(se);
 			curBlock = rootBlock;
 
-			if (debug) {
+			if (debug)
+			{
 				System.out.println("adding BosToken");
 			}
-			if (template instanceof ClassTemplate) {
-				if (((ClassTemplate) template).isMain()) {
-					addBosToken();
-				}
-			} else if (template == null) {
-				if (curBlock.getParentBlock() == null) {
+			if (template instanceof ClassTemplate)
+			{
+				if (((ClassTemplate) template).isMain())
+				{
 					addBosToken();
 				}
 			}
-		} else {
+			else if (template == null && oldTb == null)
+			{
+				if (curBlock.getParentBlock() == null)
+				{
+					addBosToken();
+				}
+			}
+		}
+		else
+		{
 			// not the rootBlock
 
 			// backup curBlockLenght in curBlock.length
 			curBlock.setLength(curBlockLength);
-
-			TextBlock b = createTextBlock();
+			TextBlock b;
+			if (oldTb == null)
+			{
+				b = createTextBlock();
+			}
+			else
+			{
+				b = oldTb;
+			}
 			b.setOffset(curOffset);
 
-			if (correspondingModelElement != null) {
-				if (TcsUtil.isPropertyInit(se)) {
+			if (correspondingModelElement != null)
+			{
+				if (TcsUtil.isPropertyInit(se))
+				{
 					// Add to referenced element if its a Property Init
 					b.getReferencedElements().add(correspondingModelElement);
-				} else {
+				}
+				else
+				{
 					b.getCorrespondingModelElements().add(
 							correspondingModelElement);
 				}
@@ -309,12 +350,15 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		blockToTemplate.put(curBlock, template);
 	}
 
-	public void setPrettyPrinter(PrettyPrinter prettyPrinter) {
+	public void setPrettyPrinter(PrettyPrinter prettyPrinter)
+	{
 		this.prettyPrinter = prettyPrinter;
 	}
 
-	private void setType(TextBlock block, Template template) {
-		if (template != null) {
+	private void setType(TextBlock block, Template template)
+	{
+		if (template != null)
+		{
 			TextBlockDefinition tbDef = pack.getTextblockdefinition()
 					.getTextblockDefinitionReferencesProduction()
 					.getTextBlockDefinition(template).iterator().next();
@@ -322,44 +366,55 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		}
 	}
 
-	void addTextBlock(TextBlock b) {
+	void addTextBlock(TextBlock b)
+	{
+		if (b.getParentBlock() != null)
+		{
+			b.setParentBlock(null);
+		}
 		curBlock.getSubBlocks().add(b);
-
 		curOffset = 0;
 		curBlockLength = 0;
-
 		curBlock = b;
 	}
 
-	void finishTextBlock(int handle) {
-		if (debug) {
+	void finishTextBlock(int handle)
+	{
+		if (debug)
+		{
 			System.out.println("finishing TextBlock with handle: " + handle);
 		}
 
 		while (openTextBlocksHandles.size() > 0
-				&& openTextBlocksHandles.peek() != handle) {
+				&& openTextBlocksHandles.peek() != handle)
+		{
 			// calls to addTextBlock and finishTextBlock do not match
 			// last textblock was falsely left open
 
 			// gracefully close it
-			if (debug) {
+			if (debug)
+			{
 				System.out.println("closing left-open TextBlock with handle: "
 						+ openTextBlocksHandles.peek());
 			}
 			finishTextBlock(openTextBlocksHandles.peek());
 		}
-		if (openTextBlocksHandles.size() > 0) {
+		if (openTextBlocksHandles.size() > 0)
+		{
 			openTextBlocksHandles.pop();
 		}
 
 		curBlock.setLength(curBlockLength);
 
 		TextBlock parent = curBlock.getParentBlock();
-		if (parent != null) {
+		if (parent != null)
+		{
 
-			if (curBlockLength == 0) {
+			if (curBlockLength == 0)
+			{
 				// this textblock is empty, remove it
-				if (debug) {
+				if (debug)
+				{
 					System.out.println("removing empty TextBlock");
 				}
 
@@ -367,18 +422,35 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 				// addToContext only present on ClassTemplate
 				// context can be present on ClassTemplate and OperatorTemplate
 				Template t = getType(curBlock);
-				if (t instanceof ClassTemplate) {
+				if (t instanceof ClassTemplate)
+				{
 					ClassTemplate ct = (ClassTemplate) t;
-					if (ct.isAddToContext()) {
+					if (ct.isAddToContext())
+					{
 						addToParentContext(curBlock);
 					}
 				}
 
 				parent.getSubBlocks().remove(curBlock);
-				parent.getCorrespondingModelElements().addAll(
-						curBlock.getCorrespondingModelElements());
-				parent.getReferencedElements().addAll(
-						curBlock.getReferencedElements());
+				List<RefObject> parentModelElements = parent
+						.getCorrespondingModelElements();
+				for (RefObject o : curBlock.getCorrespondingModelElements())
+				{
+					if (!parentModelElements.contains(o))
+					{
+						parentModelElements.add(o);
+					}
+				}
+
+				Collection<RefObject> parentReferencedElements = parent
+						.getReferencedElements();
+				for (RefObject o : curBlock.getReferencedElements())
+				{
+					if (!parentReferencedElements.contains(o))
+					{
+						parentReferencedElements.add(o);
+					}
+				}
 				curBlock.refDelete();
 			}
 
@@ -387,10 +459,13 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 			// restore curOffset from curBlockLength
 			curOffset = curBlockLength;
 			curBlock = parent;
-		} else {
+		}
+		else
+		{
 			// this is for the rootblock only
 			if (curBlock.getTokens().size() > 0
-					&& curBlock.getTokens().get(0) instanceof Bostoken) {
+					&& curBlock.getTokens().get(0) instanceof Bostoken)
+			{
 				// Ensure that no lookback is set for the first token.
 				// TODO: Currently
 				// the lookback for tokens created by the Extractor is hard
@@ -400,29 +475,35 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 				// in an error.
 				AbstractToken firstTok = TbNavigationUtil
 						.firstTokenWithoutBOS(curBlock);
-				if (firstTok != null) {
+				if (firstTok != null)
+				{
 					firstTok.setLookback(0);
 				}
 			}
 		}
 	}
 
-	private Template getType(TextBlock block) {
+	private Template getType(TextBlock block)
+	{
 		return blockToTemplate.get(block);
 	}
 
-	private void addToParentContext(TextBlock startBlock) {
+	private void addToParentContext(TextBlock startBlock)
+	{
 
 		List<RefObject> modelElements = startBlock
 				.getCorrespondingModelElements();
 
 		TextBlock parentBlock = startBlock.getParentBlock();
-		while (parentBlock != null) {
+		while (parentBlock != null)
+		{
 			Template t = getType(parentBlock);
 
-			if (t instanceof ContextTemplate) {
+			if (t instanceof ContextTemplate)
+			{
 				ContextTemplate ct = (ContextTemplate) t;
-				if (ct.isContext()) {
+				if (ct.isContext())
+				{
 					parentBlock.getElementsInContext().addAll(modelElements);
 					return;
 				}
@@ -433,21 +514,37 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 
 	}
 
-	void addNextToken(String value, SequenceElement se) {
-		if (value != null && !value.equals("")) {
+	void addNextToken(AbstractToken token)
+	{
+		token.setOffset(curOffset);
+		token.setLength(token.getValue().length());
+		this.addToken(token);
+		TbMarkingUtil.markTokenRelexed(token);
+		rootBlockCachedString.append(token.getValue());
+	}
+
+	void addNextToken(String value, SequenceElement se)
+	{
+		if (value != null && !value.equals(""))
+		{
 			AbstractToken t = null;
 			// TODO this is currentl needed as token types are stored in
 			// textblocks model
 			lexer.setCharStream(new ANTLRStringStream(value));
 			Token lexerToken = lexer.nextToken();
 
-			if (lexerToken.getChannel() == Token.HIDDEN_CHANNEL) {
-				if (debug) {
+			if (lexerToken.getChannel() == Token.HIDDEN_CHANNEL)
+			{
+				if (debug)
+				{
 					System.out.println("adding OmittedToken: '" + value + "'");
 				}
 				t = createOmittedToken();
-			} else {
-				if (debug) {
+			}
+			else
+			{
+				if (debug)
+				{
 					System.out.println("adding LexedToken: '" + value + "'");
 				}
 				t = createLexedToken(se);
@@ -458,7 +555,6 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 			t.setValue(value);
 			t.setOffset(curOffset);
 			t.setLength(value.length());
-
 			addToken(t);
 
 			TbMarkingUtil.markTokenRelexed(t);
@@ -467,14 +563,26 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		}
 	}
 
-	void addBosToken() {
+	void addBosToken()
+	{
 		Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(pack,
 				VersionEnum.REFERENCE,
 				ANTLRIncrementalLexerAdapter.bosTokenType);
 		addToken(bos);
 	}
 
-	void addEosToken() {
+	void addEosToken()
+	{
+		if (this.rootBlock != null)
+		{
+			for (AbstractToken token : this.rootBlock.getTokens())
+			{
+				if (token instanceof Eostoken)
+				{
+					return;
+				}
+			}
+		}
 		Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(pack,
 				VersionEnum.REFERENCE,
 				ANTLRIncrementalLexerAdapter.eosTokenType);
@@ -482,294 +590,494 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 		addToken(eos);
 	}
 
-	void addToken(AbstractToken t) {
+	void addToken(AbstractToken t)
+	{
+		if (t.getParentBlock() != null)
+		{
+			t.setParentBlock(null);
+		}
+		if (!this.indexesTokens.isEmpty())
+		{
+			int index = this.indexesTokens.peek();
+			if (curBlock.getTokens().contains(t)
+					&& curBlock.getTokens().indexOf(t) != index)
+			{
+				this.curBlock.getTokens().remove(t);
+			}
+			curBlock.getTokens().add(this.indexesTokens.peek(), t);
+			this.indexesTokens.push(this.indexesTokens.pop() + 1);
+		}
+		else
+		{
+			curBlock.getTokens().add(t);
+		}
 		curOffset += t.getLength();
 		curBlockLength += t.getLength();
-
-		curBlock.getTokens().add(t);
 	}
 
 	@Override
-	public void close() {
-		if (this.oldTextBlock != null) {
-			try {
-				this.mergeOldAndNewTextBlocks(this.oldTextBlock, null);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	public void close()
+	{
+		this.indexesTB.clear();
+		this.indexesTokens.clear();
+		if (this.oldTextBlock != null)
+		{
+			this.mergeTbs(this.oldTextBlock, 0);
 		}
 
 		// no more backtracking after this point
 		// execute all textblock commands
-		for (TextBlockCommand command : current) {
+		for (TextBlockCommand command : current)
+		{
+			if (command instanceof AddNextTextBlockCommand)
+			{
+				this.indexesTokens.push(0);
+			}
+			else if (command instanceof FinishTextBlockCommand)
+			{
+				this.indexesTokens.pop();
+			}
 			command.execute();
 		}
 
 		// finish rootBlock
 
 		// check first if any output was printed
-		if (rootBlock != null) {
-			if (debug) {
+		if (rootBlock != null)
+		{
+			if (debug)
+			{
 				System.out.println("adding EosToken");
 			}
 			Template template = this.blockToTemplate.get(rootBlock);
-			if (template instanceof ClassTemplate) {
-				if (((ClassTemplate) template).isMain()) {
-					addEosToken();
-				}
-			} else if (template == null) {
-				if (rootBlock.getParentBlock() == null) {
+			if (template instanceof ClassTemplate)
+			{
+				if (((ClassTemplate) template).isMain())
+				{
 					addEosToken();
 				}
 			}
-
+			else if (template == null)
+			{
+				if (rootBlock.getParentBlock() == null)
+				{
+					addEosToken();
+				}
+			}
 			TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
 			rootBlock.setCachedString(rootBlockCachedString.toString());
 		}
 	}
 
-	private void mergeOldAndNewTextBlocks(TextBlock oldTb,
-			AddNextTextBlockCommand newTbCommand) throws Exception {
-		assert (oldTb != null);
-
-		int indexOfNewTbCommand = -1;
-		Stack<Integer> handle = new Stack<Integer>();
-		List<TextBlockCommand> corrNewTbCommands = new ArrayList<TextBlockCommand>();
-		List<AddNextTokenCommand> corrNewTokenCommands = new ArrayList<AddNextTokenCommand>();
-		List<AbstractToken> tokensOfOldTb = new ArrayList<AbstractToken>();
-		List<TextBlock> subBlocksOfOldTb = new ArrayList<TextBlock>();
-
-		// check if corresponding ModelElement still exists
-		List<RefObject> oldModelElements = oldTb
-				.getCorrespondingModelElements();
-		if (oldModelElements.size() == 0) {
-			// TODO delete TextBlock
-		}
-
-		// compare model elements of old TextBlock and correpsonding
-		// TextBlockCommand
-		if (newTbCommand == null) {
-			for (TextBlockCommand command : this.current) {
-				if (command instanceof AddNextTextBlockCommand) {
-					if (oldModelElements
-							.contains(((AddNextTextBlockCommand) command).object)) {
-						newTbCommand = (AddNextTextBlockCommand) command;
-						indexOfNewTbCommand = this.current
-								.indexOf(newTbCommand);
-						handle.push(newTbCommand.handle);
-						break;
-					}
-				}
+	private boolean isOmittedTokenForFormatingPurpose(OmittedToken token)
+	{
+		for (Integer i : this.pFactory.getOmittedTokensForFormatting())
+		{
+			if (i.intValue() == token.getType())
+			{
+				return true;
 			}
 		}
 
-		if (newTbCommand != null) {
-			// create lists containing all Tokens and SubBlocks for old
-			// TextBlock
-			for (AbstractToken t : oldTb.getTokens()) {
-				if (!(t instanceof Bostoken) && !(t instanceof Eostoken)) {
-					tokensOfOldTb.add(t);
-				}
-			}
-
-			subBlocksOfOldTb = oldTb.getSubBlocks();
-
-			// create lists containing all TokenCommands and TextBlockCommands
-			// for current TextBlockCommand
-			for (TextBlockCommand tbc : this.current.subList(
-					indexOfNewTbCommand + 1, this.current.size())) {
-				// Token is direct child of new TextBlock
-				if (tbc instanceof AddNextTokenCommand
-						&& handle.peek().equals(newTbCommand.handle)) {
-					corrNewTokenCommands.add((AddNextTokenCommand) tbc);
-				}
-
-				// TextBlock is direct child of new TextBlock
-				else if (tbc instanceof AddNextTextBlockCommand
-						&& handle.peek().equals(newTbCommand.handle)) {
-					corrNewTbCommands.add(tbc);
-					handle.push(((AddNextTextBlockCommand) tbc).handle);
-				}
-
-				// Finish TextBlock
-				else if (tbc instanceof FinishTextBlockCommand
-						&& !handle.peek().equals(newTbCommand.handle)) {
-					handle.pop();
-					// if parent TextBlock is the new TextBlock add
-					// FinishCommand
-					if (handle.peek().equals(newTbCommand.handle)) {
-						corrNewTbCommands.add(tbc);
-					}
-				}
-
-				// Finish new TextBlock and exit loop
-				else if (tbc instanceof FinishTextBlockCommand
-						&& handle.peek().equals(newTbCommand.handle)) {
-					handle.pop();
-					break;
-				}
-			}
-
-			// compare tokens of old TextBlock and TextBlockCommand
-			if (this.formatMode) {
-				this.mergeTokensWithFormat(indexOfNewTbCommand,
-						corrNewTokenCommands, tokensOfOldTb);
-			} else {
-				this.mergeTokensWithoutFormat(indexOfNewTbCommand,
-						corrNewTokenCommands, tokensOfOldTb);
-			}
-
-			for (TextBlock tb : subBlocksOfOldTb) {
-				this.mergeOldAndNewTextBlocks(tb, null);
-			}
-		}
+		return false;
 	}
 
-	private void mergeTokensWithFormat(int indexOfNewTbCommand,
-			List<AddNextTokenCommand> commandList, List<AbstractToken> tokenList) {
-		List<OmittedToken> omittedTokens = new ArrayList<OmittedToken>();
-		LexedToken lowerBorder = null;
-		int level = 0;
-		int index = -1;
-		int upperId = -1;
-		// iterate over tokens that are part of the token list and the old
-		// TextBlock
-		// and conserve old omitted tokens between two lexed tokens
-		for (AbstractToken token : tokenList) {
-			if (token instanceof LexedToken) {
-				LexedToken lexedToken = (LexedToken) token;
-				SequenceElement se1 = lexedToken.getSequenceElement();
-				for (AddNextTokenCommand command : commandList) {
-					SequenceElement se2 = command.se;
-					if (se2.equals(se1)
-							&& lexedToken.getValue().equals(command.s)) {
-						if (lowerBorder != null) {
-							upperId = command.getId();
-							List<AddNextTokenCommand> toDelete = new ArrayList<AddNextTokenCommand>();
-							for (int i = index + 1, currLevel = level; this.current
-									.get(i).getId() < upperId; i++) {
-								if (this.current.get(i) instanceof AddNextTextBlockCommand) {
-									level++;
-								} else if (this.current.get(i) instanceof FinishTextBlockCommand) {
-									level--;
-								} else if (this.current.get(i) instanceof AddNextTokenCommand
-										&& currLevel == level) {
-									toDelete
-											.add((AddNextTokenCommand) this.current
-													.get(i));
-								}
-							}
-							this.current.removeAll(toDelete);
+	private void mergeTbsConservatively(TextBlock tb, int depth)
+	{
+		assert tb != null;
 
-							for (int j = 0, i = index + 1; j < omittedTokens
-									.size(); i++, j++) {
-								this.current.add(i, new AddNextTokenCommand(
-										omittedTokens.get(j).getValue(), null));
-							}
-							omittedTokens.clear();
-						}
-						lowerBorder = lexedToken;
-						index = this.current.indexOf(command);
-						break;
-					}
-				}
-			} else if (token instanceof OmittedToken && lowerBorder != null) {
-				omittedTokens.add((OmittedToken) token);
-			} else if (token instanceof OmittedToken && lowerBorder == null) {
-				if (this.current.get(indexOfNewTbCommand) instanceof AddNextTextBlockCommand) {
-					this.current.add(indexOfNewTbCommand + 1,
-							new AddNextTokenCommand(token.getValue(), null));
-				}
-			}
+		List<AbstractToken> tokensToDelete = new ArrayList<AbstractToken>();
+		AddNextTextBlockCommand newTbCmd = null;
+		TextBlockCommand lastCmdPreserved = null;
+		int indexOfCorrTbCmd = -1;
+
+		// call method recursively for SubBlocks
+		for (TextBlock subBlock : tb.getSubBlocks())
+		{
+			this.mergeTbs(subBlock, depth + 1);
 		}
-	}
-
-	private void mergeTokensWithoutFormat(int indexOfNewTbCommand,
-			List<AddNextTokenCommand> commandList, List<AbstractToken> tokenList) {
-		List<OmittedToken> omittedTokens = new ArrayList<OmittedToken>();
-		LexedToken lowerBorder = null;
-		int index = -1;
-		// iterate over tokens that are part of the token list and the old
-		// TextBlock
-		// and conserve old omitted tokens between two lexed tokens
-		for (AbstractToken token : tokenList) {
-			if (token instanceof LexedToken) {
-				LexedToken lexedToken = (LexedToken) token;
-				SequenceElement se1 = lexedToken.getSequenceElement();
-				for (AddNextTokenCommand command : commandList) {
-					SequenceElement se2 = command.se;
-					if (se2.equals(se1)
-							&& lexedToken.getValue().equals(command.s)) {
-						if (lowerBorder != null) {
-							for (int j = 0, i = index; j < omittedTokens.size(); i++, j++) {
-								this.printOmittedToken(omittedTokens.get(j), this.current.indexOf(command));
-							}
-						}
-						omittedTokens.clear();
-						lowerBorder = lexedToken;
-						index = this.current.indexOf(command);
-						break;
-					}
-				}
-			}
-			else if (token instanceof OmittedToken && lowerBorder != null) {
-				omittedTokens.add((OmittedToken) token);
-			} 
-			else if (token instanceof OmittedToken && lowerBorder == null) {
-				if (this.current.get(indexOfNewTbCommand) instanceof AddNextTextBlockCommand) {
-					this.printOmittedToken((OmittedToken) token, indexOfNewTbCommand+1);
-				}
-			}
-		}
-	}
-
-	private void printOmittedToken(OmittedToken oToken, int index) {
-		for (Integer i : this.pFactory.getOmittedTokensForFormatting()) {
-			if (i.intValue() == oToken.getType()) {
-				return;
+		if (this.tbsToDelete.size() > 0 && depth == 0)
+		{
+			for (TextBlock tbToDelete : this.tbsToDelete)
+			{
+				tbToDelete.refDelete();
 			}
 		}
 		
-		this.current.add(index, new AddNextTokenCommand(oToken));
-
-		if (this.prettyPrinter != null) {
-			Map<Integer, tcs.Token> tokensById = new HashMap<Integer, tcs.Token>();
-			String hct[] = this.pFactory.getHiddenChannelTokenNames();
-			int hctIds[] = this.pFactory.getHiddenChannelTokens();
-			
-			for (int i = 0; i < hctIds.length; i++) {
-				if(this.prettyPrinter.getTokens().containsKey(hct[i]) ) {
-					tokensById.put(hctIds[i], this.prettyPrinter.getTokens().get(hct[i]));
+		// check if corresponding ModelElement still exists
+		for (TextBlockCommand command : this.current)
+		{
+			if (command instanceof AddNextTextBlockCommand)
+			{
+				AddNextTextBlockCommand tbCommand = (AddNextTextBlockCommand) command;
+				List<RefObject> me = tb.getCorrespondingModelElements();
+				if (me.size() > 0)
+				{
+					if (tbCommand.object.equals(me.get(0)))
+					{
+						// replace new command by existing TextBlock
+						indexOfCorrTbCmd = this.current.indexOf(tbCommand);
+						newTbCmd = new AddNextTextBlockCommand(tb,
+								tbCommand.object, tbCommand.t, tbCommand.se,
+								tbCommand.handle);
+						break;
+					}
+				}
+				else
+				{
+					return;
 				}
 			}
-			tcs.Token corrTcsToken = tokensById.get(oToken.getType());
-			if(corrTcsToken != null)
+		}
+		if (newTbCmd != null)
+		{
+			this.current.remove(indexOfCorrTbCmd);
+			this.current.add(indexOfCorrTbCmd, newTbCmd);
+
+			// check if there are any tokens that can be preserved
+			for (AbstractToken token : tb.getTokens())
 			{
-				OrPattern pattern = corrTcsToken.getPattern();
-				Collection<SimplePattern> sPatterns = pattern.getSimplePatterns();
-				if(sPatterns != null)
+				// preserved all OmittedTokens
+				if (token instanceof OmittedToken)
 				{
-					for(SimplePattern sp : sPatterns)
+					
+
+				}
+
+				// if token is a LexedToken it will be preserved if it exists in
+				// both the old TextBlock and the
+				// new CommandList
+				else if (token instanceof LexedToken)
+				{
+					AddNextTokenCommand tokenCmd = null;
+					LexedToken lexedToken = (LexedToken) token;
+					Stack<Integer> subBlocks = new Stack<Integer>();
+					for (int i = indexOfCorrTbCmd + 1; i < this.current.size(); i++)
 					{
-						if(sp instanceof RulePattern)
+						TextBlockCommand tbCmd = this.current.get(i);
+						if (tbCmd instanceof AddNextTextBlockCommand)
 						{
-							Rule rule = ((RulePattern) sp).getRule();
-							if(rule != null && (rule instanceof EndOfLineRuleWrapper || rule instanceof MultiLineRuleWrapper))
+							subBlocks
+									.push(((AddNextTextBlockCommand) tbCmd).handle);
+						}
+						if (tbCmd instanceof FinishTextBlockCommand)
+						{
+							AddNextTextBlockCommand tbStartCommand = (AddNextTextBlockCommand) this.current
+									.get(indexOfCorrTbCmd);
+							subBlocks.pop();
+							if (((FinishTextBlockCommand) tbCmd).handle == tbStartCommand.handle)
 							{
-								this.current.add(index+1, new AddNextTokenCommand("\n", null));
+								break;
+							}
+						}
+						if (tbCmd instanceof AddNextTokenCommand)
+						{
+							if (subBlocks.isEmpty())
+							{
+								AddNextTokenCommand currentTokenCmd = (AddNextTokenCommand) tbCmd;
+								if (lexedToken.getSequenceElement().equals(
+										currentTokenCmd.se)
+										&& lexedToken.getValue().equals(
+												currentTokenCmd.s))
+								{
+									tokenCmd = currentTokenCmd;
+									break;
+								}
 							}
 						}
 					}
+					if (tokenCmd == null)
+					{
+						tokensToDelete.add(lexedToken);
+					}
+					else
+					{
+						int indexOfCorrTokenCmd = this.current
+								.indexOf(tokenCmd);
+						this.current.remove(indexOfCorrTokenCmd);
+						tokenCmd = new AddNextTokenCommand(lexedToken);
+						this.current.add(indexOfCorrTokenCmd, tokenCmd);
+						lastCmdPreserved = tokenCmd;
+					}
 				}
 			}
-		} else {
-			return;
+
+			tb.getTokens().removeAll(tokensToDelete);
+			for (AbstractToken t : tokensToDelete)
+			{
+				t.refDelete();
+			}
+		}
+		else
+		{
+			this.tbsToDelete.add(tb);
 		}
 	}
 
-	private SequenceElement getCurrentSE() {
-		if (!currentSE.isEmpty()) {
+	private void mergeTbs(TextBlock tb, int depth)
+	{
+		assert tb != null;
+
+		List<AbstractToken> tokensToDelete = new ArrayList<AbstractToken>();
+		AddNextTextBlockCommand newTbCmd = null;
+		TextBlockCommand lastCmdPreserved = null;
+		int indexOfCorrTbCmd = -1;
+
+		// call method recursively for SubBlocks
+		for (TextBlock subBlock : tb.getSubBlocks())
+		{
+			this.mergeTbs(subBlock, depth + 1);
+		}
+		if (this.tbsToDelete.size() > 0 && depth == 0)
+		{
+			for (TextBlock tbToDelete : this.tbsToDelete)
+			{
+				tbToDelete.refDelete();
+			}
+		}
+
+		// check if corresponding ModelElement still exists
+		for (TextBlockCommand command : this.current)
+		{
+			if (command instanceof AddNextTextBlockCommand)
+			{
+				AddNextTextBlockCommand tbCommand = (AddNextTextBlockCommand) command;
+				List<RefObject> me = tb.getCorrespondingModelElements();
+				if (me.size() > 0)
+				{
+					if (tbCommand.object.equals(me.get(0)))
+					{
+						// replace new command by existing TextBlock
+						indexOfCorrTbCmd = this.current.indexOf(tbCommand);
+						newTbCmd = new AddNextTextBlockCommand(tb,
+								tbCommand.object, tbCommand.t, tbCommand.se,
+								tbCommand.handle);
+						break;
+					}
+				}
+				else
+				{
+					return;
+				}
+			}
+		}
+		if (newTbCmd != null)
+		{
+			this.current.remove(indexOfCorrTbCmd);
+			this.current.add(indexOfCorrTbCmd, newTbCmd);
+
+			// check if there are any tokens that can be preserved
+			for (AbstractToken token : tb.getTokens())
+			{
+				if(token instanceof OmittedToken)
+				{
+					if(!this.formatMode)
+					{
+						this.handleOmittedToken((OmittedToken) token, tokensToDelete, lastCmdPreserved, indexOfCorrTbCmd);
+					}
+					else
+					{
+						this.handleOmittedTokenConservatively((OmittedToken) token, tokensToDelete, lastCmdPreserved, indexOfCorrTbCmd);
+					}
+				}
+				
+				else if (token instanceof LexedToken)
+				{
+					this.handleLexedToken((LexedToken) token, tokensToDelete, lastCmdPreserved, indexOfCorrTbCmd);
+				}
+			}
+
+			tb.getTokens().removeAll(tokensToDelete);
+			for (AbstractToken t : tokensToDelete)
+			{
+				t.setParentBlock(null);
+				t.refDelete();
+			}
+		}
+		else
+		{
+			this.tbsToDelete.add(tb);
+		}
+	}
+	
+	private void handleOmittedToken(OmittedToken token, List<AbstractToken> tokensToDelete, 
+			TextBlockCommand lastCmdPreserved, int indexOfCorrTbCmd)
+	{
+		// if token is an OmittedToken it will be preserved only if it
+		// has no formatting purpose and
+		// if it is not a BosToken or an EosToken
+		// preserved OmittedTokens are COMMENTS and MULTI_LINE_COMMENTS
+		OmittedToken omittedToken = (OmittedToken) token;
+		AddNextTokenCommand tokenCmd = null;
+		if (!this.isOmittedTokenForFormatingPurpose(omittedToken))
+		{
+			if (!(token instanceof Bostoken) && !(token instanceof Eostoken))
+			{
+				int index = 0;
+				if (lastCmdPreserved != null)
+				{
+					index = this.current.indexOf(lastCmdPreserved);
+				}
+				else
+				{
+					index = indexOfCorrTbCmd;
+				}
+				tokenCmd = new AddNextTokenCommand(omittedToken.getValue(), null);
+				this.current.add(index + 1, tokenCmd);
+				AddNextTokenCommand tokenEOL = new AddNextTokenCommand("\n", null);
+				this.current.add(index + 2, tokenEOL);
+				tokensToDelete.add(omittedToken);
+			}
+			else
+			{
+				tokensToDelete.add(omittedToken);
+			}
+		}
+		else
+		{
+			tokensToDelete.add(omittedToken);
+		}
+	}
+	
+	private void handleOmittedTokenConservatively(OmittedToken token, List<AbstractToken> tokensToDelete, 
+			TextBlockCommand lastCmdPreserved, int indexOfCorrTbCmd)
+	{
+		OmittedToken omittedToken = (OmittedToken) token;
+		AddNextTokenCommand tokenCmd = null;
+		boolean otFound = false;
+		for (TextBlockCommand command : this.current)
+		{
+			if (command instanceof AddNextTokenCommand)
+			{
+				if (((AddNextTokenCommand) command).s.equals(token.getValue()))
+				{
+					if (lastCmdPreserved != null
+							&& this.current.indexOf(command) > this.current.indexOf(lastCmdPreserved))
+					{
+						AddNextTokenCommand newCommand = new AddNextTokenCommand(token);
+						int index = this.current.indexOf(command);
+						this.current.remove(index);
+						this.current.add(index, newCommand);
+						lastCmdPreserved = newCommand;
+						otFound = true;
+						break;
+					}
+				}
+			}
+		}
+		if (!otFound)
+		{
+			if (!this.isOmittedTokenForFormatingPurpose(omittedToken)
+					&& !(token instanceof Bostoken)
+					&& !(token instanceof Eostoken))
+			{
+				if (!this.isOmittedTokenForFormatingPurpose(omittedToken))
+				{
+					if (!(token instanceof Bostoken)
+							&& !(token instanceof Eostoken))
+					{
+						int index = 0;
+						if (lastCmdPreserved != null)
+						{
+							index = this.current.indexOf(lastCmdPreserved);
+						}
+						else
+						{
+							index = indexOfCorrTbCmd;
+						}
+						tokenCmd = new AddNextTokenCommand(omittedToken.getValue(), null);
+						this.current.add(index + 1, tokenCmd);
+						AddNextTokenCommand tokenEOL = new AddNextTokenCommand("\n", null);
+						this.current.add(index + 2, tokenEOL);
+						tokensToDelete.add(omittedToken);
+					}
+				}
+			}
+			else
+			{
+				if (!(token instanceof Bostoken)
+						&& !(token instanceof Eostoken))
+				{
+					int index = 0;
+					if (lastCmdPreserved != null)
+					{
+						index = this.current.indexOf(lastCmdPreserved);
+					}
+					else
+					{
+						index = indexOfCorrTbCmd;
+					}
+					tokenCmd = new AddNextTokenCommand(token);
+					this.current.add(index + 1, tokenCmd);
+				}
+				else
+				{
+					tokensToDelete.add(token);
+				}
+			}
+		}
+	}
+	
+	private void handleLexedToken(LexedToken token, List<AbstractToken> tokensToDelete, 
+			TextBlockCommand lastCmdPreserved, int indexOfCorrTbCmd)
+	{
+		// if token is a LexedToken it will be preserved if it exists in
+		// both the old TextBlock and the
+		// new CommandList
+		AddNextTokenCommand tokenCmd = null;
+		LexedToken lexedToken = (LexedToken) token;
+		Stack<Integer> subBlocks = new Stack<Integer>();
+		for (int i = indexOfCorrTbCmd + 1; i < this.current.size(); i++)
+		{
+			TextBlockCommand tbCmd = this.current.get(i);
+			if (tbCmd instanceof AddNextTextBlockCommand)
+			{
+				subBlocks.push(((AddNextTextBlockCommand) tbCmd).handle);
+			}
+			if (tbCmd instanceof FinishTextBlockCommand)
+			{
+				AddNextTextBlockCommand tbStartCommand = (AddNextTextBlockCommand) this.current.get(indexOfCorrTbCmd);
+				if (!subBlocks.isEmpty())
+				{
+					subBlocks.pop();
+				}
+				if (((FinishTextBlockCommand) tbCmd).handle == tbStartCommand.handle)
+				{
+					break;
+				}
+			}
+			if (tbCmd instanceof AddNextTokenCommand)
+			{
+				if (subBlocks.isEmpty())
+				{
+					AddNextTokenCommand currentTokenCmd = (AddNextTokenCommand) tbCmd;
+					if (lexedToken.getSequenceElement().equals(currentTokenCmd.se)
+							&& lexedToken.getValue().equals(currentTokenCmd.s))
+					{
+						tokenCmd = currentTokenCmd;
+						break;
+					}
+				}
+			}
+		}
+		if (tokenCmd == null)
+		{
+			tokensToDelete.add(lexedToken);
+		}
+		else
+		{
+			int indexOfCorrTokenCmd = this.current.indexOf(tokenCmd);
+			this.current.remove(indexOfCorrTokenCmd);
+			tokenCmd = new AddNextTokenCommand(lexedToken);
+			this.current.add(indexOfCorrTokenCmd, tokenCmd);
+			lastCmdPreserved = tokenCmd;
+		}
+	}
+
+	private SequenceElement getCurrentSE()
+	{
+		if (!currentSE.isEmpty())
+		{
 			return currentSE.peek();
 		}
 
@@ -777,7 +1085,8 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 	}
 
 	@Override
-	public int startClassTemplateForObject(RefObject object, Template t) {
+	public int startClassTemplateForObject(RefObject object, Template t)
+	{
 		int handle = textBlocksHandleCounter++;
 		current.add(new AddNextTextBlockCommand(object, t, getCurrentSE(),
 				handle));
@@ -785,74 +1094,88 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 	}
 
 	@Override
-	public void endClassTemplate(int handle) {
+	public void endClassTemplate(int handle)
+	{
 		current.add(new FinishTextBlockCommand(handle));
 	}
 
 	@Override
-	public void debug(String string) {
+	public void debug(String string)
+	{
 		current.add(new AddNextTokenCommand(string, getCurrentSE()));
 	}
 
 	@Override
-	public void printBoolean(boolean v) {
+	public void printBoolean(boolean v)
+	{
 		current.add(new AddNextTokenCommand("" + v, getCurrentSE()));
 	}
 
 	@Override
-	public void printComment(String c) {
+	public void printComment(String c)
+	{
 		current.add(new AddNextTokenCommand(c, getCurrentSE()));
 	}
 
 	@Override
 	public void printEscapedIdentifier(String identEscStart, String ident,
-			String identEscEnd) {
+			String identEscEnd)
+	{
 		current.add(new AddNextTokenCommand(
 				identEscStart + ident + identEscEnd, getCurrentSE()));
 	}
 
 	@Override
-	public void printIdentifier(String ident) {
+	public void printIdentifier(String ident)
+	{
 		current.add(new AddNextTokenCommand(ident, getCurrentSE()));
 	}
 
 	@Override
-	public void printInteger(int v) {
+	public void printInteger(int v)
+	{
 		current.add(new AddNextTokenCommand("" + v, getCurrentSE()));
 	}
 
 	@Override
-	public void printKeyword(String keyword) {
+	public void printKeyword(String keyword)
+	{
 		current.add(new AddNextTokenCommand(keyword, getCurrentSE()));
 	}
 
 	@Override
-	public void printReal(String string) {
+	public void printReal(String string)
+	{
 		current.add(new AddNextTokenCommand(string, getCurrentSE()));
 	}
 
 	@Override
-	public void printString(String stringDelim, String v) {
+	public void printString(String stringDelim, String v)
+	{
 		current.add(new AddNextTokenCommand(stringDelim + v + stringDelim,
 				getCurrentSE()));
 	}
 
 	@Override
-	public void printSymbol(String symbol) {
+	public void printSymbol(String symbol)
+	{
 		current.add(new AddNextTokenCommand(symbol, getCurrentSE()));
 	}
 
 	@Override
-	public void printWhiteSpace(String ws) {
+	public void printWhiteSpace(String ws)
+	{
 		current.add(new AddNextTokenCommand(ws, getCurrentSE()));
 	}
 
 	@Override
-	public int createSafePoint() {
+	public int createSafePoint()
+	{
 		List<TextBlockCommand> store = new ArrayList<TextBlockCommand>(current);
 		curBackupHandle++;
 
-		if (debug) {
+		if (debug)
+		{
 			System.out.println("creating savepoint " + curBackupHandle
 					+ " with " + store.size() + " commands saved");
 		}
@@ -862,10 +1185,12 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 	}
 
 	@Override
-	public void resetToSafePoint(int handle) {
+	public void resetToSafePoint(int handle)
+	{
 		current = backup.get(handle);
 
-		if (debug) {
+		if (debug)
+		{
 			System.out.println("resetting to savepoint " + handle + " with "
 					+ current.size() + " commands restored");
 		}
@@ -873,30 +1198,42 @@ public class CtsTextBlockIncrementalTCSExtractorStream
 	}
 
 	@Override
-	public void enterSequenceElement(SequenceElement e) {
+	public void enterSequenceElement(SequenceElement e)
+	{
 		currentSE.push(e);
 
 	}
 
 	@Override
-	public void exitSequenceElement() {
+	public void exitSequenceElement()
+	{
 		currentSE.pop();
 
 	}
 
-	public TextBlock getOldTextBlock() {
+	public TextBlock getOldTextBlock()
+	{
 		return oldTextBlock;
 	}
 
-	public void setOldTextBlock(TextBlock oldTextBlock) {
+	public void setOldTextBlock(TextBlock oldTextBlock)
+	{
 		this.oldTextBlock = oldTextBlock;
 	}
 
-	public ClassTemplate getTemplateForOldTextBlock() {
+	public ClassTemplate getTemplateForOldTextBlock()
+	{
 		return templateForOldTextBlock;
 	}
 
-	public void setTemplateForOldTextBlock(ClassTemplate templateForOldTextBlock) {
+	public void setTemplateForOldTextBlock(ClassTemplate templateForOldTextBlock)
+	{
 		this.templateForOldTextBlock = templateForOldTextBlock;
+	}
+
+	@Override
+	public void printDefault(String value)
+	{
+		current.add(new AddNextTokenCommand(value, getCurrentSE()));
 	}
 }

@@ -83,9 +83,10 @@ implements ChangeSet<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, Cl
     }
 
     private void makePersistent(RepositoryObject linkOrEntity) {
-	assert !linkOrEntity.isPersistent(); // can only save transient objects
-	validateAndUpdateBaseSnapshot(linkOrEntity);
-	linkOrEntity.setPersistent(true);
+	if (!linkOrEntity.isPersistent()) {
+	    validateAndUpdateBaseSnapshot(linkOrEntity);
+	    linkOrEntity.setPersistent(true);
+	}
     }
 
     /**
@@ -124,9 +125,10 @@ implements ChangeSet<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, Cl
     }
 
     private void makeTransient(final RepositoryObject entityOrLink) {
-	assert entityOrLink.isPersistent(); // can only delete persistent objects
-	validateAndUpdateBaseSnapshot(entityOrLink);
-	entityOrLink.setPersistent(false);
+	if (entityOrLink.isPersistent()) {
+	    validateAndUpdateBaseSnapshot(entityOrLink);
+	    entityOrLink.setPersistent(false);
+	}
     }
 
     /**

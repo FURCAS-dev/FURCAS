@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g 2010-03-17 10:43:43
+// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g 2010-05-04 13:46:58
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;

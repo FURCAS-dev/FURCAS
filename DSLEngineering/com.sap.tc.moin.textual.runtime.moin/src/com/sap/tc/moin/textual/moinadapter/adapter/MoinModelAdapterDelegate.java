@@ -128,8 +128,8 @@ public class MoinModelAdapterDelegate {
 		    value = refObject.refGetValue(reference);
 		} else {
 		    // could still be the passive end of an Association.
-		    AssociationBean associationBean = jmiHelperDelegate
-			    .findAssociation(refObject, propertyName);
+		    AssociationBean associationBean = AdapterJMIHelper
+			    .findAssociation(refObject, propertyName, jmiHelper);
 
 		    if (associationBean == null) {
 			throw new ModelAdapterException(
@@ -376,7 +376,7 @@ public class MoinModelAdapterDelegate {
 	                
 	            } else {
 	                // could still be the passive end of an Association. 
-	                AssociationBean associationFound = jmiHelperDelegate.findAssociation(refAObject, propertyName);
+	                AssociationBean associationFound = AdapterJMIHelper.findAssociation(refAObject, propertyName, jmiHelper);
 
 	                if ( associationFound == null ) {
 	                    throw new ModelAdapterException("MofClass has no such property: "+ mofClass.getName() + "." + propertyName);

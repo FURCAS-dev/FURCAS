@@ -179,7 +179,13 @@ public class ParserGenerationTestHelper {
 
 			out.println("	@Override");
 			out
-					.println("    protected String[] getHiddenChannelTokenNames() {");
+					.println("    public Integer[] getOmittedTokensForFormatting() {");
+			out
+					.println("	return new Integer[]{"+parserClassName+".WS, "+parserClassName+".NL};");
+			out.println("    }");
+			out.println("	@Override");
+			out
+					.println("    public String[] getHiddenChannelTokenNames() {");
 			out
 					.println("	return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
 			out.println("    }");

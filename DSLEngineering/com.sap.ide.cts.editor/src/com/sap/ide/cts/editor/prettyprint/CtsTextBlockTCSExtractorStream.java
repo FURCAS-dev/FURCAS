@@ -680,4 +680,10 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		currentSE.pop();
 
 	}
+
+	@Override
+	public void printDefault(String value)
+	{
+		current.add(new AddNextTokenCommand(value, getCurrentSE()));
+	}
 }

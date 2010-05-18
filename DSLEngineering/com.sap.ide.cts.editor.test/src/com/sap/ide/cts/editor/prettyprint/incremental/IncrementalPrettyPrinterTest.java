@@ -11,7 +11,6 @@ import textblocks.TextBlock;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.action.PrettyPrintAction;
-import com.sap.ide.cts.editor.test.RunletEditorTest;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -22,14 +21,14 @@ import data.classes.ClassTypeDefinition;
 import data.classes.MethodSignature;
 import data.classes.SapClass;
 
-public class IncrementalPrettyPrinterTest extends RunletEditorTest
+public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelperTest
 {
 	@Test
-	public void testPrettyPrintEmptyClass()
+	public void prettyPrintEmptyClass()
 	{
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
-        clazz.setName("IppClass1");
+        clazz.setName("IppTestClass1");
         PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, true);
         action.runWithEvent(null);
         AbstractGrammarBasedEditor editor = null;
@@ -45,7 +44,7 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 		String ppClazz = action.getRootBlock().getCachedString();
 		if(ppClazz != null)
 		{
-			System.out.println(ppClazz);
+			this.printTextBlock(action.getRootBlock());
 			Assert.assertTrue(ppClazz.contains("class " + clazz.getName()));
 		}
 		
@@ -53,11 +52,11 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 	}
 	
 	@Test
-	public void testPrettyPrintMethodWithinClass()
+	public void prettyPrintMethodWithinClass()
 	{
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
-        clazz.setName("IppClass2");
+        clazz.setName("IppTestClass2");
 		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
 				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
 						getProject(), new Path("src/Package1235568260162.types")));
@@ -84,16 +83,15 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 		}
 		
 		this.printTextBlock(action.getRootBlock());
-		
         close(editor);
 	}
 	
 	@Test
-	public void testPrettyPrintMethodAfterChangesInDomainModel()
+	public void prettyPrintMethodAfterChangesInDomainModel()
 	{
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
-        clazz.setName("IppClass3");
+        clazz.setName("IppTestClass3");
 		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
 				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
 						getProject(), new Path("src/Package1235568260162.types")));
@@ -132,7 +130,7 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 	}
 	
 	@Test
-	public void testPrettyPrintAssociationAfterRename()
+	public void prettyPrintAssociationAfterRename()
 	{
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(
@@ -209,7 +207,7 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 	}
 	
 	@Test
-	public void testPrettyPrintAfterMethodRelocation()
+	public void prettyPrintAfterMethodRelocation()
 	{
 		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
@@ -245,7 +243,50 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 		this.printTextBlock(action.getRootBlock());
 	}
 	
-	
+	@Test
+	public void prettyPrintAfterTernaryChange()
+	{
+		NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
+        SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
+        clazz.setName("IppTestClass8");
+        PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+        action.runWithEvent(null);
+        AbstractGrammarBasedEditor editor = null;
+		try
+		{
+			editor = openEditor(clazz);
+		}
+		catch (PartInitException e)
+		{
+			e.printStackTrace();
+		}
+		
+		String ppClazz = action.getRootBlock().getCachedString();
+		if(ppClazz != null)
+		{
+			this.printTextBlock(action.getRootBlock());
+			Assert.assertTrue(ppClazz.contains("class " + clazz.getName()));
+		}
+		clazz.setValueType(true);
+		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
+        action.runWithEvent(null);
+		try
+		{
+			editor = openEditor(clazz);
+		}
+		catch (PartInitException e)
+		{
+			e.printStackTrace();
+		}
+		
+		ppClazz = action.getRootBlock().getCachedString();
+		if(ppClazz != null)
+		{
+			this.printTextBlock(action.getRootBlock());
+			Assert.assertTrue(ppClazz.contains("value class " + clazz.getName()));
+		}
+        close(editor);
+	}
 	
 	private void printTextBlock(TextBlock textblock)
 	{
@@ -255,26 +296,4 @@ public class IncrementalPrettyPrinterTest extends RunletEditorTest
 			System.out.println(classString);
 		}
 	}
-	
-//	private TextBlock getTextBlockForModelElement(RefObject modelElement)
-//	{
-//		Connection connection = modelElement.get___Connection();
-//		MQLProcessor mql = connection.getMQLProcessor();
-//		String mqlTextBlocks = "select tb \n" +
-// 				"from \"demo.sap.com/tcsmeta\"#textblocks::TextBlock as tb, \n" + 
-// 				"\"" + ( (Partitionable) modelElement ).get___Mri( ) + "\" as me \n" + 
-// 				"where tb.correspondingModelElements = me";
-//		MQLResultSet resultSet = mql.execute(mqlTextBlocks);
-//		RefObject[] textBlocks = resultSet.getRefObjects("tb");
-//		
-//		if(textBlocks.length == 1)
-//		{
-//			return (TextBlock) textBlocks[0];
-//		}
-//		else
-//		{
-//			return null;
-//		}
-//	}
-	
 }

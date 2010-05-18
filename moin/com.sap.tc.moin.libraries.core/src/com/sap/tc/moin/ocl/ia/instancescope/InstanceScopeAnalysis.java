@@ -177,8 +177,8 @@ public class InstanceScopeAnalysis {
 		if (sourceAndTargetElement != null && sourceAndTargetElement.getA() != null) {
 		    LeadsToEmptySetResult leadsToEmptySet = null;
 		    if (sourceAndTargetElement.getB() == null ||
-			    (leadsToEmptySet = leadsToEmptySet(changeEvent, attributeOrAssociationEndCall,
-			    sourceAndTargetElement.getB(), conn)) != LeadsToEmptySetResult.YES) {
+			    (leadsToEmptySet = leadsToEmptySet(attributeOrAssociationEndCall, sourceAndTargetElement.getB(),
+			    conn, changeEvent)) != LeadsToEmptySetResult.YES) {
 			// the source element may have been deleted already by subsequent events; at this point,
 			// this makes it impossible to trace the change event back to a context; all we have is
 			// the LRI of a no longer existing model element...
@@ -200,30 +200,34 @@ public class InstanceScopeAnalysis {
     public enum LeadsToEmptySetResult { YES, NO_BECAUSE_OF_NON_PROPERTY_CALL, NO_BECAUSE_OF_OPERATION_WITH_PARAMETERS,
 	NO_BECAUSE_OF_OPERATION_WITHOUT_PARAMETERS, NO_BECAUSE_OF_NON_LINK_EVENT, NO_BECAUSE_OF_CYCLE_BACK_TO_CHANGED_LINK,
 	NO_BECAUSE_NON_REF_OBJECT_REACHED, NO_BECAUSE_OF_OPERATION_WITHOUT_PARAMETERS_NAVIGATED_BACK_THROUGH_MODIFIED_LINK,
-	NO_BECAUSE_UNDEFINED_VARIABLE_REACHED };
-    
-   /**
-     * When in the continuation of the expression the target element does not contribute to the expression's result,
-     * e.g., because it is filtered out in a subsequent ->select expression or there is a ->isEmpty() or ->notEmpty()
-     * expression, we can be smarter about telling if the change event could at all lead to a change of the expression's
-     * evaluation result.
+	NO_BECAUSE_UNDEFINED_VARIABLE_REACHED, NO_BECAUSE_NO_CALLS_TO_OPERATION_FOUND };
+
+    /**
+     * When in the continuation of the expression the <tt>sourceElement</tt> does not contribute to the expression's
+     * result, e.g., because it is filtered out in a subsequent ->select expression or there is a ->isEmpty() or
+     * ->notEmpty() expression, we can be smarter about telling if the change event could at all lead to a change of the
+     * expression's evaluation result.<p>
      * 
-     * If attributeOrAssociationEndCall is an AssociationEndCallExp or an AttributeCallExp for an object-valued
-     * attribute, and the event is a LinkRemoveEvent, the value of the overall expression has not changed if the
-     * attributeOrAssociationEndCall is the source of another AssociationEndCallExp or AttributeCallExp which for the
-     * targetElement of the original change event evaluates to an empty set or is itself the source of such an
-     * expression for which this condition holds recursively.
+     * Based on <tt>propertyCallExp</tt>, the value of the overall expression has not changed if the
+     * <tt>propertyCallExp</tt> is the source of another expression which for the <tt>sourceElement</tt> (which is
+     * assumed to be the result of <tt>propertyCallExp</tt>) coming from the original change event evaluates to an empty
+     * set or is itself the source of such an expression for which this condition holds recursively.
+     * 
+     * @param resultOfPropertyCallExp
+     *            one result element of <tt>propertyCallExp</tt>, such as delivered by an event notification that tells
+     *            about a link change from which one target element of an attribute or association navigation call
+     *            expression can be determined. Must not be <tt>null</tt>.
      */
-    private LeadsToEmptySetResult leadsToEmptySet(ModelChangeEvent changeEvent,
-	    ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl targetElement, CoreConnection conn) {
+    private LeadsToEmptySetResult leadsToEmptySet(ModelPropertyCallExp propertyCallExp,
+	    RefObjectImpl resultOfPropertyCallExp, CoreConnection conn, ModelChangeEvent originalEvent) {
 	long time = System.nanoTime();
 	LeadsToEmptySetResult result = LeadsToEmptySetResult.NO_BECAUSE_OF_NON_LINK_EVENT; // be conservative; need to prove cases where no change may happen
-	if (changeEvent instanceof LinkChangeEvent) {
-	    PropertyCallExp isSourceOf = ((ModelPropertyCallExpInternal) attributeOrAssociationEndCall).getAppliedProperty(conn);
+	if (originalEvent instanceof LinkChangeEvent) {
+	    PropertyCallExp isSourceOf = ((ModelPropertyCallExpInternal) propertyCallExp).getAppliedProperty(conn);
 	    if (isSourceOf != null) {
-		result = leadsToEmptySet(isSourceOf, targetElement, conn, (LinkChangeEvent) changeEvent);
+		result = leadsToEmptySetRecursively(isSourceOf, resultOfPropertyCallExp, conn, (LinkChangeEvent) originalEvent);
 	    } else {
-		result = LeadsToEmptySetResult.NO_BECAUSE_OF_NON_PROPERTY_CALL;
+		result = nonPropertyCallLeadsToEmptySet(propertyCallExp, resultOfPropertyCallExp, conn, (LinkChangeEvent) originalEvent);
 	    }
 	}
 	Statistics.getInstance().leadsToEmptySetPerformed(forRegistration, System.nanoTime()-time, result);
@@ -231,28 +235,34 @@ public class InstanceScopeAnalysis {
     }
 
     /**
-     * Evaluate <tt>e</tt> using <tt>source</tt> as the element where to start the navigation. If the result is empty,
+     * Evaluate <tt>e</tt> using <tt>sourceForE</tt> as the element where to start the navigation. If the result is empty,
      * return <tt>LeadsToEmptySetResult.YES</tt>. If not, and if <tt>e</tt> is the source of another
      * {@link PropertyCallExp}, try this recursively. If recursively for all elements reached by the first navigation
      * this leads to empty sets again, return <tt>LeadsToEmptySetResult.YES</tt>, too.
      * <p>
      * 
      * A result other than <tt>LeadsToEmptySetResult.YES</tt> just means we can't guarantee that evaluating <tt>e</tt>
-     * with <tt>source</tt> leads to an empty set; it still may, but we don't know. The specific result literal tells
+     * with <tt>sourceForE</tt> leads to an empty set; it still may, but we don't know. The specific result literal tells
      * a bit about the reason why we may not know.
      */
-    private LeadsToEmptySetResult leadsToEmptySet(PropertyCallExp e, RefObjectImpl source, CoreConnection conn,
+    private LeadsToEmptySetResult leadsToEmptySetRecursively(PropertyCallExp e, RefObjectImpl sourceForE, CoreConnection conn,
 	    LinkChangeEvent originalEvent) {
 	LeadsToEmptySetResult result;
 	try {
-	    OclAny o = navigate(e, source, originalEvent, conn);
+	    OclAny o = evaluate(e, sourceForE, originalEvent, conn);
 	    if (o == null || o == OclVoidImpl.OCL_UNDEFINED) {
 		result = LeadsToEmptySetResult.YES;
 	    } else {
 		PropertyCallExp isSourceOf = ((PropertyCallExpInternal) e).getAppliedProperty(conn);
 		if (isSourceOf == null) {
-		    result = LeadsToEmptySetResult.NO_BECAUSE_OF_NON_PROPERTY_CALL; // can't judge for other parent
-		    // expression types
+		    // check if body of an operation; then check to right of calling expressions
+		    if (o instanceof RefObjectImpl) {
+			result = nonPropertyCallLeadsToEmptySet(e, (RefObjectImpl) o, conn, originalEvent);
+		    } else if (o instanceof OclCollection) {
+			result = nonPropertyCallLeadsToEmptySet(e, (OclCollection) o, conn, originalEvent);
+		    } else {
+			result = LeadsToEmptySetResult.NO_BECAUSE_NON_REF_OBJECT_REACHED;
+		    }
 		} else {
 		    if (o instanceof OclCollection) {
 			if (((OclCollection) o).getWrappedCollection().isEmpty()) {
@@ -265,7 +275,7 @@ public class InstanceScopeAnalysis {
 				LeadsToEmptySetResult localResult;
 				if (next instanceof RefObjectImpl) {
 				    // o is a single object that is source of another property call expression
-				    localResult = leadsToEmptySet(isSourceOf, (RefObjectImpl) next, conn, originalEvent);
+				    localResult = leadsToEmptySetRecursively(isSourceOf, (RefObjectImpl) next, conn, originalEvent);
 				} else {
 				    // could, e.g., be an instance of a DataType, such as Integer, etc.
 				    // and therefore can only be source of an operation call that
@@ -280,7 +290,7 @@ public class InstanceScopeAnalysis {
 		    } else {
 			if (o instanceof RefObjectImpl) {
 			    // o is a single object that is source of another property call expression
-			    result = leadsToEmptySet(isSourceOf, (RefObjectImpl) o, conn, originalEvent);
+			    result = leadsToEmptySetRecursively(isSourceOf, (RefObjectImpl) o, conn, originalEvent);
 			} else {
 			    // could, e.g., be an instance of a DataType, such as Integer, etc.
 			    // and therefore can only be source of an operation call that
@@ -296,6 +306,129 @@ public class InstanceScopeAnalysis {
 	    result = LeadsToEmptySetResult.NO_BECAUSE_OF_CYCLE_BACK_TO_CHANGED_LINK;
 	}
 
+	return result;
+    }
+
+    /**
+     * Performs {@link #nonPropertyCallLeadsToEmptySet(PropertyCallExp, RefObjectImpl, CoreConnection, LinkChangeEvent)}
+     * for a whole {@link OclCollection} of {@link RefObjectImpl} elements. {@link LeadsToEmptySetResult#YES} is
+     * returned if the collection is empty or if
+     * {@link #nonPropertyCallLeadsToEmptySet(PropertyCallExp, RefObjectImpl, CoreConnection, LinkChangeEvent)} returns
+     * {@link LeadsToEmptySetResult#YES} for all elements contained in the collection.
+     */
+    private LeadsToEmptySetResult nonPropertyCallLeadsToEmptySet(PropertyCallExp e,
+	    OclCollection resultOfE, CoreConnection conn, LinkChangeEvent changeEvent) {
+	LeadsToEmptySetResult result;
+	if (AbstractTracer.getRootExpression((RefObjectImpl) e,
+		((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap()).equals(e)) {
+	    // is a root expression; check if it's an operation body
+	    Set<OperationCallExp> calls = classScopeAnalyzer.getCallsOf((OclExpressionInternal) e);
+	    if (!calls.isEmpty()) {
+		if (resultOfE.getWrappedCollection().isEmpty()) {
+		    result = LeadsToEmptySetResult.YES;
+		} else {
+		    Iterator<OclAny> i = resultOfE.getWrappedCollection().iterator();
+		    result = LeadsToEmptySetResult.YES;
+		    while (result == LeadsToEmptySetResult.YES && i.hasNext()) {
+			Object next = i.next().getWrappedObject();
+			LeadsToEmptySetResult localResult;
+			if (next instanceof RefObjectImpl) {
+			    // o is a single object that is source of another property call expression
+			    Map<OperationCallExp, LeadsToEmptySetResult> resultForOperations = getLeadsToEmptySetResultForOperationCalls(
+					(RefObjectImpl) next, conn, changeEvent, calls);
+			    localResult = projectResultForCalls(resultForOperations);
+			} else {
+			    // could, e.g., be an instance of a DataType, such as Integer, etc.
+			    // and therefore can only be source of an operation call that
+			    // will most likely produce a non-empty set.
+			    localResult = LeadsToEmptySetResult.NO_BECAUSE_NON_REF_OBJECT_REACHED;
+			}
+			if (localResult != LeadsToEmptySetResult.YES) {
+			    result = localResult;
+			}
+		    }
+		}
+	    } else {
+		// A root expression that is not an operation body or body of an operation nobody calls
+		result = LeadsToEmptySetResult.NO_BECAUSE_NO_CALLS_TO_OPERATION_FOUND;
+	    }
+	} else {
+	    // e is not a root expression
+	    result = LeadsToEmptySetResult.NO_BECAUSE_OF_NON_PROPERTY_CALL;
+	}
+	// TODO how to pass on the information about which operation calls lead to empty results in which context?
+	return result;
+    }
+
+    private LeadsToEmptySetResult projectResultForCalls(Map<OperationCallExp, LeadsToEmptySetResult> resultForOperations) {
+	LeadsToEmptySetResult localResult;
+	localResult = LeadsToEmptySetResult.YES;
+	for (LeadsToEmptySetResult l : resultForOperations.values()) {
+	    if (l != LeadsToEmptySetResult.YES) {
+		localResult = l;
+		break; // conservative: if any call can't be proven to lead to an empty set, don't return YES
+	    }
+	}
+	return localResult;
+    }
+
+    /**
+     * When an expression is not the source of another property call expression, maybe it's the body of an
+     * operation. In that case, we can check if the {@link OperationCallExp} is again the source of a
+     * property call expression. If so, we can again recursively check if that expression evaluates
+     * to an empty set, given the evaluation results of the operation body so far. If it results in
+     * an empty set, we don't have to check through that operation in our later efforts to trace back
+     * to <tt>self</tt>. As a consequence, only traceback trails will be pursued that lead through
+     * operations where the call is either not source of a property call expression or where that
+     * property call expression can't be proven to evaluate to an empty result.<p>
+     * 
+     * TODO The set of operations that remain to be checked needs to be returned somehow by this operation
+     * We would like to constrain the set of {@link OperationCallExp}s for which tracing back to <tt>self</tt>
+     * is required.
+     */
+    private LeadsToEmptySetResult nonPropertyCallLeadsToEmptySet(PropertyCallExp e,
+	    RefObjectImpl resultOfE, CoreConnection conn, LinkChangeEvent changeEvent) {
+	LeadsToEmptySetResult result;
+	if (AbstractTracer.getRootExpression((RefObjectImpl) e,
+		    ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap()).equals(e)) {
+	    // is a root expression; check if it's an operation body
+	    Set<OperationCallExp> calls = classScopeAnalyzer.getCallsOf((OclExpressionInternal) e);
+	    if (!calls.isEmpty()) {
+		Map<OperationCallExp, LeadsToEmptySetResult> resultForOperations = getLeadsToEmptySetResultForOperationCalls(
+			resultOfE, conn, changeEvent, calls);
+		result = projectResultForCalls(resultForOperations);
+	    } else {
+		// Not an operation body or body of an operation not called by anyone.
+		result = LeadsToEmptySetResult.NO_BECAUSE_NO_CALLS_TO_OPERATION_FOUND;
+	    }
+	} else {
+	    // not a root expression
+	    result = LeadsToEmptySetResult.NO_BECAUSE_OF_NON_PROPERTY_CALL;
+	}
+	// TODO handle passing on the results of which operation calls lead to empty sets for which contexts
+	return result;
+    }
+
+    private Map<OperationCallExp, LeadsToEmptySetResult> getLeadsToEmptySetResultForOperationCalls(RefObjectImpl resultOfE, CoreConnection conn,
+	    LinkChangeEvent changeEvent, Set<OperationCallExp> calls) {
+	Map<OperationCallExp, LeadsToEmptySetResult> result = new HashMap<OperationCallExp, LeadsToEmptySetResult>();
+	for (OperationCallExp operationCall : calls) {
+	    PropertyCallExp isSourceOf = ((PropertyCallExpInternal) operationCall).getAppliedProperty(conn);
+	    if (isSourceOf != null) {
+		result.put(operationCall, leadsToEmptySetRecursively(isSourceOf, resultOfE, conn, changeEvent));
+	    } else {
+		// check if it's an operation body that's called from somewhere:
+		Set<OperationCallExp> callsOfCall = classScopeAnalyzer
+			.getCallsOf((OclExpressionInternal) operationCall);
+		if (!callsOfCall.isEmpty()) {
+		    // the call was itself the body expression of an operation; recursively check its calls
+		    result.put(operationCall, projectResultForCalls(getLeadsToEmptySetResultForOperationCalls(
+			    resultOfE, conn, changeEvent, callsOfCall)));
+		} else {
+		    result.put(operationCall, LeadsToEmptySetResult.NO_BECAUSE_OF_NON_PROPERTY_CALL);
+		}
+	    }
+	}
 	return result;
     }
 
@@ -317,7 +450,7 @@ public class InstanceScopeAnalysis {
 	return throwExceptionWhenCrossing;
     }
     
-    private OclAny navigate(PropertyCallExp e, RefObjectImpl source, LinkChangeEvent originalEvent, CoreConnection conn)
+    private OclAny evaluate(PropertyCallExp e, RefObjectImpl source, LinkChangeEvent originalEvent, CoreConnection conn)
     throws EvaluatorException {
 	OclAny sourceContext;
 	if (source != null) {
