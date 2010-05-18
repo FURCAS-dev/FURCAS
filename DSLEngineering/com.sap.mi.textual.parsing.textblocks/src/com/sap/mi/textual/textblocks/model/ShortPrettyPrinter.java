@@ -126,8 +126,6 @@ public class ShortPrettyPrinter {
 	        }
 	    }	    
 	} else {
-//	    for (RefObject referencedObject : token.getParentBlock()
-//		    .getCorrespondingModelElements()) {
 	    //it is always the first element as all others do not have a syntax contribution!
 	    RefObject referencedObject;
 	    List<RefObject> correspondingElements = token.getParentBlock().getCorrespondingModelElements();
@@ -136,24 +134,24 @@ public class ShortPrettyPrinter {
 	    } else {
 		referencedObject = correspondingElements.get(0);
 	    }
-		try {
-		    Object value = investigator
-			    .get(referencedObject, se.getPropertyReference()
-				    .getStrucfeature().getName());
-		    // TODO handle pretty printing and escaping according to
-		    // syntax
-		    if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
-			value = ((Collection<?>) value).iterator().next();
-		    }
-		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
-			newvalue = value.toString();
-		    }
-//		    break;
-		} catch (ModelAdapterException e) {
-		    // element does not have such a property
-//		    continue;
-		}
-//	    }
+            try {
+                Object value = investigator.get(referencedObject, se
+                        .getPropertyReference().getStrucfeature().getName());
+                // TODO handle pretty printing and escaping according to
+                // syntax
+                if (value instanceof Collection<?>
+                        && ((Collection<?>) value).size() > 0) {
+                    value = ((Collection<?>) value).iterator().next();
+                }
+                if (value != null && !(value instanceof RefObject)
+                        && !(value instanceof Collection<?>)) {
+                    newvalue = value.toString();
+                }
+                // break;
+            } catch (ModelAdapterException e) {
+                // element does not have such a property
+                // continue;
+            }
 	}
 	return newvalue;
     }
