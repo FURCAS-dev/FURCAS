@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
+package de.hpi.sam.bp2009.solution.eventManager.util;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
@@ -53,12 +53,13 @@ public class NotificationHelper {
      * @return the {@link EStructuralFeature} whose change caused the notification
      */
     public static EStructuralFeature getNotificationFeature(Notification n){
-        Object notifier = n.getNotifier();
-        if (notifier instanceof EObject){
-            EClass cls = ((EObject) notifier).eClass();
-            EStructuralFeature feature = cls.getEStructuralFeature(n.getFeatureID(notifier.getClass()));
-            return feature;
-        }
-        return null;
+        return n.getFeature()==null?null:(EStructuralFeature)n.getFeature();
+//        Object notifier = n.getNotifier();
+//        if (notifier instanceof EObject){
+//            EClass cls = ((EObject) notifier).eClass();
+//            EStructuralFeature feature = cls.getEStructuralFeature(n.getFeatureID(notifier.getClass()));
+//            return feature;
+//        }
+//        return null;
     }
 }

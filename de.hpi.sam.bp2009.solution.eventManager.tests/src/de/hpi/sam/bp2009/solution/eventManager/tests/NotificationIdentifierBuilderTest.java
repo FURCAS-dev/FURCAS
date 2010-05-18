@@ -33,7 +33,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper
  *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifierBuilder#buildFrom(org.eclipse.emf.common.notify.Notification) <em>Build From</em>}</li>
  * </ul>
  * </p>
- * @generated NOT
+ * @generated
  */
 public class NotificationIdentifierBuilderTest extends BaseDepartmentTest {
 
@@ -55,17 +55,6 @@ public class NotificationIdentifierBuilderTest extends BaseDepartmentTest {
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(NotificationIdentifierBuilderTest.class);
-	}
-
-
-	/**
-	 * Constructs a new Notification Identifier Builder test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public NotificationIdentifierBuilderTest() {
-		super();
 	}
 
 

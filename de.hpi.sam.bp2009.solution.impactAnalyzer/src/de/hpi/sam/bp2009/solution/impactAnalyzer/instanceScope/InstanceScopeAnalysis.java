@@ -46,9 +46,9 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.NotificationHelper;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
