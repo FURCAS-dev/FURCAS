@@ -955,7 +955,7 @@ public class PrettyPrinter
 			printWS();
 		}
 	}
-																			private void printIdentifier(String ident, boolean orKeyword)
+    private void printIdentifier(String ident, boolean orKeyword)
 	{
 		printDisambiguationWS();
 		boolean simpleIdent = ident.matches("[_a-zA-Z][_a-zA-Z0-9]*");
@@ -1685,21 +1685,24 @@ public class PrettyPrinter
 			// TODO what about serializer attribute?
 			RefObject template = primitiveTemplates.get(as);
 			if (template != null
-					&& template instanceof PrimitiveTemplate
-					&& ((PrimitiveTemplate) template).getSerializer() != null
-					&& !((PrimitiveTemplate) template).getSerializer().equals(
-							""))
+					&& template instanceof PrimitiveTemplate)
 			{
-				PrimitiveTemplate primTemplate = (PrimitiveTemplate) template;
-				if (primTemplate.getSerializer().contains("%value%"))
-				{
-					printCustomStringLiteral(primTemplate.getSerializer()
-							.replaceAll(
-									"%value%",
-									java.util.regex.Matcher
-											.quoteReplacement(((String) value)
-													.replaceAll("\"",
-															"\\\\\\\""))), "");
+				if(((PrimitiveTemplate) template).getSerializer() != null
+					&& !((PrimitiveTemplate) template).getSerializer().equals(
+							"")) {
+					PrimitiveTemplate primTemplate = (PrimitiveTemplate) template;
+					if (primTemplate.getSerializer().contains("%value%"))
+					{
+						printCustomStringLiteral(primTemplate.getSerializer()
+								.replaceAll(
+										"%value%",
+										java.util.regex.Matcher
+												.quoteReplacement(((String) value)
+														.replaceAll("\"",
+																"\\\\\\\""))), "");
+					}
+				} else {
+					printDefault((String) value);
 				}
 			}
 			// TODO what about tokens and token attribute?
@@ -1728,6 +1731,13 @@ public class PrettyPrinter
 		{
 			printBooleanLiteral(((Boolean) value).booleanValue());
 		}
+	}
+
+	private void printDefault(String value)
+	{
+		printDisambiguationWS();
+		out.printDefault(value);
+		context.setTypeLast(TYPE_STRING);
 	}
 
 	@SuppressWarnings("unchecked")

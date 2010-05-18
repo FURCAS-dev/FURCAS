@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='modelmanagement.deploymentunits.DeploymentUnit' i='E07264A551F762CF3E4B11DE902B0018DE1146FF' ova='description'/>
+<modelmanagement.deploymentunits.DeploymentUnit m:c='1' m:i='E0367719F876DF005CFF11DF9058EA7B0A1CE22F' name='RiverDemo'/>
+</Partition>

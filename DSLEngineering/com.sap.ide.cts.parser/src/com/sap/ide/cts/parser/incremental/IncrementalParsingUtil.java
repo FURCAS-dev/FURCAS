@@ -45,6 +45,8 @@ import com.sap.tc.moin.repository.mmi.model.TypedElement;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
+import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper.AssociationBean;
 
 public class IncrementalParsingUtil {
 
@@ -241,34 +243,39 @@ public class IncrementalParsingUtil {
 		return null;
 	}
 
-	static RefObject getCorrespondingElement(TextBlockProxy textblock,
-		IModelElementProxy proxy, String propertyName, int i, TextBlock parentBlock) {
-		// TODO this is an initial implementation which might not be perfect
-		// as it just takes the type of the element
-		Collection<Classifier> metaClasses = new ArrayList<Classifier>();
-		metaClasses.add(textblock.getTemplate().getMetaReference());
-		for (Template additionalTempl : textblock.getAdditionalTemplates()) {
-			metaClasses.add(additionalTempl.getMetaReference());
-		}
-
-		for (RefObject element : parentBlock.getCorrespondingModelElements()) {
-			for (Classifier classifier : metaClasses) {
-
-				if (element.refIsInstanceOf(classifier, true)) {
-					try {
-						((MofClass) element.refMetaObject())
-							.lookupElementExtended(propertyName);
-						return element;
-					} catch (JmiException e) {
-						continue;
-					} catch (NameNotFoundException e) {
-						continue;
-					}
-				}
-			}
-		}
-		return null;
+    static RefObject getCorrespondingElement(TextBlockProxy textblock, IModelElementProxy proxy, String propertyName,
+	    int i, TextBlock parentBlock) {
+	// TODO this is an initial implementation which might not be perfect
+	// as it just takes the type of the element
+	Collection<Classifier> metaClasses = new ArrayList<Classifier>();
+	metaClasses.add(textblock.getTemplate().getMetaReference());
+	for (Template additionalTempl : textblock.getAdditionalTemplates()) {
+	    metaClasses.add(additionalTempl.getMetaReference());
 	}
+
+	for (RefObject element : parentBlock.getCorrespondingModelElements()) {
+	    for (Classifier classifier : metaClasses) {
+		if (element.refIsInstanceOf(classifier, true)) {
+		    try {
+			((MofClass) element.refMetaObject()).lookupElementExtended(propertyName);
+			return element;
+		    } catch (JmiException e) {
+			continue;
+		    } catch (NameNotFoundException e) {
+			// not a reference or attribute; check for unexposed association end
+			AssociationBean associationBean = AdapterJMIHelper.findAssociation(element, propertyName,
+				element.get___Connection().getJmiHelper());
+			if (associationBean == null) {
+			    continue;
+			} else {
+			    return element;
+			}
+		    }
+		}
+	    }
+	}
+	return null;
+    }
 
 	static TextBlock getOriginalVersion(TextBlockProxy newVersion, TextBlock parent) {
 		AbstractToken firstToken = firstToken(newVersion);

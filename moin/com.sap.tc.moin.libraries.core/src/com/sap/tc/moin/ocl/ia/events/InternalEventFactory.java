@@ -541,7 +541,7 @@ public class InternalEventFactory {
         RefObject obj;
         CoreConnection conn;
         Connection econn = event.getEventTriggerConnection( );
-        if ( econn instanceof Wrapper ) {
+        if ( econn instanceof Wrapper<?> ) {
             conn = (CoreConnection) ( (Wrapper<?>) econn ).unwrap( );
         } else {
             conn = (CoreConnection) econn;
@@ -654,7 +654,7 @@ public class InternalEventFactory {
 
     private CoreConnection getCoreConnection( Connection connection ) {
 
-        if ( connection instanceof Wrapper ) {
+        if ( connection instanceof Wrapper<?> ) {
             return (CoreConnection) ( (Wrapper<?>) connection ).unwrap( );
         }
         return (CoreConnection) connection;

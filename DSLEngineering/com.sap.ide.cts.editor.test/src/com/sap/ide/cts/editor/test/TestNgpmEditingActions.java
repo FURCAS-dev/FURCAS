@@ -1799,7 +1799,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
     }
 
     @Test
-    public void testReadStatistice() {
+    public void testReadStatistics() {
 	GlobalDelayedReferenceResolver resolver = GlobalDelayedReferenceResolver.getInstance();
 	System.out.println(resolver.getDebugInfoAsCsv(connection));
 	int changeEvents = SessionEventManagerSimple.changeEvents;
