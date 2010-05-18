@@ -56,41 +56,6 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.AND_FILTER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<EventFilter> getFilters() {
-		if (filters == null) {
-			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.AND_FILTER__FILTERS);
-		}
-		return filters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean matchesFor(Notification event) {
-		for(EventFilter operator:this.getFilters()){
-			if(!(operator.matchesFor(event)))
-				return false;
-		}
-		return true;
-	}
-
-	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -120,6 +85,40 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EventManagerPackage.AND_FILTER__FILTERS:
+				return filters != null && !filters.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AndFilterImpl other = (AndFilterImpl) obj;
+        if (filters == null) {
+            if (other.filters != null)
+                return false;
+        } else if (!filters.equals(other.filters))
+            return false;
+        return true;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,15 +157,37 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.AND_FILTER__FILTERS:
-				return filters != null && !filters.isEmpty();
+	public EList<EventFilter> getFilters() {
+		if (filters == null) {
+			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.AND_FILTER__FILTERS);
 		}
-		return super.eIsSet(featureID);
+		return filters;
 	}
-	@Override
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((filters == null) ? 0 : filters.hashCode());
+        return result;
+    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean matchesFor(Notification event) {
+		for(EventFilter operator:this.getFilters()){
+			if(!(operator.matchesFor(event)))
+				return false;
+		}
+		return true;
+	}
+
+    @Override
 	public String toString() {
 	    StringBuilder bld = new StringBuilder();
 	    boolean first = true;
@@ -184,6 +205,16 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	    }
 	       
 	    return bld.toString();
+	}
+
+    /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return EventManagerPackage.Literals.AND_FILTER;
 	}
 
 

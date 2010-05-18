@@ -45,7 +45,7 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 	 */
 	protected EList<EventFilter> filters;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -53,44 +53,7 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 	protected OrFilterImpl() {
 		super();
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.OR_FILTER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<EventFilter> getFilters() {
-		if (filters == null) {
-			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.OR_FILTER__FILTERS);
-		}
-		return filters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean matchesFor(Notification event) {
-
-		for(EventFilter otherFilter:getFilters()){			
-			if(otherFilter.matchesFor(event))
-				return true;
-		}
-		return false;
-	}
-
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -120,6 +83,40 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EventManagerPackage.OR_FILTER__FILTERS:
+				return filters != null && !filters.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrFilterImpl other = (OrFilterImpl) obj;
+        if (filters == null) {
+            if (other.filters != null)
+                return false;
+        } else if (!filters.equals(other.filters))
+            return false;
+        return true;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,14 +155,38 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.OR_FILTER__FILTERS:
-				return filters != null && !filters.isEmpty();
+	public EList<EventFilter> getFilters() {
+		if (filters == null) {
+			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.OR_FILTER__FILTERS);
 		}
-		return super.eIsSet(featureID);
+		return filters;
 	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((filters == null) ? 0 : filters.hashCode());
+        return result;
+    }
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean matchesFor(Notification event) {
+
+		for(EventFilter otherFilter:getFilters()){			
+			if(otherFilter.matchesFor(event))
+				return true;
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 	    StringBuilder bld = new StringBuilder();
@@ -183,6 +204,15 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 	    }
 	     
 	    return bld.toString();
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return EventManagerPackage.Literals.OR_FILTER;
 	}
 
 } //OrFilterImpl

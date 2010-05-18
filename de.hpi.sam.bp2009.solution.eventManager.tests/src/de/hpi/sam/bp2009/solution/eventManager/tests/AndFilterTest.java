@@ -25,132 +25,157 @@ import de.hpi.sam.bp2009.solution.eventManager.impl.EventFilterImpl;
  */
 public class AndFilterTest extends EventFilterTest {
 
-	protected EventFilterImpl trueFilter;
-	protected EventFilterImpl falseFilter;
+    protected EventFilterImpl trueFilter;
+    protected EventFilterImpl falseFilter;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(AndFilterTest.class);
-	}
-
-
-	/**
-	 * Constructs a new And Filter test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public AndFilterTest() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static void main(String[] args) {
+        TestRunner.run(AndFilterTest.class);
+    }
 
 
-	/**
-	 * Returns the fixture for this And Filter test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected AndFilter getFixture() {
-		return (AndFilter)fixture;
-	}
+    /**
+     * Constructs a new And Filter test case with the given name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public AndFilterTest() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated NOT
-	 */
-	@Override
-	public void setUp() {
-		setFixture(EventManagerFactory.eINSTANCE.createAndFilter());
-		this.trueFilter= new EventFilterImpl() {
-			
-			@Override
-			public boolean matchesFor(Notification event) {
-				return true;
-				
-			}
-			
-			@Override
-			public EList<NotificationIdentifier> buildNotificationIdentifiers(
-					NotificationIdentifier identifier) {
-				EList<NotificationIdentifier> test = new BasicEList<NotificationIdentifier>();
-				test.add(identifier);
-				return test ;
-				
-			}
-		};
-		this.falseFilter= new EventFilterImpl() {
-			
-			@Override
-			public boolean matchesFor(Notification event) {
-				return false;
-				
-			}
-			
-			@Override
-			public EList<NotificationIdentifier> buildNotificationIdentifiers(
-					NotificationIdentifier identifier) {
-				EList<NotificationIdentifier> test = new BasicEList<NotificationIdentifier>();
-				test.add(identifier);
-				if(identifier!=null){
-					identifier.setEventType(666);
-				}
-				return test ;
-				
-			}
-		};
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated NOT
-	 */
-	@Override
-	public void tearDown() {
-		setFixture(null);
-		this.falseFilter = null;
-		this.trueFilter = null;
-	}
+    /**
+     * Returns the fixture for this And Filter test case.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected AndFilter getFixture() {
+        return (AndFilter)fixture;
+    }
 
-	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
-	 * @generated NOT
-	 */
-	public void testMatchesFor__NotificationTwoTrue() {
-		getFixture().getFilters().add(trueFilter);
-		getFixture().getFilters().add(trueFilter);
-		assertTrue("Two true is true", getFixture().matchesFor(null));
-	}
-	public void testMatchesFor__NotificationTwoFalse() {
-		getFixture().getFilters().add(falseFilter);
-		getFixture().getFilters().add(falseFilter);
-		assertFalse("Two false is false", getFixture().matchesFor(null));
-	}
-	public void testMatchesFor__Notification() {
-		getFixture().getFilters().add(falseFilter);
-		getFixture().getFilters().add(trueFilter);
-		assertFalse("Two true/false is false", getFixture().matchesFor(null));
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see junit.framework.TestCase#setUp()
+     * @generated NOT
+     */
+    @Override
+    public void setUp() {
+        setFixture(EventManagerFactory.eINSTANCE.createAndFilter());
+        this.trueFilter= new EventFilterImpl() {
 
-	public void testBuildNotificationIdentifiers__NotificationIdentifier() {
-		getFixture().getFilters().add(falseFilter);
-		getFixture().getFilters().add(trueFilter);
-		EList<NotificationIdentifier> result = getFixture().buildNotificationIdentifiers(null);
-		assertTrue(result.size()==1);
-		assertNull(result.get(0));
-	}
+            @Override
+            public boolean matchesFor(Notification event) {
+                return true;
+
+            }
+
+            @Override
+            public EList<NotificationIdentifier> buildNotificationIdentifiers(
+                    NotificationIdentifier identifier) {
+                EList<NotificationIdentifier> test = new BasicEList<NotificationIdentifier>();
+                test.add(identifier);
+                return test ;
+
+            }
+
+            @Override
+            public int hashCode() {
+
+                return 2;
+
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return false;
+
+            }
+        };
+        this.falseFilter= new EventFilterImpl() {
+
+            @Override
+            public boolean matchesFor(Notification event) {
+                return false;
+
+            }
+
+            @Override
+            public EList<NotificationIdentifier> buildNotificationIdentifiers(
+                    NotificationIdentifier identifier) {
+                EList<NotificationIdentifier> test = new BasicEList<NotificationIdentifier>();
+                test.add(identifier);
+                if(identifier!=null){
+                    identifier.setEventType(666);
+                }
+                return test ;
+
+            }
+
+            @Override
+            public int hashCode() {
+                return 3;
+
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return false;
+
+            }
+        };
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see junit.framework.TestCase#tearDown()
+     * @generated NOT
+     */
+    @Override
+    public void tearDown() {
+        setFixture(null);
+        this.falseFilter = null;
+        this.trueFilter = null;
+    }
+
+    /**
+     * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * @generated NOT
+     */
+    public void testMatchesFor__NotificationTwoTrue() {
+        getFixture().getFilters().add(trueFilter);
+        getFixture().getFilters().add(trueFilter);
+        assertTrue("Two true is true", getFixture().matchesFor(null));
+    }
+    public void testMatchesFor__NotificationTwoFalse() {
+        getFixture().getFilters().add(falseFilter);
+        getFixture().getFilters().add(falseFilter);
+        assertFalse("Two false is false", getFixture().matchesFor(null));
+    }
+    public void testMatchesFor__Notification() {
+        getFixture().getFilters().add(falseFilter);
+        getFixture().getFilters().add(trueFilter);
+        assertFalse("Two true/false is false", getFixture().matchesFor(null));
+    }
+
+    public void testBuildNotificationIdentifiers__NotificationIdentifier() {
+        getFixture().getFilters().add(falseFilter);
+        getFixture().getFilters().add(trueFilter);
+        EList<NotificationIdentifier> result = getFixture().buildNotificationIdentifiers(null);
+        assertTrue(result.size()==1);
+        assertNull(result.get(0));
+    }
 
 
 

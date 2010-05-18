@@ -42,7 +42,7 @@ public class NewValueClassFilterImpl extends EventFilterImpl implements NewValue
 	 */
 	protected EClass affectedClass;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -51,34 +51,7 @@ public class NewValueClassFilterImpl extends EventFilterImpl implements NewValue
 		super();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.NEW_VALUE_CLASS_FILTER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAffectedClass() {
-		if (affectedClass != null && affectedClass.eIsProxy()) {
-			InternalEObject oldAffectedClass = (InternalEObject)affectedClass;
-			affectedClass = (EClass)eResolveProxy(oldAffectedClass);
-			if (affectedClass != oldAffectedClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS, oldAffectedClass, affectedClass));
-			}
-		}
-		return affectedClass;
-	}
-
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,36 +60,12 @@ public class NewValueClassFilterImpl extends EventFilterImpl implements NewValue
 		return affectedClass;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAffectedClass(EClass newAffectedClass) {
-		EClass oldAffectedClass = affectedClass;
-		affectedClass = newAffectedClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS, oldAffectedClass, affectedClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean matchesFor(Notification event) {
-		if(event.getNewValue() instanceof EObject){
-			return((EObject)event.getNewValue()).eClass().equals(getAffectedClass());
-		}
-		if(event.getNewValue() instanceof EList<?>){
-			for(Object o: (EList<?>)event.getNewValue()){
-				if(o instanceof EObject && ((EObject)o).eClass().equals(getAffectedClass())){
-					return true;
-				}
-			}
-			return false;
-		}
-		return false;
+	@Override
+	public EList<NotificationIdentifier> buildNotificationIdentifiers(
+			NotificationIdentifier identifier) {
+		identifier.getNewValueClassURIs().add(EcoreUtil.getURI(getAffectedClass()));
+		return getEListForNotificationIdentifier(identifier);
+		
 	}
 
 	/**
@@ -133,6 +82,40 @@ public class NewValueClassFilterImpl extends EventFilterImpl implements NewValue
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EventManagerPackage.NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS:
+				return affectedClass != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        NewValueClassFilterImpl other = (NewValueClassFilterImpl) obj;
+        if (affectedClass == null) {
+            if (other.affectedClass != null)
+                return false;
+        } else if (!affectedClass.equals(other.affectedClass))
+            return false;
+        return true;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,13 +152,59 @@ public class NewValueClassFilterImpl extends EventFilterImpl implements NewValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS:
-				return affectedClass != null;
+	public EClass getAffectedClass() {
+		if (affectedClass != null && affectedClass.eIsProxy()) {
+			InternalEObject oldAffectedClass = (InternalEObject)affectedClass;
+			affectedClass = (EClass)eResolveProxy(oldAffectedClass);
+			if (affectedClass != oldAffectedClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS, oldAffectedClass, affectedClass));
+			}
 		}
-		return super.eIsSet(featureID);
+		return affectedClass;
+	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((affectedClass == null) ? 0 : affectedClass.hashCode());
+        return result;
+    }
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean matchesFor(Notification event) {
+		if(event.getNewValue() instanceof EObject){
+			return((EObject)event.getNewValue()).eClass().equals(getAffectedClass());
+		}
+		if(event.getNewValue() instanceof EList<?>){
+			for(Object o: (EList<?>)event.getNewValue()){
+				if(o instanceof EObject && ((EObject)o).eClass().equals(getAffectedClass())){
+					return true;
+				}
+			}
+			return false;
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAffectedClass(EClass newAffectedClass) {
+		EClass oldAffectedClass = affectedClass;
+		affectedClass = newAffectedClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.NEW_VALUE_CLASS_FILTER__AFFECTED_CLASS, oldAffectedClass, affectedClass));
 	}
 	@Override
 	public String toString() {
@@ -184,12 +213,14 @@ public class NewValueClassFilterImpl extends EventFilterImpl implements NewValue
 	    return "filter for undefined new";
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public EList<NotificationIdentifier> buildNotificationIdentifiers(
-			NotificationIdentifier identifier) {
-		identifier.getNewValueClassURIs().add(EcoreUtil.getURI(getAffectedClass()));
-		return getEListForNotificationIdentifier(identifier);
-		
+	protected EClass eStaticClass() {
+		return EventManagerPackage.Literals.NEW_VALUE_CLASS_FILTER;
 	}
 
 } //NewValueClassFilterImpl

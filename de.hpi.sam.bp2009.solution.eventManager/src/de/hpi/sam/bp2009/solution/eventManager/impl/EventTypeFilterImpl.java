@@ -76,67 +76,6 @@ public class EventTypeFilterImpl extends EventFilterImpl implements EventTypeFil
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return EventManagerPackage.Literals.EVENT_TYPE_FILTER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Notification getMatchingNotification() {
-		return matchingNotification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMatchingNotification(Notification newMatchingNotification) {
-		Notification oldMatchingNotification = matchingNotification;
-		matchingNotification = newMatchingNotification;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION, oldMatchingNotification, matchingNotification));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Integer getEventType() {
-		return eventType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventType(Integer newEventType) {
-		Integer oldEventType = eventType;
-		eventType = newEventType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE, oldEventType, eventType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean matchesFor(Notification event) {
-		return event.getEventType()==getEventType(); 
-	}
-
-	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -163,6 +102,42 @@ public class EventTypeFilterImpl extends EventFilterImpl implements EventTypeFil
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION:
+				return MATCHING_NOTIFICATION_EDEFAULT == null ? matchingNotification != null : !MATCHING_NOTIFICATION_EDEFAULT.equals(matchingNotification);
+			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE:
+				return EVENT_TYPE_EDEFAULT == null ? eventType != null : !EVENT_TYPE_EDEFAULT.equals(eventType);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EventTypeFilterImpl other = (EventTypeFilterImpl) obj;
+        if (eventType == null) {
+            if (other.eventType != null)
+                return false;
+        } else if (!eventType.equals(other.eventType))
+            return false;
+        return true;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,15 +180,61 @@ public class EventTypeFilterImpl extends EventFilterImpl implements EventTypeFil
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION:
-				return MATCHING_NOTIFICATION_EDEFAULT == null ? matchingNotification != null : !MATCHING_NOTIFICATION_EDEFAULT.equals(matchingNotification);
-			case EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE:
-				return EVENT_TYPE_EDEFAULT == null ? eventType != null : !EVENT_TYPE_EDEFAULT.equals(eventType);
-		}
-		return super.eIsSet(featureID);
+	public Integer getEventType() {
+		return eventType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Notification getMatchingNotification() {
+		return matchingNotification;
+	}
+
+	/* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((eventType == null) ? 0 : eventType.hashCode());
+        return result;
+    }
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean matchesFor(Notification event) {
+		return event.getEventType()==getEventType(); 
+	}
+
+    /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventType(Integer newEventType) {
+		Integer oldEventType = eventType;
+		eventType = newEventType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__EVENT_TYPE, oldEventType, eventType));
+	}
+
+    /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMatchingNotification(Notification newMatchingNotification) {
+		Notification oldMatchingNotification = matchingNotification;
+		matchingNotification = newMatchingNotification;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.EVENT_TYPE_FILTER__MATCHING_NOTIFICATION, oldMatchingNotification, matchingNotification));
 	}
 
 	/**
@@ -258,6 +279,16 @@ public class EventTypeFilterImpl extends EventFilterImpl implements EventTypeFil
 
 	    
 		return "filter undefined";
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return EventManagerPackage.Literals.EVENT_TYPE_FILTER;
 	}
 
 } //EventTypeFilterImpl

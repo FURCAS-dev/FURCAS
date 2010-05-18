@@ -64,4 +64,7 @@ public abstract class EventFilterImpl extends EObjectImpl implements EventFilter
 		result.add(identifier);
 		return result;
 	}
+	public abstract int hashCode();
+	public abstract boolean equals(Object obj);
+
 } //EventFilterImpl
