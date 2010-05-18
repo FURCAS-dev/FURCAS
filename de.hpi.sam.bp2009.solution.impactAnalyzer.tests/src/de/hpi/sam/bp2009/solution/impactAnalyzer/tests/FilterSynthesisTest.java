@@ -10,6 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import company.Employee;
+
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
@@ -320,7 +322,9 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testLinkAddedEventManages( ) {
-        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, comp.getCompanyFactory().createEmployee());
+    	Employee e = comp.getCompanyFactory().createEmployee();
+    	e.setEmployer(this.aDepartment);
+        Notification noti = NotificationHelper.createReferenceAddNotification( this.aDepartment, this.bossRef, e);
         
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
@@ -328,10 +332,12 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.bossHighestSalaryAST);
         expectedStmts.add(this.bossIsOldestAST);
         //added by bp2009
-        expectedStmts.add(this.uniqueNamesAST);
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
         expectedStmts.add(this.nastyConstraintAST);
         expectedStmts.add(this.expensesRestrictionAST);
+        // not expected because boss is not containment and
+        // this stmt is affected at creation of new employees and name change
+        // expectedStmts.add(this.uniqueNamesAST);
 
         assertTrue ( checkAffectedStatements( affectedStmts, expectedStmts ) );
     }
