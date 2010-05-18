@@ -6,6 +6,7 @@ import java.util.List;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
+import com.sap.tc.moin.repository.core.events.framework.simple.SessionEventManagerSimple;
 import com.sap.tc.moin.repository.core.transactions.actions.ActionExecutor;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.exception.ExecutionRollbackFailedException;
@@ -40,10 +41,12 @@ public class MicroTransaction extends AbstractTransaction {
             // fire pre events
             List<ChangeEvent> doEvents = microTransactionable.getDoEvents( );
             if ( doEvents != null ) {
+//                long time = System.currentTimeMillis();
                 for ( int i = 0; i < doEvents.size( ); i++ ) {
                     ChangeEvent event = doEvents.get( i );
                     txManager.getEventManager( ).firePreChangeEvent( event );
                 }
+//                System.err.println("Time doing pre change events:" + (System.currentTimeMillis() - time));
             }
             // acquire micro write lock after firing pre events but before
             // executing the actions
@@ -72,10 +75,13 @@ public class MicroTransaction extends AbstractTransaction {
             }
             // fire post events
             if ( doEvents != null ) {
+                ((SessionEventManagerSimple)txManager.getEventManager( )).filtered = 0;
+//                long time = System.currentTimeMillis();
                 for ( int i = 0; i < doEvents.size( ); i++ ) {
                     ChangeEvent event = doEvents.get( i );
                     txManager.getEventManager( ).fireChangeEvent( event );
                 }
+//                System.err.println("Time doing post change for " +  doEvents.size( ) + " events:" + (System.currentTimeMillis() - time) + ". Afer filtering: " + ((SessionEventManagerSimple)txManager.getEventManager( )).filtered );
             }
             // Only add this MicroTx to the record when successfully executed!
             txManager.getRecord( ).addMicroTx( this );

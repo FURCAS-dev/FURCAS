@@ -12,7 +12,7 @@ public class ResolvedNameAndReferenceBean<Type> {
 
     private List<String> names;
     private Type reference;
-    
+    private List<String> operators;
     
     
     /**
@@ -28,8 +28,18 @@ public class ResolvedNameAndReferenceBean<Type> {
         this.reference = reference;
     }
 
+    public ResolvedNameAndReferenceBean(List<String> names, Type reference,
+            List<String> ops) {
+        this(names, reference);
+        this.operators = ops;
+    }
+
     public List<String> getNames() {
         return names;
+    }
+    
+    public List<String> getOperators() {
+        return operators;
     }
     
     public String getNameUnqualified() {

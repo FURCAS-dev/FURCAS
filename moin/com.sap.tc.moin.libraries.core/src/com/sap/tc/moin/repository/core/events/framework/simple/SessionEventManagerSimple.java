@@ -86,6 +86,8 @@ public class SessionEventManagerSimple implements SessionEventManager {
 
     private List<NotifierSimple> updateListeners = new ArrayList<NotifierSimple>( );
 
+    public int filtered;
+
     /* Methods from EventRegistry interface */
 
     public boolean hasListeners( ) {
@@ -460,6 +462,7 @@ public class SessionEventManagerSimple implements SessionEventManager {
             } else {
                 // Check if listener matches the event
                 if ( FilterMatchesEvent.matches( event, notifier.getFilter( ) ) ) {
+                    filtered++;
                     if ( notifiers == null ) {
                         notifiers = new NotifierSimple[possibleListenersCount - i];
                     }

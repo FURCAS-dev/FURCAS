@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g 2010-03-19 11:54:10
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g 2010-05-17 22:51:27
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "RPAREN", "EQ", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'and'", "'template'", "'false'", "'true'", "'createIn'", "'for'", "'nbNL'", "'lookIn'", "'k'", "'never'", "'orKeyword'", "'createAs'", "'always'", "'syntax'", "'addToContext'", "'auto'", "'octal'", "'invert'", "'end'", "'leftNone'", "'main'", "'forcedLower'", "'using'", "'start'", "'token'", "'when'", "'mode'", "'word'", "'primitiveTemplate'", "'disambiguateV3'", "'part'", "'nonPrimary'", "'esc'", "'foreach'", "'operatored'", "'hex'", "'symbols'", "'forcedUpper'", "'rightSpace'", "'left'", "'filter'", "'storeRightTo'", "'context'", "'storeOpTo'", "'drop'", "'operators'", "'startNL'", "'deep'", "'query'", "'ifmissing'", "'prefix'", "'multiLine'", "'isDefined'", "'omitted'", "'function'", "'rightNone'", "'startNbNL'", "'multi'", "'one'", "'value'", "'default'", "'autoCreate'", "'postfix'", "'separator'", "'right'", "'operatorTemplate'", "'abstract'", "'instanceOf'", "'disambiguate'", "'priority'", "'enumerationTemplate'", "'partial'", "'source'", "'referenceOnly'", "'importContext'", "'endNL'", "'all'", "'leftSpace'", "'indentIncr'", "'keywords'", "'refersTo'", "'serializer'", "'as'", "'lexer'", "'endOfLine'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "RPAREN", "EQ", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'mode'", "'enumerationTemplate'", "'using'", "'disambiguateV3'", "'end'", "'k'", "'context'", "'when'", "'operatored'", "'query'", "'operators'", "'rightNone'", "'indentIncr'", "'createAs'", "'refersTo'", "'octal'", "'source'", "'deep'", "'lexer'", "'startNbNL'", "'start'", "'true'", "'createIn'", "'multiLine'", "'endOfLine'", "'function'", "'orKeyword'", "'postfix'", "'autoCreate'", "'value'", "'storeOpTo'", "'drop'", "'lookIn'", "'priority'", "'as'", "'one'", "'filter'", "'multi'", "'abstract'", "'token'", "'leftNone'", "'disambiguate'", "'symbols'", "'serializer'", "'separator'", "'esc'", "'nbNL'", "'foreach'", "'always'", "'default'", "'isDefined'", "'false'", "'ifmissing'", "'primitiveTemplate'", "'leftSpace'", "'invert'", "'endNL'", "'nonPrimary'", "'part'", "'rightSpace'", "'forcedLower'", "'right'", "'forcedUpper'", "'keywords'", "'importContext'", "'all'", "'for'", "'partial'", "'referenceOnly'", "'prefix'", "'never'", "'word'", "'omitted'", "'operatorTemplate'", "'syntax'", "'instanceOf'", "'startNL'", "'addToContext'", "'hex'", "'storeRightTo'", "'main'", "'auto'", "'left'", "'and'", "'template'"
     };
     public static final int DLCURLY=29;
     public static final int LT=19;
@@ -170,7 +170,7 @@ public class TCSParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g"; }
 
 
-       private static final String syntaxUUID = "E0A5ADB5B7793C20334511DF8D46EC660A0001C5";
+       private static final String syntaxUUID = "E0356A04EF7B6F1061F511DFBA5AF9DB0A0001C7";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -288,7 +288,7 @@ public class TCSParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifierOrKeyword"
-    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'and' | 'template' | 'false' | 'true' | 'createIn' | 'for' | 'nbNL' | 'lookIn' | 'k' | 'never' | 'orKeyword' | 'createAs' | 'always' | 'syntax' | 'addToContext' | 'auto' | 'octal' | 'invert' | 'end' | 'leftNone' | 'main' | 'forcedLower' | 'using' | 'start' | 'token' | 'when' | 'mode' | 'word' | 'primitiveTemplate' | 'disambiguateV3' | 'part' | 'nonPrimary' | 'esc' | 'foreach' | 'operatored' | 'hex' | 'symbols' | 'forcedUpper' | 'rightSpace' | 'left' | 'filter' | 'storeRightTo' | 'context' | 'storeOpTo' | 'drop' | 'operators' | 'startNL' | 'deep' | 'query' | 'ifmissing' | 'prefix' | 'multiLine' | 'isDefined' | 'omitted' | 'function' | 'rightNone' | 'startNbNL' | 'multi' | 'one' | 'value' | 'default' | 'autoCreate' | 'postfix' | 'separator' | 'right' | 'operatorTemplate' | 'abstract' | 'instanceOf' | 'disambiguate' | 'priority' | 'enumerationTemplate' | 'partial' | 'source' | 'referenceOnly' | 'importContext' | 'endNL' | 'all' | 'leftSpace' | 'indentIncr' | 'keywords' | 'refersTo' | 'serializer' | 'as' | 'lexer' | 'endOfLine' ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'mode' | 'enumerationTemplate' | 'using' | 'disambiguateV3' | 'end' | 'k' | 'context' | 'when' | 'operatored' | 'query' | 'operators' | 'rightNone' | 'indentIncr' | 'createAs' | 'refersTo' | 'octal' | 'source' | 'deep' | 'lexer' | 'startNbNL' | 'start' | 'true' | 'createIn' | 'multiLine' | 'endOfLine' | 'function' | 'orKeyword' | 'postfix' | 'autoCreate' | 'value' | 'storeOpTo' | 'drop' | 'lookIn' | 'priority' | 'as' | 'one' | 'filter' | 'multi' | 'abstract' | 'token' | 'leftNone' | 'disambiguate' | 'symbols' | 'serializer' | 'separator' | 'esc' | 'nbNL' | 'foreach' | 'always' | 'default' | 'isDefined' | 'false' | 'ifmissing' | 'primitiveTemplate' | 'leftSpace' | 'invert' | 'endNL' | 'nonPrimary' | 'part' | 'rightSpace' | 'forcedLower' | 'right' | 'forcedUpper' | 'keywords' | 'importContext' | 'all' | 'for' | 'partial' | 'referenceOnly' | 'prefix' | 'never' | 'word' | 'omitted' | 'operatorTemplate' | 'syntax' | 'instanceOf' | 'startNL' | 'addToContext' | 'hex' | 'storeRightTo' | 'main' | 'auto' | 'left' | 'and' | 'template' ) ;
     public final Object identifierOrKeyword() throws RecognitionException {
         Object ret2 = null;
 
@@ -296,10 +296,10 @@ public class TCSParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:218:3: ( (ast= NAME | 'and' | 'template' | 'false' | 'true' | 'createIn' | 'for' | 'nbNL' | 'lookIn' | 'k' | 'never' | 'orKeyword' | 'createAs' | 'always' | 'syntax' | 'addToContext' | 'auto' | 'octal' | 'invert' | 'end' | 'leftNone' | 'main' | 'forcedLower' | 'using' | 'start' | 'token' | 'when' | 'mode' | 'word' | 'primitiveTemplate' | 'disambiguateV3' | 'part' | 'nonPrimary' | 'esc' | 'foreach' | 'operatored' | 'hex' | 'symbols' | 'forcedUpper' | 'rightSpace' | 'left' | 'filter' | 'storeRightTo' | 'context' | 'storeOpTo' | 'drop' | 'operators' | 'startNL' | 'deep' | 'query' | 'ifmissing' | 'prefix' | 'multiLine' | 'isDefined' | 'omitted' | 'function' | 'rightNone' | 'startNbNL' | 'multi' | 'one' | 'value' | 'default' | 'autoCreate' | 'postfix' | 'separator' | 'right' | 'operatorTemplate' | 'abstract' | 'instanceOf' | 'disambiguate' | 'priority' | 'enumerationTemplate' | 'partial' | 'source' | 'referenceOnly' | 'importContext' | 'endNL' | 'all' | 'leftSpace' | 'indentIncr' | 'keywords' | 'refersTo' | 'serializer' | 'as' | 'lexer' | 'endOfLine' ) )
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:219:3: (ast= NAME | 'and' | 'template' | 'false' | 'true' | 'createIn' | 'for' | 'nbNL' | 'lookIn' | 'k' | 'never' | 'orKeyword' | 'createAs' | 'always' | 'syntax' | 'addToContext' | 'auto' | 'octal' | 'invert' | 'end' | 'leftNone' | 'main' | 'forcedLower' | 'using' | 'start' | 'token' | 'when' | 'mode' | 'word' | 'primitiveTemplate' | 'disambiguateV3' | 'part' | 'nonPrimary' | 'esc' | 'foreach' | 'operatored' | 'hex' | 'symbols' | 'forcedUpper' | 'rightSpace' | 'left' | 'filter' | 'storeRightTo' | 'context' | 'storeOpTo' | 'drop' | 'operators' | 'startNL' | 'deep' | 'query' | 'ifmissing' | 'prefix' | 'multiLine' | 'isDefined' | 'omitted' | 'function' | 'rightNone' | 'startNbNL' | 'multi' | 'one' | 'value' | 'default' | 'autoCreate' | 'postfix' | 'separator' | 'right' | 'operatorTemplate' | 'abstract' | 'instanceOf' | 'disambiguate' | 'priority' | 'enumerationTemplate' | 'partial' | 'source' | 'referenceOnly' | 'importContext' | 'endNL' | 'all' | 'leftSpace' | 'indentIncr' | 'keywords' | 'refersTo' | 'serializer' | 'as' | 'lexer' | 'endOfLine' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:218:3: ( (ast= NAME | 'mode' | 'enumerationTemplate' | 'using' | 'disambiguateV3' | 'end' | 'k' | 'context' | 'when' | 'operatored' | 'query' | 'operators' | 'rightNone' | 'indentIncr' | 'createAs' | 'refersTo' | 'octal' | 'source' | 'deep' | 'lexer' | 'startNbNL' | 'start' | 'true' | 'createIn' | 'multiLine' | 'endOfLine' | 'function' | 'orKeyword' | 'postfix' | 'autoCreate' | 'value' | 'storeOpTo' | 'drop' | 'lookIn' | 'priority' | 'as' | 'one' | 'filter' | 'multi' | 'abstract' | 'token' | 'leftNone' | 'disambiguate' | 'symbols' | 'serializer' | 'separator' | 'esc' | 'nbNL' | 'foreach' | 'always' | 'default' | 'isDefined' | 'false' | 'ifmissing' | 'primitiveTemplate' | 'leftSpace' | 'invert' | 'endNL' | 'nonPrimary' | 'part' | 'rightSpace' | 'forcedLower' | 'right' | 'forcedUpper' | 'keywords' | 'importContext' | 'all' | 'for' | 'partial' | 'referenceOnly' | 'prefix' | 'never' | 'word' | 'omitted' | 'operatorTemplate' | 'syntax' | 'instanceOf' | 'startNL' | 'addToContext' | 'hex' | 'storeRightTo' | 'main' | 'auto' | 'left' | 'and' | 'template' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:219:3: (ast= NAME | 'mode' | 'enumerationTemplate' | 'using' | 'disambiguateV3' | 'end' | 'k' | 'context' | 'when' | 'operatored' | 'query' | 'operators' | 'rightNone' | 'indentIncr' | 'createAs' | 'refersTo' | 'octal' | 'source' | 'deep' | 'lexer' | 'startNbNL' | 'start' | 'true' | 'createIn' | 'multiLine' | 'endOfLine' | 'function' | 'orKeyword' | 'postfix' | 'autoCreate' | 'value' | 'storeOpTo' | 'drop' | 'lookIn' | 'priority' | 'as' | 'one' | 'filter' | 'multi' | 'abstract' | 'token' | 'leftNone' | 'disambiguate' | 'symbols' | 'serializer' | 'separator' | 'esc' | 'nbNL' | 'foreach' | 'always' | 'default' | 'isDefined' | 'false' | 'ifmissing' | 'primitiveTemplate' | 'leftSpace' | 'invert' | 'endNL' | 'nonPrimary' | 'part' | 'rightSpace' | 'forcedLower' | 'right' | 'forcedUpper' | 'keywords' | 'importContext' | 'all' | 'for' | 'partial' | 'referenceOnly' | 'prefix' | 'never' | 'word' | 'omitted' | 'operatorTemplate' | 'syntax' | 'instanceOf' | 'startNL' | 'addToContext' | 'hex' | 'storeRightTo' | 'main' | 'auto' | 'left' | 'and' | 'template' )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:219:3: (ast= NAME | 'and' | 'template' | 'false' | 'true' | 'createIn' | 'for' | 'nbNL' | 'lookIn' | 'k' | 'never' | 'orKeyword' | 'createAs' | 'always' | 'syntax' | 'addToContext' | 'auto' | 'octal' | 'invert' | 'end' | 'leftNone' | 'main' | 'forcedLower' | 'using' | 'start' | 'token' | 'when' | 'mode' | 'word' | 'primitiveTemplate' | 'disambiguateV3' | 'part' | 'nonPrimary' | 'esc' | 'foreach' | 'operatored' | 'hex' | 'symbols' | 'forcedUpper' | 'rightSpace' | 'left' | 'filter' | 'storeRightTo' | 'context' | 'storeOpTo' | 'drop' | 'operators' | 'startNL' | 'deep' | 'query' | 'ifmissing' | 'prefix' | 'multiLine' | 'isDefined' | 'omitted' | 'function' | 'rightNone' | 'startNbNL' | 'multi' | 'one' | 'value' | 'default' | 'autoCreate' | 'postfix' | 'separator' | 'right' | 'operatorTemplate' | 'abstract' | 'instanceOf' | 'disambiguate' | 'priority' | 'enumerationTemplate' | 'partial' | 'source' | 'referenceOnly' | 'importContext' | 'endNL' | 'all' | 'leftSpace' | 'indentIncr' | 'keywords' | 'refersTo' | 'serializer' | 'as' | 'lexer' | 'endOfLine' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:219:3: (ast= NAME | 'mode' | 'enumerationTemplate' | 'using' | 'disambiguateV3' | 'end' | 'k' | 'context' | 'when' | 'operatored' | 'query' | 'operators' | 'rightNone' | 'indentIncr' | 'createAs' | 'refersTo' | 'octal' | 'source' | 'deep' | 'lexer' | 'startNbNL' | 'start' | 'true' | 'createIn' | 'multiLine' | 'endOfLine' | 'function' | 'orKeyword' | 'postfix' | 'autoCreate' | 'value' | 'storeOpTo' | 'drop' | 'lookIn' | 'priority' | 'as' | 'one' | 'filter' | 'multi' | 'abstract' | 'token' | 'leftNone' | 'disambiguate' | 'symbols' | 'serializer' | 'separator' | 'esc' | 'nbNL' | 'foreach' | 'always' | 'default' | 'isDefined' | 'false' | 'ifmissing' | 'primitiveTemplate' | 'leftSpace' | 'invert' | 'endNL' | 'nonPrimary' | 'part' | 'rightSpace' | 'forcedLower' | 'right' | 'forcedUpper' | 'keywords' | 'importContext' | 'all' | 'for' | 'partial' | 'referenceOnly' | 'prefix' | 'never' | 'word' | 'omitted' | 'operatorTemplate' | 'syntax' | 'instanceOf' | 'startNL' | 'addToContext' | 'hex' | 'storeRightTo' | 'main' | 'auto' | 'left' | 'and' | 'template' )
             int alt1=86;
             switch ( input.LA(1) ) {
             case NAME:
@@ -753,851 +753,851 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:221:5: 'and'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:221:5: 'mode'
                     {
                     match(input,49,FOLLOW_49_in_identifierOrKeyword108); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "and";
-                    }
-
-                    }
-                    break;
-                case 3 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:222:5: 'template'
-                    {
-                    match(input,50,FOLLOW_50_in_identifierOrKeyword116); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "template";
-                    }
-
-                    }
-                    break;
-                case 4 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:223:5: 'false'
-                    {
-                    match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "false";
-                    }
-
-                    }
-                    break;
-                case 5 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:224:5: 'true'
-                    {
-                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "true";
-                    }
-
-                    }
-                    break;
-                case 6 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:225:5: 'createIn'
-                    {
-                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "createIn";
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:226:5: 'for'
-                    {
-                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "for";
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:227:5: 'nbNL'
-                    {
-                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "nbNL";
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:228:5: 'lookIn'
-                    {
-                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "lookIn";
-                    }
-
-                    }
-                    break;
-                case 10 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:229:5: 'k'
-                    {
-                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "k";
-                    }
-
-                    }
-                    break;
-                case 11 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:230:5: 'never'
-                    {
-                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "never";
-                    }
-
-                    }
-                    break;
-                case 12 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:231:5: 'orKeyword'
-                    {
-                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "orKeyword";
-                    }
-
-                    }
-                    break;
-                case 13 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:232:5: 'createAs'
-                    {
-                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "createAs";
-                    }
-
-                    }
-                    break;
-                case 14 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:233:5: 'always'
-                    {
-                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "always";
-                    }
-
-                    }
-                    break;
-                case 15 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:234:5: 'syntax'
-                    {
-                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "syntax";
-                    }
-
-                    }
-                    break;
-                case 16 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:235:5: 'addToContext'
-                    {
-                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "addToContext";
-                    }
-
-                    }
-                    break;
-                case 17 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:236:5: 'auto'
-                    {
-                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "auto";
-                    }
-
-                    }
-                    break;
-                case 18 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:237:5: 'octal'
-                    {
-                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "octal";
-                    }
-
-                    }
-                    break;
-                case 19 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:238:5: 'invert'
-                    {
-                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "invert";
-                    }
-
-                    }
-                    break;
-                case 20 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:239:5: 'end'
-                    {
-                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "end";
-                    }
-
-                    }
-                    break;
-                case 21 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:240:5: 'leftNone'
-                    {
-                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "leftNone";
-                    }
-
-                    }
-                    break;
-                case 22 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:241:5: 'main'
-                    {
-                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "main";
-                    }
-
-                    }
-                    break;
-                case 23 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:242:5: 'forcedLower'
-                    {
-                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "forcedLower";
-                    }
-
-                    }
-                    break;
-                case 24 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:243:5: 'using'
-                    {
-                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "using";
-                    }
-
-                    }
-                    break;
-                case 25 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:244:5: 'start'
-                    {
-                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "start";
-                    }
-
-                    }
-                    break;
-                case 26 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:245:5: 'token'
-                    {
-                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "token";
-                    }
-
-                    }
-                    break;
-                case 27 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:246:5: 'when'
-                    {
-                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "when";
-                    }
-
-                    }
-                    break;
-                case 28 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:247:5: 'mode'
-                    {
-                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "mode";
                     }
 
                     }
                     break;
-                case 29 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:248:5: 'word'
+                case 3 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:222:5: 'enumerationTemplate'
                     {
-                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "word";
-                    }
-
-                    }
-                    break;
-                case 30 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:249:5: 'primitiveTemplate'
-                    {
-                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "primitiveTemplate";
-                    }
-
-                    }
-                    break;
-                case 31 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:250:5: 'disambiguateV3'
-                    {
-                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguateV3";
-                    }
-
-                    }
-                    break;
-                case 32 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:251:5: 'part'
-                    {
-                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "part";
-                    }
-
-                    }
-                    break;
-                case 33 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:252:5: 'nonPrimary'
-                    {
-                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "nonPrimary";
-                    }
-
-                    }
-                    break;
-                case 34 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:253:5: 'esc'
-                    {
-                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "esc";
-                    }
-
-                    }
-                    break;
-                case 35 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:254:5: 'foreach'
-                    {
-                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "foreach";
-                    }
-
-                    }
-                    break;
-                case 36 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:255:5: 'operatored'
-                    {
-                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "operatored";
-                    }
-
-                    }
-                    break;
-                case 37 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:256:5: 'hex'
-                    {
-                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "hex";
-                    }
-
-                    }
-                    break;
-                case 38 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:257:5: 'symbols'
-                    {
-                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "symbols";
-                    }
-
-                    }
-                    break;
-                case 39 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:258:5: 'forcedUpper'
-                    {
-                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "forcedUpper";
-                    }
-
-                    }
-                    break;
-                case 40 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:259:5: 'rightSpace'
-                    {
-                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "rightSpace";
-                    }
-
-                    }
-                    break;
-                case 41 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:260:5: 'left'
-                    {
-                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "left";
-                    }
-
-                    }
-                    break;
-                case 42 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:261:5: 'filter'
-                    {
-                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "filter";
-                    }
-
-                    }
-                    break;
-                case 43 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:262:5: 'storeRightTo'
-                    {
-                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "storeRightTo";
-                    }
-
-                    }
-                    break;
-                case 44 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:263:5: 'context'
-                    {
-                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "context";
-                    }
-
-                    }
-                    break;
-                case 45 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:264:5: 'storeOpTo'
-                    {
-                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "storeOpTo";
-                    }
-
-                    }
-                    break;
-                case 46 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:265:5: 'drop'
-                    {
-                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "drop";
-                    }
-
-                    }
-                    break;
-                case 47 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:266:5: 'operators'
-                    {
-                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "operators";
-                    }
-
-                    }
-                    break;
-                case 48 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:267:5: 'startNL'
-                    {
-                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "startNL";
-                    }
-
-                    }
-                    break;
-                case 49 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:268:5: 'deep'
-                    {
-                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "deep";
-                    }
-
-                    }
-                    break;
-                case 50 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:269:5: 'query'
-                    {
-                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "query";
-                    }
-
-                    }
-                    break;
-                case 51 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:270:5: 'ifmissing'
-                    {
-                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "ifmissing";
-                    }
-
-                    }
-                    break;
-                case 52 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:271:5: 'prefix'
-                    {
-                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "prefix";
-                    }
-
-                    }
-                    break;
-                case 53 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:272:5: 'multiLine'
-                    {
-                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "multiLine";
-                    }
-
-                    }
-                    break;
-                case 54 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:273:5: 'isDefined'
-                    {
-                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "isDefined";
-                    }
-
-                    }
-                    break;
-                case 55 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:274:5: 'omitted'
-                    {
-                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "omitted";
-                    }
-
-                    }
-                    break;
-                case 56 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:275:5: 'function'
-                    {
-                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "function";
-                    }
-
-                    }
-                    break;
-                case 57 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:276:5: 'rightNone'
-                    {
-                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "rightNone";
-                    }
-
-                    }
-                    break;
-                case 58 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:277:5: 'startNbNL'
-                    {
-                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "startNbNL";
-                    }
-
-                    }
-                    break;
-                case 59 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:278:5: 'multi'
-                    {
-                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "multi";
-                    }
-
-                    }
-                    break;
-                case 60 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:279:5: 'one'
-                    {
-                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "one";
-                    }
-
-                    }
-                    break;
-                case 61 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:280:5: 'value'
-                    {
-                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "value";
-                    }
-
-                    }
-                    break;
-                case 62 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:281:5: 'default'
-                    {
-                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "default";
-                    }
-
-                    }
-                    break;
-                case 63 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:282:5: 'autoCreate'
-                    {
-                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "autoCreate";
-                    }
-
-                    }
-                    break;
-                case 64 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:283:5: 'postfix'
-                    {
-                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "postfix";
-                    }
-
-                    }
-                    break;
-                case 65 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:284:5: 'separator'
-                    {
-                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "separator";
-                    }
-
-                    }
-                    break;
-                case 66 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:285:5: 'right'
-                    {
-                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "right";
-                    }
-
-                    }
-                    break;
-                case 67 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:286:5: 'operatorTemplate'
-                    {
-                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "operatorTemplate";
-                    }
-
-                    }
-                    break;
-                case 68 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:287:5: 'abstract'
-                    {
-                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "abstract";
-                    }
-
-                    }
-                    break;
-                case 69 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:288:5: 'instanceOf'
-                    {
-                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "instanceOf";
-                    }
-
-                    }
-                    break;
-                case 70 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:289:5: 'disambiguate'
-                    {
-                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguate";
-                    }
-
-                    }
-                    break;
-                case 71 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:290:5: 'priority'
-                    {
-                    match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "priority";
-                    }
-
-                    }
-                    break;
-                case 72 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:291:5: 'enumerationTemplate'
-                    {
-                    match(input,119,FOLLOW_119_in_identifierOrKeyword668); if (state.failed) return ret2;
+                    match(input,50,FOLLOW_50_in_identifierOrKeyword116); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "enumerationTemplate";
                     }
 
                     }
                     break;
-                case 73 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:292:5: 'partial'
+                case 4 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:223:5: 'using'
                     {
-                    match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) return ret2;
+                    match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "partial";
+                      ret = "using";
                     }
 
                     }
                     break;
-                case 74 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:293:5: 'source'
+                case 5 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:224:5: 'disambiguateV3'
                     {
-                    match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "source";
+                      ret = "disambiguateV3";
                     }
 
                     }
                     break;
-                case 75 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:294:5: 'referenceOnly'
+                case 6 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:225:5: 'end'
                     {
-                    match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) return ret2;
+                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "referenceOnly";
+                      ret = "end";
                     }
 
                     }
                     break;
-                case 76 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:295:5: 'importContext'
+                case 7 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:226:5: 'k'
                     {
-                    match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "importContext";
+                      ret = "k";
                     }
 
                     }
                     break;
-                case 77 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:296:5: 'endNL'
+                case 8 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:227:5: 'context'
                     {
-                    match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) return ret2;
+                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "endNL";
+                      ret = "context";
                     }
 
                     }
                     break;
-                case 78 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:297:5: 'all'
+                case 9 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:228:5: 'when'
                     {
-                    match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "all";
+                      ret = "when";
                     }
 
                     }
                     break;
-                case 79 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:298:5: 'leftSpace'
+                case 10 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:229:5: 'operatored'
                     {
-                    match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) return ret2;
+                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "leftSpace";
+                      ret = "operatored";
                     }
 
                     }
                     break;
-                case 80 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:299:5: 'indentIncr'
+                case 11 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:230:5: 'query'
                     {
-                    match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) return ret2;
+                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "query";
+                    }
+
+                    }
+                    break;
+                case 12 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:231:5: 'operators'
+                    {
+                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "operators";
+                    }
+
+                    }
+                    break;
+                case 13 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:232:5: 'rightNone'
+                    {
+                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "rightNone";
+                    }
+
+                    }
+                    break;
+                case 14 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:233:5: 'indentIncr'
+                    {
+                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "indentIncr";
                     }
 
                     }
                     break;
-                case 81 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:300:5: 'keywords'
+                case 15 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:234:5: 'createAs'
                     {
-                    match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) return ret2;
+                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "keywords";
+                      ret = "createAs";
                     }
 
                     }
                     break;
-                case 82 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:301:5: 'refersTo'
+                case 16 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:235:5: 'refersTo'
                     {
-                    match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) return ret2;
+                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "refersTo";
                     }
 
                     }
                     break;
-                case 83 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:302:5: 'serializer'
+                case 17 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:236:5: 'octal'
                     {
-                    match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) return ret2;
+                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "serializer";
+                      ret = "octal";
                     }
 
                     }
                     break;
-                case 84 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:303:5: 'as'
+                case 18 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:237:5: 'source'
                     {
-                    match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) return ret2;
+                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "as";
+                      ret = "source";
                     }
 
                     }
                     break;
-                case 85 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:304:5: 'lexer'
+                case 19 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:238:5: 'deep'
                     {
-                    match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) return ret2;
+                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "deep";
+                    }
+
+                    }
+                    break;
+                case 20 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:239:5: 'lexer'
+                    {
+                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "lexer";
                     }
 
                     }
                     break;
+                case 21 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:240:5: 'startNbNL'
+                    {
+                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "startNbNL";
+                    }
+
+                    }
+                    break;
+                case 22 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:241:5: 'start'
+                    {
+                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "start";
+                    }
+
+                    }
+                    break;
+                case 23 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:242:5: 'true'
+                    {
+                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "true";
+                    }
+
+                    }
+                    break;
+                case 24 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:243:5: 'createIn'
+                    {
+                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "createIn";
+                    }
+
+                    }
+                    break;
+                case 25 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:244:5: 'multiLine'
+                    {
+                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "multiLine";
+                    }
+
+                    }
+                    break;
+                case 26 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:245:5: 'endOfLine'
+                    {
+                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "endOfLine";
+                    }
+
+                    }
+                    break;
+                case 27 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:246:5: 'function'
+                    {
+                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "function";
+                    }
+
+                    }
+                    break;
+                case 28 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:247:5: 'orKeyword'
+                    {
+                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "orKeyword";
+                    }
+
+                    }
+                    break;
+                case 29 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:248:5: 'postfix'
+                    {
+                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "postfix";
+                    }
+
+                    }
+                    break;
+                case 30 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:249:5: 'autoCreate'
+                    {
+                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "autoCreate";
+                    }
+
+                    }
+                    break;
+                case 31 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:250:5: 'value'
+                    {
+                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "value";
+                    }
+
+                    }
+                    break;
+                case 32 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:251:5: 'storeOpTo'
+                    {
+                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "storeOpTo";
+                    }
+
+                    }
+                    break;
+                case 33 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:252:5: 'drop'
+                    {
+                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "drop";
+                    }
+
+                    }
+                    break;
+                case 34 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:253:5: 'lookIn'
+                    {
+                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "lookIn";
+                    }
+
+                    }
+                    break;
+                case 35 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:254:5: 'priority'
+                    {
+                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "priority";
+                    }
+
+                    }
+                    break;
+                case 36 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:255:5: 'as'
+                    {
+                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "as";
+                    }
+
+                    }
+                    break;
+                case 37 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:256:5: 'one'
+                    {
+                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "one";
+                    }
+
+                    }
+                    break;
+                case 38 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:257:5: 'filter'
+                    {
+                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "filter";
+                    }
+
+                    }
+                    break;
+                case 39 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:258:5: 'multi'
+                    {
+                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "multi";
+                    }
+
+                    }
+                    break;
+                case 40 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:259:5: 'abstract'
+                    {
+                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "abstract";
+                    }
+
+                    }
+                    break;
+                case 41 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:260:5: 'token'
+                    {
+                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "token";
+                    }
+
+                    }
+                    break;
+                case 42 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:261:5: 'leftNone'
+                    {
+                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "leftNone";
+                    }
+
+                    }
+                    break;
+                case 43 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:262:5: 'disambiguate'
+                    {
+                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguate";
+                    }
+
+                    }
+                    break;
+                case 44 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:263:5: 'symbols'
+                    {
+                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "symbols";
+                    }
+
+                    }
+                    break;
+                case 45 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:264:5: 'serializer'
+                    {
+                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "serializer";
+                    }
+
+                    }
+                    break;
+                case 46 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:265:5: 'separator'
+                    {
+                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "separator";
+                    }
+
+                    }
+                    break;
+                case 47 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:266:5: 'esc'
+                    {
+                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "esc";
+                    }
+
+                    }
+                    break;
+                case 48 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:267:5: 'nbNL'
+                    {
+                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "nbNL";
+                    }
+
+                    }
+                    break;
+                case 49 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:268:5: 'foreach'
+                    {
+                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "foreach";
+                    }
+
+                    }
+                    break;
+                case 50 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:269:5: 'always'
+                    {
+                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "always";
+                    }
+
+                    }
+                    break;
+                case 51 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:270:5: 'default'
+                    {
+                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "default";
+                    }
+
+                    }
+                    break;
+                case 52 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:271:5: 'isDefined'
+                    {
+                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "isDefined";
+                    }
+
+                    }
+                    break;
+                case 53 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:272:5: 'false'
+                    {
+                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "false";
+                    }
+
+                    }
+                    break;
+                case 54 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:273:5: 'ifmissing'
+                    {
+                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "ifmissing";
+                    }
+
+                    }
+                    break;
+                case 55 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:274:5: 'primitiveTemplate'
+                    {
+                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "primitiveTemplate";
+                    }
+
+                    }
+                    break;
+                case 56 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:275:5: 'leftSpace'
+                    {
+                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "leftSpace";
+                    }
+
+                    }
+                    break;
+                case 57 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:276:5: 'invert'
+                    {
+                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "invert";
+                    }
+
+                    }
+                    break;
+                case 58 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:277:5: 'endNL'
+                    {
+                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "endNL";
+                    }
+
+                    }
+                    break;
+                case 59 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:278:5: 'nonPrimary'
+                    {
+                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "nonPrimary";
+                    }
+
+                    }
+                    break;
+                case 60 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:279:5: 'part'
+                    {
+                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "part";
+                    }
+
+                    }
+                    break;
+                case 61 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:280:5: 'rightSpace'
+                    {
+                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "rightSpace";
+                    }
+
+                    }
+                    break;
+                case 62 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:281:5: 'forcedLower'
+                    {
+                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "forcedLower";
+                    }
+
+                    }
+                    break;
+                case 63 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:282:5: 'right'
+                    {
+                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "right";
+                    }
+
+                    }
+                    break;
+                case 64 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:283:5: 'forcedUpper'
+                    {
+                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "forcedUpper";
+                    }
+
+                    }
+                    break;
+                case 65 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:284:5: 'keywords'
+                    {
+                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "keywords";
+                    }
+
+                    }
+                    break;
+                case 66 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:285:5: 'importContext'
+                    {
+                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "importContext";
+                    }
+
+                    }
+                    break;
+                case 67 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:286:5: 'all'
+                    {
+                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "all";
+                    }
+
+                    }
+                    break;
+                case 68 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:287:5: 'for'
+                    {
+                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "for";
+                    }
+
+                    }
+                    break;
+                case 69 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:288:5: 'partial'
+                    {
+                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "partial";
+                    }
+
+                    }
+                    break;
+                case 70 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:289:5: 'referenceOnly'
+                    {
+                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "referenceOnly";
+                    }
+
+                    }
+                    break;
+                case 71 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:290:5: 'prefix'
+                    {
+                    match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "prefix";
+                    }
+
+                    }
+                    break;
+                case 72 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:291:5: 'never'
+                    {
+                    match(input,119,FOLLOW_119_in_identifierOrKeyword668); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "never";
+                    }
+
+                    }
+                    break;
+                case 73 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:292:5: 'word'
+                    {
+                    match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "word";
+                    }
+
+                    }
+                    break;
+                case 74 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:293:5: 'omitted'
+                    {
+                    match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "omitted";
+                    }
+
+                    }
+                    break;
+                case 75 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:294:5: 'operatorTemplate'
+                    {
+                    match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "operatorTemplate";
+                    }
+
+                    }
+                    break;
+                case 76 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:295:5: 'syntax'
+                    {
+                    match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "syntax";
+                    }
+
+                    }
+                    break;
+                case 77 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:296:5: 'instanceOf'
+                    {
+                    match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "instanceOf";
+                    }
+
+                    }
+                    break;
+                case 78 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:297:5: 'startNL'
+                    {
+                    match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "startNL";
+                    }
+
+                    }
+                    break;
+                case 79 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:298:5: 'addToContext'
+                    {
+                    match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "addToContext";
+                    }
+
+                    }
+                    break;
+                case 80 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:299:5: 'hex'
+                    {
+                    match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "hex";
+                    }
+
+                    }
+                    break;
+                case 81 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:300:5: 'storeRightTo'
+                    {
+                    match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "storeRightTo";
+                    }
+
+                    }
+                    break;
+                case 82 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:301:5: 'main'
+                    {
+                    match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "main";
+                    }
+
+                    }
+                    break;
+                case 83 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:302:5: 'auto'
+                    {
+                    match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "auto";
+                    }
+
+                    }
+                    break;
+                case 84 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:303:5: 'left'
+                    {
+                    match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "left";
+                    }
+
+                    }
+                    break;
+                case 85 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:304:5: 'and'
+                    {
+                    match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "and";
+                    }
+
+                    }
+                    break;
                 case 86 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:305:5: 'endOfLine'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:305:5: 'template'
                     {
                     match(input,133,FOLLOW_133_in_identifierOrKeyword780); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "endOfLine";
+                      ret = "template";
                     }
 
                     }
@@ -1818,7 +1818,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:4: ( ( (temp= model_namespace ) DLCOLON (temp= identifier ) ) | ( (temp= identifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6853F30334511DFB54FEC660A0001C5");
+              _beforeSeqEl("E0356A04EED4F5E161F511DFC7E7F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:64: ( ( (temp= model_namespace ) DLCOLON (temp= identifier ) ) | ( (temp= identifier ) ) )
             int alt2=2;
@@ -1830,7 +1830,7 @@ public class TCSParser extends ObservableInjectingParser {
                 if ( (LA2_1==DLCOLON) ) {
                     alt2=1;
                 }
-                else if ( (LA2_1==EOF||(LA2_1>=LPAREN && LA2_1<=RPAREN)||LA2_1==SEMI||LA2_1==COLON||LA2_1==SHARP||(LA2_1>=63 && LA2_1<=64)||LA2_1==69||LA2_1==71||LA2_1==80||LA2_1==83||LA2_1==91||LA2_1==96||LA2_1==99||LA2_1==106||LA2_1==109||LA2_1==115||LA2_1==122) ) {
+                else if ( (LA2_1==EOF||(LA2_1>=LPAREN && LA2_1<=RPAREN)||LA2_1==SEMI||LA2_1==COLON||LA2_1==SHARP||LA2_1==51||LA2_1==55||LA2_1==57||LA2_1==66||(LA2_1>=86 && LA2_1<=87)||LA2_1==98||LA2_1==106||(LA2_1>=117 && LA2_1<=118)||LA2_1==126||(LA2_1>=129 && LA2_1<=130)) ) {
                     alt2=2;
                 }
                 else {
@@ -1862,7 +1862,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:82: (temp= model_namespace ) DLCOLON (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6805D30334511DFCC09EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED4A7C261F511DF9FB7F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:141: (temp= model_namespace )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:143: temp= model_namespace
@@ -1883,14 +1883,14 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6825900334511DFCB5FEC660A0001C5");
+                      _beforeSeqEl("E0356A04EED4A7C361F511DFB1DFF9DB0A0001C7");
                     }
                     match(input,DLCOLON,FOLLOW_DLCOLON_in_model_classifier951); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B682A720334511DFA369EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED4A7C561F511DFA7E5F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:362: (temp= identifier )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:364: temp= identifier
@@ -1929,7 +1929,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:465: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B684CA01334511DFC7B4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED4CED261F511DFAF88F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:524: (temp= identifier )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:358:526: temp= identifier
@@ -2098,7 +2098,7 @@ public class TCSParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "dblcolon_priority_0"
-    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:377:1: dblcolon_priority_0 returns [Object ret2] : ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )* ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:377:1: dblcolon_priority_0 returns [Object ret2] : ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )* ) ) ;
     public final Object dblcolon_priority_0() throws RecognitionException {
         Object ret2 = null;
 
@@ -2107,14 +2107,14 @@ public class TCSParser extends ObservableInjectingParser {
 
         java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:378:3: ( ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )* ) ) )
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:4: ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:378:3: ( ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:4: ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )* ) )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:4: ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )* ) )
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:6: (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:4: ( (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:6: (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )* )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:6: (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )* )
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:8: ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:6: (ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:8: ret= primary_model_namespace ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )*
             {
             pushFollow(FOLLOW_primary_model_namespace_in_dblcolon_priority_01081);
             ret=primary_model_namespace();
@@ -2122,7 +2122,7 @@ public class TCSParser extends ObservableInjectingParser {
             checkFollows();
             state._fsp--;
             if (state.failed) return ret2;
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:35: ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:35: ( ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) ) )*
             loop4:
             do {
                 int alt4=2;
@@ -2159,10 +2159,10 @@ public class TCSParser extends ObservableInjectingParser {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:36: ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:36: ( DLCOLON )=> ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) )
             	    {
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:47: ( DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) ) )
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:48: DLCOLON ( (ret= model_modelelement[opName, ret, firstToken] ) )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:47: ( DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) ) )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:48: DLCOLON ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) )
             	    {
             	    if ( state.backtracking==0 ) {
             	      _enterOpSeq("::", 2, false);
@@ -2177,14 +2177,14 @@ public class TCSParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:135: ( (ret= model_modelelement[opName, ret, firstToken] ) )
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:136: (ret= model_modelelement[opName, ret, firstToken] )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:135: ( (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] ) )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:136: (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] )
             	    {
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:136: (ret= model_modelelement[opName, ret, firstToken] )
-            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:137: ret= model_modelelement[opName, ret, firstToken]
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:136: (ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken] )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:379:137: ret= model_modelelement_Model_ModelElement_opDlColon[opName, ret, firstToken]
             	    {
-            	    pushFollow(FOLLOW_model_modelelement_in_dblcolon_priority_01098);
-            	    ret=model_modelelement(opName, ret, firstToken);
+            	    pushFollow(FOLLOW_model_modelelement_Model_ModelElement_opDlColon_in_dblcolon_priority_01098);
+            	    ret=model_modelelement_Model_ModelElement_opDlColon(opName, ret, firstToken);
 
             	    checkFollows();
             	    state._fsp--;
@@ -2226,9 +2226,8 @@ public class TCSParser extends ObservableInjectingParser {
             }
 
         }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
+        catch (Exception e) {
+            handleExceptionInTemplateRule(e, firstToken, ret);
         }
         finally {
         }
@@ -2249,7 +2248,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:388:3: (ret= dblcolon_priority_0 )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:389:3: ret= dblcolon_priority_0
             {
-            pushFollow(FOLLOW_dblcolon_priority_0_in_model_namespace1130);
+            pushFollow(FOLLOW_dblcolon_priority_0_in_model_namespace1135);
             ret=dblcolon_priority_0();
 
             checkFollows();
@@ -2296,12 +2295,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:402:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B68A6F51334511DF8031EC660A0001C5");
+              _beforeSeqEl("E0356A04EED62E6161F511DF91C5F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:402:63: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:402:65: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_model_generalizableelement1163);
+            pushFollow(FOLLOW_identifier_in_model_generalizableelement1168);
             temp=identifier();
 
             checkFollows();
@@ -2340,9 +2339,9 @@ public class TCSParser extends ObservableInjectingParser {
     // $ANTLR end "model_generalizableelement"
 
 
-    // $ANTLR start "model_modelelement"
-    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:410:1: model_modelelement[java.lang.String opName, Object left, org.antlr.runtime.Token firstToken] returns [Object ret2] : ( (temp= identifier ) ) ;
-    public final Object model_modelelement(java.lang.String opName, Object left, org.antlr.runtime.Token firstToken) throws RecognitionException {
+    // $ANTLR start "model_modelelement_Model_ModelElement_opDlColon"
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:410:1: model_modelelement_Model_ModelElement_opDlColon[java.lang.String opName, Object left, org.antlr.runtime.Token firstToken] returns [Object ret2] : ( (temp= identifier ) ) ;
+    public final Object model_modelelement_Model_ModelElement_opDlColon(java.lang.String opName, Object left, org.antlr.runtime.Token firstToken) throws RecognitionException {
         Object ret2 = null;
 
         Object temp = null;
@@ -2361,12 +2360,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:416:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B68BA7D2334511DF8DBBEC660A0001C5");
+              _beforeSeqEl("E0356A04EED6CAA261F511DF89C8F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:416:63: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:416:65: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_model_modelelement1211);
+            pushFollow(FOLLOW_identifier_in_model_modelelement_Model_ModelElement_opDlColon1216);
             temp=identifier();
 
             checkFollows();
@@ -2406,7 +2405,7 @@ public class TCSParser extends ObservableInjectingParser {
         }
         return ret2;
     }
-    // $ANTLR end "model_modelelement"
+    // $ANTLR end "model_modelelement_Model_ModelElement_opDlColon"
 
 
     // $ANTLR start "textblockdefinition_textblockdefinition"
@@ -2467,7 +2466,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:442:4: (ret= tcs_concretesyntax )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:442:5: ret= tcs_concretesyntax
             {
-            pushFollow(FOLLOW_tcs_concretesyntax_in_main1281);
+            pushFollow(FOLLOW_tcs_concretesyntax_in_main1286);
             ret=tcs_concretesyntax();
 
             checkFollows();
@@ -2476,7 +2475,7 @@ public class TCSParser extends ObservableInjectingParser {
 
             }
 
-            match(input,EOF,FOLLOW_EOF_in_main1284); if (state.failed) return ret2;
+            match(input,EOF,FOLLOW_EOF_in_main1289); if (state.failed) return ret2;
 
             }
 
@@ -2521,14 +2520,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:4: 'syntax' (temp= identifier )? ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | ) LCURLY ( ( (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6937000334511DF9A30EC660A0001C5");
+              _beforeSeqEl("E0356A04EED8785061F511DF8FEDF9DB0A0001C7");
             }
-            match(input,62,FOLLOW_62_in_tcs_concretesyntax1315); if (state.failed) return ret2;
+            match(input,123,FOLLOW_123_in_tcs_concretesyntax1320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6937002334511DFA9BCEC660A0001C5");
+              _beforeSeqEl("E0356A04EED8785261F511DFB523F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:146: (temp= identifier )?
             int alt5=2;
@@ -2541,7 +2540,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:148: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_concretesyntax1322);
+                    pushFollow(FOLLOW_identifier_in_tcs_concretesyntax1327);
                     temp=identifier();
 
                     checkFollows();
@@ -2560,7 +2559,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6940C40334511DFA90BEC660A0001C5");
+              _beforeSeqEl("E0356A04EED8C67261F511DFBF34F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:276: ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | )
             int alt6=2;
@@ -2590,33 +2589,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:294: LPAREN 'k' EQ (temp= integerSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B693BE20334511DFAC4AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EED89F6261F511DFA235F9DB0A0001C7");
                     }
-                    match(input,LPAREN,FOLLOW_LPAREN_in_tcs_concretesyntax1337); if (state.failed) return ret2;
+                    match(input,LPAREN,FOLLOW_LPAREN_in_tcs_concretesyntax1342); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B693BE21334511DFCBA3EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED89F6361F511DF9E1DF9DB0A0001C7");
                     }
-                    match(input,57,FOLLOW_57_in_tcs_concretesyntax1341); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_tcs_concretesyntax1346); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B693BE22334511DFC2C9EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED89F6461F511DFC166F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_concretesyntax1345); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_concretesyntax1350); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B693BE24334511DF8FBEEC660A0001C5");
+                      _beforeSeqEl("E0356A04EED89F6661F511DFB335F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:593: (temp= integerSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:455:595: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_tcs_concretesyntax1353);
+                    pushFollow(FOLLOW_integerSymbol_in_tcs_concretesyntax1358);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -2632,9 +2631,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B693E530334511DFCD43EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED8C67061F511DFAB18F9DB0A0001C7");
                     }
-                    match(input,RPAREN,FOLLOW_RPAREN_in_tcs_concretesyntax1360); if (state.failed) return ret2;
+                    match(input,RPAREN,FOLLOW_RPAREN_in_tcs_concretesyntax1365); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2666,14 +2665,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6943350334511DF8742EC660A0001C5");
+              _beforeSeqEl("E0356A04EED8ED8061F511DFBA5AF9DB0A0001C7");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1378); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1383); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6A1EEF0334511DF91F7EC660A0001C5");
+              _beforeSeqEl("E0356A04EEDDCF8061F511DF96E4F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:159: ( ( (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:160: ( (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) )
@@ -2682,20 +2681,20 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:161: (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6943352334511DF88D4EC660A0001C5");
+              _beforeSeqEl("E0356A04EED8ED8261F511DFB915F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:220: (temp= tcs_template (temp= tcs_template )* )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==50||LA8_0==77||LA8_0==103||LA8_0==114||LA8_0==119) ) {
+            if ( (LA8_0==50||LA8_0==74||LA8_0==102||LA8_0==122||LA8_0==133) ) {
                 alt8=1;
             }
             switch (alt8) {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:222: temp= tcs_template (temp= tcs_template )*
                     {
-                    pushFollow(FOLLOW_tcs_template_in_tcs_concretesyntax1389);
+                    pushFollow(FOLLOW_tcs_template_in_tcs_concretesyntax1394);
                     temp=tcs_template();
 
                     checkFollows();
@@ -2710,7 +2709,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt7=2;
                         int LA7_0 = input.LA(1);
 
-                        if ( (LA7_0==50||LA7_0==77||LA7_0==103||LA7_0==114||LA7_0==119) ) {
+                        if ( (LA7_0==50||LA7_0==74||LA7_0==102||LA7_0==122||LA7_0==133) ) {
                             alt7=1;
                         }
 
@@ -2719,7 +2718,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:281: temp= tcs_template
                     	    {
-                    	    pushFollow(FOLLOW_tcs_template_in_tcs_concretesyntax1397);
+                    	    pushFollow(FOLLOW_tcs_template_in_tcs_concretesyntax1402);
                     	    temp=tcs_template();
 
                     	    checkFollows();
@@ -2747,16 +2746,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B695B9F0334511DFB53DEC660A0001C5");
+              _beforeSeqEl("E0356A04EED962B061F511DFB930F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:419: ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( (LA11_0==128) ) {
+            if ( (LA11_0==112) ) {
                 alt11=1;
             }
-            else if ( (LA11_0==RCURLY||LA11_0==73||LA11_0==85||LA11_0==94||LA11_0==102||LA11_0==132) ) {
+            else if ( (LA11_0==RCURLY||LA11_0==59||LA11_0==67||LA11_0==88||LA11_0==91||LA11_0==121) ) {
                 alt11=2;
             }
             else {
@@ -2777,21 +2776,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:437: 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6948170334511DFB24AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EED9149161F511DFAB0DF9DB0A0001C7");
                     }
-                    match(input,128,FOLLOW_128_in_tcs_concretesyntax1414); if (state.failed) return ret2;
+                    match(input,112,FOLLOW_112_in_tcs_concretesyntax1419); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6948171334511DF92E7EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED9149261F511DFA7C3F9DB0A0001C7");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1418); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1423); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B694F6A0334511DFA6E8EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED93BA061F511DF8E7EF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:664: ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:665: ( (temp= tcs_keyword (temp= tcs_keyword )* )? )
@@ -2800,7 +2799,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:666: (temp= tcs_keyword (temp= tcs_keyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6948173334511DFB315EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED9149461F511DF966CF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:725: (temp= tcs_keyword (temp= tcs_keyword )* )?
                     int alt10=2;
@@ -2813,7 +2812,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:727: temp= tcs_keyword (temp= tcs_keyword )*
                             {
-                            pushFollow(FOLLOW_tcs_keyword_in_tcs_concretesyntax1429);
+                            pushFollow(FOLLOW_tcs_keyword_in_tcs_concretesyntax1434);
                             temp=tcs_keyword();
 
                             checkFollows();
@@ -2837,7 +2836,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	case 1 :
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:456:784: temp= tcs_keyword
                             	    {
-                            	    pushFollow(FOLLOW_tcs_keyword_in_tcs_concretesyntax1437);
+                            	    pushFollow(FOLLOW_tcs_keyword_in_tcs_concretesyntax1442);
                             	    temp=tcs_keyword();
 
                             	    checkFollows();
@@ -2874,9 +2873,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69592E0334511DFB395EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED93BA161F511DF908FF9DB0A0001C7");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1452); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1457); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2908,16 +2907,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B69C49A0334511DF89BFEC660A0001C5");
+              _beforeSeqEl("E0356A04EEDA260061F511DF9DD0F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:77: ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==85) ) {
+            if ( (LA14_0==91) ) {
                 alt14=1;
             }
-            else if ( (LA14_0==RCURLY||LA14_0==73||LA14_0==94||LA14_0==102||LA14_0==132) ) {
+            else if ( (LA14_0==RCURLY||LA14_0==59||LA14_0==67||LA14_0==88||LA14_0==121) ) {
                 alt14=2;
             }
             else {
@@ -2938,21 +2937,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:95: 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6960810334511DFA274EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED989C061F511DFB3B0F9DB0A0001C7");
                     }
-                    match(input,85,FOLLOW_85_in_tcs_concretesyntax1475); if (state.failed) return ret2;
+                    match(input,91,FOLLOW_91_in_tcs_concretesyntax1480); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6960811334511DF8577EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED989C161F511DFBCBAF9DB0A0001C7");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1479); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1484); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69A9BF0334511DFA937EC660A0001C5");
+                      _beforeSeqEl("E0356A04EED989C561F511DF8E66F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:321: ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:322: ( (temp= tcs_symbol (temp= tcs_symbol )* )? )
@@ -2961,7 +2960,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:323: (temp= tcs_symbol (temp= tcs_symbol )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6960813334511DFC30AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EED989C361F511DFC13CF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:382: (temp= tcs_symbol (temp= tcs_symbol )* )?
                     int alt13=2;
@@ -2974,7 +2973,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:384: temp= tcs_symbol (temp= tcs_symbol )*
                             {
-                            pushFollow(FOLLOW_tcs_symbol_in_tcs_concretesyntax1490);
+                            pushFollow(FOLLOW_tcs_symbol_in_tcs_concretesyntax1495);
                             temp=tcs_symbol();
 
                             checkFollows();
@@ -2998,7 +2997,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	case 1 :
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:457:439: temp= tcs_symbol
                             	    {
-                            	    pushFollow(FOLLOW_tcs_symbol_in_tcs_concretesyntax1498);
+                            	    pushFollow(FOLLOW_tcs_symbol_in_tcs_concretesyntax1503);
                             	    temp=tcs_symbol();
 
                             	    checkFollows();
@@ -3035,9 +3034,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69C2290334511DFCBCDEC660A0001C5");
+                      _beforeSeqEl("E0356A04EED9FEF061F511DFC530F9DB0A0001C7");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1513); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1518); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3069,20 +3068,20 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B69C70B1334511DFBD46EC660A0001C5");
+              _beforeSeqEl("E0356A04EEDA260261F511DFB986F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:76: (temp= tcs_operatorlist (temp= tcs_operatorlist )* )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
-            if ( (LA16_0==94) ) {
+            if ( (LA16_0==59) ) {
                 alt16=1;
             }
             switch (alt16) {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:78: temp= tcs_operatorlist (temp= tcs_operatorlist )*
                     {
-                    pushFollow(FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1534);
+                    pushFollow(FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1539);
                     temp=tcs_operatorlist();
 
                     checkFollows();
@@ -3097,7 +3096,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt15=2;
                         int LA15_0 = input.LA(1);
 
-                        if ( (LA15_0==94) ) {
+                        if ( (LA15_0==59) ) {
                             alt15=1;
                         }
 
@@ -3106,7 +3105,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:145: temp= tcs_operatorlist
                     	    {
-                    	    pushFollow(FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1542);
+                    	    pushFollow(FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1547);
                     	    temp=tcs_operatorlist();
 
                     	    checkFollows();
@@ -3134,20 +3133,20 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B69C97C1334511DFC6A6EC660A0001C5");
+              _beforeSeqEl("E0356A04EEDA260461F511DFC597F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:290: (temp= tcs_token (temp= tcs_token )* )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==73||LA18_0==102) ) {
+            if ( (LA18_0==88||LA18_0==121) ) {
                 alt18=1;
             }
             switch (alt18) {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:292: temp= tcs_token (temp= tcs_token )*
                     {
-                    pushFollow(FOLLOW_tcs_token_in_tcs_concretesyntax1557);
+                    pushFollow(FOLLOW_tcs_token_in_tcs_concretesyntax1562);
                     temp=tcs_token();
 
                     checkFollows();
@@ -3162,7 +3161,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt17=2;
                         int LA17_0 = input.LA(1);
 
-                        if ( (LA17_0==73||LA17_0==102) ) {
+                        if ( (LA17_0==88||LA17_0==121) ) {
                             alt17=1;
                         }
 
@@ -3171,7 +3170,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:345: temp= tcs_token
                     	    {
-                    	    pushFollow(FOLLOW_tcs_token_in_tcs_concretesyntax1565);
+                    	    pushFollow(FOLLOW_tcs_token_in_tcs_concretesyntax1570);
                     	    temp=tcs_token();
 
                     	    checkFollows();
@@ -3199,13 +3198,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B69DF750334511DF8BEFEC660A0001C5");
+              _beforeSeqEl("E0356A04EEDA742261F511DFBED6F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:477: ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
-            if ( (LA19_0==132) ) {
+            if ( (LA19_0==67) ) {
                 alt19=1;
             }
             else if ( (LA19_0==RCURLY) ) {
@@ -3229,26 +3228,26 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:495: 'lexer' EQ (temp= stringSymbol ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69CE5E0334511DF8FB1EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEDA4D1361F511DFB202F9DB0A0001C7");
                     }
-                    match(input,132,FOLLOW_132_in_tcs_concretesyntax1582); if (state.failed) return ret2;
+                    match(input,67,FOLLOW_67_in_tcs_concretesyntax1587); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69CE5E1334511DFCDF6EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEDA4D1461F511DFC71BF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_concretesyntax1586); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_concretesyntax1591); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69D5B10334511DFAC41EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEDA4D1761F511DF914CF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:715: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:458:717: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_concretesyntax1594);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_concretesyntax1599);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -3264,9 +3263,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B69DA930334511DFC9F8EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEDA742061F511DF881EF9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_concretesyntax1601); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_concretesyntax1606); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3307,9 +3306,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6A23D10334511DFB99DEC660A0001C5");
+              _beforeSeqEl("E0356A04EEDF562061F511DF9529F9DB0A0001C7");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1622); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1627); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -3351,7 +3350,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:4: ( ( (temp= model_classifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6AAEFA0334511DF957DEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE0DCC061F511DF9260F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:64: ( ( (temp= model_classifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )? ) )
             int alt22=2;
@@ -3381,12 +3380,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:82: (temp= model_classifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6A48702334511DFC92BEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE08EA061F511DFC736F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:141: (temp= model_classifier )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:143: temp= model_classifier
                     {
-                    pushFollow(FOLLOW_model_classifier_in_reference1667);
+                    pushFollow(FOLLOW_model_classifier_in_reference1672);
                     temp=model_classifier();
 
                     checkFollows();
@@ -3420,14 +3419,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:259: RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6A4D520334511DFA54BEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE08EA261F511DF8E79F9DB0A0001C7");
                     }
-                    match(input,RARROW,FOLLOW_RARROW_in_reference1683); if (state.failed) return ;
+                    match(input,RARROW,FOLLOW_RARROW_in_reference1688); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6AAC890334511DFC9F3EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE0B5B161F511DFCAFAF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:401: (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
                     int alt21=2;
@@ -3440,7 +3439,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:403: temp= identifier ( ( DLCOLON ) temp= identifier )*
                             {
-                            pushFollow(FOLLOW_identifier_in_reference1691);
+                            pushFollow(FOLLOW_identifier_in_reference1696);
                             temp=identifier();
 
                             checkFollows();
@@ -3471,9 +3470,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:469:473: DLCOLON
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0A5ADB5B6A4D522334511DFBCD9EC660A0001C5");
+                            	      _beforeSeqEl("E0356A04EEE08EA461F511DF85CFF9DB0A0001C7");
                             	    }
-                            	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference1700); if (state.failed) return ;
+                            	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference1705); if (state.failed) return ;
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -3483,7 +3482,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_identifier_in_reference1708);
+                            	    pushFollow(FOLLOW_identifier_in_reference1713);
                             	    temp=identifier();
 
                             	    checkFollows();
@@ -3562,23 +3561,23 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:479:3: (ret= tcs_contexttemplate | ret= tcs_primitivetemplate | ret= tcs_enumerationtemplate | ret= tcs_functiontemplate )
             int alt23=4;
             switch ( input.LA(1) ) {
-            case 50:
-            case 114:
+            case 122:
+            case 133:
                 {
                 alt23=1;
                 }
                 break;
-            case 77:
+            case 102:
                 {
                 alt23=2;
                 }
                 break;
-            case 119:
+            case 50:
                 {
                 alt23=3;
                 }
                 break;
-            case 103:
+            case 74:
                 {
                 alt23=4;
                 }
@@ -3595,7 +3594,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:479:4: ret= tcs_contexttemplate
                     {
-                    pushFollow(FOLLOW_tcs_contexttemplate_in_tcs_template1749);
+                    pushFollow(FOLLOW_tcs_contexttemplate_in_tcs_template1754);
                     ret=tcs_contexttemplate();
 
                     checkFollows();
@@ -3607,7 +3606,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:480:5: ret= tcs_primitivetemplate
                     {
-                    pushFollow(FOLLOW_tcs_primitivetemplate_in_tcs_template1757);
+                    pushFollow(FOLLOW_tcs_primitivetemplate_in_tcs_template1762);
                     ret=tcs_primitivetemplate();
 
                     checkFollows();
@@ -3619,7 +3618,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:481:5: ret= tcs_enumerationtemplate
                     {
-                    pushFollow(FOLLOW_tcs_enumerationtemplate_in_tcs_template1765);
+                    pushFollow(FOLLOW_tcs_enumerationtemplate_in_tcs_template1770);
                     ret=tcs_enumerationtemplate();
 
                     checkFollows();
@@ -3631,7 +3630,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:482:5: ret= tcs_functiontemplate
                     {
-                    pushFollow(FOLLOW_tcs_functiontemplate_in_tcs_template1773);
+                    pushFollow(FOLLOW_tcs_functiontemplate_in_tcs_template1778);
                     ret=tcs_functiontemplate();
 
                     checkFollows();
@@ -3679,10 +3678,10 @@ public class TCSParser extends ObservableInjectingParser {
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( (LA24_0==50) ) {
+            if ( (LA24_0==133) ) {
                 alt24=1;
             }
-            else if ( (LA24_0==114) ) {
+            else if ( (LA24_0==122) ) {
                 alt24=2;
             }
             else {
@@ -3696,7 +3695,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:491:4: ret= tcs_classtemplate
                     {
-                    pushFollow(FOLLOW_tcs_classtemplate_in_tcs_contexttemplate1800);
+                    pushFollow(FOLLOW_tcs_classtemplate_in_tcs_contexttemplate1805);
                     ret=tcs_classtemplate();
 
                     checkFollows();
@@ -3708,7 +3707,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:492:5: ret= tcs_operatortemplate
                     {
-                    pushFollow(FOLLOW_tcs_operatortemplate_in_tcs_contexttemplate1808);
+                    pushFollow(FOLLOW_tcs_operatortemplate_in_tcs_contexttemplate1813);
                     ret=tcs_operatortemplate();
 
                     checkFollows();
@@ -3761,19 +3760,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:505:4: 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B0BC00334511DFCA20EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE326B061F511DF97FCF9DB0A0001C7");
             }
-            match(input,77,FOLLOW_77_in_tcs_primitivetemplate1838); if (state.failed) return ret2;
+            match(input,102,FOLLOW_102_in_tcs_primitivetemplate1843); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B0BC02334511DF970CEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE326B261F511DFC1FCF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:505:157: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:505:159: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_primitivetemplate1845);
+            pushFollow(FOLLOW_identifier_in_tcs_primitivetemplate1850);
             temp=identifier();
 
             checkFollows();
@@ -3789,16 +3788,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B0E310334511DFB0FCEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE34DC061F511DFB51BF9DB0A0001C7");
             }
-            match(input,54,FOLLOW_54_in_tcs_primitivetemplate1851); if (state.failed) return ret2;
+            match(input,115,FOLLOW_115_in_tcs_primitivetemplate1856); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B13130334511DFC887EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE34DC161F511DFA3EDF9DB0A0001C7");
             }
-            pushFollow(FOLLOW_reference_in_tcs_primitivetemplate1854);
+            pushFollow(FOLLOW_reference_in_tcs_primitivetemplate1859);
             reference(ret);
 
             checkFollows();
@@ -3808,16 +3807,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B21B93334511DFC6B6EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE374D261F511DF8D11F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:505:462: ( ( 'default' ) | )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==109) ) {
+            if ( (LA25_0==98) ) {
                 alt25=1;
             }
-            else if ( (LA25_0==71) ) {
+            else if ( (LA25_0==51) ) {
                 alt25=2;
             }
             else {
@@ -3838,9 +3837,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:505:480: 'default'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B21B91334511DF9168EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE374D061F511DF89E7F9DB0A0001C7");
                     }
-                    match(input,109,FOLLOW_109_in_tcs_primitivetemplate1864); if (state.failed) return ret2;
+                    match(input,98,FOLLOW_98_in_tcs_primitivetemplate1869); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3878,19 +3877,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B242A0334511DFA5BDEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE374D361F511DFA3E8F9DB0A0001C7");
             }
-            match(input,71,FOLLOW_71_in_tcs_primitivetemplate1882); if (state.failed) return ret2;
+            match(input,51,FOLLOW_51_in_tcs_primitivetemplate1887); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B242A2334511DFC963EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE374D561F511DFB77EF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:506:158: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:506:160: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_primitivetemplate1889);
+            pushFollow(FOLLOW_identifier_in_tcs_primitivetemplate1894);
             temp=identifier();
 
             checkFollows();
@@ -3906,13 +3905,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B290C2334511DFC25BEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE3C2F061F511DFC610F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:506:291: ( ( 'orKeyword' ) | )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
-            if ( (LA26_0==59) ) {
+            if ( (LA26_0==75) ) {
                 alt26=1;
             }
             else if ( (LA26_0==COLON) ) {
@@ -3936,9 +3935,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:506:309: 'orKeyword'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B290C0334511DFBF74EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE39BE361F511DFC8EFF9DB0A0001C7");
                     }
-                    match(input,59,FOLLOW_59_in_tcs_primitivetemplate1901); if (state.failed) return ret2;
+                    match(input,75,FOLLOW_75_in_tcs_primitivetemplate1906); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3976,33 +3975,33 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B2B7D0334511DF96C3EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE3C2F161F511DF889DF9DB0A0001C7");
             }
-            match(input,COLON,FOLLOW_COLON_in_tcs_primitivetemplate1920); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_tcs_primitivetemplate1925); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B2B7D1334511DF860BEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE3C2F261F511DFA865F9DB0A0001C7");
             }
-            match(input,108,FOLLOW_108_in_tcs_primitivetemplate1924); if (state.failed) return ret2;
+            match(input,78,FOLLOW_78_in_tcs_primitivetemplate1929); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B2B7D2334511DFB055EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE3C2F361F511DF9481F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_primitivetemplate1928); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_primitivetemplate1933); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B2B7D5334511DFA416EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE3C2F661F511DFAEDEF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:507:319: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:507:321: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_primitivetemplate1936);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_primitivetemplate1941);
             temp=stringSymbol();
 
             checkFollows();
@@ -4018,7 +4017,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B37B20334511DFBC3FEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE4382061F511DFAB96F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:507:450: ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
             int alt27=2;
@@ -4048,33 +4047,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:507:468: COMA 'serializer' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B305F1334511DFA8C6EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE3EA0361F511DF96C6F9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_primitivetemplate1949); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_primitivetemplate1954); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B305F2334511DF8AADEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE3EA0461F511DFC9EBF9DB0A0001C7");
                     }
-                    match(input,130,FOLLOW_130_in_tcs_primitivetemplate1953); if (state.failed) return ret2;
+                    match(input,92,FOLLOW_92_in_tcs_primitivetemplate1958); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B305F3334511DF96E2EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE3EA0561F511DF9ABAF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_primitivetemplate1957); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_primitivetemplate1962); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B32D00334511DF8F9DEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE4111161F511DF8495F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:507:774: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:507:776: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_primitivetemplate1965);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_primitivetemplate1970);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -4117,14 +4116,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B37B21334511DF9FD2EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE4382161F511DF8D1FF9DB0A0001C7");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_tcs_primitivetemplate1985); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_tcs_primitivetemplate1990); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B41760334511DF894BEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE4382461F511DFC9B9F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:508:157: (temp= textblockdefinition_textblockdefinition )?
             int alt28=2;
@@ -4133,7 +4132,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:508:159: temp= textblockdefinition_textblockdefinition
                     {
-                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_primitivetemplate1993);
+                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_primitivetemplate1998);
                     temp=textblockdefinition_textblockdefinition();
 
                     checkFollows();
@@ -4196,16 +4195,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:522:4: 'enumerationTemplate' reference[ret] ( ( 'auto' ) | ) ( ( ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) ) (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B7E7F0334511DF9E64EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE570A061F511DFB4A0F9DB0A0001C7");
             }
-            match(input,119,FOLLOW_119_in_tcs_enumerationtemplate2038); if (state.failed) return ret2;
+            match(input,50,FOLLOW_50_in_tcs_enumerationtemplate2043); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B7E7F1334511DF8A29EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE570A161F511DF81B9F9DB0A0001C7");
             }
-            pushFollow(FOLLOW_reference_in_tcs_enumerationtemplate2041);
+            pushFollow(FOLLOW_reference_in_tcs_enumerationtemplate2046);
             reference(ret);
 
             checkFollows();
@@ -4215,13 +4214,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B83612334511DFCADDEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE597B261F511DFC946F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:522:249: ( ( 'auto' ) | )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
-            if ( (LA29_0==64) ) {
+            if ( (LA29_0==130) ) {
                 alt29=1;
             }
             else if ( (LA29_0==SEMI||LA29_0==COLON) ) {
@@ -4245,9 +4244,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:522:267: 'auto'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B83610334511DFC0F0EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE597B061F511DF8398F9DB0A0001C7");
                     }
-                    match(input,64,FOLLOW_64_in_tcs_enumerationtemplate2051); if (state.failed) return ret2;
+                    match(input,130,FOLLOW_130_in_tcs_enumerationtemplate2056); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4285,7 +4284,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6B9E3C0334511DF8F0EEC660A0001C5");
+              _beforeSeqEl("E0356A04EEE91A2161F511DF9D43F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:77: ( ( ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             int alt32=2;
@@ -4315,7 +4314,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:95: ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B995A0334511DFCB88EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE8F31061F511DFA746F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:154: ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:155: ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI )
@@ -4324,14 +4323,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:156: COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B88430334511DFB274EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE5BEC361F511DFCC93F9DB0A0001C7");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_tcs_enumerationtemplate2079); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_tcs_enumerationtemplate2084); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B94780334511DFAA50EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE8CC0061F511DF8C7BF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:297: ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:298: ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? )
@@ -4340,7 +4339,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:299: (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B8AB43334511DFC080EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE5E5D361F511DFA608F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:358: (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )?
                     int alt31=2;
@@ -4353,7 +4352,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:360: temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )*
                             {
-                            pushFollow(FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2090);
+                            pushFollow(FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2095);
                             temp=tcs_enumliteralmapping();
 
                             checkFollows();
@@ -4384,9 +4383,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:445: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0A5ADB5B6B8AB40334511DF8C04EC660A0001C5");
+                            	      _beforeSeqEl("E0356A04EEE5E5D061F511DFADD3F9DB0A0001C7");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_tcs_enumerationtemplate2099); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_tcs_enumerationtemplate2104); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -4396,7 +4395,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2107);
+                            	    pushFollow(FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2112);
                             	    temp=tcs_enumliteralmapping();
 
                             	    checkFollows();
@@ -4433,9 +4432,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B96E90334511DFA733EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE8CC0161F511DFBCE3F9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_enumerationtemplate2122); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_enumerationtemplate2127); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4467,9 +4466,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:523:783: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6B9BCB0334511DF8052EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEE8F31261F511DFA5CEF9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_enumerationtemplate2139); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_enumerationtemplate2144); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4489,7 +4488,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6BA0AD2334511DFAF50EC660A0001C5");
+              _beforeSeqEl("E0356A04EEE9413061F511DFCC25F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:524:76: (temp= textblockdefinition_textblockdefinition )?
             int alt33=2;
@@ -4498,7 +4497,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:524:78: temp= textblockdefinition_textblockdefinition
                     {
-                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_enumerationtemplate2153);
+                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_enumerationtemplate2158);
                     temp=textblockdefinition_textblockdefinition();
 
                     checkFollows();
@@ -4561,12 +4560,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:538:4: (temp= tcs_enumliteralval ) EQ (temp= tcs_literalref )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6BBB881334511DF964FEC660A0001C5");
+              _beforeSeqEl("E0356A04EEEA2B9161F511DF91F0F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:538:63: (temp= tcs_enumliteralval )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:538:65: temp= tcs_enumliteralval
             {
-            pushFollow(FOLLOW_tcs_enumliteralval_in_tcs_enumliteralmapping2202);
+            pushFollow(FOLLOW_tcs_enumliteralval_in_tcs_enumliteralmapping2207);
             temp=tcs_enumliteralval();
 
             checkFollows();
@@ -4582,19 +4581,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6BBB882334511DF8F97EC660A0001C5");
+              _beforeSeqEl("E0356A04EEEA2B9261F511DF832FF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_enumliteralmapping2209); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_enumliteralmapping2214); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6BBB884334511DFB6E2EC660A0001C5");
+              _beforeSeqEl("E0356A04EEEA2B9461F511DFAE48F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:538:280: (temp= tcs_literalref )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:538:282: temp= tcs_literalref
             {
-            pushFollow(FOLLOW_tcs_literalref_in_tcs_enumliteralmapping2217);
+            pushFollow(FOLLOW_tcs_literalref_in_tcs_enumliteralmapping2222);
             temp=tcs_literalref();
 
             checkFollows();
@@ -4654,16 +4653,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:4: 'template' reference[ret] ( ( 'referenceOnly' ) | ( ( ( SHARP (temp= plainStringSymbol ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) ) (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6BD6630334511DF98EFEC660A0001C5");
+              _beforeSeqEl("E0356A04EEEB3D0061F511DF8443F9DB0A0001C7");
             }
-            match(input,50,FOLLOW_50_in_tcs_classtemplate2260); if (state.failed) return ret2;
+            match(input,133,FOLLOW_133_in_tcs_classtemplate2265); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6BD6631334511DFCBF7EC660A0001C5");
+              _beforeSeqEl("E0356A04EEEB3D0161F511DFAA75F9DB0A0001C7");
             }
-            pushFollow(FOLLOW_reference_in_tcs_classtemplate2263);
+            pushFollow(FOLLOW_reference_in_tcs_classtemplate2268);
             reference(ret);
 
             checkFollows();
@@ -4673,16 +4672,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6CB48E0334511DF8088EC660A0001C5");
+              _beforeSeqEl("E0356A04EEEF5BB061F511DF82EEF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:238: ( ( 'referenceOnly' ) | ( ( ( SHARP (temp= plainStringSymbol ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | ) ) )
             int alt48=2;
             int LA48_0 = input.LA(1);
 
-            if ( (LA48_0==122) ) {
+            if ( (LA48_0==117) ) {
                 alt48=1;
             }
-            else if ( (LA48_0==LPAREN||LA48_0==SEMI||LA48_0==COLON||LA48_0==SHARP||LA48_0==63||LA48_0==69||LA48_0==80||LA48_0==83||LA48_0==91||LA48_0==96||LA48_0==99||LA48_0==106||LA48_0==115) ) {
+            else if ( (LA48_0==LPAREN||LA48_0==SEMI||LA48_0==COLON||LA48_0==SHARP||LA48_0==55||LA48_0==57||LA48_0==66||(LA48_0>=86 && LA48_0<=87)||LA48_0==106||LA48_0==118||LA48_0==126||LA48_0==129) ) {
                 alt48=2;
             }
             else {
@@ -4703,9 +4702,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:256: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C1FA11334511DF8BEFEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEB3D0561F511DFB832F9DB0A0001C7");
                     }
-                    match(input,122,FOLLOW_122_in_tcs_classtemplate2273); if (state.failed) return ret2;
+                    match(input,117,FOLLOW_117_in_tcs_classtemplate2278); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4731,7 +4730,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:443: ( ( SHARP (temp= plainStringSymbol ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C29650334511DFB893EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEB8B2461F511DF993CF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:503: ( ( SHARP (temp= plainStringSymbol ) ) | )
                     int alt34=2;
@@ -4740,7 +4739,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA34_0==SHARP) ) {
                         alt34=1;
                     }
-                    else if ( (LA34_0==LPAREN||LA34_0==SEMI||LA34_0==COLON||LA34_0==63||LA34_0==69||LA34_0==80||LA34_0==83||LA34_0==91||LA34_0==96||LA34_0==99||LA34_0==106||LA34_0==115) ) {
+                    else if ( (LA34_0==LPAREN||LA34_0==SEMI||LA34_0==COLON||LA34_0==55||LA34_0==57||LA34_0==66||(LA34_0>=86 && LA34_0<=87)||LA34_0==106||LA34_0==118||LA34_0==126||LA34_0==129) ) {
                         alt34=2;
                     }
                     else {
@@ -4761,19 +4760,19 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:521: SHARP (temp= plainStringSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C24831334511DFB441EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEB641361F511DF8019F9DB0A0001C7");
                             }
-                            match(input,SHARP,FOLLOW_SHARP_in_tcs_classtemplate2293); if (state.failed) return ret2;
+                            match(input,SHARP,FOLLOW_SHARP_in_tcs_classtemplate2298); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C24834334511DFB18DEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEB8B2261F511DFB1D8F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:662: (temp= plainStringSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:552:664: temp= plainStringSymbol
                             {
-                            pushFollow(FOLLOW_plainStringSymbol_in_tcs_classtemplate2301);
+                            pushFollow(FOLLOW_plainStringSymbol_in_tcs_classtemplate2306);
                             temp=plainStringSymbol();
 
                             checkFollows();
@@ -4816,7 +4815,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C30B80334511DF85FFEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEC005061F511DF84D3F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:553:77: ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt35=2;
@@ -4825,10 +4824,10 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA35_0==LPAREN) ) {
                         int LA35_1 = input.LA(2);
 
-                        if ( (LA35_1==117) ) {
+                        if ( (LA35_1==90) ) {
                             alt35=1;
                         }
-                        else if ( (LA35_1==78) ) {
+                        else if ( (LA35_1==52) ) {
                             alt35=2;
                         }
                         else {
@@ -4839,7 +4838,7 @@ public class TCSParser extends ObservableInjectingParser {
                             throw nvae;
                         }
                     }
-                    else if ( (LA35_0==SEMI||LA35_0==COLON||LA35_0==63||LA35_0==69||LA35_0==80||LA35_0==83||LA35_0==91||LA35_0==96||LA35_0==99||LA35_0==106||LA35_0==115) ) {
+                    else if ( (LA35_0==SEMI||LA35_0==COLON||LA35_0==55||LA35_0==57||LA35_0==66||(LA35_0>=86 && LA35_0<=87)||LA35_0==106||LA35_0==118||LA35_0==126||LA35_0==129) ) {
                         alt35=2;
                     }
                     else {
@@ -4860,33 +4859,33 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:553:95: LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C2BD61334511DF8336EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEBB23361F511DF9601F9DB0A0001C7");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2327); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2332); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C2BD62334511DFAC9BEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEBB23461F511DFB33FF9DB0A0001C7");
                             }
-                            match(input,117,FOLLOW_117_in_tcs_classtemplate2331); if (state.failed) return ret2;
+                            match(input,90,FOLLOW_90_in_tcs_classtemplate2336); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C2BD63334511DF8BDEEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEBB23561F511DFA6B4F9DB0A0001C7");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_tcs_classtemplate2335); if (state.failed) return ret2;
+                            match(input,EQ,FOLLOW_EQ_in_tcs_classtemplate2340); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C2E470334511DFBB9CEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEBD94261F511DF84D8F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:553:405: (temp= stringSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:553:407: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_tcs_classtemplate2343);
+                            pushFollow(FOLLOW_stringSymbol_in_tcs_classtemplate2348);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -4902,9 +4901,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C2E471334511DF831BEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEBD94361F511DFA1D2F9DB0A0001C7");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2350); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2355); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -4936,7 +4935,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C3A7C0334511DFA97EEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEC4E7061F511DFAF29F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:554:77: ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt36=2;
@@ -4945,7 +4944,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA36_0==LPAREN) ) {
                         alt36=1;
                     }
-                    else if ( (LA36_0==SEMI||LA36_0==COLON||LA36_0==63||LA36_0==69||LA36_0==80||LA36_0==83||LA36_0==91||LA36_0==96||LA36_0==99||LA36_0==106||LA36_0==115) ) {
+                    else if ( (LA36_0==SEMI||LA36_0==COLON||LA36_0==55||LA36_0==57||LA36_0==66||(LA36_0>=86 && LA36_0<=87)||LA36_0==106||LA36_0==118||LA36_0==126||LA36_0==129) ) {
                         alt36=2;
                     }
                     else {
@@ -4966,33 +4965,33 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:554:95: LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C359A0334511DFC9F3EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC276061F511DF8D64F9DB0A0001C7");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2374); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2379); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C359A1334511DF933AEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC276161F511DF8462F9DB0A0001C7");
                             }
-                            match(input,78,FOLLOW_78_in_tcs_classtemplate2378); if (state.failed) return ret2;
+                            match(input,52,FOLLOW_52_in_tcs_classtemplate2383); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C359A2334511DFBE71EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC276261F511DFA7A8F9DB0A0001C7");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_tcs_classtemplate2382); if (state.failed) return ret2;
+                            match(input,EQ,FOLLOW_EQ_in_tcs_classtemplate2387); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C359A5334511DF84A6EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC276561F511DF9B04F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:554:407: (temp= stringSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:554:409: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_tcs_classtemplate2390);
+                            pushFollow(FOLLOW_stringSymbol_in_tcs_classtemplate2395);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -5008,9 +5007,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C380B0334511DFADA1EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC276661F511DFC007F9DB0A0001C7");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2397); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2402); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5042,16 +5041,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C3F5E2334511DFA0D4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEC758461F511DF9207F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:555:77: ( ( 'multi' ) | )
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
-                    if ( (LA37_0==106) ) {
+                    if ( (LA37_0==86) ) {
                         alt37=1;
                     }
-                    else if ( (LA37_0==SEMI||LA37_0==COLON||LA37_0==63||LA37_0==69||LA37_0==80||LA37_0==83||LA37_0==91||LA37_0==96||LA37_0==99||LA37_0==115) ) {
+                    else if ( (LA37_0==SEMI||LA37_0==COLON||LA37_0==55||LA37_0==57||LA37_0==66||LA37_0==87||LA37_0==106||LA37_0==118||LA37_0==126||LA37_0==129) ) {
                         alt37=2;
                     }
                     else {
@@ -5072,9 +5071,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:555:95: 'multi'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C3F5E0334511DF88D1EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC758261F511DF97D7F9DB0A0001C7");
                             }
-                            match(input,106,FOLLOW_106_in_tcs_classtemplate2420); if (state.failed) return ret2;
+                            match(input,86,FOLLOW_86_in_tcs_classtemplate2425); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5112,16 +5111,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C44401334511DF929EEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEECC3A061F511DFBC39F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:556:77: ( ( 'main' ) | )
                     int alt38=2;
                     int LA38_0 = input.LA(1);
 
-                    if ( (LA38_0==69) ) {
+                    if ( (LA38_0==129) ) {
                         alt38=1;
                     }
-                    else if ( (LA38_0==SEMI||LA38_0==COLON||LA38_0==63||LA38_0==80||LA38_0==83||LA38_0==91||LA38_0==96||LA38_0==99||LA38_0==115) ) {
+                    else if ( (LA38_0==SEMI||LA38_0==COLON||LA38_0==55||LA38_0==57||LA38_0==66||LA38_0==87||LA38_0==106||LA38_0==118||LA38_0==126) ) {
                         alt38=2;
                     }
                     else {
@@ -5142,9 +5141,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:556:95: 'main'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C41CF3334511DF9670EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEC9C9361F511DFBE28F9DB0A0001C7");
                             }
-                            match(input,69,FOLLOW_69_in_tcs_classtemplate2444); if (state.failed) return ret2;
+                            match(input,129,FOLLOW_129_in_tcs_classtemplate2449); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5182,16 +5181,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C4E040334511DF9360EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEED38D261F511DFC1C0F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:557:77: ( ( ( ( 'deep' ) | ) 'abstract' ) | )
                     int alt40=2;
                     int LA40_0 = input.LA(1);
 
-                    if ( (LA40_0==96||LA40_0==115) ) {
+                    if ( (LA40_0==66||LA40_0==87) ) {
                         alt40=1;
                     }
-                    else if ( (LA40_0==SEMI||LA40_0==COLON||LA40_0==63||LA40_0==80||LA40_0==83||LA40_0==91||LA40_0==99) ) {
+                    else if ( (LA40_0==SEMI||LA40_0==COLON||LA40_0==55||LA40_0==57||LA40_0==106||LA40_0==118||LA40_0==126) ) {
                         alt40=2;
                     }
                     else {
@@ -5212,16 +5211,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:557:95: ( ( 'deep' ) | ) 'abstract'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C4B931334511DF9EC1EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEED11C361F511DFB660F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:557:155: ( ( 'deep' ) | )
                             int alt39=2;
                             int LA39_0 = input.LA(1);
 
-                            if ( (LA39_0==96) ) {
+                            if ( (LA39_0==66) ) {
                                 alt39=1;
                             }
-                            else if ( (LA39_0==115) ) {
+                            else if ( (LA39_0==87) ) {
                                 alt39=2;
                             }
                             else {
@@ -5242,9 +5241,9 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:557:173: 'deep'
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0A5ADB5B6C49222334511DF8760EC660A0001C5");
+                                      _beforeSeqEl("E0356A04EEED11C161F511DFC775F9DB0A0001C7");
                                     }
-                                    match(input,96,FOLLOW_96_in_tcs_classtemplate2474); if (state.failed) return ret2;
+                                    match(input,66,FOLLOW_66_in_tcs_classtemplate2479); if (state.failed) return ret2;
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
@@ -5282,9 +5281,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C4B932334511DF9FFEEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEED38D061F511DFC759F9DB0A0001C7");
                             }
-                            match(input,115,FOLLOW_115_in_tcs_classtemplate2492); if (state.failed) return ret2;
+                            match(input,87,FOLLOW_87_in_tcs_classtemplate2497); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5322,16 +5321,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C618C0334511DF8AC7EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEDD51161F511DF9B50F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:559:77: ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | )
                     int alt42=2;
                     int LA42_0 = input.LA(1);
 
-                    if ( (LA42_0==83) ) {
+                    if ( (LA42_0==57) ) {
                         alt42=1;
                     }
-                    else if ( (LA42_0==SEMI||LA42_0==COLON||LA42_0==63||LA42_0==80||LA42_0==91||LA42_0==99) ) {
+                    else if ( (LA42_0==SEMI||LA42_0==COLON||LA42_0==55||LA42_0==106||LA42_0==118||LA42_0==126) ) {
                         alt42=2;
                     }
                     else {
@@ -5352,14 +5351,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:559:95: 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C50753334511DF9BFDEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEED5FE361F511DFAD96F9DB0A0001C7");
                             }
-                            match(input,83,FOLLOW_83_in_tcs_classtemplate2516); if (state.failed) return ret2;
+                            match(input,57,FOLLOW_57_in_tcs_classtemplate2521); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C5F1B0334511DFA816EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEDAE0261F511DFC671F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:559:242: ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             int alt41=2;
@@ -5368,7 +5367,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA41_0==LPAREN) ) {
                                 alt41=1;
                             }
-                            else if ( (LA41_0==SEMI||LA41_0==COLON||LA41_0==63||LA41_0==80||LA41_0==91||LA41_0==99) ) {
+                            else if ( (LA41_0==SEMI||LA41_0==COLON||LA41_0==55||LA41_0==106||LA41_0==118||LA41_0==126) ) {
                                 alt41=2;
                             }
                             else {
@@ -5389,19 +5388,19 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:559:260: LPAREN (temp= identifier ) RPAREN
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0A5ADB5B6C52E62334511DF8D80EC660A0001C5");
+                                      _beforeSeqEl("E0356A04EEED86F161F511DFB0EBF9DB0A0001C7");
                                     }
-                                    match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2526); if (state.failed) return ret2;
+                                    match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2531); if (state.failed) return ret2;
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0A5ADB5B6C5A390334511DFC8A5EC660A0001C5");
+                                      _beforeSeqEl("E0356A04EEED86F461F511DFCF74F9DB0A0001C7");
                                     }
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:559:402: (temp= identifier )
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:559:404: temp= identifier
                                     {
-                                    pushFollow(FOLLOW_identifier_in_tcs_classtemplate2534);
+                                    pushFollow(FOLLOW_identifier_in_tcs_classtemplate2539);
                                     temp=identifier();
 
                                     checkFollows();
@@ -5417,9 +5416,9 @@ public class TCSParser extends ObservableInjectingParser {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0A5ADB5B6C5CAA0334511DFC452EC660A0001C5");
+                                      _beforeSeqEl("E0356A04EEEDAE0061F511DFB9E7F9DB0A0001C7");
                                     }
-                                    match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2541); if (state.failed) return ret2;
+                                    match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2546); if (state.failed) return ret2;
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
@@ -5484,16 +5483,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C6B500334511DF9D4AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEE4A4061F511DFCB2FF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:561:77: ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | )
                     int alt44=2;
                     int LA44_0 = input.LA(1);
 
-                    if ( (LA44_0==91) ) {
+                    if ( (LA44_0==55) ) {
                         alt44=1;
                     }
-                    else if ( (LA44_0==SEMI||LA44_0==COLON||LA44_0==63||LA44_0==80||LA44_0==99) ) {
+                    else if ( (LA44_0==SEMI||LA44_0==COLON||LA44_0==106||LA44_0==118||LA44_0==126) ) {
                         alt44=2;
                     }
                     else {
@@ -5514,14 +5513,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:561:95: 'context' ( ( (temp= tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C63FD2334511DFB8F1EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEDFC2161F511DF835BF9DB0A0001C7");
                             }
-                            match(input,91,FOLLOW_91_in_tcs_classtemplate2579); if (state.failed) return ret2;
+                            match(input,55,FOLLOW_55_in_tcs_classtemplate2584); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C68DF1334511DF8159EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEE233361F511DF97DEF9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:561:239: ( ( (temp= tcs_contexttags ) ) | )
                             int alt43=2;
@@ -5530,7 +5529,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA43_0==LPAREN) ) {
                                 alt43=1;
                             }
-                            else if ( (LA43_0==SEMI||LA43_0==COLON||LA43_0==63||LA43_0==80||LA43_0==99) ) {
+                            else if ( (LA43_0==SEMI||LA43_0==COLON||LA43_0==106||LA43_0==118||LA43_0==126) ) {
                                 alt43=2;
                             }
                             else {
@@ -5551,12 +5550,12 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:561:257: (temp= tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0A5ADB5B6C666E2334511DF9DEAEC660A0001C5");
+                                      _beforeSeqEl("E0356A04EEEE233161F511DF8332F9DB0A0001C7");
                                     }
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:561:316: (temp= tcs_contexttags )
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:561:318: temp= tcs_contexttags
                                     {
-                                    pushFollow(FOLLOW_tcs_contexttags_in_tcs_classtemplate2592);
+                                    pushFollow(FOLLOW_tcs_contexttags_in_tcs_classtemplate2597);
                                     temp=tcs_contexttags();
 
                                     checkFollows();
@@ -5632,16 +5631,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6C99B30334511DF9275EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEE715361F511DFCE05F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:563:77: ( ( 'addToContext' ) | )
                     int alt45=2;
                     int LA45_0 = input.LA(1);
 
-                    if ( (LA45_0==63) ) {
+                    if ( (LA45_0==126) ) {
                         alt45=1;
                     }
-                    else if ( (LA45_0==SEMI||LA45_0==COLON||LA45_0==80||LA45_0==99) ) {
+                    else if ( (LA45_0==SEMI||LA45_0==COLON||LA45_0==106||LA45_0==118) ) {
                         alt45=2;
                     }
                     else {
@@ -5662,9 +5661,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:563:95: 'addToContext'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C70321334511DFC023EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEE715161F511DF974EF9DB0A0001C7");
                             }
-                            match(input,63,FOLLOW_63_in_tcs_classtemplate2632); if (state.failed) return ret2;
+                            match(input,126,FOLLOW_126_in_tcs_classtemplate2637); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5702,16 +5701,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CA1060334511DFA095EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEE986461F511DFB69AF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:564:77: ( ( 'nonPrimary' ) | )
                     int alt46=2;
                     int LA46_0 = input.LA(1);
 
-                    if ( (LA46_0==80) ) {
+                    if ( (LA46_0==106) ) {
                         alt46=1;
                     }
-                    else if ( (LA46_0==SEMI||LA46_0==COLON||LA46_0==99) ) {
+                    else if ( (LA46_0==SEMI||LA46_0==COLON||LA46_0==118) ) {
                         alt46=2;
                     }
                     else {
@@ -5732,9 +5731,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:564:95: 'nonPrimary'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6C9E951334511DFB5A6EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEE986261F511DF9E28F9DB0A0001C7");
                             }
-                            match(input,80,FOLLOW_80_in_tcs_classtemplate2656); if (state.failed) return ret2;
+                            match(input,106,FOLLOW_106_in_tcs_classtemplate2661); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5772,13 +5771,13 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CAFAC0334511DF8404EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEF34A061F511DF9278F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:77: ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | )
                     int alt47=2;
                     int LA47_0 = input.LA(1);
 
-                    if ( (LA47_0==99) ) {
+                    if ( (LA47_0==118) ) {
                         alt47=1;
                     }
                     else if ( (LA47_0==SEMI||LA47_0==COLON) ) {
@@ -5802,14 +5801,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:95: 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6CA5E83334511DFCE0BEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEEBF7361F511DFCB74F9DB0A0001C7");
                             }
-                            match(input,99,FOLLOW_99_in_tcs_classtemplate2680); if (state.failed) return ret2;
+                            match(input,118,FOLLOW_118_in_tcs_classtemplate2685); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6CAD3B0334511DFA1C7EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEF0D9161F511DF953AF9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:237: ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:238: ( COLON ( ( (temp= tcs_sequence ) ) ) )
@@ -5818,14 +5817,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:239: COLON ( ( (temp= tcs_sequence ) ) )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6CA8590334511DF97FFEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEEBF7461F511DF99DCF9DB0A0001C7");
                             }
-                            match(input,COLON,FOLLOW_COLON_in_tcs_classtemplate2687); if (state.failed) return ret2;
+                            match(input,COLON,FOLLOW_COLON_in_tcs_classtemplate2692); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6CAACA1334511DF9567EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEEE68361F511DF8D3BF9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:380: ( ( (temp= tcs_sequence ) ) )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:381: ( (temp= tcs_sequence ) )
@@ -5834,12 +5833,12 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:382: (temp= tcs_sequence )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6CA8592334511DFB73CEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEEEE68061F511DF8B73F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:441: (temp= tcs_sequence )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:565:443: temp= tcs_sequence
                             {
-                            pushFollow(FOLLOW_tcs_sequence_in_tcs_classtemplate2698);
+                            pushFollow(FOLLOW_tcs_sequence_in_tcs_classtemplate2703);
                             temp=tcs_sequence();
 
                             checkFollows();
@@ -5918,7 +5917,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6CC5A50334511DFCEEEEC660A0001C5");
+              _beforeSeqEl("E0356A04EEEFF7F361F511DF9155F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:77: ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt49=2;
@@ -5948,7 +5947,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:95: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CC0C30334511DF9218EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEFD0E261F511DFC890F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:154: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:155: ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI )
@@ -5957,14 +5956,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:156: COLON ( ( (temp= tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CB9700334511DFB016EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEFA9D061F511DFA317F9DB0A0001C7");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_tcs_classtemplate2740); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_tcs_classtemplate2745); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CBBE12334511DFB261EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEFA9D561F511DFCB45F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:297: ( ( (temp= tcs_sequence ) ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:298: ( (temp= tcs_sequence ) )
@@ -5973,12 +5972,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:299: (temp= tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CB9702334511DFB009EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEFA9D261F511DF88E2F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:358: (temp= tcs_sequence )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:360: temp= tcs_sequence
                     {
-                    pushFollow(FOLLOW_tcs_sequence_in_tcs_classtemplate2751);
+                    pushFollow(FOLLOW_tcs_sequence_in_tcs_classtemplate2756);
                     temp=tcs_sequence();
 
                     checkFollows();
@@ -6003,9 +6002,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CBE520334511DF8D62EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEFD0E061F511DFB91BF9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_classtemplate2761); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_classtemplate2766); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -6037,9 +6036,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:567:592: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6CC3341334511DFA0B4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEEFF7F161F511DFB750F9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_classtemplate2778); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_classtemplate2783); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -6059,7 +6058,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6CC8160334511DFB98BEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF01F0261F511DF8A88F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:568:76: (temp= textblockdefinition_textblockdefinition )?
             int alt50=2;
@@ -6068,7 +6067,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:568:78: temp= textblockdefinition_textblockdefinition
                     {
-                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_classtemplate2792);
+                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_classtemplate2797);
                     temp=textblockdefinition_textblockdefinition();
 
                     checkFollows();
@@ -6131,16 +6130,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:4: 'operatorTemplate' reference[ret] LPAREN 'operators' EQ (temp= identifier (temp= identifier )* )? COMA 'source' EQ (temp= tcs_propertyreference ) ( ( COMA 'storeOpTo' EQ (temp= tcs_propertyreference ) ) | ) ( ( COMA 'storeRightTo' EQ (temp= tcs_propertyreference ) ) | ) ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | ) RPAREN ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) ) (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D003D0334511DF9188EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1307061F511DF8AAEF9DB0A0001C7");
             }
-            match(input,114,FOLLOW_114_in_tcs_operatortemplate2837); if (state.failed) return ret2;
+            match(input,122,FOLLOW_122_in_tcs_operatortemplate2842); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D003D1334511DF93F6EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1307161F511DF9679F9DB0A0001C7");
             }
-            pushFollow(FOLLOW_reference_in_tcs_operatortemplate2840);
+            pushFollow(FOLLOW_reference_in_tcs_operatortemplate2845);
             reference(ret);
 
             checkFollows();
@@ -6150,28 +6149,28 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D003D2334511DFC04FEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1307261F511DFCCB4F9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_operatortemplate2845); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_operatortemplate2850); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D003D3334511DF8BFEEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1307361F511DFAF4CF9DB0A0001C7");
             }
-            match(input,94,FOLLOW_94_in_tcs_operatortemplate2849); if (state.failed) return ret2;
+            match(input,59,FOLLOW_59_in_tcs_operatortemplate2854); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D003D4334511DF844FEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1307461F511DFA1F5F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2853); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2858); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D02AE0334511DFCDC2EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1578161F511DF8819F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:493: (temp= identifier (temp= identifier )* )?
             int alt52=2;
@@ -6184,7 +6183,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:495: temp= identifier (temp= identifier )*
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_operatortemplate2861);
+                    pushFollow(FOLLOW_identifier_in_tcs_operatortemplate2866);
                     temp=identifier();
 
                     checkFollows();
@@ -6208,7 +6207,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:613: temp= identifier
                     	    {
-                    	    pushFollow(FOLLOW_identifier_in_tcs_operatortemplate2869);
+                    	    pushFollow(FOLLOW_identifier_in_tcs_operatortemplate2874);
                     	    temp=identifier();
 
                     	    checkFollows();
@@ -6236,33 +6235,33 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D02AE1334511DFB6BEEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1578261F511DFBF4DF9DB0A0001C7");
             }
-            match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2881); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2886); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D02AE2334511DFACE2EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1578361F511DF852DF9DB0A0001C7");
             }
-            match(input,121,FOLLOW_121_in_tcs_operatortemplate2885); if (state.failed) return ret2;
+            match(input,65,FOLLOW_65_in_tcs_operatortemplate2890); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D051F0334511DF8B1AEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1578461F511DF915EF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2889); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2894); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D051F2334511DFAAF5EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1578661F511DFBD5FF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:1052: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:1054: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2897);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2902);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -6278,7 +6277,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D0C720334511DF8C2CEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF1CCB061F511DFBE3BF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:1202: ( ( COMA 'storeOpTo' EQ (temp= tcs_propertyreference ) ) | )
             int alt53=2;
@@ -6287,10 +6286,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA53_0==COMA) ) {
                 int LA53_1 = input.LA(2);
 
-                if ( (LA53_1==78||LA53_1==90||LA53_1==117) ) {
+                if ( (LA53_1==52||LA53_1==90||LA53_1==128) ) {
                     alt53=2;
                 }
-                else if ( (LA53_1==92) ) {
+                else if ( (LA53_1==79) ) {
                     alt53=1;
                 }
                 else {
@@ -6322,33 +6321,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:1220: COMA 'storeOpTo' EQ (temp= tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D07901334511DFB7D1EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF17E9361F511DF8682F9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2910); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2915); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D07902334511DFB247EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF17E9461F511DFC56EF9DB0A0001C7");
                     }
-                    match(input,92,FOLLOW_92_in_tcs_operatortemplate2914); if (state.failed) return ret2;
+                    match(input,79,FOLLOW_79_in_tcs_operatortemplate2919); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D0A010334511DF9ABEEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF17E9561F511DFBF84F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2918); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2923); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D0A012334511DFCF86EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF1A5A161F511DFACE1F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:1525: (temp= tcs_propertyreference )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:582:1527: temp= tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2926);
+                    pushFollow(FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2931);
                     temp=tcs_propertyreference();
 
                     checkFollows();
@@ -6391,7 +6390,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D42280334511DFB462EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF21AD061F511DF8232F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:583:77: ( ( COMA 'storeRightTo' EQ (temp= tcs_propertyreference ) ) | )
             int alt54=2;
@@ -6400,10 +6399,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA54_0==COMA) ) {
                 int LA54_1 = input.LA(2);
 
-                if ( (LA54_1==78||LA54_1==117) ) {
+                if ( (LA54_1==52||LA54_1==90) ) {
                     alt54=2;
                 }
-                else if ( (LA54_1==90) ) {
+                else if ( (LA54_1==128) ) {
                     alt54=1;
                 }
                 else {
@@ -6435,33 +6434,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:583:95: COMA 'storeRightTo' EQ (temp= tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D0EE33334511DF8D03EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF1F3C061F511DFA44AF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2952); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2957); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D3AD50334511DF9363EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF1F3C161F511DFC47CF9DB0A0001C7");
                     }
-                    match(input,90,FOLLOW_90_in_tcs_operatortemplate2956); if (state.failed) return ret2;
+                    match(input,128,FOLLOW_128_in_tcs_operatortemplate2961); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D3D460334511DFA068EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF1F3C261F511DFADE5F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2960); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2965); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D3D462334511DFAC6EEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF1F3C461F511DFBD8FF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:583:403: (temp= tcs_propertyreference )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:583:405: temp= tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2968);
+                    pushFollow(FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2973);
                     temp=tcs_propertyreference();
 
                     checkFollows();
@@ -6504,7 +6503,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D497B0334511DF8D61EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF268F161F511DF8DFCF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:584:77: ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | )
             int alt55=2;
@@ -6513,10 +6512,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA55_0==COMA) ) {
                 int LA55_1 = input.LA(2);
 
-                if ( (LA55_1==78) ) {
+                if ( (LA55_1==52) ) {
                     alt55=2;
                 }
-                else if ( (LA55_1==117) ) {
+                else if ( (LA55_1==90) ) {
                     alt55=1;
                 }
                 else {
@@ -6548,33 +6547,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:584:95: COMA 'disambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D44991334511DFC1BAEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF241E161F511DFAA8FF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2994); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2999); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D44992334511DFC058EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF241E261F511DF9F38F9DB0A0001C7");
                     }
-                    match(input,117,FOLLOW_117_in_tcs_operatortemplate2998); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_tcs_operatortemplate3003); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D44993334511DFCF6EEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF241E361F511DF89ECF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate3002); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate3007); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D470A0334511DFC84CEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF241E661F511DF9677F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:584:403: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:584:405: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_operatortemplate3010);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_operatortemplate3015);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -6617,7 +6616,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D55B00334511DF8809EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF2B71261F511DF94F5F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:585:77: ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | )
             int alt56=2;
@@ -6647,33 +6646,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:585:95: COMA 'disambiguateV3' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D4E5D1334511DFA345EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF2900361F511DF9E6DF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate3036); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate3041); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D4E5D2334511DF999BEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF2900461F511DFC6F2F9DB0A0001C7");
                     }
-                    match(input,78,FOLLOW_78_in_tcs_operatortemplate3040); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_tcs_operatortemplate3045); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D4E5D3334511DF87A8EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF2900561F511DFA441F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate3044); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate3049); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D50CE1334511DFB02AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF2B71061F511DFC115F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:585:405: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:585:407: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_operatortemplate3052);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_operatortemplate3057);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -6716,23 +6715,23 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D58210334511DFB30FEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF2DE2061F511DFA6B1F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_operatortemplate3072); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_operatortemplate3077); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D708B2334511DFC3F3EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF37A6161F511DFC236F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:160: ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ) )
             int alt59=2;
             int LA59_0 = input.LA(1);
 
-            if ( (LA59_0==122) ) {
+            if ( (LA59_0==117) ) {
                 alt59=1;
             }
-            else if ( (LA59_0==SEMI||LA59_0==COLON||LA59_0==91) ) {
+            else if ( (LA59_0==SEMI||LA59_0==COLON||LA59_0==55) ) {
                 alt59=2;
             }
             else {
@@ -6753,9 +6752,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:178: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D5F740334511DFB724EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF2DE2461F511DFA0AEF9DB0A0001C7");
                     }
-                    match(input,122,FOLLOW_122_in_tcs_operatortemplate3082); if (state.failed) return ret2;
+                    match(input,117,FOLLOW_117_in_tcs_operatortemplate3087); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -6781,13 +6780,13 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:365: ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D708B0334511DF8465EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF3535161F511DFB51EF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:425: ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | )
                     int alt58=2;
                     int LA58_0 = input.LA(1);
 
-                    if ( (LA58_0==91) ) {
+                    if ( (LA58_0==55) ) {
                         alt58=1;
                     }
                     else if ( (LA58_0==SEMI||LA58_0==COLON) ) {
@@ -6811,14 +6810,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:443: 'context' ( ( (temp= tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6D61E53334511DFBE78EC660A0001C5");
+                              _beforeSeqEl("E0356A04EEF3053461F511DFA027F9DB0A0001C7");
                             }
-                            match(input,91,FOLLOW_91_in_tcs_operatortemplate3101); if (state.failed) return ret2;
+                            match(input,55,FOLLOW_55_in_tcs_operatortemplate3106); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B6D6E1A0334511DF8FEEEC660A0001C5");
+                              _beforeSeqEl("E0356A04EEF32C4461F511DFB0E9F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:587: ( ( (temp= tcs_contexttags ) ) | )
                             int alt57=2;
@@ -6848,12 +6847,12 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:605: (temp= tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0A5ADB5B6D6BA90334511DFA9CEEC660A0001C5");
+                                      _beforeSeqEl("E0356A04EEF32C4261F511DF8177F9DB0A0001C7");
                                     }
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:664: (temp= tcs_contexttags )
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:586:666: temp= tcs_contexttags
                                     {
-                                    pushFollow(FOLLOW_tcs_contexttags_in_tcs_operatortemplate3114);
+                                    pushFollow(FOLLOW_tcs_contexttags_in_tcs_operatortemplate3119);
                                     temp=tcs_contexttags();
 
                                     checkFollows();
@@ -6947,7 +6946,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D7CC03334511DF975BEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF416A261F511DF8B71F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:77: ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt60=2;
@@ -6977,7 +6976,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:95: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D7A4F2334511DFAD3BEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF3EF9161F511DFB706F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:154: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:155: ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI )
@@ -6986,14 +6985,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:156: COLON ( ( (temp= tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D756D1334511DF8177EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF3A17261F511DFA6AAF9DB0A0001C7");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_tcs_operatortemplate3165); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_tcs_operatortemplate3170); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D77DE1334511DFA7CFEC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF3C88161F511DFB59EF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:297: ( ( (temp= tcs_sequence ) ) )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:298: ( (temp= tcs_sequence ) )
@@ -7002,12 +7001,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:299: (temp= tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D756D3334511DFC416EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF3A17461F511DF876BF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:358: (temp= tcs_sequence )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:360: temp= tcs_sequence
                     {
-                    pushFollow(FOLLOW_tcs_sequence_in_tcs_operatortemplate3176);
+                    pushFollow(FOLLOW_tcs_sequence_in_tcs_operatortemplate3181);
                     temp=tcs_sequence();
 
                     checkFollows();
@@ -7032,9 +7031,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D7A4F0334511DF8CC1EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF3C88261F511DFB98BF9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_operatortemplate3186); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_operatortemplate3191); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -7066,9 +7065,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:589:586: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6D7CC01334511DFB3C8EC660A0001C5");
+                      _beforeSeqEl("E0356A04EEF416A061F511DFC013F9DB0A0001C7");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_tcs_operatortemplate3203); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_tcs_operatortemplate3208); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -7088,7 +7087,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D7F312334511DFAFEFEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF43DB261F511DF9363F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:590:76: (temp= textblockdefinition_textblockdefinition )?
             int alt61=2;
@@ -7097,7 +7096,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:590:78: temp= textblockdefinition_textblockdefinition
                     {
-                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_operatortemplate3217);
+                    pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_tcs_operatortemplate3222);
                     temp=textblockdefinition_textblockdefinition();
 
                     checkFollows();
@@ -7160,19 +7159,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:4: 'function' (temp= identifier ) LPAREN reference[ret] RPAREN ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6D9C7D0334511DF83B8EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5C45061F511DF9627F9DB0A0001C7");
             }
-            match(input,103,FOLLOW_103_in_tcs_functiontemplate3262); if (state.failed) return ret2;
+            match(input,74,FOLLOW_74_in_tcs_functiontemplate3267); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DA8B21334511DFB13DEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5C45261F511DFC503F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:148: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:150: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_functiontemplate3269);
+            pushFollow(FOLLOW_identifier_in_tcs_functiontemplate3274);
             temp=identifier();
 
             checkFollows();
@@ -7188,16 +7187,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DAB230334511DFAA9AEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5C45361F511DF8B8EF9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_functiontemplate3276); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_functiontemplate3281); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DAD940334511DF8C3AEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5C45461F511DFC38FF9DB0A0001C7");
             }
-            pushFollow(FOLLOW_reference_in_tcs_functiontemplate3280);
+            pushFollow(FOLLOW_reference_in_tcs_functiontemplate3285);
             reference(ret);
 
             checkFollows();
@@ -7207,14 +7206,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DAD941334511DF8ABEEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5C45561F511DF8FD4F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_functiontemplate3285); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_functiontemplate3290); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DB4E71334511DFB5FBEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF6398061F511DF8E27F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:538: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:539: ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI )
@@ -7223,14 +7222,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:540: COLON ( ( (temp= tcs_sequence ) ) ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DB0050334511DFBC93EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5C45661F511DFB592F9DB0A0001C7");
             }
-            match(input,COLON,FOLLOW_COLON_in_tcs_functiontemplate3293); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_tcs_functiontemplate3298); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DB2761334511DFAABAEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5EB6361F511DFCA6CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:681: ( ( (temp= tcs_sequence ) ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:682: ( (temp= tcs_sequence ) )
@@ -7239,12 +7238,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:683: (temp= tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DB0052334511DFA80CEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF5EB6061F511DF93F8F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:742: (temp= tcs_sequence )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:604:744: temp= tcs_sequence
             {
-            pushFollow(FOLLOW_tcs_sequence_in_tcs_functiontemplate3304);
+            pushFollow(FOLLOW_tcs_sequence_in_tcs_functiontemplate3309);
             temp=tcs_sequence();
 
             checkFollows();
@@ -7269,9 +7268,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DB2762334511DFB3D1EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF6127061F511DFCEE7F9DB0A0001C7");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_tcs_functiontemplate3314); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_tcs_functiontemplate3319); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -7329,14 +7328,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:618:4: LPAREN (temp= identifier ( ( COMA ) temp= identifier )* )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DCFC20334511DFBAB7EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF7720061F511DF9D5CF9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_contexttags3359); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_contexttags3364); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DD2331334511DFA28FEC660A0001C5");
+              _beforeSeqEl("E0356A04EEF7991161F511DFC935F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:618:146: (temp= identifier ( ( COMA ) temp= identifier )* )?
             int alt63=2;
@@ -7349,7 +7348,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:618:148: temp= identifier ( ( COMA ) temp= identifier )*
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_contexttags3367);
+                    pushFollow(FOLLOW_identifier_in_tcs_contexttags3372);
                     temp=identifier();
 
                     checkFollows();
@@ -7380,9 +7379,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:618:217: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0A5ADB5B6DCFC22334511DFB436EC660A0001C5");
+                    	      _beforeSeqEl("E0356A04EEF7720261F511DFAFF2F9DB0A0001C7");
                     	    }
-                    	    match(input,COMA,FOLLOW_COMA_in_tcs_contexttags3376); if (state.failed) return ret2;
+                    	    match(input,COMA,FOLLOW_COMA_in_tcs_contexttags3381); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -7392,7 +7391,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifier_in_tcs_contexttags3384);
+                    	    pushFollow(FOLLOW_identifier_in_tcs_contexttags3389);
                     	    temp=identifier();
 
                     	    checkFollows();
@@ -7420,9 +7419,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DD4A40334511DFA183EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF7991261F511DFA810F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_contexttags3396); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_contexttags3401); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -7471,7 +7470,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:632:4: (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6DEA9D1334511DF8B74EC660A0001C5");
+              _beforeSeqEl("E0356A04EEF8F8A161F511DF8A98F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:632:63: (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             int alt65=2;
@@ -7484,7 +7483,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:632:65: temp= tcs_sequenceelement (temp= tcs_sequenceelement )*
                     {
-                    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3441);
+                    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3446);
                     temp=tcs_sequenceelement();
 
                     checkFollows();
@@ -7508,7 +7507,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:632:130: temp= tcs_sequenceelement
                     	    {
-                    	    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3449);
+                    	    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3454);
                     	    temp=tcs_sequenceelement();
 
                     	    checkFollows();
@@ -7552,7 +7551,6 @@ public class TCSParser extends ObservableInjectingParser {
             handleExceptionInTemplateRule(e, firstToken, ret);
         }
         finally {
-            onExitTemplateRule(metaType);
         }
         return ret2;
     }
@@ -7578,7 +7576,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:642:4: ret= tcs_sequence__impl
                     {
-                    pushFollow(FOLLOW_tcs_sequence__impl_in_tcs_sequence3494);
+                    pushFollow(FOLLOW_tcs_sequence__impl_in_tcs_sequence3495);
                     ret=tcs_sequence__impl();
 
                     checkFollows();
@@ -7593,7 +7591,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:642:27: (ret= tcs_sequenceinalternative )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:642:28: ret= tcs_sequenceinalternative
                     {
-                    pushFollow(FOLLOW_tcs_sequenceinalternative_in_tcs_sequence3499);
+                    pushFollow(FOLLOW_tcs_sequenceinalternative_in_tcs_sequence3500);
                     ret=tcs_sequenceinalternative();
 
                     checkFollows();
@@ -7784,7 +7782,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:651:4: ret= tcs_literalref
                     {
-                    pushFollow(FOLLOW_tcs_literalref_in_tcs_sequenceelement3528);
+                    pushFollow(FOLLOW_tcs_literalref_in_tcs_sequenceelement3529);
                     ret=tcs_literalref();
 
                     checkFollows();
@@ -7796,7 +7794,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:652:5: ret= tcs_property
                     {
-                    pushFollow(FOLLOW_tcs_property_in_tcs_sequenceelement3536);
+                    pushFollow(FOLLOW_tcs_property_in_tcs_sequenceelement3537);
                     ret=tcs_property();
 
                     checkFollows();
@@ -7808,7 +7806,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:653:5: ret= tcs_customseparator
                     {
-                    pushFollow(FOLLOW_tcs_customseparator_in_tcs_sequenceelement3544);
+                    pushFollow(FOLLOW_tcs_customseparator_in_tcs_sequenceelement3545);
                     ret=tcs_customseparator();
 
                     checkFollows();
@@ -7820,7 +7818,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:654:5: ret= tcs_block
                     {
-                    pushFollow(FOLLOW_tcs_block_in_tcs_sequenceelement3552);
+                    pushFollow(FOLLOW_tcs_block_in_tcs_sequenceelement3553);
                     ret=tcs_block();
 
                     checkFollows();
@@ -7832,7 +7830,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:655:5: ret= tcs_conditionalelement
                     {
-                    pushFollow(FOLLOW_tcs_conditionalelement_in_tcs_sequenceelement3560);
+                    pushFollow(FOLLOW_tcs_conditionalelement_in_tcs_sequenceelement3561);
                     ret=tcs_conditionalelement();
 
                     checkFollows();
@@ -7844,7 +7842,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 6 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:656:5: ret= tcs_alternative
                     {
-                    pushFollow(FOLLOW_tcs_alternative_in_tcs_sequenceelement3568);
+                    pushFollow(FOLLOW_tcs_alternative_in_tcs_sequenceelement3569);
                     ret=tcs_alternative();
 
                     checkFollows();
@@ -7856,7 +7854,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 7 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:657:5: ret= tcs_functioncall
                     {
-                    pushFollow(FOLLOW_tcs_functioncall_in_tcs_sequenceelement3576);
+                    pushFollow(FOLLOW_tcs_functioncall_in_tcs_sequenceelement3577);
                     ret=tcs_functioncall();
 
                     checkFollows();
@@ -7868,7 +7866,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 8 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:658:5: ret= tcs_injectoractionsblock
                     {
-                    pushFollow(FOLLOW_tcs_injectoractionsblock_in_tcs_sequenceelement3584);
+                    pushFollow(FOLLOW_tcs_injectoractionsblock_in_tcs_sequenceelement3585);
                     ret=tcs_injectoractionsblock();
 
                     checkFollows();
@@ -7921,12 +7919,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:671:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6E64AF0334511DFBD0DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF02959061F511DFA918F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:671:63: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:671:65: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_literalref3618);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_literalref3619);
             temp=stringSymbol();
 
             checkFollows();
@@ -7942,10 +7940,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6E7AA80334511DFA583EC660A0001C5");
+              _beforeSeqEl("E0356A04EF02E3B061F511DFAF92F9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -7995,7 +7993,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:4: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6EDEC10334511DF818AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF046A5061F511DFCBAAF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:64: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword )? ) )
             int alt69=2;
@@ -8025,12 +8023,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:82: (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6ECDAA0334511DF806AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF041C3161F511DFBE32F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:141: (temp= identifierOrKeyword )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:143: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_propertyreference3674);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_propertyreference3675);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -8064,14 +8062,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:3504: RARROW (temp= identifierOrKeyword )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6ED76E0334511DFCFD3EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF04434061F511DF8464F9DB0A0001C7");
                     }
-                    match(input,RARROW,FOLLOW_RARROW_in_tcs_propertyreference3690); if (state.failed) return ret2;
+                    match(input,RARROW,FOLLOW_RARROW_in_tcs_propertyreference3691); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6ED76E3334511DFA954EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF04434361F511DF9512F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:3646: (temp= identifierOrKeyword )?
                     int alt68=2;
@@ -8080,7 +8078,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:3648: temp= identifierOrKeyword
                             {
-                            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_propertyreference3698);
+                            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_propertyreference3699);
                             temp=identifierOrKeyword();
 
                             checkFollows();
@@ -8158,12 +8156,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:4: (temp= tcs_propertyreference ) ( ( LCURLY (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6EF2490334511DFAF3AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF06180161F511DFC32CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_property3753);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_property3754);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -8179,7 +8177,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6EFC0D0334511DFA43BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF068D3061F511DFCF7CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:215: ( ( LCURLY (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )? RCURLY ) | )
             int alt72=2;
@@ -8209,27 +8207,27 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:233: LCURLY (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6EF4BA1334511DFAA41EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF063F1261F511DF9D69F9DB0A0001C7");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_property3766); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_property3767); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6EF99C0334511DF96ECEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF06662161F511DFAEACF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:375: (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )?
                     int alt71=2;
                     int LA71_0 = input.LA(1);
 
-                    if ( (LA71_0==53||LA71_0==56||LA71_0==60||LA71_0==70||LA71_0==75||LA71_0==86||LA71_0==89||LA71_0==97||LA71_0==110||LA71_0==112||LA71_0==117||LA71_0==120||LA71_0==123||LA71_0==129||LA71_0==131) ) {
+                    if ( (LA71_0==49||LA71_0==58||(LA71_0>=62 && LA71_0<=63)||LA71_0==71||LA71_0==77||LA71_0==81||LA71_0==83||LA71_0==85||LA71_0==90||LA71_0==93||LA71_0==109||LA71_0==111||LA71_0==113||LA71_0==116) ) {
                         alt71=1;
                     }
                     switch (alt71) {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:377: temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )*
                             {
-                            pushFollow(FOLLOW_tcs_propertyarg_in_tcs_property3774);
+                            pushFollow(FOLLOW_tcs_propertyarg_in_tcs_property3775);
                             temp=tcs_propertyarg();
 
                             checkFollows();
@@ -8260,9 +8258,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:700:459: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0A5ADB5B6EF4BA3334511DF95B8EC660A0001C5");
+                            	      _beforeSeqEl("E0356A04EF063F1461F511DF9FCBF9DB0A0001C7");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_tcs_property3783); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_tcs_property3784); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -8272,7 +8270,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_tcs_propertyarg_in_tcs_property3791);
+                            	    pushFollow(FOLLOW_tcs_propertyarg_in_tcs_property3792);
                             	    temp=tcs_propertyarg();
 
                             	    checkFollows();
@@ -8300,9 +8298,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6EF99C1334511DF99B2EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF06662261F511DF9B46F9DB0A0001C7");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_property3803); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_property3804); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -8334,10 +8332,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6EFE7E1334511DF82A1EC660A0001C5");
+              _beforeSeqEl("E0356A04EF06B44061F511DFB2ACF9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8387,19 +8385,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:715:4: LT (temp= identifier ) GT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F12060334511DF805BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF07C5B061F511DFB08CF9DB0A0001C7");
             }
-            match(input,LT,FOLLOW_LT_in_tcs_customseparator3861); if (state.failed) return ret2;
+            match(input,LT,FOLLOW_LT_in_tcs_customseparator3862); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F12062334511DFB051EC660A0001C5");
+              _beforeSeqEl("E0356A04EF07C5B261F511DFAAAAF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:715:142: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:715:144: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_customseparator3869);
+            pushFollow(FOLLOW_identifier_in_tcs_customseparator3870);
             temp=identifier();
 
             checkFollows();
@@ -8415,17 +8413,17 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F14770334511DF9866EC660A0001C5");
+              _beforeSeqEl("E0356A04EF07ECC061F511DFA343F9DB0A0001C7");
             }
-            match(input,GT,FOLLOW_GT_in_tcs_customseparator3876); if (state.failed) return ret2;
+            match(input,GT,FOLLOW_GT_in_tcs_customseparator3877); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F14773334511DFB7A7EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0813D061F511DF9D2EF9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8475,19 +8473,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:4: LSQUARE (temp= tcs_sequence ) RSQUARE ( ( LCURLY (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F27FF0334511DFA6BBEC660A0001C5");
+              _beforeSeqEl("E0356A04EF09736061F511DFB631F9DB0A0001C7");
             }
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_tcs_block3921); if (state.failed) return ret2;
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_tcs_block3922); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F2A700334511DF9D71EC660A0001C5");
+              _beforeSeqEl("E0356A04EF099A7161F511DFCC86F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:147: (temp= tcs_sequence )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:149: temp= tcs_sequence
             {
-            pushFollow(FOLLOW_tcs_sequence_in_tcs_block3929);
+            pushFollow(FOLLOW_tcs_sequence_in_tcs_block3930);
             temp=tcs_sequence();
 
             checkFollows();
@@ -8503,14 +8501,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F2A701334511DF9964EC660A0001C5");
+              _beforeSeqEl("E0356A04EF099A7261F511DFCBD8F9DB0A0001C7");
             }
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_tcs_block3936); if (state.failed) return ret2;
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_tcs_block3937); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F31C30334511DF8A40EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0AABE061F511DF9BBFF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:370: ( ( LCURLY (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )? RCURLY ) | )
             int alt75=2;
@@ -8540,27 +8538,27 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:388: LCURLY (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F2CE10334511DFA461EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0A36B161F511DF8749F9DB0A0001C7");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_block3947); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_tcs_block3948); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F2F520334511DFB407EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0A5DC261F511DFB7A3F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:530: (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )?
                     int alt74=2;
                     int LA74_0 = input.LA(1);
 
-                    if ( (LA74_0==55||LA74_0==95||LA74_0==105||LA74_0==124||LA74_0==127) ) {
+                    if ( (LA74_0==61||LA74_0==68||LA74_0==95||LA74_0==105||LA74_0==125) ) {
                         alt74=1;
                     }
                     switch (alt74) {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:532: temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )*
                             {
-                            pushFollow(FOLLOW_tcs_blockarg_in_tcs_block3955);
+                            pushFollow(FOLLOW_tcs_blockarg_in_tcs_block3956);
                             temp=tcs_blockarg();
 
                             checkFollows();
@@ -8591,9 +8589,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:729:608: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0A5ADB5B6F2CE12334511DFA92DEC660A0001C5");
+                            	      _beforeSeqEl("E0356A04EF0A36B361F511DF8B54F9DB0A0001C7");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_tcs_block3964); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_tcs_block3965); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -8603,7 +8601,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_tcs_blockarg_in_tcs_block3972);
+                            	    pushFollow(FOLLOW_tcs_blockarg_in_tcs_block3973);
                             	    temp=tcs_blockarg();
 
                             	    checkFollows();
@@ -8631,9 +8629,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F2F521334511DF8845EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0A84D061F511DFA812F9DB0A0001C7");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_block3984); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_tcs_block3985); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -8665,10 +8663,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F34341334511DFBAB2EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0AD2F061F511DF9A77F9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8718,14 +8716,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:4: LPAREN (temp= tcs_expression )? QMARK (temp= tcs_sequence ) ( ( COLON (temp= tcs_sequence ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F47BC0334511DFA212EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0C0B7061F511DF9F86F9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_conditionalelement4042); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_conditionalelement4043); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F47BC2334511DFAB8FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0C328161F511DFB406F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:146: (temp= tcs_expression )?
             int alt76=2;
@@ -8745,7 +8743,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:148: temp= tcs_expression
                     {
-                    pushFollow(FOLLOW_tcs_expression_in_tcs_conditionalelement4050);
+                    pushFollow(FOLLOW_tcs_expression_in_tcs_conditionalelement4051);
                     temp=tcs_expression();
 
                     checkFollows();
@@ -8764,19 +8762,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F4A2D0334511DFAB3EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0C328261F511DF9116F9DB0A0001C7");
             }
-            match(input,QMARK,FOLLOW_QMARK_in_tcs_conditionalelement4059); if (state.failed) return ret2;
+            match(input,QMARK,FOLLOW_QMARK_in_tcs_conditionalelement4060); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F4A2D2334511DFBAA2EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0C599161F511DFC04BF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:366: (temp= tcs_sequence )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:368: temp= tcs_sequence
             {
-            pushFollow(FOLLOW_tcs_sequence_in_tcs_conditionalelement4067);
+            pushFollow(FOLLOW_tcs_sequence_in_tcs_conditionalelement4068);
             temp=tcs_sequence();
 
             checkFollows();
@@ -8792,7 +8790,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F51801334511DF80EBEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0CA7B061F511DF9861F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:504: ( ( COLON (temp= tcs_sequence ) ) | )
             int alt77=2;
@@ -8822,19 +8820,19 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:522: COLON (temp= tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F4C9E2334511DFCCE8EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0C80A261F511DFA645F9DB0A0001C7");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_tcs_conditionalelement4080); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_tcs_conditionalelement4081); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F4F0F0334511DFA813EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0C80A461F511DFA7F9F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:663: (temp= tcs_sequence )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:665: temp= tcs_sequence
                     {
-                    pushFollow(FOLLOW_tcs_sequence_in_tcs_conditionalelement4088);
+                    pushFollow(FOLLOW_tcs_sequence_in_tcs_conditionalelement4089);
                     temp=tcs_sequence();
 
                     checkFollows();
@@ -8877,17 +8875,17 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F53F10334511DFCEE5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0CA7B161F511DFCC81F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_conditionalelement4108); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_conditionalelement4109); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F53F13334511DFA36DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0CCEC161F511DFCFA9F9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -8937,14 +8935,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:4: DLSQUARE (temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )* )? DRSQUARE ( ( STAR ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F69EA0334511DFCC31EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0DE03061F511DFB1A0F9DB0A0001C7");
             }
-            match(input,DLSQUARE,FOLLOW_DLSQUARE_in_tcs_alternative4153); if (state.failed) return ret2;
+            match(input,DLSQUARE,FOLLOW_DLSQUARE_in_tcs_alternative4154); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F6C5B0334511DF9004EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0E2E5061F511DFA0B6F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:148: (temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )* )?
             int alt79=2;
@@ -8964,7 +8962,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:150: temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )*
                     {
-                    pushFollow(FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4161);
+                    pushFollow(FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4162);
                     temp=tcs_sequenceinalternative();
 
                     checkFollows();
@@ -8995,9 +8993,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:239: PIPE
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0A5ADB5B6F69EA2334511DF812BEC660A0001C5");
+                    	      _beforeSeqEl("E0356A04EF0E074161F511DFB7DFF9DB0A0001C7");
                     	    }
-                    	    match(input,PIPE,FOLLOW_PIPE_in_tcs_alternative4170); if (state.failed) return ret2;
+                    	    match(input,PIPE,FOLLOW_PIPE_in_tcs_alternative4171); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -9007,7 +9005,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4178);
+                    	    pushFollow(FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4179);
                     	    temp=tcs_sequenceinalternative();
 
                     	    checkFollows();
@@ -9035,14 +9033,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F6C5B1334511DFB197EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0E2E5161F511DFC7E8F9DB0A0001C7");
             }
-            match(input,DRSQUARE,FOLLOW_DRSQUARE_in_tcs_alternative4190); if (state.failed) return ret2;
+            match(input,DRSQUARE,FOLLOW_DRSQUARE_in_tcs_alternative4191); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F713D1334511DF818CEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0E556361F511DFCC98F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:574: ( ( STAR ) | )
             int alt80=2;
@@ -9072,9 +9070,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:592: STAR
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F6ECC3334511DFC508EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0E556161F511DFCC31F9DB0A0001C7");
                     }
-                    match(input,STAR,FOLLOW_STAR_in_tcs_alternative4201); if (state.failed) return ret2;
+                    match(input,STAR,FOLLOW_STAR_in_tcs_alternative4202); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -9112,10 +9110,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F73AE1334511DFB8FCEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0E7C7261F511DFB773F9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9165,13 +9163,13 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:774:4: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | ) (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F8E890334511DF984AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF0FB4F261F511DFB048F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:774:64: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | )
             int alt81=2;
             int LA81_0 = input.LA(1);
 
-            if ( (LA81_0==117) ) {
+            if ( (LA81_0==90) ) {
                 int LA81_1 = input.LA(2);
 
                 if ( (LA81_1==EOF||(LA81_1>=NAME && LA81_1<=STRING)||LA81_1==RPAREN||(LA81_1>=LCURLY && LA81_1<=COMA)||LA81_1==LT||(LA81_1>=LSQUARE && LA81_1<=RSQUARE)||(LA81_1>=DLSQUARE && LA81_1<=DRSQUARE)||(LA81_1>=DOLLAR && LA81_1<=DLCURLY)||(LA81_1>=49 && LA81_1<=133)) ) {
@@ -9202,7 +9200,7 @@ public class TCSParser extends ObservableInjectingParser {
                     throw nvae;
                 }
             }
-            else if ( (LA81_0==EOF||(LA81_0>=NAME && LA81_0<=STRING)||(LA81_0>=LPAREN && LA81_0<=RPAREN)||(LA81_0>=RCURLY && LA81_0<=COMA)||LA81_0==LT||(LA81_0>=LSQUARE && LA81_0<=RSQUARE)||(LA81_0>=DLSQUARE && LA81_0<=DRSQUARE)||(LA81_0>=DOLLAR && LA81_0<=DLCURLY)||(LA81_0>=49 && LA81_0<=116)||(LA81_0>=118 && LA81_0<=133)) ) {
+            else if ( (LA81_0==EOF||(LA81_0>=NAME && LA81_0<=STRING)||(LA81_0>=LPAREN && LA81_0<=RPAREN)||(LA81_0>=RCURLY && LA81_0<=COMA)||LA81_0==LT||(LA81_0>=LSQUARE && LA81_0<=RSQUARE)||(LA81_0>=DLSQUARE && LA81_0<=DRSQUARE)||(LA81_0>=DOLLAR && LA81_0<=DLCURLY)||(LA81_0>=49 && LA81_0<=89)||(LA81_0>=91 && LA81_0<=133)) ) {
                 alt81=2;
             }
             else {
@@ -9223,26 +9221,26 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:774:82: 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F89A72334511DFBDD4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0F8DE161F511DF90C8F9DB0A0001C7");
                     }
-                    match(input,117,FOLLOW_117_in_tcs_sequenceinalternative4266); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_tcs_sequenceinalternative4267); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F89A73334511DF8A68EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0F8DE261F511DFC4E1F9DB0A0001C7");
                     }
-                    match(input,LPAREN,FOLLOW_LPAREN_in_tcs_sequenceinalternative4270); if (state.failed) return ret2;
+                    match(input,LPAREN,FOLLOW_LPAREN_in_tcs_sequenceinalternative4271); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F8C182334511DFBCA5EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0F8DE561F511DF8157F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:774:313: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:774:315: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_sequenceinalternative4278);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_sequenceinalternative4279);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -9258,9 +9256,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B6F8C183334511DF97D4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF0FB4F061F511DFB5A5F9DB0A0001C7");
                     }
-                    match(input,RPAREN,FOLLOW_RPAREN_in_tcs_sequenceinalternative4285); if (state.failed) return ret2;
+                    match(input,RPAREN,FOLLOW_RPAREN_in_tcs_sequenceinalternative4286); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -9292,7 +9290,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6F90FA1334511DFB775EC660A0001C5");
+              _beforeSeqEl("E0356A04EF0FDC0161F511DFA44BF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:775:76: (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             int alt83=2;
@@ -9305,7 +9303,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:775:78: temp= tcs_sequenceelement (temp= tcs_sequenceelement )*
                     {
-                    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4306);
+                    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4307);
                     temp=tcs_sequenceelement();
 
                     checkFollows();
@@ -9329,7 +9327,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:775:143: temp= tcs_sequenceelement
                     	    {
-                    	    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4314);
+                    	    pushFollow(FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4315);
                     	    temp=tcs_sequenceelement();
 
                     	    checkFollows();
@@ -9401,19 +9399,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:789:4: DOLLAR (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FA9640334511DFB6E0EC660A0001C5");
+              _beforeSeqEl("E0356A04EF10C66061F511DF9C07F9DB0A0001C7");
             }
-            match(input,DOLLAR,FOLLOW_DOLLAR_in_tcs_functioncall4363); if (state.failed) return ret2;
+            match(input,DOLLAR,FOLLOW_DOLLAR_in_tcs_functioncall4364); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FA9643334511DF833EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF10ED7261F511DFBD63F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:789:146: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:789:148: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_functioncall4371);
+            pushFollow(FOLLOW_identifier_in_tcs_functioncall4372);
             temp=identifier();
 
             checkFollows();
@@ -9429,10 +9427,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FAE460334511DF82ABEC660A0001C5");
+              _beforeSeqEl("E0356A04EF11148061F511DFB0BCF9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9482,14 +9480,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:803:4: DLCURLY (temp= tcs_injectoraction ( ( COMA ) temp= tcs_injectoraction )* )? DRCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FC6B00334511DF88DBEC660A0001C5");
+              _beforeSeqEl("E0356A04EF11FEE061F511DF82FAF9DB0A0001C7");
             }
-            match(input,DLCURLY,FOLLOW_DLCURLY_in_tcs_injectoractionsblock4418); if (state.failed) return ret2;
+            match(input,DLCURLY,FOLLOW_DLCURLY_in_tcs_injectoractionsblock4419); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FC9211334511DFAAD7EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1225F261F511DF94E4F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:803:147: (temp= tcs_injectoraction ( ( COMA ) temp= tcs_injectoraction )* )?
             int alt85=2;
@@ -9502,7 +9500,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:803:149: temp= tcs_injectoraction ( ( COMA ) temp= tcs_injectoraction )*
                     {
-                    pushFollow(FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4426);
+                    pushFollow(FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4427);
                     temp=tcs_injectoraction();
 
                     checkFollows();
@@ -9533,9 +9531,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:803:237: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0A5ADB5B6FC6B02334511DFB052EC660A0001C5");
+                    	      _beforeSeqEl("E0356A04EF11FEE261F511DFB027F9DB0A0001C7");
                     	    }
-                    	    match(input,COMA,FOLLOW_COMA_in_tcs_injectoractionsblock4435); if (state.failed) return ret2;
+                    	    match(input,COMA,FOLLOW_COMA_in_tcs_injectoractionsblock4436); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -9545,7 +9543,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4443);
+                    	    pushFollow(FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4444);
                     	    temp=tcs_injectoraction();
 
                     	    checkFollows();
@@ -9573,17 +9571,17 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FCB920334511DFC13BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF124D0061F511DF98ADF9DB0A0001C7");
             }
-            match(input,DRCURLY,FOLLOW_DRCURLY_in_tcs_injectoractionsblock4455); if (state.failed) return ret2;
+            match(input,DRCURLY,FOLLOW_DRCURLY_in_tcs_injectoractionsblock4456); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FCB923334511DFC97AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF124D0361F511DFC9F7F9DB0A0001C7");
             }
             if ( state.backtracking==0 ) {
-              setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9627,7 +9625,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:813:3: (ret= tcs_propertyinit )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:813:4: ret= tcs_propertyinit
             {
-            pushFollow(FOLLOW_tcs_propertyinit_in_tcs_injectoraction4496);
+            pushFollow(FOLLOW_tcs_propertyinit_in_tcs_injectoraction4497);
             ret=tcs_propertyinit();
 
             checkFollows();
@@ -9675,7 +9673,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:822:4: ret= tcs_primitivepropertyinit
                     {
-                    pushFollow(FOLLOW_tcs_primitivepropertyinit_in_tcs_propertyinit4523);
+                    pushFollow(FOLLOW_tcs_primitivepropertyinit_in_tcs_propertyinit4524);
                     ret=tcs_primitivepropertyinit();
 
                     checkFollows();
@@ -9687,7 +9685,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:823:5: ret= tcs_lookuppropertyinit
                     {
-                    pushFollow(FOLLOW_tcs_lookuppropertyinit_in_tcs_propertyinit4531);
+                    pushFollow(FOLLOW_tcs_lookuppropertyinit_in_tcs_propertyinit4532);
                     ret=tcs_lookuppropertyinit();
 
                     checkFollows();
@@ -9699,7 +9697,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:824:5: ret= tcs_foreachpredicatepropertyinit
                     {
-                    pushFollow(FOLLOW_tcs_foreachpredicatepropertyinit_in_tcs_propertyinit4539);
+                    pushFollow(FOLLOW_tcs_foreachpredicatepropertyinit_in_tcs_propertyinit4540);
                     ret=tcs_foreachpredicatepropertyinit();
 
                     checkFollows();
@@ -9752,12 +9750,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:837:4: (temp= tcs_propertyreference ) ( ( LARROW ) | ( EQ ) ) (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B6FFED71334511DF9118EC660A0001C5");
+              _beforeSeqEl("E0356A04EF14BE0061F511DFAD72F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:837:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:837:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_primitivepropertyinit4573);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_primitivepropertyinit4574);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -9773,7 +9771,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70062A0334511DF872AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF14E51261F511DFA68EF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:837:215: ( ( LARROW ) | ( EQ ) )
             int alt87=2;
@@ -9803,9 +9801,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:837:233: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7001481334511DFB355EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF14BE0461F511DFB4BCF9DB0A0001C7");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_tcs_primitivepropertyinit4586); if (state.failed) return ret2;
+                    match(input,LARROW,FOLLOW_LARROW_in_tcs_primitivepropertyinit4587); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -9831,9 +9829,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:837:407: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7003B91334511DFA102EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF14E51061F511DF8F5FF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_primitivepropertyinit4601); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_primitivepropertyinit4602); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -9856,12 +9854,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70089B1334511DFBCBBEC660A0001C5");
+              _beforeSeqEl("E0356A04EF150C2161F511DF94F6F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:838:76: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:838:78: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_primitivepropertyinit4616);
+            pushFollow(FOLLOW_identifier_in_tcs_primitivepropertyinit4617);
             temp=identifier();
 
             checkFollows();
@@ -9921,12 +9919,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:852:4: (temp= tcs_propertyreference ) ( ( LARROW ) | ( EQ ) ) 'lookIn' LPAREN (temp= stringSymbol ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B701C231334511DFB021EC660A0001C5");
+              _beforeSeqEl("E0356A04EF15F68161F511DFBB5FF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:852:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:852:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_lookuppropertyinit4663);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_lookuppropertyinit4664);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -9942,7 +9940,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7023762334511DF91DDEC660A0001C5");
+              _beforeSeqEl("E0356A04EF161D9461F511DF9A09F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:852:215: ( ( LARROW ) | ( EQ ) )
             int alt88=2;
@@ -9972,9 +9970,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:852:233: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7021051334511DFA7EEEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF161D9061F511DF938BF9DB0A0001C7");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_tcs_lookuppropertyinit4676); if (state.failed) return ret2;
+                    match(input,LARROW,FOLLOW_LARROW_in_tcs_lookuppropertyinit4677); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10000,9 +9998,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:852:407: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7023760334511DFA31AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF161D9261F511DFCDDCF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_lookuppropertyinit4691); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_lookuppropertyinit4692); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10025,26 +10023,26 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7025E70334511DFCF4DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF1644A061F511DFCCF0F9DB0A0001C7");
             }
-            match(input,56,FOLLOW_56_in_tcs_lookuppropertyinit4702); if (state.failed) return ret2;
+            match(input,81,FOLLOW_81_in_tcs_lookuppropertyinit4703); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7025E71334511DFAA89EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1644A161F511DFC71AF9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_lookuppropertyinit4706); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_lookuppropertyinit4707); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7028581334511DF803FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF166BB161F511DF9102F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:853:242: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:853:244: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_lookuppropertyinit4714);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_lookuppropertyinit4715);
             temp=stringSymbol();
 
             checkFollows();
@@ -10060,9 +10058,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7028582334511DFC4ABEC660A0001C5");
+              _beforeSeqEl("E0356A04EF166BB261F511DFCCBCF9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_lookuppropertyinit4721); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_lookuppropertyinit4722); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -10111,12 +10109,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:867:4: (temp= tcs_propertyreference ) ( ( LARROW ) | ( EQ ) ) 'foreach' LPAREN (temp= stringSymbol ) ( ( COMA 'mode' EQ (temp= stringSymbol ) ) | ) ( ( COMA (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )? ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7040C20334511DFB13AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF17561161F511DFBB68F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:867:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:867:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_foreachpredicatepropertyinit4766);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_foreachpredicatepropertyinit4767);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -10132,7 +10130,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7045A41334511DF87FEEC660A0001C5");
+              _beforeSeqEl("E0356A04EF17A43261F511DFB804F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:867:215: ( ( LARROW ) | ( EQ ) )
             int alt89=2;
@@ -10162,9 +10160,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:867:233: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7043330334511DFA305EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF177D2161F511DFBE55F9DB0A0001C7");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4779); if (state.failed) return ret2;
+                    match(input,LARROW,FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4780); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10190,9 +10188,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:867:407: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7043332334511DFA9FBEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF17A43061F511DFC70DF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4794); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4795); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10215,26 +10213,26 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B704A860334511DFC51AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF17CB4061F511DF8809F9DB0A0001C7");
             }
-            match(input,82,FOLLOW_82_in_tcs_foreachpredicatepropertyinit4805); if (state.failed) return ret2;
+            match(input,96,FOLLOW_96_in_tcs_foreachpredicatepropertyinit4806); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7051D90334511DFCDE6EC660A0001C5");
+              _beforeSeqEl("E0356A04EF17CB4161F511DF8435F9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_foreachpredicatepropertyinit4809); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_foreachpredicatepropertyinit4810); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B705B9D2334511DFC645EC660A0001C5");
+              _beforeSeqEl("E0356A04EF17CB4461F511DF96CEF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:243: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:245: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4817);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4818);
             temp=stringSymbol();
 
             checkFollows();
@@ -10250,7 +10248,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B708EE20334511DFC6F0EC660A0001C5");
+              _beforeSeqEl("E0356A04EF18196161F511DFAD02F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:374: ( ( COMA 'mode' EQ (temp= stringSymbol ) ) | )
             int alt90=2;
@@ -10259,10 +10257,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA90_0==COMA) ) {
                 int LA90_1 = input.LA(2);
 
-                if ( (LA90_1==RPAREN||LA90_1==74||LA90_1==131) ) {
+                if ( (LA90_1==RPAREN||LA90_1==56||LA90_1==83) ) {
                     alt90=2;
                 }
-                else if ( (LA90_1==75) ) {
+                else if ( (LA90_1==49) ) {
                     int LA90_3 = input.LA(3);
 
                     if ( (LA90_3==EQ) ) {
@@ -10344,33 +10342,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:392: COMA 'mode' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7082AD0334511DF9926EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF17F25161F511DF997FF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4830); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4831); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7082AD1334511DF8BAFEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF17F25261F511DF89FBF9DB0A0001C7");
                     }
-                    match(input,75,FOLLOW_75_in_tcs_foreachpredicatepropertyinit4834); if (state.failed) return ret2;
+                    match(input,49,FOLLOW_49_in_tcs_foreachpredicatepropertyinit4835); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70878F0334511DFB2B5EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF17F25361F511DFC848F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4838); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4839); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70878F3334511DF8FD4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF17F25661F511DF9FA7F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:692: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:694: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4846);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4847);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -10413,7 +10411,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70A4DB1334511DFCF04EC660A0001C5");
+              _beforeSeqEl("E0356A04EF188E9161F511DFAF0CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:869:77: ( ( COMA (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )? ) | )
             int alt93=2;
@@ -10443,27 +10441,27 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:869:95: COMA (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B709D880334511DFC15DEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF18407361F511DFC2ACF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4872); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4873); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70A26A1334511DFCF60EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF18678361F511DF92FFF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:869:235: (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )?
                     int alt92=2;
                     int LA92_0 = input.LA(1);
 
-                    if ( ((LA92_0>=74 && LA92_0<=75)||LA92_0==131) ) {
+                    if ( (LA92_0==49||LA92_0==56||LA92_0==83) ) {
                         alt92=1;
                     }
                     switch (alt92) {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:869:237: temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )*
                             {
-                            pushFollow(FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4880);
+                            pushFollow(FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4881);
                             temp=tcs_predicatesemantic();
 
                             checkFollows();
@@ -10494,9 +10492,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:869:330: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0A5ADB5B709D882334511DFB9A6EC660A0001C5");
+                            	      _beforeSeqEl("E0356A04EF18678061F511DF9CD5F9DB0A0001C7");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4889); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4890); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -10506,7 +10504,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4897);
+                            	    pushFollow(FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4898);
                             	    temp=tcs_predicatesemantic();
 
                             	    checkFollows();
@@ -10561,9 +10559,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70A4DB2334511DFCEFAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF188E9261F511DF990CF9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_foreachpredicatepropertyinit4922); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_foreachpredicatepropertyinit4923); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -10612,16 +10610,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:884:4: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | ) ( ( 'mode' EQ (temp= stringSymbol ) COMA ) | ) 'as' EQ (temp= identifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70C4980334511DFABC0EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1A153061F511DFA066F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:884:64: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | )
             int alt94=2;
             int LA94_0 = input.LA(1);
 
-            if ( (LA94_0==74) ) {
+            if ( (LA94_0==56) ) {
                 alt94=1;
             }
-            else if ( (LA94_0==75||LA94_0==131) ) {
+            else if ( (LA94_0==49||LA94_0==83) ) {
                 alt94=2;
             }
             else {
@@ -10642,26 +10640,26 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:884:82: 'when' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70BFB61334511DF85A8EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF19C71061F511DFCF79F9DB0A0001C7");
                     }
-                    match(input,74,FOLLOW_74_in_tcs_predicatesemantic4969); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_tcs_predicatesemantic4970); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70BFB62334511DFB239EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF19C71161F511DF8DB9F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic4973); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic4974); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70C2270334511DFBDB6EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF19C71461F511DF8172F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:884:301: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:884:303: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_predicatesemantic4981);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_predicatesemantic4982);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -10677,9 +10675,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70C2271334511DF96CAEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF19EE2061F511DFBD9EF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_predicatesemantic4988); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_predicatesemantic4989); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10711,16 +10709,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70CBEB0334511DF8E4FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF1A635261F511DFB7BAF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:885:77: ( ( 'mode' EQ (temp= stringSymbol ) COMA ) | )
             int alt95=2;
             int LA95_0 = input.LA(1);
 
-            if ( (LA95_0==75) ) {
+            if ( (LA95_0==49) ) {
                 alt95=1;
             }
-            else if ( (LA95_0==131) ) {
+            else if ( (LA95_0==83) ) {
                 alt95=2;
             }
             else {
@@ -10741,26 +10739,26 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:885:95: 'mode' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70C7093334511DF80ACEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF1A3C4161F511DFA9C7F9DB0A0001C7");
                     }
-                    match(input,75,FOLLOW_75_in_tcs_predicatesemantic5011); if (state.failed) return ret2;
+                    match(input,49,FOLLOW_49_in_tcs_predicatesemantic5012); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70C97A0334511DFCFD9EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF1A3C4261F511DFA452F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic5015); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic5016); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70C97A3334511DF8F4FEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF1A3C4561F511DFC42AF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:885:314: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:885:316: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_predicatesemantic5023);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_predicatesemantic5024);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -10776,9 +10774,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B70C97A4334511DF87C2EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF1A635061F511DF8D67F9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_predicatesemantic5030); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_predicatesemantic5031); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10810,21 +10808,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70CE5C0334511DFC16EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF1A8A6061F511DF86E0F9DB0A0001C7");
             }
-            match(input,131,FOLLOW_131_in_tcs_predicatesemantic5047); if (state.failed) return ret2;
+            match(input,83,FOLLOW_83_in_tcs_predicatesemantic5048); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70CE5C1334511DFB012EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1A8A6161F511DFA5A8F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic5051); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic5052); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B70D0CD4334511DFAFCCEC660A0001C5");
+              _beforeSeqEl("E0356A04EF1A8A6661F511DF9EB2F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:886:234: (temp= identifierOrKeyword )?
             int alt96=2;
@@ -10837,7 +10835,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:886:236: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_predicatesemantic5059);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_predicatesemantic5060);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -10894,77 +10892,77 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:896:3: (ret= tcs_referstoparg | ret= tcs_lookinparg | ret= tcs_createinparg | ret= tcs_asparg | ret= tcs_separatorparg | ret= tcs_disambiguateparg | ret= tcs_autocreateparg | ret= tcs_importcontextparg | ret= tcs_partialparg | ret= tcs_forcedlowerparg | ret= tcs_forcedupperparg | ret= tcs_createasparg | ret= tcs_queryparg | ret= tcs_filterparg | ret= tcs_modeparg )
             int alt97=15;
             switch ( input.LA(1) ) {
-            case 129:
+            case 63:
                 {
                 alt97=1;
                 }
                 break;
-            case 56:
+            case 81:
                 {
                 alt97=2;
                 }
                 break;
-            case 53:
+            case 71:
                 {
                 alt97=3;
                 }
                 break;
-            case 131:
+            case 83:
                 {
                 alt97=4;
                 }
                 break;
-            case 112:
+            case 93:
                 {
                 alt97=5;
                 }
                 break;
-            case 117:
+            case 90:
                 {
                 alt97=6;
                 }
                 break;
-            case 110:
+            case 77:
                 {
                 alt97=7;
                 }
                 break;
-            case 123:
+            case 113:
                 {
                 alt97=8;
                 }
                 break;
-            case 120:
+            case 116:
                 {
                 alt97=9;
                 }
                 break;
-            case 70:
+            case 109:
                 {
                 alt97=10;
                 }
                 break;
-            case 86:
+            case 111:
                 {
                 alt97=11;
                 }
                 break;
-            case 60:
+            case 62:
                 {
                 alt97=12;
                 }
                 break;
-            case 97:
+            case 58:
                 {
                 alt97=13;
                 }
                 break;
-            case 89:
+            case 85:
                 {
                 alt97=14;
                 }
                 break;
-            case 75:
+            case 49:
                 {
                 alt97=15;
                 }
@@ -10981,7 +10979,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:896:4: ret= tcs_referstoparg
                     {
-                    pushFollow(FOLLOW_tcs_referstoparg_in_tcs_propertyarg5101);
+                    pushFollow(FOLLOW_tcs_referstoparg_in_tcs_propertyarg5102);
                     ret=tcs_referstoparg();
 
                     checkFollows();
@@ -10993,7 +10991,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:897:5: ret= tcs_lookinparg
                     {
-                    pushFollow(FOLLOW_tcs_lookinparg_in_tcs_propertyarg5109);
+                    pushFollow(FOLLOW_tcs_lookinparg_in_tcs_propertyarg5110);
                     ret=tcs_lookinparg();
 
                     checkFollows();
@@ -11005,7 +11003,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:898:5: ret= tcs_createinparg
                     {
-                    pushFollow(FOLLOW_tcs_createinparg_in_tcs_propertyarg5117);
+                    pushFollow(FOLLOW_tcs_createinparg_in_tcs_propertyarg5118);
                     ret=tcs_createinparg();
 
                     checkFollows();
@@ -11017,7 +11015,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:899:5: ret= tcs_asparg
                     {
-                    pushFollow(FOLLOW_tcs_asparg_in_tcs_propertyarg5125);
+                    pushFollow(FOLLOW_tcs_asparg_in_tcs_propertyarg5126);
                     ret=tcs_asparg();
 
                     checkFollows();
@@ -11029,7 +11027,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:900:5: ret= tcs_separatorparg
                     {
-                    pushFollow(FOLLOW_tcs_separatorparg_in_tcs_propertyarg5133);
+                    pushFollow(FOLLOW_tcs_separatorparg_in_tcs_propertyarg5134);
                     ret=tcs_separatorparg();
 
                     checkFollows();
@@ -11041,7 +11039,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 6 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:901:5: ret= tcs_disambiguateparg
                     {
-                    pushFollow(FOLLOW_tcs_disambiguateparg_in_tcs_propertyarg5141);
+                    pushFollow(FOLLOW_tcs_disambiguateparg_in_tcs_propertyarg5142);
                     ret=tcs_disambiguateparg();
 
                     checkFollows();
@@ -11053,7 +11051,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 7 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:902:5: ret= tcs_autocreateparg
                     {
-                    pushFollow(FOLLOW_tcs_autocreateparg_in_tcs_propertyarg5149);
+                    pushFollow(FOLLOW_tcs_autocreateparg_in_tcs_propertyarg5150);
                     ret=tcs_autocreateparg();
 
                     checkFollows();
@@ -11065,7 +11063,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 8 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:903:5: ret= tcs_importcontextparg
                     {
-                    pushFollow(FOLLOW_tcs_importcontextparg_in_tcs_propertyarg5157);
+                    pushFollow(FOLLOW_tcs_importcontextparg_in_tcs_propertyarg5158);
                     ret=tcs_importcontextparg();
 
                     checkFollows();
@@ -11077,7 +11075,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 9 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:904:5: ret= tcs_partialparg
                     {
-                    pushFollow(FOLLOW_tcs_partialparg_in_tcs_propertyarg5165);
+                    pushFollow(FOLLOW_tcs_partialparg_in_tcs_propertyarg5166);
                     ret=tcs_partialparg();
 
                     checkFollows();
@@ -11089,7 +11087,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 10 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:905:5: ret= tcs_forcedlowerparg
                     {
-                    pushFollow(FOLLOW_tcs_forcedlowerparg_in_tcs_propertyarg5173);
+                    pushFollow(FOLLOW_tcs_forcedlowerparg_in_tcs_propertyarg5174);
                     ret=tcs_forcedlowerparg();
 
                     checkFollows();
@@ -11101,7 +11099,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 11 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:906:5: ret= tcs_forcedupperparg
                     {
-                    pushFollow(FOLLOW_tcs_forcedupperparg_in_tcs_propertyarg5181);
+                    pushFollow(FOLLOW_tcs_forcedupperparg_in_tcs_propertyarg5182);
                     ret=tcs_forcedupperparg();
 
                     checkFollows();
@@ -11113,7 +11111,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 12 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:907:5: ret= tcs_createasparg
                     {
-                    pushFollow(FOLLOW_tcs_createasparg_in_tcs_propertyarg5189);
+                    pushFollow(FOLLOW_tcs_createasparg_in_tcs_propertyarg5190);
                     ret=tcs_createasparg();
 
                     checkFollows();
@@ -11125,7 +11123,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 13 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:908:5: ret= tcs_queryparg
                     {
-                    pushFollow(FOLLOW_tcs_queryparg_in_tcs_propertyarg5197);
+                    pushFollow(FOLLOW_tcs_queryparg_in_tcs_propertyarg5198);
                     ret=tcs_queryparg();
 
                     checkFollows();
@@ -11137,7 +11135,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 14 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:909:5: ret= tcs_filterparg
                     {
-                    pushFollow(FOLLOW_tcs_filterparg_in_tcs_propertyarg5205);
+                    pushFollow(FOLLOW_tcs_filterparg_in_tcs_propertyarg5206);
                     ret=tcs_filterparg();
 
                     checkFollows();
@@ -11149,7 +11147,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 15 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:910:5: ret= tcs_modeparg
                     {
-                    pushFollow(FOLLOW_tcs_modeparg_in_tcs_propertyarg5213);
+                    pushFollow(FOLLOW_tcs_modeparg_in_tcs_propertyarg5214);
                     ret=tcs_modeparg();
 
                     checkFollows();
@@ -11202,26 +11200,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:923:4: 'refersTo' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71215E0334511DFB9F5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1C5F2061F511DFB770F9DB0A0001C7");
             }
-            match(input,129,FOLLOW_129_in_tcs_referstoparg5243); if (state.failed) return ret2;
+            match(input,63,FOLLOW_63_in_tcs_referstoparg5244); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71215E1334511DFB926EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1C863061F511DF92F7F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_referstoparg5247); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_referstoparg5248); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7123CF2334511DF86D5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1C863361F511DF8E15F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:923:227: (temp= identifierOrKeyword )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:923:229: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_referstoparg5255);
+            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_referstoparg5256);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -11281,21 +11279,21 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:4: 'lookIn' EQ ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7134E60334511DFC3A5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1D709061F511DFBAA6F9DB0A0001C7");
             }
-            match(input,56,FOLLOW_56_in_tcs_lookinparg5298); if (state.failed) return ret2;
+            match(input,81,FOLLOW_81_in_tcs_lookinparg5299); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7134E61334511DF95B4EC660A0001C5");
+              _beforeSeqEl("E0356A04EF1D709161F511DF9DB2F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_lookinparg5302); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_lookinparg5303); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B715E671334511DFA8CAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF207DD061F511DFB52EF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:226: ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* ) ) )
             int alt99=2;
@@ -11325,16 +11323,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:244: SHARP 'all'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7159850334511DFAD45EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF2008A161F511DF828AF9DB0A0001C7");
                     }
-                    match(input,SHARP,FOLLOW_SHARP_in_tcs_lookinparg5313); if (state.failed) return ret2;
+                    match(input,SHARP,FOLLOW_SHARP_in_tcs_lookinparg5314); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7159851334511DFCF3AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF2008A261F511DFAC90F9DB0A0001C7");
                     }
-                    match(input,125,FOLLOW_125_in_tcs_lookinparg5317); if (state.failed) return ret2;
+                    match(input,114,FOLLOW_114_in_tcs_lookinparg5318); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11360,12 +11358,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:496: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B715BF63334511DFC423EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF2056C061F511DFB262F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:555: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:557: temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )*
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_lookinparg5334);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_lookinparg5335);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -11396,9 +11394,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:937:643: POINT
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0A5ADB5B715BF60334511DFCD20EC660A0001C5");
+                    	      _beforeSeqEl("E0356A04EF202FB261F511DFC70AF9DB0A0001C7");
                     	    }
-                    	    match(input,POINT,FOLLOW_POINT_in_tcs_lookinparg5343); if (state.failed) return ret2;
+                    	    match(input,POINT,FOLLOW_POINT_in_tcs_lookinparg5344); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -11408,7 +11406,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_lookinparg5351);
+                    	    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_lookinparg5352);
                     	    temp=identifierOrKeyword();
 
                     	    checkFollows();
@@ -11494,26 +11492,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:952:4: 'createIn' EQ (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B716F7E0334511DF9E25EC660A0001C5");
+              _beforeSeqEl("E0356A04EF21B65061F511DFB63FF9DB0A0001C7");
             }
-            match(input,53,FOLLOW_53_in_tcs_createinparg5404); if (state.failed) return ret2;
+            match(input,71,FOLLOW_71_in_tcs_createinparg5405); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B716F7E1334511DF9B67EC660A0001C5");
+              _beforeSeqEl("E0356A04EF21B65161F511DFAEF0F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_createinparg5408); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_createinparg5409); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7171EF1334511DF9F31EC660A0001C5");
+              _beforeSeqEl("E0356A04EF21DD6061F511DF9398F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:952:227: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:952:229: temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )*
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createinparg5416);
+            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createinparg5417);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -11544,9 +11542,9 @@ public class TCSParser extends ObservableInjectingParser {
             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:952:315: POINT
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0A5ADB5B716F7E4334511DFBE5FEC660A0001C5");
+            	      _beforeSeqEl("E0356A04EF21B65461F511DFA1BDF9DB0A0001C7");
             	    }
-            	    match(input,POINT,FOLLOW_POINT_in_tcs_createinparg5425); if (state.failed) return ret2;
+            	    match(input,POINT,FOLLOW_POINT_in_tcs_createinparg5426); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -11556,7 +11554,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createinparg5433);
+            	    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createinparg5434);
             	    temp=identifierOrKeyword();
 
             	    checkFollows();
@@ -11625,26 +11623,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:966:4: 'as' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7180950334511DFAD6BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF22C7C061F511DF88EBF9DB0A0001C7");
             }
-            match(input,131,FOLLOW_131_in_tcs_asparg5479); if (state.failed) return ret2;
+            match(input,83,FOLLOW_83_in_tcs_asparg5480); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7183060334511DFA969EC660A0001C5");
+              _beforeSeqEl("E0356A04EF22C7C161F511DFBB1FF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_asparg5483); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_asparg5484); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7183065334511DFA997EC660A0001C5");
+              _beforeSeqEl("E0356A04EF22C7C661F511DFC1DDF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:966:221: (temp= identifierOrKeyword )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:966:223: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_asparg5491);
+            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_asparg5492);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -11704,26 +11702,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:980:4: 'separator' EQ (temp= tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71941D0334511DF939EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF24004061F511DF99B5F9DB0A0001C7");
             }
-            match(input,112,FOLLOW_112_in_tcs_separatorparg5534); if (state.failed) return ret2;
+            match(input,93,FOLLOW_93_in_tcs_separatorparg5535); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71941D1334511DF9BB3EC660A0001C5");
+              _beforeSeqEl("E0356A04EF24004161F511DFA3B7F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_separatorparg5538); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_separatorparg5539); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71968E1334511DFB287EC660A0001C5");
+              _beforeSeqEl("E0356A04EF24004361F511DFB7E0F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:980:228: (temp= tcs_sequence )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:980:230: temp= tcs_sequence
             {
-            pushFollow(FOLLOW_tcs_sequence_in_tcs_separatorparg5546);
+            pushFollow(FOLLOW_tcs_sequence_in_tcs_separatorparg5547);
             temp=tcs_sequence();
 
             checkFollows();
@@ -11783,26 +11781,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:994:4: 'disambiguate' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71AEF80334511DFCA19EC660A0001C5");
+              _beforeSeqEl("E0356A04EF24EAA061F511DF855AF9DB0A0001C7");
             }
-            match(input,117,FOLLOW_117_in_tcs_disambiguateparg5589); if (state.failed) return ret2;
+            match(input,90,FOLLOW_90_in_tcs_disambiguateparg5590); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71AEF81334511DFA1BEEC660A0001C5");
+              _beforeSeqEl("E0356A04EF24EAA161F511DF84ABF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_disambiguateparg5593); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_disambiguateparg5594); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71AEF84334511DFB8FBEC660A0001C5");
+              _beforeSeqEl("E0356A04EF2511B161F511DF90F5F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:994:231: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:994:233: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_disambiguateparg5601);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_disambiguateparg5602);
             temp=stringSymbol();
 
             checkFollows();
@@ -11862,26 +11860,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1008:4: 'autoCreate' EQ (temp= tcs_autocreatekind )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71C00F0334511DFC948EC660A0001C5");
+              _beforeSeqEl("E0356A04EF264A3061F511DF97A3F9DB0A0001C7");
             }
-            match(input,110,FOLLOW_110_in_tcs_autocreateparg5644); if (state.failed) return ret2;
+            match(input,77,FOLLOW_77_in_tcs_autocreateparg5645); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71C00F1334511DFAC02EC660A0001C5");
+              _beforeSeqEl("E0356A04EF264A3161F511DFC81FF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_autocreateparg5648); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_autocreateparg5649); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B71C00F3334511DFC0E3EC660A0001C5");
+              _beforeSeqEl("E0356A04EF264A3361F511DFCE3CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1008:229: (temp= tcs_autocreatekind )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1008:231: temp= tcs_autocreatekind
             {
-            pushFollow(FOLLOW_tcs_autocreatekind_in_tcs_autocreateparg5656);
+            pushFollow(FOLLOW_tcs_autocreatekind_in_tcs_autocreateparg5657);
             temp=tcs_autocreatekind();
 
             checkFollows();
@@ -11933,17 +11931,17 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1018:3: ( ( 'always' ) | ( 'ifmissing' ) | ( 'never' ) )
             int alt101=3;
             switch ( input.LA(1) ) {
-            case 61:
+            case 97:
                 {
                 alt101=1;
                 }
                 break;
-            case 98:
+            case 101:
                 {
                 alt101=2;
                 }
                 break;
-            case 58:
+            case 119:
                 {
                 alt101=3;
                 }
@@ -11964,9 +11962,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1018:5: 'always'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7226990334511DFB947EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF29577061F511DFCE9CF9DB0A0001C7");
                     }
-                    match(input,61,FOLLOW_61_in_tcs_autocreatekind5700); if (state.failed) return ret2;
+                    match(input,97,FOLLOW_97_in_tcs_autocreatekind5701); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11986,9 +11984,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1019:5: 'ifmissing'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7237B01334511DF882EEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF30AA7061F511DFAF82F9DB0A0001C7");
                     }
-                    match(input,98,FOLLOW_98_in_tcs_autocreatekind5710); if (state.failed) return ret2;
+                    match(input,101,FOLLOW_101_in_tcs_autocreatekind5711); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12008,9 +12006,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1020:5: 'never'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B723C921334511DF83D4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF30AA7361F511DFA493F9DB0A0001C7");
                     }
-                    match(input,58,FOLLOW_58_in_tcs_autocreatekind5720); if (state.failed) return ret2;
+                    match(input,119,FOLLOW_119_in_tcs_autocreatekind5721); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12064,9 +12062,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1033:4: 'importContext'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B725C4F0334511DFBA57EC660A0001C5");
+              _beforeSeqEl("E0356A04EF353E5061F511DFA44BF9DB0A0001C7");
             }
-            match(input,123,FOLLOW_123_in_tcs_importcontextparg5751); if (state.failed) return ret2;
+            match(input,113,FOLLOW_113_in_tcs_importcontextparg5752); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -12112,9 +12110,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1047:4: 'partial'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B726FD70334511DF8A31EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3601A061F511DF987EF9DB0A0001C7");
             }
-            match(input,120,FOLLOW_120_in_tcs_partialparg5791); if (state.failed) return ret2;
+            match(input,116,FOLLOW_116_in_tcs_partialparg5792); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -12163,26 +12161,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1061:4: 'forcedLower' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B727E7D0334511DF962FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF36EC0061F511DFB70EF9DB0A0001C7");
             }
-            match(input,70,FOLLOW_70_in_tcs_forcedlowerparg5831); if (state.failed) return ret2;
+            match(input,109,FOLLOW_109_in_tcs_forcedlowerparg5832); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7280EE0334511DF8245EC660A0001C5");
+              _beforeSeqEl("E0356A04EF36EC0161F511DFA079F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_forcedlowerparg5835); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_forcedlowerparg5836); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7280EE2334511DFC807EC660A0001C5");
+              _beforeSeqEl("E0356A04EF36EC0361F511DF828AF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1061:230: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1061:232: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_forcedlowerparg5843);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_forcedlowerparg5844);
             temp=integerSymbol();
 
             checkFollows();
@@ -12242,26 +12240,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1075:4: 'forcedUpper' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7296E70334511DF853AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF37D66061F511DF82E3F9DB0A0001C7");
             }
-            match(input,86,FOLLOW_86_in_tcs_forcedupperparg5886); if (state.failed) return ret2;
+            match(input,111,FOLLOW_111_in_tcs_forcedupperparg5887); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7296E71334511DF8CFDEC660A0001C5");
+              _beforeSeqEl("E0356A04EF37D66161F511DFC475F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_forcedupperparg5890); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_forcedupperparg5891); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7296E73334511DFB9F8EC660A0001C5");
+              _beforeSeqEl("E0356A04EF37D66361F511DF8C5DF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1075:230: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1075:232: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_forcedupperparg5898);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_forcedupperparg5899);
             temp=integerSymbol();
 
             checkFollows();
@@ -12321,26 +12319,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1089:4: 'createAs' EQ (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72AA6F0334511DFB1FAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF38C0C061F511DF8113F9DB0A0001C7");
             }
-            match(input,60,FOLLOW_60_in_tcs_createasparg5941); if (state.failed) return ret2;
+            match(input,62,FOLLOW_62_in_tcs_createasparg5942); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72AA6F1334511DFAE7CEC660A0001C5");
+              _beforeSeqEl("E0356A04EF38C0C161F511DFBF19F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_createasparg5945); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_createasparg5946); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72ACE03334511DF8470EC660A0001C5");
+              _beforeSeqEl("E0356A04EF38E7D261F511DFACA8F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1089:227: (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1089:229: temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )*
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createasparg5953);
+            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createasparg5954);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -12371,9 +12369,9 @@ public class TCSParser extends ObservableInjectingParser {
             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1089:307: DLCOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0A5ADB5B72ACE00334511DF94B3EC660A0001C5");
+            	      _beforeSeqEl("E0356A04EF38C0C461F511DFA873F9DB0A0001C7");
             	    }
-            	    match(input,DLCOLON,FOLLOW_DLCOLON_in_tcs_createasparg5962); if (state.failed) return ret2;
+            	    match(input,DLCOLON,FOLLOW_DLCOLON_in_tcs_createasparg5963); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -12383,7 +12381,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createasparg5970);
+            	    pushFollow(FOLLOW_identifierOrKeyword_in_tcs_createasparg5971);
             	    temp=identifierOrKeyword();
 
             	    checkFollows();
@@ -12452,26 +12450,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1103:4: 'query' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72C2D90334511DF99F4EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3A205061F511DFAAC2F9DB0A0001C7");
             }
-            match(input,97,FOLLOW_97_in_tcs_queryparg6016); if (state.failed) return ret2;
+            match(input,58,FOLLOW_58_in_tcs_queryparg6017); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72C2D91334511DF8E91EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3A205161F511DF85D0F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_queryparg6020); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_queryparg6021); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72C2D94334511DF8744EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3A476061F511DF951BF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1103:224: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1103:226: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_queryparg6028);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_queryparg6029);
             temp=stringSymbol();
 
             checkFollows();
@@ -12531,26 +12529,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:4: 'filter' EQ (temp= stringSymbol ) ( ( COMA 'invert' EQ (temp= stringSymbol ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72D3F00334511DF89EAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF3B7FE061F511DFC6ECF9DB0A0001C7");
             }
-            match(input,89,FOLLOW_89_in_tcs_filterparg6071); if (state.failed) return ret2;
+            match(input,85,FOLLOW_85_in_tcs_filterparg6072); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72D6610334511DFA29BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF3B7FE161F511DFB8AEF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_filterparg6075); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_filterparg6076); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72D6613334511DF9E0AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF3BCE0161F511DFC9EEF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:225: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:227: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_filterparg6083);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_filterparg6084);
             temp=stringSymbol();
 
             checkFollows();
@@ -12566,7 +12564,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72DDB40334511DFADC0EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3C433061F511DF8A81F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:357: ( ( COMA 'invert' EQ (temp= stringSymbol ) ) | )
             int alt103=2;
@@ -12575,10 +12573,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA103_0==COMA) ) {
                 int LA103_1 = input.LA(2);
 
-                if ( (LA103_1==53||LA103_1==56||LA103_1==60||LA103_1==70||LA103_1==75||LA103_1==86||LA103_1==89||LA103_1==97||LA103_1==110||LA103_1==112||LA103_1==117||LA103_1==120||LA103_1==123||LA103_1==129||LA103_1==131) ) {
+                if ( (LA103_1==49||LA103_1==58||(LA103_1>=62 && LA103_1<=63)||LA103_1==71||LA103_1==77||LA103_1==81||LA103_1==83||LA103_1==85||LA103_1==90||LA103_1==93||LA103_1==109||LA103_1==111||LA103_1==113||LA103_1==116) ) {
                     alt103=2;
                 }
-                else if ( (LA103_1==66) ) {
+                else if ( (LA103_1==104) ) {
                     alt103=1;
                 }
                 else {
@@ -12610,33 +12608,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:375: COMA 'invert' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B72D8D22334511DFC3CFEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF3C1C2061F511DFCD1CF9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_filterparg6096); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_filterparg6097); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B72D8D23334511DF881FEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF3C1C2161F511DFBE44F9DB0A0001C7");
                     }
-                    match(input,66,FOLLOW_66_in_tcs_filterparg6100); if (state.failed) return ret2;
+                    match(input,104,FOLLOW_104_in_tcs_filterparg6101); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B72DB430334511DF8D19EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF3C1C2261F511DFA2F6F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_filterparg6104); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_filterparg6105); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B72DB433334511DFB8E3EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF3C1C2561F511DF97AAF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:677: (temp= stringSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1117:679: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_filterparg6112);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_filterparg6113);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -12723,26 +12721,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1132:4: 'mode' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72EECB0334511DFBCE4EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3D54A061F511DFAE9DF9DB0A0001C7");
             }
-            match(input,75,FOLLOW_75_in_tcs_modeparg6168); if (state.failed) return ret2;
+            match(input,49,FOLLOW_49_in_tcs_modeparg6169); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72F13C0334511DFC2C7EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3D54A161F511DFC586F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_modeparg6172); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_modeparg6173); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B72F13C3334511DF9687EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3D54A461F511DFB674F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1132:223: (temp= identifierOrKeyword )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1132:225: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_modeparg6180);
+            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_modeparg6181);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -12796,27 +12794,27 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1142:3: (ret= tcs_nbnlbarg | ret= tcs_indentincrbarg | ret= tcs_startnlbarg | ret= tcs_startnbnlbarg | ret= tcs_endnlbarg )
             int alt104=5;
             switch ( input.LA(1) ) {
-            case 55:
+            case 95:
                 {
                 alt104=1;
                 }
                 break;
-            case 127:
+            case 61:
                 {
                 alt104=2;
                 }
                 break;
-            case 95:
+            case 125:
                 {
                 alt104=3;
                 }
                 break;
-            case 105:
+            case 68:
                 {
                 alt104=4;
                 }
                 break;
-            case 124:
+            case 105:
                 {
                 alt104=5;
                 }
@@ -12833,7 +12831,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1142:4: ret= tcs_nbnlbarg
                     {
-                    pushFollow(FOLLOW_tcs_nbnlbarg_in_tcs_blockarg6220);
+                    pushFollow(FOLLOW_tcs_nbnlbarg_in_tcs_blockarg6221);
                     ret=tcs_nbnlbarg();
 
                     checkFollows();
@@ -12845,7 +12843,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1143:5: ret= tcs_indentincrbarg
                     {
-                    pushFollow(FOLLOW_tcs_indentincrbarg_in_tcs_blockarg6228);
+                    pushFollow(FOLLOW_tcs_indentincrbarg_in_tcs_blockarg6229);
                     ret=tcs_indentincrbarg();
 
                     checkFollows();
@@ -12857,7 +12855,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1144:5: ret= tcs_startnlbarg
                     {
-                    pushFollow(FOLLOW_tcs_startnlbarg_in_tcs_blockarg6236);
+                    pushFollow(FOLLOW_tcs_startnlbarg_in_tcs_blockarg6237);
                     ret=tcs_startnlbarg();
 
                     checkFollows();
@@ -12869,7 +12867,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1145:5: ret= tcs_startnbnlbarg
                     {
-                    pushFollow(FOLLOW_tcs_startnbnlbarg_in_tcs_blockarg6244);
+                    pushFollow(FOLLOW_tcs_startnbnlbarg_in_tcs_blockarg6245);
                     ret=tcs_startnbnlbarg();
 
                     checkFollows();
@@ -12881,7 +12879,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1146:5: ret= tcs_endnlbarg
                     {
-                    pushFollow(FOLLOW_tcs_endnlbarg_in_tcs_blockarg6252);
+                    pushFollow(FOLLOW_tcs_endnlbarg_in_tcs_blockarg6253);
                     ret=tcs_endnlbarg();
 
                     checkFollows();
@@ -12934,26 +12932,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1159:4: 'nbNL' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7310F90334511DFA145EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3F778061F511DF8E91F9DB0A0001C7");
             }
-            match(input,55,FOLLOW_55_in_tcs_nbnlbarg6282); if (state.failed) return ret2;
+            match(input,95,FOLLOW_95_in_tcs_nbnlbarg6283); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73136A0334511DFCEA0EC660A0001C5");
+              _beforeSeqEl("E0356A04EF3F778161F511DF96EEF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_nbnlbarg6286); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_nbnlbarg6287); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7315DB0334511DFA3DBEC660A0001C5");
+              _beforeSeqEl("E0356A04EF3F778361F511DF9E36F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1159:223: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1159:225: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_nbnlbarg6294);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_nbnlbarg6295);
             temp=integerSymbol();
 
             checkFollows();
@@ -13013,26 +13011,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1173:4: 'indentIncr' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7335980334511DF8D50EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4088F061F511DFB389F9DB0A0001C7");
             }
-            match(input,127,FOLLOW_127_in_tcs_indentincrbarg6337); if (state.failed) return ret2;
+            match(input,61,FOLLOW_61_in_tcs_indentincrbarg6338); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7335981334511DF9B25EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4088F161F511DF9B95F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_indentincrbarg6341); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_indentincrbarg6342); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7335983334511DF9AD9EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4088F361F511DFAD18F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1173:229: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1173:231: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_indentincrbarg6349);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_indentincrbarg6350);
             temp=integerSymbol();
 
             checkFollows();
@@ -13089,30 +13087,30 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1187:4: 'startNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7346AF0334511DF9FEEEC660A0001C5");
+              _beforeSeqEl("E0356A04EF41C17061F511DF8758F9DB0A0001C7");
             }
-            match(input,95,FOLLOW_95_in_tcs_startnlbarg6392); if (state.failed) return ret2;
+            match(input,125,FOLLOW_125_in_tcs_startnlbarg6393); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7346AF1334511DF93E4EC660A0001C5");
+              _beforeSeqEl("E0356A04EF41C17161F511DFB3ECF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_startnlbarg6396); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_startnlbarg6397); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B734B913334511DF9F0EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF420F9161F511DFB131F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1187:227: ( ( 'true' ) | ( 'false' ) )
             int alt105=2;
             int LA105_0 = input.LA(1);
 
-            if ( (LA105_0==52) ) {
+            if ( (LA105_0==70) ) {
                 alt105=1;
             }
-            else if ( (LA105_0==51) ) {
+            else if ( (LA105_0==100) ) {
                 alt105=2;
             }
             else {
@@ -13133,9 +13131,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1187:245: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7349201334511DF8159EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF41E88161F511DF8DEFF9DB0A0001C7");
                     }
-                    match(input,52,FOLLOW_52_in_tcs_startnlbarg6406); if (state.failed) return ret2;
+                    match(input,70,FOLLOW_70_in_tcs_startnlbarg6407); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13161,9 +13159,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1187:413: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B734B911334511DFC4D0EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF41E88361F511DFB8B2F9DB0A0001C7");
                     }
-                    match(input,51,FOLLOW_51_in_tcs_startnlbarg6419); if (state.failed) return ret2;
+                    match(input,100,FOLLOW_100_in_tcs_startnlbarg6420); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13230,26 +13228,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1202:4: 'startNbNL' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7386290334511DFCDD6EC660A0001C5");
+              _beforeSeqEl("E0356A04EF43210061F511DF87DFF9DB0A0001C7");
             }
-            match(input,105,FOLLOW_105_in_tcs_startnbnlbarg6466); if (state.failed) return ret2;
+            match(input,68,FOLLOW_68_in_tcs_startnbnlbarg6467); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73889A0334511DFBBF2EC660A0001C5");
+              _beforeSeqEl("E0356A04EF43210161F511DFC825F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_startnbnlbarg6470); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_startnbnlbarg6471); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73889A2334511DFBE59EC660A0001C5");
+              _beforeSeqEl("E0356A04EF43210361F511DFAD30F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1202:228: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1202:230: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_startnbnlbarg6478);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_startnbnlbarg6479);
             temp=integerSymbol();
 
             checkFollows();
@@ -13306,30 +13304,30 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1216:4: 'endNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7399B10334511DFC48EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF440B6061F511DF98C8F9DB0A0001C7");
             }
-            match(input,124,FOLLOW_124_in_tcs_endnlbarg6521); if (state.failed) return ret2;
+            match(input,105,FOLLOW_105_in_tcs_endnlbarg6522); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7399B11334511DFB669EC660A0001C5");
+              _beforeSeqEl("E0356A04EF440B6161F511DFB599F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_endnlbarg6525); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_endnlbarg6526); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B739E932334511DFC27EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF44598261F511DFC275F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1216:225: ( ( 'true' ) | ( 'false' ) )
             int alt106=2;
             int LA106_0 = input.LA(1);
 
-            if ( (LA106_0==52) ) {
+            if ( (LA106_0==70) ) {
                 alt106=1;
             }
-            else if ( (LA106_0==51) ) {
+            else if ( (LA106_0==100) ) {
                 alt106=2;
             }
             else {
@@ -13350,9 +13348,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1216:243: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B739C222334511DFB180EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF44327361F511DF9926F9DB0A0001C7");
                     }
-                    match(input,52,FOLLOW_52_in_tcs_endnlbarg6535); if (state.failed) return ret2;
+                    match(input,70,FOLLOW_70_in_tcs_endnlbarg6536); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13378,9 +13376,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1216:411: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B739E930334511DFB75BEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF44598061F511DFC744F9DB0A0001C7");
                     }
-                    match(input,51,FOLLOW_51_in_tcs_endnlbarg6548); if (state.failed) return ret2;
+                    match(input,100,FOLLOW_100_in_tcs_endnlbarg6549); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13447,7 +13445,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:4: (temp= identifier )? EQ (temp= stringSymbol ) ( ( COLON (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )? ) | ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73AFAA1334511DFC9B2EC660A0001C5");
+              _beforeSeqEl("E0356A04EF456AF161F511DF9C95F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:63: (temp= identifier )?
             int alt107=2;
@@ -13460,7 +13458,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:65: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_symbol6599);
+                    pushFollow(FOLLOW_identifier_in_tcs_symbol6600);
                     temp=identifier();
 
                     checkFollows();
@@ -13479,19 +13477,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73B21B0334511DF9956EC660A0001C5");
+              _beforeSeqEl("E0356A04EF456AF261F511DFB19BF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_symbol6608); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_symbol6609); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73B21B3334511DF9808EC660A0001C5");
+              _beforeSeqEl("E0356A04EF456AF561F511DFA365F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:271: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:273: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_symbol6616);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_symbol6617);
             temp=stringSymbol();
 
             checkFollows();
@@ -13507,7 +13505,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73B96E0334511DF9910EC660A0001C5");
+              _beforeSeqEl("E0356A04EF45E02061F511DF8FA0F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:402: ( ( COLON (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )? ) | )
             int alt110=2;
@@ -13537,27 +13535,27 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:420: COLON (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73B48C3334511DFCF25EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF45920361F511DFBAB5F9DB0A0001C7");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_tcs_symbol6629); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_tcs_symbol6630); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73B6FD1334511DFA2E5EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF45B91161F511DF917BF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:561: (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )?
                     int alt109=2;
                     int LA109_0 = input.LA(1);
 
-                    if ( (LA109_0==68||LA109_0==87||LA109_0==104||LA109_0==126) ) {
+                    if ( (LA109_0==60||LA109_0==89||LA109_0==103||LA109_0==108) ) {
                         alt109=1;
                     }
                     switch (alt109) {
                         case 1 :
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:563: temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )*
                             {
-                            pushFollow(FOLLOW_tcs_spacekind_in_tcs_symbol6637);
+                            pushFollow(FOLLOW_tcs_spacekind_in_tcs_symbol6638);
                             temp=tcs_spacekind();
 
                             checkFollows();
@@ -13588,9 +13586,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1231:637: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0A5ADB5B73B48C5334511DFCCBAEC660A0001C5");
+                            	      _beforeSeqEl("E0356A04EF45920561F511DFAD63F9DB0A0001C7");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_tcs_symbol6646); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_tcs_symbol6647); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -13600,7 +13598,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_tcs_spacekind_in_tcs_symbol6654);
+                            	    pushFollow(FOLLOW_tcs_spacekind_in_tcs_symbol6655);
                             	    temp=tcs_spacekind();
 
                             	    checkFollows();
@@ -13655,9 +13653,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73B96E1334511DF8F89EC660A0001C5");
+              _beforeSeqEl("E0356A04EF45E02161F511DFC8C5F9DB0A0001C7");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_tcs_symbol6679); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_tcs_symbol6680); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -13698,22 +13696,22 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1242:3: ( ( 'leftSpace' ) | ( 'leftNone' ) | ( 'rightSpace' ) | ( 'rightNone' ) )
             int alt111=4;
             switch ( input.LA(1) ) {
-            case 126:
+            case 103:
                 {
                 alt111=1;
                 }
                 break;
-            case 68:
+            case 89:
                 {
                 alt111=2;
                 }
                 break;
-            case 87:
+            case 108:
                 {
                 alt111=3;
                 }
                 break;
-            case 104:
+            case 60:
                 {
                 alt111=4;
                 }
@@ -13734,9 +13732,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1242:5: 'leftSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73CA851334511DFC90DEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF46CA8161F511DFC914F9DB0A0001C7");
                     }
-                    match(input,126,FOLLOW_126_in_tcs_spacekind6721); if (state.failed) return ret2;
+                    match(input,103,FOLLOW_103_in_tcs_spacekind6722); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13756,9 +13754,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1243:5: 'leftNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73CCF61334511DFBF9CEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF46F19161F511DFAE0AF9DB0A0001C7");
                     }
-                    match(input,68,FOLLOW_68_in_tcs_spacekind6731); if (state.failed) return ret2;
+                    match(input,89,FOLLOW_89_in_tcs_spacekind6732); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13778,9 +13776,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1244:5: 'rightSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73CCF64334511DFCDDDEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF46F19461F511DF9AEEF9DB0A0001C7");
                     }
-                    match(input,87,FOLLOW_87_in_tcs_spacekind6741); if (state.failed) return ret2;
+                    match(input,108,FOLLOW_108_in_tcs_spacekind6742); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13800,9 +13798,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1245:5: 'rightNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73CF671334511DF8E22EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4718A161F511DFC9BFF9DB0A0001C7");
                     }
-                    match(input,104,FOLLOW_104_in_tcs_spacekind6751); if (state.failed) return ret2;
+                    match(input,60,FOLLOW_60_in_tcs_spacekind6752); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13859,7 +13857,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1258:4: (temp= identifier )? EQ (temp= stringSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73E07E1334511DFC0C5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF482A1061F511DFB837F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1258:63: (temp= identifier )?
             int alt112=2;
@@ -13872,7 +13870,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1258:65: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_keyword6786);
+                    pushFollow(FOLLOW_identifier_in_tcs_keyword6787);
                     temp=identifier();
 
                     checkFollows();
@@ -13891,19 +13889,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73E07E2334511DF8863EC660A0001C5");
+              _beforeSeqEl("E0356A04EF482A1161F511DF9D13F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_keyword6795); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_keyword6796); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73E07E5334511DFA183EC660A0001C5");
+              _beforeSeqEl("E0356A04EF482A1461F511DFAE55F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1258:271: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1258:273: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_keyword6803);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_keyword6804);
             temp=stringSymbol();
 
             checkFollows();
@@ -13919,9 +13917,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73E2EF0334511DFB4DDEC660A0001C5");
+              _beforeSeqEl("E0356A04EF48512061F511DFC5DDF9DB0A0001C7");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_tcs_keyword6810); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_tcs_keyword6811); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -13970,14 +13968,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1272:4: 'operators' ( ( (temp= identifier ) ) | ) LCURLY ( ( (temp= tcs_priority (temp= tcs_priority )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73F1950334511DF99BFEC660A0001C5");
+              _beforeSeqEl("E0356A04EF493B8061F511DF84E5F9DB0A0001C7");
             }
-            match(input,94,FOLLOW_94_in_tcs_operatorlist6851); if (state.failed) return ret2;
+            match(input,59,FOLLOW_59_in_tcs_operatorlist6852); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73F6770334511DFB601EC660A0001C5");
+              _beforeSeqEl("E0356A04EF49629161F511DFB379F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1272:150: ( ( (temp= identifier ) ) | )
             int alt113=2;
@@ -14007,12 +14005,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1272:168: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B73F4062334511DFC7DDEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF493B8561F511DF8E74F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1272:227: (temp= identifier )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1272:229: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_operatorlist6864);
+                    pushFollow(FOLLOW_identifier_in_tcs_operatorlist6865);
                     temp=identifier();
 
                     checkFollows();
@@ -14055,14 +14053,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73F6771334511DFBC4AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4989A061F511DFBEDCF9DB0A0001C7");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_tcs_operatorlist6884); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_tcs_operatorlist6885); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73F8E80334511DFB398EC660A0001C5");
+              _beforeSeqEl("E0356A04EF49B0B061F511DFBFF4F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1273:159: ( ( (temp= tcs_priority (temp= tcs_priority )* )? ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1273:160: ( (temp= tcs_priority (temp= tcs_priority )* )? )
@@ -14071,20 +14069,20 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1273:161: (temp= tcs_priority (temp= tcs_priority )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73F6773334511DFCD20EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4989A261F511DFB762F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1273:220: (temp= tcs_priority (temp= tcs_priority )* )?
             int alt115=2;
             int LA115_0 = input.LA(1);
 
-            if ( (LA115_0==118) ) {
+            if ( (LA115_0==82) ) {
                 alt115=1;
             }
             switch (alt115) {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1273:222: temp= tcs_priority (temp= tcs_priority )*
                     {
-                    pushFollow(FOLLOW_tcs_priority_in_tcs_operatorlist6895);
+                    pushFollow(FOLLOW_tcs_priority_in_tcs_operatorlist6896);
                     temp=tcs_priority();
 
                     checkFollows();
@@ -14099,7 +14097,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt114=2;
                         int LA114_0 = input.LA(1);
 
-                        if ( (LA114_0==118) ) {
+                        if ( (LA114_0==82) ) {
                             alt114=1;
                         }
 
@@ -14108,7 +14106,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1273:282: temp= tcs_priority
                     	    {
-                    	    pushFollow(FOLLOW_tcs_priority_in_tcs_operatorlist6903);
+                    	    pushFollow(FOLLOW_tcs_priority_in_tcs_operatorlist6904);
                     	    temp=tcs_priority();
 
                     	    checkFollows();
@@ -14145,9 +14143,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B73F8E81334511DFACC8EC660A0001C5");
+              _beforeSeqEl("E0356A04EF49D7C061F511DFCB69F9DB0A0001C7");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_tcs_operatorlist6918); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_tcs_operatorlist6919); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -14196,19 +14194,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:4: 'priority' (temp= integerSymbol ) ( () | ( COMA (temp= tcs_associativity ) ) ) LCURLY ( ( (temp= tcs_operator (temp= tcs_operator )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7413C30334511DFBDCAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4AC22061F511DFCCFAF9DB0A0001C7");
             }
-            match(input,118,FOLLOW_118_in_tcs_priority6959); if (state.failed) return ret2;
+            match(input,82,FOLLOW_82_in_tcs_priority6960); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7413C32334511DF877BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4AC22261F511DF8674F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:148: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:150: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_priority6966);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_priority6967);
             temp=integerSymbol();
 
             checkFollows();
@@ -14224,7 +14222,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B741B160334511DFB30DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4B104161F511DF8AB6F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:280: ( () | ( COMA (temp= tcs_associativity ) ) )
             int alt116=2;
@@ -14274,19 +14272,19 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:424: COMA (temp= tcs_associativity )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7418A52334511DFB4A1EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4AE93561F511DFABF8F9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_priority6989); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_priority6990); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7418A54334511DFB3DFEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4AE93761F511DF8D5AF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:564: (temp= tcs_associativity )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1287:566: temp= tcs_associativity
                     {
-                    pushFollow(FOLLOW_tcs_associativity_in_tcs_priority6997);
+                    pushFollow(FOLLOW_tcs_associativity_in_tcs_priority6998);
                     temp=tcs_associativity();
 
                     checkFollows();
@@ -14320,14 +14318,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B741D870334511DFB3B0EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4B375061F511DFBA35F9DB0A0001C7");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_tcs_priority7011); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_tcs_priority7012); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B741D874334511DF94F6EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4B375461F511DF80D1F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1288:159: ( ( (temp= tcs_operator (temp= tcs_operator )* )? ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1288:160: ( (temp= tcs_operator (temp= tcs_operator )* )? )
@@ -14336,20 +14334,20 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1288:161: (temp= tcs_operator (temp= tcs_operator )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B741D872334511DF9B9AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4B375261F511DF80E7F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1288:220: (temp= tcs_operator (temp= tcs_operator )* )?
             int alt118=2;
             int LA118_0 = input.LA(1);
 
-            if ( (LA118_0==NAME||LA118_0==EQ||LA118_0==111) ) {
+            if ( (LA118_0==NAME||LA118_0==EQ||LA118_0==76) ) {
                 alt118=1;
             }
             switch (alt118) {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1288:222: temp= tcs_operator (temp= tcs_operator )*
                     {
-                    pushFollow(FOLLOW_tcs_operator_in_tcs_priority7022);
+                    pushFollow(FOLLOW_tcs_operator_in_tcs_priority7023);
                     temp=tcs_operator();
 
                     checkFollows();
@@ -14364,7 +14362,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt117=2;
                         int LA117_0 = input.LA(1);
 
-                        if ( (LA117_0==NAME||LA117_0==EQ||LA117_0==111) ) {
+                        if ( (LA117_0==NAME||LA117_0==EQ||LA117_0==76) ) {
                             alt117=1;
                         }
 
@@ -14373,7 +14371,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1288:281: temp= tcs_operator
                     	    {
-                    	    pushFollow(FOLLOW_tcs_operator_in_tcs_priority7030);
+                    	    pushFollow(FOLLOW_tcs_operator_in_tcs_priority7031);
                     	    temp=tcs_operator();
 
                     	    checkFollows();
@@ -14410,9 +14408,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B741FF80334511DF8D08EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4B5E6061F511DFCB23F9DB0A0001C7");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_tcs_priority7045); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_tcs_priority7046); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -14461,13 +14459,13 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1302:4: ( ( 'postfix' ) | ) (temp= identifier )? EQ ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | ) COMA (temp= integerSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7433800334511DFC475EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4C96E261F511DFBBE5F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1302:64: ( ( 'postfix' ) | )
             int alt119=2;
             int LA119_0 = input.LA(1);
 
-            if ( (LA119_0==111) ) {
+            if ( (LA119_0==76) ) {
                 alt119=1;
             }
             else if ( (LA119_0==NAME||LA119_0==EQ) ) {
@@ -14491,9 +14489,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1302:82: 'postfix'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B74310F2334511DF9A51EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4C96E061F511DFB6C4F9DB0A0001C7");
                     }
-                    match(input,111,FOLLOW_111_in_tcs_operator7092); if (state.failed) return ret2;
+                    match(input,76,FOLLOW_76_in_tcs_operator7093); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14531,7 +14529,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7433802334511DFB22BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4C96E461F511DFBF1BF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:76: (temp= identifier )?
             int alt120=2;
@@ -14544,7 +14542,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:78: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_operator7114);
+                    pushFollow(FOLLOW_identifier_in_tcs_operator7115);
                     temp=identifier();
 
                     checkFollows();
@@ -14563,14 +14561,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7433803334511DF8E70EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4CBDF061F511DF8F0FF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_operator7123); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_operator7124); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74581F0334511DFBEFAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4D5A3161F511DFBEB7F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:285: ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | )
             int alt122=2;
@@ -14600,7 +14598,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:303: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B744E5B0334511DF91D0EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4D332161F511DF8F61F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:362: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     int alt121=2;
@@ -14630,12 +14628,12 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:380: (temp= identifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B7435F14334511DF95FAEC660A0001C5");
+                              _beforeSeqEl("E0356A04EF4CE50061F511DFCE98F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:439: (temp= identifier )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1303:441: temp= identifier
                             {
-                            pushFollow(FOLLOW_identifier_in_tcs_operator7142);
+                            pushFollow(FOLLOW_identifier_in_tcs_operator7143);
                             temp=identifier();
 
                             checkFollows();
@@ -14669,12 +14667,12 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1304:21: (temp= stringSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B7447083334511DFBC7AEC660A0001C5");
+                              _beforeSeqEl("E0356A04EF4D0C1361F511DFBCC9F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1304:80: (temp= stringSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1304:82: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_tcs_operator7162);
+                            pushFollow(FOLLOW_stringSymbol_in_tcs_operator7163);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -14732,19 +14730,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74581F1334511DFA6DFEC660A0001C5");
+              _beforeSeqEl("E0356A04EF4D5A3261F511DFA98DF9DB0A0001C7");
             }
-            match(input,COMA,FOLLOW_COMA_in_tcs_operator7187); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_tcs_operator7188); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74581F3334511DF84E7EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4D814161F511DF8342F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1305:157: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1305:159: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_operator7195);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_operator7196);
             temp=integerSymbol();
 
             checkFollows();
@@ -14760,9 +14758,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74581F4334511DFA0E5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF4D814261F511DF93CBF9DB0A0001C7");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_tcs_operator7202); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_tcs_operator7203); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -14804,10 +14802,10 @@ public class TCSParser extends ObservableInjectingParser {
             int alt123=2;
             int LA123_0 = input.LA(1);
 
-            if ( (LA123_0==88) ) {
+            if ( (LA123_0==131) ) {
                 alt123=1;
             }
-            else if ( (LA123_0==113) ) {
+            else if ( (LA123_0==110) ) {
                 alt123=2;
             }
             else {
@@ -14825,9 +14823,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1315:5: 'left'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B746E181334511DFA79CEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4EB9C161F511DFC29CF9DB0A0001C7");
                     }
-                    match(input,88,FOLLOW_88_in_tcs_associativity7244); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_tcs_associativity7245); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14847,9 +14845,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1316:5: 'right'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B746E184334511DFBA8BEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF4EE0D161F511DFC45AF9DB0A0001C7");
                     }
-                    match(input,113,FOLLOW_113_in_tcs_associativity7254); if (state.failed) return ret2;
+                    match(input,110,FOLLOW_110_in_tcs_associativity7255); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14900,7 +14898,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1325:3: (ret= tcs_andexp )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1325:4: ret= tcs_andexp
             {
-            pushFollow(FOLLOW_tcs_andexp_in_tcs_expression7282);
+            pushFollow(FOLLOW_tcs_andexp_in_tcs_expression7283);
             ret=tcs_andexp();
 
             checkFollows();
@@ -14950,7 +14948,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1338:4: (temp= tcs_atomexp ( ( 'and' ) temp= tcs_atomexp )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B748DD51334511DFCDC8EC660A0001C5");
+              _beforeSeqEl("E0356A04EF508E8061F511DFBCBEF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1338:63: (temp= tcs_atomexp ( ( 'and' ) temp= tcs_atomexp )* )?
             int alt125=2;
@@ -14963,7 +14961,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1338:65: temp= tcs_atomexp ( ( 'and' ) temp= tcs_atomexp )*
                     {
-                    pushFollow(FOLLOW_tcs_atomexp_in_tcs_andexp7316);
+                    pushFollow(FOLLOW_tcs_atomexp_in_tcs_andexp7317);
                     temp=tcs_atomexp();
 
                     checkFollows();
@@ -14978,7 +14976,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt124=2;
                         int LA124_0 = input.LA(1);
 
-                        if ( (LA124_0==49) ) {
+                        if ( (LA124_0==132) ) {
                             alt124=1;
                         }
 
@@ -14994,9 +14992,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1338:142: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0A5ADB5B748B641334511DF8FD6EC660A0001C5");
+                    	      _beforeSeqEl("E0356A04EF50677161F511DFCBA5F9DB0A0001C7");
                     	    }
-                    	    match(input,49,FOLLOW_49_in_tcs_andexp7324); if (state.failed) return ret2;
+                    	    match(input,132,FOLLOW_132_in_tcs_andexp7325); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -15006,7 +15004,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_tcs_atomexp_in_tcs_andexp7331);
+                    	    pushFollow(FOLLOW_tcs_atomexp_in_tcs_andexp7332);
                     	    temp=tcs_atomexp();
 
                     	    checkFollows();
@@ -15076,7 +15074,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1348:4: ret= tcs_equalsexp
                     {
-                    pushFollow(FOLLOW_tcs_equalsexp_in_tcs_atomexp7376);
+                    pushFollow(FOLLOW_tcs_equalsexp_in_tcs_atomexp7377);
                     ret=tcs_equalsexp();
 
                     checkFollows();
@@ -15088,7 +15086,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1349:5: ret= tcs_booleanpropertyexp
                     {
-                    pushFollow(FOLLOW_tcs_booleanpropertyexp_in_tcs_atomexp7384);
+                    pushFollow(FOLLOW_tcs_booleanpropertyexp_in_tcs_atomexp7385);
                     ret=tcs_booleanpropertyexp();
 
                     checkFollows();
@@ -15100,7 +15098,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1350:5: ret= tcs_isdefinedexp
                     {
-                    pushFollow(FOLLOW_tcs_isdefinedexp_in_tcs_atomexp7392);
+                    pushFollow(FOLLOW_tcs_isdefinedexp_in_tcs_atomexp7393);
                     ret=tcs_isdefinedexp();
 
                     checkFollows();
@@ -15112,7 +15110,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1351:5: ret= tcs_oneexp
                     {
-                    pushFollow(FOLLOW_tcs_oneexp_in_tcs_atomexp7400);
+                    pushFollow(FOLLOW_tcs_oneexp_in_tcs_atomexp7401);
                     ret=tcs_oneexp();
 
                     checkFollows();
@@ -15124,7 +15122,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1352:5: ret= tcs_instanceofexp
                     {
-                    pushFollow(FOLLOW_tcs_instanceofexp_in_tcs_atomexp7408);
+                    pushFollow(FOLLOW_tcs_instanceofexp_in_tcs_atomexp7409);
                     ret=tcs_instanceofexp();
 
                     checkFollows();
@@ -15177,12 +15175,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1365:4: (temp= tcs_propertyreference ) EQ (temp= tcs_value )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74B2741334511DFA64FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF52634161F511DFA984F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1365:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1365:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_equalsexp7442);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_equalsexp7443);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -15198,19 +15196,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74B2742334511DFCEF5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF52634261F511DF8E34F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_equalsexp7449); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_equalsexp7450); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74B4E50334511DF97F4EC660A0001C5");
+              _beforeSeqEl("E0356A04EF52634461F511DF8F86F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1365:293: (temp= tcs_value )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1365:295: temp= tcs_value
             {
-            pushFollow(FOLLOW_tcs_value_in_tcs_equalsexp7457);
+            pushFollow(FOLLOW_tcs_value_in_tcs_equalsexp7458);
             temp=tcs_value();
 
             checkFollows();
@@ -15270,12 +15268,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1379:4: (temp= tcs_propertyreference )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74C5FC1334511DFC7EEEC660A0001C5");
+              _beforeSeqEl("E0356A04EF534DA161F511DFBA54F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1379:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1379:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_booleanpropertyexp7504);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_booleanpropertyexp7505);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -15335,26 +15333,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1393:4: 'isDefined' LPAREN (temp= tcs_propertyreference ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74D7130334511DFB964EC660A0001C5");
+              _beforeSeqEl("E0356A04EF54380061F511DF9575F9DB0A0001C7");
             }
-            match(input,101,FOLLOW_101_in_tcs_isdefinedexp7547); if (state.failed) return ret2;
+            match(input,99,FOLLOW_99_in_tcs_isdefinedexp7548); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74D7131334511DF9B0AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF54380161F511DF99AEF9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_isdefinedexp7551); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_isdefinedexp7552); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74D7133334511DF9C14EC660A0001C5");
+              _beforeSeqEl("E0356A04EF545F1161F511DF83F1F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1393:232: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1393:234: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_isdefinedexp7559);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_isdefinedexp7560);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -15370,9 +15368,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74D9840334511DF9263EC660A0001C5");
+              _beforeSeqEl("E0356A04EF545F1261F511DF9626F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_isdefinedexp7566); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_isdefinedexp7567); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -15421,26 +15419,26 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1407:4: 'one' LPAREN (temp= tcs_propertyreference ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74E82A0334511DF927EEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6464A061F511DFBC1CF9DB0A0001C7");
             }
-            match(input,107,FOLLOW_107_in_tcs_oneexp7607); if (state.failed) return ret2;
+            match(input,84,FOLLOW_84_in_tcs_oneexp7608); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74E82A1334511DF9030EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6464A161F511DFC6D1F9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_oneexp7611); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_oneexp7612); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74EA9B0334511DFBF39EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6464A361F511DF8C29F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1407:226: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1407:228: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_oneexp7619);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_oneexp7620);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -15456,9 +15454,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74EA9B1334511DFC20DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF648BB061F511DFA563F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_oneexp7626); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_oneexp7627); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -15507,12 +15505,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1421:4: (temp= tcs_propertyreference ) 'instanceOf' (temp= identifier ( ( DLCOLON ) temp= identifier )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74FBB21334511DFCE56EC660A0001C5");
+              _beforeSeqEl("E0356A04EF65761161F511DFCAD5F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1421:63: (temp= tcs_propertyreference )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1421:65: temp= tcs_propertyreference
             {
-            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_instanceofexp7671);
+            pushFollow(FOLLOW_tcs_propertyreference_in_tcs_instanceofexp7672);
             temp=tcs_propertyreference();
 
             checkFollows();
@@ -15528,19 +15526,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74FBB22334511DFCB77EC660A0001C5");
+              _beforeSeqEl("E0356A04EF65761261F511DFC365F9DB0A0001C7");
             }
-            match(input,116,FOLLOW_116_in_tcs_instanceofexp7677); if (state.failed) return ret2;
+            match(input,124,FOLLOW_124_in_tcs_instanceofexp7678); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B74FE234334511DFCAF4EC660A0001C5");
+              _beforeSeqEl("E0356A04EF659D2261F511DFB3FBF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1421:301: (temp= identifier ( ( DLCOLON ) temp= identifier )* )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1421:303: temp= identifier ( ( DLCOLON ) temp= identifier )*
             {
-            pushFollow(FOLLOW_identifier_in_tcs_instanceofexp7684);
+            pushFollow(FOLLOW_identifier_in_tcs_instanceofexp7685);
             temp=identifier();
 
             checkFollows();
@@ -15571,9 +15569,9 @@ public class TCSParser extends ObservableInjectingParser {
             	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1421:377: DLCOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0A5ADB5B74FE231334511DFCA8DEC660A0001C5");
+            	      _beforeSeqEl("E0356A04EF65761461F511DFB974F9DB0A0001C7");
             	    }
-            	    match(input,DLCOLON,FOLLOW_DLCOLON_in_tcs_instanceofexp7693); if (state.failed) return ret2;
+            	    match(input,DLCOLON,FOLLOW_DLCOLON_in_tcs_instanceofexp7694); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -15583,7 +15581,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_identifier_in_tcs_instanceofexp7701);
+            	    pushFollow(FOLLOW_identifier_in_tcs_instanceofexp7702);
             	    temp=identifier();
 
             	    checkFollows();
@@ -15678,7 +15676,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1431:4: ret= tcs_stringval
                     {
-                    pushFollow(FOLLOW_tcs_stringval_in_tcs_value7744);
+                    pushFollow(FOLLOW_tcs_stringval_in_tcs_value7745);
                     ret=tcs_stringval();
 
                     checkFollows();
@@ -15690,7 +15688,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1432:5: ret= tcs_integerval
                     {
-                    pushFollow(FOLLOW_tcs_integerval_in_tcs_value7752);
+                    pushFollow(FOLLOW_tcs_integerval_in_tcs_value7753);
                     ret=tcs_integerval();
 
                     checkFollows();
@@ -15702,7 +15700,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1433:5: ret= tcs_negativeintegerval
                     {
-                    pushFollow(FOLLOW_tcs_negativeintegerval_in_tcs_value7760);
+                    pushFollow(FOLLOW_tcs_negativeintegerval_in_tcs_value7761);
                     ret=tcs_negativeintegerval();
 
                     checkFollows();
@@ -15714,7 +15712,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1434:5: ret= tcs_enumliteralval
                     {
-                    pushFollow(FOLLOW_tcs_enumliteralval_in_tcs_value7768);
+                    pushFollow(FOLLOW_tcs_enumliteralval_in_tcs_value7769);
                     ret=tcs_enumliteralval();
 
                     checkFollows();
@@ -15767,12 +15765,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1447:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7525332334511DFBFF1EC660A0001C5");
+              _beforeSeqEl("E0356A04EF674AD261F511DF821EF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1447:63: (temp= stringSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1447:65: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_tcs_stringval7802);
+            pushFollow(FOLLOW_stringSymbol_in_tcs_stringval7803);
             temp=stringSymbol();
 
             checkFollows();
@@ -15832,12 +15830,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1461:4: (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7538BB1334511DFAB25EC660A0001C5");
+              _beforeSeqEl("E0356A04EF680E2161F511DF95A2F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1461:63: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1461:65: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_integerval7849);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_integerval7850);
             temp=integerSymbol();
 
             checkFollows();
@@ -15897,19 +15895,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1475:4: MINUS (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7549D20334511DFBCD2EC660A0001C5");
+              _beforeSeqEl("E0356A04EF68F88061F511DFCFEEF9DB0A0001C7");
             }
-            match(input,MINUS,FOLLOW_MINUS_in_tcs_negativeintegerval7893); if (state.failed) return ret2;
+            match(input,MINUS,FOLLOW_MINUS_in_tcs_negativeintegerval7894); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7549D22334511DF97D6EC660A0001C5");
+              _beforeSeqEl("E0356A04EF68F88261F511DFCCD3F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1475:145: (temp= integerSymbol )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1475:147: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_tcs_negativeintegerval7901);
+            pushFollow(FOLLOW_integerSymbol_in_tcs_negativeintegerval7902);
             temp=integerSymbol();
 
             checkFollows();
@@ -15969,19 +15967,19 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1489:4: SHARP (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B755D5A0334511DFCB7DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF69E2E061F511DFC228F9DB0A0001C7");
             }
-            match(input,SHARP,FOLLOW_SHARP_in_tcs_enumliteralval7945); if (state.failed) return ret2;
+            match(input,SHARP,FOLLOW_SHARP_in_tcs_enumliteralval7946); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B755FCB0334511DF8368EC660A0001C5");
+              _beforeSeqEl("E0356A04EF69E2E361F511DFCC13F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1489:145: (temp= identifierOrKeyword )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1489:147: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_enumliteralval7953);
+            pushFollow(FOLLOW_identifierOrKeyword_in_tcs_enumliteralval7954);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -16041,16 +16039,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1503:4: ( ( 'omitted' ) | ) 'token' (temp= identifier )? COLON (temp= tcs_orpattern ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7573530334511DFC07CEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6AF45361F511DF8BA9F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1503:64: ( ( 'omitted' ) | )
             int alt129=2;
             int LA129_0 = input.LA(1);
 
-            if ( (LA129_0==102) ) {
+            if ( (LA129_0==121) ) {
                 alt129=1;
             }
-            else if ( (LA129_0==73) ) {
+            else if ( (LA129_0==88) ) {
                 alt129=2;
             }
             else {
@@ -16071,9 +16069,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1503:82: 'omitted'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7570E21334511DF9A3AEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF6AF45161F511DFA0BFF9DB0A0001C7");
                     }
-                    match(input,102,FOLLOW_102_in_tcs_token8002); if (state.failed) return ret2;
+                    match(input,121,FOLLOW_121_in_tcs_token8003); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -16111,14 +16109,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7573531334511DFA47FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6B1B6061F511DFC1DBF9DB0A0001C7");
             }
-            match(input,73,FOLLOW_73_in_tcs_token8020); if (state.failed) return ret2;
+            match(input,88,FOLLOW_88_in_tcs_token8021); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7573533334511DF87C1EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6B1B6261F511DFCBBFF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1504:158: (temp= identifier )?
             int alt130=2;
@@ -16131,7 +16129,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1504:160: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_token8027);
+                    pushFollow(FOLLOW_identifier_in_tcs_token8028);
                     temp=identifier();
 
                     checkFollows();
@@ -16150,19 +16148,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7573534334511DFAA50EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6B1B6361F511DFAD47F9DB0A0001C7");
             }
-            match(input,COLON,FOLLOW_COLON_in_tcs_token8036); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_tcs_token8037); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7575C40334511DFCB8AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6B1B6561F511DF9DE5F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1504:369: (temp= tcs_orpattern )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1504:371: temp= tcs_orpattern
             {
-            pushFollow(FOLLOW_tcs_orpattern_in_tcs_token8044);
+            pushFollow(FOLLOW_tcs_orpattern_in_tcs_token8045);
             temp=tcs_orpattern();
 
             checkFollows();
@@ -16178,9 +16176,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B75A4270334511DFC071EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6B1B6661F511DF8163F9DB0A0001C7");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_tcs_token8051); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_tcs_token8052); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -16229,7 +16227,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:4: (temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B75BF020334511DF990DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6C2CD361F511DFA4C9F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:63: (temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )* )?
             int alt132=2;
@@ -16237,9 +16235,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case STRING:
                 case LSQUARE:
                 case PIPE:
-                case 76:
-                case 100:
-                case 133:
+                case 72:
+                case 73:
+                case 120:
                     {
                     alt132=1;
                     }
@@ -16286,7 +16284,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:65: temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )*
                     {
-                    pushFollow(FOLLOW_tcs_simplepattern_in_tcs_orpattern8096);
+                    pushFollow(FOLLOW_tcs_simplepattern_in_tcs_orpattern8097);
                     temp=tcs_simplepattern();
 
                     checkFollows();
@@ -16317,9 +16315,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:151: PIPE
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0A5ADB5B75BC911334511DF8766EC660A0001C5");
+                    	      _beforeSeqEl("E0356A04EF6C2CD061F511DFC3F9F9DB0A0001C7");
                     	    }
-                    	    match(input,PIPE,FOLLOW_PIPE_in_tcs_orpattern8105); if (state.failed) return ret2;
+                    	    match(input,PIPE,FOLLOW_PIPE_in_tcs_orpattern8106); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -16329,7 +16327,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_tcs_simplepattern_in_tcs_orpattern8113);
+                    	    pushFollow(FOLLOW_tcs_simplepattern_in_tcs_orpattern8114);
                     	    temp=tcs_simplepattern();
 
                     	    checkFollows();
@@ -16395,9 +16393,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1528:3: (ret= tcs_rulepattern | ret= tcs_stringpattern | ret= tcs_classpattern )
             int alt133=3;
             switch ( input.LA(1) ) {
-            case 76:
-            case 100:
-            case 133:
+            case 72:
+            case 73:
+            case 120:
                 {
                 alt133=1;
                 }
@@ -16429,7 +16427,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1528:4: ret= tcs_rulepattern
                     {
-                    pushFollow(FOLLOW_tcs_rulepattern_in_tcs_simplepattern8158);
+                    pushFollow(FOLLOW_tcs_rulepattern_in_tcs_simplepattern8159);
                     ret=tcs_rulepattern();
 
                     checkFollows();
@@ -16441,7 +16439,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1529:5: ret= tcs_stringpattern
                     {
-                    pushFollow(FOLLOW_tcs_stringpattern_in_tcs_simplepattern8166);
+                    pushFollow(FOLLOW_tcs_stringpattern_in_tcs_simplepattern8167);
                     ret=tcs_stringpattern();
 
                     checkFollows();
@@ -16453,7 +16451,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1530:5: ret= tcs_classpattern
                     {
-                    pushFollow(FOLLOW_tcs_classpattern_in_tcs_simplepattern8174);
+                    pushFollow(FOLLOW_tcs_classpattern_in_tcs_simplepattern8175);
                     ret=tcs_classpattern();
 
                     checkFollows();
@@ -16506,12 +16504,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1543:4: (temp= tcs_rule )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B75E3A11334511DF9E37EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6E019061F511DFC86CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1543:63: (temp= tcs_rule )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1543:65: temp= tcs_rule
             {
-            pushFollow(FOLLOW_tcs_rule_in_tcs_rulepattern8208);
+            pushFollow(FOLLOW_tcs_rule_in_tcs_rulepattern8209);
             temp=tcs_rule();
 
             checkFollows();
@@ -16565,17 +16563,17 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1553:3: (ret= tcs_wordrule | ret= tcs_endoflinerule | ret= tcs_multilinerule )
             int alt134=3;
             switch ( input.LA(1) ) {
-            case 76:
+            case 120:
                 {
                 alt134=1;
                 }
                 break;
-            case 133:
+            case 73:
                 {
                 alt134=2;
                 }
                 break;
-            case 100:
+            case 72:
                 {
                 alt134=3;
                 }
@@ -16592,7 +16590,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1553:4: ret= tcs_wordrule
                     {
-                    pushFollow(FOLLOW_tcs_wordrule_in_tcs_rule8248);
+                    pushFollow(FOLLOW_tcs_wordrule_in_tcs_rule8249);
                     ret=tcs_wordrule();
 
                     checkFollows();
@@ -16604,7 +16602,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1554:5: ret= tcs_endoflinerule
                     {
-                    pushFollow(FOLLOW_tcs_endoflinerule_in_tcs_rule8256);
+                    pushFollow(FOLLOW_tcs_endoflinerule_in_tcs_rule8257);
                     ret=tcs_endoflinerule();
 
                     checkFollows();
@@ -16616,7 +16614,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1555:5: ret= tcs_multilinerule
                     {
-                    pushFollow(FOLLOW_tcs_multilinerule_in_tcs_rule8264);
+                    pushFollow(FOLLOW_tcs_multilinerule_in_tcs_rule8265);
                     ret=tcs_multilinerule();
 
                     checkFollows();
@@ -16669,40 +16667,40 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:4: 'word' LPAREN 'start' EQ (temp= tcs_orpattern ) COMA 'part' EQ (temp= tcs_orpattern ) ( ( COMA 'end' EQ (temp= tcs_orpattern ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7608400334511DFA44FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6F883061F511DF9A79F9DB0A0001C7");
             }
-            match(input,76,FOLLOW_76_in_tcs_wordrule8294); if (state.failed) return ret2;
+            match(input,120,FOLLOW_120_in_tcs_wordrule8295); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7608401334511DF899BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6F883161F511DF87F2F9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_wordrule8298); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_wordrule8299); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760AB10334511DF84AFEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6F883261F511DF9D7CF9DB0A0001C7");
             }
-            match(input,72,FOLLOW_72_in_tcs_wordrule8302); if (state.failed) return ret2;
+            match(input,69,FOLLOW_69_in_tcs_wordrule8303); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760AB11334511DFA698EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6F883361F511DFA51CF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8306); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8307); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760AB13334511DF9781EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6F883561F511DFB133F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:388: (temp= tcs_orpattern )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:390: temp= tcs_orpattern
             {
-            pushFollow(FOLLOW_tcs_orpattern_in_tcs_wordrule8314);
+            pushFollow(FOLLOW_tcs_orpattern_in_tcs_wordrule8315);
             temp=tcs_orpattern();
 
             checkFollows();
@@ -16718,33 +16716,33 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760AB14334511DFBF80EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6FAF4061F511DFB248F9DB0A0001C7");
             }
-            match(input,COMA,FOLLOW_COMA_in_tcs_wordrule8321); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_tcs_wordrule8322); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760AB15334511DF9A9DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6FAF4161F511DF8523F9DB0A0001C7");
             }
-            match(input,79,FOLLOW_79_in_tcs_wordrule8325); if (state.failed) return ret2;
+            match(input,107,FOLLOW_107_in_tcs_wordrule8326); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760AB16334511DFA5DDEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6FAF4261F511DFA3E6F9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8329); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8330); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B760D221334511DFB804EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6FAF4461F511DF8304F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:760: (temp= tcs_orpattern )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:762: temp= tcs_orpattern
             {
-            pushFollow(FOLLOW_tcs_orpattern_in_tcs_wordrule8337);
+            pushFollow(FOLLOW_tcs_orpattern_in_tcs_wordrule8338);
             temp=tcs_orpattern();
 
             checkFollows();
@@ -16760,7 +16758,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7612040334511DF9250EC660A0001C5");
+              _beforeSeqEl("E0356A04EF6FFD6061F511DF9A4AF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:891: ( ( COMA 'end' EQ (temp= tcs_orpattern ) ) | )
             int alt135=2;
@@ -16790,33 +16788,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:909: COMA 'end' EQ (temp= tcs_orpattern )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B760F930334511DF80E2EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF6FD65161F511DFCDB2F9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_wordrule8350); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_wordrule8351); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B760F931334511DFC43DEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF6FD65261F511DF8530F9DB0A0001C7");
                     }
-                    match(input,67,FOLLOW_67_in_tcs_wordrule8354); if (state.failed) return ret2;
+                    match(input,53,FOLLOW_53_in_tcs_wordrule8355); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B760F932334511DF8A94EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF6FD65361F511DFA8A5F9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8358); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8359); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B760F934334511DFB9F9EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF6FD65561F511DFA79EF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:1208: (temp= tcs_orpattern )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1568:1210: temp= tcs_orpattern
                     {
-                    pushFollow(FOLLOW_tcs_orpattern_in_tcs_wordrule8366);
+                    pushFollow(FOLLOW_tcs_orpattern_in_tcs_wordrule8367);
                     temp=tcs_orpattern();
 
                     checkFollows();
@@ -16859,9 +16857,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7612041334511DF8C9FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF6FFD6161F511DFCEDBF9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_wordrule8386); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_wordrule8387); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -16910,41 +16908,41 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1583:4: 'endOfLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= tcs_stringpattern ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7631C10334511DFA84FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF710ED061F511DF816EF9DB0A0001C7");
             }
-            match(input,133,FOLLOW_133_in_tcs_endoflinerule8427); if (state.failed) return ret2;
+            match(input,73,FOLLOW_73_in_tcs_endoflinerule8428); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7631C11334511DFA20CEC660A0001C5");
+              _beforeSeqEl("E0356A04EF710ED161F511DFCB21F9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_endoflinerule8431); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_endoflinerule8432); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7631C12334511DFB4E7EC660A0001C5");
+              _beforeSeqEl("E0356A04EF710ED261F511DFCA71F9DB0A0001C7");
             }
-            match(input,72,FOLLOW_72_in_tcs_endoflinerule8435); if (state.failed) return ret2;
+            match(input,69,FOLLOW_69_in_tcs_endoflinerule8436); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7631C13334511DFC06AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF710ED361F511DFCD7CF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_endoflinerule8439); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_endoflinerule8440); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7639140334511DFBE18EC660A0001C5");
+              _beforeSeqEl("E0356A04EF7135E461F511DF959CF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1583:394: ( ( 'drop' ) | )
             int alt136=2;
             int LA136_0 = input.LA(1);
 
-            if ( (LA136_0==93) ) {
+            if ( (LA136_0==80) ) {
                 alt136=1;
             }
             else if ( (LA136_0==EOF||LA136_0==STRING||LA136_0==RPAREN||LA136_0==SEMI||LA136_0==COMA||LA136_0==PIPE) ) {
@@ -16968,9 +16966,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1583:412: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7636A31334511DF8087EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF7135E261F511DFC305F9DB0A0001C7");
                     }
-                    match(input,93,FOLLOW_93_in_tcs_endoflinerule8449); if (state.failed) return ret2;
+                    match(input,80,FOLLOW_80_in_tcs_endoflinerule8450); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17008,12 +17006,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7639142334511DFB14FEC660A0001C5");
+              _beforeSeqEl("E0356A04EF715CF161F511DF99CCF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1584:76: (temp= tcs_stringpattern )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1584:78: temp= tcs_stringpattern
             {
-            pushFollow(FOLLOW_tcs_stringpattern_in_tcs_endoflinerule8471);
+            pushFollow(FOLLOW_tcs_stringpattern_in_tcs_endoflinerule8472);
             temp=tcs_stringpattern();
 
             checkFollows();
@@ -17029,9 +17027,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B763B850334511DF96FDEC660A0001C5");
+              _beforeSeqEl("E0356A04EF715CF261F511DFAFC0F9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_endoflinerule8478); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_endoflinerule8479); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17080,41 +17078,41 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1598:4: 'multiLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= tcs_stringpattern ) COMA 'end' EQ ( ( 'drop' ) | ) (temp= tcs_stringpattern ) ( ( COMA 'esc' EQ (temp= tcs_stringpattern ) ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B764F0D0334511DFA9FAEC660A0001C5");
+              _beforeSeqEl("E0356A04EF726E6061F511DF964FF9DB0A0001C7");
             }
-            match(input,100,FOLLOW_100_in_tcs_multilinerule8519); if (state.failed) return ret2;
+            match(input,72,FOLLOW_72_in_tcs_multilinerule8520); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B764F0D1334511DFB181EC660A0001C5");
+              _beforeSeqEl("E0356A04EF72957061F511DF803CF9DB0A0001C7");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_multilinerule8523); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_multilinerule8524); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B764F0D2334511DF9D5CEC660A0001C5");
+              _beforeSeqEl("E0356A04EF72957161F511DF9749F9DB0A0001C7");
             }
-            match(input,72,FOLLOW_72_in_tcs_multilinerule8527); if (state.failed) return ret2;
+            match(input,69,FOLLOW_69_in_tcs_multilinerule8528); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B764F0D3334511DFBF25EC660A0001C5");
+              _beforeSeqEl("E0356A04EF72957261F511DFA63CF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8531); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8532); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76517E2334511DF84E5EC660A0001C5");
+              _beforeSeqEl("E0356A04EF72BC8061F511DFAD6AF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1598:394: ( ( 'drop' ) | )
             int alt137=2;
             int LA137_0 = input.LA(1);
 
-            if ( (LA137_0==93) ) {
+            if ( (LA137_0==80) ) {
                 alt137=1;
             }
             else if ( (LA137_0==EOF||LA137_0==STRING||LA137_0==RPAREN||LA137_0==SEMI||LA137_0==COMA||LA137_0==PIPE) ) {
@@ -17138,9 +17136,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1598:412: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B76517E0334511DFAAA9EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF72957661F511DF81C5F9DB0A0001C7");
                     }
-                    match(input,93,FOLLOW_93_in_tcs_multilinerule8541); if (state.failed) return ret2;
+                    match(input,80,FOLLOW_80_in_tcs_multilinerule8542); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17178,12 +17176,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7653EF0334511DFA573EC660A0001C5");
+              _beforeSeqEl("E0356A04EF72BC8261F511DF9108F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1599:76: (temp= tcs_stringpattern )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1599:78: temp= tcs_stringpattern
             {
-            pushFollow(FOLLOW_tcs_stringpattern_in_tcs_multilinerule8563);
+            pushFollow(FOLLOW_tcs_stringpattern_in_tcs_multilinerule8564);
             temp=tcs_stringpattern();
 
             checkFollows();
@@ -17199,34 +17197,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7653EF1334511DFBA8DEC660A0001C5");
+              _beforeSeqEl("E0356A04EF72E39061F511DFA57AF9DB0A0001C7");
             }
-            match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8570); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8571); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7653EF2334511DF9623EC660A0001C5");
+              _beforeSeqEl("E0356A04EF72E39161F511DFCA66F9DB0A0001C7");
             }
-            match(input,67,FOLLOW_67_in_tcs_multilinerule8574); if (state.failed) return ret2;
+            match(input,53,FOLLOW_53_in_tcs_multilinerule8575); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7653EF3334511DFAD34EC660A0001C5");
+              _beforeSeqEl("E0356A04EF72E39261F511DFA10FF9DB0A0001C7");
             }
-            match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8578); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8579); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7656602334511DF8482EC660A0001C5");
+              _beforeSeqEl("E0356A04EF730AA061F511DFC76AF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1599:452: ( ( 'drop' ) | )
             int alt138=2;
             int LA138_0 = input.LA(1);
 
-            if ( (LA138_0==93) ) {
+            if ( (LA138_0==80) ) {
                 alt138=1;
             }
             else if ( (LA138_0==EOF||LA138_0==STRING||LA138_0==RPAREN||LA138_0==SEMI||LA138_0==COMA||LA138_0==PIPE) ) {
@@ -17250,9 +17248,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1599:470: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7656600334511DFCADAEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF72E39661F511DFAF06F9DB0A0001C7");
                     }
-                    match(input,93,FOLLOW_93_in_tcs_multilinerule8588); if (state.failed) return ret2;
+                    match(input,80,FOLLOW_80_in_tcs_multilinerule8589); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17290,12 +17288,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7658D11334511DF8F98EC660A0001C5");
+              _beforeSeqEl("E0356A04EF730AA261F511DF9592F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:76: (temp= tcs_stringpattern )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:78: temp= tcs_stringpattern
             {
-            pushFollow(FOLLOW_tcs_stringpattern_in_tcs_multilinerule8610);
+            pushFollow(FOLLOW_tcs_stringpattern_in_tcs_multilinerule8611);
             temp=tcs_stringpattern();
 
             checkFollows();
@@ -17311,7 +17309,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7667770334511DFA73AEC660A0001C5");
+              _beforeSeqEl("E0356A04EF73CDF061F511DFB136F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:210: ( ( COMA 'esc' EQ (temp= tcs_stringpattern ) ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | ) ) | )
             int alt142=2;
@@ -17341,33 +17339,33 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:228: COMA 'esc' EQ (temp= tcs_stringpattern ) ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7658D15334511DFCE08EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF7331B161F511DF9F04F9DB0A0001C7");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8623); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8624); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B765B420334511DFB1C4EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF7331B261F511DFCD62F9DB0A0001C7");
                     }
-                    match(input,81,FOLLOW_81_in_tcs_multilinerule8627); if (state.failed) return ret2;
+                    match(input,94,FOLLOW_94_in_tcs_multilinerule8628); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B765B421334511DFCDE3EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF7331B361F511DF894AF9DB0A0001C7");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8631); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8632); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B765B423334511DFB786EC660A0001C5");
+                      _beforeSeqEl("E0356A04EF7331B561F511DFB435F9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:527: (temp= tcs_stringpattern )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:529: temp= tcs_stringpattern
                     {
-                    pushFollow(FOLLOW_tcs_stringpattern_in_tcs_multilinerule8639);
+                    pushFollow(FOLLOW_tcs_stringpattern_in_tcs_multilinerule8640);
                     temp=tcs_stringpattern();
 
                     checkFollows();
@@ -17383,7 +17381,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0A5ADB5B7662950334511DF967FEC660A0001C5");
+                      _beforeSeqEl("E0356A04EF73A6E061F511DFB80DF9DB0A0001C7");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:661: ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | )
                     int alt141=2;
@@ -17413,34 +17411,34 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:679: COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B765DB30334511DFB1FEEC660A0001C5");
+                              _beforeSeqEl("E0356A04EF7358C161F511DF8B31F9DB0A0001C7");
                             }
-                            match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8652); if (state.failed) return ret2;
+                            match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8653); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B765DB31334511DF9A15EC660A0001C5");
+                              _beforeSeqEl("E0356A04EF7358C261F511DFA1B0F9DB0A0001C7");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_multilinerule8657); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_tcs_multilinerule8658); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B7660240334511DFB865EC660A0001C5");
+                              _beforeSeqEl("E0356A04EF737FD161F511DFABC8F9DB0A0001C7");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:902: (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )?
                             int alt140=2;
                             int LA140_0 = input.LA(1);
 
-                            if ( (LA140_0==NAME||LA140_0==POINT||LA140_0==65||LA140_0==84) ) {
+                            if ( (LA140_0==NAME||LA140_0==POINT||LA140_0==64||LA140_0==127) ) {
                                 alt140=1;
                             }
                             switch (alt140) {
                                 case 1 :
                                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:904: temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )*
                                     {
-                                    pushFollow(FOLLOW_tcs_mapping_in_tcs_multilinerule8665);
+                                    pushFollow(FOLLOW_tcs_mapping_in_tcs_multilinerule8666);
                                     temp=tcs_mapping();
 
                                     checkFollows();
@@ -17471,9 +17469,9 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1600:981: COMA
                                     	    {
                                     	    if ( state.backtracking==0 ) {
-                                    	      _beforeSeqEl("E0A5ADB5B765DB33334511DFC3C2EC660A0001C5");
+                                    	      _beforeSeqEl("E0356A04EF7358C461F511DF8BF2F9DB0A0001C7");
                                     	    }
-                                    	    match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8674); if (state.failed) return ret2;
+                                    	    match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8675); if (state.failed) return ret2;
                                     	    if ( state.backtracking==0 ) {
                                     	      _afterSeqEl();
                                     	    }
@@ -17483,7 +17481,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    if ( state.backtracking==0 ) {
                                     	      _exitSepSeq();
                                     	    }
-                                    	    pushFollow(FOLLOW_tcs_mapping_in_tcs_multilinerule8682);
+                                    	    pushFollow(FOLLOW_tcs_mapping_in_tcs_multilinerule8683);
                                     	    temp=tcs_mapping();
 
                                     	    checkFollows();
@@ -17511,9 +17509,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0A5ADB5B7660241334511DFA9F8EC660A0001C5");
+                              _beforeSeqEl("E0356A04EF737FD261F511DFC4DAF9DB0A0001C7");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_multilinerule8694); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_multilinerule8695); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -17572,9 +17570,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B7667771334511DF8E76EC660A0001C5");
+              _beforeSeqEl("E0356A04EF73F50061F511DF9FCDF9DB0A0001C7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_multilinerule8725); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_tcs_multilinerule8726); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17627,12 +17625,12 @@ public class TCSParser extends ObservableInjectingParser {
                 alt143=2;
                 }
                 break;
-            case 65:
+            case 64:
                 {
                 alt143=3;
                 }
                 break;
-            case 84:
+            case 127:
                 {
                 alt143=4;
                 }
@@ -17649,7 +17647,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1612:4: ret= tcs_simplemapping
                     {
-                    pushFollow(FOLLOW_tcs_simplemapping_in_tcs_mapping8763);
+                    pushFollow(FOLLOW_tcs_simplemapping_in_tcs_mapping8764);
                     ret=tcs_simplemapping();
 
                     checkFollows();
@@ -17661,7 +17659,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1613:5: ret= tcs_wildcardmapping
                     {
-                    pushFollow(FOLLOW_tcs_wildcardmapping_in_tcs_mapping8771);
+                    pushFollow(FOLLOW_tcs_wildcardmapping_in_tcs_mapping8772);
                     ret=tcs_wildcardmapping();
 
                     checkFollows();
@@ -17673,7 +17671,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1614:5: ret= tcs_octalmapping
                     {
-                    pushFollow(FOLLOW_tcs_octalmapping_in_tcs_mapping8779);
+                    pushFollow(FOLLOW_tcs_octalmapping_in_tcs_mapping8780);
                     ret=tcs_octalmapping();
 
                     checkFollows();
@@ -17685,7 +17683,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1615:5: ret= tcs_hexadecimalmapping
                     {
-                    pushFollow(FOLLOW_tcs_hexadecimalmapping_in_tcs_mapping8787);
+                    pushFollow(FOLLOW_tcs_hexadecimalmapping_in_tcs_mapping8788);
                     ret=tcs_hexadecimalmapping();
 
                     checkFollows();
@@ -17738,12 +17736,12 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1628:4: (temp= identifier ) RARROW (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B768C161334511DFA529EC660A0001C5");
+              _beforeSeqEl("E0356A04EF75F0D061F511DFBF71F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1628:63: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1628:65: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_simplemapping8821);
+            pushFollow(FOLLOW_identifier_in_tcs_simplemapping8822);
             temp=identifier();
 
             checkFollows();
@@ -17759,19 +17757,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B768C162334511DFBF61EC660A0001C5");
+              _beforeSeqEl("E0356A04EF75F0D161F511DFC2FDF9DB0A0001C7");
             }
-            match(input,RARROW,FOLLOW_RARROW_in_tcs_simplemapping8828); if (state.failed) return ret2;
+            match(input,RARROW,FOLLOW_RARROW_in_tcs_simplemapping8829); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B768C164334511DF89B9EC660A0001C5");
+              _beforeSeqEl("E0356A04EF75F0D361F511DF928FF9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1628:272: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1628:274: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_tcs_simplemapping8836);
+            pushFollow(FOLLOW_identifier_in_tcs_simplemapping8837);
             temp=identifier();
 
             checkFollows();
@@ -17828,23 +17826,23 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1642:4: POINT RARROW POINT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B769F9E0334511DFC500EC660A0001C5");
+              _beforeSeqEl("E0356A04EF76DB3061F511DFACE9F9DB0A0001C7");
             }
-            match(input,POINT,FOLLOW_POINT_in_tcs_wildcardmapping8880); if (state.failed) return ret2;
+            match(input,POINT,FOLLOW_POINT_in_tcs_wildcardmapping8881); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B769F9E1334511DFB412EC660A0001C5");
+              _beforeSeqEl("E0356A04EF76DB3161F511DF8CA2F9DB0A0001C7");
             }
-            match(input,RARROW,FOLLOW_RARROW_in_tcs_wildcardmapping8885); if (state.failed) return ret2;
+            match(input,RARROW,FOLLOW_RARROW_in_tcs_wildcardmapping8886); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B769F9E2334511DF8694EC660A0001C5");
+              _beforeSeqEl("E0356A04EF76DB3261F511DFB2E4F9DB0A0001C7");
             }
-            match(input,POINT,FOLLOW_POINT_in_tcs_wildcardmapping8890); if (state.failed) return ret2;
+            match(input,POINT,FOLLOW_POINT_in_tcs_wildcardmapping8891); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17890,9 +17888,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1656:4: 'octal'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76B0B50334511DFC59CEC660A0001C5");
+              _beforeSeqEl("E0356A04EF779E8061F511DFBBF6F9DB0A0001C7");
             }
-            match(input,65,FOLLOW_65_in_tcs_octalmapping8931); if (state.failed) return ret2;
+            match(input,64,FOLLOW_64_in_tcs_octalmapping8932); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17938,9 +17936,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1670:4: 'hex'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76C6AE0334511DFC84BEC660A0001C5");
+              _beforeSeqEl("E0356A04EF7861D061F511DF8250F9DB0A0001C7");
             }
-            match(input,84,FOLLOW_84_in_tcs_hexadecimalmapping8971); if (state.failed) return ret2;
+            match(input,127,FOLLOW_127_in_tcs_hexadecimalmapping8972); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17989,7 +17987,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1684:4: (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76DA362334511DF9879EC660A0001C5");
+              _beforeSeqEl("E0356A04EF79252261F511DFB711F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1684:63: (temp= stringSymbol )?
             int alt144=2;
@@ -18002,7 +18000,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1684:65: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_tcs_stringpattern9015);
+                    pushFollow(FOLLOW_stringSymbol_in_tcs_stringpattern9016);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -18065,14 +18063,14 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1698:4: LSQUARE (temp= identifier )? RSQUARE
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76F5110334511DFBEF7EC660A0001C5");
+              _beforeSeqEl("E0356A04EF7A0F8061F511DFC090F9DB0A0001C7");
             }
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_tcs_classpattern9061); if (state.failed) return ret2;
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_tcs_classpattern9062); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76F5112334511DFBFC6EC660A0001C5");
+              _beforeSeqEl("E0356A04EF7A0F8261F511DF9222F9DB0A0001C7");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1698:147: (temp= identifier )?
             int alt145=2;
@@ -18085,7 +18083,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1698:149: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_tcs_classpattern9069);
+                    pushFollow(FOLLOW_identifier_in_tcs_classpattern9070);
                     temp=identifier();
 
                     checkFollows();
@@ -18104,9 +18102,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0A5ADB5B76F5113334511DFAC46EC660A0001C5");
+              _beforeSeqEl("E0356A04EF7A369061F511DF9D7DF9DB0A0001C7");
             }
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_tcs_classpattern9078); if (state.failed) return ret2;
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_tcs_classpattern9079); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -18152,7 +18150,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:508:159: (temp= textblockdefinition_textblockdefinition )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:508:159: temp= textblockdefinition_textblockdefinition
         {
-        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred114_TCS1993);
+        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred114_TCS1998);
         temp=textblockdefinition_textblockdefinition();
 
         checkFollows();
@@ -18171,7 +18169,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:524:78: (temp= textblockdefinition_textblockdefinition )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:524:78: temp= textblockdefinition_textblockdefinition
         {
-        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred119_TCS2153);
+        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred119_TCS2158);
         temp=textblockdefinition_textblockdefinition();
 
         checkFollows();
@@ -18190,7 +18188,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:568:78: (temp= textblockdefinition_textblockdefinition )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:568:78: temp= textblockdefinition_textblockdefinition
         {
-        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred136_TCS2792);
+        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred136_TCS2797);
         temp=textblockdefinition_textblockdefinition();
 
         checkFollows();
@@ -18209,7 +18207,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:590:78: (temp= textblockdefinition_textblockdefinition )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:590:78: temp= textblockdefinition_textblockdefinition
         {
-        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred147_TCS3217);
+        pushFollow(FOLLOW_textblockdefinition_textblockdefinition_in_synpred147_TCS3222);
         temp=textblockdefinition_textblockdefinition();
 
         checkFollows();
@@ -18228,7 +18226,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:642:4: (ret= tcs_sequence__impl )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:642:4: ret= tcs_sequence__impl
         {
-        pushFollow(FOLLOW_tcs_sequence__impl_in_synpred152_TCS3494);
+        pushFollow(FOLLOW_tcs_sequence__impl_in_synpred152_TCS3495);
         ret=tcs_sequence__impl();
 
         checkFollows();
@@ -18247,7 +18245,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:3648: (temp= identifierOrKeyword )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:685:3648: temp= identifierOrKeyword
         {
-        pushFollow(FOLLOW_identifierOrKeyword_in_synpred161_TCS3698);
+        pushFollow(FOLLOW_identifierOrKeyword_in_synpred161_TCS3699);
         temp=identifierOrKeyword();
 
         checkFollows();
@@ -18266,7 +18264,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:148: (temp= tcs_expression )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:744:148: temp= tcs_expression
         {
-        pushFollow(FOLLOW_tcs_expression_in_synpred168_TCS4050);
+        pushFollow(FOLLOW_tcs_expression_in_synpred168_TCS4051);
         temp=tcs_expression();
 
         checkFollows();
@@ -18285,7 +18283,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:150: (temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )* )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:150: temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )*
         {
-        pushFollow(FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4161);
+        pushFollow(FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4162);
         temp=tcs_sequenceinalternative();
 
         checkFollows();
@@ -18310,13 +18308,13 @@ public class TCSParser extends ObservableInjectingParser {
         	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:759:239: PIPE
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("E0A5ADB5B6F69EA2334511DF812BEC660A0001C5");
+        	      _beforeSeqEl("E0356A04EF0E074161F511DFB7DFF9DB0A0001C7");
         	    }
-        	    match(input,PIPE,FOLLOW_PIPE_in_synpred171_TCS4170); if (state.failed) return ;
+        	    match(input,PIPE,FOLLOW_PIPE_in_synpred171_TCS4171); if (state.failed) return ;
 
         	    }
 
-        	    pushFollow(FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4178);
+        	    pushFollow(FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4179);
         	    temp=tcs_sequenceinalternative();
 
         	    checkFollows();
@@ -18351,15 +18349,15 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:392: COMA 'mode' EQ (temp= stringSymbol )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("E0A5ADB5B7082AD0334511DF9926EC660A0001C5");
+          _beforeSeqEl("E0356A04EF17F25161F511DF997FF9DB0A0001C7");
         }
-        match(input,COMA,FOLLOW_COMA_in_synpred183_TCS4830); if (state.failed) return ;
-        match(input,75,FOLLOW_75_in_synpred183_TCS4834); if (state.failed) return ;
-        match(input,EQ,FOLLOW_EQ_in_synpred183_TCS4838); if (state.failed) return ;
+        match(input,COMA,FOLLOW_COMA_in_synpred183_TCS4831); if (state.failed) return ;
+        match(input,49,FOLLOW_49_in_synpred183_TCS4835); if (state.failed) return ;
+        match(input,EQ,FOLLOW_EQ_in_synpred183_TCS4839); if (state.failed) return ;
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:692: (temp= stringSymbol )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:868:694: temp= stringSymbol
         {
-        pushFollow(FOLLOW_stringSymbol_in_synpred183_TCS4846);
+        pushFollow(FOLLOW_stringSymbol_in_synpred183_TCS4847);
         temp=stringSymbol();
 
         checkFollows();
@@ -18384,7 +18382,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:65: (temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )* )
         // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:65: temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )*
         {
-        pushFollow(FOLLOW_tcs_simplepattern_in_synpred249_TCS8096);
+        pushFollow(FOLLOW_tcs_simplepattern_in_synpred249_TCS8097);
         temp=tcs_simplepattern();
 
         checkFollows();
@@ -18409,13 +18407,13 @@ public class TCSParser extends ObservableInjectingParser {
         	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g:1518:151: PIPE
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("E0A5ADB5B75BC911334511DF8766EC660A0001C5");
+        	      _beforeSeqEl("E0356A04EF6C2CD061F511DFC3F9F9DB0A0001C7");
         	    }
-        	    match(input,PIPE,FOLLOW_PIPE_in_synpred249_TCS8105); if (state.failed) return ;
+        	    match(input,PIPE,FOLLOW_PIPE_in_synpred249_TCS8106); if (state.failed) return ;
 
         	    }
 
-        	    pushFollow(FOLLOW_tcs_simplepattern_in_synpred249_TCS8113);
+        	    pushFollow(FOLLOW_tcs_simplepattern_in_synpred249_TCS8114);
         	    temp=tcs_simplepattern();
 
         	    checkFollows();
@@ -18608,16 +18606,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA28_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA28_maxS =
-        "\1\u0084\15\0\2\uffff";
+        "\1\u0085\15\0\2\uffff";
     static final String DFA28_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA28_specialS =
         "\1\uffff\1\5\1\12\1\11\1\2\1\4\1\14\1\10\1\3\1\6\1\0\1\13\1\7\1"+
         "\1\2\uffff}>";
     static final String[] DFA28_transitionS = {
-            "\1\14\44\uffff\1\1\26\uffff\1\12\3\uffff\1\3\7\uffff\1\7\10"+
-            "\uffff\1\10\7\uffff\1\11\1\5\12\uffff\1\2\4\uffff\1\4\10\uffff"+
-            "\1\6\3\uffff\1\13",
+            "\1\14\44\uffff\1\4\10\uffff\1\10\7\uffff\1\13\6\uffff\1\5\15"+
+            "\uffff\1\12\2\uffff\1\7\12\uffff\1\3\11\uffff\1\6\10\uffff\1"+
+            "\11\1\2\12\uffff\1\1",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -18881,16 +18879,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA33_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA33_maxS =
-        "\1\u0084\15\0\2\uffff";
+        "\1\u0085\15\0\2\uffff";
     static final String DFA33_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA33_specialS =
         "\1\uffff\1\5\1\12\1\11\1\2\1\4\1\14\1\10\1\3\1\6\1\1\1\13\1\7\1"+
         "\0\2\uffff}>";
     static final String[] DFA33_transitionS = {
-            "\1\14\44\uffff\1\1\26\uffff\1\12\3\uffff\1\3\7\uffff\1\7\10"+
-            "\uffff\1\10\7\uffff\1\11\1\5\12\uffff\1\2\4\uffff\1\4\10\uffff"+
-            "\1\6\3\uffff\1\13",
+            "\1\14\44\uffff\1\4\10\uffff\1\10\7\uffff\1\13\6\uffff\1\5\15"+
+            "\uffff\1\12\2\uffff\1\7\12\uffff\1\3\11\uffff\1\6\10\uffff\1"+
+            "\11\1\2\12\uffff\1\1",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -19154,16 +19152,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA50_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA50_maxS =
-        "\1\u0084\15\0\2\uffff";
+        "\1\u0085\15\0\2\uffff";
     static final String DFA50_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA50_specialS =
         "\1\uffff\1\4\1\11\1\10\1\1\1\3\1\14\1\7\1\2\1\5\1\0\1\12\1\6\1"+
         "\13\2\uffff}>";
     static final String[] DFA50_transitionS = {
-            "\1\14\44\uffff\1\1\26\uffff\1\12\3\uffff\1\3\7\uffff\1\7\10"+
-            "\uffff\1\10\7\uffff\1\11\1\5\12\uffff\1\2\4\uffff\1\4\10\uffff"+
-            "\1\6\3\uffff\1\13",
+            "\1\14\44\uffff\1\4\10\uffff\1\10\7\uffff\1\13\6\uffff\1\5\15"+
+            "\uffff\1\12\2\uffff\1\7\12\uffff\1\3\11\uffff\1\6\10\uffff\1"+
+            "\11\1\2\12\uffff\1\1",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -19427,16 +19425,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA61_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA61_maxS =
-        "\1\u0084\15\0\2\uffff";
+        "\1\u0085\15\0\2\uffff";
     static final String DFA61_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA61_specialS =
         "\1\uffff\1\4\1\12\1\11\1\1\1\3\1\14\1\10\1\2\1\6\1\0\1\13\1\7\1"+
         "\5\2\uffff}>";
     static final String[] DFA61_transitionS = {
-            "\1\14\44\uffff\1\1\26\uffff\1\12\3\uffff\1\3\7\uffff\1\7\10"+
-            "\uffff\1\10\7\uffff\1\11\1\5\12\uffff\1\2\4\uffff\1\4\10\uffff"+
-            "\1\6\3\uffff\1\13",
+            "\1\14\44\uffff\1\4\10\uffff\1\10\7\uffff\1\13\6\uffff\1\5\15"+
+            "\uffff\1\12\2\uffff\1\7\12\uffff\1\3\11\uffff\1\6\10\uffff\1"+
+            "\11\1\2\12\uffff\1\1",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -21399,13 +21397,13 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA68_acceptS =
         "\127\uffff\1\2\1\1";
     static final String DFA68_specialS =
-        "\1\uffff\1\12\1\62\1\11\1\107\1\45\1\124\1\46\1\104\1\10\1\72\1"+
-        "\7\1\47\1\111\1\35\1\113\1\51\1\2\1\64\1\1\1\63\1\42\1\114\1\43"+
-        "\1\116\1\6\1\66\1\5\1\65\1\75\1\25\1\76\1\27\1\22\1\60\1\4\1\57"+
-        "\1\20\1\77\1\41\1\101\1\14\1\56\1\3\1\55\1\16\1\21\1\67\1\17\1\32"+
-        "\1\100\1\44\1\117\1\24\1\74\1\13\1\70\1\34\1\102\1\50\1\120\1\37"+
-        "\1\103\1\71\1\15\1\36\1\115\1\40\1\125\1\112\1\110\1\33\1\73\1\23"+
-        "\1\105\1\26\1\122\1\31\1\106\1\30\1\0\1\53\1\121\1\54\1\123\1\52"+
+        "\1\uffff\1\12\1\73\1\11\1\107\1\46\1\124\1\47\1\104\1\10\1\71\1"+
+        "\7\1\50\1\111\1\35\1\112\1\52\1\2\1\63\1\1\1\62\1\42\1\113\1\44"+
+        "\1\115\1\6\1\65\1\5\1\64\1\75\1\25\1\76\1\27\1\22\1\60\1\4\1\57"+
+        "\1\20\1\77\1\41\1\101\1\14\1\56\1\3\1\55\1\16\1\21\1\66\1\17\1\31"+
+        "\1\100\1\45\1\116\1\24\1\74\1\13\1\67\1\34\1\102\1\51\1\120\1\37"+
+        "\1\103\1\70\1\15\1\36\1\114\1\40\1\125\1\33\1\110\1\32\1\72\1\23"+
+        "\1\105\1\26\1\122\1\43\1\106\1\30\1\0\1\53\1\121\1\54\1\123\1\117"+
         "\1\61\2\uffff}>";
     static final String[] DFA68_transitionS = {
             "\1\1\1\127\3\uffff\11\127\1\uffff\1\127\1\uffff\6\127\1\uffff"+
@@ -21919,21 +21917,6 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
                     case 25 : 
-                        int LA68_77 = input.LA(1);
-
-                         
-                        int index68_77 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_77);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
                         int LA68_49 = input.LA(1);
 
                          
@@ -21948,7 +21931,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_49);
                         if ( s>=0 ) return s;
                         break;
-                    case 27 : 
+                    case 26 : 
                         int LA68_71 = input.LA(1);
 
                          
@@ -21961,6 +21944,21 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_71);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 27 : 
+                        int LA68_69 = input.LA(1);
+
+                         
+                        int index68_69 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_69);
                         if ( s>=0 ) return s;
                         break;
                     case 28 : 
@@ -22069,6 +22067,21 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
                     case 35 : 
+                        int LA68_77 = input.LA(1);
+
+                         
+                        int index68_77 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_77);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 36 : 
                         int LA68_23 = input.LA(1);
 
                          
@@ -22083,7 +22096,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_23);
                         if ( s>=0 ) return s;
                         break;
-                    case 36 : 
+                    case 37 : 
                         int LA68_51 = input.LA(1);
 
                          
@@ -22098,7 +22111,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_51);
                         if ( s>=0 ) return s;
                         break;
-                    case 37 : 
+                    case 38 : 
                         int LA68_5 = input.LA(1);
 
                          
@@ -22113,7 +22126,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_5);
                         if ( s>=0 ) return s;
                         break;
-                    case 38 : 
+                    case 39 : 
                         int LA68_7 = input.LA(1);
 
                          
@@ -22128,7 +22141,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 39 : 
+                    case 40 : 
                         int LA68_12 = input.LA(1);
 
                          
@@ -22143,7 +22156,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_12);
                         if ( s>=0 ) return s;
                         break;
-                    case 40 : 
+                    case 41 : 
                         int LA68_59 = input.LA(1);
 
                          
@@ -22158,7 +22171,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_59);
                         if ( s>=0 ) return s;
                         break;
-                    case 41 : 
+                    case 42 : 
                         int LA68_16 = input.LA(1);
 
                          
@@ -22171,21 +22184,6 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_16);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 42 : 
-                        int LA68_85 = input.LA(1);
-
-                         
-                        int index68_85 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_85);
                         if ( s>=0 ) return s;
                         break;
                     case 43 : 
@@ -22294,21 +22292,6 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
                     case 50 : 
-                        int LA68_2 = input.LA(1);
-
-                         
-                        int index68_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 51 : 
                         int LA68_20 = input.LA(1);
 
                          
@@ -22323,7 +22306,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_20);
                         if ( s>=0 ) return s;
                         break;
-                    case 52 : 
+                    case 51 : 
                         int LA68_18 = input.LA(1);
 
                          
@@ -22338,7 +22321,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_18);
                         if ( s>=0 ) return s;
                         break;
-                    case 53 : 
+                    case 52 : 
                         int LA68_28 = input.LA(1);
 
                          
@@ -22353,7 +22336,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_28);
                         if ( s>=0 ) return s;
                         break;
-                    case 54 : 
+                    case 53 : 
                         int LA68_26 = input.LA(1);
 
                          
@@ -22368,7 +22351,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_26);
                         if ( s>=0 ) return s;
                         break;
-                    case 55 : 
+                    case 54 : 
                         int LA68_47 = input.LA(1);
 
                          
@@ -22383,7 +22366,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_47);
                         if ( s>=0 ) return s;
                         break;
-                    case 56 : 
+                    case 55 : 
                         int LA68_56 = input.LA(1);
 
                          
@@ -22398,7 +22381,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_56);
                         if ( s>=0 ) return s;
                         break;
-                    case 57 : 
+                    case 56 : 
                         int LA68_63 = input.LA(1);
 
                          
@@ -22413,7 +22396,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_63);
                         if ( s>=0 ) return s;
                         break;
-                    case 58 : 
+                    case 57 : 
                         int LA68_10 = input.LA(1);
 
                          
@@ -22428,7 +22411,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_10);
                         if ( s>=0 ) return s;
                         break;
-                    case 59 : 
+                    case 58 : 
                         int LA68_72 = input.LA(1);
 
                          
@@ -22441,6 +22424,21 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_72);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 59 : 
+                        int LA68_2 = input.LA(1);
+
+                         
+                        int index68_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_2);
                         if ( s>=0 ) return s;
                         break;
                     case 60 : 
@@ -22654,21 +22652,6 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
                     case 74 : 
-                        int LA68_69 = input.LA(1);
-
-                         
-                        int index68_69 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_69);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 75 : 
                         int LA68_15 = input.LA(1);
 
                          
@@ -22683,7 +22666,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_15);
                         if ( s>=0 ) return s;
                         break;
-                    case 76 : 
+                    case 75 : 
                         int LA68_22 = input.LA(1);
 
                          
@@ -22698,7 +22681,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_22);
                         if ( s>=0 ) return s;
                         break;
-                    case 77 : 
+                    case 76 : 
                         int LA68_66 = input.LA(1);
 
                          
@@ -22713,7 +22696,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_66);
                         if ( s>=0 ) return s;
                         break;
-                    case 78 : 
+                    case 77 : 
                         int LA68_24 = input.LA(1);
 
                          
@@ -22728,7 +22711,7 @@ public class TCSParser extends ObservableInjectingParser {
                         input.seek(index68_24);
                         if ( s>=0 ) return s;
                         break;
-                    case 79 : 
+                    case 78 : 
                         int LA68_52 = input.LA(1);
 
                          
@@ -22741,6 +22724,21 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_52);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 79 : 
+                        int LA68_85 = input.LA(1);
+
+                         
+                        int index68_85 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_85);
                         if ( s>=0 ) return s;
                         break;
                     case 80 : 
@@ -22848,7 +22846,7 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA86_minS =
         "\1\4\126\13\3\4\126\13\3\uffff";
     static final String DFA86_maxS =
-        "\1\u0085\126\37\1\u0085\2\122\126\37\3\uffff";
+        "\1\u0085\126\37\1\u0085\2\140\126\37\3\uffff";
     static final String DFA86_acceptS =
         "\u00b0\uffff\1\2\1\1\1\3";
     static final String DFA86_specialS =
@@ -22959,8 +22957,8 @@ public class TCSParser extends ObservableInjectingParser {
             "\1\u009c\1\u009d\1\u009e\1\u009f\1\u00a0\1\u00a1\1\u00a2\1\u00a3"+
             "\1\u00a4\1\u00a5\1\u00a6\1\u00a7\1\u00a8\1\u00a9\1\u00aa\1\u00ab"+
             "\1\u00ac\1\u00ad\1\u00ae\1\u00af",
-            "\1\u00b1\63\uffff\1\u00b0\31\uffff\1\u00b2",
-            "\1\u00b1\63\uffff\1\u00b0\31\uffff\1\u00b2",
+            "\1\u00b1\114\uffff\1\u00b0\16\uffff\1\u00b2",
+            "\1\u00b1\114\uffff\1\u00b0\16\uffff\1\u00b2",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
@@ -23090,12 +23088,12 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA126_eofS =
         "\1\uffff\127\131\5\uffff\127\131";
     static final String DFA126_minS =
-        "\1\4\65\13\1\11\5\13\1\11\32\13\1\4\5\uffff\1\13\1\4\102\13\1\4"+
-        "\21\13\1\4";
+        "\1\4\44\13\1\11\16\13\1\11\42\13\1\4\5\uffff\114\13\1\4\7\13\1"+
+        "\4\1\13\1\4";
     static final String DFA126_maxS =
-        "\1\u0085\126\164\1\u0085\5\uffff\1\164\1\u0085\125\164";
+        "\1\u0085\126\u0084\1\u0085\5\uffff\124\u0084\1\u0085\2\u0084";
     static final String DFA126_acceptS =
-        "\130\uffff\1\1\1\2\1\5\1\3\1\4\127\uffff";
+        "\130\uffff\1\1\1\2\1\5\1\4\1\3\127\uffff";
     static final String DFA126_specialS =
         "\u00b4\uffff}>";
     static final String[] DFA126_transitionS = {
@@ -23107,94 +23105,94 @@ public class TCSParser extends ObservableInjectingParser {
             "\71\1\72\1\73\1\74\1\75\1\76\1\77\1\100\1\101\1\102\1\103\1"+
             "\104\1\105\1\106\1\107\1\110\1\111\1\112\1\113\1\114\1\115\1"+
             "\116\1\117\1\120\1\121\1\122\1\123\1\124\1\125\1\126",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\133\1\uffff\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff"+
-            "\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\134\1\uffff\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff"+
-            "\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\133\1\uffff\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff"+
+            "\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\134\1\uffff\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff"+
+            "\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
             "\1\135\6\uffff\1\130\13\uffff\1\131\31\uffff\1\136\1\137\1"+
             "\140\1\141\1\142\1\143\1\144\1\145\1\146\1\147\1\150\1\151\1"+
             "\152\1\153\1\154\1\155\1\156\1\157\1\160\1\161\1\162\1\163\1"+
@@ -23211,95 +23209,95 @@ public class TCSParser extends ObservableInjectingParser {
             "",
             "",
             "",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\132\6\uffff\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff"+
+            "\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
             "\1\131\6\uffff\1\130\3\uffff\1\131\7\uffff\1\131\31\uffff"+
-            "\103\131\1\u00b3\21\131",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\132\6\uffff\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff"+
-            "\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\130\13\uffff\1\131\31\uffff\1\131\102\uffff\1\132",
-            "\1\132\6\uffff\1\131\13\uffff\1\131\31\uffff\1\131\102\uffff"+
+            "\113\131\1\u00b3\11\131",
+            "\1\130\13\uffff\1\131\144\uffff\1\132\7\uffff\1\131",
+            "\1\132\6\uffff\1\131\13\uffff\1\131\144\uffff\1\131\7\uffff"+
             "\1\131"
     };
 
@@ -23439,528 +23437,528 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_RPAREN_in_primary_model_namespace1043 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_primary_model_namespace_in_dblcolon_priority_01081 = new BitSet(new long[]{0x0000000000000102L});
     public static final BitSet FOLLOW_DLCOLON_in_dblcolon_priority_01090 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_model_modelelement_in_dblcolon_priority_01098 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_dblcolon_priority_0_in_model_namespace1130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_model_generalizableelement1163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_model_modelelement1211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_concretesyntax_in_main1281 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_main1284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_tcs_concretesyntax1315 = new BitSet(new long[]{0x0000000000001210L});
-    public static final BitSet FOLLOW_identifier_in_tcs_concretesyntax1322 = new BitSet(new long[]{0x0000000000001200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_concretesyntax1337 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_57_in_tcs_concretesyntax1341 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_concretesyntax1345 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_concretesyntax1353 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_concretesyntax1360 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1378 = new BitSet(new long[]{0x0004000000002000L,0x008400C040202200L,0x0000000000000011L});
-    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1389 = new BitSet(new long[]{0x0004000000002000L,0x008400C040202200L,0x0000000000000011L});
-    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1397 = new BitSet(new long[]{0x0004000000002000L,0x008400C040202200L,0x0000000000000011L});
-    public static final BitSet FOLLOW_128_in_tcs_concretesyntax1414 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1418 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_tcs_keyword_in_tcs_concretesyntax1429 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_tcs_keyword_in_tcs_concretesyntax1437 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1452 = new BitSet(new long[]{0x0000000000002000L,0x0000004040200200L,0x0000000000000010L});
-    public static final BitSet FOLLOW_85_in_tcs_concretesyntax1475 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1479 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_tcs_symbol_in_tcs_concretesyntax1490 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_tcs_symbol_in_tcs_concretesyntax1498 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1513 = new BitSet(new long[]{0x0000000000002000L,0x0000004040000200L,0x0000000000000010L});
-    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1534 = new BitSet(new long[]{0x0000000000002000L,0x0000004040000200L,0x0000000000000010L});
-    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1542 = new BitSet(new long[]{0x0000000000002000L,0x0000004040000200L,0x0000000000000010L});
-    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1557 = new BitSet(new long[]{0x0000000000002000L,0x0000004000000200L,0x0000000000000010L});
-    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1565 = new BitSet(new long[]{0x0000000000002000L,0x0000004000000200L,0x0000000000000010L});
-    public static final BitSet FOLLOW_132_in_tcs_concretesyntax1582 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_concretesyntax1586 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_concretesyntax1594 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_concretesyntax1601 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_model_classifier_in_reference1667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RARROW_in_reference1683 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_identifier_in_reference1691 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_DLCOLON_in_reference1700 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_reference1708 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_tcs_contexttemplate_in_tcs_template1749 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_primitivetemplate_in_tcs_template1757 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_enumerationtemplate_in_tcs_template1765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_functiontemplate_in_tcs_template1773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_classtemplate_in_tcs_contexttemplate1800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_operatortemplate_in_tcs_contexttemplate1808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_tcs_primitivetemplate1838 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1845 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_tcs_primitivetemplate1851 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_primitivetemplate1854 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000080L});
-    public static final BitSet FOLLOW_109_in_tcs_primitivetemplate1864 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_tcs_primitivetemplate1882 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1889 = new BitSet(new long[]{0x0800000000010000L});
-    public static final BitSet FOLLOW_59_in_tcs_primitivetemplate1901 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_primitivetemplate1920 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_108_in_tcs_primitivetemplate1924 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_primitivetemplate1928 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_primitivetemplate1936 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_primitivetemplate1949 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_130_in_tcs_primitivetemplate1953 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_primitivetemplate1957 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_primitivetemplate1965 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_primitivetemplate1985 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_primitivetemplate1993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_119_in_tcs_enumerationtemplate2038 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_enumerationtemplate2041 = new BitSet(new long[]{0x0000000000014000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_tcs_enumerationtemplate2051 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_enumerationtemplate2079 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2090 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_enumerationtemplate2099 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2107 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_enumerationtemplate2122 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_enumerationtemplate2139 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_enumerationtemplate2153 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_enumliteralval_in_tcs_enumliteralmapping2202 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_enumliteralmapping2209 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_literalref_in_tcs_enumliteralmapping2217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_tcs_classtemplate2260 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_classtemplate2263 = new BitSet(new long[]{0x8000000000054200L,0x0408040908090020L});
-    public static final BitSet FOLLOW_122_in_tcs_classtemplate2273 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_SHARP_in_tcs_classtemplate2293 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_plainStringSymbol_in_tcs_classtemplate2301 = new BitSet(new long[]{0x8000000000014200L,0x0008040908090020L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2327 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
-    public static final BitSet FOLLOW_117_in_tcs_classtemplate2331 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_classtemplate2335 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_classtemplate2343 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2350 = new BitSet(new long[]{0x8000000000014200L,0x0008040908090020L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2374 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_tcs_classtemplate2378 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_classtemplate2382 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_classtemplate2390 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2397 = new BitSet(new long[]{0x8000000000014000L,0x0008040908090020L});
-    public static final BitSet FOLLOW_106_in_tcs_classtemplate2420 = new BitSet(new long[]{0x8000000000014000L,0x0008000908090020L});
-    public static final BitSet FOLLOW_69_in_tcs_classtemplate2444 = new BitSet(new long[]{0x8000000000014000L,0x0008000908090000L});
-    public static final BitSet FOLLOW_96_in_tcs_classtemplate2474 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
-    public static final BitSet FOLLOW_115_in_tcs_classtemplate2492 = new BitSet(new long[]{0x8000000000014000L,0x0000000808090000L});
-    public static final BitSet FOLLOW_83_in_tcs_classtemplate2516 = new BitSet(new long[]{0x8000000000014200L,0x0000000808010000L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2526 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_classtemplate2534 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2541 = new BitSet(new long[]{0x8000000000014000L,0x0000000808010000L});
-    public static final BitSet FOLLOW_91_in_tcs_classtemplate2579 = new BitSet(new long[]{0x8000000000014200L,0x0000000800010000L});
-    public static final BitSet FOLLOW_tcs_contexttags_in_tcs_classtemplate2592 = new BitSet(new long[]{0x8000000000014000L,0x0000000800010000L});
-    public static final BitSet FOLLOW_63_in_tcs_classtemplate2632 = new BitSet(new long[]{0x0000000000014000L,0x0000000800010000L});
-    public static final BitSet FOLLOW_80_in_tcs_classtemplate2656 = new BitSet(new long[]{0x0000000000014000L,0x0000000800000000L});
-    public static final BitSet FOLLOW_99_in_tcs_classtemplate2680 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_classtemplate2687 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_classtemplate2698 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_classtemplate2740 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_classtemplate2751 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_classtemplate2761 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_classtemplate2778 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_classtemplate2792 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_114_in_tcs_operatortemplate2837 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_operatortemplate2840 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_operatortemplate2845 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_94_in_tcs_operatortemplate2849 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2853 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_operatortemplate2861 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_operatortemplate2869 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2881 = new BitSet(new long[]{0x0000000000000000L,0x0200000000000000L});
-    public static final BitSet FOLLOW_121_in_tcs_operatortemplate2885 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2889 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2897 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2910 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_tcs_operatortemplate2914 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2918 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2926 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2952 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_tcs_operatortemplate2956 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2960 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2968 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2994 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
-    public static final BitSet FOLLOW_117_in_tcs_operatortemplate2998 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate3002 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_operatortemplate3010 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate3036 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_tcs_operatortemplate3040 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate3044 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_operatortemplate3052 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_operatortemplate3072 = new BitSet(new long[]{0x0000000000014000L,0x0400000008000000L});
-    public static final BitSet FOLLOW_122_in_tcs_operatortemplate3082 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_91_in_tcs_operatortemplate3101 = new BitSet(new long[]{0x0000000000014200L});
-    public static final BitSet FOLLOW_tcs_contexttags_in_tcs_operatortemplate3114 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_operatortemplate3165 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_operatortemplate3176 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_operatortemplate3186 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_operatortemplate3203 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_operatortemplate3217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_103_in_tcs_functiontemplate3262 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_functiontemplate3269 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_functiontemplate3276 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_functiontemplate3280 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_functiontemplate3285 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_functiontemplate3293 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_functiontemplate3304 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_functiontemplate3314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_contexttags3359 = new BitSet(new long[]{0x0000000000000410L});
-    public static final BitSet FOLLOW_identifier_in_tcs_contexttags3367 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_contexttags3376 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_contexttags3384 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_contexttags3396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3441 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3449 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence__impl_in_tcs_sequence3494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_sequence3499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_literalref_in_tcs_sequenceelement3528 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_property_in_tcs_sequenceelement3536 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_customseparator_in_tcs_sequenceelement3544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_block_in_tcs_sequenceelement3552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_conditionalelement_in_tcs_sequenceelement3560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_alternative_in_tcs_sequenceelement3568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_functioncall_in_tcs_sequenceelement3576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_injectoractionsblock_in_tcs_sequenceelement3584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_literalref3618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_propertyreference3674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RARROW_in_tcs_propertyreference3690 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_propertyreference3698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_property3753 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_property3766 = new BitSet(new long[]{0x1120000000002000L,0x0921400202400840L,0x000000000000000AL});
-    public static final BitSet FOLLOW_tcs_propertyarg_in_tcs_property3774 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_property3783 = new BitSet(new long[]{0x1120000000000000L,0x0921400202400840L,0x000000000000000AL});
-    public static final BitSet FOLLOW_tcs_propertyarg_in_tcs_property3791 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_property3803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_tcs_customseparator3861 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_customseparator3869 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_GT_in_tcs_customseparator3876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_tcs_block3921 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_block3929 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_RSQUARE_in_tcs_block3936 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_block3947 = new BitSet(new long[]{0x0080000000002000L,0x9000020080000000L});
-    public static final BitSet FOLLOW_tcs_blockarg_in_tcs_block3955 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_block3964 = new BitSet(new long[]{0x0080000000000000L,0x9000020080000000L});
-    public static final BitSet FOLLOW_tcs_blockarg_in_tcs_block3972 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_block3984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_conditionalelement4042 = new BitSet(new long[]{0xFFFE000000808010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_expression_in_tcs_conditionalelement4050 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_QMARK_in_tcs_conditionalelement4059 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_conditionalelement4067 = new BitSet(new long[]{0x0000000000010400L});
-    public static final BitSet FOLLOW_COLON_in_tcs_conditionalelement4080 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_conditionalelement4088 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_conditionalelement4108 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DLSQUARE_in_tcs_alternative4153 = new BitSet(new long[]{0xFFFE000037288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4161 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_PIPE_in_tcs_alternative4170 = new BitSet(new long[]{0xFFFE000037288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4178 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_DRSQUARE_in_tcs_alternative4190 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_STAR_in_tcs_alternative4201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_117_in_tcs_sequenceinalternative4266 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_sequenceinalternative4270 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_sequenceinalternative4278 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_sequenceinalternative4285 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4306 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4314 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_DOLLAR_in_tcs_functioncall4363 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_functioncall4371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DLCURLY_in_tcs_injectoractionsblock4418 = new BitSet(new long[]{0xFFFE000040008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4426 = new BitSet(new long[]{0x0000000040020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_injectoractionsblock4435 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4443 = new BitSet(new long[]{0x0000000040020000L});
-    public static final BitSet FOLLOW_DRCURLY_in_tcs_injectoractionsblock4455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyinit_in_tcs_injectoraction4496 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_primitivepropertyinit_in_tcs_propertyinit4523 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_lookuppropertyinit_in_tcs_propertyinit4531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_foreachpredicatepropertyinit_in_tcs_propertyinit4539 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_primitivepropertyinit4573 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_tcs_primitivepropertyinit4586 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_EQ_in_tcs_primitivepropertyinit4601 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_primitivepropertyinit4616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_lookuppropertyinit4663 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_tcs_lookuppropertyinit4676 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_EQ_in_tcs_lookuppropertyinit4691 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_tcs_lookuppropertyinit4702 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_lookuppropertyinit4706 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_lookuppropertyinit4714 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_lookuppropertyinit4721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_foreachpredicatepropertyinit4766 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4779 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4794 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_tcs_foreachpredicatepropertyinit4805 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_foreachpredicatepropertyinit4809 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4817 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4830 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_tcs_foreachpredicatepropertyinit4834 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4838 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4846 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4872 = new BitSet(new long[]{0x0000000000000400L,0x0000000000000C00L,0x0000000000000008L});
-    public static final BitSet FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4880 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4889 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000C00L,0x0000000000000008L});
-    public static final BitSet FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4897 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_foreachpredicatepropertyinit4922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_tcs_predicatesemantic4969 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic4973 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_predicatesemantic4981 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic4988 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L,0x0000000000000008L});
-    public static final BitSet FOLLOW_75_in_tcs_predicatesemantic5011 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic5015 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_predicatesemantic5023 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic5030 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_131_in_tcs_predicatesemantic5047 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic5051 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_predicatesemantic5059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_referstoparg_in_tcs_propertyarg5101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_lookinparg_in_tcs_propertyarg5109 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_createinparg_in_tcs_propertyarg5117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_asparg_in_tcs_propertyarg5125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_separatorparg_in_tcs_propertyarg5133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_disambiguateparg_in_tcs_propertyarg5141 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_autocreateparg_in_tcs_propertyarg5149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_importcontextparg_in_tcs_propertyarg5157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_partialparg_in_tcs_propertyarg5165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_forcedlowerparg_in_tcs_propertyarg5173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_forcedupperparg_in_tcs_propertyarg5181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_createasparg_in_tcs_propertyarg5189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_queryparg_in_tcs_propertyarg5197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_filterparg_in_tcs_propertyarg5205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_modeparg_in_tcs_propertyarg5213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_129_in_tcs_referstoparg5243 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_referstoparg5247 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_referstoparg5255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_tcs_lookinparg5298 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_lookinparg5302 = new BitSet(new long[]{0xFFFE000000040010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_SHARP_in_tcs_lookinparg5313 = new BitSet(new long[]{0x0000000000000000L,0x2000000000000000L});
-    public static final BitSet FOLLOW_125_in_tcs_lookinparg5317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_lookinparg5334 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_POINT_in_tcs_lookinparg5343 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_lookinparg5351 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_53_in_tcs_createinparg5404 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_createinparg5408 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createinparg5416 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_POINT_in_tcs_createinparg5425 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createinparg5433 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_131_in_tcs_asparg5479 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_asparg5483 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_asparg5491 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_112_in_tcs_separatorparg5534 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_separatorparg5538 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequence_in_tcs_separatorparg5546 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_117_in_tcs_disambiguateparg5589 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_disambiguateparg5593 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_disambiguateparg5601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_110_in_tcs_autocreateparg5644 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_autocreateparg5648 = new BitSet(new long[]{0x2400000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_tcs_autocreatekind_in_tcs_autocreateparg5656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_tcs_autocreatekind5700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_tcs_autocreatekind5710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_tcs_autocreatekind5720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_123_in_tcs_importcontextparg5751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_120_in_tcs_partialparg5791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_tcs_forcedlowerparg5831 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_forcedlowerparg5835 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_forcedlowerparg5843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_tcs_forcedupperparg5886 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_forcedupperparg5890 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_forcedupperparg5898 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_tcs_createasparg5941 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_createasparg5945 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createasparg5953 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_DLCOLON_in_tcs_createasparg5962 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createasparg5970 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_97_in_tcs_queryparg6016 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_queryparg6020 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_queryparg6028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_tcs_filterparg6071 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_filterparg6075 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_filterparg6083 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_COMA_in_tcs_filterparg6096 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_tcs_filterparg6100 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_filterparg6104 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_filterparg6112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_tcs_modeparg6168 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_modeparg6172 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_modeparg6180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_nbnlbarg_in_tcs_blockarg6220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_indentincrbarg_in_tcs_blockarg6228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_startnlbarg_in_tcs_blockarg6236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_startnbnlbarg_in_tcs_blockarg6244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_endnlbarg_in_tcs_blockarg6252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_tcs_nbnlbarg6282 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_nbnlbarg6286 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_nbnlbarg6294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_127_in_tcs_indentincrbarg6337 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_indentincrbarg6341 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_indentincrbarg6349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_tcs_startnlbarg6392 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_startnlbarg6396 = new BitSet(new long[]{0x0018000000000000L});
-    public static final BitSet FOLLOW_52_in_tcs_startnlbarg6406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_tcs_startnlbarg6419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_105_in_tcs_startnbnlbarg6466 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_startnbnlbarg6470 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_startnbnlbarg6478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_124_in_tcs_endnlbarg6521 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_endnlbarg6525 = new BitSet(new long[]{0x0018000000000000L});
-    public static final BitSet FOLLOW_52_in_tcs_endnlbarg6535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_tcs_endnlbarg6548 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_tcs_symbol6599 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_symbol6608 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_symbol6616 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_symbol6629 = new BitSet(new long[]{0x0000000000004000L,0x4000010000800010L});
-    public static final BitSet FOLLOW_tcs_spacekind_in_tcs_symbol6637 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_symbol6646 = new BitSet(new long[]{0x0000000000000000L,0x4000010000800010L});
-    public static final BitSet FOLLOW_tcs_spacekind_in_tcs_symbol6654 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_symbol6679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_126_in_tcs_spacekind6721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_tcs_spacekind6731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_tcs_spacekind6741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_104_in_tcs_spacekind6751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_tcs_keyword6786 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_keyword6795 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_keyword6803 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_keyword6810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_tcs_operatorlist6851 = new BitSet(new long[]{0x0000000000001010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_operatorlist6864 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_operatorlist6884 = new BitSet(new long[]{0x0000000000002000L,0x0040000000000000L});
-    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6895 = new BitSet(new long[]{0x0000000000002000L,0x0040000000000000L});
-    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6903 = new BitSet(new long[]{0x0000000000002000L,0x0040000000000000L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_operatorlist6918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_118_in_tcs_priority6959 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_priority6966 = new BitSet(new long[]{0x0000000000021000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_priority6989 = new BitSet(new long[]{0x0000000000000000L,0x0002000001000000L});
-    public static final BitSet FOLLOW_tcs_associativity_in_tcs_priority6997 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_priority7011 = new BitSet(new long[]{0x0000000000002810L,0x0000800000000000L});
-    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority7022 = new BitSet(new long[]{0x0000000000002810L,0x0000800000000000L});
-    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority7030 = new BitSet(new long[]{0x0000000000002810L,0x0000800000000000L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_priority7045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_111_in_tcs_operator7092 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_identifier_in_tcs_operator7114 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_operator7123 = new BitSet(new long[]{0x0000000000020030L});
-    public static final BitSet FOLLOW_identifier_in_tcs_operator7142 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_operator7162 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operator7187 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_operator7195 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_operator7202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_tcs_associativity7244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_113_in_tcs_associativity7254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_andexp_in_tcs_expression7282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7316 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_49_in_tcs_andexp7324 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7331 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_tcs_equalsexp_in_tcs_atomexp7376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_booleanpropertyexp_in_tcs_atomexp7384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_isdefinedexp_in_tcs_atomexp7392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_oneexp_in_tcs_atomexp7400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_instanceofexp_in_tcs_atomexp7408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_equalsexp7442 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_equalsexp7449 = new BitSet(new long[]{0x0000000200040060L});
-    public static final BitSet FOLLOW_tcs_value_in_tcs_equalsexp7457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_booleanpropertyexp7504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_tcs_isdefinedexp7547 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_isdefinedexp7551 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_isdefinedexp7559 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_isdefinedexp7566 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_107_in_tcs_oneexp7607 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_oneexp7611 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_oneexp7619 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_oneexp7626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_instanceofexp7671 = new BitSet(new long[]{0x0000000000000000L,0x0010000000000000L});
-    public static final BitSet FOLLOW_116_in_tcs_instanceofexp7677 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_instanceofexp7684 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_DLCOLON_in_tcs_instanceofexp7693 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_instanceofexp7701 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_tcs_stringval_in_tcs_value7744 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_integerval_in_tcs_value7752 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_negativeintegerval_in_tcs_value7760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_enumliteralval_in_tcs_value7768 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_stringval7802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_integerval7849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_tcs_negativeintegerval7893 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_tcs_negativeintegerval7901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHARP_in_tcs_enumliteralval7945 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_enumliteralval7953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_tcs_token8002 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_tcs_token8020 = new BitSet(new long[]{0x0000000000010010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_token8027 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_token8036 = new BitSet(new long[]{0x0000000000204020L,0x0000001000001000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_token8044 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_SEMI_in_tcs_token8051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_simplepattern_in_tcs_orpattern8096 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_PIPE_in_tcs_orpattern8105 = new BitSet(new long[]{0x0000000000200020L,0x0000001000001000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_simplepattern_in_tcs_orpattern8113 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_tcs_rulepattern_in_tcs_simplepattern8158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_simplepattern8166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_classpattern_in_tcs_simplepattern8174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_rule_in_tcs_rulepattern8208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_wordrule_in_tcs_rule8248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_endoflinerule_in_tcs_rule8256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_multilinerule_in_tcs_rule8264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_tcs_wordrule8294 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_wordrule8298 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_tcs_wordrule8302 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8306 = new BitSet(new long[]{0x0000000000220020L,0x0000001000001000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8314 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8321 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_tcs_wordrule8325 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8329 = new BitSet(new long[]{0x0000000000220420L,0x0000001000001000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8337 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8350 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_tcs_wordrule8354 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8358 = new BitSet(new long[]{0x0000000000200420L,0x0000001000001000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8366 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_wordrule8386 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_133_in_tcs_endoflinerule8427 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_endoflinerule8431 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_tcs_endoflinerule8435 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_endoflinerule8439 = new BitSet(new long[]{0x0000000000000420L,0x0000000020000000L});
-    public static final BitSet FOLLOW_93_in_tcs_endoflinerule8449 = new BitSet(new long[]{0x0000000000000420L});
-    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_endoflinerule8471 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_endoflinerule8478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_tcs_multilinerule8519 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8523 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_tcs_multilinerule8527 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8531 = new BitSet(new long[]{0x0000000000020020L,0x0000000020000000L});
-    public static final BitSet FOLLOW_93_in_tcs_multilinerule8541 = new BitSet(new long[]{0x0000000000020020L});
-    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8563 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8570 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_tcs_multilinerule8574 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8578 = new BitSet(new long[]{0x0000000000020420L,0x0000000020000000L});
-    public static final BitSet FOLLOW_93_in_tcs_multilinerule8588 = new BitSet(new long[]{0x0000000000020420L});
-    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8610 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8623 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_81_in_tcs_multilinerule8627 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8631 = new BitSet(new long[]{0x0000000000020420L});
-    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8639 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8652 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8657 = new BitSet(new long[]{0x0000000100000410L,0x0000000000100002L});
-    public static final BitSet FOLLOW_tcs_mapping_in_tcs_multilinerule8665 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8674 = new BitSet(new long[]{0x0000000100000010L,0x0000000000100002L});
-    public static final BitSet FOLLOW_tcs_mapping_in_tcs_multilinerule8682 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_multilinerule8694 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_multilinerule8725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_simplemapping_in_tcs_mapping8763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_wildcardmapping_in_tcs_mapping8771 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_octalmapping_in_tcs_mapping8779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_hexadecimalmapping_in_tcs_mapping8787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_tcs_simplemapping8821 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RARROW_in_tcs_simplemapping8828 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_simplemapping8836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_POINT_in_tcs_wildcardmapping8880 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RARROW_in_tcs_wildcardmapping8885 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_POINT_in_tcs_wildcardmapping8890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_tcs_octalmapping8931 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_84_in_tcs_hexadecimalmapping8971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_tcs_stringpattern9015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_tcs_classpattern9061 = new BitSet(new long[]{0x0000000000400010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_classpattern9069 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_RSQUARE_in_tcs_classpattern9078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_model_modelelement_Model_ModelElement_opDlColon_in_dblcolon_priority_01098 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_dblcolon_priority_0_in_model_namespace1135 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_model_generalizableelement1168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_model_modelelement_Model_ModelElement_opDlColon1216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_concretesyntax_in_main1286 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_main1289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_123_in_tcs_concretesyntax1320 = new BitSet(new long[]{0x0000000000001210L});
+    public static final BitSet FOLLOW_identifier_in_tcs_concretesyntax1327 = new BitSet(new long[]{0x0000000000001200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_concretesyntax1342 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_tcs_concretesyntax1346 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_concretesyntax1350 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_concretesyntax1358 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_concretesyntax1365 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1383 = new BitSet(new long[]{0x0804000000002000L,0x0601004009000408L,0x0000000000000020L});
+    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1394 = new BitSet(new long[]{0x0804000000002000L,0x0601004009000408L,0x0000000000000020L});
+    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1402 = new BitSet(new long[]{0x0804000000002000L,0x0601004009000408L,0x0000000000000020L});
+    public static final BitSet FOLLOW_112_in_tcs_concretesyntax1419 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1423 = new BitSet(new long[]{0x0000000000002810L});
+    public static final BitSet FOLLOW_tcs_keyword_in_tcs_concretesyntax1434 = new BitSet(new long[]{0x0000000000002810L});
+    public static final BitSet FOLLOW_tcs_keyword_in_tcs_concretesyntax1442 = new BitSet(new long[]{0x0000000000002810L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1457 = new BitSet(new long[]{0x0800000000002000L,0x0200000009000008L});
+    public static final BitSet FOLLOW_91_in_tcs_concretesyntax1480 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1484 = new BitSet(new long[]{0x0000000000002810L});
+    public static final BitSet FOLLOW_tcs_symbol_in_tcs_concretesyntax1495 = new BitSet(new long[]{0x0000000000002810L});
+    public static final BitSet FOLLOW_tcs_symbol_in_tcs_concretesyntax1503 = new BitSet(new long[]{0x0000000000002810L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1518 = new BitSet(new long[]{0x0800000000002000L,0x0200000001000008L});
+    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1539 = new BitSet(new long[]{0x0800000000002000L,0x0200000001000008L});
+    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1547 = new BitSet(new long[]{0x0800000000002000L,0x0200000001000008L});
+    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1562 = new BitSet(new long[]{0x0000000000002000L,0x0200000001000008L});
+    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1570 = new BitSet(new long[]{0x0000000000002000L,0x0200000001000008L});
+    public static final BitSet FOLLOW_67_in_tcs_concretesyntax1587 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_concretesyntax1591 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_concretesyntax1599 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_concretesyntax1606 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_model_classifier_in_reference1672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RARROW_in_reference1688 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_identifier_in_reference1696 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_DLCOLON_in_reference1705 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_reference1713 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_tcs_contexttemplate_in_tcs_template1754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_primitivetemplate_in_tcs_template1762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_enumerationtemplate_in_tcs_template1770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_functiontemplate_in_tcs_template1778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_classtemplate_in_tcs_contexttemplate1805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_operatortemplate_in_tcs_contexttemplate1813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_tcs_primitivetemplate1843 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1850 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
+    public static final BitSet FOLLOW_115_in_tcs_primitivetemplate1856 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_primitivetemplate1859 = new BitSet(new long[]{0x0008000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_98_in_tcs_primitivetemplate1869 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_tcs_primitivetemplate1887 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1894 = new BitSet(new long[]{0x0000000000010000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_tcs_primitivetemplate1906 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_primitivetemplate1925 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_tcs_primitivetemplate1929 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_primitivetemplate1933 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_primitivetemplate1941 = new BitSet(new long[]{0x0000000000024000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_primitivetemplate1954 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_92_in_tcs_primitivetemplate1958 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_primitivetemplate1962 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_primitivetemplate1970 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_primitivetemplate1990 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_primitivetemplate1998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_tcs_enumerationtemplate2043 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_enumerationtemplate2046 = new BitSet(new long[]{0x0000000000014000L,0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_130_in_tcs_enumerationtemplate2056 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_enumerationtemplate2084 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2095 = new BitSet(new long[]{0x0000000000024000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_enumerationtemplate2104 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2112 = new BitSet(new long[]{0x0000000000024000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_enumerationtemplate2127 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_enumerationtemplate2144 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_enumerationtemplate2158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_enumliteralval_in_tcs_enumliteralmapping2207 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_enumliteralmapping2214 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_tcs_literalref_in_tcs_enumliteralmapping2222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_133_in_tcs_classtemplate2265 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_classtemplate2268 = new BitSet(new long[]{0x0280000000054200L,0x4060040000C00004L,0x0000000000000002L});
+    public static final BitSet FOLLOW_117_in_tcs_classtemplate2278 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_SHARP_in_tcs_classtemplate2298 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_plainStringSymbol_in_tcs_classtemplate2306 = new BitSet(new long[]{0x0280000000014200L,0x4040040000C00004L,0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2332 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_tcs_classtemplate2336 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_classtemplate2340 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_classtemplate2348 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2355 = new BitSet(new long[]{0x0280000000014200L,0x4040040000C00004L,0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2379 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_tcs_classtemplate2383 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_classtemplate2387 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_classtemplate2395 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2402 = new BitSet(new long[]{0x0280000000014000L,0x4040040000C00004L,0x0000000000000002L});
+    public static final BitSet FOLLOW_86_in_tcs_classtemplate2425 = new BitSet(new long[]{0x0280000000014000L,0x4040040000800004L,0x0000000000000002L});
+    public static final BitSet FOLLOW_129_in_tcs_classtemplate2449 = new BitSet(new long[]{0x0280000000014000L,0x4040040000800004L});
+    public static final BitSet FOLLOW_66_in_tcs_classtemplate2479 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_87_in_tcs_classtemplate2497 = new BitSet(new long[]{0x0280000000014000L,0x4040040000000000L});
+    public static final BitSet FOLLOW_57_in_tcs_classtemplate2521 = new BitSet(new long[]{0x0080000000014200L,0x4040040000000000L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2531 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_classtemplate2539 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2546 = new BitSet(new long[]{0x0080000000014000L,0x4040040000000000L});
+    public static final BitSet FOLLOW_55_in_tcs_classtemplate2584 = new BitSet(new long[]{0x0000000000014200L,0x4040040000000000L});
+    public static final BitSet FOLLOW_tcs_contexttags_in_tcs_classtemplate2597 = new BitSet(new long[]{0x0000000000014000L,0x4040040000000000L});
+    public static final BitSet FOLLOW_126_in_tcs_classtemplate2637 = new BitSet(new long[]{0x0000000000014000L,0x0040040000000000L});
+    public static final BitSet FOLLOW_106_in_tcs_classtemplate2661 = new BitSet(new long[]{0x0000000000014000L,0x0040000000000000L});
+    public static final BitSet FOLLOW_118_in_tcs_classtemplate2685 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_classtemplate2692 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_classtemplate2703 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_classtemplate2745 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_classtemplate2756 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_classtemplate2766 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_classtemplate2783 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_classtemplate2797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_122_in_tcs_operatortemplate2842 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_operatortemplate2845 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_operatortemplate2850 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_59_in_tcs_operatortemplate2854 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2858 = new BitSet(new long[]{0x0000000000020010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_operatortemplate2866 = new BitSet(new long[]{0x0000000000020010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_operatortemplate2874 = new BitSet(new long[]{0x0000000000020010L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2886 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_tcs_operatortemplate2890 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2894 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2902 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2915 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_tcs_operatortemplate2919 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2923 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2931 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2957 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_128_in_tcs_operatortemplate2961 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2965 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2973 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2999 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_tcs_operatortemplate3003 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate3007 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_operatortemplate3015 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate3041 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_tcs_operatortemplate3045 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate3049 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_operatortemplate3057 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_operatortemplate3077 = new BitSet(new long[]{0x0080000000014000L,0x0020000000000000L});
+    public static final BitSet FOLLOW_117_in_tcs_operatortemplate3087 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_55_in_tcs_operatortemplate3106 = new BitSet(new long[]{0x0000000000014200L});
+    public static final BitSet FOLLOW_tcs_contexttags_in_tcs_operatortemplate3119 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_operatortemplate3170 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_operatortemplate3181 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_operatortemplate3191 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_operatortemplate3208 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_operatortemplate3222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_tcs_functiontemplate3267 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_functiontemplate3274 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_functiontemplate3281 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_functiontemplate3285 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_functiontemplate3290 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_functiontemplate3298 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_functiontemplate3309 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_functiontemplate3319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_contexttags3364 = new BitSet(new long[]{0x0000000000000410L});
+    public static final BitSet FOLLOW_identifier_in_tcs_contexttags3372 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_contexttags3381 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_contexttags3389 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_contexttags3401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3446 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequence__impl3454 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence__impl_in_tcs_sequence3495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_sequence3500 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_literalref_in_tcs_sequenceelement3529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_property_in_tcs_sequenceelement3537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_customseparator_in_tcs_sequenceelement3545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_block_in_tcs_sequenceelement3553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_conditionalelement_in_tcs_sequenceelement3561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_alternative_in_tcs_sequenceelement3569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_functioncall_in_tcs_sequenceelement3577 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_injectoractionsblock_in_tcs_sequenceelement3585 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_literalref3619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_propertyreference3675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RARROW_in_tcs_propertyreference3691 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_propertyreference3699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_property3754 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_property3767 = new BitSet(new long[]{0xC402000000002000L,0x0012A000242A2080L});
+    public static final BitSet FOLLOW_tcs_propertyarg_in_tcs_property3775 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_property3784 = new BitSet(new long[]{0xC402000000000000L,0x0012A000242A2080L});
+    public static final BitSet FOLLOW_tcs_propertyarg_in_tcs_property3792 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_property3804 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_tcs_customseparator3862 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_customseparator3870 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_GT_in_tcs_customseparator3877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_tcs_block3922 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_block3930 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_RSQUARE_in_tcs_block3937 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_block3948 = new BitSet(new long[]{0x2000000000002000L,0x2000020080000010L});
+    public static final BitSet FOLLOW_tcs_blockarg_in_tcs_block3956 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_block3965 = new BitSet(new long[]{0x2000000000000000L,0x2000020080000010L});
+    public static final BitSet FOLLOW_tcs_blockarg_in_tcs_block3973 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_block3985 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_conditionalelement4043 = new BitSet(new long[]{0xFFFE000000808010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_expression_in_tcs_conditionalelement4051 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_QMARK_in_tcs_conditionalelement4060 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_conditionalelement4068 = new BitSet(new long[]{0x0000000000010400L});
+    public static final BitSet FOLLOW_COLON_in_tcs_conditionalelement4081 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_conditionalelement4089 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_conditionalelement4109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DLSQUARE_in_tcs_alternative4154 = new BitSet(new long[]{0xFFFE000037288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4162 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_PIPE_in_tcs_alternative4171 = new BitSet(new long[]{0xFFFE000037288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4179 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_DRSQUARE_in_tcs_alternative4191 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_STAR_in_tcs_alternative4202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_tcs_sequenceinalternative4267 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_sequenceinalternative4271 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_sequenceinalternative4279 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_sequenceinalternative4286 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4307 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequenceelement_in_tcs_sequenceinalternative4315 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_DOLLAR_in_tcs_functioncall4364 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_functioncall4372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DLCURLY_in_tcs_injectoractionsblock4419 = new BitSet(new long[]{0xFFFE000040008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4427 = new BitSet(new long[]{0x0000000040020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_injectoractionsblock4436 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_injectoraction_in_tcs_injectoractionsblock4444 = new BitSet(new long[]{0x0000000040020000L});
+    public static final BitSet FOLLOW_DRCURLY_in_tcs_injectoractionsblock4456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyinit_in_tcs_injectoraction4497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_primitivepropertyinit_in_tcs_propertyinit4524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_lookuppropertyinit_in_tcs_propertyinit4532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_foreachpredicatepropertyinit_in_tcs_propertyinit4540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_primitivepropertyinit4574 = new BitSet(new long[]{0x0000000080000800L});
+    public static final BitSet FOLLOW_LARROW_in_tcs_primitivepropertyinit4587 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_EQ_in_tcs_primitivepropertyinit4602 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_primitivepropertyinit4617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_lookuppropertyinit4664 = new BitSet(new long[]{0x0000000080000800L});
+    public static final BitSet FOLLOW_LARROW_in_tcs_lookuppropertyinit4677 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_EQ_in_tcs_lookuppropertyinit4692 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_81_in_tcs_lookuppropertyinit4703 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_lookuppropertyinit4707 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_lookuppropertyinit4715 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_lookuppropertyinit4722 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_foreachpredicatepropertyinit4767 = new BitSet(new long[]{0x0000000080000800L});
+    public static final BitSet FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4780 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4795 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_tcs_foreachpredicatepropertyinit4806 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_foreachpredicatepropertyinit4810 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4818 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4831 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_tcs_foreachpredicatepropertyinit4835 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4839 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4847 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4873 = new BitSet(new long[]{0x0102000000000400L,0x0000000000080000L});
+    public static final BitSet FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4881 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4890 = new BitSet(new long[]{0x0102000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4898 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_foreachpredicatepropertyinit4923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_tcs_predicatesemantic4970 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic4974 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_predicatesemantic4982 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic4989 = new BitSet(new long[]{0x0002000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_49_in_tcs_predicatesemantic5012 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic5016 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_predicatesemantic5024 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic5031 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_83_in_tcs_predicatesemantic5048 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic5052 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_predicatesemantic5060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_referstoparg_in_tcs_propertyarg5102 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_lookinparg_in_tcs_propertyarg5110 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_createinparg_in_tcs_propertyarg5118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_asparg_in_tcs_propertyarg5126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_separatorparg_in_tcs_propertyarg5134 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_disambiguateparg_in_tcs_propertyarg5142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_autocreateparg_in_tcs_propertyarg5150 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_importcontextparg_in_tcs_propertyarg5158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_partialparg_in_tcs_propertyarg5166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_forcedlowerparg_in_tcs_propertyarg5174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_forcedupperparg_in_tcs_propertyarg5182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_createasparg_in_tcs_propertyarg5190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_queryparg_in_tcs_propertyarg5198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_filterparg_in_tcs_propertyarg5206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_modeparg_in_tcs_propertyarg5214 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_tcs_referstoparg5244 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_referstoparg5248 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_referstoparg5256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_tcs_lookinparg5299 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_lookinparg5303 = new BitSet(new long[]{0xFFFE000000040010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_SHARP_in_tcs_lookinparg5314 = new BitSet(new long[]{0x0000000000000000L,0x0004000000000000L});
+    public static final BitSet FOLLOW_114_in_tcs_lookinparg5318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_lookinparg5335 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_POINT_in_tcs_lookinparg5344 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_lookinparg5352 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_71_in_tcs_createinparg5405 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_createinparg5409 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createinparg5417 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_POINT_in_tcs_createinparg5426 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createinparg5434 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_83_in_tcs_asparg5480 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_asparg5484 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_asparg5492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_tcs_separatorparg5535 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_separatorparg5539 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequence_in_tcs_separatorparg5547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_tcs_disambiguateparg5590 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_disambiguateparg5594 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_disambiguateparg5602 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_tcs_autocreateparg5645 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_autocreateparg5649 = new BitSet(new long[]{0x0000000000000000L,0x0080002200000000L});
+    public static final BitSet FOLLOW_tcs_autocreatekind_in_tcs_autocreateparg5657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_tcs_autocreatekind5701 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_tcs_autocreatekind5711 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_119_in_tcs_autocreatekind5721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_113_in_tcs_importcontextparg5752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_116_in_tcs_partialparg5792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_109_in_tcs_forcedlowerparg5832 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_forcedlowerparg5836 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_forcedlowerparg5844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_111_in_tcs_forcedupperparg5887 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_forcedupperparg5891 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_forcedupperparg5899 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_tcs_createasparg5942 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_createasparg5946 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createasparg5954 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_DLCOLON_in_tcs_createasparg5963 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createasparg5971 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_58_in_tcs_queryparg6017 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_queryparg6021 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_queryparg6029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_tcs_filterparg6072 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_filterparg6076 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_filterparg6084 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_COMA_in_tcs_filterparg6097 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_104_in_tcs_filterparg6101 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_filterparg6105 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_filterparg6113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_tcs_modeparg6169 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_modeparg6173 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_modeparg6181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_nbnlbarg_in_tcs_blockarg6221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_indentincrbarg_in_tcs_blockarg6229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_startnlbarg_in_tcs_blockarg6237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_startnbnlbarg_in_tcs_blockarg6245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_endnlbarg_in_tcs_blockarg6253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_tcs_nbnlbarg6283 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_nbnlbarg6287 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_nbnlbarg6295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_tcs_indentincrbarg6338 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_indentincrbarg6342 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_indentincrbarg6350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_125_in_tcs_startnlbarg6393 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_startnlbarg6397 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000040L});
+    public static final BitSet FOLLOW_70_in_tcs_startnlbarg6407 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_tcs_startnlbarg6420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_tcs_startnbnlbarg6467 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_startnbnlbarg6471 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_startnbnlbarg6479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_105_in_tcs_endnlbarg6522 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_endnlbarg6526 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000040L});
+    public static final BitSet FOLLOW_70_in_tcs_endnlbarg6536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_tcs_endnlbarg6549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_tcs_symbol6600 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_symbol6609 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_symbol6617 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_symbol6630 = new BitSet(new long[]{0x1000000000004000L,0x0000108002000000L});
+    public static final BitSet FOLLOW_tcs_spacekind_in_tcs_symbol6638 = new BitSet(new long[]{0x0000000000024000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_symbol6647 = new BitSet(new long[]{0x1000000000000000L,0x0000108002000000L});
+    public static final BitSet FOLLOW_tcs_spacekind_in_tcs_symbol6655 = new BitSet(new long[]{0x0000000000024000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_symbol6680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_103_in_tcs_spacekind6722 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_tcs_spacekind6732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_tcs_spacekind6742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_tcs_spacekind6752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_tcs_keyword6787 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_keyword6796 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_keyword6804 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_keyword6811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_tcs_operatorlist6852 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_operatorlist6865 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_operatorlist6885 = new BitSet(new long[]{0x0000000000002000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6896 = new BitSet(new long[]{0x0000000000002000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6904 = new BitSet(new long[]{0x0000000000002000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_operatorlist6919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_tcs_priority6960 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_priority6967 = new BitSet(new long[]{0x0000000000021000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_priority6990 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_tcs_associativity_in_tcs_priority6998 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_priority7012 = new BitSet(new long[]{0x0000000000002810L,0x0000000000001000L});
+    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority7023 = new BitSet(new long[]{0x0000000000002810L,0x0000000000001000L});
+    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority7031 = new BitSet(new long[]{0x0000000000002810L,0x0000000000001000L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_priority7046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_tcs_operator7093 = new BitSet(new long[]{0x0000000000000810L});
+    public static final BitSet FOLLOW_identifier_in_tcs_operator7115 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_operator7124 = new BitSet(new long[]{0x0000000000020030L});
+    public static final BitSet FOLLOW_identifier_in_tcs_operator7143 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_operator7163 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operator7188 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_operator7196 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_operator7203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_131_in_tcs_associativity7245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_110_in_tcs_associativity7255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_andexp_in_tcs_expression7283 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7317 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_132_in_tcs_andexp7325 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7332 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_tcs_equalsexp_in_tcs_atomexp7377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_booleanpropertyexp_in_tcs_atomexp7385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_isdefinedexp_in_tcs_atomexp7393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_oneexp_in_tcs_atomexp7401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_instanceofexp_in_tcs_atomexp7409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_equalsexp7443 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_equalsexp7450 = new BitSet(new long[]{0x0000000200040060L});
+    public static final BitSet FOLLOW_tcs_value_in_tcs_equalsexp7458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_booleanpropertyexp7505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_tcs_isdefinedexp7548 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_isdefinedexp7552 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_isdefinedexp7560 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_isdefinedexp7567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_84_in_tcs_oneexp7608 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_oneexp7612 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_oneexp7620 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_oneexp7627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_instanceofexp7672 = new BitSet(new long[]{0x0000000000000000L,0x1000000000000000L});
+    public static final BitSet FOLLOW_124_in_tcs_instanceofexp7678 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_instanceofexp7685 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_DLCOLON_in_tcs_instanceofexp7694 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_instanceofexp7702 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_tcs_stringval_in_tcs_value7745 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_integerval_in_tcs_value7753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_negativeintegerval_in_tcs_value7761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_enumliteralval_in_tcs_value7769 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_stringval7803 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_integerval7850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_tcs_negativeintegerval7894 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_tcs_negativeintegerval7902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHARP_in_tcs_enumliteralval7946 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_enumliteralval7954 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_121_in_tcs_token8003 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_88_in_tcs_token8021 = new BitSet(new long[]{0x0000000000010010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_token8028 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_token8037 = new BitSet(new long[]{0x0000000000204020L,0x0100000000000300L});
+    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_token8045 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_SEMI_in_tcs_token8052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_simplepattern_in_tcs_orpattern8097 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_PIPE_in_tcs_orpattern8106 = new BitSet(new long[]{0x0000000000200020L,0x0100000000000300L});
+    public static final BitSet FOLLOW_tcs_simplepattern_in_tcs_orpattern8114 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_tcs_rulepattern_in_tcs_simplepattern8159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_simplepattern8167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_classpattern_in_tcs_simplepattern8175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_rule_in_tcs_rulepattern8209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_wordrule_in_tcs_rule8249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_endoflinerule_in_tcs_rule8257 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_multilinerule_in_tcs_rule8265 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_120_in_tcs_wordrule8295 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_wordrule8299 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_tcs_wordrule8303 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8307 = new BitSet(new long[]{0x0000000000220020L,0x0100000000000300L});
+    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8315 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8322 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_107_in_tcs_wordrule8326 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8330 = new BitSet(new long[]{0x0000000000220420L,0x0100000000000300L});
+    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8338 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8351 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_tcs_wordrule8355 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8359 = new BitSet(new long[]{0x0000000000200420L,0x0100000000000300L});
+    public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8367 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_wordrule8387 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_tcs_endoflinerule8428 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_endoflinerule8432 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_tcs_endoflinerule8436 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_endoflinerule8440 = new BitSet(new long[]{0x0000000000000420L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_tcs_endoflinerule8450 = new BitSet(new long[]{0x0000000000000420L});
+    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_endoflinerule8472 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_endoflinerule8479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_tcs_multilinerule8520 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8524 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_tcs_multilinerule8528 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8532 = new BitSet(new long[]{0x0000000000020020L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_tcs_multilinerule8542 = new BitSet(new long[]{0x0000000000020020L});
+    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8564 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8571 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_tcs_multilinerule8575 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8579 = new BitSet(new long[]{0x0000000000020420L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_tcs_multilinerule8589 = new BitSet(new long[]{0x0000000000020420L});
+    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8611 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8624 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_94_in_tcs_multilinerule8628 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8632 = new BitSet(new long[]{0x0000000000020420L});
+    public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8640 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8653 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8658 = new BitSet(new long[]{0x0000000100000410L,0x8000000000000001L});
+    public static final BitSet FOLLOW_tcs_mapping_in_tcs_multilinerule8666 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8675 = new BitSet(new long[]{0x0000000100000010L,0x8000000000000001L});
+    public static final BitSet FOLLOW_tcs_mapping_in_tcs_multilinerule8683 = new BitSet(new long[]{0x0000000000020400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_multilinerule8695 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_multilinerule8726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_simplemapping_in_tcs_mapping8764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_wildcardmapping_in_tcs_mapping8772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_octalmapping_in_tcs_mapping8780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_hexadecimalmapping_in_tcs_mapping8788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_tcs_simplemapping8822 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RARROW_in_tcs_simplemapping8829 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_simplemapping8837 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_POINT_in_tcs_wildcardmapping8881 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RARROW_in_tcs_wildcardmapping8886 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_POINT_in_tcs_wildcardmapping8891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_tcs_octalmapping8932 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_127_in_tcs_hexadecimalmapping8972 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_tcs_stringpattern9016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_tcs_classpattern9062 = new BitSet(new long[]{0x0000000000400010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_classpattern9070 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_RSQUARE_in_tcs_classpattern9079 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_DLCOLON_in_synpred88_TCS1084 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred114_TCS1993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred119_TCS2153 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred136_TCS2792 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred147_TCS3217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_sequence__impl_in_synpred152_TCS3494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_synpred161_TCS3698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_expression_in_synpred168_TCS4050 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4161 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_PIPE_in_synpred171_TCS4170 = new BitSet(new long[]{0xFFFE000033288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4178 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_COMA_in_synpred183_TCS4830 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_synpred183_TCS4834 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_synpred183_TCS4838 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_synpred183_TCS4846 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_simplepattern_in_synpred249_TCS8096 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_PIPE_in_synpred249_TCS8105 = new BitSet(new long[]{0x0000000000200020L,0x0000001000001000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_tcs_simplepattern_in_synpred249_TCS8113 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred114_TCS1998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred119_TCS2158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred136_TCS2797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_synpred147_TCS3222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_sequence__impl_in_synpred152_TCS3495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_synpred161_TCS3699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_expression_in_synpred168_TCS4051 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4162 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_PIPE_in_synpred171_TCS4171 = new BitSet(new long[]{0xFFFE000033288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4179 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_COMA_in_synpred183_TCS4831 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_synpred183_TCS4835 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_synpred183_TCS4839 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_synpred183_TCS4847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tcs_simplepattern_in_synpred249_TCS8097 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_PIPE_in_synpred249_TCS8106 = new BitSet(new long[]{0x0000000000200020L,0x0100000000000300L});
+    public static final BitSet FOLLOW_tcs_simplepattern_in_synpred249_TCS8114 = new BitSet(new long[]{0x0000000002000002L});
 
 }

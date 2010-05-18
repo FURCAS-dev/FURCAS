@@ -3,10 +3,13 @@
  */
 package com.sap.mi.textual.tcs.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import tcs.Operator;
+import tcs.OperatorTemplate;
 import tcs.QualifiedNamedElement;
 
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
@@ -58,6 +61,13 @@ public class MetaModelElementResolutionHelper<Type extends Object> {
                 }
             } catch (MetaModelLookupException e) {
                 throw new NameResolutionFailedException(e);
+            }
+            if(template instanceof OperatorTemplate) {
+                List<String> names = new ArrayList<String>(result.getNames());
+                for (Operator op : ((OperatorTemplate)template).getOperators()) {
+                    names.add(op.getName());
+                }
+                result = new ResolvedNameAndReferenceBean<Type>(result.getNames(), result.getReference(), names);
             }
             
             return result;

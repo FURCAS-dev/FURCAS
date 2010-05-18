@@ -6,6 +6,7 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 import static com.sap.mi.textual.test.util.StringListHelper.list;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -68,7 +69,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
     }
 
     @Override
-    public Template getTCSTemplate(ResolvedNameAndReferenceBean<?> refBean, String mode) {
+    public Collection<Template> getTCSTemplate(ResolvedNameAndReferenceBean<?> refBean, String mode) {
         return typeTemplate;
     }
 
