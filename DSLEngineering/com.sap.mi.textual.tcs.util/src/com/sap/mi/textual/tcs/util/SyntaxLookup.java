@@ -185,8 +185,8 @@ public class SyntaxLookup {
 	 * @return the TCS template
 	 * @throws SyntaxElementException 
 	 */
-	public Template getTCSTemplate(ResolvedNameAndReferenceBean<?> resolvedName, String mode) throws SyntaxElementException {
-	    Template returnTemplate = null;
+	public Collection<Template> getTCSTemplate(ResolvedNameAndReferenceBean<?> resolvedName, String mode) throws SyntaxElementException {
+	    Collection<Template> returnTemplate = new ArrayList<Template>(1);
 		// loop over all templates and return the first with the same name.
 		Collection<Template> templates = syntax.getTemplates();
 
@@ -212,20 +212,26 @@ public class SyntaxLookup {
 		        }
 		       if(template instanceof OperatorTemplate) {
 			   //operators do not support modes yet
+		           if (resolvedName.getOperators() != null ) {
+		               if( ! resolvedName.getOperators().containsAll(
+		                       ((OperatorTemplate) template).getOperators())) {
+		                   continue;
+		               }
+                           }
 			   if (mode != null) {
 			       continue;
 			   }
 		       }
 		        
 		        List<String> name = getQualifiedNameOfMetaModelElement(template);
-		        // TODO: compare qualified with qualified names!
 		        if (name != null && name.equals(resolvedName.getNames())) {
-		            if (returnTemplate == null) {
-		                returnTemplate = template;
-		            } else {
-	                	// FIXME trying to manage multiple operatorTemplate specifications for distinct operator sets
-		                throw new SyntaxElementException("Duplicate Template referring to " + name, template);
-		            }
+		            returnTemplate.add(template);
+//		            if (returnTemplate == null) {
+//		                returnTemplate = template;
+//		            } else {
+//	                	// FIXME trying to manage multiple operatorTemplate specifications for distinct operator sets
+//		                throw new SyntaxElementException("Duplicate Template referring to " + name, template);
+//		            }
 		        } 
 		    }
 		}
@@ -238,16 +244,18 @@ public class SyntaxLookup {
 		ArrayList<ClassTemplate> nonPrimaries = new ArrayList<ClassTemplate>();
 	        for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes.iterator(); iterator.hasNext();) {
 	            ResolvedNameAndReferenceBean<Type> subType = iterator.next();
-	            Template subtemp = null;
+	            Collection<Template> subtemps = null;
 
-	            subtemp = getTCSTemplate(subType, null);
+	            subtemps = getTCSTemplate(subType, null);
 
-	            if (subtemp instanceof ClassTemplate) {
-	                ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-	                if (classSubTemp.isNonPrimary()) { // Non Primaries not added to primary rule
-	                    nonPrimaries.add(classSubTemp);
-	                    continue;
-	                }
+	            for (Template subtemp : subtemps) {
+        	            if (subtemp instanceof ClassTemplate) {
+        	                ClassTemplate classSubTemp = (ClassTemplate) subtemp;
+        	                if (classSubTemp.isNonPrimary()) { // Non Primaries not added to primary rule
+        	                    nonPrimaries.add(classSubTemp);
+        	                    continue;
+        	                }
+        	            }
 	            }
 	        }
 		return nonPrimaries;
@@ -261,22 +269,28 @@ public class SyntaxLookup {
         	    for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes
         		    .iterator(); iterator.hasNext();) {
         		ResolvedNameAndReferenceBean<Type> subType = iterator.next();
-        		Template subtemp = null;
-        		subtemp = getTCSTemplate(subType, null);
-        		if (subtemp != null && subtemp instanceof ClassTemplate) {
-        		    ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-        		    if (!classSubTemp.isNonPrimary()) { // Non Primaries not
-        							// added to primary rule
-        			primaries.add(classSubTemp);
-        			continue;
-        		    }
-        		} else {
-        		    // not a class template or no template found at all
-        		    // continue to look for primaries recursively in subtypes of subType
-        		    List<ResolvedNameAndReferenceBean<Type>> subsubtypes = metaLookup.getDirectSubTypes(subType);
-        		    List<ClassTemplate> subsubtypesPrimaries = getPrimaries(subsubtypes, metaLookup);
-        		    primaries.addAll(subsubtypesPrimaries);
-        		}
+        		Collection<Template> subtemps = null;
+                        subtemps = getTCSTemplate(subType, null);
+                        for (Template subtemp : subtemps) {
+        
+                            if (subtemp != null && subtemp instanceof ClassTemplate) {
+                                ClassTemplate classSubTemp = (ClassTemplate) subtemp;
+                                if (!classSubTemp.isNonPrimary()) { // Non Primaries not
+                                    // added to primary rule
+                                    primaries.add(classSubTemp);
+                                    continue;
+                                }
+                            } else {
+                                // not a class template or no template found at all
+                                // continue to look for primaries recursively in
+                                // subtypes of subType
+                                List<ResolvedNameAndReferenceBean<Type>> subsubtypes = metaLookup
+                                        .getDirectSubTypes(subType);
+                                List<ClassTemplate> subsubtypesPrimaries = getPrimaries(
+                                        subsubtypes, metaLookup);
+                                primaries.addAll(subsubtypesPrimaries);
+                            }
+                        }
         	    }
 		}
 		return primaries;

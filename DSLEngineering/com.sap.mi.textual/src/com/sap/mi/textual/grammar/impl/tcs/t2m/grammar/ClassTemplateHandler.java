@@ -329,12 +329,12 @@ public class ClassTemplateHandler<Type extends Object> {
                 for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes.iterator(); iterator.hasNext();) {
                     try {
                         ResolvedNameAndReferenceBean<Type> subTypeName = iterator.next();
-                        Template subtemp = null;
+                        Collection<Template> subtemps = null;
 
-                        subtemp = syntaxLookup.getTCSTemplate(subTypeName, templateMode);
+                        subtemps = syntaxLookup.getTCSTemplate(subTypeName, templateMode);
 
-                        if (subtemp != null) {
-                            templates.add(subtemp);
+                        if (subtemps != null) {
+                            templates.addAll(subtemps);
                         } else {
                             errorBucket.addWarning("No template present for subtype " + subTypeName.getNames() +" with mode #"+templateMode+" of type " + resolutionHelper.resolve(template), template);
                         }

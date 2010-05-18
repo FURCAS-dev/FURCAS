@@ -1707,10 +1707,10 @@ public class TcsUtil {
 		for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes
 				.iterator(); iterator.hasNext();) {
 			ResolvedNameAndReferenceBean<Type> subTypeName = iterator.next();
-			Template subtemp = null;
+			Collection<Template> subtemps = null;
 
-			subtemp = syntaxLookup.getTCSTemplate(subTypeName, mode);
-			if (subtemp != null) {
+			subtemps = syntaxLookup.getTCSTemplate(subTypeName, mode);
+			if (subtemps != null && subtemps.size() > 0) {
 				return true;
 			}
 		}

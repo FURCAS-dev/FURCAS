@@ -18,6 +18,8 @@ import java.util.Set;
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import tcs.FunctionTemplate;
+import tcs.Operator;
+import tcs.OperatorTemplate;
 import tcs.PrimitiveTemplate;
 import tcs.Template;
 
@@ -68,6 +70,13 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
                         if (ct.getMode() != null) {
                             templatename = new ArrayList<String>(templatename); // clone list before adding!
                             templatename.add(ct.getMode());
+                        }
+                    }
+                    if(template instanceof OperatorTemplate) {
+                        OperatorTemplate ot = (OperatorTemplate) template;
+                        for (Operator op : ot.getOperators()) {
+                            templatename = new ArrayList<String>(templatename); // clone list before adding!
+                            templatename.add(op.getName());
                         }
                     }
 

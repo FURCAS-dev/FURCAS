@@ -127,8 +127,14 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#get(java.lang.Object, java.lang.String)
      */
-    public Object get(Object modelElement, String propertyName)
+    public Object get(Object modelElementOrProxy, String propertyName)
     throws ModelAdapterException {
+        Object modelElement = null;
+        if(modelElementOrProxy instanceof IModelElementProxy) {
+            modelElement = ((IModelElementProxy) modelElementOrProxy).getRealObject();
+        } else {
+            modelElement = modelElementOrProxy;
+        }
 	//TODO implement path notation getter: eg. prop1.prop2 for propertyName
         if (modelElement == null || propertyName == null) {
             throw new IllegalArgumentException("One of the following was null: " + modelElement + ", " + propertyName);
@@ -464,12 +470,18 @@ public class MOINModelAdapter implements IBareModelAdapter {
      * @see com.sap.mi.textual.grammar.IModelAdapter#setWithinContextObject(java.lang.Object, java.lang.String, java.util.List, java.lang.String, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Object setWithinContextObject(Object sourceModelElement,
+    public Object setWithinContextObject(Object sourceModelElementOrProxy,
             String referencePropertyName, List<String> targetType, String targetKeyName,
             Object targetKeyValue, Object contextObject) 
         throws ModelAdapterException, ReferenceSettingException {
-            if (sourceModelElement == null || referencePropertyName == null || targetType == null) {
-                throw new IllegalArgumentException("One of the following was null: " + sourceModelElement + "," + referencePropertyName + "," + targetType);
+            if (sourceModelElementOrProxy == null || referencePropertyName == null || targetType == null) {
+                throw new IllegalArgumentException("One of the following was null: " + sourceModelElementOrProxy + "," + referencePropertyName + "," + targetType);
+            }
+            Object sourceModelElement = null;
+            if (sourceModelElementOrProxy instanceof IModelElementProxy) {
+                sourceModelElement =  ((IModelElementProxy) sourceModelElementOrProxy).getRealObject();
+            } else {
+                sourceModelElement = sourceModelElementOrProxy;
             }
             if ( ! ( sourceModelElement instanceof RefObject) ) {
                 throw new IllegalArgumentException("Illegal Model Element type " + sourceModelElement.getClass() + ", RefObject required");

@@ -103,9 +103,10 @@ public class TemplateNamingHelper<Type extends Object> {
     public String buildRuleName(ResolvedNameAndReferenceBean<Type> refBean) {
         
         List<String> nameList = refBean.getNames();
+        String result = null;
         if (nameList.size() == 1) { 
             // used unqualified name, returning direct to avoid Stringbuilder creation for nothing
-            return nameList.get(0).toLowerCase(); 
+            result = nameList.get(0).toLowerCase(); 
         } else {
             StringBuilder builder = new StringBuilder(nameList.size() * 10);
             for (Iterator<String> iterator = nameList.iterator(); iterator.hasNext();) {
@@ -117,8 +118,17 @@ public class TemplateNamingHelper<Type extends Object> {
                 }
             }
             // TODO check generated name does not conflict with other similar intended name
-            return builder.toString();
+            result = builder.toString();
         }
+        if(refBean.getOperators() != null) {
+            StringBuilder builder = new StringBuilder(refBean.getOperators().size() * 10);
+            for (String op : refBean.getOperators()) {
+                builder.append('_');
+                builder.append(op);
+            }
+            result += builder.toString();
+        }
+        return result;
     }
     
 

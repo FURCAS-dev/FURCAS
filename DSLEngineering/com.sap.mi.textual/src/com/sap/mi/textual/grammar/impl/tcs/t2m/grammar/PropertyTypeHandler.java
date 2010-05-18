@@ -550,18 +550,21 @@ public class PropertyTypeHandler<Type extends Object> {
 						String calledRuleName = namingHelper
 								.buildRuleName(referredFeatureType);
 						// TODO: check if we need to consider mode here
-						Template checkTemplate = syntaxLookup.getTCSTemplate(
+						Collection<Template> checkTemplates = syntaxLookup.getTCSTemplate(
 								referredFeatureType, null);
-						if (checkTemplate == null) {
+						if (checkTemplates == null) {
 							errorBucket.addError(
 									"Syntax does not define a rule for "
 											+ referredFeatureType, prop);
 						}
-						if (primitivesOnly
-								&& !(checkTemplate instanceof PrimitiveTemplate)) {
-							errorBucket.addError(
-									"Query only possible for primitive feature references "
-											+ referredFeatureType, prop);
+						for (Template checkTemplate : checkTemplates) {
+                                                    
+        						if (primitivesOnly
+        								&& !(checkTemplate instanceof PrimitiveTemplate)) {
+        							errorBucket.addError(
+        									"Query only possible for primitive feature references "
+        											+ referredFeatureType, prop);
+        						}
 						}
 						ruleBodyPart.append(calledRuleName);
 					}
