@@ -1850,7 +1850,7 @@ public class TcsUtil {
 		// oclHelper.findElementWithOCLQuery returns null for empty
 		// collections
 		if (propValue == null
-				|| (propValue instanceof Collection && ((Collection<?>) propValue)
+				|| (propValue instanceof Collection<?> && ((Collection<?>) propValue)
 						.size() == 0)) {
 			if (oclResult != null) {
 				return false;
