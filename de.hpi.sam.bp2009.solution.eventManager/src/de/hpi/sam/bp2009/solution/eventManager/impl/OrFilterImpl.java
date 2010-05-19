@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
@@ -40,10 +39,10 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFilters()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected EList<EventFilter> filters;
+	protected Set<EventFilter> filters;
 
     /**
 	 * <!-- begin-user-doc -->
@@ -153,11 +152,11 @@ public class OrFilterImpl extends EventFilterImpl implements OrFilter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<EventFilter> getFilters() {
+	public Set<EventFilter> getFilters() {
 		if (filters == null) {
-			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.OR_FILTER__FILTERS);
+			filters = new HashSet<EventFilter>();
 		}
 		return filters;
 	}

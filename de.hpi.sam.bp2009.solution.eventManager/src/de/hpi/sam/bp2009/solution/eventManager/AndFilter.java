@@ -6,7 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.Set;
 
 
 /**
@@ -41,5 +41,5 @@ public interface AndFilter extends EventFilter {
 	 * @model
 	 * @generated
 	 */
-	EList<EventFilter> getFilters();
+	Set<EventFilter> getFilters();
 } // AndFilter

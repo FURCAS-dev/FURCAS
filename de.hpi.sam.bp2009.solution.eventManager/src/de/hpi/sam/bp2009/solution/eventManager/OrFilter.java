@@ -6,7 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.Set;
 
 
 /**
@@ -39,7 +39,7 @@ public interface OrFilter extends EventFilter {
 	 * @return the value of the '<em>Filters</em>' reference list.
 	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getOrFilter_Filters()
 	 * @model
-	 * @generated
+	 * @generated NOT
 	 */
-	EList<EventFilter> getFilters();
+	Set<EventFilter> getFilters();
 } // OrFilter
