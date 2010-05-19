@@ -112,7 +112,7 @@
 		<!-- Add the LPG bundles into SDK zip-->
 		<zip destfile="${buildDirectory}/${buildLabel}/${SDKZip}" update="true">
 			<zipfileset dir="${buildDirectory}/LPG" 
-						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}.*.jar"
+						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}*.jar"
 			/>
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -124,13 +124,19 @@
 			/>
 		</zip>
 
-		<!-- build Core SDK -->
+		<!-- build Core SDK from SDK -->
 		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-CoreSDK${incubation}-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
 			            dirmode="775"
 			            filemode="664"
 			>
 				<include name="**/features/${domainNamespace}.ocl.core.sdk_*/" />
+				<include name="**/features/${domainNamespace}.ocl.all_*/" />
+				<include name="**/features/${domainNamespace}.ocl_*/" />
+				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/features/${domainNamespace}.ocl.source_*/" />
+				<include name="**/features/${domainNamespace}.ocl.uml.source_*/" />
+				<include name="**/plugins/lpg.runtime.java*_${LPGRuntimeVersion}*" />			
 				<include name="**/plugins/${domainNamespace}.ocl_*/" />
 				<include name="**/plugins/${domainNamespace}.ocl.ecore_*/" />
 				<include name="**/plugins/${domainNamespace}.ocl.uml_*/" />
@@ -148,15 +154,12 @@
 			            dirmode="775"
 			            filemode="664"
 			>
+				<include name="**/features/${domainNamespace}.ocl.all_*/" />
 				<include name="**/features/${domainNamespace}.ocl_*/" />
-				<include name="**/features/${domainNamespace}.ocl.edit_*/" />
 				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
 				<include name="**/plugins/${domainNamespace}.ocl_*/" />
 				<include name="**/plugins/${domainNamespace}.ocl.ecore_*/" />
 				<include name="**/plugins/${domainNamespace}.ocl.uml_*/" />
-				<include name="**/plugins/${domainNamespace}.ocl.edit_*/" />
-				<include name="**/plugins/${domainNamespace}.ocl.ecore.edit_*/" />
-				<include name="**/plugins/${domainNamespace}.ocl.uml.edit_*/" />
 				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*" />
 				<include name="**/eclipse/epl-v10.html" />
 				<include name="**/eclipse/notice.html" />
