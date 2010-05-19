@@ -13,13 +13,13 @@
 	</target>
 
 	<target name="preFetch">
-		<echo message="!--[[[Unzipping LPG from ${downloadsDir}/${tools.orbit.file}]]]" />
-		<!--unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
+		<echo message="[[[Unzipping LPG from ${downloadsDir}/${tools.orbit.file}]]]" />
+		<unzip dest="${buildDirectory}/LPG/eclipse" src="${downloadsDir}/${tools.orbit.file}">
 			<patternset>
-				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*.jar"/>
+				<!--include name="**/lpg.runtime.java_${LPGRuntimeVersion}*.jar"/-->
 				<include name="**/lpg.runtime.java.source_${LPGRuntimeVersion}*.jar"/>
 			</patternset>
-		</unzip-->
+		</unzip>
 		
 		<!-- Here is where we fetch all of the example plugins from CVS
 		      We don't need them to be packaged into the Master zip, but rather
@@ -75,12 +75,12 @@
 	</target>
 	
 	<target name="postAssemble">
-		<echo message="!--[[[Add the LPG bundles into Master zip]]]" />
-		<!--zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
+		<echo message="[[[Add the LPG bundles into Master zip]]]" />
+		<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
 			<zipfileset dir="${buildDirectory}/LPG" 
 						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}.*.jar"
 			/>
-		</zip-->
+		</zip>
 	</target>
 	
 	<target name="prePackage">
@@ -111,9 +111,9 @@
 	<target name="extraPackaging">
 		<!-- Add the LPG bundles into SDK zip-->
 		<zip destfile="${buildDirectory}/${buildLabel}/${SDKZip}" update="true">
-			<!--zipfileset dir="${buildDirectory}/LPG" 
+			<zipfileset dir="${buildDirectory}/LPG" 
 						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}*.jar"
-			/-->
+			/>
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
 			            filemode="664"
