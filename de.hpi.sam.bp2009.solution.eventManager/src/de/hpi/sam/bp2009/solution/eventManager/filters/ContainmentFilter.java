@@ -1,0 +1,66 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package de.hpi.sam.bp2009.solution.eventManager.filters;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+
+import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
+
+public class ContainmentFilter extends EventFilter {
+
+    private ContainmentFilter() {
+        super();
+    }
+    static final public ContainmentFilter INSTANCE = new ContainmentFilter();
+    @Override
+    public boolean matchesFor(Notification event) {
+        if (event.getFeature() instanceof EReference) {
+            return ((EReference) event.getFeature()).isContainment();
+        }else if(!(event.getNotifier() instanceof EObject)){
+            return true;
+        }
+        return false;
+
+    }
+
+    @Override
+    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
+        identifier.setContainment(true);
+        return this.getEListForNotificationIdentifier(identifier);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return "ContainmentFilterImpl".hashCode();
+
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        return true;
+    }
+
+    @Override
+    public ContainmentFilter clone() {
+        return INSTANCE;
+
+    }
+    @Override
+    public Object getFilterCriterion() {
+        return true;
+    }
+} // ContainmentFilterImpl

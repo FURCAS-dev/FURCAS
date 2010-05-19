@@ -6,259 +6,202 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Notification Identifier</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getNotifierClassURI <em>Notifier Class URI</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getEventType <em>Event Type</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getFeatureURI <em>Feature URI</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getOldValueClassURIs <em>Old Value Class UR Is</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getNewValueClassURIs <em>New Value Class UR Is</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#isTouch <em>Touch</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#isReset <em>Reset</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#isContainment <em>Containment</em>}</li>
- * </ul>
- * </p>
- *
- * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier()
- * @model
- * @generated
- */
-public interface NotificationIdentifier extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Notifier Class URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Notifier Class URI</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Notifier Class URI</em>' attribute.
-	 * @see #setNotifierClassURI(URI)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_NotifierClassURI()
-	 * @model dataType="de.hpi.sam.bp2009.solution.eventManager.URI"
-	 * @generated
-	 */
-	URI getNotifierClassURI();
+public class NotificationIdentifier {
+    protected URI notifierClassURI = null;
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getNotifierClassURI <em>Notifier Class URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Notifier Class URI</em>' attribute.
-	 * @see #getNotifierClassURI()
-	 * @generated
-	 */
-	void setNotifierClassURI(URI value);
+    protected static final int EVENT_TYPE_EDEFAULT = 0;
 
-	/**
-	 * Returns the value of the '<em><b>Event Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Event Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Event Type</em>' attribute.
-	 * @see #setEventType(int)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_EventType()
-	 * @model
-	 * @generated
-	 */
-	int getEventType();
+    protected int eventType = EVENT_TYPE_EDEFAULT;
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getEventType <em>Event Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Event Type</em>' attribute.
-	 * @see #getEventType()
-	 * @generated
-	 */
-	void setEventType(int value);
+    protected URI featureURI = null;
 
-	/**
-	 * Returns the value of the '<em><b>Feature URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Feature Class URI</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature URI</em>' attribute.
-	 * @see #setFeatureURI(URI)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_FeatureURI()
-	 * @model dataType="de.hpi.sam.bp2009.solution.eventManager.URI"
-	 * @generated
-	 */
-	URI getFeatureURI();
+    protected Set<URI> oldValueClassURIs = new HashSet<URI>();
+    protected Set<URI> newValueClassURIs = new HashSet<URI>();
+    protected boolean touch = false;
+    protected boolean reset = false;
+    protected boolean containment = false;
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getFeatureURI <em>Feature URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature URI</em>' attribute.
-	 * @see #getFeatureURI()
-	 * @generated
-	 */
-	void setFeatureURI(URI value);
+    protected NotificationIdentifier() {
+        super();
+    }
 
-	/**
-	 * Returns the value of the '<em><b>Old Value Class UR Is</b></em>' attribute.
-	 * The default value is <code>"new HashSet<URI>()"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Old Value Class UR Is</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Old Value Class UR Is</em>' attribute.
-	 * @see #setOldValueClassURIs(Set)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_OldValueClassURIs()
-	 * @model default="new HashSet<URI>()" dataType="de.hpi.sam.bp2009.solution.eventManager.URISet" transient="true" ordered="false"
-	 * @generated
-	 */
-	Set<URI> getOldValueClassURIs();
+    public URI getNotifierClassURI() {
+        return notifierClassURI;
+    }
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getOldValueClassURIs <em>Old Value Class UR Is</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Old Value Class UR Is</em>' attribute.
-	 * @see #getOldValueClassURIs()
-	 * @generated
-	 */
-	void setOldValueClassURIs(Set<URI> value);
+    public void setNotifierClassURI(URI newNotifierClassURI) {
+        notifierClassURI = newNotifierClassURI;
+    }
 
-	/**
-	 * Returns the value of the '<em><b>New Value Class UR Is</b></em>' attribute.
-	 * The default value is <code>"new HashSet<URI>()"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>New Value Class UR Is</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>New Value Class UR Is</em>' attribute.
-	 * @see #setNewValueClassURIs(Set)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_NewValueClassURIs()
-	 * @model default="new HashSet<URI>()" dataType="de.hpi.sam.bp2009.solution.eventManager.URISet" transient="true" ordered="false"
-	 * @generated
-	 */
-	Set<URI> getNewValueClassURIs();
+    public int getEventType() {
+        return eventType;
+    }
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#getNewValueClassURIs <em>New Value Class UR Is</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>New Value Class UR Is</em>' attribute.
-	 * @see #getNewValueClassURIs()
-	 * @generated
-	 */
-	void setNewValueClassURIs(Set<URI> value);
+    public void setEventType(int newEventType) {
+        eventType = newEventType;
+    }
 
-	/**
-	 * Returns the value of the '<em><b>Touch</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Touch</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Touch</em>' attribute.
-	 * @see #setTouch(boolean)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_Touch()
-	 * @model
-	 * @generated
-	 */
-	boolean isTouch();
+    public URI getFeatureURI() {
+        return featureURI;
+    }
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#isTouch <em>Touch</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Touch</em>' attribute.
-	 * @see #isTouch()
-	 * @generated
-	 */
-	void setTouch(boolean value);
+    public void setFeatureURI(URI newFeatureURI) {
+        featureURI = newFeatureURI;
+    }
 
-	/**
-	 * Returns the value of the '<em><b>Reset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Reset</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reset</em>' attribute.
-	 * @see #setReset(boolean)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_Reset()
-	 * @model
-	 * @generated
-	 */
-	boolean isReset();
+    public Set<URI> getOldValueClassURIs() {
+        return oldValueClassURIs;
+    }
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#isReset <em>Reset</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Reset</em>' attribute.
-	 * @see #isReset()
-	 * @generated
-	 */
-	void setReset(boolean value);
+    public void setOldValueClassURIs(Set<URI> newOldValueClassURIs) {
+        oldValueClassURIs = newOldValueClassURIs;
+    }
 
-	/**
-	 * Returns the value of the '<em><b>Containment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Containment</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containment</em>' attribute.
-	 * @see #setContainment(boolean)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotificationIdentifier_Containment()
-	 * @model
-	 * @generated
-	 */
-	boolean isContainment();
+    public Set<URI> getNewValueClassURIs() {
+        return newValueClassURIs;
+    }
 
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier#isContainment <em>Containment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Containment</em>' attribute.
-	 * @see #isContainment()
-	 * @generated
-	 */
-	void setContainment(boolean value);
+    public void setNewValueClassURIs(Set<URI> newNewValueClassURIs) {
+        newValueClassURIs = newNewValueClassURIs;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	int getHash();
+    public boolean isTouch() {
+        return touch;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	NotificationIdentifier clone();
+    public void setTouch(boolean newTouch) {
+        touch = newTouch;
+    }
 
-} // NotificationIdentifier
+    public boolean isReset() {
+        return reset;
+    }
+
+    public void setReset(boolean newReset) {
+        reset = newReset;
+    }
+
+    public boolean isContainment() {
+        return containment;
+    }
+
+    public void setContainment(boolean newContainment) {
+        containment = newContainment;
+    }
+
+    public int getHash() {
+        return hashCode();
+    }
+
+    public NotificationIdentifier clone() {
+        NotificationIdentifier clone = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
+        clone.getNewValueClassURIs().addAll(getNewValueClassURIs());
+        clone.getOldValueClassURIs().addAll(getOldValueClassURIs());
+        clone.setEventType(getEventType());
+        clone.setFeatureURI(getFeatureURI());
+        clone.setNotifierClassURI(getNotifierClassURI());
+        clone.setReset(isReset());
+        clone.setTouch(isTouch());
+        clone.setContainment(isContainment());
+        return clone;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (containment ? 1231 : 1237);
+        result = prime * result + eventType;
+        result = prime * result + ((featureURI == null) ? 0 : featureURI.hashCode());
+        result = prime * result + ((newValueClassURIs == null) ? 0 : newValueClassURIs.hashCode());
+        result = prime * result + ((notifierClassURI == null) ? 0 : notifierClassURI.hashCode());
+        result = prime * result + ((oldValueClassURIs == null) ? 0 : oldValueClassURIs.hashCode());
+        result = prime * result + (reset ? 1231 : 1237);
+        result = prime * result + (touch ? 1231 : 1237);
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        NotificationIdentifier other = (NotificationIdentifier) obj;
+        if (containment != other.containment)
+            return false;
+        if (eventType != other.eventType)
+            return false;
+        if (featureURI == null) {
+            if (other.featureURI != null)
+                return false;
+        } else if (!featureURI.equals(other.featureURI))
+            return false;
+        if (newValueClassURIs == null) {
+            if (other.newValueClassURIs != null)
+                return false;
+        } else if (!newValueClassURIs.equals(other.newValueClassURIs))
+            return false;
+        if (notifierClassURI == null) {
+            if (other.notifierClassURI != null)
+                return false;
+        } else if (!notifierClassURI.equals(other.notifierClassURI))
+            return false;
+        if (oldValueClassURIs == null) {
+            if (other.oldValueClassURIs != null)
+                return false;
+        } else if (!oldValueClassURIs.equals(other.oldValueClassURIs))
+            return false;
+        if (reset != other.reset)
+            return false;
+        if (touch != other.touch)
+            return false;
+        return true;
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public String toString() {
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (notifierClassURI: ");
+        result.append(notifierClassURI);
+        result.append(", eventType: ");
+        result.append(eventType);
+        result.append(", featureURI: ");
+        result.append(featureURI);
+        result.append(", oldValueClassURIs: ");
+        result.append(oldValueClassURIs);
+        result.append(", newValueClassURIs: ");
+        result.append(newValueClassURIs);
+        result.append(", touch: ");
+        result.append(touch);
+        result.append(", reset: ");
+        result.append(reset);
+        result.append(", containment: ");
+        result.append(containment);
+        result.append(')');
+        return result.toString();
+    }
+
+} // NotificationIdentifierImpl

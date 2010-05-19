@@ -10,11 +10,5 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://de.hpi.sam.bp2009.solution.eventManager"
-            class="de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage"
-            genModel="model/eventManager.genmodel"/>
-   </extension>
 
 </plugin>

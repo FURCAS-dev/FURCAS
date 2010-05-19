@@ -6,18 +6,19 @@ package de.hpi.sam.bp2009.solution.eventManager.util;
 import java.util.Arrays;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.NewValueClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.OldValueClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 
 /**
  * @author Philipp Berger
@@ -45,7 +46,7 @@ public class EventFilterFactory {
 	 */
 	public EventFilter getAndFilterFor(EventFilter...eventFilters){
 		AndFilter and = EventManagerFactory.eINSTANCE.createAndFilter();
-		and.getFilters().addAll(Arrays.asList(eventFilters));
+		and.getOperands().addAll(Arrays.asList(eventFilters));
 		return and;
 	}
 	/**
@@ -54,8 +55,8 @@ public class EventFilterFactory {
 	 * @return
 	 */
 	public EventFilter getOrFilterFor(EventFilter... eventFilters){
-		OrFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
-		or.getFilters().addAll(Arrays.asList(eventFilters));
+		LogicalOperationFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
+		or.getOperands().addAll(Arrays.asList(eventFilters));
 		return or;
 	}
 	
@@ -84,12 +85,12 @@ public class EventFilterFactory {
 				i.createContainmentFilter());
 
 	}
-	public OrFilter createOrFilterForEventTypes(int... types){
-		OrFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
+	public LogicalOperationFilter createOrFilterForEventTypes(int... types){
+		LogicalOperationFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
 		for(int t:types){
 			EventTypeFilter e1 = EventManagerFactory.eINSTANCE.createEventTypeFilter();
 			e1.setEventType(t);
-			or.getFilters().add(e1);
+			or.getOperands().add(e1);
 		}
 		return or;
 
@@ -97,8 +98,13 @@ public class EventFilterFactory {
 	public EventFilter createFilterForStructuralFeature(EClass eClass,
 			EStructuralFeature referredProperty) {
 		EventManagerFactory i = EventManagerFactory.eINSTANCE;
-
-		StructuralFeatureFilter sf = i.createStructuralFeatureFilter();
+		StructuralFeatureFilter sf = null;
+		if(referredProperty instanceof EAttribute){
+		    sf = i.createAttributeFilter();
+		}else{//EReference
+		    sf = i.createAssociationFilter();
+		}
+		
 		sf.setFeature(referredProperty);
 		
 		ClassFilter cf = i.createClassFilter();
