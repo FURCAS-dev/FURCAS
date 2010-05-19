@@ -19,7 +19,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 
 

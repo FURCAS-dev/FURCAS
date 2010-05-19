@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,14 +43,11 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * creation on the context type is useful for invariants / constraints because when a new element is created, validating
  * the constraint may be useful. For other use cases, registering for element creation may not be so useful. For
  * example, when a type inferencer defines its rules using OCL, it only wants to receive <em>update</em> events after
- * the element has been fully initialized from those OCL expressions. In those cases, some framework may be responsible
- * for the initial evaluation of those OCL expressions on new element, and therefore, context element creation events
+ * the element has been fully initialized from those {@link OCLExpression}. In those cases, some framework may be responsible
+ * for the initial evaluation of those {@link OCLExpression}s on new element, and therefore, context element creation events
  * are not of interest.
  * 
- */
-/**
  * @author tobias.hoppe
- *
  */
 
 public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
@@ -79,7 +76,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      *            be responsible for the initial evaluation of those OCL expressions on new element, and therefore,
      *            context element creation events are not of interest.
      */
-    protected FilterSynthesisImpl(OCLExpression exp, boolean notifyNewContextElements) {
+    public FilterSynthesisImpl(OCLExpression exp, boolean notifyNewContextElements) {
         super();
         this.notifyNewContextElements = notifyNewContextElements;
         safeVisit(exp);
@@ -93,7 +90,6 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      * @return the filter matching all relevant events 
      */
     public EventFilter getSynthesisedFilter() {
-        System.out.println("filtersize: " + filters.toArray(new EventFilter[filters.size()]).length + "\n");
         return EventFilterFactory.getInstance().getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
     }
 

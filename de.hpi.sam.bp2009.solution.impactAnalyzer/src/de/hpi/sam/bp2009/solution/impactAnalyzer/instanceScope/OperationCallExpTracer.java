@@ -11,7 +11,7 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {

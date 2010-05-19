@@ -12,7 +12,7 @@ import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
     public CollectionLiteralExpTracer(CollectionLiteralExp expression) {

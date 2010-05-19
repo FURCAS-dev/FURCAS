@@ -6,7 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 /**
  * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each

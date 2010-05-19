@@ -3,7 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 public class TupleLiteralExpTracer extends AbstractTracer<TupleLiteralExp> {
 	public TupleLiteralExpTracer(TupleLiteralExp expression) {

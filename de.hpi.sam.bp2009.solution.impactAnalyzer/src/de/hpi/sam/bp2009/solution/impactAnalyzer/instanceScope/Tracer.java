@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 
 

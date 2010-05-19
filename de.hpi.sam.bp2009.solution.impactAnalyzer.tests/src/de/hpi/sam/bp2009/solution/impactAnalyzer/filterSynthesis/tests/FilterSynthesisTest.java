@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.tests;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -56,9 +56,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             while(i.hasNext()){
                 OCLExpression exp = i.next();
                 //filter isn't saved, because this is done for caching purpose only
-                System.out.println(exp.toString());
-                EventFilter f = this.ia.createFilterForExpression(exp, true);
-                System.out.println(f.toString());
+                this.ia.createFilterForExpression(exp, true);
             }           
         }
     }
@@ -424,7 +422,6 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         
         for(Iterator<OCLExpression> i = this.stmts.iterator(); i.hasNext();){
             OCLExpression exp = i.next();
-            System.out.println(exp.toString());
             EventFilter filter = this.ia.createFilterForExpression(exp, true);            
             if (filter.matchesFor(noti)){
                 affectedStmts.add(exp);
@@ -440,20 +437,17 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      * <tt>expectedAffectedStmts</tt> is contained in
      * <tt>iaResult</tt> and vice versa.
      */
-    private boolean checkAffectedStatements( Set<OCLExpression> iaResult, Set<OCLExpression> expectedAffectedStmts ) {
-    
+    private boolean checkAffectedStatements( Set<OCLExpression> iaResult, Set<OCLExpression> expectedAffectedStmts ) {    
         if ( iaResult.size( ) != expectedAffectedStmts.size( ) ) {
             return false;
         }
         Set<OCLExpression> affectedStmts = new HashSet<OCLExpression>( );
         for ( Iterator<OCLExpression> i = iaResult.iterator( ); i.hasNext( ); ) {
             affectedStmts.add( i.next( ));
-        }
-    
+        }    
         if ( affectedStmts.containsAll( expectedAffectedStmts ) ) {
             return true;
         }
-        return false;
-    
+        return false;   
     }
 }

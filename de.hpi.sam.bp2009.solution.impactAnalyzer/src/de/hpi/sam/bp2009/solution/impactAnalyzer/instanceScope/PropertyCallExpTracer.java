@@ -15,7 +15,7 @@ import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 
 

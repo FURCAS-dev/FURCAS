@@ -83,51 +83,51 @@ public class OclIaTest extends TestCase{
         assertTrue(impact.size() == 1 && impact.contains(ae));
     }
     
-    /**
-     * self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity
-     */
-    @Test
-    public void testLowerMultiplicityPropagationForMethodCallOnParameterUsage(){
-	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
-		"testLowerMultiplicityPropagationForMethodCallOnParameterUsage",
-		"self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * "+
-		"self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity", ClassTypeDefinition.CLASS_DESCRIPTOR);
-	// construct something like "abc".length(), then change multiplicity of "abc" from 1..1 to 0..1
-	MethodSignature length = ClassesFactory.eINSTANCE.createMethodSignature();
-	length.setName("length");
-	SapClass numberClass = ClassesFactory.eINSTANCE.createSapClass();
-	numberClass.setName("Number");
-	ClassTypeDefinition msOutput = MetamodelUtils.createClassTypeDefinitionExactlyOne(connection, numberClass);
-	length.setOutput(msOutput);
-	final ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinition(connection, numberClass, 1, 1);
-	final MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
-	mce.setOwnedTypeDefinition(ctd);
-	mce.setMethodSignature(length);
-	Parameter p = ClassesFactory.eINSTANCE.createParameter();
-	SapClass stringClass = ClassesFactory.eINSTANCE.createSapClass();
-	p.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(connection, stringClass));
-	VariableExpression ve = connection.createElement(VariableExpression.CLASS_DESCRIPTOR);
-	ve.setVariable(p); // this should infer the variable expression's multiplicity to that of p
-	mce.setObject(ve);
-	EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */ false);
-	final boolean[] ok = new boolean[1];
-	ChangeListener listener = new ChangeListener() {
-	    @Override
-	    public void notify(ChangeEvent event) {
-		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
-		ok[0] = affectedElements.size() == 1 && affectedElements.contains(ctd.get___Mri());
-	    }
-	};
-	connection.getEventRegistry().registerListener(listener, eventFilter);
-	try {
-	    assertEquals(1, ve.getType().getLowerMultiplicity());
-	    p.getOwnedTypeDefinition().setLowerMultiplicity(0);
-	    assertEquals(0, ve.getType().getLowerMultiplicity());
-	    assertTrue(ok[0]);
-	} finally {
-	    connection.getEventRegistry().deregister(listener);
-	}
-    }
+//    /**
+//     * self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity
+//     */
+//    @Test
+//    public void testLowerMultiplicityPropagationForMethodCallOnParameterUsage(){
+//	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+//		"testLowerMultiplicityPropagationForMethodCallOnParameterUsage",
+//		"self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * "+
+//		"self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity", ClassTypeDefinition.CLASS_DESCRIPTOR);
+//	// construct something like "abc".length(), then change multiplicity of "abc" from 1..1 to 0..1
+//	MethodSignature length = ClassesFactory.eINSTANCE.createMethodSignature();
+//	length.setName("length");
+//	SapClass numberClass = ClassesFactory.eINSTANCE.createSapClass();
+//	numberClass.setName("Number");
+//	ClassTypeDefinition msOutput = MetamodelUtils.createClassTypeDefinitionExactlyOne(connection, numberClass);
+//	length.setOutput(msOutput);
+//	final ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinition(connection, numberClass, 1, 1);
+//	final MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
+//	mce.setOwnedTypeDefinition(ctd);
+//	mce.setMethodSignature(length);
+//	Parameter p = ClassesFactory.eINSTANCE.createParameter();
+//	SapClass stringClass = ClassesFactory.eINSTANCE.createSapClass();
+//	p.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(connection, stringClass));
+//	VariableExpression ve = connection.createElement(VariableExpression.CLASS_DESCRIPTOR);
+//	ve.setVariable(p); // this should infer the variable expression's multiplicity to that of p
+//	mce.setObject(ve);
+//	EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */ false);
+//	final boolean[] ok = new boolean[1];
+//	ChangeListener listener = new ChangeListener() {
+//	    @Override
+//	    public void notify(ChangeEvent event) {
+//		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+//		ok[0] = affectedElements.size() == 1 && affectedElements.contains(ctd.get___Mri());
+//	    }
+//	};
+//	connection.getEventRegistry().registerListener(listener, eventFilter);
+//	try {
+//	    assertEquals(1, ve.getType().getLowerMultiplicity());
+//	    p.getOwnedTypeDefinition().setLowerMultiplicity(0);
+//	    assertEquals(0, ve.getType().getLowerMultiplicity());
+//	    assertTrue(ok[0]);
+//	} finally {
+//	    connection.getEventRegistry().deregister(listener);
+//	}
+//    }
 //
 //    
 //    /**
