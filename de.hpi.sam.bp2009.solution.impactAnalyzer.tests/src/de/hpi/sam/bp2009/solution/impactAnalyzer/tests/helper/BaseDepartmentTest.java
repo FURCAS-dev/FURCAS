@@ -245,7 +245,6 @@ public class BaseDepartmentTest extends TestCase{
     public void tearDown() {
         this.resetInstances( );
     }
-
     protected void beforeTestMethod( boolean withParsing ) {
 
         // build up the test model

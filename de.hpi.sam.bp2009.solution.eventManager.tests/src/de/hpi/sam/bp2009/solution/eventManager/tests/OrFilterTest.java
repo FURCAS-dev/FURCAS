@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
-import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,8 +41,8 @@ public class OrFilterTest extends AndFilterTest {
 	 * <!-- end-user-doc -->
 	 * @generatedNOT
 	 */
-	protected OrFilter getFixtureOR() {
-		return (OrFilter)fixture;
+	protected LogicalOperationFilter getFixtureOR() {
+		return (LogicalOperationFilter)fixture;
 	}
 
 	/**
@@ -70,31 +70,31 @@ public class OrFilterTest extends AndFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 * @generated NOT
 	 */
 	public void testMatchesFor__NotificationTwoTrue() {
-		getFixtureOR().getFilters().add(trueFilter);
-		getFixtureOR().getFilters().add(trueFilter);
+		getFixtureOR().getOperands().add(trueFilter);
+		getFixtureOR().getOperands().add(trueFilter);
 		assertTrue("Two true is true", getFixtureOR().matchesFor(null));
 	}
 	public void testMatchesFor__NotificationTwoFalse() {
-		getFixtureOR().getFilters().add(falseFilter);
-		getFixtureOR().getFilters().add(falseFilter);
+		getFixtureOR().getOperands().add(falseFilter);
+		getFixtureOR().getOperands().add(falseFilter);
 		assertFalse("Two false is false", getFixtureOR().matchesFor(null));
 	}
 	public void testMatchesFor__Notification() {
-		getFixtureOR().getFilters().add(falseFilter);
-		getFixtureOR().getFilters().add(trueFilter);
+		getFixtureOR().getOperands().add(falseFilter);
+		getFixtureOR().getOperands().add(trueFilter);
 		assertTrue("Two true/false is true", getFixtureOR().matchesFor(null));
 	}
 
 	public void testBuildNotificationIdentifiers__NotificationIdentifier() {
-		getFixtureOR().getFilters().add(falseFilter);
-		getFixtureOR().getFilters().add(trueFilter);
+		getFixtureOR().getOperands().add(falseFilter);
+		getFixtureOR().getOperands().add(trueFilter);
 		NotificationIdentifier id = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
 		EList<NotificationIdentifier> result = getFixtureOR().buildNotificationIdentifiers(id);
 		assertTrue(result.size()== 2);

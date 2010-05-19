@@ -16,7 +16,7 @@ import company.CompanyFactory;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
-import de.hpi.sam.bp2009.solution.eventManager.StructuralFeatureFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 /**
@@ -25,7 +25,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper
  * <!-- end-user-doc -->
  * @generated
  */
-public class StructuralFeatureFilterTest extends EventFilterTest {
+public abstract class StructuralFeatureFilterTest extends EventFilterTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class StructuralFeatureFilterTest extends EventFilterTest {
 	 */
 	@Override
 	public void setUp() {
-		setFixture(EventManagerFactory.eINSTANCE.createStructuralFeatureFilter());
+//		setFixture(EventManagerFactory.eINSTANCE.createStructuralFeatureFilter());
 		super.setUp();
 		this.createInstances( 1, 5, 1 );
 		noti = NotificationHelper.createReferenceAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());

@@ -6,140 +6,63 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
-import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.notify.impl.NotifierImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.junit.Test;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import company.CompanyFactory;
+
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
-import de.hpi.sam.bp2009.solution.eventManager.impl.EventFilterImpl;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.tests.util.EventManagerHelper;
+import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
-/**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Event Manager</b></em>'.
- * <!-- end-user-doc -->
- * <p>
- * The following operations are tested:
- * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#subscribe(org.eclipse.emf.common.util.EList, de.hpi.sam.bp2009.solution.eventManager.EventFilter, org.eclipse.emf.common.notify.Adapter) <em>Subscribe</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#subscribeTransactional(org.eclipse.emf.common.util.EList, de.hpi.sam.bp2009.solution.eventManager.EventFilter, org.eclipse.emf.common.notify.Adapter) <em>Subscribe Transactional</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#notifyApplication(org.eclipse.emf.common.notify.Adapter, org.eclipse.emf.common.notify.Notification, de.hpi.sam.bp2009.solution.eventManager.EventFilter) <em>Notify Application</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#handleEMFEvent(org.eclipse.emf.common.notify.Notification) <em>Handle EMF Event</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#unsubscribe(org.eclipse.emf.common.notify.Adapter) <em>Unsubscribe</em>}</li>
- * </ul>
- * </p>
- * @generated
- */
-public class EventManagerTest extends TestCase {
+public class EventManagerTest extends BaseDepartmentTest {
 
-    /**
-     * The fixture for this Event Manager test case.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     protected EventManager fixture = null;
     private Notifier noti;
     private EventFilter filter;
     private Adapter adapter;
     private Notification lastMsg;
-    private Notification matchingNotification;
+    Notification matchingNotification;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public static void main(String[] args) {
         TestRunner.run(EventManagerTest.class);
     }
 
 
-    /**
-     * Constructs a new Event Manager test case with the given name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EventManagerTest(String name) {
-        super(name);
-    }
-
-
-    /**
-     * Sets the fixture for this Event Manager test case.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     protected void setFixture(EventManager fixture) {
         this.fixture = fixture;
     }
 
-    /**
-     * Returns the fixture for this Event Manager test case.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     protected EventManager getFixture() {
         return fixture;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see junit.framework.TestCase#setUp()
-     * @generated NOT
-     */
     @Override
-    public void setUp()   {
-        setFixture(EventManagerFactory.eINSTANCE.createEventManager());
+    public void setUp() {
+        // setFixture(EventManagerFactory.eINSTANCE.createEventManager());
+        super.setUp();
+        this.createInstances(1, 3, 4);
+        setFixture(EventManagerFactory.eINSTANCE.createEventManagerTableBased());
         noti = new NotifierImpl();
-        matchingNotification = new NotificationImpl(0, true, false);
-        filter = new EventFilterImpl() {
+        matchingNotification = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge,
+                new Long(23), new Long(42));
 
-            @Override
-            public boolean matchesFor(Notification event) {	
-                return matchingNotification.equals(event);}
-
-            @Override
-            public EList<NotificationIdentifier> buildNotificationIdentifiers(
-                    NotificationIdentifier identifier) {
-                EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
-                result.addAll(EventManagerFactory.eINSTANCE.createNotificationIdentifierBuilder().buildFrom(matchingNotification));
-                return result;
-
-            }
-
-            @Override
-            public int hashCode() {
-                // TODO Auto-generated methodhashCode stub
-                System.out.println("hashCode");
-                return 0;
-
-            }
-
-            @Override
-            public boolean equals(Object obj) {
-                // TODO Auto-generated methodequals stub
-                System.out.println("equals");
-                return false;
-
-            }
-        };
-        adapter = new AdapterImpl(){
+        filter = new AttributeFilter(this.employeeAge);
+        adapter = new AdapterImpl() {
             @Override
             public void notifyChanged(Notification msg) {
                 lastMsg = msg;
@@ -150,13 +73,13 @@ public class EventManagerTest extends TestCase {
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @see junit.framework.TestCase#tearDown()
      * @generated NOT
      */
     @Override
-    public void tearDown()  {
+    public void tearDown() {
         setFixture(null);
         noti = null;
         filter = null;
@@ -165,48 +88,22 @@ public class EventManagerTest extends TestCase {
         matchingNotification = null;
     }
 
-    /**
-     * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#subscribe(org.eclipse.emf.common.util.EList, de.hpi.sam.bp2009.solution.eventManager.EventFilter, org.eclipse.emf.common.notify.Adapter) <em>Subscribe</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.hpi.sam.bp2009.solution.eventManager.EventManager#subscribe(org.eclipse.emf.common.util.EList, de.hpi.sam.bp2009.solution.eventManager.EventFilter, org.eclipse.emf.common.notify.Adapter)
-     * @generated NOT
-     */
     public void testSubscribe__EList_EventFilter_Adapter() {
         getFixture().subscribe(EventManagerHelper.getEListFor(noti), filter, adapter);
-        assertTrue(noti.eAdapters().size()==1);
+        assertTrue(noti.eAdapters().size() == 1);
     }
 
-    /**
-     * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#subscribeTransactional(org.eclipse.emf.common.util.EList, de.hpi.sam.bp2009.solution.eventManager.EventFilter, org.eclipse.emf.common.notify.Adapter) <em>Subscribe Transactional</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.hpi.sam.bp2009.solution.eventManager.EventManager#subscribeTransactional(org.eclipse.emf.common.util.EList, de.hpi.sam.bp2009.solution.eventManager.EventFilter, org.eclipse.emf.common.notify.Adapter)
-     * @generated NOT
-     */
     public void testSubscribeTransactional__EList_EventFilter_Adapter() {
         System.err.println("Implement ME -- SubscribeTransactional__EList_EventFilter_Adapter");
     }
 
-    /**
-     * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#notifyApplication(org.eclipse.emf.common.notify.Adapter, org.eclipse.emf.common.notify.Notification, de.hpi.sam.bp2009.solution.eventManager.EventFilter) <em>Notify Application</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.hpi.sam.bp2009.solution.eventManager.EventManager#notifyApplication(org.eclipse.emf.common.notify.Adapter, org.eclipse.emf.common.notify.Notification, de.hpi.sam.bp2009.solution.eventManager.EventFilter)
-     * @generated NOT
-     */
+
     public void testNotifyApplication__Adapter_Notification_EventFilter() {
-        getFixture().notifyApplication(adapter, matchingNotification , filter);
+        getFixture().notifyApplication(adapter, matchingNotification, filter);
         assertTrue("Application gets notified", matchingNotification.equals(lastMsg));
     }
 
-    /**
-     * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#handleEMFEvent(org.eclipse.emf.common.notify.Notification) <em>Handle EMF Event</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.hpi.sam.bp2009.solution.eventManager.EventManager#handleEMFEvent(org.eclipse.emf.common.notify.Notification)
-     * @generated NOT
-     */
+
     public void testHandleEMFEvent__Notification() {
         /*
          * register Application
@@ -218,14 +115,41 @@ public class EventManagerTest extends TestCase {
         assertEquals(matchingNotification, lastMsg);
 
     }
+    @Test
+    public void testSimpleElementInsertFilter( ) {
+        EventFilter f =EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        comp.eResource().getContents().add(aDivision);
+        Bool newBool = new Bool();
+        filterStatementsWithEM(f, newBool);
+        NotificationHelper.createElementAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
+        
+        assertTrue(newBool.is);
+       
+    }
+    @Test
+    public void testDoubleElementInsertFilter( ) {
+        EventFilter f1 =EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f2 =EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f = new OrFilter(f1,f2);
+        comp.eResource().getContents().add(aDivision);
+        Bool newBool = new Bool();
+        filterStatementsWithEM(f, newBool);
+        NotificationHelper.createElementAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
+        
+        assertTrue(newBool.is);
+       
+    }
+    private void filterStatementsWithEM(EventFilter filter, Bool b) {
 
-    /**
-     * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#unsubscribe(org.eclipse.emf.common.notify.Adapter) <em>Unsubscribe</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.hpi.sam.bp2009.solution.eventManager.EventManager#unsubscribe(org.eclipse.emf.common.notify.Adapter)
-     * @generated NOT
-     */
+            MyApp app = new MyApp(b);
+            EventManager m=EventManagerFactory.eINSTANCE.createEventManagerTableBased();
+            EList<Notifier> l = new BasicEList<Notifier>();
+            l.add(this.comp.eResource());
+            m.subscribe(l, filter, app);
+    }
+    public class Bool{
+        public boolean is=false;
+    }
     public void testUnsubscribe__Adapter() {
         getFixture().subscribe(EventManagerHelper.getEListFor(noti), filter, adapter);
         getFixture().unsubscribe(adapter);
@@ -234,4 +158,19 @@ public class EventManagerTest extends TestCase {
         assertNull(lastMsg);
     }
 
-} //EventManagerTest
+    public class MyApp extends AdapterImpl {
+        private final Bool b;
+
+        public MyApp(Bool b1) {
+            b=b1;
+        }
+
+        @Override
+        public void notifyChanged(Notification msg) {
+            this.b.is=true;
+
+        }
+
+    }
+
+} // EventManagerTest

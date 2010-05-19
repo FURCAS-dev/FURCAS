@@ -11,8 +11,8 @@ import junit.textui.TestRunner;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EcoreFactory;
 
-import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -89,10 +89,10 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}' operation.
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
 	 * @generated NOT
 	 */
 	public void testSetAttribute__EAttribute() {

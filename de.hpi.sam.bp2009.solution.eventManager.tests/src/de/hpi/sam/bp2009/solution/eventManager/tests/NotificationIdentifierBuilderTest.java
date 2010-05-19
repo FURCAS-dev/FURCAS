@@ -151,13 +151,9 @@ public class NotificationIdentifierBuilderTest extends BaseDepartmentTest {
 		HashSet<NotificationIdentifier> shouldBe = new HashSet<NotificationIdentifier>();
 		shouldBe.add(id1);
 		shouldBe.add(id);
-		HashSet<NotificationIdentifier> unfortunately = new HashSet<NotificationIdentifier>();
-		unfortunately.add(id);
-		unfortunately.add(id1);
 
 		depart.getEmployee().add(CompanyFactory.eINSTANCE.createEmployee());
 		Set<NotificationIdentifier> result = getFixture().buildFrom(noti);
-		assertEquals("same order as expected",unfortunately, result);
 		
 		assertEquals("Problem with ordered Lists",shouldBe, result);
 	}

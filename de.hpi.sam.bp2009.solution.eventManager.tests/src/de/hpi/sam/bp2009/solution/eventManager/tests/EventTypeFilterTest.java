@@ -12,8 +12,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,10 +88,10 @@ public class EventTypeFilterTest extends EventFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 * @generated NOT
 	 */
 	public void testMatchesFor__Notification() {
@@ -100,10 +100,10 @@ public class EventTypeFilterTest extends EventFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier) <em>Build Notification Identifiers</em>}' operation.
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier) <em>Build Notification Identifiers</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier)
 	 * @generated NOT
 	 */
 	public void testBuildNotificationIdentifiers__NotificationIdentifier() {

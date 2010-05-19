@@ -29,9 +29,9 @@ import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -133,7 +133,6 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
                 }               
             } else {
                 EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-                parser.convertOclAnnotation(opCallExp.getSource().getType());
                 OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
                 if (body != null) {
                     Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
@@ -165,11 +164,11 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
      * @return a filter containing a element creation or deletion filter for all sub types of the given class
      */
     private EventFilter createFilterForElementInsertionOrDeletion(EClass clazz) {
-        OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
+        LogicalOperationFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
         for(EClass cls: EcoreHelper.getInstance().getAllSubclasses(clazz)){
-            orFilter.getFilters().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(cls));           
+            orFilter.getOperands().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(cls));           
         }
-        orFilter.getFilters().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(clazz));           
+        orFilter.getOperands().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(clazz));           
         return orFilter;
     }
 

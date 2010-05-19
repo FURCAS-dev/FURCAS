@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="company"
+    nsURI="http:///company.ecore" nsPrefix="company">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="settingDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eAnnotations source="oclTypes">
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:SetType" name="Set(Employee)" instanceClassName="java.util.Set"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:TupleType" name="Tuple(boss : Employee, junior : Employee)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="junior" eType="#//Employee"/>
+    </contents>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Freelance"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:SetType" name="Set(Division)" instanceClassName="java.util.Set"
+        elementType="#//Division"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:TupleType" name="Tuple(boss : Employee, junior : Employee)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="junior" eType="#//Employee"/>
+    </contents>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Department)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Freelance"/>
+    <contents xsi:type="ocl.ecore:SetType" name="Set(Division)" instanceClassName="java.util.Set"
+        elementType="#//Division"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:SequenceType" name="Sequence(Integer)" instanceClassName="java.util.List"
+        elementType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Freelance"/>
+    <contents xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="t" eType="#//%oclTypes%/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee).4">
+      <initExpression xsi:type="ocl.ecore:TupleLiteralExp" eType="#//%oclTypes%/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee).5">
+        <part xsi:type="ocl.ecore:TupleLiteralPart" name="boss" eType="#//Employee"
+            attribute="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/boss">
+          <value xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                referredVariable="#//%oclTypes%/self.18"/>
+          </value>
+        </part>
+        <part xsi:type="ocl.ecore:TupleLiteralPart" name="junior" eType="#//Employee"
+            attribute="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/junior">
+          <value xsi:type="ocl.ecore:OperationCallExp" eType="#//Employee" referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first">
+            <source xsi:type="ocl.ecore:IteratorExp" name="sortedBy" eType="#//%oclTypes%/OrderedSet(Employee).13">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).7"
+                  referredProperty="#//Department/employee">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                    referredVariable="#//%oclTypes%/self.26"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                  referredProperty="#//Employee/age">
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/temp1.1"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+            </source>
+          </value>
+        </part>
+      </initExpression>
+    </contents>
+    <contents xsi:type="ocl.ecore:Variable" name="t" eType="#//%oclTypes%/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee).1">
+      <initExpression xsi:type="ocl.ecore:TupleLiteralExp" eType="#//%oclTypes%/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)">
+        <part xsi:type="ocl.ecore:TupleLiteralPart" name="boss" eType="#//Employee"
+            attribute="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/boss">
+          <value xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                referredVariable="#//%oclTypes%/self.4"/>
+          </value>
+        </part>
+        <part xsi:type="ocl.ecore:TupleLiteralPart" name="junior" eType="#//Employee"
+            attribute="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/junior">
+          <value xsi:type="ocl.ecore:OperationCallExp" eType="#//Employee" referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first">
+            <source xsi:type="ocl.ecore:IteratorExp" name="sortedBy" eType="#//%oclTypes%/OrderedSet(Employee).1">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).6"
+                  referredProperty="#//Department/employee">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                    referredVariable="#//%oclTypes%/self.28"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                  referredProperty="#//Employee/age">
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/temp1"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+            </source>
+          </value>
+        </part>
+      </initExpression>
+    </contents>
+    <contents xsi:type="ocl.ecore:TupleType" name="Tuple(boss : Employee, junior : Employee)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="junior" eType="#//Employee"/>
+    </contents>
+    <contents xsi:type="ocl.ecore:TupleType" name="Tuple(boss : Employee, junior : Employee)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="junior" eType="#//Employee"/>
+    </contents>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:TupleType" name="Tuple(boss : Employee, junior : Employee)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="junior" eType="#//Employee"/>
+    </contents>
+    <contents xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:SequenceType" name="Sequence(Employee)" instanceClassName="java.util.List"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="d" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Freelance"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Division"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Division"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="d" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:TupleType" name="Tuple(boss : Employee, junior : Employee)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="junior" eType="#//Employee"/>
+    </contents>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Employee)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Freelance"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Student"/>
+    <contents xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:SetType" name="Set(Division)" instanceClassName="java.util.Set"
+        elementType="#//Division"/>
+    <contents xsi:type="ocl.ecore:SetType" name="Set(Employee)" instanceClassName="java.util.Set"
+        elementType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Employee"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Department"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Employee">
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="UniqueNames" value="Employee.allInstances()->forAll(e | e &lt;> self implies e.name &lt;> self.name)"/>
+      <details key="BossIsOldest" value="self.age &lt;= self.employer.boss.age"/>
+      <details key="divBossSecretary" value="if self.directed->isEmpty() then&#xD;&#xA;self.secretary.oclIsUndefined()&#xD;&#xA;else&#xD;&#xA;not self.secretary.oclIsUndefined()&#xD;&#xA;endif"/>
+      <details key="secretaryOlderThanBoss" value="if self.directed->notEmpty() and&#xD;&#xA;not self.secretary.oclIsUndefined() then&#xD;&#xA;self.age &lt; self.secretary.age &#xD;&#xA;else true&#xD;&#xA;endif"/>
+      <details key="Boss10YearsOlderThanEmployee" value="self.age + 10 &lt;= self.employer.boss.age"/>
+      <details key="Secretary10YearsOlderThanBoss" value="if self.directed->notEmpty() and&#xD;&#xA;not self.secretary.oclIsUndefined() then&#xD;&#xA;self.age + 10 &lt; self.secretary.age &#xD;&#xA;else true&#xD;&#xA;endif"/>
+      <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="#//%oclTypes%/Set(Employee).1"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclType_Class/allInstances">
+          <source xsi:type="ocl.ecore:TypeExp" eType="ocl.ecore:TypeType ocl:///oclenv.ecore#/1/Employee"
+              referredType="#//Employee"/>
+        </source>
+        <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/%3C%3E">
+            <source xsi:type="ocl.ecore:VariableExp" name="e" eType="#//Employee"
+                referredVariable="#//%oclTypes%/e.2"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                referredVariable="#//%oclTypes%/self.3"/>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/%3C%3E">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"
+                referredProperty="#//Employee/name">
+              <source xsi:type="ocl.ecore:VariableExp" name="e" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/e.1"/>
+            </source>
+            <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"
+                referredProperty="#//Employee/name">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.2"/>
+            </argument>
+          </argument>
+        </body>
+        <iterator xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C=">
+        <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Employee/age">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+              referredVariable="#//%oclTypes%/self.7"/>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Employee/age">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Department" referredProperty="#//Employee/employer">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.17"/>
+            </source>
+          </source>
+        </argument>
+      </contents>
+      <contents xsi:type="ocl.ecore:IfExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <condition xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/isEmpty">
+          <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//%oclTypes%/Set(Division).1">
+            <part xsi:type="ocl.ecore:CollectionItem" eType="#//Division">
+              <item xsi:type="ocl.ecore:PropertyCallExp" eType="#//Division" referredProperty="#//Employee/directed">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/self.16"/>
+              </item>
+            </part>
+          </source>
+        </condition>
+        <thenExpression xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsUndefined">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Employee/secretary">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                referredVariable="#//%oclTypes%/self.38"/>
+          </source>
+        </thenExpression>
+        <elseExpression xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsUndefined">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Employee/secretary">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.21"/>
+            </source>
+          </source>
+        </elseExpression>
+      </contents>
+      <contents xsi:type="ocl.ecore:IfExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <condition xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
+            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//%oclTypes%/Set(Division).2">
+              <part xsi:type="ocl.ecore:CollectionItem" eType="#//Division">
+                <item xsi:type="ocl.ecore:PropertyCallExp" eType="#//Division" referredProperty="#//Employee/directed">
+                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                      referredVariable="#//%oclTypes%/self.23"/>
+                </item>
+              </part>
+            </source>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
+            <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsUndefined">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Employee/secretary">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/self.39"/>
+              </source>
+            </source>
+          </argument>
+        </condition>
+        <thenExpression xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Employee/age">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                referredVariable="#//%oclTypes%/self.22"/>
+          </source>
+          <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Employee/age">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Employee/secretary">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.31"/>
+            </source>
+          </argument>
+        </thenExpression>
+        <elseExpression xsi:type="ocl.ecore:BooleanLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            booleanSymbol="true"/>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C=">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/+">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Employee/age">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                referredVariable="#//%oclTypes%/self.40"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="10"/>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Employee/age">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Department" referredProperty="#//Employee/employer">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.33"/>
+            </source>
+          </source>
+        </argument>
+      </contents>
+      <contents xsi:type="ocl.ecore:IfExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <condition xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
+            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//%oclTypes%/Set(Division)">
+              <part xsi:type="ocl.ecore:CollectionItem" eType="#//Division">
+                <item xsi:type="ocl.ecore:PropertyCallExp" eType="#//Division" referredProperty="#//Employee/directed">
+                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                      referredVariable="#//%oclTypes%/self"/>
+                </item>
+              </part>
+            </source>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
+            <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsUndefined">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Employee/secretary">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/self.19"/>
+              </source>
+            </source>
+          </argument>
+        </condition>
+        <thenExpression xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/+">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                referredProperty="#//Employee/age">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.6"/>
+            </source>
+            <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                integerSymbol="10"/>
+          </source>
+          <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Employee/age">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Employee/secretary">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/self.14"/>
+            </source>
+          </argument>
+        </thenExpression>
+        <elseExpression xsi:type="ocl.ecore:BooleanLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            booleanSymbol="true"/>
+      </contents>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueNames BossIsOldest divBossSecretary secretaryOlderThanBoss Boss10YearsOlderThanEmployee Secretary10YearsOlderThanBoss"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="salary" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employer" eType="#//Department"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="managed" eType="#//Department"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directed" eType="#//Division"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secretary" eType="#//Employee"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Department">
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="NotBossFreelance" value="not self.boss.oclIsTypeOf(Freelance)"/>
+      <details key="OldEmployee" value="self.employee->exists(e | e.age > 45)"/>
+      <details key="MaxJuniors" value="self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors"/>
+      <details key="BossHighestSalary" value="self.employee->select(e|e.salary >= self.boss.salary)->size() &lt;= 1"/>
+      <details key="boss10YearsOlderThanJunior" value="let t:Tuple(boss:Employee,junior:Employee)=&#xD;&#xA;Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in&#xD;&#xA;t.boss.age > t.junior.age + 10"/>
+      <details key="BudgetRestriction" value="self.calcExpenses() &lt;= self.budget"/>
+      <details key="MaxJuniorsWarning" value="if self.maxJuniors > 1&#xD;&#xA;then&#xD;&#xA;self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors - 1&#xD;&#xA;else&#xD;&#xA;true&#xD;&#xA;endif"/>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                referredVariable="#//%oclTypes%/self.34"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="ocl.ecore:TypeType ocl:///oclenv.ecore#/1/Freelance"
+              referredType="#//Freelance"/>
+        </source>
+      </contents>
+      <contents xsi:type="ocl.ecore:IteratorExp" name="exists" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee)"
+            referredProperty="#//Department/employee">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+              referredVariable="#//%oclTypes%/self.13"/>
+        </source>
+        <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Employee/age">
+            <source xsi:type="ocl.ecore:VariableExp" name="e" eType="#//Employee"
+                referredVariable="#//%oclTypes%/e.3"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="45"/>
+        </body>
+        <iterator xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/size">
+          <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="#//%oclTypes%/OrderedSet(Employee).8">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).5"
+                referredProperty="#//Department/employee">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                  referredVariable="#//%oclTypes%/self.24"/>
+            </source>
+            <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                  referredProperty="#//Employee/age">
+                <source xsi:type="ocl.ecore:VariableExp" name="e" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/e.5"/>
+              </source>
+              <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                  integerSymbol="25"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+          </source>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Department/maxJuniors">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+              referredVariable="#//%oclTypes%/self.5"/>
+        </argument>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C=">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/size">
+          <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="#//%oclTypes%/OrderedSet(Employee).10">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).3"
+                referredProperty="#//Department/employee">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                  referredVariable="#//%oclTypes%/self.32"/>
+            </source>
+            <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E=">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                  referredProperty="#//Employee/salary">
+                <source xsi:type="ocl.ecore:VariableExp" name="e" eType="#//Employee"
+                    referredVariable="#//%oclTypes%/e"/>
+              </source>
+              <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                  referredProperty="#//Employee/salary">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                      referredVariable="#//%oclTypes%/self.35"/>
+                </source>
+              </argument>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+          </source>
+        </source>
+        <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            integerSymbol="1"/>
+      </contents>
+      <contents xsi:type="ocl.ecore:LetExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <in xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Employee/age">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/boss">
+              <source xsi:type="ocl.ecore:VariableExp" name="t" eType="ocl.ecore:TupleType ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)"
+                  referredVariable="#//%oclTypes%/t"/>
+            </source>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/+">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                referredProperty="#//Employee/age">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/junior">
+                <source xsi:type="ocl.ecore:VariableExp" name="t" eType="ocl.ecore:TupleType ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)"
+                    referredVariable="#//%oclTypes%/t.1"/>
+              </source>
+            </source>
+            <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                integerSymbol="10"/>
+          </argument>
+        </in>
+        <variable xsi:type="ocl.ecore:Variable" name="t" eType="#//%oclTypes%/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee).2">
+          <initExpression xsi:type="ocl.ecore:TupleLiteralExp" eType="#//%oclTypes%/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee).3">
+            <part xsi:type="ocl.ecore:TupleLiteralPart" name="boss" eType="#//Employee"
+                attribute="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/boss">
+              <value xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee" referredProperty="#//Department/boss">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                    referredVariable="#//%oclTypes%/self.29"/>
+              </value>
+            </part>
+            <part xsi:type="ocl.ecore:TupleLiteralPart" name="junior" eType="#//Employee"
+                attribute="ecore:EReference ocl:///oclenv.ecore#/1/Tuple(boss%20%3A%20Employee%2C%20junior%20%3A%20Employee)/junior">
+              <value xsi:type="ocl.ecore:OperationCallExp" eType="#//Employee" referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/first">
+                <source xsi:type="ocl.ecore:IteratorExp" name="sortedBy" eType="#//%oclTypes%/OrderedSet(Employee).2">
+                  <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).12"
+                      referredProperty="#//Department/employee">
+                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                        referredVariable="#//%oclTypes%/self.11"/>
+                  </source>
+                  <body xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                      referredProperty="#//Employee/age">
+                    <source xsi:type="ocl.ecore:VariableExp" name="temp1" eType="#//Employee"
+                        referredVariable="#//%oclTypes%/temp1.3"/>
+                  </body>
+                  <iterator xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+                </source>
+              </value>
+            </part>
+          </initExpression>
+        </variable>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C=">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredOperation="#//Department/calcExpenses">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+              referredVariable="#//%oclTypes%/self.41"/>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Department/budget">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+              referredVariable="#//%oclTypes%/self.8"/>
+        </argument>
+      </contents>
+      <contents xsi:type="ocl.ecore:IfExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <condition xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Department/maxJuniors">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                referredVariable="#//%oclTypes%/self.15"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="1"/>
+        </condition>
+        <thenExpression xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/size">
+            <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="#//%oclTypes%/OrderedSet(Employee).9">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).11"
+                  referredProperty="#//Department/employee">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                    referredVariable="#//%oclTypes%/self.20"/>
+              </source>
+              <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                    referredProperty="#//Employee/age">
+                  <source xsi:type="ocl.ecore:VariableExp" name="e" eType="#//Employee"
+                      referredVariable="#//%oclTypes%/e.4"/>
+                </source>
+                <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                    integerSymbol="25"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="e" eType="#//Employee"/>
+            </source>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/-">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                referredProperty="#//Department/maxJuniors">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Department"
+                  referredVariable="#//%oclTypes%/self.10"/>
+            </source>
+            <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                integerSymbol="1"/>
+          </argument>
+        </thenExpression>
+        <elseExpression xsi:type="ocl.ecore:BooleanLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            booleanSymbol="true"/>
+      </contents>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning"/>
+    </eAnnotations>
+    <eOperations name="calcExpenses" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxJuniors" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employee" upperBound="-1"
+        eType="#//Employee" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="ValidAssignment" value="self.assignment >= 5 and self.assignment &lt;= 30"/>
+      <details key="ValidAssignmentWarning" value="self.assignment >= 5 and self.assignment &lt;= 40"/>
+      <details key="StudentAndFreelancesAge" value="self.age &lt; 40"/>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E=">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Freelance/assignment">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Freelance"
+                referredVariable="#//%oclTypes%/self.36"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="5"/>
+        </source>
+        <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C=">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Freelance/assignment">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Freelance"
+                referredVariable="#//%oclTypes%/self.1"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="30"/>
+        </argument>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E=">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Freelance/assignment">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Freelance"
+                referredVariable="#//%oclTypes%/self.25"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="5"/>
+        </source>
+        <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C=">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              referredProperty="#//Freelance/assignment">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Freelance"
+                referredVariable="#//%oclTypes%/self.12"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+              integerSymbol="40"/>
+        </argument>
+      </contents>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+        <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Employee/age">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Freelance"
+              referredVariable="#//%oclTypes%/self.9"/>
+        </source>
+        <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            integerSymbol="40"/>
+      </contents>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidAssignment ValidAssignmentWarning StudentAndFreelancesAge"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignment" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Division">
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="nasty" value="self.department->collect(d| &#xD;&#xA;d.employee->including(d.boss)).salary->sum() &lt; budget"/>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)_Class/sum">
+          <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="#//%oclTypes%/Sequence(Integer)">
+            <source xsi:type="ocl.ecore:IteratorExp" name="collect" eType="#//%oclTypes%/Sequence(Employee)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Department)"
+                  referredProperty="#//Division/department">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Division"
+                    referredVariable="#//%oclTypes%/self.30"/>
+              </source>
+              <body xsi:type="ocl.ecore:OperationCallExp" eType="#//%oclTypes%/Set(Employee)"
+                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/including">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Employee).4"
+                    referredProperty="#//Department/employee">
+                  <source xsi:type="ocl.ecore:VariableExp" name="d" eType="#//Department"
+                      referredVariable="#//%oclTypes%/d"/>
+                </source>
+                <argument xsi:type="ocl.ecore:PropertyCallExp" eType="#//Employee"
+                    referredProperty="#//Department/boss">
+                  <source xsi:type="ocl.ecore:VariableExp" name="d" eType="#//Department"
+                      referredVariable="#//%oclTypes%/d.1"/>
+                </argument>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="d" eType="#//Department"/>
+            </source>
+            <body xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+                referredProperty="#//Employee/salary">
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" eType="#//Employee"
+                  referredVariable="#//%oclTypes%/temp1.2"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="temp1" eType="#//Employee"/>
+          </source>
+        </source>
+        <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Division/budget">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Division"
+              referredVariable="#//%oclTypes%/self.27"/>
+        </argument>
+      </contents>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nasty"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
+        eType="#//Department" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Student" eSuperTypes="#//Employee">
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="StudentAndFreelancesAge" value="self.age &lt; 40"/>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3C">
+        <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            referredProperty="#//Employee/age">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Student"
+              referredVariable="#//%oclTypes%/self.37"/>
+        </source>
+        <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
+            integerSymbol="40"/>
+      </contents>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="StudentAndFreelancesAge"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

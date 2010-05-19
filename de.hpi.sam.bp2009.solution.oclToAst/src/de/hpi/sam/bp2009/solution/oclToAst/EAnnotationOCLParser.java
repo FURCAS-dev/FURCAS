@@ -60,6 +60,7 @@ public interface EAnnotationOCLParser {
 
     /**
      * Extract an OCLExpression matching the given constraint name. Suppose that the OCLExpression previously get parsed through {@link EAnnotationOCLParser#convertOclAnnotation(EModelElement)}
+     * 
      * @param element with the {@link EAnnotation} which should be searched
      * @param constraintName the name of the constraint which should be returned, if your searching for pre/post/body/derivation/initial expression give the key defined in {@link OCLDelegateDomain} e.g. pre/post/derive/initial
      * @return the OCLExpression matching the given constraint name, if no matching Annotation found or the annotation does not contain an precompiled Expression, null is returned.

@@ -11,8 +11,8 @@ import junit.textui.TestRunner;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 
-import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference) <em>Set Reference</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference) <em>Set Reference</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -91,10 +91,10 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference) <em>Set Reference</em>}' operation.
+	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference) <em>Set Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference)
 	 * @generated NOT
 	 */
 	public void testSetReference__EReference() {

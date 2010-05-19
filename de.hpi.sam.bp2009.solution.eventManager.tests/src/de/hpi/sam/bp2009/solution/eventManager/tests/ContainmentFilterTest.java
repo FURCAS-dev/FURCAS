@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import de.hpi.sam.bp2009.solution.eventManager.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
+import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,6 +68,8 @@ public class ContainmentFilterTest extends EventFilterTest {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setUp()  {
+	        super.setUp();
+	        super.createInstances(2, 3, 4);
 		setFixture(EventManagerFactory.eINSTANCE.createContainmentFilter());
 		EReference cFeature = EcoreFactory.eINSTANCE.createEReference();
 		cFeature.setName("test");

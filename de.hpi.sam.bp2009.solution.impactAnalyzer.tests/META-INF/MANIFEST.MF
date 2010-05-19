@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.junit4;bundle-version="4.5.0",
  de.hpi.sam.bp2009.solution.oclToAst;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper
