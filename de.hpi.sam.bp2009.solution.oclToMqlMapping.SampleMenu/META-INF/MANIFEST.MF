@@ -10,7 +10,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.query,
  de.hpi.sam.petriNet,
  org.eclipse.emf.query.ocl,
- org.eclipse.ocl.ecore
+ org.eclipse.ocl.ecore,
+ de.hpi.sam.bp2009.solution.oclToMqlMapping
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipse.ocl
+Import-Package: de.hpi.sam.bp2009.solution.oclToMqlMapping.impl,
+ org.eclipse.ocl

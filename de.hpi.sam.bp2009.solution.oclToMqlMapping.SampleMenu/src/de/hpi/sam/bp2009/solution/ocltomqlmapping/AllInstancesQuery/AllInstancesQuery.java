@@ -17,12 +17,13 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MyOCL;
 import de.hpi.sam.petriNet.PetriNetPackage;
 
 public class AllInstancesQuery{
 	final static String regex="context:([\\w\\W]*)? body";
     
-
+        
 	public static Object executeQueryOn(String completeConstraint, Resource resource)
 	throws IllegalAccessException, InvocationTargetException,
 	NoSuchMethodException {
@@ -64,8 +65,8 @@ public class AllInstancesQuery{
 		return eclass;
 	}
 	public static Object validateOclQuery(EClass context, String query, Resource resource) throws ParserException{
-		OCL ocl=OCL.newInstance();
-		Helper oclhelper=ocl.createOCLHelper();
+		MyOCL ocl = MyOCL.newInstance();
+		Helper oclhelper=(Helper) ocl.createOCLHelper();
 		oclhelper.setContext(context);
 		TreeIterator<EObject> it = resource.getAllContents();
 		Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();

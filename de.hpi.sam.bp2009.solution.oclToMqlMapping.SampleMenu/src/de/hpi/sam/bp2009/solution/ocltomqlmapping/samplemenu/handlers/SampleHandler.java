@@ -17,7 +17,7 @@ public class SampleHandler extends AbstractHandler{
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		String completeQuery= "context: PetriNet body: Place.allInstances()->select(p : Place| p.noTokens = 8)"; 
+		String completeQuery= "context: PetriNet body: Place.allInstances()->select(p : Place| p.noTokens = 2)"; 
 		// create Resource My.petriNet in Resourceset 
 		ResourceSet resourceset=new ResourceSetImpl();
 		Resource resource = resourceset.createResource(URI.createPlatformResourceURI("/test/My.petrinet", true));

@@ -32,7 +32,7 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 @SuppressWarnings("restriction")
-public class MqlMapperImpl implements org.eclipse.ocl.OclToMql {
+public class MqlMapperImpl  {
 
     private Map<EClassifier,Set<EObject>> extentMap;
 
@@ -43,12 +43,10 @@ public class MqlMapperImpl implements org.eclipse.ocl.OclToMql {
     public Map<EClassifier,Set<EObject>> getExtentMap() {
         return extentMap;
     }
-    @Override
     public void setExtendMap(Map<EClassifier, Set<EObject>> map) {
         extentMap = map;
 
     }
-    @Override
     public boolean checkForExpression (OCLExpression<EClassifier> expression){
         return expression instanceof IteratorExp<?, ?>;        
     }
