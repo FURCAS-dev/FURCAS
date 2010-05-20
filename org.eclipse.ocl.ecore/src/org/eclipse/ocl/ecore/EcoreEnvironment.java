@@ -86,6 +86,12 @@ public class EcoreEnvironment
 		EClass, EObject> {
 	
 	/**
+	 * The key that identifies opposite role names in an annotation
+	 * @since 3.0
+	 */
+	public static final String PROPERTY_OPPOSITE_ROLE_NAME_KEY = "Property.oppositeRoleName"; //$NON-NLS-1$
+
+	/**
 	 * The namespace URI of the Ecore representation of the OCL Standard Library.
 	 * 
 	 * @since 1.3
@@ -718,7 +724,7 @@ public class EcoreEnvironment
 				allClassifierSupertypeUris + "} "+ //$NON-NLS-1$
 				"where oppositeParent.eAnnotations = annotation "+ //$NON-NLS-1$
 				"where annotation.details = detail "+ //$NON-NLS-1$
-				"where detail.key = 'Property.oppositeRoleName' "+ //$NON-NLS-1$
+				"where detail.key = '" + PROPERTY_OPPOSITE_ROLE_NAME_KEY + "' "+ //$NON-NLS-1$ //$NON-NLS-2$
 				"where detail.value = '"+name+"' "+ //$NON-NLS-1$ //$NON-NLS-2$
 				"where oppositeParent.eType = classifier", getWorkspaceQueryContext(rs)); //$NON-NLS-1$
 		for (int i=0; i<result.getSize(); i++) {
