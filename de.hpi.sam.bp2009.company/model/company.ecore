@@ -30,7 +30,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="directed" eType="#//Division"
         resolveProxies="false" eOpposite="#//Division/director"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="secretary" eType="#//Employee"
-        containment="true" resolveProxies="false"/>
+        containment="true" resolveProxies="false">
+      <eAnnotations>
+        <details key="Property.oppositeRoleName" value="secretary2boss"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Department">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -41,9 +45,10 @@
       <details key="boss10YearsOlderThanJunior" value="let t:Tuple(boss:Employee,junior:Employee)=&#xD;&#xA;Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in&#xD;&#xA;t.boss.age > t.junior.age + 10"/>
       <details key="BudgetRestriction" value="self.calcExpenses() &lt;= self.budget"/>
       <details key="MaxJuniorsWarning" value="if self.maxJuniors > 1&#xD;&#xA;then&#xD;&#xA;self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors - 1&#xD;&#xA;else&#xD;&#xA;true&#xD;&#xA;endif"/>
+      <details key="departmentMustHaveDivision" value="context Department inv departmentMustHaveDivision: self.department2division->notEmpty()"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning"/>
+      <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning departmentMustHaveDivision"/>
     </eAnnotations>
     <eOperations name="calcExpenses" eType="ecore:EDataType primitivetypes.ecore#//Integer">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -78,7 +83,11 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
-        eType="#//Department" containment="true" resolveProxies="false"/>
+        eType="#//Department" containment="true" resolveProxies="false">
+      <eAnnotations>
+        <details key="Property.oppositeRoleName" value="department2division"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
         containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>

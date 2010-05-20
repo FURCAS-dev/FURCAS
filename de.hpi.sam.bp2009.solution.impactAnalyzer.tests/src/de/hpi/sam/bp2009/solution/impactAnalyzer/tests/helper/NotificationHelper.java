@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public class NotificationHelper {
@@ -108,18 +109,22 @@ public class NotificationHelper {
     
     @SuppressWarnings("unchecked")
     public static Notification createReferenceChangeNotification(EObject notifier, EReference feature, EObject from, EObject to){
-        boolean validFrom = feature.getEType().isInstance(from);
-        boolean validTo = feature.getEType().isInstance(to);
+        boolean validFrom = feature.getEType().isInstance(from) || (from == null && to != null);
+        boolean validTo = feature.getEType().isInstance(to) || (to == null && from != null);
         if (feature.isChangeable() && validFrom && validTo){
-            TestAdapter myTestA1 = new TestAdapter();
-            notifier.eAdapters().add(myTestA1);
+            TestAdapter myTestA = new TestAdapter();
+            notifier.eAdapters().add(myTestA);
             
             if (feature.isMany()){
                 Object ob = notifier.eGet(feature);
                 if (ob != null && ob instanceof EList<?>){
                     EList<EObject> newValue = (EList<EObject>)ob;
-                    newValue.remove(from);
-                    newValue.add(to);
+                    if (from != null){
+                        newValue.remove(from);
+                    }
+                    if (to != null){
+                        newValue.add(to);
+                    }
                     notifier.eSet(feature, newValue); 
                 } else {
                     return null;
@@ -127,7 +132,7 @@ public class NotificationHelper {
             }else{
                 notifier.eSet(feature, to);
             }
-            return myTestA1.getNoti();
+            return getNotificationfrom(myTestA);
         }
         return null;
     }
@@ -157,6 +162,13 @@ public class NotificationHelper {
 
         EcoreUtil.delete(notifier);
 
+        return getNotificationfrom(myTestA);
+    }
+    
+    public static Notification createNewElementAddToResourceNotification(EObject objectToAdd, Resource target){
+        TestAdapter myTestA = new TestAdapter();
+        target.eAdapters().add(myTestA);
+        target.getContents().add(objectToAdd);
         return getNotificationfrom(myTestA);
     }
 }

@@ -375,7 +375,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeName, this.e2.getName( ), this.e2.getName( ) );
 
         Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.employee );
-        compareInstances( instances, new EObject[] { this.e2 } );
+        compareInstances( instances, new EObject[] {this.e1, this.e2, this.e3,  this.e4, this.boss1, this.boss2, this.director, this.secretary} );
         System.out.println( "--------------------------------------------------\n" );
     }
 
@@ -778,6 +778,139 @@ public class RevPathComputationTest extends BaseDepartmentTest {
 
         System.out.println( "--------------------------------------------------\n" );
     }
+    @Test
+    public void testCompareBossSalaryToJuniorSalaryBossChange(){
+        // context Department \n"
+        // inv compareBossSalaryToJuniorSalary: \n"
+        // let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))="
+        // Tuple{Tuple{self.boss, self.boss.salary}, Tuple{self.employee->sortedBy(age)->first(), self.employee->sortedBy(age)->first().salary}} in \n"
+        // t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+        System.out.println("Testing compareBossSalaryToJuniorSalaryBossChange\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+        stmts.add( this.compareBossSalaryToJuniorSalaryAST );
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
+        createFilters(stmts, ia, false);
+        
+        Notification noti;
+        Collection<EObject> instances;
+
+        //change boss of department
+        noti = NotificationHelper.createReferenceChangeNotification(this.dep1, this.bossRef, CompanyFactory.eINSTANCE.createEmployee(), this.e1);
+        instances = computeAffectedInstances(stmts, noti, ia, this.department );
+        compareInstances( instances, new EObject[] { this.dep1 } );
+    }
+    @Test
+    public void testCompareBossSalaryToJuniorSalaryEmployeeSalaryChange(){
+        // context Department \n"
+        // inv compareBossSalaryToJuniorSalary: \n"
+        // let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))="
+        // Tuple{Tuple{self.boss, self.boss.salary}, Tuple{self.employee->sortedBy(age)->first(), self.employee->sortedBy(age)->first().salary}} in \n"
+        // t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+        System.out.println("Testing compareBossSalaryToJuniorSalaryEmployeeSalaryChange\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+        stmts.add( this.compareBossSalaryToJuniorSalaryAST );
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
+        createFilters(stmts, ia, false);
+        
+        Notification noti;
+        Collection<EObject> instances;
+
+        //change salary of employee
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeSalary, new Long(1234), new Long(12345));
+        instances = computeAffectedInstances(stmts, noti, ia, this.department );
+        compareInstances( instances, new EObject[] { this.dep1 } );
+    }
+    @Test
+    public void testCompareBossSalaryToJuniorSalaryEmployeeAgeChange(){
+        // context Department \n"
+        // inv compareBossSalaryToJuniorSalary: \n"
+        // let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))="
+        // Tuple{Tuple{self.boss, self.boss.salary}, Tuple{self.employee->sortedBy(age)->first(), self.employee->sortedBy(age)->first().salary}} in \n"
+        // t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+        System.out.println("Testing compareBossSalaryToJuniorSalaryEmployeeAgeChange\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+        stmts.add( this.compareBossSalaryToJuniorSalaryAST );
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
+        createFilters(stmts, ia, false);
+        
+        Notification noti;
+        Collection<EObject> instances;
+
+        //change age of employee
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeAge, new Long(23), new Long(34));
+        instances = computeAffectedInstances(stmts, noti, ia, this.department );
+        compareInstances( instances, new EObject[] { this.dep1 } );
+    }
+    @Test
+    public void testCompareBossSalaryToJuniorSalaryEmployeeAdd(){
+        // context Department \n"
+        // inv compareBossSalaryToJuniorSalary: \n"
+        // let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))="
+        // Tuple{Tuple{self.boss, self.boss.salary}, Tuple{self.employee->sortedBy(age)->first(), self.employee->sortedBy(age)->first().salary}} in \n"
+        // t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+        System.out.println("Testing compareBossSalaryToJuniorSalaryEmployeeAdd\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+        stmts.add( this.compareBossSalaryToJuniorSalaryAST );
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
+        createFilters(stmts, ia, false);
+        
+        Notification noti;
+        Collection<EObject> instances;
+
+        //add new employee
+        noti = NotificationHelper.createReferenceChangeNotification(this.dep1, this.employeeRef, null, this.e3);
+        instances = computeAffectedInstances(stmts, noti, ia, this.department );
+        compareInstances( instances, new EObject[] { this.dep1 } );        
+    }
+    @Test
+    public void testCompareBossSalaryToJuniorSalaryEmployeeRemove(){
+        // context Department \n"
+        // inv compareBossSalaryToJuniorSalary: \n"
+        // let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))="
+        // Tuple{Tuple{self.boss, self.boss.salary}, Tuple{self.employee->sortedBy(age)->first(), self.employee->sortedBy(age)->first().salary}} in \n"
+        // t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+        System.out.println("Testing compareBossSalaryToJuniorSalaryEmployeeRemove\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>( );
+        stmts.add( this.compareBossSalaryToJuniorSalaryAST );
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl( );
+        createFilters(stmts, ia, false);
+        
+        Notification noti;
+        Collection<EObject> instances;
+
+        //remove employee
+        noti = NotificationHelper.createReferenceChangeNotification(this.dep1, this.employeeRef, this.e1, null);
+        instances = computeAffectedInstances(stmts, noti, ia, this.department );
+        compareInstances( instances, new EObject[] { this.dep1 } );   
+        
+        System.out.println( "--------------------------------------------------\n" );
+
+    }
+    
+//    @Test
+//    public void testDepartmentAlwaysInDivision(){
+//        
+//        // context Department \n"
+//        // inv departmentMustHaveDivision: \n"
+//        // self.department2division->notEmpty()";
+//        System.out.println("Testing departmentAlwaysInDivision\n");
+//        Set<OCLExpression> stmts = new HashSet<OCLExpression>();
+//        stmts.add(this.departmentMustHaveDivisionAST);
+//        ImpactAnalyzer ia = new ImpactAnalyzerImpl();
+//        createFilters(stmts, ia, false);
+//        
+//        Notification noti;
+//        Collection<EObject> instances;
+//        
+//        // create new department
+//        EObject newElem = this.comp.getEFactoryInstance().create(this.department);
+//        noti = NotificationHelper.createNewElementAddToResourceNotification(newElem, this.comp.eResource());
+//        instances = computeAffectedInstances(stmts, noti, ia, this.department );
+//        compareInstances( instances, new EObject[] { newElem } );
+//        // add department to division
+//        // remove department from division
+//    }
+    
     /**
      * Creates an instance of the company model ie 2 instances of Department
      * with e employees and one boss each.

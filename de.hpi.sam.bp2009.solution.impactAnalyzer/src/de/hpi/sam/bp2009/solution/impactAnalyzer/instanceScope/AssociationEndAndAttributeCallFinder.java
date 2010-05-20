@@ -21,11 +21,13 @@ import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
 
@@ -44,7 +46,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 public class AssociationEndAndAttributeCallFinder extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
 EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
     private final Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = new HashMap<EAttribute, Set<PropertyCallExp>>();
-    private final Map<EReference, Set<PropertyCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<PropertyCallExp>>();
+    private final Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
     private final Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
     private final Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
 
@@ -52,6 +54,22 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         super();
     }
 
+    @Override
+    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+            EPackage sourceResult, List<EPackage> qualifierResults) {
+        if (callExp.getReferredOppositeProperty() instanceof EReference){
+            EReference refRef = (EReference)callExp.getReferredOppositeProperty();
+            Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
+            if (set == null){
+                set = new HashSet<NavigationCallExp>();
+                associationEndCallExpressions.put(refRef, set);
+            }
+            set.add((org.eclipse.ocl.ecore.OppositePropertyCallExp)callExp);
+        } else {
+            System.err.println("Unhandled EStructuralFeature as referredOppositeProperty.");
+        }
+        return result;
+    }
     @Override
     protected EPackage handlePropertyCallExp(
             org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> callExp,
@@ -70,9 +88,9 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             
         } else if (callExp.getReferredProperty() instanceof EReference){
             EReference refRef = (EReference) callExp.getReferredProperty();
-            Set<PropertyCallExp> set = associationEndCallExpressions.get(refRef);
+            Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
             if (set==null) {
-                set = new HashSet<PropertyCallExp>();
+                set = new HashSet<NavigationCallExp>();
                 associationEndCallExpressions.put(refRef, set);
             }
             set.add((PropertyCallExp) callExp);
@@ -139,9 +157,9 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     /**
      * Always returns a non-<tt>null</tt> set
      */
-    public Set<PropertyCallExp> getAssociationEndCallExpressions(EReference a) {
-        Set<PropertyCallExp> result;
-        Set<PropertyCallExp> lookup = associationEndCallExpressions.get(a);
+    public Set<NavigationCallExp> getAssociationEndCallExpressions(EReference a) {
+        Set<NavigationCallExp> result;
+        Set<NavigationCallExp> lookup = associationEndCallExpressions.get(a);
         if (lookup == null) {
             result = Collections.emptySet();
         } else {

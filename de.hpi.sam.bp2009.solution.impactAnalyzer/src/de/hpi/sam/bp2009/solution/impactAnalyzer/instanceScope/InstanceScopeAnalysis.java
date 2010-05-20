@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
@@ -34,8 +36,10 @@ import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LiteralExp;
+import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
 import org.eclipse.ocl.ecore.PropertyCallExp;
@@ -76,20 +80,25 @@ public class InstanceScopeAnalysis {
             PredefinedType.NOT_EQUAL_NAME }));
 
     protected static Set<AnnotatedEObject> getAllPossibleContextInstances(AnnotatedEObject fromObject, EClass context) {
-        String query = "select obj from ["+ EcoreUtil.getURI(context) +"] as obj";
-        QueryContext scope = new ProjectBasedScopeProviderImpl(fromObject.eResource()).getForwardScopeAsQueryContext();
-        ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        if(!resultSet.isEmpty()){
-            for (int i = 0; i < resultSet.getSize(); i++){
-                String uri=resultSet.getUri(i,"obj").toString();
-                String uriFragment = uri.split("#")[1];
-                EObject obj = fromObject.eResource().getEObject(uriFragment);
-                AnnotatedEObject annObj = new AnnotatedEObject(obj);
-                result.add(annObj);
+        
+        List<EClass> classes = new ArrayList<EClass> (EcoreHelper.getInstance().getAllSubclasses(context));
+        classes.add(context);
+
+        QueryContext scope = new ProjectBasedScopeProviderImpl(fromObject.eResource()).getForwardScopeAsQueryContext();
+        
+        for (EClass c : classes){
+            String query = "select obj from [" + EcoreUtil.getURI(c) + "] as obj";
+            ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query, scope);
+            if(!resultSet.isEmpty()){
+                for (int i = 0; i < resultSet.getSize(); i++){
+                    String uri=resultSet.getUri(i,"obj").toString();
+                    String uriFragment = uri.split("#")[1];
+                    EObject obj = fromObject.eResource().getEObject(uriFragment);
+                    AnnotatedEObject annObj = new AnnotatedEObject(obj);
+                    result.add(annObj);
+                }
             }
-        } else {
-            result = Collections.emptySet();
         }
         return result;
     }
@@ -144,6 +153,7 @@ public class InstanceScopeAnalysis {
         case EcorePackage.ITERATOR_EXP: return new IteratorExpTracer((IteratorExp) expression);
         case EcorePackage.LET_EXP: return new LetExpTracer((LetExp) expression);
         case EcorePackage.OPERATION_CALL_EXP: return new OperationCallExpTracer((OperationCallExp) expression);
+        case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP: return new OppositePropertyCallExpTracer((OppositePropertyCallExp)expression);
         case EcorePackage.REAL_LITERAL_EXP: return new RealLiteralExpTracer((RealLiteralExp) expression);
         case EcorePackage.STRING_LITERAL_EXP: return new StringLiteralExpTracer((StringLiteralExp) expression);
         case EcorePackage.TUPLE_LITERAL_EXP: return new TupleLiteralExpTracer((TupleLiteralExp) expression);
@@ -182,7 +192,7 @@ public class InstanceScopeAnalysis {
                 result.addAll(getAllPossibleContextInstances(new AnnotatedEObject((EObject)event.getNotifier()), getContext()));
             }
         } else {
-            for (PropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
+            for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
                 AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
                 if (sourceElement != null) {
                     Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
@@ -225,14 +235,14 @@ public class InstanceScopeAnalysis {
             List<Notification> events,
             String replacementFor__TEMP__) {
         for (Notification changeEvent : events) {
-            Set<? extends org.eclipse.ocl.ecore.PropertyCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
+            Set<? extends NavigationCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
             if (calls.size() == 0) {
                 return false; // probably an allInstances-triggered element creation/deletion event
             }
-            for (PropertyCallExp ace : calls) {
+            for (NavigationCallExp ace : calls) {
                 if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
                     if (ace.getType() instanceof PrimitiveType) {
-                        if (ace.getReferredProperty().equals(NotificationHelper.getNotificationFeature(changeEvent))) {
+                        if (((PropertyCallExp)ace).getReferredProperty().equals(NotificationHelper.getNotificationFeature(changeEvent))) {
                             OCLExpression otherArgument = null;
                             OperationCallExp op;
                             boolean attributeIsParameter = false;
@@ -324,14 +334,14 @@ public class InstanceScopeAnalysis {
      * Finds all attribute and association end call expressions in <tt>expression</tt> that are affected by the
      * <tt>changeEvent</tt>. The result is always non-<tt>null</tt> but may be empty.
      */
-    private Set<? extends PropertyCallExp> getAttributeOrAssociationEndCalls(Notification changeEvent) {
-        Set<? extends PropertyCallExp> result;
+    private Set<? extends NavigationCallExp> getAttributeOrAssociationEndCalls(Notification changeEvent) {
+        Set<? extends NavigationCallExp> result;
         if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
             result = associationEndAndAttributeCallFinder.getAttributeCallExpressions((EAttribute) NotificationHelper.getNotificationFeature(changeEvent));
         } else if (NotificationHelper.isLinkLifeCycleEvent(changeEvent)) {
             EReference ref = (EReference)NotificationHelper.getNotificationFeature(changeEvent);
 
-            Set<PropertyCallExp> localResult = new HashSet<PropertyCallExp>();
+            Set<NavigationCallExp> localResult = new HashSet<NavigationCallExp>();
             localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref));
             if (ref.getEOpposite() != null){
                 //TODO: check if the EOpposite is really needed
@@ -381,7 +391,7 @@ public class InstanceScopeAnalysis {
      *         indicated by the event cannot be resolved (anymore). This is still an open issue. See the to-do marker
      *         below. In all other cases, the source element on which the event occured, is returned.
      */
-    private AnnotatedEObject getSourceElement(Notification changeEvent, PropertyCallExp attributeOrAssociationEndCall) {
+    private AnnotatedEObject getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
         assert NotificationHelper.isAttributeValueChangeEvent(changeEvent) || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
         AnnotatedEObject result = new AnnotatedEObject((EObject)changeEvent.getNotifier());
         if (!attributeOrAssociationEndCall.getSource().getType().isInstance(result.getAnnotatedObject())) {
@@ -406,7 +416,7 @@ public class InstanceScopeAnalysis {
      * <tt>sourceElement</tt> are guaranteed to be found.
      * @param cache
      */
-    private Set<AnnotatedEObject> self(PropertyCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
+    private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache) {
         NavigationStep step = getNavigationStepsToSelfForExpression(
                 (OCLExpression)attributeOrAssociationEndCall.getSource(),

@@ -36,7 +36,7 @@ import company.impl.FreelanceImpl;
  */
 public class BaseDepartmentTest extends TestCase{
 
-	protected ResourceSet rs = null;
+    protected ResourceSet rs = null;
     /**
      *  
      */
@@ -157,16 +157,25 @@ public class BaseDepartmentTest extends TestCase{
     /**
      * the expenses per department must not exceed its budget
      */
-    private static final String expensesRestriction = "context Department inv BudgetRestriction: \n" + "self.calcExpenses() <= self.budget";
+    private static final String expensesRestriction = "context Department inv BudgetRestriction: \n" + "self.calcExpenses() <= self.budget"; 
+
+    //    /**
+    //     * defines how to calculate expenses: The sum of the employee's salary plus
+    //     * the boss' salary
+    //     */
+    //    private static final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" + "self.employee->iterate(e: sum=0 | sum + self.salary) + self.boss.salary";
 
     /**
-     * defines how to calculate expenses: The sum of the employee's salary plus
-     * the boss' salary
+     * each department must be in a division
      */
-    //private static final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" + "self.employee->iterate(e: sum=0 | sum + self.salary) + self.boss.salary";
+    private static final String departmentMustHaveDivision = "context Department inv departmentMustHaveDivision: \n" + "self.department2division->notEmpty()";
+
+    private static final String compareBossSalaryToJuniorSalary = "context Department \n" + "inv compareBossSalaryToJuniorSalary: \n" + "let boss:Tuple(person:Employee,salary:Integer)=Tuple{boss=self.boss, salary=self.boss.salary} in let junior:Tuple(person:Employee, salary:Integer)=Tuple{person=self.employee->sortedBy(age)->first(), salary=self.employee->sortedBy(age)->first().salary} in let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))=" + "Tuple{boss=boss, junior=junior} in \n" + "t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+        
     /*
      * OCLExpression representing the constrains above
      */
+
     protected OCLExpression notBossFreelanceAST = null;
 
     protected OCLExpression oldEmployeeAST = null;
@@ -190,6 +199,10 @@ public class BaseDepartmentTest extends TestCase{
     protected OCLExpression secretaryOlderThanBossAST = null;
 
     protected OCLExpression boss10YearsOlderThanJuniorAST = null;
+
+    protected OCLExpression departmentMustHaveDivisionAST = null;
+    
+    protected OCLExpression compareBossSalaryToJuniorSalaryAST = null;
 
     /*
      * for easy access to the model
@@ -341,7 +354,7 @@ public class BaseDepartmentTest extends TestCase{
         }
         this.allDepartments.add( dep );
         if (this.comp.eResource() != null){
-        	this.comp.eResource().getContents().add(dep);
+            this.comp.eResource().getContents().add(dep);
         }
         return dep;
     }
@@ -358,7 +371,7 @@ public class BaseDepartmentTest extends TestCase{
         this.curImployeeID++;
         this.allEmployees.add( e );
         if (this.comp.eResource() != null){
-        	this.comp.eResource().getContents().add(e);
+            this.comp.eResource().getContents().add(e);
         }
         return e;
     }
@@ -376,7 +389,7 @@ public class BaseDepartmentTest extends TestCase{
         this.curImployeeID++;
         this.allFreelances.add( f );
         if (this.comp.eResource() != null){
-        	this.comp.eResource().getContents().add(f);
+            this.comp.eResource().getContents().add(f);
         }
         return f;
     }
@@ -397,25 +410,27 @@ public class BaseDepartmentTest extends TestCase{
         this.divisionBossSecretaryAST = (OCLExpression) parse( divisionBossSecretary ).iterator( ).next( ).getSpecification().getBodyExpression();
         this.secretaryOlderThanBossAST = (OCLExpression) parse( secretaryOlderThanBoss ).iterator( ).next( ).getSpecification().getBodyExpression();
         this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse( boss10YearsOlderThanJunior ).iterator( ).next( ).getSpecification().getBodyExpression();
-        
         this.expensesRestrictionAST = (OCLExpression) parse( expensesRestriction ).iterator().next().getSpecification().getBodyExpression();
-        //OCLExpression userDefinedOp = (OCLExpression) parse( expensesCalculation ).iterator().next().getSpecification().getBodyExpression();
-        
-        //this.expensesRestrictionAST.getEAnnotations().add((EAnnotation) userDefinedOp);
+//        this.departmentMustHaveDivisionAST = (OCLExpression) parse( departmentMustHaveDivision ).iterator().next().getSpecification().getBodyExpression();
+        this.compareBossSalaryToJuniorSalaryAST = (OCLExpression) parse( compareBossSalaryToJuniorSalary ).iterator().next().getSpecification().getBodyExpression();
+
+
         //if comp has an EResource add each expression to this EResource
         if (this.comp.eResource() != null){
-	        this.comp.eResource().getContents().add(this.boss10YearsOlderThanJuniorAST);
-	        this.comp.eResource().getContents().add(this.bossIsOldestAST);
-	        this.comp.eResource().getContents().add(this.maxJuniorsAST);
-	        this.comp.eResource().getContents().add(this.notBossFreelanceAST);
-	        this.comp.eResource().getContents().add(this.uniqueNamesAST);
-	        this.comp.eResource().getContents().add(this.validAssignmentAST);
-	        this.comp.eResource().getContents().add(this.oldEmployeeAST);
-	        this.comp.eResource().getContents().add(this.secretaryOlderThanBossAST);
-	        this.comp.eResource().getContents().add(this.nastyConstraintAST);
-	        this.comp.eResource().getContents().add(this.bossHighestSalaryAST);
-	        this.comp.eResource().getContents().add(this.divisionBossSecretaryAST);
-	        this.comp.eResource().getContents().add(this.expensesRestrictionAST);
+            this.comp.eResource().getContents().add(this.boss10YearsOlderThanJuniorAST);
+            this.comp.eResource().getContents().add(this.bossIsOldestAST);
+            this.comp.eResource().getContents().add(this.maxJuniorsAST);
+            this.comp.eResource().getContents().add(this.notBossFreelanceAST);
+            this.comp.eResource().getContents().add(this.uniqueNamesAST);
+            this.comp.eResource().getContents().add(this.validAssignmentAST);
+            this.comp.eResource().getContents().add(this.oldEmployeeAST);
+            this.comp.eResource().getContents().add(this.secretaryOlderThanBossAST);
+            this.comp.eResource().getContents().add(this.nastyConstraintAST);
+            this.comp.eResource().getContents().add(this.bossHighestSalaryAST);
+            this.comp.eResource().getContents().add(this.divisionBossSecretaryAST);
+            this.comp.eResource().getContents().add(this.expensesRestrictionAST);
+//            this.comp.eResource().getContents().add(this.departmentMustHaveDivisionAST);
+            this.comp.eResource().getContents().add(this.compareBossSalaryToJuniorSalaryAST);
         }
     }
 
@@ -443,7 +458,7 @@ public class BaseDepartmentTest extends TestCase{
 
     private void resetInstances( ) {
 
-    	this.rs = null;
+        this.rs = null;
         this.companyPackage = null;
         this.comp = null;
         this.allDepartments = null;
@@ -465,6 +480,8 @@ public class BaseDepartmentTest extends TestCase{
         this.divisionBossSecretaryAST = null;
         this.secretaryOlderThanBossAST = null;
         this.boss10YearsOlderThanJuniorAST = null;
+        this.departmentMustHaveDivisionAST = null;
+        this.compareBossSalaryToJuniorSalaryAST = null;
         this.division = null;
         this.divisionBudget = null;
         this.department = null;
