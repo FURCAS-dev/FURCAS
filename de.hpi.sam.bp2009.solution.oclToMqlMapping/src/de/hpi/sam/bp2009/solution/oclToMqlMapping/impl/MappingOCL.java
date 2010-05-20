@@ -25,18 +25,19 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 
-public class MyOCL extends OCL{
+public class MappingOCL extends OCL{
 
-    protected MyOCL(
+    protected MappingOCL(
             EcoreEnvironmentFactory INSTANCE) {
         super(INSTANCE);
         // TODO Auto-generated constructor stub
     }
 
 
-    public static MyOCL newInstance() {
-        return new MyOCL(EcoreEnvironmentFactory.INSTANCE);
+    public static MappingOCL newInstance() {
+        return new MappingOCL(EcoreEnvironmentFactory.INSTANCE);
     }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public Object evaluate(Object context, OCLExpression expression) {
 
         // can determine a more appropriate context from the context
@@ -54,7 +55,7 @@ public class MyOCL extends OCL{
         }
 
         EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev ;
-        ev = new MyEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
+        ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
         Object result;
 
         try {

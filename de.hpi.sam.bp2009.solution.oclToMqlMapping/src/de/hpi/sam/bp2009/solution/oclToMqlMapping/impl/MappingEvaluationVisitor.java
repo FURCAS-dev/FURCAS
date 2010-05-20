@@ -41,7 +41,8 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-public class MyEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+public class MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 
 
@@ -52,6 +53,7 @@ public class MyEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> e
         // TODO Check if expression has a self variable, if so there must be a context, this should be replaced by allInstances
         return super.visitExpression(expression);
     }
+ 
     @Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
 
@@ -77,7 +79,7 @@ public class MyEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> e
             /**
              * only if there is an Iteratorexp in Container, call query 2
              * otherwise think about a fallback, call super or query2 yet
-             * TODO missing body to complete query 2
+             * TODO if there is an expression in body that can not be mapped, it need a fallback
              */
             if (oc.eContainer()instanceof IteratorExp<?, ?>){
                 IteratorExp<C, PM> ie = (IteratorExp<C, PM>) oc.eContainer();
@@ -99,6 +101,7 @@ public class MyEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> e
             //if there is'nt any allInstances()
             return super.visitOperationCallExp(oc);
         }
+        
     }
 
     @Override
@@ -278,7 +281,7 @@ public class MyEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> e
         return super.visitTupleLiteralPart(tp);
     }
 
-    public MyEvaluationVisitor(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+    public MappingEvaluationVisitor(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
             EvaluationEnvironment<C, O, P, CLS, E> evalEnv, Map<? extends CLS, ? extends Set<? extends E>> extentMap) {
         super(env, evalEnv, extentMap);
     }

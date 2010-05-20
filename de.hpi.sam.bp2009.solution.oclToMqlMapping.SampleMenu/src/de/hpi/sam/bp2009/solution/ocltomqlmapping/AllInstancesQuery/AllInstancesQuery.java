@@ -17,7 +17,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MyOCL;
+import de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MappingOCL;
 import de.hpi.sam.petriNet.PetriNetPackage;
 
 public class AllInstancesQuery{
@@ -65,7 +65,7 @@ public class AllInstancesQuery{
 		return eclass;
 	}
 	public static Object validateOclQuery(EClass context, String query, Resource resource) throws ParserException{
-		MyOCL ocl = MyOCL.newInstance();
+		MappingOCL ocl = MappingOCL.newInstance();
 		Helper oclhelper=(Helper) ocl.createOCLHelper();
 		oclhelper.setContext(context);
 		TreeIterator<EObject> it = resource.getAllContents();
