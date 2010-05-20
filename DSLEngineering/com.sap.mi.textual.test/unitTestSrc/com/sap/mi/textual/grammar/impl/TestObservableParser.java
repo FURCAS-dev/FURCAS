@@ -173,7 +173,7 @@ public class TestObservableParser {
 		public void notifyModelElementResolvedOutOfContext(Object modelElement,
 				Object contextModelElement, Token referenceLocation, DelayedReference reference) {
 			result = 9 + modelElement.toString() + contextModelElement
-					+ referenceLocation.getText() + reference;
+					+ referenceLocation.getText() + ((reference == null) ? "" : reference);
 		}
 
 		@Override

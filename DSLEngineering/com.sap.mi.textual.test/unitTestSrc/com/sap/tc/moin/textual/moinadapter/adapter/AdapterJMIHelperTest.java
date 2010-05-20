@@ -162,7 +162,7 @@ public class AdapterJMIHelperTest {
         connection.mqlProcessor = new MQLProcessorStub();
         OclExpressionRegistrationStub oclExpressionRegistrationStub = new OclExpressionRegistrationStub();
         
-        oclExpressionRegistrationStub.result = new MofAnyStub();
+        oclExpressionRegistrationStub.result = new MofAnyStub("result");
         OclFreestyleRegistryStub oclFreestyleRegistryStub = new OclFreestyleRegistryStub();
         
 		oclFreestyleRegistryStub.expresssionReg = oclExpressionRegistrationStub;
@@ -171,8 +171,11 @@ public class AdapterJMIHelperTest {
 		connection.oclRegistry = registryServiceStub;
         RefPackageStub root = new RefPackageStub();
         
-        MofAnyStub source = new MofAnyStub();
-        source.name = "source";
+        MofAnyStub source = new MofAnyStub("source");
+        MofAnyStub refClassStub = new MofAnyStub("RefClass");
+        refClassStub.metaObject = new MofAnyStub("MetaObject");
+        source.refClass = refClassStub;
+       
         oclFreestyleRegistryStub.expectedQuery = "self.property = 'test'";
 
         
@@ -195,9 +198,14 @@ public class AdapterJMIHelperTest {
 		connection.oclRegistry = registryServiceStub;
         RefPackageStub root = new RefPackageStub();
         
-        MofAnyStub source = new MofAnyStub();
-        MofAnyStub context = new MofAnyStub();
-        source.name = "source";
+        MofAnyStub source = new MofAnyStub("source");
+        MofAnyStub context = new MofAnyStub();        
+        MofAnyStub refClass = new MofAnyStub("RefClass");
+        refClass.metaObject = new MofAnyStub("metaObject");
+        context.refClass = refClass;
+        
+        
+
         oclFreestyleRegistryStub.expectedQuery = "#context.property = 'test'";
 
         

@@ -11,6 +11,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -141,7 +142,7 @@ public class SyntaxLookupTest {
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
         SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
-        assertNull(lookup.getTCSTemplate(refE("test"), null));
+        assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
         
         PrimitiveTemplateStub pStub = new PrimitiveTemplateStub();
         pStub.names = list("match");
@@ -149,7 +150,7 @@ public class SyntaxLookupTest {
         syntax.templates.add(pStub);
         
         // template names don't match, so still return null
-        assertEquals(pStub, lookup.getTCSTemplate(refE("match"), null));
+        assertEquals(pStub, lookup.getTCSTemplate(refE("match"), null).iterator().next());
     }
     
     /**
@@ -165,15 +166,14 @@ public class SyntaxLookupTest {
         
         SyntaxLookup lookup = new SyntaxLookup(syntax, null, namingHelper);
         
-        assertNull(lookup.getTCSTemplate(refE("test"), null));
+        assertEquals(0, lookup.getTCSTemplate(refE("test"), null).size());
         
         PrimitiveTemplateStub pStub = new PrimitiveTemplateStub();
         pStub.names = list("package", "test");
         syntax.templates = new ArrayList<Template>();
         syntax.templates.add(pStub);
         
-        assertEquals(pStub, lookup.getTCSTemplate(refE("package", "test"), null));
-        assertEquals(pStub, lookup.getTCSTemplate(refE("package", "test"), null));
+        assertEquals(pStub, lookup.getTCSTemplate(refE("package", "test"), null).iterator().next());
     }
 
     /**

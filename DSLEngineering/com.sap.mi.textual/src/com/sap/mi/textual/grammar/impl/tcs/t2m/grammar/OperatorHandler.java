@@ -311,14 +311,32 @@ public class OperatorHandler {
                 }
 
                 if (arity == 2 || isLeftAssociative) { // don't add here if unary and right associative
+                    String literalValue = null;
                 	if (literal instanceof Keyword) {
                         // Keywords being used by their value, as they are not declared as named symbols
                     	//add synpred to cope with recursion and the empty alternative
-                    	rulebody.append("('", literal.getValue(), "')=>");
+                	 literalValue = "'" + literal.getValue() + "'";
+                    	
+                    	
+                    	
                     } else {
                     	//add synpred to cope with recursion and the empty alternative
-                    	rulebody.append("(", literal.getName().toUpperCase(), ")=>");
+                        literalValue = literal.getName().toUpperCase();
                     }
+                	rulebody.append("((", literalValue, ")(");
+                        boolean first = true;
+                        for (OperatorTemplate operatorTemplate : opTemplateList) {
+                            
+                            if(operatorTemplate.getDisambiguateV3() != null) {
+                                if(!first) {
+                                    rulebody.append("|");
+                                } else {
+                                    first = false;
+                                }
+                                rulebody.append("(", operatorTemplate.getDisambiguateV3(), ")");
+                            }   
+                        }
+                        rulebody.append("))=>");
                 }
                 
                 rulebody.append('('); // b2  required to separate operators, if many

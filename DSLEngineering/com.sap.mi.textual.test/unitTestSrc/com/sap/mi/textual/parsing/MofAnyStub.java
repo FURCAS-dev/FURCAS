@@ -67,11 +67,20 @@ public class MofAnyStub implements Partitionable, Classifier, MofClass, RefClass
     public int lower = 1;
     public int upper = -1;
     public RefObject createdInstance;
+    public RefClass refClass;
 
     public Object propertyValue;
+
+    public MofClass metaObject;
     
  
+    public MofAnyStub() {
+    }
     
+    public MofAnyStub(String string) {
+        name = string;
+    }
+
     public Classifier getType() {
         return type;
     }
@@ -340,8 +349,7 @@ public class MofAnyStub implements Partitionable, Classifier, MofClass, RefClass
      * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refClass()
      */
     public RefClass refClass() {
-        fail("stub method not implemented");
-        return null;
+        return refClass;
     }
 
     /* (non-Javadoc)
@@ -435,7 +443,7 @@ public class MofAnyStub implements Partitionable, Classifier, MofClass, RefClass
      * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refMetaObject()
      */
     public MofClass refMetaObject() {
-        return null;
+        return metaObject;
     }
 
     /* (non-Javadoc)
