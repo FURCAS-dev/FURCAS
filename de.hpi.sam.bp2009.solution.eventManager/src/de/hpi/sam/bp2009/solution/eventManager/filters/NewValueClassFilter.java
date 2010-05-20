@@ -14,9 +14,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
-public class NewValueClassFilter extends EventFilter {
+public class NewValueClassFilter extends ClassFilter {
 
-    protected EClass affectedClass;
 
     public NewValueClassFilter() {
         super();
@@ -24,12 +23,12 @@ public class NewValueClassFilter extends EventFilter {
 
     public NewValueClassFilter(EClass affectedClass2) {
         super();
-        setAffectedClass(affectedClass2);
+        setWantedClass(affectedClass2);
     }
 
     @Override
     public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        identifier.getNewValueClassURIs().add(EcoreUtil.getURI(getAffectedClass()));
+        identifier.getNewValueClassURIs().add(EcoreUtil.getURI(getWantedClass()));
         return getEListForNotificationIdentifier(identifier);
 
     }
@@ -48,17 +47,12 @@ public class NewValueClassFilter extends EventFilter {
         if (getClass() != obj.getClass())
             return false;
         NewValueClassFilter other = (NewValueClassFilter) obj;
-        if (affectedClass == null) {
-            if (other.affectedClass != null)
+        if (getWantedClass() == null) {
+            if (other.getWantedClass() != null)
                 return false;
-        } else if (!affectedClass.equals(other.affectedClass))
+        } else if (!getWantedClass().equals(other.getWantedClass()))
             return false;
         return true;
-    }
-
-    public EClass getAffectedClass() {
-
-        return affectedClass;
     }
 
     /*
@@ -70,17 +64,17 @@ public class NewValueClassFilter extends EventFilter {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((affectedClass == null) ? 0 : affectedClass.hashCode());
+        result = prime * result + ((getWantedClass() == null) ? 0 : getWantedClass().hashCode());
         return result;
     }
 
     public boolean matchesFor(Notification event) {
         if (event.getNewValue() instanceof EObject) {
-            return ((EObject) event.getNewValue()).eClass().equals(getAffectedClass());
+            return ((EObject) event.getNewValue()).eClass().equals(getWantedClass());
         }
         if (event.getNewValue() instanceof EList<?>) {
             for (Object o : (EList<?>) event.getNewValue()) {
-                if (o instanceof EObject && ((EObject) o).eClass().equals(getAffectedClass())) {
+                if (o instanceof EObject && ((EObject) o).eClass().equals(getWantedClass())) {
                     return true;
                 }
             }
@@ -89,26 +83,22 @@ public class NewValueClassFilter extends EventFilter {
         return false;
     }
 
-    public void setAffectedClass(EClass newAffectedClass) {
-        affectedClass = newAffectedClass;
-    }
-
     @Override
     public String toString() {
-        if (getAffectedClass() != null)
-            return "filter for new " + getAffectedClass().toString();
+        if (getWantedClass() != null)
+            return "filter for new " + getWantedClass().toString();
         return "filter for undefined new";
     }
 
     @Override
     public NewValueClassFilter clone() {
-        return new NewValueClassFilter(getAffectedClass());
+        return new NewValueClassFilter(getWantedClass());
 
     }
 
     @Override
     public Object getFilterCriterion() {
-        return getAffectedClass();
+        return getWantedClass();
 
     }
 

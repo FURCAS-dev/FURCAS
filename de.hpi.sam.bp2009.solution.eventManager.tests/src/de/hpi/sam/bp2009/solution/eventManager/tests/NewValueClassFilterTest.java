@@ -89,7 +89,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
 	public void testMatchesFor__Notification() {
 		noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef,CompanyFactory.eINSTANCE.createEmployee());
 
-		getFixture().setAffectedClass(employee);
+		getFixture().setWantedClass(employee);
 		assertTrue("No Match to Notification",getFixture().matchesFor(noti));
 		this.aDivision.getDepartment().clear();
 		noti = NotificationHelper.createReferenceAddNotification(this.aDivision, this.departmentRef,CompanyFactory.eINSTANCE.createDepartment());
@@ -103,7 +103,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
 		NotificationIdentifier should = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
 		should.getNewValueClassURIs().add(EcoreUtil.getURI(this.department));
 		
-		getFixture().setAffectedClass(department);
+		getFixture().setWantedClass(department);
 		EList<NotificationIdentifier> result = getFixture().buildNotificationIdentifiers(idIn);
 		assertTrue(result.size()==1);
 		assertTrue(result.contains(should));

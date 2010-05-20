@@ -14,9 +14,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
-public class OldValueClassFilter extends EventFilter {
+public class OldValueClassFilter extends ClassFilter {
 
-    protected EClass affectedClass;
 
     public OldValueClassFilter() {
         super();
@@ -24,16 +23,12 @@ public class OldValueClassFilter extends EventFilter {
 
     public OldValueClassFilter(EClass affectedClass2) {
         super();
-        setAffectedClass(affectedClass2);
-    }
-
-    public EClass basicGetAffectedClass() {
-        return affectedClass;
+        setWantedClass(affectedClass2);
     }
 
     @Override
     public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        identifier.getOldValueClassURIs().add(EcoreUtil.getURI(getAffectedClass()));
+        identifier.getOldValueClassURIs().add(EcoreUtil.getURI(getWantedClass()));
         return getEListForNotificationIdentifier(identifier);
 
     }
@@ -52,17 +47,12 @@ public class OldValueClassFilter extends EventFilter {
         if (getClass() != obj.getClass())
             return false;
         OldValueClassFilter other = (OldValueClassFilter) obj;
-        if (affectedClass == null) {
-            if (other.affectedClass != null)
+        if (getWantedClass() == null) {
+            if (other.getWantedClass() != null)
                 return false;
-        } else if (!affectedClass.equals(other.affectedClass))
+        } else if (!getWantedClass().equals(other.getWantedClass()))
             return false;
         return true;
-    }
-
-    public EClass getAffectedClass() {
-
-        return affectedClass;
     }
 
     /*
@@ -74,7 +64,7 @@ public class OldValueClassFilter extends EventFilter {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((affectedClass == null) ? 0 : affectedClass.hashCode());
+        result = prime * result + ((getWantedClass() == null) ? 0 : getWantedClass().hashCode());
         return result;
     }
 
@@ -83,11 +73,11 @@ public class OldValueClassFilter extends EventFilter {
             return false;
         }
         if (event.getOldValue() instanceof EObject) {
-            return ((EObject) event.getOldValue()).eClass().equals(getAffectedClass());
+            return ((EObject) event.getOldValue()).eClass().equals(getWantedClass());
         }
         if (event.getOldValue() instanceof EList<?>) {
             for (Object o : (EList<?>) event.getOldValue()) {
-                if (o instanceof EObject && ((EObject) o).eClass().equals(getAffectedClass())) {
+                if (o instanceof EObject && ((EObject) o).eClass().equals(getWantedClass())) {
                     return true;
                 }
             }
@@ -97,25 +87,21 @@ public class OldValueClassFilter extends EventFilter {
         return false;
     }
 
-    public void setAffectedClass(EClass newAffectedClass) {
-        affectedClass = newAffectedClass;
-    }
-
     @Override
     public String toString() {
-        if (getAffectedClass() != null)
-            return "filter for old " + getAffectedClass().toString();
+        if (getWantedClass() != null)
+            return "filter for old " + getWantedClass().toString();
         return "filter for undefined old";
     }
 
     @Override
     public OldValueClassFilter clone(){
-        return new OldValueClassFilter(getAffectedClass());
+        return new OldValueClassFilter(getWantedClass());
 
     }
     @Override
     public Object getFilterCriterion() {
-        return getAffectedClass();
+        return getWantedClass();
         
     }
 

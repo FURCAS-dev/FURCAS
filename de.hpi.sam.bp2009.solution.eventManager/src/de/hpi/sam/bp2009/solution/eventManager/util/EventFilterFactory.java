@@ -64,10 +64,10 @@ public class EventFilterFactory {
 		EventManagerFactory i = EventManagerFactory.eINSTANCE;
 		
 		NewValueClassFilter nv = i.createNewValueClassFilter();
-		nv.setAffectedClass(cls);
+		nv.setWantedClass(cls);
 		
 		OldValueClassFilter ov = i.createOldValueClassFilter();
-		ov.setAffectedClass(cls);
+		ov.setWantedClass(cls);
 
 		return getAndFilterFor(getOrFilterFor(nv,ov),
 				i.createContainmentFilter() );
@@ -76,7 +76,7 @@ public class EventFilterFactory {
 		EventManagerFactory i = EventManagerFactory.eINSTANCE;
 			
 		NewValueClassFilter nv = i.createNewValueClassFilter();
-		nv.setAffectedClass(cls);
+		nv.setWantedClass(cls);
 		/*
 		 * Figure out what the containing Reference is
 		 */

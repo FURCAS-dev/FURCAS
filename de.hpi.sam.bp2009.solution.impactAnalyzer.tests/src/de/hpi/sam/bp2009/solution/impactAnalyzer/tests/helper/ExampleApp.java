@@ -6,8 +6,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-
 public class ExampleApp extends AdapterImpl {
     private final OCLExpression expression;
     private final HashSet<OCLExpression> affectedStmts;

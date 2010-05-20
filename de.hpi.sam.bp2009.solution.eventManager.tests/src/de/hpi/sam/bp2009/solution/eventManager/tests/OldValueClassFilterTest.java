@@ -90,7 +90,7 @@ public class OldValueClassFilterTest extends EventFilterTest {
 		noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef,CompanyFactory.eINSTANCE.createEmployee());
 		noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef,CompanyFactory.eINSTANCE.createEmployee());
 
-		getFixture().setAffectedClass(employee);
+		getFixture().setWantedClass(employee);
 		assertTrue("No Match to Notification",getFixture().matchesFor(noti));
 		this.aDivision.getDepartment().clear();
 		noti = NotificationHelper.createReferenceAddNotification(this.aDivision, this.departmentRef,CompanyFactory.eINSTANCE.createDepartment());
@@ -103,7 +103,7 @@ public class OldValueClassFilterTest extends EventFilterTest {
 		NotificationIdentifier idIn = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
 		NotificationIdentifier should = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
 		should.getOldValueClassURIs().add(EcoreUtil.getURI(this.department));
-		getFixture().setAffectedClass(department);
+		getFixture().setWantedClass(department);
 		EList<NotificationIdentifier> result = getFixture().buildNotificationIdentifiers(idIn);
 		assertTrue(result.size()==1);
 		assertTrue(result.contains(should));
