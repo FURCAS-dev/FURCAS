@@ -10,9 +10,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import data.classes.TypeDefinition;
+
 public class NotificationHelper {
-    public static class TestAdapter extends AdapterImpl{
-        private Notification noti= null;
+    public static class TestAdapter extends AdapterImpl {
+        private Notification noti = null;
 
         @Override
         public void notifyChanged(Notification notification) {
@@ -20,7 +22,8 @@ public class NotificationHelper {
         }
 
         /**
-         * @param noti the {@link Notification} to set
+         * @param noti
+         *            the {@link Notification} to set
          */
         void setNoti(Notification noti) {
             this.noti = noti;
@@ -34,24 +37,25 @@ public class NotificationHelper {
         }
     }// TestAdapter
 
-    private static Notification getNotificationfrom(TestAdapter adapter){
+    private static Notification getNotificationfrom(TestAdapter adapter) {
         Notification noti = adapter.getNoti();
         // this adapter removes itself once a notification is caught
-        if(adapter.getTarget()!=null){
+        if (adapter.getTarget() != null) {
             adapter.getTarget().eAdapters().remove(adapter);
         }
         return noti;
     }
-    
-    public static Notification createAttributeChangeNotification(EObject notifier, EAttribute feature, Object oldValue, Object newValue) {
-        EDataType dataType = feature.getEAttributeType();
-        boolean validOldValue = oldValue == null || dataType.isInstance(oldValue) ||
-        (feature.isMany() && oldValue instanceof EList<?> && dataType.isInstance(((EList<?>)oldValue).get(0)));
-        boolean validNewValue = dataType.isInstance(newValue) ||
-        (feature.isMany() && newValue instanceof EList<?> && dataType.isInstance(((EList<?>)newValue).get(0)));
 
-        if (feature.isChangeable() && validOldValue && validNewValue){
-            if (oldValue != null){
+    public static Notification createAttributeChangeNotification(EObject notifier, EAttribute feature, Object oldValue,
+            Object newValue) {
+        EDataType dataType = feature.getEAttributeType();
+        boolean validOldValue = oldValue == null || dataType.isInstance(oldValue)
+                || (feature.isMany() && oldValue instanceof EList<?> && dataType.isInstance(((EList<?>) oldValue).get(0)));
+        boolean validNewValue = dataType.isInstance(newValue)
+                || (feature.isMany() && newValue instanceof EList<?> && dataType.isInstance(((EList<?>) newValue).get(0)));
+
+        if (feature.isChangeable() && validOldValue && validNewValue) {
+            if (oldValue != null) {
                 notifier.eSet(feature, oldValue);
             }
             TestAdapter myTestA = new TestAdapter();
@@ -59,21 +63,21 @@ public class NotificationHelper {
             notifier.eSet(feature, newValue);
             return getNotificationfrom(myTestA);
         }
-        return null;                
+        return null;
     }
 
     @SuppressWarnings("unchecked")
-    public static Notification createReferenceAddNotification(EObject notifier, EReference feature, EObject objectToAdd){
+    public static Notification createReferenceAddNotification(EObject notifier, EReference feature, EObject objectToAdd) {
         boolean validObjectToAdd = feature.getEType().isInstance(objectToAdd);
 
-        if (feature.isChangeable() && validObjectToAdd){
+        if (feature.isChangeable() && validObjectToAdd) {
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
 
-            if (feature.isMany()){
+            if (feature.isMany()) {
                 Object ob = notifier.eGet(feature);
-                if (ob != null && ob instanceof EList<?>){
-                    ((EList<EObject>)ob).add(objectToAdd); 
+                if (ob != null && ob instanceof EList<?>) {
+                    ((EList<EObject>) ob).add(objectToAdd);
                 } else {
                     return null;
                 }
@@ -82,23 +86,23 @@ public class NotificationHelper {
             }
             return getNotificationfrom(myTestA);
         }
-        return null;                
+        return null;
     }
 
     @SuppressWarnings("unchecked")
-    public static Notification createReferenceRemoveNotification(EObject notifier, EReference feature, EObject objectToRemove){
+    public static Notification createReferenceRemoveNotification(EObject notifier, EReference feature, EObject objectToRemove) {
         boolean validObjectToAdd = feature.getEType().isInstance(objectToRemove);
-        if (feature.isChangeable() && validObjectToAdd){
+        if (feature.isChangeable() && validObjectToAdd) {
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
 
-            if (feature.isMany()){
+            if (feature.isMany()) {
                 Object ob = notifier.eGet(feature);
-                if (ob != null && ob instanceof EList<?>){
-                    ((EList<EObject>)ob).remove(objectToRemove); 
+                if (ob != null && ob instanceof EList<?>) {
+                    ((EList<EObject>) ob).remove(objectToRemove);
                 } else {
                     return null;
-                }                               
+                }
             } else {
                 notifier.eUnset(feature);
             }
@@ -106,30 +110,31 @@ public class NotificationHelper {
         }
         return null;
     }
-    
+
     @SuppressWarnings("unchecked")
-    public static Notification createReferenceChangeNotification(EObject notifier, EReference feature, EObject from, EObject to){
+    public static Notification createReferenceChangeNotification(EObject notifier, EReference feature, EObject from, EObject to) {
         boolean validFrom = feature.getEType().isInstance(from) || (from == null && to != null);
         boolean validTo = feature.getEType().isInstance(to) || (to == null && from != null);
-        if (feature.isChangeable() && validFrom && validTo){
+        if (feature.isChangeable() && validFrom && validTo) {
             TestAdapter myTestA = new TestAdapter();
             notifier.eAdapters().add(myTestA);
-            
-            if (feature.isMany()){
+
+            if (feature.isMany()) {
                 Object ob = notifier.eGet(feature);
-                if (ob != null && ob instanceof EList<?>){
-                    EList<EObject> newValue = (EList<EObject>)ob;
-                    if (from != null){
+
+                if (ob != null && ob instanceof EList<?>) {
+                    EList<EObject> newValue = (EList<EObject>) ob;
+                    if (from != null) {
                         newValue.remove(from);
                     }
-                    if (to != null){
+                    if (to != null) {
                         newValue.add(to);
                     }
-                    notifier.eSet(feature, newValue); 
+                    notifier.eSet(feature, newValue);
                 } else {
                     return null;
                 }
-            }else{
+            } else {
                 notifier.eSet(feature, to);
             }
             return getNotificationfrom(myTestA);
@@ -142,21 +147,20 @@ public class NotificationHelper {
         TestAdapter myTestA = new TestAdapter();
         container.eAdapters().add(myTestA);
 
-        if (ref.isMany()){
+        if (ref.isMany()) {
             Object ob = container.eGet(ref);
-            if (ob != null && ob instanceof EList<?>){
-                ((EList<EObject>)ob).add(target); 
-            }
-            else {
+            if (ob != null && ob instanceof EList<?>) {
+                ((EList<EObject>) ob).add(target);
+            } else {
                 return null;
             }
-        }else{
+        } else {
             container.eSet(ref, target);
         }
         return getNotificationfrom(myTestA);
     }
 
-    public static Notification createElementDeleteNotification(EObject notifier){
+    public static Notification createElementDeleteNotification(EObject notifier) {
         TestAdapter myTestA = new TestAdapter();
         notifier.eContainer().eAdapters().add(myTestA);
 
@@ -164,8 +168,17 @@ public class NotificationHelper {
 
         return getNotificationfrom(myTestA);
     }
-    
-    public static Notification createNewElementAddToResourceNotification(EObject objectToAdd, Resource target){
+
+    public static Notification createChangeLowerMultiplicityNotification(TypeDefinition notifier, Long value) {
+        TestAdapter myTestA = new TestAdapter();
+        notifier.eAdapters().add(myTestA);
+
+        notifier.setLowerMultiplicity(value);
+
+        return getNotificationfrom(myTestA);
+    }
+
+    public static Notification createNewElementAddToResourceNotification(EObject objectToAdd, Resource target) {
         TestAdapter myTestA = new TestAdapter();
         target.eAdapters().add(myTestA);
         target.getContents().add(objectToAdd);

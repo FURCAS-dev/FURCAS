@@ -66,9 +66,11 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
          * call super behaviour if not able to resolve annotation 
          * 
          */
-        if(body == null)
-            throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
-
+        if(body == null){
+            System.err.println(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+            return super.dynamicInvoke(target, arguments);
+//            throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+        }
 
         OCL.Query query = ocl.createQuery(body);
         EList<EParameter> parms = eOperation.getEParameters();
