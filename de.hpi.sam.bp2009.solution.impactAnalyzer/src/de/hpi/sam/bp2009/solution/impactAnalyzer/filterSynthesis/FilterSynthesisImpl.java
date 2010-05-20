@@ -22,6 +22,7 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
@@ -109,10 +110,17 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     @Override
     public EPackage handlePropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> propCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
         EClass cls = (EClass) propCallExp.getSource().getType();
-        filters.add(EventFilterFactory.getInstance().createFilterForStructuralFeature( cls, propCallExp.getReferredProperty( )));     
+        if (cls instanceof TupleType){
+            // ignore TupleTypes, because the tuple parts were already handled
+            // no filters to add to the result
+            return result;
+        }
+        else {            
+            filters.add(EventFilterFactory.getInstance().createFilterForStructuralFeature( cls, propCallExp.getReferredProperty( )));     
+        }
         return result;
     }
-
+    
     @Override
     public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> opCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
 
