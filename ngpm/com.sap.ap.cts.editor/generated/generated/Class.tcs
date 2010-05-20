@@ -42,7 +42,7 @@ syntax Class(k=0 ) {
 		  ]]
 			(isDefined(adapters) ? "implements" adapters{mode=implements, forcedLower=1, separator=","})
 		    <space> "{" [
-		    	ownedSignatures{disambiguate="'const' | 'converter' | 'void' | (data_classes_classtypedefinition NAME '(')", partial}
+		    	ownedSignatures{disambiguate="data_classes_methodsignature", partial}
 		    	elementsOfType{mode=property, partial}
 		    ] "}"
 		;
@@ -85,7 +85,7 @@ syntax Class(k=0 ) {
 
 	--TODO: workaround for missing name resolution of methodCallExpression
 	--template Signature abstract;
-	template MethodSignature(disambiguateV3 = "'const' | 'converter' | 'void' | (data_classes_classtypedefinition NAME '(')") context
+	template MethodSignature(disambiguateV3 = "data_classes_methodsignature") context
 		:
 	      	  (sideEffectFree ? "const")
 		  [[
@@ -914,7 +914,7 @@ syntax Class(k=0 ) {
 		;
 	
 	template NestedTypeDefinition #manyFromSingle
-		: {{ type=lookIn("OCL:#foreach(NestedTypeDefinition).type"),
+		: {{ type=lookIn("OCL:#foreach(TypeDefinition)"),
 	         lowerMultiplicity='0',
 		     upperMultiplicity='-1',
 		     ordered='false',
@@ -1195,7 +1195,7 @@ syntax Class(k=0 ) {
 -- @begin ANALYTICS EXPRESSIONS
     --------------------------------------- BEGIN OF GROUP BY ---------------------------------
     template GroupBy context(groupBy)
-        : "group" object "by" dimensions
+        : "group" object "by" dimensions{separator=","}
           fact{mode=groupByFactIterator}
           (isDefined(mapExpression) ? "map" mapExpression{forcedLower=1, mode=groupBy}
                                       groupedFacts{forcedLower=1, mode=groupByGroupedFactsIterator}
@@ -1239,9 +1239,15 @@ syntax Class(k=0 ) {
 		                                 mode="singleFromMany")
           }}
 		;
-		    
+
     template Iterator #groupByGroupedFactsIterator
-        : {{ name='"values"' }}
+        : {{ ownedTypeDefinition=foreach("OCL:self.groupedFactsOfGroupBy.object.getType()", 
+                                            when="OCL:not self.groupedFactsOfGroupBy.object.getType().isMany() and self.groupedFactsOfGroupBy.object.getType().oclIsKindOf(ClassTypeDefinition)",
+                                               mode="manyFromSingle", as=ClassTypeDefinition,
+                                            when="OCL:not self.groupedFactsOfGroupBy.object.getType().isMany() and self.groupedFactsOfGroupBy.object.getType().oclIsKindOf(FunctionSignatureTypeDefinition)",
+                                               mode="manyFromSingle", as=FunctionSignatureTypeDefinition,
+                                            mode="manyFromSingle", as=NestedTypeDefinition),
+            name='"values"' }}
 		;
 	
 	template dataaccess::expressions::Expression #groupBy abstract;
@@ -1278,7 +1284,7 @@ syntax Class(k=0 ) {
 	template data::classes::Association #groupByMapResultProperties
 		: -- force creation of non-declared opposite end
 		  ends{forcedLower=1, forcedUpper=1, mode=groupByMapResultPropertiesLocalEnd} 
-		  {{ name=lookIn("OCL:'Query_to_'.concat(self.ends->first().name)"),
+		  {{ name=lookIn("OCL:'Query_to_'.concat(self.ends->last().name)"),
 		     package_=lookIn("OCL:self.ends->select(e | e.type.oclAsType(ClassTypeDefinition).clazz.objectLiteral->notEmpty()).
 		                          type.oclAsType(ClassTypeDefinition).clazz.package_")
 		  }}
@@ -1305,10 +1311,10 @@ syntax Class(k=0 ) {
 	
 	template ClassTypeDefinition #groupByMapResultPropertiesLocalEnd context
 		: {{
-			lowerMultiplicity = '1', 
-			upperMultiplicity = '1', 
+			lowerMultiplicity = '0', 
+			upperMultiplicity = '-1', 
 			ordered = 'false',  
-			unique = 'true',  
+			unique = lookIn("OCL:self.associationEnd.otherEnd().type.unique"),  
 			clazz = lookIn("OCL:self.associationEnd.otherEnd().valueInit->any(true).objectLiteral.valueClass"),
 		    	ownedObjectParameters=foreach("OCL:self.clazz.formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
 		    	objectParameters=lookIn("OCL:self.ownedObjectParameters")
@@ -1325,13 +1331,11 @@ syntax Class(k=0 ) {
 		: {{ name=lookIn("OCL:'.'.concat(self.implementation.oclAsType(AssociationEndSignatureImplementation).end.name)"),
 		     owner=lookIn("OCL:self.implementation.oclAsType(AssociationEndSignatureImplementation).
 		                       end.otherEnd().type.clazz"),
-		     output=lookIn("OCL:self.implementation.oclAsType(LinkTraversal).end.type")
+		     output=lookIn("OCL:self.implementation.oclAsType(LinkTraversal).end.type"),
+		     sideEffectFree='true'
 		  }}
 		;
 	
-	template TypeDefinition #groupByMapResultAssociationEndType abstract;
-	-- Can only be class type definition because association ends don't support other type definitions.
-	-- It is furthermore constrained in the metamodel by constraint SelectedIteratorsMustHaveClassTypeDefinitionAsType.
 	template ClassTypeDefinition #groupByMapResultAssociationEndType
 		: {{
 		     clazz=lookIn("OCL:self.associationEnd.valueInit->any(true).value.getType().oclAsType(ClassTypeDefinition).clazz"),
@@ -1582,7 +1586,7 @@ syntax Class(k=0 ) {
 -- @end EXPRESSIONS
 
 -- @begin CLASSES
-	template TypeDefinition abstract operatored(TypeDefinitions);
+	template TypeDefinition abstract; -- operatored(TypeDefinitions);
 	
 	template ClassTypeDefinition
                 : (clazz instanceOf ParameterizedClassInstantiation ? clazz{mode=typeDefinition} :
@@ -1622,25 +1626,15 @@ syntax Class(k=0 ) {
 		;
 		
 	
-	operatorTemplate NestedTypeDefinition(operators = lbracketTypeOp, source='type')
-		:	{{ ownedTypeDefinition=lookIn("type") }}
-		     "]" {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='true', unique='false' }}
+	--operatorTemplate NestedTypeDefinition(operators = bracketOp starOp, source='type', storeOpTo = op)
+	--	:	{{ ownedTypeDefinition=lookIn("type") }}
+	--	    (op="[" ? "]" {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='true', unique='false' }} :
 		    -- TODO add the following line again one we have disambiguated this from a starting function body declaration
 		    -- (op="{" ? "}" {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='true' }} :
 		     -- else starOp
 	--	     {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='false' }})
 		    -- )
-		;
-		
-	operatorTemplate NestedTypeDefinition(operators = lcurlTypeOp, source='type')
-		:	{{ ownedTypeDefinition=lookIn("type") }}
-		     "}" {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='true' }}
-		;
-		
-	operatorTemplate NestedTypeDefinition(operators = starTypeOp, source='type')
-		:	{{ ownedTypeDefinition=lookIn("type") }}
-			{{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='false' }}
-		;
+	--	;
 		
 	template FunctionSignature context
 		:	"function" "(" input{separator = ","} ")"
@@ -1781,12 +1775,12 @@ syntax Class(k=0 ) {
 	
 	operators TypeDefinitions {
 		priority 0 {
-			postfix starTypeOp	= star, 1;
+			postfix starOp	= star, 1;
 			-- postfix upperOp	= INT, 1;
 		}
 		priority 1 {
-			lbracketTypeOp	= lbracket, 2;
-			lcurlTypeOp		= lcurl, 2;
+			bracketOp	= lbracket, 2;
+			braceOp		= lcurl, 2;
 			-- lowerOp		= INT, 2;
 		}
 	}
