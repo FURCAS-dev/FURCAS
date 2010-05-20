@@ -178,7 +178,7 @@ public class ClassTemplateHandler<Type extends Object> {
                 	String implRuleInitString = getInitString(template, false, true, true);
                 	addTemplateSequenceToRuleBody(template, ruleBodyBufferFactory, implRuleBody);
                 	addPostActions(template, implRuleBody);
-                	writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulenameImpl, "Object ret2", implRuleInitString, implRuleBody.toString(), false, true));
+                	writer.addRule(ClassProductionRule.getClassTemplateProductionRule(templateRulenameImpl, "Object ret2", implRuleInitString, implRuleBody.toString(), true, true));
                 	
                 	//Now create an abstract rule that has alternatives for the 
                 	//implementation rule as well as all subtypes.

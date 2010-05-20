@@ -23,7 +23,6 @@ public class MofStubTest  {
     @Test
     public void testName() throws Exception {
        MofAnyStub stub = new MofAnyStub();
-       assertNull( stub.getName());
        
        stub.name = "test";
        assertEquals( "test", stub.getName());

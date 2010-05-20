@@ -77,7 +77,8 @@ public class OperatorHandlerTest {
         "{ " + 
         "this.setLocationAndComment(ret, firstToken); " +
         "ret2=ret; " + 
-        " } ;";
+        " } ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
     }
@@ -106,7 +107,8 @@ public class OperatorHandlerTest {
         		"{ " + 
         		"this.setLocationAndComment(ret, firstToken); " +
         		"ret2=ret; " + 
-        		" } ;";
+        		" } ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
     }
@@ -138,7 +140,8 @@ public class OperatorHandlerTest {
                 "{ " + 
                 "this.setLocationAndComment(ret, firstToken); " +
                 "ret2=ret; " + 
-                " } ;";
+                " } ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
     }
@@ -170,7 +173,8 @@ public class OperatorHandlerTest {
         		"{ " + 
         		"this.setLocationAndComment(ret, firstToken); " +
         		"ret2=ret; " + 
-        		" }  ;";
+        		" }  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
     }
@@ -201,7 +205,8 @@ public class OperatorHandlerTest {
                 "{ " + 
                 "this.setLocationAndComment(ret, firstToken); " +
                 "ret2=ret; " + 
-                " }  ;";
+                " }  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
         
@@ -215,8 +220,8 @@ public class OperatorHandlerTest {
                 "{ " + 
                 "this.setLocationAndComment(ret, firstToken); " +
                 "ret2=ret; " + 
-                " }  ;";
-
+                " }  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
         assertEqualTokens(expected, result.toString());
     }
 
@@ -270,8 +275,8 @@ public class OperatorHandlerTest {
         		"this.setLocationAndComment(ret, firstToken); " + 
         		"ret2=ret; " + 
         		" } " + 
-        		"  ;";
-
+        		"  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
         assertEqualTokens(expected, result.toString());
     }
     
@@ -326,7 +331,8 @@ public class OperatorHandlerTest {
         		"this.setLocationAndComment(ret, firstToken); " + 
         		"ret2=ret; " + 
         		" } " + 
-        		"  ;";
+        		"  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
     }
@@ -380,7 +386,8 @@ public class OperatorHandlerTest {
         		"this.setLocationAndComment(ret, firstToken); " + 
         		"ret2=ret; " + 
         		" } " + 
-        		"  ;";
+        		"  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
 
         assertEqualTokens(expected, result.toString());
     }

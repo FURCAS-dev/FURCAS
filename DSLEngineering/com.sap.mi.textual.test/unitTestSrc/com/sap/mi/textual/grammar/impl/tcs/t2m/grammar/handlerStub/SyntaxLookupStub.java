@@ -7,6 +7,7 @@ import static com.sap.mi.textual.test.util.StringListHelper.list;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -70,7 +71,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
 
     @Override
     public Collection<Template> getTCSTemplate(ResolvedNameAndReferenceBean<?> refBean, String mode) {
-        return typeTemplate;
+        return Collections.singleton(typeTemplate);
     }
 
 
