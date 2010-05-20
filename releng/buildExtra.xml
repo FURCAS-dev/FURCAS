@@ -131,7 +131,7 @@
 			            filemode="664"
 			>
 				<include name="**/features/${domainNamespace}.ocl.core.sdk_*/" />
-				<include name="**/features/${domainNamespace}.ocl.all_*/" />
+				<include name="**/features/${domainNamespace}.ocl.all.sdk_*/" />
 				<include name="**/features/${domainNamespace}.ocl_*/" />
 				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
 				<include name="**/features/${domainNamespace}.ocl.source_*/" />
@@ -154,7 +154,7 @@
 			            dirmode="775"
 			            filemode="664"
 			>
-				<include name="**/features/${domainNamespace}.ocl.all_*/" />
+				<include name="**/features/${domainNamespace}.ocl.all.sdk_*/" />
 				<include name="**/features/${domainNamespace}.ocl_*/" />
 				<include name="**/features/${domainNamespace}.ocl.uml_*/" />
 				<include name="**/plugins/${domainNamespace}.ocl_*/" />
