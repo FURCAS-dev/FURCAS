@@ -425,7 +425,7 @@ syntax Class(k=0 ) {
         --template WithArgument abstract;
         
 -- @begin OBJECT BASED EXPRESSIONS      
-        --template ObjectBasedExpression abstract; -- operatored(Expressions);
+        template ObjectBasedExpression abstract; -- operatored(Expressions);
         
         --template SignatureCallExpression abstract;
         
