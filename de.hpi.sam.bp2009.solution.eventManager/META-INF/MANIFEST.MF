@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.eventManager.filters,
+ de.hpi.sam.bp2009.solution.eventManager.framework,
  de.hpi.sam.bp2009.solution.eventManager.util
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,

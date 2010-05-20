@@ -13,7 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
  * 
  * @author Daniel Vocke (d044825)
  */
-public class DeferringNotifier extends Notifier {
+public class DeferringNotifier extends AdapterCapsule {
 
     /**
      * contains the queued events by each connection that has an open command. The queued events are stored in an {@link EventChain}

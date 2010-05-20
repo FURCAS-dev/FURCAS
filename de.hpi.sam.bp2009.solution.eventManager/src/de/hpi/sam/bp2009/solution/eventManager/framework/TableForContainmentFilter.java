@@ -1,8 +1,8 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 
@@ -23,7 +23,7 @@ public class TableForContainmentFilter extends TableForEventFilter {
      * <code>AttributeValueEvent</code>, <code>null</code> is returned.
      */
     public Object getAffectedObject(Notification event) {
-        if(event.getFeature()==null && (event.getNotifier() instanceof EObject))
+        if(event.getFeature()==null && (event.getNotifier() instanceof Resource))
             return true;
         if (isEmpty() || !(event.getFeature()!=null && event.getFeature() instanceof EReference))
             return null;

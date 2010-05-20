@@ -15,6 +15,8 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.notify.impl.NotifierImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.junit.Test;
 
 import company.CompanyFactory;
@@ -22,6 +24,8 @@ import company.CompanyFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.tests.util.EventManagerHelper;
@@ -38,10 +42,24 @@ public class EventManagerTest extends BaseDepartmentTest {
     private Notification lastMsg;
     Notification matchingNotification;
 
+    public class MyApp extends AdapterImpl implements Adapter {
+        private final Bool b;
+
+        public MyApp(Bool b1) {
+            b = b1;
+        }
+
+        @Override
+        public void notifyChanged(Notification msg) {
+            this.b.is = true;
+
+        }
+
+    }
+
     public static void main(String[] args) {
         TestRunner.run(EventManagerTest.class);
     }
-
 
     protected void setFixture(EventManager fixture) {
         this.fixture = fixture;
@@ -53,7 +71,6 @@ public class EventManagerTest extends BaseDepartmentTest {
 
     @Override
     public void setUp() {
-        // setFixture(EventManagerFactory.eINSTANCE.createEventManager());
         super.setUp();
         this.createInstances(1, 3, 4);
         setFixture(EventManagerFactory.eINSTANCE.createEventManagerTableBased());
@@ -97,12 +114,10 @@ public class EventManagerTest extends BaseDepartmentTest {
         System.err.println("Implement ME -- SubscribeTransactional__EList_EventFilter_Adapter");
     }
 
-
     public void testNotifyApplication__Adapter_Notification_EventFilter() {
         getFixture().notifyApplication(adapter, matchingNotification, filter);
         assertTrue("Application gets notified", matchingNotification.equals(lastMsg));
     }
-
 
     public void testHandleEMFEvent__Notification() {
         /*
@@ -115,41 +130,46 @@ public class EventManagerTest extends BaseDepartmentTest {
         assertEquals(matchingNotification, lastMsg);
 
     }
+
     @Test
-    public void testSimpleElementInsertFilter( ) {
-        EventFilter f =EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+    public void testSimpleElementInsertFilter() {
+        EventFilter f = EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
         comp.eResource().getContents().add(aDivision);
         Bool newBool = new Bool();
         filterStatementsWithEM(f, newBool);
         NotificationHelper.createElementAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
-        
+
         assertTrue(newBool.is);
-       
+
     }
+
     @Test
-    public void testDoubleElementInsertFilter( ) {
-        EventFilter f1 =EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
-        EventFilter f2 =EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
-        EventFilter f = new OrFilter(f1,f2);
+    public void testDoubleElementInsertFilter() {
+        EventFilter f1 = EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f2 = EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f = new OrFilter(f1, f2);
         comp.eResource().getContents().add(aDivision);
         Bool newBool = new Bool();
         filterStatementsWithEM(f, newBool);
         NotificationHelper.createElementAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
-        
+
         assertTrue(newBool.is);
-       
+
     }
+
     private void filterStatementsWithEM(EventFilter filter, Bool b) {
 
-            MyApp app = new MyApp(b);
-            EventManager m=EventManagerFactory.eINSTANCE.createEventManagerTableBased();
-            EList<Notifier> l = new BasicEList<Notifier>();
-            l.add(this.comp.eResource());
-            m.subscribe(l, filter, app);
+        MyApp app = new MyApp(b);
+        EventManager m = EventManagerFactory.eINSTANCE.createEventManagerTableBased();
+        EList<Notifier> l = new BasicEList<Notifier>();
+        l.add(this.comp.eResource());
+        m.subscribe(l, filter, app);
     }
-    public class Bool{
-        public boolean is=false;
+
+    public class Bool {
+        public boolean is = false;
     }
+
     public void testUnsubscribe__Adapter() {
         getFixture().subscribe(EventManagerHelper.getEListFor(noti), filter, adapter);
         getFixture().unsubscribe(adapter);
@@ -157,20 +177,27 @@ public class EventManagerTest extends BaseDepartmentTest {
         assertFalse((matchingNotification.equals(lastMsg)));
         assertNull(lastMsg);
     }
-
-    public class MyApp extends AdapterImpl {
-        private final Bool b;
-
-        public MyApp(Bool b1) {
-            b=b1;
-        }
-
-        @Override
-        public void notifyChanged(Notification msg) {
-            this.b.is=true;
-
-        }
-
+    public void testResourceAddContainmentFilter(){
+       Resource r = new ResourceImpl();
+       Bool b = new Bool();
+       getFixture().subscribe(EventManagerHelper.getEListFor((Notifier)r), ContainmentFilter.INSTANCE, new MyApp(b));
+       r.getContents().add(this.aEmployee);
+       assertTrue(b.is);
     }
+    public void testResourceRemoveContainmentFilter(){
+        Resource r = new ResourceImpl();
+        Bool b = new Bool();
+        r.getContents().add(this.aEmployee);
+        getFixture().subscribe(EventManagerHelper.getEListFor((Notifier)r), ContainmentFilter.INSTANCE, new MyApp(b));
+        r.getContents().remove(this.aEmployee);
+        assertTrue(b.is);
+     }
+    public void testResourceCompositeAddContainmentFilter(){
+        Resource r = new ResourceImpl();
+        Bool b = new Bool();
+        getFixture().subscribe(EventManagerHelper.getEListFor((Notifier)r), new ClassFilter(department, false, false), new MyApp(b));
+        r.getContents().add(this.aDivision);
+        assertTrue(b.is);
+     }
 
 } // EventManagerTest

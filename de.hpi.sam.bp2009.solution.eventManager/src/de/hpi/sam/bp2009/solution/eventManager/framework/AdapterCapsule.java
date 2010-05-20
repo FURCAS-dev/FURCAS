@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
  * 
  * @author Daniel Vocke (D044825)
  */
-public class Notifier {
+public class AdapterCapsule {
 
     /**
      * the listener that will be notified when an event is fired.
@@ -22,7 +22,7 @@ public class Notifier {
      */
     protected ListenerTypeEnum _listenerType = null;
     
-    public Notifier(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType) {
+    public AdapterCapsule(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType) {
         _listener = listener;
         _listenerType=listenerType;
     }

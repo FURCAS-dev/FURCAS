@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +15,6 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -58,7 +58,7 @@ public class EventManagerImpl implements EventManager {
         application.notifyChanged(event);
     }
 
-    public void subscribe(EList<Notifier> root, EventFilter filter, Adapter caller) {
+    public void subscribe(Collection<? extends Notifier> root, EventFilter filter, Adapter caller) {
         for (Notifier noti : root) {
             subscribe(noti, filter, caller);
         }
@@ -86,7 +86,7 @@ public class EventManagerImpl implements EventManager {
 
     @Override
     @Deprecated
-    public void subscribeTransactional(EList<Notifier> root, EventFilter filter, Adapter caller) {
+    public void subscribeTransactional(Collection<? extends Notifier> root, EventFilter filter, Adapter caller) {
         // TODO Auto-generated methodsubscribeTransactional stub
         System.out.println("subscribeTransactional");
 

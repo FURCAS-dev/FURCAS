@@ -11,6 +11,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
 
+import company.CompanyFactory;
+import company.Department;
 import company.Employee;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
@@ -234,9 +236,11 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
     @Test
     public void testElementRemovedEventDepartmentEventManager() {
         comp.eResource().getContents().add(this.aDivision);
+        Department newDep = CompanyFactory.eINSTANCE.createDepartment();
+        this.aDivision.getDepartment().add(newDep);
         HashSet<OCLExpression> affectedStmts = filterStatementsWithEM();
 
-        NotificationHelper.createElementDeleteNotification(this.aDepartment);
+        NotificationHelper.createElementDeleteNotification(newDep);
 
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         // added by bp2009
