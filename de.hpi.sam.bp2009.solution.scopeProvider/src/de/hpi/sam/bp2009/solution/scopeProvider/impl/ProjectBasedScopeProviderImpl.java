@@ -37,17 +37,27 @@ import org.eclipse.emf.query2.QueryContext;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Project Based Scope Provider</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the '<em><b>Project Based Scope Provider</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl#getInitialProjects <em>Initial Projects
- * </em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getInitialProjects <em>Initial Projects</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getInMemoryResources() <em>InMemory Resources</em>}</li>
+ * 
+ * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsProjects() <em>Forward Scope as Projects</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsResources() <em>Forward Scope as Resources</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsQueryContext() <em>Forward Scope as Query Context</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsURIs() <em>Forward Scope as URIs</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsEObjects() <em>Forward Scope as EObjects</em>}</li>
+ * 
+ * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsProjects() <em>Backward Scope as Projects</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsResources() <em>Backward Scope as Resources</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsQueryContext() <em>Backward Scope as Query Context</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsURIs() <em>Backward Scope as URIs</em>}</li>
+ * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsEObjects() <em>Backward Scope as EObjects</em>}</li>
  * </ul>
  * </p>
  * 
- * @generated
  */
 public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider {
 
@@ -74,6 +84,11 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         setupForResourceSets(Arrays.asList(resourceSets));
     }
 
+    public Collection<IProject> getInitialProjects() {
+
+        return initialProjects;
+    }
+
     public Collection<Resource> getInMemoryResources() {
         Collection<Resource> result = new BasicEList<Resource>();
         if (inMemoryResourceList == null) {
@@ -88,8 +103,23 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return result;
     }
 
+    public void setInMemoryResources(Collection<Resource> resources) {
+        inMemoryResourceList = new ArrayList<WeakReference<Resource>>();
+        for (Resource r : resources) {
+            inMemoryResourceList.add(new WeakReference<Resource>(r));
+        }
+    }
+
+    public Collection<IProject> getForwardScopeAsProjects() {
+        return scopeAsProjects(true);
+    }
+
+    public Collection<Resource> getForwardScopeAsResources() {
+        return scopeAsResources(getForwardScopeAsProjects());
+    }
+
     public QueryContext getForwardScopeAsQueryContext() {
-        if ( rs == null){
+        if (rs == null) {
             throw new IllegalStateException("No ResourceSet defined!");
         }
         return new QueryContext() {
@@ -97,7 +127,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             @Override
             public ResourceSet getResourceSet() {
                 return rs;
-
             }
 
             @Override
@@ -109,15 +138,29 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         };
     }
 
+    public Collection<URI> getForwardScopeAsURIs() {
+        return scopeAsUris(getForwardScopeAsResources());
+    }
+
+    public Collection<EObject> getForwardScopeAsEObjects() {
+        return scopeAsEObjects(getForwardScopeAsResources());
+    }
+
+    public Collection<IProject> getBackwardScopeAsProjects() {
+        return scopeAsProjects(false);
+
+    }
+
+    public Collection<Resource> getBackwardScopeAsResources() {
+        return scopeAsResources(getBackwardScopeAsProjects());
+    }
+
     public QueryContext getBackwardScopeAsQueryContext() {
         return new QueryContext() {
 
             @Override
             public ResourceSet getResourceSet() {
-                ResourceSet set = new ResourceSetImpl();
-                set.getResources().addAll(getBackwardScopeAsResources());
-                return set;
-
+                return rs;
             }
 
             @Override
@@ -128,9 +171,12 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         };
     }
 
-    public Collection<IProject> getInitialProjects() {
+    public Collection<URI> getBackwardScopeAsURIs() {
+        return scopeAsUris(getBackwardScopeAsResources());
+    }
 
-        return initialProjects;
+    public Collection<EObject> getBackwardScopeAsEObjects() {
+        return scopeAsEObjects(getBackwardScopeAsResources());
     }
 
     private void setupForEObjects(List<EObject> list) {
@@ -149,9 +195,9 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             ResourceSet set = res.getResourceSet();
             if (rs == null && set != null) {
                 rs = set;
-            }           
+            }
             URIConverter converter = null;
-            if( set != null){
+            if (set != null) {
                 converter = set.getURIConverter();
             }
             if (converter == null) {
@@ -186,115 +232,19 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     }
 
-    public Collection<EObject> getForwardScopeAsEObjects() {
-        return scopeAsEObjects(getForwardScopeAsResources());
-    }
-
-    public Collection<IProject> getForwardScopeAsProjects() {
-        return scopeAsProjects(true);
-    }
-
-    public Collection<Resource> getForwardScopeAsResources() {
-        return scopeAsResources(getForwardScopeAsProjects());
-    }
-
-    public Collection<URI> getForwardScopeAsURIs() {
-        return scopeAsUris(getForwardScopeAsResources());
-    }
-
-    public Collection<EObject> getBackwardScopeAsEObjects() {
-        return scopeAsEObjects(getBackwardScopeAsResources());
-    }
-
-    public Collection<IProject> getBackwardScopeAsProjects() {
-        return scopeAsProjects(false);
-
-    }
-
-    public Collection<Resource> getBackwardScopeAsResources() {
-        return scopeAsResources(getBackwardScopeAsProjects());
-    }
-
-    public Collection<URI> getBackwardScopeAsURIs() {
-        return scopeAsUris(getBackwardScopeAsResources());
-    }
-
-    public void setInMemoryResources(Collection<Resource> resources) {
-        inMemoryResourceList = new ArrayList<WeakReference<Resource>>();
-        for (Resource r : resources) {
-            inMemoryResourceList.add(new WeakReference<Resource>(r));
-        }
-    }
-
-    /**
-     * Add a resource with the given URI to the given Set of resources if an resource with the same uri is in the inMemory List,
-     * this resource will be added
-     * 
-     * @param resources
-     *            Set to add in resource
-     * @param uri
-     *            uri of the resource to add
-     */
-    private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri) {
-        Resource inMemory = null;
-        for (Resource r : getInMemoryResources())
-            if (uri.equals(r.getURI()))
-                inMemory = r;
-
-        resources.add(inMemory == null ? new XMIResourceImpl(uri) : inMemory);
-    }
-
-    /**
-     * @param resource
-     * @param successful
-     * @return
-     */
-    private boolean checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI uri) {
-        Boolean successful = false;
-
-        ResourceSet load_resourceSet = new ResourceSetImpl();
-
-        /*
-         * Register XML Factory implementation using DEFAULT_EXTENSION
-         */
-        load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
-        /*
-         * Load the resource using the URI
-         */
-        Resource r = load_resourceSet.getResource(uri, true);
-
-        /*
-         * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
-         */
+    private IFolder getModelDirectoryFromProject(IProject project) throws IllegalArgumentException {
+        // refresh if project is not totally loaded some resources should appear hear
         try {
-            r.load(null);
-            successful = true;
-        } catch (Exception e) {
-            // TODO: handle exception
+            project.refreshLocal(IResource.DEPTH_INFINITE, null);
+        } catch (CoreException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-
-        if (r.getErrors().size() > 0)
-            successful = false;
-        return successful;
-    }
-
-    private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
-        URI uri = converter.normalize(res.getURI());
-        java.net.URI netUri = java.net.URI.create(uri.toString());
-        IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
-        IProject project = null;
-        for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
-            project = file.getProject();
-        }
-        for (IContainer c : result)
-            if (c instanceof IProject)
-                project = (IProject) c;
-        /*
-         * TODO Think about a better way for resource without projects
-         */
-        // if(project==null)
-        // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
-        return project;
+        IResource member = project.findMember("model", true);
+        project.getLocation().toFile().listFiles();
+        if (member == null || !(member instanceof IFolder))
+            throw new IllegalArgumentException(project.getName() + " does not contain a model folder. It is invalid.");
+        return (IFolder) member;
     }
 
     private Set<Resource> getAllResourceFromDirectory(IFolder modelDirectory) throws CoreException {
@@ -330,29 +280,99 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return resources;
     }
 
-    private IFolder getModelDirectoryFromProject(IProject project) throws IllegalArgumentException {
-        // refresh if project is not totally loaded some resources should appear hear
-        try {
-            project.refreshLocal(IResource.DEPTH_INFINITE, null);
-        } catch (CoreException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
+        URI uri = converter.normalize(res.getURI());
+        java.net.URI netUri = java.net.URI.create(uri.toString());
+        IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
+        IProject project = null;
+        for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
+            project = file.getProject();
         }
-        IResource member = project.findMember("model", true);
-        project.getLocation().toFile().listFiles();
-        if (member == null || !(member instanceof IFolder))
-            throw new IllegalArgumentException(project.getName() + " does not contain a model folder. It is invalid.");
-        return (IFolder) member;
+        for (IContainer c : result)
+            if (c instanceof IProject)
+                project = (IProject) c;
+        /*
+         * TODO Think about a better way for resource without projects
+         */
+        // if(project==null)
+        // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+        return project;
     }
 
-    private Collection<EObject> iteratorToCollection(Iterator<?> treeIterator) {
-        Collection<EObject> treeAsList = new BasicEList<EObject>();
-        while (treeIterator.hasNext()) {
-            Object next = treeIterator.next();
-            if (next instanceof EObject)
-                treeAsList.add((EObject) next);
+    /**
+     * Add a resource with the given URI to the given Set of resources if an resource with the same uri is in the inMemory List,
+     * this resource will be added
+     * 
+     * @param resources
+     *            Set to add in resource
+     * @param uri
+     *            uri of the resource to add
+     */
+    private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri) {
+        Resource inMemory = null;
+        for (Resource r : getInMemoryResources())
+            if (uri.equals(r.getURI()))
+                inMemory = r;
+
+        resources.add(inMemory == null ? new XMIResourceImpl(uri) : inMemory);
+    }
+
+    private Collection<IProject> scopeAsProjects(Boolean forward) {
+        Collection<IProject> result = new BasicEList<IProject>();
+        Collection<IProject> pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
+
+        for (IProject project : getInitialProjects()) {
+            try {
+                result = recursiveGetReferenceProjectsForProjects(project, result, pool, forward);
+            } catch (CoreException e) {
+                // TODO Add Exception to an intern array of errors
+                e.printStackTrace();
+            }
         }
-        return treeAsList;
+        return result;
+    }
+
+    private Collection<Resource> scopeAsResources(Collection<IProject> projects) throws IllegalArgumentException {
+        Collection<Resource> result = new HashSet<Resource>();
+        for (IProject project : projects) {
+            IFolder modelDir = getModelDirectoryFromProject(project);
+            try {
+                result.addAll(getAllResourceFromDirectory(modelDir));
+            } catch (CoreException e) {
+                // TODO Add Exception to an intern array of errors
+                e.printStackTrace();
+            }
+        }
+        result.addAll(getInMemoryResources());
+
+        return result;
+    }
+
+    private Collection<URI> scopeAsUris(Collection<Resource> resources) {
+        Collection<URI> result = new BasicEList<URI>();
+        for (Resource res : resources) {
+            if (res.getURI() != null)
+                result.add(res.getURI());
+        }
+        return result;
+    }
+
+    private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
+        Collection<EObject> result = new HashSet<EObject>();
+        for (Resource resource : resources) {
+            /*
+             * FIXME unfortunately a memory leak
+             */
+            if (!resource.isLoaded())
+                try {
+                    resource.load(null);
+                } catch (IOException e) {
+                    // TODO Add Exception to an intern array of errors
+                    e.printStackTrace();
+                }
+            result.addAll(iteratorToCollection(resource.getAllContents()));
+        }
+        return result;
     }
 
     /**
@@ -394,62 +414,48 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return referencedProjects;
     }
 
-    private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
-        Collection<EObject> result = new HashSet<EObject>();
-        for (Resource resource : resources) {
-            /*
-             * FIXME unfortunately a memory leak
-             */
-            if (!resource.isLoaded())
-                try {
-                    resource.load(null);
-                } catch (IOException e) {
-                    // TODO Add Exception to an intern array of errors
-                    e.printStackTrace();
-                }
-            result.addAll(iteratorToCollection(resource.getAllContents()));
+    /**
+     * @param resource
+     * @param successful
+     * @return
+     */
+    private boolean checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI uri) {
+        Boolean successful = false;
+
+        ResourceSet load_resourceSet = new ResourceSetImpl();
+
+        /*
+         * Register XML Factory implementation using DEFAULT_EXTENSION
+         */
+        load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
+        /*
+         * Load the resource using the URI
+         */
+        Resource r = load_resourceSet.getResource(uri, true);
+
+        /*
+         * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
+         */
+        try {
+            r.load(null);
+            successful = true;
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        return result;
+
+        if (r.getErrors().size() > 0)
+            successful = false;
+        return successful;
     }
 
-    private Collection<IProject> scopeAsProjects(Boolean forward) {
-        Collection<IProject> result = new BasicEList<IProject>();
-        Collection<IProject> pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
-
-        for (IProject project : getInitialProjects()) {
-            try {
-                result = recursiveGetReferenceProjectsForProjects(project, result, pool, forward);
-            } catch (CoreException e) {
-                // TODO Add Exception to an intern array of errors
-                e.printStackTrace();
-            }
+    private Collection<EObject> iteratorToCollection(Iterator<?> treeIterator) {
+        Collection<EObject> treeAsList = new BasicEList<EObject>();
+        while (treeIterator.hasNext()) {
+            Object next = treeIterator.next();
+            if (next instanceof EObject)
+                treeAsList.add((EObject) next);
         }
-        return result;
-    }
-
-    private Collection<Resource> scopeAsResources(Collection<IProject> projects) throws IllegalArgumentException {
-        Collection<Resource> result = new HashSet<Resource>();
-        for (IProject project : projects) {
-            IFolder modelDir = getModelDirectoryFromProject(project);
-            try {
-                result.addAll(getAllResourceFromDirectory(modelDir));
-            } catch (CoreException e) {
-                // TODO Add Exception to an intern array of errors
-                e.printStackTrace();
-            }
-        }
-        result.addAll(getInMemoryResources());
-
-        return result;
-    }
-
-    private Collection<URI> scopeAsUris(Collection<Resource> resources) {
-        Collection<URI> result = new BasicEList<URI>();
-        for (Resource res : resources) {
-            if (res.getURI() != null)
-                result.add(res.getURI());
-        }
-        return result;
+        return treeAsList;
     }
 
 } // ProjectBasedScopeProviderImpl
