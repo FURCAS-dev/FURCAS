@@ -115,6 +115,11 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
   /*
    * Javadoc copied from interface.
    */
+  @Override
+    public Object put(String key, Object value) {
+        // TODO Auto-generated method stub
+        return super.put(key, value);
+    }
   public EPackage getEPackage(String nsURI)
   {
     Object ePackage = get(nsURI);
