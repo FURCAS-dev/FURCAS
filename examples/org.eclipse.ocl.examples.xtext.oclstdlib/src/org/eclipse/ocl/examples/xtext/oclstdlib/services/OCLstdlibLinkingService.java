@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLinkingService.java,v 1.4 2010/05/16 19:20:26 ewillink Exp $
+ * $Id: OCLstdlibLinkingService.java,v 1.5 2010/05/21 20:08:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -21,7 +21,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
@@ -37,7 +40,8 @@ import com.google.inject.Inject;
 public class OCLstdlibLinkingService extends DefaultLinkingService
 {
 //	private static final Logger log = Logger.getLogger(OCLstdlibLinkingService.class);
-
+	private static int depth = -1;
+	
 	@Inject
 	private IValueConverterService valueConverterService;
 	
@@ -45,22 +49,41 @@ public class OCLstdlibLinkingService extends DefaultLinkingService
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
 		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
 		if (!scopeAdapter.isUnresolvable()) {
-			String text = getText(node);
-			if (text != null) {			
-				IScope scope = getScope(context, ref);
-				if (scope != null) {
-//					System.out.println("Lookup " + text);
-					IEObjectDescription eObjectDescription = scope.getContentByName(text);
-					if (eObjectDescription != null) {
-						EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
-//						System.out.println("Lookup " + text + " = " + eObjectOrProxy);
-						return Collections.singletonList(eObjectOrProxy);
+			try {
+				depth++;
+				String text = getText(node);
+				if (text != null) {			
+					IScope scope = getScope(context, ref);
+					if (scope instanceof ScopeView) {
+						if (BaseScopeProvider.LOOKUP.isActive()) {
+							EObject target = ((ScopeView)scope).getTarget();
+							String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
+							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
+						}
+						IEObjectDescription eObjectDescription = scope.getContentByName(text);
+						if (eObjectDescription != null) {
+							EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
+							if (BaseScopeProvider.LOOKUP.isActive()) {
+								if (eObjectOrProxy instanceof ElementCS) {
+									BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + ((ElementCS)eObjectOrProxy).getSignature());
+								}
+								else {
+									BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + eObjectOrProxy);									
+								}
+							}
+							return Collections.singletonList(eObjectOrProxy);
+						}
+						if (BaseScopeProvider.LOOKUP.isActive()) {
+							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
+							//					eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
+						}
 					}
-//					System.out.println("Lookup " + text + " failed");
-//					eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
 				}
+				scopeAdapter.setUnresolvable();
 			}
-			scopeAdapter.setUnresolvable();
+			finally {
+				depth--;
+			}
 		}
 		return Collections.emptyList();
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibValueConverterService.java,v 1.3 2010/05/09 14:24:57 ewillink Exp $
+ * $Id: OCLstdlibValueConverterService.java,v 1.4 2010/05/21 20:08:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Set;
 
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
@@ -52,8 +53,8 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 		};
 	}
 
-	@ValueConverter(rule = "ID_TERMINAL")
-	public IValueConverter<String> ID_TERMINAL() {
+	@ValueConverter(rule = "ID")
+	public IValueConverter<String> ID() {
 		return new AbstractNullSafeConverter<String>() {
 			
 			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
@@ -61,22 +62,17 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {
 				int length = string.length();
-				return string.startsWith("\"") && (length >= 2) && string.endsWith("\"") ? string.substring(1, length-1) : string;
+				return string.startsWith("_'") && (length >= 3) && string.endsWith("'") ? string.substring(2, length-1) : string;
 			}
 
 			@Override
 			protected String internalToString(String value) {
-				if (allKeywords.contains(value)) {
+				if (allKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
 					return "_'" + value + "'";
 				}
 				return value;
 			}
 		};
-	}
-
-	@ValueConverter(rule = "Identifier")
-	public IValueConverter<String> Identifier() {
-		return ID_TERMINAL();
 	}
 
 	@ValueConverter(rule = "NUMBER_LITERAL")

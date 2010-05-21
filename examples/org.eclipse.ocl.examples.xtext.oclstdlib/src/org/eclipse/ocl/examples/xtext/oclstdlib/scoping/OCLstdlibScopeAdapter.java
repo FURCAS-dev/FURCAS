@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibScopeAdapter.java,v 1.5 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: OCLstdlibScopeAdapter.java,v 1.6 2010/05/21 20:08:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -28,6 +28,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
@@ -278,6 +280,16 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 				return csType;
 			}
 		}
+		else if (csElement instanceof PrimitiveTypeRefCS) {
+			PrimitiveTypeRefCS primitiveTypeRefCS = (PrimitiveTypeRefCS)csElement;
+			String name = primitiveTypeRefCS.getName();
+			return getLibraryType(name);
+		}
+		else if (csElement instanceof QualifiedTypeRefCS) {
+			QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)csElement;
+			TypedRefCS type = qualifiedTypeRefCS.getElement();
+			return getLibraryType(type, bindings);
+		}
 		else if (csElement instanceof TypedTypeRefCS) {
 			TypeBindingsCS nestedBindings = bindings;
 			TypedTypeRefCS typedTypeRefCS = (TypedTypeRefCS)csElement;
@@ -313,7 +325,8 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 			throw new UnsupportedOperationException("getLibraryType(TypeParameterCS)");
 //			return getLibraryType(typeParameter);
 		}
-		return null;
+		throw new UnsupportedOperationException("getLibraryType()");
+//		return null;
 	}
 
 	protected boolean isSameTypeParameter(TypeParameterCS typeParameter, TypeBindingCS binding) {
