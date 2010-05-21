@@ -10,6 +10,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 /**
  * Manual modifications go to {org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule}
  */
+@SuppressWarnings("all")
 public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 	
 	public AbstractCompleteOCLUiModule(AbstractUIPlugin plugin) {
@@ -53,19 +54,16 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
-	@Override
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.ocl.examples.xtext.completeocl.ui.labeling.CompleteOCLLabelProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
-	@Override
 	public void configureResourceUIServiceLabelProvider(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.jface.viewers.ILabelProvider.class).annotatedWith(org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider.class).to(org.eclipse.ocl.examples.xtext.completeocl.ui.labeling.CompleteOCLDescriptionLabelProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.outline.TransformerFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.outline.transformer.ISemanticModelTransformer> bindISemanticModelTransformer() {
 		return org.eclipse.ocl.examples.xtext.completeocl.ui.outline.CompleteOCLTransformer.class;
 	}
@@ -111,7 +109,6 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
 		return org.eclipse.ocl.examples.xtext.completeocl.ui.quickfix.CompleteOCLQuickfixProvider.class;
 	}
