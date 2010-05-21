@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackageImpl.java,v 1.3 2010/05/16 19:26:02 ewillink Exp $
+ * $Id: CompleteOCLCSTPackageImpl.java,v 1.4 2010/05/21 20:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -643,26 +643,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOclMessageCS_Source() {
-		return (EReference)oclMessageCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getOclMessageCS_Op() {
-		return (EAttribute)oclMessageCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getOclMessageCS_MessageName() {
-		return (EAttribute)oclMessageCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)oclMessageCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -671,7 +653,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	public EReference getOclMessageCS_Arguments() {
-		return (EReference)oclMessageCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)oclMessageCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -742,8 +724,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		createEReference(oclMessageArgCSEClass, OCL_MESSAGE_ARG_CS__TYPE);
 
 		oclMessageCSEClass = createEClass(OCL_MESSAGE_CS);
-		createEReference(oclMessageCSEClass, OCL_MESSAGE_CS__SOURCE);
-		createEAttribute(oclMessageCSEClass, OCL_MESSAGE_CS__OP);
 		createEAttribute(oclMessageCSEClass, OCL_MESSAGE_CS__MESSAGE_NAME);
 		createEReference(oclMessageCSEClass, OCL_MESSAGE_CS__ARGUMENTS);
 
@@ -814,7 +794,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		invCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
 		namedConstraintCSEClass.getESuperTypes().add(this.getConstraintCS());
 		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
-		oclMessageCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
+		oclMessageCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getOperatorExpCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
 		packageDeclarationCSEClass.getESuperTypes().add(theBaseCSTPackage.getElementCS());
 		postCSEClass.getESuperTypes().add(this.getNamedConstraintCS());
@@ -862,8 +842,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		initEReference(getOclMessageArgCS_Type(), theBaseCSTPackage.getTypeCS(), null, "type", null, 0, 1, OclMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageCSEClass, OclMessageCS.class, "OclMessageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOclMessageCS_Source(), theEssentialOCLCSTPackage.getExpCS(), null, "source", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOclMessageCS_Op(), ecorePackage.getEString(), "op", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOclMessageCS_MessageName(), ecorePackage.getEString(), "messageName", null, 0, 1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOclMessageCS_Arguments(), theEssentialOCLCSTPackage.getExpCS(), null, "arguments", null, 0, -1, OclMessageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

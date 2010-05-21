@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.5 2010/05/21 20:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
@@ -46,9 +47,10 @@ public class PropertyContextScopeAdapter extends EssentialOCLScopeAdapter<Proper
 			}
 			if (csStructuralFeatureRef instanceof SimpleStructuralFeatureRefCS) {
 				SimpleStructuralFeatureRefCS csSimpleStructuralFeatureRef = (SimpleStructuralFeatureRefCS)csStructuralFeatureRef;
-				StructuralFeatureCS classifier = csSimpleStructuralFeatureRef.getFeature();
-				environmentView.addElementsOfScope(classifier, scopeView);
-				environmentView.addElement("self", classifier.eContainer(), scopeView.getBindings());
+				StructuralFeatureCS feature = csSimpleStructuralFeatureRef.getFeature();
+				EObject classifierContext = feature.eContainer();
+				environmentView.addElementsOfScope(classifierContext, scopeView);
+				environmentView.addElement("self", classifierContext, scopeView.getBindings());
 			}
 			return scopeView.getOuterScope();
 		}

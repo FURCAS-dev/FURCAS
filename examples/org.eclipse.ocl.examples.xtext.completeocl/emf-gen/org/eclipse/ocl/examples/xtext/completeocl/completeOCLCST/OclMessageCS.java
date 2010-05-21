@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OclMessageCS.java,v 1.2 2010/05/03 05:58:29 ewillink Exp $
+ * $Id: OclMessageCS.java,v 1.3 2010/05/21 20:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,8 +28,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getOp <em>Op</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getMessageName <em>Message Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getArguments <em>Arguments</em>}</li>
  * </ul>
@@ -38,59 +37,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
  * @model
  * @generated
  */
-public interface OclMessageCS extends ExpCS {
-	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(ExpCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOclMessageCS_Source()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ExpCS getSource();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getSource <em>Source</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(ExpCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Op</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Op</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Op</em>' attribute.
-	 * @see #setOp(String)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOclMessageCS_Op()
-	 * @model
-	 * @generated
-	 */
-	String getOp();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getOp <em>Op</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Op</em>' attribute.
-	 * @see #getOp()
-	 * @generated
-	 */
-	void setOp(String value);
-
+public interface OclMessageCS extends OperatorExpCS {
 	/**
 	 * Returns the value of the '<em><b>Message Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
