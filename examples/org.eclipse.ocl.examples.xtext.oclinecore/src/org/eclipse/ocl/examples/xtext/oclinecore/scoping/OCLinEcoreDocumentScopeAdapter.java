@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.6 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: OCLinEcoreDocumentScopeAdapter.java,v 1.7 2010/05/21 20:13:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
@@ -47,7 +48,9 @@ public class OCLinEcoreDocumentScopeAdapter extends StandardDocumentScopeAdapter
 					}
 				}
 				else {
-					environmentView.addNamedElement(anImport, bindings);
+					if (environmentView.addNamedElement(anImport, bindings) > 0) {
+						EcoreUtil.resolveAll(anImport.getNamespace());
+					}
 				}
 			}
 			environmentView.addNamedElements(getTarget().getPackages(), bindings);		// Overrides imports
