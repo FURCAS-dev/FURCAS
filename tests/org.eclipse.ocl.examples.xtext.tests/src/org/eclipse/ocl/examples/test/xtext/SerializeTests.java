@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.5 2010/05/09 14:37:53 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.6 2010/05/21 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -39,7 +39,7 @@ public class SerializeTests extends XtextTestCase
 {
 	public OCLinEcoreDocumentCS doSerialize(String stem) throws IOException {
 		String inputName = stem + ".ecore";
-		String outputName = stem + ".oclinecore";
+		String outputName = stem + ".serialized.oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		Resource ecoreResource = resourceSet.getResource(inputURI, true);
@@ -94,11 +94,6 @@ public class SerializeTests extends XtextTestCase
 // FIXME fails due to Bug 286558
 	public void testOCLSerialize() throws IOException, InterruptedException {
 		doSerialize("OCL");
-	}
-
-	public void testTestSerialize() throws IOException, InterruptedException {
-//		doRoundTrip("Test");
-		doSerialize("Test");
 	}
 
 	public void testQVTSerialize() throws IOException, InterruptedException {
