@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardDocumentScopeAdapter.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: StandardDocumentScopeAdapter.java,v 1.3 2010/05/21 20:08:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -99,7 +99,10 @@ public abstract class StandardDocumentScopeAdapter<T extends DocumentCS> extends
 	}
 
 	public ClassifierCS getLibraryType(String collectionTypeName, ClassifierCS elementTypeCS) {
-		ScopeAdapter elementScopeAdapter = getScopeAdapter(elementTypeCS);		
+		ScopeAdapter elementScopeAdapter = getScopeAdapter(elementTypeCS);
+		if (elementScopeAdapter == null) {
+			return null;
+		}
 		String elementSignature = elementScopeAdapter.getSignature();
 		String netSignature = collectionTypeName + "(" + elementSignature + ")";		
 		ClassifierCS specializedClassifier = getLibType(netSignature);

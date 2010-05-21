@@ -269,82 +269,116 @@ ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     @after { resetLookahead(); 
 	    lastConsumedNode = currentNode;
     }:
-(    this_ID_TERMINAL_0=RULE_ID_TERMINAL    {
-		$current.merge(this_ID_TERMINAL_0);
+(    this_ID_0=RULE_ID    {
+		$current.merge(this_ID_0);
     }
 
     { 
-    createLeafNode(grammarAccess.getIdentifierAccess().getID_TERMINALTerminalRuleCall_0(), null); 
+    createLeafNode(grammarAccess.getIdentifierAccess().getIDTerminalRuleCall_0(), null); 
     }
 
     |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getIdentifierAccess().getRestrictedKeywordsParserRuleCall_1(), currentNode); 
+    }
+    this_RestrictedKeywords_1=ruleRestrictedKeywords    {
+		$current.merge(this_RestrictedKeywords_1);
+    }
+
+    { 
+        currentNode = currentNode.getParent();
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRuleRestrictedKeywords
+entryRuleRestrictedKeywords returns [String current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getRestrictedKeywordsRule(), currentNode); } 
+	 iv_ruleRestrictedKeywords=ruleRestrictedKeywords 
+	 { $current=$iv_ruleRestrictedKeywords.current.getText(); }  
+	 EOF 
+;
+
+// Rule RestrictedKeywords
+ruleRestrictedKeywords returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+	    lastConsumedNode = currentNode;
+    }:
+(
 	kw='conformsTo' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getConformsToKeyword_1(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getConformsToKeyword_0(), null); 
     }
 
     |
 	kw='extends' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getExtendsKeyword_2(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getExtendsKeyword_1(), null); 
     }
 
     |
 	kw='import' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getImportKeyword_3(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getImportKeyword_2(), null); 
     }
 
     |
 	kw='iteration' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getIterationKeyword_4(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getIterationKeyword_3(), null); 
     }
 
     |
 	kw='library' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getLibraryKeyword_5(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getLibraryKeyword_4(), null); 
     }
 
     |
 	kw='operation' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getOperationKeyword_6(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getOperationKeyword_5(), null); 
     }
 
     |
 	kw='package' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getPackageKeyword_7(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getPackageKeyword_6(), null); 
     }
 
     |
 	kw='property' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getPropertyKeyword_8(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getPropertyKeyword_7(), null); 
     }
 
     |
 	kw='super' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getSuperKeyword_9(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getSuperKeyword_8(), null); 
     }
 
     |
 	kw='type' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getIdentifierAccess().getTypeKeyword_10(), null); 
+        createLeafNode(grammarAccess.getRestrictedKeywordsAccess().getTypeKeyword_9(), null); 
     }
 )
     ;
@@ -2190,7 +2224,7 @@ RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\
 
 RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
-RULE_ID_TERMINAL : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
+RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

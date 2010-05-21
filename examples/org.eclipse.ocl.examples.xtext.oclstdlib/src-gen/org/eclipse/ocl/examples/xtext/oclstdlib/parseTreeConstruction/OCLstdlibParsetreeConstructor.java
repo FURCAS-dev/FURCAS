@@ -12,6 +12,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
 
 import com.google.inject.Inject;
 
+@SuppressWarnings("all")
 public class OCLstdlibParsetreeConstructor extends AbstractParseTreeConstructor {
 		
 	@Inject
@@ -55,11 +56,8 @@ protected class ThisRootNode extends RootToken {
  *
  * //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
  * 
- * 
- * 
  * Library returns LibDocumentCS:
- *   "library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS*
- *   "}";
+ * 	"library" name=Identifier imports+=LibImportCS* "{" packages+=LibPackageCS* "}";
  *
  **/
 
@@ -295,16 +293,15 @@ protected class Library_RightCurlyBracketKeyword_5 extends KeywordToken  {
 
 
 
+
 /************ begin Rule LibImportCS ****************
  *
  * LibImportCS returns base::ImportCS:
- *   "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
- *   SINGLE_QUOTED_STRING];
+ * 	"import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING];
  *
  **/
 
-// "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
-// SINGLE_QUOTED_STRING]
+// "import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING]
 protected class LibImportCS_Group extends GroupToken {
 	
 	public LibImportCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -478,19 +475,15 @@ protected class LibImportCS_NamespaceAssignment_2 extends AssignmentToken  {
 /************ begin Rule LibClassCS ****************
  *
  * LibClassCS:
- *   "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS (","
- *   typeParameters+=LibTypeParameterCS)* ">")? ("conformsTo"
- *   conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (
- *   iterations+=LibIterationCS|operations+=LibOperationCS|
- *   structuralFeatures+=LibPropertyCS)* "}";
+ * 	"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
+ * 	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
+ * 	operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}";
  *
  **/
 
-// "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS (","
-// typeParameters+=LibTypeParameterCS)* ">")? ("conformsTo"
-// conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (
-// iterations+=LibIterationCS|operations+=LibOperationCS|
-// structuralFeatures+=LibPropertyCS)* "}"
+// "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
+// ("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
+// operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}"
 protected class LibClassCS_Group extends GroupToken {
 	
 	public LibClassCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -574,8 +567,7 @@ protected class LibClassCS_NameAssignment_1 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)
-// * ">")?
+// ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
 protected class LibClassCS_Group_2 extends GroupToken {
 	
 	public LibClassCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -990,8 +982,7 @@ protected class LibClassCS_LeftCurlyBracketKeyword_4 extends KeywordToken  {
 
 }
 
-// (iterations+=LibIterationCS|operations+=LibOperationCS|
-// structuralFeatures+=LibPropertyCS)*
+// (iterations+=LibIterationCS | operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)*
 protected class LibClassCS_Alternatives_5 extends AlternativesToken {
 
 	public LibClassCS_Alternatives_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1187,7 +1178,7 @@ protected class LibClassCS_RightCurlyBracketKeyword_6 extends KeywordToken  {
 /************ begin Rule LibClassifierCS ****************
  *
  * LibClassifierCS returns base::ClassifierCS:
- *   LibClassCS;
+ * 	LibClassCS;
  *
  **/
 
@@ -1233,19 +1224,16 @@ protected class LibClassifierCS_LibClassCSParserRuleCall extends RuleCallToken {
 /************ begin Rule LibIterationCS ****************
  *
  * LibIterationCS:
- *   "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS (","
- *   typeParameters+=LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS (
- *   "," parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>"
- *   class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+ * 	"iteration" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")? "("
+ * 	parameters+=LibParameterCS ("," parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>"
+ * 	class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
  * 
- *   ";";
+ * 	";";
  *
  **/
 
-// "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS (","
-// typeParameters+=LibTypeParameterCS)* ">")? "(" parameters+=LibParameterCS (","
-// parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>"
-// class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+// "iteration" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")? "("
+// parameters+=LibParameterCS ("," parameters+=LibParameterCS)* ")" ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 // 
 // ";"
 protected class LibIterationCS_Group extends GroupToken {
@@ -1331,8 +1319,7 @@ protected class LibIterationCS_NameAssignment_1 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)
-// * ">")?
+// ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
 protected class LibIterationCS_Group_2 extends GroupToken {
 	
 	public LibIterationCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1877,18 +1864,16 @@ protected class LibIterationCS_SemicolonKeyword_11 extends KeywordToken  {
 /************ begin Rule LibOperationCS ****************
  *
  * LibOperationCS:
- *   "operation" name=Name ("<" typeParameters+=LibTypeParameterCS (","
- *   typeParameters+=LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS (
- *   "," parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
- *   class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+ * 	"operation" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")? "("
+ * 	(parameters+=LibParameterCS ("," parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
+ * 	class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
  * 
- *   ";";
+ * 	";";
  *
  **/
 
-// "operation" name=Name ("<" typeParameters+=LibTypeParameterCS (","
-// typeParameters+=LibTypeParameterCS)* ">")? "(" (parameters+=LibParameterCS (","
-// parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
+// "operation" name=Name ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")? "("
+// (parameters+=LibParameterCS ("," parameters+=LibParameterCS)*)? ")" ":" type=LibTypedRefCS "=>"
 // class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
 // 
 // ";"
@@ -1975,8 +1960,7 @@ protected class LibOperationCS_NameAssignment_1 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)
-// * ">")?
+// ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
 protected class LibOperationCS_Group_2 extends GroupToken {
 	
 	public LibOperationCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2545,13 +2529,11 @@ protected class LibOperationCS_SemicolonKeyword_10 extends KeywordToken  {
 /************ begin Rule LibPackageCS ****************
  *
  * LibPackageCS:
- *   "package" name=Identifier "{" (subpackages+=LibPackageCS|
- *   classifiers+=LibClassifierCS)* "}";
+ * 	"package" name=Identifier "{" (subpackages+=LibPackageCS | classifiers+=LibClassifierCS)* "}";
  *
  **/
 
-// "package" name=Identifier "{" (subpackages+=LibPackageCS|
-// classifiers+=LibClassifierCS)* "}"
+// "package" name=Identifier "{" (subpackages+=LibPackageCS | classifiers+=LibClassifierCS)* "}"
 protected class LibPackageCS_Group extends GroupToken {
 	
 	public LibPackageCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2657,7 +2639,7 @@ protected class LibPackageCS_LeftCurlyBracketKeyword_2 extends KeywordToken  {
 
 }
 
-// (subpackages+=LibPackageCS|classifiers+=LibClassifierCS)*
+// (subpackages+=LibPackageCS | classifiers+=LibClassifierCS)*
 protected class LibPackageCS_Alternatives_3 extends AlternativesToken {
 
 	public LibPackageCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2805,13 +2787,11 @@ protected class LibPackageCS_RightCurlyBracketKeyword_4 extends KeywordToken  {
 /************ begin Rule LibParameterCS ****************
  *
  * LibParameterCS returns base::ParameterCS:
- *   name=Identifier ":" type=LibTypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
- *   multiplicity=( "*" | "+" | "?" )) "]")?;
+ * 	name=Identifier ":" type=LibTypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?;
  *
  **/
 
-// name=Identifier ":" type=LibTypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
-// multiplicity=( "*" | "+" | "?" )) "]")?
+// name=Identifier ":" type=LibTypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 protected class LibParameterCS_Group extends GroupToken {
 	
 	public LibParameterCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2942,7 +2922,7 @@ protected class LibParameterCS_TypeAssignment_2 extends AssignmentToken  {
 	}	
 }
 
-// ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+// ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 protected class LibParameterCS_Group_3 extends GroupToken {
 	
 	public LibParameterCS_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2986,7 +2966,7 @@ protected class LibParameterCS_LeftSquareBracketKeyword_3_0 extends KeywordToken
 
 }
 
-// lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+// lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 protected class LibParameterCS_Alternatives_3_1 extends AlternativesToken {
 
 	public LibParameterCS_Alternatives_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3146,7 +3126,7 @@ protected class LibParameterCS_UpperAssignment_3_1_0_1_1 extends AssignmentToken
 
 
 
-// multiplicity=( "*" | "+" | "?" )
+// multiplicity=("*" | "+" | "?")
 protected class LibParameterCS_MultiplicityAssignment_3_1_1 extends AssignmentToken  {
 	
 	public LibParameterCS_MultiplicityAssignment_3_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3170,17 +3150,17 @@ protected class LibParameterCS_MultiplicityAssignment_3_1_1 extends AssignmentTo
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("multiplicity",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("multiplicity");
-		if("*".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getLibParameterCSAccess().getMultiplicityAsteriskKeyword_3_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getLibParameterCSAccess().getMultiplicityAsteriskKeyword_3_1_1_0_0();
 			return obj;
 		}
-		if("+".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getLibParameterCSAccess().getMultiplicityPlusSignKeyword_3_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getLibParameterCSAccess().getMultiplicityPlusSignKeyword_3_1_1_0_1();
 			return obj;
 		}
-		if("?".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getLibParameterCSAccess().getMultiplicityQuestionMarkKeyword_3_1_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getLibParameterCSAccess().getMultiplicityQuestionMarkKeyword_3_1_1_0_2();
 			return obj;
@@ -3221,9 +3201,9 @@ protected class LibParameterCS_RightSquareBracketKeyword_3_2 extends KeywordToke
 /************ begin Rule LibPropertyCS ****************
  *
  * LibPropertyCS:
- *   "property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
+ * 	"property" name=Name ":" type=LibTypedRefCS "=>" class=SINGLE_QUOTED_STRING //	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
  * 
- *   ";";
+ * 	";";
  *
  **/
 
@@ -3468,13 +3448,13 @@ protected class LibPropertyCS_SemicolonKeyword_6 extends KeywordToken  {
 /************ begin Rule LibQualifiedTypeRefCS ****************
  *
  * LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
- *   namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (
- *   "," typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS;
+ * 	namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=LibTypeRefCS)* ">")?
+ * 	"::" element=LibTypedRefCS;
  *
  **/
 
-// namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
-// typeArguments+=LibTypeRefCS)* ">")? "::" element=LibTypedRefCS
+// namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=LibTypeRefCS)* ">")? "::"
+// element=LibTypedRefCS
 protected class LibQualifiedTypeRefCS_Group extends GroupToken {
 	
 	public LibQualifiedTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3821,13 +3801,11 @@ protected class LibQualifiedTypeRefCS_ElementAssignment_3 extends AssignmentToke
 /************ begin Rule LibTypeParameterCS ****************
  *
  * LibTypeParameterCS returns base::TypeParameterCS:
- *   name=Identifier ("extends" extends+=LibTypedRefCS ("&&"
- *   extends+=LibTypedRefCS)*|"super" super=LibTypedRefCS)?;
+ * 	name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)* | "super" super=LibTypedRefCS)?;
  *
  **/
 
-// name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*
-// |"super" super=LibTypedRefCS)?
+// name=Identifier ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)* | "super" super=LibTypedRefCS)?
 protected class LibTypeParameterCS_Group extends GroupToken {
 	
 	public LibTypeParameterCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3890,8 +3868,7 @@ protected class LibTypeParameterCS_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)*|"super"
-// super=LibTypedRefCS)?
+// ("extends" extends+=LibTypedRefCS ("&&" extends+=LibTypedRefCS)* | "super" super=LibTypedRefCS)?
 protected class LibTypeParameterCS_Alternatives_1 extends AlternativesToken {
 
 	public LibTypeParameterCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4197,11 +4174,11 @@ protected class LibTypeParameterCS_SuperAssignment_1_1_1 extends AssignmentToken
 /************ begin Rule LibTypeRefCS ****************
  *
  * LibTypeRefCS returns base::TypeRefCS:
- *   LibTypedRefCS|LibWildcardTypeRefCS;
+ * 	LibTypedRefCS | LibWildcardTypeRefCS;
  *
  **/
 
-// LibTypedRefCS|LibWildcardTypeRefCS
+// LibTypedRefCS | LibWildcardTypeRefCS
 protected class LibTypeRefCS_Alternatives extends AlternativesToken {
 
 	public LibTypeRefCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4313,11 +4290,11 @@ protected class LibTypeRefCS_LibWildcardTypeRefCSParserRuleCall_1 extends RuleCa
 /************ begin Rule LibTypedRefCS ****************
  *
  * LibTypedRefCS returns base::TypedRefCS:
- *   LibQualifiedTypeRefCS|LibTypedTypeRefCS;
+ * 	LibQualifiedTypeRefCS | LibTypedTypeRefCS;
  *
  **/
 
-// LibQualifiedTypeRefCS|LibTypedTypeRefCS
+// LibQualifiedTypeRefCS | LibTypedTypeRefCS
 protected class LibTypedRefCS_Alternatives extends AlternativesToken {
 
 	public LibTypedRefCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4427,13 +4404,11 @@ protected class LibTypedRefCS_LibTypedTypeRefCSParserRuleCall_1 extends RuleCall
 /************ begin Rule LibTypedTypeRefCS ****************
  *
  * LibTypedTypeRefCS returns base::TypedTypeRefCS:
- *   type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
- *   typeArguments+=LibTypeRefCS)* ">")?;
+ * 	type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=LibTypeRefCS)* ">")?;
  *
  **/
 
-// type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS (","
-// typeArguments+=LibTypeRefCS)* ">")?
+// type=[base::TypeCS|Identifier] ("<" typeArguments+=LibTypeRefCS ("," typeArguments+=LibTypeRefCS)* ">")?
 protected class LibTypedTypeRefCS_Group extends GroupToken {
 	
 	public LibTypedTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4712,13 +4687,11 @@ protected class LibTypedTypeRefCS_GreaterThanSignKeyword_1_3 extends KeywordToke
 /************ begin Rule LibWildcardTypeRefCS ****************
  *
  * LibWildcardTypeRefCS returns base::WildcardTypeRefCS:
- *   {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super"
- *   super=LibTypedRefCS)?;
+ * 	{base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS | "super" super=LibTypedRefCS)?;
  *
  **/
 
-// {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS|"super"
-// super=LibTypedRefCS)?
+// {base::WildcardTypeRefCS} "?" ("extends" extends=LibTypedRefCS | "super" super=LibTypedRefCS)?
 protected class LibWildcardTypeRefCS_Group extends GroupToken {
 	
 	public LibWildcardTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4796,7 +4769,7 @@ protected class LibWildcardTypeRefCS_QuestionMarkKeyword_1 extends KeywordToken 
 
 }
 
-// ("extends" extends=LibTypedRefCS|"super" super=LibTypedRefCS)?
+// ("extends" extends=LibTypedRefCS | "super" super=LibTypedRefCS)?
 protected class LibWildcardTypeRefCS_Alternatives_2 extends AlternativesToken {
 
 	public LibWildcardTypeRefCS_Alternatives_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
