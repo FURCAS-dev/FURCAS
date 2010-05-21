@@ -29,10 +29,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
 		//
-		//
-		//
 		//OCLinEcoreDocumentCS:
-		//  libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*;
+		//	libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*;
 		public ParserRule getRule() { return rule; }
 
 		//libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*
@@ -62,7 +60,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//INTEGER returns ecore::EInt:
-		//  INT;
+		//	INT;
 		public ParserRule getRule() { return rule; }
 
 		//INT
@@ -74,7 +72,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//LOWER returns ecore::EInt:
-		//  INT;
+		//	INT;
 		public ParserRule getRule() { return rule; }
 
 		//INT
@@ -88,10 +86,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAsteriskKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//UPPER returns ecore::EInt:
-		//  INT|"*";
+		//	INT | "*";
 		public ParserRule getRule() { return rule; }
 
-		//INT|"*"
+		//INT | "*"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//INT
@@ -138,28 +136,23 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// ANTLr cannot quite handle all the restricted keywords
 		//
-		//
-		//
 		//RestrictedKeywords returns ecore::EString:
-		//  EssentialOCLRestrictedKeywords //|	'definition'
+		//	EssentialOCLRestrictedKeywords //|	'definition'
 		//
-		//  //|	'derivation'
+		//	//|	'derivation'
 		//
-		//  //|	'postcondition'
+		//	//|	'postcondition'
 		//
-		//  //|	'precondition'
+		//	//|	'precondition'
 		//
-		//  //|	'throws'
+		//	//|	'throws'
 		//
-		//|"abstract"|"annotation"|"attribute"|"body"|"class"|"composes"|"datatype"|
-		//  "derived"|"documentation"|"enum"|"extends"|"id"|"import"|"initial"|
-		//  "interface"|"invariant"|"library"|"operation"|"ordered"|"package"|"property"|
-		//  "readonly"|"resolve"|"serializable"|"static"|"super"|"transient"|"unique"|
-		//  "unsettable"|"volatile";
+		//	| "abstract" | "annotation" | "attribute" | "body" | "class" | "composes" | "datatype" | "derived" | "documentation" |
+		//	"enum" | "extends" | "id" | "import" | "initial" | "interface" | "invariant" | "library" | "operation" | "ordered" |
+		//	"package" | "property" | "readonly" | "resolve" | "serializable" | "static" | "super" | "transient" | "unique" |
+		//	"unsettable" | "volatile";
 		public ParserRule getRule() { return rule; }
 
-		//// ANTLr cannot quite handle all the restricted keywords
-		//
 		//EssentialOCLRestrictedKeywords //|	'definition'
 		//
 		////|	'derivation'
@@ -170,15 +163,12 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//
 		////|	'throws'
 		//
-		//|"abstract"|"annotation"|"attribute"|"body"|"class"|"composes"|"datatype"|
-		//"derived"|"documentation"|"enum"|"extends"|"id"|"import"|"initial"|"interface"|
-		//"invariant"|"library"|"operation"|"ordered"|"package"|"property"|"readonly"|
-		//"resolve"|"serializable"|"static"|"super"|"transient"|"unique"|"unsettable"|
-		//"volatile"
+		//| "abstract" | "annotation" | "attribute" | "body" | "class" | "composes" | "datatype" | "derived" | "documentation" |
+		//"enum" | "extends" | "id" | "import" | "initial" | "interface" | "invariant" | "library" | "operation" | "ordered" |
+		//"package" | "property" | "readonly" | "resolve" | "serializable" | "static" | "super" | "transient" | "unique" |
+		//"unsettable" | "volatile"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//// ANTLr cannot quite handle all the restricted keywords
-		//
 		//EssentialOCLRestrictedKeywords
 		public RuleCall getEssentialOCLRestrictedKeywordsParserRuleCall_0() { return cEssentialOCLRestrictedKeywordsParserRuleCall_0; }
 
@@ -289,12 +279,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//BodyConstraintCS returns ConstraintCS:
-		//  stereotype="body" name=Identifier? ":" (exprValue=ExpCS|
-		//  exprString=UNQUOTED_STRING)? ";";
+		//	stereotype="body" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="body" name=Identifier? ":" (exprValue=ExpCS|
-		//exprString=UNQUOTED_STRING)? ";"
+		//stereotype="body" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="body"
@@ -312,7 +300,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//(exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+		//(exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//exprValue=ExpCS
@@ -345,11 +333,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//DerivedConstraintCS returns ConstraintCS:
-		//  stereotype="derivation" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
-		//;
+		//	stereotype="derivation" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="derivation" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
+		//stereotype="derivation" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="derivation"
@@ -361,7 +348,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//(exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+		//(exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//exprValue=ExpCS
@@ -394,10 +381,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//InitialConstraintCS returns ConstraintCS:
-		//  stereotype="initial" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";";
+		//	stereotype="initial" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="initial" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
+		//stereotype="initial" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="initial"
@@ -409,7 +396,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//(exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+		//(exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//exprValue=ExpCS
@@ -444,12 +431,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//InvariantConstraintCS returns ConstraintCS:
-		//  stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS|
-		//  exprString=UNQUOTED_STRING)? ";";
+		//	stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS|
-		//exprString=UNQUOTED_STRING)? ";"
+		//stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="invariant"
@@ -467,7 +452,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//(exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+		//(exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//exprValue=ExpCS
@@ -502,12 +487,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PostconditionConstraintCS returns PostconditionCS:
-		//  stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
-		//  exprString=UNQUOTED_STRING)? ";";
+		//	stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
-		//exprString=UNQUOTED_STRING)? ";"
+		//stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="postcondition"
@@ -525,7 +508,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//(exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+		//(exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//exprValue=ExpCS
@@ -560,12 +543,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PreconditionConstraintCS returns ConstraintCS:
-		//  stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS|
-		//  exprString=UNQUOTED_STRING)? ";";
+		//	stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS|
-		//exprString=UNQUOTED_STRING)? ";"
+		//stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="precondition"
@@ -583,7 +564,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//(exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+		//(exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//exprValue=ExpCS
@@ -634,22 +615,18 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3_1 = (Keyword)cAlternatives_3.eContents().get(1);
 		
 		//AnnotationCS:
-		//  "annotation" (idSource=Identifier|stringSource=SINGLE_QUOTED_STRING) ("("
-		//  details+=DetailCS ("," details+=DetailCS)* ")")? ("{" (
-		//  annotations+=AnnotationElementCS|contents+=ModelElementCS|
-		//  references+=ModelElementCSRef)+ "}"|";");
+		//	"annotation" (idSource=Identifier | stringSource=SINGLE_QUOTED_STRING) ("(" details+=DetailCS ("," details+=DetailCS)*
+		//	")")? ("{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//"annotation" (idSource=Identifier|stringSource=SINGLE_QUOTED_STRING) ("("
-		//details+=DetailCS ("," details+=DetailCS)* ")")? ("{" (
-		//annotations+=AnnotationElementCS|contents+=ModelElementCS|
-		//references+=ModelElementCSRef)+ "}"|";")
+		//"annotation" (idSource=Identifier | stringSource=SINGLE_QUOTED_STRING) ("(" details+=DetailCS ("," details+=DetailCS)*
+		//")")? ("{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//"annotation"
 		public Keyword getAnnotationKeyword_0() { return cAnnotationKeyword_0; }
 
-		//idSource=Identifier|stringSource=SINGLE_QUOTED_STRING
+		//idSource=Identifier | stringSource=SINGLE_QUOTED_STRING
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//idSource=Identifier
@@ -691,19 +668,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_2_3() { return cRightParenthesisKeyword_2_3; }
 
-		//"{" (annotations+=AnnotationElementCS|contents+=ModelElementCS|
-		//references+=ModelElementCSRef)+ "}"|";"
+		//"{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";"
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
-		//"{" (annotations+=AnnotationElementCS|contents+=ModelElementCS|
-		//references+=ModelElementCSRef)+ "}"
+		//"{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}"
 		public Group getGroup_3_0() { return cGroup_3_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3_0_0() { return cLeftCurlyBracketKeyword_3_0_0; }
 
-		//(annotations+=AnnotationElementCS|contents+=ModelElementCS|
-		//references+=ModelElementCSRef)+
+		//(annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+
 		public Alternatives getAlternatives_3_0_1() { return cAlternatives_3_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -738,10 +712,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDocumentationCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//AnnotationElementCS returns base::AnnotationElementCS:
-		//  AnnotationCS|DocumentationCS;
+		//	AnnotationCS | DocumentationCS;
 		public ParserRule getRule() { return rule; }
 
-		//AnnotationCS|DocumentationCS
+		//AnnotationCS | DocumentationCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//AnnotationCS
@@ -840,30 +814,22 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_7_1 = (Keyword)cAlternatives_7.eContents().get(1);
 		
 		//AttributeCS returns OCLinEcoreAttributeCS:
-		//  isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (
-		//  ":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*"
-		//  | "+" | "?" )) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
-		//  qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered"
-		//  | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-		//  "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-		//  qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered"
-		//  | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-		//  "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
-		//  ("{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//  DerivedConstraintCS ))* "}"|";");
+		//	isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER
+		//	(".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
+		//	qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+		//	qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+		//	(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":"
-		//type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+"
-		//| "?" )) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
-		//qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-		//"readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-		//"unsettable" | "!unsettable" | "volatile" | "!volatile" ) ("," qualifiers+=(
-		//"derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" |
-		//"!readonly" | "transient" | "!transient" | "unique" | "!unique" | "unsettable"
-		//| "!unsettable" | "volatile" | "!volatile" ))* "}")? ("{" (
-		//annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))* "}"|";")
+		//isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".."
+		//upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
+		//qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+		//qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+		//(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//isStatic?="static"?
@@ -887,8 +853,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_3_0() { return cNameIdentifierParserRuleCall_3_0; }
 
-		//(":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-		//"+" | "?" )) "]")?)?
+		//(":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//":"
@@ -900,13 +865,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedRefCS
 		public RuleCall getTypeTypedRefCSParserRuleCall_4_1_0() { return cTypeTypedRefCSParserRuleCall_4_1_0; }
 
-		//("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+		//("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 		public Group getGroup_4_2() { return cGroup_4_2; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_4_2_0() { return cLeftSquareBracketKeyword_4_2_0; }
 
-		//lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 		public Alternatives getAlternatives_4_2_1() { return cAlternatives_4_2_1; }
 
 		//lower=LOWER (".." upper=UPPER)?
@@ -930,10 +895,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UPPER
 		public RuleCall getUpperUPPERParserRuleCall_4_2_1_0_1_1_0() { return cUpperUPPERParserRuleCall_4_2_1_0_1_1_0; }
 
-		//multiplicity=( "*" | "+" | "?" )
+		//multiplicity=("*" | "+" | "?")
 		public Assignment getMultiplicityAssignment_4_2_1_1() { return cMultiplicityAssignment_4_2_1_1; }
 
-		//"*"|"+"|"?"
+		//"*" | "+" | "?"
 		public Alternatives getMultiplicityAlternatives_4_2_1_1_0() { return cMultiplicityAlternatives_4_2_1_1_0; }
 
 		//"*"
@@ -960,25 +925,21 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getDefaultValueLiteralSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0() { return cDefaultValueLiteralSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0; }
 
-		//("{" qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" |
-		//"!ordered" | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-		//"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-		//qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-		//"readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-		//"unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
+		//("{" qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+		//"transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+		//qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")?
 		public Group getGroup_6() { return cGroup_6; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6_0() { return cLeftCurlyBracketKeyword_6_0; }
 
-		//qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-		//"readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-		//"unsettable" | "!unsettable" | "volatile" | "!volatile" )
+		//qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile")
 		public Assignment getQualifiersAssignment_6_1() { return cQualifiersAssignment_6_1; }
 
-		//"derived"|"!derived"|"id"|"!id"|"ordered"|"!ordered"|"readonly"|"!readonly"|
-		//"transient"|"!transient"|"unique"|"!unique"|"unsettable"|"!unsettable"|
-		//"volatile"|"!volatile"
+		//"derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" | "!transient" |
+		//"unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"
 		public Alternatives getQualifiersAlternatives_6_1_0() { return cQualifiersAlternatives_6_1_0; }
 
 		//"derived"
@@ -1029,22 +990,19 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"!volatile"
 		public Keyword getQualifiersVolatileKeyword_6_1_0_15() { return cQualifiersVolatileKeyword_6_1_0_15; }
 
-		//("," qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" |
-		//"!ordered" | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-		//"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ))*
+		//("," qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+		//"transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))*
 		public Group getGroup_6_2() { return cGroup_6_2; }
 
 		//","
 		public Keyword getCommaKeyword_6_2_0() { return cCommaKeyword_6_2_0; }
 
-		//qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-		//"readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-		//"unsettable" | "!unsettable" | "volatile" | "!volatile" )
+		//qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile")
 		public Assignment getQualifiersAssignment_6_2_1() { return cQualifiersAssignment_6_2_1; }
 
-		//"derived"|"!derived"|"id"|"!id"|"ordered"|"!ordered"|"readonly"|"!readonly"|
-		//"transient"|"!transient"|"unique"|"!unique"|"unsettable"|"!unsettable"|
-		//"volatile"|"!volatile"
+		//"derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" | "!transient" |
+		//"unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"
 		public Alternatives getQualifiersAlternatives_6_2_1_0() { return cQualifiersAlternatives_6_2_1_0; }
 
 		//"derived"
@@ -1098,19 +1056,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6_3() { return cRightCurlyBracketKeyword_6_3; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))* "}"|";"
+		//"{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";"
 		public Alternatives getAlternatives_7() { return cAlternatives_7; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))* "}"
+		//"{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}"
 		public Group getGroup_7_0() { return cGroup_7_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_7_0_0() { return cLeftCurlyBracketKeyword_7_0_0; }
 
-		//(annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))*
+		//(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))*
 		public Alternatives getAlternatives_7_0_1() { return cAlternatives_7_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -1119,10 +1074,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//AnnotationElementCS
 		public RuleCall getAnnotationsAnnotationElementCSParserRuleCall_7_0_1_0_0() { return cAnnotationsAnnotationElementCSParserRuleCall_7_0_1_0_0; }
 
-		//constraints+=( InitialConstraintCS | DerivedConstraintCS )
+		//constraints+=(InitialConstraintCS | DerivedConstraintCS)
 		public Assignment getConstraintsAssignment_7_0_1_1() { return cConstraintsAssignment_7_0_1_1; }
 
-		//InitialConstraintCS|DerivedConstraintCS
+		//InitialConstraintCS | DerivedConstraintCS
 		public Alternatives getConstraintsAlternatives_7_0_1_1_0() { return cConstraintsAlternatives_7_0_1_1_0; }
 
 		//InitialConstraintCS
@@ -1198,24 +1153,18 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6_1 = (Keyword)cAlternatives_6.eContents().get(1);
 		
 		//ClassCS returns OCLinEcoreClassCS:
-		//  "class" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-		//  typeParameters+=TypeParameterCS)* ">")? ("extends" superTypes+=TypedRefCS (
-		//  "," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)?
-		//  ("{" qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (
-		//  "," qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))*
-		//  "}")? ("{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-		//  structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-		//  "}"|";");
+		//	"class" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? ("extends"
+		//	superTypes+=TypedRefCS ("," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
+		//	qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+		//	"interface" | "!interface"))* "}")? ("{" (annotations+=AnnotationElementCS | operations+=OperationCS |
+		//	structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//"class" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-		//typeParameters+=TypeParameterCS)* ">")? ("extends" superTypes+=TypedRefCS (","
-		//superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-		//qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (","
-		//qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))* "}")? (
-		//"{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-		//structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-		//"}"|";")
+		//"class" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? ("extends"
+		//superTypes+=TypedRefCS ("," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
+		//qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+		//"interface" | "!interface"))* "}")? ("{" (annotations+=AnnotationElementCS | operations+=OperationCS |
+		//structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//"class"
@@ -1227,8 +1176,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_1_0() { return cNameIdentifierParserRuleCall_1_0; }
 
-		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-		//?
+		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"<"
@@ -1291,17 +1239,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_4_1_0() { return cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_4_1_0; }
 
-		//("{" qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (","
-		//qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))* "}")?
+		//("{" qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+		//"interface" | "!interface"))* "}")?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_5_0() { return cLeftCurlyBracketKeyword_5_0; }
 
-		//qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" )
+		//qualifiers+=("abstract" | "!abstract" | "interface" | "!interface")
 		public Assignment getQualifiersAssignment_5_1() { return cQualifiersAssignment_5_1; }
 
-		//"abstract"|"!abstract"|"interface"|"!interface"
+		//"abstract" | "!abstract" | "interface" | "!interface"
 		public Alternatives getQualifiersAlternatives_5_1_0() { return cQualifiersAlternatives_5_1_0; }
 
 		//"abstract"
@@ -1316,16 +1264,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"!interface"
 		public Keyword getQualifiersInterfaceKeyword_5_1_0_3() { return cQualifiersInterfaceKeyword_5_1_0_3; }
 
-		//("," qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))*
+		//("," qualifiers+=("abstract" | "!abstract" | "interface" | "!interface"))*
 		public Group getGroup_5_2() { return cGroup_5_2; }
 
 		//","
 		public Keyword getCommaKeyword_5_2_0() { return cCommaKeyword_5_2_0; }
 
-		//qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" )
+		//qualifiers+=("abstract" | "!abstract" | "interface" | "!interface")
 		public Assignment getQualifiersAssignment_5_2_1() { return cQualifiersAssignment_5_2_1; }
 
-		//"abstract"|"!abstract"|"interface"|"!interface"
+		//"abstract" | "!abstract" | "interface" | "!interface"
 		public Alternatives getQualifiersAlternatives_5_2_1_0() { return cQualifiersAlternatives_5_2_1_0; }
 
 		//"abstract"
@@ -1343,21 +1291,19 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5_3() { return cRightCurlyBracketKeyword_5_3; }
 
-		//"{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-		//structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-		//"}"|";"
+		//"{" (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS |
+		//constraints+=InvariantConstraintCS)* "}" | ";"
 		public Alternatives getAlternatives_6() { return cAlternatives_6; }
 
-		//"{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-		//structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-		//"}"
+		//"{" (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS |
+		//constraints+=InvariantConstraintCS)* "}"
 		public Group getGroup_6_0() { return cGroup_6_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6_0_0() { return cLeftCurlyBracketKeyword_6_0_0; }
 
-		//(annotations+=AnnotationElementCS|operations+=OperationCS|
-		//structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
+		//(annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS |
+		//constraints+=InvariantConstraintCS)*
 		public Alternatives getAlternatives_6_0_1() { return cAlternatives_6_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -1399,10 +1345,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEnumCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ClassifierCS returns OCLinEcoreClassifierCS:
-		//  ClassCS|DataTypeCS|EnumCS;
+		//	ClassCS | DataTypeCS | EnumCS;
 		public ParserRule getRule() { return rule; }
 
-		//ClassCS|DataTypeCS|EnumCS
+		//ClassCS | DataTypeCS | EnumCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ClassCS
@@ -1427,7 +1373,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//CollectionTypeRefCS returns base::CollectionTypeRefCS:
-		//  name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?;
+		//	name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?;
 		public ParserRule getRule() { return rule; }
 
 		//name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?
@@ -1493,18 +1439,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_5_1 = (Keyword)cAlternatives_5.eContents().get(1);
 		
 		//DataTypeCS:
-		//  "datatype" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-		//  typeParameters+=TypeParameterCS)* ">")? (":"
-		//  instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "serializable" |
-		//  "!serializable" ) "}")? ("{" (annotations+=AnnotationElementCS|
-		//  constraints+=InvariantConstraintCS)* "}"|";");
+		//	"datatype" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+		//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("serializable" | "!serializable") "}")? ("{"
+		//	(annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//"datatype" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-		//typeParameters+=TypeParameterCS)* ">")? (":"
-		//instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "serializable" |
-		//"!serializable" ) "}")? ("{" (annotations+=AnnotationElementCS|
-		//constraints+=InvariantConstraintCS)* "}"|";")
+		//"datatype" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+		//instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("serializable" | "!serializable") "}")? ("{"
+		//(annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//"datatype"
@@ -1516,8 +1458,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_1_0() { return cNameIdentifierParserRuleCall_1_0; }
 
-		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-		//?
+		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"<"
@@ -1556,16 +1497,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0() { return cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0; }
 
-		//("{" qualifiers+=( "serializable" | "!serializable" ) "}")?
+		//("{" qualifiers+=("serializable" | "!serializable") "}")?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
 
-		//qualifiers+=( "serializable" | "!serializable" )
+		//qualifiers+=("serializable" | "!serializable")
 		public Assignment getQualifiersAssignment_4_1() { return cQualifiersAssignment_4_1; }
 
-		//"serializable"|"!serializable"
+		//"serializable" | "!serializable"
 		public Alternatives getQualifiersAlternatives_4_1_0() { return cQualifiersAlternatives_4_1_0; }
 
 		//"serializable"
@@ -1577,17 +1518,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=InvariantConstraintCS)* "}"|
-		//";"
+		//"{" (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";"
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=InvariantConstraintCS)* "}"
+		//"{" (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}"
 		public Group getGroup_5_0() { return cGroup_5_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_5_0_0() { return cLeftCurlyBracketKeyword_5_0_0; }
 
-		//(annotations+=AnnotationElementCS|constraints+=InvariantConstraintCS)*
+		//(annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)*
 		public Alternatives getAlternatives_5_0_1() { return cAlternatives_5_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -1622,15 +1562,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//DetailCS returns base::DetailCS:
-		//  (idName=Identifier|stringName=SINGLE_QUOTED_STRING) "="
-		//  value=SINGLE_QUOTED_STRING;
+		//	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING;
 		public ParserRule getRule() { return rule; }
 
-		//(idName=Identifier|stringName=SINGLE_QUOTED_STRING) "="
-		//value=SINGLE_QUOTED_STRING
+		//(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING
 		public Group getGroup() { return cGroup; }
 
-		//idName=Identifier|stringName=SINGLE_QUOTED_STRING
+		//idName=Identifier | stringName=SINGLE_QUOTED_STRING
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//idName=Identifier
@@ -1674,12 +1612,11 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//DocumentationCS:
-		//  {DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("("
-		//  details+=DetailCS ("," details+=DetailCS)* ")")? ";";
+		//	{DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" details+=DetailCS ("," details+=DetailCS)* ")")?
+		//	";";
 		public ParserRule getRule() { return rule; }
 
-		//{DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("("
-		//details+=DetailCS ("," details+=DetailCS)* ")")? ";"
+		//{DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" details+=DetailCS ("," details+=DetailCS)* ")")? ";"
 		public Group getGroup() { return cGroup; }
 
 		//{DocumentationCS}
@@ -1758,17 +1695,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4_1 = (Keyword)cAlternatives_4.eContents().get(1);
 		
 		//EnumCS:
-		//  "enum" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-		//  typeParameters+=TypeParameterCS)* ">")? (":"
-		//  instanceClassName=SINGLE_QUOTED_STRING)? ("{" (
-		//  annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-		//  constraints+=InvariantConstraintCS)* "}"|";");
+		//	"enum" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+		//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS |
+		//	constraints+=InvariantConstraintCS)* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//"enum" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-		//typeParameters+=TypeParameterCS)* ">")? (":"
-		//instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS
-		//|literals+=EnumLiteralCS|constraints+=InvariantConstraintCS)* "}"|";")
+		//"enum" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+		//instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS |
+		//constraints+=InvariantConstraintCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//"enum"
@@ -1780,8 +1714,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_1_0() { return cNameIdentifierParserRuleCall_1_0; }
 
-		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-		//?
+		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"<"
@@ -1820,19 +1753,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0() { return cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0; }
 
-		//"{" (annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-		//constraints+=InvariantConstraintCS)* "}"|";"
+		//"{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* "}" | ";"
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 
-		//"{" (annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-		//constraints+=InvariantConstraintCS)* "}"
+		//"{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* "}"
 		public Group getGroup_4_0() { return cGroup_4_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4_0_0() { return cLeftCurlyBracketKeyword_4_0_0; }
 
-		//(annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-		//constraints+=InvariantConstraintCS)*
+		//(annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)*
 		public Alternatives getAlternatives_4_0_1() { return cAlternatives_4_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -1878,12 +1808,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
 		
 		//EnumLiteralCS returns base::EnumLiteralCS:
-		//  name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS*
-		//  "}"|";");
+		//	name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}"|
-		//";")
+		//name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//name=Identifier
@@ -1904,7 +1832,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//INTEGER
 		public RuleCall getValueINTEGERParserRuleCall_1_1_0() { return cValueINTEGERParserRuleCall_1_1_0; }
 
-		//"{" annotations+=AnnotationElementCS* "}"|";"
+		//"{" annotations+=AnnotationElementCS* "}" | ";"
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//"{" annotations+=AnnotationElementCS* "}"
@@ -1940,12 +1868,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ImportCS returns base::ImportCS:
-		//  "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
-		//  SINGLE_QUOTED_STRING] ";";
+		//	"import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING] ";";
 		public ParserRule getRule() { return rule; }
 
-		//"import" (name=Identifier ":")? namespace=[base::NamespaceCS|
-		//SINGLE_QUOTED_STRING] ";"
+		//"import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING] ";"
 		public Group getGroup() { return cGroup; }
 
 		//"import"
@@ -1990,12 +1916,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LibraryCS returns base::LibraryCS:
-		//  "library" (name=Identifier ":")? package=[base::PackageCS|
-		//  SINGLE_QUOTED_STRING] ";";
+		//	"library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING] ";";
 		public ParserRule getRule() { return rule; }
 
-		//"library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING]
-		//";"
+		//"library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING] ";"
 		public Group getGroup() { return cGroup; }
 
 		//"library"
@@ -2036,10 +1960,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStructuralFeatureCSParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//ModelElementCS returns base::ModelElementCS:
-		//  ClassifierCS|EnumLiteralCS|OperationCS|PackageCS|StructuralFeatureCS;
+		//	ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS;
 		public ParserRule getRule() { return rule; }
 
-		//ClassifierCS|EnumLiteralCS|OperationCS|PackageCS|StructuralFeatureCS
+		//ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ClassifierCS
@@ -2065,7 +1989,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRefModelElementCSIdentifierParserRuleCall_0_1 = (RuleCall)cRefModelElementCSCrossReference_0.eContents().get(1);
 		
 		//ModelElementCSRef returns base::ModelElementCSRef:
-		//  ref=[base::ModelElementCS|Identifier];
+		//	ref=[base::ModelElementCS|Identifier];
 		public ParserRule getRule() { return rule; }
 
 		//ref=[base::ModelElementCS|Identifier]
@@ -2170,28 +2094,22 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_11_1 = (Keyword)cAlternatives_11.eContents().get(1);
 		
 		//OperationCS returns OCLinEcoreOperationCS:
-		//  isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier (
-		//  "<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)*
-		//  ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
-		//  type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-		//  "+" | "?" )) "]")?)? ("throws" exceptions+=TypedRefCS (","
-		//  exceptions+=TypedRefCS)*)? ("{" qualifiers+=( "derived" | "!derived" |
-		//  "ordered" | "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "derived"
-		//  | "!derived" | "ordered" | "!ordered" | "unique" | "!unique" ))* "}")? ("{" (
-		//  annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-		//  BodyConstraintCS | PostconditionConstraintCS ))* "}"|";");
+		//	isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<" typeParameters+=TypeParameterCS (","
+		//	typeParameters+=TypeParameterCS)* ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
+		//	type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("throws"
+		//	exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*)? ("{" qualifiers+=("derived" | "!derived" | "ordered" |
+		//	"!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" |
+		//	"!unique"))* "}")? ("{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS
+		//	| PostconditionConstraintCS))* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<"
-		//typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
-		//"(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
-		//type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+"
-		//| "?" )) "]")?)? ("throws" exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*
-		//)? ("{" qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" |
-		//"unique" | "!unique" ) ("," qualifiers+=( "derived" | "!derived" | "ordered" |
-		//"!ordered" | "unique" | "!unique" ))* "}")? ("{" (
-		//annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-		//BodyConstraintCS | PostconditionConstraintCS ))* "}"|";")
+		//isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<" typeParameters+=TypeParameterCS (","
+		//typeParameters+=TypeParameterCS)* ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
+		//type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("throws"
+		//exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*)? ("{" qualifiers+=("derived" | "!derived" | "ordered" |
+		//"!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" |
+		//"!unique"))* "}")? ("{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+		//PostconditionConstraintCS))* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//isStatic?="static"?
@@ -2215,8 +2133,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_3_0() { return cNameIdentifierParserRuleCall_3_0; }
 
-		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-		//?
+		//("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"<"
@@ -2270,8 +2187,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
 
-		//(":" type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-		//"+" | "?" )) "]")?)?
+		//(":" type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 		public Group getGroup_8() { return cGroup_8; }
 
 		//":"
@@ -2283,13 +2199,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedRefCS
 		public RuleCall getTypeTypedRefCSParserRuleCall_8_1_0() { return cTypeTypedRefCSParserRuleCall_8_1_0; }
 
-		//("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+		//("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 		public Group getGroup_8_2() { return cGroup_8_2; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_8_2_0() { return cLeftSquareBracketKeyword_8_2_0; }
 
-		//lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 		public Alternatives getAlternatives_8_2_1() { return cAlternatives_8_2_1; }
 
 		//lower=LOWER (".." upper=UPPER)?
@@ -2313,10 +2229,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UPPER
 		public RuleCall getUpperUPPERParserRuleCall_8_2_1_0_1_1_0() { return cUpperUPPERParserRuleCall_8_2_1_0_1_1_0; }
 
-		//multiplicity=( "*" | "+" | "?" )
+		//multiplicity=("*" | "+" | "?")
 		public Assignment getMultiplicityAssignment_8_2_1_1() { return cMultiplicityAssignment_8_2_1_1; }
 
-		//"*"|"+"|"?"
+		//"*" | "+" | "?"
 		public Alternatives getMultiplicityAlternatives_8_2_1_1_0() { return cMultiplicityAlternatives_8_2_1_1_0; }
 
 		//"*"
@@ -2355,19 +2271,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedRefCS
 		public RuleCall getExceptionsTypedRefCSParserRuleCall_9_2_1_0() { return cExceptionsTypedRefCSParserRuleCall_9_2_1_0; }
 
-		//("{" qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-		//"!unique" ) ("," qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered"
-		//| "unique" | "!unique" ))* "}")?
+		//("{" qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" |
+		//"!derived" | "ordered" | "!ordered" | "unique" | "!unique"))* "}")?
 		public Group getGroup_10() { return cGroup_10; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_10_0() { return cLeftCurlyBracketKeyword_10_0; }
 
-		//qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-		//"!unique" )
+		//qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique")
 		public Assignment getQualifiersAssignment_10_1() { return cQualifiersAssignment_10_1; }
 
-		//"derived"|"!derived"|"ordered"|"!ordered"|"unique"|"!unique"
+		//"derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique"
 		public Alternatives getQualifiersAlternatives_10_1_0() { return cQualifiersAlternatives_10_1_0; }
 
 		//"derived"
@@ -2388,18 +2302,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"!unique"
 		public Keyword getQualifiersUniqueKeyword_10_1_0_5() { return cQualifiersUniqueKeyword_10_1_0_5; }
 
-		//("," qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-		//"!unique" ))*
+		//("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique"))*
 		public Group getGroup_10_2() { return cGroup_10_2; }
 
 		//","
 		public Keyword getCommaKeyword_10_2_0() { return cCommaKeyword_10_2_0; }
 
-		//qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-		//"!unique" )
+		//qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique")
 		public Assignment getQualifiersAssignment_10_2_1() { return cQualifiersAssignment_10_2_1; }
 
-		//"derived"|"!derived"|"ordered"|"!ordered"|"unique"|"!unique"
+		//"derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique"
 		public Alternatives getQualifiersAlternatives_10_2_1_0() { return cQualifiersAlternatives_10_2_1_0; }
 
 		//"derived"
@@ -2423,19 +2335,19 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_10_3() { return cRightCurlyBracketKeyword_10_3; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-		//BodyConstraintCS | PostconditionConstraintCS ))* "}"|";"
+		//"{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+		//PostconditionConstraintCS))* "}" | ";"
 		public Alternatives getAlternatives_11() { return cAlternatives_11; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-		//BodyConstraintCS | PostconditionConstraintCS ))* "}"
+		//"{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+		//PostconditionConstraintCS))* "}"
 		public Group getGroup_11_0() { return cGroup_11_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_11_0_0() { return cLeftCurlyBracketKeyword_11_0_0; }
 
-		//(annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-		//BodyConstraintCS | PostconditionConstraintCS ))*
+		//(annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+		//PostconditionConstraintCS))*
 		public Alternatives getAlternatives_11_0_1() { return cAlternatives_11_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -2444,11 +2356,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//AnnotationElementCS
 		public RuleCall getAnnotationsAnnotationElementCSParserRuleCall_11_0_1_0_0() { return cAnnotationsAnnotationElementCSParserRuleCall_11_0_1_0_0; }
 
-		//constraints+=( PreconditionConstraintCS | BodyConstraintCS |
-		//PostconditionConstraintCS )
+		//constraints+=(PreconditionConstraintCS | BodyConstraintCS | PostconditionConstraintCS)
 		public Assignment getConstraintsAssignment_11_0_1_1() { return cConstraintsAssignment_11_0_1_1; }
 
-		//PreconditionConstraintCS|BodyConstraintCS|PostconditionConstraintCS
+		//PreconditionConstraintCS | BodyConstraintCS | PostconditionConstraintCS
 		public Alternatives getConstraintsAlternatives_11_0_1_1_0() { return cConstraintsAlternatives_11_0_1_1_0; }
 
 		//PreconditionConstraintCS
@@ -2494,14 +2405,12 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3_1 = (Keyword)cAlternatives_3.eContents().get(1);
 		
 		//PackageCS returns OCLinEcorePackageCS:
-		//  "package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING
-		//  )? ("{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-		//  classifiers+=ClassifierCS)* "}"|";");
+		//	"package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS
+		//	| subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//"package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)?
-		//("{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-		//classifiers+=ClassifierCS)* "}"|";")
+		//"package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS |
+		//subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -2534,19 +2443,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getUriSINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0() { return cUriSINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0; }
 
-		//"{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-		//classifiers+=ClassifierCS)* "}"|";"
+		//"{" (annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";"
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
-		//"{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-		//classifiers+=ClassifierCS)* "}"
+		//"{" (annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)* "}"
 		public Group getGroup_3_0() { return cGroup_3_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3_0_0() { return cLeftCurlyBracketKeyword_3_0_0; }
 
-		//(annotations+=AnnotationElementCS|subpackages+=PackageCS|
-		//classifiers+=ClassifierCS)*
+		//(annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)*
 		public Alternatives getAlternatives_3_0_1() { return cAlternatives_3_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -2623,17 +2529,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
 		//ParameterCS returns base::ParameterCS:
-		//  name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
-		//  multiplicity=( "*" | "+" | "?" )) "]")?)? ("{" qualifiers+=( "ordered" |
-		//  "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "ordered" | "!ordered"
-		//  | "unique" | "!unique" ))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
-		//;
+		//	name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
+		//	("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+		//	"!unique"))* "}")? ("{" annotations+=AnnotationElementCS* "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
-		//multiplicity=( "*" | "+" | "?" )) "]")?)? ("{" qualifiers+=( "ordered" |
-		//"!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "ordered" | "!ordered" |
-		//"unique" | "!unique" ))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
+		//name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
+		//("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+		//"!unique"))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
 		public Group getGroup() { return cGroup; }
 
 		//name=Identifier
@@ -2642,8 +2545,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_0_0() { return cNameIdentifierParserRuleCall_0_0; }
 
-		//(":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-		//"+" | "?" )) "]")?)?
+		//(":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//":"
@@ -2655,13 +2557,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedRefCS
 		public RuleCall getTypeTypedRefCSParserRuleCall_1_1_0() { return cTypeTypedRefCSParserRuleCall_1_1_0; }
 
-		//("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+		//("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1_2_0() { return cLeftSquareBracketKeyword_1_2_0; }
 
-		//lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 		public Alternatives getAlternatives_1_2_1() { return cAlternatives_1_2_1; }
 
 		//lower=LOWER (".." upper=UPPER)?
@@ -2685,10 +2587,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UPPER
 		public RuleCall getUpperUPPERParserRuleCall_1_2_1_0_1_1_0() { return cUpperUPPERParserRuleCall_1_2_1_0_1_1_0; }
 
-		//multiplicity=( "*" | "+" | "?" )
+		//multiplicity=("*" | "+" | "?")
 		public Assignment getMultiplicityAssignment_1_2_1_1() { return cMultiplicityAssignment_1_2_1_1; }
 
-		//"*"|"+"|"?"
+		//"*" | "+" | "?"
 		public Alternatives getMultiplicityAlternatives_1_2_1_1_0() { return cMultiplicityAlternatives_1_2_1_1_0; }
 
 		//"*"
@@ -2703,17 +2605,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_1_2_2() { return cRightSquareBracketKeyword_1_2_2; }
 
-		//("{" qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" ) (","
-		//qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" ))* "}")?
+		//("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+		//"!unique"))* "}")?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2_0() { return cLeftCurlyBracketKeyword_2_0; }
 
-		//qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" )
+		//qualifiers+=("ordered" | "!ordered" | "unique" | "!unique")
 		public Assignment getQualifiersAssignment_2_1() { return cQualifiersAssignment_2_1; }
 
-		//"ordered"|"!ordered"|"unique"|"!unique"
+		//"ordered" | "!ordered" | "unique" | "!unique"
 		public Alternatives getQualifiersAlternatives_2_1_0() { return cQualifiersAlternatives_2_1_0; }
 
 		//"ordered"
@@ -2728,16 +2630,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"!unique"
 		public Keyword getQualifiersUniqueKeyword_2_1_0_3() { return cQualifiersUniqueKeyword_2_1_0_3; }
 
-		//("," qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" ))*
+		//("," qualifiers+=("ordered" | "!ordered" | "unique" | "!unique"))*
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//","
 		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
 
-		//qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" )
+		//qualifiers+=("ordered" | "!ordered" | "unique" | "!unique")
 		public Assignment getQualifiersAssignment_2_2_1() { return cQualifiersAssignment_2_2_1; }
 
-		//"ordered"|"!ordered"|"unique"|"!unique"
+		//"ordered" | "!ordered" | "unique" | "!unique"
 		public Alternatives getQualifiersAlternatives_2_2_1_0() { return cQualifiersAlternatives_2_2_1_0; }
 
 		//"ordered"
@@ -2777,7 +2679,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNamePrimitiveTypeIdentifierParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
-		//  name=PrimitiveTypeIdentifier;
+		//	name=PrimitiveTypeIdentifier;
 		public ParserRule getRule() { return rule; }
 
 		//name=PrimitiveTypeIdentifier
@@ -2807,12 +2709,12 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementTypedRefCSParserRuleCall_3_0 = (RuleCall)cElementAssignment_3.eContents().get(0);
 		
 		//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-		//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-		//  typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS;
+		//	namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")? "::"
+		//	element=TypedRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-		//typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS
+		//namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")? "::"
+		//element=TypedRefCS
 		public Group getGroup() { return cGroup; }
 
 		//namespace=[base::NamespaceCS|Identifier]
@@ -2958,32 +2860,24 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_8_1 = (Keyword)cAlternatives_8.eContents().get(1);
 		
 		//ReferenceCS returns OCLinEcoreReferenceCS:
-		//  isStatic?="static"? isDefinition?="definition"? "property" name=Identifier (
-		//  "#" opposite=ReferenceCSRef)? (":" type=TypedRefCS ("[" (lower=LOWER (".."
-		//  upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?)? ("="
-		//  defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "composes" |
-		//  "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" |
-		//  "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique"
-		//  | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-		//  qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-		//  "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
-		//  | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
-		//  "volatile" | "!volatile" ))* "}")? ("{" (annotations+=AnnotationElementCS|
-		//  constraints+=( InitialConstraintCS | DerivedConstraintCS ))* "}"|";");
+		//	isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#" opposite=ReferenceCSRef)? (":"
+		//	type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("="
+		//	defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" |
+		//	"ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
+		//	"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" |
+		//	"derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
+		//	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+		//	(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#"
-		//opposite=ReferenceCSRef)? (":" type=TypedRefCS ("[" (lower=LOWER (".."
-		//upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?)? ("="
-		//defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "composes" |
-		//"!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" |
-		//"!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
-		//"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-		//qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-		//"!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
-		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
-		//| "!volatile" ))* "}")? ("{" (annotations+=AnnotationElementCS|constraints+=(
-		//InitialConstraintCS | DerivedConstraintCS ))* "}"|";")
+		//isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#" opposite=ReferenceCSRef)? (":"
+		//type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("="
+		//defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" |
+		//"ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
+		//"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" |
+		//"derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
+		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+		//(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//isStatic?="static"?
@@ -3019,8 +2913,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//ReferenceCSRef
 		public RuleCall getOppositeReferenceCSRefParserRuleCall_4_1_0() { return cOppositeReferenceCSRefParserRuleCall_4_1_0; }
 
-		//(":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-		//"+" | "?" )) "]")?)?
+		//(":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//":"
@@ -3032,13 +2925,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedRefCS
 		public RuleCall getTypeTypedRefCSParserRuleCall_5_1_0() { return cTypeTypedRefCSParserRuleCall_5_1_0; }
 
-		//("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+		//("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 		public Group getGroup_5_2() { return cGroup_5_2; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_5_2_0() { return cLeftSquareBracketKeyword_5_2_0; }
 
-		//lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 		public Alternatives getAlternatives_5_2_1() { return cAlternatives_5_2_1; }
 
 		//lower=LOWER (".." upper=UPPER)?
@@ -3062,10 +2955,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UPPER
 		public RuleCall getUpperUPPERParserRuleCall_5_2_1_0_1_1_0() { return cUpperUPPERParserRuleCall_5_2_1_0_1_1_0; }
 
-		//multiplicity=( "*" | "+" | "?" )
+		//multiplicity=("*" | "+" | "?")
 		public Assignment getMultiplicityAssignment_5_2_1_1() { return cMultiplicityAssignment_5_2_1_1; }
 
-		//"*"|"+"|"?"
+		//"*" | "+" | "?"
 		public Alternatives getMultiplicityAlternatives_5_2_1_1_0() { return cMultiplicityAlternatives_5_2_1_1_0; }
 
 		//"*"
@@ -3092,27 +2985,24 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getDefaultValueLiteralSINGLE_QUOTED_STRINGTerminalRuleCall_6_1_0() { return cDefaultValueLiteralSINGLE_QUOTED_STRINGTerminalRuleCall_6_1_0; }
 
-		//("{" qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered"
-		//| "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
-		//| "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
-		//"volatile" | "!volatile" ) ("," qualifiers+=( "composes" | "!composes" |
-		//"derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" |
-		//"resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" |
-		//"unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
+		//("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly"
+		//| "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
+		//"volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered"
+		//| "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable"
+		//| "!unsettable" | "volatile" | "!volatile"))* "}")?
 		public Group getGroup_7() { return cGroup_7; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_7_0() { return cLeftCurlyBracketKeyword_7_0; }
 
-		//qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-		//"!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
-		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
-		//| "!volatile" )
+		//qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+		//"resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
+		//| "!volatile")
 		public Assignment getQualifiersAssignment_7_1() { return cQualifiersAssignment_7_1; }
 
-		//"composes"|"!composes"|"derived"|"!derived"|"ordered"|"!ordered"|"readonly"|
-		//"!readonly"|"resolve"|"!resolve"|"transient"|"!transient"|"unique"|"!unique"|
-		//"unsettable"|"!unsettable"|"volatile"|"!volatile"
+		//"composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" |
+		//"!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" |
+		//"!volatile"
 		public Alternatives getQualifiersAlternatives_7_1_0() { return cQualifiersAlternatives_7_1_0; }
 
 		//"composes"
@@ -3169,24 +3059,22 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"!volatile"
 		public Keyword getQualifiersVolatileKeyword_7_1_0_17() { return cQualifiersVolatileKeyword_7_1_0_17; }
 
-		//("," qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered"
-		//| "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
-		//| "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
-		//"volatile" | "!volatile" ))*
+		//("," qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly"
+		//| "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
+		//"volatile" | "!volatile"))*
 		public Group getGroup_7_2() { return cGroup_7_2; }
 
 		//","
 		public Keyword getCommaKeyword_7_2_0() { return cCommaKeyword_7_2_0; }
 
-		//qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-		//"!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
-		//"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
-		//| "!volatile" )
+		//qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+		//"resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
+		//| "!volatile")
 		public Assignment getQualifiersAssignment_7_2_1() { return cQualifiersAssignment_7_2_1; }
 
-		//"composes"|"!composes"|"derived"|"!derived"|"ordered"|"!ordered"|"readonly"|
-		//"!readonly"|"resolve"|"!resolve"|"transient"|"!transient"|"unique"|"!unique"|
-		//"unsettable"|"!unsettable"|"volatile"|"!volatile"
+		//"composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" |
+		//"!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" |
+		//"!volatile"
 		public Alternatives getQualifiersAlternatives_7_2_1_0() { return cQualifiersAlternatives_7_2_1_0; }
 
 		//"composes"
@@ -3246,19 +3134,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_7_3() { return cRightCurlyBracketKeyword_7_3; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))* "}"|";"
+		//"{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";"
 		public Alternatives getAlternatives_8() { return cAlternatives_8; }
 
-		//"{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))* "}"
+		//"{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}"
 		public Group getGroup_8_0() { return cGroup_8_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_8_0_0() { return cLeftCurlyBracketKeyword_8_0_0; }
 
-		//(annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-		//DerivedConstraintCS ))*
+		//(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))*
 		public Alternatives getAlternatives_8_0_1() { return cAlternatives_8_0_1; }
 
 		//annotations+=AnnotationElementCS
@@ -3267,10 +3152,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//AnnotationElementCS
 		public RuleCall getAnnotationsAnnotationElementCSParserRuleCall_8_0_1_0_0() { return cAnnotationsAnnotationElementCSParserRuleCall_8_0_1_0_0; }
 
-		//constraints+=( InitialConstraintCS | DerivedConstraintCS )
+		//constraints+=(InitialConstraintCS | DerivedConstraintCS)
 		public Assignment getConstraintsAssignment_8_0_1_1() { return cConstraintsAssignment_8_0_1_1; }
 
-		//InitialConstraintCS|DerivedConstraintCS
+		//InitialConstraintCS | DerivedConstraintCS
 		public Alternatives getConstraintsAlternatives_8_0_1_1_0() { return cConstraintsAlternatives_8_0_1_1_0; }
 
 		//InitialConstraintCS
@@ -3293,7 +3178,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRefReferenceCSIdentifierParserRuleCall_0_1 = (RuleCall)cRefReferenceCSCrossReference_0.eContents().get(1);
 		
 		//ReferenceCSRef returns base::ReferenceCSRef:
-		//  ref=[base::ReferenceCS|Identifier];
+		//	ref=[base::ReferenceCS|Identifier];
 		public ParserRule getRule() { return rule; }
 
 		//ref=[base::ReferenceCS|Identifier]
@@ -3313,10 +3198,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReferenceCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//StructuralFeatureCS returns OCLinEcoreStructuralFeatureCS:
-		//  AttributeCS|ReferenceCS;
+		//	AttributeCS | ReferenceCS;
 		public ParserRule getRule() { return rule; }
 
-		//AttributeCS|ReferenceCS
+		//AttributeCS | ReferenceCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//AttributeCS
@@ -3333,10 +3218,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPrimitiveTypeIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//TypeIdentifier returns ecore::EString:
-		//  Identifier|PrimitiveTypeIdentifier;
+		//	Identifier | PrimitiveTypeIdentifier;
 		public ParserRule getRule() { return rule; }
 
-		//Identifier|PrimitiveTypeIdentifier
+		//Identifier | PrimitiveTypeIdentifier
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Identifier
@@ -3366,12 +3251,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuperTypedRefCSParserRuleCall_1_1_1_0 = (RuleCall)cSuperAssignment_1_1_1.eContents().get(0);
 		
 		//TypeParameterCS returns base::TypeParameterCS:
-		//  name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|
-		//  "super" super=TypedRefCS)?;
+		//	name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|
-		//"super" super=TypedRefCS)?
+		//name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?
 		public Group getGroup() { return cGroup; }
 
 		//name=Identifier
@@ -3380,8 +3263,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getNameIdentifierParserRuleCall_0_0() { return cNameIdentifierParserRuleCall_0_0; }
 
-		//("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|"super"
-		//super=TypedRefCS)?
+		//("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//"extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*
@@ -3428,10 +3310,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWildcardTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//TypeRefCS returns base::TypeRefCS:
-		//  TypedRefCS|WildcardTypeRefCS;
+		//	TypedRefCS | WildcardTypeRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//TypedRefCS|WildcardTypeRefCS
+		//TypedRefCS | WildcardTypeRefCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//TypedRefCS
@@ -3450,10 +3332,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypedTypeRefCSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//TypedRefCS returns base::TypedRefCS:
-		//  QualifiedTypeRefCS|PrimitiveTypeRefCS|CollectionTypeRefCS|TypedTypeRefCS;
+		//	QualifiedTypeRefCS | PrimitiveTypeRefCS | CollectionTypeRefCS | TypedTypeRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//QualifiedTypeRefCS|PrimitiveTypeRefCS|CollectionTypeRefCS|TypedTypeRefCS
+		//QualifiedTypeRefCS | PrimitiveTypeRefCS | CollectionTypeRefCS | TypedTypeRefCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//QualifiedTypeRefCS
@@ -3486,12 +3368,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
-		//  type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-		//  typeArguments+=TypeRefCS)* ">")?;
+		//	type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")?;
 		public ParserRule getRule() { return rule; }
 
-		//type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-		//typeArguments+=TypeRefCS)* ">")?
+		//type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")?
 		public Group getGroup() { return cGroup; }
 
 		//type=[base::TypeCS|Identifier]
@@ -3547,12 +3427,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSuperTypedRefCSParserRuleCall_2_1_1_0 = (RuleCall)cSuperAssignment_2_1_1.eContents().get(0);
 		
 		//WildcardTypeRefCS returns base::WildcardTypeRefCS:
-		//  {base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS|"super"
-		//  super=TypedRefCS)?;
+		//	{base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS | "super" super=TypedRefCS)?;
 		public ParserRule getRule() { return rule; }
 
-		//{base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS|"super"
-		//super=TypedRefCS)?
+		//{base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS | "super" super=TypedRefCS)?
 		public Group getGroup() { return cGroup; }
 
 		//{base::WildcardTypeRefCS}
@@ -3561,7 +3439,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"?"
 		public Keyword getQuestionMarkKeyword_1() { return cQuestionMarkKeyword_1; }
 
-		//("extends" extends=TypedRefCS|"super" super=TypedRefCS)?
+		//("extends" extends=TypedRefCS | "super" super=TypedRefCS)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//"extends" extends=TypedRefCS
@@ -3655,10 +3533,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	////generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
 	//
-	//
-	//
 	//OCLinEcoreDocumentCS:
-	//  libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*;
+	//	libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*;
 	public OCLinEcoreDocumentCSElements getOCLinEcoreDocumentCSAccess() {
 		return (pOCLinEcoreDocumentCS != null) ? pOCLinEcoreDocumentCS : (pOCLinEcoreDocumentCS = new OCLinEcoreDocumentCSElements());
 	}
@@ -3669,18 +3545,15 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Never forward parsed; just provides a placeholder
 	//
+	//terminal UNQUOTED_STRING: //  for reverse serialisation of embedded OCL 
 	//
-	//
-	//terminal UNQUOTED_STRING:
-	////  for reverse serialisation of embedded OCL 
-	//
-	//  "£$%^£$%^";
+	//	"£$%^£$%^";
 	public TerminalRule getUNQUOTED_STRINGRule() {
 		return (tUNQUOTED_STRING != null) ? tUNQUOTED_STRING : (tUNQUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNQUOTED_STRING"));
 	} 
 
 	//INTEGER returns ecore::EInt:
-	//  INT;
+	//	INT;
 	public INTEGERElements getINTEGERAccess() {
 		return (pINTEGER != null) ? pINTEGER : (pINTEGER = new INTEGERElements());
 	}
@@ -3690,7 +3563,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LOWER returns ecore::EInt:
-	//  INT;
+	//	INT;
 	public LOWERElements getLOWERAccess() {
 		return (pLOWER != null) ? pLOWER : (pLOWER = new LOWERElements());
 	}
@@ -3700,7 +3573,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UPPER returns ecore::EInt:
-	//  INT|"*";
+	//	INT | "*";
 	public UPPERElements getUPPERAccess() {
 		return (pUPPER != null) ? pUPPER : (pUPPER = new UPPERElements());
 	}
@@ -3711,24 +3584,21 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// ANTLr cannot quite handle all the restricted keywords
 	//
-	//
-	//
 	//RestrictedKeywords returns ecore::EString:
-	//  EssentialOCLRestrictedKeywords //|	'definition'
+	//	EssentialOCLRestrictedKeywords //|	'definition'
 	//
-	//  //|	'derivation'
+	//	//|	'derivation'
 	//
-	//  //|	'postcondition'
+	//	//|	'postcondition'
 	//
-	//  //|	'precondition'
+	//	//|	'precondition'
 	//
-	//  //|	'throws'
+	//	//|	'throws'
 	//
-	//|"abstract"|"annotation"|"attribute"|"body"|"class"|"composes"|"datatype"|
-	//  "derived"|"documentation"|"enum"|"extends"|"id"|"import"|"initial"|
-	//  "interface"|"invariant"|"library"|"operation"|"ordered"|"package"|"property"|
-	//  "readonly"|"resolve"|"serializable"|"static"|"super"|"transient"|"unique"|
-	//  "unsettable"|"volatile";
+	//	| "abstract" | "annotation" | "attribute" | "body" | "class" | "composes" | "datatype" | "derived" | "documentation" |
+	//	"enum" | "extends" | "id" | "import" | "initial" | "interface" | "invariant" | "library" | "operation" | "ordered" |
+	//	"package" | "property" | "readonly" | "resolve" | "serializable" | "static" | "super" | "transient" | "unique" |
+	//	"unsettable" | "volatile";
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return (pRestrictedKeywords != null) ? pRestrictedKeywords : (pRestrictedKeywords = new RestrictedKeywordsElements());
 	}
@@ -3738,8 +3608,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BodyConstraintCS returns ConstraintCS:
-	//  stereotype="body" name=Identifier? ":" (exprValue=ExpCS|
-	//  exprString=UNQUOTED_STRING)? ";";
+	//	stereotype="body" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 	public BodyConstraintCSElements getBodyConstraintCSAccess() {
 		return (pBodyConstraintCS != null) ? pBodyConstraintCS : (pBodyConstraintCS = new BodyConstraintCSElements());
 	}
@@ -3749,8 +3618,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DerivedConstraintCS returns ConstraintCS:
-	//  stereotype="derivation" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
-	//;
+	//	stereotype="derivation" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 	public DerivedConstraintCSElements getDerivedConstraintCSAccess() {
 		return (pDerivedConstraintCS != null) ? pDerivedConstraintCS : (pDerivedConstraintCS = new DerivedConstraintCSElements());
 	}
@@ -3760,7 +3628,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InitialConstraintCS returns ConstraintCS:
-	//  stereotype="initial" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";";
+	//	stereotype="initial" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 	public InitialConstraintCSElements getInitialConstraintCSAccess() {
 		return (pInitialConstraintCS != null) ? pInitialConstraintCS : (pInitialConstraintCS = new InitialConstraintCSElements());
 	}
@@ -3770,8 +3638,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InvariantConstraintCS returns ConstraintCS:
-	//  stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS|
-	//  exprString=UNQUOTED_STRING)? ";";
+	//	stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 	public InvariantConstraintCSElements getInvariantConstraintCSAccess() {
 		return (pInvariantConstraintCS != null) ? pInvariantConstraintCS : (pInvariantConstraintCS = new InvariantConstraintCSElements());
 	}
@@ -3781,8 +3648,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PostconditionConstraintCS returns PostconditionCS:
-	//  stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
-	//  exprString=UNQUOTED_STRING)? ";";
+	//	stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 	public PostconditionConstraintCSElements getPostconditionConstraintCSAccess() {
 		return (pPostconditionConstraintCS != null) ? pPostconditionConstraintCS : (pPostconditionConstraintCS = new PostconditionConstraintCSElements());
 	}
@@ -3792,8 +3658,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PreconditionConstraintCS returns ConstraintCS:
-	//  stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS|
-	//  exprString=UNQUOTED_STRING)? ";";
+	//	stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
 	public PreconditionConstraintCSElements getPreconditionConstraintCSAccess() {
 		return (pPreconditionConstraintCS != null) ? pPreconditionConstraintCS : (pPreconditionConstraintCS = new PreconditionConstraintCSElements());
 	}
@@ -3803,10 +3668,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnnotationCS:
-	//  "annotation" (idSource=Identifier|stringSource=SINGLE_QUOTED_STRING) ("("
-	//  details+=DetailCS ("," details+=DetailCS)* ")")? ("{" (
-	//  annotations+=AnnotationElementCS|contents+=ModelElementCS|
-	//  references+=ModelElementCSRef)+ "}"|";");
+	//	"annotation" (idSource=Identifier | stringSource=SINGLE_QUOTED_STRING) ("(" details+=DetailCS ("," details+=DetailCS)*
+	//	")")? ("{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";");
 	public AnnotationCSElements getAnnotationCSAccess() {
 		return (pAnnotationCS != null) ? pAnnotationCS : (pAnnotationCS = new AnnotationCSElements());
 	}
@@ -3816,7 +3679,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnnotationElementCS returns base::AnnotationElementCS:
-	//  AnnotationCS|DocumentationCS;
+	//	AnnotationCS | DocumentationCS;
 	public AnnotationElementCSElements getAnnotationElementCSAccess() {
 		return (pAnnotationElementCS != null) ? pAnnotationElementCS : (pAnnotationElementCS = new AnnotationElementCSElements());
 	}
@@ -3826,17 +3689,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AttributeCS returns OCLinEcoreAttributeCS:
-	//  isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (
-	//  ":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*"
-	//  | "+" | "?" )) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
-	//  qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered"
-	//  | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-	//  "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-	//  qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered"
-	//  | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-	//  "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
-	//  ("{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-	//  DerivedConstraintCS ))* "}"|";");
+	//	isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER
+	//	(".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
+	//	qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+	//	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+	//	qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+	//	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+	//	(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";");
 	public AttributeCSElements getAttributeCSAccess() {
 		return (pAttributeCS != null) ? pAttributeCS : (pAttributeCS = new AttributeCSElements());
 	}
@@ -3846,14 +3705,11 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassCS returns OCLinEcoreClassCS:
-	//  "class" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-	//  typeParameters+=TypeParameterCS)* ">")? ("extends" superTypes+=TypedRefCS (
-	//  "," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)?
-	//  ("{" qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (
-	//  "," qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))*
-	//  "}")? ("{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-	//  structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-	//  "}"|";");
+	//	"class" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? ("extends"
+	//	superTypes+=TypedRefCS ("," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
+	//	qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+	//	"interface" | "!interface"))* "}")? ("{" (annotations+=AnnotationElementCS | operations+=OperationCS |
+	//	structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* "}" | ";");
 	public ClassCSElements getClassCSAccess() {
 		return (pClassCS != null) ? pClassCS : (pClassCS = new ClassCSElements());
 	}
@@ -3863,7 +3719,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassifierCS returns OCLinEcoreClassifierCS:
-	//  ClassCS|DataTypeCS|EnumCS;
+	//	ClassCS | DataTypeCS | EnumCS;
 	public ClassifierCSElements getClassifierCSAccess() {
 		return (pClassifierCS != null) ? pClassifierCS : (pClassifierCS = new ClassifierCSElements());
 	}
@@ -3873,7 +3729,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeRefCS returns base::CollectionTypeRefCS:
-	//  name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?;
+	//	name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?;
 	public CollectionTypeRefCSElements getCollectionTypeRefCSAccess() {
 		return (pCollectionTypeRefCS != null) ? pCollectionTypeRefCS : (pCollectionTypeRefCS = new CollectionTypeRefCSElements());
 	}
@@ -3883,11 +3739,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DataTypeCS:
-	//  "datatype" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-	//  typeParameters+=TypeParameterCS)* ">")? (":"
-	//  instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "serializable" |
-	//  "!serializable" ) "}")? ("{" (annotations+=AnnotationElementCS|
-	//  constraints+=InvariantConstraintCS)* "}"|";");
+	//	"datatype" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+	//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("serializable" | "!serializable") "}")? ("{"
+	//	(annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";");
 	public DataTypeCSElements getDataTypeCSAccess() {
 		return (pDataTypeCS != null) ? pDataTypeCS : (pDataTypeCS = new DataTypeCSElements());
 	}
@@ -3897,8 +3751,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DetailCS returns base::DetailCS:
-	//  (idName=Identifier|stringName=SINGLE_QUOTED_STRING) "="
-	//  value=SINGLE_QUOTED_STRING;
+	//	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING;
 	public DetailCSElements getDetailCSAccess() {
 		return (pDetailCS != null) ? pDetailCS : (pDetailCS = new DetailCSElements());
 	}
@@ -3908,8 +3761,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DocumentationCS:
-	//  {DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("("
-	//  details+=DetailCS ("," details+=DetailCS)* ")")? ";";
+	//	{DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" details+=DetailCS ("," details+=DetailCS)* ")")?
+	//	";";
 	public DocumentationCSElements getDocumentationCSAccess() {
 		return (pDocumentationCS != null) ? pDocumentationCS : (pDocumentationCS = new DocumentationCSElements());
 	}
@@ -3919,11 +3772,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumCS:
-	//  "enum" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-	//  typeParameters+=TypeParameterCS)* ">")? (":"
-	//  instanceClassName=SINGLE_QUOTED_STRING)? ("{" (
-	//  annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-	//  constraints+=InvariantConstraintCS)* "}"|";");
+	//	"enum" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+	//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS |
+	//	constraints+=InvariantConstraintCS)* "}" | ";");
 	public EnumCSElements getEnumCSAccess() {
 		return (pEnumCS != null) ? pEnumCS : (pEnumCS = new EnumCSElements());
 	}
@@ -3933,8 +3784,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumLiteralCS returns base::EnumLiteralCS:
-	//  name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS*
-	//  "}"|";");
+	//	name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}" | ";");
 	public EnumLiteralCSElements getEnumLiteralCSAccess() {
 		return (pEnumLiteralCS != null) ? pEnumLiteralCS : (pEnumLiteralCS = new EnumLiteralCSElements());
 	}
@@ -3944,8 +3794,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportCS returns base::ImportCS:
-	//  "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
-	//  SINGLE_QUOTED_STRING] ";";
+	//	"import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING] ";";
 	public ImportCSElements getImportCSAccess() {
 		return (pImportCS != null) ? pImportCS : (pImportCS = new ImportCSElements());
 	}
@@ -3955,8 +3804,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibraryCS returns base::LibraryCS:
-	//  "library" (name=Identifier ":")? package=[base::PackageCS|
-	//  SINGLE_QUOTED_STRING] ";";
+	//	"library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING] ";";
 	public LibraryCSElements getLibraryCSAccess() {
 		return (pLibraryCS != null) ? pLibraryCS : (pLibraryCS = new LibraryCSElements());
 	}
@@ -3966,7 +3814,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ModelElementCS returns base::ModelElementCS:
-	//  ClassifierCS|EnumLiteralCS|OperationCS|PackageCS|StructuralFeatureCS;
+	//	ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS;
 	public ModelElementCSElements getModelElementCSAccess() {
 		return (pModelElementCS != null) ? pModelElementCS : (pModelElementCS = new ModelElementCSElements());
 	}
@@ -3976,7 +3824,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ModelElementCSRef returns base::ModelElementCSRef:
-	//  ref=[base::ModelElementCS|Identifier];
+	//	ref=[base::ModelElementCS|Identifier];
 	public ModelElementCSRefElements getModelElementCSRefAccess() {
 		return (pModelElementCSRef != null) ? pModelElementCSRef : (pModelElementCSRef = new ModelElementCSRefElements());
 	}
@@ -3986,16 +3834,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OperationCS returns OCLinEcoreOperationCS:
-	//  isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier (
-	//  "<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)*
-	//  ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
-	//  type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-	//  "+" | "?" )) "]")?)? ("throws" exceptions+=TypedRefCS (","
-	//  exceptions+=TypedRefCS)*)? ("{" qualifiers+=( "derived" | "!derived" |
-	//  "ordered" | "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "derived"
-	//  | "!derived" | "ordered" | "!ordered" | "unique" | "!unique" ))* "}")? ("{" (
-	//  annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-	//  BodyConstraintCS | PostconditionConstraintCS ))* "}"|";");
+	//	isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<" typeParameters+=TypeParameterCS (","
+	//	typeParameters+=TypeParameterCS)* ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
+	//	type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("throws"
+	//	exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*)? ("{" qualifiers+=("derived" | "!derived" | "ordered" |
+	//	"!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" |
+	//	"!unique"))* "}")? ("{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS
+	//	| PostconditionConstraintCS))* "}" | ";");
 	public OperationCSElements getOperationCSAccess() {
 		return (pOperationCS != null) ? pOperationCS : (pOperationCS = new OperationCSElements());
 	}
@@ -4005,9 +3850,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PackageCS returns OCLinEcorePackageCS:
-	//  "package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING
-	//  )? ("{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-	//  classifiers+=ClassifierCS)* "}"|";");
+	//	"package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS
+	//	| subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";");
 	public PackageCSElements getPackageCSAccess() {
 		return (pPackageCS != null) ? pPackageCS : (pPackageCS = new PackageCSElements());
 	}
@@ -4017,11 +3861,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParameterCS returns base::ParameterCS:
-	//  name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
-	//  multiplicity=( "*" | "+" | "?" )) "]")?)? ("{" qualifiers+=( "ordered" |
-	//  "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "ordered" | "!ordered"
-	//  | "unique" | "!unique" ))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
-	//;
+	//	name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
+	//	("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+	//	"!unique"))* "}")? ("{" annotations+=AnnotationElementCS* "}")?;
 	public ParameterCSElements getParameterCSAccess() {
 		return (pParameterCS != null) ? pParameterCS : (pParameterCS = new ParameterCSElements());
 	}
@@ -4031,7 +3873,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
-	//  name=PrimitiveTypeIdentifier;
+	//	name=PrimitiveTypeIdentifier;
 	public PrimitiveTypeRefCSElements getPrimitiveTypeRefCSAccess() {
 		return (pPrimitiveTypeRefCS != null) ? pPrimitiveTypeRefCS : (pPrimitiveTypeRefCS = new PrimitiveTypeRefCSElements());
 	}
@@ -4041,8 +3883,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	//  namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-	//  typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS;
+	//	namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")? "::"
+	//	element=TypedRefCS;
 	public QualifiedTypeRefCSElements getQualifiedTypeRefCSAccess() {
 		return (pQualifiedTypeRefCS != null) ? pQualifiedTypeRefCS : (pQualifiedTypeRefCS = new QualifiedTypeRefCSElements());
 	}
@@ -4052,18 +3894,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ReferenceCS returns OCLinEcoreReferenceCS:
-	//  isStatic?="static"? isDefinition?="definition"? "property" name=Identifier (
-	//  "#" opposite=ReferenceCSRef)? (":" type=TypedRefCS ("[" (lower=LOWER (".."
-	//  upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?)? ("="
-	//  defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "composes" |
-	//  "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" |
-	//  "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique"
-	//  | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-	//  qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-	//  "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
-	//  | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
-	//  "volatile" | "!volatile" ))* "}")? ("{" (annotations+=AnnotationElementCS|
-	//  constraints+=( InitialConstraintCS | DerivedConstraintCS ))* "}"|";");
+	//	isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#" opposite=ReferenceCSRef)? (":"
+	//	type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("="
+	//	defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" |
+	//	"ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
+	//	"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" |
+	//	"derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
+	//	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+	//	(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";");
 	public ReferenceCSElements getReferenceCSAccess() {
 		return (pReferenceCS != null) ? pReferenceCS : (pReferenceCS = new ReferenceCSElements());
 	}
@@ -4073,7 +3911,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ReferenceCSRef returns base::ReferenceCSRef:
-	//  ref=[base::ReferenceCS|Identifier];
+	//	ref=[base::ReferenceCS|Identifier];
 	public ReferenceCSRefElements getReferenceCSRefAccess() {
 		return (pReferenceCSRef != null) ? pReferenceCSRef : (pReferenceCSRef = new ReferenceCSRefElements());
 	}
@@ -4083,7 +3921,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructuralFeatureCS returns OCLinEcoreStructuralFeatureCS:
-	//  AttributeCS|ReferenceCS;
+	//	AttributeCS | ReferenceCS;
 	public StructuralFeatureCSElements getStructuralFeatureCSAccess() {
 		return (pStructuralFeatureCS != null) ? pStructuralFeatureCS : (pStructuralFeatureCS = new StructuralFeatureCSElements());
 	}
@@ -4093,7 +3931,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeIdentifier returns ecore::EString:
-	//  Identifier|PrimitiveTypeIdentifier;
+	//	Identifier | PrimitiveTypeIdentifier;
 	public TypeIdentifierElements getTypeIdentifierAccess() {
 		return (pTypeIdentifier != null) ? pTypeIdentifier : (pTypeIdentifier = new TypeIdentifierElements());
 	}
@@ -4103,8 +3941,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeParameterCS returns base::TypeParameterCS:
-	//  name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|
-	//  "super" super=TypedRefCS)?;
+	//	name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?;
 	public TypeParameterCSElements getTypeParameterCSAccess() {
 		return (pTypeParameterCS != null) ? pTypeParameterCS : (pTypeParameterCS = new TypeParameterCSElements());
 	}
@@ -4114,7 +3951,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeRefCS returns base::TypeRefCS:
-	//  TypedRefCS|WildcardTypeRefCS;
+	//	TypedRefCS | WildcardTypeRefCS;
 	public TypeRefCSElements getTypeRefCSAccess() {
 		return (pTypeRefCS != null) ? pTypeRefCS : (pTypeRefCS = new TypeRefCSElements());
 	}
@@ -4124,7 +3961,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedRefCS returns base::TypedRefCS:
-	//  QualifiedTypeRefCS|PrimitiveTypeRefCS|CollectionTypeRefCS|TypedTypeRefCS;
+	//	QualifiedTypeRefCS | PrimitiveTypeRefCS | CollectionTypeRefCS | TypedTypeRefCS;
 	public TypedRefCSElements getTypedRefCSAccess() {
 		return (pTypedRefCS != null) ? pTypedRefCS : (pTypedRefCS = new TypedRefCSElements());
 	}
@@ -4134,8 +3971,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
-	//  type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-	//  typeArguments+=TypeRefCS)* ">")?;
+	//	type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return (pTypedTypeRefCS != null) ? pTypedTypeRefCS : (pTypedTypeRefCS = new TypedTypeRefCSElements());
 	}
@@ -4145,8 +3981,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//WildcardTypeRefCS returns base::WildcardTypeRefCS:
-	//  {base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS|"super"
-	//  super=TypedRefCS)?;
+	//	{base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS | "super" super=TypedRefCS)?;
 	public WildcardTypeRefCSElements getWildcardTypeRefCSAccess() {
 		return (pWildcardTypeRefCS != null) ? pWildcardTypeRefCS : (pWildcardTypeRefCS = new WildcardTypeRefCSElements());
 	}
@@ -4157,10 +3992,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 	//
-	//
-	//
 	//Model returns ExpCS:
-	//  ExpCS;
+	//	ExpCS;
 	public EssentialOCLGrammarAccess.ModelElements getModelAccess() {
 		return gaEssentialOCL.getModelAccess();
 	}
@@ -4170,47 +4003,35 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOUBLE_QUOTED_STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
-	//  ))* "\"";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
 		return gaEssentialOCL.getDOUBLE_QUOTED_STRINGRule();
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
-	//  "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"
-	//  ))* "\'";
+	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return gaEssentialOCL.getSINGLE_QUOTED_STRINGRule();
 	} 
 
-	//// NB not "ID" to ensure implicit use of ID is an error
-	//
-	//
-	//
-	//terminal ID_TERMINAL:
-	//  ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* //| 	("_'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'")
-	//
-	//  | "_" SINGLE_QUOTED_STRING;
-	public TerminalRule getID_TERMINALRule() {
-		return gaEssentialOCL.getID_TERMINALRule();
+	//terminal ID:
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" SINGLE_QUOTED_STRING;
+	public TerminalRule getIDRule() {
+		return gaEssentialOCL.getIDRule();
 	} 
 
 	//// String to allow diverse re-use
 	//
-	//
-	//
 	//terminal INT:
-	//  "0".."9"+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaEssentialOCL.getINTRule();
 	} 
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
 	//
-	//
-	//
 	//NUMBER_LITERAL returns BigNumber:
-	//  INT ("." INT)? (("e"|"E") ("+"|"-")? INT)?;
+	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
 	public EssentialOCLGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
 		return gaEssentialOCL.getNUMBER_LITERALAccess();
 	}
@@ -4220,31 +4041,31 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal ML_COMMENT:
-	//  "/ *"->"* /";
+	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaEssentialOCL.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "--" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"--" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaEssentialOCL.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  (" " | "\t" | "\r" | "\n")+;
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaEssentialOCL.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
-	//  .;
+	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return gaEssentialOCL.getANY_OTHERRule();
 	} 
 
 	//EssentialOCLReservedKeywords returns ecore::EString:
-	//  "and"|"else"|"endif"|"if"|"implies"|"in"|"let"|"not"|"or"|"then"|"xor";
+	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 	public EssentialOCLGrammarAccess.EssentialOCLReservedKeywordsElements getEssentialOCLReservedKeywordsAccess() {
 		return gaEssentialOCL.getEssentialOCLReservedKeywordsAccess();
 	}
@@ -4254,7 +4075,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLRestrictedKeywords returns ecore::EString:
-	//  "e"|"E";
+	//	"e" | "E";
 	public EssentialOCLGrammarAccess.EssentialOCLRestrictedKeywordsElements getEssentialOCLRestrictedKeywordsAccess() {
 		return gaEssentialOCL.getEssentialOCLRestrictedKeywordsAccess();
 	}
@@ -4264,7 +4085,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Identifier returns ecore::EString:
-	//  ID_TERMINAL|RestrictedKeywords;
+	//	ID | RestrictedKeywords;
 	public EssentialOCLGrammarAccess.IdentifierElements getIdentifierAccess() {
 		return gaEssentialOCL.getIdentifierAccess();
 	}
@@ -4274,7 +4095,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral returns ecore::EString:
-	//  SINGLE_QUOTED_STRING;
+	//	SINGLE_QUOTED_STRING;
 	public EssentialOCLGrammarAccess.StringLiteralElements getStringLiteralAccess() {
 		return gaEssentialOCL.getStringLiteralAccess();
 	}
@@ -4325,17 +4146,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//conceptualOperationNameCS returns SimpleNameCS:
 	//
-	//	conceptualOperationName; * /
+	//	conceptualOperationName; * // *tupleKeywordCS returns ecore::EString:
 	//
-	//
-	//
-	/// *tupleKeywordCS returns ecore::EString:
-	//
-	//	value='Tuple'; * /
-	//
-	//
-	//
-	/// *restrictedKeywordCS returns ecore::EString: 
+	//	value='Tuple'; * // *restrictedKeywordCS returns ecore::EString: 
 	//
 	//	CollectionTypeIdentifierCS
 	//
@@ -4349,10 +4162,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//|	primitiveTypeCS
 	//
-	//|	tupleKeywordCS; * /
-	//
-	//SimpleName returns ecore::EString:
-	//  Identifier;
+	//|	tupleKeywordCS; * /SimpleName returns ecore::EString:
+	//	Identifier;
 	public EssentialOCLGrammarAccess.SimpleNameElements getSimpleNameAccess() {
 		return gaEssentialOCL.getSimpleNameAccess();
 	}
@@ -4371,19 +4182,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////;
 	//
-	//        
-	//
 	////---------------------------------------------------------------------
 	//
 	////  Types
 	//
 	////---------------------------------------------------------------------
 	//
-	//
-	//
 	//PrimitiveTypeIdentifier returns ecore::EString:
-	//  "Boolean"|"Integer"|"Real"|"String"|"UnlimitedNatural"|"OclAny"|"OclInvalid"|
-	//  "OclVoid";
+	//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 	public EssentialOCLGrammarAccess.PrimitiveTypeIdentifierElements getPrimitiveTypeIdentifierAccess() {
 		return gaEssentialOCL.getPrimitiveTypeIdentifierAccess();
 	}
@@ -4393,7 +4199,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimitiveTypeCS:
-	//  name=PrimitiveTypeIdentifier;
+	//	name=PrimitiveTypeIdentifier;
 	public EssentialOCLGrammarAccess.PrimitiveTypeCSElements getPrimitiveTypeCSAccess() {
 		return gaEssentialOCL.getPrimitiveTypeCSAccess();
 	}
@@ -4403,7 +4209,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeIdentifier returns ecore::EString:
-	//  "Set"|"Bag"|"Sequence"|"Collection"|"OrderedSet";
+	//	"Set" | "Bag" | "Sequence" | "Collection" | "OrderedSet";
 	public EssentialOCLGrammarAccess.CollectionTypeIdentifierElements getCollectionTypeIdentifierAccess() {
 		return gaEssentialOCL.getCollectionTypeIdentifierAccess();
 	}
@@ -4413,7 +4219,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeExpCS:
-	//  PrimitiveTypeCS|NameExpCS|CollectionTypeCS|TupleTypeCS;
+	//	PrimitiveTypeCS | NameExpCS | CollectionTypeCS | TupleTypeCS;
 	public EssentialOCLGrammarAccess.TypeExpCSElements getTypeExpCSAccess() {
 		return gaEssentialOCL.getTypeExpCSAccess();
 	}
@@ -4423,7 +4229,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeCS:
-	//  name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
+	//	name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
 	public EssentialOCLGrammarAccess.CollectionTypeCSElements getCollectionTypeCSAccess() {
 		return gaEssentialOCL.getCollectionTypeCSAccess();
 	}
@@ -4433,7 +4239,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleTypeCS:
-	//  name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
+	//	name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
 	public EssentialOCLGrammarAccess.TupleTypeCSElements getTupleTypeCSAccess() {
 		return gaEssentialOCL.getTupleTypeCSAccess();
 	}
@@ -4443,7 +4249,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//tuplePartCS returns VariableCS:
-	//  name=SimpleName ":" type=TypeExpCS;
+	//	name=SimpleName ":" type=TypeExpCS;
 	public EssentialOCLGrammarAccess.TuplePartCSElements getTuplePartCSAccess() {
 		return gaEssentialOCL.getTuplePartCSAccess();
 	}
@@ -4482,12 +4288,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//// or CollectionTypeLiteral
 	//
-	//
-	//
 	//CollectionLiteralExpCS returns LiteralExpCS:
-	//  CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (
-	//  collectionLiteralParts+=CollectionLiteralPartCS (","
-	//  collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
+	//	CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
+	//	collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
 	public EssentialOCLGrammarAccess.CollectionLiteralExpCSElements getCollectionLiteralExpCSAccess() {
 		return gaEssentialOCL.getCollectionLiteralExpCSAccess();
 	}
@@ -4497,7 +4300,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionLiteralPartCS:
-	//  expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
+	//	expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
 	public EssentialOCLGrammarAccess.CollectionLiteralPartCSElements getCollectionLiteralPartCSAccess() {
 		return gaEssentialOCL.getCollectionLiteralPartCSAccess();
 	}
@@ -4507,8 +4310,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimitiveLiteralExpCS:
-	//  NumberLiteralExpCS|StringLiteralExpCS|BooleanLiteralExpCS|InvalidLiteralExpCS
-	//  |NullLiteralExpCS;
+	//	NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | InvalidLiteralExpCS | NullLiteralExpCS;
 	public EssentialOCLGrammarAccess.PrimitiveLiteralExpCSElements getPrimitiveLiteralExpCSAccess() {
 		return gaEssentialOCL.getPrimitiveLiteralExpCSAccess();
 	}
@@ -4519,11 +4321,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// or TupleTypeLiteral
 	//
-	//
-	//
 	//TupleLiteralExpCS:
-	//  {TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS (","
-	//  part+=TupleLiteralPartCS)* "}")?;
+	//	{TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS ("," part+=TupleLiteralPartCS)* "}")?;
 	public EssentialOCLGrammarAccess.TupleLiteralExpCSElements getTupleLiteralExpCSAccess() {
 		return gaEssentialOCL.getTupleLiteralExpCSAccess();
 	}
@@ -4533,7 +4332,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleLiteralPartCS returns VariableCS:
-	//  name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
+	//	name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
 	public EssentialOCLGrammarAccess.TupleLiteralPartCSElements getTupleLiteralPartCSAccess() {
 		return gaEssentialOCL.getTupleLiteralPartCSAccess();
 	}
@@ -4543,7 +4342,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumberLiteralExpCS:
-	//  name=NUMBER_LITERAL;
+	//	name=NUMBER_LITERAL;
 	public EssentialOCLGrammarAccess.NumberLiteralExpCSElements getNumberLiteralExpCSAccess() {
 		return gaEssentialOCL.getNumberLiteralExpCSAccess();
 	}
@@ -4553,7 +4352,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteralExpCS:
-	//  name+=StringLiteral+;
+	//	name+=StringLiteral+;
 	public EssentialOCLGrammarAccess.StringLiteralExpCSElements getStringLiteralExpCSAccess() {
 		return gaEssentialOCL.getStringLiteralExpCSAccess();
 	}
@@ -4563,7 +4362,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanLiteralExpCS:
-	//  name="true"|name="false";
+	//	name="true" | name="false";
 	public EssentialOCLGrammarAccess.BooleanLiteralExpCSElements getBooleanLiteralExpCSAccess() {
 		return gaEssentialOCL.getBooleanLiteralExpCSAccess();
 	}
@@ -4573,7 +4372,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InvalidLiteralExpCS:
-	//  {InvalidLiteralExpCS} "invalid";
+	//	{InvalidLiteralExpCS} "invalid";
 	public EssentialOCLGrammarAccess.InvalidLiteralExpCSElements getInvalidLiteralExpCSAccess() {
 		return gaEssentialOCL.getInvalidLiteralExpCSAccess();
 	}
@@ -4583,7 +4382,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NullLiteralExpCS:
-	//  {NullLiteralExpCS} "null";
+	//	{NullLiteralExpCS} "null";
 	public EssentialOCLGrammarAccess.NullLiteralExpCSElements getNullLiteralExpCSAccess() {
 		return gaEssentialOCL.getNullLiteralExpCSAccess();
 	}
@@ -4608,10 +4407,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 	//
-	//
-	//
 	//ExpCS:
-	//  impliesCS|LetExpCS;
+	//	impliesCS | LetExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
 		return gaEssentialOCL.getExpCSAccess();
 	}
@@ -4621,8 +4418,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//impliesCS returns ExpCS:
-	//  xorCS ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS )
-	//  )*;
+	//	xorCS ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.ImpliesCSElements getImpliesCSAccess() {
 		return gaEssentialOCL.getImpliesCSAccess();
 	}
@@ -4632,7 +4428,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//xorCS returns ExpCS:
-	//  orCS ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*;
+	//	orCS ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.XorCSElements getXorCSAccess() {
 		return gaEssentialOCL.getXorCSAccess();
 	}
@@ -4642,7 +4438,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//orCS returns ExpCS:
-	//  andCS ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*;
+	//	andCS ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.OrCSElements getOrCSAccess() {
 		return gaEssentialOCL.getOrCSAccess();
 	}
@@ -4652,8 +4448,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//andCS returns ExpCS:
-	//  equalityCS ({InfixExpCS.source=current} op="and" argument=( equalityCS |
-	//  LetExpCS ))*;
+	//	equalityCS ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.AndCSElements getAndCSAccess() {
 		return gaEssentialOCL.getAndCSAccess();
 	}
@@ -4663,8 +4458,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//equalityCS returns ExpCS:
-	//  relationalCS ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=(
-	//  relationalCS | LetExpCS ))*;
+	//	relationalCS ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.EqualityCSElements getEqualityCSAccess() {
 		return gaEssentialOCL.getEqualityCSAccess();
 	}
@@ -4674,8 +4468,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//relationalCS returns ExpCS:
-	//  additiveCS ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" )
-	//  argument=( additiveCS | LetExpCS ))*;
+	//	additiveCS ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.RelationalCSElements getRelationalCSAccess() {
 		return gaEssentialOCL.getRelationalCSAccess();
 	}
@@ -4685,8 +4478,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//additiveCS returns ExpCS:
-	//  multiplicativeCS ({InfixExpCS.source=current} op=( "+" | "-" ) argument=(
-	//  multiplicativeCS | LetExpCS ))*;
+	//	multiplicativeCS ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.AdditiveCSElements getAdditiveCSAccess() {
 		return gaEssentialOCL.getAdditiveCSAccess();
 	}
@@ -4696,8 +4488,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//multiplicativeCS returns ExpCS:
-	//  unaryCS ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS |
-	//  LetExpCS ))*;
+	//	unaryCS ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*;
 	public EssentialOCLGrammarAccess.MultiplicativeCSElements getMultiplicativeCSAccess() {
 		return gaEssentialOCL.getMultiplicativeCSAccess();
 	}
@@ -4707,7 +4498,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//unaryCS returns ExpCS:
-	//  NavigationExpCS|{PrefixExpCS} op=( "-" | "not" ) source=unaryCS;
+	//	NavigationExpCS | {PrefixExpCS} op=("-" | "not") source=unaryCS;
 	public EssentialOCLGrammarAccess.UnaryCSElements getUnaryCSAccess() {
 		return gaEssentialOCL.getUnaryCSAccess();
 	}
@@ -4717,11 +4508,11 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NavigationExpCS returns ExpCS:
-	//  SubNavigationExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+	//	SubNavigationExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 	//
-	//  //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+	//	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 	//
-	//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+	//;
 	public EssentialOCLGrammarAccess.NavigationExpCSElements getNavigationExpCSAccess() {
 		return gaEssentialOCL.getNavigationExpCSAccess();
 	}
@@ -4732,14 +4523,12 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Follows ., ->, ^
 	//
-	//
-	//
 	//NavigatingExpCS returns ExpCS:
-	//  SubNavigatingExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+	//	SubNavigatingExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 	//
-	//  //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+	//	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 	//
-	//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+	//;
 	public EssentialOCLGrammarAccess.NavigatingExpCSElements getNavigatingExpCSAccess() {
 		return gaEssentialOCL.getNavigatingExpCSAccess();
 	}
@@ -4750,12 +4539,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// May be be followed by ., ->, ^
 	//
-	//
-	//
 	//SubNavigationExpCS returns ExpCS:
-	//  RoundBracketExpCS|SquareBracketExpCS|SelfExpCS|PrimitiveLiteralExpCS|
-	//  TupleLiteralExpCS|CollectionLiteralExpCS|TypeExpCS|IfExpCS|"(" {NestedExpCS}
-	//  source=ExpCS ")";
+	//	RoundBracketExpCS | SquareBracketExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+	//	CollectionLiteralExpCS | PreExpCS | TypeExpCS | IfExpCS | "(" {NestedExpCS} source=ExpCS ")";
 	public EssentialOCLGrammarAccess.SubNavigationExpCSElements getSubNavigationExpCSAccess() {
 		return gaEssentialOCL.getSubNavigationExpCSAccess();
 	}
@@ -4766,10 +4552,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Follows ., ->, ^, May be be followed by ., ->, ^
 	//
-	//
-	//
 	//SubNavigatingExpCS returns ExpCS:
-	//  RoundBracketExpCS|SquareBracketExpCS|NameExpCS;
+	//	RoundBracketExpCS | SquareBracketExpCS | PreExpCS | NameExpCS;
 	public EssentialOCLGrammarAccess.SubNavigatingExpCSElements getSubNavigatingExpCSAccess() {
 		return gaEssentialOCL.getSubNavigatingExpCSAccess();
 	}
@@ -4778,18 +4562,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getSubNavigatingExpCSAccess().getRule();
 	}
 
-	////callingExpCS returns ExpCS:
-	//
-	////	callExpCS
-	//
-	////	({BinaryExpressionCS.source=current} op=('.'|'->') argument=callingExpCS)?
-	//
-	////;
-	//
-	//
-	//
 	//iteratorVariableCS returns VariableCS:
-	//  name=SimpleName (":" type=TypeExpCS)?;
+	//	name=SimpleName (":" type=TypeExpCS)?;
 	public EssentialOCLGrammarAccess.IteratorVariableCSElements getIteratorVariableCSAccess() {
 		return gaEssentialOCL.getIteratorVariableCSAccess();
 	}
@@ -4799,7 +4573,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//iteratorAccumulatorCS returns VariableCS:
-	//  name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+	//	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
 	public EssentialOCLGrammarAccess.IteratorAccumulatorCSElements getIteratorAccumulatorCSAccess() {
 		return gaEssentialOCL.getIteratorAccumulatorCSAccess();
 	}
@@ -4808,62 +4582,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getIteratorAccumulatorCSAccess().getRule();
 	}
 
-	////callExpCS returns ExpCS:
-	//
-	////	preExpCS
-	//
-	////	({CallExpCS.source=current} '('
-	//
-	////	(variable1=iteratorVariableCS
-	//
-	////        ((',' variable2=iteratorVariableCS)
-	//
-	////        |(';' variable2=iteratorAccumulatorCS))?
-	//
-	////        '|')?
-	//
-	////    (arguments+=ExpCS (',' arguments+=ExpCS)*)?
-	//
-	////	')')?
-	//
-	////;
-	//
-	//
-	//
-	////preExpCS returns ExpCS:
-	//
-	////	indexExpCS
-	//
-	//////  ({UnaryExpressionCS.source=current} '@' op='pre')? is added by CompleteOCL
-	//
-	////;
-	//
-	//
-	//
-	////indexExpCS returns ExpCS:
-	//
-	////	messageExpCS
-	//
-	////	({IndexExpCS.source=current} '[' indexes+=ExpCS (',' indexes+=ExpCS)* ']')?
-	//
-	////;
-	//
-	//    
-	//
-	////messageExpCS returns ExpCS:
-	//
-	////	primaryExpCS
-	//
-	//////|	OclMessageExpCS // ExpCS[E] is added by CompleteOCL
-	//
-	////;
-	//
-	//
-	//
 	//RoundBracketExpCS:
-	//  name=NameExpCS "(" (variable1=iteratorVariableCS (","
-	//  variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)? "|")? (
-	//  arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
+	//	name=NameExpCS ("@" pre?="pre")? "(" (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";"
+	//	variable2=iteratorAccumulatorCS)? "|")? (arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
 	public EssentialOCLGrammarAccess.RoundBracketExpCSElements getRoundBracketExpCSAccess() {
 		return gaEssentialOCL.getRoundBracketExpCSAccess();
 	}
@@ -4873,7 +4594,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SquareBracketExpCS:
-	//  name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]";
+	//	name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]" ("@" pre?="pre")?;
 	public EssentialOCLGrammarAccess.SquareBracketExpCSElements getSquareBracketExpCSAccess() {
 		return gaEssentialOCL.getSquareBracketExpCSAccess();
 	}
@@ -4882,22 +4603,18 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getSquareBracketExpCSAccess().getRule();
 	}
 
-	////primaryExpCS returns ExpCS:
-	//
-	////	selfKeywordCS
-	//
-	////|	LiteralExpCS    // OclExpressionCS[C]
-	//
-	////|	IfExpCS         // OclExpressionCS[F]
-	//
-	////|	'(' ExpCS ')'
-	//
-	////;
-	//
-	//
-	//
+	//PreExpCS:
+	//	name=NameExpCS "@" "pre";
+	public EssentialOCLGrammarAccess.PreExpCSElements getPreExpCSAccess() {
+		return gaEssentialOCL.getPreExpCSAccess();
+	}
+	
+	public ParserRule getPreExpCSRule() {
+		return getPreExpCSAccess().getRule();
+	}
+
 	//SelfExpCS:
-	//  {SelfExpCS} "self";
+	//	{SelfExpCS} "self";
 	public EssentialOCLGrammarAccess.SelfExpCSElements getSelfExpCSAccess() {
 		return gaEssentialOCL.getSelfExpCSAccess();
 	}
@@ -4907,7 +4624,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpCS:
-	//  PathNameExpCS|SimpleNameExpCS;
+	//	PathNameExpCS | SimpleNameExpCS;
 	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
 		return gaEssentialOCL.getNameExpCSAccess();
 	}
@@ -4917,7 +4634,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PathNameExpCS:
-	//  namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
+	//	namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
 	public EssentialOCLGrammarAccess.PathNameExpCSElements getPathNameExpCSAccess() {
 		return gaEssentialOCL.getPathNameExpCSAccess();
 	}
@@ -4927,7 +4644,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SimpleNameExpCS:
-	//  element=[base::NamedElementCS|Identifier];
+	//	element=[base::NamedElementCS|Identifier];
 	public EssentialOCLGrammarAccess.SimpleNameExpCSElements getSimpleNameExpCSAccess() {
 		return gaEssentialOCL.getSimpleNameExpCSAccess();
 	}
@@ -4937,8 +4654,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfExpCS:
-	//  "if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS
-	//  "endif";
+	//	"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif";
 	public EssentialOCLGrammarAccess.IfExpCSElements getIfExpCSAccess() {
 		return gaEssentialOCL.getIfExpCSAccess();
 	}
@@ -4948,7 +4664,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetExpCS:
-	//  "let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
+	//	"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
 	public EssentialOCLGrammarAccess.LetExpCSElements getLetExpCSAccess() {
 		return gaEssentialOCL.getLetExpCSAccess();
 	}
@@ -4958,7 +4674,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetVariableCS returns VariableCS:
-	//  name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+	//	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
 	public EssentialOCLGrammarAccess.LetVariableCSElements getLetVariableCSAccess() {
 		return gaEssentialOCL.getLetVariableCSAccess();
 	}

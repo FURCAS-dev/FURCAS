@@ -12,6 +12,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAcces
 
 import com.google.inject.Inject;
 
+@SuppressWarnings("all")
 public class OCLinEcoreParsetreeConstructor extends AbstractParseTreeConstructor {
 		
 	@Inject
@@ -99,13 +100,14 @@ protected class ThisRootNode extends RootToken {
 			case 66: return new IteratorAccumulatorCS_Group(this, this, 66, inst);
 			case 67: return new RoundBracketExpCS_Group(this, this, 67, inst);
 			case 68: return new SquareBracketExpCS_Group(this, this, 68, inst);
-			case 69: return new SelfExpCS_Group(this, this, 69, inst);
-			case 70: return new NameExpCS_Alternatives(this, this, 70, inst);
-			case 71: return new PathNameExpCS_Group(this, this, 71, inst);
-			case 72: return new SimpleNameExpCS_ElementAssignment(this, this, 72, inst);
-			case 73: return new IfExpCS_Group(this, this, 73, inst);
-			case 74: return new LetExpCS_Group(this, this, 74, inst);
-			case 75: return new LetVariableCS_Group(this, this, 75, inst);
+			case 69: return new PreExpCS_Group(this, this, 69, inst);
+			case 70: return new SelfExpCS_Group(this, this, 70, inst);
+			case 71: return new NameExpCS_Alternatives(this, this, 71, inst);
+			case 72: return new PathNameExpCS_Group(this, this, 72, inst);
+			case 73: return new SimpleNameExpCS_ElementAssignment(this, this, 73, inst);
+			case 74: return new IfExpCS_Group(this, this, 74, inst);
+			case 75: return new LetExpCS_Group(this, this, 75, inst);
+			case 76: return new LetVariableCS_Group(this, this, 76, inst);
 			default: return null;
 		}	
 	}	
@@ -116,10 +118,8 @@ protected class ThisRootNode extends RootToken {
  *
  * //generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
  * 
- * 
- * 
  * OCLinEcoreDocumentCS:
- *   libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*;
+ * 	libraries+=LibraryCS* imports+=ImportCS* packages+=PackageCS*;
  *
  **/
 
@@ -306,13 +306,11 @@ protected class OCLinEcoreDocumentCS_PackagesAssignment_2 extends AssignmentToke
 /************ begin Rule BodyConstraintCS ****************
  *
  * BodyConstraintCS returns ConstraintCS:
- *   stereotype="body" name=Identifier? ":" (exprValue=ExpCS|
- *   exprString=UNQUOTED_STRING)? ";";
+ * 	stereotype="body" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
  *
  **/
 
-// stereotype="body" name=Identifier? ":" (exprValue=ExpCS|
-// exprString=UNQUOTED_STRING)? ";"
+// stereotype="body" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 protected class BodyConstraintCS_Group extends GroupToken {
 	
 	public BodyConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -364,7 +362,7 @@ protected class BodyConstraintCS_StereotypeAssignment_0 extends AssignmentToken 
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("stereotype",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("stereotype");
-		if("body".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getBodyConstraintCSAccess().getStereotypeBodyKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getBodyConstraintCSAccess().getStereotypeBodyKeyword_0_0();
 			return obj;
@@ -431,7 +429,7 @@ protected class BodyConstraintCS_ColonKeyword_2 extends KeywordToken  {
 
 }
 
-// (exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+// (exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 protected class BodyConstraintCS_Alternatives_3 extends AlternativesToken {
 
 	public BodyConstraintCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -565,12 +563,11 @@ protected class BodyConstraintCS_SemicolonKeyword_4 extends KeywordToken  {
 /************ begin Rule DerivedConstraintCS ****************
  *
  * DerivedConstraintCS returns ConstraintCS:
- *   stereotype="derivation" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
- * ;
+ * 	stereotype="derivation" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
  *
  **/
 
-// stereotype="derivation" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
+// stereotype="derivation" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 protected class DerivedConstraintCS_Group extends GroupToken {
 	
 	public DerivedConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -622,7 +619,7 @@ protected class DerivedConstraintCS_StereotypeAssignment_0 extends AssignmentTok
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("stereotype",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("stereotype");
-		if("derivation".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getDerivedConstraintCSAccess().getStereotypeDerivationKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getDerivedConstraintCSAccess().getStereotypeDerivationKeyword_0_0();
 			return obj;
@@ -654,7 +651,7 @@ protected class DerivedConstraintCS_ColonKeyword_1 extends KeywordToken  {
 
 }
 
-// (exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+// (exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 protected class DerivedConstraintCS_Alternatives_2 extends AlternativesToken {
 
 	public DerivedConstraintCS_Alternatives_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -788,11 +785,11 @@ protected class DerivedConstraintCS_SemicolonKeyword_3 extends KeywordToken  {
 /************ begin Rule InitialConstraintCS ****************
  *
  * InitialConstraintCS returns ConstraintCS:
- *   stereotype="initial" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";";
+ * 	stereotype="initial" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
  *
  **/
 
-// stereotype="initial" ":" (exprValue=ExpCS|exprString=UNQUOTED_STRING)? ";"
+// stereotype="initial" ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 protected class InitialConstraintCS_Group extends GroupToken {
 	
 	public InitialConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -844,7 +841,7 @@ protected class InitialConstraintCS_StereotypeAssignment_0 extends AssignmentTok
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("stereotype",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("stereotype");
-		if("initial".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getInitialConstraintCSAccess().getStereotypeInitialKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getInitialConstraintCSAccess().getStereotypeInitialKeyword_0_0();
 			return obj;
@@ -876,7 +873,7 @@ protected class InitialConstraintCS_ColonKeyword_1 extends KeywordToken  {
 
 }
 
-// (exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+// (exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 protected class InitialConstraintCS_Alternatives_2 extends AlternativesToken {
 
 	public InitialConstraintCS_Alternatives_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1010,13 +1007,11 @@ protected class InitialConstraintCS_SemicolonKeyword_3 extends KeywordToken  {
 /************ begin Rule InvariantConstraintCS ****************
  *
  * InvariantConstraintCS returns ConstraintCS:
- *   stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS|
- *   exprString=UNQUOTED_STRING)? ";";
+ * 	stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
  *
  **/
 
-// stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS|
-// exprString=UNQUOTED_STRING)? ";"
+// stereotype="invariant" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 protected class InvariantConstraintCS_Group extends GroupToken {
 	
 	public InvariantConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1068,7 +1063,7 @@ protected class InvariantConstraintCS_StereotypeAssignment_0 extends AssignmentT
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("stereotype",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("stereotype");
-		if("invariant".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getInvariantConstraintCSAccess().getStereotypeInvariantKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getInvariantConstraintCSAccess().getStereotypeInvariantKeyword_0_0();
 			return obj;
@@ -1135,7 +1130,7 @@ protected class InvariantConstraintCS_ColonKeyword_2 extends KeywordToken  {
 
 }
 
-// (exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+// (exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 protected class InvariantConstraintCS_Alternatives_3 extends AlternativesToken {
 
 	public InvariantConstraintCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1269,13 +1264,11 @@ protected class InvariantConstraintCS_SemicolonKeyword_4 extends KeywordToken  {
 /************ begin Rule PostconditionConstraintCS ****************
  *
  * PostconditionConstraintCS returns PostconditionCS:
- *   stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
- *   exprString=UNQUOTED_STRING)? ";";
+ * 	stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
  *
  **/
 
-// stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS|
-// exprString=UNQUOTED_STRING)? ";"
+// stereotype="postcondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 protected class PostconditionConstraintCS_Group extends GroupToken {
 	
 	public PostconditionConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1327,7 +1320,7 @@ protected class PostconditionConstraintCS_StereotypeAssignment_0 extends Assignm
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("stereotype",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("stereotype");
-		if("postcondition".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getPostconditionConstraintCSAccess().getStereotypePostconditionKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getPostconditionConstraintCSAccess().getStereotypePostconditionKeyword_0_0();
 			return obj;
@@ -1394,7 +1387,7 @@ protected class PostconditionConstraintCS_ColonKeyword_2 extends KeywordToken  {
 
 }
 
-// (exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+// (exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 protected class PostconditionConstraintCS_Alternatives_3 extends AlternativesToken {
 
 	public PostconditionConstraintCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1528,13 +1521,11 @@ protected class PostconditionConstraintCS_SemicolonKeyword_4 extends KeywordToke
 /************ begin Rule PreconditionConstraintCS ****************
  *
  * PreconditionConstraintCS returns ConstraintCS:
- *   stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS|
- *   exprString=UNQUOTED_STRING)? ";";
+ * 	stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";";
  *
  **/
 
-// stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS|
-// exprString=UNQUOTED_STRING)? ";"
+// stereotype="precondition" name=Identifier? ":" (exprValue=ExpCS | exprString=UNQUOTED_STRING)? ";"
 protected class PreconditionConstraintCS_Group extends GroupToken {
 	
 	public PreconditionConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1586,7 +1577,7 @@ protected class PreconditionConstraintCS_StereotypeAssignment_0 extends Assignme
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("stereotype",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("stereotype");
-		if("precondition".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getPreconditionConstraintCSAccess().getStereotypePreconditionKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getPreconditionConstraintCSAccess().getStereotypePreconditionKeyword_0_0();
 			return obj;
@@ -1653,7 +1644,7 @@ protected class PreconditionConstraintCS_ColonKeyword_2 extends KeywordToken  {
 
 }
 
-// (exprValue=ExpCS|exprString=UNQUOTED_STRING)?
+// (exprValue=ExpCS | exprString=UNQUOTED_STRING)?
 protected class PreconditionConstraintCS_Alternatives_3 extends AlternativesToken {
 
 	public PreconditionConstraintCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1787,17 +1778,13 @@ protected class PreconditionConstraintCS_SemicolonKeyword_4 extends KeywordToken
 /************ begin Rule AnnotationCS ****************
  *
  * AnnotationCS:
- *   "annotation" (idSource=Identifier|stringSource=SINGLE_QUOTED_STRING) ("("
- *   details+=DetailCS ("," details+=DetailCS)* ")")? ("{" (
- *   annotations+=AnnotationElementCS|contents+=ModelElementCS|
- *   references+=ModelElementCSRef)+ "}"|";");
+ * 	"annotation" (idSource=Identifier | stringSource=SINGLE_QUOTED_STRING) ("(" details+=DetailCS ("," details+=DetailCS)*
+ * 	")")? ("{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";");
  *
  **/
 
-// "annotation" (idSource=Identifier|stringSource=SINGLE_QUOTED_STRING) ("("
-// details+=DetailCS ("," details+=DetailCS)* ")")? ("{" (
-// annotations+=AnnotationElementCS|contents+=ModelElementCS|
-// references+=ModelElementCSRef)+ "}"|";")
+// "annotation" (idSource=Identifier | stringSource=SINGLE_QUOTED_STRING) ("(" details+=DetailCS ("," details+=DetailCS)*
+// ")")? ("{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";")
 protected class AnnotationCS_Group extends GroupToken {
 	
 	public AnnotationCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1847,7 +1834,7 @@ protected class AnnotationCS_AnnotationKeyword_0 extends KeywordToken  {
 
 }
 
-// idSource=Identifier|stringSource=SINGLE_QUOTED_STRING
+// idSource=Identifier | stringSource=SINGLE_QUOTED_STRING
 protected class AnnotationCS_Alternatives_1 extends AlternativesToken {
 
 	public AnnotationCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2145,8 +2132,7 @@ protected class AnnotationCS_RightParenthesisKeyword_2_3 extends KeywordToken  {
 }
 
 
-// "{" (annotations+=AnnotationElementCS|contents+=ModelElementCS|
-// references+=ModelElementCSRef)+ "}"|";"
+// "{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}" | ";"
 protected class AnnotationCS_Alternatives_3 extends AlternativesToken {
 
 	public AnnotationCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2169,8 +2155,7 @@ protected class AnnotationCS_Alternatives_3 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|contents+=ModelElementCS|
-// references+=ModelElementCSRef)+ "}"
+// "{" (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+ "}"
 protected class AnnotationCS_Group_3_0 extends GroupToken {
 	
 	public AnnotationCS_Group_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2215,8 +2200,7 @@ protected class AnnotationCS_LeftCurlyBracketKeyword_3_0_0 extends KeywordToken 
 
 }
 
-// (annotations+=AnnotationElementCS|contents+=ModelElementCS|
-// references+=ModelElementCSRef)+
+// (annotations+=AnnotationElementCS | contents+=ModelElementCS | references+=ModelElementCSRef)+
 protected class AnnotationCS_Alternatives_3_0_1 extends AlternativesToken {
 
 	public AnnotationCS_Alternatives_3_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2436,11 +2420,11 @@ protected class AnnotationCS_SemicolonKeyword_3_1 extends KeywordToken  {
 /************ begin Rule AnnotationElementCS ****************
  *
  * AnnotationElementCS returns base::AnnotationElementCS:
- *   AnnotationCS|DocumentationCS;
+ * 	AnnotationCS | DocumentationCS;
  *
  **/
 
-// AnnotationCS|DocumentationCS
+// AnnotationCS | DocumentationCS
 protected class AnnotationElementCS_Alternatives extends AlternativesToken {
 
 	public AnnotationElementCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2550,31 +2534,23 @@ protected class AnnotationElementCS_DocumentationCSParserRuleCall_1 extends Rule
 /************ begin Rule AttributeCS ****************
  *
  * AttributeCS returns OCLinEcoreAttributeCS:
- *   isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (
- *   ":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*"
- *   | "+" | "?" )) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
- *   qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered"
- *   | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
- *   "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
- *   qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered"
- *   | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
- *   "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
- *   ("{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
- *   DerivedConstraintCS ))* "}"|";");
+ * 	isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER
+ * 	(".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
+ * 	qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+ * 	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+ * 	qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+ * 	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+ * 	(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";");
  *
  **/
 
-// isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":"
-// type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+"
-// | "?" )) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
-// qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-// "readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-// "unsettable" | "!unsettable" | "volatile" | "!volatile" ) ("," qualifiers+=(
-// "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" |
-// "!readonly" | "transient" | "!transient" | "unique" | "!unique" | "unsettable"
-// | "!unsettable" | "volatile" | "!volatile" ))* "}")? ("{" (
-// annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))* "}"|";")
+// isStatic?="static"? isDefinition?="definition"? "attribute" name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".."
+// upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("=" defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{"
+// qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+// qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+// (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";")
 protected class AttributeCS_Group extends GroupToken {
 	
 	public AttributeCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2727,8 +2703,7 @@ protected class AttributeCS_NameAssignment_3 extends AssignmentToken  {
 
 }
 
-// (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-// "+" | "?" )) "]")?)?
+// (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 protected class AttributeCS_Group_4 extends GroupToken {
 	
 	public AttributeCS_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2819,7 +2794,7 @@ protected class AttributeCS_TypeAssignment_4_1 extends AssignmentToken  {
 	}	
 }
 
-// ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+// ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 protected class AttributeCS_Group_4_2 extends GroupToken {
 	
 	public AttributeCS_Group_4_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2863,7 +2838,7 @@ protected class AttributeCS_LeftSquareBracketKeyword_4_2_0 extends KeywordToken 
 
 }
 
-// lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+// lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 protected class AttributeCS_Alternatives_4_2_1 extends AlternativesToken {
 
 	public AttributeCS_Alternatives_4_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3023,7 +2998,7 @@ protected class AttributeCS_UpperAssignment_4_2_1_0_1_1 extends AssignmentToken 
 
 
 
-// multiplicity=( "*" | "+" | "?" )
+// multiplicity=("*" | "+" | "?")
 protected class AttributeCS_MultiplicityAssignment_4_2_1_1 extends AssignmentToken  {
 	
 	public AttributeCS_MultiplicityAssignment_4_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3047,17 +3022,17 @@ protected class AttributeCS_MultiplicityAssignment_4_2_1_1 extends AssignmentTok
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("multiplicity",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("multiplicity");
-		if("*".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getMultiplicityAsteriskKeyword_4_2_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getMultiplicityAsteriskKeyword_4_2_1_1_0_0();
 			return obj;
 		}
-		if("+".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getMultiplicityPlusSignKeyword_4_2_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getMultiplicityPlusSignKeyword_4_2_1_1_0_1();
 			return obj;
 		}
-		if("?".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getMultiplicityQuestionMarkKeyword_4_2_1_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getMultiplicityQuestionMarkKeyword_4_2_1_1_0_2();
 			return obj;
@@ -3172,12 +3147,10 @@ protected class AttributeCS_DefaultValueLiteralAssignment_5_1 extends Assignment
 }
 
 
-// ("{" qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" |
-// "!ordered" | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-// "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-// qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-// "readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-// "unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
+// ("{" qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+// "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") (","
+// qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")?
 protected class AttributeCS_Group_6 extends GroupToken {
 	
 	public AttributeCS_Group_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3223,9 +3196,8 @@ protected class AttributeCS_LeftCurlyBracketKeyword_6_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-// "readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-// "unsettable" | "!unsettable" | "volatile" | "!volatile" )
+// qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile")
 protected class AttributeCS_QualifiersAssignment_6_1 extends AssignmentToken  {
 	
 	public AttributeCS_QualifiersAssignment_6_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3249,82 +3221,82 @@ protected class AttributeCS_QualifiersAssignment_6_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_1_0_0();
 			return obj;
 		}
-		if("!derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_1_0_1();
 			return obj;
 		}
-		if("id".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_1_0_2();
 			return obj;
 		}
-		if("!id".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_1_0_3();
 			return obj;
 		}
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_1_0_4(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_1_0_4();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_1_0_5(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_1_0_5();
 			return obj;
 		}
-		if("readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_1_0_6(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_1_0_6();
 			return obj;
 		}
-		if("!readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_1_0_7(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_1_0_7();
 			return obj;
 		}
-		if("transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_1_0_8(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_1_0_8();
 			return obj;
 		}
-		if("!transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_1_0_9(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_1_0_9();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_1_0_10(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_1_0_10();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_1_0_11(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_1_0_11();
 			return obj;
 		}
-		if("unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_1_0_12(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_1_0_12();
 			return obj;
 		}
-		if("!unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_1_0_13(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_1_0_13();
 			return obj;
 		}
-		if("volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_1_0_14(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_1_0_14();
 			return obj;
 		}
-		if("!volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_1_0_15(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_1_0_15();
 			return obj;
@@ -3334,9 +3306,8 @@ protected class AttributeCS_QualifiersAssignment_6_1 extends AssignmentToken  {
 
 }
 
-// ("," qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" |
-// "!ordered" | "readonly" | "!readonly" | "transient" | "!transient" | "unique" |
-// "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ))*
+// ("," qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+// "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))*
 protected class AttributeCS_Group_6_2 extends GroupToken {
 	
 	public AttributeCS_Group_6_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3381,9 +3352,8 @@ protected class AttributeCS_CommaKeyword_6_2_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" |
-// "readonly" | "!readonly" | "transient" | "!transient" | "unique" | "!unique" |
-// "unsettable" | "!unsettable" | "volatile" | "!volatile" )
+// qualifiers+=("derived" | "!derived" | "id" | "!id" | "ordered" | "!ordered" | "readonly" | "!readonly" | "transient" |
+// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile")
 protected class AttributeCS_QualifiersAssignment_6_2_1 extends AssignmentToken  {
 	
 	public AttributeCS_QualifiersAssignment_6_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3407,82 +3377,82 @@ protected class AttributeCS_QualifiersAssignment_6_2_1 extends AssignmentToken  
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_2_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_2_1_0_0();
 			return obj;
 		}
-		if("!derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_2_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersDerivedKeyword_6_2_1_0_1();
 			return obj;
 		}
-		if("id".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_2_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_2_1_0_2();
 			return obj;
 		}
-		if("!id".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_2_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersIdKeyword_6_2_1_0_3();
 			return obj;
 		}
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_2_1_0_4(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_2_1_0_4();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_2_1_0_5(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersOrderedKeyword_6_2_1_0_5();
 			return obj;
 		}
-		if("readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_2_1_0_6(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_2_1_0_6();
 			return obj;
 		}
-		if("!readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_2_1_0_7(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersReadonlyKeyword_6_2_1_0_7();
 			return obj;
 		}
-		if("transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_2_1_0_8(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_2_1_0_8();
 			return obj;
 		}
-		if("!transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_2_1_0_9(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersTransientKeyword_6_2_1_0_9();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_2_1_0_10(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_2_1_0_10();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_2_1_0_11(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUniqueKeyword_6_2_1_0_11();
 			return obj;
 		}
-		if("unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_2_1_0_12(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_2_1_0_12();
 			return obj;
 		}
-		if("!unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_2_1_0_13(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersUnsettableKeyword_6_2_1_0_13();
 			return obj;
 		}
-		if("volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_2_1_0_14(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_2_1_0_14();
 			return obj;
 		}
-		if("!volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_2_1_0_15(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAttributeCSAccess().getQualifiersVolatileKeyword_6_2_1_0_15();
 			return obj;
@@ -3517,8 +3487,7 @@ protected class AttributeCS_RightCurlyBracketKeyword_6_3 extends KeywordToken  {
 }
 
 
-// "{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))* "}"|";"
+// "{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";"
 protected class AttributeCS_Alternatives_7 extends AlternativesToken {
 
 	public AttributeCS_Alternatives_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3541,8 +3510,7 @@ protected class AttributeCS_Alternatives_7 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))* "}"
+// "{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}"
 protected class AttributeCS_Group_7_0 extends GroupToken {
 	
 	public AttributeCS_Group_7_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3589,8 +3557,7 @@ protected class AttributeCS_LeftCurlyBracketKeyword_7_0_0 extends KeywordToken  
 
 }
 
-// (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))*
+// (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))*
 protected class AttributeCS_Alternatives_7_0_1 extends AlternativesToken {
 
 	public AttributeCS_Alternatives_7_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3660,7 +3627,7 @@ protected class AttributeCS_AnnotationsAssignment_7_0_1_0 extends AssignmentToke
 	}	
 }
 
-// constraints+=( InitialConstraintCS | DerivedConstraintCS )
+// constraints+=(InitialConstraintCS | DerivedConstraintCS)
 protected class AttributeCS_ConstraintsAssignment_7_0_1_1 extends AssignmentToken  {
 	
 	public AttributeCS_ConstraintsAssignment_7_0_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3774,25 +3741,19 @@ protected class AttributeCS_SemicolonKeyword_7_1 extends KeywordToken  {
 /************ begin Rule ClassCS ****************
  *
  * ClassCS returns OCLinEcoreClassCS:
- *   "class" name=Identifier ("<" typeParameters+=TypeParameterCS (","
- *   typeParameters+=TypeParameterCS)* ">")? ("extends" superTypes+=TypedRefCS (
- *   "," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)?
- *   ("{" qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (
- *   "," qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))*
- *   "}")? ("{" (annotations+=AnnotationElementCS|operations+=OperationCS|
- *   structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
- *   "}"|";");
+ * 	"class" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? ("extends"
+ * 	superTypes+=TypedRefCS ("," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
+ * 	qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+ * 	"interface" | "!interface"))* "}")? ("{" (annotations+=AnnotationElementCS | operations+=OperationCS |
+ * 	structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* "}" | ";");
  *
  **/
 
-// "class" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-// typeParameters+=TypeParameterCS)* ">")? ("extends" superTypes+=TypedRefCS (","
-// superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-// qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (","
-// qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))* "}")? (
-// "{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-// structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-// "}"|";")
+// "class" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? ("extends"
+// superTypes+=TypedRefCS ("," superTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
+// qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+// "interface" | "!interface"))* "}")? ("{" (annotations+=AnnotationElementCS | operations+=OperationCS |
+// structuralFeatures+=StructuralFeatureCS | constraints+=InvariantConstraintCS)* "}" | ";")
 protected class ClassCS_Group extends GroupToken {
 	
 	public ClassCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3876,8 +3837,7 @@ protected class ClassCS_NameAssignment_1 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-// ?
+// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 protected class ClassCS_Group_2 extends GroupToken {
 	
 	public ClassCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4349,8 +4309,8 @@ protected class ClassCS_InstanceClassNameAssignment_4_1 extends AssignmentToken 
 }
 
 
-// ("{" qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ) (","
-// qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))* "}")?
+// ("{" qualifiers+=("abstract" | "!abstract" | "interface" | "!interface") ("," qualifiers+=("abstract" | "!abstract" |
+// "interface" | "!interface"))* "}")?
 protected class ClassCS_Group_5 extends GroupToken {
 	
 	public ClassCS_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4397,7 +4357,7 @@ protected class ClassCS_LeftCurlyBracketKeyword_5_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" )
+// qualifiers+=("abstract" | "!abstract" | "interface" | "!interface")
 protected class ClassCS_QualifiersAssignment_5_1 extends AssignmentToken  {
 	
 	public ClassCS_QualifiersAssignment_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4421,22 +4381,22 @@ protected class ClassCS_QualifiersAssignment_5_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("abstract".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_1_0_0();
 			return obj;
 		}
-		if("!abstract".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_1_0_1();
 			return obj;
 		}
-		if("interface".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_1_0_2();
 			return obj;
 		}
-		if("!interface".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_1_0_3();
 			return obj;
@@ -4446,7 +4406,7 @@ protected class ClassCS_QualifiersAssignment_5_1 extends AssignmentToken  {
 
 }
 
-// ("," qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" ))*
+// ("," qualifiers+=("abstract" | "!abstract" | "interface" | "!interface"))*
 protected class ClassCS_Group_5_2 extends GroupToken {
 	
 	public ClassCS_Group_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4491,7 +4451,7 @@ protected class ClassCS_CommaKeyword_5_2_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "abstract" | "!abstract" | "interface" | "!interface" )
+// qualifiers+=("abstract" | "!abstract" | "interface" | "!interface")
 protected class ClassCS_QualifiersAssignment_5_2_1 extends AssignmentToken  {
 	
 	public ClassCS_QualifiersAssignment_5_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4515,22 +4475,22 @@ protected class ClassCS_QualifiersAssignment_5_2_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("abstract".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_2_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_2_1_0_0();
 			return obj;
 		}
-		if("!abstract".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_2_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersAbstractKeyword_5_2_1_0_1();
 			return obj;
 		}
-		if("interface".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_2_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_2_1_0_2();
 			return obj;
 		}
-		if("!interface".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_2_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getClassCSAccess().getQualifiersInterfaceKeyword_5_2_1_0_3();
 			return obj;
@@ -4565,9 +4525,8 @@ protected class ClassCS_RightCurlyBracketKeyword_5_3 extends KeywordToken  {
 }
 
 
-// "{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-// structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-// "}"|";"
+// "{" (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS |
+// constraints+=InvariantConstraintCS)* "}" | ";"
 protected class ClassCS_Alternatives_6 extends AlternativesToken {
 
 	public ClassCS_Alternatives_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4590,9 +4549,8 @@ protected class ClassCS_Alternatives_6 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|operations+=OperationCS|
-// structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
-// "}"
+// "{" (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS |
+// constraints+=InvariantConstraintCS)* "}"
 protected class ClassCS_Group_6_0 extends GroupToken {
 	
 	public ClassCS_Group_6_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4640,8 +4598,8 @@ protected class ClassCS_LeftCurlyBracketKeyword_6_0_0 extends KeywordToken  {
 
 }
 
-// (annotations+=AnnotationElementCS|operations+=OperationCS|
-// structuralFeatures+=StructuralFeatureCS|constraints+=InvariantConstraintCS)*
+// (annotations+=AnnotationElementCS | operations+=OperationCS | structuralFeatures+=StructuralFeatureCS |
+// constraints+=InvariantConstraintCS)*
 protected class ClassCS_Alternatives_6_0_1 extends AlternativesToken {
 
 	public ClassCS_Alternatives_6_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4912,11 +4870,11 @@ protected class ClassCS_SemicolonKeyword_6_1 extends KeywordToken  {
 /************ begin Rule ClassifierCS ****************
  *
  * ClassifierCS returns OCLinEcoreClassifierCS:
- *   ClassCS|DataTypeCS|EnumCS;
+ * 	ClassCS | DataTypeCS | EnumCS;
  *
  **/
 
-// ClassCS|DataTypeCS|EnumCS
+// ClassCS | DataTypeCS | EnumCS
 protected class ClassifierCS_Alternatives extends AlternativesToken {
 
 	public ClassifierCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5064,7 +5022,7 @@ protected class ClassifierCS_EnumCSParserRuleCall_2 extends RuleCallToken {
 /************ begin Rule CollectionTypeRefCS ****************
  *
  * CollectionTypeRefCS returns base::CollectionTypeRefCS:
- *   name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?;
+ * 	name=CollectionTypeIdentifier ("(" typeArguments=TypeRefCS? ")")?;
  *
  **/
 
@@ -5251,19 +5209,15 @@ protected class CollectionTypeRefCS_RightParenthesisKeyword_1_2 extends KeywordT
 /************ begin Rule DataTypeCS ****************
  *
  * DataTypeCS:
- *   "datatype" name=Identifier ("<" typeParameters+=TypeParameterCS (","
- *   typeParameters+=TypeParameterCS)* ">")? (":"
- *   instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "serializable" |
- *   "!serializable" ) "}")? ("{" (annotations+=AnnotationElementCS|
- *   constraints+=InvariantConstraintCS)* "}"|";");
+ * 	"datatype" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+ * 	instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("serializable" | "!serializable") "}")? ("{"
+ * 	(annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";");
  *
  **/
 
-// "datatype" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-// typeParameters+=TypeParameterCS)* ">")? (":"
-// instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "serializable" |
-// "!serializable" ) "}")? ("{" (annotations+=AnnotationElementCS|
-// constraints+=InvariantConstraintCS)* "}"|";")
+// "datatype" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+// instanceClassName=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("serializable" | "!serializable") "}")? ("{"
+// (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";")
 protected class DataTypeCS_Group extends GroupToken {
 	
 	public DataTypeCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5347,8 +5301,7 @@ protected class DataTypeCS_NameAssignment_1 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-// ?
+// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 protected class DataTypeCS_Group_2 extends GroupToken {
 	
 	public DataTypeCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5634,7 +5587,7 @@ protected class DataTypeCS_InstanceClassNameAssignment_3_1 extends AssignmentTok
 }
 
 
-// ("{" qualifiers+=( "serializable" | "!serializable" ) "}")?
+// ("{" qualifiers+=("serializable" | "!serializable") "}")?
 protected class DataTypeCS_Group_4 extends GroupToken {
 	
 	public DataTypeCS_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5680,7 +5633,7 @@ protected class DataTypeCS_LeftCurlyBracketKeyword_4_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "serializable" | "!serializable" )
+// qualifiers+=("serializable" | "!serializable")
 protected class DataTypeCS_QualifiersAssignment_4_1 extends AssignmentToken  {
 	
 	public DataTypeCS_QualifiersAssignment_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5704,12 +5657,12 @@ protected class DataTypeCS_QualifiersAssignment_4_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("serializable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_4_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_4_1_0_0();
 			return obj;
 		}
-		if("!serializable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_4_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_4_1_0_1();
 			return obj;
@@ -5742,8 +5695,7 @@ protected class DataTypeCS_RightCurlyBracketKeyword_4_2 extends KeywordToken  {
 }
 
 
-// "{" (annotations+=AnnotationElementCS|constraints+=InvariantConstraintCS)* "}"|
-// ";"
+// "{" (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}" | ";"
 protected class DataTypeCS_Alternatives_5 extends AlternativesToken {
 
 	public DataTypeCS_Alternatives_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5766,7 +5718,7 @@ protected class DataTypeCS_Alternatives_5 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|constraints+=InvariantConstraintCS)* "}"
+// "{" (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)* "}"
 protected class DataTypeCS_Group_5_0 extends GroupToken {
 	
 	public DataTypeCS_Group_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5813,7 +5765,7 @@ protected class DataTypeCS_LeftCurlyBracketKeyword_5_0_0 extends KeywordToken  {
 
 }
 
-// (annotations+=AnnotationElementCS|constraints+=InvariantConstraintCS)*
+// (annotations+=AnnotationElementCS | constraints+=InvariantConstraintCS)*
 protected class DataTypeCS_Alternatives_5_0_1 extends AlternativesToken {
 
 	public DataTypeCS_Alternatives_5_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5987,13 +5939,11 @@ protected class DataTypeCS_SemicolonKeyword_5_1 extends KeywordToken  {
 /************ begin Rule DetailCS ****************
  *
  * DetailCS returns base::DetailCS:
- *   (idName=Identifier|stringName=SINGLE_QUOTED_STRING) "="
- *   value=SINGLE_QUOTED_STRING;
+ * 	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING;
  *
  **/
 
-// (idName=Identifier|stringName=SINGLE_QUOTED_STRING) "="
-// value=SINGLE_QUOTED_STRING
+// (idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING
 protected class DetailCS_Group extends GroupToken {
 	
 	public DetailCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6022,7 +5972,7 @@ protected class DetailCS_Group extends GroupToken {
 
 }
 
-// idName=Identifier|stringName=SINGLE_QUOTED_STRING
+// idName=Identifier | stringName=SINGLE_QUOTED_STRING
 protected class DetailCS_Alternatives_0 extends AlternativesToken {
 
 	public DetailCS_Alternatives_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6175,13 +6125,12 @@ protected class DetailCS_ValueAssignment_2 extends AssignmentToken  {
 /************ begin Rule DocumentationCS ****************
  *
  * DocumentationCS:
- *   {DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("("
- *   details+=DetailCS ("," details+=DetailCS)* ")")? ";";
+ * 	{DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" details+=DetailCS ("," details+=DetailCS)* ")")?
+ * 	";";
  *
  **/
 
-// {DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("("
-// details+=DetailCS ("," details+=DetailCS)* ")")? ";"
+// {DocumentationCS} "documentation" value=SINGLE_QUOTED_STRING? ("(" details+=DetailCS ("," details+=DetailCS)* ")")? ";"
 protected class DocumentationCS_Group extends GroupToken {
 	
 	public DocumentationCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6530,18 +6479,15 @@ protected class DocumentationCS_SemicolonKeyword_4 extends KeywordToken  {
 /************ begin Rule EnumCS ****************
  *
  * EnumCS:
- *   "enum" name=Identifier ("<" typeParameters+=TypeParameterCS (","
- *   typeParameters+=TypeParameterCS)* ">")? (":"
- *   instanceClassName=SINGLE_QUOTED_STRING)? ("{" (
- *   annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
- *   constraints+=InvariantConstraintCS)* "}"|";");
+ * 	"enum" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+ * 	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS |
+ * 	constraints+=InvariantConstraintCS)* "}" | ";");
  *
  **/
 
-// "enum" name=Identifier ("<" typeParameters+=TypeParameterCS (","
-// typeParameters+=TypeParameterCS)* ">")? (":"
-// instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS
-// |literals+=EnumLiteralCS|constraints+=InvariantConstraintCS)* "}"|";")
+// "enum" name=Identifier ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")? (":"
+// instanceClassName=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS |
+// constraints+=InvariantConstraintCS)* "}" | ";")
 protected class EnumCS_Group extends GroupToken {
 	
 	public EnumCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6625,8 +6571,7 @@ protected class EnumCS_NameAssignment_1 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-// ?
+// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 protected class EnumCS_Group_2 extends GroupToken {
 	
 	public EnumCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6912,8 +6857,7 @@ protected class EnumCS_InstanceClassNameAssignment_3_1 extends AssignmentToken  
 }
 
 
-// "{" (annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-// constraints+=InvariantConstraintCS)* "}"|";"
+// "{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* "}" | ";"
 protected class EnumCS_Alternatives_4 extends AlternativesToken {
 
 	public EnumCS_Alternatives_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6936,8 +6880,7 @@ protected class EnumCS_Alternatives_4 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-// constraints+=InvariantConstraintCS)* "}"
+// "{" (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)* "}"
 protected class EnumCS_Group_4_0 extends GroupToken {
 	
 	public EnumCS_Group_4_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6983,8 +6926,7 @@ protected class EnumCS_LeftCurlyBracketKeyword_4_0_0 extends KeywordToken  {
 
 }
 
-// (annotations+=AnnotationElementCS|literals+=EnumLiteralCS|
-// constraints+=InvariantConstraintCS)*
+// (annotations+=AnnotationElementCS | literals+=EnumLiteralCS | constraints+=InvariantConstraintCS)*
 protected class EnumCS_Alternatives_4_0_1 extends AlternativesToken {
 
 	public EnumCS_Alternatives_4_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7205,13 +7147,11 @@ protected class EnumCS_SemicolonKeyword_4_1 extends KeywordToken  {
 /************ begin Rule EnumLiteralCS ****************
  *
  * EnumLiteralCS returns base::EnumLiteralCS:
- *   name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS*
- *   "}"|";");
+ * 	name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}" | ";");
  *
  **/
 
-// name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}"|
-// ";")
+// name=Identifier ("=" value=INTEGER)? ("{" annotations+=AnnotationElementCS* "}" | ";")
 protected class EnumLiteralCS_Group extends GroupToken {
 	
 	public EnumLiteralCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7352,7 +7292,7 @@ protected class EnumLiteralCS_ValueAssignment_1_1 extends AssignmentToken  {
 }
 
 
-// "{" annotations+=AnnotationElementCS* "}"|";"
+// "{" annotations+=AnnotationElementCS* "}" | ";"
 protected class EnumLiteralCS_Alternatives_2 extends AlternativesToken {
 
 	public EnumLiteralCS_Alternatives_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7521,13 +7461,11 @@ protected class EnumLiteralCS_SemicolonKeyword_2_1 extends KeywordToken  {
 /************ begin Rule ImportCS ****************
  *
  * ImportCS returns base::ImportCS:
- *   "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
- *   SINGLE_QUOTED_STRING] ";";
+ * 	"import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING] ";";
  *
  **/
 
-// "import" (name=Identifier ":")? namespace=[base::NamespaceCS|
-// SINGLE_QUOTED_STRING] ";"
+// "import" (name=Identifier ":")? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING] ";"
 protected class ImportCS_Group extends GroupToken {
 	
 	public ImportCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7723,13 +7661,11 @@ protected class ImportCS_SemicolonKeyword_3 extends KeywordToken  {
 /************ begin Rule LibraryCS ****************
  *
  * LibraryCS returns base::LibraryCS:
- *   "library" (name=Identifier ":")? package=[base::PackageCS|
- *   SINGLE_QUOTED_STRING] ";";
+ * 	"library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING] ";";
  *
  **/
 
-// "library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING]
-// ";"
+// "library" (name=Identifier ":")? package=[base::PackageCS|SINGLE_QUOTED_STRING] ";"
 protected class LibraryCS_Group extends GroupToken {
 	
 	public LibraryCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7925,11 +7861,11 @@ protected class LibraryCS_SemicolonKeyword_3 extends KeywordToken  {
 /************ begin Rule ModelElementCS ****************
  *
  * ModelElementCS returns base::ModelElementCS:
- *   ClassifierCS|EnumLiteralCS|OperationCS|PackageCS|StructuralFeatureCS;
+ * 	ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS;
  *
  **/
 
-// ClassifierCS|EnumLiteralCS|OperationCS|PackageCS|StructuralFeatureCS
+// ClassifierCS | EnumLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
 protected class ModelElementCS_Alternatives extends AlternativesToken {
 
 	public ModelElementCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8159,7 +8095,7 @@ protected class ModelElementCS_StructuralFeatureCSParserRuleCall_4 extends RuleC
 /************ begin Rule ModelElementCSRef ****************
  *
  * ModelElementCSRef returns base::ModelElementCSRef:
- *   ref=[base::ModelElementCS|Identifier];
+ * 	ref=[base::ModelElementCS|Identifier];
  *
  **/
 
@@ -8207,29 +8143,23 @@ protected class ModelElementCSRef_RefAssignment extends AssignmentToken  {
 /************ begin Rule OperationCS ****************
  *
  * OperationCS returns OCLinEcoreOperationCS:
- *   isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier (
- *   "<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)*
- *   ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
- *   type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
- *   "+" | "?" )) "]")?)? ("throws" exceptions+=TypedRefCS (","
- *   exceptions+=TypedRefCS)*)? ("{" qualifiers+=( "derived" | "!derived" |
- *   "ordered" | "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "derived"
- *   | "!derived" | "ordered" | "!ordered" | "unique" | "!unique" ))* "}")? ("{" (
- *   annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
- *   BodyConstraintCS | PostconditionConstraintCS ))* "}"|";");
+ * 	isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<" typeParameters+=TypeParameterCS (","
+ * 	typeParameters+=TypeParameterCS)* ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
+ * 	type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("throws"
+ * 	exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*)? ("{" qualifiers+=("derived" | "!derived" | "ordered" |
+ * 	"!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" |
+ * 	"!unique"))* "}")? ("{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS
+ * 	| PostconditionConstraintCS))* "}" | ";");
  *
  **/
 
-// isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<"
-// typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
-// "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
-// type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+"
-// | "?" )) "]")?)? ("throws" exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*
-// )? ("{" qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" |
-// "unique" | "!unique" ) ("," qualifiers+=( "derived" | "!derived" | "ordered" |
-// "!ordered" | "unique" | "!unique" ))* "}")? ("{" (
-// annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-// BodyConstraintCS | PostconditionConstraintCS ))* "}"|";")
+// isStatic?="static"? isDefinition?="definition"? "operation" name=Identifier ("<" typeParameters+=TypeParameterCS (","
+// typeParameters+=TypeParameterCS)* ">")? "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" (":"
+// type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("throws"
+// exceptions+=TypedRefCS ("," exceptions+=TypedRefCS)*)? ("{" qualifiers+=("derived" | "!derived" | "ordered" |
+// "!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" |
+// "!unique"))* "}")? ("{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+// PostconditionConstraintCS))* "}" | ";")
 protected class OperationCS_Group extends GroupToken {
 	
 	public OperationCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8382,8 +8312,7 @@ protected class OperationCS_NameAssignment_3 extends AssignmentToken  {
 
 }
 
-// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")
-// ?
+// ("<" typeParameters+=TypeParameterCS ("," typeParameters+=TypeParameterCS)* ">")?
 protected class OperationCS_Group_4 extends GroupToken {
 	
 	public OperationCS_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8797,8 +8726,7 @@ protected class OperationCS_RightParenthesisKeyword_7 extends KeywordToken  {
 
 }
 
-// (":" type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-// "+" | "?" )) "]")?)?
+// (":" type=TypedRefCS? ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 protected class OperationCS_Group_8 extends GroupToken {
 	
 	public OperationCS_Group_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8889,7 +8817,7 @@ protected class OperationCS_TypeAssignment_8_1 extends AssignmentToken  {
 	}	
 }
 
-// ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+// ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 protected class OperationCS_Group_8_2 extends GroupToken {
 	
 	public OperationCS_Group_8_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8934,7 +8862,7 @@ protected class OperationCS_LeftSquareBracketKeyword_8_2_0 extends KeywordToken 
 
 }
 
-// lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+// lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 protected class OperationCS_Alternatives_8_2_1 extends AlternativesToken {
 
 	public OperationCS_Alternatives_8_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9094,7 +9022,7 @@ protected class OperationCS_UpperAssignment_8_2_1_0_1_1 extends AssignmentToken 
 
 
 
-// multiplicity=( "*" | "+" | "?" )
+// multiplicity=("*" | "+" | "?")
 protected class OperationCS_MultiplicityAssignment_8_2_1_1 extends AssignmentToken  {
 	
 	public OperationCS_MultiplicityAssignment_8_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9118,17 +9046,17 @@ protected class OperationCS_MultiplicityAssignment_8_2_1_1 extends AssignmentTok
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("multiplicity",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("multiplicity");
-		if("*".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getMultiplicityAsteriskKeyword_8_2_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getMultiplicityAsteriskKeyword_8_2_1_1_0_0();
 			return obj;
 		}
-		if("+".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getMultiplicityPlusSignKeyword_8_2_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getMultiplicityPlusSignKeyword_8_2_1_1_0_1();
 			return obj;
 		}
-		if("?".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getMultiplicityQuestionMarkKeyword_8_2_1_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getMultiplicityQuestionMarkKeyword_8_2_1_1_0_2();
 			return obj;
@@ -9348,9 +9276,8 @@ protected class OperationCS_ExceptionsAssignment_9_2_1 extends AssignmentToken  
 
 
 
-// ("{" qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-// "!unique" ) ("," qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered"
-// | "unique" | "!unique" ))* "}")?
+// ("{" qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("derived" |
+// "!derived" | "ordered" | "!ordered" | "unique" | "!unique"))* "}")?
 protected class OperationCS_Group_10 extends GroupToken {
 	
 	public OperationCS_Group_10(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9396,8 +9323,7 @@ protected class OperationCS_LeftCurlyBracketKeyword_10_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-// "!unique" )
+// qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique")
 protected class OperationCS_QualifiersAssignment_10_1 extends AssignmentToken  {
 	
 	public OperationCS_QualifiersAssignment_10_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9421,32 +9347,32 @@ protected class OperationCS_QualifiersAssignment_10_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_1_0_0();
 			return obj;
 		}
-		if("!derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_1_0_1();
 			return obj;
 		}
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_1_0_2();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_1_0_3();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_1_0_4(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_1_0_4();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_1_0_5(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_1_0_5();
 			return obj;
@@ -9456,8 +9382,7 @@ protected class OperationCS_QualifiersAssignment_10_1 extends AssignmentToken  {
 
 }
 
-// ("," qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-// "!unique" ))*
+// ("," qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique"))*
 protected class OperationCS_Group_10_2 extends GroupToken {
 	
 	public OperationCS_Group_10_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9502,8 +9427,7 @@ protected class OperationCS_CommaKeyword_10_2_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "derived" | "!derived" | "ordered" | "!ordered" | "unique" |
-// "!unique" )
+// qualifiers+=("derived" | "!derived" | "ordered" | "!ordered" | "unique" | "!unique")
 protected class OperationCS_QualifiersAssignment_10_2_1 extends AssignmentToken  {
 	
 	public OperationCS_QualifiersAssignment_10_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9527,32 +9451,32 @@ protected class OperationCS_QualifiersAssignment_10_2_1 extends AssignmentToken 
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_2_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_2_1_0_0();
 			return obj;
 		}
-		if("!derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_2_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersDerivedKeyword_10_2_1_0_1();
 			return obj;
 		}
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_2_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_2_1_0_2();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_2_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersOrderedKeyword_10_2_1_0_3();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_2_1_0_4(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_2_1_0_4();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_2_1_0_5(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOperationCSAccess().getQualifiersUniqueKeyword_10_2_1_0_5();
 			return obj;
@@ -9587,8 +9511,8 @@ protected class OperationCS_RightCurlyBracketKeyword_10_3 extends KeywordToken  
 }
 
 
-// "{" (annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-// BodyConstraintCS | PostconditionConstraintCS ))* "}"|";"
+// "{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+// PostconditionConstraintCS))* "}" | ";"
 protected class OperationCS_Alternatives_11 extends AlternativesToken {
 
 	public OperationCS_Alternatives_11(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9611,8 +9535,8 @@ protected class OperationCS_Alternatives_11 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-// BodyConstraintCS | PostconditionConstraintCS ))* "}"
+// "{" (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+// PostconditionConstraintCS))* "}"
 protected class OperationCS_Group_11_0 extends GroupToken {
 	
 	public OperationCS_Group_11_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9659,8 +9583,8 @@ protected class OperationCS_LeftCurlyBracketKeyword_11_0_0 extends KeywordToken 
 
 }
 
-// (annotations+=AnnotationElementCS|constraints+=( PreconditionConstraintCS |
-// BodyConstraintCS | PostconditionConstraintCS ))*
+// (annotations+=AnnotationElementCS | constraints+=(PreconditionConstraintCS | BodyConstraintCS |
+// PostconditionConstraintCS))*
 protected class OperationCS_Alternatives_11_0_1 extends AlternativesToken {
 
 	public OperationCS_Alternatives_11_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9730,8 +9654,7 @@ protected class OperationCS_AnnotationsAssignment_11_0_1_0 extends AssignmentTok
 	}	
 }
 
-// constraints+=( PreconditionConstraintCS | BodyConstraintCS |
-// PostconditionConstraintCS )
+// constraints+=(PreconditionConstraintCS | BodyConstraintCS | PostconditionConstraintCS)
 protected class OperationCS_ConstraintsAssignment_11_0_1_1 extends AssignmentToken  {
 	
 	public OperationCS_ConstraintsAssignment_11_0_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -9855,15 +9778,13 @@ protected class OperationCS_SemicolonKeyword_11_1 extends KeywordToken  {
 /************ begin Rule PackageCS ****************
  *
  * PackageCS returns OCLinEcorePackageCS:
- *   "package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING
- *   )? ("{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
- *   classifiers+=ClassifierCS)* "}"|";");
+ * 	"package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS
+ * 	| subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";");
  *
  **/
 
-// "package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)?
-// ("{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-// classifiers+=ClassifierCS)* "}"|";")
+// "package" name=Identifier (":" prefix=Identifier "=" uri=SINGLE_QUOTED_STRING)? ("{" (annotations+=AnnotationElementCS |
+// subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";")
 protected class PackageCS_Group extends GroupToken {
 	
 	public PackageCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10082,8 +10003,7 @@ protected class PackageCS_UriAssignment_2_3 extends AssignmentToken  {
 }
 
 
-// "{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-// classifiers+=ClassifierCS)* "}"|";"
+// "{" (annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)* "}" | ";"
 protected class PackageCS_Alternatives_3 extends AlternativesToken {
 
 	public PackageCS_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10106,8 +10026,7 @@ protected class PackageCS_Alternatives_3 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-// classifiers+=ClassifierCS)* "}"
+// "{" (annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)* "}"
 protected class PackageCS_Group_3_0 extends GroupToken {
 	
 	public PackageCS_Group_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10152,8 +10071,7 @@ protected class PackageCS_LeftCurlyBracketKeyword_3_0_0 extends KeywordToken  {
 
 }
 
-// (annotations+=AnnotationElementCS|subpackages+=PackageCS|
-// classifiers+=ClassifierCS)*
+// (annotations+=AnnotationElementCS | subpackages+=PackageCS | classifiers+=ClassifierCS)*
 protected class PackageCS_Alternatives_3_0_1 extends AlternativesToken {
 
 	public PackageCS_Alternatives_3_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10373,18 +10291,15 @@ protected class PackageCS_SemicolonKeyword_3_1 extends KeywordToken  {
 /************ begin Rule ParameterCS ****************
  *
  * ParameterCS returns base::ParameterCS:
- *   name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
- *   multiplicity=( "*" | "+" | "?" )) "]")?)? ("{" qualifiers+=( "ordered" |
- *   "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "ordered" | "!ordered"
- *   | "unique" | "!unique" ))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
- * ;
+ * 	name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
+ * 	("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+ * 	"!unique"))* "}")? ("{" annotations+=AnnotationElementCS* "}")?;
  *
  **/
 
-// name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|
-// multiplicity=( "*" | "+" | "?" )) "]")?)? ("{" qualifiers+=( "ordered" |
-// "!ordered" | "unique" | "!unique" ) ("," qualifiers+=( "ordered" | "!ordered" |
-// "unique" | "!unique" ))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
+// name=Identifier (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
+// ("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+// "!unique"))* "}")? ("{" annotations+=AnnotationElementCS* "}")?
 protected class ParameterCS_Group extends GroupToken {
 	
 	public ParameterCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10449,8 +10364,7 @@ protected class ParameterCS_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-// "+" | "?" )) "]")?)?
+// (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 protected class ParameterCS_Group_1 extends GroupToken {
 	
 	public ParameterCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10541,7 +10455,7 @@ protected class ParameterCS_TypeAssignment_1_1 extends AssignmentToken  {
 	}	
 }
 
-// ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+// ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 protected class ParameterCS_Group_1_2 extends GroupToken {
 	
 	public ParameterCS_Group_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10585,7 +10499,7 @@ protected class ParameterCS_LeftSquareBracketKeyword_1_2_0 extends KeywordToken 
 
 }
 
-// lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+// lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 protected class ParameterCS_Alternatives_1_2_1 extends AlternativesToken {
 
 	public ParameterCS_Alternatives_1_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10745,7 +10659,7 @@ protected class ParameterCS_UpperAssignment_1_2_1_0_1_1 extends AssignmentToken 
 
 
 
-// multiplicity=( "*" | "+" | "?" )
+// multiplicity=("*" | "+" | "?")
 protected class ParameterCS_MultiplicityAssignment_1_2_1_1 extends AssignmentToken  {
 	
 	public ParameterCS_MultiplicityAssignment_1_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10769,17 +10683,17 @@ protected class ParameterCS_MultiplicityAssignment_1_2_1_1 extends AssignmentTok
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("multiplicity",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("multiplicity");
-		if("*".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getMultiplicityAsteriskKeyword_1_2_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getMultiplicityAsteriskKeyword_1_2_1_1_0_0();
 			return obj;
 		}
-		if("+".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getMultiplicityPlusSignKeyword_1_2_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getMultiplicityPlusSignKeyword_1_2_1_1_0_1();
 			return obj;
 		}
-		if("?".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getMultiplicityQuestionMarkKeyword_1_2_1_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getMultiplicityQuestionMarkKeyword_1_2_1_1_0_2();
 			return obj;
@@ -10814,8 +10728,8 @@ protected class ParameterCS_RightSquareBracketKeyword_1_2_2 extends KeywordToken
 
 
 
-// ("{" qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" ) (","
-// qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" ))* "}")?
+// ("{" qualifiers+=("ordered" | "!ordered" | "unique" | "!unique") ("," qualifiers+=("ordered" | "!ordered" | "unique" |
+// "!unique"))* "}")?
 protected class ParameterCS_Group_2 extends GroupToken {
 	
 	public ParameterCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10860,7 +10774,7 @@ protected class ParameterCS_LeftCurlyBracketKeyword_2_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" )
+// qualifiers+=("ordered" | "!ordered" | "unique" | "!unique")
 protected class ParameterCS_QualifiersAssignment_2_1 extends AssignmentToken  {
 	
 	public ParameterCS_QualifiersAssignment_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10884,22 +10798,22 @@ protected class ParameterCS_QualifiersAssignment_2_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_1_0_0();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_1_0_1();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_1_0_2();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_1_0_3();
 			return obj;
@@ -10909,7 +10823,7 @@ protected class ParameterCS_QualifiersAssignment_2_1 extends AssignmentToken  {
 
 }
 
-// ("," qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" ))*
+// ("," qualifiers+=("ordered" | "!ordered" | "unique" | "!unique"))*
 protected class ParameterCS_Group_2_2 extends GroupToken {
 	
 	public ParameterCS_Group_2_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10954,7 +10868,7 @@ protected class ParameterCS_CommaKeyword_2_2_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "ordered" | "!ordered" | "unique" | "!unique" )
+// qualifiers+=("ordered" | "!ordered" | "unique" | "!unique")
 protected class ParameterCS_QualifiersAssignment_2_2_1 extends AssignmentToken  {
 	
 	public ParameterCS_QualifiersAssignment_2_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10978,22 +10892,22 @@ protected class ParameterCS_QualifiersAssignment_2_2_1 extends AssignmentToken  
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_2_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_2_1_0_0();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_2_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersOrderedKeyword_2_2_1_0_1();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_2_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_2_1_0_2();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_2_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getParameterCSAccess().getQualifiersUniqueKeyword_2_2_1_0_3();
 			return obj;
@@ -11151,7 +11065,7 @@ protected class ParameterCS_RightCurlyBracketKeyword_3_2 extends KeywordToken  {
 /************ begin Rule PrimitiveTypeRefCS ****************
  *
  * PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
- *   name=PrimitiveTypeIdentifier;
+ * 	name=PrimitiveTypeIdentifier;
  *
  **/
 
@@ -11196,13 +11110,13 @@ protected class PrimitiveTypeRefCS_NameAssignment extends AssignmentToken  {
 /************ begin Rule QualifiedTypeRefCS ****************
  *
  * QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
- *   namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
- *   typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS;
+ * 	namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")? "::"
+ * 	element=TypedRefCS;
  *
  **/
 
-// namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-// typeArguments+=TypeRefCS)* ">")? "::" element=TypedRefCS
+// namespace=[base::NamespaceCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")? "::"
+// element=TypedRefCS
 protected class QualifiedTypeRefCS_Group extends GroupToken {
 	
 	public QualifiedTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11549,33 +11463,25 @@ protected class QualifiedTypeRefCS_ElementAssignment_3 extends AssignmentToken  
 /************ begin Rule ReferenceCS ****************
  *
  * ReferenceCS returns OCLinEcoreReferenceCS:
- *   isStatic?="static"? isDefinition?="definition"? "property" name=Identifier (
- *   "#" opposite=ReferenceCSRef)? (":" type=TypedRefCS ("[" (lower=LOWER (".."
- *   upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?)? ("="
- *   defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "composes" |
- *   "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" |
- *   "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique"
- *   | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
- *   qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
- *   "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
- *   | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
- *   "volatile" | "!volatile" ))* "}")? ("{" (annotations+=AnnotationElementCS|
- *   constraints+=( InitialConstraintCS | DerivedConstraintCS ))* "}"|";");
+ * 	isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#" opposite=ReferenceCSRef)? (":"
+ * 	type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("="
+ * 	defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" |
+ * 	"ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
+ * 	"!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" |
+ * 	"derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
+ * 	"!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+ * 	(annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";");
  *
  **/
 
-// isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#"
-// opposite=ReferenceCSRef)? (":" type=TypedRefCS ("[" (lower=LOWER (".."
-// upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?)? ("="
-// defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=( "composes" |
-// "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" |
-// "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
-// "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile" ) (","
-// qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-// "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
-// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
-// | "!volatile" ))* "}")? ("{" (annotations+=AnnotationElementCS|constraints+=(
-// InitialConstraintCS | DerivedConstraintCS ))* "}"|";")
+// isStatic?="static"? isDefinition?="definition"? "property" name=Identifier ("#" opposite=ReferenceCSRef)? (":"
+// type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("="
+// defaultValueLiteral=SINGLE_QUOTED_STRING)? ("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" |
+// "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" |
+// "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" |
+// "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
+// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile" | "!volatile"))* "}")? ("{"
+// (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";")
 protected class ReferenceCS_Group extends GroupToken {
 	
 	public ReferenceCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11819,8 +11725,7 @@ protected class ReferenceCS_OppositeAssignment_4_1 extends AssignmentToken  {
 }
 
 
-// (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" |
-// "+" | "?" )) "]")?)?
+// (":" type=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)?
 protected class ReferenceCS_Group_5 extends GroupToken {
 	
 	public ReferenceCS_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11912,7 +11817,7 @@ protected class ReferenceCS_TypeAssignment_5_1 extends AssignmentToken  {
 	}	
 }
 
-// ("[" (lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )) "]")?
+// ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
 protected class ReferenceCS_Group_5_2 extends GroupToken {
 	
 	public ReferenceCS_Group_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11956,7 +11861,7 @@ protected class ReferenceCS_LeftSquareBracketKeyword_5_2_0 extends KeywordToken 
 
 }
 
-// lower=LOWER (".." upper=UPPER)?|multiplicity=( "*" | "+" | "?" )
+// lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
 protected class ReferenceCS_Alternatives_5_2_1 extends AlternativesToken {
 
 	public ReferenceCS_Alternatives_5_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12116,7 +12021,7 @@ protected class ReferenceCS_UpperAssignment_5_2_1_0_1_1 extends AssignmentToken 
 
 
 
-// multiplicity=( "*" | "+" | "?" )
+// multiplicity=("*" | "+" | "?")
 protected class ReferenceCS_MultiplicityAssignment_5_2_1_1 extends AssignmentToken  {
 	
 	public ReferenceCS_MultiplicityAssignment_5_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12140,17 +12045,17 @@ protected class ReferenceCS_MultiplicityAssignment_5_2_1_1 extends AssignmentTok
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("multiplicity",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("multiplicity");
-		if("*".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getMultiplicityAsteriskKeyword_5_2_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getMultiplicityAsteriskKeyword_5_2_1_1_0_0();
 			return obj;
 		}
-		if("+".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getMultiplicityPlusSignKeyword_5_2_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getMultiplicityPlusSignKeyword_5_2_1_1_0_1();
 			return obj;
 		}
-		if("?".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getMultiplicityQuestionMarkKeyword_5_2_1_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getMultiplicityQuestionMarkKeyword_5_2_1_1_0_2();
 			return obj;
@@ -12266,13 +12171,11 @@ protected class ReferenceCS_DefaultValueLiteralAssignment_6_1 extends Assignment
 }
 
 
-// ("{" qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered"
-// | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
-// | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
-// "volatile" | "!volatile" ) ("," qualifiers+=( "composes" | "!composes" |
-// "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" |
-// "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" |
-// "unsettable" | "!unsettable" | "volatile" | "!volatile" ))* "}")?
+// ("{" qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly"
+// | "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
+// "volatile" | "!volatile") ("," qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered"
+// | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable"
+// | "!unsettable" | "volatile" | "!volatile"))* "}")?
 protected class ReferenceCS_Group_7 extends GroupToken {
 	
 	public ReferenceCS_Group_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12319,10 +12222,9 @@ protected class ReferenceCS_LeftCurlyBracketKeyword_7_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-// "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
-// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
-// | "!volatile" )
+// qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+// "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
+// | "!volatile")
 protected class ReferenceCS_QualifiersAssignment_7_1 extends AssignmentToken  {
 	
 	public ReferenceCS_QualifiersAssignment_7_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12346,92 +12248,92 @@ protected class ReferenceCS_QualifiersAssignment_7_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("composes".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_1_0_0();
 			return obj;
 		}
-		if("!composes".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_1_0_1();
 			return obj;
 		}
-		if("derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_1_0_2();
 			return obj;
 		}
-		if("!derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_1_0_3();
 			return obj;
 		}
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_1_0_4(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_1_0_4();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_1_0_5(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_1_0_5();
 			return obj;
 		}
-		if("readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_1_0_6(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_1_0_6();
 			return obj;
 		}
-		if("!readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_1_0_7(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_1_0_7();
 			return obj;
 		}
-		if("resolve".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_1_0_8(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_1_0_8();
 			return obj;
 		}
-		if("!resolve".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_1_0_9(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_1_0_9();
 			return obj;
 		}
-		if("transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_1_0_10(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_1_0_10();
 			return obj;
 		}
-		if("!transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_1_0_11(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_1_0_11();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_1_0_12(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_1_0_12();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_1_0_13(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_1_0_13();
 			return obj;
 		}
-		if("unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_1_0_14(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_1_0_14();
 			return obj;
 		}
-		if("!unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_1_0_15(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_1_0_15();
 			return obj;
 		}
-		if("volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_1_0_16(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_1_0_16();
 			return obj;
 		}
-		if("!volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_1_0_17(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_1_0_17();
 			return obj;
@@ -12441,10 +12343,9 @@ protected class ReferenceCS_QualifiersAssignment_7_1 extends AssignmentToken  {
 
 }
 
-// ("," qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered"
-// | "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient"
-// | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
-// "volatile" | "!volatile" ))*
+// ("," qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly"
+// | "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" |
+// "volatile" | "!volatile"))*
 protected class ReferenceCS_Group_7_2 extends GroupToken {
 	
 	public ReferenceCS_Group_7_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12489,10 +12390,9 @@ protected class ReferenceCS_CommaKeyword_7_2_0 extends KeywordToken  {
 
 }
 
-// qualifiers+=( "composes" | "!composes" | "derived" | "!derived" | "ordered" |
-// "!ordered" | "readonly" | "!readonly" | "resolve" | "!resolve" | "transient" |
-// "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
-// | "!volatile" )
+// qualifiers+=("composes" | "!composes" | "derived" | "!derived" | "ordered" | "!ordered" | "readonly" | "!readonly" |
+// "resolve" | "!resolve" | "transient" | "!transient" | "unique" | "!unique" | "unsettable" | "!unsettable" | "volatile"
+// | "!volatile")
 protected class ReferenceCS_QualifiersAssignment_7_2_1 extends AssignmentToken  {
 	
 	public ReferenceCS_QualifiersAssignment_7_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12516,92 +12416,92 @@ protected class ReferenceCS_QualifiersAssignment_7_2_1 extends AssignmentToken  
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("qualifiers",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("qualifiers");
-		if("composes".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_2_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_2_1_0_0();
 			return obj;
 		}
-		if("!composes".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_2_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersComposesKeyword_7_2_1_0_1();
 			return obj;
 		}
-		if("derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_2_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_2_1_0_2();
 			return obj;
 		}
-		if("!derived".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_2_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersDerivedKeyword_7_2_1_0_3();
 			return obj;
 		}
-		if("ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_2_1_0_4(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_2_1_0_4();
 			return obj;
 		}
-		if("!ordered".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_2_1_0_5(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersOrderedKeyword_7_2_1_0_5();
 			return obj;
 		}
-		if("readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_2_1_0_6(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_2_1_0_6();
 			return obj;
 		}
-		if("!readonly".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_2_1_0_7(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersReadonlyKeyword_7_2_1_0_7();
 			return obj;
 		}
-		if("resolve".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_2_1_0_8(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_2_1_0_8();
 			return obj;
 		}
-		if("!resolve".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_2_1_0_9(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersResolveKeyword_7_2_1_0_9();
 			return obj;
 		}
-		if("transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_2_1_0_10(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_2_1_0_10();
 			return obj;
 		}
-		if("!transient".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_2_1_0_11(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersTransientKeyword_7_2_1_0_11();
 			return obj;
 		}
-		if("unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_2_1_0_12(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_2_1_0_12();
 			return obj;
 		}
-		if("!unique".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_2_1_0_13(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUniqueKeyword_7_2_1_0_13();
 			return obj;
 		}
-		if("unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_2_1_0_14(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_2_1_0_14();
 			return obj;
 		}
-		if("!unsettable".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_2_1_0_15(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersUnsettableKeyword_7_2_1_0_15();
 			return obj;
 		}
-		if("volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_2_1_0_16(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_2_1_0_16();
 			return obj;
 		}
-		if("!volatile".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_2_1_0_17(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReferenceCSAccess().getQualifiersVolatileKeyword_7_2_1_0_17();
 			return obj;
@@ -12636,8 +12536,7 @@ protected class ReferenceCS_RightCurlyBracketKeyword_7_3 extends KeywordToken  {
 }
 
 
-// "{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))* "}"|";"
+// "{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}" | ";"
 protected class ReferenceCS_Alternatives_8 extends AlternativesToken {
 
 	public ReferenceCS_Alternatives_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12660,8 +12559,7 @@ protected class ReferenceCS_Alternatives_8 extends AlternativesToken {
 
 }
 
-// "{" (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))* "}"
+// "{" (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))* "}"
 protected class ReferenceCS_Group_8_0 extends GroupToken {
 	
 	public ReferenceCS_Group_8_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12709,8 +12607,7 @@ protected class ReferenceCS_LeftCurlyBracketKeyword_8_0_0 extends KeywordToken  
 
 }
 
-// (annotations+=AnnotationElementCS|constraints+=( InitialConstraintCS |
-// DerivedConstraintCS ))*
+// (annotations+=AnnotationElementCS | constraints+=(InitialConstraintCS | DerivedConstraintCS))*
 protected class ReferenceCS_Alternatives_8_0_1 extends AlternativesToken {
 
 	public ReferenceCS_Alternatives_8_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12780,7 +12677,7 @@ protected class ReferenceCS_AnnotationsAssignment_8_0_1_0 extends AssignmentToke
 	}	
 }
 
-// constraints+=( InitialConstraintCS | DerivedConstraintCS )
+// constraints+=(InitialConstraintCS | DerivedConstraintCS)
 protected class ReferenceCS_ConstraintsAssignment_8_0_1_1 extends AssignmentToken  {
 	
 	public ReferenceCS_ConstraintsAssignment_8_0_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12895,7 +12792,7 @@ protected class ReferenceCS_SemicolonKeyword_8_1 extends KeywordToken  {
 /************ begin Rule ReferenceCSRef ****************
  *
  * ReferenceCSRef returns base::ReferenceCSRef:
- *   ref=[base::ReferenceCS|Identifier];
+ * 	ref=[base::ReferenceCS|Identifier];
  *
  **/
 
@@ -12943,11 +12840,11 @@ protected class ReferenceCSRef_RefAssignment extends AssignmentToken  {
 /************ begin Rule StructuralFeatureCS ****************
  *
  * StructuralFeatureCS returns OCLinEcoreStructuralFeatureCS:
- *   AttributeCS|ReferenceCS;
+ * 	AttributeCS | ReferenceCS;
  *
  **/
 
-// AttributeCS|ReferenceCS
+// AttributeCS | ReferenceCS
 protected class StructuralFeatureCS_Alternatives extends AlternativesToken {
 
 	public StructuralFeatureCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13058,13 +12955,11 @@ protected class StructuralFeatureCS_ReferenceCSParserRuleCall_1 extends RuleCall
 /************ begin Rule TypeParameterCS ****************
  *
  * TypeParameterCS returns base::TypeParameterCS:
- *   name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|
- *   "super" super=TypedRefCS)?;
+ * 	name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?;
  *
  **/
 
-// name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|
-// "super" super=TypedRefCS)?
+// name=Identifier ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?
 protected class TypeParameterCS_Group extends GroupToken {
 	
 	public TypeParameterCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13127,8 +13022,7 @@ protected class TypeParameterCS_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)*|"super"
-// super=TypedRefCS)?
+// ("extends" extends+=TypedRefCS ("&&" extends+=TypedRefCS)* | "super" super=TypedRefCS)?
 protected class TypeParameterCS_Alternatives_1 extends AlternativesToken {
 
 	public TypeParameterCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13434,11 +13328,11 @@ protected class TypeParameterCS_SuperAssignment_1_1_1 extends AssignmentToken  {
 /************ begin Rule TypeRefCS ****************
  *
  * TypeRefCS returns base::TypeRefCS:
- *   TypedRefCS|WildcardTypeRefCS;
+ * 	TypedRefCS | WildcardTypeRefCS;
  *
  **/
 
-// TypedRefCS|WildcardTypeRefCS
+// TypedRefCS | WildcardTypeRefCS
 protected class TypeRefCS_Alternatives extends AlternativesToken {
 
 	public TypeRefCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13554,11 +13448,11 @@ protected class TypeRefCS_WildcardTypeRefCSParserRuleCall_1 extends RuleCallToke
 /************ begin Rule TypedRefCS ****************
  *
  * TypedRefCS returns base::TypedRefCS:
- *   QualifiedTypeRefCS|PrimitiveTypeRefCS|CollectionTypeRefCS|TypedTypeRefCS;
+ * 	QualifiedTypeRefCS | PrimitiveTypeRefCS | CollectionTypeRefCS | TypedTypeRefCS;
  *
  **/
 
-// QualifiedTypeRefCS|PrimitiveTypeRefCS|CollectionTypeRefCS|TypedTypeRefCS
+// QualifiedTypeRefCS | PrimitiveTypeRefCS | CollectionTypeRefCS | TypedTypeRefCS
 protected class TypedRefCS_Alternatives extends AlternativesToken {
 
 	public TypedRefCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13744,13 +13638,11 @@ protected class TypedRefCS_TypedTypeRefCSParserRuleCall_3 extends RuleCallToken 
 /************ begin Rule TypedTypeRefCS ****************
  *
  * TypedTypeRefCS returns base::TypedTypeRefCS:
- *   type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS (","
- *   typeArguments+=TypeRefCS)* ">")?;
+ * 	type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")?;
  *
  **/
 
-// type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS (","
-// typeArguments+=TypeRefCS)* ">")?
+// type=[base::TypeCS|Identifier] ("<" typeArguments+=TypeRefCS ("," typeArguments+=TypeRefCS)* ">")?
 protected class TypedTypeRefCS_Group extends GroupToken {
 	
 	public TypedTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14029,13 +13921,11 @@ protected class TypedTypeRefCS_GreaterThanSignKeyword_1_3 extends KeywordToken  
 /************ begin Rule WildcardTypeRefCS ****************
  *
  * WildcardTypeRefCS returns base::WildcardTypeRefCS:
- *   {base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS|"super"
- *   super=TypedRefCS)?;
+ * 	{base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS | "super" super=TypedRefCS)?;
  *
  **/
 
-// {base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS|"super"
-// super=TypedRefCS)?
+// {base::WildcardTypeRefCS} "?" ("extends" extends=TypedRefCS | "super" super=TypedRefCS)?
 protected class WildcardTypeRefCS_Group extends GroupToken {
 	
 	public WildcardTypeRefCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14113,7 +14003,7 @@ protected class WildcardTypeRefCS_QuestionMarkKeyword_1 extends KeywordToken  {
 
 }
 
-// ("extends" extends=TypedRefCS|"super" super=TypedRefCS)?
+// ("extends" extends=TypedRefCS | "super" super=TypedRefCS)?
 protected class WildcardTypeRefCS_Alternatives_2 extends AlternativesToken {
 
 	public WildcardTypeRefCS_Alternatives_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14327,10 +14217,8 @@ protected class WildcardTypeRefCS_SuperAssignment_2_1_1 extends AssignmentToken 
  *
  * //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
  * 
- * 
- * 
  * Model returns ExpCS:
- *   ExpCS;
+ * 	ExpCS;
  *
  **/
 
@@ -14356,19 +14244,18 @@ protected class Model_ExpCSParserRuleCall extends RuleCallToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLetExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -14404,7 +14291,7 @@ protected class Model_ExpCSParserRuleCall extends RuleCallToken {
 /************ begin Rule PrimitiveTypeCS ****************
  *
  * PrimitiveTypeCS:
- *   name=PrimitiveTypeIdentifier;
+ * 	name=PrimitiveTypeIdentifier;
  *
  **/
 
@@ -14450,11 +14337,11 @@ protected class PrimitiveTypeCS_NameAssignment extends AssignmentToken  {
 /************ begin Rule TypeExpCS ****************
  *
  * TypeExpCS:
- *   PrimitiveTypeCS|NameExpCS|CollectionTypeCS|TupleTypeCS;
+ * 	PrimitiveTypeCS | NameExpCS | CollectionTypeCS | TupleTypeCS;
  *
  **/
 
-// PrimitiveTypeCS|NameExpCS|CollectionTypeCS|TupleTypeCS
+// PrimitiveTypeCS | NameExpCS | CollectionTypeCS | TupleTypeCS
 protected class TypeExpCS_Alternatives extends AlternativesToken {
 
 	public TypeExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14642,7 +14529,7 @@ protected class TypeExpCS_TupleTypeCSParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule CollectionTypeCS ****************
  *
  * CollectionTypeCS:
- *   name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
+ * 	name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
  *
  **/
 
@@ -14829,7 +14716,7 @@ protected class CollectionTypeCS_RightParenthesisKeyword_1_2 extends KeywordToke
 /************ begin Rule TupleTypeCS ****************
  *
  * TupleTypeCS:
- *   name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
+ * 	name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
  *
  **/
 
@@ -14885,7 +14772,7 @@ protected class TupleTypeCS_NameAssignment_0 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if("Tuple".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getTupleTypeCSAccess().getNameTupleKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getTupleTypeCSAccess().getNameTupleKeyword_0_0();
 			return obj;
@@ -15109,7 +14996,7 @@ protected class TupleTypeCS_RightParenthesisKeyword_3 extends KeywordToken  {
 /************ begin Rule tuplePartCS ****************
  *
  * tuplePartCS returns VariableCS:
- *   name=SimpleName ":" type=TypeExpCS;
+ * 	name=SimpleName ":" type=TypeExpCS;
  *
  **/
 
@@ -15279,19 +15166,13 @@ protected class TuplePartCS_TypeAssignment_2 extends AssignmentToken  {
  * 
  * // or CollectionTypeLiteral
  * 
- * 
- * 
  * CollectionLiteralExpCS returns LiteralExpCS:
- *   CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (
- *   collectionLiteralParts+=CollectionLiteralPartCS (","
- *   collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
+ * 	CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
+ * 	collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
  *
  **/
 
-// // or CollectionTypeLiteral
-// 
-// CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (
-// collectionLiteralParts+=CollectionLiteralPartCS (","
+// CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
 // collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?
 protected class CollectionLiteralExpCS_Group extends GroupToken {
 	
@@ -15323,8 +15204,6 @@ protected class CollectionLiteralExpCS_Group extends GroupToken {
 
 }
 
-// // or CollectionTypeLiteral
-// 
 // CollectionTypeCS
 protected class CollectionLiteralExpCS_CollectionTypeCSParserRuleCall_0 extends RuleCallToken {
 	
@@ -15361,8 +15240,7 @@ protected class CollectionLiteralExpCS_CollectionTypeCSParserRuleCall_0 extends 
 	}	
 }
 
-// ({CollectionLiteralExpCS.typeCS=current} "{" (
-// collectionLiteralParts+=CollectionLiteralPartCS (","
+// ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
 // collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?
 protected class CollectionLiteralExpCS_Group_1 extends GroupToken {
 	
@@ -15443,8 +15321,7 @@ protected class CollectionLiteralExpCS_LeftCurlyBracketKeyword_1_1 extends Keywo
 
 }
 
-// (collectionLiteralParts+=CollectionLiteralPartCS (","
-// collectionLiteralParts+=CollectionLiteralPartCS)*)?
+// (collectionLiteralParts+=CollectionLiteralPartCS ("," collectionLiteralParts+=CollectionLiteralPartCS)*)?
 protected class CollectionLiteralExpCS_Group_1_2 extends GroupToken {
 	
 	public CollectionLiteralExpCS_Group_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -15637,7 +15514,7 @@ protected class CollectionLiteralExpCS_RightCurlyBracketKeyword_1_3 extends Keyw
 /************ begin Rule CollectionLiteralPartCS ****************
  *
  * CollectionLiteralPartCS:
- *   expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
+ * 	expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
  *
  **/
 
@@ -15814,13 +15691,11 @@ protected class CollectionLiteralPartCS_LastExpressionCSAssignment_1_1 extends A
 /************ begin Rule PrimitiveLiteralExpCS ****************
  *
  * PrimitiveLiteralExpCS:
- *   NumberLiteralExpCS|StringLiteralExpCS|BooleanLiteralExpCS|InvalidLiteralExpCS
- *   |NullLiteralExpCS;
+ * 	NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | InvalidLiteralExpCS | NullLiteralExpCS;
  *
  **/
 
-// NumberLiteralExpCS|StringLiteralExpCS|BooleanLiteralExpCS|InvalidLiteralExpCS|
-// NullLiteralExpCS
+// NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | InvalidLiteralExpCS | NullLiteralExpCS
 protected class PrimitiveLiteralExpCS_Alternatives extends AlternativesToken {
 
 	public PrimitiveLiteralExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -16045,18 +15920,12 @@ protected class PrimitiveLiteralExpCS_NullLiteralExpCSParserRuleCall_4 extends R
  *
  * // or TupleTypeLiteral
  * 
- * 
- * 
  * TupleLiteralExpCS:
- *   {TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS (","
- *   part+=TupleLiteralPartCS)* "}")?;
+ * 	{TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS ("," part+=TupleLiteralPartCS)* "}")?;
  *
  **/
 
-// // or TupleTypeLiteral
-// 
-// {TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS (","
-// part+=TupleLiteralPartCS)* "}")?
+// {TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS ("," part+=TupleLiteralPartCS)* "}")?
 protected class TupleLiteralExpCS_Group extends GroupToken {
 	
 	public TupleLiteralExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -16086,8 +15955,6 @@ protected class TupleLiteralExpCS_Group extends GroupToken {
 
 }
 
-// // or TupleTypeLiteral
-// 
 // {TupleLiteralExpCS}
 protected class TupleLiteralExpCS_TupleLiteralExpCSAction_0 extends ActionToken  {
 
@@ -16349,7 +16216,7 @@ protected class TupleLiteralExpCS_RightCurlyBracketKeyword_2_3 extends KeywordTo
 /************ begin Rule TupleLiteralPartCS ****************
  *
  * TupleLiteralPartCS returns VariableCS:
- *   name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
+ * 	name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
  *
  **/
 
@@ -16582,7 +16449,7 @@ protected class TupleLiteralPartCS_InitExpressionAssignment_3 extends Assignment
 /************ begin Rule NumberLiteralExpCS ****************
  *
  * NumberLiteralExpCS:
- *   name=NUMBER_LITERAL;
+ * 	name=NUMBER_LITERAL;
  *
  **/
 
@@ -16627,7 +16494,7 @@ protected class NumberLiteralExpCS_NameAssignment extends AssignmentToken  {
 /************ begin Rule StringLiteralExpCS ****************
  *
  * StringLiteralExpCS:
- *   name+=StringLiteral+;
+ * 	name+=StringLiteral+;
  *
  **/
 
@@ -16671,11 +16538,11 @@ protected class StringLiteralExpCS_NameAssignment extends AssignmentToken  {
 /************ begin Rule BooleanLiteralExpCS ****************
  *
  * BooleanLiteralExpCS:
- *   name="true"|name="false";
+ * 	name="true" | name="false";
  *
  **/
 
-// name="true"|name="false"
+// name="true" | name="false"
 protected class BooleanLiteralExpCS_Alternatives extends AlternativesToken {
 
 	public BooleanLiteralExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -16728,7 +16595,7 @@ protected class BooleanLiteralExpCS_NameAssignment_0 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if("true".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getBooleanLiteralExpCSAccess().getNameTrueKeyword_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getBooleanLiteralExpCSAccess().getNameTrueKeyword_0_0();
 			return obj;
@@ -16761,7 +16628,7 @@ protected class BooleanLiteralExpCS_NameAssignment_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if("false".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getBooleanLiteralExpCSAccess().getNameFalseKeyword_1_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getBooleanLiteralExpCSAccess().getNameFalseKeyword_1_0();
 			return obj;
@@ -16778,7 +16645,7 @@ protected class BooleanLiteralExpCS_NameAssignment_1 extends AssignmentToken  {
 /************ begin Rule InvalidLiteralExpCS ****************
  *
  * InvalidLiteralExpCS:
- *   {InvalidLiteralExpCS} "invalid";
+ * 	{InvalidLiteralExpCS} "invalid";
  *
  **/
 
@@ -16866,7 +16733,7 @@ protected class InvalidLiteralExpCS_InvalidKeyword_1 extends KeywordToken  {
 /************ begin Rule NullLiteralExpCS ****************
  *
  * NullLiteralExpCS:
- *   {NullLiteralExpCS} "null";
+ * 	{NullLiteralExpCS} "null";
  *
  **/
 
@@ -16969,14 +16836,12 @@ protected class NullLiteralExpCS_NullKeyword_1 extends KeywordToken  {
  * 
  * //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
  * 
- * 
- * 
  * ExpCS:
- *   impliesCS|LetExpCS;
+ * 	impliesCS | LetExpCS;
  *
  **/
 
-// impliesCS|LetExpCS
+// impliesCS | LetExpCS
 protected class ExpCS_Alternatives extends AlternativesToken {
 
 	public ExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -16999,19 +16864,18 @@ protected class ExpCS_Alternatives extends AlternativesToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLetExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -17049,18 +16913,17 @@ protected class ExpCS_ImpliesCSParserRuleCall_0 extends RuleCallToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -17126,12 +16989,11 @@ protected class ExpCS_LetExpCSParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule impliesCS ****************
  *
  * impliesCS returns ExpCS:
- *   xorCS ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS )
- *   )*;
+ * 	xorCS ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*;
  *
  **/
 
-// xorCS ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS ))*
+// xorCS ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*
 protected class ImpliesCS_Group extends GroupToken {
 	
 	public ImpliesCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17154,18 +17016,17 @@ protected class ImpliesCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -17215,7 +17076,7 @@ protected class ImpliesCS_XorCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS ))*
+// ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*
 protected class ImpliesCS_Group_1 extends GroupToken {
 	
 	public ImpliesCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17298,7 +17159,7 @@ protected class ImpliesCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("implies".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getImpliesCSAccess().getOpImpliesKeyword_1_1_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getImpliesCSAccess().getOpImpliesKeyword_1_1_0();
 			return obj;
@@ -17308,7 +17169,7 @@ protected class ImpliesCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( xorCS | LetExpCS )
+// argument=(xorCS | LetExpCS)
 protected class ImpliesCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public ImpliesCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17372,11 +17233,11 @@ protected class ImpliesCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule xorCS ****************
  *
  * xorCS returns ExpCS:
- *   orCS ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*;
+ * 	orCS ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*;
  *
  **/
 
-// orCS ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*
+// orCS ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*
 protected class XorCS_Group extends GroupToken {
 	
 	public XorCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17399,18 +17260,17 @@ protected class XorCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -17460,7 +17320,7 @@ protected class XorCS_OrCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*
+// ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*
 protected class XorCS_Group_1 extends GroupToken {
 	
 	public XorCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17543,7 +17403,7 @@ protected class XorCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("xor".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getXorCSAccess().getOpXorKeyword_1_1_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getXorCSAccess().getOpXorKeyword_1_1_0();
 			return obj;
@@ -17553,7 +17413,7 @@ protected class XorCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( orCS | LetExpCS )
+// argument=(orCS | LetExpCS)
 protected class XorCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public XorCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17617,11 +17477,11 @@ protected class XorCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule orCS ****************
  *
  * orCS returns ExpCS:
- *   andCS ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*;
+ * 	andCS ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*;
  *
  **/
 
-// andCS ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*
+// andCS ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*
 protected class OrCS_Group extends GroupToken {
 	
 	public OrCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17644,18 +17504,17 @@ protected class OrCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAndCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -17705,7 +17564,7 @@ protected class OrCS_AndCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*
+// ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*
 protected class OrCS_Group_1 extends GroupToken {
 	
 	public OrCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17788,7 +17647,7 @@ protected class OrCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("or".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getOrCSAccess().getOpOrKeyword_1_1_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getOrCSAccess().getOpOrKeyword_1_1_0();
 			return obj;
@@ -17798,7 +17657,7 @@ protected class OrCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( andCS | LetExpCS )
+// argument=(andCS | LetExpCS)
 protected class OrCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public OrCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17862,13 +17721,11 @@ protected class OrCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule andCS ****************
  *
  * andCS returns ExpCS:
- *   equalityCS ({InfixExpCS.source=current} op="and" argument=( equalityCS |
- *   LetExpCS ))*;
+ * 	equalityCS ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*;
  *
  **/
 
-// equalityCS ({InfixExpCS.source=current} op="and" argument=( equalityCS |
-// LetExpCS ))*
+// equalityCS ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*
 protected class AndCS_Group extends GroupToken {
 	
 	public AndCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17891,18 +17748,17 @@ protected class AndCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getAndCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -17952,7 +17808,7 @@ protected class AndCS_EqualityCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op="and" argument=( equalityCS | LetExpCS ))*
+// ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*
 protected class AndCS_Group_1 extends GroupToken {
 	
 	public AndCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18035,7 +17891,7 @@ protected class AndCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("and".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAndCSAccess().getOpAndKeyword_1_1_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAndCSAccess().getOpAndKeyword_1_1_0();
 			return obj;
@@ -18045,7 +17901,7 @@ protected class AndCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( equalityCS | LetExpCS )
+// argument=(equalityCS | LetExpCS)
 protected class AndCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public AndCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18109,13 +17965,11 @@ protected class AndCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule equalityCS ****************
  *
  * equalityCS returns ExpCS:
- *   relationalCS ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=(
- *   relationalCS | LetExpCS ))*;
+ * 	relationalCS ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*;
  *
  **/
 
-// relationalCS ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=(
-// relationalCS | LetExpCS ))*
+// relationalCS ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*
 protected class EqualityCS_Group extends GroupToken {
 	
 	public EqualityCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18138,18 +17992,17 @@ protected class EqualityCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -18199,8 +18052,7 @@ protected class EqualityCS_RelationalCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=( relationalCS |
-// LetExpCS ))*
+// ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*
 protected class EqualityCS_Group_1 extends GroupToken {
 	
 	public EqualityCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18259,7 +18111,7 @@ protected class EqualityCS_InfixExpCSSourceAction_1_0 extends ActionToken  {
 	}
 }
 
-// op=( "=" | "<>" )
+// op=("=" | "<>")
 protected class EqualityCS_OpAssignment_1_1 extends AssignmentToken  {
 	
 	public EqualityCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18283,12 +18135,12 @@ protected class EqualityCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("=".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getEqualityCSAccess().getOpEqualsSignKeyword_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getEqualityCSAccess().getOpEqualsSignKeyword_1_1_0_0();
 			return obj;
 		}
-		if("<>".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getEqualityCSAccess().getOpLessThanSignGreaterThanSignKeyword_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getEqualityCSAccess().getOpLessThanSignGreaterThanSignKeyword_1_1_0_1();
 			return obj;
@@ -18298,7 +18150,7 @@ protected class EqualityCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( relationalCS | LetExpCS )
+// argument=(relationalCS | LetExpCS)
 protected class EqualityCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public EqualityCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18362,13 +18214,11 @@ protected class EqualityCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule relationalCS ****************
  *
  * relationalCS returns ExpCS:
- *   additiveCS ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" )
- *   argument=( additiveCS | LetExpCS ))*;
+ * 	additiveCS ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*;
  *
  **/
 
-// additiveCS ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" )
-// argument=( additiveCS | LetExpCS ))*
+// additiveCS ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*
 protected class RelationalCS_Group extends GroupToken {
 	
 	public RelationalCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18391,18 +18241,17 @@ protected class RelationalCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getRelationalCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -18452,8 +18301,7 @@ protected class RelationalCS_AdditiveCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" ) argument=(
-// additiveCS | LetExpCS ))*
+// ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*
 protected class RelationalCS_Group_1 extends GroupToken {
 	
 	public RelationalCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18512,7 +18360,7 @@ protected class RelationalCS_InfixExpCSSourceAction_1_0 extends ActionToken  {
 	}
 }
 
-// op=( ">" | "<" | ">=" | "<=" )
+// op=(">" | "<" | ">=" | "<=")
 protected class RelationalCS_OpAssignment_1_1 extends AssignmentToken  {
 	
 	public RelationalCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18536,22 +18384,22 @@ protected class RelationalCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if(">".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getRelationalCSAccess().getOpGreaterThanSignKeyword_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getRelationalCSAccess().getOpGreaterThanSignKeyword_1_1_0_0();
 			return obj;
 		}
-		if("<".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getRelationalCSAccess().getOpLessThanSignKeyword_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getRelationalCSAccess().getOpLessThanSignKeyword_1_1_0_1();
 			return obj;
 		}
-		if(">=".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getRelationalCSAccess().getOpGreaterThanSignEqualsSignKeyword_1_1_0_2(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getRelationalCSAccess().getOpGreaterThanSignEqualsSignKeyword_1_1_0_2();
 			return obj;
 		}
-		if("<=".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getRelationalCSAccess().getOpLessThanSignEqualsSignKeyword_1_1_0_3(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getRelationalCSAccess().getOpLessThanSignEqualsSignKeyword_1_1_0_3();
 			return obj;
@@ -18561,7 +18409,7 @@ protected class RelationalCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( additiveCS | LetExpCS )
+// argument=(additiveCS | LetExpCS)
 protected class RelationalCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public RelationalCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18625,13 +18473,11 @@ protected class RelationalCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule additiveCS ****************
  *
  * additiveCS returns ExpCS:
- *   multiplicativeCS ({InfixExpCS.source=current} op=( "+" | "-" ) argument=(
- *   multiplicativeCS | LetExpCS ))*;
+ * 	multiplicativeCS ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*;
  *
  **/
 
-// multiplicativeCS ({InfixExpCS.source=current} op=( "+" | "-" ) argument=(
-// multiplicativeCS | LetExpCS ))*
+// multiplicativeCS ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*
 protected class AdditiveCS_Group extends GroupToken {
 	
 	public AdditiveCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18654,18 +18500,17 @@ protected class AdditiveCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getMultiplicativeCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -18715,8 +18560,7 @@ protected class AdditiveCS_MultiplicativeCSParserRuleCall_0 extends RuleCallToke
 	}	
 }
 
-// ({InfixExpCS.source=current} op=( "+" | "-" ) argument=( multiplicativeCS |
-// LetExpCS ))*
+// ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*
 protected class AdditiveCS_Group_1 extends GroupToken {
 	
 	public AdditiveCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18775,7 +18619,7 @@ protected class AdditiveCS_InfixExpCSSourceAction_1_0 extends ActionToken  {
 	}
 }
 
-// op=( "+" | "-" )
+// op=("+" | "-")
 protected class AdditiveCS_OpAssignment_1_1 extends AssignmentToken  {
 	
 	public AdditiveCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18799,12 +18643,12 @@ protected class AdditiveCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("+".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAdditiveCSAccess().getOpPlusSignKeyword_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAdditiveCSAccess().getOpPlusSignKeyword_1_1_0_0();
 			return obj;
 		}
-		if("-".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getAdditiveCSAccess().getOpHyphenMinusKeyword_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getAdditiveCSAccess().getOpHyphenMinusKeyword_1_1_0_1();
 			return obj;
@@ -18814,7 +18658,7 @@ protected class AdditiveCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( multiplicativeCS | LetExpCS )
+// argument=(multiplicativeCS | LetExpCS)
 protected class AdditiveCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public AdditiveCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18878,13 +18722,11 @@ protected class AdditiveCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule multiplicativeCS ****************
  *
  * multiplicativeCS returns ExpCS:
- *   unaryCS ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS |
- *   LetExpCS ))*;
+ * 	unaryCS ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*;
  *
  **/
 
-// unaryCS ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS |
-// LetExpCS ))*
+// unaryCS ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*
 protected class MultiplicativeCS_Group extends GroupToken {
 	
 	public MultiplicativeCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18907,18 +18749,17 @@ protected class MultiplicativeCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getMultiplicativeCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -18956,27 +18797,6 @@ protected class MultiplicativeCS_UnaryCSParserRuleCall_0 extends RuleCallToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSelfExpCSAccess().getSelfExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSimpleNameExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSquareBracketExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getStringLiteralExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getTupleLiteralExpCSAccess().getTupleLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getTupleTypeCSRule().getType().getClassifier())
-			return null;
 		if(checkForRecursion(UnaryCS_Alternatives.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
@@ -18989,7 +18809,7 @@ protected class MultiplicativeCS_UnaryCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS | LetExpCS ))*
+// ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*
 protected class MultiplicativeCS_Group_1 extends GroupToken {
 	
 	public MultiplicativeCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19048,7 +18868,7 @@ protected class MultiplicativeCS_InfixExpCSSourceAction_1_0 extends ActionToken 
 	}
 }
 
-// op=( "*" | "/" )
+// op=("*" | "/")
 protected class MultiplicativeCS_OpAssignment_1_1 extends AssignmentToken  {
 	
 	public MultiplicativeCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19072,12 +18892,12 @@ protected class MultiplicativeCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("*".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getMultiplicativeCSAccess().getOpAsteriskKeyword_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getMultiplicativeCSAccess().getOpAsteriskKeyword_1_1_0_0();
 			return obj;
 		}
-		if("/".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getMultiplicativeCSAccess().getOpSolidusKeyword_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getMultiplicativeCSAccess().getOpSolidusKeyword_1_1_0_1();
 			return obj;
@@ -19087,7 +18907,7 @@ protected class MultiplicativeCS_OpAssignment_1_1 extends AssignmentToken  {
 
 }
 
-// argument=( unaryCS | LetExpCS )
+// argument=(unaryCS | LetExpCS)
 protected class MultiplicativeCS_ArgumentAssignment_1_2 extends AssignmentToken  {
 	
 	public MultiplicativeCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19151,11 +18971,11 @@ protected class MultiplicativeCS_ArgumentAssignment_1_2 extends AssignmentToken 
 /************ begin Rule unaryCS ****************
  *
  * unaryCS returns ExpCS:
- *   NavigationExpCS|{PrefixExpCS} op=( "-" | "not" ) source=unaryCS;
+ * 	NavigationExpCS | {PrefixExpCS} op=("-" | "not") source=unaryCS;
  *
  **/
 
-// NavigationExpCS|{PrefixExpCS} op=( "-" | "not" ) source=unaryCS
+// NavigationExpCS | {PrefixExpCS} op=("-" | "not") source=unaryCS
 protected class UnaryCS_Alternatives extends AlternativesToken {
 
 	public UnaryCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19178,17 +18998,17 @@ protected class UnaryCS_Alternatives extends AlternativesToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getUnaryCSAccess().getPrefixExpCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
@@ -19226,17 +19046,17 @@ protected class UnaryCS_NavigationExpCSParserRuleCall_0 extends RuleCallToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSelfExpCSAccess().getSelfExpCSAction_0().getType().getClassifier() && 
@@ -19258,7 +19078,7 @@ protected class UnaryCS_NavigationExpCSParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// {PrefixExpCS} op=( "-" | "not" ) source=unaryCS
+// {PrefixExpCS} op=("-" | "not") source=unaryCS
 protected class UnaryCS_Group_1 extends GroupToken {
 	
 	public UnaryCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19313,7 +19133,7 @@ protected class UnaryCS_PrefixExpCSAction_1_0 extends ActionToken  {
 	}
 }
 
-// op=( "-" | "not" )
+// op=("-" | "not")
 protected class UnaryCS_OpAssignment_1_1 extends AssignmentToken  {
 	
 	public UnaryCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19337,12 +19157,12 @@ protected class UnaryCS_OpAssignment_1_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
-		if("-".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getUnaryCSAccess().getOpHyphenMinusKeyword_1_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getUnaryCSAccess().getOpHyphenMinusKeyword_1_1_0_0();
 			return obj;
 		}
-		if("not".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getUnaryCSAccess().getOpNotKeyword_1_1_0_1(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getUnaryCSAccess().getOpNotKeyword_1_1_0_1();
 			return obj;
@@ -19406,19 +19226,17 @@ protected class UnaryCS_SourceAssignment_1_2 extends AssignmentToken  {
 /************ begin Rule NavigationExpCS ****************
  *
  * NavigationExpCS returns ExpCS:
- *   SubNavigationExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+ * 	SubNavigationExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
  * 
- *   //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+ * 	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
  * 
- * |{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+ * ;
  *
  **/
 
-// SubNavigationExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+// SubNavigationExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 // 
-// //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-// 
-// |{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
+// //	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 protected class NavigationExpCS_Group extends GroupToken {
 	
 	public NavigationExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19433,7 +19251,7 @@ protected class NavigationExpCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new NavigationExpCS_Alternatives_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new NavigationExpCS_Group_1(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new NavigationExpCS_SubNavigationExpCSParserRuleCall_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
@@ -19441,17 +19259,17 @@ protected class NavigationExpCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getBooleanLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSelfExpCSAccess().getSelfExpCSAction_0().getType().getClassifier() && 
@@ -19493,10 +19311,11 @@ protected class NavigationExpCS_SubNavigationExpCSParserRuleCall_0 extends RuleC
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSelfExpCSAccess().getSelfExpCSAction_0().getType().getClassifier() && 
@@ -19518,80 +19337,45 @@ protected class NavigationExpCS_SubNavigationExpCSParserRuleCall_0 extends RuleC
 	}	
 }
 
-// ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
-// 
-// //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-// 
-// |{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
-protected class NavigationExpCS_Alternatives_1 extends AlternativesToken {
-
-	public NavigationExpCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
+// ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)?
+protected class NavigationExpCS_Group_1 extends GroupToken {
 	
-	@Override
-	public Alternatives getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getAlternatives_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigationExpCS_Group_1_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new NavigationExpCS_Group_1_1(lastRuleCallOrigin, this, 1, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// {DotExpCS.source=current} "." argument=NavigatingExpCS
-protected class NavigationExpCS_Group_1_0 extends GroupToken {
-	
-	public NavigationExpCS_Group_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NavigationExpCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getGroup_1_0();
+		return grammarAccess.getNavigationExpCSAccess().getGroup_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new NavigationExpCS_ArgumentAssignment_1_0_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new NavigationExpCS_ArgumentAssignment_1_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// {DotExpCS.source=current}
-protected class NavigationExpCS_DotExpCSSourceAction_1_0_0 extends ActionToken  {
+// {InfixExpCS.source=current}
+protected class NavigationExpCS_InfixExpCSSourceAction_1_0 extends ActionToken  {
 
-	public NavigationExpCS_DotExpCSSourceAction_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NavigationExpCS_InfixExpCSSourceAction_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Action getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getDotExpCSSourceAction_1_0_0();
+		return grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0();
 	}
 
     @Override
@@ -19611,38 +19395,55 @@ protected class NavigationExpCS_DotExpCSSourceAction_1_0_0 extends ActionToken  
 	}
 }
 
-// "."
-protected class NavigationExpCS_FullStopKeyword_1_0_1 extends KeywordToken  {
+// op=("." | "->")
+protected class NavigationExpCS_OpAssignment_1_1 extends AssignmentToken  {
 	
-	public NavigationExpCS_FullStopKeyword_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getFullStopKeyword_1_0_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigationExpCS_DotExpCSSourceAction_1_0_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// argument=NavigatingExpCS
-protected class NavigationExpCS_ArgumentAssignment_1_0_2 extends AssignmentToken  {
-	
-	public NavigationExpCS_ArgumentAssignment_1_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NavigationExpCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getArgumentAssignment_1_0_2();
+		return grammarAccess.getNavigationExpCSAccess().getOpAssignment_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new NavigationExpCS_InfixExpCSSourceAction_1_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getNavigationExpCSAccess().getOpFullStopKeyword_1_1_0_0(), value, null)) {
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getNavigationExpCSAccess().getOpFullStopKeyword_1_1_0_0();
+			return obj;
+		}
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getNavigationExpCSAccess().getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1(), value, null)) {
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getNavigationExpCSAccess().getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// argument=NavigatingExpCS
+protected class NavigationExpCS_ArgumentAssignment_1_2 extends AssignmentToken  {
+	
+	public NavigationExpCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getNavigationExpCSAccess().getArgumentAssignment_1_2();
 	}
 
     @Override
@@ -19661,7 +19462,7 @@ protected class NavigationExpCS_ArgumentAssignment_1_0_2 extends AssignmentToken
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getNavigatingExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getNavigationExpCSAccess().getArgumentNavigatingExpCSParserRuleCall_1_0_2_0(); 
+				element = grammarAccess.getNavigationExpCSAccess().getArgumentNavigatingExpCSParserRuleCall_1_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -19673,139 +19474,11 @@ protected class NavigationExpCS_ArgumentAssignment_1_0_2 extends AssignmentToken
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new NavigationExpCS_FullStopKeyword_1_0_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new NavigationExpCS_OpAssignment_1_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
-
-
-// {ArrowExpCS.source=current} "->" argument=NavigatingExpCS
-protected class NavigationExpCS_Group_1_1 extends GroupToken {
-	
-	public NavigationExpCS_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getGroup_1_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigationExpCS_ArgumentAssignment_1_1_2(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// {ArrowExpCS.source=current}
-protected class NavigationExpCS_ArrowExpCSSourceAction_1_1_0 extends ActionToken  {
-
-	public NavigationExpCS_ArrowExpCSSourceAction_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Action getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getArrowExpCSSourceAction_1_1_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigationExpCS_SubNavigationExpCSParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		Object val = eObjectConsumer.getConsumable("source", false);
-		if(val == null) return null;
-		if(!eObjectConsumer.isConsumedWithLastConsumtion("source")) return null;
-		return createEObjectConsumer((EObject) val);
-	}
-}
-
-// "->"
-protected class NavigationExpCS_HyphenMinusGreaterThanSignKeyword_1_1_1 extends KeywordToken  {
-	
-	public NavigationExpCS_HyphenMinusGreaterThanSignKeyword_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getHyphenMinusGreaterThanSignKeyword_1_1_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigationExpCS_ArrowExpCSSourceAction_1_1_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// argument=NavigatingExpCS
-protected class NavigationExpCS_ArgumentAssignment_1_1_2 extends AssignmentToken  {
-	
-	public NavigationExpCS_ArgumentAssignment_1_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getNavigationExpCSAccess().getArgumentAssignment_1_1_2();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("argument",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("argument");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getNavigatingExpCSRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getNavigationExpCSAccess().getArgumentNavigatingExpCSParserRuleCall_1_1_2_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new NavigationExpCS_HyphenMinusGreaterThanSignKeyword_1_1_1(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
 
 
 
@@ -19816,22 +19489,18 @@ protected class NavigationExpCS_ArgumentAssignment_1_1_2 extends AssignmentToken
  *
  * // Follows ., ->, ^
  * 
- * 
- * 
  * NavigatingExpCS returns ExpCS:
- *   SubNavigatingExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+ * 	SubNavigatingExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
  * 
- *   //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+ * 	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
  * 
- * |{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+ * ;
  *
  **/
 
-// SubNavigatingExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+// SubNavigatingExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 // 
-// //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-// 
-// |{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
+// //	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 protected class NavigatingExpCS_Group extends GroupToken {
 	
 	public NavigatingExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -19846,7 +19515,7 @@ protected class NavigatingExpCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new NavigatingExpCS_Alternatives_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new NavigatingExpCS_Group_1(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new NavigatingExpCS_SubNavigatingExpCSParserRuleCall_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
@@ -19854,9 +19523,9 @@ protected class NavigatingExpCS_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier() && 
+		if(getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSimpleNameExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSquareBracketExpCSRule().getType().getClassifier())
@@ -19889,6 +19558,7 @@ protected class NavigatingExpCS_SubNavigatingExpCSParserRuleCall_0 extends RuleC
     @Override
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSimpleNameExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSquareBracketExpCSRule().getType().getClassifier())
@@ -19905,80 +19575,45 @@ protected class NavigatingExpCS_SubNavigatingExpCSParserRuleCall_0 extends RuleC
 	}	
 }
 
-// ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
-// 
-// //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-// 
-// |{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
-protected class NavigatingExpCS_Alternatives_1 extends AlternativesToken {
-
-	public NavigatingExpCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
+// ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)?
+protected class NavigatingExpCS_Group_1 extends GroupToken {
 	
-	@Override
-	public Alternatives getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getAlternatives_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_Group_1_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new NavigatingExpCS_Group_1_1(lastRuleCallOrigin, this, 1, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// {DotExpCS.source=current} "." argument=NavigatingExpCS
-protected class NavigatingExpCS_Group_1_0 extends GroupToken {
-	
-	public NavigatingExpCS_Group_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NavigatingExpCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getGroup_1_0();
+		return grammarAccess.getNavigatingExpCSAccess().getGroup_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new NavigatingExpCS_ArgumentAssignment_1_0_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new NavigatingExpCS_ArgumentAssignment_1_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getDotExpCSSourceAction_1_0_0().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// {DotExpCS.source=current}
-protected class NavigatingExpCS_DotExpCSSourceAction_1_0_0 extends ActionToken  {
+// {InfixExpCS.source=current}
+protected class NavigatingExpCS_InfixExpCSSourceAction_1_0 extends ActionToken  {
 
-	public NavigatingExpCS_DotExpCSSourceAction_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NavigatingExpCS_InfixExpCSSourceAction_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Action getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getDotExpCSSourceAction_1_0_0();
+		return grammarAccess.getNavigatingExpCSAccess().getInfixExpCSSourceAction_1_0();
 	}
 
     @Override
@@ -19998,38 +19633,55 @@ protected class NavigatingExpCS_DotExpCSSourceAction_1_0_0 extends ActionToken  
 	}
 }
 
-// "."
-protected class NavigatingExpCS_FullStopKeyword_1_0_1 extends KeywordToken  {
+// op=("." | "->")
+protected class NavigatingExpCS_OpAssignment_1_1 extends AssignmentToken  {
 	
-	public NavigatingExpCS_FullStopKeyword_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getFullStopKeyword_1_0_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_DotExpCSSourceAction_1_0_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// argument=NavigatingExpCS
-protected class NavigatingExpCS_ArgumentAssignment_1_0_2 extends AssignmentToken  {
-	
-	public NavigatingExpCS_ArgumentAssignment_1_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NavigatingExpCS_OpAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getArgumentAssignment_1_0_2();
+		return grammarAccess.getNavigatingExpCSAccess().getOpAssignment_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new NavigatingExpCS_InfixExpCSSourceAction_1_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("op",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("op");
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getNavigatingExpCSAccess().getOpFullStopKeyword_1_1_0_0(), value, null)) {
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getNavigatingExpCSAccess().getOpFullStopKeyword_1_1_0_0();
+			return obj;
+		}
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getNavigatingExpCSAccess().getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1(), value, null)) {
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getNavigatingExpCSAccess().getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// argument=NavigatingExpCS
+protected class NavigatingExpCS_ArgumentAssignment_1_2 extends AssignmentToken  {
+	
+	public NavigatingExpCS_ArgumentAssignment_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getNavigatingExpCSAccess().getArgumentAssignment_1_2();
 	}
 
     @Override
@@ -20048,7 +19700,7 @@ protected class NavigatingExpCS_ArgumentAssignment_1_0_2 extends AssignmentToken
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getNavigatingExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getNavigatingExpCSAccess().getArgumentNavigatingExpCSParserRuleCall_1_0_2_0(); 
+				element = grammarAccess.getNavigatingExpCSAccess().getArgumentNavigatingExpCSParserRuleCall_1_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -20060,139 +19712,11 @@ protected class NavigatingExpCS_ArgumentAssignment_1_0_2 extends AssignmentToken
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new NavigatingExpCS_FullStopKeyword_1_0_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new NavigatingExpCS_OpAssignment_1_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
-
-
-// {ArrowExpCS.source=current} "->" argument=NavigatingExpCS
-protected class NavigatingExpCS_Group_1_1 extends GroupToken {
-	
-	public NavigatingExpCS_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getGroup_1_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_ArgumentAssignment_1_1_2(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getNavigatingExpCSAccess().getArrowExpCSSourceAction_1_1_0().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// {ArrowExpCS.source=current}
-protected class NavigatingExpCS_ArrowExpCSSourceAction_1_1_0 extends ActionToken  {
-
-	public NavigatingExpCS_ArrowExpCSSourceAction_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Action getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getArrowExpCSSourceAction_1_1_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_SubNavigatingExpCSParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		Object val = eObjectConsumer.getConsumable("source", false);
-		if(val == null) return null;
-		if(!eObjectConsumer.isConsumedWithLastConsumtion("source")) return null;
-		return createEObjectConsumer((EObject) val);
-	}
-}
-
-// "->"
-protected class NavigatingExpCS_HyphenMinusGreaterThanSignKeyword_1_1_1 extends KeywordToken  {
-	
-	public NavigatingExpCS_HyphenMinusGreaterThanSignKeyword_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getHyphenMinusGreaterThanSignKeyword_1_1_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_ArrowExpCSSourceAction_1_1_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// argument=NavigatingExpCS
-protected class NavigatingExpCS_ArgumentAssignment_1_1_2 extends AssignmentToken  {
-	
-	public NavigatingExpCS_ArgumentAssignment_1_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getNavigatingExpCSAccess().getArgumentAssignment_1_1_2();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new NavigatingExpCS_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("argument",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("argument");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getNavigatingExpCSRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getNavigatingExpCSAccess().getArgumentNavigatingExpCSParserRuleCall_1_1_2_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new NavigatingExpCS_HyphenMinusGreaterThanSignKeyword_1_1_1(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
 
 
 
@@ -20203,18 +19727,14 @@ protected class NavigatingExpCS_ArgumentAssignment_1_1_2 extends AssignmentToken
  *
  * // May be be followed by ., ->, ^
  * 
- * 
- * 
  * SubNavigationExpCS returns ExpCS:
- *   RoundBracketExpCS|SquareBracketExpCS|SelfExpCS|PrimitiveLiteralExpCS|
- *   TupleLiteralExpCS|CollectionLiteralExpCS|TypeExpCS|IfExpCS|"(" {NestedExpCS}
- *   source=ExpCS ")";
+ * 	RoundBracketExpCS | SquareBracketExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+ * 	CollectionLiteralExpCS | PreExpCS | TypeExpCS | IfExpCS | "(" {NestedExpCS} source=ExpCS ")";
  *
  **/
 
-// RoundBracketExpCS|SquareBracketExpCS|SelfExpCS|PrimitiveLiteralExpCS|
-// TupleLiteralExpCS|CollectionLiteralExpCS|TypeExpCS|IfExpCS|"(" {NestedExpCS}
-// source=ExpCS ")"
+// RoundBracketExpCS | SquareBracketExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS
+// | PreExpCS | TypeExpCS | IfExpCS | "(" {NestedExpCS} source=ExpCS ")"
 protected class SubNavigationExpCS_Alternatives extends AlternativesToken {
 
 	public SubNavigationExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -20235,9 +19755,10 @@ protected class SubNavigationExpCS_Alternatives extends AlternativesToken {
 			case 3: return new SubNavigationExpCS_PrimitiveLiteralExpCSParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
 			case 4: return new SubNavigationExpCS_TupleLiteralExpCSParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			case 5: return new SubNavigationExpCS_CollectionLiteralExpCSParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
-			case 6: return new SubNavigationExpCS_TypeExpCSParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
-			case 7: return new SubNavigationExpCS_IfExpCSParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
-			case 8: return new SubNavigationExpCS_Group_8(lastRuleCallOrigin, this, 8, inst);
+			case 6: return new SubNavigationExpCS_PreExpCSParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
+			case 7: return new SubNavigationExpCS_TypeExpCSParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
+			case 8: return new SubNavigationExpCS_IfExpCSParserRuleCall_8(lastRuleCallOrigin, this, 8, inst);
+			case 9: return new SubNavigationExpCS_Group_9(lastRuleCallOrigin, this, 9, inst);
 			default: return null;
 		}	
 	}
@@ -20249,10 +19770,11 @@ protected class SubNavigationExpCS_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumberLiteralExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getPrimitiveTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSelfExpCSAccess().getSelfExpCSAction_0().getType().getClassifier() && 
@@ -20488,16 +20010,52 @@ protected class SubNavigationExpCS_CollectionLiteralExpCSParserRuleCall_5 extend
 	}	
 }
 
-// TypeExpCS
-protected class SubNavigationExpCS_TypeExpCSParserRuleCall_6 extends RuleCallToken {
+// PreExpCS
+protected class SubNavigationExpCS_PreExpCSParserRuleCall_6 extends RuleCallToken {
 	
-	public SubNavigationExpCS_TypeExpCSParserRuleCall_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_PreExpCSParserRuleCall_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getTypeExpCSParserRuleCall_6();
+		return grammarAccess.getSubNavigationExpCSAccess().getPreExpCSParserRuleCall_6();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new PreExpCS_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(PreExpCS_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// TypeExpCS
+protected class SubNavigationExpCS_TypeExpCSParserRuleCall_7 extends RuleCallToken {
+	
+	public SubNavigationExpCS_TypeExpCSParserRuleCall_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getSubNavigationExpCSAccess().getTypeExpCSParserRuleCall_7();
 	}
 
     @Override
@@ -20529,15 +20087,15 @@ protected class SubNavigationExpCS_TypeExpCSParserRuleCall_6 extends RuleCallTok
 }
 
 // IfExpCS
-protected class SubNavigationExpCS_IfExpCSParserRuleCall_7 extends RuleCallToken {
+protected class SubNavigationExpCS_IfExpCSParserRuleCall_8 extends RuleCallToken {
 	
-	public SubNavigationExpCS_IfExpCSParserRuleCall_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_IfExpCSParserRuleCall_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getIfExpCSParserRuleCall_7();
+		return grammarAccess.getSubNavigationExpCSAccess().getIfExpCSParserRuleCall_8();
 	}
 
     @Override
@@ -20565,28 +20123,28 @@ protected class SubNavigationExpCS_IfExpCSParserRuleCall_7 extends RuleCallToken
 }
 
 // "(" {NestedExpCS} source=ExpCS ")"
-protected class SubNavigationExpCS_Group_8 extends GroupToken {
+protected class SubNavigationExpCS_Group_9 extends GroupToken {
 	
-	public SubNavigationExpCS_Group_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_Group_9(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getGroup_8();
+		return grammarAccess.getSubNavigationExpCSAccess().getGroup_9();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SubNavigationExpCS_RightParenthesisKeyword_8_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SubNavigationExpCS_RightParenthesisKeyword_9_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
@@ -20594,15 +20152,15 @@ protected class SubNavigationExpCS_Group_8 extends GroupToken {
 }
 
 // "("
-protected class SubNavigationExpCS_LeftParenthesisKeyword_8_0 extends KeywordToken  {
+protected class SubNavigationExpCS_LeftParenthesisKeyword_9_0 extends KeywordToken  {
 	
-	public SubNavigationExpCS_LeftParenthesisKeyword_8_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_LeftParenthesisKeyword_9_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getLeftParenthesisKeyword_8_0();
+		return grammarAccess.getSubNavigationExpCSAccess().getLeftParenthesisKeyword_9_0();
 	}
 
     @Override
@@ -20615,21 +20173,21 @@ protected class SubNavigationExpCS_LeftParenthesisKeyword_8_0 extends KeywordTok
 }
 
 // {NestedExpCS}
-protected class SubNavigationExpCS_NestedExpCSAction_8_1 extends ActionToken  {
+protected class SubNavigationExpCS_NestedExpCSAction_9_1 extends ActionToken  {
 
-	public SubNavigationExpCS_NestedExpCSAction_8_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_NestedExpCSAction_9_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Action getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_8_1();
+		return grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SubNavigationExpCS_LeftParenthesisKeyword_8_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SubNavigationExpCS_LeftParenthesisKeyword_9_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -20642,15 +20200,15 @@ protected class SubNavigationExpCS_NestedExpCSAction_8_1 extends ActionToken  {
 }
 
 // source=ExpCS
-protected class SubNavigationExpCS_SourceAssignment_8_2 extends AssignmentToken  {
+protected class SubNavigationExpCS_SourceAssignment_9_2 extends AssignmentToken  {
 	
-	public SubNavigationExpCS_SourceAssignment_8_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_SourceAssignment_9_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getSourceAssignment_8_2();
+		return grammarAccess.getSubNavigationExpCSAccess().getSourceAssignment_9_2();
 	}
 
     @Override
@@ -20669,7 +20227,7 @@ protected class SubNavigationExpCS_SourceAssignment_8_2 extends AssignmentToken 
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSubNavigationExpCSAccess().getSourceExpCSParserRuleCall_8_2_0(); 
+				element = grammarAccess.getSubNavigationExpCSAccess().getSourceExpCSParserRuleCall_9_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -20681,28 +20239,28 @@ protected class SubNavigationExpCS_SourceAssignment_8_2 extends AssignmentToken 
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new SubNavigationExpCS_NestedExpCSAction_8_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new SubNavigationExpCS_NestedExpCSAction_9_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // ")"
-protected class SubNavigationExpCS_RightParenthesisKeyword_8_3 extends KeywordToken  {
+protected class SubNavigationExpCS_RightParenthesisKeyword_9_3 extends KeywordToken  {
 	
-	public SubNavigationExpCS_RightParenthesisKeyword_8_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigationExpCS_RightParenthesisKeyword_9_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getSubNavigationExpCSAccess().getRightParenthesisKeyword_8_3();
+		return grammarAccess.getSubNavigationExpCSAccess().getRightParenthesisKeyword_9_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SubNavigationExpCS_SourceAssignment_8_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SubNavigationExpCS_SourceAssignment_9_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -20718,14 +20276,12 @@ protected class SubNavigationExpCS_RightParenthesisKeyword_8_3 extends KeywordTo
  *
  * // Follows ., ->, ^, May be be followed by ., ->, ^
  * 
- * 
- * 
  * SubNavigatingExpCS returns ExpCS:
- *   RoundBracketExpCS|SquareBracketExpCS|NameExpCS;
+ * 	RoundBracketExpCS | SquareBracketExpCS | PreExpCS | NameExpCS;
  *
  **/
 
-// RoundBracketExpCS|SquareBracketExpCS|NameExpCS
+// RoundBracketExpCS | SquareBracketExpCS | PreExpCS | NameExpCS
 protected class SubNavigatingExpCS_Alternatives extends AlternativesToken {
 
 	public SubNavigatingExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -20742,7 +20298,8 @@ protected class SubNavigatingExpCS_Alternatives extends AlternativesToken {
 		switch(index) {
 			case 0: return new SubNavigatingExpCS_RoundBracketExpCSParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new SubNavigatingExpCS_SquareBracketExpCSParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new SubNavigatingExpCS_NameExpCSParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
+			case 2: return new SubNavigatingExpCS_PreExpCSParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new SubNavigatingExpCS_NameExpCSParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
 			default: return null;
 		}	
 	}
@@ -20750,6 +20307,7 @@ protected class SubNavigatingExpCS_Alternatives extends AlternativesToken {
     @Override
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getPathNameExpCSRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRoundBracketExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSimpleNameExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSquareBracketExpCSRule().getType().getClassifier())
@@ -20831,16 +20389,52 @@ protected class SubNavigatingExpCS_SquareBracketExpCSParserRuleCall_1 extends Ru
 	}	
 }
 
-// NameExpCS
-protected class SubNavigatingExpCS_NameExpCSParserRuleCall_2 extends RuleCallToken {
+// PreExpCS
+protected class SubNavigatingExpCS_PreExpCSParserRuleCall_2 extends RuleCallToken {
 	
-	public SubNavigatingExpCS_NameExpCSParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SubNavigatingExpCS_PreExpCSParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getSubNavigatingExpCSAccess().getNameExpCSParserRuleCall_2();
+		return grammarAccess.getSubNavigatingExpCSAccess().getPreExpCSParserRuleCall_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new PreExpCS_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(PreExpCS_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// NameExpCS
+protected class SubNavigatingExpCS_NameExpCSParserRuleCall_3 extends RuleCallToken {
+	
+	public SubNavigatingExpCS_NameExpCSParserRuleCall_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getSubNavigatingExpCSAccess().getNameExpCSParserRuleCall_3();
 	}
 
     @Override
@@ -20874,18 +20468,8 @@ protected class SubNavigatingExpCS_NameExpCSParserRuleCall_2 extends RuleCallTok
 
 /************ begin Rule iteratorVariableCS ****************
  *
- * //callingExpCS returns ExpCS:
- * 
- * //	callExpCS
- * 
- * //	({BinaryExpressionCS.source=current} op=('.'|'->') argument=callingExpCS)?
- * 
- * //;
- * 
- * 
- * 
  * iteratorVariableCS returns VariableCS:
- *   name=SimpleName (":" type=TypeExpCS)?;
+ * 	name=SimpleName (":" type=TypeExpCS)?;
  *
  **/
 
@@ -21050,7 +20634,7 @@ protected class IteratorVariableCS_TypeAssignment_1_1 extends AssignmentToken  {
 /************ begin Rule iteratorAccumulatorCS ****************
  *
  * iteratorAccumulatorCS returns VariableCS:
- *   name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+ * 	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
  *
  **/
 
@@ -21258,68 +20842,14 @@ protected class IteratorAccumulatorCS_InitExpressionAssignment_4 extends Assignm
 
 /************ begin Rule RoundBracketExpCS ****************
  *
- * //callExpCS returns ExpCS:
- * 
- * //	preExpCS
- * 
- * //	({CallExpCS.source=current} '('
- * 
- * //	(variable1=iteratorVariableCS
- * 
- * //        ((',' variable2=iteratorVariableCS)
- * 
- * //        |(';' variable2=iteratorAccumulatorCS))?
- * 
- * //        '|')?
- * 
- * //    (arguments+=ExpCS (',' arguments+=ExpCS)*)?
- * 
- * //	')')?
- * 
- * //;
- * 
- * 
- * 
- * //preExpCS returns ExpCS:
- * 
- * //	indexExpCS
- * 
- * ////  ({UnaryExpressionCS.source=current} '@' op='pre')? is added by CompleteOCL
- * 
- * //;
- * 
- * 
- * 
- * //indexExpCS returns ExpCS:
- * 
- * //	messageExpCS
- * 
- * //	({IndexExpCS.source=current} '[' indexes+=ExpCS (',' indexes+=ExpCS)* ']')?
- * 
- * //;
- * 
- *     
- * 
- * //messageExpCS returns ExpCS:
- * 
- * //	primaryExpCS
- * 
- * ////|	OclMessageExpCS // ExpCS[E] is added by CompleteOCL
- * 
- * //;
- * 
- * 
- * 
  * RoundBracketExpCS:
- *   name=NameExpCS "(" (variable1=iteratorVariableCS (","
- *   variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)? "|")? (
- *   arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
+ * 	name=NameExpCS ("@" pre?="pre")? "(" (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";"
+ * 	variable2=iteratorAccumulatorCS)? "|")? (arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
  *
  **/
 
-// name=NameExpCS "(" (variable1=iteratorVariableCS (","
-// variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)? "|")? (
-// arguments+=ExpCS ("," arguments+=ExpCS)*)? ")"
+// name=NameExpCS ("@" pre?="pre")? "(" (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";"
+// variable2=iteratorAccumulatorCS)? "|")? (arguments+=ExpCS ("," arguments+=ExpCS)*)? ")"
 protected class RoundBracketExpCS_Group extends GroupToken {
 	
 	public RoundBracketExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -21334,7 +20864,7 @@ protected class RoundBracketExpCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_RightParenthesisKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_RightParenthesisKeyword_5(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21393,16 +20923,38 @@ protected class RoundBracketExpCS_NameAssignment_0 extends AssignmentToken  {
 	}	
 }
 
-// "("
-protected class RoundBracketExpCS_LeftParenthesisKeyword_1 extends KeywordToken  {
+// ("@" pre?="pre")?
+protected class RoundBracketExpCS_Group_1 extends GroupToken {
 	
-	public RoundBracketExpCS_LeftParenthesisKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getRoundBracketExpCSAccess().getGroup_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new RoundBracketExpCS_PreAssignment_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "@"
+protected class RoundBracketExpCS_CommercialAtKeyword_1_0 extends KeywordToken  {
+	
+	public RoundBracketExpCS_CommercialAtKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getLeftParenthesisKeyword_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getCommercialAtKeyword_1_0();
 	}
 
     @Override
@@ -21415,23 +20967,80 @@ protected class RoundBracketExpCS_LeftParenthesisKeyword_1 extends KeywordToken 
 
 }
 
-// (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS|";"
-// variable2=iteratorAccumulatorCS)? "|")?
-protected class RoundBracketExpCS_Group_2 extends GroupToken {
+// pre?="pre"
+protected class RoundBracketExpCS_PreAssignment_1_1 extends AssignmentToken  {
 	
-	public RoundBracketExpCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_PreAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getGroup_2();
+	public Assignment getGrammarElement() {
+		return grammarAccess.getRoundBracketExpCSAccess().getPreAssignment_1_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_VerticalLineKeyword_2_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_CommercialAtKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("pre",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("pre");
+		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getRoundBracketExpCSAccess().getPrePreKeyword_1_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+
+// "("
+protected class RoundBracketExpCS_LeftParenthesisKeyword_2 extends KeywordToken  {
+	
+	public RoundBracketExpCS_LeftParenthesisKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getRoundBracketExpCSAccess().getLeftParenthesisKeyword_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new RoundBracketExpCS_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RoundBracketExpCS_NameAssignment_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";" variable2=iteratorAccumulatorCS)? "|")?
+protected class RoundBracketExpCS_Group_3 extends GroupToken {
+	
+	public RoundBracketExpCS_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getRoundBracketExpCSAccess().getGroup_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new RoundBracketExpCS_VerticalLineKeyword_3_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21439,15 +21048,15 @@ protected class RoundBracketExpCS_Group_2 extends GroupToken {
 }
 
 // variable1=iteratorVariableCS
-protected class RoundBracketExpCS_Variable1Assignment_2_0 extends AssignmentToken  {
+protected class RoundBracketExpCS_Variable1Assignment_3_0 extends AssignmentToken  {
 	
-	public RoundBracketExpCS_Variable1Assignment_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Variable1Assignment_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getVariable1Assignment_2_0();
+		return grammarAccess.getRoundBracketExpCSAccess().getVariable1Assignment_3_0();
 	}
 
     @Override
@@ -21466,7 +21075,7 @@ protected class RoundBracketExpCS_Variable1Assignment_2_0 extends AssignmentToke
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getIteratorVariableCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRoundBracketExpCSAccess().getVariable1IteratorVariableCSParserRuleCall_2_0_0(); 
+				element = grammarAccess.getRoundBracketExpCSAccess().getVariable1IteratorVariableCSParserRuleCall_3_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -21478,29 +21087,29 @@ protected class RoundBracketExpCS_Variable1Assignment_2_0 extends AssignmentToke
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RoundBracketExpCS_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new RoundBracketExpCS_LeftParenthesisKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
-// ("," variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)?
-protected class RoundBracketExpCS_Alternatives_2_1 extends AlternativesToken {
+// ("," variable2=iteratorVariableCS | ";" variable2=iteratorAccumulatorCS)?
+protected class RoundBracketExpCS_Alternatives_3_1 extends AlternativesToken {
 
-	public RoundBracketExpCS_Alternatives_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Alternatives_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Alternatives getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getAlternatives_2_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getAlternatives_3_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Group_2_1_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new RoundBracketExpCS_Group_2_1_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new RoundBracketExpCS_Group_3_1_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RoundBracketExpCS_Group_3_1_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -21508,21 +21117,21 @@ protected class RoundBracketExpCS_Alternatives_2_1 extends AlternativesToken {
 }
 
 // "," variable2=iteratorVariableCS
-protected class RoundBracketExpCS_Group_2_1_0 extends GroupToken {
+protected class RoundBracketExpCS_Group_3_1_0 extends GroupToken {
 	
-	public RoundBracketExpCS_Group_2_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Group_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getGroup_2_1_0();
+		return grammarAccess.getRoundBracketExpCSAccess().getGroup_3_1_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Variable2Assignment_2_1_0_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_Variable2Assignment_3_1_0_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21530,21 +21139,21 @@ protected class RoundBracketExpCS_Group_2_1_0 extends GroupToken {
 }
 
 // ","
-protected class RoundBracketExpCS_CommaKeyword_2_1_0_0 extends KeywordToken  {
+protected class RoundBracketExpCS_CommaKeyword_3_1_0_0 extends KeywordToken  {
 	
-	public RoundBracketExpCS_CommaKeyword_2_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_CommaKeyword_3_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getCommaKeyword_2_1_0_0();
+		return grammarAccess.getRoundBracketExpCSAccess().getCommaKeyword_3_1_0_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Variable1Assignment_2_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_Variable1Assignment_3_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21552,15 +21161,15 @@ protected class RoundBracketExpCS_CommaKeyword_2_1_0_0 extends KeywordToken  {
 }
 
 // variable2=iteratorVariableCS
-protected class RoundBracketExpCS_Variable2Assignment_2_1_0_1 extends AssignmentToken  {
+protected class RoundBracketExpCS_Variable2Assignment_3_1_0_1 extends AssignmentToken  {
 	
-	public RoundBracketExpCS_Variable2Assignment_2_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Variable2Assignment_3_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getVariable2Assignment_2_1_0_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getVariable2Assignment_3_1_0_1();
 	}
 
     @Override
@@ -21579,7 +21188,7 @@ protected class RoundBracketExpCS_Variable2Assignment_2_1_0_1 extends Assignment
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getIteratorVariableCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRoundBracketExpCSAccess().getVariable2IteratorVariableCSParserRuleCall_2_1_0_1_0(); 
+				element = grammarAccess.getRoundBracketExpCSAccess().getVariable2IteratorVariableCSParserRuleCall_3_1_0_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -21591,7 +21200,7 @@ protected class RoundBracketExpCS_Variable2Assignment_2_1_0_1 extends Assignment
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RoundBracketExpCS_CommaKeyword_2_1_0_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new RoundBracketExpCS_CommaKeyword_3_1_0_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -21599,21 +21208,21 @@ protected class RoundBracketExpCS_Variable2Assignment_2_1_0_1 extends Assignment
 
 
 // ";" variable2=iteratorAccumulatorCS
-protected class RoundBracketExpCS_Group_2_1_1 extends GroupToken {
+protected class RoundBracketExpCS_Group_3_1_1 extends GroupToken {
 	
-	public RoundBracketExpCS_Group_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Group_3_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getGroup_2_1_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getGroup_3_1_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Variable2Assignment_2_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_Variable2Assignment_3_1_1_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21621,21 +21230,21 @@ protected class RoundBracketExpCS_Group_2_1_1 extends GroupToken {
 }
 
 // ";"
-protected class RoundBracketExpCS_SemicolonKeyword_2_1_1_0 extends KeywordToken  {
+protected class RoundBracketExpCS_SemicolonKeyword_3_1_1_0 extends KeywordToken  {
 	
-	public RoundBracketExpCS_SemicolonKeyword_2_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_SemicolonKeyword_3_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getSemicolonKeyword_2_1_1_0();
+		return grammarAccess.getRoundBracketExpCSAccess().getSemicolonKeyword_3_1_1_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Variable1Assignment_2_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_Variable1Assignment_3_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21643,15 +21252,15 @@ protected class RoundBracketExpCS_SemicolonKeyword_2_1_1_0 extends KeywordToken 
 }
 
 // variable2=iteratorAccumulatorCS
-protected class RoundBracketExpCS_Variable2Assignment_2_1_1_1 extends AssignmentToken  {
+protected class RoundBracketExpCS_Variable2Assignment_3_1_1_1 extends AssignmentToken  {
 	
-	public RoundBracketExpCS_Variable2Assignment_2_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Variable2Assignment_3_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getVariable2Assignment_2_1_1_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getVariable2Assignment_3_1_1_1();
 	}
 
     @Override
@@ -21670,7 +21279,7 @@ protected class RoundBracketExpCS_Variable2Assignment_2_1_1_1 extends Assignment
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getIteratorAccumulatorCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRoundBracketExpCSAccess().getVariable2IteratorAccumulatorCSParserRuleCall_2_1_1_1_0(); 
+				element = grammarAccess.getRoundBracketExpCSAccess().getVariable2IteratorAccumulatorCSParserRuleCall_3_1_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -21682,7 +21291,7 @@ protected class RoundBracketExpCS_Variable2Assignment_2_1_1_1 extends Assignment
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RoundBracketExpCS_SemicolonKeyword_2_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new RoundBracketExpCS_SemicolonKeyword_3_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -21691,22 +21300,22 @@ protected class RoundBracketExpCS_Variable2Assignment_2_1_1_1 extends Assignment
 
 
 // "|"
-protected class RoundBracketExpCS_VerticalLineKeyword_2_2 extends KeywordToken  {
+protected class RoundBracketExpCS_VerticalLineKeyword_3_2 extends KeywordToken  {
 	
-	public RoundBracketExpCS_VerticalLineKeyword_2_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_VerticalLineKeyword_3_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getVerticalLineKeyword_2_2();
+		return grammarAccess.getRoundBracketExpCSAccess().getVerticalLineKeyword_3_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Alternatives_2_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new RoundBracketExpCS_Variable1Assignment_2_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new RoundBracketExpCS_Alternatives_3_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RoundBracketExpCS_Variable1Assignment_3_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -21715,22 +21324,22 @@ protected class RoundBracketExpCS_VerticalLineKeyword_2_2 extends KeywordToken  
 
 
 // (arguments+=ExpCS ("," arguments+=ExpCS)*)?
-protected class RoundBracketExpCS_Group_3 extends GroupToken {
+protected class RoundBracketExpCS_Group_4 extends GroupToken {
 	
-	public RoundBracketExpCS_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getGroup_3();
+		return grammarAccess.getRoundBracketExpCSAccess().getGroup_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Group_3_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new RoundBracketExpCS_ArgumentsAssignment_3_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new RoundBracketExpCS_Group_4_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RoundBracketExpCS_ArgumentsAssignment_4_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -21738,15 +21347,15 @@ protected class RoundBracketExpCS_Group_3 extends GroupToken {
 }
 
 // arguments+=ExpCS
-protected class RoundBracketExpCS_ArgumentsAssignment_3_0 extends AssignmentToken  {
+protected class RoundBracketExpCS_ArgumentsAssignment_4_0 extends AssignmentToken  {
 	
-	public RoundBracketExpCS_ArgumentsAssignment_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_ArgumentsAssignment_4_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getArgumentsAssignment_3_0();
+		return grammarAccess.getRoundBracketExpCSAccess().getArgumentsAssignment_4_0();
 	}
 
     @Override
@@ -21765,7 +21374,7 @@ protected class RoundBracketExpCS_ArgumentsAssignment_3_0 extends AssignmentToke
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRoundBracketExpCSAccess().getArgumentsExpCSParserRuleCall_3_0_0(); 
+				element = grammarAccess.getRoundBracketExpCSAccess().getArgumentsExpCSParserRuleCall_4_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -21777,29 +21386,29 @@ protected class RoundBracketExpCS_ArgumentsAssignment_3_0 extends AssignmentToke
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Group_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new RoundBracketExpCS_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new RoundBracketExpCS_Group_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new RoundBracketExpCS_LeftParenthesisKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // ("," arguments+=ExpCS)*
-protected class RoundBracketExpCS_Group_3_1 extends GroupToken {
+protected class RoundBracketExpCS_Group_4_1 extends GroupToken {
 	
-	public RoundBracketExpCS_Group_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_Group_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getGroup_3_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getGroup_4_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_ArgumentsAssignment_3_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new RoundBracketExpCS_ArgumentsAssignment_4_1_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -21807,22 +21416,22 @@ protected class RoundBracketExpCS_Group_3_1 extends GroupToken {
 }
 
 // ","
-protected class RoundBracketExpCS_CommaKeyword_3_1_0 extends KeywordToken  {
+protected class RoundBracketExpCS_CommaKeyword_4_1_0 extends KeywordToken  {
 	
-	public RoundBracketExpCS_CommaKeyword_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_CommaKeyword_4_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getCommaKeyword_3_1_0();
+		return grammarAccess.getRoundBracketExpCSAccess().getCommaKeyword_4_1_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Group_3_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new RoundBracketExpCS_ArgumentsAssignment_3_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new RoundBracketExpCS_Group_4_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RoundBracketExpCS_ArgumentsAssignment_4_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -21830,15 +21439,15 @@ protected class RoundBracketExpCS_CommaKeyword_3_1_0 extends KeywordToken  {
 }
 
 // arguments+=ExpCS
-protected class RoundBracketExpCS_ArgumentsAssignment_3_1_1 extends AssignmentToken  {
+protected class RoundBracketExpCS_ArgumentsAssignment_4_1_1 extends AssignmentToken  {
 	
-	public RoundBracketExpCS_ArgumentsAssignment_3_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_ArgumentsAssignment_4_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getArgumentsAssignment_3_1_1();
+		return grammarAccess.getRoundBracketExpCSAccess().getArgumentsAssignment_4_1_1();
 	}
 
     @Override
@@ -21857,7 +21466,7 @@ protected class RoundBracketExpCS_ArgumentsAssignment_3_1_1 extends AssignmentTo
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getRoundBracketExpCSAccess().getArgumentsExpCSParserRuleCall_3_1_1_0(); 
+				element = grammarAccess.getRoundBracketExpCSAccess().getArgumentsExpCSParserRuleCall_4_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -21869,7 +21478,7 @@ protected class RoundBracketExpCS_ArgumentsAssignment_3_1_1 extends AssignmentTo
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new RoundBracketExpCS_CommaKeyword_3_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new RoundBracketExpCS_CommaKeyword_4_1_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -21878,23 +21487,23 @@ protected class RoundBracketExpCS_ArgumentsAssignment_3_1_1 extends AssignmentTo
 
 
 // ")"
-protected class RoundBracketExpCS_RightParenthesisKeyword_4 extends KeywordToken  {
+protected class RoundBracketExpCS_RightParenthesisKeyword_5 extends KeywordToken  {
 	
-	public RoundBracketExpCS_RightParenthesisKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public RoundBracketExpCS_RightParenthesisKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRoundBracketExpCSAccess().getRightParenthesisKeyword_4();
+		return grammarAccess.getRoundBracketExpCSAccess().getRightParenthesisKeyword_5();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new RoundBracketExpCS_Group_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new RoundBracketExpCS_Group_2(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new RoundBracketExpCS_LeftParenthesisKeyword_1(lastRuleCallOrigin, this, 2, inst);
+			case 0: return new RoundBracketExpCS_Group_4(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new RoundBracketExpCS_Group_3(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new RoundBracketExpCS_LeftParenthesisKeyword_2(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
@@ -21908,11 +21517,11 @@ protected class RoundBracketExpCS_RightParenthesisKeyword_4 extends KeywordToken
 /************ begin Rule SquareBracketExpCS ****************
  *
  * SquareBracketExpCS:
- *   name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]";
+ * 	name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]" ("@" pre?="pre")?;
  *
  **/
 
-// name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]"
+// name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]" ("@" pre?="pre")?
 protected class SquareBracketExpCS_Group extends GroupToken {
 	
 	public SquareBracketExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -21927,7 +21536,8 @@ protected class SquareBracketExpCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SquareBracketExpCS_RightSquareBracketKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SquareBracketExpCS_Group_5(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new SquareBracketExpCS_RightSquareBracketKeyword_4(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -22169,28 +21779,222 @@ protected class SquareBracketExpCS_RightSquareBracketKeyword_4 extends KeywordTo
 
 }
 
+// ("@" pre?="pre")?
+protected class SquareBracketExpCS_Group_5 extends GroupToken {
+	
+	public SquareBracketExpCS_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getSquareBracketExpCSAccess().getGroup_5();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SquareBracketExpCS_PreAssignment_5_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "@"
+protected class SquareBracketExpCS_CommercialAtKeyword_5_0 extends KeywordToken  {
+	
+	public SquareBracketExpCS_CommercialAtKeyword_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSquareBracketExpCSAccess().getCommercialAtKeyword_5_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SquareBracketExpCS_RightSquareBracketKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// pre?="pre"
+protected class SquareBracketExpCS_PreAssignment_5_1 extends AssignmentToken  {
+	
+	public SquareBracketExpCS_PreAssignment_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSquareBracketExpCSAccess().getPreAssignment_5_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SquareBracketExpCS_CommercialAtKeyword_5_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("pre",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("pre");
+		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getSquareBracketExpCSAccess().getPrePreKeyword_5_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+
 
 /************ end Rule SquareBracketExpCS ****************/
 
 
+/************ begin Rule PreExpCS ****************
+ *
+ * PreExpCS:
+ * 	name=NameExpCS "@" "pre";
+ *
+ **/
+
+// name=NameExpCS "@" "pre"
+protected class PreExpCS_Group extends GroupToken {
+	
+	public PreExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getPreExpCSAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new PreExpCS_PreKeyword_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getPreExpCSRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// name=NameExpCS
+protected class PreExpCS_NameAssignment_0 extends AssignmentToken  {
+	
+	public PreExpCS_NameAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getPreExpCSAccess().getNameAssignment_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new NameExpCS_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getNameExpCSRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getPreExpCSAccess().getNameNameExpCSParserRuleCall_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, consumed);
+		}	
+	}	
+}
+
+// "@"
+protected class PreExpCS_CommercialAtKeyword_1 extends KeywordToken  {
+	
+	public PreExpCS_CommercialAtKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getPreExpCSAccess().getCommercialAtKeyword_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new PreExpCS_NameAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "pre"
+protected class PreExpCS_PreKeyword_2 extends KeywordToken  {
+	
+	public PreExpCS_PreKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getPreExpCSAccess().getPreKeyword_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new PreExpCS_CommercialAtKeyword_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+
+/************ end Rule PreExpCS ****************/
+
+
 /************ begin Rule SelfExpCS ****************
  *
- * //primaryExpCS returns ExpCS:
- * 
- * //	selfKeywordCS
- * 
- * //|	LiteralExpCS    // OclExpressionCS[C]
- * 
- * //|	IfExpCS         // OclExpressionCS[F]
- * 
- * //|	'(' ExpCS ')'
- * 
- * //;
- * 
- * 
- * 
  * SelfExpCS:
- *   {SelfExpCS} "self";
+ * 	{SelfExpCS} "self";
  *
  **/
 
@@ -22278,11 +22082,11 @@ protected class SelfExpCS_SelfKeyword_1 extends KeywordToken  {
 /************ begin Rule NameExpCS ****************
  *
  * NameExpCS:
- *   PathNameExpCS|SimpleNameExpCS;
+ * 	PathNameExpCS | SimpleNameExpCS;
  *
  **/
 
-// PathNameExpCS|SimpleNameExpCS
+// PathNameExpCS | SimpleNameExpCS
 protected class NameExpCS_Alternatives extends AlternativesToken {
 
 	public NameExpCS_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -22392,7 +22196,7 @@ protected class NameExpCS_SimpleNameExpCSParserRuleCall_1 extends RuleCallToken 
 /************ begin Rule PathNameExpCS ****************
  *
  * PathNameExpCS:
- *   namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
+ * 	namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
  *
  **/
 
@@ -22536,7 +22340,7 @@ protected class PathNameExpCS_ElementAssignment_2 extends AssignmentToken  {
 /************ begin Rule SimpleNameExpCS ****************
  *
  * SimpleNameExpCS:
- *   element=[base::NamedElementCS|Identifier];
+ * 	element=[base::NamedElementCS|Identifier];
  *
  **/
 
@@ -22584,13 +22388,11 @@ protected class SimpleNameExpCS_ElementAssignment extends AssignmentToken  {
 /************ begin Rule IfExpCS ****************
  *
  * IfExpCS:
- *   "if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS
- *   "endif";
+ * 	"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif";
  *
  **/
 
-// "if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS
-// "endif"
+// "if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif"
 protected class IfExpCS_Group extends GroupToken {
 	
 	public IfExpCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -22851,7 +22653,7 @@ protected class IfExpCS_EndifKeyword_6 extends KeywordToken  {
 /************ begin Rule LetExpCS ****************
  *
  * LetExpCS:
- *   "let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
+ * 	"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
  *
  **/
 
@@ -23119,7 +22921,7 @@ protected class LetExpCS_InAssignment_4 extends AssignmentToken  {
 /************ begin Rule LetVariableCS ****************
  *
  * LetVariableCS returns VariableCS:
- *   name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+ * 	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
  *
  **/
 
