@@ -39,6 +39,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getUPPERAccess().getAlternatives(), "rule__UPPER__Alternatives");
 					put(grammarAccess.getIdentifierAccess().getAlternatives(), "rule__Identifier__Alternatives");
+					put(grammarAccess.getRestrictedKeywordsAccess().getAlternatives(), "rule__RestrictedKeywords__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getLibClassCSAccess().getAlternatives_5(), "rule__LibClassCS__Alternatives_5");
 					put(grammarAccess.getLibPackageCSAccess().getAlternatives_3(), "rule__LibPackageCS__Alternatives_3");
