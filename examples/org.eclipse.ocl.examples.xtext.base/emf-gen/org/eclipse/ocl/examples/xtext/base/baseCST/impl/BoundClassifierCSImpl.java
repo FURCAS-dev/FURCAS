@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BoundClassifierCSImpl.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: BoundClassifierCSImpl.java,v 1.2 2010/05/21 21:23:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -87,23 +87,6 @@ public class BoundClassifierCSImpl extends ClassifierCSImpl implements BoundClas
 	 * @generated
 	 */
 	public TypeBindingsCS getBindings() {
-		if (bindings != null && bindings.eIsProxy()) {
-			InternalEObject oldBindings = (InternalEObject)bindings;
-			bindings = (TypeBindingsCS)eResolveProxy(oldBindings);
-			if (bindings != oldBindings) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.BOUND_CLASSIFIER_CS__BINDINGS, oldBindings, bindings));
-			}
-		}
-		return bindings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeBindingsCS basicGetBindings() {
 		return bindings;
 	}
 
@@ -166,8 +149,7 @@ public class BoundClassifierCSImpl extends ClassifierCSImpl implements BoundClas
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BaseCSTPackage.BOUND_CLASSIFIER_CS__BINDINGS:
-				if (resolve) return getBindings();
-				return basicGetBindings();
+				return getBindings();
 			case BaseCSTPackage.BOUND_CLASSIFIER_CS__BINDS:
 				if (resolve) return getBinds();
 				return basicGetBinds();

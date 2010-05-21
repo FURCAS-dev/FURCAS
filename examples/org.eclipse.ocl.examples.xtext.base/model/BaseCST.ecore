@@ -24,7 +24,8 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="#//NamedElementCS"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" eType="#//TypeBindingsCS"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" eType="#//TypeBindingsCS"
+        transient="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="binds">
       <eGenericType eTypeParameter="#//BoundElementCS/T"/>
     </eStructuralFeatures>

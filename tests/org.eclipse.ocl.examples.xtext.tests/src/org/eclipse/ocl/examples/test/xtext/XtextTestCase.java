@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
@@ -86,6 +87,21 @@ public class XtextTestCase extends TestCase
 			}
 			fail(s.toString());
 		}
+	}
+
+	protected void assertNoValidationErrors(String string, EObject eObject) {
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
+		List<Diagnostic> children = diagnostic.getChildren();
+		if (children.size() <= 0) {
+			return;
+		}
+		StringBuffer s = new StringBuffer();
+		s.append(children.size() + " validation errors");
+		for (Diagnostic child : children){
+			s.append("\n\t");
+			s.append(child.getMessage());
+		}
+		fail(s.toString());
 	}
 	
 	public static void assertSameModel(Resource resource1, Resource resource2) throws IOException, InterruptedException {
