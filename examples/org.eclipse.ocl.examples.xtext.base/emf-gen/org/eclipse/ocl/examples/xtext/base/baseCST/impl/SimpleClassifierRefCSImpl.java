@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleClassifierRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: SimpleClassifierRefCSImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -63,6 +63,7 @@ public class SimpleClassifierRefCSImpl extends ClassifierRefCSImpl implements Si
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClassifierCS getClassifier() {
 		if (classifier != null && classifier.eIsProxy()) {
 			InternalEObject oldClassifier = (InternalEObject)classifier;

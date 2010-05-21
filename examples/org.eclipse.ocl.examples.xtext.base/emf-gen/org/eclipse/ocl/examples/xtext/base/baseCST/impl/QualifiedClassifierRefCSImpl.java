@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QualifiedClassifierRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: QualifiedClassifierRefCSImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
@@ -276,5 +277,10 @@ public class QualifiedClassifierRefCSImpl extends ClassifierRefCSImpl implements
 	@Override
 	public void getSignature(Signature signature) {
 		signature.appendElement(getElement());
+	}
+
+	@Override
+	public ClassifierCS getClassifier() {
+		return getElement().getClassifier();
 	}
 } //QualifiedClassifierRefCSImpl

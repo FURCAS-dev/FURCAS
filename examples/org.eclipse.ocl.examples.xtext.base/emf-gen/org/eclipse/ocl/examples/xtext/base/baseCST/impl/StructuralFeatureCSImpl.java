@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StructuralFeatureCSImpl.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: StructuralFeatureCSImpl.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -491,27 +491,11 @@ public abstract class StructuralFeatureCSImpl extends NamedElementCSImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (lower: "); //$NON-NLS-1$
-		result.append(lower);
-		result.append(", multiplicity: "); //$NON-NLS-1$
-		result.append(multiplicity);
-		result.append(", qualifiers: "); //$NON-NLS-1$
-		result.append(qualifiers);
-		result.append(", upper: "); //$NON-NLS-1$
-		result.append(upper);
-		result.append(", isStatic: "); //$NON-NLS-1$
-		result.append(isStatic);
-		result.append(", isDefinition: "); //$NON-NLS-1$
-		result.append(isDefinition);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //StructuralFeatureCSImpl

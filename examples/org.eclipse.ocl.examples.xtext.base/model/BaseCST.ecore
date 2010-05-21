@@ -56,7 +56,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeParameters" upperBound="-1"
         eType="#//TypeParameterCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassifierRefCS" abstract="true" eSuperTypes="#//ModelElementCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifierRefCS" abstract="true" eSuperTypes="#//ModelElementCS">
+    <eOperations name="getClassifier" eType="#//ClassifierCS"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeRefCS" eSuperTypes="#//TypedRefCS #//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeArguments" eType="#//TypeRefCS"
         containment="true"/>

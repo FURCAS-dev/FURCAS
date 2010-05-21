@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -1870,6 +1870,8 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEReference(getClassifierCS_TypeParameters(), this.getTypeParameterCS(), null, "typeParameters", null, 0, -1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(classifierRefCSEClass, ClassifierRefCS.class, "ClassifierRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		addEOperation(classifierRefCSEClass, this.getClassifierCS(), "getClassifier", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionTypeRefCSEClass, CollectionTypeRefCS.class, "CollectionTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionTypeRefCS_TypeArguments(), this.getTypeRefCS(), null, "typeArguments", null, 0, 1, CollectionTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

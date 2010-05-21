@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.5 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.6 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -52,10 +52,10 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		switchMap.put(ePackage, iSwitch);
 	}
 
-	public static AbstractDocumentScopeAdapter<?> getDocumentScopeAdapter(EObject context) {
+	public static DocumentScopeAdapter getDocumentScopeAdapter(EObject context) {
 		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
-			if (scopeAdapter instanceof AbstractDocumentScopeAdapter<?>) {
-				return (AbstractDocumentScopeAdapter<?>) scopeAdapter;
+			if (scopeAdapter instanceof DocumentScopeAdapter) {
+				return (DocumentScopeAdapter) scopeAdapter;
 			}
 		}
 		return null;
@@ -115,7 +115,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return scopeView.getOuterScope();
 	}
 
-	public void computeLookup(EnvironmentView environmentView, EReference targetReference, TypeBindingsCS bindings) {
+	public final void computeLookup(EnvironmentView environmentView, EReference targetReference, TypeBindingsCS bindings) {
 		ScopeView scopeView = getInnerScopeView(targetReference, bindings);
 		computeLookup(environmentView, scopeView);
 	}
@@ -123,14 +123,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	public DocumentScopeAdapter getDocumentScopeAdapter() {
 		return document;
 	}
-
-/*	public ClassifierCS getInheritedSynthesizedType() {
-		if (parent == null) {
-			return null;
-		} else {
-			return parent.getSynthesizedType(getTarget().eContainingFeature());
-		}
-	} */
 
 	public ScopeView getInnerScopeView(EReference targetReference, TypeBindingsCS bindings) {
 		return new BaseScopeView(this, null, targetReference, bindings);
@@ -157,22 +149,15 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	}
 	
 	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSourceScope"); //$NON-NLS-1$
+		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSourceScope for " + getTarget().eClass().getName()); //$NON-NLS-1$
 //		return null;
 	}
 
 	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSynthesizedType"); //$NON-NLS-1$
+		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSynthesizedType for " + getTarget().eClass().getName()); //$NON-NLS-1$
 //		return null;
 	}
 
-//	public ClassifierCS getSynthesizedType(EStructuralFeature containmentFeature) {
-//		return null;
-//	}
-
-	/*
-	 * Javadoc copied from interface.
-	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public T getTarget() {
@@ -213,13 +198,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return s != null ? s.toString() : string;
 	}
 	
-	/**
-	 * Returns <code>false</code>
-	 * 
-	 * @param type
-	 *            the type.
-	 * @return <code>false</code>
-	 */
 	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == ScopeAdapter.class;
@@ -229,9 +207,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 		return unresolvable;
 	}
 
-	/*
-	 * Javadoc copied from interface.
-	 */
 	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || targetClass.isAssignableFrom(newTarget.getClass());

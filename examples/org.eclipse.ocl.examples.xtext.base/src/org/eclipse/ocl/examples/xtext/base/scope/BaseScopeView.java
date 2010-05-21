@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -55,13 +55,6 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		this.bindings = bindings;
 		assert bindings != null;
 	}
-
-/*	public void addBinding(TypeBindingCS binding) {
-		if ((bindings == null) || bindings.isEmpty()) {
-			bindings = new ArrayList<TypeBindingCS>();
-		}
-		bindings.add(binding);
-	} */
 	
 	public IEObjectDescription computeLookup(EnvironmentView environmentView) {
 		ScopeView outerScope = scopeAdapter.computeLookup(environmentView, this);

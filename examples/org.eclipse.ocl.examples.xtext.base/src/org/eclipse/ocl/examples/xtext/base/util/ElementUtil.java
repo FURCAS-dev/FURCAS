@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.2 2010/05/16 19:18:04 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.util;
 
@@ -103,22 +103,6 @@ public class ElementUtil
 	public static ScopeAdapter getScopeAdapter(EObject element) {
 		return AbstractScopeAdapter.getScopeAdapter(element);
 	}
-	
-/*	public static List<String> getTexts(EObject eObject) {
-		CompositeNode compositeNode = getParserNode(eObject);
-		if (compositeNode == null) {
-			return Collections.emptyList();
-		}
-		List<LeafNode> leafNodes = compositeNode.getLeafNodes();
-		int size = leafNodes.size();
-		List<String> strings = new ArrayList<String>(size);
-		for (LeafNode leaf : leafNodes) {
-			if (!leaf.isHidden()) {
-				strings.add(leaf.getText());
-			}
-		}
-		return strings;
-	} */
 	
 	public static boolean isValidIdentifier(String value) {
 		int iMax = value.length();
