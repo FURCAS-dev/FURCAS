@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.2 2010/05/06 17:34:55 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.3 2010/05/21 20:24:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -30,17 +29,16 @@ import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
  */
 public class RoundTripTests extends XtextTestCase
 {
-	public void doRoundTrip(String stem) throws IOException, InterruptedException {
+	public void doRoundTripFromEcore(String stem) throws IOException, InterruptedException {
 		String inputName = stem + ".ecore";
-		String middleName = stem + ".converted.xmi";
+		String middleName = stem + ".converted.oclinecore";
 		String outputName = stem + ".regenerated.ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI middleURI = getProjectFileURI(middleName);
 		URI outputURI = getProjectFileURI(outputName);
 		Resource leftResource = resourceSet.getResource(inputURI, true);
 		OCLinEcoreDocumentCS csDocument = Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
-		List<Resource.Diagnostic> errors = csDocument.eResource().getErrors(); 
-		assertEquals("From Ecore errors", 0, errors.size());
+		assertNoResourceErrors("From Ecore errors", csDocument.eResource().getErrors());
 //		List<PackageCS> csObjects = new ArrayList<PackageCS>();
 //		csObjects.addAll(csDocument.getPackages());
 		Resource middleResource = resourceSet.createResource(middleURI);
@@ -49,54 +47,97 @@ public class RoundTripTests extends XtextTestCase
 		middleResource.save(null);
 		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
 		Resource rightResource = cs2e.exportToEcore();
-		assertEquals("To Ecore errors", 0, rightResource.getErrors().size());
+		assertNoResourceErrors("To Ecore errors", rightResource.getErrors());
 		rightResource.save(null);
 		resourceSet.getResources().add(rightResource);
     	assertSameModel(leftResource, rightResource);
 	}
 
+	public void doRoundTripFromOclInEcore(String stem) throws IOException, InterruptedException {
+		String inputName = stem + ".oclinecore";
+		String middleName = stem + ".converted.ecore";
+		String outputName = stem + ".regenerated.oclinecore";
+		String output2Name = stem + ".reconverted.ecore";
+		URI inputURI = getProjectFileURI(inputName);
+		URI middleURI = getProjectFileURI(middleName);
+		URI outputURI = getProjectFileURI(outputName);
+		URI output2URI = getProjectFileURI(output2Name);
+		Resource leftResource = resourceSet.getResource(inputURI, true);
+		assertNoResourceErrors("Load failed", leftResource.getErrors());
+		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, leftResource, middleURI);
+		Resource middleResource = cs2e.exportToEcore();
+		assertEquals("To Ecore errors", 0, middleResource.getErrors().size());
+		middleResource.save(null);
+		resourceSet.getResources().add(middleResource);
+		OCLinEcoreDocumentCS csDocument = Ecore2OCLinEcore.importFromEcore(resourceSet, null, middleResource);
+		assertNoResourceErrors("From Ecore errors", csDocument.eResource().getErrors());
+		Resource rightResource = resourceSet.createResource(outputURI);
+//		middleResource.getContents().addAll(csObjects);
+		rightResource.getContents().add(csDocument);
+		rightResource.save(null);
+		OCLinEcore2Ecore cs2e2 = new OCLinEcore2Ecore(resourceSet, rightResource, output2URI);
+		Resource right2Resource = cs2e2.exportToEcore();
+		assertNoResourceErrors("To Ecore errors", rightResource.getErrors());
+		right2Resource.save(null);
+		resourceSet.getResources().add(right2Resource);
+    	assertSameModel(middleResource, right2Resource);
+	}
+
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("Company");
+		doRoundTripFromEcore("Company");
 	}
 
 	public void testEcoreRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("Ecore");
+		doRoundTripFromEcore("Ecore");
 	}
 
 	public void testImportsRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("Imports");
+		doRoundTripFromEcore("Imports");
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("OCLinEcoreCST");
+		doRoundTripFromEcore("OCLinEcoreCST");
 	}
 
 	public void testOCLstdlibRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("OCLstdlib");
+		doRoundTripFromEcore("OCLstdlib");
 	}
 
 	public void testOCLRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("OCL");
+		doRoundTripFromEcore("OCL");
 	}
 
 	public void testOCLCSTRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("OCLCST");
+		doRoundTripFromEcore("OCLCST");
 	}
 
 // FIXME fails due to Bug 308691
 //	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException {
-//		doRoundTrip("OCLEcore");
+//		URI ecorePluginURI = URI.createPlatformPluginURI("org.eclipse.emf.ecore/model/Ecore.ecore", false);
+//		Map<URI, Resource> uriResourceMap = new HashMap<URI, Resource>();
+//		uriResourceMap.put(ecorePluginURI, EcorePackage.eINSTANCE.eResource());
+//		((ResourceSetImpl) resourceSet).setURIResourceMap(uriResourceMap);
+//		doRoundTripFromEcore("OCLEcore");
 //	}
 
 	public void testQVTRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("QVT");
+		doRoundTripFromEcore("QVT");
 	}	
 
+	public void testTypes_ecore() throws IOException, InterruptedException {
+		doRoundTripFromEcore("Types");
+	}
+
+	public void testTypes_oclinecore() throws IOException, InterruptedException {
+//		BaseScopeProvider.LOOKUP.setState(true);		// FIXME CCE if this line commented out
+		doRoundTripFromOclInEcore("Types");
+	}
+
 	public void testXMLNamespaceRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("XMLNamespace");
+		doRoundTripFromEcore("XMLNamespace");
 	}	
 
 	public void testXMLTypeRoundTrip() throws IOException, InterruptedException {
-		doRoundTrip("XMLType");
+		doRoundTripFromEcore("XMLType");
 	}
 }

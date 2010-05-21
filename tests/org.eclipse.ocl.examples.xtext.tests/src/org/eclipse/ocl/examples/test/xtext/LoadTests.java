@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.5 2010/05/09 14:37:53 ewillink Exp $
+ * $Id: LoadTests.java,v 1.6 2010/05/21 20:24:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -83,5 +83,9 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_play_oclinecore() throws IOException, InterruptedException {
 		doLoad("play.oclinecore");
+	}	
+
+	public void testLoad_Types_oclinecore() throws IOException, InterruptedException {
+		doLoad("Types.oclinecore");
 	}	
 }
