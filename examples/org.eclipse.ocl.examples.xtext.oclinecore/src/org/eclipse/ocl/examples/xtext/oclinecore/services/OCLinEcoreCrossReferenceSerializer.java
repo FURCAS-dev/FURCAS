@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.9 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.10 2010/05/21 20:13:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -30,9 +30,15 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.DocumentScopeAdapter;
+import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.linking.impl.LinkingHelper;
+import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer;
 import org.eclipse.xtext.parsetree.reconstr.impl.CrossReferenceSerializer;
 
 import com.google.inject.Inject;
@@ -40,33 +46,31 @@ import com.google.inject.Inject;
 public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 {
 	@Inject
+	private LinkingHelper linkingHelper;
+
+	@Inject
+	private ILinkingService linkingService;
+
+	@Inject
 	private IValueConverterService valueConverter;
 
 	public OCLinEcoreCrossReferenceSerializer() {
 		super();
 	}
 
-	@Override
-	protected String getUnconvertedLinkText(EObject object, EReference reference, EObject context) {
-		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS))
-			return ((ImportCS) context).getUri();
+	protected String getConvertedLinkText(EObject object, EReference reference, EObject context) {
 		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
-			AbstractDocumentScopeAdapter<?> documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(context);
+			DocumentScopeAdapter documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(context);
 			List<String> contextPath = getPath(documentScopeAdapter, context);
 			List<String> objectPath = getPath(documentScopeAdapter, object);
-			return divergentPath(objectPath, contextPath);					// FIXME Check cast
+			return getDivergentPath(objectPath, contextPath);
 		}
-		if ((reference == BaseCSTPackage.Literals.REFERENCE_CS_REF__REF) && (context instanceof ReferenceCSRef))
-			return ((ReferenceCS) object).getName();
-		if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_CS_REF__REF) && (context instanceof ModelElementCSRef))
-			return ((NamedElementCS) object).getName();
-//		if ((reference == OCLinEcoreCSTPackage.Literals.NAMED_ELEMENT_CS__NAME) && (context instanceof TypeCS))
-//			return "::" + ((TypeCS) object).getName();
-		return super.getUnconvertedLinkText(object, reference, context);
+		else {
+			return null;
+		}
 	}
 
-	private String divergentPath(List<String> objectPath, List<String> contextPath) {
-		StringBuffer s = new StringBuffer();
+	private String getDivergentPath(List<String> objectPath, List<String> contextPath) {
 		int i = 0;
 		int iSize = objectPath.size();
 		int iMax = Math.min(iSize, contextPath.size());
@@ -77,23 +81,18 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 				break;
 			}
 		}
-		for ( ; i < iSize; i++) {
-			if (s.length() > 0){
-				s.append("::");
-			}
-			s.append(valueConverter.toString(objectPath.get(i), "ID_TERMINAL"));
+		StringBuffer s = new StringBuffer();
+		for ( ; i < iSize-1; i++) {
+			s.append(valueConverter.toString(objectPath.get(i), "ID"));
+			s.append("::");
 		}
-		if ((s.length() <= 0) && (iSize > 0)) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1), "ID_TERMINAL"));
+		if (iSize > 0) {
+			s.append(valueConverter.toString(objectPath.get(iSize-1), "ID"));
 		}
 		return s.toString();
 	}
 
-	public String convertIdentifier(String convertMe) {
-		return valueConverter.toString(convertMe, "ID_TERMINAL");
-	}
-
-	private List<String> getPath(AbstractDocumentScopeAdapter<?> documentScopeAdapter, EObject eObject) {
+	private List<String> getPath(DocumentScopeAdapter documentScopeAdapter, EObject eObject) {
 		if (eObject instanceof PackageCS) {
 			String alias = documentScopeAdapter.getAlias((PackageCS)eObject);
 			if (alias != null) {
@@ -114,6 +113,42 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 			result.add(((NamedElementCS)eObject).getName());
 		}
 		return result;
+	}
+
+	@Override
+	protected String getUnconvertedLinkText(EObject object, EReference reference, EObject context) {
+		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS))
+			return ((ImportCS) context).getUri();
+		else if ((reference == BaseCSTPackage.Literals.REFERENCE_CS_REF__REF) && (context instanceof ReferenceCSRef))
+			return ((ReferenceCS) object).getName();
+		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_CS_REF__REF) && (context instanceof ModelElementCSRef))
+			return ((NamedElementCS) object).getName();
+		else {
+			return super.getUnconvertedLinkText(object, reference, context);
+		}
+	}
+
+	@Override
+	public String serializeCrossRef(EObject context, CrossReference grammarElement, EObject target, AbstractNode node) {
+		final EReference ref = GrammarUtil.getReference(grammarElement, context.eClass());
+		String text = null;
+		if (node != null) {
+			List<EObject> objects = linkingService.getLinkedObjects(context, ref, node);
+			if (objects.contains(target))
+				return ITokenSerializer.KEEP_VALUE_FROM_NODE_MODEL;
+		}
+		text = getConvertedLinkText(target, ref, context);
+		if (text != null) {
+			return text;
+		}
+		text = getUnconvertedLinkText(target, ref, context);
+		if (text != null) {
+			return getConvertedValue(text, grammarElement);
+		}
+		if (node != null) {
+			return linkingHelper.getCrossRefNodeAsString(node, false);
+		}
+		return null;
 	}
 
 }
