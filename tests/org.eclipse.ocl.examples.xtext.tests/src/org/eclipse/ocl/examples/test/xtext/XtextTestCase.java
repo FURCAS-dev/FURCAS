@@ -165,4 +165,11 @@ public class XtextTestCase extends TestCase
 		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
 		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
 	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		resourceSet.getResources().clear();
+		resourceSet = null;
+		super.tearDown();
+	}
 }
