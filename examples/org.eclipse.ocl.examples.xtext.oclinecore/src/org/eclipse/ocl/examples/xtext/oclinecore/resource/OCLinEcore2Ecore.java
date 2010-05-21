@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore2Ecore.java,v 1.4 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: OCLinEcore2Ecore.java,v 1.5 2010/05/21 20:14:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
@@ -399,7 +400,30 @@ public class OCLinEcore2Ecore extends AbstractConversion
 			doSwitchAll(eTypedElement.getEAnnotations(), csTypedElement.getAnnotations());
 			TypeRefCS type = csTypedElement.getType();
 			if (type != null) {
-				eTypedElement.setEGenericType((EGenericType) doSwitch(type));
+				if (type instanceof PrimitiveTypeRefCS) {
+					String name = ((PrimitiveTypeRefCS)type).getName();
+					if ("Boolean".equals(name)) {
+						eTypedElement.setEType(EcorePackage.Literals.EBOOLEAN);
+					}
+					else if ("Integer".equals(name)) {
+						eTypedElement.setEType(EcorePackage.Literals.EBIG_INTEGER);
+					}
+					else if ("Real".equals(name)) {
+						eTypedElement.setEType(EcorePackage.Literals.EBIG_DECIMAL);
+					}
+					else if ("String".equals(name)) {
+						eTypedElement.setEType(EcorePackage.Literals.ESTRING);
+					}
+					else if ("UnlimitedNatural".equals(name)) {
+						eTypedElement.setEType(EcorePackage.Literals.EBIG_INTEGER);
+					}
+					else {
+						error("Unsupported primitive type '" + name + "' in pass1");
+					}
+				}
+				else {
+					eTypedElement.setEGenericType((EGenericType) doSwitch(type));
+				}
 			}
 			String multiplicity = csTypedElement.getMultiplicity();
 			if (multiplicity != null) {
