@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeAdapter.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: ScopeAdapter.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -76,8 +76,6 @@ public interface ScopeAdapter extends Adapter
 	 * @return the type or null if unknown
 	 */
 	ClassifierCS getSynthesizedType(TypeBindingsCS bindings);
-
-//	ClassifierCS getSynthesizedType(EStructuralFeature containmentFeature);
 
 	EObject getTarget();
 	

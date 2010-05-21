@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitiveTypeRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: PrimitiveTypeRefCSImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -184,17 +184,11 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
-		result.append(name);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 	@Override

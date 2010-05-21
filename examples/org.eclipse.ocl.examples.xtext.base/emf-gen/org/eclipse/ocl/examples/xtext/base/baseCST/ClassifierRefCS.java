@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ClassifierRefCS.java,v 1.1 2010/05/03 05:24:58 ewillink Exp $
+ * $Id: ClassifierRefCS.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -18,4 +18,12 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @generated
  */
 public interface ClassifierRefCS extends ModelElementCS {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	ClassifierCS getClassifier();
 } // ClassifierRefCS

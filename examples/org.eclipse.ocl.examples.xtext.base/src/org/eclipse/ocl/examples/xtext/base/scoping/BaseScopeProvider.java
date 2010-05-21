@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.4 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.5 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS;
@@ -38,8 +39,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
@@ -52,6 +53,8 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  */
 public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 {
+	public static final TracingOption LOOKUP = new TracingOption("org.eclipse.ocl.examples.xtext.base", "lookup");  //$NON-NLS-1$//$NON-NLS-2$
+
 	static {
 		AbstractScopeAdapter.addSwitch(BaseCSTPackage.eINSTANCE, new BaseScopeSwitch());
 	}

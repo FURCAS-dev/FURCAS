@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeView.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: ScopeView.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -82,6 +82,10 @@ public interface ScopeView extends IScope
 			return null;
 		}
 
+		public EObject getTarget() {
+			return null;
+		}
+
 		public EReference getTargetReference() {
 			return null;
 		}
@@ -103,6 +107,8 @@ public interface ScopeView extends IScope
 
 	ScopeAdapter getScopeAdapter();
 
+	EObject getTarget();
+	
 	EReference getTargetReference();
 
 	ScopeView getUnqualifiedOuterScope(TypeBindingsCS bindings);
