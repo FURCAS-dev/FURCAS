@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.3 2010/05/03 05:38:14 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -36,15 +36,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	EssentialOCLCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Arrow Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Arrow Exp CS</em>'.
-	 * @generated
-	 */
-	ArrowExpCS createArrowExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Path Name Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +43,15 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	PathNameExpCS createPathNameExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Pre Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pre Exp CS</em>'.
+	 * @generated
+	 */
+	PreExpCS createPreExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Prefix Exp CS</em>'.
@@ -70,15 +70,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	CollectionTypeCS createCollectionTypeCS();
-
-	/**
-	 * Returns a new object of class '<em>Dot Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dot Exp CS</em>'.
-	 * @generated
-	 */
-	DotExpCS createDotExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Exp CS</em>'.

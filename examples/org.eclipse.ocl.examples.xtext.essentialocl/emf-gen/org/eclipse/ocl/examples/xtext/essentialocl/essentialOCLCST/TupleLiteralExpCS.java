@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCS.java,v 1.1 2010/04/13 06:32:31 ewillink Exp $
+ * $Id: TupleLiteralExpCS.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TupleLiteralExpCS extends LiteralExpCS {
+public interface TupleLiteralExpCS extends ClassifierCS, LiteralExpCS {
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS}.

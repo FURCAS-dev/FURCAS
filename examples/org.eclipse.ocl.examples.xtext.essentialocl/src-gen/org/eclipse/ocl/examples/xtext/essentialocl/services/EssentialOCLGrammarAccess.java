@@ -22,10 +22,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 		//
-		//
-		//
 		//Model returns ExpCS:
-		//  ExpCS;
+		//	ExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//ExpCS
@@ -50,19 +48,13 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Not terminal to allow parser backtracking to sort out "5..7"
 		//
-		//
-		//
 		//NUMBER_LITERAL returns BigNumber:
-		//  INT ("." INT)? (("e"|"E") ("+"|"-")? INT)?;
+		//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
 		public ParserRule getRule() { return rule; }
 
-		//// Not terminal to allow parser backtracking to sort out "5..7"
-		//
-		//INT ("." INT)? (("e"|"E") ("+"|"-")? INT)?
+		//INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?
 		public Group getGroup() { return cGroup; }
 
-		//// Not terminal to allow parser backtracking to sort out "5..7"
-		//
 		//INT
 		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
 
@@ -75,10 +67,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
 
-		//(("e"|"E") ("+"|"-")? INT)?
+		//(("e" | "E") ("+" | "-")? INT)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"e"|"E"
+		//"e" | "E"
 		public Alternatives getAlternatives_2_0() { return cAlternatives_2_0; }
 
 		//"e"
@@ -87,7 +79,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"E"
 		public Keyword getEKeyword_2_0_1() { return cEKeyword_2_0_1; }
 
-		//("+"|"-")?
+		//("+" | "-")?
 		public Alternatives getAlternatives_2_1() { return cAlternatives_2_1; }
 
 		//"+"
@@ -116,10 +108,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cXorKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		
 		//EssentialOCLReservedKeywords returns ecore::EString:
-		//  "and"|"else"|"endif"|"if"|"implies"|"in"|"let"|"not"|"or"|"then"|"xor";
+		//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 		public ParserRule getRule() { return rule; }
 
-		//"and"|"else"|"endif"|"if"|"implies"|"in"|"let"|"not"|"or"|"then"|"xor"
+		//"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"and"
@@ -163,10 +155,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//EssentialOCLRestrictedKeywords returns ecore::EString:
-		//  "e"|"E";
+		//	"e" | "E";
 		public ParserRule getRule() { return rule; }
 
-		//"e"|"E"
+		//"e" | "E"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"e"
@@ -182,14 +174,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Intended to be overridden
 		//
-		//
-		//
 		//RestrictedKeywords returns ecore::EString:
-		//  EssentialOCLRestrictedKeywords;
+		//	EssentialOCLRestrictedKeywords;
 		public ParserRule getRule() { return rule; }
 
-		//// Intended to be overridden
-		//
 		//EssentialOCLRestrictedKeywords
 		public RuleCall getEssentialOCLRestrictedKeywordsParserRuleCall() { return cEssentialOCLRestrictedKeywordsParserRuleCall; }
 	}
@@ -197,18 +185,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class IdentifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cID_TERMINALTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRestrictedKeywordsParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Identifier returns ecore::EString:
-		//  ID_TERMINAL|RestrictedKeywords;
+		//	ID | RestrictedKeywords;
 		public ParserRule getRule() { return rule; }
 
-		//ID_TERMINAL|RestrictedKeywords
+		//ID | RestrictedKeywords
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//ID_TERMINAL
-		public RuleCall getID_TERMINALTerminalRuleCall_0() { return cID_TERMINALTerminalRuleCall_0; }
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
 
 		//RestrictedKeywords
 		public RuleCall getRestrictedKeywordsParserRuleCall_1() { return cRestrictedKeywordsParserRuleCall_1; }
@@ -219,7 +207,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSINGLE_QUOTED_STRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//StringLiteral returns ecore::EString:
-		//  SINGLE_QUOTED_STRING;
+		//	SINGLE_QUOTED_STRING;
 		public ParserRule getRule() { return rule; }
 
 		//SINGLE_QUOTED_STRING
@@ -272,17 +260,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//
 		//conceptualOperationNameCS returns SimpleNameCS:
 		//
-		//	conceptualOperationName; * /
+		//	conceptualOperationName; * // *tupleKeywordCS returns ecore::EString:
 		//
-		//
-		//
-		/// *tupleKeywordCS returns ecore::EString:
-		//
-		//	value='Tuple'; * /
-		//
-		//
-		//
-		/// *restrictedKeywordCS returns ecore::EString: 
+		//	value='Tuple'; * // *restrictedKeywordCS returns ecore::EString: 
 		//
 		//	CollectionTypeIdentifierCS
 		//
@@ -296,10 +276,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//
 		//|	primitiveTypeCS
 		//
-		//|	tupleKeywordCS; * /
-		//
-		//SimpleName returns ecore::EString:
-		//  Identifier;
+		//|	tupleKeywordCS; * /SimpleName returns ecore::EString:
+		//	Identifier;
 		public ParserRule getRule() { return rule; }
 
 		//Identifier
@@ -328,23 +306,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//
 		////;
 		//
-		//        
-		//
 		////---------------------------------------------------------------------
 		//
 		////  Types
 		//
 		////---------------------------------------------------------------------
 		//
-		//
-		//
 		//PrimitiveTypeIdentifier returns ecore::EString:
-		//  "Boolean"|"Integer"|"Real"|"String"|"UnlimitedNatural"|"OclAny"|"OclInvalid"|
-		//  "OclVoid";
+		//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 		public ParserRule getRule() { return rule; }
 
-		//"Boolean"|"Integer"|"Real"|"String"|"UnlimitedNatural"|"OclAny"|"OclInvalid"|
-		//"OclVoid"
+		//"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"Boolean"
@@ -378,7 +350,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNamePrimitiveTypeIdentifierParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//PrimitiveTypeCS:
-		//  name=PrimitiveTypeIdentifier;
+		//	name=PrimitiveTypeIdentifier;
 		public ParserRule getRule() { return rule; }
 
 		//name=PrimitiveTypeIdentifier
@@ -398,10 +370,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOrderedSetKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		
 		//CollectionTypeIdentifier returns ecore::EString:
-		//  "Set"|"Bag"|"Sequence"|"Collection"|"OrderedSet";
+		//	"Set" | "Bag" | "Sequence" | "Collection" | "OrderedSet";
 		public ParserRule getRule() { return rule; }
 
-		//"Set"|"Bag"|"Sequence"|"Collection"|"OrderedSet"
+		//"Set" | "Bag" | "Sequence" | "Collection" | "OrderedSet"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"Set"
@@ -429,10 +401,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleTypeCSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//TypeExpCS:
-		//  PrimitiveTypeCS|NameExpCS|CollectionTypeCS|TupleTypeCS;
+		//	PrimitiveTypeCS | NameExpCS | CollectionTypeCS | TupleTypeCS;
 		public ParserRule getRule() { return rule; }
 
-		//PrimitiveTypeCS|NameExpCS|CollectionTypeCS|TupleTypeCS
+		//PrimitiveTypeCS | NameExpCS | CollectionTypeCS | TupleTypeCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PrimitiveTypeCS
@@ -460,7 +432,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//CollectionTypeCS:
-		//  name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
+		//	name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
 		public ParserRule getRule() { return rule; }
 
 		//name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?
@@ -504,7 +476,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//TupleTypeCS:
-		//  name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
+		//	name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
 		public ParserRule getRule() { return rule; }
 
 		//name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")"
@@ -554,7 +526,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeTypeExpCSParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//tuplePartCS returns VariableCS:
-		//  name=SimpleName ":" type=TypeExpCS;
+		//	name=SimpleName ":" type=TypeExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//name=SimpleName ":" type=TypeExpCS
@@ -622,28 +594,19 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//
 		//// or CollectionTypeLiteral
 		//
-		//
-		//
 		//CollectionLiteralExpCS returns LiteralExpCS:
-		//  CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (
-		//  collectionLiteralParts+=CollectionLiteralPartCS (","
-		//  collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
+		//	CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
+		//	collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//// or CollectionTypeLiteral
-		//
-		//CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (
-		//collectionLiteralParts+=CollectionLiteralPartCS (","
+		//CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
 		//collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?
 		public Group getGroup() { return cGroup; }
 
-		//// or CollectionTypeLiteral
-		//
 		//CollectionTypeCS
 		public RuleCall getCollectionTypeCSParserRuleCall_0() { return cCollectionTypeCSParserRuleCall_0; }
 
-		//({CollectionLiteralExpCS.typeCS=current} "{" (
-		//collectionLiteralParts+=CollectionLiteralPartCS (","
+		//({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
 		//collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?
 		public Group getGroup_1() { return cGroup_1; }
 
@@ -653,8 +616,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1_1() { return cLeftCurlyBracketKeyword_1_1; }
 
-		//(collectionLiteralParts+=CollectionLiteralPartCS (","
-		//collectionLiteralParts+=CollectionLiteralPartCS)*)?
+		//(collectionLiteralParts+=CollectionLiteralPartCS ("," collectionLiteralParts+=CollectionLiteralPartCS)*)?
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//collectionLiteralParts+=CollectionLiteralPartCS
@@ -690,7 +652,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLastExpressionCSExpCSParserRuleCall_1_1_0 = (RuleCall)cLastExpressionCSAssignment_1_1.eContents().get(0);
 		
 		//CollectionLiteralPartCS:
-		//  expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
+		//	expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
 		public ParserRule getRule() { return rule; }
 
 		//expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?
@@ -725,12 +687,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNullLiteralExpCSParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//PrimitiveLiteralExpCS:
-		//  NumberLiteralExpCS|StringLiteralExpCS|BooleanLiteralExpCS|InvalidLiteralExpCS
-		//  |NullLiteralExpCS;
+		//	NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | InvalidLiteralExpCS | NullLiteralExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//NumberLiteralExpCS|StringLiteralExpCS|BooleanLiteralExpCS|InvalidLiteralExpCS|
-		//NullLiteralExpCS
+		//NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | InvalidLiteralExpCS | NullLiteralExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//NumberLiteralExpCS
@@ -766,21 +726,13 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// or TupleTypeLiteral
 		//
-		//
-		//
 		//TupleLiteralExpCS:
-		//  {TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS (","
-		//  part+=TupleLiteralPartCS)* "}")?;
+		//	{TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS ("," part+=TupleLiteralPartCS)* "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//// or TupleTypeLiteral
-		//
-		//{TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS (","
-		//part+=TupleLiteralPartCS)* "}")?
+		//{TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS ("," part+=TupleLiteralPartCS)* "}")?
 		public Group getGroup() { return cGroup; }
 
-		//// or TupleTypeLiteral
-		//
 		//{TupleLiteralExpCS}
 		public Action getTupleLiteralExpCSAction_0() { return cTupleLiteralExpCSAction_0; }
 
@@ -829,7 +781,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInitExpressionExpCSParserRuleCall_3_0 = (RuleCall)cInitExpressionAssignment_3.eContents().get(0);
 		
 		//TupleLiteralPartCS returns VariableCS:
-		//  name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
+		//	name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS
@@ -869,7 +821,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameNUMBER_LITERALParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//NumberLiteralExpCS:
-		//  name=NUMBER_LITERAL;
+		//	name=NUMBER_LITERAL;
 		public ParserRule getRule() { return rule; }
 
 		//name=NUMBER_LITERAL
@@ -885,7 +837,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameStringLiteralParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//StringLiteralExpCS:
-		//  name+=StringLiteral+;
+		//	name+=StringLiteral+;
 		public ParserRule getRule() { return rule; }
 
 		//name+=StringLiteral+
@@ -904,10 +856,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameFalseKeyword_1_0 = (Keyword)cNameAssignment_1.eContents().get(0);
 		
 		//BooleanLiteralExpCS:
-		//  name="true"|name="false";
+		//	name="true" | name="false";
 		public ParserRule getRule() { return rule; }
 
-		//name="true"|name="false"
+		//name="true" | name="false"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="true"
@@ -930,7 +882,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInvalidKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//InvalidLiteralExpCS:
-		//  {InvalidLiteralExpCS} "invalid";
+		//	{InvalidLiteralExpCS} "invalid";
 		public ParserRule getRule() { return rule; }
 
 		//{InvalidLiteralExpCS} "invalid"
@@ -950,7 +902,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNullKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//NullLiteralExpCS:
-		//  {NullLiteralExpCS} "null";
+		//	{NullLiteralExpCS} "null";
 		public ParserRule getRule() { return rule; }
 
 		//{NullLiteralExpCS} "null"
@@ -985,13 +937,11 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//
 		////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 		//
-		//
-		//
 		//ExpCS:
-		//  impliesCS|LetExpCS;
+		//	impliesCS | LetExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//impliesCS|LetExpCS
+		//impliesCS | LetExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//impliesCS
@@ -1015,17 +965,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//impliesCS returns ExpCS:
-		//  xorCS ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS )
-		//  )*;
+		//	xorCS ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//xorCS ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS ))*
+		//xorCS ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//xorCS
 		public RuleCall getXorCSParserRuleCall_0() { return cXorCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS ))*
+		//({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
@@ -1037,10 +986,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"implies"
 		public Keyword getOpImpliesKeyword_1_1_0() { return cOpImpliesKeyword_1_1_0; }
 
-		//argument=( xorCS | LetExpCS )
+		//argument=(xorCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//xorCS|LetExpCS
+		//xorCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//xorCS
@@ -1064,16 +1013,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//xorCS returns ExpCS:
-		//  orCS ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*;
+		//	orCS ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//orCS ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*
+		//orCS ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//orCS
 		public RuleCall getOrCSParserRuleCall_0() { return cOrCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*
+		//({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
@@ -1085,10 +1034,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"xor"
 		public Keyword getOpXorKeyword_1_1_0() { return cOpXorKeyword_1_1_0; }
 
-		//argument=( orCS | LetExpCS )
+		//argument=(orCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//orCS|LetExpCS
+		//orCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//orCS
@@ -1112,16 +1061,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//orCS returns ExpCS:
-		//  andCS ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*;
+		//	andCS ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//andCS ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*
+		//andCS ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//andCS
 		public RuleCall getAndCSParserRuleCall_0() { return cAndCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*
+		//({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
@@ -1133,10 +1082,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"or"
 		public Keyword getOpOrKeyword_1_1_0() { return cOpOrKeyword_1_1_0; }
 
-		//argument=( andCS | LetExpCS )
+		//argument=(andCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//andCS|LetExpCS
+		//andCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//andCS
@@ -1160,18 +1109,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//andCS returns ExpCS:
-		//  equalityCS ({InfixExpCS.source=current} op="and" argument=( equalityCS |
-		//  LetExpCS ))*;
+		//	equalityCS ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//equalityCS ({InfixExpCS.source=current} op="and" argument=( equalityCS |
-		//LetExpCS ))*
+		//equalityCS ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//equalityCS
 		public RuleCall getEqualityCSParserRuleCall_0() { return cEqualityCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op="and" argument=( equalityCS | LetExpCS ))*
+		//({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
@@ -1183,10 +1130,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"and"
 		public Keyword getOpAndKeyword_1_1_0() { return cOpAndKeyword_1_1_0; }
 
-		//argument=( equalityCS | LetExpCS )
+		//argument=(equalityCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//equalityCS|LetExpCS
+		//equalityCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//equalityCS
@@ -1212,28 +1159,25 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//equalityCS returns ExpCS:
-		//  relationalCS ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=(
-		//  relationalCS | LetExpCS ))*;
+		//	relationalCS ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//relationalCS ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=(
-		//relationalCS | LetExpCS ))*
+		//relationalCS ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//relationalCS
 		public RuleCall getRelationalCSParserRuleCall_0() { return cRelationalCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op=( "=" | "<>" ) argument=( relationalCS |
-		//LetExpCS ))*
+		//({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
 		public Action getInfixExpCSSourceAction_1_0() { return cInfixExpCSSourceAction_1_0; }
 
-		//op=( "=" | "<>" )
+		//op=("=" | "<>")
 		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
 
-		//"="|"<>"
+		//"=" | "<>"
 		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//"="
@@ -1242,10 +1186,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"<>"
 		public Keyword getOpLessThanSignGreaterThanSignKeyword_1_1_0_1() { return cOpLessThanSignGreaterThanSignKeyword_1_1_0_1; }
 
-		//argument=( relationalCS | LetExpCS )
+		//argument=(relationalCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//relationalCS|LetExpCS
+		//relationalCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//relationalCS
@@ -1273,28 +1217,25 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//relationalCS returns ExpCS:
-		//  additiveCS ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" )
-		//  argument=( additiveCS | LetExpCS ))*;
+		//	additiveCS ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//additiveCS ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" )
-		//argument=( additiveCS | LetExpCS ))*
+		//additiveCS ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//additiveCS
 		public RuleCall getAdditiveCSParserRuleCall_0() { return cAdditiveCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" ) argument=(
-		//additiveCS | LetExpCS ))*
+		//({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
 		public Action getInfixExpCSSourceAction_1_0() { return cInfixExpCSSourceAction_1_0; }
 
-		//op=( ">" | "<" | ">=" | "<=" )
+		//op=(">" | "<" | ">=" | "<=")
 		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
 
-		//">"|"<"|">="|"<="
+		//">" | "<" | ">=" | "<="
 		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//">"
@@ -1309,10 +1250,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"<="
 		public Keyword getOpLessThanSignEqualsSignKeyword_1_1_0_3() { return cOpLessThanSignEqualsSignKeyword_1_1_0_3; }
 
-		//argument=( additiveCS | LetExpCS )
+		//argument=(additiveCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//additiveCS|LetExpCS
+		//additiveCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//additiveCS
@@ -1338,28 +1279,25 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//additiveCS returns ExpCS:
-		//  multiplicativeCS ({InfixExpCS.source=current} op=( "+" | "-" ) argument=(
-		//  multiplicativeCS | LetExpCS ))*;
+		//	multiplicativeCS ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//multiplicativeCS ({InfixExpCS.source=current} op=( "+" | "-" ) argument=(
-		//multiplicativeCS | LetExpCS ))*
+		//multiplicativeCS ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//multiplicativeCS
 		public RuleCall getMultiplicativeCSParserRuleCall_0() { return cMultiplicativeCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op=( "+" | "-" ) argument=( multiplicativeCS |
-		//LetExpCS ))*
+		//({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
 		public Action getInfixExpCSSourceAction_1_0() { return cInfixExpCSSourceAction_1_0; }
 
-		//op=( "+" | "-" )
+		//op=("+" | "-")
 		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
 
-		//"+"|"-"
+		//"+" | "-"
 		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//"+"
@@ -1368,10 +1306,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"-"
 		public Keyword getOpHyphenMinusKeyword_1_1_0_1() { return cOpHyphenMinusKeyword_1_1_0_1; }
 
-		//argument=( multiplicativeCS | LetExpCS )
+		//argument=(multiplicativeCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//multiplicativeCS|LetExpCS
+		//multiplicativeCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//multiplicativeCS
@@ -1397,27 +1335,25 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentLetExpCSParserRuleCall_1_2_0_1 = (RuleCall)cArgumentAlternatives_1_2_0.eContents().get(1);
 		
 		//multiplicativeCS returns ExpCS:
-		//  unaryCS ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS |
-		//  LetExpCS ))*;
+		//	unaryCS ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*;
 		public ParserRule getRule() { return rule; }
 
-		//unaryCS ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS |
-		//LetExpCS ))*
+		//unaryCS ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*
 		public Group getGroup() { return cGroup; }
 
 		//unaryCS
 		public RuleCall getUnaryCSParserRuleCall_0() { return cUnaryCSParserRuleCall_0; }
 
-		//({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS | LetExpCS ))*
+		//({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{InfixExpCS.source=current}
 		public Action getInfixExpCSSourceAction_1_0() { return cInfixExpCSSourceAction_1_0; }
 
-		//op=( "*" | "/" )
+		//op=("*" | "/")
 		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
 
-		//"*"|"/"
+		//"*" | "/"
 		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//"*"
@@ -1426,10 +1362,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"/"
 		public Keyword getOpSolidusKeyword_1_1_0_1() { return cOpSolidusKeyword_1_1_0_1; }
 
-		//argument=( unaryCS | LetExpCS )
+		//argument=(unaryCS | LetExpCS)
 		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
-		//unaryCS|LetExpCS
+		//unaryCS | LetExpCS
 		public Alternatives getArgumentAlternatives_1_2_0() { return cArgumentAlternatives_1_2_0; }
 
 		//unaryCS
@@ -1453,25 +1389,25 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSourceUnaryCSParserRuleCall_1_2_0 = (RuleCall)cSourceAssignment_1_2.eContents().get(0);
 		
 		//unaryCS returns ExpCS:
-		//  NavigationExpCS|{PrefixExpCS} op=( "-" | "not" ) source=unaryCS;
+		//	NavigationExpCS | {PrefixExpCS} op=("-" | "not") source=unaryCS;
 		public ParserRule getRule() { return rule; }
 
-		//NavigationExpCS|{PrefixExpCS} op=( "-" | "not" ) source=unaryCS
+		//NavigationExpCS | {PrefixExpCS} op=("-" | "not") source=unaryCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//NavigationExpCS
 		public RuleCall getNavigationExpCSParserRuleCall_0() { return cNavigationExpCSParserRuleCall_0; }
 
-		//{PrefixExpCS} op=( "-" | "not" ) source=unaryCS
+		//{PrefixExpCS} op=("-" | "not") source=unaryCS
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{PrefixExpCS}
 		public Action getPrefixExpCSAction_1_0() { return cPrefixExpCSAction_1_0; }
 
-		//op=( "-" | "not" )
+		//op=("-" | "not")
 		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
 
-		//"-"|"not"
+		//"-" | "not"
 		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//"-"
@@ -1491,148 +1427,110 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigationExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cSubNavigationExpCSParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Action cDotExpCSSourceAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
-		private final Keyword cFullStopKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
-		private final Assignment cArgumentAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
-		private final RuleCall cArgumentNavigatingExpCSParserRuleCall_1_0_2_0 = (RuleCall)cArgumentAssignment_1_0_2.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Action cArrowExpCSSourceAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
-		private final Assignment cArgumentAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
-		private final RuleCall cArgumentNavigatingExpCSParserRuleCall_1_1_2_0 = (RuleCall)cArgumentAssignment_1_1_2.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cInfixExpCSSourceAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Alternatives cOpAlternatives_1_1_0 = (Alternatives)cOpAssignment_1_1.eContents().get(0);
+		private final Keyword cOpFullStopKeyword_1_1_0_0 = (Keyword)cOpAlternatives_1_1_0.eContents().get(0);
+		private final Keyword cOpHyphenMinusGreaterThanSignKeyword_1_1_0_1 = (Keyword)cOpAlternatives_1_1_0.eContents().get(1);
+		private final Assignment cArgumentAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cArgumentNavigatingExpCSParserRuleCall_1_2_0 = (RuleCall)cArgumentAssignment_1_2.eContents().get(0);
 		
 		//NavigationExpCS returns ExpCS:
-		//  SubNavigationExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+		//	SubNavigationExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 		//
-		//  //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+		//	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 		//
-		//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+		//;
 		public ParserRule getRule() { return rule; }
 
-		//SubNavigationExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+		//SubNavigationExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 		//
-		////	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-		//
-		//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
+		////	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 		public Group getGroup() { return cGroup; }
 
 		//SubNavigationExpCS
 		public RuleCall getSubNavigationExpCSParserRuleCall_0() { return cSubNavigationExpCSParserRuleCall_0; }
 
-		//({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
-		//
-		////	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-		//
-		//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		//({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)?
+		public Group getGroup_1() { return cGroup_1; }
 
-		//{DotExpCS.source=current} "." argument=NavigatingExpCS
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//{InfixExpCS.source=current}
+		public Action getInfixExpCSSourceAction_1_0() { return cInfixExpCSSourceAction_1_0; }
 
-		//{DotExpCS.source=current}
-		public Action getDotExpCSSourceAction_1_0_0() { return cDotExpCSSourceAction_1_0_0; }
+		//op=("." | "->")
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+
+		//"." | "->"
+		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//"."
-		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
-
-		//argument=NavigatingExpCS
-		public Assignment getArgumentAssignment_1_0_2() { return cArgumentAssignment_1_0_2; }
-
-		//NavigatingExpCS
-		public RuleCall getArgumentNavigatingExpCSParserRuleCall_1_0_2_0() { return cArgumentNavigatingExpCSParserRuleCall_1_0_2_0; }
-
-		//{ArrowExpCS.source=current} "->" argument=NavigatingExpCS
-		public Group getGroup_1_1() { return cGroup_1_1; }
-
-		//{ArrowExpCS.source=current}
-		public Action getArrowExpCSSourceAction_1_1_0() { return cArrowExpCSSourceAction_1_1_0; }
+		public Keyword getOpFullStopKeyword_1_1_0_0() { return cOpFullStopKeyword_1_1_0_0; }
 
 		//"->"
-		public Keyword getHyphenMinusGreaterThanSignKeyword_1_1_1() { return cHyphenMinusGreaterThanSignKeyword_1_1_1; }
+		public Keyword getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1() { return cOpHyphenMinusGreaterThanSignKeyword_1_1_0_1; }
 
 		//argument=NavigatingExpCS
-		public Assignment getArgumentAssignment_1_1_2() { return cArgumentAssignment_1_1_2; }
+		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
 		//NavigatingExpCS
-		public RuleCall getArgumentNavigatingExpCSParserRuleCall_1_1_2_0() { return cArgumentNavigatingExpCSParserRuleCall_1_1_2_0; }
+		public RuleCall getArgumentNavigatingExpCSParserRuleCall_1_2_0() { return cArgumentNavigatingExpCSParserRuleCall_1_2_0; }
 	}
 
 	public class NavigatingExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cSubNavigatingExpCSParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Action cDotExpCSSourceAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
-		private final Keyword cFullStopKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
-		private final Assignment cArgumentAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
-		private final RuleCall cArgumentNavigatingExpCSParserRuleCall_1_0_2_0 = (RuleCall)cArgumentAssignment_1_0_2.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Action cArrowExpCSSourceAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
-		private final Assignment cArgumentAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
-		private final RuleCall cArgumentNavigatingExpCSParserRuleCall_1_1_2_0 = (RuleCall)cArgumentAssignment_1_1_2.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cInfixExpCSSourceAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Alternatives cOpAlternatives_1_1_0 = (Alternatives)cOpAssignment_1_1.eContents().get(0);
+		private final Keyword cOpFullStopKeyword_1_1_0_0 = (Keyword)cOpAlternatives_1_1_0.eContents().get(0);
+		private final Keyword cOpHyphenMinusGreaterThanSignKeyword_1_1_0_1 = (Keyword)cOpAlternatives_1_1_0.eContents().get(1);
+		private final Assignment cArgumentAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cArgumentNavigatingExpCSParserRuleCall_1_2_0 = (RuleCall)cArgumentAssignment_1_2.eContents().get(0);
 		
 		//// Follows ., ->, ^
 		//
-		//
-		//
 		//NavigatingExpCS returns ExpCS:
-		//  SubNavigatingExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+		//	SubNavigatingExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 		//
-		//  //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+		//	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 		//
-		//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+		//;
 		public ParserRule getRule() { return rule; }
 
-		//SubNavigatingExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+		//SubNavigatingExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 		//
-		////	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-		//
-		//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
+		////	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 		public Group getGroup() { return cGroup; }
 
 		//SubNavigatingExpCS
 		public RuleCall getSubNavigatingExpCSParserRuleCall_0() { return cSubNavigatingExpCSParserRuleCall_0; }
 
-		//({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
-		//
-		////	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
-		//
-		//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		//({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)?
+		public Group getGroup_1() { return cGroup_1; }
 
-		//{DotExpCS.source=current} "." argument=NavigatingExpCS
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//{InfixExpCS.source=current}
+		public Action getInfixExpCSSourceAction_1_0() { return cInfixExpCSSourceAction_1_0; }
 
-		//{DotExpCS.source=current}
-		public Action getDotExpCSSourceAction_1_0_0() { return cDotExpCSSourceAction_1_0_0; }
+		//op=("." | "->")
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+
+		//"." | "->"
+		public Alternatives getOpAlternatives_1_1_0() { return cOpAlternatives_1_1_0; }
 
 		//"."
-		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
-
-		//argument=NavigatingExpCS
-		public Assignment getArgumentAssignment_1_0_2() { return cArgumentAssignment_1_0_2; }
-
-		//NavigatingExpCS
-		public RuleCall getArgumentNavigatingExpCSParserRuleCall_1_0_2_0() { return cArgumentNavigatingExpCSParserRuleCall_1_0_2_0; }
-
-		//{ArrowExpCS.source=current} "->" argument=NavigatingExpCS
-		public Group getGroup_1_1() { return cGroup_1_1; }
-
-		//{ArrowExpCS.source=current}
-		public Action getArrowExpCSSourceAction_1_1_0() { return cArrowExpCSSourceAction_1_1_0; }
+		public Keyword getOpFullStopKeyword_1_1_0_0() { return cOpFullStopKeyword_1_1_0_0; }
 
 		//"->"
-		public Keyword getHyphenMinusGreaterThanSignKeyword_1_1_1() { return cHyphenMinusGreaterThanSignKeyword_1_1_1; }
+		public Keyword getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1() { return cOpHyphenMinusGreaterThanSignKeyword_1_1_0_1; }
 
 		//argument=NavigatingExpCS
-		public Assignment getArgumentAssignment_1_1_2() { return cArgumentAssignment_1_1_2; }
+		public Assignment getArgumentAssignment_1_2() { return cArgumentAssignment_1_2; }
 
 		//NavigatingExpCS
-		public RuleCall getArgumentNavigatingExpCSParserRuleCall_1_1_2_0() { return cArgumentNavigatingExpCSParserRuleCall_1_1_2_0; }
+		public RuleCall getArgumentNavigatingExpCSParserRuleCall_1_2_0() { return cArgumentNavigatingExpCSParserRuleCall_1_2_0; }
 	}
 
 	public class SubNavigationExpCSElements extends AbstractParserRuleElementFinder {
@@ -1644,28 +1542,25 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPrimitiveLiteralExpCSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cTupleLiteralExpCSParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cCollectionLiteralExpCSParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cTypeExpCSParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cIfExpCSParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
-		private final Keyword cLeftParenthesisKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Action cNestedExpCSAction_8_1 = (Action)cGroup_8.eContents().get(1);
-		private final Assignment cSourceAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
-		private final RuleCall cSourceExpCSParserRuleCall_8_2_0 = (RuleCall)cSourceAssignment_8_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_8_3 = (Keyword)cGroup_8.eContents().get(3);
+		private final RuleCall cPreExpCSParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cTypeExpCSParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cIfExpCSParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
+		private final Keyword cLeftParenthesisKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Action cNestedExpCSAction_9_1 = (Action)cGroup_9.eContents().get(1);
+		private final Assignment cSourceAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
+		private final RuleCall cSourceExpCSParserRuleCall_9_2_0 = (RuleCall)cSourceAssignment_9_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_9_3 = (Keyword)cGroup_9.eContents().get(3);
 		
 		//// May be be followed by ., ->, ^
 		//
-		//
-		//
 		//SubNavigationExpCS returns ExpCS:
-		//  RoundBracketExpCS|SquareBracketExpCS|SelfExpCS|PrimitiveLiteralExpCS|
-		//  TupleLiteralExpCS|CollectionLiteralExpCS|TypeExpCS|IfExpCS|"(" {NestedExpCS}
-		//  source=ExpCS ")";
+		//	RoundBracketExpCS | SquareBracketExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+		//	CollectionLiteralExpCS | PreExpCS | TypeExpCS | IfExpCS | "(" {NestedExpCS} source=ExpCS ")";
 		public ParserRule getRule() { return rule; }
 
-		//RoundBracketExpCS|SquareBracketExpCS|SelfExpCS|PrimitiveLiteralExpCS|
-		//TupleLiteralExpCS|CollectionLiteralExpCS|TypeExpCS|IfExpCS|"(" {NestedExpCS}
-		//source=ExpCS ")"
+		//RoundBracketExpCS | SquareBracketExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS
+		//| PreExpCS | TypeExpCS | IfExpCS | "(" {NestedExpCS} source=ExpCS ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//RoundBracketExpCS
@@ -1686,29 +1581,32 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//CollectionLiteralExpCS
 		public RuleCall getCollectionLiteralExpCSParserRuleCall_5() { return cCollectionLiteralExpCSParserRuleCall_5; }
 
+		//PreExpCS
+		public RuleCall getPreExpCSParserRuleCall_6() { return cPreExpCSParserRuleCall_6; }
+
 		//TypeExpCS
-		public RuleCall getTypeExpCSParserRuleCall_6() { return cTypeExpCSParserRuleCall_6; }
+		public RuleCall getTypeExpCSParserRuleCall_7() { return cTypeExpCSParserRuleCall_7; }
 
 		//IfExpCS
-		public RuleCall getIfExpCSParserRuleCall_7() { return cIfExpCSParserRuleCall_7; }
+		public RuleCall getIfExpCSParserRuleCall_8() { return cIfExpCSParserRuleCall_8; }
 
 		//"(" {NestedExpCS} source=ExpCS ")"
-		public Group getGroup_8() { return cGroup_8; }
+		public Group getGroup_9() { return cGroup_9; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_8_0() { return cLeftParenthesisKeyword_8_0; }
+		public Keyword getLeftParenthesisKeyword_9_0() { return cLeftParenthesisKeyword_9_0; }
 
 		//{NestedExpCS}
-		public Action getNestedExpCSAction_8_1() { return cNestedExpCSAction_8_1; }
+		public Action getNestedExpCSAction_9_1() { return cNestedExpCSAction_9_1; }
 
 		//source=ExpCS
-		public Assignment getSourceAssignment_8_2() { return cSourceAssignment_8_2; }
+		public Assignment getSourceAssignment_9_2() { return cSourceAssignment_9_2; }
 
 		//ExpCS
-		public RuleCall getSourceExpCSParserRuleCall_8_2_0() { return cSourceExpCSParserRuleCall_8_2_0; }
+		public RuleCall getSourceExpCSParserRuleCall_9_2_0() { return cSourceExpCSParserRuleCall_9_2_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_8_3() { return cRightParenthesisKeyword_8_3; }
+		public Keyword getRightParenthesisKeyword_9_3() { return cRightParenthesisKeyword_9_3; }
 	}
 
 	public class SubNavigatingExpCSElements extends AbstractParserRuleElementFinder {
@@ -1716,17 +1614,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cRoundBracketExpCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSquareBracketExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cNameExpCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPreExpCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cNameExpCSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//// Follows ., ->, ^, May be be followed by ., ->, ^
 		//
-		//
-		//
 		//SubNavigatingExpCS returns ExpCS:
-		//  RoundBracketExpCS|SquareBracketExpCS|NameExpCS;
+		//	RoundBracketExpCS | SquareBracketExpCS | PreExpCS | NameExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//RoundBracketExpCS|SquareBracketExpCS|NameExpCS
+		//RoundBracketExpCS | SquareBracketExpCS | PreExpCS | NameExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//RoundBracketExpCS
@@ -1735,8 +1632,11 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//SquareBracketExpCS
 		public RuleCall getSquareBracketExpCSParserRuleCall_1() { return cSquareBracketExpCSParserRuleCall_1; }
 
+		//PreExpCS
+		public RuleCall getPreExpCSParserRuleCall_2() { return cPreExpCSParserRuleCall_2; }
+
 		//NameExpCS
-		public RuleCall getNameExpCSParserRuleCall_2() { return cNameExpCSParserRuleCall_2; }
+		public RuleCall getNameExpCSParserRuleCall_3() { return cNameExpCSParserRuleCall_3; }
 	}
 
 	public class IteratorVariableCSElements extends AbstractParserRuleElementFinder {
@@ -1749,18 +1649,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cTypeTypeExpCSParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
 		
-		////callingExpCS returns ExpCS:
-		//
-		////	callExpCS
-		//
-		////	({BinaryExpressionCS.source=current} op=('.'|'->') argument=callingExpCS)?
-		//
-		////;
-		//
-		//
-		//
 		//iteratorVariableCS returns VariableCS:
-		//  name=SimpleName (":" type=TypeExpCS)?;
+		//	name=SimpleName (":" type=TypeExpCS)?;
 		public ParserRule getRule() { return rule; }
 
 		//name=SimpleName (":" type=TypeExpCS)?
@@ -1798,7 +1688,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInitExpressionExpCSParserRuleCall_4_0 = (RuleCall)cInitExpressionAssignment_4.eContents().get(0);
 		
 		//iteratorAccumulatorCS returns VariableCS:
-		//  name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+		//	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS
@@ -1834,90 +1724,40 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameExpCSParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cVariable1Assignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cVariable1IteratorVariableCSParserRuleCall_2_0_0 = (RuleCall)cVariable1Assignment_2_0.eContents().get(0);
-		private final Alternatives cAlternatives_2_1 = (Alternatives)cGroup_2.eContents().get(1);
-		private final Group cGroup_2_1_0 = (Group)cAlternatives_2_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2_1_0_0 = (Keyword)cGroup_2_1_0.eContents().get(0);
-		private final Assignment cVariable2Assignment_2_1_0_1 = (Assignment)cGroup_2_1_0.eContents().get(1);
-		private final RuleCall cVariable2IteratorVariableCSParserRuleCall_2_1_0_1_0 = (RuleCall)cVariable2Assignment_2_1_0_1.eContents().get(0);
-		private final Group cGroup_2_1_1 = (Group)cAlternatives_2_1.eContents().get(1);
-		private final Keyword cSemicolonKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
-		private final Assignment cVariable2Assignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
-		private final RuleCall cVariable2IteratorAccumulatorCSParserRuleCall_2_1_1_1_0 = (RuleCall)cVariable2Assignment_2_1_1_1.eContents().get(0);
-		private final Keyword cVerticalLineKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cPreAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Keyword cPrePreKeyword_1_1_0 = (Keyword)cPreAssignment_1_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cArgumentsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cArgumentsExpCSParserRuleCall_3_0_0 = (RuleCall)cArgumentsAssignment_3_0.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cArgumentsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cArgumentsExpCSParserRuleCall_3_1_1_0 = (RuleCall)cArgumentsAssignment_3_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cVariable1Assignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cVariable1IteratorVariableCSParserRuleCall_3_0_0 = (RuleCall)cVariable1Assignment_3_0.eContents().get(0);
+		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
+		private final Group cGroup_3_1_0 = (Group)cAlternatives_3_1.eContents().get(0);
+		private final Keyword cCommaKeyword_3_1_0_0 = (Keyword)cGroup_3_1_0.eContents().get(0);
+		private final Assignment cVariable2Assignment_3_1_0_1 = (Assignment)cGroup_3_1_0.eContents().get(1);
+		private final RuleCall cVariable2IteratorVariableCSParserRuleCall_3_1_0_1_0 = (RuleCall)cVariable2Assignment_3_1_0_1.eContents().get(0);
+		private final Group cGroup_3_1_1 = (Group)cAlternatives_3_1.eContents().get(1);
+		private final Keyword cSemicolonKeyword_3_1_1_0 = (Keyword)cGroup_3_1_1.eContents().get(0);
+		private final Assignment cVariable2Assignment_3_1_1_1 = (Assignment)cGroup_3_1_1.eContents().get(1);
+		private final RuleCall cVariable2IteratorAccumulatorCSParserRuleCall_3_1_1_1_0 = (RuleCall)cVariable2Assignment_3_1_1_1.eContents().get(0);
+		private final Keyword cVerticalLineKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cArgumentsAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cArgumentsExpCSParserRuleCall_4_0_0 = (RuleCall)cArgumentsAssignment_4_0.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cArgumentsAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cArgumentsExpCSParserRuleCall_4_1_1_0 = (RuleCall)cArgumentsAssignment_4_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		////callExpCS returns ExpCS:
-		//
-		////	preExpCS
-		//
-		////	({CallExpCS.source=current} '('
-		//
-		////	(variable1=iteratorVariableCS
-		//
-		////        ((',' variable2=iteratorVariableCS)
-		//
-		////        |(';' variable2=iteratorAccumulatorCS))?
-		//
-		////        '|')?
-		//
-		////    (arguments+=ExpCS (',' arguments+=ExpCS)*)?
-		//
-		////	')')?
-		//
-		////;
-		//
-		//
-		//
-		////preExpCS returns ExpCS:
-		//
-		////	indexExpCS
-		//
-		//////  ({UnaryExpressionCS.source=current} '@' op='pre')? is added by CompleteOCL
-		//
-		////;
-		//
-		//
-		//
-		////indexExpCS returns ExpCS:
-		//
-		////	messageExpCS
-		//
-		////	({IndexExpCS.source=current} '[' indexes+=ExpCS (',' indexes+=ExpCS)* ']')?
-		//
-		////;
-		//
-		//    
-		//
-		////messageExpCS returns ExpCS:
-		//
-		////	primaryExpCS
-		//
-		//////|	OclMessageExpCS // ExpCS[E] is added by CompleteOCL
-		//
-		////;
-		//
-		//
-		//
 		//RoundBracketExpCS:
-		//  name=NameExpCS "(" (variable1=iteratorVariableCS (","
-		//  variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)? "|")? (
-		//  arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
+		//	name=NameExpCS ("@" pre?="pre")? "(" (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";"
+		//	variable2=iteratorAccumulatorCS)? "|")? (arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
 		public ParserRule getRule() { return rule; }
 
-		//name=NameExpCS "(" (variable1=iteratorVariableCS (","
-		//variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)? "|")? (
-		//arguments+=ExpCS ("," arguments+=ExpCS)*)? ")"
+		//name=NameExpCS ("@" pre?="pre")? "(" (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";"
+		//variable2=iteratorAccumulatorCS)? "|")? (arguments+=ExpCS ("," arguments+=ExpCS)*)? ")"
 		public Group getGroup() { return cGroup; }
 
 		//name=NameExpCS
@@ -1926,72 +1766,83 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//NameExpCS
 		public RuleCall getNameNameExpCSParserRuleCall_0_0() { return cNameNameExpCSParserRuleCall_0_0; }
 
+		//("@" pre?="pre")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_1_0() { return cCommercialAtKeyword_1_0; }
+
+		//pre?="pre"
+		public Assignment getPreAssignment_1_1() { return cPreAssignment_1_1; }
+
+		//"pre"
+		public Keyword getPrePreKeyword_1_1_0() { return cPrePreKeyword_1_1_0; }
+
 		//"("
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 
-		//(variable1=iteratorVariableCS ("," variable2=iteratorVariableCS|";"
-		//variable2=iteratorAccumulatorCS)? "|")?
-		public Group getGroup_2() { return cGroup_2; }
-
-		//variable1=iteratorVariableCS
-		public Assignment getVariable1Assignment_2_0() { return cVariable1Assignment_2_0; }
-
-		//iteratorVariableCS
-		public RuleCall getVariable1IteratorVariableCSParserRuleCall_2_0_0() { return cVariable1IteratorVariableCSParserRuleCall_2_0_0; }
-
-		//("," variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)?
-		public Alternatives getAlternatives_2_1() { return cAlternatives_2_1; }
-
-		//"," variable2=iteratorVariableCS
-		public Group getGroup_2_1_0() { return cGroup_2_1_0; }
-
-		//","
-		public Keyword getCommaKeyword_2_1_0_0() { return cCommaKeyword_2_1_0_0; }
-
-		//variable2=iteratorVariableCS
-		public Assignment getVariable2Assignment_2_1_0_1() { return cVariable2Assignment_2_1_0_1; }
-
-		//iteratorVariableCS
-		public RuleCall getVariable2IteratorVariableCSParserRuleCall_2_1_0_1_0() { return cVariable2IteratorVariableCSParserRuleCall_2_1_0_1_0; }
-
-		//";" variable2=iteratorAccumulatorCS
-		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
-
-		//";"
-		public Keyword getSemicolonKeyword_2_1_1_0() { return cSemicolonKeyword_2_1_1_0; }
-
-		//variable2=iteratorAccumulatorCS
-		public Assignment getVariable2Assignment_2_1_1_1() { return cVariable2Assignment_2_1_1_1; }
-
-		//iteratorAccumulatorCS
-		public RuleCall getVariable2IteratorAccumulatorCSParserRuleCall_2_1_1_1_0() { return cVariable2IteratorAccumulatorCSParserRuleCall_2_1_1_1_0; }
-
-		//"|"
-		public Keyword getVerticalLineKeyword_2_2() { return cVerticalLineKeyword_2_2; }
-
-		//(arguments+=ExpCS ("," arguments+=ExpCS)*)?
+		//(variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";" variable2=iteratorAccumulatorCS)? "|")?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//arguments+=ExpCS
-		public Assignment getArgumentsAssignment_3_0() { return cArgumentsAssignment_3_0; }
+		//variable1=iteratorVariableCS
+		public Assignment getVariable1Assignment_3_0() { return cVariable1Assignment_3_0; }
 
-		//ExpCS
-		public RuleCall getArgumentsExpCSParserRuleCall_3_0_0() { return cArgumentsExpCSParserRuleCall_3_0_0; }
+		//iteratorVariableCS
+		public RuleCall getVariable1IteratorVariableCSParserRuleCall_3_0_0() { return cVariable1IteratorVariableCSParserRuleCall_3_0_0; }
 
-		//("," arguments+=ExpCS)*
-		public Group getGroup_3_1() { return cGroup_3_1; }
+		//("," variable2=iteratorVariableCS | ";" variable2=iteratorAccumulatorCS)?
+		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
+
+		//"," variable2=iteratorVariableCS
+		public Group getGroup_3_1_0() { return cGroup_3_1_0; }
 
 		//","
-		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+		public Keyword getCommaKeyword_3_1_0_0() { return cCommaKeyword_3_1_0_0; }
+
+		//variable2=iteratorVariableCS
+		public Assignment getVariable2Assignment_3_1_0_1() { return cVariable2Assignment_3_1_0_1; }
+
+		//iteratorVariableCS
+		public RuleCall getVariable2IteratorVariableCSParserRuleCall_3_1_0_1_0() { return cVariable2IteratorVariableCSParserRuleCall_3_1_0_1_0; }
+
+		//";" variable2=iteratorAccumulatorCS
+		public Group getGroup_3_1_1() { return cGroup_3_1_1; }
+
+		//";"
+		public Keyword getSemicolonKeyword_3_1_1_0() { return cSemicolonKeyword_3_1_1_0; }
+
+		//variable2=iteratorAccumulatorCS
+		public Assignment getVariable2Assignment_3_1_1_1() { return cVariable2Assignment_3_1_1_1; }
+
+		//iteratorAccumulatorCS
+		public RuleCall getVariable2IteratorAccumulatorCSParserRuleCall_3_1_1_1_0() { return cVariable2IteratorAccumulatorCSParserRuleCall_3_1_1_1_0; }
+
+		//"|"
+		public Keyword getVerticalLineKeyword_3_2() { return cVerticalLineKeyword_3_2; }
+
+		//(arguments+=ExpCS ("," arguments+=ExpCS)*)?
+		public Group getGroup_4() { return cGroup_4; }
 
 		//arguments+=ExpCS
-		public Assignment getArgumentsAssignment_3_1_1() { return cArgumentsAssignment_3_1_1; }
+		public Assignment getArgumentsAssignment_4_0() { return cArgumentsAssignment_4_0; }
 
 		//ExpCS
-		public RuleCall getArgumentsExpCSParserRuleCall_3_1_1_0() { return cArgumentsExpCSParserRuleCall_3_1_1_0; }
+		public RuleCall getArgumentsExpCSParserRuleCall_4_0_0() { return cArgumentsExpCSParserRuleCall_4_0_0; }
+
+		//("," arguments+=ExpCS)*
+		public Group getGroup_4_1() { return cGroup_4_1; }
+
+		//","
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
+
+		//arguments+=ExpCS
+		public Assignment getArgumentsAssignment_4_1_1() { return cArgumentsAssignment_4_1_1; }
+
+		//ExpCS
+		public RuleCall getArgumentsExpCSParserRuleCall_4_1_1_0() { return cArgumentsExpCSParserRuleCall_4_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 
 	public class SquareBracketExpCSElements extends AbstractParserRuleElementFinder {
@@ -2007,12 +1858,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArgumentsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cArgumentsExpCSParserRuleCall_3_1_0 = (RuleCall)cArgumentsAssignment_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommercialAtKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cPreAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final Keyword cPrePreKeyword_5_1_0 = (Keyword)cPreAssignment_5_1.eContents().get(0);
 		
 		//SquareBracketExpCS:
-		//  name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]";
+		//	name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]" ("@" pre?="pre")?;
 		public ParserRule getRule() { return rule; }
 
-		//name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]"
+		//name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]" ("@" pre?="pre")?
 		public Group getGroup() { return cGroup; }
 
 		//name=NameExpCS
@@ -2044,6 +1899,46 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+
+		//("@" pre?="pre")?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_5_0() { return cCommercialAtKeyword_5_0; }
+
+		//pre?="pre"
+		public Assignment getPreAssignment_5_1() { return cPreAssignment_5_1; }
+
+		//"pre"
+		public Keyword getPrePreKeyword_5_1_0() { return cPrePreKeyword_5_1_0; }
+	}
+
+	public class PreExpCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PreExpCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameNameExpCSParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cCommercialAtKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cPreKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//PreExpCS:
+		//	name=NameExpCS "@" "pre";
+		public ParserRule getRule() { return rule; }
+
+		//name=NameExpCS "@" "pre"
+		public Group getGroup() { return cGroup; }
+
+		//name=NameExpCS
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//NameExpCS
+		public RuleCall getNameNameExpCSParserRuleCall_0_0() { return cNameNameExpCSParserRuleCall_0_0; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_1() { return cCommercialAtKeyword_1; }
+
+		//"pre"
+		public Keyword getPreKeyword_2() { return cPreKeyword_2; }
 	}
 
 	public class SelfExpCSElements extends AbstractParserRuleElementFinder {
@@ -2052,22 +1947,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cSelfExpCSAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cSelfKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		////primaryExpCS returns ExpCS:
-		//
-		////	selfKeywordCS
-		//
-		////|	LiteralExpCS    // OclExpressionCS[C]
-		//
-		////|	IfExpCS         // OclExpressionCS[F]
-		//
-		////|	'(' ExpCS ')'
-		//
-		////;
-		//
-		//
-		//
 		//SelfExpCS:
-		//  {SelfExpCS} "self";
+		//	{SelfExpCS} "self";
 		public ParserRule getRule() { return rule; }
 
 		//{SelfExpCS} "self"
@@ -2087,10 +1968,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSimpleNameExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//NameExpCS:
-		//  PathNameExpCS|SimpleNameExpCS;
+		//	PathNameExpCS | SimpleNameExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//PathNameExpCS|SimpleNameExpCS
+		//PathNameExpCS | SimpleNameExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PathNameExpCS
@@ -2111,7 +1992,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementNameExpCSParserRuleCall_2_0 = (RuleCall)cElementAssignment_2.eContents().get(0);
 		
 		//PathNameExpCS:
-		//  namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
+		//	namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS
@@ -2143,7 +2024,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementNamedElementCSIdentifierParserRuleCall_0_1 = (RuleCall)cElementNamedElementCSCrossReference_0.eContents().get(1);
 		
 		//SimpleNameExpCS:
-		//  element=[base::NamedElementCS|Identifier];
+		//	element=[base::NamedElementCS|Identifier];
 		public ParserRule getRule() { return rule; }
 
 		//element=[base::NamedElementCS|Identifier]
@@ -2171,12 +2052,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndifKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//IfExpCS:
-		//  "if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS
-		//  "endif";
+		//	"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif";
 		public ParserRule getRule() { return rule; }
 
-		//"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS
-		//"endif"
+		//"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif"
 		public Group getGroup() { return cGroup; }
 
 		//"if"
@@ -2225,7 +2104,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInExpCSParserRuleCall_4_0 = (RuleCall)cInAssignment_4.eContents().get(0);
 		
 		//LetExpCS:
-		//  "let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
+		//	"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS
@@ -2275,7 +2154,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInitExpressionExpCSParserRuleCall_4_0 = (RuleCall)cInitExpressionAssignment_4.eContents().get(0);
 		
 		//LetVariableCS returns VariableCS:
-		//  name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+		//	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
 		public ParserRule getRule() { return rule; }
 
 		//name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS
@@ -2310,7 +2189,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private ModelElements pModel;
 	private TerminalRule tDOUBLE_QUOTED_STRING;
 	private TerminalRule tSINGLE_QUOTED_STRING;
-	private TerminalRule tID_TERMINAL;
+	private TerminalRule tID;
 	private TerminalRule tINT;
 	private NUMBER_LITERALElements pNUMBER_LITERAL;
 	private TerminalRule tML_COMMENT;
@@ -2358,6 +2237,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private IteratorAccumulatorCSElements pIteratorAccumulatorCS;
 	private RoundBracketExpCSElements pRoundBracketExpCS;
 	private SquareBracketExpCSElements pSquareBracketExpCS;
+	private PreExpCSElements pPreExpCS;
 	private SelfExpCSElements pSelfExpCS;
 	private NameExpCSElements pNameExpCS;
 	private PathNameExpCSElements pPathNameExpCS;
@@ -2381,10 +2261,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 	//
-	//
-	//
 	//Model returns ExpCS:
-	//  ExpCS;
+	//	ExpCS;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -2394,47 +2272,35 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOUBLE_QUOTED_STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
-	//  ))* "\"";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
 		return (tDOUBLE_QUOTED_STRING != null) ? tDOUBLE_QUOTED_STRING : (tDOUBLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE_QUOTED_STRING"));
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
-	//  "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"
-	//  ))* "\'";
+	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return (tSINGLE_QUOTED_STRING != null) ? tSINGLE_QUOTED_STRING : (tSINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_QUOTED_STRING"));
 	} 
 
-	//// NB not "ID" to ensure implicit use of ID is an error
-	//
-	//
-	//
-	//terminal ID_TERMINAL:
-	//  ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* //| 	("_'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'")
-	//
-	//  | "_" SINGLE_QUOTED_STRING;
-	public TerminalRule getID_TERMINALRule() {
-		return (tID_TERMINAL != null) ? tID_TERMINAL : (tID_TERMINAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID_TERMINAL"));
+	//terminal ID:
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" SINGLE_QUOTED_STRING;
+	public TerminalRule getIDRule() {
+		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//// String to allow diverse re-use
 	//
-	//
-	//
 	//terminal INT:
-	//  "0".."9"+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
 	//
-	//
-	//
 	//NUMBER_LITERAL returns BigNumber:
-	//  INT ("." INT)? (("e"|"E") ("+"|"-")? INT)?;
+	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
 	public NUMBER_LITERALElements getNUMBER_LITERALAccess() {
 		return (pNUMBER_LITERAL != null) ? pNUMBER_LITERAL : (pNUMBER_LITERAL = new NUMBER_LITERALElements());
 	}
@@ -2444,31 +2310,31 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal ML_COMMENT:
-	//  "/ *"->"* /";
+	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 
 
 	//terminal SL_COMMENT:
-	//  "--" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"--" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 
 
 	//terminal WS:
-	//  (" " | "\t" | "\r" | "\n")+;
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
 	//terminal ANY_OTHER:
-	//  .;
+	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
 	} 
 
 	//EssentialOCLReservedKeywords returns ecore::EString:
-	//  "and"|"else"|"endif"|"if"|"implies"|"in"|"let"|"not"|"or"|"then"|"xor";
+	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";
 	public EssentialOCLReservedKeywordsElements getEssentialOCLReservedKeywordsAccess() {
 		return (pEssentialOCLReservedKeywords != null) ? pEssentialOCLReservedKeywords : (pEssentialOCLReservedKeywords = new EssentialOCLReservedKeywordsElements());
 	}
@@ -2478,7 +2344,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLRestrictedKeywords returns ecore::EString:
-	//  "e"|"E";
+	//	"e" | "E";
 	public EssentialOCLRestrictedKeywordsElements getEssentialOCLRestrictedKeywordsAccess() {
 		return (pEssentialOCLRestrictedKeywords != null) ? pEssentialOCLRestrictedKeywords : (pEssentialOCLRestrictedKeywords = new EssentialOCLRestrictedKeywordsElements());
 	}
@@ -2489,10 +2355,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Intended to be overridden
 	//
-	//
-	//
 	//RestrictedKeywords returns ecore::EString:
-	//  EssentialOCLRestrictedKeywords;
+	//	EssentialOCLRestrictedKeywords;
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return (pRestrictedKeywords != null) ? pRestrictedKeywords : (pRestrictedKeywords = new RestrictedKeywordsElements());
 	}
@@ -2502,7 +2366,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Identifier returns ecore::EString:
-	//  ID_TERMINAL|RestrictedKeywords;
+	//	ID | RestrictedKeywords;
 	public IdentifierElements getIdentifierAccess() {
 		return (pIdentifier != null) ? pIdentifier : (pIdentifier = new IdentifierElements());
 	}
@@ -2512,7 +2376,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral returns ecore::EString:
-	//  SINGLE_QUOTED_STRING;
+	//	SINGLE_QUOTED_STRING;
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
@@ -2563,17 +2427,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//conceptualOperationNameCS returns SimpleNameCS:
 	//
-	//	conceptualOperationName; * /
+	//	conceptualOperationName; * // *tupleKeywordCS returns ecore::EString:
 	//
-	//
-	//
-	/// *tupleKeywordCS returns ecore::EString:
-	//
-	//	value='Tuple'; * /
-	//
-	//
-	//
-	/// *restrictedKeywordCS returns ecore::EString: 
+	//	value='Tuple'; * // *restrictedKeywordCS returns ecore::EString: 
 	//
 	//	CollectionTypeIdentifierCS
 	//
@@ -2587,10 +2443,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//|	primitiveTypeCS
 	//
-	//|	tupleKeywordCS; * /
-	//
-	//SimpleName returns ecore::EString:
-	//  Identifier;
+	//|	tupleKeywordCS; * /SimpleName returns ecore::EString:
+	//	Identifier;
 	public SimpleNameElements getSimpleNameAccess() {
 		return (pSimpleName != null) ? pSimpleName : (pSimpleName = new SimpleNameElements());
 	}
@@ -2609,19 +2463,14 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////;
 	//
-	//        
-	//
 	////---------------------------------------------------------------------
 	//
 	////  Types
 	//
 	////---------------------------------------------------------------------
 	//
-	//
-	//
 	//PrimitiveTypeIdentifier returns ecore::EString:
-	//  "Boolean"|"Integer"|"Real"|"String"|"UnlimitedNatural"|"OclAny"|"OclInvalid"|
-	//  "OclVoid";
+	//	"Boolean" | "Integer" | "Real" | "String" | "UnlimitedNatural" | "OclAny" | "OclInvalid" | "OclVoid";
 	public PrimitiveTypeIdentifierElements getPrimitiveTypeIdentifierAccess() {
 		return (pPrimitiveTypeIdentifier != null) ? pPrimitiveTypeIdentifier : (pPrimitiveTypeIdentifier = new PrimitiveTypeIdentifierElements());
 	}
@@ -2631,7 +2480,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimitiveTypeCS:
-	//  name=PrimitiveTypeIdentifier;
+	//	name=PrimitiveTypeIdentifier;
 	public PrimitiveTypeCSElements getPrimitiveTypeCSAccess() {
 		return (pPrimitiveTypeCS != null) ? pPrimitiveTypeCS : (pPrimitiveTypeCS = new PrimitiveTypeCSElements());
 	}
@@ -2641,7 +2490,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeIdentifier returns ecore::EString:
-	//  "Set"|"Bag"|"Sequence"|"Collection"|"OrderedSet";
+	//	"Set" | "Bag" | "Sequence" | "Collection" | "OrderedSet";
 	public CollectionTypeIdentifierElements getCollectionTypeIdentifierAccess() {
 		return (pCollectionTypeIdentifier != null) ? pCollectionTypeIdentifier : (pCollectionTypeIdentifier = new CollectionTypeIdentifierElements());
 	}
@@ -2651,7 +2500,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeExpCS:
-	//  PrimitiveTypeCS|NameExpCS|CollectionTypeCS|TupleTypeCS;
+	//	PrimitiveTypeCS | NameExpCS | CollectionTypeCS | TupleTypeCS;
 	public TypeExpCSElements getTypeExpCSAccess() {
 		return (pTypeExpCS != null) ? pTypeExpCS : (pTypeExpCS = new TypeExpCSElements());
 	}
@@ -2661,7 +2510,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeCS:
-	//  name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
+	//	name=CollectionTypeIdentifier ("(" typeCS=TypeExpCS ")")?;
 	public CollectionTypeCSElements getCollectionTypeCSAccess() {
 		return (pCollectionTypeCS != null) ? pCollectionTypeCS : (pCollectionTypeCS = new CollectionTypeCSElements());
 	}
@@ -2671,7 +2520,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleTypeCS:
-	//  name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
+	//	name="Tuple" "(" (part+=tuplePartCS ("," part+=tuplePartCS)*)? ")";
 	public TupleTypeCSElements getTupleTypeCSAccess() {
 		return (pTupleTypeCS != null) ? pTupleTypeCS : (pTupleTypeCS = new TupleTypeCSElements());
 	}
@@ -2681,7 +2530,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//tuplePartCS returns VariableCS:
-	//  name=SimpleName ":" type=TypeExpCS;
+	//	name=SimpleName ":" type=TypeExpCS;
 	public TuplePartCSElements getTuplePartCSAccess() {
 		return (pTuplePartCS != null) ? pTuplePartCS : (pTuplePartCS = new TuplePartCSElements());
 	}
@@ -2720,12 +2569,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//// or CollectionTypeLiteral
 	//
-	//
-	//
 	//CollectionLiteralExpCS returns LiteralExpCS:
-	//  CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (
-	//  collectionLiteralParts+=CollectionLiteralPartCS (","
-	//  collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
+	//	CollectionTypeCS ({CollectionLiteralExpCS.typeCS=current} "{" (collectionLiteralParts+=CollectionLiteralPartCS (","
+	//	collectionLiteralParts+=CollectionLiteralPartCS)*)? "}")?;
 	public CollectionLiteralExpCSElements getCollectionLiteralExpCSAccess() {
 		return (pCollectionLiteralExpCS != null) ? pCollectionLiteralExpCS : (pCollectionLiteralExpCS = new CollectionLiteralExpCSElements());
 	}
@@ -2735,7 +2581,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionLiteralPartCS:
-	//  expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
+	//	expressionCS=ExpCS (".." lastExpressionCS=ExpCS)?;
 	public CollectionLiteralPartCSElements getCollectionLiteralPartCSAccess() {
 		return (pCollectionLiteralPartCS != null) ? pCollectionLiteralPartCS : (pCollectionLiteralPartCS = new CollectionLiteralPartCSElements());
 	}
@@ -2745,8 +2591,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimitiveLiteralExpCS:
-	//  NumberLiteralExpCS|StringLiteralExpCS|BooleanLiteralExpCS|InvalidLiteralExpCS
-	//  |NullLiteralExpCS;
+	//	NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | InvalidLiteralExpCS | NullLiteralExpCS;
 	public PrimitiveLiteralExpCSElements getPrimitiveLiteralExpCSAccess() {
 		return (pPrimitiveLiteralExpCS != null) ? pPrimitiveLiteralExpCS : (pPrimitiveLiteralExpCS = new PrimitiveLiteralExpCSElements());
 	}
@@ -2757,11 +2602,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// or TupleTypeLiteral
 	//
-	//
-	//
 	//TupleLiteralExpCS:
-	//  {TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS (","
-	//  part+=TupleLiteralPartCS)* "}")?;
+	//	{TupleLiteralExpCS} "Tuple" ("{" part+=TupleLiteralPartCS ("," part+=TupleLiteralPartCS)* "}")?;
 	public TupleLiteralExpCSElements getTupleLiteralExpCSAccess() {
 		return (pTupleLiteralExpCS != null) ? pTupleLiteralExpCS : (pTupleLiteralExpCS = new TupleLiteralExpCSElements());
 	}
@@ -2771,7 +2613,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleLiteralPartCS returns VariableCS:
-	//  name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
+	//	name=SimpleName (":" type=TypeExpCS)? "=" initExpression=ExpCS;
 	public TupleLiteralPartCSElements getTupleLiteralPartCSAccess() {
 		return (pTupleLiteralPartCS != null) ? pTupleLiteralPartCS : (pTupleLiteralPartCS = new TupleLiteralPartCSElements());
 	}
@@ -2781,7 +2623,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumberLiteralExpCS:
-	//  name=NUMBER_LITERAL;
+	//	name=NUMBER_LITERAL;
 	public NumberLiteralExpCSElements getNumberLiteralExpCSAccess() {
 		return (pNumberLiteralExpCS != null) ? pNumberLiteralExpCS : (pNumberLiteralExpCS = new NumberLiteralExpCSElements());
 	}
@@ -2791,7 +2633,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteralExpCS:
-	//  name+=StringLiteral+;
+	//	name+=StringLiteral+;
 	public StringLiteralExpCSElements getStringLiteralExpCSAccess() {
 		return (pStringLiteralExpCS != null) ? pStringLiteralExpCS : (pStringLiteralExpCS = new StringLiteralExpCSElements());
 	}
@@ -2801,7 +2643,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanLiteralExpCS:
-	//  name="true"|name="false";
+	//	name="true" | name="false";
 	public BooleanLiteralExpCSElements getBooleanLiteralExpCSAccess() {
 		return (pBooleanLiteralExpCS != null) ? pBooleanLiteralExpCS : (pBooleanLiteralExpCS = new BooleanLiteralExpCSElements());
 	}
@@ -2811,7 +2653,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InvalidLiteralExpCS:
-	//  {InvalidLiteralExpCS} "invalid";
+	//	{InvalidLiteralExpCS} "invalid";
 	public InvalidLiteralExpCSElements getInvalidLiteralExpCSAccess() {
 		return (pInvalidLiteralExpCS != null) ? pInvalidLiteralExpCS : (pInvalidLiteralExpCS = new InvalidLiteralExpCSElements());
 	}
@@ -2821,7 +2663,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NullLiteralExpCS:
-	//  {NullLiteralExpCS} "null";
+	//	{NullLiteralExpCS} "null";
 	public NullLiteralExpCSElements getNullLiteralExpCSAccess() {
 		return (pNullLiteralExpCS != null) ? pNullLiteralExpCS : (pNullLiteralExpCS = new NullLiteralExpCSElements());
 	}
@@ -2846,10 +2688,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 	//
-	//
-	//
 	//ExpCS:
-	//  impliesCS|LetExpCS;
+	//	impliesCS | LetExpCS;
 	public ExpCSElements getExpCSAccess() {
 		return (pExpCS != null) ? pExpCS : (pExpCS = new ExpCSElements());
 	}
@@ -2859,8 +2699,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//impliesCS returns ExpCS:
-	//  xorCS ({InfixExpCS.source=current} op="implies" argument=( xorCS | LetExpCS )
-	//  )*;
+	//	xorCS ({InfixExpCS.source=current} op="implies" argument=(xorCS | LetExpCS))*;
 	public ImpliesCSElements getImpliesCSAccess() {
 		return (pImpliesCS != null) ? pImpliesCS : (pImpliesCS = new ImpliesCSElements());
 	}
@@ -2870,7 +2709,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//xorCS returns ExpCS:
-	//  orCS ({InfixExpCS.source=current} op="xor" argument=( orCS | LetExpCS ))*;
+	//	orCS ({InfixExpCS.source=current} op="xor" argument=(orCS | LetExpCS))*;
 	public XorCSElements getXorCSAccess() {
 		return (pXorCS != null) ? pXorCS : (pXorCS = new XorCSElements());
 	}
@@ -2880,7 +2719,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//orCS returns ExpCS:
-	//  andCS ({InfixExpCS.source=current} op="or" argument=( andCS | LetExpCS ))*;
+	//	andCS ({InfixExpCS.source=current} op="or" argument=(andCS | LetExpCS))*;
 	public OrCSElements getOrCSAccess() {
 		return (pOrCS != null) ? pOrCS : (pOrCS = new OrCSElements());
 	}
@@ -2890,8 +2729,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//andCS returns ExpCS:
-	//  equalityCS ({InfixExpCS.source=current} op="and" argument=( equalityCS |
-	//  LetExpCS ))*;
+	//	equalityCS ({InfixExpCS.source=current} op="and" argument=(equalityCS | LetExpCS))*;
 	public AndCSElements getAndCSAccess() {
 		return (pAndCS != null) ? pAndCS : (pAndCS = new AndCSElements());
 	}
@@ -2901,8 +2739,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//equalityCS returns ExpCS:
-	//  relationalCS ({InfixExpCS.source=current} op=( "=" | "<>" ) argument=(
-	//  relationalCS | LetExpCS ))*;
+	//	relationalCS ({InfixExpCS.source=current} op=("=" | "<>") argument=(relationalCS | LetExpCS))*;
 	public EqualityCSElements getEqualityCSAccess() {
 		return (pEqualityCS != null) ? pEqualityCS : (pEqualityCS = new EqualityCSElements());
 	}
@@ -2912,8 +2749,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//relationalCS returns ExpCS:
-	//  additiveCS ({InfixExpCS.source=current} op=( ">" | "<" | ">=" | "<=" )
-	//  argument=( additiveCS | LetExpCS ))*;
+	//	additiveCS ({InfixExpCS.source=current} op=(">" | "<" | ">=" | "<=") argument=(additiveCS | LetExpCS))*;
 	public RelationalCSElements getRelationalCSAccess() {
 		return (pRelationalCS != null) ? pRelationalCS : (pRelationalCS = new RelationalCSElements());
 	}
@@ -2923,8 +2759,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//additiveCS returns ExpCS:
-	//  multiplicativeCS ({InfixExpCS.source=current} op=( "+" | "-" ) argument=(
-	//  multiplicativeCS | LetExpCS ))*;
+	//	multiplicativeCS ({InfixExpCS.source=current} op=("+" | "-") argument=(multiplicativeCS | LetExpCS))*;
 	public AdditiveCSElements getAdditiveCSAccess() {
 		return (pAdditiveCS != null) ? pAdditiveCS : (pAdditiveCS = new AdditiveCSElements());
 	}
@@ -2934,8 +2769,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//multiplicativeCS returns ExpCS:
-	//  unaryCS ({InfixExpCS.source=current} op=( "*" | "/" ) argument=( unaryCS |
-	//  LetExpCS ))*;
+	//	unaryCS ({InfixExpCS.source=current} op=("*" | "/") argument=(unaryCS | LetExpCS))*;
 	public MultiplicativeCSElements getMultiplicativeCSAccess() {
 		return (pMultiplicativeCS != null) ? pMultiplicativeCS : (pMultiplicativeCS = new MultiplicativeCSElements());
 	}
@@ -2945,7 +2779,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//unaryCS returns ExpCS:
-	//  NavigationExpCS|{PrefixExpCS} op=( "-" | "not" ) source=unaryCS;
+	//	NavigationExpCS | {PrefixExpCS} op=("-" | "not") source=unaryCS;
 	public UnaryCSElements getUnaryCSAccess() {
 		return (pUnaryCS != null) ? pUnaryCS : (pUnaryCS = new UnaryCSElements());
 	}
@@ -2955,11 +2789,11 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NavigationExpCS returns ExpCS:
-	//  SubNavigationExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+	//	SubNavigationExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 	//
-	//  //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+	//	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 	//
-	//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+	//;
 	public NavigationExpCSElements getNavigationExpCSAccess() {
 		return (pNavigationExpCS != null) ? pNavigationExpCS : (pNavigationExpCS = new NavigationExpCSElements());
 	}
@@ -2970,14 +2804,12 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Follows ., ->, ^
 	//
-	//
-	//
 	//NavigatingExpCS returns ExpCS:
-	//  SubNavigatingExpCS ({DotExpCS.source=current} "." argument=NavigatingExpCS //	|	({CaretExpCS.source=current} '^' argument=NavigatingExpCS)
+	//	SubNavigatingExpCS ({InfixExpCS.source=current} op=("." | "->") argument=NavigatingExpCS)? //	|	({InfixExpCS.source=current} op='^' argument=NavigatingExpCS)
 	//
-	//  //	|	({DoubleCaretExpCS.source=current} '^^' argument=NavigatingExpCS)
+	//	//	|	({InfixExpCS.source=current} op='^^' argument=NavigatingExpCS)
 	//
-	//|{ArrowExpCS.source=current} "->" argument=NavigatingExpCS)?;
+	//;
 	public NavigatingExpCSElements getNavigatingExpCSAccess() {
 		return (pNavigatingExpCS != null) ? pNavigatingExpCS : (pNavigatingExpCS = new NavigatingExpCSElements());
 	}
@@ -2988,12 +2820,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// May be be followed by ., ->, ^
 	//
-	//
-	//
 	//SubNavigationExpCS returns ExpCS:
-	//  RoundBracketExpCS|SquareBracketExpCS|SelfExpCS|PrimitiveLiteralExpCS|
-	//  TupleLiteralExpCS|CollectionLiteralExpCS|TypeExpCS|IfExpCS|"(" {NestedExpCS}
-	//  source=ExpCS ")";
+	//	RoundBracketExpCS | SquareBracketExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+	//	CollectionLiteralExpCS | PreExpCS | TypeExpCS | IfExpCS | "(" {NestedExpCS} source=ExpCS ")";
 	public SubNavigationExpCSElements getSubNavigationExpCSAccess() {
 		return (pSubNavigationExpCS != null) ? pSubNavigationExpCS : (pSubNavigationExpCS = new SubNavigationExpCSElements());
 	}
@@ -3004,10 +2833,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Follows ., ->, ^, May be be followed by ., ->, ^
 	//
-	//
-	//
 	//SubNavigatingExpCS returns ExpCS:
-	//  RoundBracketExpCS|SquareBracketExpCS|NameExpCS;
+	//	RoundBracketExpCS | SquareBracketExpCS | PreExpCS | NameExpCS;
 	public SubNavigatingExpCSElements getSubNavigatingExpCSAccess() {
 		return (pSubNavigatingExpCS != null) ? pSubNavigatingExpCS : (pSubNavigatingExpCS = new SubNavigatingExpCSElements());
 	}
@@ -3016,18 +2843,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getSubNavigatingExpCSAccess().getRule();
 	}
 
-	////callingExpCS returns ExpCS:
-	//
-	////	callExpCS
-	//
-	////	({BinaryExpressionCS.source=current} op=('.'|'->') argument=callingExpCS)?
-	//
-	////;
-	//
-	//
-	//
 	//iteratorVariableCS returns VariableCS:
-	//  name=SimpleName (":" type=TypeExpCS)?;
+	//	name=SimpleName (":" type=TypeExpCS)?;
 	public IteratorVariableCSElements getIteratorVariableCSAccess() {
 		return (pIteratorVariableCS != null) ? pIteratorVariableCS : (pIteratorVariableCS = new IteratorVariableCSElements());
 	}
@@ -3037,7 +2854,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//iteratorAccumulatorCS returns VariableCS:
-	//  name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+	//	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
 	public IteratorAccumulatorCSElements getIteratorAccumulatorCSAccess() {
 		return (pIteratorAccumulatorCS != null) ? pIteratorAccumulatorCS : (pIteratorAccumulatorCS = new IteratorAccumulatorCSElements());
 	}
@@ -3046,62 +2863,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getIteratorAccumulatorCSAccess().getRule();
 	}
 
-	////callExpCS returns ExpCS:
-	//
-	////	preExpCS
-	//
-	////	({CallExpCS.source=current} '('
-	//
-	////	(variable1=iteratorVariableCS
-	//
-	////        ((',' variable2=iteratorVariableCS)
-	//
-	////        |(';' variable2=iteratorAccumulatorCS))?
-	//
-	////        '|')?
-	//
-	////    (arguments+=ExpCS (',' arguments+=ExpCS)*)?
-	//
-	////	')')?
-	//
-	////;
-	//
-	//
-	//
-	////preExpCS returns ExpCS:
-	//
-	////	indexExpCS
-	//
-	//////  ({UnaryExpressionCS.source=current} '@' op='pre')? is added by CompleteOCL
-	//
-	////;
-	//
-	//
-	//
-	////indexExpCS returns ExpCS:
-	//
-	////	messageExpCS
-	//
-	////	({IndexExpCS.source=current} '[' indexes+=ExpCS (',' indexes+=ExpCS)* ']')?
-	//
-	////;
-	//
-	//    
-	//
-	////messageExpCS returns ExpCS:
-	//
-	////	primaryExpCS
-	//
-	//////|	OclMessageExpCS // ExpCS[E] is added by CompleteOCL
-	//
-	////;
-	//
-	//
-	//
 	//RoundBracketExpCS:
-	//  name=NameExpCS "(" (variable1=iteratorVariableCS (","
-	//  variable2=iteratorVariableCS|";" variable2=iteratorAccumulatorCS)? "|")? (
-	//  arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
+	//	name=NameExpCS ("@" pre?="pre")? "(" (variable1=iteratorVariableCS ("," variable2=iteratorVariableCS | ";"
+	//	variable2=iteratorAccumulatorCS)? "|")? (arguments+=ExpCS ("," arguments+=ExpCS)*)? ")";
 	public RoundBracketExpCSElements getRoundBracketExpCSAccess() {
 		return (pRoundBracketExpCS != null) ? pRoundBracketExpCS : (pRoundBracketExpCS = new RoundBracketExpCSElements());
 	}
@@ -3111,7 +2875,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SquareBracketExpCS:
-	//  name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]";
+	//	name=NameExpCS "[" arguments+=ExpCS ("," arguments+=ExpCS)* "]" ("@" pre?="pre")?;
 	public SquareBracketExpCSElements getSquareBracketExpCSAccess() {
 		return (pSquareBracketExpCS != null) ? pSquareBracketExpCS : (pSquareBracketExpCS = new SquareBracketExpCSElements());
 	}
@@ -3120,22 +2884,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getSquareBracketExpCSAccess().getRule();
 	}
 
-	////primaryExpCS returns ExpCS:
-	//
-	////	selfKeywordCS
-	//
-	////|	LiteralExpCS    // OclExpressionCS[C]
-	//
-	////|	IfExpCS         // OclExpressionCS[F]
-	//
-	////|	'(' ExpCS ')'
-	//
-	////;
-	//
-	//
-	//
+	//PreExpCS:
+	//	name=NameExpCS "@" "pre";
+	public PreExpCSElements getPreExpCSAccess() {
+		return (pPreExpCS != null) ? pPreExpCS : (pPreExpCS = new PreExpCSElements());
+	}
+	
+	public ParserRule getPreExpCSRule() {
+		return getPreExpCSAccess().getRule();
+	}
+
 	//SelfExpCS:
-	//  {SelfExpCS} "self";
+	//	{SelfExpCS} "self";
 	public SelfExpCSElements getSelfExpCSAccess() {
 		return (pSelfExpCS != null) ? pSelfExpCS : (pSelfExpCS = new SelfExpCSElements());
 	}
@@ -3145,7 +2905,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpCS:
-	//  PathNameExpCS|SimpleNameExpCS;
+	//	PathNameExpCS | SimpleNameExpCS;
 	public NameExpCSElements getNameExpCSAccess() {
 		return (pNameExpCS != null) ? pNameExpCS : (pNameExpCS = new NameExpCSElements());
 	}
@@ -3155,7 +2915,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PathNameExpCS:
-	//  namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
+	//	namespace=[base::NamespaceCS|Identifier] "::" element=NameExpCS;
 	public PathNameExpCSElements getPathNameExpCSAccess() {
 		return (pPathNameExpCS != null) ? pPathNameExpCS : (pPathNameExpCS = new PathNameExpCSElements());
 	}
@@ -3165,7 +2925,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SimpleNameExpCS:
-	//  element=[base::NamedElementCS|Identifier];
+	//	element=[base::NamedElementCS|Identifier];
 	public SimpleNameExpCSElements getSimpleNameExpCSAccess() {
 		return (pSimpleNameExpCS != null) ? pSimpleNameExpCS : (pSimpleNameExpCS = new SimpleNameExpCSElements());
 	}
@@ -3175,8 +2935,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfExpCS:
-	//  "if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS
-	//  "endif";
+	//	"if" condition=ExpCS "then" thenExpression=ExpCS "else" elseExpression=ExpCS "endif";
 	public IfExpCSElements getIfExpCSAccess() {
 		return (pIfExpCS != null) ? pIfExpCS : (pIfExpCS = new IfExpCSElements());
 	}
@@ -3186,7 +2945,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetExpCS:
-	//  "let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
+	//	"let" variable+=LetVariableCS ("," variable+=LetVariableCS)* "in" in=ExpCS;
 	public LetExpCSElements getLetExpCSAccess() {
 		return (pLetExpCS != null) ? pLetExpCS : (pLetExpCS = new LetExpCSElements());
 	}
@@ -3196,7 +2955,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetVariableCS returns VariableCS:
-	//  name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
+	//	name=SimpleName ":" type=TypeExpCS "=" initExpression=ExpCS;
 	public LetVariableCSElements getLetVariableCSAccess() {
 		return (pLetVariableCS != null) ? pLetVariableCS : (pLetVariableCS = new LetVariableCSElements());
 	}

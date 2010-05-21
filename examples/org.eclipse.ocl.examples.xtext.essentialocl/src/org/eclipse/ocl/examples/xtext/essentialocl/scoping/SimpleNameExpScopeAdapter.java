@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleNameExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: SimpleNameExpScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
 
-public class SimpleNameExpScopeAdapter extends EssentialOCLScopeAdapter<SimpleNameExpCS>
+public class SimpleNameExpScopeAdapter extends ExpScopeAdapter<SimpleNameExpCS>
 {
 	public SimpleNameExpScopeAdapter(SimpleNameExpCS csElement) {
 		super(csElement);

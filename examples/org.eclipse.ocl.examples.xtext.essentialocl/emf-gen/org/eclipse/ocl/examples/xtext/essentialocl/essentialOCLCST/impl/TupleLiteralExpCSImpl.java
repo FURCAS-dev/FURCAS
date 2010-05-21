@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:57 ewillink Exp $
+ * $Id: TupleLiteralExpCSImpl.java,v 1.3 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
@@ -41,7 +42,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * @generated
  */
-public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLiteralExpCS {
+public class TupleLiteralExpCSImpl extends ClassifierCSImpl implements TupleLiteralExpCS {
 	/**
 	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

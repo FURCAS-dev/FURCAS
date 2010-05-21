@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTSwitch.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: EssentialOCLCSTSwitch.java,v 1.5 2010/05/21 20:12:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -101,15 +102,6 @@ public class EssentialOCLCSTSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EssentialOCLCSTPackage.ARROW_EXP_CS: {
-				ArrowExpCS arrowExpCS = (ArrowExpCS)theEObject;
-				T result = caseArrowExpCS(arrowExpCS);
-				if (result == null) result = caseSubExpCS(arrowExpCS);
-				if (result == null) result = caseExpCS(arrowExpCS);
-				if (result == null) result = caseElementCS(arrowExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS: {
 				BooleanLiteralExpCS booleanLiteralExpCS = (BooleanLiteralExpCS)theEObject;
 				T result = caseBooleanLiteralExpCS(booleanLiteralExpCS);
@@ -149,15 +141,6 @@ public class EssentialOCLCSTSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSTPackage.DOT_EXP_CS: {
-				DotExpCS dotExpCS = (DotExpCS)theEObject;
-				T result = caseDotExpCS(dotExpCS);
-				if (result == null) result = caseSubExpCS(dotExpCS);
-				if (result == null) result = caseExpCS(dotExpCS);
-				if (result == null) result = caseElementCS(dotExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSTPackage.EXP_CS: {
 				ExpCS expCS = (ExpCS)theEObject;
 				T result = caseExpCS(expCS);
@@ -176,6 +159,7 @@ public class EssentialOCLCSTSwitch<T> {
 			case EssentialOCLCSTPackage.INFIX_EXP_CS: {
 				InfixExpCS infixExpCS = (InfixExpCS)theEObject;
 				T result = caseInfixExpCS(infixExpCS);
+				if (result == null) result = caseOperatorExpCS(infixExpCS);
 				if (result == null) result = caseSubExpCS(infixExpCS);
 				if (result == null) result = caseExpCS(infixExpCS);
 				if (result == null) result = caseElementCS(infixExpCS);
@@ -256,6 +240,15 @@ public class EssentialOCLCSTSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSTPackage.OPERATOR_EXP_CS: {
+				OperatorExpCS operatorExpCS = (OperatorExpCS)theEObject;
+				T result = caseOperatorExpCS(operatorExpCS);
+				if (result == null) result = caseSubExpCS(operatorExpCS);
+				if (result == null) result = caseExpCS(operatorExpCS);
+				if (result == null) result = caseElementCS(operatorExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSTPackage.PATH_NAME_EXP_CS: {
 				PathNameExpCS pathNameExpCS = (PathNameExpCS)theEObject;
 				T result = casePathNameExpCS(pathNameExpCS);
@@ -267,6 +260,15 @@ public class EssentialOCLCSTSwitch<T> {
 				if (result == null) result = caseTypeCS(pathNameExpCS);
 				if (result == null) result = caseExpCS(pathNameExpCS);
 				if (result == null) result = caseElementCS(pathNameExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.PRE_EXP_CS: {
+				PreExpCS preExpCS = (PreExpCS)theEObject;
+				T result = casePreExpCS(preExpCS);
+				if (result == null) result = caseNamedExpCS(preExpCS);
+				if (result == null) result = caseExpCS(preExpCS);
+				if (result == null) result = caseElementCS(preExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -360,8 +362,12 @@ public class EssentialOCLCSTSwitch<T> {
 			case EssentialOCLCSTPackage.TUPLE_LITERAL_EXP_CS: {
 				TupleLiteralExpCS tupleLiteralExpCS = (TupleLiteralExpCS)theEObject;
 				T result = caseTupleLiteralExpCS(tupleLiteralExpCS);
+				if (result == null) result = caseClassifierCS(tupleLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(tupleLiteralExpCS);
+				if (result == null) result = caseNamedElementCS(tupleLiteralExpCS);
+				if (result == null) result = caseTypeCS(tupleLiteralExpCS);
 				if (result == null) result = caseExpCS(tupleLiteralExpCS);
+				if (result == null) result = caseModelElementCS(tupleLiteralExpCS);
 				if (result == null) result = caseElementCS(tupleLiteralExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -369,11 +375,12 @@ public class EssentialOCLCSTSwitch<T> {
 			case EssentialOCLCSTPackage.TUPLE_TYPE_CS: {
 				TupleTypeCS tupleTypeCS = (TupleTypeCS)theEObject;
 				T result = caseTupleTypeCS(tupleTypeCS);
-				if (result == null) result = caseNamedElementCS(tupleTypeCS);
+				if (result == null) result = caseClassifierCS(tupleTypeCS);
 				if (result == null) result = caseTypeExpCS(tupleTypeCS);
-				if (result == null) result = caseModelElementCS(tupleTypeCS);
-				if (result == null) result = caseLiteralExpCS(tupleTypeCS);
+				if (result == null) result = caseNamedElementCS(tupleTypeCS);
 				if (result == null) result = caseTypeCS(tupleTypeCS);
+				if (result == null) result = caseLiteralExpCS(tupleTypeCS);
+				if (result == null) result = caseModelElementCS(tupleTypeCS);
 				if (result == null) result = caseExpCS(tupleTypeCS);
 				if (result == null) result = caseElementCS(tupleTypeCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -403,21 +410,6 @@ public class EssentialOCLCSTSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Arrow Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Arrow Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseArrowExpCS(ArrowExpCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Path Name Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -429,6 +421,21 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T casePathNameExpCS(PathNameExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pre Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pre Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePreExpCS(PreExpCS object) {
 		return null;
 	}
 
@@ -478,6 +485,21 @@ public class EssentialOCLCSTSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierCS(ClassifierCS object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Collection Type CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -489,21 +511,6 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseCollectionTypeCS(CollectionTypeCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dot Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dot Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDotExpCS(DotExpCS object) {
 		return null;
 	}
 
@@ -894,6 +901,21 @@ public class EssentialOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseNumberLiteralExpCS(NumberLiteralExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operator Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operator Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperatorExpCS(OperatorExpCS object) {
 		return null;
 	}
 

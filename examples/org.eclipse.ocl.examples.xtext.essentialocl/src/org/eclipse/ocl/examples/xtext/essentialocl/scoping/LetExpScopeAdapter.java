@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: LetExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: LetExpScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 
-public class LetExpScopeAdapter extends EssentialOCLScopeAdapter<LetExpCS>
+public class LetExpScopeAdapter extends ExpScopeAdapter<LetExpCS>
 {
 	public LetExpScopeAdapter(LetExpCS csElement) {
 		super(csElement);
@@ -35,5 +38,11 @@ public class LetExpScopeAdapter extends EssentialOCLScopeAdapter<LetExpCS>
 			environmentView.addNamedElements(EssentialOCLCSTPackage.Literals.VARIABLE_CS, getTarget().getVariable(), scopeView.getBindings());
 		}
 		return scopeView.getOuterScope();
+	}
+
+	@Override
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
+		ExpCS in = getTarget().getIn();
+		return getScopeAdapter(in).getSynthesizedType(bindings);
 	}
 }

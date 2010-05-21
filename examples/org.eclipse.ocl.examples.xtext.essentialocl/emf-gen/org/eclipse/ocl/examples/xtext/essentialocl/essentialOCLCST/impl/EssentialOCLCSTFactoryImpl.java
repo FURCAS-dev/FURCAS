@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.4 2010/05/09 10:32:44 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -22,12 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
@@ -40,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
@@ -96,12 +95,10 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EssentialOCLCSTPackage.ARROW_EXP_CS: return createArrowExpCS();
 			case EssentialOCLCSTPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
-			case EssentialOCLCSTPackage.DOT_EXP_CS: return createDotExpCS();
 			case EssentialOCLCSTPackage.EXP_CS: return createExpCS();
 			case EssentialOCLCSTPackage.IF_EXP_CS: return createIfExpCS();
 			case EssentialOCLCSTPackage.INFIX_EXP_CS: return createInfixExpCS();
@@ -112,6 +109,7 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
 			case EssentialOCLCSTPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
 			case EssentialOCLCSTPackage.PATH_NAME_EXP_CS: return createPathNameExpCS();
+			case EssentialOCLCSTPackage.PRE_EXP_CS: return createPreExpCS();
 			case EssentialOCLCSTPackage.PREFIX_EXP_CS: return createPrefixExpCS();
 			case EssentialOCLCSTPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
 			case EssentialOCLCSTPackage.PRIMITIVE_TYPE_CS: return createPrimitiveTypeCS();
@@ -163,9 +161,9 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ArrowExpCS createArrowExpCS() {
-		ArrowExpCSImpl arrowExpCS = new ArrowExpCSImpl();
-		return arrowExpCS;
+	public PathNameExpCS createPathNameExpCS() {
+		PathNameExpCSImpl pathNameExpCS = new PathNameExpCSImpl();
+		return pathNameExpCS;
 	}
 
 	/**
@@ -173,9 +171,9 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameExpCS createPathNameExpCS() {
-		PathNameExpCSImpl pathNameExpCS = new PathNameExpCSImpl();
-		return pathNameExpCS;
+	public PreExpCS createPreExpCS() {
+		PreExpCSImpl preExpCS = new PreExpCSImpl();
+		return preExpCS;
 	}
 
 	/**
@@ -196,16 +194,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DotExpCS createDotExpCS() {
-		DotExpCSImpl dotExpCS = new DotExpCSImpl();
-		return dotExpCS;
 	}
 
 	/**

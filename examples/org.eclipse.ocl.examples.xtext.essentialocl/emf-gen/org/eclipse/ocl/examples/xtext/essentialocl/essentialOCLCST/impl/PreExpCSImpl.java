@@ -12,33 +12,31 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: PreExpCSImpl.java,v 1.1 2010/05/21 20:12:09 ewillink Exp $
  */
-
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PreExpCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primitive Type CS</b></em>'.
+ * An implementation of the model object '<em><b>Pre Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class PrimitiveTypeCSImpl extends NamedElementCSImpl implements PrimitiveTypeCS {
+public class PreExpCSImpl extends NamedExpCSImpl implements PreExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrimitiveTypeCSImpl() {
+	protected PreExpCSImpl() {
 		super();
 	}
 
@@ -49,12 +47,17 @@ public class PrimitiveTypeCSImpl extends NamedElementCSImpl implements Primitive
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.PRIMITIVE_TYPE_CS;
+		return EssentialOCLCSTPackage.Literals.PRE_EXP_CS;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendName(this);
+	public boolean isPre() {
+		return true;
 	}
 
-} //PrimitiveTypeCSImpl
+} //PreExpCSImpl

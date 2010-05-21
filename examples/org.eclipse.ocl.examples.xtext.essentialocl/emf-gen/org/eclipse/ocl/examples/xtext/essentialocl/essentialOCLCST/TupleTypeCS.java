@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCS.java,v 1.2 2010/05/03 05:38:10 ewillink Exp $
+ * $Id: TupleTypeCS.java,v 1.3 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
  * @model
  * @generated
  */
-public interface TupleTypeCS extends NamedElementCS, TypeExpCS {
+public interface TupleTypeCS extends ClassifierCS, TypeExpCS {
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS}.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: EssentialOCLScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeAdapter;
 
@@ -41,6 +42,10 @@ public abstract class EssentialOCLScopeAdapter<T extends ElementCS> extends OCLs
 			CollectionTypeCS collectionType = (CollectionTypeCS)csElement;
 			ClassifierCS elementType = getLibraryType(collectionType.getTypeCS(), bindings);
 			return getLibraryType(collectionType.getName(), elementType);
+		}
+		else if (csElement instanceof TupleTypeCS) {			
+			TupleTypeCS tupleType = (TupleTypeCS)csElement;
+			return tupleType;
 		}
 		else if (csElement instanceof SimpleNameExpCS) {
 			return getLibraryType(((SimpleNameExpCS)csElement).getElement(), bindings);

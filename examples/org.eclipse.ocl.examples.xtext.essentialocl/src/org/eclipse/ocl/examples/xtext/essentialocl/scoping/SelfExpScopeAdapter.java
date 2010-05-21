@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SelfExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: SelfExpScopeAdapter.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 
-public class SelfExpScopeAdapter extends EssentialOCLScopeAdapter<SelfExpCS>
+public class SelfExpScopeAdapter extends ExpScopeAdapter<SelfExpCS>
 {
 	public SelfExpScopeAdapter(SelfExpCS csElement) {
 		super(csElement);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InfixExpCSImpl.java,v 1.1 2010/05/03 05:37:47 ewillink Exp $
+ * $Id: InfixExpCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -32,32 +32,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InfixExpCSImpl#getOp <em>Op</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InfixExpCSImpl#getArgument <em>Argument</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class InfixExpCSImpl extends SubExpCSImpl implements InfixExpCS {
-	/**
-	 * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOp()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OP_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getOp() <em>Op</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOp()
-	 * @generated
-	 * @ordered
-	 */
-	protected String op = OP_EDEFAULT;
+public class InfixExpCSImpl extends OperatorExpCSImpl implements InfixExpCS {
 	/**
 	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -85,27 +66,6 @@ public class InfixExpCSImpl extends SubExpCSImpl implements InfixExpCS {
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSTPackage.Literals.INFIX_EXP_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getOp() {
-		return op;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOp(String newOp) {
-		String oldOp = op;
-		op = newOp;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.INFIX_EXP_CS__OP, oldOp, op));
 	}
 
 	/**
@@ -173,8 +133,6 @@ public class InfixExpCSImpl extends SubExpCSImpl implements InfixExpCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.INFIX_EXP_CS__OP:
-				return getOp();
 			case EssentialOCLCSTPackage.INFIX_EXP_CS__ARGUMENT:
 				return getArgument();
 		}
@@ -189,9 +147,6 @@ public class InfixExpCSImpl extends SubExpCSImpl implements InfixExpCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.INFIX_EXP_CS__OP:
-				setOp((String)newValue);
-				return;
 			case EssentialOCLCSTPackage.INFIX_EXP_CS__ARGUMENT:
 				setArgument((ExpCS)newValue);
 				return;
@@ -207,9 +162,6 @@ public class InfixExpCSImpl extends SubExpCSImpl implements InfixExpCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.INFIX_EXP_CS__OP:
-				setOp(OP_EDEFAULT);
-				return;
 			case EssentialOCLCSTPackage.INFIX_EXP_CS__ARGUMENT:
 				setArgument((ExpCS)null);
 				return;
@@ -225,8 +177,6 @@ public class InfixExpCSImpl extends SubExpCSImpl implements InfixExpCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.INFIX_EXP_CS__OP:
-				return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
 			case EssentialOCLCSTPackage.INFIX_EXP_CS__ARGUMENT:
 				return argument != null;
 		}

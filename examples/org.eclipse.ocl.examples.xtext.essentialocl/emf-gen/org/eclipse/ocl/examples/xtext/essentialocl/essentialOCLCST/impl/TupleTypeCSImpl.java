@@ -12,11 +12,15 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCSImpl.java,v 1.2 2010/05/03 05:37:41 ewillink Exp $
+ * $Id: TupleTypeCSImpl.java,v 1.3 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -24,7 +28,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
@@ -42,7 +48,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * @generated
  */
-public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS {
+public class TupleTypeCSImpl extends ClassifierCSImpl implements TupleTypeCS {
 	/**
 	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -156,6 +162,44 @@ public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS {
 				return part != null && !part.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	private String signature = null;
+	
+	@Override
+	public void setName(String newName) {
+		signature = null;
+		super.setName(newName);
+	}
+
+	@Override
+	public void getSignature(Signature resultSignature) {
+		if (signature == null) {
+			Signature s = new Signature();
+			s.appendName(this);
+			List<VariableCS> parts = new ArrayList<VariableCS>(getPart());
+			Collections.sort(parts, new Comparator<VariableCS>()
+			{
+				public int compare(VariableCS o1, VariableCS o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
+			s.append('(');
+			String prefix = "";
+			for (VariableCS part : parts) {
+				s.append(prefix);
+				s.appendName(part);
+				s.append(':');
+				TypeCS type = part.getType();
+				if (type != null) {
+					type.getSignature(s);
+				}
+				prefix = ",";
+			}
+			s.append(')');
+			signature = s.toString();
+		}
+		resultSignature.append(signature);
 	}
 
 } //TupleTypeCSImpl

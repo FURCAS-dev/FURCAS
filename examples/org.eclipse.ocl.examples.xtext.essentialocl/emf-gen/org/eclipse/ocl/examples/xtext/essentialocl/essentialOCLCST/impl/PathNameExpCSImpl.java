@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameExpCSImpl.java,v 1.2 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: PathNameExpCSImpl.java,v 1.3 2010/05/21 20:12:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
@@ -458,17 +458,11 @@ public class PathNameExpCSImpl extends NameExpCSImpl implements PathNameExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (originalXmiId: "); //$NON-NLS-1$
-		result.append(originalXmiId);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 	@Override

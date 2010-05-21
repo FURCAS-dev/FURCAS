@@ -12,27 +12,26 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpScopeAdapter.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: SquareBracketExpScopeAdapter.java,v 1.1 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracketExpCS;
 
-public class StringLiteralExpScopeAdapter extends ExpScopeAdapter<StringLiteralExpCS>
+public class SquareBracketExpScopeAdapter extends ExpScopeAdapter<SquareBracketExpCS>
 {
-	private ClassifierCS type = null;
-	
-	public StringLiteralExpScopeAdapter(StringLiteralExpCS csElement) {
+	public SquareBracketExpScopeAdapter(SquareBracketExpCS csElement) {
 		super(csElement);
 	}
-	
+
 	@Override
 	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
-		if (type == null) {
-			type = getLibraryStringType();
-		}
-		return type;
+		NameExpCS nameExp = getTarget().getName();		// FIXME resolve qualifiers/propertySource
+		NamedElementCS namedElement = nameExp != null ? nameExp.getNamedElement() : null;
+		return getLibraryType(namedElement, bindings);
 	}
 }
