@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedExpCSImpl.java,v 1.1 2010/05/03 05:37:53 ewillink Exp $
+ * $Id: NamedExpCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
@@ -114,6 +114,13 @@ public abstract class NamedExpCSImpl extends ExpCSImpl implements NamedExpCS {
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.NAMED_EXP_CS__NAME, newName, newName));
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract boolean isPre();
 
 	/**
 	 * <!-- begin-user-doc -->

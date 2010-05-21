@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NestedExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: NestedExpScopeAdapter.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 
-public class NestedExpScopeAdapter extends EssentialOCLScopeAdapter<NestedExpCS>
+public class NestedExpScopeAdapter extends ExpScopeAdapter<NestedExpCS>
 {
 	public NestedExpScopeAdapter(NestedExpCS csElement) {
 		super(csElement);

@@ -12,30 +12,33 @@
  *
  * </copyright>
  *
- * $Id: PrefixExpCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: OperatorExpCSImpl.java,v 1.1 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unary Expression CS</b></em>'.
+ * An implementation of the model object '<em><b>Operator Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.PrefixExpCSImpl#getOp <em>Op</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperatorExpCSImpl#getOp <em>Op</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
+public abstract class OperatorExpCSImpl extends SubExpCSImpl implements OperatorExpCS {
 	/**
 	 * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,6 +48,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	 * @ordered
 	 */
 	protected static final String OP_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getOp() <em>Op</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +64,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrefixExpCSImpl() {
+	protected OperatorExpCSImpl() {
 		super();
 	}
 
@@ -71,7 +75,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSTPackage.Literals.PREFIX_EXP_CS;
+		return EssentialOCLCSTPackage.Literals.OPERATOR_EXP_CS;
 	}
 
 	/**
@@ -92,7 +96,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 		String oldOp = op;
 		op = newOp;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.PREFIX_EXP_CS__OP, oldOp, op));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP, oldOp, op));
 	}
 
 	/**
@@ -103,7 +107,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.PREFIX_EXP_CS__OP:
+			case EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP:
 				return getOp();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +121,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.PREFIX_EXP_CS__OP:
+			case EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP:
 				setOp((String)newValue);
 				return;
 		}
@@ -132,7 +136,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.PREFIX_EXP_CS__OP:
+			case EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP:
 				setOp(OP_EDEFAULT);
 				return;
 		}
@@ -147,7 +151,7 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EssentialOCLCSTPackage.PREFIX_EXP_CS__OP:
+			case EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP:
 				return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
 		}
 		return super.eIsSet(featureID);
@@ -163,4 +167,4 @@ public class PrefixExpCSImpl extends SubExpCSImpl implements PrefixExpCS {
 		return super.toString();
 	}
 
-} //UnaryExpressionCSImpl
+} //OperatorExpCSImpl

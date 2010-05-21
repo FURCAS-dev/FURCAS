@@ -12,15 +12,17 @@
  *
  * </copyright>
  *
- * $Id: DotOperationCallExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: DotOperationCallExpScopeAdapter.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS;
 
-public class DotOperationCallExpScopeAdapter extends EssentialOCLScopeAdapter<RoundBracketExpCS>
+public class DotOperationCallExpScopeAdapter extends ExpScopeAdapter<RoundBracketExpCS>
 {
 	public DotOperationCallExpScopeAdapter(RoundBracketExpCS csElement) {
 		super(csElement);
@@ -28,6 +30,8 @@ public class DotOperationCallExpScopeAdapter extends EssentialOCLScopeAdapter<Ro
 
 	@Override
 	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
-		return null;		// FIXME
+		NameExpCS nameExp = getTarget().getName();
+		NamedElementCS namedElement = nameExp != null ? nameExp.getNamedElement() : null;
+		return getLibraryType(namedElement, bindings);
 	}
 }

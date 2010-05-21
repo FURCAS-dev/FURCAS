@@ -12,28 +12,28 @@
  *
  * </copyright>
  *
- * $Id: InfixExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: InfixExpScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
 
-public class InfixExpScopeAdapter extends EssentialOCLScopeAdapter<InfixExpCS>
+public class InfixExpScopeAdapter extends OperatorExpScopeAdapter<InfixExpCS>
 {
 	public InfixExpScopeAdapter(InfixExpCS csElement) {
 		super(csElement);
 	}
 
 	@Override
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
+		ExpCS argument = getTarget().getArgument();
+		return getScopeAdapter(argument).getSynthesizedType(bindings);
+	}
+
+/*	@Override
 	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
 		InfixExpCS target = getTarget();		
 		ExpCS source = target.getSource();
@@ -55,5 +55,5 @@ public class InfixExpScopeAdapter extends EssentialOCLScopeAdapter<InfixExpCS>
 			return null;
 		}
 		return getLibraryType((OperationCS)csOperation, bindings);
-	}
+	} */
 }

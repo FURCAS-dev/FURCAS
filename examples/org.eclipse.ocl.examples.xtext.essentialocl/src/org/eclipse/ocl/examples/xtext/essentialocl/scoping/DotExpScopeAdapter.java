@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DotExpScopeAdapter.java,v 1.4 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: DotExpScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -26,22 +26,26 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
 
 
-public class DotExpScopeAdapter extends EssentialOCLScopeAdapter<DotExpCS>
+public class DotExpScopeAdapter extends OperatorExpScopeAdapter<InfixExpCS>
 {
-	public DotExpScopeAdapter(DotExpCS csElement) {
+	public DotExpScopeAdapter(InfixExpCS csElement) {
 		super(csElement);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSTPackage.Literals.DOT_EXP_CS__ARGUMENT) {
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__ARGUMENT) {
+			/*
+			 * A Dot argument is looked up in the scope of an non-Collection and if the
+			 * source is a Collection the source element type is used in an implicit collect.
+			 */
 			ScopeAdapter sourceScope = getScopeAdapter(getTarget().getSource());
 			if (sourceScope != null) {
 				TypeBindingsCS bindings = scopeView.getBindings();

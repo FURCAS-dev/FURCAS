@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeProvider.java,v 1.5 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: EssentialOCLScopeProvider.java,v 1.6 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -20,10 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ArrowExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DotExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
@@ -31,12 +29,16 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PathNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.RoundBracketExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracketExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util.EssentialOCLCSTSwitch;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
@@ -59,11 +61,6 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		implements ScopeAdapter.Switch
 	{	
 		@Override
-		public ScopeAdapter caseArrowExpCS(ArrowExpCS eObject) {
-			return new ArrowExpScopeAdapter(eObject);
-		}
-
-		@Override
 		public ScopeAdapter caseBooleanLiteralExpCS(BooleanLiteralExpCS eObject) {
 			return new BooleanLiteralExpScopeAdapter(eObject);
 		}
@@ -74,13 +71,17 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		}
 
 		@Override
-		public ScopeAdapter caseDotExpCS(DotExpCS eObject) {
-			return new DotExpScopeAdapter(eObject);
-		}
-
-		@Override
 		public ScopeAdapter caseInfixExpCS(InfixExpCS eObject) {
-			return new InfixExpScopeAdapter(eObject);
+			String op = eObject.getOp();
+			if (".".equals(op)) {
+				return new DotExpScopeAdapter(eObject);
+			}
+			else if ("->".equals(op)) {
+				return new ArrowExpScopeAdapter(eObject);
+			}
+			else {
+				return new InfixExpScopeAdapter(eObject);
+			}
 		}
 
 		@Override
@@ -114,14 +115,29 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		}
 
 		@Override
+		public ScopeAdapter casePreExpCS(PreExpCS eObject) {
+			return new PreExpScopeAdapter(eObject);
+		}
+
+		@Override
 		public ScopeAdapter caseRoundBracketExpCS(RoundBracketExpCS eObject) {
-			EObject container = eObject.eContainer();
-			if (container instanceof DotExpCS)
-				return new DotOperationCallExpScopeAdapter(eObject);
-			else if (container instanceof ArrowExpCS)
-				return new ArrowOperationCallExpScopeAdapter(eObject);
-			else
-				return null;		// FIXME implicit call
+			OperatorExpCS parent = null;
+			for (EObject child = eObject, cursor = child.eContainer(); cursor instanceof OperatorExpCS; child = cursor, cursor = cursor.eContainer()) {
+				parent = (OperatorExpCS)cursor;
+				if (parent.getSource() != child) {
+					break;
+				}
+			}
+			if (parent != null) {
+				String op = parent.getOp();
+				if (".".equals(op)) {
+					return new DotOperationCallExpScopeAdapter(eObject);
+				}
+				else if ("->".equals(op)) {
+					return new ArrowOperationCallExpScopeAdapter(eObject);
+				}
+			}
+			return new DotOperationCallExpScopeAdapter(eObject);	// Implicit
 		}
 
 		@Override
@@ -135,6 +151,11 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		}
 
 		@Override
+		public ScopeAdapter caseSquareBracketExpCS(SquareBracketExpCS eObject) {
+			return new SquareBracketExpScopeAdapter(eObject);
+		}
+
+		@Override
 		public ScopeAdapter caseStringLiteralExpCS(StringLiteralExpCS eObject) {
 			return new StringLiteralExpScopeAdapter(eObject);
 		}
@@ -142,6 +163,11 @@ public class EssentialOCLScopeProvider extends OCLstdlibScopeProvider
 		@Override
 		public ScopeAdapter caseTupleLiteralExpCS(TupleLiteralExpCS eObject) {
 			return new TupleLiteralExpScopeAdapter(eObject);
+		}
+
+		@Override
+		public ScopeAdapter caseTupleTypeCS(TupleTypeCS eObject) {
+			return new TupleTypeScopeAdapter(eObject);
 		}
 
 		@Override

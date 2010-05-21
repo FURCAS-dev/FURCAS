@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: SquareBracketExpCSImpl.java,v 1.1 2010/05/03 05:37:52 ewillink Exp $
+ * $Id: SquareBracketExpCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -36,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracket
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.SquareBracketExpCSImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.SquareBracketExpCSImpl#isPre <em>Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +54,24 @@ public class SquareBracketExpCSImpl extends NamedExpCSImpl implements SquareBrac
 	 * @ordered
 	 */
 	protected EList<ExpCS> arguments;
+	/**
+	 * The default value of the '{@link #isPre() <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PRE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isPre() <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean pre = PRE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,6 +109,28 @@ public class SquareBracketExpCSImpl extends NamedExpCSImpl implements SquareBrac
 	 * @generated
 	 */
 	@Override
+	public boolean isPre() {
+		return pre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPre(boolean newPre) {
+		boolean oldPre = pre;
+		pre = newPre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__PRE, oldPre, pre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__ARGUMENTS:
@@ -106,6 +149,8 @@ public class SquareBracketExpCSImpl extends NamedExpCSImpl implements SquareBrac
 		switch (featureID) {
 			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__ARGUMENTS:
 				return getArguments();
+			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__PRE:
+				return isPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,6 +168,9 @@ public class SquareBracketExpCSImpl extends NamedExpCSImpl implements SquareBrac
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends ExpCS>)newValue);
 				return;
+			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__PRE:
+				setPre((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -138,6 +186,9 @@ public class SquareBracketExpCSImpl extends NamedExpCSImpl implements SquareBrac
 			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__ARGUMENTS:
 				getArguments().clear();
 				return;
+			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__PRE:
+				setPre(PRE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,8 +203,20 @@ public class SquareBracketExpCSImpl extends NamedExpCSImpl implements SquareBrac
 		switch (featureID) {
 			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
+			case EssentialOCLCSTPackage.SQUARE_BRACKET_EXP_CS__PRE:
+				return pre != PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //IndexExpCSImpl

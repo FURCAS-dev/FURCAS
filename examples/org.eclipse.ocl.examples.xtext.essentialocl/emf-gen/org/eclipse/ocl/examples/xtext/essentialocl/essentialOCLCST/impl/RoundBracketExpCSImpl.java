@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundBracketExpCSImpl.java,v 1.1 2010/05/03 05:37:48 ewillink Exp $
+ * $Id: RoundBracketExpCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.RoundBracketExpCSImpl#getVariable1 <em>Variable1</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.RoundBracketExpCSImpl#getVariable2 <em>Variable2</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.RoundBracketExpCSImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.RoundBracketExpCSImpl#isPre <em>Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +77,26 @@ public class RoundBracketExpCSImpl extends NamedExpCSImpl implements RoundBracke
 	 * @ordered
 	 */
 	protected EList<ExpCS> arguments;
+
+	/**
+	 * The default value of the '{@link #isPre() <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PRE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPre() <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean pre = PRE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,6 +221,28 @@ public class RoundBracketExpCSImpl extends NamedExpCSImpl implements RoundBracke
 	 * @generated
 	 */
 	@Override
+	public boolean isPre() {
+		return pre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPre(boolean newPre) {
+		boolean oldPre = pre;
+		pre = newPre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__PRE, oldPre, pre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__VARIABLE1:
@@ -226,6 +269,8 @@ public class RoundBracketExpCSImpl extends NamedExpCSImpl implements RoundBracke
 				return getVariable2();
 			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__ARGUMENTS:
 				return getArguments();
+			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__PRE:
+				return isPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,6 +294,9 @@ public class RoundBracketExpCSImpl extends NamedExpCSImpl implements RoundBracke
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends ExpCS>)newValue);
 				return;
+			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__PRE:
+				setPre((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -270,6 +318,9 @@ public class RoundBracketExpCSImpl extends NamedExpCSImpl implements RoundBracke
 			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__ARGUMENTS:
 				getArguments().clear();
 				return;
+			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__PRE:
+				setPre(PRE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -288,8 +339,20 @@ public class RoundBracketExpCSImpl extends NamedExpCSImpl implements RoundBracke
 				return variable2 != null;
 			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
+			case EssentialOCLCSTPackage.ROUND_BRACKET_EXP_CS__PRE:
+				return pre != PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 
 } //CallExpCSImpl

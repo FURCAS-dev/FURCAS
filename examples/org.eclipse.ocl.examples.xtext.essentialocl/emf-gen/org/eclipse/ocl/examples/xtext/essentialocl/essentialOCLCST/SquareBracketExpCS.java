@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SquareBracketExpCS.java,v 1.1 2010/05/03 05:38:09 ewillink Exp $
+ * $Id: SquareBracketExpCS.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracketExpCS#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracketExpCS#isPre <em>Pre</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,5 +51,32 @@ public interface SquareBracketExpCS extends NamedExpCS {
 	 * @generated
 	 */
 	EList<ExpCS> getArguments();
+
+	/**
+	 * Returns the value of the '<em><b>Pre</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pre</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pre</em>' attribute.
+	 * @see #setPre(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getSquareBracketExpCS_Pre()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isPre();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SquareBracketExpCS#isPre <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pre</em>' attribute.
+	 * @see #isPre()
+	 * @generated
+	 */
+	void setPre(boolean value);
 
 } // IndexExpCS

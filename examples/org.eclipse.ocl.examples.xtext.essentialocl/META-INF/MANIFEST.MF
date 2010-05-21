@@ -19,11 +19,10 @@ Export-Package: org.eclipse.ocl.examples.xtext.essentialocl,
  org.eclipse.ocl.examples.xtext.essentialocl.scoping,
  org.eclipse.ocl.examples.xtext.essentialocl.services,
  org.eclipse.ocl.examples.xtext.essentialocl.validation
-Require-Bundle: org.eclipse.ocl.examples.xtext.base;bundle-version="3.0.0";visibility:=reexport,
+Require-Bundle: org.eclipse.ocl.examples.xtext.oclstdlib;bundle-version="3.0.0";visibility:=reexport,
  org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
  org.antlr.runtime,
  org.eclipse.xtext,
- org.eclipse.emf.common,
- org.eclipse.ocl.examples.xtext.oclstdlib;bundle-version="3.0.0";visibility:=reexport
+ org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy

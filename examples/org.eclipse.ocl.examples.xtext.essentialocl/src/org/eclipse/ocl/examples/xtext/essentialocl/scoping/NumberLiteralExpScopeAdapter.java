@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumberLiteralExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: NumberLiteralExpScopeAdapter.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NumberLiteralExpCS;
 
-public class NumberLiteralExpScopeAdapter extends EssentialOCLScopeAdapter<NumberLiteralExpCS>
+public class NumberLiteralExpScopeAdapter extends ExpScopeAdapter<NumberLiteralExpCS>
 {
 	private ClassifierCS type = null;
 	

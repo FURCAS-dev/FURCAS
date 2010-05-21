@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.3 2010/05/09 10:32:44 ewillink Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 
@@ -182,6 +183,30 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 				return typeCS != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	private String signature = null;
+	
+	@Override
+	public void setName(String newName) {
+		signature = null;
+		super.setName(newName);
+	}
+
+	@Override
+	public void getSignature(Signature resultSignature) {
+		if (signature == null) {
+			Signature s = new Signature();
+			s.appendName(this);
+			s.append('(');
+			TypeCS type = getTypeCS();
+			if (type != null) {
+				type.getSignature(s);
+			}
+			s.append(')');
+			signature = s.toString();
+		}
+		resultSignature.append(signature);
 	}
 
 } //CollectionTypeCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpScopeAdapter.java,v 1.3 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: CollectionLiteralExpScopeAdapter.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLit
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
-public class CollectionLiteralExpScopeAdapter extends EssentialOCLScopeAdapter<CollectionLiteralExpCS>
+public class CollectionLiteralExpScopeAdapter extends ExpScopeAdapter<CollectionLiteralExpCS>
 {
 	private ClassifierCS type = null;
 	
