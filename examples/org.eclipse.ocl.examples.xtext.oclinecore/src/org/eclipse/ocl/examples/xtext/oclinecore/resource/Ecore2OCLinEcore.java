@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.7 2010/05/09 10:26:23 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.8 2010/05/21 20:14:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -73,11 +73,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
@@ -266,6 +268,27 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 		@Override
 		public TypeRefCS caseEGenericType(EGenericType eGenericType) {
 			EClassifier eClassifier = eGenericType.getEClassifier();
+			if ((eClassifier instanceof EDataType) && (eClassifier.getEPackage() == EcorePackage.eINSTANCE)) {
+				String primitiveTypeName = null;
+				if (eClassifier == EcorePackage.Literals.EBOOLEAN) {
+					primitiveTypeName = "Boolean";
+				}
+				else if (eClassifier == EcorePackage.Literals.EBIG_INTEGER) {
+					primitiveTypeName = "Integer";
+				}
+				else if (eClassifier == EcorePackage.Literals.EBIG_DECIMAL) {
+					primitiveTypeName = "Real";
+				}
+				else if (eClassifier == EcorePackage.Literals.ESTRING) {
+					primitiveTypeName = "String";
+				}
+				if (primitiveTypeName != null) {
+					PrimitiveTypeRefCS csTypeRef = BaseCSTFactory.eINSTANCE.createPrimitiveTypeRefCS();
+					csTypeRef.setName(primitiveTypeName);
+					setOriginalMapping(csTypeRef, eGenericType);
+					return csTypeRef;
+				}
+			}
 			if (eClassifier != null) {
 				TypedTypeRefCS csTypeRef = BaseCSTFactory.eINSTANCE.createTypedTypeRefCS();
 				setOriginalMapping(csTypeRef, eGenericType);
@@ -545,7 +568,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 					allEClassifiers.add(eClassifier);
 				}
 				ModelElementCS csType = doSwitch(eGenericType);
-				csTypedElement.setType((TypedTypeRefCS) csType);
+				csTypedElement.setType((TypedRefCS) csType);
 			}
 			int lower = eTypedElement.getLowerBound();
 			int upper = eTypedElement.getUpperBound();
