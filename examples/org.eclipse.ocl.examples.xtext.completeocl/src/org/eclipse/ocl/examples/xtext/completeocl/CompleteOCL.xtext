@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.5 2010/05/16 19:26:03 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.6 2010/05/21 20:20:26 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -43,6 +43,20 @@ RestrictedKeywords:
 //|	'pre'
 //|	'static'
 ;
+
+PrimitiveTypeIdentifier:
+	'Boolean'
+|	'Integer'
+|	'Real'
+|	'String'
+|	'UnlimitedNatural'
+|	'OclAny'
+|	'OclInvalid'
+|	'OclMessage'
+|	'OclState'
+|	'OclVoid'
+;
+
 
 BodyCS returns BodyCS :
 	'body' (constraintName=SimpleName)? ':' expression=ExpCS
@@ -104,7 +118,7 @@ PackageRefCS returns base::PackageRefCS:
 ;
 
 ParameterCS returns essentialocl::VariableCS:
-	name=SimpleName (':' type=TypeExpCS)? ( '=' initExpression=ExpCS)?
+	(name=SimpleName ':')? type=TypeExpCS
 ;
 
 PostCS returns PostCS :
@@ -166,8 +180,7 @@ SimplePropertyRefCS returns base::SimpleStructuralFeatureRefCS:
 NavigationExpCS returns essentialocl::ExpCS:
 	SubNavigationExpCS
 	(
-		({essentialocl::DotExpCS.source=current} '.' argument=NavigatingExpCS)
-	|	({essentialocl::ArrowExpCS.source=current} '->' argument=NavigatingExpCS)
+		({essentialocl::InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
 	|	({OclMessageCS.source=current} op=('^^'|'^') messageName=SimpleName
 			'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')')
 	)?
@@ -177,8 +190,7 @@ NavigationExpCS returns essentialocl::ExpCS:
 NavigatingExpCS returns essentialocl::ExpCS:
 	SubNavigatingExpCS
 	(
-		({essentialocl::DotExpCS.source=current} '.' argument=NavigatingExpCS)
-	|	({essentialocl::ArrowExpCS.source=current} '->' argument=NavigatingExpCS)
+		({essentialocl::InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
 	|	({OclMessageCS.source=current} op=('^^'|'^') messageName=SimpleName
 			'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')')
 	)?

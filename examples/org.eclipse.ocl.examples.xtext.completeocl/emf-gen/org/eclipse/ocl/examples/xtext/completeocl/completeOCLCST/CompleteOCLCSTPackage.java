@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.4 2010/05/16 19:26:03 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.5 2010/05/21 20:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -402,6 +402,24 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int COMPLETE_OCL_DOCUMENT_CS__LIBRARIES = BaseCSTPackage.DOCUMENT_CS__LIBRARIES;
 
 	/**
+	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__BOUND_CLASSIFIERS = BaseCSTPackage.DOCUMENT_CS__BOUND_CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__BOUND_OPERATIONS = BaseCSTPackage.DOCUMENT_CS__BOUND_OPERATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -636,7 +654,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_CS__SOURCE = EssentialOCLCSTPackage.EXP_CS_FEATURE_COUNT + 0;
+	int OCL_MESSAGE_CS__SOURCE = EssentialOCLCSTPackage.OPERATOR_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -645,7 +663,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_CS__OP = EssentialOCLCSTPackage.EXP_CS_FEATURE_COUNT + 1;
+	int OCL_MESSAGE_CS__OP = EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP;
 
 	/**
 	 * The feature id for the '<em><b>Message Name</b></em>' attribute.
@@ -654,7 +672,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_CS__MESSAGE_NAME = EssentialOCLCSTPackage.EXP_CS_FEATURE_COUNT + 2;
+	int OCL_MESSAGE_CS__MESSAGE_NAME = EssentialOCLCSTPackage.OPERATOR_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -663,7 +681,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_CS__ARGUMENTS = EssentialOCLCSTPackage.EXP_CS_FEATURE_COUNT + 3;
+	int OCL_MESSAGE_CS__ARGUMENTS = EssentialOCLCSTPackage.OPERATOR_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Message CS</em>' class.
@@ -672,7 +690,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CS_FEATURE_COUNT + 4;
+	int OCL_MESSAGE_CS_FEATURE_COUNT = EssentialOCLCSTPackage.OPERATOR_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' reference.
@@ -1358,28 +1376,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EClass getOclMessageCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getSource()
-	 * @see #getOclMessageCS()
-	 * @generated
-	 */
-	EReference getOclMessageCS_Source();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getOp <em>Op</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Op</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getOp()
-	 * @see #getOclMessageCS()
-	 * @generated
-	 */
-	EAttribute getOclMessageCS_Op();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageCS#getMessageName <em>Message Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1810,22 +1806,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OCL_MESSAGE_CS = eINSTANCE.getOclMessageCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OCL_MESSAGE_CS__SOURCE = eINSTANCE.getOclMessageCS_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OCL_MESSAGE_CS__OP = eINSTANCE.getOclMessageCS_Op();
 
 		/**
 		 * The meta object literal for the '<em><b>Message Name</b></em>' attribute feature.

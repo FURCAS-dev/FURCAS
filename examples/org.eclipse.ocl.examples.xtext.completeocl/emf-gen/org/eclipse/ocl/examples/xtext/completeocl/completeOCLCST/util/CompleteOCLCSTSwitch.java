@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTSwitch.java,v 1.2 2010/05/03 05:58:41 ewillink Exp $
+ * $Id: CompleteOCLCSTSwitch.java,v 1.3 2010/05/21 20:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -27,6 +27,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SubExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -205,6 +207,8 @@ public class CompleteOCLCSTSwitch<T> {
 			case CompleteOCLCSTPackage.OCL_MESSAGE_CS: {
 				OclMessageCS oclMessageCS = (OclMessageCS)theEObject;
 				T result = caseOclMessageCS(oclMessageCS);
+				if (result == null) result = caseOperatorExpCS(oclMessageCS);
+				if (result == null) result = caseSubExpCS(oclMessageCS);
 				if (result == null) result = caseExpCS(oclMessageCS);
 				if (result == null) result = caseElementCS(oclMessageCS);
 				if (result == null) result = defaultCase(theEObject);
@@ -404,6 +408,36 @@ public class CompleteOCLCSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseExpCS(ExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sub Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sub Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubExpCS(SubExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operator Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operator Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperatorExpCS(OperatorExpCS object) {
 		return null;
 	}
 

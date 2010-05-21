@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTAdapterFactory.java,v 1.2 2010/05/03 05:58:40 ewillink Exp $
+ * $Id: CompleteOCLCSTAdapterFactory.java,v 1.3 2010/05/21 20:20:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -27,6 +27,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SubExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -179,6 +181,14 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExpCS(ExpCS object) {
 				return createExpCSAdapter();
+			}
+			@Override
+			public Adapter caseSubExpCS(SubExpCS object) {
+				return createSubExpCSAdapter();
+			}
+			@Override
+			public Adapter caseOperatorExpCS(OperatorExpCS object) {
+				return createOperatorExpCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -337,6 +347,34 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SubExpCS <em>Sub Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SubExpCS
+	 * @generated
+	 */
+	public Adapter createSubExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS <em>Operator Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS
+	 * @generated
+	 */
+	public Adapter createOperatorExpCSAdapter() {
 		return null;
 	}
 
