@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.5 2010/05/22 18:51:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -461,6 +461,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_CLASSIFIER_CS__TYPE_PARAMETERS = BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_CLASSIFIER_CS__OWNER = BaseCSTPackage.CLASSIFIER_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -542,6 +551,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS = OC_LIN_ECORE_CLASSIFIER_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_OR_ENUM_CS__OWNER = OC_LIN_ECORE_CLASSIFIER_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -621,6 +639,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE_CS__TYPE_PARAMETERS = DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_CS__OWNER = DATA_TYPE_OR_ENUM_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -778,6 +805,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int ENUM_CS__TYPE_PARAMETERS = DATA_TYPE_OR_ENUM_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_CS__OWNER = DATA_TYPE_OR_ENUM_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -922,6 +958,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__IS_DEFINITION = BaseCSTPackage.STRUCTURAL_FEATURE_CS__IS_DEFINITION;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__OWNER = BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1048,6 +1093,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_ATTRIBUTE_CS__IS_DEFINITION = OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__IS_DEFINITION;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_ATTRIBUTE_CS__OWNER = OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1118,6 +1172,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OC_LIN_ECORE_CLASS_CS__TYPE_PARAMETERS = OC_LIN_ECORE_CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_CLASS_CS__OWNER = OC_LIN_ECORE_CLASSIFIER_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -1235,6 +1298,24 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OC_LIN_ECORE_DOCUMENT_CS__LIBRARIES = BaseCSTPackage.DOCUMENT_CS__LIBRARIES;
+
+	/**
+	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_DOCUMENT_CS__BOUND_CLASSIFIERS = BaseCSTPackage.DOCUMENT_CS__BOUND_CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_DOCUMENT_CS__BOUND_OPERATIONS = BaseCSTPackage.DOCUMENT_CS__BOUND_OPERATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
@@ -1370,6 +1451,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OC_LIN_ECORE_OPERATION_CS__TYPE_PARAMETERS = BaseCSTPackage.OPERATION_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_OPERATION_CS__OWNER = BaseCSTPackage.OPERATION_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -1587,6 +1677,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OC_LIN_ECORE_REFERENCE_CS__IS_DEFINITION = OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_REFERENCE_CS__OWNER = OC_LIN_ECORE_STRUCTURAL_FEATURE_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.

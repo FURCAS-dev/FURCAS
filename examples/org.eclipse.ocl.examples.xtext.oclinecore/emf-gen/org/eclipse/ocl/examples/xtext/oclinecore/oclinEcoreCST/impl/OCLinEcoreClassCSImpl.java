@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreClassCSImpl.java,v 1.2 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: OCLinEcoreClassCSImpl.java,v 1.3 2010/05/22 18:51:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -263,7 +264,7 @@ public class OCLinEcoreClassCSImpl extends ClassifierCSImpl implements OCLinEcor
 	 */
 	public EList<OperationCS> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentEList<OperationCS>(OperationCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS);
+			operations = new EObjectContainmentWithInverseEList<OperationCS>(OperationCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS, BaseCSTPackage.OPERATION_CS__OWNER);
 		}
 		return operations;
 	}
@@ -275,9 +276,26 @@ public class OCLinEcoreClassCSImpl extends ClassifierCSImpl implements OCLinEcor
 	 */
 	public EList<StructuralFeatureCS> getStructuralFeatures() {
 		if (structuralFeatures == null) {
-			structuralFeatures = new EObjectContainmentEList<StructuralFeatureCS>(StructuralFeatureCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES);
+			structuralFeatures = new EObjectContainmentWithInverseEList<StructuralFeatureCS>(StructuralFeatureCS.class, this, OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES, BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER);
 		}
 		return structuralFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperations()).basicAdd(otherEnd, msgs);
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_CLASS_CS__STRUCTURAL_FEATURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getStructuralFeatures()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.6 2010/05/22 18:51:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -1102,6 +1102,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TUPLE_LITERAL_EXP_CS__TYPE_PARAMETERS = BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__OWNER = BaseCSTPackage.CLASSIFIER_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1163,6 +1172,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_TYPE_CS__TYPE_PARAMETERS = BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_CS__OWNER = BaseCSTPackage.CLASSIFIER_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.

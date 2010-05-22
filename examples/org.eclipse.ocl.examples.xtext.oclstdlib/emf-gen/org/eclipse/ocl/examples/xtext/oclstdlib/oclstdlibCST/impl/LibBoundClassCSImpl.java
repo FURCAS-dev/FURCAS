@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibBoundClassCSImpl.java,v 1.1 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibBoundClassCSImpl.java,v 1.2 2010/05/22 18:51:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -88,23 +88,6 @@ public class LibBoundClassCSImpl extends LibClassifierCSImpl implements LibBound
 	 * @generated
 	 */
 	public TypeBindingsCS getBindings() {
-		if (bindings != null && bindings.eIsProxy()) {
-			InternalEObject oldBindings = (InternalEObject)bindings;
-			bindings = (TypeBindingsCS)eResolveProxy(oldBindings);
-			if (bindings != oldBindings) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLstdlibCSTPackage.LIB_BOUND_CLASS_CS__BINDINGS, oldBindings, bindings));
-			}
-		}
-		return bindings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeBindingsCS basicGetBindings() {
 		return bindings;
 	}
 
@@ -167,8 +150,7 @@ public class LibBoundClassCSImpl extends LibClassifierCSImpl implements LibBound
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case OCLstdlibCSTPackage.LIB_BOUND_CLASS_CS__BINDINGS:
-				if (resolve) return getBindings();
-				return basicGetBindings();
+				return getBindings();
 			case OCLstdlibCSTPackage.LIB_BOUND_CLASS_CS__BINDS:
 				if (resolve) return getBinds();
 				return basicGetBinds();

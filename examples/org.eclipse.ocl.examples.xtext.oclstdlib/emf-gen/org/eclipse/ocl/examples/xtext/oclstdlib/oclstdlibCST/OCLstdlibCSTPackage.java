@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.3 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.4 2010/05/22 18:51:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -127,6 +127,15 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	int LIB_CLASSIFIER_CS__TYPE_PARAMETERS = BaseCSTPackage.CLASS_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASSIFIER_CS__OWNER = BaseCSTPackage.CLASS_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -216,6 +225,15 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIB_BOUND_CLASS_CS__TYPE_PARAMETERS = LIB_CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_BOUND_CLASS_CS__OWNER = LIB_CLASSIFIER_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
@@ -325,6 +343,15 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIB_CLASS_CS__TYPE_PARAMETERS = LIB_CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__OWNER = LIB_CLASSIFIER_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
@@ -617,6 +644,15 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	int LIB_ITERATION_CS__TYPE_PARAMETERS = BaseCSTPackage.OPERATION_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__OWNER = BaseCSTPackage.OPERATION_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -760,6 +796,15 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIB_OPERATION_CS__TYPE_PARAMETERS = BaseCSTPackage.OPERATION_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_OPERATION_CS__OWNER = BaseCSTPackage.OPERATION_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
@@ -978,6 +1023,15 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIB_PROPERTY_CS__IS_DEFINITION = BaseCSTPackage.ATTRIBUTE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__OWNER = BaseCSTPackage.ATTRIBUTE_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
