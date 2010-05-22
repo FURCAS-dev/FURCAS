@@ -6,13 +6,13 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>org.eclipse.ocl.editor.ocl.ui.OCLBuilder</name>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.ocl.editor.ocl.ui.OCLNature</nature>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 	</natures>
 </projectDescription>
