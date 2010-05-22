@@ -10,9 +10,7 @@
 --     M.Garcia - realisation of the example for use within Eclipse 
 --------------------------------------------------------------------------------
 
-
---Uncomment the next line to use the Xtext editor in 3.0.0
---import 'RoyalAndLoyal.ecore'
+import 'RoyalAndLoyal.ecore'
 
 package RandL
 
