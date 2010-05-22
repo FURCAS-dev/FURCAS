@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.10 2010/05/21 20:13:32 ewillink Exp $
+ * $Id: OCLinEcoreCrossReferenceSerializer.java,v 1.11 2010/05/22 18:52:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -45,6 +45,18 @@ import com.google.inject.Inject;
 
 public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 {
+	private class PathElement
+	{
+		public final String name;
+		public final EObject element;
+		
+		public PathElement(String name, EObject element) {
+			super();
+			this.name = name;
+			this.element = element;
+		}
+	}
+	
 	@Inject
 	private LinkingHelper linkingHelper;
 
@@ -61,8 +73,8 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 	protected String getConvertedLinkText(EObject object, EReference reference, EObject context) {
 		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
 			DocumentScopeAdapter documentScopeAdapter = AbstractScopeAdapter.getDocumentScopeAdapter(context);
-			List<String> contextPath = getPath(documentScopeAdapter, context);
-			List<String> objectPath = getPath(documentScopeAdapter, object);
+			List<PathElement> contextPath = getPath(documentScopeAdapter, context);
+			List<PathElement> objectPath = getPath(documentScopeAdapter, object);
 			return getDivergentPath(objectPath, contextPath);
 		}
 		else {
@@ -70,47 +82,47 @@ public class OCLinEcoreCrossReferenceSerializer extends CrossReferenceSerializer
 		}
 	}
 
-	private String getDivergentPath(List<String> objectPath, List<String> contextPath) {
+	private String getDivergentPath(List<PathElement> objectPath, List<PathElement> contextPath) {
 		int i = 0;
 		int iSize = objectPath.size();
 		int iMax = Math.min(iSize, contextPath.size());
 		for ( ; i < iMax; i++) {
-			String objectElement = objectPath.get(i);
-			String contextElement = contextPath.get(i);
+			EObject objectElement = objectPath.get(i).element;
+			EObject contextElement = contextPath.get(i).element;
 			if (!objectElement.equals(contextElement)) {
 				break;
 			}
 		}
 		StringBuffer s = new StringBuffer();
 		for ( ; i < iSize-1; i++) {
-			s.append(valueConverter.toString(objectPath.get(i), "ID"));
+			s.append(valueConverter.toString(objectPath.get(i).name, "ID"));
 			s.append("::");
 		}
 		if (iSize > 0) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1), "ID"));
+			s.append(valueConverter.toString(objectPath.get(iSize-1).name, "ID"));
 		}
 		return s.toString();
 	}
 
-	private List<String> getPath(DocumentScopeAdapter documentScopeAdapter, EObject eObject) {
+	private List<PathElement> getPath(DocumentScopeAdapter documentScopeAdapter, EObject eObject) {
 		if (eObject instanceof PackageCS) {
 			String alias = documentScopeAdapter.getAlias((PackageCS)eObject);
 			if (alias != null) {
-				List<String> result = new ArrayList<String>();
-				result.add(alias);
+				List<PathElement> result = new ArrayList<PathElement>();
+				result.add(new PathElement(alias, eObject));
 				return result;
 			}
 		}
 		EObject eContainer = eObject.eContainer();
 		if (eContainer == null) {
-			return new ArrayList<String>();
+			return new ArrayList<PathElement>();
 		}
-		List<String> result = getPath(documentScopeAdapter, eContainer);
+		List<PathElement> result = getPath(documentScopeAdapter, eContainer);
 		if (eObject instanceof ENamedElement) {
-			result.add(((ENamedElement)eObject).getName());
+			result.add(new PathElement(((ENamedElement)eObject).getName(), eObject));
 		}
 		else if (eObject instanceof NamedElementCS) {
-			result.add(((NamedElementCS)eObject).getName());
+			result.add(new PathElement(((NamedElementCS)eObject).getName(), eObject));
 		}
 		return result;
 	}
