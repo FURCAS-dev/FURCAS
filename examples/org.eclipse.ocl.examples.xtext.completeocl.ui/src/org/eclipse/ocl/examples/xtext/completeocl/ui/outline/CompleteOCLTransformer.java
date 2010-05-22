@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLTransformer.java,v 1.2 2010/05/17 09:18:00 ewillink Exp $
+ * $Id: CompleteOCLTransformer.java,v 1.3 2010/05/22 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.outline;
 
@@ -20,7 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.outline.EssentialOCLTransformer;
 
 /**
@@ -28,13 +33,48 @@ import org.eclipse.ocl.examples.xtext.essentialocl.ui.outline.EssentialOCLTransf
  * 
  */
 public class CompleteOCLTransformer extends EssentialOCLTransformer
-{
-	public List<EObject> getChildren(CompleteOCLDocumentCS csDocument) {
+{	
+	public List<EObject> getChildren(ClassifierContextDeclCS csElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		contents.addAll(csDocument.getImports());
-		contents.addAll(csDocument.getLibraries());
-		contents.addAll(csDocument.getPackages());
-		contents.addAll(csDocument.getAnnotations());
+		addContents(contents, csElement.getDefs());
+		addContents(contents, csElement.getInvs());
+		return contents;
+	}
+
+	public List<EObject> getChildren(CompleteOCLDocumentCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getImports());
+		addContents(contents, csElement.getLibraries());
+		addContents(contents, csElement.getPackages());
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(DefCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContent(contents, csElement.getExpression());
+		return contents;
+	}
+	
+	public List<EObject> getChildren(OperationContextDeclCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+//		addContents(contents, csElement.getParameters());
+		addContents(contents, csElement.getPres());
+		addContents(contents, csElement.getBodies());
+		addContents(contents, csElement.getPosts());
+		return contents;
+	}
+
+	public List<EObject> getChildren(PackageDeclarationCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getContexts());
+		return contents;
+	}
+	
+	public List<EObject> getChildren(PropertyContextDeclCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContent(contents, csElement.getInit());
+		addContent(contents, csElement.getDer());
 		return contents;
 	}
 }

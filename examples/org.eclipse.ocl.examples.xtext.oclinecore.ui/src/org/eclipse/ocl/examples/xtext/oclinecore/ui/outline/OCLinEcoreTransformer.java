@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreTransformer.java,v 1.4 2010/05/17 09:18:03 ewillink Exp $
+ * $Id: OCLinEcoreTransformer.java,v 1.5 2010/05/22 19:02:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.outline;
 
@@ -20,21 +20,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.outline.EssentialOCLTransformer;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassifierCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
-import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreOperationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 
 /**
  * customization of the default outline structure
  * 
  */
-public class OCLinEcoreTransformer extends AbstractDeclarativeSemanticModelTransformer
+public class OCLinEcoreTransformer extends EssentialOCLTransformer
 {
-	public List<EObject> getChildren(OCLinEcoreDocumentCS csDocument) {
+	public List<EObject> getChildren(OCLinEcoreClassCS csElement) {
 		List<EObject> contents = new ArrayList<EObject>();
-		contents.addAll(csDocument.getImports());
-		contents.addAll(csDocument.getLibraries());
-		contents.addAll(csDocument.getPackages());
-		contents.addAll(csDocument.getAnnotations());
+		addContents(contents, csElement.getTypeParameters());
+		addContents(contents, csElement.getSuperTypes());
+		addContents(contents, csElement.getOperations());
+		addContents(contents, csElement.getStructuralFeatures());
+		addContents(contents, csElement.getConstraints());
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(OCLinEcoreClassifierCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getTypeParameters());
+		addContents(contents, csElement.getConstraints());
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(OCLinEcoreDocumentCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getImports());
+		addContents(contents, csElement.getLibraries());
+		addContents(contents, csElement.getPackages());
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(OCLinEcoreOperationCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getTypeParameters());
+		addContents(contents, csElement.getParameters());
+		addContents(contents, csElement.getConstraints());
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(OCLinEcoreStructuralFeatureCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getConstraints());
+		addContents(contents, csElement.getAnnotations());
 		return contents;
 	}
 }

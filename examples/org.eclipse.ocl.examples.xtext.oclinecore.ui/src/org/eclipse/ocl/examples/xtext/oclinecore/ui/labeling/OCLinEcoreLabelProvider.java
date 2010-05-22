@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLabelProvider.java,v 1.2 2010/05/17 09:18:03 ewillink Exp $
+ * $Id: OCLinEcoreLabelProvider.java,v 1.3 2010/05/22 19:02:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling;
+
+import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
@@ -30,10 +32,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.EssentialOCLLabelProvider;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeOrEnumCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.ConstraintCSImpl;
 
 import com.google.inject.Inject;
 
@@ -47,6 +52,20 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 	@Inject
 	public OCLinEcoreLabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
+	}
+
+	public String text(AnnotationCS ele) {
+		StringBuffer s = new StringBuffer();
+		String idName = ele.getIdSource();
+		if (idName != null) {
+			appendString(s, idName);			
+		}
+		else {
+			s.append("\"");
+			appendString(s, ele.getStringSource());			
+			s.append("\"");
+		}
+		return s.toString();
 	}
 
 	@Override
@@ -63,16 +82,87 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif";
 	}
 
-	protected String image(ConstraintCSImpl ele) {
+	protected String image(ConstraintCS ele) {
+		String stereotype = ele.getStereotype();
+		if ("body".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
+		}
+		else if ("derivation".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DerivationConstraint.gif";
+		}
+		else if ("initial".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InitialConstraint.gif";
+		}
+		else if ("invariant".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
+		}
+		else if ("postcondition".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PostconditionConstraint.gif";
+		}
+		else if ("precondition".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PreconditionConstraint.gif";
+		}
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";
+	}
+
+	public String text(ConstraintCS ele) {
+		StringBuffer s = new StringBuffer();
+		s.append("<");
+		appendString(s, ele.getStereotype());
+		s.append("> ");
+		appendOptionalName(s, ele);
+		return s.toString();
 	}
 
 	protected String image(DataTypeCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EDataType.gif";
 	}
 
+	protected String text(DataTypeOrEnumCS ele) {
+		StringBuffer s = new StringBuffer();
+		appendName(s, ele);
+		List<TypeParameterCS> typeParameters = ele.getTypeParameters();
+		if (!typeParameters.isEmpty()) {
+			s.append("<");
+			String prefix = "";
+			for (TypeParameterCS typeParameter : typeParameters) {
+				s.append(prefix);
+				appendType(s, typeParameter);
+				prefix = ", ";
+			}
+			s.append(">");
+		}
+		String instance = ele.getInstanceClassName();
+		if (instance != null) {
+			s.append(" [");
+			s.append(instance);
+			s.append("]");
+		}
+		return s.toString();
+	}
+
 	protected String image(DetailCS ele) {
 		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EStringToStringMapEntry.gif";
+	}
+
+	public String text(DetailCS ele) {
+		StringBuffer s = new StringBuffer();
+		String idName = ele.getIdName();
+		if (idName != null) {
+			appendString(s, idName);			
+		}
+		else {
+			s.append("\"");
+			appendString(s, ele.getStringName());			
+			s.append("\"");
+		}
+		s.append(" : ");
+		appendString(s, ele.getValue());
+		return s.toString();
+	}
+
+	public String text(DocumentationCS ele) {
+		return "documentation";
 	}
 
 	protected String image(EnumCS ele) {

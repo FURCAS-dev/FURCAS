@@ -12,10 +12,18 @@
  *
  * </copyright>
  *
- * $Id: BaseTransformer.java,v 1.1 2010/05/17 09:18:04 ewillink Exp $
+ * $Id: BaseTransformer.java,v 1.2 2010/05/22 19:02:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui.outline;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
 
 /**
@@ -24,4 +32,32 @@ import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemant
  */
 public class BaseTransformer extends AbstractDeclarativeSemanticModelTransformer
 {
+	protected void addContent(List<EObject> contents, ElementCS csElement) {
+		if (csElement != null)
+			contents.add(csElement);
+	}
+
+	protected void addContents(List<EObject> contents, List<? extends ElementCS> csElements) {
+		contents.addAll(csElements);
+	}
+
+	public List<EObject> getChildren(OperationCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getTypeParameters());
+		addContents(contents, csElement.getParameters());
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(ParameterCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
+
+	public List<EObject> getChildren(StructuralFeatureCS csElement) {
+		List<EObject> contents = new ArrayList<EObject>();
+		addContents(contents, csElement.getAnnotations());
+		return contents;
+	}
 }
