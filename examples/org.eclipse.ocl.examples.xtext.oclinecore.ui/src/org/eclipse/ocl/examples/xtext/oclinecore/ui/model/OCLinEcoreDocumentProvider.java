@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.4 2010/05/09 10:26:18 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.5 2010/05/22 19:02:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -41,19 +41,17 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreResourceForEditorInputFactory;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
-import org.eclipse.xtext.ui.resource.IResourceSetProvider;
-
-import com.google.inject.Inject;
 
 public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 {
-	@Inject
-	private IResourceSetProvider resourceSetProvider;
+//	@Inject
+//	private IResourceSetProvider resourceSetProvider;
 	
 	private Map<IDocument,Boolean> loadedAsEcoreMap = new HashMap<IDocument,Boolean>();
 	
@@ -77,7 +75,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 			ByteArrayOutputStream ecoreStream = new ByteArrayOutputStream();
 			String savedContent = document.get();
 			try {
-				ResourceSet resourceSet = resourceSetProvider.get(null);
+				ResourceSet resourceSet = getResourceSet();
 				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
 				((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, ecoreStream);
 				document.set(ecoreStream.toString());
@@ -93,6 +91,10 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		else {
 			super.doSaveDocument(monitor, element, document, overwrite);
 		}
+	}
+
+	private ResourceSet getResourceSet() {
+		return ((OCLinEcoreResourceForEditorInputFactory) getResourceForEditorInputFactory()).getResourceSet();
 	}
 
 	@Override
@@ -130,7 +132,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 			loadedAsEcoreMap.put(document, asEcore);
 			saveAsEcoreMap.put(document, asEcore);
 			if (asEcore) {
-				ResourceSet resourceSet = resourceSetProvider.get(null);
+				ResourceSet resourceSet = getResourceSet();
 				URI uri = uriMap.get(document);
 				Resource ecoreResource = resourceSet.createResource(uri, EcorePackage.eCONTENT_TYPE);
 				ecoreResource.load(inputStream, null);
