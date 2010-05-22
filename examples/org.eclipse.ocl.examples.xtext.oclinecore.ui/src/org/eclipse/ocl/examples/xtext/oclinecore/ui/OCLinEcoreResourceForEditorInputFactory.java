@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.5 2010/05/09 10:26:18 ewillink Exp $
+ * $Id: OCLinEcoreResourceForEditorInputFactory.java,v 1.6 2010/05/22 19:02:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
@@ -28,6 +28,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IStorageEditorInput;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceFactory;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.ui.editor.model.JavaClassPathResourceForIEditorInputFactory;
 import org.eclipse.xtext.ui.resource.IStorage2UriMapper;
 
@@ -41,6 +42,11 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 	
 	@Inject
 	private Provider<XtextResource> provider;
+	
+	@Inject
+	private Provider<XtextResourceSet> resourceSetProvider;
+	
+	private ResourceSet resourceSet = null;
 
 	@Override
 	public Resource createResource(IEditorInput editorInput) {
@@ -88,4 +94,20 @@ public class OCLinEcoreResourceForEditorInputFactory extends JavaClassPathResour
 		resource.setValidationDisabled(true);
 		return resource;
 	}
+
+	public ResourceSet getResourceSet() {
+		if (resourceSet == null) {
+			resourceSet = resourceSetProvider.get();
+		}
+		return resourceSet;
+	}
+
+	@Override
+	protected ResourceSet getResourceSet(IStorage storage) {
+		if (storage == null) {
+			return getResourceSet();
+		}
+		return super.getResourceSet(storage);
+	}
+
 }
