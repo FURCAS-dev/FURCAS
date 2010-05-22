@@ -14248,7 +14248,7 @@ protected class Model_ExpCSParserRuleCall extends RuleCallToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLetExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
@@ -16868,7 +16868,7 @@ protected class ExpCS_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLetExpCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
@@ -16917,7 +16917,7 @@ protected class ExpCS_ImpliesCSParserRuleCall_0 extends RuleCallToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17020,7 +17020,7 @@ protected class ImpliesCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getImpliesCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17264,7 +17264,7 @@ protected class XorCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getXorCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17508,7 +17508,7 @@ protected class OrCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 
@@ -17752,7 +17752,7 @@ protected class AndCS_Group extends GroupToken {
 		   getEObject().eClass() != grammarAccess.getCollectionLiteralExpCSAccess().getCollectionLiteralExpCSTypeCSAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getCollectionTypeCSRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIfExpCSRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getEqualityCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNavigationExpCSAccess().getInfixExpCSSourceAction_1_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getInvalidLiteralExpCSAccess().getInvalidLiteralExpCSAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSubNavigationExpCSAccess().getNestedExpCSAction_9_1().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNullLiteralExpCSAccess().getNullLiteralExpCSAction_0().getType().getClassifier() && 

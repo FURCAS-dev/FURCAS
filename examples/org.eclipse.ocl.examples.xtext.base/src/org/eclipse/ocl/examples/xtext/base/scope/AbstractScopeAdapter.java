@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.6 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.7 2010/05/22 18:57:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -107,7 +107,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	@SuppressWarnings("unchecked")
 	private AbstractScopeAdapter(ScopeAdapter containerScopeAdapter, T csElement) {
 		this.parent = containerScopeAdapter;
-		this.document = parent != null ? parent.getDocumentScopeAdapter() : (AbstractDocumentScopeAdapter<?>)this;
+		this.document = parent != null ? parent.getDocumentScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 		this.targetClass = (Class<T>) csElement.getClass();
 	}
 
