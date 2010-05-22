@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.8 2010/05/21 20:14:20 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.9 2010/05/22 18:53:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -162,6 +162,10 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 	 * Set of all targets for EClassifierRef during session.
 	 */
 	private Set<EClassifier> allEClassifiers = new HashSet<EClassifier>();
+	/**
+	 * Set of all names during session.
+	 */
+	private Set<String> allNames = new HashSet<String>();
 
 	/**
 	 * Set of all aliases.
@@ -516,7 +520,9 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 
 		protected void copyNamedElement(NamedElementCS csNamedElement, ENamedElement eNamedElement) {
 			copyModelElement(csNamedElement, eNamedElement);
-			csNamedElement.setName(eNamedElement.getName());
+			String name = eNamedElement.getName();
+			csNamedElement.setName(name);
+			allNames.add(name);
 		}
 
 		protected void copyStructuralFeature(OCLinEcoreStructuralFeatureCS csStructuralFeature, EStructuralFeature eStructuralFeature, List<EAnnotation> excludedAnnotations) {
@@ -632,6 +638,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				EGenericType eGenericType = (EGenericType) csTypeRef.getOriginalObject();
 				EClassifier eClassifier = eGenericType.getEClassifier();
 				if (eClassifier != null) {
+					allEClassifiers.add(eClassifier);
 					ClassifierCS csClassifier = getCS(eClassifier, ClassifierCS.class);
 					csTypeRef.setType(csClassifier);
 				}
@@ -757,6 +764,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				Ecore2OCLinEcore conversion = importDocument(resourceSet, resource);
 				OCLinEcoreDocumentCS importResource = conversion.getDocument();
 				allEClassifiers.addAll(conversion.allEClassifiers);
+				allNames.addAll(conversion.allNames);
 				for (Map.Entry<EObject, ModelElementCS> entry : conversion.createMap.entrySet()) {
 					createMap.put(entry.getKey(), entry.getValue());
 				}
@@ -823,7 +831,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			if (alias == null) {
 				alias = ePackage.getNsPrefix();
 				String suffixedAlias = alias;
-				for (int i = 0; alias2ePackage.containsKey(suffixedAlias); i++) {
+				for (int i = 0; alias2ePackage.containsKey(suffixedAlias) || allNames.contains(suffixedAlias); i++) {
 					suffixedAlias = alias + "_" + i;
 				}
 				alias = suffixedAlias;
