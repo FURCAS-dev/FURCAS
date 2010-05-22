@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StructuralFeatureRefCS.java,v 1.1 2010/05/03 05:25:03 ewillink Exp $
+ * $Id: StructuralFeatureRefCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -18,4 +18,12 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @generated
  */
 public interface StructuralFeatureRefCS extends ModelElementCS {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	StructuralFeatureCS getFeature();
 } // StructuralFeatureRefCS

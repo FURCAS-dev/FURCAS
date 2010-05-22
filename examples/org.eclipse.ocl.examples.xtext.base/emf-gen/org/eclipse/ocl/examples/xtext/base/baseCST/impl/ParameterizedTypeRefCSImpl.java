@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCSImpl.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: ParameterizedTypeRefCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 
 /**
@@ -83,6 +84,14 @@ public abstract class ParameterizedTypeRefCSImpl extends TypedRefCSImpl implemen
 		}
 		return typeArguments;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract TypeCS getType();
+
 
 	/**
 	 * <!-- begin-user-doc -->

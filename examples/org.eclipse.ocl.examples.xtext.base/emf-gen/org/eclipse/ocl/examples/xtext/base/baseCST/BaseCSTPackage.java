@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackage.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: BaseCSTPackage.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -624,13 +624,22 @@ public interface BaseCSTPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__IS_DEFINITION = FEATURE_CS__IS_DEFINITION;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__OWNER = FEATURE_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Structural Feature CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 0;
+	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS <em>Attribute CS</em>}' class.
@@ -740,6 +749,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__IS_DEFINITION = STRUCTURAL_FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__OWNER = STRUCTURAL_FEATURE_CS__OWNER;
 
 	/**
 	 * The number of structural features of the '<em>Attribute CS</em>' class.
@@ -1034,13 +1052,22 @@ public interface BaseCSTPackage extends EPackage {
 	int CLASSIFIER_CS__TYPE_PARAMETERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CS__OWNER = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Classifier CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int CLASSIFIER_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundClassifierCSImpl <em>Bound Classifier CS</em>}' class.
@@ -1096,6 +1123,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUND_CLASSIFIER_CS__TYPE_PARAMETERS = CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASSIFIER_CS__OWNER = CLASSIFIER_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' reference.
@@ -1305,13 +1341,22 @@ public interface BaseCSTPackage extends EPackage {
 	int OPERATION_CS__TYPE_PARAMETERS = FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__OWNER = FEATURE_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Operation CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 2;
+	int OPERATION_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1431,6 +1476,15 @@ public interface BaseCSTPackage extends EPackage {
 	int BOUND_OPERATION_CS__TYPE_PARAMETERS = OPERATION_CS__TYPE_PARAMETERS;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_OPERATION_CS__OWNER = OPERATION_CS__OWNER;
+
+	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1501,6 +1555,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_CS__TYPE_PARAMETERS = CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__OWNER = CLASSIFIER_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
@@ -2324,13 +2387,22 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS__UPPER = TYPED_ELEMENT_CS__UPPER;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_CS__OWNER = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Parameter CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int PARAMETER_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterizedTypeRefCSImpl <em>Parameterized Type Ref CS</em>}' class.
@@ -3009,6 +3081,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__IS_DEFINITION = STRUCTURAL_FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__OWNER = STRUCTURAL_FEATURE_CS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Opposite</b></em>' containment reference.
@@ -3690,6 +3771,17 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getClassifierCS_TypeParameters();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS#getOwner()
+	 * @see #getClassifierCS()
+	 * @generated
+	 */
+	EReference getClassifierCS_Owner();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS <em>Classifier Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4061,6 +4153,17 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getOperationCS_TypeParameters();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwner()
+	 * @see #getOperationCS()
+	 * @generated
+	 */
+	EReference getOperationCS_Owner();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS <em>Operation Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4143,6 +4246,17 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getParameterCS();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getOwner()
+	 * @see #getParameterCS()
+	 * @generated
+	 */
+	EReference getParameterCS_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS <em>Parameterized Type Ref CS</em>}'.
@@ -4392,6 +4506,17 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStructuralFeatureCS();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS#getOwner()
+	 * @see #getStructuralFeatureCS()
+	 * @generated
+	 */
+	EReference getStructuralFeatureCS_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS <em>Structural Feature Ref CS</em>}'.
@@ -4854,6 +4979,14 @@ public interface BaseCSTPackage extends EPackage {
 		EReference CLASSIFIER_CS__TYPE_PARAMETERS = eINSTANCE.getClassifierCS_TypeParameters();
 
 		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_CS__OWNER = eINSTANCE.getClassifierCS_Owner();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierRefCSImpl <em>Classifier Ref CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5162,6 +5295,14 @@ public interface BaseCSTPackage extends EPackage {
 		EReference OPERATION_CS__TYPE_PARAMETERS = eINSTANCE.getOperationCS_TypeParameters();
 
 		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CS__OWNER = eINSTANCE.getOperationCS_Owner();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationRefCSImpl <em>Operation Ref CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5232,6 +5373,14 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PARAMETER_CS = eINSTANCE.getParameterCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER_CS__OWNER = eINSTANCE.getParameterCS_Owner();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterizedTypeRefCSImpl <em>Parameterized Type Ref CS</em>}' class.
@@ -5454,6 +5603,14 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STRUCTURAL_FEATURE_CS = eINSTANCE.getStructuralFeatureCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURAL_FEATURE_CS__OWNER = eINSTANCE.getStructuralFeatureCS_Owner();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureRefCSImpl <em>Structural Feature Ref CS</em>}' class.

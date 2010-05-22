@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.4 2010/05/22 18:49:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -73,6 +73,7 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeCS getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;

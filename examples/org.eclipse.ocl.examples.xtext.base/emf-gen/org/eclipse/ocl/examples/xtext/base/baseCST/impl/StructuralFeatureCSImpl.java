@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StructuralFeatureCSImpl.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: StructuralFeatureCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -31,7 +31,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
@@ -49,6 +51,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureCSImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureCSImpl#isIsStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureCSImpl#isIsDefinition <em>Is Definition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureCSImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -359,13 +362,86 @@ public abstract class StructuralFeatureCSImpl extends NamedElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ClassCS getOwner() {
+		if (eContainerFeatureID() != BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER) return null;
+		return (ClassCS)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(ClassCS newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(ClassCS newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, BaseCSTPackage.CLASS_CS__STRUCTURAL_FEATURES, ClassCS.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((ClassCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__TYPE:
 				return basicSetType(null, msgs);
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				return basicSetOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.CLASS_CS__STRUCTURAL_FEATURES, ClassCS.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -390,6 +466,8 @@ public abstract class StructuralFeatureCSImpl extends NamedElementCSImpl impleme
 				return isIsStatic();
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__IS_DEFINITION:
 				return isIsDefinition();
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -425,6 +503,9 @@ public abstract class StructuralFeatureCSImpl extends NamedElementCSImpl impleme
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__IS_DEFINITION:
 				setIsDefinition((Boolean)newValue);
 				return;
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				setOwner((ClassCS)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -458,6 +539,9 @@ public abstract class StructuralFeatureCSImpl extends NamedElementCSImpl impleme
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__IS_DEFINITION:
 				setIsDefinition(IS_DEFINITION_EDEFAULT);
 				return;
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				setOwner((ClassCS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -484,6 +568,8 @@ public abstract class StructuralFeatureCSImpl extends NamedElementCSImpl impleme
 				return isStatic != IS_STATIC_EDEFAULT;
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__IS_DEFINITION:
 				return isDefinition != IS_DEFINITION_EDEFAULT;
+			case BaseCSTPackage.STRUCTURAL_FEATURE_CS__OWNER:
+				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}

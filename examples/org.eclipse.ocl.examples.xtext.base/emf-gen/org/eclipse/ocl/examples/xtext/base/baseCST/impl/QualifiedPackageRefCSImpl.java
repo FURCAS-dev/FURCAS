@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedPackageRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: QualifiedPackageRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
@@ -287,5 +288,10 @@ public class QualifiedPackageRefCSImpl extends PackageRefCSImpl implements Quali
 	@Override
 	public void getSignature(Signature signature) {
 		signature.appendElement(getElement());
+	}
+
+	@Override
+	public PackageCS getPackage() {
+		return getElement().getPackage();
 	}
 } //QualifiedPackageRefCSImpl

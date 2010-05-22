@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QualifiedStructuralFeatureRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: QualifiedStructuralFeatureRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
@@ -276,5 +277,10 @@ public class QualifiedStructuralFeatureRefCSImpl extends StructuralFeatureRefCSI
 	@Override
 	public void getSignature(Signature signature) {
 		signature.appendElement(getElement());
+	}
+
+	@Override
+	public StructuralFeatureCS getFeature() {
+		return getElement().getFeature();
 	}
 } //QualifiedStructuralFeatureRefCSImpl

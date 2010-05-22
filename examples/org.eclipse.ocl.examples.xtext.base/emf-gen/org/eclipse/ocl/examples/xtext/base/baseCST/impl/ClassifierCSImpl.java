@@ -12,21 +12,25 @@
  *
  * </copyright>
  *
- * $Id: ClassifierCSImpl.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: ClassifierCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
@@ -38,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.util.Signature;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl#getTypeParameters <em>Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,13 +95,86 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PackageCS getOwner() {
+		if (eContainerFeatureID() != BaseCSTPackage.CLASSIFIER_CS__OWNER) return null;
+		return (PackageCS)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(PackageCS newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, BaseCSTPackage.CLASSIFIER_CS__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(PackageCS newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.CLASSIFIER_CS__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, BaseCSTPackage.PACKAGE_CS__CLASSIFIERS, PackageCS.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CLASSIFIER_CS__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((PackageCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS:
 				return ((InternalEList<?>)getTypeParameters()).basicRemove(otherEnd, msgs);
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				return basicSetOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.PACKAGE_CS__CLASSIFIERS, PackageCS.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -109,6 +187,8 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 		switch (featureID) {
 			case BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS:
 				return getTypeParameters();
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,6 +206,9 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 				getTypeParameters().clear();
 				getTypeParameters().addAll((Collection<? extends TypeParameterCS>)newValue);
 				return;
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				setOwner((PackageCS)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -141,6 +224,9 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 			case BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS:
 				getTypeParameters().clear();
 				return;
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				setOwner((PackageCS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -155,6 +241,8 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 		switch (featureID) {
 			case BaseCSTPackage.CLASSIFIER_CS__TYPE_PARAMETERS:
 				return typeParameters != null && !typeParameters.isEmpty();
+			case BaseCSTPackage.CLASSIFIER_CS__OWNER:
+				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}

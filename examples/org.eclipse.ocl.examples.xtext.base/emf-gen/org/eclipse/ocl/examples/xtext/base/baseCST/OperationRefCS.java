@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OperationRefCS.java,v 1.1 2010/05/03 05:24:49 ewillink Exp $
+ * $Id: OperationRefCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -18,4 +18,12 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @generated
  */
 public interface OperationRefCS extends ModelElementCS {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	OperationCS getOperation();
 } // OperationRefCS

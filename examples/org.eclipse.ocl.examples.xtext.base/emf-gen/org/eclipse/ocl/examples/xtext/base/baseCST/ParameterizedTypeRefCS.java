@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterizedTypeRefCS.java,v 1.1 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: ParameterizedTypeRefCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -51,5 +51,13 @@ public interface ParameterizedTypeRefCS extends TypedRefCS {
 	 * @generated
 	 */
 	EList<TypeRefCS> getTypeArguments();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	TypeCS getType();
 
 } // ParameterizedTypeRefCS
