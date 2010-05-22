@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterCSImpl.java,v 1.1 2010/05/03 05:25:37 ewillink Exp $
+ * $Id: ParameterCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -25,7 +25,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
@@ -41,6 +43,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -269,13 +272,86 @@ public class ParameterCSImpl extends NamedElementCSImpl implements ParameterCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OperationCS getOwner() {
+		if (eContainerFeatureID() != BaseCSTPackage.PARAMETER_CS__OWNER) return null;
+		return (OperationCS)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(OperationCS newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, BaseCSTPackage.PARAMETER_CS__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(OperationCS newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.PARAMETER_CS__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, BaseCSTPackage.OPERATION_CS__PARAMETERS, OperationCS.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PARAMETER_CS__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((OperationCS)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BaseCSTPackage.PARAMETER_CS__TYPE:
 				return basicSetType(null, msgs);
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				return basicSetOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.OPERATION_CS__PARAMETERS, OperationCS.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -296,6 +372,8 @@ public class ParameterCSImpl extends NamedElementCSImpl implements ParameterCS {
 				return getType();
 			case BaseCSTPackage.PARAMETER_CS__UPPER:
 				return getUpper();
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -325,6 +403,9 @@ public class ParameterCSImpl extends NamedElementCSImpl implements ParameterCS {
 			case BaseCSTPackage.PARAMETER_CS__UPPER:
 				setUpper((Integer)newValue);
 				return;
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				setOwner((OperationCS)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -352,6 +433,9 @@ public class ParameterCSImpl extends NamedElementCSImpl implements ParameterCS {
 			case BaseCSTPackage.PARAMETER_CS__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				setOwner((OperationCS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -374,6 +458,8 @@ public class ParameterCSImpl extends NamedElementCSImpl implements ParameterCS {
 				return type != null;
 			case BaseCSTPackage.PARAMETER_CS__UPPER:
 				return upper != UPPER_EDEFAULT;
+			case BaseCSTPackage.PARAMETER_CS__OWNER:
+				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}

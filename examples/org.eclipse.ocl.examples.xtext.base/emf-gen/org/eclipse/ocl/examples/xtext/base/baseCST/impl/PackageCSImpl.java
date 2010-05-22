@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: PackageCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -138,7 +139,7 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 	 */
 	public EList<ClassifierCS> getClassifiers() {
 		if (classifiers == null) {
-			classifiers = new EObjectContainmentEList<ClassifierCS>(ClassifierCS.class, this, BaseCSTPackage.PACKAGE_CS__CLASSIFIERS);
+			classifiers = new EObjectContainmentWithInverseEList<ClassifierCS>(ClassifierCS.class, this, BaseCSTPackage.PACKAGE_CS__CLASSIFIERS, BaseCSTPackage.CLASSIFIER_CS__OWNER);
 		}
 		return classifiers;
 	}
@@ -195,6 +196,21 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 		uri = newUri;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PACKAGE_CS__URI, oldUri, uri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BaseCSTPackage.PACKAGE_CS__CLASSIFIERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClassifiers()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

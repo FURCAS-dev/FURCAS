@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageRefCS.java,v 1.1 2010/05/03 05:24:50 ewillink Exp $
+ * $Id: PackageRefCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -29,4 +29,12 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @generated
  */
 public interface PackageRefCS extends ModelElementCS {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	PackageCS getPackage();
 } // PackageRefCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimplePackageRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: SimplePackageRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -74,6 +74,7 @@ public class SimplePackageRefCSImpl extends PackageRefCSImpl implements SimplePa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PackageCS getPackage() {
 		if (package_ != null && package_.eIsProxy()) {
 			InternalEObject oldPackage = (InternalEObject)package_;

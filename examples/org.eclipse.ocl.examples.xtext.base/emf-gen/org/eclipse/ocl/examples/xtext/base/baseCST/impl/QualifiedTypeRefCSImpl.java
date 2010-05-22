@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedTypeRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: QualifiedTypeRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,9 +24,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
@@ -62,7 +63,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedRefCS element;
+	protected ParameterizedTypeRefCS element;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,7 +127,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedRefCS getElement() {
+	public ParameterizedTypeRefCS getElement() {
 		return element;
 	}
 
@@ -135,8 +136,8 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElement(TypedRefCS newElement, NotificationChain msgs) {
-		TypedRefCS oldElement = element;
+	public NotificationChain basicSetElement(ParameterizedTypeRefCS newElement, NotificationChain msgs) {
+		ParameterizedTypeRefCS oldElement = element;
 		element = newElement;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT, oldElement, newElement);
@@ -150,7 +151,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElement(TypedRefCS newElement) {
+	public void setElement(ParameterizedTypeRefCS newElement) {
 		if (newElement != element) {
 			NotificationChain msgs = null;
 			if (element != null)
@@ -207,7 +208,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 				setNamespace((NamespaceCS)newValue);
 				return;
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
-				setElement((TypedRefCS)newValue);
+				setElement((ParameterizedTypeRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,7 +226,7 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 				setNamespace((NamespaceCS)null);
 				return;
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS__ELEMENT:
-				setElement((TypedRefCS)null);
+				setElement((ParameterizedTypeRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -285,5 +286,10 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	public void getSignature(Signature signature) {
 		signature.appendElement(getElement());
 		signature.appendTypeArguments(getTypeArguments());
+	}
+
+	@Override
+	public TypeCS getType() {
+		return getElement().getType();
 	}
 } //PrimitiveTypeRefCSImpl

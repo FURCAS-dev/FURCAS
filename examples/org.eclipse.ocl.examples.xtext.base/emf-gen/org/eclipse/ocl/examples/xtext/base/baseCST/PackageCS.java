@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCS.java,v 1.1 2010/05/03 05:25:01 ewillink Exp $
+ * $Id: PackageCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -42,6 +42,7 @@ public interface PackageCS extends NamespaceCS {
 	/**
 	 * Returns the value of the '<em><b>Classifiers</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classifiers</em>' containment reference list isn't clear,
@@ -50,7 +51,8 @@ public interface PackageCS extends NamespaceCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Classifiers</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPackageCS_Classifiers()
-	 * @model containment="true"
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<ClassifierCS> getClassifiers();

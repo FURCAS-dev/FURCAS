@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCS.java,v 1.1 2010/05/03 05:24:47 ewillink Exp $
+ * $Id: ClassCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -57,6 +57,7 @@ public interface ClassCS extends ClassifierCS, NamespaceCS {
 	/**
 	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear,
@@ -65,7 +66,8 @@ public interface ClassCS extends ClassifierCS, NamespaceCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operations</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getClassCS_Operations()
-	 * @model containment="true"
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<OperationCS> getOperations();
@@ -73,6 +75,7 @@ public interface ClassCS extends ClassifierCS, NamespaceCS {
 	/**
 	 * Returns the value of the '<em><b>Structural Features</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Structural Features</em>' containment reference list isn't clear,
@@ -81,7 +84,8 @@ public interface ClassCS extends ClassifierCS, NamespaceCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Structural Features</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getClassCS_StructuralFeatures()
-	 * @model containment="true"
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<StructuralFeatureCS> getStructuralFeatures();

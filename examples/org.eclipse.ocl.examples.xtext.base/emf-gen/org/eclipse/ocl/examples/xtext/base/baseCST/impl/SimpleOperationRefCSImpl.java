@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleOperationRefCSImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: SimpleOperationRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -63,6 +63,7 @@ public class SimpleOperationRefCSImpl extends OperationRefCSImpl implements Simp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperationCS getOperation() {
 		if (operation != null && operation.eIsProxy()) {
 			InternalEObject oldOperation = (InternalEObject)operation;

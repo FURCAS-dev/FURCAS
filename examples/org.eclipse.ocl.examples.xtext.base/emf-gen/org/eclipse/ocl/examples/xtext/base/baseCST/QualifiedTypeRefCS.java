@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedTypeRefCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: QualifiedTypeRefCS.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -28,6 +28,6 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model
  * @generated
  */
-public interface QualifiedTypeRefCS extends ParameterizedTypeRefCS, QualifiedRefCS<TypedRefCS> {
+public interface QualifiedTypeRefCS extends ParameterizedTypeRefCS, QualifiedRefCS<ParameterizedTypeRefCS> {
 
 } // PathedTypeRefCS

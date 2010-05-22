@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageRefCSImpl.java,v 1.1 2010/05/03 05:25:18 ewillink Exp $
+ * $Id: PackageRefCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 
 /**
@@ -50,5 +51,12 @@ public abstract class PackageRefCSImpl extends ModelElementCSImpl implements Pac
 	protected EClass eStaticClass() {
 		return BaseCSTPackage.Literals.PACKAGE_REF_CS;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public abstract PackageCS getPackage();
 
 } //PackageRefCSImpl
