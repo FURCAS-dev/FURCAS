@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore2Ecore.java,v 1.5 2010/05/21 20:14:20 ewillink Exp $
+ * $Id: OCLinEcore2Ecore.java,v 1.6 2010/05/23 18:58:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -74,6 +74,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
+import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
@@ -90,6 +92,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcorePackage
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreReferenceCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreStructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util.OCLinEcoreCSTSwitch;
+import org.eclipse.xtext.parsetree.CompositeNode;
 
 public class OCLinEcore2Ecore extends AbstractConversion
 {
@@ -195,7 +198,23 @@ public class OCLinEcore2Ecore extends AbstractConversion
 
 		@Override
 		public EObject caseConstraintCS(ConstraintCS csConstraint) {
-			String exprString = csConstraint.getExprString();
+			ExpCS exprValue = csConstraint.getExprValue();
+			String exprString = null;
+			if (exprValue == null) {
+				exprString = csConstraint.getExprString();
+			}
+			else {
+				CompositeNode parserNode = ElementUtil.getParserNode(exprValue);
+				if (parserNode != null) {
+					exprString = parserNode.serialize();
+					for (int i = 0; i < exprString.length(); i++) {
+						if (exprString.charAt(i) != ' ') {
+							exprString = exprString.substring(i);
+							break;
+						}
+					}
+				}
+			}
 			if (exprString == null) {		// null for a manually coded requirement
 				return csConstraint;
 			}
