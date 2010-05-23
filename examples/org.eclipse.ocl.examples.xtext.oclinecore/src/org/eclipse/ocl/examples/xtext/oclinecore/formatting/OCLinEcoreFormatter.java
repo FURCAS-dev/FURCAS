@@ -12,24 +12,31 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreFormatter.java,v 1.3 2010/05/03 05:44:46 ewillink Exp $
+ * $Id: OCLinEcoreFormatter.java,v 1.4 2010/05/23 10:27:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 
+import org.eclipse.ocl.examples.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.AnnotationCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.AttributeCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.BodyConstraintCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ClassCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.DataTypeCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.DerivedConstraintCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.DocumentationCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.EnumCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.EnumLiteralCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ImportCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.InitialConstraintCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.InvariantConstraintCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.OperationCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ParameterCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.PostconditionConstraintCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.PreconditionConstraintCSElements;
+import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.QualifiedTypeRefCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ReferenceCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TypedTypeRefCSElements;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -40,128 +47,187 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
-public class OCLinEcoreFormatter extends AbstractDeclarativeFormatter {
+public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		OCLinEcoreGrammarAccess f = getGrammarAccess();
 
 	    c.setAutoLinewrap(120);
 
-//	    c.setLinewrap().between(f.getEDataTypeCSRule(), f.getEClassCSRule());
+	    OCLinEcoreGrammarAccess f = getGrammarAccess();
+	    
+		configureCollectionLiteralExpCS(c, f.getCollectionLiteralExpCSAccess());
+		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
+		configureIfExpCS(c, f.getIfExpCSAccess());
+		configureLetExpCS(c, f.getLetExpCSAccess());
+	    configureNavigationExpCS(c, f.getNavigationExpCSAccess());
+	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
+		configurePathNameExpCS(c, f.getPathNameExpCSAccess());
+		configurePreExpCS(c, f.getPreExpCSAccess());
+	    configureRoundBracketExpCS(c, f.getRoundBracketExpCSAccess());
+	    configureSquareBracketExpCS(c, f.getSquareBracketExpCSAccess());
+		configureSubNavigationExpCS(c, f.getSubNavigationExpCSAccess());
+	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
+	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
+
+	    c.setLinewrap(2).between(f.getImportCSRule(), f.getPackageCSRule());
+	    c.setLinewrap(2).between(f.getClassCSRule(), f.getClassCSRule());
+	    c.setLinewrap(2).between(f.getClassCSRule(), f.getDataTypeCSRule());
+	    c.setLinewrap(2).between(f.getClassCSRule(), f.getEnumCSRule());
+	    c.setLinewrap(2).between(f.getDataTypeCSRule(), f.getClassCSRule());
+	    c.setLinewrap(2).between(f.getDataTypeCSRule(), f.getDataTypeCSRule());
+	    c.setLinewrap(2).between(f.getDataTypeCSRule(), f.getEnumCSRule());
+	    c.setLinewrap(2).between(f.getEnumCSRule(), f.getClassCSRule());
+	    c.setLinewrap(2).between(f.getEnumCSRule(), f.getDataTypeCSRule());
+	    c.setLinewrap(2).between(f.getEnumCSRule(), f.getEnumCSRule());
 
 	    {	// AnnotationCS
 			AnnotationCSElements a = f.getAnnotationCSAccess();
-			setParentheses(c, a.getLeftParenthesisKeyword_2_0(), a.getRightParenthesisKeyword_2_3());
-			setComma(c, a.getCommaKeyword_2_2_0());
-			setSemiColon(c, a.getSemicolonKeyword_3_1());
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_2_0());
+			c.setNoSpace().before(a.getCommaKeyword_2_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_2_3());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_3_0_0(), a.getRightCurlyBracketKeyword_3_0_2());
+		    c.setIndentation(a.getLeftParenthesisKeyword_2_0(), a.getRightParenthesisKeyword_2_3());
 	    }		
 	    {	// AttributeCS
 			AttributeCSElements a = f.getAttributeCSAccess();
-			setSquareBrackets(c, a.getLeftSquareBracketKeyword_4_2_0(), a.getRightSquareBracketKeyword_4_2_2());	
-			setNoSpacePunctuation(c, a.getFullStopFullStopKeyword_4_2_1_0_1_0());
-			setNoInternalSpacePunctuation(c, a.getLeftCurlyBracketKeyword_6_0(), a.getRightCurlyBracketKeyword_6_3());
-			setNoSpacePunctuation(c, a.getCommaKeyword_6_2_0());
-			setSemiColon(c, a.getSemicolonKeyword_7_1());
+			c.setNoSpace().around(a.getLeftSquareBracketKeyword_4_2_0());	
+			c.setNoSpace().around(a.getFullStopFullStopKeyword_4_2_1_0_1_0());
+			c.setNoSpace().before(a.getRightSquareBracketKeyword_4_2_2());	
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_6_0(), a.getRightCurlyBracketKeyword_6_3());
+			c.setNoSpace().around(a.getCommaKeyword_6_2_0());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_7_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_7_0_0(), a.getRightCurlyBracketKeyword_7_0_2());
+		    c.setIndentation(a.getLeftSquareBracketKeyword_4_2_0(), a.getRightSquareBracketKeyword_4_2_2());
 	    }
-	    {	// ClassCS
+	    {
+	    	BodyConstraintCSElements a = f.getBodyConstraintCSAccess();
+	    	c.setNoSpace().before(a.getColonKeyword_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
 			ClassCSElements a = f.getClassCSAccess();
-			setSquareBrackets(c, a.getLessThanSignKeyword_2_0(), a.getGreaterThanSignKeyword_2_3());	
-			setComma(c, a.getCommaKeyword_3_2_0());
-			setNoInternalSpacePunctuation(c, a.getLeftCurlyBracketKeyword_5_0(), a.getRightCurlyBracketKeyword_5_3());
-			setNoSpacePunctuation(c, a.getCommaKeyword_5_2_0());
+			c.setNoSpace().around(a.getLessThanSignKeyword_2_0());	
+			c.setNoSpace().before(a.getCommaKeyword_3_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_2_3());	
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_5_0(), a.getRightCurlyBracketKeyword_5_3());
+			c.setNoSpace().around(a.getCommaKeyword_5_2_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
-			setSemiColon(c, a.getSemicolonKeyword_6_1());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
+		    c.setIndentation(a.getLessThanSignKeyword_2_0(), a.getGreaterThanSignKeyword_2_3());
 	    }
-	    {	// BodyConstraintCS
-	    	setSemiColon(c, f.getBodyConstraintCSAccess().getSemicolonKeyword_4());
-	    }
-	    {	// DataTypeCS
+	    {
 			DataTypeCSElements a = f.getDataTypeCSAccess();
-			setSquareBrackets(c, a.getLessThanSignKeyword_2_0(), a.getGreaterThanSignKeyword_2_3());	
-			setComma(c, a.getCommaKeyword_2_2_0());
+			c.setNoSpace().around(a.getLessThanSignKeyword_2_0());	
+			c.setNoSpace().before(a.getCommaKeyword_2_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_2_3());	
 			setBraces(c, a.getLeftCurlyBracketKeyword_5_0_0(), a.getRightCurlyBracketKeyword_5_0_2());
-			setNoInternalSpacePunctuation(c, a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
-			setSemiColon(c, a.getSemicolonKeyword_5_1());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5_1());
+		    c.setIndentation(a.getLessThanSignKeyword_2_0(), a.getGreaterThanSignKeyword_2_3());
 	    }
-	    {	// DerivedConstraintCS
-	    	setSemiColon(c, f.getDerivedConstraintCSAccess().getSemicolonKeyword_3());
+	    {
+	    	DerivedConstraintCSElements a = f.getDerivedConstraintCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_1());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3());
 	    }
-	    {	// DocumentationCS
+	    {
 	    	DocumentationCSElements a = f.getDocumentationCSAccess();
-			setParentheses(c, a.getLeftParenthesisKeyword_3_0(), a.getRightParenthesisKeyword_3_3());	
-			setSemiColon(c, a.getSemicolonKeyword_4());
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_3_0());	
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_3_0(), a.getRightParenthesisKeyword_3_3());
 	    }
-	    {	// EnumCS
+	    {
 			EnumCSElements a = f.getEnumCSAccess();
-			setSquareBrackets(c, a.getLessThanSignKeyword_2_0(), a.getGreaterThanSignKeyword_2_3());	
-			setComma(c, a.getCommaKeyword_2_2_0());
+			c.setNoSpace().around(a.getLessThanSignKeyword_2_0());	
+			c.setNoSpace().before(a.getCommaKeyword_2_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_2_3());	
 			setBraces(c, a.getLeftCurlyBracketKeyword_4_0_0(), a.getRightCurlyBracketKeyword_4_0_2());
-			setSemiColon(c, a.getSemicolonKeyword_4_1());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4_1());
+		    c.setIndentation(a.getLessThanSignKeyword_2_0(), a.getGreaterThanSignKeyword_2_3());
 	    }
-	    {	// EnumLiteralCS
-	    	setSemiColon(c, f.getEnumLiteralCSAccess().getSemicolonKeyword_2_1());
+	    {
+	    	EnumLiteralCSElements a = f.getEnumLiteralCSAccess();
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_2_1());
 	    }
-	    {	// ImportCS
-	    	setSemiColon(c, f.getImportCSAccess().getSemicolonKeyword_3());
+	    {
+	    	ImportCSElements a = f.getImportCSAccess();
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3());
 	    }
-	    {	// InitialConstraintCS
-	    	setSemiColon(c, f.getInitialConstraintCSAccess().getSemicolonKeyword_3());
+	    {
+	    	InitialConstraintCSElements a = f.getInitialConstraintCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_1());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3());
 	    }
-	    {	// InvariantConstraintCS
+	    {
 			InvariantConstraintCSElements a = f.getInvariantConstraintCSAccess();
 			c.setNoSpace().before(a.getColonKeyword_2());
-			setSemiColon(c, a.getSemicolonKeyword_4());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
 	    }
-	    {	// OperationCS
+	    {
 			OperationCSElements a = f.getOperationCSAccess();
-			setSquareBrackets(c, a.getLessThanSignKeyword_4_0(), a.getGreaterThanSignKeyword_4_3());	
-			setComma(c, a.getCommaKeyword_4_2_0());
-			setParentheses(c, a.getLeftParenthesisKeyword_5(), a.getRightParenthesisKeyword_7());	
-			setComma(c, a.getCommaKeyword_6_1_0());
-			setSquareBrackets(c, a.getLeftSquareBracketKeyword_8_2_0(), a.getRightSquareBracketKeyword_8_2_2());	
-			setNoSpacePunctuation(c, a.getFullStopFullStopKeyword_8_2_1_0_1_0());
-			setNoInternalSpacePunctuation(c, a.getLeftCurlyBracketKeyword_10_0(), a.getRightCurlyBracketKeyword_10_3());
-			setNoSpacePunctuation(c, a.getCommaKeyword_10_2_0());
+			c.setNoSpace().around(a.getGreaterThanSignKeyword_4_3());	
+			c.setNoSpace().before(a.getCommaKeyword_4_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_4_3());	
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_5());	
+			c.setNoSpace().before(a.getCommaKeyword_6_1_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_7());	
+			c.setNoSpace().around(a.getLeftSquareBracketKeyword_8_2_0());	
+			c.setNoSpace().around(a.getFullStopFullStopKeyword_8_2_1_0_1_0());
+			c.setNoSpace().before(a.getRightSquareBracketKeyword_8_2_2());	
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_10_0(), a.getRightCurlyBracketKeyword_10_3());
+			c.setNoSpace().around(a.getCommaKeyword_10_2_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_11_0_0(), a.getRightCurlyBracketKeyword_11_0_2());
-			setSemiColon(c, a.getSemicolonKeyword_11_1());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_11_1());
+		    c.setIndentation(a.getLeftParenthesisKeyword_5(), a.getRightParenthesisKeyword_7());
 	    }
-	    {	// PackageCS
+	    {
 	    	setBraces(c, f.getPackageCSAccess().getLeftCurlyBracketKeyword_3_0_0(), f.getPackageCSAccess().getRightCurlyBracketKeyword_3_0_2());
 	    }
-//	    {	// PathNameCS
-//	    	setNoSpacePunctuation(c, f.getPathNameCSAccess().getColonColonKeyword_1());
-//	    }
-	    {	// PostconditionConstraintCS
-	    	setSemiColon(c, f.getPostconditionConstraintCSAccess().getSemicolonKeyword_4());
+	    {
+	    	PostconditionConstraintCSElements a = f.getPostconditionConstraintCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
 	    }
-	    {	// PreconditionConstraintCS
-	    	setSemiColon(c, f.getPreconditionConstraintCSAccess().getSemicolonKeyword_4());
+	    {
+	    	PreconditionConstraintCSElements a = f.getPreconditionConstraintCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
 	    }
-	    {	// ReferenceCS
+	    {
 			ReferenceCSElements a = f.getReferenceCSAccess();
-			setSquareBrackets(c, a.getLeftSquareBracketKeyword_5_2_0(), a.getRightSquareBracketKeyword_5_2_2());	
-			setNoSpacePunctuation(c, a.getFullStopFullStopKeyword_5_2_1_0_1_0());
-			setNoSpacePunctuation(c, a.getNumberSignKeyword_4_0());
-			setNoInternalSpacePunctuation(c, a.getLeftCurlyBracketKeyword_7_0(), a.getRightCurlyBracketKeyword_7_3());
-			setNoSpacePunctuation(c, a.getCommaKeyword_7_2_0());
+			c.setNoSpace().around(a.getNumberSignKeyword_4_0());
+			c.setNoSpace().around(a.getLeftSquareBracketKeyword_5_2_0());	
+			c.setNoSpace().around(a.getFullStopFullStopKeyword_5_2_1_0_1_0());
+			c.setNoSpace().before(a.getRightSquareBracketKeyword_5_2_2());	
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_7_0(), a.getRightCurlyBracketKeyword_7_3());
+			c.setNoSpace().around(a.getCommaKeyword_7_2_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_8_0_0(), a.getRightCurlyBracketKeyword_8_0_2());
-			setSemiColon(c, a.getSemicolonKeyword_8_1());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_8_1());
+		    c.setIndentation(a.getLeftSquareBracketKeyword_5_2_0(), a.getRightSquareBracketKeyword_5_2_2());
 	    }
-	    {	// ParameterCS
+	    {
 			ParameterCSElements a = f.getParameterCSAccess();
-			setSquareBrackets(c, a.getLeftSquareBracketKeyword_1_2_0(), a.getRightSquareBracketKeyword_1_2_2());	
-			setNoSpacePunctuation(c, a.getFullStopFullStopKeyword_1_2_1_0_1_0());
-			setNoInternalSpacePunctuation(c, a.getLeftCurlyBracketKeyword_2_0(), a.getRightCurlyBracketKeyword_2_3());
-			setNoSpacePunctuation(c, a.getCommaKeyword_2_2_0());
+			c.setNoSpace().around(a.getLeftSquareBracketKeyword_1_2_0());	
+			c.setNoSpace().around(a.getFullStopFullStopKeyword_1_2_1_0_1_0());
+			c.setNoSpace().before(a.getRightSquareBracketKeyword_1_2_2());	
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_2_0(), a.getRightCurlyBracketKeyword_2_3());
+			c.setNoSpace().around(a.getCommaKeyword_2_2_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_3_0(), a.getRightCurlyBracketKeyword_3_2());
+		    c.setIndentation(a.getLeftSquareBracketKeyword_1_2_0(), a.getRightSquareBracketKeyword_1_2_2());
 	    }
-	    {	// TypedTypeRefCS
+	    {
+	    	QualifiedTypeRefCSElements a = f.getQualifiedTypeRefCSAccess();
+		    c.setNoSpace().around(a.getColonColonKeyword_2());
+	    }
+	    {
 			TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
-			setSquareBrackets(c, a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());	
-			setNoSpacePunctuation(c, a.getCommaKeyword_1_2_0());
+			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
+			c.setNoSpace().around(a.getCommaKeyword_1_2_0());
+		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());
@@ -171,44 +237,5 @@ public class OCLinEcoreFormatter extends AbstractDeclarativeFormatter {
 	@Override
 	public OCLinEcoreGrammarAccess getGrammarAccess() {
 		return (OCLinEcoreGrammarAccess) super.getGrammarAccess();
-	}
-
-	public void setBraces(FormattingConfig c, Keyword leftBrace, Keyword rightBrace) {
-		c.setIndentation(leftBrace, rightBrace);
-	    c.setLinewrap().before(leftBrace);
-	    c.setLinewrap().after(leftBrace);
-	    c.setLinewrap().before(rightBrace);
-	    c.setLinewrap().after(rightBrace);
-	}
-
-	public void setComma(FormattingConfig c, Keyword comma) {
-		c.setNoSpace().before(comma);
-	}
-
-	public void setNoInternalSpacePunctuation(FormattingConfig c, Keyword left, Keyword right) {
-		c.setNoSpace().after(left);
-		c.setNoSpace().before(right);
-	}
-
-	public void setNoSpacePunctuation(FormattingConfig c, Keyword keyword) {
-		c.setNoSpace().before(keyword);
-		c.setNoSpace().after(keyword);
-	}
-
-	public void setParentheses(FormattingConfig c, Keyword leftParenthesis, Keyword rightParenthesis) {
-		c.setNoSpace().before(leftParenthesis);
-	    c.setNoSpace().after(leftParenthesis);
-		c.setNoSpace().before(rightParenthesis);
-	}
-
-	public void setSemiColon(FormattingConfig c, Keyword semicolon) {
-		c.setNoSpace().before(semicolon);
-	    c.setLinewrap().after(semicolon);
-	}
-
-	public void setSquareBrackets(FormattingConfig c, Keyword leftSquareBracket, Keyword rightSquareBracket) {
-		c.setNoSpace().before(leftSquareBracket);
-	    c.setNoSpace().after(leftSquareBracket);
-		c.setNoSpace().before(rightSquareBracket);
 	}
 }
