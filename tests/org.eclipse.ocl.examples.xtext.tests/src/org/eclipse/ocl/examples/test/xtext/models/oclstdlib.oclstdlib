@@ -1,5 +1,6 @@
 library lib {
 
+-- All user defined classes conform to oclM1::Classifier
 package oclM1 {
 
 type Bag<T> conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
@@ -12,7 +13,7 @@ type Bag<T> conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
 	operation including(object : T) : Bag<T> => 'org.eclipse.ocl.library.features.collection.CollectionIncludingOperation';
 }
 
-type Boolean conformsTo Classifier {
+type Boolean conformsTo OclAny {
 	operation allInstances() : Set<Boolean> => 'org.eclipse.ocl.library.features.logical.BooleanAllInstancesOperation';
 	operation "="(object2 : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanEqualOperation';
 	operation "<>"(object2 : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanNotEqualOperation';
@@ -24,7 +25,11 @@ type Boolean conformsTo Classifier {
 	operation xor(b : Boolean) : Boolean => 'org.eclipse.ocl.library.features.logical.BooleanXorOperation';
 }
 
-type Collection<T> conformsTo Classifier {
+type Classifier conformsTo OclAny {
+	operation allInstances() : Set<Classifier> => 'org.eclipse.ocl.library.features.classifier.ClassifierAllInstancesOperation';
+}
+
+type Collection<T> conformsTo OclAny {
 	iteration any(i : T) : T => 'org.eclipse.ocl.library.features.iterator.AnyIteration';
 	iteration collect(i : T) : Collection<T> => 'org.eclipse.ocl.library.features.iterator.CollectIteration';
 	iteration collectNested(i : T) : Collection<T> => 'org.eclipse.ocl.library.features.iterator.CollectNestedIteration';
@@ -61,11 +66,7 @@ type Collection<T> conformsTo Classifier {
 	operation sum() : T => 'org.eclipse.ocl.library.features.collection.CollectionSumOperation';
 }
 
-type Classifier conformsTo OclAny {
-	operation allInstances() : Set<Classifier> => 'org.eclipse.ocl.library.features.classifier.ClassifierAllInstancesOperation';
-}
-
-type Enumeration conformsTo Classifier {
+type Enumeration conformsTo OclAny {
 	operation allInstances() : Set<Enumeration> => 'org.eclipse.ocl.library.features.enumeration.EnumerationAllInstancesOperation';
 }
 
@@ -117,25 +118,22 @@ type OclInvalid conformsTo OclVoid {
 	operation "<>"(object2 : OclInvalid) : Boolean => 'org.eclipse.ocl.library.features.oclinvalid.OclInvalidNotEqualOperation';
 }
 
-type OclMessage conformsTo Classifier {
+type OclMessage conformsTo OclAny {
 	operation hasReturned() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
 	operation result() : OclAny => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
 	operation isOperationCall() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
 	operation isSignalSent() : Boolean => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
 }
 
-type OclState conformsTo Classifier {
+type OclState conformsTo OclAny {
 }
 
-type OclTuple conformsTo Classifier {
+type OclTuple conformsTo OclAny {
 	operation "="(object2 : OclTuple) : Boolean => 'org.eclipse.ocl.library.features.tuple.TupleEqualOperation';
 	operation "<>"(object2 : OclTuple) : Boolean => 'org.eclipse.ocl.library.features.tuple.TupleNotEqualOperation';
 }
 
-type OclType conformsTo Classifier {
-}
-
-type OclVoid conformsTo Classifier {
+type OclVoid conformsTo OclAny {
 	operation allInstances() : Set<OclVoid> => 'org.eclipse.ocl.library.features.oclvoid.OclVoidAllInstancesOperation';
 	operation "="(object2 : OclVoid) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidEqualOperation';
 	operation "<>"(object2 : OclVoid) : Boolean => 'org.eclipse.ocl.library.features.oclvoid.OclVoidNotEqualOperation';
@@ -174,7 +172,7 @@ type OrderedSet<T> conformsTo OrderedCollection<T>,UniqueCollection<T> {
 	operation union(s : Set<T>) : Set<T> => 'org.eclipse.ocl.library.features.collection.CollectionUnionOperation';
 }
 
-type Real conformsTo Classifier {
+type Real conformsTo OclAny {
 	operation "="(object2 : Real) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericEqualOperation';
 	operation "<>"(object2 : Real) : Boolean => 'org.eclipse.ocl.library.features.numeric.NumericNotEqualOperation';
 	operation "+"(r : Real) : Real => 'org.eclipse.ocl.library.features.numeric.NumericPlusOperation';
@@ -224,7 +222,7 @@ type Set<T> conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
 	operation symmetricDifference(s : Set<OclAny>) : Set<T> => 'org.eclipse.ocl.library.features.collection.SetSymmetricDifferenceOperation';
 }
 
-type String conformsTo Classifier {
+type String conformsTo OclAny {
 	operation "="(object2 : String) : Boolean => 'org.eclipse.ocl.library.features.string.StringEqualOperation';
 	operation "<>"(object2 : String) : Boolean => 'org.eclipse.ocl.library.features.string.StringNotEqualOperation';
 	operation "+"(s : String) : String => 'org.eclipse.ocl.library.features.oclany.OclAnyUnsupportedOperation';
@@ -260,10 +258,11 @@ type UnlimitedNatural conformsTo Integer {
 
 }
 
+-- A miniscule subset of UML sufficient to provide the meta-class
 package oclM2 {
 
-type Class<T> conformsTo Object {}
+type Class<T> conformsTo Classifier {}
 
-type Object{}
+type Classifier{}
 }
 }
