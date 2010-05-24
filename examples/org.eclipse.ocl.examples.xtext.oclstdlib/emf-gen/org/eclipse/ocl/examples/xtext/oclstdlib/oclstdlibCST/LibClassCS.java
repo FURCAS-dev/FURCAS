@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibClassCS.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibClassCS.java,v 1.3 2010/05/24 08:59:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getConformsTo <em>Conforms To</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getIterations <em>Iterations</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,21 +79,5 @@ public interface LibClassCS extends LibClassifierCS {
 	 * @generated
 	 */
 	EList<TypedRefCS> getConformsTo();
-
-	/**
-	 * Returns the value of the '<em><b>Iterations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Iterations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Iterations</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibClassCS_Iterations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<LibIterationCS> getIterations();
 
 } // LibClassCS

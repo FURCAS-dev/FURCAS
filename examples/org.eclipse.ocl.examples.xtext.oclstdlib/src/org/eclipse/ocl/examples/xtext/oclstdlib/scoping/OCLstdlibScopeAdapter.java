@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibScopeAdapter.java,v 1.6 2010/05/21 20:08:36 ewillink Exp $
+ * $Id: OCLstdlibScopeAdapter.java,v 1.7 2010/05/24 08:59:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -217,19 +217,7 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 			return null;
 		}
 		if (csElement instanceof ClassCS) {
-			ClassCS csClass = (ClassCS)csElement;
-			if (csClass.getTypeParameters().isEmpty()) {
-				return csClass;				
-			}
-			else {
-				BoundClassifierCS boundElement = BaseCSTFactory.eINSTANCE.createBoundClassifierCS();
-				boundElement.setName(csClass.getName());
-				boundElement.setBinds(csClass);
-				boundElement.setBindings(bindings);
-				bindings.getDocument().getBoundClassifiers().add(boundElement);
-//				System.out.println("Create " + boundElement.getSignature());
-				return boundElement;
-			}
+			return ElementUtil.specializeClass((ClassCS) csElement, bindings);
 		}
 		else if (csElement instanceof ClassifierCS) {		// DataType
 			StandardDocumentScopeAdapter<?> libraryAdapter = getLibraryAdapter();
@@ -299,7 +287,7 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 				List<TypeRefCS> typeArguments = typedTypeRefCS.getTypeArguments();
 				List<TypeParameterCS> typeParameters = classifierCS.getTypeParameters();
 				nestedBindings = BaseCSTFactory.eINSTANCE.createTypeBindingsCS();
-				nestedBindings.setDocument(bindings.getDocument());
+				nestedBindings.setBoundDocument(bindings.getBoundDocument());
 				int iMax = Math.min(typeArguments.size(), typeParameters.size());
 				for (int i = 0; i < iMax; i++) {
 					TypeBindingCS csTypeBinding = BaseCSTFactory.eINSTANCE.createTypeBindingCS();

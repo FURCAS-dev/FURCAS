@@ -260,23 +260,23 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConformsToLibTypedRefCSParserRuleCall_3_2_1_0 = (RuleCall)cConformsToAssignment_3_2_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
-		private final Assignment cIterationsAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
-		private final RuleCall cIterationsLibIterationCSParserRuleCall_5_0_0 = (RuleCall)cIterationsAssignment_5_0.eContents().get(0);
-		private final Assignment cOperationsAssignment_5_1 = (Assignment)cAlternatives_5.eContents().get(1);
-		private final RuleCall cOperationsLibOperationCSParserRuleCall_5_1_0 = (RuleCall)cOperationsAssignment_5_1.eContents().get(0);
-		private final Assignment cStructuralFeaturesAssignment_5_2 = (Assignment)cAlternatives_5.eContents().get(2);
-		private final RuleCall cStructuralFeaturesLibPropertyCSParserRuleCall_5_2_0 = (RuleCall)cStructuralFeaturesAssignment_5_2.eContents().get(0);
+		private final Assignment cOperationsAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
+		private final Alternatives cOperationsAlternatives_5_0_0 = (Alternatives)cOperationsAssignment_5_0.eContents().get(0);
+		private final RuleCall cOperationsLibIterationCSParserRuleCall_5_0_0_0 = (RuleCall)cOperationsAlternatives_5_0_0.eContents().get(0);
+		private final RuleCall cOperationsLibOperationCSParserRuleCall_5_0_0_1 = (RuleCall)cOperationsAlternatives_5_0_0.eContents().get(1);
+		private final Assignment cStructuralFeaturesAssignment_5_1 = (Assignment)cAlternatives_5.eContents().get(1);
+		private final RuleCall cStructuralFeaturesLibPropertyCSParserRuleCall_5_1_0 = (RuleCall)cStructuralFeaturesAssignment_5_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//LibClassCS:
 		//	"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
-		//	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
-		//	operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}";
+		//	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (operations+=(LibIterationCS |
+		//	LibOperationCS) | structuralFeatures+=LibPropertyCS)* "}";
 		public ParserRule getRule() { return rule; }
 
 		//"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
-		//("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
-		//operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}"
+		//("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (operations+=(LibIterationCS |
+		//LibOperationCS) | structuralFeatures+=LibPropertyCS)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"type"
@@ -342,26 +342,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 
-		//(iterations+=LibIterationCS | operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)*
+		//(operations+=(LibIterationCS | LibOperationCS) | structuralFeatures+=LibPropertyCS)*
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 
-		//iterations+=LibIterationCS
-		public Assignment getIterationsAssignment_5_0() { return cIterationsAssignment_5_0; }
+		//operations+=(LibIterationCS | LibOperationCS)
+		public Assignment getOperationsAssignment_5_0() { return cOperationsAssignment_5_0; }
+
+		//LibIterationCS | LibOperationCS
+		public Alternatives getOperationsAlternatives_5_0_0() { return cOperationsAlternatives_5_0_0; }
 
 		//LibIterationCS
-		public RuleCall getIterationsLibIterationCSParserRuleCall_5_0_0() { return cIterationsLibIterationCSParserRuleCall_5_0_0; }
-
-		//operations+=LibOperationCS
-		public Assignment getOperationsAssignment_5_1() { return cOperationsAssignment_5_1; }
+		public RuleCall getOperationsLibIterationCSParserRuleCall_5_0_0_0() { return cOperationsLibIterationCSParserRuleCall_5_0_0_0; }
 
 		//LibOperationCS
-		public RuleCall getOperationsLibOperationCSParserRuleCall_5_1_0() { return cOperationsLibOperationCSParserRuleCall_5_1_0; }
+		public RuleCall getOperationsLibOperationCSParserRuleCall_5_0_0_1() { return cOperationsLibOperationCSParserRuleCall_5_0_0_1; }
 
 		//structuralFeatures+=LibPropertyCS
-		public Assignment getStructuralFeaturesAssignment_5_2() { return cStructuralFeaturesAssignment_5_2; }
+		public Assignment getStructuralFeaturesAssignment_5_1() { return cStructuralFeaturesAssignment_5_1; }
 
 		//LibPropertyCS
-		public RuleCall getStructuralFeaturesLibPropertyCSParserRuleCall_5_2_0() { return cStructuralFeaturesLibPropertyCSParserRuleCall_5_2_0; }
+		public RuleCall getStructuralFeaturesLibPropertyCSParserRuleCall_5_1_0() { return cStructuralFeaturesLibPropertyCSParserRuleCall_5_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
@@ -1311,8 +1311,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	//LibClassCS:
 	//	"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
-	//	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
-	//	operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}";
+	//	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (operations+=(LibIterationCS |
+	//	LibOperationCS) | structuralFeatures+=LibPropertyCS)* "}";
 	public LibClassCSElements getLibClassCSAccess() {
 		return (pLibClassCS != null) ? pLibClassCS : (pLibClassCS = new LibClassCSElements());
 	}

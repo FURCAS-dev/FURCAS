@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackageImpl.java,v 1.3 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: OCLstdlibCSTPackageImpl.java,v 1.4 2010/05/24 08:59:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -195,15 +195,6 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibClassCS_Iterations() {
-		return (EReference)libClassCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getLibClassifierCS() {
 		return libClassifierCSEClass;
 	}
@@ -322,7 +313,6 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		libClassCSEClass = createEClass(LIB_CLASS_CS);
 		createEAttribute(libClassCSEClass, LIB_CLASS_CS__CLASS);
 		createEReference(libClassCSEClass, LIB_CLASS_CS__CONFORMS_TO);
-		createEReference(libClassCSEClass, LIB_CLASS_CS__ITERATIONS);
 
 		libClassifierCSEClass = createEClass(LIB_CLASSIFIER_CS);
 
@@ -395,7 +385,6 @@ public class OCLstdlibCSTPackageImpl extends EPackageImpl implements OCLstdlibCS
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getLibClassCS_Class(), g1, "class", null, 0, 1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibClassCS_ConformsTo(), theBaseCSTPackage.getTypedRefCS(), null, "conformsTo", null, 0, -1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLibClassCS_Iterations(), this.getLibIterationCS(), null, "iterations", null, 0, -1, LibClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libClassifierCSEClass, LibClassifierCS.class, "LibClassifierCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

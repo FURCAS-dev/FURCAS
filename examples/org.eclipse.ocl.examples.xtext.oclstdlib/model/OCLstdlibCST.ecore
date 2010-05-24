@@ -18,8 +18,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="conformsTo" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="iterations" upperBound="-1"
-        eType="#//LibIterationCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LibClassifierCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ClassCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="LibDocumentCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//DocumentCS">

@@ -476,14 +476,14 @@ protected class LibImportCS_NamespaceAssignment_2 extends AssignmentToken  {
  *
  * LibClassCS:
  * 	"type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
- * 	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
- * 	operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}";
+ * 	("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (operations+=(LibIterationCS |
+ * 	LibOperationCS) | structuralFeatures+=LibPropertyCS)* "}";
  *
  **/
 
 // "type" name=Identifier ("<" typeParameters+=LibTypeParameterCS ("," typeParameters+=LibTypeParameterCS)* ">")?
-// ("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (iterations+=LibIterationCS |
-// operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* "}"
+// ("conformsTo" conformsTo+=LibTypedRefCS ("," conformsTo+=LibTypedRefCS)*)? "{" (operations+=(LibIterationCS |
+// LibOperationCS) | structuralFeatures+=LibPropertyCS)* "}"
 protected class LibClassCS_Group extends GroupToken {
 	
 	public LibClassCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -982,7 +982,7 @@ protected class LibClassCS_LeftCurlyBracketKeyword_4 extends KeywordToken  {
 
 }
 
-// (iterations+=LibIterationCS | operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)*
+// (operations+=(LibIterationCS | LibOperationCS) | structuralFeatures+=LibPropertyCS)*
 protected class LibClassCS_Alternatives_5 extends AlternativesToken {
 
 	public LibClassCS_Alternatives_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -997,78 +997,31 @@ protected class LibClassCS_Alternatives_5 extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new LibClassCS_IterationsAssignment_5_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new LibClassCS_OperationsAssignment_5_1(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new LibClassCS_StructuralFeaturesAssignment_5_2(lastRuleCallOrigin, this, 2, inst);
+			case 0: return new LibClassCS_OperationsAssignment_5_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new LibClassCS_StructuralFeaturesAssignment_5_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// iterations+=LibIterationCS
-protected class LibClassCS_IterationsAssignment_5_0 extends AssignmentToken  {
+// operations+=(LibIterationCS | LibOperationCS)
+protected class LibClassCS_OperationsAssignment_5_0 extends AssignmentToken  {
 	
-	public LibClassCS_IterationsAssignment_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public LibClassCS_OperationsAssignment_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getLibClassCSAccess().getIterationsAssignment_5_0();
+		return grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new LibIterationCS_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("iterations",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("iterations");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getLibIterationCSRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLibClassCSAccess().getIterationsLibIterationCSParserRuleCall_5_0_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new LibClassCS_Alternatives_5(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new LibClassCS_LeftCurlyBracketKeyword_4(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
-// operations+=LibOperationCS
-protected class LibClassCS_OperationsAssignment_5_1 extends AssignmentToken  {
-	
-	public LibClassCS_OperationsAssignment_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new LibOperationCS_Group(this, this, 0, inst);
+			case 1: return new LibOperationCS_Group(this, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -1079,9 +1032,18 @@ protected class LibClassCS_OperationsAssignment_5_1 extends AssignmentToken  {
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operations");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getLibIterationCSRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getLibClassCSAccess().getOperationsLibIterationCSParserRuleCall_5_0_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getLibOperationCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLibClassCSAccess().getOperationsLibOperationCSParserRuleCall_5_1_0(); 
+				element = grammarAccess.getLibClassCSAccess().getOperationsLibOperationCSParserRuleCall_5_0_0_1(); 
 				consumed = obj;
 				return param;
 			}
@@ -1101,15 +1063,15 @@ protected class LibClassCS_OperationsAssignment_5_1 extends AssignmentToken  {
 }
 
 // structuralFeatures+=LibPropertyCS
-protected class LibClassCS_StructuralFeaturesAssignment_5_2 extends AssignmentToken  {
+protected class LibClassCS_StructuralFeaturesAssignment_5_1 extends AssignmentToken  {
 	
-	public LibClassCS_StructuralFeaturesAssignment_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public LibClassCS_StructuralFeaturesAssignment_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_2();
+		return grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_1();
 	}
 
     @Override
@@ -1128,7 +1090,7 @@ protected class LibClassCS_StructuralFeaturesAssignment_5_2 extends AssignmentTo
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getLibPropertyCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLibClassCSAccess().getStructuralFeaturesLibPropertyCSParserRuleCall_5_2_0(); 
+				element = grammarAccess.getLibClassCSAccess().getStructuralFeaturesLibPropertyCSParserRuleCall_5_1_0(); 
 				consumed = obj;
 				return param;
 			}

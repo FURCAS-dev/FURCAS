@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLinkingService.java,v 1.5 2010/05/21 20:08:37 ewillink Exp $
+ * $Id: OCLstdlibLinkingService.java,v 1.6 2010/05/24 08:59:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -75,8 +75,8 @@ public class OCLstdlibLinkingService extends DefaultLinkingService
 						}
 						if (BaseScopeProvider.LOOKUP.isActive()) {
 							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
-							//					eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
 						}
+//						eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
 					}
 				}
 				scopeAdapter.setUnresolvable();

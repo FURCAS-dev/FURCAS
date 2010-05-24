@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: LibClassScopeAdapter.java,v 1.4 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibClassScopeAdapter.java,v 1.5 2010/05/24 08:59:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
@@ -44,7 +45,6 @@ public class LibClassScopeAdapter extends OCLstdlibScopeAdapter<LibClassCS>
 			return scopeView.getOuterScope();
 		}
 		else {
-			environmentView.addNamedElements(OCLstdlibCSTPackage.Literals.LIB_ITERATION_CS, target.getIterations(), bindings);
 			environmentView.addNamedElements(BaseCSTPackage.Literals.OPERATION_CS, target.getOperations(), bindings);
 			environmentView.addNamedElements(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS, target.getStructuralFeatures(), bindings);
 			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters(), bindings);
@@ -60,5 +60,10 @@ public class LibClassScopeAdapter extends OCLstdlibScopeAdapter<LibClassCS>
 			}
 			return scopeView.getOuterScope();
 		}
+	}
+	
+	@Override
+	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
+		return getLibraryType(getTarget(), bindings);
 	}
 }

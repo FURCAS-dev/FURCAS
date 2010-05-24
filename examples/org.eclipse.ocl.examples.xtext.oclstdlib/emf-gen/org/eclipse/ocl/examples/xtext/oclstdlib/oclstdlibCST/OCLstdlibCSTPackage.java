@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.4 2010/05/22 18:51:48 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.5 2010/05/24 08:59:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -399,22 +399,13 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	int LIB_CLASS_CS__CONFORMS_TO = LIB_CLASSIFIER_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Iterations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_CLASS_CS__ITERATIONS = LIB_CLASSIFIER_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Lib Class CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS_FEATURE_COUNT = LIB_CLASSIFIER_CS_FEATURE_COUNT + 3;
+	int LIB_CLASS_CS_FEATURE_COUNT = LIB_CLASSIFIER_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibDocumentCSImpl <em>Lib Document CS</em>}' class.
@@ -479,24 +470,6 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIB_DOCUMENT_CS__LIBRARIES = BaseCSTPackage.DOCUMENT_CS__LIBRARIES;
-
-	/**
-	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_DOCUMENT_CS__BOUND_CLASSIFIERS = BaseCSTPackage.DOCUMENT_CS__BOUND_CLASSIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_DOCUMENT_CS__BOUND_OPERATIONS = BaseCSTPackage.DOCUMENT_CS__BOUND_OPERATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
@@ -1095,17 +1068,6 @@ public interface OCLstdlibCSTPackage extends EPackage {
 	EReference getLibClassCS_ConformsTo();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getIterations <em>Iterations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Iterations</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getIterations()
-	 * @see #getLibClassCS()
-	 * @generated
-	 */
-	EReference getLibClassCS_Iterations();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassifierCS <em>Lib Classifier CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1266,14 +1228,6 @@ public interface OCLstdlibCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIB_CLASS_CS__CONFORMS_TO = eINSTANCE.getLibClassCS_ConformsTo();
-
-		/**
-		 * The meta object literal for the '<em><b>Iterations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LIB_CLASS_CS__ITERATIONS = eINSTANCE.getLibClassCS_Iterations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassifierCSImpl <em>Lib Classifier CS</em>}' class.

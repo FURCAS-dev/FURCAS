@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardDocumentScopeAdapter.java,v 1.3 2010/05/21 20:08:36 ewillink Exp $
+ * $Id: StandardDocumentScopeAdapter.java,v 1.4 2010/05/24 08:59:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -117,7 +117,7 @@ public abstract class StandardDocumentScopeAdapter<T extends DocumentCS> extends
 			List<TypeBindingCS> newBindings = Collections.singletonList(binding);
 			TypeBindingsCS bindings = parameterizedClassifier.getBindings();
 			TypeBindingsCS nestedBindings = BaseCSTFactory.eINSTANCE.createTypeBindingsCS();
-			nestedBindings.setDocument(getTarget());
+			nestedBindings.setBoundDocument(getBoundDocument());
 			nestedBindings.getBindings().addAll(newBindings);
 			if (bindings != null) { 
 				bindings.getNested().add(nestedBindings);
