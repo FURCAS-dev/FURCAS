@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCSImpl.java,v 1.4 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: AnnotationCSImpl.java,v 1.5 2010/05/24 08:55:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.AnnotationCS;
@@ -313,8 +314,8 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendParent(this, "::");
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendParent(this, "::", typeBindings);
 		signature.append('"');
 		signature.append(String.valueOf(getIdSource()));
 		signature.append('"');

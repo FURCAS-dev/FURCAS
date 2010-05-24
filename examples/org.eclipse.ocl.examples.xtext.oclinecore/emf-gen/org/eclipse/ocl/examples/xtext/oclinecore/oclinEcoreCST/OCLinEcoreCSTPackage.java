@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.5 2010/05/22 18:51:39 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.6 2010/05/24 08:55:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -1298,24 +1298,6 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OC_LIN_ECORE_DOCUMENT_CS__LIBRARIES = BaseCSTPackage.DOCUMENT_CS__LIBRARIES;
-
-	/**
-	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OC_LIN_ECORE_DOCUMENT_CS__BOUND_CLASSIFIERS = BaseCSTPackage.DOCUMENT_CS__BOUND_CLASSIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OC_LIN_ECORE_DOCUMENT_CS__BOUND_OPERATIONS = BaseCSTPackage.DOCUMENT_CS__BOUND_OPERATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
