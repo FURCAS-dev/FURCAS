@@ -284,11 +284,11 @@
       </elements>
       <elements xsi:type="xtext:Keyword" value="{"/>
       <elements xsi:type="xtext:Alternatives" cardinality="*">
-        <elements xsi:type="xtext:Assignment" feature="iterations" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.16"/>
-        </elements>
         <elements xsi:type="xtext:Assignment" feature="operations" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.16"/>
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+          </terminal>
         </elements>
         <elements xsi:type="xtext:Assignment" feature="structuralFeatures" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>

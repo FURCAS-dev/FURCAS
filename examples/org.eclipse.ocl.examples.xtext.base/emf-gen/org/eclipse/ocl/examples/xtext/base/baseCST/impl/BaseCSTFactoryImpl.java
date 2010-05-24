@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -71,7 +71,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BaseCSTPackage.ATTRIBUTE_CS_REF: return createAttributeCSRef();
+			case BaseCSTPackage.BOUND_CLASS_CS: return createBoundClassCS();
 			case BaseCSTPackage.BOUND_CLASSIFIER_CS: return createBoundClassifierCS();
+			case BaseCSTPackage.BOUND_DOCUMENT_CS: return createBoundDocumentCS();
 			case BaseCSTPackage.BOUND_OPERATION_CS: return createBoundOperationCS();
 			case BaseCSTPackage.CLASS_CS_REF: return createClassCSRef();
 			case BaseCSTPackage.COLLECTION_TYPE_REF_CS: return createCollectionTypeRefCS();
@@ -148,9 +150,29 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BoundClassCS createBoundClassCS() {
+		BoundClassCSImpl boundClassCS = new BoundClassCSImpl();
+		return boundClassCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BoundClassifierCS createBoundClassifierCS() {
 		BoundClassifierCSImpl boundClassifierCS = new BoundClassifierCSImpl();
 		return boundClassifierCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BoundDocumentCS createBoundDocumentCS() {
+		BoundDocumentCSImpl boundDocumentCS = new BoundDocumentCSImpl();
+		return boundDocumentCS;
 	}
 
 	/**

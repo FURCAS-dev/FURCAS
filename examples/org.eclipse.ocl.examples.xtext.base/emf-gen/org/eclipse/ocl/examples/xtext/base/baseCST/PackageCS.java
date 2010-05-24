@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCS.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: PackageCS.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -124,5 +124,13 @@ public interface PackageCS extends NamespaceCS {
 	 * @generated
 	 */
 	void setUri(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	ClassifierCS getClassifier(String name);
 
 } // PackageCS

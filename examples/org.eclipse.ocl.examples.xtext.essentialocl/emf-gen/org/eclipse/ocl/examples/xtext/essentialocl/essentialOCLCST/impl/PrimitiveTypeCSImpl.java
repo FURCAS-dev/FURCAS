@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeCSImpl.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: PrimitiveTypeCSImpl.java,v 1.3 2010/05/24 08:55:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -53,7 +54,7 @@ public class PrimitiveTypeCSImpl extends NamedElementCSImpl implements Primitive
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
 		signature.appendName(this);
 	}
 

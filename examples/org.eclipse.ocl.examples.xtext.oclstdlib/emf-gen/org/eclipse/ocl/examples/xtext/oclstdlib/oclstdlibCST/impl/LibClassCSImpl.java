@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibClassCSImpl.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibClassCSImpl.java,v 1.3 2010/05/24 08:59:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 
 /**
@@ -41,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getConformsTo <em>Conforms To</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibClassCSImpl#getIterations <em>Iterations</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,16 +65,6 @@ public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 	 * @ordered
 	 */
 	protected EList<TypedRefCS> conformsTo;
-
-	/**
-	 * The cached value of the '{@link #getIterations() <em>Iterations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIterations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LibIterationCS> iterations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -135,25 +123,11 @@ public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LibIterationCS> getIterations() {
-		if (iterations == null) {
-			iterations = new EObjectContainmentEList<LibIterationCS>(LibIterationCS.class, this, OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS);
-		}
-		return iterations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:
 				return ((InternalEList<?>)getConformsTo()).basicRemove(otherEnd, msgs);
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS:
-				return ((InternalEList<?>)getIterations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,8 +144,6 @@ public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 				return getClass_();
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:
 				return getConformsTo();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS:
-				return getIterations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,10 +164,6 @@ public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 				getConformsTo().clear();
 				getConformsTo().addAll((Collection<? extends TypedRefCS>)newValue);
 				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS:
-				getIterations().clear();
-				getIterations().addAll((Collection<? extends LibIterationCS>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,9 +182,6 @@ public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:
 				getConformsTo().clear();
 				return;
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS:
-				getIterations().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,8 +198,6 @@ public class LibClassCSImpl extends LibClassifierCSImpl implements LibClassCS {
 				return class_ != null;
 			case OCLstdlibCSTPackage.LIB_CLASS_CS__CONFORMS_TO:
 				return conformsTo != null && !conformsTo.isEmpty();
-			case OCLstdlibCSTPackage.LIB_CLASS_CS__ITERATIONS:
-				return iterations != null && !iterations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeParameterCSImpl.java,v 1.1 2010/05/03 05:25:22 ewillink Exp $
+ * $Id: TypeParameterCSImpl.java,v 1.2 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -27,8 +27,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -223,6 +225,11 @@ public class TypeParameterCSImpl extends NamedElementCSImpl implements TypeParam
 				return super_ != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendTypeBinding(this, typeBindings);
 	}
 
 } //TypeParameterCSImpl

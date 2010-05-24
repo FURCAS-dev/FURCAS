@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: ElementCS.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -46,5 +46,5 @@ public interface ElementCS extends EObject {
 	 * @model sDataType="org.eclipse.ocl.examples.xtext.base.baseCST.Signature"
 	 * @generated
 	 */
-	void getSignature(Signature s);
+	void getSignature(Signature s, TypeBindingsCS bindings);
 } // ElementCS

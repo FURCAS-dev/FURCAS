@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibBoundClassCSImpl.java,v 1.2 2010/05/22 18:51:48 ewillink Exp $
+ * $Id: LibBoundClassCSImpl.java,v 1.3 2010/05/24 08:59:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -245,8 +245,13 @@ public class LibBoundClassCSImpl extends LibClassifierCSImpl implements LibBound
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendTypeBindings(getBindings());
-		signature.appendElement(getBinds());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		if (typeBindings != null) {
+			signature.appendElement(getBinds(), getBindings());
+		}
+		else {
+			signature.appendTypeBindings(getBindings());
+			signature.appendElement(getBinds(), null);
+		}
 	}
 } //LibParameterizedClassCSImpl

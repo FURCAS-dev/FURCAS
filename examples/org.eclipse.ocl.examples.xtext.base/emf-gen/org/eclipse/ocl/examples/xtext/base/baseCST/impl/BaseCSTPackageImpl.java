@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.5 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.6 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -31,7 +31,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BoundOperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -115,7 +117,21 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass boundClassCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass boundClassifierCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass boundDocumentCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -571,8 +587,26 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBoundClassCS() {
+		return boundClassCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBoundClassifierCS() {
 		return boundClassifierCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBoundDocumentCS() {
+		return boundDocumentCSEClass;
 	}
 
 	/**
@@ -780,24 +814,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 */
 	public EReference getDocumentCS_Libraries() {
 		return (EReference)documentCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDocumentCS_BoundClassifiers() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDocumentCS_BoundOperations() {
-		return (EReference)documentCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1372,7 +1388,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypeBindingsCS_Document() {
+	public EReference getTypeBindingsCS_BoundDocument() {
 		return (EReference)typeBindingsCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1592,7 +1608,11 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		attributeCSRefEClass = createEClass(ATTRIBUTE_CS_REF);
 		createEReference(attributeCSRefEClass, ATTRIBUTE_CS_REF__REF);
 
+		boundClassCSEClass = createEClass(BOUND_CLASS_CS);
+
 		boundClassifierCSEClass = createEClass(BOUND_CLASSIFIER_CS);
+
+		boundDocumentCSEClass = createEClass(BOUND_DOCUMENT_CS);
 
 		boundElementCSEClass = createEClass(BOUND_ELEMENT_CS);
 		createEReference(boundElementCSEClass, BOUND_ELEMENT_CS__BINDINGS);
@@ -1625,8 +1645,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		documentCSEClass = createEClass(DOCUMENT_CS);
 		createEReference(documentCSEClass, DOCUMENT_CS__IMPORTS);
 		createEReference(documentCSEClass, DOCUMENT_CS__LIBRARIES);
-		createEReference(documentCSEClass, DOCUMENT_CS__BOUND_CLASSIFIERS);
-		createEReference(documentCSEClass, DOCUMENT_CS__BOUND_OPERATIONS);
 
 		elementCSEClass = createEClass(ELEMENT_CS);
 
@@ -1722,7 +1740,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		createEReference(typeBindingCSEClass, TYPE_BINDING_CS__TYPE_ARGUMENT);
 
 		typeBindingsCSEClass = createEClass(TYPE_BINDINGS_CS);
-		createEReference(typeBindingsCSEClass, TYPE_BINDINGS_CS__DOCUMENT);
+		createEReference(typeBindingsCSEClass, TYPE_BINDINGS_CS__BOUND_DOCUMENT);
 		createEReference(typeBindingsCSEClass, TYPE_BINDINGS_CS__BINDINGS);
 		createEReference(typeBindingsCSEClass, TYPE_BINDINGS_CS__NESTED);
 
@@ -1791,12 +1809,15 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		annotationElementCSEClass.getESuperTypes().add(this.getModelElementCS());
 		attributeCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
 		attributeCSRefEClass.getESuperTypes().add(this.getElementCS());
+		boundClassCSEClass.getESuperTypes().add(this.getClassCS());
+		boundClassCSEClass.getESuperTypes().add(this.getBoundClassifierCS());
 		g1 = createEGenericType(this.getClassifierCS());
 		boundClassifierCSEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getBoundElementCS());
 		EGenericType g2 = createEGenericType(this.getClassifierCS());
 		g1.getETypeArguments().add(g2);
 		boundClassifierCSEClass.getEGenericSuperTypes().add(g1);
+		boundDocumentCSEClass.getESuperTypes().add(this.getPackageCS());
 		boundElementCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		g1 = createEGenericType(this.getOperationCS());
 		boundOperationCSEClass.getEGenericSuperTypes().add(g1);
@@ -1889,12 +1910,16 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(attributeCSRefEClass, AttributeCSRef.class, "AttributeCSRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAttributeCSRef_Ref(), this.getAttributeCS(), null, "ref", null, 0, 1, AttributeCSRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(boundClassCSEClass, BoundClassCS.class, "BoundClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
 		initEClass(boundClassifierCSEClass, BoundClassifierCS.class, "BoundClassifierCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(boundDocumentCSEClass, BoundDocumentCS.class, "BoundDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(boundElementCSEClass, BoundElementCS.class, "BoundElementCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getBoundElementCS_Bindings(), this.getTypeBindingsCS(), null, "bindings", null, 0, 1, BoundElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(boundElementCSEClass_T);
-		initEReference(getBoundElementCS_Binds(), g1, null, "binds", null, 0, 1, BoundElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getBoundElementCS_Binds(), g1, null, "binds", null, 0, 1, BoundElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(boundOperationCSEClass, BoundOperationCS.class, "BoundOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1925,8 +1950,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(documentCSEClass, DocumentCS.class, "DocumentCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDocumentCS_Imports(), this.getImportCS(), null, "imports", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDocumentCS_Libraries(), this.getLibraryCS(), null, "libraries", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getDocumentCS_BoundClassifiers(), this.getBoundClassifierCS(), null, "boundClassifiers", null, 0, -1, DocumentCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getDocumentCS_BoundOperations(), this.getBoundOperationCS(), null, "boundOperations", null, 0, -1, DocumentCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(elementCSEClass, ElementCS.class, "ElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1934,6 +1957,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		EOperation op = addEOperation(elementCSEClass, null, "getSignature", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getSignature(), "s", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getTypeBindingsCS(), "bindings", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(enumLiteralCSEClass, EnumLiteralCS.class, "EnumLiteralCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getEnumLiteralCS_Value(), ecorePackage.getEInt(), "value", null, 0, 1, EnumLiteralCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1976,6 +2000,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEReference(getPackageCS_Subpackages(), this.getPackageCS(), null, "subpackages", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackageCS_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPackageCS_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(packageCSEClass, this.getClassifierCS(), "getClassifier", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(packageRefCSEClass, PackageRefCS.class, "PackageRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -2036,7 +2063,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEReference(getTypeBindingCS_TypeArgument(), this.getClassifierCS(), null, "typeArgument", null, 0, 1, TypeBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeBindingsCSEClass, TypeBindingsCS.class, "TypeBindingsCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTypeBindingsCS_Document(), this.getDocumentCS(), null, "document", null, 0, 1, TypeBindingsCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTypeBindingsCS_BoundDocument(), this.getBoundDocumentCS(), null, "boundDocument", null, 0, 1, TypeBindingsCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeBindingsCS_Bindings(), this.getTypeBindingCS(), null, "bindings", null, 0, -1, TypeBindingsCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeBindingsCS_Nested(), this.getTypeBindingsCS(), null, "nested", null, 0, -1, TypeBindingsCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

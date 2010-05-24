@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.4 2010/05/16 19:26:02 ewillink Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.5 2010/05/24 08:58:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -229,7 +230,7 @@ public class PackageDeclarationCSImpl extends ElementCSImpl implements PackageDe
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getPackage());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getPackage(), typeBindings);
 	}
 } //PackageDeclarationCSImpl

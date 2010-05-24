@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSRefImpl.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: ModelElementCSRefImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
@@ -167,7 +168,7 @@ public class ModelElementCSRefImpl extends ElementCSImpl implements ModelElement
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getRef());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getRef(), typeBindings);
 	}
 } //ModelElementCSRefImpl

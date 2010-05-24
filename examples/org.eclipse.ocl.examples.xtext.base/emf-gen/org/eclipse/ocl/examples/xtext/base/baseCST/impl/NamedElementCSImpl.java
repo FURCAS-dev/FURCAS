@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCSImpl.java,v 1.4 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: NamedElementCSImpl.java,v 1.5 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
@@ -167,8 +168,8 @@ public abstract class NamedElementCSImpl extends ModelElementCSImpl implements N
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendParent(this, "::"); //$NON-NLS-1$
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendParent(this, "::", typeBindings); //$NON-NLS-1$
 		signature.appendName(this);
 	}
 } //NamedElementCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeProvider.java,v 1.7 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: OCLinEcoreScopeProvider.java,v 1.8 2010/05/24 08:55:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -59,7 +59,7 @@ public class OCLinEcoreScopeProvider extends EssentialOCLScopeProvider
 
 		@Override
 		public ScopeAdapter caseConstraintCS(ConstraintCS eObject) {
-			return new EmptyScopeAdapter(eObject);
+			return new ConstraintScopeAdapter(eObject);
 		}
 
 		@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.4 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.5 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
@@ -167,10 +168,11 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
 		try {
-			signature.appendElement(basicGetType());
-			signature.appendTypeArguments(getTypeArguments());
+			signature.appendElement(getType(), typeBindings);
+//			signature.appendElement(basicGetType(), typeBindings);
+			signature.appendTypeArguments(getTypeArguments(), typeBindings);
 		} catch (Exception e) {
 			signature.append(e.getMessage());
 		}

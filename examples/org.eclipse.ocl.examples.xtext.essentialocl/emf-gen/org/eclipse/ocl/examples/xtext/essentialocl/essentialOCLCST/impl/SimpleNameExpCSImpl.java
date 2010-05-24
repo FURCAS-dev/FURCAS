@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleNameExpCSImpl.java,v 1.2 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: SimpleNameExpCSImpl.java,v 1.3 2010/05/24 08:55:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
@@ -172,7 +173,7 @@ public class SimpleNameExpCSImpl extends NameExpCSImpl implements SimpleNameExpC
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getNamedElement());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getNamedElement(), typeBindings);
 	}
 } //SimpleNamedElementRefCSImpl

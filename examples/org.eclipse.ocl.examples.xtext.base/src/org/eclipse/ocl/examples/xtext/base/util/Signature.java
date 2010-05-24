@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Signature.java,v 1.1 2010/05/16 19:18:04 ewillink Exp $
+ * $Id: Signature.java,v 1.2 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.util;
 
@@ -43,9 +43,9 @@ public class Signature
 		s.append(string != null ? string : "null"); //$NON-NLS-1$
 	}
 	
-	public void appendElement(ElementCS csElement) {
+	public void appendElement(ElementCS csElement, TypeBindingsCS typeBindings) {
 		if (csElement != null) {
-			csElement.getSignature(this);
+			csElement.getSignature(this, typeBindings);
 		}
 		else {
 			s.append("null"); //$NON-NLS-1$
@@ -70,33 +70,43 @@ public class Signature
 		append(csNamedElement != null ? csNamedElement.getName() : null);
 	}
 	
-	public void appendParameters(List<ParameterCS> parameters) {
+	public void appendParameters(List<ParameterCS> parameters, TypeBindingsCS typeBindings) {
 		s.append('(');
 		String prefix = ""; //$NON-NLS-1$
 		for (ParameterCS csParameter : parameters) {
 			s.append(prefix);
-			csParameter.getType().getSignature(this);
+			csParameter.getType().getSignature(this, typeBindings);
 			prefix = ","; //$NON-NLS-1$
 		}
 		s.append(')');
 	}
 
-	public void appendParent(ElementCS csElement, String parentSeparator) {
+	public void appendParent(ElementCS csElement, String parentSeparator, TypeBindingsCS typeBindings) {
 		EObject parent = csElement != null ? csElement.eContainer() : null;
-		appendElement((ElementCS) parent);
+		appendElement((ElementCS) parent, typeBindings);
 		append(parentSeparator);
 	}
 
-	public void appendTypeArguments(List<TypeRefCS> typeArguments) {
+	public void appendTypeArguments(List<TypeRefCS> typeArguments, TypeBindingsCS typeBindings) {
 		if (!typeArguments.isEmpty()) {
 			s.append('<');
 			String prefix = ""; //$NON-NLS-1$
 			for (TypeRefCS csTypeArgument : typeArguments) {
 				s.append(prefix);
-				csTypeArgument.getSignature(this);
+				csTypeArgument.getSignature(this, typeBindings);
 				prefix = ","; //$NON-NLS-1$
 			}
 			s.append('>');
+		}
+	}
+
+	public void appendTypeBinding(TypeParameterCS typeParameter, TypeBindingsCS typeBindings) {
+		TypeBindingCS binding = ElementUtil.getTypeBinding(typeParameter, typeBindings);
+		if (binding != null) {
+			appendElement(binding.getTypeArgument(), typeBindings);
+		}
+		else {
+			appendName(typeParameter);
 		}
 	}
 
@@ -113,13 +123,13 @@ public class Signature
 		s.append("> "); //$NON-NLS-1$
 	}
 
-	public void appendTypeParameters(List<TypeParameterCS> typeParameters) {
+	public void appendTypeParameters(List<TypeParameterCS> typeParameters, TypeBindingsCS typeBindings) {
 		if (!typeParameters.isEmpty()) {
 			s.append('<');
 			String prefix = ""; //$NON-NLS-1$
 			for (TypeParameterCS csTypeParameter : typeParameters) {
 				s.append(prefix);
-				s.append(csTypeParameter.getName());
+				appendTypeBinding(csTypeParameter, typeBindings);
 				prefix = ","; //$NON-NLS-1$
 			}
 			s.append('>');

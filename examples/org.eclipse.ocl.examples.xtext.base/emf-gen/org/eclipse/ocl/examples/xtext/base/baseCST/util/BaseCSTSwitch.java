@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -125,6 +125,21 @@ public class BaseCSTSwitch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.BOUND_CLASS_CS: {
+				BoundClassCS boundClassCS = (BoundClassCS)theEObject;
+				T1 result = caseBoundClassCS(boundClassCS);
+				if (result == null) result = caseClassCS(boundClassCS);
+				if (result == null) result = caseBoundClassifierCS(boundClassCS);
+				if (result == null) result = caseClassifierCS(boundClassCS);
+				if (result == null) result = caseNamespaceCS(boundClassCS);
+				if (result == null) result = caseBoundElementCS(boundClassCS);
+				if (result == null) result = caseNamedElementCS(boundClassCS);
+				if (result == null) result = caseTypeCS(boundClassCS);
+				if (result == null) result = caseModelElementCS(boundClassCS);
+				if (result == null) result = caseElementCS(boundClassCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.BOUND_CLASSIFIER_CS: {
 				BoundClassifierCS boundClassifierCS = (BoundClassifierCS)theEObject;
 				T1 result = caseBoundClassifierCS(boundClassifierCS);
@@ -134,6 +149,17 @@ public class BaseCSTSwitch<T1> {
 				if (result == null) result = caseTypeCS(boundClassifierCS);
 				if (result == null) result = caseModelElementCS(boundClassifierCS);
 				if (result == null) result = caseElementCS(boundClassifierCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.BOUND_DOCUMENT_CS: {
+				BoundDocumentCS boundDocumentCS = (BoundDocumentCS)theEObject;
+				T1 result = caseBoundDocumentCS(boundDocumentCS);
+				if (result == null) result = casePackageCS(boundDocumentCS);
+				if (result == null) result = caseNamespaceCS(boundDocumentCS);
+				if (result == null) result = caseNamedElementCS(boundDocumentCS);
+				if (result == null) result = caseModelElementCS(boundDocumentCS);
+				if (result == null) result = caseElementCS(boundDocumentCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -629,6 +655,21 @@ public class BaseCSTSwitch<T1> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bound Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bound Class CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseBoundClassCS(BoundClassCS object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Bound Classifier CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -640,6 +681,21 @@ public class BaseCSTSwitch<T1> {
 	 * @generated
 	 */
 	public T1 caseBoundClassifierCS(BoundClassifierCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bound Document CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bound Document CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseBoundDocumentCS(BoundDocumentCS object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: OperationCSImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
@@ -661,10 +662,10 @@ public abstract class OperationCSImpl extends NamedElementCSImpl implements Oper
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		super.getSignature(signature);
-		signature.appendTypeParameters(getTypeParameters());
-		signature.appendParameters(getParameters());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		super.getSignature(signature, typeBindings);
+		signature.appendTypeParameters(getTypeParameters(), typeBindings);
+		signature.appendParameters(getParameters(), typeBindings);
 	}
 
 } //OperationCSImpl

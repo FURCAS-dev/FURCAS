@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeBindingCSImpl.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: TypeBindingCSImpl.java,v 1.2 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
@@ -204,10 +205,10 @@ public class TypeBindingCSImpl extends ElementCSImpl implements TypeBindingCS {
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getTypeParameter());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getTypeParameter(), typeBindings);
 		signature.append("="); //$NON-NLS-1$
-		signature.appendElement(getTypeArgument());
+		signature.appendElement(getTypeArgument(), typeBindings);
 	}
 
 } //TypeBindingCSImpl

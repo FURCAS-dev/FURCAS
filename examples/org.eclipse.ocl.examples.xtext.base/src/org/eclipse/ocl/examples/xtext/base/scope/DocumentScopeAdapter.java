@@ -12,16 +12,19 @@
  *
  * </copyright>
  *
- * $Id: DocumentScopeAdapter.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: DocumentScopeAdapter.java,v 1.2 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 
 public interface DocumentScopeAdapter extends ScopeAdapter
 {
 	String getAlias(PackageCS csPackage);
+
+	BoundDocumentCS getBoundDocument();
 	
 	DocumentCS getTarget();
 }

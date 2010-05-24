@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -46,6 +46,15 @@ public interface BaseCSTFactory extends EFactory {
 	AttributeCSRef createAttributeCSRef();
 
 	/**
+	 * Returns a new object of class '<em>Bound Class CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bound Class CS</em>'.
+	 * @generated
+	 */
+	BoundClassCS createBoundClassCS();
+
+	/**
 	 * Returns a new object of class '<em>Bound Classifier CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,6 +62,15 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	BoundClassifierCS createBoundClassifierCS();
+
+	/**
+	 * Returns a new object of class '<em>Bound Document CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bound Document CS</em>'.
+	 * @generated
+	 */
+	BoundDocumentCS createBoundDocumentCS();
 
 	/**
 	 * Returns a new object of class '<em>Bound Operation CS</em>'.

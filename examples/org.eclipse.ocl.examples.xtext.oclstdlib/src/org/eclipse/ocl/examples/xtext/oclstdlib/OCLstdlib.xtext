@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlib.xtext,v 1.4 2010/05/21 20:08:37 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.5 2010/05/24 08:59:14 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib hidden(WS, ML_COMMENT, SL_COMMENT)
 
@@ -87,7 +87,7 @@ LibClassCS returns LibClassCS:
 	'type' name=Identifier
 	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
 	 ('conformsTo' conformsTo+=LibTypedRefCS (',' conformsTo+=LibTypedRefCS)*)?
-	'{' (iterations+=LibIterationCS | operations+=LibOperationCS | structuralFeatures+=LibPropertyCS)* '}'
+	'{' (operations+=(LibIterationCS|LibOperationCS) | structuralFeatures+=LibPropertyCS)* '}'
 ;
 
 LibClassifierCS returns base::ClassifierCS:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QualifiedClassifierRefCSImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: QualifiedClassifierRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
@@ -275,8 +276,8 @@ public class QualifiedClassifierRefCSImpl extends ClassifierRefCSImpl implements
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getElement());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getElement(), typeBindings);
 	}
 
 	@Override

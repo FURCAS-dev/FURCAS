@@ -12,11 +12,17 @@
  *
  * </copyright>
  *
- * $Id: AbstractDocumentScopeAdapter.java,v 1.3 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: AbstractDocumentScopeAdapter.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
@@ -25,6 +31,8 @@ public abstract class AbstractDocumentScopeAdapter<T extends DocumentCS>
 	extends AbstractScopeAdapter<T>
 	implements DocumentScopeAdapter
 {
+	private BoundDocumentCS boundDocument = null;
+	
 	public AbstractDocumentScopeAdapter(T csElement) {
 		super(csElement);
 	}
@@ -36,6 +44,30 @@ public abstract class AbstractDocumentScopeAdapter<T extends DocumentCS>
 			}
 		}
 		return csPackage.getName();
+	}
+
+	public BoundDocumentCS getBoundDocument() {
+		if (boundDocument == null) {
+			Resource eResource = getTarget().eResource();
+			ResourceSet resourceSet = eResource.getResourceSet();
+			for (Resource resource : resourceSet.getResources()) {
+				if (resource.getContents().size() == 1) {
+					EObject content = resource.getContents().get(0);
+					if (content instanceof BoundDocumentCS) {
+						boundDocument = (BoundDocumentCS) content;
+						break;
+					}
+				}
+			}
+			if (boundDocument == null) {
+				URI uri = URI.createURI("bound-document.xmi"); //$NON-NLS-1$
+				Resource resource = resourceSet.createResource(uri);
+				resourceSet.getResources().add(resource);
+				boundDocument = BaseCSTFactory.eINSTANCE.createBoundDocumentCS();
+				resource.getContents().add(boundDocument);
+			}
+		}
+		return boundDocument;
 	}
 
 	@Override

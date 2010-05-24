@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTAdapterFactory.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: BaseCSTAdapterFactory.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -95,8 +95,16 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeCSRefAdapter();
 			}
 			@Override
+			public Adapter caseBoundClassCS(BoundClassCS object) {
+				return createBoundClassCSAdapter();
+			}
+			@Override
 			public Adapter caseBoundClassifierCS(BoundClassifierCS object) {
 				return createBoundClassifierCSAdapter();
+			}
+			@Override
+			public Adapter caseBoundDocumentCS(BoundDocumentCS object) {
+				return createBoundDocumentCSAdapter();
 			}
 			@Override
 			public <T extends NamedElementCS> Adapter caseBoundElementCS(BoundElementCS<T> object) {
@@ -353,6 +361,20 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassCS <em>Bound Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassCS
+	 * @generated
+	 */
+	public Adapter createBoundClassCSAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS <em>Bound Classifier CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -363,6 +385,20 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBoundClassifierCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS <em>Bound Document CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS
+	 * @generated
+	 */
+	public Adapter createBoundDocumentCSAdapter() {
 		return null;
 	}
 

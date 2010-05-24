@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QualifiedTypeRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: QualifiedTypeRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
@@ -283,9 +284,9 @@ public class QualifiedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implement
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getElement());
-		signature.appendTypeArguments(getTypeArguments());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getElement(), typeBindings);
+		signature.appendTypeArguments(getTypeArguments(), typeBindings);
 	}
 
 	@Override

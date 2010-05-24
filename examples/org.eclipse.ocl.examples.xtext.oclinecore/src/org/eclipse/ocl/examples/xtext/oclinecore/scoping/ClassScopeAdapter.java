@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.5 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.6 2010/05/24 08:55:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -83,6 +83,6 @@ public class ClassScopeAdapter extends EssentialOCLScopeAdapter<OCLinEcoreClassC
 	
 	@Override
 	public ClassifierCS getSynthesizedType(TypeBindingsCS bindings) {
-		return getTarget();
+		return getLibraryType(getTarget(), bindings);
 	}
 }

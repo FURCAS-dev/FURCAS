@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BoundElementCS.java,v 1.2 2010/05/21 21:23:29 ewillink Exp $
+ * $Id: BoundElementCS.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -71,7 +71,7 @@ public interface BoundElementCS<T extends NamedElementCS> extends NamedElementCS
 	 * @return the value of the '<em>Binds</em>' reference.
 	 * @see #setBinds(NamedElementCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getBoundElementCS_Binds()
-	 * @model
+	 * @model derived="true"
 	 * @generated
 	 */
 	T getBinds();

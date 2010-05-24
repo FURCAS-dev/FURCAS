@@ -42,6 +42,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRestrictedKeywordsAccess().getAlternatives(), "rule__RestrictedKeywords__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getLibClassCSAccess().getAlternatives_5(), "rule__LibClassCS__Alternatives_5");
+					put(grammarAccess.getLibClassCSAccess().getOperationsAlternatives_5_0_0(), "rule__LibClassCS__OperationsAlternatives_5_0_0");
 					put(grammarAccess.getLibPackageCSAccess().getAlternatives_3(), "rule__LibPackageCS__Alternatives_3");
 					put(grammarAccess.getLibParameterCSAccess().getAlternatives_3_1(), "rule__LibParameterCS__Alternatives_3_1");
 					put(grammarAccess.getLibParameterCSAccess().getMultiplicityAlternatives_3_1_1_0(), "rule__LibParameterCS__MultiplicityAlternatives_3_1_1_0");
@@ -95,9 +96,8 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLibClassCSAccess().getTypeParametersAssignment_2_2_1(), "rule__LibClassCS__TypeParametersAssignment_2_2_1");
 					put(grammarAccess.getLibClassCSAccess().getConformsToAssignment_3_1(), "rule__LibClassCS__ConformsToAssignment_3_1");
 					put(grammarAccess.getLibClassCSAccess().getConformsToAssignment_3_2_1(), "rule__LibClassCS__ConformsToAssignment_3_2_1");
-					put(grammarAccess.getLibClassCSAccess().getIterationsAssignment_5_0(), "rule__LibClassCS__IterationsAssignment_5_0");
-					put(grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_1(), "rule__LibClassCS__OperationsAssignment_5_1");
-					put(grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_2(), "rule__LibClassCS__StructuralFeaturesAssignment_5_2");
+					put(grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_0(), "rule__LibClassCS__OperationsAssignment_5_0");
+					put(grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_1(), "rule__LibClassCS__StructuralFeaturesAssignment_5_1");
 					put(grammarAccess.getLibIterationCSAccess().getNameAssignment_1(), "rule__LibIterationCS__NameAssignment_1");
 					put(grammarAccess.getLibIterationCSAccess().getTypeParametersAssignment_2_1(), "rule__LibIterationCS__TypeParametersAssignment_2_1");
 					put(grammarAccess.getLibIterationCSAccess().getTypeParametersAssignment_2_2_1(), "rule__LibIterationCS__TypeParametersAssignment_2_2_1");
