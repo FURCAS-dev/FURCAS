@@ -215,7 +215,10 @@
 	      </visibleWhen>
 	    </command>
 	  </menuContribution-->
-	  <menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+       <menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu id="org.eclipse.ocl.examples.xtext.oclinecore.ui.SaveAs" label="%MF_SaveAs"/>         
+       </menuContribution>
+	  <menuContribution locationURI="popup:org.eclipse.ocl.examples.xtext.oclinecore.ui.SaveAs?after=additions">
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsEcoreCommand"
 	      label="%MF_SaveAsEcore">
 	      <visibleWhen checkEnabled="false">
