@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: SubExpScopeAdapter.java,v 1.2 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: SubExpScopeAdapter.java,v 1.3 2010/05/24 08:55:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
 
@@ -24,9 +23,5 @@ public abstract class SubExpScopeAdapter<T extends ExpCS> extends ExpScopeAdapte
 {
 	public SubExpScopeAdapter(T csElement) {
 		super(csElement);
-	}
-
-	protected ScopeAdapter getParentSourceScope() {
-		return getParent().getSourceScope(getTarget().eContainingFeature());
 	}
 }

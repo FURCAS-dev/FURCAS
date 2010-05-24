@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.4 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.5 2010/05/24 08:55:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
@@ -194,14 +195,14 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	}
 
 	@Override
-	public void getSignature(Signature resultSignature) {
+	public void getSignature(Signature resultSignature, TypeBindingsCS typeBindings) {
 		if (signature == null) {
 			Signature s = new Signature();
 			s.appendName(this);
 			s.append('(');
 			TypeCS type = getTypeCS();
 			if (type != null) {
-				type.getSignature(s);
+				type.getSignature(s, typeBindings);
 			}
 			s.append(')');
 			signature = s.toString();

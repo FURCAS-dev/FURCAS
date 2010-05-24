@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCSImpl.java,v 1.3 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: TupleTypeCSImpl.java,v 1.4 2010/05/24 08:55:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
@@ -173,7 +174,7 @@ public class TupleTypeCSImpl extends ClassifierCSImpl implements TupleTypeCS {
 	}
 
 	@Override
-	public void getSignature(Signature resultSignature) {
+	public void getSignature(Signature resultSignature, TypeBindingsCS typeBindings) {
 		if (signature == null) {
 			Signature s = new Signature();
 			s.appendName(this);
@@ -192,7 +193,7 @@ public class TupleTypeCSImpl extends ClassifierCSImpl implements TupleTypeCS {
 				s.append(':');
 				TypeCS type = part.getType();
 				if (type != null) {
-					type.getSignature(s);
+					type.getSignature(s, typeBindings);
 				}
 				prefix = ",";
 			}

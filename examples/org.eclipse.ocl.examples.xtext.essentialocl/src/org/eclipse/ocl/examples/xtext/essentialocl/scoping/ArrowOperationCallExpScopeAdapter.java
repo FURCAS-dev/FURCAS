@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ArrowOperationCallExpScopeAdapter.java,v 1.5 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: ArrowOperationCallExpScopeAdapter.java,v 1.6 2010/05/24 08:55:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -46,7 +46,7 @@ public class ArrowOperationCallExpScopeAdapter extends SubExpScopeAdapter<RoundB
 			ScopeAdapter sourceScope = getParentSourceScope();
 			ClassifierCS csType = sourceScope.getSynthesizedType(bindings);
 			ScopeAdapter typeScope = getScopeAdapter(csType);
-			if (typeScope != null) {
+			if (typeScope != null) {		// FIXME - need to pass argument types so that operation can be specialized
 				typeScope.getInnerScopeView(null, bindings).computeLookupWithParents(environmentView);
 			}
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameExpCSImpl.java,v 1.3 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: PathNameExpCSImpl.java,v 1.4 2010/05/24 08:55:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
@@ -480,7 +481,7 @@ public class PathNameExpCSImpl extends NameExpCSImpl implements PathNameExpCS {
 
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getNamedElement());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getNamedElement(), typeBindings);
 	}
 } //PathNamedElementRefCSImpl

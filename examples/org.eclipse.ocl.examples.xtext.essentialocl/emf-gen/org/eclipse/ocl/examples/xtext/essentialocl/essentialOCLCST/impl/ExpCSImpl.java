@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ExpCSImpl.java,v 1.2 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: ExpCSImpl.java,v 1.3 2010/05/24 08:55:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -52,8 +53,8 @@ public class ExpCSImpl extends ElementCSImpl implements ExpCS {
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendParent(this, "::"); //$NON-NLS-1$
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendParent(this, "::", typeBindings); //$NON-NLS-1$
 		signature.append(hashCode());
 	}
 } //OclExpressionCSImpl
