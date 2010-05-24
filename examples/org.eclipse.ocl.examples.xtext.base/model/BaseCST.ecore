@@ -13,12 +13,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCSRef" eSuperTypes="#//ElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//AttributeCS"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoundClassCS" eSuperTypes="#//ClassCS #//BoundClassifierCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoundClassifierCS">
     <eGenericSuperTypes eClassifier="#//ClassifierCS"/>
     <eGenericSuperTypes eClassifier="#//BoundElementCS">
       <eTypeArguments eClassifier="#//ClassifierCS"/>
     </eGenericSuperTypes>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoundDocumentCS" eSuperTypes="#//PackageCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoundElementCS" abstract="true" interface="true"
       eSuperTypes="#//NamedElementCS">
     <eTypeParameters name="T">
@@ -26,7 +28,7 @@
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" eType="#//TypeBindingsCS"
         transient="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="binds">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="binds" derived="true">
       <eGenericType eTypeParameter="#//BoundElementCS/T"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -76,15 +78,12 @@
         eType="#//ImportCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraries" upperBound="-1"
         eType="#//LibraryCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="boundClassifiers" upperBound="-1"
-        eType="#//BoundClassifierCS" transient="true" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="boundOperations" upperBound="-1"
-        eType="#//BoundOperationCS" transient="true" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementCS" abstract="true">
     <eOperations name="getSignature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getSignature">
       <eParameters name="s" eType="#//Signature"/>
+      <eParameters name="bindings" eType="#//TypeBindingsCS"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralCS" eSuperTypes="#//NamedElementCS">
@@ -133,6 +132,9 @@
     <eOperations name="getOperation" eType="#//OperationCS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageCS" eSuperTypes="#//NamespaceCS">
+    <eOperations name="getClassifier" eType="#//ClassifierCS">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifiers" upperBound="-1"
         eType="#//ClassifierCS" containment="true" eOpposite="#//ClassifierCS/owner"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subpackages" upperBound="-1"
@@ -230,7 +232,7 @@
         resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBindingsCS" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="document" eType="#//DocumentCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundDocument" eType="#//BoundDocumentCS"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//TypeBindingCS" containment="true"/>

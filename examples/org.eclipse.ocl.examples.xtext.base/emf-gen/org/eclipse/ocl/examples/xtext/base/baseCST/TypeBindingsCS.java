@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeBindingsCS.java,v 1.1 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: TypeBindingsCS.java,v 1.2 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getDocument <em>Document</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getBoundDocument <em>Bound Document</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getNested <em>Nested</em>}</li>
  * </ul>
@@ -40,30 +40,30 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TypeBindingsCS extends ElementCS {
 	/**
-	 * Returns the value of the '<em><b>Document</b></em>' reference.
+	 * Returns the value of the '<em><b>Bound Document</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Document</em>' reference isn't clear,
+	 * If the meaning of the '<em>Bound Document</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Document</em>' reference.
-	 * @see #setDocument(DocumentCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypeBindingsCS_Document()
+	 * @return the value of the '<em>Bound Document</em>' reference.
+	 * @see #setBoundDocument(BoundDocumentCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypeBindingsCS_BoundDocument()
 	 * @model resolveProxies="false"
 	 * @generated
 	 */
-	DocumentCS getDocument();
+	BoundDocumentCS getBoundDocument();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getDocument <em>Document</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getBoundDocument <em>Bound Document</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Document</em>' reference.
-	 * @see #getDocument()
+	 * @param value the new value of the '<em>Bound Document</em>' reference.
+	 * @see #getBoundDocument()
 	 * @generated
 	 */
-	void setDocument(DocumentCS value);
+	void setBoundDocument(BoundDocumentCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.

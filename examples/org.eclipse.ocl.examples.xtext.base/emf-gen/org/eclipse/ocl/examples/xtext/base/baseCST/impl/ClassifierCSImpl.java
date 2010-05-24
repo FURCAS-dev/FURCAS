@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierCSImpl.java,v 1.2 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: ClassifierCSImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
@@ -248,17 +249,8 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		super.getSignature(signature);
-		if (!getTypeParameters().isEmpty()) {
-			signature.append('<');
-			String prefix = ""; //$NON-NLS-1$
-			for (TypeParameterCS csTypeParameter : getTypeParameters()) {
-				signature.append(prefix);
-				signature.appendName(csTypeParameter);
-				prefix = ","; //$NON-NLS-1$
-			}
-			signature.append('>');
-		}
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		super.getSignature(signature, typeBindings);
+		signature.appendTypeParameters(getTypeParameters(), typeBindings);
 	}
 } //ClassifierCSImpl

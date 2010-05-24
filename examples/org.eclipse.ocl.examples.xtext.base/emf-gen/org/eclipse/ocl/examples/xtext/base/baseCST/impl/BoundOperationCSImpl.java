@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BoundOperationCSImpl.java,v 1.2 2010/05/21 21:23:28 ewillink Exp $
+ * $Id: BoundOperationCSImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -244,8 +244,13 @@ public class BoundOperationCSImpl extends OperationCSImpl implements BoundOperat
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendTypeBindings(getBindings());
-		signature.appendElement(getBinds());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		if (typeBindings == null) {
+			signature.appendTypeBindings(getBindings());
+			signature.appendElement(getBinds(), null);
+		}
+		else {
+			signature.appendElement(getBinds(), getBindings());
+		}
 	}
 } //BoundOperationCSImpl

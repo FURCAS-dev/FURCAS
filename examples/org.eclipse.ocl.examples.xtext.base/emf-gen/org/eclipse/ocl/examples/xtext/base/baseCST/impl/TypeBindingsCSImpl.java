@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeBindingsCSImpl.java,v 1.1 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: TypeBindingsCSImpl.java,v 1.2 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.util.Signature;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeBindingsCSImpl#getDocument <em>Document</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeBindingsCSImpl#getBoundDocument <em>Bound Document</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeBindingsCSImpl#getBindings <em>Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeBindingsCSImpl#getNested <em>Nested</em>}</li>
  * </ul>
@@ -50,14 +50,14 @@ import org.eclipse.ocl.examples.xtext.base.util.Signature;
  */
 public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS {
 	/**
-	 * The cached value of the '{@link #getDocument() <em>Document</em>}' reference.
+	 * The cached value of the '{@link #getBoundDocument() <em>Bound Document</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDocument()
+	 * @see #getBoundDocument()
 	 * @generated
 	 * @ordered
 	 */
-	protected DocumentCS document;
+	protected BoundDocumentCS boundDocument;
 
 	/**
 	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
@@ -103,8 +103,8 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DocumentCS getDocument() {
-		return document;
+	public BoundDocumentCS getBoundDocument() {
+		return boundDocument;
 	}
 
 	/**
@@ -112,11 +112,11 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDocument(DocumentCS newDocument) {
-		DocumentCS oldDocument = document;
-		document = newDocument;
+	public void setBoundDocument(BoundDocumentCS newBoundDocument) {
+		BoundDocumentCS oldBoundDocument = boundDocument;
+		boundDocument = newBoundDocument;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPE_BINDINGS_CS__DOCUMENT, oldDocument, document));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPE_BINDINGS_CS__BOUND_DOCUMENT, oldBoundDocument, boundDocument));
 	}
 
 	/**
@@ -167,8 +167,8 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BaseCSTPackage.TYPE_BINDINGS_CS__DOCUMENT:
-				return getDocument();
+			case BaseCSTPackage.TYPE_BINDINGS_CS__BOUND_DOCUMENT:
+				return getBoundDocument();
 			case BaseCSTPackage.TYPE_BINDINGS_CS__BINDINGS:
 				return getBindings();
 			case BaseCSTPackage.TYPE_BINDINGS_CS__NESTED:
@@ -186,8 +186,8 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BaseCSTPackage.TYPE_BINDINGS_CS__DOCUMENT:
-				setDocument((DocumentCS)newValue);
+			case BaseCSTPackage.TYPE_BINDINGS_CS__BOUND_DOCUMENT:
+				setBoundDocument((BoundDocumentCS)newValue);
 				return;
 			case BaseCSTPackage.TYPE_BINDINGS_CS__BINDINGS:
 				getBindings().clear();
@@ -209,8 +209,8 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BaseCSTPackage.TYPE_BINDINGS_CS__DOCUMENT:
-				setDocument((DocumentCS)null);
+			case BaseCSTPackage.TYPE_BINDINGS_CS__BOUND_DOCUMENT:
+				setBoundDocument((BoundDocumentCS)null);
 				return;
 			case BaseCSTPackage.TYPE_BINDINGS_CS__BINDINGS:
 				getBindings().clear();
@@ -230,8 +230,8 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BaseCSTPackage.TYPE_BINDINGS_CS__DOCUMENT:
-				return document != null;
+			case BaseCSTPackage.TYPE_BINDINGS_CS__BOUND_DOCUMENT:
+				return boundDocument != null;
 			case BaseCSTPackage.TYPE_BINDINGS_CS__BINDINGS:
 				return bindings != null && !bindings.isEmpty();
 			case BaseCSTPackage.TYPE_BINDINGS_CS__NESTED:
@@ -255,12 +255,12 @@ public class TypeBindingsCSImpl extends ElementCSImpl implements TypeBindingsCS 
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
 		signature.append('<');
 		String prefix = ""; //$NON-NLS-1$
 		for (TypeBindingCS csTypeBinding : getBindings()) {
 			signature.append(prefix);
-			signature.appendElement(csTypeBinding);
+			signature.appendElement(csTypeBinding, typeBindings);
 			prefix = ","; //$NON-NLS-1$
 		}
 		signature.append("> "); //$NON-NLS-1$

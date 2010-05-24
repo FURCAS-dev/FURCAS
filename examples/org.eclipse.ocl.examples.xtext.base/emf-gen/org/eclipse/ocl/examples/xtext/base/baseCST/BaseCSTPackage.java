@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackage.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: BaseCSTPackage.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -79,7 +79,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getElementCS()
 	 * @generated
 	 */
-	int ELEMENT_CS = 13;
+	int ELEMENT_CS = 15;
 
 	/**
 	 * The number of structural features of the '<em>Element CS</em>' class.
@@ -98,7 +98,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getDocumentCS()
 	 * @generated
 	 */
-	int DOCUMENT_CS = 12;
+	int DOCUMENT_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl <em>Model Element CS</em>}' class.
@@ -108,7 +108,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getModelElementCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS = 18;
+	int MODEL_ELEMENT_CS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -209,7 +209,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getDetailCS()
 	 * @generated
 	 */
-	int DETAIL_CS = 11;
+	int DETAIL_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ImportCSImpl <em>Import CS</em>}' class.
@@ -219,7 +219,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getImportCS()
 	 * @generated
 	 */
-	int IMPORT_CS = 16;
+	int IMPORT_CS = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl <em>Named Element CS</em>}' class.
@@ -229,7 +229,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getNamedElementCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_CS = 20;
+	int NAMED_ELEMENT_CS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -284,7 +284,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getClassifierCS()
 	 * @generated
 	 */
-	int CLASSIFIER_CS = 8;
+	int CLASSIFIER_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.EnumLiteralCSImpl <em>Enum Literal CS</em>}' class.
@@ -294,7 +294,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getEnumLiteralCS()
 	 * @generated
 	 */
-	int ENUM_LITERAL_CS = 14;
+	int ENUM_LITERAL_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS <em>Typed Element CS</em>}' class.
@@ -304,7 +304,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 48;
+	int TYPED_ELEMENT_CS = 50;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -404,7 +404,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getFeatureCS()
 	 * @generated
 	 */
-	int FEATURE_CS = 15;
+	int FEATURE_CS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -522,7 +522,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 41;
+	int STRUCTURAL_FEATURE_CS = 43;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -804,7 +804,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundElementCS()
 	 * @generated
 	 */
-	int BOUND_ELEMENT_CS = 4;
+	int BOUND_ELEMENT_CS = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS <em>Class CS</em>}' class.
@@ -814,7 +814,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getClassCS()
 	 * @generated
 	 */
-	int CLASS_CS = 6;
+	int CLASS_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassCSRefImpl <em>Class CS Ref</em>}' class.
@@ -824,7 +824,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getClassCSRef()
 	 * @generated
 	 */
-	int CLASS_CS_REF = 7;
+	int CLASS_CS_REF = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ClassifierRefCSImpl <em>Classifier Ref CS</em>}' class.
@@ -834,7 +834,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getClassifierRefCS()
 	 * @generated
 	 */
-	int CLASSIFIER_REF_CS = 9;
+	int CLASSIFIER_REF_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.LibraryCSImpl <em>Library CS</em>}' class.
@@ -844,7 +844,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getLibraryCS()
 	 * @generated
 	 */
-	int LIBRARY_CS = 17;
+	int LIBRARY_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSRefImpl <em>Model Element CS Ref</em>}' class.
@@ -854,7 +854,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getModelElementCSRef()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS_REF = 19;
+	int MODEL_ELEMENT_CS_REF = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS <em>Namespace CS</em>}' class.
@@ -864,7 +864,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getNamespaceCS()
 	 * @generated
 	 */
-	int NAMESPACE_CS = 21;
+	int NAMESPACE_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationCSImpl <em>Operation CS</em>}' class.
@@ -874,7 +874,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getOperationCS()
 	 * @generated
 	 */
-	int OPERATION_CS = 22;
+	int OPERATION_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -884,7 +884,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPackageCS()
 	 * @generated
 	 */
-	int PACKAGE_CS = 24;
+	int PACKAGE_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -894,7 +894,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getParameterCS()
 	 * @generated
 	 */
-	int PARAMETER_CS = 26;
+	int PARAMETER_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PrimitiveTypeRefCSImpl <em>Primitive Type Ref CS</em>}' class.
@@ -904,7 +904,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 28;
+	int PRIMITIVE_TYPE_REF_CS = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS <em>Reference CS</em>}' class.
@@ -914,7 +914,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 35;
+	int REFERENCE_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ReferenceCSRefImpl <em>Reference CS Ref</em>}' class.
@@ -924,7 +924,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getReferenceCSRef()
 	 * @generated
 	 */
-	int REFERENCE_CS_REF = 36;
+	int REFERENCE_CS_REF = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS <em>Type CS</em>}' class.
@@ -934,7 +934,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 45;
+	int TYPE_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeParameterCSImpl <em>Type Parameter CS</em>}' class.
@@ -944,7 +944,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 46;
+	int TYPE_PARAMETER_CS = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
@@ -954,7 +954,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedTypeRefCS()
 	 * @generated
 	 */
-	int TYPED_TYPE_REF_CS = 50;
+	int TYPED_TYPE_REF_CS = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.WildcardTypeRefCSImpl <em>Wildcard Type Ref CS</em>}' class.
@@ -964,7 +964,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getWildcardTypeRefCS()
 	 * @generated
 	 */
-	int WILDCARD_TYPE_REF_CS = 51;
+	int WILDCARD_TYPE_REF_CS = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeRefCSImpl <em>Type Ref CS</em>}' class.
@@ -974,7 +974,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 47;
+	int TYPE_REF_CS = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -984,7 +984,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedRefCS()
 	 * @generated
 	 */
-	int TYPED_REF_CS = 49;
+	int TYPED_REF_CS = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.CollectionTypeRefCSImpl <em>Collection Type Ref CS</em>}' class.
@@ -994,7 +994,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getCollectionTypeRefCS()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF_CS = 10;
+	int COLLECTION_TYPE_REF_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundOperationCSImpl <em>Bound Operation CS</em>}' class.
@@ -1004,7 +1004,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundOperationCS()
 	 * @generated
 	 */
-	int BOUND_OPERATION_CS = 5;
+	int BOUND_OPERATION_CS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1077,7 +1077,235 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundClassifierCS()
 	 * @generated
 	 */
-	int BOUND_CLASSIFIER_CS = 3;
+	int BOUND_CLASSIFIER_CS = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationRefCSImpl <em>Operation Ref CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationRefCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getOperationRefCS()
+	 * @generated
+	 */
+	int OPERATION_REF_CS = 25;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundDocumentCSImpl <em>Bound Document CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundDocumentCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundDocumentCS()
+	 * @generated
+	 */
+	int BOUND_DOCUMENT_CS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__ANNOTATIONS = CLASSIFIER_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__ORIGINAL_OBJECT = CLASSIFIER_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__NAME = CLASSIFIER_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__TYPE_PARAMETERS = CLASSIFIER_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__OWNER = CLASSIFIER_CS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__SUPER_TYPES = CLASSIFIER_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__OPERATIONS = CLASSIFIER_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__STRUCTURAL_FEATURES = CLASSIFIER_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundClassCSImpl <em>Bound Class CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundClassCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundClassCS()
+	 * @generated
+	 */
+	int BOUND_CLASS_CS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__ANNOTATIONS = CLASS_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__ORIGINAL_OBJECT = CLASS_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__ORIGINAL_XMI_ID = CLASS_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__NAME = CLASS_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__TYPE_PARAMETERS = CLASS_CS__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__OWNER = CLASS_CS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__SUPER_TYPES = CLASS_CS__SUPER_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__OPERATIONS = CLASS_CS__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__STRUCTURAL_FEATURES = CLASS_CS__STRUCTURAL_FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__BINDINGS = CLASS_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Binds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS__BINDS = CLASS_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Bound Class CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_CLASS_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1159,6 +1387,213 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUND_CLASSIFIER_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_CS__ANNOTATIONS = NAMED_ELEMENT_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_CS__ORIGINAL_OBJECT = NAMED_ELEMENT_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_CS__NAME = NAMED_ELEMENT_CS__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Namespace CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__ANNOTATIONS = NAMESPACE_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__ORIGINAL_OBJECT = NAMESPACE_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__NAME = NAMESPACE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__CLASSIFIERS = NAMESPACE_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Subpackages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__SUBPACKAGES = NAMESPACE_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__PREFIX = NAMESPACE_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__URI = NAMESPACE_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Package CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__ANNOTATIONS = PACKAGE_CS__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Original Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__ORIGINAL_OBJECT = PACKAGE_CS__ORIGINAL_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__ORIGINAL_XMI_ID = PACKAGE_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__NAME = PACKAGE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Classifiers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__CLASSIFIERS = PACKAGE_CS__CLASSIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Subpackages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__SUBPACKAGES = PACKAGE_CS__SUBPACKAGES;
+
+	/**
+	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__PREFIX = PACKAGE_CS__PREFIX;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS__URI = PACKAGE_CS__URI;
+
+	/**
+	 * The number of structural features of the '<em>Bound Document CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_DOCUMENT_CS_FEATURE_COUNT = PACKAGE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1512,96 +1947,6 @@ public interface BaseCSTPackage extends EPackage {
 	int BOUND_OPERATION_CS_FEATURE_COUNT = OPERATION_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__ANNOTATIONS = CLASSIFIER_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__ORIGINAL_OBJECT = CLASSIFIER_CS__ORIGINAL_OBJECT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__NAME = CLASSIFIER_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__TYPE_PARAMETERS = CLASSIFIER_CS__TYPE_PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OWNER = CLASSIFIER_CS__OWNER;
-
-	/**
-	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__SUPER_TYPES = CLASSIFIER_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__OPERATIONS = CLASSIFIER_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Structural Features</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__STRUCTURAL_FEATURES = CLASSIFIER_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Class CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS_FEATURE_COUNT = CLASSIFIER_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1824,51 +2169,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE_CS__ANNOTATIONS = NAMED_ELEMENT_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_CS__ORIGINAL_OBJECT = NAMED_ELEMENT_CS__ORIGINAL_OBJECT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_CS__NAME = NAMED_ELEMENT_CS__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Namespace CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int DOCUMENT_CS__ANNOTATIONS = NAMESPACE_CS__ANNOTATIONS;
 
 	/**
@@ -1917,31 +2217,13 @@ public interface BaseCSTPackage extends EPackage {
 	int DOCUMENT_CS__LIBRARIES = NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_CS__BOUND_CLASSIFIERS = NAMESPACE_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_CS__BOUND_OPERATIONS = NAMESPACE_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Document CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 4;
+	int DOCUMENT_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2133,16 +2415,6 @@ public interface BaseCSTPackage extends EPackage {
 	int MODEL_ELEMENT_CS_REF_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationRefCSImpl <em>Operation Ref CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationRefCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getOperationRefCS()
-	 * @generated
-	 */
-	int OPERATION_REF_CS = 23;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2179,87 +2451,6 @@ public interface BaseCSTPackage extends EPackage {
 	int OPERATION_REF_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__ANNOTATIONS = NAMESPACE_CS__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Original Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__ORIGINAL_OBJECT = NAMESPACE_CS__ORIGINAL_OBJECT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__NAME = NAMESPACE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Classifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__CLASSIFIERS = NAMESPACE_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Subpackages</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__SUBPACKAGES = NAMESPACE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Prefix</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__PREFIX = NAMESPACE_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__URI = NAMESPACE_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Package CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 4;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageRefCSImpl <em>Package Ref CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2267,7 +2458,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPackageRefCS()
 	 * @generated
 	 */
-	int PACKAGE_REF_CS = 25;
+	int PACKAGE_REF_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -2412,7 +2603,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getParameterizedTypeRefCS()
 	 * @generated
 	 */
-	int PARAMETERIZED_TYPE_REF_CS = 27;
+	int PARAMETERIZED_TYPE_REF_CS = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedClassifierRefCSImpl <em>Qualified Classifier Ref CS</em>}' class.
@@ -2422,7 +2613,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedClassifierRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_CLASSIFIER_REF_CS = 29;
+	int QUALIFIED_CLASSIFIER_REF_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedOperationRefCSImpl <em>Qualified Operation Ref CS</em>}' class.
@@ -2432,7 +2623,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedOperationRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_OPERATION_REF_CS = 30;
+	int QUALIFIED_OPERATION_REF_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedPackageRefCSImpl <em>Qualified Package Ref CS</em>}' class.
@@ -2442,7 +2633,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedPackageRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_PACKAGE_REF_CS = 31;
+	int QUALIFIED_PACKAGE_REF_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS <em>Qualified Ref CS</em>}' class.
@@ -2452,7 +2643,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_REF_CS = 32;
+	int QUALIFIED_REF_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureRefCSImpl <em>Structural Feature Ref CS</em>}' class.
@@ -2462,7 +2653,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getStructuralFeatureRefCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_REF_CS = 42;
+	int STRUCTURAL_FEATURE_REF_CS = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedStructuralFeatureRefCSImpl <em>Qualified Structural Feature Ref CS</em>}' class.
@@ -2472,7 +2663,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedStructuralFeatureRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_STRUCTURAL_FEATURE_REF_CS = 33;
+	int QUALIFIED_STRUCTURAL_FEATURE_REF_CS = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl <em>Qualified Type Ref CS</em>}' class.
@@ -2482,7 +2673,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedTypeRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_TYPE_REF_CS = 34;
+	int QUALIFIED_TYPE_REF_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleClassifierRefCSImpl <em>Simple Classifier Ref CS</em>}' class.
@@ -2492,7 +2683,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSimpleClassifierRefCS()
 	 * @generated
 	 */
-	int SIMPLE_CLASSIFIER_REF_CS = 37;
+	int SIMPLE_CLASSIFIER_REF_CS = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleOperationRefCSImpl <em>Simple Operation Ref CS</em>}' class.
@@ -2502,7 +2693,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSimpleOperationRefCS()
 	 * @generated
 	 */
-	int SIMPLE_OPERATION_REF_CS = 38;
+	int SIMPLE_OPERATION_REF_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimplePackageRefCSImpl <em>Simple Package Ref CS</em>}' class.
@@ -2512,7 +2703,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSimplePackageRefCS()
 	 * @generated
 	 */
-	int SIMPLE_PACKAGE_REF_CS = 39;
+	int SIMPLE_PACKAGE_REF_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleStructuralFeatureRefCSImpl <em>Simple Structural Feature Ref CS</em>}' class.
@@ -2522,7 +2713,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSimpleStructuralFeatureRefCS()
 	 * @generated
 	 */
-	int SIMPLE_STRUCTURAL_FEATURE_REF_CS = 40;
+	int SIMPLE_STRUCTURAL_FEATURE_REF_CS = 42;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -3315,7 +3506,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeBindingCS()
 	 * @generated
 	 */
-	int TYPE_BINDING_CS = 43;
+	int TYPE_BINDING_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Type Parameter</b></em>' reference.
@@ -3352,16 +3543,16 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeBindingsCS()
 	 * @generated
 	 */
-	int TYPE_BINDINGS_CS = 44;
+	int TYPE_BINDINGS_CS = 46;
 
 	/**
-	 * The feature id for the '<em><b>Document</b></em>' reference.
+	 * The feature id for the '<em><b>Bound Document</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_BINDINGS_CS__DOCUMENT = ELEMENT_CS_FEATURE_COUNT + 0;
+	int TYPE_BINDINGS_CS__BOUND_DOCUMENT = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
@@ -3579,7 +3770,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSignature()
 	 * @generated
 	 */
-	int SIGNATURE = 52;
+	int SIGNATURE = 54;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS <em>Annotation Element CS</em>}'.
@@ -3634,6 +3825,16 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getAttributeCSRef_Ref();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassCS <em>Bound Class CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bound Class CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassCS
+	 * @generated
+	 */
+	EClass getBoundClassCS();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundClassifierCS <em>Bound Classifier CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3642,6 +3843,16 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBoundClassifierCS();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS <em>Bound Document CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bound Document CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS
+	 * @generated
+	 */
+	EClass getBoundDocumentCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS <em>Bound Element CS</em>}'.
@@ -3886,28 +4097,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDocumentCS_Libraries();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getBoundClassifiers <em>Bound Classifiers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Bound Classifiers</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getBoundClassifiers()
-	 * @see #getDocumentCS()
-	 * @generated
-	 */
-	EReference getDocumentCS_BoundClassifiers();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getBoundOperations <em>Bound Operations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Bound Operations</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS#getBoundOperations()
-	 * @see #getDocumentCS()
-	 * @generated
-	 */
-	EReference getDocumentCS_BoundOperations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS <em>Element CS</em>}'.
@@ -4571,15 +4760,15 @@ public interface BaseCSTPackage extends EPackage {
 	EClass getTypeBindingsCS();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getDocument <em>Document</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getBoundDocument <em>Bound Document</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Document</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getDocument()
+	 * @return the meta object for the reference '<em>Bound Document</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getBoundDocument()
 	 * @see #getTypeBindingsCS()
 	 * @generated
 	 */
-	EReference getTypeBindingsCS_Document();
+	EReference getTypeBindingsCS_BoundDocument();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS#getBindings <em>Bindings</em>}'.
@@ -4863,6 +5052,16 @@ public interface BaseCSTPackage extends EPackage {
 		EReference ATTRIBUTE_CS_REF__REF = eINSTANCE.getAttributeCSRef_Ref();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundClassCSImpl <em>Bound Class CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundClassCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundClassCS()
+		 * @generated
+		 */
+		EClass BOUND_CLASS_CS = eINSTANCE.getBoundClassCS();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundClassifierCSImpl <em>Bound Classifier CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4871,6 +5070,16 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BOUND_CLASSIFIER_CS = eINSTANCE.getBoundClassifierCS();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundDocumentCSImpl <em>Bound Document CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BoundDocumentCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getBoundDocumentCS()
+		 * @generated
+		 */
+		EClass BOUND_DOCUMENT_CS = eINSTANCE.getBoundDocumentCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.BoundElementCS <em>Bound Element CS</em>}' class.
@@ -5073,22 +5282,6 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOCUMENT_CS__LIBRARIES = eINSTANCE.getDocumentCS_Libraries();
-
-		/**
-		 * The meta object literal for the '<em><b>Bound Classifiers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DOCUMENT_CS__BOUND_CLASSIFIERS = eINSTANCE.getDocumentCS_BoundClassifiers();
-
-		/**
-		 * The meta object literal for the '<em><b>Bound Operations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DOCUMENT_CS__BOUND_OPERATIONS = eINSTANCE.getDocumentCS_BoundOperations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl <em>Element CS</em>}' class.
@@ -5659,12 +5852,12 @@ public interface BaseCSTPackage extends EPackage {
 		EClass TYPE_BINDINGS_CS = eINSTANCE.getTypeBindingsCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Document</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bound Document</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPE_BINDINGS_CS__DOCUMENT = eINSTANCE.getTypeBindingsCS_Document();
+		EReference TYPE_BINDINGS_CS__BOUND_DOCUMENT = eINSTANCE.getTypeBindingsCS_BoundDocument();
 
 		/**
 		 * The meta object literal for the '<em><b>Bindings</b></em>' containment reference list feature.

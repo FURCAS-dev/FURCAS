@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: PackageCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.DocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
@@ -201,6 +202,20 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ClassifierCS getClassifier(String name) {
+		for (ClassifierCS classifier : getClassifiers()) {		// FIXME use a HashMap
+			if (classifier.getName().equals(name)) {
+				return classifier;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -321,7 +336,7 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
 		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(this);
 		DocumentScopeAdapter documentScopeAdapter = scopeAdapter.getDocumentScopeAdapter();
 		if (documentScopeAdapter != null) {
@@ -331,7 +346,7 @@ public class PackageCSImpl extends NamedElementCSImpl implements PackageCS {
 				return;
 			}
 		}
-		super.getSignature(signature);
+		super.getSignature(signature, typeBindings);
 	}
 
 	/**

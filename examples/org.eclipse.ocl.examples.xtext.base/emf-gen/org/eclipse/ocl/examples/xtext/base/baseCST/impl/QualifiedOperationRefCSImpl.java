@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QualifiedOperationRefCSImpl.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: QualifiedOperationRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
 /**
@@ -275,8 +276,8 @@ public class QualifiedOperationRefCSImpl extends OperationRefCSImpl implements Q
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
-		signature.appendElement(getElement());
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
+		signature.appendElement(getElement(), typeBindings);
 	}
 
 	@Override

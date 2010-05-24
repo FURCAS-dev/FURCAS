@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeRefCSImpl.java,v 1.3 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: CollectionTypeRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 
@@ -283,8 +284,8 @@ public class CollectionTypeRefCSImpl extends TypedRefCSImpl implements Collectio
 	}
 
 	@Override
-	public void getSignature(Signature signature) {
+	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
 		signature.appendName(this);
-		signature.appendTypeArguments(Collections.singletonList(getTypeArguments()));
+		signature.appendTypeArguments(Collections.singletonList(getTypeArguments()), typeBindings);
 	}
 } //CollectionTypeRefCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.5 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.6 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.util.BaseCSTSwitch;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.DocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
@@ -155,8 +156,8 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 			return null;
 		}
 		TypeBindingsCS bindings = BaseCSTFactory.eINSTANCE.createTypeBindingsCS();
-		bindings.setDocument(scopeAdapter.getDocumentScopeAdapter().getTarget());
+		DocumentScopeAdapter documentScopeAdapter = scopeAdapter.getDocumentScopeAdapter();
+		bindings.setBoundDocument(documentScopeAdapter.getBoundDocument());
 		return scopeAdapter.getOuterScopeView(reference, bindings);
-//		return scopeAdapter.getExclusiveScopeAccessor(reference);
 	}
 }

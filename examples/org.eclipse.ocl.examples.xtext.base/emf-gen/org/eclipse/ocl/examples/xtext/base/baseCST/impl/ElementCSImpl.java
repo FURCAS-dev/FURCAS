@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSImpl.java,v 1.3 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: ElementCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
 import org.eclipse.ocl.examples.xtext.base.util.Signature;
 import org.eclipse.xtext.parsetree.CompositeNode;
@@ -62,7 +63,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	public final String getSignature() {
 		Signature s = new Signature();
 		try {
-			getSignature(s);
+			getSignature(s, null);
 			return s.toString();
 		}
 		catch (Throwable e) {
@@ -75,7 +76,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract void getSignature(Signature signature);
+	public abstract void getSignature(Signature signature, TypeBindingsCS typeBindings);
 
 	@Override
 	public String toString() {

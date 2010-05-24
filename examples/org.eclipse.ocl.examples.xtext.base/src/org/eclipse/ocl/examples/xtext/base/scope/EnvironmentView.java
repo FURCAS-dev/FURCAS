@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.2 2010/05/16 19:18:03 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BoundOperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
@@ -75,7 +73,9 @@ public class EnvironmentView
 //				bindings = rootBindings;
 //			}
 			if (!bindings.getBindings().isEmpty()) {
-				element = specialize(element, bindings);
+				if (element instanceof OperationCS) {
+					element = ElementUtil.specializeOperation((OperationCS) element, bindings);
+				}
 			}
 			Object value = contentsByName.get(elementName);
 			if (value == null) {
@@ -185,21 +185,6 @@ public class EnvironmentView
 		return contentsByName.size();
 	}
 
-	private EObject specialize(EObject element, TypeBindingsCS bindings) {
-		if (element instanceof OperationCS) {
-			BoundOperationCS boundElement = BaseCSTFactory.eINSTANCE.createBoundOperationCS();
-			OperationCS csOperation = (OperationCS) element;
-			boundElement.setName(csOperation.getName());
-			boundElement.setBinds(csOperation);
-			boundElement.setBindings(bindings);
-			bindings.getDocument().getBoundOperations().add(boundElement);
-			return boundElement;
-		}
-		else {
-			return element;
-		}
-	}
-	
 	@Override
 	public String toString() {
 		StringBuffer s = new StringBuffer();
