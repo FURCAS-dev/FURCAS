@@ -22,4 +22,5 @@ Export-Package: org.eclipse.ocl.examples.xtext.essentialocl.ui,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.internal,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.outline,
- org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix,
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring
