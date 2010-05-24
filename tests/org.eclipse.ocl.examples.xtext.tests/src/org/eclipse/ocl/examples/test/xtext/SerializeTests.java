@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.6 2010/05/21 20:23:52 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.7 2010/05/24 09:04:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -91,9 +91,16 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("OCLstdlib");
 	}
 
-// FIXME fails due to Bug 286558
 	public void testOCLSerialize() throws IOException, InterruptedException {
 		doSerialize("OCL");
+	}
+
+	public void testOCLCSTSerialize() throws IOException, InterruptedException {
+		doSerialize("OCLCST");
+	}
+
+	public void testOCLEcoreSerialize() throws IOException, InterruptedException {
+		doSerialize("OCLEcore");
 	}
 
 	public void testQVTSerialize() throws IOException, InterruptedException {

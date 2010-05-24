@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.7 2010/05/21 21:23:31 ewillink Exp $
+ * $Id: LoadTests.java,v 1.8 2010/05/24 09:04:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -32,23 +32,35 @@ import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 public class LoadTests extends XtextTestCase
 {	
 	public void doLoad(String stem, String extension) throws IOException {
+//		long startTime = System.currentTimeMillis();
+//		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
 		String outputName = stem + "." + extension + ".xmi";
 		String output2Name = stem + ".saved." + extension;
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 		Resource xtextResource = resourceSet.getResource(inputURI, true);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", xtextResource.getErrors());
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 		Map<EObject, Collection<Setting>> unresolved = UnresolvedProxyCrossReferencer.find(xtextResource);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolvedProxies()");
 		assertNoUnresolvedProxies("Unresolved proxies", unresolved);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 		xtextResource.setURI(output2URI);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 		xtextResource.save(null);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 		assertNoResourceErrors("Save failed", xtextResource.getErrors());
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 		xmiResource.save(null);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 		assertNoResourceErrors("Save failed", xmiResource.getErrors());
 	}
 
@@ -88,8 +100,8 @@ public class LoadTests extends XtextTestCase
 		doLoad("oclstdlib", "oclstdlib");
 	}	
 
-	public void testLoad_play_oclinecore() throws IOException, InterruptedException {
-		doLoad("play", "oclinecore");
+	public void testLoad_OCL_ecore() throws IOException, InterruptedException {
+		doLoad("OCL", "ecore");
 	}	
 
 	public void testLoad_Types_oclinecore() throws IOException, InterruptedException {
