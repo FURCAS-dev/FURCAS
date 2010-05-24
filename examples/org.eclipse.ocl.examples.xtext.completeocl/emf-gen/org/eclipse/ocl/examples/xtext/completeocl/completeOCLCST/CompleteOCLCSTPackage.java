@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.5 2010/05/21 20:20:26 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.6 2010/05/24 08:58:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -400,24 +400,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLETE_OCL_DOCUMENT_CS__LIBRARIES = BaseCSTPackage.DOCUMENT_CS__LIBRARIES;
-
-	/**
-	 * The feature id for the '<em><b>Bound Classifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OCL_DOCUMENT_CS__BOUND_CLASSIFIERS = BaseCSTPackage.DOCUMENT_CS__BOUND_CLASSIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Bound Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OCL_DOCUMENT_CS__BOUND_OPERATIONS = BaseCSTPackage.DOCUMENT_CS__BOUND_OPERATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
