@@ -12,31 +12,28 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreHighlightingConfiguration.java,v 1.1 2010/04/16 18:09:44 ewillink Exp $
+ * $Id: EssentialOCLHighlightingConfiguration.java,v 1.1 2010/05/24 19:36:33 ewillink Exp $
  */
-package org.eclipse.ocl.examples.xtext.oclinecore.ui.syntaxcoloring;
+package org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.RGB;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcceptor;
 import org.eclipse.xtext.ui.editor.utils.TextStyle;
 
-public class OCLinEcoreHighlightingConfiguration extends DefaultHighlightingConfiguration
+public class EssentialOCLHighlightingConfiguration extends DefaultHighlightingConfiguration
 {
-	public static final String RESTRICTED_KEYWORD_ID = "restricted_keyword";
+	public final static String CROSS_REF = "CrossReference";
 
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
-		acceptor.acceptDefaultHighlighting(RESTRICTED_KEYWORD_ID, "RestrictedKeyword", restrictedKeywordTextStyle());
+		acceptor.acceptDefaultHighlighting(CROSS_REF, "Cross References", crossReferenceTextStyle());
 		super.configure(acceptor);
 	}
 
-	public TextStyle restrictedKeywordTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
-		textStyle.setColor(new RGB(127, 0, 85));
-		textStyle.setStyle(SWT.ITALIC | SWT.BOLD);
+	public TextStyle crossReferenceTextStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setStyle(SWT.ITALIC);
 		return textStyle;
 	}
-
 }
