@@ -783,21 +783,37 @@ rule__LibClassCS__Alternatives_5
     }
 :
 (
-{ before(grammarAccess.getLibClassCSAccess().getIterationsAssignment_5_0()); }
-(rule__LibClassCS__IterationsAssignment_5_0)
-{ after(grammarAccess.getLibClassCSAccess().getIterationsAssignment_5_0()); }
+{ before(grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_0()); }
+(rule__LibClassCS__OperationsAssignment_5_0)
+{ after(grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_0()); }
 )
 
     |(
-{ before(grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_1()); }
-(rule__LibClassCS__OperationsAssignment_5_1)
-{ after(grammarAccess.getLibClassCSAccess().getOperationsAssignment_5_1()); }
+{ before(grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_1()); }
+(rule__LibClassCS__StructuralFeaturesAssignment_5_1)
+{ after(grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LibClassCS__OperationsAlternatives_5_0_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLibClassCSAccess().getOperationsLibIterationCSParserRuleCall_5_0_0_0()); }
+	ruleLibIterationCS
+{ after(grammarAccess.getLibClassCSAccess().getOperationsLibIterationCSParserRuleCall_5_0_0_0()); }
 )
 
     |(
-{ before(grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_2()); }
-(rule__LibClassCS__StructuralFeaturesAssignment_5_2)
-{ after(grammarAccess.getLibClassCSAccess().getStructuralFeaturesAssignment_5_2()); }
+{ before(grammarAccess.getLibClassCSAccess().getOperationsLibOperationCSParserRuleCall_5_0_0_1()); }
+	ruleLibOperationCS
+{ after(grammarAccess.getLibClassCSAccess().getOperationsLibOperationCSParserRuleCall_5_0_0_1()); }
 )
 
 ;
@@ -5145,14 +5161,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__LibClassCS__IterationsAssignment_5_0
+rule__LibClassCS__OperationsAssignment_5_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getLibClassCSAccess().getIterationsLibIterationCSParserRuleCall_5_0_0()); }
-	ruleLibIterationCS{ after(grammarAccess.getLibClassCSAccess().getIterationsLibIterationCSParserRuleCall_5_0_0()); }
+{ before(grammarAccess.getLibClassCSAccess().getOperationsAlternatives_5_0_0()); }
+(rule__LibClassCS__OperationsAlternatives_5_0_0)
+{ after(grammarAccess.getLibClassCSAccess().getOperationsAlternatives_5_0_0()); }
 )
 
 ;
@@ -5160,29 +5177,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__LibClassCS__OperationsAssignment_5_1
+rule__LibClassCS__StructuralFeaturesAssignment_5_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getLibClassCSAccess().getOperationsLibOperationCSParserRuleCall_5_1_0()); }
-	ruleLibOperationCS{ after(grammarAccess.getLibClassCSAccess().getOperationsLibOperationCSParserRuleCall_5_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__LibClassCS__StructuralFeaturesAssignment_5_2
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getLibClassCSAccess().getStructuralFeaturesLibPropertyCSParserRuleCall_5_2_0()); }
-	ruleLibPropertyCS{ after(grammarAccess.getLibClassCSAccess().getStructuralFeaturesLibPropertyCSParserRuleCall_5_2_0()); }
+{ before(grammarAccess.getLibClassCSAccess().getStructuralFeaturesLibPropertyCSParserRuleCall_5_1_0()); }
+	ruleLibPropertyCS{ after(grammarAccess.getLibClassCSAccess().getStructuralFeaturesLibPropertyCSParserRuleCall_5_1_0()); }
 )
 
 ;
