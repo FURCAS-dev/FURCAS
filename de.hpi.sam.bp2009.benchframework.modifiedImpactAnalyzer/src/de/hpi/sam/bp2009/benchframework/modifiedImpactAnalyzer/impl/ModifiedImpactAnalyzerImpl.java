@@ -24,7 +24,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
 
     /**
-     * Modified version of the Impact Analyzer to benchmark time consumption
+     * Modified version of the {@link ImpactAnalyzerImpl} to benchmark time consumption
      */
     public ModifiedImpactAnalyzerImpl() {
         super();      
