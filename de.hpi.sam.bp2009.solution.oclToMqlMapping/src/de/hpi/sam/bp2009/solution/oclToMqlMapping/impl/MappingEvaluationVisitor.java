@@ -56,7 +56,6 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
  
     @Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
-
         int opCode = oc.getOperationCode();
         if(opCode==PredefinedType.ALL_INSTANCES){
             Set<EObject> allO = new HashSet<EObject>();//make it public?
@@ -85,7 +84,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                 IteratorExp<C, PM> ie = (IteratorExp<C, PM>) oc.eContainer();
                 OCLExpression<C> body = ie.getBody();
                 //call query 2, needed Parameters allO, uri,..?
-                result = Query2.buildMqlQuery(allO, uri, body); 
+                result = Query2.buildMqlQuery(allO, uri, body, this); 
                 if (result == null)
                     return super.visitOperationCallExp(oc);
                 else
@@ -98,7 +97,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             }
 
         }else{
-            //if there is'nt any allInstances()
+            //if there isn't any allInstances()
             return super.visitOperationCallExp(oc);
         }
         
@@ -113,6 +112,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
     @SuppressWarnings("unchecked")
     @Override
     public Object visitIteratorExp(IteratorExp<C, PM> ie) {
+        
         // TODO fallback if there is an opCallExp and select etc. but no allInstances()
 
         if (ie.getSource() instanceof OperationCallExp<?, ?>){
@@ -147,6 +147,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
             return super.visitIteratorExp(ie);}
 
+       
     }
 
     @Override

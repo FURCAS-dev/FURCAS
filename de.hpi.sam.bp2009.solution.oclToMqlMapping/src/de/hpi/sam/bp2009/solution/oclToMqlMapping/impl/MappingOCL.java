@@ -56,6 +56,8 @@ public class MappingOCL extends OCL{
 
         EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev ;
         ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
+        
+        
         Object result;
 
         try {
@@ -97,5 +99,5 @@ public class MappingOCL extends OCL{
         }
 
         return result;
-    }
+    }   
 }
