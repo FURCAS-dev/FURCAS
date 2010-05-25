@@ -127,8 +127,9 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
                  */
                 reverseTraversal = new RefImmediateCompositeNavigationStep(getInnermostElementType(getExpression().getType()), getInnermostElementType(sourceType),  getExpression());
             }else{
-                System.err.println("Missing EOpposite. At this point we should implement a clever way to get the opposite reference. At the moment we use allInstances!");
-                reverseTraversal = new AllInstancesNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression().getSource().getType(), getExpression());
+//                System.err.println("Missing EOpposite. At this point we should implement a clever way to get the opposite reference. At the moment we use allInstances!");
+//                reverseTraversal = new AllInstancesNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression().getSource().getType(), getExpression());
+                reverseTraversal = new OppositePropertyNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression().getSource().getType(), forwardRef, getExpression());
             }
             return pathCache.navigationStepFromSequence(getExpression(), reverseTraversal, sourceStep);
         }

@@ -70,17 +70,6 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         EcoreUtil.remove(this.boss2);
         EcoreUtil.remove(this.director);
         EcoreUtil.remove(this.secretary);
-        this.div = null;
-        this.dep1 = null;
-        this.dep2 = null;
-        this.e1 = null;
-        this.e2 = null;
-        this.e3 = null;
-        this.e4 = null;
-        this.boss1 = null;
-        this.boss2 = null;
-        this.director = null;
-        this.secretary = null;
         super.tearDown( );
     }
 
