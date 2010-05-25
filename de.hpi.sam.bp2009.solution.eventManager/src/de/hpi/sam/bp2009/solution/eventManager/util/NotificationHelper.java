@@ -73,4 +73,23 @@ public class NotificationHelper {
 //        }
 //        return null;
     }
+
+    public static boolean isManyEvent(Notification event) {
+        switch (event.getEventType()) {
+        case Notification.ADD_MANY:
+        case Notification.REMOVE_MANY:
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isAddEvent(Notification event) {
+        switch (event.getEventType()) {
+        case Notification.ADD:
+        case Notification.ADD_MANY:
+        case Notification.SET:
+            return true;
+        }
+        return false;
+    }
 }

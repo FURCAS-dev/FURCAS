@@ -10,7 +10,10 @@ import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+
+import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
 
 class MyNotification extends NotificationImpl {
 
@@ -56,24 +59,24 @@ public class RecursiveContaimentNotificationCreator {
     }
 
     private static void handleValues(Notification event, Set<Notification> result) {
-        Object value = isAddEvent(event) ? event.getNewValue() : event.getOldValue();
-        if (isManyEvent(event)) {
+        Object value = NotificationHelper.isAddEvent(event) ? event.getNewValue() : event.getOldValue();
+        if (NotificationHelper.isManyEvent(event)) {
             assert (value instanceof Collection<?>);
             Collection<?> valueCol = (Collection<?>) value;
             for (Object o : valueCol) {
                 if (o instanceof EObject) {
-                    addNotification((EObject) o, isAddEvent(event), event, result);
+                    addNotification((EObject) o, NotificationHelper.isAddEvent(event), event, result);
                 }
             }
         }else{
             if (value instanceof EObject) {
-                addNotification((EObject) value, isAddEvent(event), event, result);
+                addNotification((EObject) value, NotificationHelper.isAddEvent(event), event, result);
             }
         }
     }
 
     private static void addNotification(EObject o, boolean add, Notification event, Set<Notification> result) {
-        for (EReference ref : o.eClass().getEAllContainments()) {
+        for (EStructuralFeature ref : o.eClass().getEAllStructuralFeatures()) {
             //init new Notification
             Notification notification=null;
             
@@ -114,31 +117,14 @@ public class RecursiveContaimentNotificationCreator {
                             , !add ? null : valueOfRef, o, ref);
                 
             }
-            if(notification!=null){
+            if(notification!=null ){
                 //recursive call for new notification
-                handleValues(notification, result);
+                if(ref instanceof EReference && ((EReference)ref).isContainment()){
+                    handleValues(notification, result);
+                }
                 result.add(notification);
             }
             
         }
-    }
-
-    private static boolean isManyEvent(Notification event) {
-        switch (event.getEventType()) {
-        case Notification.ADD_MANY:
-        case Notification.REMOVE_MANY:
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean isAddEvent(Notification event) {
-        switch (event.getEventType()) {
-        case Notification.ADD:
-        case Notification.ADD_MANY:
-        case Notification.SET:
-            return true;
-        }
-        return false;
     }
 }
