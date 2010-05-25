@@ -26,9 +26,17 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  */
 
 public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventManager.EventManager {
+    /**
+     * @author Philipp
+     * The EContentAdapter Implementation used for registering on the root notifiers
+     */
     private class EventAdapter extends EContentAdapter {
-        int count = 0;
         Set<WeakReference<org.eclipse.emf.common.notify.Notifier>> notis = new HashSet<WeakReference<org.eclipse.emf.common.notify.Notifier>>();
+        /**
+         * Registers this adapter on the given notifier and add the notifier to the intern list
+         * @param newNoti
+         * @return false if the notifier is yet in the scope
+         */
         boolean addToNotifier(org.eclipse.emf.common.notify.Notifier newNoti){
             if(newNoti.eAdapters().contains(this))
                 return false;
@@ -39,11 +47,13 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
         @Override
         public void notifyChanged(Notification notification) {
             super.notifyChanged(notification);
-            count++;
             handleEMFEvent(notification);
         }
     }
 
+    /**
+     * the EventAdapter instance for the EventManager
+     */
     EventAdapter adapter = new EventAdapter();
 
     public void setFireEvents(boolean doFireEventsValue) {

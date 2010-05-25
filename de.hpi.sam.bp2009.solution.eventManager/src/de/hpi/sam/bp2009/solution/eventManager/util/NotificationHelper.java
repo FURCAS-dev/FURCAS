@@ -4,6 +4,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class NotificationHelper {
     
@@ -41,7 +42,19 @@ public class NotificationHelper {
      * @return true if n was caused by an element creation/deletion, false otherwise
      */
     public static boolean isElementLifeCycleEvent(Notification n) {
-        // TODO Auto-generated method stub
+        /*
+         * if there was an containment reference changed
+         */
+        if(n.getFeature()!=null && n.getFeature() instanceof EReference){
+            return ((EReference)n.getFeature()).isContainment();
+            }
+        /*
+         * or an element was added / removed from a resource
+         */
+        else if(n.getFeature() == null && (n.getNotifier() instanceof Resource)){
+            return true;
+        }
+        
         return false;
     }
     
