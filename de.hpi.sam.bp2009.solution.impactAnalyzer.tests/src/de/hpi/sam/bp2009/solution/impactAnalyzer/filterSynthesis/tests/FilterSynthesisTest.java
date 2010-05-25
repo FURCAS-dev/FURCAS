@@ -479,11 +479,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         if (iaResult.size() != expectedAffectedStmts.size()) {
             return false;
         }
-        Set<OCLExpression> affectedStmts = new HashSet<OCLExpression>();
-        for (Iterator<OCLExpression> i = iaResult.iterator(); i.hasNext();) {
-            affectedStmts.add(i.next());
-        }
-        if (affectedStmts.containsAll(expectedAffectedStmts)) {
+        if (iaResult.containsAll(expectedAffectedStmts)) {
             return true;
         }
         return false;

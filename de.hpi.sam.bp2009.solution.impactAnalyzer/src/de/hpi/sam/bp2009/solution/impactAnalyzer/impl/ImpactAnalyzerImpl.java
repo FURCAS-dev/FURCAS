@@ -27,28 +27,28 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @return the expToFilterSyn
      */
-    HashMap<OCLExpression, FilterSynthesisImpl> getExpToFilterSyn() {
+    protected HashMap<OCLExpression, FilterSynthesisImpl> getExpToFilterSyn() {
         return expToFilterSyn;
     }
 
     /**
      * @return the pathCache
      */
-    PathCache getPathCache() {
+    protected PathCache getPathCache() {
         return pathCache;
     }
 
     /**
      * @param expToFilterSyn the expToFilterSyn to set
      */
-    void setExpToFilterSyn(HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn) {
+    protected void setExpToFilterSyn(HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn) {
         this.expToFilterSyn = expToFilterSyn;
     }
 
     /**
      * @param pathCache the pathCache to set
      */
-    void setPathCache(PathCache pathCache) {
+    protected void setPathCache(PathCache pathCache) {
         this.pathCache = pathCache;
     }
 

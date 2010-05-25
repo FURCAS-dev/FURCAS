@@ -173,6 +173,7 @@ public class BaseDepartmentTest extends TestCase {
      * defines how to calculate expenses: The sum of the employee's salary plus the boss' salary each department must be in a
      * division
      */
+    @SuppressWarnings("unused")
     private static final String departmentMustHaveDivision = "context Department inv departmentMustHaveDivision: \n"
             + "self.department2division->notEmpty()";
 

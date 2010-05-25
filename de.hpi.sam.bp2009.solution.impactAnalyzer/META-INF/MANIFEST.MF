@@ -12,10 +12,10 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.eventManager
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests",
- de.hpi.sam.bp2009.solution.impactAnalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests",
- de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests"
+ de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer"
 Import-Package: de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.solution.scopeProvider,
  de.hpi.sam.bp2009.solution.scopeProvider.impl,
