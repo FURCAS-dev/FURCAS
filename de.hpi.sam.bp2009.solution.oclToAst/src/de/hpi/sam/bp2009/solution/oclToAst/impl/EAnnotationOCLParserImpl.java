@@ -41,6 +41,8 @@ import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
+    ResourceChanger rc= new ResourceChanger();
+
     /**
      * Data container for all informations around an exception
      * @author Philipp
@@ -175,7 +177,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation
              */
-            ResourceChanger rc= new ResourceChanger();
             expr.accept(rc);
             EPackage p = getRootPackage(modelElement);
             if(p != null){
@@ -264,26 +265,27 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
     /**
      * Adds all given oclTypes to the oclTypes annotation of the given pacakge
-     * @param hashSet all types to add
+     * @param collection all types to add
      * @param p the package to get the annotation
      */
-    private void addOclTypesAnnotationToPackage(HashSet<EObject> hashSet, EPackage p) {
+    private void addOclTypesAnnotationToPackage(Collection<EObject> col, EPackage p) {
+        Collection<EObject> collection = new HashSet<EObject>(col);
         EAnnotation annotation = p.getEAnnotation(OCL_TYPES);
         if(annotation ==null){
             annotation = EcoreFactory.eINSTANCE.createEAnnotation();
             annotation.setSource(OCL_TYPES);
         }else{
-            hashSet.addAll(annotation.getContents());
+            collection.addAll(annotation.getContents());
             annotation.getContents().clear();
         }
-        annotation.getContents().addAll(hashSet);
+        annotation.getContents().addAll(collection);
 
         p.getEAnnotations().add(annotation);
         /*
          * after resolving all names of BagTypes are set
          * due to a bug in the BagTypeImpl this is neccessary
          */
-        for(EObject o: hashSet){
+        for(EObject o: collection){
             EcoreUtil.getURI(o);
         }
     }
