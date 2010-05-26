@@ -87,8 +87,9 @@ public class NotificationHelper {
         switch (event.getEventType()) {
         case Notification.ADD:
         case Notification.ADD_MANY:
-        case Notification.SET:
             return true;
+        case Notification.SET:
+            return event.getNewValue()!=null;
         }
         return false;
     }
