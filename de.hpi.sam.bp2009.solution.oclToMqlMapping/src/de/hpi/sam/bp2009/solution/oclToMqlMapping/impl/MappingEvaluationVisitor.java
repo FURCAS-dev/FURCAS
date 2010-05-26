@@ -53,12 +53,13 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         // TODO Check if expression has a self variable, if so there must be a context, this should be replaced by allInstances
         return super.visitExpression(expression);
     }
- 
+
+    @SuppressWarnings("unchecked")
     @Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
         int opCode = oc.getOperationCode();
         if(opCode==PredefinedType.ALL_INSTANCES){
-            Set<EObject> allO = new HashSet<EObject>();//make it public?
+            Set<EObject> allO = new HashSet<EObject>();
 
             if(!getExtentMap().values().isEmpty()){
                 /*
@@ -69,22 +70,20 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                     allO.add((EObject)list.next());
             }
             OCLExpression<?> test = oc.getSource();
-            URI uri = null;
+            EClassifier eclass1 = null; 
             if (test instanceof TypeExp<?>){
                 Object x = ((TypeExp<?>) test).getReferredType();
-                EClassifier y = (EClassifier) x;
-                uri = EcoreUtil.getURI(y);
+                eclass1 = (EClassifier) x;
+                
             }
             /**
              * only if there is an Iteratorexp in Container, call query 2
              * otherwise think about a fallback, call super or query2 yet
-             * TODO if there is an expression in body that can not be mapped, it need a fallback
              */
             if (oc.eContainer()instanceof IteratorExp<?, ?>){
                 IteratorExp<C, PM> ie = (IteratorExp<C, PM>) oc.eContainer();
                 OCLExpression<C> body = ie.getBody();
-                //call query 2, needed Parameters allO, uri,..?
-                result = Query2.buildMqlQuery(allO, uri, body, this); 
+                result = Query2.buildMqlQuery(allO, eclass1, body, ie, this); 
                 if (result == null)
                     return super.visitOperationCallExp(oc);
                 else
@@ -100,7 +99,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             //if there isn't any allInstances()
             return super.visitOperationCallExp(oc);
         }
-        
+
     }
 
     @Override
@@ -112,7 +111,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
     @SuppressWarnings("unchecked")
     @Override
     public Object visitIteratorExp(IteratorExp<C, PM> ie) {
-        
+
         // TODO fallback if there is an opCallExp and select etc. but no allInstances()
 
         if (ie.getSource() instanceof OperationCallExp<?, ?>){
@@ -147,7 +146,7 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
             return super.visitIteratorExp(ie);}
 
-       
+
     }
 
     @Override

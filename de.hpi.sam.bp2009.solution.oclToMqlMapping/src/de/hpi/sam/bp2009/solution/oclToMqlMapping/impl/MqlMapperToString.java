@@ -7,7 +7,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 public class MqlMapperToString<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
@@ -54,7 +54,7 @@ extends MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         OCLExpression<C> source = oc.getSource();
         int opCode = oc.getOperationCode();
         List<OCLExpression<C>> args = oc.getArgument();
-        int numArgs = args.size();
+
         switch (opCode){
         case PredefinedType.EQUAL:{
             OCLExpression<C> arg = args.get(0);
@@ -93,7 +93,7 @@ extends MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         }
 
     }
-    public boolean wasErrorful (){
+    public boolean wasErrorful(){
         return error;
     }
 
@@ -102,28 +102,60 @@ extends MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
     public Object visitIterateExp(IterateExp<C, PM> ie) {
         error = true;
         return "#error#";
-        
+
     }
 
 
     @Override
     public Object visitIteratorExp(IteratorExp<C, PM> ie) {
+        C sourceType = ie.getSource().getType();
+        OCLExpression<C> source = ie.getSource();
+        OCLExpression<C> body = ie.getBody();
+        if (sourceType instanceof PredefinedType<?>) {
+
+            switch (OCLStandardLibraryUtil.getOperationCode(ie.getName())) {
+            case PredefinedType.EXISTS:
+                return source.accept(this)+"exists"+ body.accept(this);
+            case PredefinedType.FOR_ALL:
+                return source.accept(this)+"forAll"+ body.accept(this);
+            case PredefinedType.SELECT:
+                return source.accept(this)+"select"+ body.accept(this);
+            case PredefinedType.REJECT:
+                return source.accept(this)+"reject"+ body.accept(this);
+            case PredefinedType.COLLECT:
+                return source.accept(this)+"collect"+ body.accept(this);
+            case PredefinedType.COLLECT_NESTED:
+                return source.accept(this)+"collectNested"+ body.accept(this);
+            case PredefinedType.ONE:
+                return source.accept(this)+"one"+ body.accept(this);
+            case PredefinedType.ANY:
+                return source.accept(this)+"any"+ body.accept(this);
+            case PredefinedType.SORTED_BY:
+                return source.accept(this)+"sortedBy"+ body.accept(this);
+            case PredefinedType.IS_UNIQUE:
+                return source.accept(this)+"isUnique"+ body.accept(this);
+            case PredefinedType.CLOSURE:
+                return source.accept(this)+"closure"+ body.accept(this);
+            default: {
+                error = true;
+                return "#error#";
+            }} 
+        }
         error = true;
         return "#error#";
-
     }
 
     @Override
     public Object visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
-       Object enumLit = (enumerations == null) ? el.getReferredEnumLiteral()
+        Object enumLit = (enumerations == null) ? el.getReferredEnumLiteral()
                 : enumerations.getValue(el.getReferredEnumLiteral());
         return enumLit;
     }
 
     @Override
     public Object visitVariableExp(VariableExp<C, PM> v) {
-           return v.getName();
-        
+        return v.getName();
+
     }
 
     @Override
@@ -132,61 +164,74 @@ extends MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         OCLExpression<C> source = pc.getSource();
         String name = "undefined";
         if(property instanceof EStructuralFeature){
-        	name = ((EStructuralFeature) property).getName();}
-//        OCLExpression<C> derivation = getPropertyBody(property);
-//        if(derivation != null){
-//        	error = true;
-//            return "#error#";
-//        }else
+            name = ((EStructuralFeature) property).getName();
+        }
+
         return source.accept(this)+"."+name;
     }
 
     @Override
     public Object visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> pc) {
-        // TODO Auto-generated method stub
-        return super.visitOppositePropertyCallExp(pc);
+        P property = pc.getReferredOppositeProperty();
+        OCLExpression<C> source = pc.getSource();
+        String name = "#error#";
+        if(property instanceof EStructuralFeature){
+            name = ((EStructuralFeature) property).getName();
+        }
+        return source.accept(this)+"."+name;
     }
 
     @Override
     public Object visitAssociationClassCallExp(AssociationClassCallExp<C, P> ae) {
-        // TODO Auto-generated method stub
-        return super.visitAssociationClassCallExp(ae);
+    	OCLExpression<C> source = ae.getSource();
+    	 String refAssoc = ae.getReferredAssociationClass().toString();
+        P navSource = ae.getNavigationSource();
+        //TODO return statement need some more/some other information, possible it's wrong
+        return refAssoc+","+source.accept(this)+ ","+navSource;
+       
     }
 
     @Override
     public Object visitVariable(Variable<C, PM> vd) {
-        // TODO Auto-generated method stub
-        return super.visitVariable(vd);
+    	String varName = vd.getName();
+        return varName;
     }
 
     @Override
     public Object visitIfExp(IfExp<C> ie) {
-        // TODO Auto-generated method stub
-        return super.visitIfExp(ie);
+        // TODO check if it is right that a map isn't possible
+    	 error = true;
+         return "#error#";
     }
 
     @Override
     public Object visitTypeExp(TypeExp<C> t) {
-        // TODO Auto-generated method stub
-        return super.visitTypeExp(t);
+    	// TODO check if it is possible to map
+//    	String refType = t.getReferredType().toString();
+//        return refType;
+        error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitStateExp(StateExp<C, S> s) {
-        // TODO Auto-generated method stub
-        return super.visitStateExp(s);
+    	// TODO check if it is possible to map
+//    	String refState = s.getReferredState().toString();
+//        return refState;
+    	error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitMessageExp(MessageExp<C, COA, SSA> m) {
-        // TODO Auto-generated method stub
-        return super.visitMessageExp(m);
+    	error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
-        // TODO Auto-generated method stub
-        return super.visitUnspecifiedValueExp(uv);
+        error = true;
+        return "#error#";
     }
 
     @Override
@@ -221,38 +266,48 @@ extends MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
     @Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
-        // TODO Auto-generated method stub
-        return super.visitInvalidLiteralExp(il);
+    	error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitNullLiteralExp(NullLiteralExp<C> il) {
-        // TODO Auto-generated method stub
-        return super.visitNullLiteralExp(il);
+    	error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitLetExp(LetExp<C, PM> l) {
-        // TODO Auto-generated method stub
-        return super.visitLetExp(l);
+    	Variable<C, PM> vd = l.getVariable();
+        String name = (String) vd.accept(getVisitor());
+        OCLExpression<C> inExp = l.getIn();
+        // TODO check if it is correct or mapping allowed        
+        return inExp.accept(this)+name;
+       
     }
 
     @Override
     public Object visitCollectionLiteralExp(CollectionLiteralExp<C> cl) {
         // TODO Auto-generated method stub
-        return super.visitCollectionLiteralExp(cl);
+//        return super.visitCollectionLiteralExp(cl);
+    	error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitTupleLiteralExp(TupleLiteralExp<C, P> tl) {
         // TODO Auto-generated method stub
-        return super.visitTupleLiteralExp(tl);
+//        return super.visitTupleLiteralExp(tl);
+    	error = true;
+        return "#error#";
     }
 
     @Override
     public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
         // TODO Auto-generated method stub
-        return super.visitTupleLiteralPart(tp);
+//        return super.visitTupleLiteralPart(tp);
+    	error = true;
+        return "#error#";
     }
 
     public MqlMapperToString(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
