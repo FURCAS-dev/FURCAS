@@ -222,6 +222,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getEmployee_Intern() {
+        return (EReference)employeeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDepartment() {
         return departmentEClass;
     }
@@ -379,6 +388,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         createEReference(employeeEClass, EMPLOYEE__MANAGED);
         createEReference(employeeEClass, EMPLOYEE__DIRECTED);
         createEReference(employeeEClass, EMPLOYEE__SECRETARY);
+        createEReference(employeeEClass, EMPLOYEE__INTERN);
 
         departmentEClass = createEClass(DEPARTMENT);
         createEAttribute(departmentEClass, DEPARTMENT__NAME);
@@ -442,6 +452,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         initEReference(getEmployee_Managed(), this.getDepartment(), this.getDepartment_Boss(), "managed", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEmployee_Directed(), this.getDivision(), this.getDivision_Director(), "directed", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEmployee_Secretary(), this.getEmployee(), null, "secretary", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEmployee_Intern(), this.getStudent(), null, "intern", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(departmentEClass, Department.class, "Department", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDepartment_Name(), thePrimitivetypesPackage.getString(), "name", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -496,7 +507,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "constraints", "UniqueNames BossIsOldest divBossSecretary secretaryOlderThanBoss Boss10YearsOlderThanEmployee Secretary10YearsOlderThanBoss"
-           });				
+           });					
         addAnnotation
           (departmentEClass, 
            source, 
@@ -541,7 +552,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
              "secretaryOlderThanBoss", "if self.directed->notEmpty() and\r\nnot self.secretary.oclIsUndefined() then\r\nself.age < self.secretary.age \r\nelse true\r\nendif",
              "Boss10YearsOlderThanEmployee", "self.age + 10 <= self.employer.boss.age",
              "Secretary10YearsOlderThanBoss", "if self.directed->notEmpty() and\r\nnot self.secretary.oclIsUndefined() then\r\nself.age + 10 < self.secretary.age \r\nelse true\r\nendif"
-           });				
+           });					
         addAnnotation
           (departmentEClass, 
            source, 
@@ -596,6 +607,12 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "Property.oppositeRoleName", "secretary2boss"
+           });		
+        addAnnotation
+          (getEmployee_Intern(), 
+           source, 
+           new String[] {
+             "Property.oppositeRoleName", "student2employee"
            });									
         addAnnotation
           (getDivision_Department(), 

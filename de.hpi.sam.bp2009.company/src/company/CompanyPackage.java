@@ -134,13 +134,22 @@ public interface CompanyPackage extends EPackage {
     int EMPLOYEE__SECRETARY = 6;
 
     /**
+     * The feature id for the '<em><b>Intern</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMPLOYEE__INTERN = 7;
+
+    /**
      * The number of structural features of the '<em>Employee</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EMPLOYEE_FEATURE_COUNT = 7;
+    int EMPLOYEE_FEATURE_COUNT = 8;
 
     /**
      * The meta object id for the '{@link company.impl.DepartmentImpl <em>Department</em>}' class.
@@ -278,6 +287,15 @@ public interface CompanyPackage extends EPackage {
      * @ordered
      */
     int FREELANCE__SECRETARY = EMPLOYEE__SECRETARY;
+
+    /**
+     * The feature id for the '<em><b>Intern</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FREELANCE__INTERN = EMPLOYEE__INTERN;
 
     /**
      * The feature id for the '<em><b>Assignment</b></em>' attribute.
@@ -426,6 +444,15 @@ public interface CompanyPackage extends EPackage {
     int STUDENT__SECRETARY = EMPLOYEE__SECRETARY;
 
     /**
+     * The feature id for the '<em><b>Intern</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STUDENT__INTERN = EMPLOYEE__INTERN;
+
+    /**
      * The number of structural features of the '<em>Student</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -521,6 +548,17 @@ public interface CompanyPackage extends EPackage {
      * @generated
      */
     EReference getEmployee_Secretary();
+
+    /**
+     * Returns the meta object for the reference '{@link company.Employee#getIntern <em>Intern</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Intern</em>'.
+     * @see company.Employee#getIntern()
+     * @see #getEmployee()
+     * @generated
+     */
+    EReference getEmployee_Intern();
 
     /**
      * Returns the meta object for class '{@link company.Department <em>Department</em>}'.
@@ -759,6 +797,14 @@ public interface CompanyPackage extends EPackage {
          * @generated
          */
         EReference EMPLOYEE__SECRETARY = eINSTANCE.getEmployee_Secretary();
+
+        /**
+         * The meta object literal for the '<em><b>Intern</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EMPLOYEE__INTERN = eINSTANCE.getEmployee_Intern();
 
         /**
          * The meta object literal for the '{@link company.impl.DepartmentImpl <em>Department</em>}' class.

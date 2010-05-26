@@ -35,6 +35,11 @@
         <details key="Property.oppositeRoleName" value="secretary2boss"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intern" eType="#//Student">
+      <eAnnotations>
+        <details key="Property.oppositeRoleName" value="student2employee"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Department">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">

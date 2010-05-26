@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -143,28 +144,37 @@ public class NotificationHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static Notification createElementAddNotification(EObject container, EReference ref, EObject target) {
+    public static Notification createElementAddNotification(Notifier container, EReference ref, EObject target) {
         TestAdapter myTestA = new TestAdapter();
         container.eAdapters().add(myTestA);
 
-        if (ref.isMany()) {
-            Object ob = container.eGet(ref);
-            if (ob != null && ob instanceof EList<?>) {
-                ((EList<EObject>) ob).add(target);
+        if (ref != null) {
+            if (ref.isMany()) {
+                Object ob = ((EObject) container).eGet(ref);
+                if (ob != null && ob instanceof EList<?>) {
+                    ((EList<EObject>) ob).add(target);
+                } else {
+                    return null;
+                }
             } else {
-                return null;
+                ((EObject) container).eSet(ref, target);
             }
         } else {
-            container.eSet(ref, target);
+            // container is a Resource or ResourceSet
+            if (container instanceof Resource){
+                ((Resource)container).getContents().add(target);
+            }else{
+                throw new IllegalArgumentException("Events for adding Resources to ResourceSets should not reach the ImpactAnalyzer.");
+            }
         }
         return getNotificationfrom(myTestA);
     }
 
-    public static Notification createElementDeleteNotification(EObject notifier) {
+    public static Notification createElementDeleteNotification(EObject target) {
         TestAdapter myTestA = new TestAdapter();
-        notifier.eContainer().eAdapters().add(myTestA);
+        target.eContainer().eAdapters().add(myTestA);
 
-        EcoreUtil.delete(notifier);
+        EcoreUtil.delete(target);
 
         return getNotificationfrom(myTestA);
     }

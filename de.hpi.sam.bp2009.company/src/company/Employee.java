@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Employee#getManaged <em>Managed</em>}</li>
  *   <li>{@link company.Employee#getDirected <em>Directed</em>}</li>
  *   <li>{@link company.Employee#getSecretary <em>Secretary</em>}</li>
+ *   <li>{@link company.Employee#getIntern <em>Intern</em>}</li>
  * </ul>
  * </p>
  *
@@ -219,5 +220,31 @@ public interface Employee extends EObject {
      * @generated
      */
     void setSecretary(Employee value);
+
+    /**
+     * Returns the value of the '<em><b>Intern</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Intern</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Intern</em>' reference.
+     * @see #setIntern(Student)
+     * @see company.CompanyPackage#getEmployee_Intern()
+     * @model
+     * @generated
+     */
+    Student getIntern();
+
+    /**
+     * Sets the value of the '{@link company.Employee#getIntern <em>Intern</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Intern</em>' reference.
+     * @see #getIntern()
+     * @generated
+     */
+    void setIntern(Student value);
 
 } // Employee

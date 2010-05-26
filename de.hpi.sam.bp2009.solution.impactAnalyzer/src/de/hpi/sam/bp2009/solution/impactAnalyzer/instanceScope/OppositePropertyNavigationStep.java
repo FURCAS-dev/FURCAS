@@ -17,13 +17,14 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
-public class OppositePropertyNavigationStep extends AbstractNavigationStep{
+public class OppositePropertyNavigationStep extends AbstractNavigationStep {
 
     private final EStructuralFeature property;
 
-    public OppositePropertyNavigationStep(EClass sourceType, EClass targetType, EStructuralFeature property, OCLExpression debugInfo2) {
+    public OppositePropertyNavigationStep(EClass sourceType, EClass targetType, EStructuralFeature property,
+            OCLExpression debugInfo2) {
         super(sourceType, targetType, debugInfo2);
-        this.property = property; 
+        this.property = property;
     }
 
     @Override
@@ -31,10 +32,10 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep{
         QueryContext scope = new ProjectBasedScopeProviderImpl(fromObject).getBackwardScopeAsQueryContext();
         Collection<EObject> result = new HashSet<EObject>();
         Set<AnnotatedEObject> returnValue = new HashSet<AnnotatedEObject>();
-        if (property instanceof EReference){
-            EcoreHelper.getInstance().reverseNavigate(fromObject, (EReference)property, scope, result);
+        if (property instanceof EReference) {
+            EcoreHelper.getInstance().reverseNavigate(fromObject.getAnnotatedObject(), (EReference) property, scope, result);
         }
-        for (EObject o : result){
+        for (EObject o : result) {
             returnValue.add(new AnnotatedEObject(o));
         }
         return returnValue;

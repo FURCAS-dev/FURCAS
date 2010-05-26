@@ -11,6 +11,7 @@ import company.Department;
 import company.Division;
 import company.Employee;
 
+import company.Student;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link company.impl.EmployeeImpl#getManaged <em>Managed</em>}</li>
  *   <li>{@link company.impl.EmployeeImpl#getDirected <em>Directed</em>}</li>
  *   <li>{@link company.impl.EmployeeImpl#getSecretary <em>Secretary</em>}</li>
+ *   <li>{@link company.impl.EmployeeImpl#getIntern <em>Intern</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +122,16 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
      * @ordered
      */
     protected Employee secretary;
+
+    /**
+     * The cached value of the '{@link #getIntern() <em>Intern</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getIntern()
+     * @generated
+     * @ordered
+     */
+    protected Student intern;
 
     /**
      * <!-- begin-user-doc -->
@@ -373,6 +385,44 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Student getIntern() {
+        if (intern != null && intern.eIsProxy()) {
+            InternalEObject oldIntern = (InternalEObject)intern;
+            intern = (Student)eResolveProxy(oldIntern);
+            if (intern != oldIntern) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompanyPackage.EMPLOYEE__INTERN, oldIntern, intern));
+            }
+        }
+        return intern;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Student basicGetIntern() {
+        return intern;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setIntern(Student newIntern) {
+        Student oldIntern = intern;
+        intern = newIntern;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.EMPLOYEE__INTERN, oldIntern, intern));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -453,6 +503,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
                 return getDirected();
             case CompanyPackage.EMPLOYEE__SECRETARY:
                 return getSecretary();
+            case CompanyPackage.EMPLOYEE__INTERN:
+                if (resolve) return getIntern();
+                return basicGetIntern();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -485,6 +538,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
                 return;
             case CompanyPackage.EMPLOYEE__SECRETARY:
                 setSecretary((Employee)newValue);
+                return;
+            case CompanyPackage.EMPLOYEE__INTERN:
+                setIntern((Student)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -519,6 +575,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
             case CompanyPackage.EMPLOYEE__SECRETARY:
                 setSecretary((Employee)null);
                 return;
+            case CompanyPackage.EMPLOYEE__INTERN:
+                setIntern((Student)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -545,6 +604,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
                 return getDirected() != null;
             case CompanyPackage.EMPLOYEE__SECRETARY:
                 return secretary != null;
+            case CompanyPackage.EMPLOYEE__INTERN:
+                return intern != null;
         }
         return super.eIsSet(featureID);
     }
