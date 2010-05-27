@@ -60,19 +60,19 @@ public class RevPathComputationTest extends BaseDepartmentTest {
     @Override
     @After
     public void tearDown() {
-        EcoreUtil.remove(this.div);
-        EcoreUtil.remove(this.dep1);
-        EcoreUtil.remove(this.dep2);
-        EcoreUtil.remove(this.e1);
-        EcoreUtil.remove(this.e2);
-        EcoreUtil.remove(this.e3);
-        EcoreUtil.remove(this.e4);
-        EcoreUtil.remove(this.boss1);
-        EcoreUtil.remove(this.boss2);
-        EcoreUtil.remove(this.director);
-        EcoreUtil.remove(this.secretary);
-        EcoreUtil.remove(this.stud1);
-        EcoreUtil.remove(this.stud2);
+        EcoreUtil.delete(this.div);
+        EcoreUtil.delete(this.dep1);
+        EcoreUtil.delete(this.dep2);
+        EcoreUtil.delete(this.e1);
+        EcoreUtil.delete(this.e2);
+        EcoreUtil.delete(this.e3);
+        EcoreUtil.delete(this.e4);
+        EcoreUtil.delete(this.boss1);
+        EcoreUtil.delete(this.boss2);
+        EcoreUtil.delete(this.director);
+        EcoreUtil.delete(this.secretary);
+        EcoreUtil.delete(this.stud1);
+        EcoreUtil.delete(this.stud2);
         super.tearDown();
     }
 
@@ -181,8 +181,6 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Set<OCLExpression> stmts = new HashSet<OCLExpression>();
         stmts.add(this.bossIsOldestAST);
 
-        Set<EObject> expectedInstances = new HashSet<EObject>();
-        expectedInstances.add(this.e2);
         ImpactAnalyzer ia = new ImpactAnalyzerImpl();
         createFilters(stmts, ia, false);
         Collection<EObject> instances;
@@ -204,22 +202,16 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Set<OCLExpression> stmts = new HashSet<OCLExpression>();
         stmts.add(this.bossIsOldestAST);
 
-        Set<EObject> expectedInstances = new HashSet<EObject>();
-        expectedInstances.add(this.e2);
         ImpactAnalyzer ia = new ImpactAnalyzerImpl();
         createFilters(stmts, ia, false);
         Collection<EObject> instances;
         Notification noti;
 
         // change age of the boss
-        expectedInstances = new HashSet<EObject>();
-        expectedInstances.add(this.e1);
-        expectedInstances.add(this.e2);
-        expectedInstances.add(this.boss1);
         noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, new Long(this.boss1.getAge()),
                 new Long(this.boss1.getAge()));
         instances = computeAffectedInstances(stmts, noti, ia, this.employee);
-        compareInstances(instances, new EObject[] { this.e1, this.e2, this.boss1 });
+        compareInstances(instances, new EObject[] { this.e1, this.e2, this.boss1, this.stud1 });
 
     }
 
@@ -265,7 +257,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // add new boss
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.bossRef, this.boss1);
         instances = computeAffectedInstances(stmts, noti, ia, this.employee);
-        compareInstances(instances, new EObject[] { this.e1, this.e2, this.boss1 });
+        compareInstances(instances, new EObject[] { this.e1, this.e2, this.boss1, this.stud1 });
 
         System.out.println("--------------------------------------------------\n");
     }
@@ -387,7 +379,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // inv UniqueNames:
         // Employee.allInstances()->forAll(e |
         // e <> self implies e.name <> self.name)
-        System.out.println("Testing UniqueNamesEmployeeNameChange\n");
+        System.out.println("Testing UniqueNamesEmployeeAdd\n");
         Set<OCLExpression> stmts = new HashSet<OCLExpression>();
 
         stmts.add(this.uniqueNamesAST);
@@ -401,7 +393,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.employee);
         compareInstances(instances, new EObject[] { this.e1, this.e2, this.e3, this.e4, this.boss1, this.boss2, this.director,
                 this.secretary, this.stud1, this.stud2, newEmployee });
-        
+        // remove the added employee to prevent him from appearing in other test cases
+        EcoreUtil.delete(newEmployee);
     }
     
     @Test
@@ -411,7 +404,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // inv UniqueNames:
         // Employee.allInstances()->forAll(e |
         // e <> self implies e.name <> self.name)
-        System.out.println("Testing UniqueNamesEmployeeNameChange\n");
+        System.out.println("Testing UniqueNamesEmployeeRemove\n");
         Set<OCLExpression> stmts = new HashSet<OCLExpression>();
 
         stmts.add(this.uniqueNamesAST);
@@ -605,7 +598,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
 
         stmts.add(this.nastyConstraintAST);
         ImpactAnalyzer ia = new ImpactAnalyzerImpl();
-        createFilters(stmts, ia, false);
+//        createFilters(stmts, ia, false);
 
         Notification noti;
         Collection<EObject> instances;
@@ -1062,6 +1055,27 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         // since student is a subclass of employee (and therefore could have own interns), the impact of the above change also
         // includes stud1
         compareInstances(instances, new EObject[] { this.e1, this.stud1 });
+
+        System.out.println("--------------------------------------------------\n");
+
+    }
+    
+    @Test
+    public void testCheckForBob() {
+
+        System.out.println("Testing checkForBob\n");
+        Set<OCLExpression> stmts = new HashSet<OCLExpression>();
+        stmts.add(this.checkForBobAST);
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl();
+//        createFilters(stmts, ia, false);
+
+        Notification noti;
+        Collection<EObject> instances;
+
+        // change employee name
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeName, "e1", "Bob");
+        instances = computeAffectedInstances(stmts, noti, ia, this.employee);
+        compareInstances(instances, new EObject[] { this.e1 , this.e2, this.e3, this.e4, this.secretary, this.boss1, this.boss2, this.director, this.stud1, this.stud2});
 
         System.out.println("--------------------------------------------------\n");
 

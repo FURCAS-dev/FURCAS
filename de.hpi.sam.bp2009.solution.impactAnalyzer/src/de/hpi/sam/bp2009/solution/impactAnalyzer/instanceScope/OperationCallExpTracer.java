@@ -104,7 +104,8 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                 .getReferredType();
                 result = new AllInstancesNavigationStep(classifier, context, getExpression()); // non-absolute
             } else {
-                result = new EmptyResultNavigationStep(getExpression()); // hope, we didn't forget stdlib operations that pass on
+                result = new EmptyResultNavigationStep(getExpression()); 
+                // hope, we didn't forget stdlib operations that pass on
                 // source or argument values into their result
             }
         }

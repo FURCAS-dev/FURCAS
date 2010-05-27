@@ -208,6 +208,10 @@ public class InstanceScopeAnalysis {
         if (NotificationHelper.isElementLifeCycleEvent(event)) {
             handleLifeCycleEvent(event, result);
         }
+        // TODO fix this optimization
+//        if (isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event, "")) {
+//            return Collections.emptySet();
+//        }
         for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
             AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
             if (sourceElement != null) {
@@ -231,14 +235,14 @@ public class InstanceScopeAnalysis {
         Set<EClass> relevantClasses = new HashSet<EClass>();
         relevantClasses.add(getContext());
         relevantClasses.addAll(getContext().getEAllSuperTypes());
-        if (event.getNotifier() instanceof EObject){
-            container = ((EObject)event.getNotifier()).eResource(); 
-        }else if (event.getNotifier() instanceof Resource){
-            container = (Resource)event.getNotifier();
-        }else{
+        if (event.getNotifier() instanceof EObject) {
+            container = ((EObject) event.getNotifier()).eResource();
+        } else if (event.getNotifier() instanceof Resource) {
+            container = (Resource) event.getNotifier();
+        } else {
             throw new IllegalArgumentException("Unhandled notifier in Notification: " + event.getNotifier());
         }
-        
+
         if (NotificationHelper.isManyEvent(event)) {
             List<?> featureValue;
             if (addEvent) {
@@ -247,12 +251,12 @@ public class InstanceScopeAnalysis {
                 featureValue = (List<?>) event.getOldValue();
             }
             for (Object value : featureValue) {
-                if (value instanceof EObject){
+                if (value instanceof EObject) {
                     if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
                         result.addAll(getAllPossibleContextInstances(container, getContext()));
                     }
-                    if (addEvent && relevantClasses.contains(((EObject)value).eClass())){
-                        result.add(new AnnotatedEObject((EObject)value));
+                    if (addEvent && relevantClasses.contains(((EObject) value).eClass())) {
+                        result.add(new AnnotatedEObject((EObject) value));
                     }
                 }
             }
@@ -263,12 +267,12 @@ public class InstanceScopeAnalysis {
             } else {
                 value = event.getOldValue();
             }
-            if (value instanceof EObject){
+            if (value instanceof EObject) {
                 if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
                     result.addAll(getAllPossibleContextInstances(container, getContext()));
                 }
-                if (addEvent && relevantClasses.contains(((EObject)value).eClass())){
-                    result.add(new AnnotatedEObject((EObject)value));
+                if (addEvent && relevantClasses.contains(((EObject) value).eClass())) {
+                    result.add(new AnnotatedEObject((EObject) value));
                 }
             }
         }
@@ -293,47 +297,52 @@ public class InstanceScopeAnalysis {
      *            constant but with the parameter value instead in case the comparison argument is a string literal with value
      *            "__TEMP__".
      */
-    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<Notification> events,
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(Notification changeEvent,
             String replacementFor__TEMP__) {
-        for (Notification changeEvent : events) {
-            Set<? extends NavigationCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
-            if (calls.size() == 0) {
-                return false; // probably an allInstances-triggered element creation/deletion event
-            }
-            for (NavigationCallExp ace : calls) {
-                if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
-                    if (ace.getType() instanceof PrimitiveType) {
-                        if (((PropertyCallExp) ace).getReferredProperty().equals(
-                                NotificationHelper.getNotificationFeature(changeEvent))) {
-                            OCLExpression otherArgument = null;
-                            OperationCallExp op;
-                            boolean attributeIsParameter = false;
-                            op = (OperationCallExp) ace.eContainer(); // argument of a comparison operation?
-                            if (op != null && isComparisonOperation(op)) {
-                                otherArgument = (OCLExpression) op.getSource();
-                                attributeIsParameter = true;
-                            } else {
-                                CallExp callExp = (CallExp) ace.eContainer(); // source of a comparison operation?
-                                if (callExp != null && callExp instanceof OperationCallExp
-                                        && isComparisonOperation(((OperationCallExp) callExp))) {
-                                    op = ((OperationCallExp) callExp);
-                                    otherArgument = (OCLExpression) op.getArgument().iterator().next();
-                                    attributeIsParameter = false;
-                                }
-                            }
-                            if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
-                                if (doesComparisonResultChange(changeEvent, (PrimitiveLiteralExp) otherArgument,
-                                        replacementFor__TEMP__, op.getReferredOperation().getName(), attributeIsParameter)) {
-                                    return false;
-                                }
-                            } else {
-                                // attribute not used in comparison operation; we assume a change
-                                return false;
-                            }
+        if (!NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
+            return false;
+        }
+        Set<? extends NavigationCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
+        if (calls.size() == 0) {
+            // this is likely to be dead code because if the filter synthesis works correctly,
+            // we always reevaluate the expressions containing the changed attribute once an attributeValueChange occurs
+            System.err.println("Could niot find any attribute or association end calls for the attribute value change event : " + changeEvent);
+            return false; // probably an allInstances-triggered element creation/deletion event
+        }
+        for (NavigationCallExp ace : calls) {
+            if (ace.getType() instanceof PrimitiveType) {
+                if (((PropertyCallExp) ace).getReferredProperty().equals(NotificationHelper.getNotificationFeature(changeEvent))) {
+                    OCLExpression otherArgument = null;
+                    OperationCallExp op;
+                    boolean attributeIsParameter = false;
+                    if (!(ace.eContainer() instanceof OperationCallExp)) {
+                        continue;
+                    }
+                    op = (OperationCallExp) ace.eContainer(); // argument of a comparison operation?
+                    if (op != null && isComparisonOperation(op)) {
+                        otherArgument = (OCLExpression) op.getSource();
+                        attributeIsParameter = true;
+                    } else {
+                        CallExp callExp = (CallExp) ace.eContainer(); // source of a comparison operation?
+                        if (callExp != null && callExp instanceof OperationCallExp
+                                && isComparisonOperation(((OperationCallExp) callExp))) {
+                            op = ((OperationCallExp) callExp);
+                            otherArgument = (OCLExpression) op.getArgument().iterator().next();
+                            attributeIsParameter = false;
                         }
+                    }
+                    if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
+                        if (doesComparisonResultChange(changeEvent, (PrimitiveLiteralExp) otherArgument, replacementFor__TEMP__,
+                                op.getReferredOperation().getName(), attributeIsParameter)) {
+                            return false;
+                        }
+                    } else {
+                        // attribute not used in comparison operation; we assume a change
+                        return false;
                     }
                 }
             }
+
         }
         return true;
     }

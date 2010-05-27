@@ -106,10 +106,9 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
                 throw new RuntimeException("Internal error. Couldn't find tuple part named " + referredAttributeName);
             }
             //return a navigation sequence consisting of a TupleLiteralExpStep(which pushes the needed symbol on the stack) and the getOrCreateNavPath
-            //TODO: check if TupleNavigationStep is a valid step
             return pathCache.navigationStepFromSequence(getExpression(),
-                    new TupleNavigationStep(context, context, getExpression(), referredAttributeName),
-                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer));
+                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer),
+                    new TupleNavigationStep(context, context, getExpression(), referredAttributeName));
 
         } else {
             NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer);
@@ -153,10 +152,9 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
                 throw new RuntimeException("Internal error. Couldn't find tuple part named " + referredAttributeName);
             }
             //return a navigation sequence consisting of a TupleLiteralExpStep(which pushes the needed symbol on the stack) and the getOrCreateNavPath
-            //TODO: check if TupleNavigationStep is a valid step
             return pathCache.navigationStepFromSequence(getExpression(),
-                    new TupleNavigationStep(context, context, getExpression(), referredAttributeName),
-                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer));
+                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer),
+                    new TupleNavigationStep(context, context, getExpression(), referredAttributeName));
 
         } else {
             return pathCache.navigationStepFromSequence(

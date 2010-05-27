@@ -11,6 +11,9 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.hamcrest.core;bundle-version="1.1.0",
  de.hpi.sam.bp2009.ngpm,
  org.junit4;bundle-version="4.5.0",
- de.hpi.sam.bp2009.solution.oclToAst;bundle-version="1.0.0"
+ de.hpi.sam.bp2009.solution.oclToAst;bundle-version="1.0.0",
+ org.eclipse.emf.query2;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper
+Import-Package: org.eclipse.emf.query.index.ui,
+ org.eclipse.emf.query.index.update

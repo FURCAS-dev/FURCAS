@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
@@ -179,18 +180,21 @@ public class BaseDepartmentTest extends TestCase {
     /**
      * each department must be in a division
      */
-    @SuppressWarnings("unused")
     private static final String departmentMustHaveDivision = "context Department inv departmentMustHaveDivision: \n"
             + "self.department2division->notEmpty()";
 
     private static final String compareBossSalaryToJuniorSalary = "context Department \n"
             + "inv compareBossSalaryToJuniorSalary: \n"
-            + "let boss:Tuple(person:Employee,salary:Integer)=Tuple{boss=self.boss, salary=self.boss.salary} in let junior:Tuple(person:Employee, salary:Integer)=Tuple{person=self.employee->sortedBy(age)->first(), salary=self.employee->sortedBy(age)->first().salary} in let t:Tuple(boss:Tuple(person:Employee, salary:Integer), junior:Tuple(person:Employee, salary:Integer))="
-            + "Tuple{boss=boss, junior=junior} in \n"
-            + "t.boss.person <> t.junior.person implies t.boss.salary > t.junior.salary + 100";
+            + "let bt:Tuple(bp:Employee,bs:Integer)=Tuple{bp=self.boss, bs=self.boss.salary} in "
+            + "let jt:Tuple(jp:Employee, js:Integer)=Tuple{jp=self.employee->sortedBy(age)->first(), js=self.employee->sortedBy(age)->first().salary} in "
+            + "let t:Tuple(b:Tuple(p1:Employee, s1:Integer), j:Tuple(p2:Employee, s2:Integer))=" + "Tuple{b=bt, j=jt} in \n"
+            + "t.b.p1 <> t.j.p2 implies t.b.s1 > t.j.s2 + 100";
 
     private static final String employeeInSameDepartmentAsIntern = "context Employee \n"
             + "inv employeeInSameDepartmentAsIntern: \n" + "self.employer = self.intern.employer";
+
+    private static final String checkForBob = "context Employee inv checkForBob: Employee.allInstances()->select(e:Employee | e.name = 'Bob')->asOrderedSet()->first().oclAsType(Employee).name = 'Bob'";
+
     /*
      * OCLExpression representing the constrains above
      */
@@ -223,6 +227,8 @@ public class BaseDepartmentTest extends TestCase {
     protected OCLExpression compareBossSalaryToJuniorSalaryAST = null;
 
     protected OCLExpression employeeInSameDepartmentAsInternAST = null;
+
+    protected OCLExpression checkForBobAST = null;
 
     /*
      * for easy access to the model
@@ -273,6 +279,7 @@ public class BaseDepartmentTest extends TestCase {
     @Before
     public void setUp() {
         beforeTestMethod(true);
+        EcoreEnvironment.updateIndex();
     }
 
     @Override
@@ -431,34 +438,37 @@ public class BaseDepartmentTest extends TestCase {
 
         this.oldEmployeeAST = (OCLExpression) parse(oldEmployee, this.comp).iterator().next().getSpecification()
                 .getBodyExpression();
-        this.notBossFreelanceAST = (OCLExpression) parse(notBossFreelance, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
+        this.notBossFreelanceAST = (OCLExpression) parse(notBossFreelance, this.comp).iterator().next().getSpecification()
+                .getBodyExpression();
         this.uniqueNamesAST = (OCLExpression) parse(uniqueNames, this.comp).iterator().next().getSpecification()
                 .getBodyExpression();
-        this.validAssignmentAST = (OCLExpression) parse(validAssignment, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
+        this.validAssignmentAST = (OCLExpression) parse(validAssignment, this.comp).iterator().next().getSpecification()
+                .getBodyExpression();
         this.maxJuniorsAST = (OCLExpression) parse(maxJuniors, this.comp).iterator().next().getSpecification()
                 .getBodyExpression();
         this.bossIsOldestAST = (OCLExpression) parse(bossIsOldest, this.comp).iterator().next().getSpecification()
                 .getBodyExpression();
-        this.bossHighestSalaryAST = (OCLExpression) parse(bossHighestSalary, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
-        this.nastyConstraintAST = (OCLExpression) parse(nastyConstraint, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
+        this.bossHighestSalaryAST = (OCLExpression) parse(bossHighestSalary, this.comp).iterator().next().getSpecification()
+                .getBodyExpression();
+        this.nastyConstraintAST = (OCLExpression) parse(nastyConstraint, this.comp).iterator().next().getSpecification()
+                .getBodyExpression();
         this.divisionBossSecretaryAST = (OCLExpression) parse(divisionBossSecretary, this.comp).iterator().next()
                 .getSpecification().getBodyExpression();
         this.secretaryOlderThanBossAST = (OCLExpression) parse(secretaryOlderThanBoss, this.comp).iterator().next()
                 .getSpecification().getBodyExpression();
-        this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse(boss10YearsOlderThanJunior, this.comp).iterator()
-                .next().getSpecification().getBodyExpression();
-        this.expensesRestrictionAST = (OCLExpression) parse(expensesRestriction, this.comp).iterator().next()
+        this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse(boss10YearsOlderThanJunior, this.comp).iterator().next()
                 .getSpecification().getBodyExpression();
-        // this.departmentMustHaveDivisionAST = (OCLExpression) parse( departmentMustHaveDivision
-        // ).iterator().next().getSpecification().getBodyExpression();
-        this.compareBossSalaryToJuniorSalaryAST = (OCLExpression) parse(compareBossSalaryToJuniorSalary, this.comp)
-                .iterator().next().getSpecification().getBodyExpression();
-        this.employeeInSameDepartmentAsInternAST = (OCLExpression) parse(employeeInSameDepartmentAsIntern, this.comp)
-                .iterator().next().getSpecification().getBodyExpression();
+        this.expensesRestrictionAST = (OCLExpression) parse(expensesRestriction, this.comp).iterator().next().getSpecification()
+                .getBodyExpression();
+        this.departmentMustHaveDivisionAST = (OCLExpression) parse(departmentMustHaveDivision, this.comp).iterator().next()
+                .getSpecification().getBodyExpression();
+        this.compareBossSalaryToJuniorSalaryAST = (OCLExpression) parse(compareBossSalaryToJuniorSalary, this.comp).iterator()
+                .next().getSpecification().getBodyExpression();
+        this.employeeInSameDepartmentAsInternAST = (OCLExpression) parse(employeeInSameDepartmentAsIntern, this.comp).iterator()
+                .next().getSpecification().getBodyExpression();
+
+        this.checkForBobAST = (OCLExpression) parse(checkForBob, this.comp).iterator().next().getSpecification()
+                .getBodyExpression();
 
         // if comp has an EResource add each expression to this EResource
         if (this.comp.eResource() != null) {
@@ -474,9 +484,10 @@ public class BaseDepartmentTest extends TestCase {
             this.comp.eResource().getContents().add(this.bossHighestSalaryAST);
             this.comp.eResource().getContents().add(this.divisionBossSecretaryAST);
             this.comp.eResource().getContents().add(this.expensesRestrictionAST);
-            // this.comp.eResource().getContents().add(this.departmentMustHaveDivisionAST);
+            this.comp.eResource().getContents().add(this.departmentMustHaveDivisionAST);
             this.comp.eResource().getContents().add(this.compareBossSalaryToJuniorSalaryAST);
             this.comp.eResource().getContents().add(this.employeeInSameDepartmentAsInternAST);
+            this.comp.eResource().getContents().add(this.checkForBobAST);
         }
     }
 
@@ -530,6 +541,7 @@ public class BaseDepartmentTest extends TestCase {
         this.departmentMustHaveDivisionAST = null;
         this.compareBossSalaryToJuniorSalaryAST = null;
         this.employeeInSameDepartmentAsInternAST = null;
+        this.checkForBobAST = null;
         this.division = null;
         this.divisionBudget = null;
         this.department = null;
@@ -551,5 +563,4 @@ public class BaseDepartmentTest extends TestCase {
         this.employeeRef = null;
         this.directedRef = null;
     }
-
 }
