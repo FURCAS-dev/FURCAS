@@ -25,6 +25,7 @@ import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.NavigationCallExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
@@ -97,14 +98,16 @@ public class Query2  {
             if (body instanceof PropertyCallExp<?, ?>){
 
                 //TODO mapping for navigationCallExp
-           
+
 
                 Object prop = ((PropertyCallExp) body).getReferredProperty();
                 if(prop instanceof EReference){
-                    EClassifier eclass2 = ((EReference) prop).getEType();
+                    Object x = ((EReference) prop).getEType();
+                    EClassifier eclass2 = (EClassifier) x;
                     URI uri2=EcoreUtil.getURI(eclass2);
-                //TODO check eclass2 is Subtype of eclass1 then use KIND in mql 
-                    
+                    //TODO check eclass2 is Subtype of eclass1 then use KIND in mql 
+
+
                     resultSet = queryProcessor.execute("select a2 from  [" +uri1+ //$NON-NLS-1$
                             "] as a1," +uri2+ " as a2 with (a1,a2) in assoc( " +stringBody+ ")", queryContext); //$NON-NLS-1$
                 }else if(prop instanceof EAttribute){
