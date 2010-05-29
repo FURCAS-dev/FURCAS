@@ -197,12 +197,16 @@
 	    name="%MF_SaveAsEcore_Command" description="%MF_SaveAsEcore_Description"/>
 	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	    name="%MF_SaveAsOCLinEcore_Command" description="%MF_SaveAsOCLinEcore_Description"/>
+	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
+	    name="%MF_CreateDynamicInstance_Command" description="%MF_CreateDynamicInstance_Description"/>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsEcoreCommand"
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsEcoreHandler"/>
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsOCLinEcoreHandler"/>
+	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
+	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.CreateDynamicInstanceHandler"/>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 	  <!--menuContribution locationURI="popup:org.eclipse.xtext.ui.common.outline?after=additions">
@@ -236,8 +240,16 @@
 	      </visibleWhen>
 	    </command>
 	  </menuContribution>
+	  <menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
+	      label="%MF_CreateDynamicInstance">
+	      <visibleWhen checkEnabled="false">
+	        <iterate>
+	          <adapt type="org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS"/>
+	        </iterate>
+	      </visibleWhen>
+	    </command>
+	  </menuContribution>
 	</extension>
-
-
 
 </plugin>
