@@ -3,13 +3,20 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class OCLstdlibUiModule extends org.eclipse.ocl.examples.xtext.oclstdlib.ui.AbstractOCLstdlibUiModule {
+public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
+{
 	public OCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+
+	public Class<? extends XtextDocument> bindXtextDocument() {
+		return BaseDocument.class;
 	}
 }
