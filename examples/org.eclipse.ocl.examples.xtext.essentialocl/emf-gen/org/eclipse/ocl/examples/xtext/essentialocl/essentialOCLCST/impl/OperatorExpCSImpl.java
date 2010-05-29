@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OperatorExpCSImpl.java,v 1.1 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: OperatorExpCSImpl.java,v 1.2 2010/05/29 15:31:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -97,6 +99,28 @@ public abstract class OperatorExpCSImpl extends SubExpCSImpl implements Operator
 		op = newOp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.OPERATOR_EXP_CS__OP, oldOp, op));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Return the expression tree node for which this node is an argument,
+	 * returning null if this is the source. This methods returns what would
+	 * have been the parent if the tree where left rather than right recursive.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OperatorExpCS getArgumentParent() {
+		EObject eContainer = eContainer();
+		if (!(eContainer instanceof OperatorExpCS)) {
+			return null;
+		}
+		EStructuralFeature eContainingFeature = eContainingFeature();
+		if (eContainingFeature != EssentialOCLCSTPackage.Literals.SUB_EXP_CS__SOURCE) {
+			return (OperatorExpCS)eContainer;
+		}
+		else {
+			return ((OperatorExpCS)eContainer).getArgumentParent();
+		}
 	}
 
 	/**

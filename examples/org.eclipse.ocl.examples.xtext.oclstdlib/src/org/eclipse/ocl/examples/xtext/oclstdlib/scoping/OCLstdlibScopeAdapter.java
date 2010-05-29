@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibScopeAdapter.java,v 1.7 2010/05/24 08:59:14 ewillink Exp $
+ * $Id: OCLstdlibScopeAdapter.java,v 1.8 2010/05/29 15:31:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -154,6 +154,10 @@ public abstract class OCLstdlibScopeAdapter<T extends ElementCS> extends Abstrac
 
 	public ClassifierCS getLibraryIntegerType() {
 		return getLibraryType("Integer");
+	}
+
+	public ClassifierCS getLibraryOclAnyType() {
+		return getLibraryType("OclAny");
 	}
 
 	public ClassifierCS getLibraryOclInvalidType() {

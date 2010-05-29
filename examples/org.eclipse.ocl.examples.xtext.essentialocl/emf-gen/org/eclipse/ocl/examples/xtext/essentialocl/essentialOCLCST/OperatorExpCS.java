@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperatorExpCS.java,v 1.1 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: OperatorExpCS.java,v 1.2 2010/05/29 15:31:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -59,5 +59,13 @@ public interface OperatorExpCS extends SubExpCS {
 	 * @generated
 	 */
 	void setOp(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	OperatorExpCS getArgumentParent();
 
 } // OperatorExpCS

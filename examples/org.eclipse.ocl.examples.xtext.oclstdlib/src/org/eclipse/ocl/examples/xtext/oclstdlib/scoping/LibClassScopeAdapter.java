@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibClassScopeAdapter.java,v 1.5 2010/05/24 08:59:14 ewillink Exp $
+ * $Id: LibClassScopeAdapter.java,v 1.6 2010/05/29 15:31:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -48,7 +48,7 @@ public class LibClassScopeAdapter extends OCLstdlibScopeAdapter<LibClassCS>
 			environmentView.addNamedElements(BaseCSTPackage.Literals.OPERATION_CS, target.getOperations(), bindings);
 			environmentView.addNamedElements(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS, target.getStructuralFeatures(), bindings);
 			environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters(), bindings);
-			if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
+			if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters
 				for (TypedRefCS csSuperType : target.getConformsTo()) {
 					TypeCS csType = getLibraryType(csSuperType, bindings);
 					ScopeView nestedScopeView = scopeView;

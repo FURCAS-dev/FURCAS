@@ -12,19 +12,46 @@
  *
  * </copyright>
  *
- * $Id: SimpleNameExpScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: SimpleNameExpScopeAdapter.java,v 1.6 2010/05/29 15:31:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNameExpCS;
 
 public class SimpleNameExpScopeAdapter extends ExpScopeAdapter<SimpleNameExpCS>
 {
 	public SimpleNameExpScopeAdapter(SimpleNameExpCS csElement) {
 		super(csElement);
+	}
+
+	@Override
+	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		ScopeAdapter nonNameParent = getParent();
+//		EStructuralFeature eContainingFeature = getTarget().eContainingFeature();
+		while (nonNameParent instanceof PathNameExpScopeAdapter) {
+			nonNameParent = nonNameParent.getParent();
+//			eContainingFeature = nonNameParent.getTarget().eContainingFeature();
+		}
+		if (nonNameParent instanceof ArrowOperationCallExpScopeAdapter) {
+			environmentView.require(BaseCSTPackage.Literals.OPERATION_CS);
+		}
+		else if (nonNameParent instanceof DotOperationCallExpScopeAdapter) {
+			environmentView.require(BaseCSTPackage.Literals.OPERATION_CS);
+		}
+		else if (nonNameParent instanceof ArrowExpScopeAdapter) {
+			environmentView.require(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS);
+		}
+		else if (nonNameParent instanceof DotExpScopeAdapter) {
+			environmentView.require(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS);
+		}
+		return super.computeLookup(environmentView, scopeView);
 	}
 
 	@Override
