@@ -12,22 +12,29 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLUiModule.java,v 1.2 2010/05/24 19:36:35 ewillink Exp $
+ * $Id: CompleteOCLUiModule.java,v 1.3 2010/05/29 15:30:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui;
 
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class CompleteOCLUiModule extends org.eclipse.ocl.examples.xtext.completeocl.ui.AbstractCompleteOCLUiModule {
+public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
+{
 	public CompleteOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+
+	public Class<? extends XtextDocument> bindXtextDocument() {
+		return BaseDocument.class;
 	}
 
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLinkingService.java,v 1.6 2010/05/24 08:59:14 ewillink Exp $
+ * $Id: OCLstdlibLinkingService.java,v 1.7 2010/05/29 15:30:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -47,45 +47,55 @@ public class OCLstdlibLinkingService extends DefaultLinkingService
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, AbstractNode node) throws IllegalNodeException {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
-		if (!scopeAdapter.isUnresolvable()) {
-			try {
-				depth++;
-				String text = getText(node);
-				if (text != null) {			
-					IScope scope = getScope(context, ref);
-					if (scope instanceof ScopeView) {
-						if (BaseScopeProvider.LOOKUP.isActive()) {
-							EObject target = ((ScopeView)scope).getTarget();
-							String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
-							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
-						}
-						IEObjectDescription eObjectDescription = scope.getContentByName(text);
-						if (eObjectDescription != null) {
-							EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
-							if (BaseScopeProvider.LOOKUP.isActive()) {
-								if (eObjectOrProxy instanceof ElementCS) {
-									BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + ((ElementCS)eObjectOrProxy).getSignature());
-								}
-								else {
-									BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + eObjectOrProxy);									
-								}
-							}
-							return Collections.singletonList(eObjectOrProxy);
-						}
-						if (BaseScopeProvider.LOOKUP.isActive()) {
-							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
-						}
-//						eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
-					}
+		try {
+			depth++;
+			String text = getText(node);
+			boolean traceLookup = BaseScopeProvider.LOOKUP.isActive();
+			if (text == null) {			
+				if (traceLookup) {
+					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup null");
 				}
-				scopeAdapter.setUnresolvable();
+				return Collections.emptyList();
 			}
-			finally {
-				depth--;
+			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
+			if (scopeAdapter.isUnresolvable()) {
+				if (traceLookup) {
+					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " already unresolvable");
+				}
+				return Collections.emptyList();
 			}
+			IScope scope = getScope(context, ref);
+			if (scope instanceof ScopeView) {
+				if (traceLookup) {
+//					EObject target = ((ScopeView)scope).getTarget();
+//					String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();
+//					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " in " + inString);
+					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
+				}
+				IEObjectDescription eObjectDescription = scope.getContentByName(text);
+				if (eObjectDescription != null) {
+					EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
+					if (traceLookup) {
+						if (eObjectOrProxy instanceof ElementCS) {
+							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + ((ElementCS)eObjectOrProxy).getSignature());
+						}
+						else {
+							BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + eObjectOrProxy);									
+						}
+					}
+					return Collections.singletonList(eObjectOrProxy);
+				}
+				if (traceLookup) {
+					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
+				}
+				//					eObjectDescription = scope.getContentByName(text);	// FIXME conditionalise this retry for debug
+			}
+			scopeAdapter.setUnresolvable();
+			return Collections.emptyList();
 		}
-		return Collections.emptyList();
+		finally {
+			depth--;
+		}
 	}
 
 	@Override

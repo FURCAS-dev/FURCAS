@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDocumentScopeAdapter.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: AbstractDocumentScopeAdapter.java,v 1.5 2010/05/29 15:30:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -32,10 +32,13 @@ public abstract class AbstractDocumentScopeAdapter<T extends DocumentCS>
 	implements DocumentScopeAdapter
 {
 	private BoundDocumentCS boundDocument = null;
-	
+	private long modificationCount = 0;
+
 	public AbstractDocumentScopeAdapter(T csElement) {
 		super(csElement);
 	}
+
+	public void endModification() {}
 
 	public String getAlias(PackageCS csPackage) {
 		for (ImportCS csImport : getTarget().getImports()) {
@@ -76,4 +79,12 @@ public abstract class AbstractDocumentScopeAdapter<T extends DocumentCS>
 	}
 
 	public abstract Logger getLogger();
+	
+	public long getModificationCount() {
+		return modificationCount;
+	}
+
+	public void startModification() {
+		modificationCount++;
+	}
 }
