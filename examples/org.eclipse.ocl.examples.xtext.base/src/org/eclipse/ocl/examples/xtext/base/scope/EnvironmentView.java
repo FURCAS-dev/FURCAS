@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.4 2010/05/29 15:31:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -49,6 +49,7 @@ public class EnvironmentView
 {		
 	private final Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single EObject or List<EObject>
 	private final EStructuralFeature reference;
+	private List<EClass> requiredAlternatives = null;
 	private final String name;
 
 	public EnvironmentView(EStructuralFeature reference, String name) {
@@ -116,7 +117,16 @@ public class EnvironmentView
 	public int addNamedElement(EClass eClass, NamedElementCS namedElement, TypeBindingsCS bindings) {
 		if ((namedElement != null) && accepts(eClass)) {
 			if (eClass.isSuperTypeOf(namedElement.eClass())) {
-				return addNamedElement(namedElement, bindings);
+				if (requiredAlternatives != null) {
+					for (EClass requiredAlternative : requiredAlternatives) {
+						if (requiredAlternative.isSuperTypeOf(namedElement.eClass())) {
+							return addNamedElement(namedElement, bindings);
+						}
+					}
+				}
+				else {				
+					return addNamedElement(namedElement, bindings);
+				}
 			}
 		}
 		return 0;
@@ -135,7 +145,16 @@ public class EnvironmentView
 		if ((namedElements != null) && accepts(eClass)) {
 			for (NamedElementCS namedElement : namedElements) {
 				if (eClass.isSuperTypeOf(namedElement.eClass())) {
-					additions += addElement(namedElement.getName(), namedElement, bindings);
+					if (requiredAlternatives != null) {
+						for (EClass requiredAlternative : requiredAlternatives) {
+							if (requiredAlternative.isSuperTypeOf(namedElement.eClass())) {
+								additions += addElement(namedElement.getName(), namedElement, bindings);
+							}
+						}
+					}
+					else {				
+						additions += addElement(namedElement.getName(), namedElement, bindings);
+					}
 				}
 			}
 		}
@@ -185,6 +204,17 @@ public class EnvironmentView
 		return contentsByName.size();
 	}
 
+	public void require(EClass... requiredClasses) {
+		if (requiredClasses != null) {
+			if (requiredAlternatives == null) {
+				requiredAlternatives = new ArrayList<EClass>();
+			}
+			for (EClass requiredClass : requiredClasses) {
+				requiredAlternatives.add(requiredClass);
+			}
+		}	
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer s = new StringBuffer();
@@ -192,6 +222,16 @@ public class EnvironmentView
 			s.append(reference.getName());
 			s.append(" : "); //$NON-NLS-1$
 			s.append(reference.getEType().getName());
+			if (requiredAlternatives != null) {
+				s.append(" && ("); //$NON-NLS-1$
+				String prefix = ""; //$NON-NLS-1$
+				for (EClass requiredAlternative : requiredAlternatives) {
+					s.append(prefix);
+					s.append(requiredAlternative.getName());
+					prefix = " || "; //$NON-NLS-1$
+				}
+				s.append(")"); //$NON-NLS-1$
+			}
 		}
 		s.append(" \""); //$NON-NLS-1$
 		if (name != null) {
