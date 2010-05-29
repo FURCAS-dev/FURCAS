@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: VariableScopeAdapter.java,v 1.5 2010/05/16 19:19:10 ewillink Exp $
+ * $Id: VariableScopeAdapter.java,v 1.6 2010/05/29 15:31:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -42,5 +44,11 @@ public class VariableScopeAdapter extends EssentialOCLScopeAdapter<VariableCS>
 			environmentView.addElementsOfScope(libType, scopeView);
 			return scopeView.getOuterScope();
 		}
+	}
+
+	@Override
+	public ClassifierCS getLibraryType(ElementCS csElement, TypeBindingsCS bindings) {
+		// TODO Auto-generated method stub
+		return super.getLibraryType(csElement, bindings);
 	}
 }

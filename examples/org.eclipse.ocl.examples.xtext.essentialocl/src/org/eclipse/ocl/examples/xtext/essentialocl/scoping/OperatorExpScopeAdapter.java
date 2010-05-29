@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperatorExpScopeAdapter.java,v 1.1 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: OperatorExpScopeAdapter.java,v 1.2 2010/05/29 15:31:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -39,5 +39,16 @@ public abstract class OperatorExpScopeAdapter<T extends OperatorExpCS> extends S
 		else {
 			return super.getSourceScope(containmentFeature);
 		}
+	}
+
+	protected boolean isNavigation(OperatorExpCS opExp) {
+		String op = opExp.getOp();
+		if (".".equals(op)) {
+			return true;
+		}
+		if ("->".equals(op)) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameExpCSImpl.java,v 1.4 2010/05/24 08:55:47 ewillink Exp $
+ * $Id: PathNameExpCSImpl.java,v 1.5 2010/05/29 15:31:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
@@ -468,10 +468,10 @@ public class PathNameExpCSImpl extends NameExpCSImpl implements PathNameExpCS {
 
 	@Override
 	public NamedElementCS getNamedElement() {
-		NamespaceCS namespace = getNamespace();			// Resolve on the way down rather than wait for recursion
-		if (namespace == null) {
-			return null;
-		}
+//		NamespaceCS namespace = getNamespace();			// Resolve on the way down rather than wait for recursion
+//		if (namespace == null) {
+//			return null;
+//		}
 		NameExpCS element = getElement();
 		if (element == null) {
 			return null;

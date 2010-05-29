@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ArrowExpScopeAdapter.java,v 1.5 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: ArrowExpScopeAdapter.java,v 1.6 2010/05/29 15:31:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -25,6 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorExpCS;
 
 
 public class ArrowExpScopeAdapter extends OperatorExpScopeAdapter<InfixExpCS>
@@ -60,6 +63,21 @@ public class ArrowExpScopeAdapter extends OperatorExpScopeAdapter<InfixExpCS>
 					if (typeScope != null) {
 						typeScope.getInnerScopeView(null, bindings).computeLookupWithParents(environmentView);
 					}
+				}
+			}
+		}
+		else if (containmentFeature == EssentialOCLCSTPackage.Literals.SUB_EXP_CS__SOURCE) {
+			ExpCS source = getTarget().getSource();
+			if (source instanceof NameExpCS) {
+				OperatorExpCS argumentParent = getTarget().getArgumentParent();
+				if ((argumentParent == null) || !isNavigation(argumentParent)) {		// This is the left-most source e.g. source->arg
+					environmentView.require(
+						BaseCSTPackage.Literals.TYPE_CS,
+						EssentialOCLCSTPackage.Literals.VARIABLE_CS,
+						BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS);			
+				}
+				else {		// This is not the left-most source e.g. preamble.source->arg
+					environmentView.require(BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS);
 				}
 			}
 		}
