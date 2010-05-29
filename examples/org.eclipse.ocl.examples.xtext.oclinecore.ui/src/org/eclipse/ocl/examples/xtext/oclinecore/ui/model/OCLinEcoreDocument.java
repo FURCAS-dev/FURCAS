@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.4 2010/05/09 10:26:18 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.5 2010/05/29 15:30:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -34,14 +34,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.model.XtextDocument;
 
-public class OCLinEcoreDocument extends XtextDocument
+public class OCLinEcoreDocument extends BaseDocument
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocument.class);
-
-	protected XtextResource resource2;
 	
 	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, OutputStream outputStream) throws IOException, CoreException {
 		OCLinEcore2Ecore copier = new OCLinEcore2Ecore(resourceSet, resource2, ecoreURI);
@@ -61,7 +59,6 @@ public class OCLinEcoreDocument extends XtextDocument
 	@Override
 	public void setInput(XtextResource resource) {
 		// Works around Bug 309383 to avoid second untranslated read
-		this.resource2 = resource;
 		String contents = get();
 		if (contents != null) {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
