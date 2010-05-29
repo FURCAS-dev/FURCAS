@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.5 2010/05/22 19:02:44 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.6 2010/05/29 17:30:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -93,7 +93,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		}
 	}
 
-	private ResourceSet getResourceSet() {
+	public ResourceSet getResourceSet() {
 		return ((OCLinEcoreResourceForEditorInputFactory) getResourceForEditorInputFactory()).getResourceSet();
 	}
 
