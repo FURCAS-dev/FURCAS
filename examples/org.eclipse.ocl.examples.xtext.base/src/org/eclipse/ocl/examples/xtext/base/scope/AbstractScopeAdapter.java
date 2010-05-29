@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.7 2010/05/22 18:57:25 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.8 2010/05/29 15:30:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -89,8 +89,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 
 	protected final ScopeAdapter parent;
 	protected final DocumentScopeAdapter document;
+	protected long unresolveableModificationCount = -1;
 	protected final Class<T> targetClass;
-	private boolean unresolvable = false;		// Set true after a linking failure
 	
 	/**
 	 * Creates an instance.
@@ -204,7 +204,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	}
 
 	public boolean isUnresolvable() {
-		return unresolvable;
+		return (document == null) || (unresolveableModificationCount >= document.getModificationCount());
 	}
 
 	@Override
@@ -214,7 +214,9 @@ public abstract class AbstractScopeAdapter<T extends EObject> extends AdapterImp
 	}
 
 	public void setUnresolvable() {
-		unresolvable  = true;
+		if (document != null) {
+			unresolveableModificationCount = document.getModificationCount();
+		}
 	}
 
 	@Override
