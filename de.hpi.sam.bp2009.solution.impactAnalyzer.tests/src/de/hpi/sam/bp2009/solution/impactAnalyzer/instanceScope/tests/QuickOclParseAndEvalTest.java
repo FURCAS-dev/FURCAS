@@ -10,16 +10,16 @@ import org.junit.Test;
 
 import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
-import data.classes.SapClass;
+import data.classes.MethodSignature;
 
 public class QuickOclParseAndEvalTest extends TestCase {
 	@Test
 	public void testParseAndEvaluateOclExpression() throws ParserException {
 		OCL ocl = OCL.newInstance();
 		Helper oclHelper = ocl.createOCLHelper();
-		oclHelper.setContext(ClassesPackage.eINSTANCE.getSapClass());
-		OCLExpression expression = oclHelper.createQuery("self.ownedSignatures.input");
-		SapClass context = ClassesFactory.eINSTANCE.createSapClass();
+		oclHelper.setContext(ClassesPackage.eINSTANCE.getMethodSignature());
+		OCLExpression expression = oclHelper.createQuery("self.owner.oclAsType(data::classes::TypeAdapter).to.oclIsInvalid()");
+		MethodSignature context = ClassesFactory.eINSTANCE.createMethodSignature();
 		Object result = ocl.evaluate(context, expression);
 		assertNotNull(result);
 	}
