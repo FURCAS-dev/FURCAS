@@ -161,6 +161,7 @@ public class OclToAstAction implements org.eclipse.ui.IEditorActionDelegate{
                             l2.setText(e.getAffectedObject().toString());
 
                     }
+                    p.getAllOccurredErrorMessages().clear();
                     setDialogHelpAvailable(false);
                     par.update();
                     return par;

@@ -169,6 +169,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
+                System.out.println(e + "\n" + e1.getMessage());
                 getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
             }
 
@@ -246,7 +247,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
      */
     @Override
     public void traversalConvertOclAnnotations(EPackage pkg) {
-        getAllOccurredErrorMessages().clear();
 
         for (EClassifier cls : pkg.getEClassifiers()) {
             convertOclAnnotation(cls);
