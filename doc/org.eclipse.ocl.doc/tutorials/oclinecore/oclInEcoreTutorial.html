@@ -332,7 +332,7 @@ Add the invariant shown below to the meta-model.
   class Book
   {
     invariant SufficientCopies:
-      library.loans->select(book=self)->size() <= copies;
+      library.loans->select(book=self)->size() &lt;= copies;
     attribute name : String;
     attribute copies : Integer;
     property library#books : Library;
@@ -420,7 +420,7 @@ Simplify the invariant to use the derived property.
   class Book
   {
     invariant SufficientCopies: 
-      loans->size() <= copies;
+      loans->size() &lt;= copies;
     attribute name : String[?];
     attribute copies : Integer[?];
     property loans : Loan[*] { derived,volatile }
@@ -430,7 +430,7 @@ Simplify the invariant to use the derived property.
     property _'library'#books : Library[?];
     operation isAvailable() : Boolean[?]
     {
-      body: loans->size() < copies;
+      body: loans->size() &lt; copies;
     }
   }
 </pre>
@@ -457,7 +457,7 @@ at most two loans per member policy.
 <pre class="Code">  class Member
   {
     invariant AtMostTwoLoans: 
-      loans->size() <= 2;
+      loans->size() &lt;= 2;
     attribute name : String[?];
     property _'library'#members : Library[?];
     property loans : Loan[*] { derived,volatile }
